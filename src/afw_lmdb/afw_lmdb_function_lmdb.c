@@ -64,7 +64,7 @@ afw_lmdb_function_execute_reader_check(
         AFW_THROW_ERROR_Z(general, "Error in reader_check()", x->xctx);
     }
 
-    return afw_value_create_integer(deadReaders, x->p, x->xctx);
+    return afw_value_create_integer_unmanaged(deadReaders, x->p, x->xctx);
 }
 
 
@@ -116,5 +116,5 @@ afw_lmdb_function_execute_reader_list(
         AFW_THROW_ERROR_Z(general, "Error in reader_list()", x->xctx);
     }
 
-    return afw_value_create_string(list, x->p, x->xctx);
+    return afw_value_create_string_unmanaged(list, x->p, x->xctx);
 }

@@ -83,7 +83,7 @@ afw_function_execute_add_string(
     }
 
     /* Return String value. */
-    return afw_value_create_string(
+    return afw_value_create_string_unmanaged(
         afw_utf8_create(s, len, x->p, x->xctx), x->p, x->xctx);
 }
 
@@ -159,7 +159,7 @@ afw_function_execute_concat(
     }
 
     /* Return String value. */
-    return afw_value_create_string(
+    return afw_value_create_string_unmanaged(
         afw_utf8_create(s, len, x->p, x->xctx), x->p, x->xctx);
 }
 
@@ -256,7 +256,7 @@ afw_function_execute_normalize_space_string(
     s = afw_utf8_normalize_space(&arg->internal, x->p, x->xctx);
 
     /* Return String value. */
-    return afw_value_create_string(s, x->p, x->xctx);
+    return afw_value_create_string_unmanaged(s, x->p, x->xctx);
 }
 
 
@@ -301,7 +301,7 @@ afw_function_execute_normalize_to_lower_case_string(
     s = afw_utf8_to_lower(&arg->internal, x->p, x->xctx);
     
     /* Return String value. */
-    return afw_value_create_string(s, x->p, x->xctx);
+    return afw_value_create_string_unmanaged(s, x->p, x->xctx);
 }
 
 
@@ -376,7 +376,7 @@ afw_function_execute_string(
     }
 
     /* Return String value. */
-    return afw_value_create_string(
+    return afw_value_create_string_unmanaged(
         afw_utf8_create(s, len, x->p, x->xctx), x->p, x->xctx);
 }
 

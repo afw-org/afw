@@ -178,7 +178,7 @@ afw_value_allocate_dateTime(const afw_pool_t *p, afw_xctx_t *xctx);
  * @return Created const afw_value_t *.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_create_dateTime(const afw_dateTime_t * internal,
+afw_value_create_dateTime_unmanaged(const afw_dateTime_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**

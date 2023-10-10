@@ -267,7 +267,7 @@ impl_make_value(
             view, self, property_name,
             ((const afw_value_object_t *)original_value)->internal,
             NULL, xctx);
-        result = afw_value_create_object(
+        result = afw_value_create_object_unmanaged(
             (const afw_object_t *)embedded_object, p, xctx);
     }
 
@@ -288,7 +288,7 @@ impl_make_value(
                 original_entry_value, xctx);
             afw_array_add_value(list, value, xctx);
         }
-        result = afw_value_create_array(list, p, xctx);
+        result = afw_value_create_array_unmanaged(list, p, xctx);
     }
 
     /* Return result. */
@@ -1134,7 +1134,7 @@ impl_object_create(
         }
         self->pub.meta.object_uri = &uri_parsed->path_parsed->normalized_path;
 
-        value = afw_value_create_anyURI(self->pub.meta.object_uri,
+        value = afw_value_create_anyURI_unmanaged(self->pub.meta.object_uri,
             p, xctx);
     }
 
@@ -1392,7 +1392,7 @@ afw_object_view_create(
             &self_value.pub,
             &afw_object_options_reconcilable_meta_property,
             p, xctx);
-        value = afw_value_create_string(reconcilable, p, xctx);
+        value = afw_value_create_string_unmanaged(reconcilable, p, xctx);
         impl_meta_set_property(self, afw_s_reconcilable, value, xctx);
     }
 

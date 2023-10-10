@@ -449,11 +449,11 @@ impl_afw_adaptor_get_additional_metrics (
         afw_object_set_property_as_string_from_utf8_z(version, 
             afw_lmdb_s_version_string, version_str, xctx);
         afw_object_set_property(version, afw_lmdb_s_major,
-            afw_value_create_integer(major, p, xctx), xctx);
+            afw_value_create_integer_unmanaged(major, p, xctx), xctx);
         afw_object_set_property(version, afw_lmdb_s_minor,
-            afw_value_create_integer(minor, p, xctx), xctx);
+            afw_value_create_integer_unmanaged(minor, p, xctx), xctx);
         afw_object_set_property(version, afw_lmdb_s_patch,
-            afw_value_create_integer(patch, p, xctx), xctx);
+            afw_value_create_integer_unmanaged(patch, p, xctx), xctx);
     }
 
     /* gather statistics for each database */
@@ -475,17 +475,17 @@ impl_afw_adaptor_get_additional_metrics (
     rc = mdb_env_stat(self->dbEnv, &stat);
     if (rc == 0) {
         afw_object_set_property(environment, afw_lmdb_s_psize, 
-            afw_value_create_integer(stat.ms_psize, p, xctx), xctx);
+            afw_value_create_integer_unmanaged(stat.ms_psize, p, xctx), xctx);
         afw_object_set_property(environment, afw_lmdb_s_depth, 
-            afw_value_create_integer(stat.ms_depth, p, xctx), xctx);
+            afw_value_create_integer_unmanaged(stat.ms_depth, p, xctx), xctx);
         afw_object_set_property(environment, afw_lmdb_s_branch_pages, 
-            afw_value_create_integer(stat.ms_branch_pages, p, xctx), xctx);
+            afw_value_create_integer_unmanaged(stat.ms_branch_pages, p, xctx), xctx);
         afw_object_set_property(environment, afw_lmdb_s_leaf_pages, 
-            afw_value_create_integer(stat.ms_leaf_pages, p, xctx), xctx);
+            afw_value_create_integer_unmanaged(stat.ms_leaf_pages, p, xctx), xctx);
         afw_object_set_property(environment, afw_lmdb_s_overflow_pages, 
-            afw_value_create_integer(stat.ms_overflow_pages, p, xctx), xctx);
+            afw_value_create_integer_unmanaged(stat.ms_overflow_pages, p, xctx), xctx);
         afw_object_set_property(environment, afw_lmdb_s_entries, 
-            afw_value_create_integer(stat.ms_entries, p, xctx), xctx);
+            afw_value_create_integer_unmanaged(stat.ms_entries, p, xctx), xctx);
     }
    
     /* gather the env_info */
@@ -499,17 +499,17 @@ impl_afw_adaptor_get_additional_metrics (
     rc = mdb_env_info(self->dbEnv, &info);
     if (rc == 0) {
         afw_object_set_property(information, afw_lmdb_s_mapaddr,
-            afw_value_create_integer((size_t)info.me_mapaddr, p, xctx), xctx);
+            afw_value_create_integer_unmanaged((size_t)info.me_mapaddr, p, xctx), xctx);
         afw_object_set_property(information, afw_lmdb_s_mapsize,
-            afw_value_create_integer(info.me_mapsize, p, xctx), xctx);
+            afw_value_create_integer_unmanaged(info.me_mapsize, p, xctx), xctx);
         afw_object_set_property(information, afw_lmdb_s_last_pgno,
-            afw_value_create_integer(info.me_last_pgno, p, xctx), xctx);
+            afw_value_create_integer_unmanaged(info.me_last_pgno, p, xctx), xctx);
         afw_object_set_property(information, afw_lmdb_s_last_txnid,
-            afw_value_create_integer(info.me_last_txnid, p, xctx), xctx);
+            afw_value_create_integer_unmanaged(info.me_last_txnid, p, xctx), xctx);
         afw_object_set_property(information, afw_lmdb_s_maxreaders,
-            afw_value_create_integer(info.me_maxreaders, p, xctx), xctx);
+            afw_value_create_integer_unmanaged(info.me_maxreaders, p, xctx), xctx);
         afw_object_set_property(information, afw_lmdb_s_numreaders,
-            afw_value_create_integer(info.me_numreaders, p, xctx), xctx);
+            afw_value_create_integer_unmanaged(info.me_numreaders, p, xctx), xctx);
     }
 
     apr_thread_rwlock_rdlock(self->dbLock);
@@ -556,17 +556,17 @@ impl_afw_adaptor_get_additional_metrics (
                         xctx);
                   
                     afw_object_set_property(database, afw_lmdb_s_psize,
-                        afw_value_create_integer(stat.ms_psize, p, xctx), xctx);
+                        afw_value_create_integer_unmanaged(stat.ms_psize, p, xctx), xctx);
                     afw_object_set_property(database, afw_lmdb_s_depth,
-                        afw_value_create_integer(stat.ms_depth, p, xctx), xctx);
+                        afw_value_create_integer_unmanaged(stat.ms_depth, p, xctx), xctx);
                     afw_object_set_property(database, afw_lmdb_s_branch_pages,
-                        afw_value_create_integer(stat.ms_branch_pages, p, xctx), xctx);
+                        afw_value_create_integer_unmanaged(stat.ms_branch_pages, p, xctx), xctx);
                     afw_object_set_property(database, afw_lmdb_s_leaf_pages,
-                        afw_value_create_integer(stat.ms_leaf_pages, p, xctx), xctx);
+                        afw_value_create_integer_unmanaged(stat.ms_leaf_pages, p, xctx), xctx);
                     afw_object_set_property(database, afw_lmdb_s_overflow_pages,
-                        afw_value_create_integer(stat.ms_overflow_pages, p, xctx), xctx);
+                        afw_value_create_integer_unmanaged(stat.ms_overflow_pages, p, xctx), xctx);
                     afw_object_set_property(database, afw_lmdb_s_entries,
-                        afw_value_create_integer(stat.ms_entries, p, xctx), xctx);
+                        afw_value_create_integer_unmanaged(stat.ms_entries, p, xctx), xctx);
                 }
             }
 

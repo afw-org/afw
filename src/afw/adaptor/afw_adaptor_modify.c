@@ -307,15 +307,15 @@ afw_adaptor_modify_entries_to_list(
                 property_name_entry;
                 property_name_entry = property_name_entry->next)
             {
-                value = afw_value_create_string(
+                value = afw_value_create_string_unmanaged(
                     &property_name_entry->property_name,
                     p, xctx);
                 afw_array_add_value(name_list, value, xctx);
             }
-            value = afw_value_create_array(name_list, p, xctx);
+            value = afw_value_create_array_unmanaged(name_list, p, xctx);
         }
         else {
-            value = afw_value_create_string(
+            value = afw_value_create_string_unmanaged(
                 &(*e)->first_property_name_entry->property_name,
                 p, xctx);
         }
@@ -327,7 +327,7 @@ afw_adaptor_modify_entries_to_list(
         }
 
         /* Add tuple to result list. */
-        value = afw_value_create_array(tuple, p, xctx);
+        value = afw_value_create_array_unmanaged(tuple, p, xctx);
         afw_array_add_value(result, value, xctx);
 
     }
@@ -403,7 +403,7 @@ afw_adaptor_modify_entries_apply_to_unnormalized_object(
                     list = afw_array_create_generic(object->p, xctx);
                     afw_array_add_value(list, old_value, xctx);
                     afw_array_add_value(list, value, xctx);
-                    value = afw_value_create_array(list,
+                    value = afw_value_create_array_unmanaged(list,
                         p, xctx);
                     impl_set_property(object, first_property_name_entry, value,
                         xctx);
@@ -443,7 +443,7 @@ afw_adaptor_modify_entries_apply_to_unnormalized_object(
                     list = ((const afw_value_array_t *)old_value)
                         ->internal;
                     afw_array_remove_value(list, value, xctx);
-                    new_value = afw_value_create_array(list, p, xctx);
+                    new_value = afw_value_create_array_unmanaged(list, p, xctx);
                     impl_set_property(object, first_property_name_entry,
                             new_value, xctx);
                 }
@@ -541,14 +541,14 @@ impl_add_reconcile_property(
         new_property_names = afw_array_create_or_clone(
             property_names, afw_data_type_string, false,
             wa->p, wa->xctx);
-        v = afw_value_create_string(property_name,
+        v = afw_value_create_string_unmanaged(property_name,
             wa->p, wa->xctx);
         afw_array_add_value(new_property_names, v, wa->xctx);
-        v = afw_value_create_array(new_property_names,
+        v = afw_value_create_array_unmanaged(new_property_names,
             wa->p, wa->xctx);
     }
     else {
-        v = afw_value_create_string(property_name,
+        v = afw_value_create_string_unmanaged(property_name,
             wa->p, wa->xctx);
     }
     afw_array_add_value(tuple, v, wa->xctx);
@@ -559,7 +559,7 @@ impl_add_reconcile_property(
     }
 
     /* Add tuple to entries. */
-    v = afw_value_create_array(tuple, wa->p, wa->xctx);
+    v = afw_value_create_array_unmanaged(tuple, wa->p, wa->xctx);
     afw_array_add_value(wa->entries, v, wa->xctx);
 }
 
@@ -632,7 +632,7 @@ impl_reconcile_object(
                     afw_array_create_or_clone(
                         property_names, afw_data_type_string, false,
                         wa->p, wa->xctx);
-                value = afw_value_create_string(property_name,
+                value = afw_value_create_string_unmanaged(property_name,
                     wa->p, wa->xctx);
                 afw_array_add_value(new_property_names, value, wa->xctx);
 
@@ -910,11 +910,11 @@ afw_adaptor_modify_using_update_object(
         afw_array_add_value(entry,
             &impl_value_set_property.pub,
             xctx);
-        property_name_value = afw_value_create_string(
+        property_name_value = afw_value_create_string_unmanaged(
             property_name, xctx->p, xctx);
         afw_array_add_value(entry, property_name_value, xctx);
         afw_array_add_value(entry, value, xctx);
-        entry_value = afw_value_create_array(entry, xctx->p, xctx);
+        entry_value = afw_value_create_array_unmanaged(entry, xctx->p, xctx);
         afw_array_add_value(entries, entry_value, xctx);
     }
 

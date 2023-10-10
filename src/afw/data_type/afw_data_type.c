@@ -788,7 +788,7 @@ impl_afw_data_type_function_utf8_to_internal(
 {
     const afw_value_t *value;
 
-    value = afw_value_create_string(from_utf8, p, xctx);
+    value = afw_value_create_string_unmanaged(from_utf8, p, xctx);
     memcpy(to_internal, (const void *)&value, sizeof(afw_value_t *));
 }
 
@@ -820,7 +820,7 @@ impl_afw_data_type_function_clone_internal(
 
     s = impl_afw_data_type_function_internal_to_utf8(
         NULL, from_internal, NULL, xctx);
-    value = afw_value_create_string(s, p, xctx);
+    value = afw_value_create_string_unmanaged(s, p, xctx);
     memcpy(to_internal, (const void *)&value, sizeof(afw_value_t *));
 }
 

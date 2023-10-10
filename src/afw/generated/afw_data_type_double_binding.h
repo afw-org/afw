@@ -178,7 +178,7 @@ afw_value_allocate_double(const afw_pool_t *p, afw_xctx_t *xctx);
  * @return Created const afw_value_t *.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_create_double(double internal,
+afw_value_create_double_unmanaged(double internal,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**

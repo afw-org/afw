@@ -178,7 +178,7 @@ afw_value_allocate_base64Binary(const afw_pool_t *p, afw_xctx_t *xctx);
  * @return Created const afw_value_t *.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_create_base64Binary(const afw_memory_t * internal,
+afw_value_create_base64Binary_unmanaged(const afw_memory_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**

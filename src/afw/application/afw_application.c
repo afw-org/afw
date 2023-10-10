@@ -60,13 +60,13 @@ impl_current_get_variable_cb(
     }
     else if (afw_utf8_equal(name, afw_s_pid)) {
         pid = afw_os_get_pid();
-        result = afw_value_create_integer(pid, xctx->p, xctx);
+        result = afw_value_create_integer_unmanaged(pid, xctx->p, xctx);
     }
     else if (afw_utf8_equal(name, afw_s_xctxUUID)) {
-        result = afw_value_create_string(xctx->uuid, xctx->p, xctx);
+        result = afw_value_create_string_unmanaged(xctx->uuid, xctx->p, xctx);
     }
     else if (afw_utf8_equal(name, afw_s_programName)) {
-        result = afw_value_create_string(
+        result = afw_value_create_string_unmanaged(
             &xctx->env->program_name, xctx->p, xctx);
     }
 

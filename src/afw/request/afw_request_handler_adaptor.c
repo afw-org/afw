@@ -231,7 +231,7 @@ impl_afw_request_handler_process(
                 
                 /* If no property name in path, obj is value. */
                 else {
-                    value = afw_value_create_object(obj, xctx->p, xctx);
+                    value = afw_value_create_object_unmanaged(obj, xctx->p, xctx);
                 }
 
                 /* If value not found, throw error. */

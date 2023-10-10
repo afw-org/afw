@@ -317,7 +317,7 @@ def write_h_section(fd, prefix, obj):
         fd.write(' * @return Created const afw_value_t *.\n')
         fd.write(' */\n')
         fd.write(declare + '(const afw_value_t *)\n')
-        fd.write('afw_value_create_' + id + '(' + return_type + ' internal,\n')
+        fd.write('afw_value_create_' + id + '_unmanaged(' + return_type + ' internal,\n')
         fd.write('    const afw_pool_t *p, afw_xctx_t *xctx);\n')
 
         fd.write('\n/**\n')
@@ -930,7 +930,7 @@ def write_c_section(fd, prefix, obj):
         fd.write('            xctx);\n')
         fd.write('    }\n')
         fd.write('\n')
-        fd.write('    v = afw_value_create_' + id + '(internal, object->p, xctx);\n')
+        fd.write('    v = afw_value_create_' + id + '_unmanaged(internal, object->p, xctx);\n')
         fd.write('    afw_object_set_property(object, property_name, v, xctx);\n')
         fd.write('}\n')
 
@@ -973,7 +973,7 @@ def write_c_section(fd, prefix, obj):
 
         fd.write('\n/* Create function for unmanaged data type ' + id + ' value. */\n')
         fd.write(define + '(const afw_value_t *)\n')
-        fd.write('afw_value_create_' + id + '(' + return_type + ' internal,\n')
+        fd.write('afw_value_create_' + id + '_unmanaged(' + return_type + ' internal,\n')
         fd.write('    const afw_pool_t *p, afw_xctx_t *xctx)\n')
         fd.write('{\n')
         fd.write('    afw_value_' + id + '_t *v;\n')
@@ -1604,5 +1604,3 @@ def generate(generated_by, prefix, data_type_array, generated_dir_path, options)
     
         fd.write('\n')
         fd.write('}\n')
-
-

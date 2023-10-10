@@ -93,7 +93,7 @@ afw_content_type_value_to_raw(
  */
 #define afw_content_type_object_to_raw(instance, object, options, p, xctx) \
     afw_content_type_value_to_raw(instance, \
-        afw_value_create_object(object, p, xctx), options, p, xctx)
+        afw_value_create_object_unmanaged(object, p, xctx), options, p, xctx)
 
 
 /**

@@ -223,7 +223,7 @@ afw_object_set_property_as_time(
             xctx);
     }
 
-    v = afw_value_create_time(internal, object->p, xctx);
+    v = afw_value_create_time_unmanaged(internal, object->p, xctx);
     afw_object_set_property(object, property_name, v, xctx);
 }
 
@@ -266,7 +266,7 @@ afw_value_allocate_time(const afw_pool_t *p, afw_xctx_t *xctx)
 
 /* Create function for unmanaged data type time value. */
 AFW_DEFINE(const afw_value_t *)
-afw_value_create_time(const afw_time_t * internal,
+afw_value_create_time_unmanaged(const afw_time_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
     afw_value_time_t *v;

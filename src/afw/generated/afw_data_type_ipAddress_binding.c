@@ -223,7 +223,7 @@ afw_object_set_property_as_ipAddress(
             xctx);
     }
 
-    v = afw_value_create_ipAddress(internal, object->p, xctx);
+    v = afw_value_create_ipAddress_unmanaged(internal, object->p, xctx);
     afw_object_set_property(object, property_name, v, xctx);
 }
 
@@ -266,7 +266,7 @@ afw_value_allocate_ipAddress(const afw_pool_t *p, afw_xctx_t *xctx)
 
 /* Create function for unmanaged data type ipAddress value. */
 AFW_DEFINE(const afw_value_t *)
-afw_value_create_ipAddress(const afw_utf8_t * internal,
+afw_value_create_ipAddress_unmanaged(const afw_utf8_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
     afw_value_ipAddress_t *v;

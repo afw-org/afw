@@ -223,7 +223,7 @@ afw_object_set_property_as_double(
             xctx);
     }
 
-    v = afw_value_create_double(internal, object->p, xctx);
+    v = afw_value_create_double_unmanaged(internal, object->p, xctx);
     afw_object_set_property(object, property_name, v, xctx);
 }
 
@@ -266,7 +266,7 @@ afw_value_allocate_double(const afw_pool_t *p, afw_xctx_t *xctx)
 
 /* Create function for unmanaged data type double value. */
 AFW_DEFINE(const afw_value_t *)
-afw_value_create_double(double internal,
+afw_value_create_double_unmanaged(double internal,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
     afw_value_double_t *v;

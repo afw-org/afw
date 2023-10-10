@@ -47,7 +47,7 @@ afw_model_internal_get_current_adaptorId(
 
     if (!ctx->adaptor_id_value) {
         ctx->adaptor_id_value =
-            afw_value_create_string(
+            afw_value_create_string_unmanaged(
                 &ctx->session_self->adaptor->pub.adaptor_id,
                 ctx->p, xctx);
     }
@@ -67,7 +67,7 @@ afw_model_internal_get_current_adaptorTypeSpecific(
 
     if (!ctx->adaptorTypeSpecific_value && ctx->adaptorTypeSpecific) {
         ctx->adaptorTypeSpecific_value =
-            afw_value_create_object(
+            afw_value_create_object_unmanaged(
                 ctx->adaptorTypeSpecific, ctx->p, xctx);
     }
 
@@ -124,7 +124,7 @@ afw_model_internal_get_current_mappedObject(
     afw_model_internal_context_t *ctx = (afw_model_internal_context_t *)internal;
 
     if (!ctx->mapped_object_value && ctx->mapped_object) {
-        ctx->mapped_object_value = afw_value_create_object(
+        ctx->mapped_object_value = afw_value_create_object_unmanaged(
             ctx->mapped_object, ctx->p, xctx);
     }
 
@@ -143,7 +143,7 @@ afw_model_internal_get_current_mappedObjectId(
 
     if (!ctx->mapped_object_id_value && ctx->mapped_object) {
         ctx->mapped_object_id_value =
-            afw_value_create_string(
+            afw_value_create_string_unmanaged(
                 ctx->mapped_object->meta.id, ctx->p, xctx);
     }
 
@@ -162,7 +162,7 @@ afw_model_internal_get_current_mappedObjectType(
 
     if (!ctx->mapped_object_type_id_value && ctx->mapped_object) {
         ctx->mapped_object_type_id_value =
-            afw_value_create_string(
+            afw_value_create_string_unmanaged(
                 afw_object_meta_get_object_type_id(ctx->mapped_object, xctx),
                 ctx->p, xctx);
     }
@@ -215,7 +215,7 @@ afw_model_internal_get_current_modifyEntries(
 
     if (!ctx->adaptor_id_value) {
         ctx->adaptor_id_value =
-            afw_value_create_string(
+            afw_value_create_string_unmanaged(
                 &ctx->session_self->adaptor->pub.adaptor_id,
                 ctx->p, xctx);
     }
@@ -234,7 +234,7 @@ afw_model_internal_get_current_object(
     afw_model_internal_context_t *ctx = (afw_model_internal_context_t *)internal;
 
     if (!ctx->object_value && ctx->object) {
-        ctx->object_value = afw_value_create_object(
+        ctx->object_value = afw_value_create_object_unmanaged(
             ctx->object, ctx->p, xctx);
     }
 
@@ -253,7 +253,7 @@ afw_model_internal_get_current_objectId(
 
     if (!ctx->object_id_value && ctx->object_id) {
         ctx->object_id_value =
-            afw_value_create_string(
+            afw_value_create_string_unmanaged(
                 ctx->object_id, ctx->p, xctx);
     }
 
@@ -313,7 +313,7 @@ afw_model_internal_get_current_queryCriteria(
     if (!ctx->queryCriteria_value && ctx->criteria) {
         query_object = afw_query_criteria_to_AdaptiveQueryCriteria_object(
             ctx->criteria, ctx->p, xctx);
-        ctx->queryCriteria_value = afw_value_create_object(query_object,
+        ctx->queryCriteria_value = afw_value_create_object_unmanaged(query_object,
             ctx->p, xctx);
     }
 
@@ -388,7 +388,7 @@ impl_mappedObject_from_mapped_cb(
     afw_model_internal_context_t *ctx = entry->data;
 
     if (!ctx->mapped_object_value && ctx->mapped_object) {
-        ctx->mapped_object_value = afw_value_create_object(
+        ctx->mapped_object_value = afw_value_create_object_unmanaged(
             ctx->mapped_object, ctx->p, xctx);
     }
 
@@ -406,7 +406,7 @@ impl_mappedObjectId_from_mapped_cb(
 
     if (!ctx->mapped_object_id_value && ctx->mapped_object) {
         ctx->mapped_object_id_value =
-            afw_value_create_string(
+            afw_value_create_string_unmanaged(
                 ctx->mapped_object->meta.id, ctx->p, xctx);
     }
 
@@ -424,7 +424,7 @@ impl_mappedObjectType_from_mapped_cb(
 
     if (!ctx->mapped_object_type_id_value && ctx->mapped_object) {
         ctx->mapped_object_type_id_value =
-            afw_value_create_string(
+            afw_value_create_string_unmanaged(
                 afw_object_meta_get_object_type_id(ctx->mapped_object, xctx),
                 ctx->p, xctx);
     }
@@ -474,7 +474,7 @@ impl_adaptorId_to_mapped_cb(
 
     if (!ctx->adaptor_id_value) {
         ctx->adaptor_id_value =
-            afw_value_create_string(
+            afw_value_create_string_unmanaged(
                 &ctx->session_self->adaptor->pub.adaptor_id,
                 ctx->p, xctx);
     }
@@ -504,7 +504,7 @@ impl_object_to_mapped_cb(
     afw_model_internal_context_t *ctx = entry->data;
 
     if (!ctx->object_value && ctx->object) {
-        ctx->object_value = afw_value_create_object(
+        ctx->object_value = afw_value_create_object_unmanaged(
             ctx->object, ctx->p, xctx);
     }
 
@@ -522,7 +522,7 @@ impl_objectId_to_mapped_cb(
 
     if (!ctx->object_id_value && ctx->object_id) {
         ctx->object_id_value =
-            afw_value_create_string(
+            afw_value_create_string_unmanaged(
                 ctx->object_id, ctx->p, xctx);
     }
 
@@ -577,7 +577,7 @@ impl_adaptorTypeSpecific_cb(
 
     if (!ctx->adaptorTypeSpecific_value && ctx->adaptorTypeSpecific) {
         ctx->adaptorTypeSpecific_value =
-            afw_value_create_object(
+            afw_value_create_object_unmanaged(
                 ctx->adaptorTypeSpecific, ctx->p, xctx);
     }
 
@@ -597,7 +597,7 @@ impl_queryCriteria_cb(
     if (!ctx->queryCriteria_value && ctx->criteria) {
         query_object = afw_query_criteria_to_AdaptiveQueryCriteria_object(
             ctx->criteria, ctx->p, xctx);
-        ctx->queryCriteria_value = afw_value_create_object(query_object,
+        ctx->queryCriteria_value = afw_value_create_object_unmanaged(query_object,
             ctx->p, xctx);
     }
 

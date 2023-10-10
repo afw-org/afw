@@ -397,7 +397,7 @@ afw_authorization_internal_set_control(
         false, afw_data_type_anyURI, 1, p, xctx);
     afw_object_set_property_as_array(not_applicable_object,
         afw_s_applicablePolicies, list, xctx);
-    self->not_applicable_result = afw_value_create_object(not_applicable_object, p, xctx);
+    self->not_applicable_result = afw_value_create_object_unmanaged(not_applicable_object, p, xctx);
 
     /* Return self. */
     return self;
@@ -699,7 +699,7 @@ afw_authorization_check(
         afw_object_set_property(obj, afw_s_decisionId,
             afw_authorization_decision_id_indeterminate_value,
             xctx);
-        result = afw_value_create_object(obj, p, xctx);
+        result = afw_value_create_object_unmanaged(obj, p, xctx);
         decision_id = afw_s_indeterminate;
         final_decider = current_decider;
 
@@ -758,7 +758,7 @@ afw_authorization_check(
                 action_id_value, xctx);
             afw_object_set_property(obj, afw_s_resourceId,
                 request_id_value, xctx);
-            result = afw_value_create_object(obj, p, xctx);
+            result = afw_value_create_object_unmanaged(obj, p, xctx);
 
             s = afw_value_as_string(action_id_value, xctx);
             s2 = afw_value_as_string(resource_id_value, xctx);

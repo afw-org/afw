@@ -178,7 +178,7 @@ afw_value_allocate_function(const afw_pool_t *p, afw_xctx_t *xctx);
  * @return Created const afw_value_t *.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_create_function(const afw_value_t * internal,
+afw_value_create_function_unmanaged(const afw_value_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**

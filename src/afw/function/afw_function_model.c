@@ -231,7 +231,7 @@ afw_function_execute_model_default_add_object_action(
     afw_object_set_property_as_object(result, afw_s_object,
         ctx->mapped_object, xctx);
 
-    return afw_value_create_object(result, x->p, xctx);
+    return afw_value_create_object_unmanaged(result, x->p, xctx);
 }
 
 
@@ -371,7 +371,7 @@ afw_function_execute_model_default_delete_object_action(
     afw_object_set_property_as_string(result, afw_s_objectId,
             ctx->mapped_object_id, xctx);
 
-    return afw_value_create_object(result, x->p, xctx);
+    return afw_value_create_object_unmanaged(result, x->p, xctx);
 }
 
 
@@ -545,7 +545,7 @@ afw_function_execute_model_default_modify_object_action(
     afw_object_set_property_as_array(result, afw_s_entries,
             ctx->mapped_entries, xctx);
 
-    return afw_value_create_object(result, x->p, xctx);
+    return afw_value_create_object_unmanaged(result, x->p, xctx);
 }
 
 
@@ -695,7 +695,7 @@ afw_function_execute_model_default_replace_object_action(
     afw_object_set_property_as_array(result, afw_s_entries,
             ctx->mapped_entries, xctx);
 
-    return afw_value_create_object(result, x->p, xctx);
+    return afw_value_create_object_unmanaged(result, x->p, xctx);
 }
 
 

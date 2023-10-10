@@ -178,7 +178,7 @@ afw_value_allocate_object(const afw_pool_t *p, afw_xctx_t *xctx);
  * @return Created const afw_value_t *.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_create_object(const afw_object_t * internal,
+afw_value_create_object_unmanaged(const afw_object_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**

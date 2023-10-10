@@ -42,7 +42,7 @@ impl_get_dataType(
 
     data_type = afw_value_get_data_type(self->evaluated_value, xctx);
     if (data_type) {
-        result = afw_value_create_string(
+        result = afw_value_create_string_unmanaged(
             &data_type->data_type_id, self->pub.p, xctx);
     }
 
@@ -61,7 +61,7 @@ impl_get_key(
     result = NULL;
 
     if (self->key) {
-        result = afw_value_create_string(
+        result = afw_value_create_string_unmanaged(
             self->key, self->pub.p, xctx);
     }
 
@@ -87,7 +87,7 @@ impl_get_valueInfId(
 {
     const afw_value_t *result;
 
-    result = afw_value_create_string(
+    result = afw_value_create_string_unmanaged(
         &self->value->inf->rti.implementation_id,
         self->pub.p, xctx);
 
@@ -417,7 +417,7 @@ afw_value_internal_get_evaluated_metas_default(
     metas[1] = NULL;
     list = afw_array_const_create_null_terminated_array_of_values(metas, p, xctx);
 
-    return afw_value_create_array(list, p, xctx);
+    return afw_value_create_array_unmanaged(list, p, xctx);
 }
 
 
@@ -462,7 +462,7 @@ afw_value_internal_get_evaluated_metas_for_array(
         afw_array_add_value(list, entry_meta, xctx);
     }
 
-    return afw_value_create_array(list, p, xctx);
+    return afw_value_create_array_unmanaged(list, p, xctx);
 }
 
 
@@ -513,5 +513,5 @@ afw_value_internal_get_evaluated_metas_for_object(
         afw_array_add_value(list, property_meta, xctx);
     }
 
-    return afw_value_create_array(list, p, xctx);
+    return afw_value_create_array_unmanaged(list, p, xctx);
 }

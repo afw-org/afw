@@ -223,7 +223,7 @@ afw_object_set_property_as_dnsName(
             xctx);
     }
 
-    v = afw_value_create_dnsName(internal, object->p, xctx);
+    v = afw_value_create_dnsName_unmanaged(internal, object->p, xctx);
     afw_object_set_property(object, property_name, v, xctx);
 }
 
@@ -266,7 +266,7 @@ afw_value_allocate_dnsName(const afw_pool_t *p, afw_xctx_t *xctx)
 
 /* Create function for unmanaged data type dnsName value. */
 AFW_DEFINE(const afw_value_t *)
-afw_value_create_dnsName(const afw_utf8_t * internal,
+afw_value_create_dnsName_unmanaged(const afw_utf8_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
     afw_value_dnsName_t *v;

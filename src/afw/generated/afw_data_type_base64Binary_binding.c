@@ -223,7 +223,7 @@ afw_object_set_property_as_base64Binary(
             xctx);
     }
 
-    v = afw_value_create_base64Binary(internal, object->p, xctx);
+    v = afw_value_create_base64Binary_unmanaged(internal, object->p, xctx);
     afw_object_set_property(object, property_name, v, xctx);
 }
 
@@ -266,7 +266,7 @@ afw_value_allocate_base64Binary(const afw_pool_t *p, afw_xctx_t *xctx)
 
 /* Create function for unmanaged data type base64Binary value. */
 AFW_DEFINE(const afw_value_t *)
-afw_value_create_base64Binary(const afw_memory_t * internal,
+afw_value_create_base64Binary_unmanaged(const afw_memory_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
     afw_value_base64Binary_t *v;

@@ -128,11 +128,11 @@ impl_log_current_variable_get_cb(
     result = NULL;
 
     if (afw_utf8_equal(name, afw_s_message)) {
-        result = afw_value_create_string(wa->message, wa->p, xctx);
+        result = afw_value_create_string_unmanaged(wa->message, wa->p, xctx);
     }
 
     else if (afw_utf8_equal(name, afw_s_xctxUUID)) {
-        result = afw_value_create_string(xctx->uuid, wa->p, xctx);
+        result = afw_value_create_string_unmanaged(xctx->uuid, wa->p, xctx);
     }
 
     else if (afw_utf8_equal(name, afw_s_source)) {
