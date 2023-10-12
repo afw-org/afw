@@ -57,12 +57,16 @@ then
 
     cd /src && \
     ./afwdev build --js --docs && \
-    cd build/js/apps && \
-    tar cf admin-app-${TAR_VERSION}-${TAR_RELEASE}.tar admin
+    cd /src/build/js && \
+        tar cf afw-apps-${TAR_VERSION}-${TAR_RELEASE}.tar apps
+    cd /src/build && \
+        tar cf afw-docs-${TAR_VERSION}-${TAR_RELEASE}.tar docs
 
     # copy to /
-    cp admin-app-${TAR_VERSION}-${TAR_RELEASE}.tar /    
+    cp afw-apps-${TAR_VERSION}-${TAR_RELEASE}.tar /    
+    cp afw-docs-${TAR_VERSION}-${TAR_RELEASE}.tar /
 
     echo ""
-    echo "File admin-app-${TAR_VERSION}-${TAR_RELEASE}.tar created."    
+    echo "File afw-apps-${TAR_VERSION}-${TAR_RELEASE}.tar created."   
+    echo "File afw-docs-${TAR_VERSION}-${TAR_RELEASE}.tar created." 
 fi

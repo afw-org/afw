@@ -12,10 +12,11 @@ FROM nginx:latest
 LABEL org.opencontainers.image.source https://github.com/afw-org/afw
 
 # builder images must already be created to grab artifacts
-RUN mkdir -p /usr/share/nginx/html/apps
-COPY --from=build-stage /admin-app-*.tar /usr/share/nginx/html/apps
+COPY --from=build-stage /afw-apps-*.tar /usr/share/nginx/html
+COPY --from=build-stage /afw-docs-*.tar /usr/share/nginx/html
 
-RUN cd /usr/share/nginx/html && tar xvf admin-app-*.tar && rm -f admin-app-*.tar
+RUN cd /usr/share/nginx/html && tar xvf afw-apps-*.tar && rm -f afw-apps-*.tar && \
+    cd /usr/share/nginx/html && tar xvf afw-docs-*.tar && rm -f afw-docs-*.tar
 
 # copy nginx.conf configuration
 COPY docker/images/afw-admin/nginx.conf /etc/nginx/
