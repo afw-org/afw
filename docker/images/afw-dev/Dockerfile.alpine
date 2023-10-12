@@ -30,13 +30,13 @@ FROM ghcr.io/afw-org/afw-dev-base:alpine
 LABEL org.opencontainers.image.source https://github.com/afw-org/afw
 
 # obtain the artifacts from build-stage
-COPY --from=build-stage /afw-*.tar /
-COPY --from=build-stage /afw-apps-*.tar /usr/share/nginx/html
-COPY --from=build-stage /afw-docs-*.tar /usr/share/nginx/html
+COPY --from=build-stage /afw-*alpine*.tar /
+COPY --from=build-stage /afw-apps-*.tar /var/lib/nginx/html
+COPY --from=build-stage /afw-docs-*.tar /var/lib/nginx/html
 COPY .devcontainer/afw/nginx.conf /etc/nginx/nginx.conf
 
-RUN cd / && tar xvf /afw-*.tar && rm -f /afw-*.tar && \
-    cd /usr/share/nginx/html && tar xvf afw-apps-*.tar && rm -f afw-apps-*.tar && \
+RUN cd / && tar xvf /afw-*alpine*.tar && rm -f /afw-*alpine*.tar && \
+    cd /var/lib/nginx/html && tar xvf afw-apps-*.tar && rm -f afw-apps-*.tar && \
     tar xvf afw-docs-*.tar && rm -f afw-docs-*.tar
 
 # open ports
