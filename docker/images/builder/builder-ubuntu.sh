@@ -65,13 +65,9 @@ then
     cd /src && \
     ./afwdev build --js --docs && \
     cd /src/build/js && \
-    tar cf afw-apps-${DEB_VERSION}-${DEB_RELEASE}.tar apps
+    tar cf /afw-apps-${DEB_VERSION}-${DEB_RELEASE}.tar apps
     cd /src/build/ && \
-    tar cf afw-docs-${DEB_VERSION}-${DEB_RELEASE}.tar docs
-
-    # copy to /    
-    cp afw-apps-${DEB_VERSION}-${DEB_RELEASE}.tar /  
-    cp afw-docs-${DEB_VERSION}-${DEB_RELEASE}.tar /    
+    tar cf /afw-docs-${DEB_VERSION}-${DEB_RELEASE}.tar docs
 
     echo ""
     echo "File afw-apps-${DEB_VERSION}-${DEB_RELEASE}.tar created."

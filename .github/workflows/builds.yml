@@ -51,19 +51,28 @@ jobs:
                   wget -O /usr/local/bin/rr.war https://github.com/afw-org/rr/releases/download/v1.63/rr.war
 
             - name: Build Docs
-              run: ./afwdev build --docs
+              run: |
+                  ./afwdev build --docs
+                  cd build
+                  tar cvf afw-docs-${{ env.VERSION }}-${{ env.RELEASE }}.tar docs
 
             - name: Build JS Apps and Packages
               run: |
                   ./afwdev build --js -j
-                  cd build/js/apps
-                  tar cvf admin-app-${{ env.VERSION }}-${{ env.RELEASE }}.tar admin
+                  cd build/js
+                  tar cvf afw-apps-${{ env.VERSION }}-${{ env.RELEASE }}.tar apps
 
-            - name: Upload Admin App
+            - name: Upload Web Apps
               uses: actions/upload-artifact@v3
               with:
-                  name: admin-app-${{ env.VERSION }}-${{ env.RELEASE }}.tar
-                  path: build/js/apps/admin-app-${{ env.VERSION }}-${{ env.RELEASE }}.tar
+                  name: afw-apps-${{ env.VERSION }}-${{ env.RELEASE }}.tar
+                  path: build/js/afw-apps-${{ env.VERSION }}-${{ env.RELEASE }}.tar
+
+            - name: Upload Docs
+              uses: actions/upload-artifact@v3
+              with:
+                  name: afw-docs-${{ env.VERSION }}-${{ env.RELEASE }}.tar
+                  path: build/afw-docs-${{ env.VERSION }}-${{ env.RELEASE }}.tar
 
     build_c_rockylinux:
         name: Build RockyLinux C Libraries and Apps

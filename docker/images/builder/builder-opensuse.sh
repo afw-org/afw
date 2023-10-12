@@ -59,15 +59,11 @@ then
     cd /src && \
     ./afwdev build --js --docs && \
     cd build/js && \
-    tar cf afw-apps-${RPM_VERSION}-${RPM_RELEASE}.tar apps
+    tar cf /afw-apps-${RPM_VERSION}-${RPM_RELEASE}.tar apps
     cd /src/build && \
-    tar cf afw-docs-${RPM_VERSION}-${RPM_RELEASE}.tar docs
-
-    # copy to /    
-    cp afw-apps-${RPM_VERSION}-${RPM_RELEASE}.tar /    
-    cp afw-docs-${RPM_VERSION}-${RPM_RELEASE}.tar /
+    tar cf /afw-docs-${RPM_VERSION}-${RPM_RELEASE}.tar docs
 
     echo ""
-    echo "File afw-apps-${RPM_VERSION}-${RPM_RELEASE}.tar created."
-    echo "File afw-docs-${RPM_VERSION}-${RPM_RELEASE}.tar created."
+    echo "File /afw-apps-${RPM_VERSION}-${RPM_RELEASE}.tar created."
+    echo "File /afw-docs-${RPM_VERSION}-${RPM_RELEASE}.tar created."
 fi
