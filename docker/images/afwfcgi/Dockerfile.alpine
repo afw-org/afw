@@ -11,9 +11,9 @@ FROM ghcr.io/afw-org/afw-base:alpine
 LABEL org.opencontainers.image.source https://github.com/afw-org/afw
 
 # builder images must already be created to grab artifacts
-COPY --from=build-stage-c /afw-*.tar /
+COPY --from=build-stage-c /afw-*alpine*.tar /
 
-RUN cd / && tar xvf /afw-*.tar && rm -f /afw-*.tar 
+RUN cd / && tar xvf /afw-*alpine*.tar && rm -f /afw-*alpine*.tar 
 
 # Copy service configurations
 COPY ./docker/images/afwfcgi/afw /afw

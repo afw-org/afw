@@ -23,7 +23,7 @@ RUN dnf install -y epel-release && \
     dnf clean all && rm -rf /var/cache/*
 
 RUN npm install -g npm-upgrade && npm install -g n && n stable
-RUN npm install -g npm@8 eclint cspell
+RUN npm install -g npm@10 eclint cspell
 
 # install python packages
 COPY python-requirements.txt /tmp/python-requirements.txt

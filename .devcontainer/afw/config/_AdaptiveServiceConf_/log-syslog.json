@@ -1,10 +1,18 @@
 {
-    "startup":"immediate",
-    "serviceId":"log-syslog",
-    "conf":{
-    "type":"log",
-    "logType":"syslog",
-    "logId":"syslog",
-    "description":"Logs messages to syslog.",
-    "alert":true,"crit":true,"emerg":true,"err":true,"info":true,"notice":true,"warning":true,"debug":true}
+    "startup": "immediate",
+    "serviceId": "log-syslog",
+    "conf": {
+        "type": "log",
+        "logType": "syslog",
+        "logId": "syslog",
+        "description": "Logs messages to syslog.",
+        "alert": true,
+        "crit": true,
+        "emerg": true,
+        "err": true,
+        "info": true,
+        "notice": true,
+        "warning": true,
+        "debug": true
+    }
 }

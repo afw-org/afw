@@ -2,8 +2,8 @@
   "private": true,
   "description": "Adaptive Framework UI Apps and Libraries",
   "engines": {
-    "npm": ">=7.0.0",
-    "node": ">=14.0.0"
+    "npm": ">=8.0.0",
+    "node": ">=16.0.0"
   },
   "repository": {
     "type": "git",
