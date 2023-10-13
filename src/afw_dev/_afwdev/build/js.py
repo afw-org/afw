@@ -80,10 +80,10 @@ def build(options):
             msg.error_exit('Removing build/js failed.')
     
     # create directory skeletons
-    pathlib.Path('build/js/apps').mkdir(parents=True, exist_ok=True)
-    pathlib.Path('build/js/modules').mkdir(parents=True, exist_ok=True)    
+    pathlib.Path('build/js/apps/' + afwPackageId).mkdir(parents=True, exist_ok=True)
+    pathlib.Path('build/js/modules/' + afwPackageId).mkdir(parents=True, exist_ok=True)    
 
-    # copy to build/js/modules
+    # copy to build/js/modules/${afwPackageId}/
     for module in js_modules:
         # parse the package.json file from the module path
         package_json_file = module + '/package.json'
@@ -95,6 +95,7 @@ def build(options):
             msg.error_exit('Could not parse ' + package_json_file)
         
         module_name = package_json.get('name')
+        module_location = 'build/js/modules/' + afwPackageId + '/' + module_name
 
         # remove the "scripts" part of package.json
         package_json.pop('scripts', None)
@@ -102,26 +103,28 @@ def build(options):
         # add in the version
         package_json['version'] = afw_package.get('version')
 
-        msg.highlighted_info('  Copying ' + module_name + ' to build/js/modules/')
-        rc = subprocess.run(['mkdir', '-p', 'build/js/modules/' + module_name], stdout=output)
+        msg.highlighted_info('  Copying ' + module_name + ' to build/js/modules/' + afwPackageId)
+        rc = subprocess.run(['mkdir', '-p', module_location], stdout=output)
         if rc.returncode != 0:
-            msg.error_exit('mkdir build/js/modules' + module_name + ' failed')
+            msg.error_exit('mkdir ' + module_location + ' failed')
 
-        rc = subprocess.run(['cp', '-r', module + '/build', 'build/js/modules/' + module_name], stdout=output)
+        rc = subprocess.run(['cp', '-r', module + '/build', module_location], stdout=output)
         if rc.returncode != 0:
-            msg.error_exit('cp build/js/modules' + module_name + ' failed')
+            msg.error_exit('cp ' + module_location + ' failed')
 
         # write out new package.json to build location
-        with open('build/js/modules/' + module_name + '/package.json', 'w') as f:
+        with open('build/js/modules/' + afwPackageId + '/' + module_name + '/package.json', 'w') as f:
             f.write(json.dumps(package_json, indent=2))
     
-    # copy apps to build/js/apps
+    # copy apps to build/js/apps/${afwPackageId}/
     for app in js_apps:
         app_name = app.split('/')[-2]
+        app_location = 'build/js/apps/' + afwPackageId + '/' + app_name
+
         msg.highlighted_info('  Copying ' + app_name + ' to build/js/apps/')
-        rc = subprocess.run(['cp', '-r', app + '/build', 'build/js/apps/' + app_name], stdout=output)
+        rc = subprocess.run(['cp', '-r', app + '/build', app_location], stdout=output)
         if rc.returncode != 0:
-            msg.error_exit('copy to build/js/apps/' + app_name + ' failed')
+            msg.error_exit('copy to ' + app_location + ' failed')
 
     if options.get("build_install", False):
         web_root = options.get("build_web_root")
@@ -139,6 +142,7 @@ def build(options):
         # the one from build/js/apps
         for app in js_apps:
             app_name = app.split('/')[-1]
+            app_location = 'build/js/apps/' + afwPackageId + '/' + app_name
 
             if os.path.exists(web_root + '/apps/' + afwPackageId + '/' + app_name):
                 msg.highlighted_info('  Removing existing app ' + app_name + ' from ' + web_root + '/apps/' + afwPackageId + '/')
@@ -155,9 +159,9 @@ def build(options):
             msg.highlighted_info('  Installing new app ' + app_name + ' to ' + web_root + '/apps/' + afwPackageId + '/')
 
             if options.get('build_sudo', False):
-                rc = subprocess.run(['sudo', 'cp', '-r', 'build/js/apps/' + app_name, web_root + '/apps/' + afwPackageId + '/' + app_name])
+                rc = subprocess.run(['sudo', 'cp', '-r', app_location, web_root + '/apps/' + afwPackageId + '/' + app_name])
             else:
-                rc = subprocess.run(['cp', '-r', 'build/js/apps/' + app_name, web_root + '/apps/' + afwPackageId + '/' + app_name])
+                rc = subprocess.run(['cp', '-r', app_location, web_root + '/apps/' + afwPackageId + '/' + app_name])
 
             if rc.returncode != 0:
                 msg.error("If the problem is a permission denied error and you can use sudo, try running with the --sudo parameter specified on afwdev. This will only use sudo for the install step.")
