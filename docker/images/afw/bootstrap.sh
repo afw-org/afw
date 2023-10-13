@@ -1,5 +1,14 @@
 #!/usr/bin/env sh
 
+# setup /afw for coredumps
+sysctl -w kernel.core_pattern="/afw/core.%e.%p.%t"
+
+# create /run/afw for running afwfcgi
+if [ ! -d /run/afw ]; then
+  mkdir -p /run/afw
+  chown -R nginx /run/afw
+fi
+
 if [ ${BOOTSTRAP} = "false" ]; then
     # if they don't want to boostrap, then exit
     echo "No bootstrap, exiting"
@@ -24,6 +33,3 @@ if [ ! -f /afw/afw.conf ]; then
     
     (cd /; tar xvf /afw.tar)
 fi
-
-# setup /afw for coredumps
-sysctl -w kernel.core_pattern="/afw/core.%e.%p.%t"
