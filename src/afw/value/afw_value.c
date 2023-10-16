@@ -300,7 +300,7 @@ AFW_DEFINE(const afw_value_t *)
 afw_value_clone(const afw_value_t *value,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    afw_value_evaluated_t *evaluated;
+    afw_value_unmanaged_t *evaluated;
 
     /* If value is NULL, return NULL. */
     if (!value) {
@@ -314,11 +314,11 @@ afw_value_clone(const afw_value_t *value,
 
     /* If value is evaluated, clone it. */
     if (value->inf->is_evaluated_of_data_type) {
-        evaluated = afw_value_evaluated_allocate(
+        evaluated = afw_value_unmanaged_allocate(
             value->inf->is_evaluated_of_data_type, p, xctx);
         afw_data_type_clone_internal(value->inf->is_evaluated_of_data_type,
             (void *)&evaluated->internal,
-            (const void *)&((const afw_value_evaluated_t *)value)->internal,
+            (const void *)&((const afw_value_unmanaged_t *)value)->internal,
             p, xctx);
         return &evaluated->pub;
     }
@@ -496,7 +496,7 @@ afw_value_as_utf8(const afw_value_t *value,
 
 
 
-/* Make an afw_value_evaluated_t String using string in specified pool. */
+/* Make an afw_value_unmanaged_t String using string in specified pool. */
 AFW_DEFINE(const afw_value_t *)
 afw_value_make_single_string(
     const afw_utf8_octet_t *s,
@@ -507,14 +507,14 @@ afw_value_make_single_string(
     afw_value_string_t *single;
 
     single = afw_pool_malloc_type(p, afw_value_string_t, xctx);
-    single->inf = &afw_value_evaluated_string_inf;
+    single->inf = &afw_value_unmanaged_string_inf;
     single->internal.s = s;
     single->internal.len = (len == AFW_UTF8_Z_LEN) ? strlen(s) : len;
     return &single->pub;
 
 }
 
-/* Make an afw_value_evaluated_t String using copy of string in specified pool. */
+/* Make an afw_value_unmanaged_t String using copy of string in specified pool. */
 AFW_DEFINE(const afw_value_t *)
 afw_value_make_string_copy(
     const afw_utf8_octet_t *s,
@@ -525,7 +525,7 @@ afw_value_make_string_copy(
     afw_value_string_t *single;
 
     single = afw_pool_malloc_type(p, afw_value_string_t, xctx);
-    single->inf = &afw_value_evaluated_string_inf;
+    single->inf = &afw_value_unmanaged_string_inf;
     single->internal.len = (len == AFW_UTF8_Z_LEN) ? strlen(s) : len;
     single->internal.s = (single->internal.len > 0)
         ? afw_memory_dup(s, single->internal.len, p, xctx)
@@ -547,7 +547,7 @@ afw_value_create_string_from_u8z(
     const afw_utf8_t *string;
 
     string = afw_utf8_create(string_z, AFW_UTF8_Z_LEN, p, xctx);
-    return afw_value_create_string(string, p, xctx);
+    return afw_value_create_string_unmanaged(string, p, xctx);
 }
 
 
@@ -612,7 +612,7 @@ afw_value_convert(
 {
     const afw_value_t *result;
     const afw_data_type_t *v_data_type;
-    afw_value_evaluated_t *single;
+    afw_value_unmanaged_t *single;
     const afw_array_t *list;
     const afw_iterator_t *iterator;
     const void *internal;
@@ -654,9 +654,9 @@ afw_value_convert(
         /* Upconvert to one entry list. */
         if (to_data_type == afw_data_type_array) {
             list = afw_array_create_wrapper_for_array(
-                &((afw_value_evaluated_t *)value)->internal, false,
+                &((afw_value_unmanaged_t *)value)->internal, false,
                 v_data_type, 1, p, xctx);
-            result = afw_value_create_array(list, p, xctx);
+            result = afw_value_create_array_unmanaged(list, p, xctx);
         }
 
         /* Down convert from a single entry list. */
@@ -672,7 +672,7 @@ afw_value_convert(
             iterator = NULL;
             afw_array_get_next_internal(list,
                 &iterator, &data_type, &internal, xctx);
-            single = afw_value_evaluated_allocate(to_data_type, p, xctx);
+            single = afw_value_unmanaged_allocate(to_data_type, p, xctx);
             if (data_type == to_data_type) {
                 memcpy(AFW_VALUE_INTERNAL(single), internal, data_type->c_type_size);
             }
@@ -689,11 +689,11 @@ afw_value_convert(
 
         /* Not list. */
         else {
-            single = afw_value_evaluated_allocate(to_data_type, p, xctx);
+            single = afw_value_unmanaged_allocate(to_data_type, p, xctx);
             afw_data_type_convert_internal(
                 v_data_type,
                 &single->internal,
-                &((const afw_value_evaluated_t *)value)->internal,
+                &((const afw_value_unmanaged_t *)value)->internal,
                 to_data_type,
                 p, xctx);
             result = &single->pub;
@@ -746,7 +746,7 @@ afw_value_string_from_internal(
         string = afw_data_type_internal_to_utf8(
             afw_value_get_data_type(value, xctx), value,
             p, xctx);
-        result = afw_value_create_string(string, p, xctx);
+        result = afw_value_create_string_unmanaged(string, p, xctx);
     }
 
     return result;
@@ -762,7 +762,7 @@ afw_value_create_dateTime_now_utc(
     afw_dateTime_t dateTime;
 
     afw_dateTime_set_now(NULL, &dateTime, xctx);
-    return afw_value_create_dateTime(&dateTime, p, xctx);
+    return afw_value_create_dateTime_unmanaged(&dateTime, p, xctx);
 }
 
 
@@ -775,7 +775,7 @@ afw_value_create_dateTime_now_local(
     afw_dateTime_t dateTime;
 
     afw_dateTime_set_now(&dateTime, NULL, xctx);
-    return afw_value_create_dateTime(&dateTime, p, xctx);
+    return afw_value_create_dateTime_unmanaged(&dateTime, p, xctx);
 }
 
 
@@ -903,8 +903,8 @@ afw_value_equal(const afw_value_t *value1, const afw_value_t *value2,
         if (value1->inf->is_evaluated_of_data_type ==
             value2->inf->is_evaluated_of_data_type)
         {
-            i1 = (const char *)&((const afw_value_evaluated_t *)value1)->internal;
-            i2 = (const char *)&((const afw_value_evaluated_t *)value2)->internal;
+            i1 = (const char *)&((const afw_value_unmanaged_t *)value1)->internal;
+            i2 = (const char *)&((const afw_value_unmanaged_t *)value2)->internal;
             result = afw_data_type_compare_internal(
                 value1->inf->is_evaluated_of_data_type, i1, i2, xctx) == 0;
         }
@@ -942,8 +942,8 @@ afw_value_compare(
     }
 
     if (afw_value_is_defined_and_evaluated(value1)) {
-        i1 = (const void *)&((const afw_value_evaluated_t *)value1)->internal;
-        i2 = (const void *)&((const afw_value_evaluated_t *)value2)->internal;
+        i1 = (const void *)&((const afw_value_unmanaged_t *)value1)->internal;
+        i2 = (const void *)&((const afw_value_unmanaged_t *)value2)->internal;
         result = afw_data_type_compare_internal(
             afw_value_get_data_type(value1, xctx),
             i1, i2, xctx);

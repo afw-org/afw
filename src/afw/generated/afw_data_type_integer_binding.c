@@ -79,7 +79,7 @@ impl_afw_value_permanent_get_reference(
 /* optional_release is NULL and get_reference returns new reference. */
 #define AFW_IMPLEMENTATION_ID "integer"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
-#define AFW_IMPLEMENTATION_INF_LABEL afw_value_evaluated_integer_inf
+#define AFW_IMPLEMENTATION_INF_LABEL afw_value_unmanaged_integer_inf
 #define impl_afw_value_optional_release NULL
 #define impl_afw_value_clone_or_reference impl_afw_value_unmanaged_get_reference
 #define impl_afw_value_create_iterator NULL
@@ -177,7 +177,7 @@ afw_data_type_integer_direct = {
     sizeof(afw_integer_t),
     (const afw_array_t *)&impl_empty_array_of_integer,
     (const afw_value_t *)&impl_value_empty_array_of_integer,
-    &afw_value_evaluated_integer_inf,
+    &afw_value_unmanaged_integer_inf,
     afw_compile_type_error,
     true,
     false,
@@ -223,7 +223,7 @@ afw_object_set_property_as_integer(
             xctx);
     }
 
-    v = afw_value_create_integer(internal, object->p, xctx);
+    v = afw_value_create_integer_unmanaged(internal, object->p, xctx);
     afw_object_set_property(object, property_name, v, xctx);
 }
 
@@ -260,66 +260,20 @@ afw_value_allocate_integer(const afw_pool_t *p, afw_xctx_t *xctx)
 
     result = afw_pool_calloc(p, sizeof(afw_value_integer_t),
         xctx);
-    result->inf = &afw_value_evaluated_integer_inf;
+    result->inf = &afw_value_unmanaged_integer_inf;
     return result;
 }
 
 /* Create function for unmanaged data type integer value. */
 AFW_DEFINE(const afw_value_t *)
-afw_value_create_integer(afw_integer_t internal,
+afw_value_create_integer_unmanaged(afw_integer_t internal,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
     afw_value_integer_t *v;
 
-    v = afw_value_allocate_integer(p, xctx);
-    v->internal = internal;
-    return &v->pub;
-}
-
-/* Allocate function for managed data type integer values. */
-AFW_DEFINE(afw_value_integer_t *)
-afw_value_allocate_managed_integer(const afw_pool_t *p, afw_xctx_t *xctx)
-{
-    afw_value_integer_t *result;
-
-    result = afw_pool_calloc(p, sizeof(afw_value_integer_t),
+    v = afw_pool_calloc(p, sizeof(afw_value_integer_t),
         xctx);
-    result->inf = &afw_value_managed_integer_inf;
-    return result;
-}
-
-/* Create function for data type integer value. */
-AFW_DEFINE(const afw_value_t *)
-afw_value_create_managed_integer(afw_integer_t internal,
-    const afw_pool_t *p, afw_xctx_t *xctx)
-{
-    afw_value_integer_t *v;
-
-    v = afw_value_allocate_managed_integer(p, xctx);
-    v->internal = internal;
-    return &v->pub;
-}
-
-/* Allocate function for permanent data type integer values. */
-AFW_DEFINE(afw_value_integer_t *)
-afw_value_allocate_permanent_integer(const afw_pool_t *p, afw_xctx_t *xctx)
-{
-    afw_value_integer_t *result;
-
-    result = afw_pool_calloc(p, sizeof(afw_value_integer_t),
-        xctx);
-    result->inf = &afw_value_permanent_integer_inf;
-    return result;
-}
-
-/* Create function for data type integer value. */
-AFW_DEFINE(const afw_value_t *)
-afw_value_create_permanent_integer(afw_integer_t internal,
-    const afw_pool_t *p, afw_xctx_t *xctx)
-{
-    afw_value_integer_t *v;
-
-    v = afw_value_allocate_permanent_integer(p, xctx);
+    v->inf = &afw_value_unmanaged_integer_inf;
     v->internal = internal;
     return &v->pub;
 }
@@ -494,7 +448,7 @@ impl_afw_value_decompile(
     afw_data_type_write_as_expression(
         afw_data_type_integer,
         writer,
-        (const void *)&(((const afw_value_evaluated_t *)instance)->internal),
+        (const void *)&(((const afw_value_unmanaged_t *)instance)->internal),
         xctx);
 }
 

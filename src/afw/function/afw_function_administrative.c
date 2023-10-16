@@ -63,7 +63,7 @@ afw_function_execute_flag_get_active(
         }
     }
 
-    return afw_value_create_array(array, x->p, x->xctx);
+    return afw_value_create_array_unmanaged(array, x->p, x->xctx);
 }
 
 
@@ -116,7 +116,7 @@ afw_function_execute_flag_get_active_defaults(
         }
     }
 
-    return afw_value_create_array(array, x->p, x->xctx);
+    return afw_value_create_array_unmanaged(array, x->p, x->xctx);
 }
 
 
@@ -177,7 +177,7 @@ afw_function_execute_flag_get_defaults(
     }
     AFW_LOCK_END;
 
-    return afw_value_create_array(array, x->p, x->xctx);
+    return afw_value_create_array_unmanaged(array, x->p, x->xctx);
 }
 
 
@@ -511,7 +511,7 @@ afw_function_execute_extension_load_by_module_path(
         ? &extension->extension_id
         : afw_s_undefined;
 
-    return afw_value_create_string(extension_id, x->p, x->xctx);
+    return afw_value_create_string_unmanaged(extension_id, x->p, x->xctx);
 }
 
 
@@ -650,7 +650,7 @@ afw_function_execute_service_get(
         AFW_THROW_ERROR_Z(not_found, "Not found", x->xctx);
     }
 
-    return afw_value_create_object(obj, x->p, x->xctx);
+    return afw_value_create_object_unmanaged(obj, x->p, x->xctx);
 }
 
 
@@ -703,7 +703,7 @@ afw_function_execute_service_restart(
         AFW_THROW_ERROR_Z(not_found, "Not found", x->xctx);
     }
 
-    return afw_value_create_object(obj, x->p, x->xctx);
+    return afw_value_create_object_unmanaged(obj, x->p, x->xctx);
 }
 
 
@@ -756,7 +756,7 @@ afw_function_execute_service_start(
         AFW_THROW_ERROR_Z(not_found, "Not found", x->xctx);
     }
 
-    return afw_value_create_object(obj, x->p, x->xctx);
+    return afw_value_create_object_unmanaged(obj, x->p, x->xctx);
 }
 
 
@@ -809,5 +809,5 @@ afw_function_execute_service_stop(
         AFW_THROW_ERROR_Z(not_found, "Not found", x->xctx);
     }
 
-    return afw_value_create_object(obj, x->p, x->xctx);
+    return afw_value_create_object_unmanaged(obj, x->p, x->xctx);
 }

@@ -109,7 +109,7 @@ afw_authorization_handler_type_script_create_cede_p(
             context_type_object, afw_s_current, xctx);
     afw_context_variable_definition_add_z(variable_definitions,
         afw_s_message, afw_s_internal,
-        &afw_value_evaluated_string_inf,
+        &afw_value_unmanaged_string_inf,
         "Message",
         "Unformatted message that is being logged.",
         NULL, NULL,

@@ -93,13 +93,13 @@ impl_compile_property_type(
     /* Allocate and initialize property type struct. */
     pt = afw_pool_calloc_type(p, afw_model_property_type_t, xctx);
     pt->property_name = property_name;
-    pt->property_name_value = afw_value_create_string(
+    pt->property_name_value = afw_value_create_string_unmanaged(
         property_name, p, xctx);
     pt->property_type_object = object;
-    pt->property_type_object_value = afw_value_create_object(
+    pt->property_type_object_value = afw_value_create_object_unmanaged(
         pt->property_type_object, p, xctx);
     path = pt->property_type_path = afw_object_meta_get_path(object, xctx);
-    pt->property_type_path_value = afw_value_create_anyURI(
+    pt->property_type_path_value = afw_value_create_anyURI_unmanaged(
         pt->property_type_path, p, xctx);
 
     /* dataType */
@@ -173,7 +173,7 @@ impl_compile_property_type(
     if (!pt->mapped_property_name) {
         pt->mapped_property_name = pt->property_name;
     }
-    pt->mapped_property_name_value = afw_value_create_string(
+    pt->mapped_property_name_value = afw_value_create_string_unmanaged(
         pt->mapped_property_name, p, xctx);
 
     /* onGetProperty */
@@ -608,13 +608,13 @@ impl_object_type_compile(
     ot->object_type_object = impl_harvest_object_type(model, false,
         adaptor_id, object_type_id, object,
         p, xctx);
-    ot->object_type_object_value = afw_value_create_object(
+    ot->object_type_object_value = afw_value_create_object_unmanaged(
         ot->object_type_object, p, xctx);
     ot->object_type_path = afw_object_meta_get_path(object, xctx);
-    ot->object_type_path_value = afw_value_create_anyURI(
+    ot->object_type_path_value = afw_value_create_anyURI_unmanaged(
         ot->object_type_path, p, xctx);
     ot->object_type_id = afw_object_meta_get_property_name(object, xctx);
-    ot->object_type_id_value = afw_value_create_string(
+    ot->object_type_id_value = afw_value_create_string_unmanaged(
         ot->object_type_id, p, xctx);
 
     /* custom */

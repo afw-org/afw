@@ -66,7 +66,7 @@ afw_data_type_unevaluated;
  * The lifetime of the value is the lifetime of its containing pool.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
-afw_value_evaluated_unevaluated_inf;
+afw_value_unmanaged_unevaluated_inf;
 
 /**
  * @brief Managed evaluated value inf for data type unevaluated.
@@ -162,6 +162,20 @@ AFW_DECLARE(const afw_value_t *)
 afw_value_as_unevaluated(const afw_value_t *value, afw_xctx_t *xctx);
 
 /**
+ * @brief Allocate function for managed data type unevaluated value.
+ * @param internal place to put pointer to internal of value.
+ * @param xctx of caller.
+ * @return Allocated afw_value_t with appropriate inf set.
+ *
+ * This value is allocated in xctx->p. Set *internal to the 
+ * 'const afw_value_t *' internal value before using.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_value_alloc_unevaluated(
+    const afw_value_t * **internal,
+    afw_xctx_t *xctx);
+
+/**
  * @brief Allocate function for unmanaged data type unevaluated value.
  * @param p to use for returned value.
  * @param xctx of caller.
@@ -178,37 +192,8 @@ afw_value_allocate_unevaluated(const afw_pool_t *p, afw_xctx_t *xctx);
  * @return Created const afw_value_t *.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_create_unevaluated(const afw_value_t * internal,
+afw_value_create_unevaluated_unmanaged(const afw_value_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx);
-
-/**
- * @brief Allocate function for managed data type unevaluated value.
- * @param p to use for returned value.
- * @param xctx of caller.
- * @return Allocated afw_value_unevaluated_t with appropriate inf set.
- */
-AFW_DECLARE(afw_value_unevaluated_t *)
-afw_value_allocate_managed_unevaluated(const afw_pool_t *p, afw_xctx_t *xctx);
-
-/**
- * @brief Create function for managed data type unevaluated value.
- * @param internal.
- * @param p to use for returned value.
- * @param xctx of caller.
- * @return Created const afw_value_t *.
- */
-AFW_DECLARE(const afw_value_t *)
-afw_value_create_managed_unevaluated(const afw_value_t * internal,
-    const afw_pool_t *p, afw_xctx_t *xctx);
-
-/**
- * @brief Allocate function for permanent data type unevaluated value.
- * @param p to use for returned value.
- * @param xctx of caller.
- * @return Allocated afw_value_unevaluated_t with appropriate inf set.
- */
-AFW_DECLARE(afw_value_unevaluated_t *)
-afw_value_allocate_permanent_unevaluated(const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**
  * @brief Create function for permanent data type unevaluated value.

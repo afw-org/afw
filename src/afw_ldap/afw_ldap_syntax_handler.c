@@ -305,7 +305,7 @@ impl_syntax_handler_single_binary_to_value(
     raw.ptr = afw_memory_dup((*bv)->bv_val, (*bv)->bv_len, p, xctx);
     raw.size = (*bv)->bv_len;
 
-    return afw_value_create_base64Binary(&raw, p, xctx);
+    return afw_value_create_base64Binary_unmanaged(&raw, p, xctx);
 }
 
 
@@ -418,7 +418,7 @@ impl_syntax_handler_single_generalized_time_to_value(
     afw_dataType_generalized_time_set_internal(&generalized_time, &internal,
         xctx);
 
-    return afw_value_create_dateTime(&internal, p, xctx);
+    return afw_value_create_dateTime_unmanaged(&internal, p, xctx);
 }
 
 
@@ -470,7 +470,7 @@ impl_syntax_handler_single_integer_to_value(
 
     integer = afw_number_utf8_to_integer(&s, p, xctx);
 
-    return afw_value_create_integer(integer, p, xctx);
+    return afw_value_create_integer_unmanaged(integer, p, xctx);
 }
 
 
@@ -501,7 +501,7 @@ impl_syntax_handler_single_string_to_value(
     }
 
     s = afw_utf8_create_copy((*bv)->bv_val, (*bv)->bv_len, p, xctx);
-    return afw_value_create_string(s, p, xctx);
+    return afw_value_create_string_unmanaged(s, p, xctx);
 }
 
 
@@ -583,7 +583,7 @@ impl_syntax_handler_list_binary_to_value(
     e = afw_pool_malloc(p, count * sizeof(afw_memory_t), xctx);
     list = afw_array_create_wrapper_for_array(
         e, false, afw_data_type_base64Binary, count, p, xctx);
-    result = afw_value_create_array(list, p, xctx);
+    result = afw_value_create_array_unmanaged(list, p, xctx);
 
     for (; count > 0; count--, bv++, e++) {
         e->ptr = afw_memory_dup((*bv)->bv_val, (*bv)->bv_len, p, xctx);
@@ -691,7 +691,7 @@ impl_syntax_handler_list_boolean_to_value(
     e = afw_pool_malloc(p, sizeof(afw_boolean_t) * count, xctx);
     list = afw_array_create_wrapper_for_array(
         e, false, afw_data_type_boolean, count, p, xctx);
-    result = afw_value_create_array(list, p, xctx);
+    result = afw_value_create_array_unmanaged(list, p, xctx);
 
     for (; count > 0; count--, bv++, e++) {
         if ((*bv)->bv_len == 4 && memcmp((*bv)->bv_val, "TRUE", 4) == 0) {
@@ -782,7 +782,7 @@ impl_syntax_handler_list_generalized_time_to_value(
     e = afw_pool_malloc(p, sizeof(afw_dateTime_t) * count, xctx);
     list = afw_array_create_wrapper_for_array(
         (const void *)e, false, afw_data_type_dateTime, count, p, xctx);
-    result = afw_value_create_array(list, p, xctx);
+    result = afw_value_create_array_unmanaged(list, p, xctx);
     for (; count > 0; count--, bv++, e++) {
         generalized_time.s = (*bv)->bv_val;
         generalized_time.len = (*bv)->bv_len;
@@ -867,7 +867,7 @@ impl_syntax_handler_list_integer_to_value(
     e = afw_pool_malloc(p, sizeof(afw_integer_t) * count, xctx);
     list = afw_array_create_wrapper_for_array(
         e, false, afw_data_type_integer, count, p, xctx);
-    result = afw_value_create_array(list, p, xctx);
+    result = afw_value_create_array_unmanaged(list, p, xctx);
 
     for (; count > 0; count--, bv++, e++) {
         s.s = (*bv)->bv_val;
@@ -911,7 +911,7 @@ impl_syntax_handler_list_string_to_value(
     e = afw_pool_malloc(p, sizeof(afw_utf8_t) * count, xctx);
     list = afw_array_create_wrapper_for_array(
         e, false, afw_data_type_string, count, p, xctx);
-    result = afw_value_create_array(list, p, xctx);
+    result = afw_value_create_array_unmanaged(list, p, xctx);
 
     for (; count > 0; count--, bv++, e++) {
         s = afw_utf8_create_copy((*bv)->bv_val, (*bv)->bv_len, p, xctx);

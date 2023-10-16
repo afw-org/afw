@@ -811,13 +811,13 @@ impl_check_authorization(
     const afw_value_t *resource_id_value;
     const afw_value_t *object_value;
 
-    resource_id_value = afw_value_create_string(
+    resource_id_value = afw_value_create_string_unmanaged(
         ctx->resource_id,
         ctx->p, xctx);
 
     object_value = NULL;
     if (ctx->impl_request && ctx->impl_request->request) {
-        object_value = afw_value_create_object(
+        object_value = afw_value_create_object_unmanaged(
             ctx->impl_request->request,
             ctx->p, xctx);
     }
@@ -851,8 +851,8 @@ impl_authorization_cb(
     if (!resource_id) {
         AFW_THROW_ERROR_Z(general, "Missing path", xctx);
     }
-    resource_id_value = afw_value_create_string(resource_id, ctx->p, xctx);
-    object_value = afw_value_create_object(object, ctx->p, xctx);
+    resource_id_value = afw_value_create_string_unmanaged(resource_id, ctx->p, xctx);
+    object_value = afw_value_create_object_unmanaged(object, ctx->p, xctx);
     afw_authorization_check(true, NULL,
         resource_id_value, object_value,
         afw_authorization_action_id_read, ctx->p, xctx);

@@ -62,7 +62,7 @@ afw_object_create_const_from_key_value_strings_z(
     for (c = pairs; *c; c += 2, e++) {
         e->key.s = *c;
         e->key.len = strlen(*c);
-        e->value.inf = &afw_value_evaluated_string_inf;
+        e->value.inf = &afw_value_unmanaged_string_inf;
         e->value.internal.s = *(c + 1);
         e->value.internal.len = strlen(*(c + 1));
     }

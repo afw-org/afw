@@ -79,7 +79,7 @@ impl_afw_value_permanent_get_reference(
 /* optional_release is NULL and get_reference returns new reference. */
 #define AFW_IMPLEMENTATION_ID "ipAddress"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
-#define AFW_IMPLEMENTATION_INF_LABEL afw_value_evaluated_ipAddress_inf
+#define AFW_IMPLEMENTATION_INF_LABEL afw_value_unmanaged_ipAddress_inf
 #define impl_afw_value_optional_release NULL
 #define impl_afw_value_clone_or_reference impl_afw_value_unmanaged_get_reference
 #define impl_afw_value_create_iterator NULL
@@ -177,7 +177,7 @@ afw_data_type_ipAddress_direct = {
     sizeof(afw_utf8_t),
     (const afw_array_t *)&impl_empty_array_of_ipAddress,
     (const afw_value_t *)&impl_value_empty_array_of_ipAddress,
-    &afw_value_evaluated_ipAddress_inf,
+    &afw_value_unmanaged_ipAddress_inf,
     afw_compile_type_error,
     false,
     false,
@@ -223,7 +223,7 @@ afw_object_set_property_as_ipAddress(
             xctx);
     }
 
-    v = afw_value_create_ipAddress(internal, object->p, xctx);
+    v = afw_value_create_ipAddress_unmanaged(internal, object->p, xctx);
     afw_object_set_property(object, property_name, v, xctx);
 }
 
@@ -260,70 +260,20 @@ afw_value_allocate_ipAddress(const afw_pool_t *p, afw_xctx_t *xctx)
 
     result = afw_pool_calloc(p, sizeof(afw_value_ipAddress_t),
         xctx);
-    result->inf = &afw_value_evaluated_ipAddress_inf;
+    result->inf = &afw_value_unmanaged_ipAddress_inf;
     return result;
 }
 
 /* Create function for unmanaged data type ipAddress value. */
 AFW_DEFINE(const afw_value_t *)
-afw_value_create_ipAddress(const afw_utf8_t * internal,
+afw_value_create_ipAddress_unmanaged(const afw_utf8_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
     afw_value_ipAddress_t *v;
 
-    v = afw_value_allocate_ipAddress(p, xctx);
-    if (internal) {
-        memcpy(&v->internal, internal, sizeof(afw_utf8_t));
-    }
-    return &v->pub;
-}
-
-/* Allocate function for managed data type ipAddress values. */
-AFW_DEFINE(afw_value_ipAddress_t *)
-afw_value_allocate_managed_ipAddress(const afw_pool_t *p, afw_xctx_t *xctx)
-{
-    afw_value_ipAddress_t *result;
-
-    result = afw_pool_calloc(p, sizeof(afw_value_ipAddress_t),
+    v = afw_pool_calloc(p, sizeof(afw_value_ipAddress_t),
         xctx);
-    result->inf = &afw_value_managed_ipAddress_inf;
-    return result;
-}
-
-/* Create function for data type ipAddress value. */
-AFW_DEFINE(const afw_value_t *)
-afw_value_create_managed_ipAddress(const afw_utf8_t * internal,
-    const afw_pool_t *p, afw_xctx_t *xctx)
-{
-    afw_value_ipAddress_t *v;
-
-    v = afw_value_allocate_managed_ipAddress(p, xctx);
-    if (internal) {
-        memcpy(&v->internal, internal, sizeof(afw_utf8_t));
-    }
-    return &v->pub;
-}
-
-/* Allocate function for permanent data type ipAddress values. */
-AFW_DEFINE(afw_value_ipAddress_t *)
-afw_value_allocate_permanent_ipAddress(const afw_pool_t *p, afw_xctx_t *xctx)
-{
-    afw_value_ipAddress_t *result;
-
-    result = afw_pool_calloc(p, sizeof(afw_value_ipAddress_t),
-        xctx);
-    result->inf = &afw_value_permanent_ipAddress_inf;
-    return result;
-}
-
-/* Create function for data type ipAddress value. */
-AFW_DEFINE(const afw_value_t *)
-afw_value_create_permanent_ipAddress(const afw_utf8_t * internal,
-    const afw_pool_t *p, afw_xctx_t *xctx)
-{
-    afw_value_ipAddress_t *v;
-
-    v = afw_value_allocate_permanent_ipAddress(p, xctx);
+    v->inf = &afw_value_unmanaged_ipAddress_inf;
     if (internal) {
         memcpy(&v->internal, internal, sizeof(afw_utf8_t));
     }
@@ -494,7 +444,7 @@ impl_afw_value_decompile(
     afw_data_type_write_as_expression(
         afw_data_type_ipAddress,
         writer,
-        (const void *)&(((const afw_value_evaluated_t *)instance)->internal),
+        (const void *)&(((const afw_value_unmanaged_t *)instance)->internal),
         xctx);
 }
 

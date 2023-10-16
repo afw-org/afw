@@ -66,7 +66,7 @@ afw_data_type_null;
  * The lifetime of the value is the lifetime of its containing pool.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
-afw_value_evaluated_null_inf;
+afw_value_unmanaged_null_inf;
 
 /**
  * @brief Managed evaluated value inf for data type null.
@@ -162,6 +162,20 @@ AFW_DECLARE(void *)
 afw_value_as_null(const afw_value_t *value, afw_xctx_t *xctx);
 
 /**
+ * @brief Allocate function for managed data type null value.
+ * @param internal place to put pointer to internal of value.
+ * @param xctx of caller.
+ * @return Allocated afw_value_t with appropriate inf set.
+ *
+ * This value is allocated in xctx->p. Set *internal to the 
+ * 'void *' internal value before using.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_value_alloc_null(
+    void * **internal,
+    afw_xctx_t *xctx);
+
+/**
  * @brief Allocate function for unmanaged data type null value.
  * @param p to use for returned value.
  * @param xctx of caller.
@@ -178,37 +192,8 @@ afw_value_allocate_null(const afw_pool_t *p, afw_xctx_t *xctx);
  * @return Created const afw_value_t *.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_create_null(void * internal,
+afw_value_create_null_unmanaged(void * internal,
     const afw_pool_t *p, afw_xctx_t *xctx);
-
-/**
- * @brief Allocate function for managed data type null value.
- * @param p to use for returned value.
- * @param xctx of caller.
- * @return Allocated afw_value_null_t with appropriate inf set.
- */
-AFW_DECLARE(afw_value_null_t *)
-afw_value_allocate_managed_null(const afw_pool_t *p, afw_xctx_t *xctx);
-
-/**
- * @brief Create function for managed data type null value.
- * @param internal.
- * @param p to use for returned value.
- * @param xctx of caller.
- * @return Created const afw_value_t *.
- */
-AFW_DECLARE(const afw_value_t *)
-afw_value_create_managed_null(void * internal,
-    const afw_pool_t *p, afw_xctx_t *xctx);
-
-/**
- * @brief Allocate function for permanent data type null value.
- * @param p to use for returned value.
- * @param xctx of caller.
- * @return Allocated afw_value_null_t with appropriate inf set.
- */
-AFW_DECLARE(afw_value_null_t *)
-afw_value_allocate_permanent_null(const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**
  * @brief Create function for permanent data type null value.

@@ -66,7 +66,7 @@ afw_data_type_xpathExpression;
  * The lifetime of the value is the lifetime of its containing pool.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
-afw_value_evaluated_xpathExpression_inf;
+afw_value_unmanaged_xpathExpression_inf;
 
 /**
  * @brief Managed evaluated value inf for data type xpathExpression.
@@ -162,6 +162,22 @@ AFW_DECLARE(const afw_utf8_t *)
 afw_value_as_xpathExpression(const afw_value_t *value, afw_xctx_t *xctx);
 
 /**
+ * @brief Allocate function for managed data type xpathExpression value.
+ * @param s place to put pointer to allocated memory for internal->s.
+ * @param len of memory to allocate for internal->s.
+ * @param xctx of caller.
+ * @return Allocated afw_value_xpathExpression_t with appropriate inf set.
+ *
+ * This value and memory for the specified len is allocated in xctx->p.
+ * Set *s for the specified len to a valid utf-8 string.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_value_alloc_xpathExpression(
+    afw_utf8_octet_t **s,
+    afw_size_t len,
+    afw_xctx_t *xctx);
+
+/**
  * @brief Allocate function for unmanaged data type xpathExpression value.
  * @param p to use for returned value.
  * @param xctx of caller.
@@ -178,37 +194,8 @@ afw_value_allocate_xpathExpression(const afw_pool_t *p, afw_xctx_t *xctx);
  * @return Created const afw_value_t *.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_create_xpathExpression(const afw_utf8_t * internal,
+afw_value_create_xpathExpression_unmanaged(const afw_utf8_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx);
-
-/**
- * @brief Allocate function for managed data type xpathExpression value.
- * @param p to use for returned value.
- * @param xctx of caller.
- * @return Allocated afw_value_xpathExpression_t with appropriate inf set.
- */
-AFW_DECLARE(afw_value_xpathExpression_t *)
-afw_value_allocate_managed_xpathExpression(const afw_pool_t *p, afw_xctx_t *xctx);
-
-/**
- * @brief Create function for managed data type xpathExpression value.
- * @param internal.
- * @param p to use for returned value.
- * @param xctx of caller.
- * @return Created const afw_value_t *.
- */
-AFW_DECLARE(const afw_value_t *)
-afw_value_create_managed_xpathExpression(const afw_utf8_t * internal,
-    const afw_pool_t *p, afw_xctx_t *xctx);
-
-/**
- * @brief Allocate function for permanent data type xpathExpression value.
- * @param p to use for returned value.
- * @param xctx of caller.
- * @return Allocated afw_value_xpathExpression_t with appropriate inf set.
- */
-AFW_DECLARE(afw_value_xpathExpression_t *)
-afw_value_allocate_permanent_xpathExpression(const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**
  * @brief Create function for permanent data type xpathExpression value.

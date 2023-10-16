@@ -142,7 +142,7 @@ def write_const_core_c(options, fd, prefix, obj, path, embedder):
 
         fd.write('\nstatic const afw_value_array_t\n')
         fd.write(meta.get('_label_') + '_parentPaths = {\n')
-        fd.write('    {&afw_value_evaluated_array_inf},\n')
+        fd.write('    {&afw_value_permanent_array_inf},\n')
         fd.write('    (const afw_array_t *)&' + meta.get('_label_') + '_parentPaths_list\n')
         fd.write('};\n')
 

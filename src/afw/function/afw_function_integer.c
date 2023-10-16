@@ -54,7 +54,7 @@ afw_function_execute_abs_integer(
 
     return (arg->internal >= 0)
         ? &arg->pub
-        : afw_value_create_integer(-(arg->internal), x->p, x->xctx);
+        : afw_value_create_integer_unmanaged(-(arg->internal), x->p, x->xctx);
 }
 
 
@@ -107,7 +107,7 @@ afw_function_execute_add_integer(
         sum += arg->internal;
     }
 
-    return afw_value_create_integer(sum, x->p, x->xctx);
+    return afw_value_create_integer_unmanaged(sum, x->p, x->xctx);
 }
 
 
@@ -157,7 +157,7 @@ afw_function_execute_divide_integer(
         AFW_THROW_ERROR_Z(arg_error, "Integer divide by zero error", x->xctx);
     }
 
-    return afw_value_create_integer(
+    return afw_value_create_integer_unmanaged(
         arg1->internal / arg2->internal,
         x->p, x->xctx);
 }
@@ -209,7 +209,7 @@ afw_function_execute_mod_integer(
         AFW_THROW_ERROR_Z(arg_error, "Integer divide by zero error", x->xctx);
     }
 
-    return afw_value_create_integer(
+    return afw_value_create_integer_unmanaged(
         arg1->internal % arg2->internal,
         x->p, x->xctx);
 }
@@ -263,7 +263,7 @@ afw_function_execute_multiply_integer(
         result = next;       
     }
 
-    return afw_value_create_integer(result, x->p, x->xctx);
+    return afw_value_create_integer_unmanaged(result, x->p, x->xctx);
 }
 
 
@@ -316,7 +316,7 @@ afw_function_execute_subtract_integer(
         AFW_THROW_ERROR_Z(arg_error, "Integer subtract overflow", x->xctx);
     }
 
-    return afw_value_create_integer(
+    return afw_value_create_integer_unmanaged(
         arg1->internal - arg2->internal,
         x->p, x->xctx);
 }
@@ -349,7 +349,7 @@ afw_function_execute_to_double_integer(
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(arg, 1, integer);
 
-    return afw_value_create_double(
+    return afw_value_create_double_unmanaged(
         (afw_double_t)arg->internal,
         x->p, x->xctx);
 }
@@ -392,5 +392,5 @@ afw_function_execute_negative_integer(
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(arg, 1, integer);
 
-    return afw_value_create_integer(-arg->internal, x->p, x->xctx);
+    return afw_value_create_integer_unmanaged(-arg->internal, x->p, x->xctx);
 }

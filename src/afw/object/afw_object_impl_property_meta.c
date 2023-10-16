@@ -55,7 +55,7 @@ impl_get_dataType(
 
     data_type = afw_value_get_data_type(self->property_value, xctx);
     if (data_type) {
-        result = afw_value_create_string(
+        result = afw_value_create_string_unmanaged(
             &data_type->data_type_id, self->pub.p, xctx);
     }
 
@@ -85,7 +85,7 @@ impl_get_key(
     result = NULL;
 
     if (self->property_name) {
-        result = afw_value_create_string(
+        result = afw_value_create_string_unmanaged(
             self->property_name, self->pub.p, xctx);
     }
 
@@ -123,7 +123,7 @@ impl_get_valueInfId(
 {
     const afw_value_t *result;
 
-    result = afw_value_create_string(
+    result = afw_value_create_string_unmanaged(
         &self->property_value->inf->rti.implementation_id,
         self->pub.p, xctx);
 
@@ -472,7 +472,7 @@ afw_object_impl_internal_get_property_meta(
     self->owning_object = instance;
     self->setter.inf = &impl_afw_object_setter_inf;
     self->setter.object = (const afw_object_t *)self;
-    self->meta_object_value.inf = &afw_value_evaluated_object_inf;
+    self->meta_object_value.inf = &afw_value_unmanaged_object_inf;
     self->meta_object_value.internal = (const afw_object_t *)self;
     self->property_value = property_value;
     self->property_value = afw_value_evaluate(property_value, p, xctx);

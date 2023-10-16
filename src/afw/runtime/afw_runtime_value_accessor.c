@@ -176,7 +176,7 @@ afw_runtime_value_accessor_default(
 
     /* If not a NULL, create an appropriate single value. */
     else {
-        result = afw_value_evaluated_create(internal, prop->data_type,
+        result = afw_value_unmanaged_create(internal, prop->data_type,
             p, xctx);
     }
 
@@ -225,7 +225,7 @@ afw_runtime_value_accessor_octet(
     afw_integer_t integer;
 
     integer = (afw_integer_t)(*((afw_octet_t *)internal));
-    return afw_value_create_integer(integer, p, xctx);
+    return afw_value_create_integer_unmanaged(integer, p, xctx);
 }
 
 
@@ -267,7 +267,7 @@ afw_runtime_value_accessor_stopping_adaptor_instances(
         entry = afw_pool_malloc(p, count * sizeof(afw_integer_t), xctx);
         list = afw_array_create_wrapper_for_array(entry, false,
             afw_data_type_integer, count, p, xctx);
-        result = afw_value_create_array(list, p, xctx);
+        result = afw_value_create_array_unmanaged(list, p, xctx);
         for (
             stopping = anchor->stopping,
             count = 0;
@@ -327,7 +327,7 @@ afw_runtime_value_accessor_stopping_authorization_handler_instances(
         entry = afw_pool_malloc(p, count * sizeof(afw_integer_t), xctx);
         list = afw_array_create_wrapper_for_array(entry, false,
             afw_data_type_integer, count, p, xctx);
-        result = afw_value_create_array(list, p, xctx);
+        result = afw_value_create_array_unmanaged(list, p, xctx);
         for (
             stopping = anchor->stopping,
             count = 0;
@@ -358,7 +358,7 @@ afw_runtime_value_accessor_service_startup(
 
     memcpy(&startup, internal, sizeof(startup));
     s = afw_service_startup_as_utf8(startup);
-    return afw_value_create_string(s, p, xctx);
+    return afw_value_create_string_unmanaged(s, p, xctx);
 }
 
 
@@ -373,7 +373,7 @@ afw_runtime_value_accessor_service_status(
 
     memcpy(&status, internal, sizeof(status));
     s = afw_service_status_as_utf8(status);
-    return afw_value_create_string(s, p, xctx);
+    return afw_value_create_string_unmanaged(s, p, xctx);
 }
 
 
@@ -386,7 +386,7 @@ afw_runtime_value_accessor_size(
     afw_integer_t integer;
 
     integer = (afw_integer_t)(*((afw_size_t *)internal));
-    return afw_value_create_integer(integer, p, xctx);
+    return afw_value_create_integer_unmanaged(integer, p, xctx);
 }
 
 
@@ -399,7 +399,7 @@ afw_runtime_value_accessor_uint32(
     afw_integer_t integer;
 
     integer = (afw_integer_t)(*((afw_uint32_t *)internal));
-    return afw_value_create_integer(integer, p, xctx);
+    return afw_value_create_integer_unmanaged(integer, p, xctx);
 }
 
 
@@ -412,7 +412,7 @@ afw_runtime_value_accessor_adaptor_metrics(
     const afw_adaptor_t *adaptor = *(const afw_adaptor_t * const *)internal;
    
     return (adaptor)
-        ? afw_value_create_object(adaptor->impl->metrics_object,
+        ? afw_value_create_object_unmanaged(adaptor->impl->metrics_object,
             p, xctx)
         : NULL;
 }
@@ -438,7 +438,7 @@ afw_runtime_value_accessor_applicable_flags(
         }
     }
 
-    return afw_value_create_array(list, p, xctx);
+    return afw_value_create_array_unmanaged(list, p, xctx);
 }
 
 
@@ -473,7 +473,7 @@ afw_runtime_value_accessor_null_terminated_array_of_internal(
     /* Support for pointer to array of internals. */
     list = afw_array_create_wrapper_for_array(*((const void * const *)internal),
         false, prop->data_type_parameter_data_type, -1, p, xctx);
-    result = afw_value_create_array(list, p, xctx);
+    result = afw_value_create_array_unmanaged(list, p, xctx);
     result = afw_value_clone(result, p, xctx); /* Clone while locked. */
 
     return result;
@@ -493,7 +493,7 @@ afw_runtime_value_accessor_null_terminated_array_of_objects(
     list = afw_array_const_create_null_terminated_array_of_objects(objects,
         p, xctx);
 
-    return afw_value_create_array(list, p, xctx);
+    return afw_value_create_array_unmanaged(list, p, xctx);
 }
 
 
@@ -519,7 +519,7 @@ afw_runtime_value_accessor_null_terminated_array_of_utf8_z_key_value_pair_object
     }
 
     list = afw_array_create_generic(p, xctx);
-    result = afw_value_create_array(list, p, xctx);
+    result = afw_value_create_array_unmanaged(list, p, xctx);
 
     for (; *s_z; s_z++)
     {
@@ -534,7 +534,7 @@ afw_runtime_value_accessor_null_terminated_array_of_utf8_z_key_value_pair_object
             afw_object_set_property(object, property_name, value, xctx);
         }
         afw_array_add_value(list,
-            afw_value_create_object(object, p, xctx), xctx);
+            afw_value_create_object_unmanaged(object, p, xctx), xctx);
     }
 
     return result;
@@ -571,7 +571,7 @@ afw_runtime_value_accessor_null_terminated_array_of_pointers(
     /* Support for pointer to array of pointers. */
     list = afw_array_create_wrapper_for_array(*((const void * const *)internal),
         true, prop->data_type_parameter_data_type, -1, p, xctx);
-    result = afw_value_create_array(list, p, xctx);
+    result = afw_value_create_array_unmanaged(list, p, xctx);
     result = afw_value_clone(result, p, xctx); /* Clone while locked. */
 
     return result;
@@ -590,7 +590,7 @@ afw_runtime_value_accessor_null_terminated_array_of_values(
 
     list = afw_array_const_create_null_terminated_array_of_values(values, p, xctx);
 
-    return afw_value_create_array(list, p, xctx);
+    return afw_value_create_array_unmanaged(list, p, xctx);
 }
 
 
@@ -606,7 +606,7 @@ afw_runtime_value_accessor_adaptor_additional_metrics(
     obj = afw_adaptor_get_additional_metrics(impl->adaptor, p, xctx);
    
     return (obj)
-        ? afw_value_create_object(obj, p, xctx)
+        ? afw_value_create_object_unmanaged(obj, p, xctx)
         : NULL;
 }
 

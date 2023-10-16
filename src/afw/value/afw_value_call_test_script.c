@@ -49,7 +49,7 @@ afw_value_call_test_script_create(
     self->contextual = contextual;
     self->test_script_object_value = 
         (const afw_value_object_t *)
-        afw_value_create_object(test_script, p, xctx);
+        afw_value_create_object_unmanaged(test_script, p, xctx);
 
     return &self->pub;
 }
@@ -184,7 +184,7 @@ impl_afw_value_optional_evaluate(
                     expectUTF8OctetOffsetInTestScript, xctx);
                 contextual->value_size = afw_safe_cast_integer_to_size(
                     expectUTF8OctetLengthInTestScript, xctx);
-                value = afw_value_create_string(expect, p, xctx);
+                value = afw_value_create_string_unmanaged(expect, p, xctx);
                 argv[0] = (const afw_value_t *)info->compile_function;
                 argv[1] = afw_value_convert(value, info->data_type, true,
                     p, xctx);
@@ -202,7 +202,7 @@ impl_afw_value_optional_evaluate(
                 sourceUTF8OctetOffsetInTestScript, xctx);
             contextual->value_size = afw_safe_cast_integer_to_size(
                 sourceUTF8OctetLengthInTestScript, xctx);
-            value = afw_value_create_string(source, p, xctx);
+            value = afw_value_create_string_unmanaged(source, p, xctx);
             argv[0] = (const afw_value_t *)info->compile_function;
             argv[1] = afw_value_convert(value, info->data_type, true, p, xctx);
             compiled_value = afw_value_call_built_in_function(
@@ -298,7 +298,7 @@ impl_afw_value_optional_evaluate(
         AFW_ENDTRY;
     }
 
-    return afw_value_create_object(
+    return afw_value_create_object_unmanaged(
         self->test_script_object_value->internal, p, xctx);
 }
 

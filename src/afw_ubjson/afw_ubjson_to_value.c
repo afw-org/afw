@@ -152,47 +152,47 @@ const afw_value_t * afw_ubjson_parse_number(
     switch (type) {
         case AFW_UBJSON_MARKER_CHAR:
             afw_ubjson_next_bytes(parser, (unsigned char*) &c_type, 1, xctx);
-            value = afw_value_create_integer(c_type.int8, parser->p, xctx);
+            value = afw_value_create_integer_unmanaged(c_type.int8, parser->p, xctx);
             break;
 
         case AFW_UBJSON_MARKER_INT8:
             afw_ubjson_next_bytes(parser, (unsigned char*) &c_type, 1, xctx);
-            value = afw_value_create_integer(c_type.int8, parser->p, xctx);
+            value = afw_value_create_integer_unmanaged(c_type.int8, parser->p, xctx);
             break;
 
         case AFW_UBJSON_MARKER_UINT8:
             afw_ubjson_next_bytes(parser, (unsigned char*) &c_type, 1, xctx);
-            value = afw_value_create_integer(c_type.uint8, parser->p, xctx);
+            value = afw_value_create_integer_unmanaged(c_type.uint8, parser->p, xctx);
             break;
 
         case AFW_UBJSON_MARKER_INT16:
             afw_ubjson_next_bytes(parser, (unsigned char*) &c_type, 2, xctx);
             AFW_ENDIAN_BIG_TO_NATIVE(&c_type, 16);
-            value = afw_value_create_integer(c_type.int16, parser->p, xctx);
+            value = afw_value_create_integer_unmanaged(c_type.int16, parser->p, xctx);
             break;
 
         case AFW_UBJSON_MARKER_INT32:
             afw_ubjson_next_bytes(parser, (unsigned char*) &c_type, 4, xctx);
             AFW_ENDIAN_BIG_TO_NATIVE(&c_type, 32);
-            value = afw_value_create_integer(c_type.int32, parser->p, xctx);
+            value = afw_value_create_integer_unmanaged(c_type.int32, parser->p, xctx);
             break;
 
         case AFW_UBJSON_MARKER_INT64:
             afw_ubjson_next_bytes(parser, (unsigned char*) &c_type, 8, xctx);
             AFW_ENDIAN_BIG_TO_NATIVE(&c_type, 64);
-            value = afw_value_create_integer(c_type.int64, parser->p, xctx);
+            value = afw_value_create_integer_unmanaged(c_type.int64, parser->p, xctx);
             break;
 
         case AFW_UBJSON_MARKER_FLOAT32:
             afw_ubjson_next_bytes(parser, (unsigned char*) &c_type, 4, xctx);
             AFW_ENDIAN_BIG_TO_NATIVE(&c_type, 32);
-            value = afw_value_create_double(c_type.float32, parser->p, xctx);
+            value = afw_value_create_double_unmanaged(c_type.float32, parser->p, xctx);
             break;
 
         case AFW_UBJSON_MARKER_FLOAT64:
             afw_ubjson_next_bytes(parser, (unsigned char*) &c_type, 8, xctx);
             AFW_ENDIAN_BIG_TO_NATIVE(&c_type, 64);
-            value = afw_value_create_double(c_type.float64, parser->p, xctx);
+            value = afw_value_create_double_unmanaged(c_type.float64, parser->p, xctx);
             break;
 
         default:
@@ -392,22 +392,22 @@ const afw_value_t * afw_ubjson_parse_value(
     switch (c) {
         /* Null */
         case AFW_UBJSON_MARKER_NULL:
-            value = afw_value_create_null(NULL, parser->p, xctx);
+            value = afw_value_create_null_unmanaged(NULL, parser->p, xctx);
             break;
 
         /* No-op */
         case AFW_UBJSON_MARKER_NOOP:
-            value = afw_value_create_null(NULL, parser->p, xctx);
+            value = afw_value_create_null_unmanaged(NULL, parser->p, xctx);
             break;
 
         /* Boolean true */
         case AFW_UBJSON_MARKER_TRUE:
-            value = afw_value_create_boolean(AFW_TRUE, parser->p, xctx);
+            value = afw_value_create_boolean_unmanaged(AFW_TRUE, parser->p, xctx);
             break;
 
         /* Boolean false */
         case AFW_UBJSON_MARKER_FALSE:
-            value = afw_value_create_boolean(AFW_FALSE, parser->p, xctx);
+            value = afw_value_create_boolean_unmanaged(AFW_FALSE, parser->p, xctx);
             break;
 
         /* Numeric types */
@@ -432,24 +432,24 @@ const afw_value_t * afw_ubjson_parse_value(
         case AFW_UBJSON_MARKER_CHAR:
             c = afw_ubjson_next_byte(parser, xctx);
             string = afw_utf8_create_copy((const afw_utf8_octet_t *)&c, 1, parser->p, xctx);
-            value = afw_value_create_string(string, parser->p, xctx);
+            value = afw_value_create_string_unmanaged(string, parser->p, xctx);
             break;
 
         case AFW_UBJSON_MARKER_STRING:
             string = afw_ubjson_parse_string(parser, xctx);
-            value = afw_value_create_string(string, parser->p, xctx);
+            value = afw_value_create_string_unmanaged(string, parser->p, xctx);
             break;
 
         /* Array */
         case AFW_UBJSON_MARKER_ARRAY:
             list = afw_ubjson_parse_array(parser, xctx);
-            value = afw_value_create_array(list, parser->p, xctx);
+            value = afw_value_create_array_unmanaged(list, parser->p, xctx);
             break;
 
         /* Object */
         case AFW_UBJSON_MARKER_OBJECT:
             obj = afw_ubjson_parse_object(parser, xctx);
-            value = afw_value_create_object(obj, parser->p, xctx);
+            value = afw_value_create_object_unmanaged(obj, parser->p, xctx);
             break;
 
         default:

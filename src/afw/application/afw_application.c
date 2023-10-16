@@ -60,13 +60,13 @@ impl_current_get_variable_cb(
     }
     else if (afw_utf8_equal(name, afw_s_pid)) {
         pid = afw_os_get_pid();
-        result = afw_value_create_integer(pid, xctx->p, xctx);
+        result = afw_value_create_integer_unmanaged(pid, xctx->p, xctx);
     }
     else if (afw_utf8_equal(name, afw_s_xctxUUID)) {
-        result = afw_value_create_string(xctx->uuid, xctx->p, xctx);
+        result = afw_value_create_string_unmanaged(xctx->uuid, xctx->p, xctx);
     }
     else if (afw_utf8_equal(name, afw_s_programName)) {
-        result = afw_value_create_string(
+        result = afw_value_create_string_unmanaged(
             &xctx->env->program_name, xctx->p, xctx);
     }
 
@@ -121,7 +121,7 @@ afw_application_internal_register_basic_application_context_type(
 
     afw_context_variable_definition_add_z(variable_definitions,
         afw_s_mode, afw_s_runtime,
-        &afw_value_evaluated_string_inf,
+        &afw_value_unmanaged_string_inf,
         "Authorization Mode",
         "The current authorization mode.",
         NULL, NULL,
@@ -129,7 +129,7 @@ afw_application_internal_register_basic_application_context_type(
 
     afw_context_variable_definition_add_z(variable_definitions,
         afw_s_pid, afw_s_runtime,
-        &afw_value_evaluated_integer_inf,
+        &afw_value_unmanaged_integer_inf,
         "Pid",
         "The current processor id.",
         NULL, NULL,
@@ -137,7 +137,7 @@ afw_application_internal_register_basic_application_context_type(
 
     afw_context_variable_definition_add_z(variable_definitions,
         afw_s_programName, afw_s_runtime,
-        &afw_value_evaluated_string_inf,
+        &afw_value_unmanaged_string_inf,
         "Program Name",
         "The current program name.",
         NULL, NULL,
@@ -145,7 +145,7 @@ afw_application_internal_register_basic_application_context_type(
 
     afw_context_variable_definition_add_z(variable_definitions,
         afw_s_xctxUUID, afw_s_runtime,
-        &afw_value_evaluated_string_inf,
+        &afw_value_unmanaged_string_inf,
         "XCTX UUID",
         "The execution context (xctx) UUID which can normally be considered the UUID of the current request.",
         NULL, NULL,

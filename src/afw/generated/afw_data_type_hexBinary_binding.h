@@ -66,7 +66,7 @@ afw_data_type_hexBinary;
  * The lifetime of the value is the lifetime of its containing pool.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
-afw_value_evaluated_hexBinary_inf;
+afw_value_unmanaged_hexBinary_inf;
 
 /**
  * @brief Managed evaluated value inf for data type hexBinary.
@@ -162,6 +162,22 @@ AFW_DECLARE(const afw_memory_t *)
 afw_value_as_hexBinary(const afw_value_t *value, afw_xctx_t *xctx);
 
 /**
+ * @brief Allocate function for managed data type hexBinary value.
+ * @param ptr place to put pointer to allocated memory for internal->s.
+ * @param size of memory to allocate for internal->s.
+ * @param xctx of caller.
+ * @return Allocated afw_value_t with appropriate inf set.
+ *
+ * This value and memory for the specified size is allocated in xctx->p.
+ * Set *ptr for the specified size to the bytes of the value.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_value_alloc_hexBinary(
+    const afw_byte_t **ptr,
+    afw_size_t size,
+    afw_xctx_t *xctx);
+
+/**
  * @brief Allocate function for unmanaged data type hexBinary value.
  * @param p to use for returned value.
  * @param xctx of caller.
@@ -178,37 +194,8 @@ afw_value_allocate_hexBinary(const afw_pool_t *p, afw_xctx_t *xctx);
  * @return Created const afw_value_t *.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_create_hexBinary(const afw_memory_t * internal,
+afw_value_create_hexBinary_unmanaged(const afw_memory_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx);
-
-/**
- * @brief Allocate function for managed data type hexBinary value.
- * @param p to use for returned value.
- * @param xctx of caller.
- * @return Allocated afw_value_hexBinary_t with appropriate inf set.
- */
-AFW_DECLARE(afw_value_hexBinary_t *)
-afw_value_allocate_managed_hexBinary(const afw_pool_t *p, afw_xctx_t *xctx);
-
-/**
- * @brief Create function for managed data type hexBinary value.
- * @param internal.
- * @param p to use for returned value.
- * @param xctx of caller.
- * @return Created const afw_value_t *.
- */
-AFW_DECLARE(const afw_value_t *)
-afw_value_create_managed_hexBinary(const afw_memory_t * internal,
-    const afw_pool_t *p, afw_xctx_t *xctx);
-
-/**
- * @brief Allocate function for permanent data type hexBinary value.
- * @param p to use for returned value.
- * @param xctx of caller.
- * @return Allocated afw_value_hexBinary_t with appropriate inf set.
- */
-AFW_DECLARE(afw_value_hexBinary_t *)
-afw_value_allocate_permanent_hexBinary(const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**
  * @brief Create function for permanent data type hexBinary value.

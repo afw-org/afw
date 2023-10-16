@@ -129,7 +129,7 @@ impl_list_destructure(
             afw_array_add_value(rest, v, xctx);
         }
         if (rest) {
-            v = afw_value_create_array(rest, p, xctx);
+            v = afw_value_create_array_unmanaged(rest, p, xctx);
             impl_assign_value(ld->rest, v, assignment_type, p, xctx);
         }
     }
@@ -215,7 +215,7 @@ impl_object_destructure(
                 afw_object_set_property(rest, property_name, v, xctx);
             }
         }
-        v = afw_value_create_object(rest, p, xctx);
+        v = afw_value_create_object_unmanaged(rest, p, xctx);
         impl_assign_value(od->rest, v, assignment_type, p, xctx);
     }
 }
@@ -1455,7 +1455,7 @@ afw_function_execute_try(
         if AFW_FUNCTION_PARAMETER_IS_PRESENT(3) {
             if (AFW_FUNCTION_PARAMETER_IS_PRESENT(4)) {
                 error_object = afw_error_to_object(&this_THROWN_ERROR, p, xctx);
-                error_value = afw_value_create_object(error_object, p, xctx);
+                error_value = afw_value_create_object_unmanaged(error_object, p, xctx);
                 /// @fixme Assignment type is not correct when frames used
  // -------------------------------------------------------------------
  /// @fixme There needs to be a better way to do this. This is a copy of

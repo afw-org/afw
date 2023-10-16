@@ -66,7 +66,7 @@ afw_data_type_time;
  * The lifetime of the value is the lifetime of its containing pool.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
-afw_value_evaluated_time_inf;
+afw_value_unmanaged_time_inf;
 
 /**
  * @brief Managed evaluated value inf for data type time.
@@ -162,6 +162,20 @@ AFW_DECLARE(const afw_time_t *)
 afw_value_as_time(const afw_value_t *value, afw_xctx_t *xctx);
 
 /**
+ * @brief Allocate function for managed data type time value.
+ * @param internal place to put pointer to internal of value.
+ * @param xctx of caller.
+ * @return Allocated afw_value_t with appropriate inf set.
+ *
+ * This value is allocated in xctx->p. Set *internal to the 
+ * 'afw_time_t' internal value before using.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_value_alloc_time(
+    afw_time_t **internal,
+    afw_xctx_t *xctx);
+
+/**
  * @brief Allocate function for unmanaged data type time value.
  * @param p to use for returned value.
  * @param xctx of caller.
@@ -178,37 +192,8 @@ afw_value_allocate_time(const afw_pool_t *p, afw_xctx_t *xctx);
  * @return Created const afw_value_t *.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_create_time(const afw_time_t * internal,
+afw_value_create_time_unmanaged(const afw_time_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx);
-
-/**
- * @brief Allocate function for managed data type time value.
- * @param p to use for returned value.
- * @param xctx of caller.
- * @return Allocated afw_value_time_t with appropriate inf set.
- */
-AFW_DECLARE(afw_value_time_t *)
-afw_value_allocate_managed_time(const afw_pool_t *p, afw_xctx_t *xctx);
-
-/**
- * @brief Create function for managed data type time value.
- * @param internal.
- * @param p to use for returned value.
- * @param xctx of caller.
- * @return Created const afw_value_t *.
- */
-AFW_DECLARE(const afw_value_t *)
-afw_value_create_managed_time(const afw_time_t * internal,
-    const afw_pool_t *p, afw_xctx_t *xctx);
-
-/**
- * @brief Allocate function for permanent data type time value.
- * @param p to use for returned value.
- * @param xctx of caller.
- * @return Allocated afw_value_time_t with appropriate inf set.
- */
-AFW_DECLARE(afw_value_time_t *)
-afw_value_allocate_permanent_time(const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**
  * @brief Create function for permanent data type time value.

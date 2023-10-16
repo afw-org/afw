@@ -274,7 +274,7 @@ impl_get_value(impl_lexical_t *self)
         s = afw_pool_malloc(self->p, count * sizeof(afw_utf8_t), self->xctx);
         list = afw_array_create_wrapper_for_array(s, false,
             afw_data_type_string, count, self->p, self->xctx);
-        val = afw_value_create_array(list, self->p, self->xctx);
+        val = afw_value_create_array_unmanaged(list, self->p, self->xctx);
         for (;;) {
             tkn = impl_get_token(self);
             if (afw_utf8_z_equal(tkn, ")")) break;
@@ -286,7 +286,7 @@ impl_get_value(impl_lexical_t *self)
     /* If not list, just return single value. */
     else {
         impl_set_string(self, &string);
-        val = afw_value_create_string(&string, self->p, self->xctx);
+        val = afw_value_create_string_unmanaged(&string, self->p, self->xctx);
     }
 
     /* Return single value or list. */

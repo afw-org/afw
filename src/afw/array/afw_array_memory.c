@@ -395,7 +395,7 @@ impl_afw_array_setter_add_internal(
         (afw_memory_internal_array_t *)((afw_array_setter_t *)instance)->array;
     const afw_value_t *value;
 
-    value = afw_value_evaluated_create(internal, data_type, self->p, xctx);
+    value = afw_value_unmanaged_create(internal, data_type, self->p, xctx);
     impl_afw_array_setter_add_value(instance, value, xctx);
 }
 
@@ -464,7 +464,7 @@ impl_afw_array_setter_insert_internal(
         (afw_memory_internal_array_t *)((afw_array_setter_t *)instance)->array;
     const afw_value_t *value;
 
-    value = afw_value_evaluated_create(internal, data_type, self->p, xctx);
+    value = afw_value_unmanaged_create(internal, data_type, self->p, xctx);
     impl_afw_array_setter_insert_value(instance, value, index, xctx);
 }
 
@@ -582,7 +582,7 @@ impl_afw_array_setter_remove_internal(
     {
         if (afw_value_get_data_type(ep->value, xctx) == data_type &&
             memcmp(
-                &((const afw_value_evaluated_t *)ep->value)->internal,
+                &((const afw_value_unmanaged_t *)ep->value)->internal,
                 internal, data_type->c_type_size) == 0)
         {
             APR_RING_REMOVE(ep, link);

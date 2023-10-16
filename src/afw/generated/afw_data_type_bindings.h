@@ -122,7 +122,7 @@ afw_register_data_types(
     afw_xctx_t *xctx);
 
 /**
- * @brief Register each afw__value_evaluated_<dataType>_inf.
+ * @brief Register each afw__value_unmanaged_<dataType>_inf.
  * @param xctx of caller.
  */
 AFW_DECLARE(void)
