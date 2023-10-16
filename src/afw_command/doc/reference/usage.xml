@@ -14,14 +14,13 @@ OPTION:
  -e, --extension   ARG  Load extension.
  -h, --help             Print this help and exit successfully.
  -l, --local       ARG  Run in "local" mode with output to path or fd number.
- -s, --syntax      ARG  expression, hybrid, parenthesized, script, template, test_script
+ -s, --syntax      ARG  expression, parenthesized, script, template, test_script
  -t, --type        ARG  Content type of configuration file.
  -v, --version          Print version and exit successfully.
 
 The syntax option (-s) determines how input will be parsed:
 
   -s expression        - The input is an adaptive expression.
-  -s hybrid            - The input is an adaptive hybrid.
   -s parentheses       - The input is an adaptive expression enclose in
                          parentheses.
   -s script            - The input is an adaptive script.
@@ -38,11 +37,6 @@ When option -s parentheses is specified, logical lines are evaluated up
 up to the expression's closing parenthesis (')'). The parenthesized
 expression can be preceded by any amount of whitespace, including
 comments, and followed by whitespace up to the end of the line.
-
-When option -s hybrid is specified and the input does not begin with a
-square bracket ('['), the input must be on one logical line; otherwise,
-input will be evaluated through the logical line with the hybrid's
-closing square bracket (']').
 
 The conf option (-f) is used to specify the path to a configuration
 file. By default, this file should be encoded with a relaxed json

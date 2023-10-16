@@ -51,7 +51,7 @@
                 <row>
                     <column>-s, --syntax</column>
                     <column>syntax</column>
-                    <column>Expression syntax (e|expression, p|parenthesized, t|template, v|hybrid).</column>
+                    <column>Expression syntax (e|expression, p|parenthesized, t|template).</column>
                 </row>
                 <row>
                     <column>-t, --type</column>
@@ -75,10 +75,6 @@
             When option -s p is specified, logical lines are evaluated up to the expression's closing parenthesis (')'). The 
             parenthesized expression can be preceded by any amount of whitespace, including comments, and followed by whitespace up 
             to the end of the line.
-        </paragraph>
-        <paragraph>
-            When option -s v is specified and the input does not begin with a square bracket ('['), the input must be on one 
-            logical line; otherwise, input will be evaluated through the logical line with the hybrid's closing square bracket (']').
         </paragraph>
         <paragraph>
           The conf option (-f) is used to specify the path to a configuration file. By default, this file should be encoded with
