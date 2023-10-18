@@ -4,6 +4,23 @@
 # FIXME: These comments are a work in progress and don't necessarily represent
 # what this module does.
 #
+# Adaptive values are used to represent values in the afw environment. They are
+# used for properties of objects and elements of arrays. They are also used for
+# the values of parameters and return values of functions.
+#
+# Adaptive values are represented by the afw_value_t typedef. The struct has an
+# inf field that points to an afw_value_inf_t struct. The inf struct has
+# function pointers to functions that operate on the value. The inf struct also
+# has a data type field that is a pointer to the associated afw_data_type_t
+# struct, if there is one. The data type struct has function pointers to
+# functions that operate on values of that data type. There are multiple inf
+# structs for each data type as mentioned below.
+#
+# There is an afw_value_<dataType>_t struct for each data type whose first
+# member is an afw_value_t struct with a name of pub. The afw_value_<dataType>_t
+# struct has a field for the internal representation of the value. The internal
+# representation is the cType of the data type.
+#
 # This module generates <dataType> related *.c and *.h files. The files are:
 #
 #   <prefix>_data_type_bindings.c
@@ -27,7 +44,7 @@
 #   <infType> = managed, permanent, slice, unmanaged
 #
 # Note: 'slice' is only produced for data types with cType of 'afw_utf8_t' and
-# 'afw_memory_t'.
+#       'afw_memory_t'.
 #
 # There are macros produced to check if a value is of a particular data type:
 #
@@ -35,7 +52,7 @@
 #   afw_value_is_<dataType>()
 #   afw_value_is_array_of_<dataType>()
 #
-# The are also a few functions produced that are used as interface
+# There are also a few functions produced that are used as interface
 # "afw_data_type" methods:
 #
 #   afw_data_type_<dataType>_to_internal()
@@ -45,8 +62,8 @@
 #
 #   afw_value_as_<dataType>()
 #
-# There are macros/functions to access properties of objects and elements of
-# arrays a a data type:
+# There are convenience macros/functions to access the internal part of
+# properties of objects and elements of arrays as the data type's cType:
 #
 #   afw_object_get_property_as_<dataType>()
 #   afw_object_get_next_property_as_<dataType>()
@@ -57,11 +74,12 @@
 #   afw_data_type_<dataType>_direct
 #
 # Functions are generated to alloc and create adaptive values. The
-# afw_value_<dataType>_alloc() and afw_value_<dataType>_create*() functions
-# vary based on the data type's cType.
+# afw_value_<dataType>_alloc() and afw_value_<dataType>_create*() functions vary
+# based on the data type's cType.
 #
-# All alloc plus all create functions that do not end with _unmanaged are
-# managed by reference count. Managed valued are created in xctx->p.
+# All data type *alloc* plus all *create* functions that do not end with
+# _unmanaged or permanent are managed by reference count. Managed valued are
+# created in xctx->p.
 #
 # For create functions that do end with _unmanaged, a pool must be specified.
 # The lifetime of the value is the lifetime of the pool. A call to release for
@@ -355,6 +373,54 @@ def write_h_section(fd, prefix, obj):
         fd.write(' */\n')
         fd.write(declare + '(afw_value_' + id + '_t *)\n')
         fd.write('afw_value_allocate_' + id + '(const afw_pool_t *p, afw_xctx_t *xctx);\n')
+
+        fd.write('\n/**\n')
+        fd.write(' * @brief Create function for managed data type ' + id + ' value.\n')
+        fd.write(' * @param internal.\n')
+        fd.write(' * @param p to use for returned value.\n')
+        fd.write(' * @param xctx of caller.\n')
+        fd.write(' * @return Created const afw_value_t *.\n')
+        fd.write(' */\n')
+        fd.write(declare + '(const afw_value_t *)\n')
+        fd.write('afw_value_create_' + id + '(' + return_type + ' internal,\n')
+        fd.write('    const afw_pool_t *p, afw_xctx_t *xctx);\n')
+
+        if ctype == 'afw_utf8_t':
+            fd.write('\n/**\n')
+            fd.write(' * @brief Create function for managed data type ' + id + ' slice value.\n')
+            fd.write(' * @param containing_value with a cType of \'afw_utf8_t\'.\n')
+            fd.write(' * @param offset in contain value\'s internal.\n')
+            fd.write(' * @param len of slice.\n')
+            fd.write(' * @param xctx of caller.\n')
+            fd.write(' * @return  Created const afw_value_t *.\n')
+            fd.write(' *\n')
+            fd.write(' * This value and memory for the specified len is allocated in xctx->p.\n')
+            fd.write(' * Set *s for the specified len to a valid utf-8 string.\n')
+            fd.write(' */\n')
+            fd.write(declare + '(const afw_value_t *)\n')
+            fd.write('afw_value_create_' + id + '_slice(\n')
+            fd.write('    const afw_value_t *containing_value,\n')
+            fd.write('    afw_size_t offset,\n')
+            fd.write('    afw_size_t len,\n')
+            fd.write('    afw_xctx_t *xctx);\n')
+        elif ctype == 'afw_memory_t':
+            fd.write('\n/**\n')
+            fd.write(' * @brief Create function for managed data type ' + id + ' slice value.\n')
+            fd.write(' * @param containing_value with a cType of \'afw_memory_t\'.\n')
+            fd.write(' * @param offset in contain value\'s internal.\n')
+            fd.write(' * @param size of slice.\n')
+            fd.write(' * @param xctx of caller.\n')
+            fd.write(' * @return  Created const afw_value_t *.\n')
+            fd.write(' *\n')
+            fd.write(' * This value and memory for the specified size is allocated in xctx->p.\n')
+            fd.write(' * Set *ptr for the specified size to the bytes of the value.\n')
+            fd.write(' */\n')
+            fd.write(declare + '(const afw_value_t *)\n')
+            fd.write('afw_value_create_' + id + '_slice(\n')
+            fd.write('    const afw_value_t *containing_value,\n')
+            fd.write('    afw_size_t offset,\n')
+            fd.write('    afw_size_t size,\n')
+            fd.write('    afw_xctx_t *xctx);\n')
 
         fd.write('\n/**\n')
         fd.write(' * @brief Create function for unmanaged data type ' + id + ' value.\n')
@@ -988,6 +1054,48 @@ def write_c_section(fd, prefix, obj):
         fd.write('    result->inf = &afw_value_unmanaged_' + id + '_inf;\n')
         fd.write('    return result;\n')
         fd.write('}\n')
+
+        fd.write('\n/* Create function for managed data type ' + id + ' value. */\n')
+        fd.write(define + '(const afw_value_t *)\n')
+        fd.write('afw_value_create_' + id + '(' + return_type + ' internal,\n')
+        fd.write('    const afw_pool_t *p, afw_xctx_t *xctx)\n')
+        fd.write('{\n')
+        fd.write('    afw_value_' + id + '_t *v;\n')
+        fd.write('\n')
+        fd.write('    v = afw_pool_calloc(p, sizeof(afw_value_' + id + '_t),\n')
+        fd.write('        xctx);\n')
+        fd.write('    v->inf = &afw_value_managed_' + id + '_inf;\n')
+        if direct_return == True:
+            fd.write('    v->internal = internal;\n')
+        else:
+            fd.write('    if (internal) {\n')
+            fd.write('        memcpy(&v->internal, internal, sizeof(' + ctype + '));\n')
+            fd.write('    }\n')
+        fd.write('    return &v->pub;\n')
+        fd.write('}\n')
+
+        if ctype == 'afw_utf8_t':
+            fd.write('\n/* Create function for managed data type ' + id + ' slice value. */\n')
+            fd.write(define + '(const afw_value_t *)\n')
+            fd.write('afw_value_create_' + id + '_slice(\n')
+            fd.write('    const afw_value_t *containing_value,\n')
+            fd.write('    afw_size_t offset,\n')
+            fd.write('    afw_size_t len,\n')
+            fd.write('    afw_xctx_t *xctx)\n')
+            fd.write('{\n')
+            fd.write('    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);\n')
+            fd.write('}\n')
+        elif ctype == 'afw_memory_t':
+            fd.write('\n/* Create function for managed data type ' + id + ' slice value. */\n')
+            fd.write(define + '(const afw_value_t *)\n')
+            fd.write('afw_value_create_' + id + '_slice(\n')
+            fd.write('    const afw_value_t *containing_value,\n')
+            fd.write('    afw_size_t offset,\n')
+            fd.write('    afw_size_t size,\n')
+            fd.write('    afw_xctx_t *xctx)\n')
+            fd.write('{\n')
+            fd.write('    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);\n')
+            fd.write('}\n')
 
         fd.write('\n/* Create function for unmanaged data type ' + id + ' value. */\n')
         fd.write(define + '(const afw_value_t *)\n')

@@ -264,6 +264,20 @@ afw_value_allocate_function(const afw_pool_t *p, afw_xctx_t *xctx)
     return result;
 }
 
+/* Create function for managed data type function value. */
+AFW_DEFINE(const afw_value_t *)
+afw_value_create_function(const afw_value_t * internal,
+    const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    afw_value_function_t *v;
+
+    v = afw_pool_calloc(p, sizeof(afw_value_function_t),
+        xctx);
+    v->inf = &afw_value_managed_function_inf;
+    v->internal = internal;
+    return &v->pub;
+}
+
 /* Create function for unmanaged data type function value. */
 AFW_DEFINE(const afw_value_t *)
 afw_value_create_function_unmanaged(const afw_value_t * internal,

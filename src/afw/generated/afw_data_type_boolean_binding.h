@@ -185,6 +185,17 @@ AFW_DECLARE(afw_value_boolean_t *)
 afw_value_allocate_boolean(const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**
+ * @brief Create function for managed data type boolean value.
+ * @param internal.
+ * @param p to use for returned value.
+ * @param xctx of caller.
+ * @return Created const afw_value_t *.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_value_create_boolean(afw_boolean_t internal,
+    const afw_pool_t *p, afw_xctx_t *xctx);
+
+/**
  * @brief Create function for unmanaged data type boolean value.
  * @param internal.
  * @param p to use for returned value.

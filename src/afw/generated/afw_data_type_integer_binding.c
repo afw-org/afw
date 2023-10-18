@@ -264,6 +264,20 @@ afw_value_allocate_integer(const afw_pool_t *p, afw_xctx_t *xctx)
     return result;
 }
 
+/* Create function for managed data type integer value. */
+AFW_DEFINE(const afw_value_t *)
+afw_value_create_integer(afw_integer_t internal,
+    const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    afw_value_integer_t *v;
+
+    v = afw_pool_calloc(p, sizeof(afw_value_integer_t),
+        xctx);
+    v->inf = &afw_value_managed_integer_inf;
+    v->internal = internal;
+    return &v->pub;
+}
+
 /* Create function for unmanaged data type integer value. */
 AFW_DEFINE(const afw_value_t *)
 afw_value_create_integer_unmanaged(afw_integer_t internal,

@@ -264,6 +264,33 @@ afw_value_allocate_objectId(const afw_pool_t *p, afw_xctx_t *xctx)
     return result;
 }
 
+/* Create function for managed data type objectId value. */
+AFW_DEFINE(const afw_value_t *)
+afw_value_create_objectId(const afw_utf8_t * internal,
+    const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    afw_value_objectId_t *v;
+
+    v = afw_pool_calloc(p, sizeof(afw_value_objectId_t),
+        xctx);
+    v->inf = &afw_value_managed_objectId_inf;
+    if (internal) {
+        memcpy(&v->internal, internal, sizeof(afw_utf8_t));
+    }
+    return &v->pub;
+}
+
+/* Create function for managed data type objectId slice value. */
+AFW_DEFINE(const afw_value_t *)
+afw_value_create_objectId_slice(
+    const afw_value_t *containing_value,
+    afw_size_t offset,
+    afw_size_t len,
+    afw_xctx_t *xctx)
+{
+    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
+}
+
 /* Create function for unmanaged data type objectId value. */
 AFW_DEFINE(const afw_value_t *)
 afw_value_create_objectId_unmanaged(const afw_utf8_t * internal,

@@ -264,6 +264,22 @@ afw_value_allocate_dayTimeDuration(const afw_pool_t *p, afw_xctx_t *xctx)
     return result;
 }
 
+/* Create function for managed data type dayTimeDuration value. */
+AFW_DEFINE(const afw_value_t *)
+afw_value_create_dayTimeDuration(const afw_dayTimeDuration_t * internal,
+    const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    afw_value_dayTimeDuration_t *v;
+
+    v = afw_pool_calloc(p, sizeof(afw_value_dayTimeDuration_t),
+        xctx);
+    v->inf = &afw_value_managed_dayTimeDuration_inf;
+    if (internal) {
+        memcpy(&v->internal, internal, sizeof(afw_dayTimeDuration_t));
+    }
+    return &v->pub;
+}
+
 /* Create function for unmanaged data type dayTimeDuration value. */
 AFW_DEFINE(const afw_value_t *)
 afw_value_create_dayTimeDuration_unmanaged(const afw_dayTimeDuration_t * internal,

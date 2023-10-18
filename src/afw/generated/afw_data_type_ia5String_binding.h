@@ -187,6 +187,35 @@ AFW_DECLARE(afw_value_ia5String_t *)
 afw_value_allocate_ia5String(const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**
+ * @brief Create function for managed data type ia5String value.
+ * @param internal.
+ * @param p to use for returned value.
+ * @param xctx of caller.
+ * @return Created const afw_value_t *.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_value_create_ia5String(const afw_utf8_t * internal,
+    const afw_pool_t *p, afw_xctx_t *xctx);
+
+/**
+ * @brief Create function for managed data type ia5String slice value.
+ * @param containing_value with a cType of 'afw_utf8_t'.
+ * @param offset in contain value's internal.
+ * @param len of slice.
+ * @param xctx of caller.
+ * @return  Created const afw_value_t *.
+ *
+ * This value and memory for the specified len is allocated in xctx->p.
+ * Set *s for the specified len to a valid utf-8 string.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_value_create_ia5String_slice(
+    const afw_value_t *containing_value,
+    afw_size_t offset,
+    afw_size_t len,
+    afw_xctx_t *xctx);
+
+/**
  * @brief Create function for unmanaged data type ia5String value.
  * @param internal.
  * @param p to use for returned value.

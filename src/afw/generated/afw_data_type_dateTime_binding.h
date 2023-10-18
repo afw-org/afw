@@ -185,6 +185,17 @@ AFW_DECLARE(afw_value_dateTime_t *)
 afw_value_allocate_dateTime(const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**
+ * @brief Create function for managed data type dateTime value.
+ * @param internal.
+ * @param p to use for returned value.
+ * @param xctx of caller.
+ * @return Created const afw_value_t *.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_value_create_dateTime(const afw_dateTime_t * internal,
+    const afw_pool_t *p, afw_xctx_t *xctx);
+
+/**
  * @brief Create function for unmanaged data type dateTime value.
  * @param internal.
  * @param p to use for returned value.

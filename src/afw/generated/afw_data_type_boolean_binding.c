@@ -264,6 +264,20 @@ afw_value_allocate_boolean(const afw_pool_t *p, afw_xctx_t *xctx)
     return result;
 }
 
+/* Create function for managed data type boolean value. */
+AFW_DEFINE(const afw_value_t *)
+afw_value_create_boolean(afw_boolean_t internal,
+    const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    afw_value_boolean_t *v;
+
+    v = afw_pool_calloc(p, sizeof(afw_value_boolean_t),
+        xctx);
+    v->inf = &afw_value_managed_boolean_inf;
+    v->internal = internal;
+    return &v->pub;
+}
+
 /* Create function for unmanaged data type boolean value. */
 AFW_DEFINE(const afw_value_t *)
 afw_value_create_boolean_unmanaged(afw_boolean_t internal,
