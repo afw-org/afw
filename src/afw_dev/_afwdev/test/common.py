@@ -1,5 +1,14 @@
 #! /usr/bin/env python3
 
+##
+# @ingroup afwdev_test
+#
+
+##
+# @file common.py
+# @brief This file contains common routines that are used by all 
+#        test routines.
+
 import os
 import subprocess
 import importlib
@@ -39,9 +48,13 @@ def after_all(root, testGroupConfig, testEnvironment):
     test_wrapper(root, testGroupConfig, testEnvironment, 'after_all')
 
 
-# This routine checks to determine if a discovered file is a test file.
-# Some names are reserved for specific purposes, and are ignored as a test 
-# file. For now, we only look for .as,.py,.sh scripts, ignoring '_' prefixed.
+##
+# @brief This routine checks to determine if a discovered file is a test file.
+#        Some names are reserved for specific purposes, and are ignored as a 
+#        test file. For now, we only look for .as,.py,.sh scripts, ignoring '_' 
+#        prefixed filenames.
+# @param file The file to check.
+#
 def is_test_file(file):    
     skip = [        
         "config.py"
@@ -56,11 +69,14 @@ def is_test_file(file):
         return True
     return False
 
-# This routine checks a directory to determine if all of the files
-# belong to a single test group. Test groups have multiple test files
-# with common configuration or environments, which may even share 
-# databases. The expectation is that a test group should not be split 
-# apart and run in parallel.
+##
+# @brief This routine checks a directory to determine if all of the files
+#        belong to a single test group. Test groups have multiple test files
+#        with common configuration or environments, which may even share 
+#        databases. The expectation is that a test group should not be split 
+#        apart and run in parallel.
+# @param dir The directory to check.
+#
 def is_test_group(dir):
 
     # just check of a config.py exists
@@ -70,12 +86,20 @@ def is_test_group(dir):
     return False
 
 
-# For a given testGroupConfig and a list of all testEnvironments, this routine 
-# will return the matching test environment. If one does not exist, then 
-# a default one will be created to setup the proper working directory.
+##
+# @brief For a given testGroupConfig and a list of all testEnvironments, this 
+#        routine will return the matching test environment. If one does not 
+#        exist, then a default one will be created to setup the proper working 
+#        directory.
 #
-# It will also prime the working directory with any files and configurations 
-# that the test may need.
+#        It will also prime the working directory with any files and 
+#        configurations that the test may need.
+# @param testGroup The test group tuple containing the source directory, the
+#                  test group directory, and a list of test files.
+# @param testEnvironments The list of all test environments.
+# @param testGroupConfig The test group configuration.
+# @param work_dir_prefix The prefix to use for the working directory.
+#
 def get_test_environment(testGroup, testEnvironments, testGroupConfig, work_dir_prefix):
 
     _, root, _ = testGroup
@@ -276,9 +300,16 @@ def get_source_location_coordinates(source, sourceLocation):
             
     return None, None
 
-# Formats a chunk of source code, with an optional title and 
-# highlightOffset, to indicate where in the source code the 
-# user should focus on.
+##
+# @brief Formats a chunk of source code, with an optional title and 
+#        highlightOffset, to indicate where in the source code the 
+#        user should focus on.
+# @param source The source code to format.
+# @param title An optional title to print before the source code.
+# @param highlightOffset An optional offset to highlight in the source code.
+# @param maxLines The maximum number of lines to print.
+# @param message An optional message to print after the source code.
+#
 def format_source_code(source, title = None, highlightOffset = 0, maxLines = 10, message = None):
 
     if source != None:
@@ -390,7 +421,12 @@ def get_rel_error_source_location_nav(test, testCase):
     return None
 
 
-# This routine will print the result of a test that failed, including any error details that came back
+##
+# @brief This routine will print the result of a test that failed, including 
+#        any error details that came back.
+# @param test The test file that was run.
+# @param testCase The test case that failed.
+#
 def print_test_failure(test, testCase):
 
     sourceLocation = testCase.get("sourceLocation")
@@ -459,7 +495,15 @@ def print_test_failure(test, testCase):
 
         format_source_code(testCase.get("source"), "Test Failed at {}".format(sourceLocationNav))
 
-# This routine will print the results of a test run
+##
+# @brief This routine will print the results of a test run.
+# @param options The options dictionary.
+# @param test The test file that was run.
+# @param response The response from the test run.
+# @param hasFailures A boolean indicating if there were any failures.
+# @param allSuccess A boolean indicating if all tests passed.
+# @param allSkipped A boolean indicating if all tests were skipped.
+#
 def print_test_response(options, test, response, hasFailures, allSuccess, allSkipped):
 
     if response != None:     
@@ -512,8 +556,14 @@ def print_test_response(options, test, response, hasFailures, allSuccess, allSki
                     print_test_failure(test, testCase)
 
 
-# This routine parses a test run and returns the appropriate counters summing 
-# the number of tests, failures, and errors
+##
+# @brief This routine parses a test run and returns the appropriate counters 
+#        summing the number of tests, failures, and errors.
+# @param test The test file that was run.
+# @param options The options dictionary.
+# @param response The response from the test run.
+# @param error The error from the test run.
+#
 def parse_test_run(test, options, response, error):
 
     allSkipped = False

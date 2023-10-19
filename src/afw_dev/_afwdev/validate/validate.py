@@ -1,5 +1,12 @@
 #! /usr/bin/env python3
 
+##
+# @file validate.py
+# @ingroup afwdev_validate
+# @brief This file contains the main entry point for the "validate" subcommand.
+#
+
+
 import os
 import jsonschema
 import glob

@@ -1,8 +1,23 @@
 #!/usr/bin/env python3
 
+##
+# @ingroup afwdev_test
+#
+
+##
+# @file js.py
+# @brief This file defines the run methods for running javascript tests.
+#
+
 import os
 from _afwdev.common import msg
 
+##
+# @brief This routine is the main entry point for the "test" subcommand, 
+#       specifically for running javascript tests.
+# @param options The options dictionary.
+# @param srcdirs The list of source directories to run tests for.
+#
 def run(options, srcdirs):
 
     # first check that node_modules exist

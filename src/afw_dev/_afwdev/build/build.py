@@ -1,5 +1,11 @@
 #! /usr/bin/env python3
 
+##
+# @file build.py
+# @ingroup afwdev_build
+# @brief This file contains the main entry point for the "build" subcommand.
+#
+
 import os
 import sys
 import shlex

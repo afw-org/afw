@@ -1,5 +1,11 @@
 #! /usr/bin/env python3
 
+## 
+# @file test.py
+# @ingroup afwdev_test
+# @brief This file contains the main entry point for the "test" subcommand.
+#
+
 import sys
 import time
 import fnmatch
@@ -7,15 +13,19 @@ import fnmatch
 from _afwdev.common import msg, package
 from _afwdev.test import watch, runner, js
 
-# This routine is the main entry point from which afwdev invokes in order 
-# to run any and all test-related subcommands (watch, runner):
+## 
+# @brief This routine is the main entry point from which afwdev invokes in 
+#        order to run any and all test-related subcommands (watch, runner):
 #
-# "watch" will wait for file system changes and run the test that has 
-#   changed.
+#        "watch" will wait for file system changes and run the test that has 
+#        changed.
 #
-# "runner" will simply run all requested tests.
+#        "runner" will simply run all requested tests.
 #
-# This routine also collects some stats from test runs to report to the user.
+#        This routine also collects some stats from test runs to report to the 
+#        user.
+# @param options The options dictionary.
+# 
 def run(options):
 
     total_passed = 0

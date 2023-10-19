@@ -17,8 +17,7 @@
 # Note: If a parent directory is ignored, it is not possible to re-include
 # the subdirectory.
 #
-!src/afw/compile/
-!src/afw_dev/_afwdev/build/
+#!src/afw/compile/
 
 #
 # If you build within the source tree, you will need to ignore the executables
@@ -26,8 +25,8 @@
 # if cmake is used without specifying a build directory. The "afwdev build"
 # command uses a build directory when cmake is used. 
 #
-/src/afw_command/afw
-/src/afw_server_fcgi/afwfcgi
+#/src/afw_command/afw
+#/src/afw_server_fcgi/afwfcgi
 
 # ------------------------------------------------------------------------------
 # The following are standard .gitignore entries for afw projects.

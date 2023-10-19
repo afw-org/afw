@@ -1,5 +1,10 @@
 #! /usr/bin/env python3
 
+##
+# @defgroup afwdev afwdev
+# @ingroup afw_included_commands
+#
+
 import sys
 import argparse
 import os
@@ -404,9 +409,12 @@ _info_afwdev_parser_info = {
     ]
 }
 
-
-# subcommand build
-
+##
+# @defgroup afwdev_build build
+# @ingroup afwdev
+# @brief The afwdev build subcommand is used to build different parts of 
+#        Adaptive Framework.
+#
 _info_build_all = {
     "optionName": "build_all",
     "arg": "--all",     
@@ -585,7 +593,6 @@ _info_ebnf = {
 }
 
 # subcommand for
-
 _info_for_command = {
     "optionName": "command",
     "arg": "command",
@@ -922,7 +929,6 @@ _info_test = {
 }
 
 
-# subcommand validate
 
 _info_pattern = {
     "optionName": "pattern",
@@ -1368,8 +1374,12 @@ def _subcommand_for(args, options):
             msg.warn('Ignored ' + str(errors) + ' errors')
 
 
-#
-#  Subcommand generate
+##
+# @defgroup afwdev_generate generate
+# @ingroup afwdev
+# @brief The afwdev generate subcommand is used to generate different parts of
+#        Adaptive Framework. This includes generated source code, generated 
+#        diagrams, documentation and schema definitions.
 #
 def _subcommand_generate(args, options):
     afw_package = package.get_afw_package(options)
@@ -1575,8 +1585,12 @@ def _subcommand_task(args, options):
         msg.error_exit("Task " + options['task_name'] + " failed" )
 
 
-#
-#  Subcommand test
+##
+# @defgroup afwdev_test test
+# @ingroup afwdev
+# @brief The afwdev test subcommand is used to test many aspects of 
+#        Adaptive Framework development, both manually, or automatically from
+#        GitHub Actions.
 #
 def _subcommand_test(args, options):
     
@@ -1587,8 +1601,10 @@ def _subcommand_test(args, options):
     test.run(options)
 
 
-#
-#  Subcommand validate
+##
+# @defgroup afwdev_validate validate
+# @ingroup afwdev
+# @brief The afwdev validate subcommand is used to validate JSON files.
 #
 def _subcommand_validate(args, options):
 

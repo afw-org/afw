@@ -1,5 +1,11 @@
 #! /usr/bin/env python3
 
+##
+# @file generate.py
+# @ingroup afwdev_generate
+# @brief This file contains the main entry point for the "generate" subcommand.
+#
+
 import glob
 import os
 import sys

@@ -1,5 +1,14 @@
 #! /usr/bin/env python3
 
+##
+# @ingroup afwdev_test
+#
+
+##
+# @file runner.py
+# @brief This file contains the main functions for running tests.
+#
+
 import os
 import sys
 import time

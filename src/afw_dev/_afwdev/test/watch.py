@@ -1,5 +1,14 @@
 #! /usr/bin/env python3
 
+##
+# @ingroup afwdev_test
+#
+
+##
+# @file watch.py
+# @brief This file implements the "watch" option for the "test" subcommand.
+#
+
 import os
 import time
 from threading import Timer
