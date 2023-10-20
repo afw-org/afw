@@ -1,11 +1,31 @@
 #!/usr/bin/env python3
 
+##
+# @file actions.py
+# @ingroup afwdev_test_modes
+# @brief This file defines the run method for running tests through the "action"
+#        interface.
+# @details When a test is run under the "actions" interface, it is executed
+#          using the evaluate_script() Python binding function, which uses 
+#          the same perform() adaptive function call that is used by the HTTP 
+#          POST method.
+#
+#          Only Adaptive Scripts (.as) files are supported.
+#
+
 import os
 
 from afw import Session
 from python_bindings.script import evaluate_script
 from _afwdev.common import msg
 
+##
+# @brief Runs the tests over the action interface.
+# @param test The test to run.
+# @param options The options dictionary.
+# @param testEnvironment The test environment.
+# @param testGroupConfig The test group configuration.
+#
 def run_test(test, options, testEnvironment=None, testGroupConfig=None):
 
     session = None

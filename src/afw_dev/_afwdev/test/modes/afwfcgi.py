@@ -1,19 +1,30 @@
 #!/usr/bin/env python3
 
+##
+# @file afwfcgi.py
+# @ingroup afwdev_test_modes
+# @brief This file defines the run method for running tests through the 
+#        "afwfcgi" mode.
+# @details These tests assume the nginx/afwfcgi service is running on 
+#          localhost:8080. Scripts are executed over HTTP remotely using the 
+#          evaluate_script() Python binding function.
+#
+#          Only Adaptive Scripts (.as) are supported.
+#
+
 import os
 
 from afw import Session
 from python_bindings.script import evaluate_script
 from _afwdev.common import msg
 
+##
+# @brief Runs the tests over the afwfcgi interface.
+# @param test The test to run.
+# @param options The options dictionary.
+# @param testEnvironment The test environment.
+# @param testGroupConfig The test group configuration.
 #
-# The afwfcgi env mode will use the Python bindings to connect to a local
-# nginx/afwfcgi service to process test scripts. This is only appropriate 
-# for adaptive scripts, and specifically ones that do not require a custom
-# afw.conf file.
-#
-# You need to be running afwfcgi and nginx prior to using this test mode, 
-# and it should be listening on port 8080.
 def run_test(test, options, testEnvironment=None, testGroupConfig=None):
 
     session = None

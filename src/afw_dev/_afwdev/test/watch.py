@@ -20,7 +20,14 @@ from _afwdev.test.common import is_test_file, run_test, parse_test_run, \
     print_test_response, load_test_environments, load_test_group_config, \
     before_all, before_each, after_all, after_each
 
-
+##
+# @brief Decorator for debouncing a function
+# @details This decorator will debounce a function so that it can only be called
+#          once every N seconds. This is useful for debouncing filesystem events
+#          so that we don't run the same test multiple times if multiple events
+#          are fired in quick succession.
+# @param wait The number of seconds to wait before the next call can execute.
+#
 def debounce(wait):
 
     """Postpone a functions execution until after some time has elapsed
@@ -113,7 +120,15 @@ class WatchEventHandler(watchdog.events.PatternMatchingEventHandler):
         #print("New Test File: ", event.src_path, event.event_type)
         pass
 
-
+##
+# @brief Watches for tests
+# @details This routine watches for changes to test files and runs the tests
+#          when they are modified. When a test is modified, it clears the 
+#          screen and runs the test, printing the result.
+# @param options The options dictionary.
+# @param srcdir The source directory to watch tests for.
+# @param testEnvironments The list of test environments to run tests in.
+#
 def watch_tests(options, srcdir, testEnvironments):
 
     clearScreen()
@@ -132,7 +147,15 @@ def watch_tests(options, srcdir, testEnvironments):
         observer.stop()
         observer.join()
 
-
+##
+# @brief Watches and runs tests
+# @details This routine watches for changes to test files and runs the tests
+#          when they are modified. This is useful if you are developing a test
+#          and want to run it as you make changes, rather than running all of
+#          the tests every time you make a change.
+# @param options The options dictionary.
+# @param srcdirs The list of source directories to watch tests for.
+#
 def run(options, srcdirs):
 
     # for now, just choose the first one to watch...

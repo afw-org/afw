@@ -1,6 +1,13 @@
 #!/usr/bin/env python3
 
-# Tests written in python will be executed by this mode implementation.
+##
+# @file python.py
+# @ingroup afwdev_test_modes
+# @brief This file defines the run method for running tests under the 
+#        "python" test mode
+# @details These tests are run directly under the python interpreter and 
+#          therefore only Python scripts (.py) are supported.
+#
 
 import os
 import json
@@ -9,6 +16,13 @@ from contextlib import redirect_stdout, redirect_stderr
 
 from _afwdev.common import msg
 
+##
+# @brief Runs the tests under the python interpreter.
+# @param test The test to run.
+# @param options The options dictionary.
+# @param testEnvironment The test environment.
+# @param testGroupConfig The test group configuration.
+#
 def run_test(test, options, testEnvironment=None, testGroupConfig=None):
 
     response = None

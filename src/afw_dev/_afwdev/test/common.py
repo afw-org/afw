@@ -49,10 +49,11 @@ def after_all(root, testGroupConfig, testEnvironment):
 
 
 ##
-# @brief This routine checks to determine if a discovered file is a test file.
-#        Some names are reserved for specific purposes, and are ignored as a 
-#        test file. For now, we only look for .as,.py,.sh scripts, ignoring '_' 
-#        prefixed filenames.
+# @brief Checks if a file is a test file
+# @details This routine checks to determine if a discovered file is a test file.
+#          Some names are reserved for specific purposes, and are ignored as a 
+#          test file. For now, we only look for .as,.py,.sh scripts, ignoring 
+#          '_' prefixed filenames.
 # @param file The file to check.
 #
 def is_test_file(file):    
@@ -70,11 +71,12 @@ def is_test_file(file):
     return False
 
 ##
-# @brief This routine checks a directory to determine if all of the files
-#        belong to a single test group. Test groups have multiple test files
-#        with common configuration or environments, which may even share 
-#        databases. The expectation is that a test group should not be split 
-#        apart and run in parallel.
+# @brief Checks if a directory is a test group
+# @details This routine checks a directory to determine if all of the files
+#          belong to a single test group. Test groups have multiple test files
+#          with common configuration or environments, which may even share 
+#          databases. The expectation is that a test group should not be split 
+#          apart and run in parallel.
 # @param dir The directory to check.
 #
 def is_test_group(dir):
@@ -87,13 +89,14 @@ def is_test_group(dir):
 
 
 ##
-# @brief For a given testGroupConfig and a list of all testEnvironments, this 
-#        routine will return the matching test environment. If one does not 
-#        exist, then a default one will be created to setup the proper working 
-#        directory.
+# @brief Find the matching test environment
+# @details For a given testGroupConfig and a list of all testEnvironments, this 
+#          routine will return the matching test environment. If one does not 
+#          exist, then a default one will be created to setup the proper working 
+#          directory.
 #
-#        It will also prime the working directory with any files and 
-#        configurations that the test may need.
+#          It will also prime the working directory with any files and 
+#          configurations that the test may need.
 # @param testGroup The test group tuple containing the source directory, the
 #                  test group directory, and a list of test files.
 # @param testEnvironments The list of all test environments.
@@ -301,9 +304,10 @@ def get_source_location_coordinates(source, sourceLocation):
     return None, None
 
 ##
-# @brief Formats a chunk of source code, with an optional title and 
-#        highlightOffset, to indicate where in the source code the 
-#        user should focus on.
+# @brief Formats a chunk of source code for printing
+# @details Formats a chunk of source code, with an optional title and 
+#          highlightOffset, to indicate where in the source code the 
+#          user should focus on.
 # @param source The source code to format.
 # @param title An optional title to print before the source code.
 # @param highlightOffset An optional offset to highlight in the source code.
@@ -422,8 +426,9 @@ def get_rel_error_source_location_nav(test, testCase):
 
 
 ##
-# @brief This routine will print the result of a test that failed, including 
-#        any error details that came back.
+# @brief Print a test failure
+# @details This routine will print the result of a test that failed, including 
+#          any error details that came back.
 # @param test The test file that was run.
 # @param testCase The test case that failed.
 #
@@ -557,8 +562,9 @@ def print_test_response(options, test, response, hasFailures, allSuccess, allSki
 
 
 ##
-# @brief This routine parses a test run and returns the appropriate counters 
-#        summing the number of tests, failures, and errors.
+# @brief Print a test run
+# @details This routine parses a test run and returns the appropriate counters 
+#          summing the number of tests, failures, and errors.
 # @param test The test file that was run.
 # @param options The options dictionary.
 # @param response The response from the test run.

@@ -17,8 +17,13 @@ from _afwdev.common import msg, package, resources
 from _afwdev.build import js, cmake, docker
 from _afwdev.build.docs import docs
 
-# Build the afw package
-# @todo add support of other build types
+##
+# @brief The main entry point for the "build" subcommand
+# @details This routine is called during "afwdev build" in order to build
+#          Adaptive Framework packages, including different parts requiring 
+#          different build parts and steps.
+# @param options The options dictionary.
+#
 def run(options):   
 
     # Unless verbose or debug mode, stdout will be sent to dev/null.

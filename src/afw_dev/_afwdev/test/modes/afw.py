@@ -1,10 +1,26 @@
 #!/usr/bin/env python3
 
+##
+# @file afw.py
+# @ingroup afwdev_test_modes
+# @brief This file defines the run method for running tests through the "afw" 
+#        mode.
+# @details These tests are run directly under the afw command-line tool. 
+#          Because of this, only Adaptive Scripts (.as) are supported.
+#
+
 import os
 import subprocess
 
 from _afwdev.common import msg, nfc
 
+##
+# @brief Runs the tests over the afw command line tool.
+# @param test The test to run.
+# @param options The options dictionary.
+# @param testEnvironment The test environment.
+# @param testGroupConfig The test group configuration.
+#
 def run_test(test, options, testEnvironment=None, testGroupConfig=None):
     
     # Run the test and parse the output

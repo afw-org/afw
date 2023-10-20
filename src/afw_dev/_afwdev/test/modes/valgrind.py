@@ -1,10 +1,29 @@
 #!/usr/bin/env python3
 
+##
+# @file valgrind.py
+# @ingroup afwdev_test_modes
+# @brief This file defines the run method for running tests under the
+#        "valgrind" test mode
+# @details These tests are run under afw command-line, using valgrind.
+#          The advantage of using valgrind is to perform comprehensive 
+#          memory checking on each test.
+#
+#          Only Adaptive Scripts (.as) files are supported.
+#
+
 import os
 import subprocess
 
 from _afwdev.common import msg, nfc
 
+##
+# @brief Runs the tests under the afw command line tool and valgrind.
+# @param test The test to run.
+# @param options The options dictionary.
+# @param testEnvironment The test environment.
+# @param testGroupConfig The test group configuration.
+#
 def run_test(test, options, testEnvironment=None, testGroupConfig=None):
     
     # Run the test and parse the output

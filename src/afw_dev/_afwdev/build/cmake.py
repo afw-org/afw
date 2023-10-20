@@ -1,10 +1,22 @@
 #!/usr/bin/env python3
 
+##
+# @file cmake.py
+# @ingroup afwdev_build
+# @brief This file contains the main entry point for the "cmake" build.
+# @details The "cmake" build builds all C-related source code into their 
+#          appropriate binary libraries and executables.
+#
+
 import subprocess
 import os
 import sys
 from _afwdev.common import msg, package
 
+##
+# @brief The main entry point for the "cmake" build.
+# @param options The options dictionary.
+#
 def build(options):
 
     # Unless verbose or debug mode, stdout will be sent to dev/null.

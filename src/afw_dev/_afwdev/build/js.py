@@ -1,5 +1,12 @@
 #! /usr/bin/env python3
 
+##
+# @file js.py
+# @ingroup afwdev_build
+# @brief This file defines the build method for building javascript modules and 
+#        apps.
+#
+
 import os
 import subprocess
 import pathlib
@@ -7,7 +14,10 @@ import json
 
 from _afwdev.common import msg, package
 
-# This builds the javascript modules and web apps
+##
+# @brief Builds javascript modules and apps.
+# @param options The options dictionary.
+#
 def build(options):
 
     # get the afwPackageId from afw-package.json

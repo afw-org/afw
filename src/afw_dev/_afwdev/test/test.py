@@ -1,5 +1,21 @@
 #! /usr/bin/env python3
 
+##
+# @defgroup afwdev_test_modes modes
+# @brief This module defines the different test modes.
+# @details Tests can be run in one or more different "modes", which provides 
+#          different environments settings. For example, running from the 
+#          command-line, running under FastCGI, or running under Valgrind.
+#
+#          Running tests under different modes exercises both the code being 
+#          tested, as well as the environment expected to execute the code.
+#
+#          In addition, modes provides alternate ways to run tests that may be 
+#          more convenient for the test writer. Some tests are easier to write 
+#          in Adaptive Script, while others are easier to write in Python.
+# @ingroup afwdev_test
+#
+
 ## 
 # @file test.py
 # @ingroup afwdev_test
