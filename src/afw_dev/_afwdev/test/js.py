@@ -13,8 +13,9 @@ import os
 from _afwdev.common import msg
 
 ##
-# @brief This routine is the main entry point for the "test" subcommand, 
-#       specifically for running javascript tests.
+# @brief Runs the Javascript tests
+# @details This routine is the main entry point for the "test" subcommand, 
+#          specifically for running javascript tests.
 # @param options The options dictionary.
 # @param srcdirs The list of source directories to run tests for.
 #

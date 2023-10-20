@@ -14,16 +14,20 @@ from _afwdev.common import msg, package
 from _afwdev.test import watch, runner, js
 
 ## 
-# @brief This routine is the main entry point from which afwdev invokes in 
-#        order to run any and all test-related subcommands (watch, runner):
+# @brief The main entry point for the "test" subcommand
+# @details This routine is the main entry point for the "test" subcommand. 
+#          Depending on its arguments, it can run tests in a variety of ways, 
+#          depending on the options:
 #
-#        "watch" will wait for file system changes and run the test that has 
-#        changed.
+#          "watch" will wait for file system changes and run the test that has 
+#          changed.
 #
-#        "runner" will simply run all requested tests.
+#          "run" (default) will simply run all requested tests.
 #
-#        This routine also collects some stats from test runs to report to the 
-#        user.
+#          "javascript" will run javascript tests.
+#
+#          This routine also collects some stats from test runs to report to the 
+#          user.
 # @param options The options dictionary.
 # 
 def run(options):

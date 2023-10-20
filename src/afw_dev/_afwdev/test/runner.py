@@ -22,7 +22,13 @@ from _afwdev.test.common import \
     before_each, after_all, after_each
 
 
-# This routine runs all tests that belong to a test group
+##
+# @brief This routine runs all tests that belong to a test group
+# @param testGroup The test group to run
+# @param options The options dictionary
+# @param testEnvironments The list of test environments
+# @param work_dir_prefix The prefix for the working directory
+#
 def run_test_group(testGroup, options, testEnvironments, work_dir_prefix):
 
     failed = 0
@@ -145,7 +151,10 @@ def run_test_group(testGroup, options, testEnvironments, work_dir_prefix):
     return testGroup, passed, skipped, failed
 
 
-# Creates a known, temporary folder to persist test output
+##
+# @brief Creates a known, temporary folder to persist test output
+# @param options The options dictionary
+#
 def allocate_working_directory(options):
 
     # use a temporary directory for test output
@@ -168,10 +177,11 @@ def allocate_working_directory(options):
     return working_directory
 
 
-# This is the main entry point for the test runner
+##
+# @brief This is the main entry point for the test runner
+# @details This routine will find all test groups and run them sequentially, or 
+#          in  parallel depending on the options.
 #
-# This routine will find all test groups and run them sequentially, or in 
-# parallel depending on the options.
 def run(options, srcdirs):
 
     allTestGroups = []

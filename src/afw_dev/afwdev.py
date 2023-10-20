@@ -412,8 +412,10 @@ _info_afwdev_parser_info = {
 ##
 # @defgroup afwdev_build build
 # @ingroup afwdev
-# @brief The afwdev build subcommand is used to build different parts of 
-#        Adaptive Framework.
+# @brief The afwdev build subcommand
+# @details The afwdev build subcommand is used to build different parts of 
+#        Adaptive Framework packages, including C source code, Javascript 
+#        apps and modules, and documentation.
 #
 _info_build_all = {
     "optionName": "build_all",
@@ -1377,7 +1379,8 @@ def _subcommand_for(args, options):
 ##
 # @defgroup afwdev_generate generate
 # @ingroup afwdev
-# @brief The afwdev generate subcommand is used to generate different parts of
+# @brief The afwdev generate subcommand
+# @details The generate subcommand is used to generate different parts of
 #        Adaptive Framework. This includes generated source code, generated 
 #        diagrams, documentation and schema definitions.
 #
@@ -1588,9 +1591,11 @@ def _subcommand_task(args, options):
 ##
 # @defgroup afwdev_test test
 # @ingroup afwdev
-# @brief The afwdev test subcommand is used to test many aspects of 
-#        Adaptive Framework development, both manually, or automatically from
-#        GitHub Actions.
+# @brief The afwdev test subcommand
+# @details The afwdev test subcommand is used to test Adaptive Framework, 
+#          both manually, or from automated processes, such as GitHub Actions. 
+#          This includes tests for the C adaptive functions and Javascript 
+#          tests.
 #
 def _subcommand_test(args, options):
     
@@ -1604,7 +1609,8 @@ def _subcommand_test(args, options):
 ##
 # @defgroup afwdev_validate validate
 # @ingroup afwdev
-# @brief The afwdev validate subcommand is used to validate JSON files.
+# @brief The afwdev validate subcommand
+# @details The afwdev validate subcommand is used to validate JSON files.
 #
 def _subcommand_validate(args, options):
 
