@@ -27,11 +27,11 @@
 
 AFW_BEGIN_DECLARES
 
-typedef struct afw_pool_internal_multithreaded_self_s
-afw_pool_internal_multithreaded_self_t;
+typedef struct afw_pool_internal_common_self_s
+afw_pool_internal_common_self_t;
 
 
-struct afw_pool_internal_multithreaded_self_s {
+struct afw_pool_internal_common_self_s {
 
     afw_pool_t pub;
 
@@ -46,13 +46,28 @@ struct afw_pool_internal_multithreaded_self_s {
     const afw_utf8_t *name;
 
     /** @brief Parent pool of this pool. */
-    afw_pool_internal_multithreaded_self_t *parent;
+    afw_pool_internal_common_self_t *parent;
 
     /* @brief First subpool of this pool. */
-    afw_pool_internal_multithreaded_self_t * AFW_ATOMIC first_child;
+    afw_pool_internal_common_self_t * AFW_ATOMIC first_child;
 
     /* @brief Next sibling of this pool. */
-    afw_pool_internal_multithreaded_self_t * AFW_ATOMIC next_sibling;
+    afw_pool_internal_common_self_t * AFW_ATOMIC next_sibling;
+
+    /** @brief First cleanup function. */
+    afw_pool_cleanup_t *first_cleanup;
+};
+
+
+
+typedef struct afw_pool_internal_multithreaded_self_s
+afw_pool_internal_multithreaded_self_t;
+
+
+struct afw_pool_internal_multithreaded_self_s {
+
+    /* Common for both pool types. */
+    afw_pool_internal_common_self_t common;
 
     /**
      * @brief Pools reference count.
@@ -61,9 +76,6 @@ struct afw_pool_internal_multithreaded_self_s {
      * by afw_pool_get_reference() and afw_pool_release().
      */
     AFW_ATOMIC afw_integer_t reference_count;
-
-    /** @brief First cleanup function. */
-    afw_pool_cleanup_t *first_cleanup;
 
     /** @brief Bytes allocated via afw_pool_malloc()/afw_pool_calloc(). */
     AFW_ATOMIC afw_size_t bytes_allocated;
@@ -77,26 +89,8 @@ afw_pool_internal_singlethreaded_self_t;
 
 struct afw_pool_internal_singlethreaded_self_s {
 
-    afw_pool_t pub;
-
-    /*NOTE: Keep pool_number just after pub for debugging. */
-    /** @brief Unique number for pool. */
-    afw_integer_t pool_number;
-
-    /** @brief Associated apr pool or NULL if it has not been created. */
-    apr_pool_t *apr_p;
-
-    /** @brief Optional pool name. */
-    const afw_utf8_t *name;
-
-    /** @brief Parent pool of this pool. */
-    afw_pool_internal_singlethreaded_self_t *parent;
-
-    /* @brief First subpool of this pool. */
-    afw_pool_internal_singlethreaded_self_t *first_child;
-
-    /* @brief Next sibling of this pool. */
-    afw_pool_internal_singlethreaded_self_t *next_sibling;
+    /* Common for both pool types. */
+    afw_pool_internal_common_self_t common;
 
     /**
      * @brief Pools reference count.
@@ -106,6 +100,9 @@ struct afw_pool_internal_singlethreaded_self_s {
      */
     afw_integer_t reference_count;
 
+    /** @brief Bytes allocated via afw_pool_malloc()/afw_pool_calloc(). */
+    afw_size_t bytes_allocated;
+
     /**
      * @brief Thread associated with a thread specific pool.
      *
@@ -113,15 +110,30 @@ struct afw_pool_internal_singlethreaded_self_s {
      * accessed by this thread.
      */
     const afw_thread_t *thread;
-
-    /** @brief First cleanup function. */
-    afw_pool_cleanup_t *first_cleanup;
-
-    /** @brief Bytes allocated via afw_pool_malloc()/afw_pool_calloc(). */
-    afw_size_t bytes_allocated;
-
 };
 
+
+AFW_DECLARE_INTERNAL(void)
+afw_pool_internal_add_child(
+    afw_pool_internal_common_self_t *parent,
+    afw_pool_internal_common_self_t *child, afw_xctx_t *xctx);
+
+
+AFW_DECLARE_INTERNAL(void)
+afw_pool_internal_remove_as_child(
+    afw_pool_internal_common_self_t *parent,
+    afw_pool_internal_common_self_t *child,
+    afw_xctx_t *xctx);
+
+
+/* Create skeleton pool struct. */
+AFW_DECLARE_INTERNAL(afw_pool_internal_common_self_t *)
+afw_pool_internal_create(
+    afw_pool_internal_common_self_t *parent,
+    const afw_pool_inf_t *inf,
+    afw_size_t instance_size,
+    afw_xctx_t *xctx);
+ 
 
 /**
  * @internal

@@ -422,6 +422,7 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     os/nix/afw_os_log.c
     os/win/afw_os.c
     os/win/afw_os_log.c
+    pool/afw_pool_internal.c
     pool/afw_pool_multithreaded.c
     pool/afw_pool_singlethreaded.c
     query_criteria/afw_query_criteria.c
