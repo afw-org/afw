@@ -242,7 +242,7 @@ impl_afw_pool_calloc(
     self->bytes_allocated += size;
 
     if (!result) {
-        AFW_THROW_ERROR_Z(memory, "Allocate memory error.", xctx);
+        AFW_THROW_ERROR_Z(memory, "Allocate memory error", xctx);
     }
 
     return result;
@@ -270,7 +270,7 @@ impl_afw_pool_malloc(
     self->bytes_allocated += size;
 
     if (!result) {
-        AFW_THROW_ERROR_Z(memory, "Allocate memory error.", xctx);
+        AFW_THROW_ERROR_Z(memory, "Allocate memory error", xctx);
     }
 
     return result;
@@ -287,7 +287,7 @@ impl_afw_pool_free(
     afw_xctx_t *xctx)
 {
     /** @todo Add code to implement method. */
-    AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
+    AFW_THROW_ERROR_Z(general, "Method not implemented", xctx);
 
 }
 
