@@ -104,7 +104,7 @@ impl_add_child(AFW_POOL_SELF_T *parent,
 
 
 static void
-impl_remove_child(AFW_POOL_SELF_T *parent,
+impl_remove_as_child(AFW_POOL_SELF_T *parent,
     AFW_POOL_SELF_T *child, afw_xctx_t *xctx)
 {
     AFW_POOL_SELF_T *prev;
@@ -298,7 +298,7 @@ impl_afw_pool_destroy(
     }
 
     /*
-     * Destroy children.
+     * Release children.
      *
      * Release of child sets self->first_child to its next sibling.
      */
@@ -306,12 +306,12 @@ impl_afw_pool_destroy(
         child;
         child = self->first_child)
     {
-        afw_pool_destroy(&child->pub, xctx);
+        afw_pool_release(&child->pub, xctx);
     }
 
     /* If parent, removed self as child. */
     if (self->parent) {
-        impl_remove_child(self->parent, self, xctx);
+        impl_remove_as_child(self->parent, self, xctx);
     }
 
     /* Destroy apr pool. */
