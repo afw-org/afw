@@ -13,8 +13,6 @@
 
 #include "afw_internal.h"
 
-
-
 #ifdef AFW_POOL_DEBUG
 #undef afw_pool_create
 #undef afw_pool_internal_create_thread
@@ -24,64 +22,6 @@
 #define AFW_IMPLEMENTATION_ID "afw_pool_singlethreaded"
 #define AFW_POOL_SELF_T afw_pool_internal_singlethreaded_self_t
 #include "afw_pool_impl_declares.h"
-
-/** @fixme If pool is multithread, use a lock when changing memory. */
-#define IMPL_DEBUG_LEVEL_detail  flag_index_debug_pool_detail
-#define IMPL_DEBUG_LEVEL_minimal flag_index_debug_pool
-
-#define IMPL_PRINT_DEBUG_INFO_Z(level,info_z) \
-do { \
-    const afw_utf8_t *trace; \
-    if (afw_flag_is_active(xctx->env->IMPL_DEBUG_LEVEL_##level, xctx)) \
-    { \
-        trace = afw_os_backtrace(0, -1, xctx); \
-        afw_debug_write_fz(NULL, source_z, xctx, \
-            "pool " AFW_INTEGER_FMT " " \
-            info_z \
-            ": before " AFW_SIZE_T_FMT \
-            " refs " AFW_INTEGER_FMT \
-            " parent " AFW_INTEGER_FMT \
-            " single" \
-            "%s" \
-            AFW_UTF8_FMT, \
-            self->common.pool_number, \
-            (self->bytes_allocated), \
-            (self->reference_count), \
-            (afw_integer_t)((self->common.parent) ? self->common.parent->pool_number : 0), \
-            (char *)((trace) ? "\n" : ""), \
-            (int)((trace) ? (int)trace->len : 0), \
-            (const char *)((trace) ? (const char *)trace->s : "") \
-            ); \
-    } \
-} while (0) \
-
-
-#define IMPL_PRINT_DEBUG_INFO_FZ(level,format_z,...) \
-do { \
-    const afw_utf8_t *trace; \
-    if (afw_flag_is_active(xctx->env->IMPL_DEBUG_LEVEL_##level, xctx)) \
-    { \
-        trace = afw_os_backtrace(0, -1, xctx); \
-        afw_debug_write_fz(NULL, source_z, xctx, \
-            "pool " AFW_INTEGER_FMT " " \
-            format_z \
-            ": before " AFW_SIZE_T_FMT \
-            " refs " AFW_INTEGER_FMT \
-            " parent " AFW_INTEGER_FMT \
-            " single" \
-            "%s" \
-            AFW_UTF8_FMT, \
-            self->common.pool_number, \
-            __VA_ARGS__, \
-            (self->bytes_allocated), \
-            (self->reference_count), \
-            (afw_integer_t)((self->common.parent) ? self->common.parent->pool_number : 0), \
-            (char *)((trace) ? "\n" : ""), \
-            (int)((trace) ? (int)trace->len : 0), \
-            (const char *)((trace) ? (const char *)trace->s : "") \
-            ); \
-    } \
-} while (0) \
 
 
 AFW_DEFINE(const afw_pool_t *)
@@ -119,7 +59,7 @@ afw_pool_create_debug(
     AFW_POOL_SELF_T *self = 
         (AFW_POOL_SELF_T *)afw_pool_create(parent, xctx);
 
-    IMPL_PRINT_DEBUG_INFO_FZ(minimal,
+    AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_FZ(minimal,
         "afw_pool_create " AFW_INTEGER_FMT,
         ((const AFW_POOL_SELF_T *)parent)->common.pool_number);
 
@@ -165,7 +105,7 @@ afw_pool_internal_create_thread_debug(
     const AFW_POOL_SELF_T *self =
         (const AFW_POOL_SELF_T *)thread->p;
 
-    IMPL_PRINT_DEBUG_INFO_FZ(minimal,
+    AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_FZ(minimal,
         "afw_pool_internal_create_thread " AFW_SIZE_T_FMT,
         size);
 
@@ -409,7 +349,7 @@ impl_afw_pool_release_debug(
     afw_xctx_t *xctx,
     const afw_utf8_z_t * source_z)
 {
-    IMPL_PRINT_DEBUG_INFO_Z(minimal, "afw_pool_release");
+    AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_Z(minimal, "afw_pool_release");
 
     impl_afw_pool_release(self, xctx);
 }
@@ -423,7 +363,7 @@ impl_afw_pool_get_reference_debug(
     afw_xctx_t *xctx,
     const afw_utf8_z_t * source_z)
 {
-    IMPL_PRINT_DEBUG_INFO_Z(minimal, "afw_pool_get_reference");
+    AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_Z(minimal, "afw_pool_get_reference");
 
     impl_afw_pool_get_reference(self, xctx);
 }
@@ -437,7 +377,7 @@ impl_afw_pool_destroy_debug(
     afw_xctx_t *xctx,
     const afw_utf8_z_t * source_z)
 {
-    IMPL_PRINT_DEBUG_INFO_Z(minimal, "afw_pool_destroy");
+    AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_Z(minimal, "afw_pool_destroy");
 
     impl_afw_pool_destroy(self, xctx);
 }
@@ -453,7 +393,7 @@ impl_afw_pool_calloc_debug(
     afw_xctx_t *xctx,
     const afw_utf8_z_t * source_z)
 {
-    IMPL_PRINT_DEBUG_INFO_FZ(detail,
+    AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_FZ(detail,
         "afw_pool_calloc " AFW_SIZE_T_FMT,
         size);
 
@@ -470,7 +410,7 @@ impl_afw_pool_malloc_debug(
     afw_xctx_t *xctx,
     const afw_utf8_z_t * source_z)
 {
-    IMPL_PRINT_DEBUG_INFO_FZ(detail,
+    AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_FZ(detail,
         "afw_pool_malloc " AFW_SIZE_T_FMT,
         size);
 
@@ -488,7 +428,7 @@ impl_afw_pool_free_debug(
     afw_xctx_t *xctx,
     const afw_utf8_z_t * source_z)
 {
-    IMPL_PRINT_DEBUG_INFO_FZ(detail,
+    AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_FZ(detail,
         "afw_pool_free " AFW_SIZE_T_FMT,
         size);
 
@@ -508,7 +448,7 @@ impl_afw_pool_register_cleanup_before_debug(
     afw_xctx_t *xctx,
     const afw_utf8_z_t * source_z)
 {
-    IMPL_PRINT_DEBUG_INFO_FZ(minimal,
+    AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_FZ(minimal,
         "afw_pool_register_cleanup_before %p %p",
         data, cleanup);
 
@@ -527,7 +467,7 @@ impl_afw_pool_deregister_cleanup_debug(
     afw_xctx_t *xctx,
     const afw_utf8_z_t * source_z)
 {
-    IMPL_PRINT_DEBUG_INFO_FZ(minimal,
+    AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_FZ(minimal,
         "afw_pool_deregister_cleanup_debug %p %p",
         data, cleanup);
 
