@@ -15,10 +15,6 @@
 
 
 
-#ifdef AFW_POOL_DEBUG
-#undef afw_pool_create_multithreaded
-#endif
-
 #define AFW_IMPLEMENTATION_ID "afw_pool_multithreaded"
 #define AFW_POOL_SELF_T afw_pool_internal_multithreaded_self_t
 #include "afw_pool_impl_declares.h"
@@ -84,20 +80,6 @@ afw_pool_create_multithreaded(
         &impl_afw_pool_inf, sizeof(AFW_POOL_SELF_T), xctx);
     self->reference_count = 1;
 
-    return &self->common.pub;
-}
-
-
-/* Create a new multithreaded pool. */
-AFW_DEFINE(const afw_pool_t *)
-afw_pool_create_multithreaded_debug(
-    const afw_pool_t *parent,
-    afw_xctx_t *xctx, const afw_utf8_z_t *source_z)
-{
-    AFW_POOL_SELF_T *self =
-        (AFW_POOL_SELF_T *)
-        afw_pool_create_multithreaded(parent, xctx);
-
     AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_FZ(minimal,
         "afw_pool_create_multithreaded " AFW_INTEGER_FMT,
         (self->common.parent) ? self->common.parent->pool_number : 0);
@@ -120,6 +102,8 @@ impl_afw_pool_release(
         return;
     }
 
+    AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_Z(minimal, "afw_pool_release");
+
     /* Decrement reference count and release pools resources if zero. */
     if (afw_atomic_integer_decrement(&self->reference_count) == 0) {
         afw_pool_destroy(&self->common.pub, xctx);
@@ -138,6 +122,8 @@ impl_afw_pool_get_reference(
     if (!self) {
         return;
     }
+
+    AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_Z(minimal, "afw_pool_get_reference");
 
     /* Decrement reference count. */
     afw_atomic_integer_increment(&self->reference_count);
@@ -158,6 +144,8 @@ impl_afw_pool_destroy(
     if (!self) {
         return;
     }
+
+    AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_Z(minimal, "afw_pool_destroy");
 
     /*
      * Call all of the cleanup routines for this pool before destroying
@@ -221,6 +209,10 @@ impl_afw_pool_calloc(
 {
     void *result;
 
+    AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_FZ(detail,
+        "afw_pool_calloc " AFW_SIZE_T_FMT,
+        size);
+
     /* Don't allow allocate for a size of 0. */
     if (size == 0) {
         AFW_THROW_ERROR_Z(general,
@@ -252,6 +244,10 @@ impl_afw_pool_malloc(
 {
     void *result;
 
+    AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_FZ(detail,
+        "afw_pool_malloc " AFW_SIZE_T_FMT,
+        size);
+
     /* Don't allow allocate for a size of 0. */
     if (size == 0) {
         AFW_THROW_ERROR_Z(general,
@@ -282,6 +278,10 @@ impl_afw_pool_free(
     afw_size_t size,
     afw_xctx_t *xctx)
 {
+    AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_FZ(detail,
+        "afw_pool_free " AFW_SIZE_T_FMT,
+        size);
+
     /** @todo Add code to implement method. */
     AFW_THROW_ERROR_Z(general, "Method not implemented", xctx);
 }
@@ -298,6 +298,10 @@ impl_afw_pool_register_cleanup_before(
     afw_xctx_t *xctx)
 {
     afw_pool_cleanup_t *e;
+
+    AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_FZ(minimal,
+        "afw_pool_register_cleanup_before %p %p",
+        data, cleanup);
 
     /* Allocate entry which will also make sure its ok to use pool. */
     e = afw_pool_calloc_type(&self->common.pub, afw_pool_cleanup_t, xctx);
@@ -323,6 +327,10 @@ impl_afw_pool_deregister_cleanup(
 {
     afw_pool_cleanup_t *e, *prev;
 
+    AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_FZ(minimal,
+        "afw_pool_deregister_cleanup %p %p",
+        data, cleanup);
+
     /* Search for entry and remove. */
     for (prev = (afw_pool_cleanup_t *)& self->common.first_cleanup,
         e = self->common.first_cleanup;
@@ -333,138 +341,4 @@ impl_afw_pool_deregister_cleanup(
             break;
         }
     }
-}
-
-/*
- * Implementation of method release_debug for interface afw_pool.
- */
-void
-impl_afw_pool_release_debug(
-    AFW_POOL_SELF_T *self,
-    afw_xctx_t *xctx,
-    const afw_utf8_z_t * source_z)
-{
-    AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_Z(minimal, "afw_pool_release");
-
-    impl_afw_pool_release(self, xctx);
-}
-
-/*
- * Implementation of method get_reference for interface afw_pool.
- */
-void
-impl_afw_pool_get_reference_debug(
-    AFW_POOL_SELF_T *self,
-    afw_xctx_t *xctx,
-    const afw_utf8_z_t * source_z)
-{
-    AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_Z(minimal, "afw_pool_get_reference");
-
-    impl_afw_pool_get_reference(self, xctx);
-}
-
-/*
- * Implementation of method destroy_debug for interface afw_pool.
- */
-void
-impl_afw_pool_destroy_debug(
-    AFW_POOL_SELF_T *self,
-    afw_xctx_t *xctx,
-    const afw_utf8_z_t * source_z)
-{
-    AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_Z(minimal, "afw_pool_destroy");
-
-    impl_afw_pool_destroy(self, xctx);
-}
-
-
-/*
- * Implementation of method calloc_debug for interface afw_pool.
- */
-void *
-impl_afw_pool_calloc_debug(
-    AFW_POOL_SELF_T *self,
-    afw_size_t size,
-    afw_xctx_t *xctx,
-    const afw_utf8_z_t * source_z)
-{
-    AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_FZ(detail,
-        "afw_pool_calloc " AFW_SIZE_T_FMT,
-        size);
-
-    return impl_afw_pool_calloc(self, size, xctx);
-}
-
-/*
- * Implementation of method malloc_debug for interface afw_pool.
- */
-void *
-impl_afw_pool_malloc_debug(
-    AFW_POOL_SELF_T *self,
-    afw_size_t size,
-    afw_xctx_t *xctx,
-    const afw_utf8_z_t * source_z)
-{
-    AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_FZ(detail,
-        "afw_pool_malloc " AFW_SIZE_T_FMT,
-        size);
-
-    return impl_afw_pool_malloc(self, size, xctx);
-}
-
-/*
- * Implementation of method free_debug for interface afw_pool.
- */
-void
-impl_afw_pool_free_debug(
-    AFW_POOL_SELF_T *self,
-    void * address,
-    afw_size_t size,
-    afw_xctx_t *xctx,
-    const afw_utf8_z_t * source_z)
-{
-    AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_FZ(detail,
-        "afw_pool_free " AFW_SIZE_T_FMT,
-        size);
-
-    impl_afw_pool_free(self, address, size, xctx);
-}
-
-/*
- * Implementation of method register_cleanup_before_debug for interface
- * afw_pool.
- */
-void
-impl_afw_pool_register_cleanup_before_debug(
-    AFW_POOL_SELF_T *self,
-    void * data,
-    void * data2,
-    afw_pool_cleanup_function_p_t cleanup,
-    afw_xctx_t *xctx,
-    const afw_utf8_z_t * source_z)
-{
-    AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_FZ(minimal,
-        "afw_pool_register_cleanup_before %p %p",
-        data, cleanup);
-
-    impl_afw_pool_register_cleanup_before(self, data, data2, cleanup, xctx);
-}
-
-/*
- * Implementation of method deregister_cleanup_debug for interface afw_pool.
- */
-void
-impl_afw_pool_deregister_cleanup_debug(
-    AFW_POOL_SELF_T *self,
-    void * data,
-    void * data2,
-    afw_pool_cleanup_function_p_t cleanup,
-    afw_xctx_t *xctx,
-    const afw_utf8_z_t * source_z)
-{
-    AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_FZ(minimal,
-        "afw_pool_deregister_cleanup_debug %p %p",
-        data, cleanup);
-
-    impl_afw_pool_deregister_cleanup(self, data, data2, cleanup, xctx);
 }

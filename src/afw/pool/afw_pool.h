@@ -74,25 +74,6 @@ afw_pool_create(const afw_pool_t *parent, afw_xctx_t *xctx);
 
 
 /**
- * @brief Debug version of create a new pool.
- * @param parent of new pool.
- * @param xctx of caller.
- * @param source_z file:line where function called.
- * @return new pool.
- * @sa afw_pool_create() 
- */
-AFW_DECLARE(const afw_pool_t *)
-afw_pool_create_debug(const afw_pool_t *parent,
-    afw_xctx_t *xctx, const afw_utf8_z_t *source_z);
-
-
-#ifdef AFW_POOL_DEBUG
-#define afw_pool_create(parent,xctx) \
-    afw_pool_create_debug(parent, xctx, AFW__FILE_LINE__)
-#endif
-
-
-/**
  * @brief Create a new multithreaded pool.
  * @param parent of new pool or NULL.
  * @param xctx of caller.
@@ -134,26 +115,6 @@ afw_pool_create_multithreaded(const afw_pool_t *parent, afw_xctx_t *xctx);
 
 
 /**
- * @brief Debug version of create a new multithreaded pool.
- * @param parent of new pool or NULL.
- * @param xctx of caller.
- * @param source_z file:line where function called.
- * @return new pool.
- * @sa afw_pool_create_multithreaded()
- */
-AFW_DECLARE(const afw_pool_t *)
-afw_pool_create_multithreaded_debug(const afw_pool_t *parent,
-    afw_xctx_t *xctx, const afw_utf8_z_t *source_z);
-
-
-#ifdef AFW_POOL_DEBUG
-#define afw_pool_create_multithreaded(parent,xctx) \
-    afw_pool_create_multithreaded_debug(parent, xctx, AFW__FILE_LINE__)
-#endif
-
-
-
-/**
  * @brief Macro to allocate cleared memory to hold type in pool.
  * @param instance of pool.
  * @param type to allocate.
@@ -181,45 +142,6 @@ afw_pool_create_multithreaded_debug(const afw_pool_t *parent,
  */
 #define afw_pool_malloc_type(instance, type, xctx) \
     (type *) afw_pool_malloc(instance, sizeof(type), xctx)
-
-
-#ifdef AFW_POOL_DEBUG
-
-#undef afw_pool_release
-#define afw_pool_release(instance,xctx) \
-    afw_pool_release_debug(instance, xctx, AFW__FILE_LINE__)
-
-#undef afw_pool_destroy
-#define afw_pool_destroy(instance,xctx) \
-    afw_pool_destroy_debug(instance, xctx, AFW__FILE_LINE__)
-
-#undef afw_pool_get_reference
-#define afw_pool_get_reference(instance,xctx) \
-    afw_pool_get_reference_debug(instance, xctx, AFW__FILE_LINE__)
-
-#undef afw_pool_calloc
-#define afw_pool_calloc(instance,size,xctx) \
-    afw_pool_calloc_debug(instance, size, xctx, AFW__FILE_LINE__)
-
-#undef afw_pool_malloc
-#define afw_pool_malloc(instance,size,xctx) \
-    afw_pool_malloc_debug(instance, size, xctx, AFW__FILE_LINE__)
-
-#undef afw_pool_free
-#define afw_pool_free(instance,size,xctx) \
-    afw_pool_free_debug(instance, size, xctx, AFW__FILE_LINE__)
-
-#undef afw_pool_register_cleanup_before
-#define afw_pool_register_cleanup_before(instance,data,data2,cleanup,xctx) \
-    afw_pool_register_cleanup_before_debug(instance, data, data2, cleanup, \
-        xctx, AFW__FILE_LINE__)
-
-#undef afw_pool_deregister_cleanup
-#define afw_pool_deregister_cleanup(instance,data,data2,cleanup,xctx) \
-    afw_pool_deregister_cleanup_debug(instance, data, data2, cleanup, \
-        xctx, AFW__FILE_LINE__)
-
-#endif
 
 
 AFW_END_DECLARES

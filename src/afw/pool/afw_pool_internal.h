@@ -161,35 +161,19 @@ afw_pool_internal_create_thread(
     afw_xctx_t *xctx);
 
 
-/**
- * @internal
- * @brief Debug version of create thread struct in new thread specific pool
- *    with p set.
- * @param size of thread struct or -1 if sizeof(afw_thread_t) should be used.
- * @param xctx of caller.
- * @param source_z file:line where function called.
- * @return new thread struct with p set.
- *
- * This should only be called from afw_thread_create().
- */
-AFW_DECLARE(afw_thread_t *)
-afw_pool_internal_create_thread_debug(
-    afw_size_t size,
-    afw_xctx_t *xctx,
-    const afw_utf8_z_t *source_z);
-
-
-#ifdef AFW_POOL_DEBUG
-#define afw_pool_internal_create_thread(size,xctx) \
-    afw_pool_internal_create_thread_debug(size, xctx, AFW__FILE_LINE__)
-#endif
-
-
 void afw_pool_print_debug_info(
     int indent,
     const afw_pool_t *pool,
     afw_xctx_t *xctx);
 
+
+
+#ifdef AFW_POOL_DEBUG
+
+#define AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_Z(level,info_z)
+#define AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_FZ(level,format_z,...)
+
+#else
 
 #define AFW_POOL_INTERNAL_DEBUG_LEVEL_detail  flag_index_debug_pool_detail
 #define AFW_POOL_INTERNAL_DEBUG_LEVEL_minimal flag_index_debug_pool
@@ -201,7 +185,7 @@ do { \
         xctx->env->AFW_POOL_INTERNAL_DEBUG_LEVEL_##level, xctx)) \
     { \
         trace = afw_os_backtrace(0, -1, xctx); \
-        afw_debug_write_fz(NULL, source_z, xctx, \
+        afw_debug_write_fz(NULL, AFW__FILE_LINE__, xctx, \
             "pool " AFW_INTEGER_FMT " " \
             info_z \
             ": before " AFW_SIZE_T_FMT \
@@ -223,7 +207,6 @@ do { \
     } \
 } while (0) \
 
-
 #define AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_FZ(level,format_z,...) \
 do { \
     const afw_utf8_t *trace; \
@@ -231,7 +214,7 @@ do { \
         xctx->env->AFW_POOL_INTERNAL_DEBUG_LEVEL_##level, xctx)) \
     { \
         trace = afw_os_backtrace(0, -1, xctx); \
-        afw_debug_write_fz(NULL, source_z, xctx, \
+        afw_debug_write_fz(NULL, AFW__FILE_LINE__, xctx, \
             "pool " AFW_INTEGER_FMT " " \
             format_z \
             ": before " AFW_SIZE_T_FMT \
@@ -254,6 +237,7 @@ do { \
     } \
 } while (0) \
 
+#endif
 
 AFW_END_DECLARES
 
