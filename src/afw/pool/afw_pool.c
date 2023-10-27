@@ -136,6 +136,87 @@ impl_multithreaded_afw_pool_deregister_cleanup(
 
 #define AFW_IMPLEMENTATION_ID "FIXME don't access in debug"
 
+
+static void
+impl_add_child(
+    afw_pool_internal_self_t *parent,
+    afw_pool_internal_self_t *child, afw_xctx_t *xctx)
+{
+    afw_pool_get_reference(&parent->pub, xctx);
+
+    child->next_sibling = parent->first_child;
+    parent->first_child = child;
+}
+
+
+static void
+impl_remove_as_child(
+    afw_pool_internal_self_t *parent,
+    afw_pool_internal_self_t *child,
+    afw_xctx_t *xctx)
+{
+    afw_pool_internal_self_t *prev;
+    afw_pool_internal_self_t *sibling;
+
+    for (prev = NULL, sibling = parent->first_child;
+        sibling;
+        prev = sibling, sibling = sibling->next_sibling)
+    {
+        if (sibling == child) {
+            if (!prev) {
+                parent->first_child = sibling->next_sibling;
+            }
+            else {
+                prev->next_sibling = sibling->next_sibling;
+            }
+            break;
+        }
+    }
+
+    if (!sibling) {
+        AFW_THROW_ERROR_Z(general, "Not a child of parent", xctx);
+    }
+
+    afw_pool_release(&parent->pub, xctx);
+}
+
+
+/* Create skeleton pool struct. */
+static afw_pool_internal_self_t *
+impl_create(
+    afw_pool_internal_self_t *parent,
+    const afw_pool_inf_t *inf,
+    afw_size_t instance_size,
+    afw_xctx_t *xctx)
+{
+    apr_pool_t *apr_p;
+    afw_pool_internal_self_t *self;
+
+    apr_pool_create(&apr_p, (parent) ? parent->apr_p : NULL);
+    if (!apr_p) {
+        AFW_THROW_ERROR_Z(memory, "Unable to allocate pool", xctx);
+    }
+    self = apr_pcalloc(apr_p, instance_size);
+    if (!self) {
+        AFW_THROW_ERROR_Z(memory, "Unable to allocate pool", xctx);
+    }
+    self->pub.inf = inf;
+    self->apr_p = apr_p;
+    self->parent = parent;
+    self->pool_number = afw_atomic_integer_increment(
+        &((afw_environment_t *)xctx->env)->pool_number);
+
+    /* If parent, add this new child. */
+    if (parent) {
+        impl_add_child(parent, self, xctx);
+    }
+
+    /* Return new pool. */
+    return self;
+}
+
+
+
 AFW_DEFINE(const afw_pool_t *)
 afw_pool_create(
     const afw_pool_t *parent, afw_xctx_t *xctx)
@@ -148,7 +229,7 @@ afw_pool_create(
     }
 
     /* Create skeleton pool stuct. */
-    self = (AFW_POOL_SELF_T *)afw_pool_internal_create(
+    self = (AFW_POOL_SELF_T *)impl_create(
         (afw_pool_internal_self_t *)parent,
         &afw_pool_singlethreaded_inf, sizeof(AFW_POOL_SELF_T), xctx);
     self->reference_count = 1;
@@ -180,7 +261,7 @@ afw_pool_internal_create_thread(
         size = sizeof(afw_thread_t);
     }
     /* Create skeleton pool stuct. */
-    self = (AFW_POOL_SELF_T *)afw_pool_internal_create(
+    self = (AFW_POOL_SELF_T *)impl_create(
         NULL,
         &afw_pool_singlethreaded_inf, sizeof(AFW_POOL_SELF_T), xctx);
     self->reference_count = 1;
@@ -245,7 +326,7 @@ afw_pool_create_multithreaded(
     /* Create skeleton pool stuct. */
     IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
 
-        self = (AFW_POOL_SELF_T *)afw_pool_internal_create(
+        self = (AFW_POOL_SELF_T *)impl_create(
             (afw_pool_internal_self_t *)parent,
             &afw_pool_multithreaded_inf, sizeof(AFW_POOL_SELF_T), xctx);
         self->reference_count = 1;
@@ -344,7 +425,7 @@ impl_afw_pool_destroy(
 
     /* If parent, removed self as child. */
     if (self->parent) {
-        afw_pool_internal_remove_as_child(self->parent, self, xctx);
+        impl_remove_as_child(self->parent, self, xctx);
     }
 
     /* Destroy apr pool. */

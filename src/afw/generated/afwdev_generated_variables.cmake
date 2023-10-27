@@ -423,7 +423,6 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     os/win/afw_os.c
     os/win/afw_os_log.c
     pool/afw_pool.c
-    pool/afw_pool_internal.c
     query_criteria/afw_query_criteria.c
     request/afw_request.c
     request/afw_request_handler.c

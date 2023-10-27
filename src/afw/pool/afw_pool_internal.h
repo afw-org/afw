@@ -67,10 +67,10 @@ struct afw_pool_internal_self_s {
     afw_pool_internal_self_t *parent;
 
     /* @brief First subpool of this pool. */
-    afw_pool_internal_self_t * AFW_ATOMIC first_child;
+    afw_pool_internal_self_t *first_child;
 
     /* @brief Next sibling of this pool. */
-    afw_pool_internal_self_t * AFW_ATOMIC next_sibling;
+    afw_pool_internal_self_t *next_sibling;
 
     /** @brief First cleanup function. */
     afw_pool_cleanup_t *first_cleanup;
@@ -101,28 +101,6 @@ struct afw_pool_internal_self_s {
     const afw_thread_t *thread;
 };
 
-
-AFW_DECLARE_INTERNAL(void)
-afw_pool_internal_add_child(
-    afw_pool_internal_self_t *parent,
-    afw_pool_internal_self_t *child, afw_xctx_t *xctx);
-
-
-AFW_DECLARE_INTERNAL(void)
-afw_pool_internal_remove_as_child(
-    afw_pool_internal_self_t *parent,
-    afw_pool_internal_self_t *child,
-    afw_xctx_t *xctx);
-
-
-/* Create skeleton pool struct. */
-AFW_DECLARE_INTERNAL(afw_pool_internal_self_t *)
-afw_pool_internal_create(
-    afw_pool_internal_self_t *parent,
-    const afw_pool_inf_t *inf,
-    afw_size_t instance_size,
-    afw_xctx_t *xctx);
- 
 
 /**
  * @internal
