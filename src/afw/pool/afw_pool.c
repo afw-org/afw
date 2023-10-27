@@ -133,8 +133,76 @@ impl_multithreaded_afw_pool_deregister_cleanup(
 #undef impl_afw_pool_deregister_cleanup
 
 
+/* Debug macros only add code if AFW_POOL_DEBUG is defined. */
+#ifdef AFW_POOL_DEBUG
 
-#define AFW_IMPLEMENTATION_ID "FIXME don't access in debug"
+#define IMPL_PRINT_DEBUG_INFO_Z(level,info_z)
+#define IMPL_PRINT_DEBUG_INFO_FZ(level,format_z,...)
+
+#else
+
+#define AFW_POOL_INTERNAL_DEBUG_LEVEL_detail  flag_index_debug_pool_detail
+#define AFW_POOL_INTERNAL_DEBUG_LEVEL_minimal flag_index_debug_pool
+
+#define IMPL_PRINT_DEBUG_INFO_Z(level,info_z) \
+do { \
+    const afw_utf8_t *trace; \
+    if (afw_flag_is_active( \
+        xctx->env->AFW_POOL_INTERNAL_DEBUG_LEVEL_##level, xctx)) \
+    { \
+        trace = afw_os_backtrace(0, -1, xctx); \
+        afw_debug_write_fz(NULL, AFW__FILE_LINE__, xctx, \
+            "pool " AFW_INTEGER_FMT " " \
+            info_z \
+            ": before " AFW_SIZE_T_FMT \
+            " refs " AFW_INTEGER_FMT \
+            " parent " AFW_INTEGER_FMT \
+            "%s" \
+            AFW_UTF8_FMT, \
+            self->pool_number, \
+            (self->bytes_allocated), \
+            (self->reference_count), \
+            (afw_integer_t)((self->parent) \
+                ? self->parent->pool_number : \
+                0), \
+            (char *)((trace) ? "\n" : ""), \
+            (int)((trace) ? (int)trace->len : 0), \
+            (const char *)((trace) ? (const char *)trace->s : "") \
+            ); \
+    } \
+} while (0) \
+
+#define IMPL_PRINT_DEBUG_INFO_FZ(level,format_z,...) \
+do { \
+    const afw_utf8_t *trace; \
+    if (afw_flag_is_active( \
+        xctx->env->AFW_POOL_INTERNAL_DEBUG_LEVEL_##level, xctx)) \
+    { \
+        trace = afw_os_backtrace(0, -1, xctx); \
+        afw_debug_write_fz(NULL, AFW__FILE_LINE__, xctx, \
+            "pool " AFW_INTEGER_FMT " " \
+            format_z \
+            ": before " AFW_SIZE_T_FMT \
+            " refs " AFW_INTEGER_FMT \
+            " parent " AFW_INTEGER_FMT \
+            "%s" \
+            AFW_UTF8_FMT, \
+            self->pool_number, \
+            __VA_ARGS__, \
+            (self->bytes_allocated), \
+            (self->reference_count), \
+            (afw_integer_t)((self->parent) \
+                ? self->parent->pool_number \
+                : 0), \
+            (char *)((trace) ? "\n" : ""), \
+            (int)((trace) ? (int)trace->len : 0), \
+            (const char *)((trace) ? (const char *)trace->s : "") \
+            ); \
+    } \
+} while (0) \
+
+#endif
+
 
 
 static void
@@ -239,7 +307,7 @@ afw_pool_create(
         self->thread = xctx->thread;
     }
 
-    AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_FZ(minimal,
+    IMPL_PRINT_DEBUG_INFO_FZ(minimal,
         "afw_pool_create " AFW_INTEGER_FMT,
         ((const AFW_POOL_SELF_T *)parent)->pool_number);
 
@@ -269,7 +337,7 @@ afw_pool_internal_create_thread(
     self->thread = thread;
     thread->p = (const afw_pool_t *)self;
 
-    AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_FZ(minimal,
+    IMPL_PRINT_DEBUG_INFO_FZ(minimal,
         "afw_pool_internal_create_thread " AFW_SIZE_T_FMT,
         size);
 
@@ -333,7 +401,7 @@ afw_pool_create_multithreaded(
     }
     IMPL_MULTITHREADED_LOCK_END;   
 
-    AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_FZ(minimal,
+    IMPL_PRINT_DEBUG_INFO_FZ(minimal,
         "afw_pool_create_multithreaded " AFW_INTEGER_FMT,
         (self->parent) ? self->parent->pool_number : 0);
 
@@ -355,7 +423,7 @@ impl_afw_pool_release(
         return;
     }
 
-    AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_Z(minimal, "afw_pool_release");
+    IMPL_PRINT_DEBUG_INFO_Z(minimal, "afw_pool_release");
 
     //printf("pool " AFW_INTEGER_FMT " release refs " AFW_SIZE_T_FMT "\n",
     //    self->pool_number, self->reference_count);
@@ -380,7 +448,7 @@ impl_afw_pool_get_reference(
         return;
     }
 
-    AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_Z(minimal, "afw_pool_get_reference");
+    IMPL_PRINT_DEBUG_INFO_Z(minimal, "afw_pool_get_reference");
 
     /* Decrement reference count. */
     self->reference_count++;
@@ -402,7 +470,7 @@ impl_afw_pool_destroy(
         return;
     }
 
-    AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_Z(minimal, "afw_pool_destroy");
+    IMPL_PRINT_DEBUG_INFO_Z(minimal, "afw_pool_destroy");
 
     /*
      * Call all of the cleanup routines for this pool before releasing children.
@@ -464,7 +532,7 @@ impl_afw_pool_calloc(
 {
     void *result;
 
-    AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_FZ(detail,
+    IMPL_PRINT_DEBUG_INFO_FZ(detail,
         "afw_pool_calloc " AFW_SIZE_T_FMT,
         size);
 
@@ -496,7 +564,7 @@ impl_afw_pool_malloc(
 {
     void *result;
 
-    AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_FZ(detail,
+    IMPL_PRINT_DEBUG_INFO_FZ(detail,
         "afw_pool_malloc " AFW_SIZE_T_FMT,
         size);
 
@@ -527,7 +595,7 @@ impl_afw_pool_free(
     afw_size_t size,
     afw_xctx_t *xctx)
 {
-    AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_FZ(detail,
+    IMPL_PRINT_DEBUG_INFO_FZ(detail,
         "afw_pool_free " AFW_SIZE_T_FMT,
         size);
 
@@ -549,7 +617,7 @@ impl_afw_pool_register_cleanup_before(
 {
     afw_pool_cleanup_t *e;
 
-    AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_FZ(minimal,
+    IMPL_PRINT_DEBUG_INFO_FZ(minimal,
         "afw_pool_register_cleanup_before %p %p",
         data, cleanup);
 
@@ -577,7 +645,7 @@ impl_afw_pool_deregister_cleanup(
 {
     afw_pool_cleanup_t *e, *prev;
 
-    AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_FZ(minimal,
+    IMPL_PRINT_DEBUG_INFO_FZ(minimal,
         "afw_pool_deregister_cleanup %p %p",
         data, cleanup);
 
