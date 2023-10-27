@@ -13,7 +13,6 @@
 
 #include "afw_internal.h"
 
-#ifdef __FIXME___
 /* multithreaded pool lock begin */
 #define IMPL_MULTITHREADED_LOCK_BEGIN(xctx) \
 AFW_LOCK_BEGIN((xctx)->env->multithreaded_pool_lock)
@@ -21,10 +20,6 @@ AFW_LOCK_BEGIN((xctx)->env->multithreaded_pool_lock)
 /* multithreaded pool lock end */
 #define IMPL_MULTITHREADED_LOCK_END \
 AFW_LOCK_END;
-
-#endif
-#define IMPL_MULTITHREADED_LOCK_BEGIN(xctx)
-#define IMPL_MULTITHREADED_LOCK_END
 
 /* Declares and rti/inf defines for interface afw_pool. */
 #define AFW_POOL_SELF_T afw_pool_internal_self_t
@@ -572,10 +567,10 @@ impl_multithreaded_afw_pool_release(
     AFW_POOL_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    //FIXME IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
+    IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
         impl_afw_pool_release(self, xctx);
-    //FIXME }
-    //FIXME IMPL_MULTITHREADED_LOCK_END;
+    }
+    IMPL_MULTITHREADED_LOCK_END;
 }
 
 void
@@ -594,10 +589,10 @@ impl_multithreaded_afw_pool_destroy(
     AFW_POOL_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    //FIXME IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
+    IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
         impl_afw_pool_destroy(self, xctx);
-    //FIXME }
-    //FIXME IMPL_MULTITHREADED_LOCK_END;
+    }
+    IMPL_MULTITHREADED_LOCK_END;
 }
 
 
@@ -609,8 +604,8 @@ impl_multithreaded_afw_pool_get_apr_pool(
 
     //FIXME IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
         result = impl_afw_pool_get_apr_pool(self);
-    //}
-    //IMPL_MULTITHREADED_LOCK_END;
+    //FIXME }
+    //FIXME MPL_MULTITHREADED_LOCK_END;
 
     return result;
 }

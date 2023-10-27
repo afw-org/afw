@@ -107,13 +107,13 @@ afw_lock_create_and_register(
 
 /**
  * @internal
- * @brief Internally called to create lock before afw_pool is ready.
+ * @brief Internally called to create nested lock before afw_pool is ready.
  * @param lock_id
  * @param p for lock.
  * @param xctx of caller.
  */
 AFW_DECLARE(const afw_lock_t *)
-afw_lock_create_environment_lock(
+afw_lock_create_environment_nested_lock(
     const afw_utf8_t *lock_id,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
