@@ -154,7 +154,7 @@ afw_pool_create(
 
     /* Create skeleton pool stuct. */
     self = (AFW_POOL_SELF_T *)afw_pool_internal_create(
-        (afw_pool_internal_common_self_t *)parent,
+        (afw_pool_internal_self_t *)parent,
         &afw_pool_singlethreaded_inf, sizeof(AFW_POOL_SELF_T), xctx);
     self->reference_count = 1;
  
@@ -165,10 +165,10 @@ afw_pool_create(
 
     AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_FZ(minimal,
         "afw_pool_create " AFW_INTEGER_FMT,
-        ((const AFW_POOL_SELF_T *)parent)->common.pool_number);
+        ((const AFW_POOL_SELF_T *)parent)->pool_number);
 
     /* Return new pool. */
-    return &self->common.pub;
+    return &self->pub;
 }
 
 
@@ -189,7 +189,7 @@ afw_pool_internal_create_thread(
         NULL,
         &afw_pool_singlethreaded_inf, sizeof(AFW_POOL_SELF_T), xctx);
     self->reference_count = 1;
-    thread = apr_pcalloc(self->common.apr_p, size);
+    thread = apr_pcalloc(self->apr_p, size);
     self->thread = thread;
     thread->p = (const afw_pool_t *)self;
 
@@ -218,13 +218,13 @@ afw_pool_internal_create_base_pool()
     if (!self) {
         return NULL;
     }
-    self->common.pub.inf = &afw_pool_multithreaded_inf;
-    self->common.apr_p = apr_p;
-    self->common.name = afw_s_base;
-    self->common.pool_number = 1;
+    self->pub.inf = &afw_pool_multithreaded_inf;
+    self->apr_p = apr_p;
+    self->name = afw_s_base;
+    self->pool_number = 1;
     self->reference_count = 1;
 
-    return &self->common.pub;
+    return &self->pub;
 }
 
 
@@ -251,7 +251,7 @@ afw_pool_create_multithreaded(
     IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
 
         self = (AFW_POOL_SELF_T *)afw_pool_internal_create(
-            (afw_pool_internal_common_self_t *)parent,
+            (afw_pool_internal_self_t *)parent,
             &afw_pool_multithreaded_inf, sizeof(AFW_POOL_SELF_T), xctx);
         self->reference_count = 1;
     }
@@ -259,9 +259,9 @@ afw_pool_create_multithreaded(
 
     AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_FZ(minimal,
         "afw_pool_create_multithreaded " AFW_INTEGER_FMT,
-        (self->common.parent) ? self->common.parent->pool_number : 0);
+        (self->parent) ? self->parent->pool_number : 0);
 
-    return &self->common.pub;
+    return &self->pub;
 }
 
 
@@ -286,7 +286,7 @@ impl_afw_pool_release(
 
     /* Decrement reference count and release pools resources if zero. */
     if (--(self->reference_count) == 0) {
-        afw_pool_destroy(&self->common.pub, xctx);
+        afw_pool_destroy(&self->pub, xctx);
     }
 }
 
@@ -318,7 +318,7 @@ impl_afw_pool_destroy(
     AFW_POOL_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    afw_pool_internal_common_self_t *child;
+    afw_pool_internal_self_t *child;
     afw_pool_cleanup_t *e;
 
     /* If instance is NULL, just return. */
@@ -331,30 +331,29 @@ impl_afw_pool_destroy(
     /*
      * Call all of the cleanup routines for this pool before releasing children.
      */
-    for (e = self->common.first_cleanup; e; e = e->next_cleanup) {
-        e->cleanup(e->data, e->data2, &self->common.pub, xctx);
+    for (e = self->first_cleanup; e; e = e->next_cleanup) {
+        e->cleanup(e->data, e->data2, &self->pub, xctx);
     }
 
     /*
      * Release children.
      *
-     * Release of child sets self->common.first_child to its next sibling.
+     * Release of child sets self->first_child to its next sibling.
      */
-    for (child = self->common.first_child;
+    for (child = self->first_child;
         child;
-        child = self->common.first_child)
+        child = self->first_child)
     {
         afw_pool_release(&child->pub, xctx);
     }
 
     /* If parent, removed self as child. */
-    if (self->common.parent) {
-        afw_pool_internal_remove_as_child(
-            self->common.parent, &self->common, xctx);
+    if (self->parent) {
+        afw_pool_internal_remove_as_child(self->parent, self, xctx);
     }
 
     /* Destroy apr pool. */
-    apr_pool_destroy(self->common.apr_p);
+    apr_pool_destroy(self->apr_p);
 }
 
 /*
@@ -366,16 +365,16 @@ impl_afw_pool_get_apr_pool(
 {
     int rv;
 
-    if (!self->common.apr_p) {
-        rv = apr_pool_create(&self->common.apr_p,
-            (self->common.parent) ? self->common.parent->apr_p : NULL);
+    if (!self->apr_p) {
+        rv = apr_pool_create(&self->apr_p,
+            (self->parent) ? self->parent->apr_p : NULL);
         if (rv != APR_SUCCESS) {
             /** @fixme do something. */
             //rv = 0/0;
         }
     }
 
-    return self->common.apr_p;
+    return self->apr_p;
 }
 
 /*
@@ -400,7 +399,7 @@ impl_afw_pool_calloc(
             xctx);
     }
 
-    result = apr_pcalloc(self->common.apr_p, size);
+    result = apr_pcalloc(self->apr_p, size);
     self->bytes_allocated += size;
 
     if (!result) {
@@ -432,7 +431,7 @@ impl_afw_pool_malloc(
             xctx);
     }
 
-    result = apr_palloc(self->common.apr_p, size);
+    result = apr_palloc(self->apr_p, size);
     self->bytes_allocated += size;
 
     if (!result) {
@@ -479,14 +478,14 @@ impl_afw_pool_register_cleanup_before(
         data, cleanup);
 
     /* Allocate entry which will also make sure its ok to use pool. */
-    e = afw_pool_calloc_type(&self->common.pub, afw_pool_cleanup_t, xctx);
+    e = afw_pool_calloc_type(&self->pub, afw_pool_cleanup_t, xctx);
 
     /* Add entry to front of list of cleanup functions. */
     e->data = data;
     e->data2 = data2;
     e->cleanup = cleanup;
-    e->next_cleanup = self->common.first_cleanup;
-    self->common.first_cleanup = e;
+    e->next_cleanup = self->first_cleanup;
+    self->first_cleanup = e;
 }
 
 /*
@@ -507,8 +506,8 @@ impl_afw_pool_deregister_cleanup(
         data, cleanup);
 
     /* Search for entry and remove. */
-    for (prev = (afw_pool_cleanup_t *)& self->common.first_cleanup,
-        e = self->common.first_cleanup;
+    for (prev = (afw_pool_cleanup_t *)& self->first_cleanup,
+        e = self->first_cleanup;
         e; prev = e, e = e->next_cleanup)
     {
         if (e->data == data && e->data2 == data2 && e->cleanup == cleanup) {
@@ -537,13 +536,13 @@ void afw_pool_print_debug_info(
     printf(
         "pool " AFW_INTEGER_FMT " " AFW_SIZE_T_FMT " refs " AFW_INTEGER_FMT
         " parent " AFW_INTEGER_FMT "\n",
-        self->common.pool_number,
+        self->pool_number,
         (self->bytes_allocated),
         (self->reference_count),
         (afw_integer_t)
-            ((self->common.parent) &&
-                self->common.parent->pub.inf == &afw_pool_singlethreaded_inf
-                ? self->common.parent->pool_number
+            ((self->parent) &&
+                self->parent->pub.inf == &afw_pool_singlethreaded_inf
+                ? self->parent->pool_number
                 : 0)
         );
 
@@ -551,7 +550,7 @@ void afw_pool_print_debug_info(
     //     printf("  ");
     // }
     // printf("Siblings:\n");
-    // for (const AFW_POOL_SELF_T *sibling = self->common.next_sibling;
+    // for (const AFW_POOL_SELF_T *sibling = self->next_sibling;
     //     sibling;
     //     sibling = sibling->next_sibling)
     // {
@@ -559,7 +558,7 @@ void afw_pool_print_debug_info(
     // }
 
     for (
-        const afw_pool_internal_common_self_t *child = self->common.first_child;
+        const afw_pool_internal_self_t *child = self->first_child;
         child;
         child = child->next_sibling)
     {
