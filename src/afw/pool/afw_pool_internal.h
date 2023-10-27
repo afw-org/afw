@@ -27,9 +27,27 @@
 
 AFW_BEGIN_DECLARES
 
+
+typedef struct afw_pool_internal_memory_block_s
+afw_pool_internal_memory_block_t;
+
+/*
+ * Memory block.
+ *
+ * This is used to keep track of memory blocks in a pool. The blocks are kept
+ * in two singly linked list, one for free blocks and one for allocated. The
+ * size in the block does not include the size of the struct itself. The size
+ * is either the size of the free memory block or the size of the allocated
+ * memory block, depending on the list the block is in.
+ */
+struct afw_pool_internal_memory_block_s {
+    struct afw_pool_internal_memory_block_t *next;
+    afw_size_t size;
+};
+
+
 typedef struct afw_pool_internal_common_self_s
 afw_pool_internal_common_self_t;
-
 
 struct afw_pool_internal_common_self_s {
 
@@ -59,38 +77,19 @@ struct afw_pool_internal_common_self_s {
 };
 
 
+typedef struct afw_pool_internal_self_s
+afw_pool_internal_self_t;
 
-typedef struct afw_pool_internal_multithreaded_self_s
-afw_pool_internal_multithreaded_self_t;
-
-
-struct afw_pool_internal_multithreaded_self_s {
+struct afw_pool_internal_self_s {
 
     /* Common for both pool types. */
     afw_pool_internal_common_self_t common;
 
-    /**
-     * @brief Pools reference count.
-     *
-     * This starts at 1 on create and is incremented and decremented
-     * by afw_pool_get_reference() and afw_pool_release().
-     */
-    AFW_ATOMIC afw_integer_t reference_count;
+    /* First free block. */
+    afw_pool_internal_memory_block_t *first_free_block;
 
-    /** @brief Bytes allocated via afw_pool_malloc()/afw_pool_calloc(). */
-    AFW_ATOMIC afw_size_t bytes_allocated;
-
-};
-
-
-typedef struct afw_pool_internal_singlethreaded_self_s
-afw_pool_internal_singlethreaded_self_t;
-
-
-struct afw_pool_internal_singlethreaded_self_s {
-
-    /* Common for both pool types. */
-    afw_pool_internal_common_self_t common;
+    /* First allocated block. */
+    afw_pool_internal_memory_block_t *first_allocated_block;
 
     /**
      * @brief Pools reference count.

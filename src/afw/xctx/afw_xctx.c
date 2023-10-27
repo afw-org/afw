@@ -548,7 +548,7 @@ static void impl_scope_debug(
             ", pool number: " AFW_INTEGER_FMT
             ", scope number: " AFW_SIZE_T_FMT
             ", refs: " AFW_SIZE_T_FMT,
-            ((afw_pool_internal_singlethreaded_self_t *)scope->p)->pool_number,
+            ((afw_pool_internal_self_t *)scope->p)->pool_number,
             scope->scope_number,
             scope->reference_count);
     }

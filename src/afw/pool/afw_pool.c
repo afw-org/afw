@@ -13,11 +13,133 @@
 
 #include "afw_internal.h"
 
+#ifdef __FIXME___
+/* multithreaded pool lock begin */
+#define IMPL_MULTITHREADED_LOCK_BEGIN(xctx) \
+AFW_LOCK_BEGIN((xctx)->env->multithreaded_pool_lock)
+
+/* multithreaded pool lock end */
+#define IMPL_MULTITHREADED_LOCK_END \
+AFW_LOCK_END;
+
+#endif
+#define IMPL_MULTITHREADED_LOCK_BEGIN(xctx)
+#define IMPL_MULTITHREADED_LOCK_END
+
 /* Declares and rti/inf defines for interface afw_pool. */
-#define AFW_IMPLEMENTATION_ID "afw_pool_singlethreaded"
-#define AFW_POOL_SELF_T afw_pool_internal_singlethreaded_self_t
+#define AFW_POOL_SELF_T afw_pool_internal_self_t
+
+#define AFW_IMPLEMENTATION_ID "pool_singlethreaded"
+#define AFW_IMPLEMENTATION_INF_LABEL afw_pool_singlethreaded_inf
+#include "afw_pool_impl_declares.h"
+#undef AFW_IMPLEMENTATION_ID
+#undef AFW_IMPLEMENTATION_INF_LABEL
+
+#define AFW_POOL_INF_ONLY 1
+
+/* Make another inf that uses mutexes for multithreaded thread-safety.  */
+#define AFW_IMPLEMENTATION_ID "pool_multithreaded"
+#define AFW_IMPLEMENTATION_INF_LABEL afw_pool_multithreaded_inf
+
+static void
+impl_multithreaded_afw_pool_release(
+    AFW_POOL_SELF_T *self,
+    afw_xctx_t *xctx);
+
+#define impl_afw_pool_release \
+    impl_multithreaded_afw_pool_release
+
+static void
+impl_multithreaded_afw_pool_get_reference(
+    AFW_POOL_SELF_T *self,
+    afw_xctx_t *xctx);
+
+#define impl_afw_pool_get_reference \
+    impl_multithreaded_afw_pool_get_reference
+
+static void
+impl_multithreaded_afw_pool_destroy(
+    AFW_POOL_SELF_T *self,
+    afw_xctx_t *xctx);
+
+#define impl_afw_pool_destroy \
+    impl_multithreaded_afw_pool_destroy
+
+static apr_pool_t *
+impl_multithreaded_afw_pool_get_apr_pool(
+    AFW_POOL_SELF_T *self);
+
+#define impl_afw_pool_get_apr_pool \
+    impl_multithreaded_afw_pool_get_apr_pool
+
+
+static void *
+impl_multithreaded_afw_pool_calloc(
+    AFW_POOL_SELF_T *self,
+    afw_size_t size,
+    afw_xctx_t *xctx);
+
+#define impl_afw_pool_calloc \
+    impl_multithreaded_afw_pool_calloc
+
+static void *
+impl_multithreaded_afw_pool_malloc(
+    AFW_POOL_SELF_T *self,
+    afw_size_t size,
+    afw_xctx_t *xctx);
+   
+#define impl_afw_pool_malloc \
+    impl_multithreaded_afw_pool_malloc
+
+static void
+impl_multithreaded_afw_pool_free(
+    AFW_POOL_SELF_T *self,
+    void * address,
+    afw_size_t size,
+    afw_xctx_t *xctx);
+
+#define impl_afw_pool_free \
+    impl_multithreaded_afw_pool_free
+
+static void
+impl_multithreaded_afw_pool_register_cleanup_before(
+    AFW_POOL_SELF_T *self,
+    void * data,
+    void * data2,
+    afw_pool_cleanup_function_p_t cleanup,
+    afw_xctx_t *xctx);
+
+#define impl_afw_pool_register_cleanup_before \
+    impl_multithreaded_afw_pool_register_cleanup_before
+
+static void
+impl_multithreaded_afw_pool_deregister_cleanup(
+    AFW_POOL_SELF_T *self,
+    void * data,
+    void * data2,
+    afw_pool_cleanup_function_p_t cleanup,
+    afw_xctx_t *xctx);
+
+#define impl_afw_pool_deregister_cleanup \
+    impl_multithreaded_afw_pool_deregister_cleanup
+    
 #include "afw_pool_impl_declares.h"
 
+#undef AFW_IMPLEMENTATION_ID
+#undef AFW_IMPLEMENTATION_INF_LABEL
+#undef impl_afw_pool_release
+#undef impl_afw_pool_get_reference
+#undef impl_afw_pool_destroy
+#undef impl_afw_pool_get_apr_pool
+#undef impl_afw_pool_calloc
+#undef impl_afw_pool_malloc
+#undef impl_afw_pool_free
+#undef impl_afw_pool_register_cleanup_before
+#undef impl_afw_pool_deregister_cleanup
+
+
+
+#define AFW_IMPLEMENTATION_ID "FIXME don't access in debug"
 
 AFW_DEFINE(const afw_pool_t *)
 afw_pool_create(
@@ -25,16 +147,16 @@ afw_pool_create(
 {
     AFW_POOL_SELF_T *self;
 
-    /* Create skeleton pool stuct. */
-    self = (AFW_POOL_SELF_T *)afw_pool_internal_create(
-        (afw_pool_internal_common_self_t *)parent,
-        &impl_afw_pool_inf, sizeof(AFW_POOL_SELF_T), xctx);
-    self->reference_count = 1;
-
     /* Parent is required. */
     if (!parent) {
         AFW_THROW_ERROR_Z(general, "Parent required", xctx);
     }
+
+    /* Create skeleton pool stuct. */
+    self = (AFW_POOL_SELF_T *)afw_pool_internal_create(
+        (afw_pool_internal_common_self_t *)parent,
+        &afw_pool_singlethreaded_inf, sizeof(AFW_POOL_SELF_T), xctx);
+    self->reference_count = 1;
  
     /* If thread specific parent pool, this one is as well for same thread. */
     if (((AFW_POOL_SELF_T *)parent)->thread) {
@@ -65,7 +187,7 @@ afw_pool_internal_create_thread(
     /* Create skeleton pool stuct. */
     self = (AFW_POOL_SELF_T *)afw_pool_internal_create(
         NULL,
-        &impl_afw_pool_inf, sizeof(AFW_POOL_SELF_T), xctx);
+        &afw_pool_singlethreaded_inf, sizeof(AFW_POOL_SELF_T), xctx);
     self->reference_count = 1;
     thread = apr_pcalloc(self->common.apr_p, size);
     self->thread = thread;
@@ -76,6 +198,70 @@ afw_pool_internal_create_thread(
         size);
 
     return thread;
+}
+
+AFW_DEFINE(const afw_pool_t *)
+afw_pool_internal_create_base_pool()
+{
+    apr_pool_t *apr_p;
+    AFW_POOL_SELF_T *self;
+
+    /* Create new pool for environment and initial xctx. */
+    apr_pool_create(&apr_p, NULL);
+    if (!apr_p) {
+        return NULL;
+    };
+
+    /* Allocate self. */
+    self = apr_pcalloc(apr_p,
+        sizeof(AFW_POOL_SELF_T));
+    if (!self) {
+        return NULL;
+    }
+    self->common.pub.inf = &afw_pool_multithreaded_inf;
+    self->common.apr_p = apr_p;
+    self->common.name = afw_s_base;
+    self->common.pool_number = 1;
+    self->reference_count = 1;
+
+    return &self->common.pub;
+}
+
+
+/* Create a new multithreaded pool. */
+AFW_DEFINE(const afw_pool_t *)
+afw_pool_create_multithreaded(
+    const afw_pool_t *parent, afw_xctx_t *xctx)
+{
+    AFW_POOL_SELF_T *self;
+
+    if (parent) {
+        if (parent != xctx->env->p &&
+            parent->inf != &afw_pool_multithreaded_inf)
+        {
+            AFW_THROW_ERROR_Z(general,
+                "Parent pool must be base or multithreaded", xctx);
+        }
+    }
+    else {
+        parent = xctx->env->p;
+    }
+
+    /* Create skeleton pool stuct. */
+    IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
+
+        self = (AFW_POOL_SELF_T *)afw_pool_internal_create(
+            (afw_pool_internal_common_self_t *)parent,
+            &afw_pool_multithreaded_inf, sizeof(AFW_POOL_SELF_T), xctx);
+        self->reference_count = 1;
+    }
+    IMPL_MULTITHREADED_LOCK_END;   
+
+    AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_FZ(minimal,
+        "afw_pool_create_multithreaded " AFW_INTEGER_FMT,
+        (self->common.parent) ? self->common.parent->pool_number : 0);
+
+    return &self->common.pub;
 }
 
 
@@ -103,6 +289,7 @@ impl_afw_pool_release(
         afw_pool_destroy(&self->common.pub, xctx);
     }
 }
+
 
 /*
  * Implementation of method get_reference for interface afw_pool.
@@ -337,7 +524,7 @@ void afw_pool_print_debug_info(
     const afw_pool_t *pool,
     afw_xctx_t *xctx)
 {
-    if (pool->inf != &impl_afw_pool_inf) {
+    if (pool->inf != &afw_pool_singlethreaded_inf) {
         printf("Not correct pool inf\n");
         return;
     }
@@ -355,7 +542,7 @@ void afw_pool_print_debug_info(
         (self->reference_count),
         (afw_integer_t)
             ((self->common.parent) &&
-                self->common.parent->pub.inf == &impl_afw_pool_inf
+                self->common.parent->pub.inf == &afw_pool_singlethreaded_inf
                 ? self->common.parent->pool_number
                 : 0)
         );
@@ -378,5 +565,128 @@ void afw_pool_print_debug_info(
     {
         afw_pool_print_debug_info(indent + 2, &child->pub, xctx);
     }
+
+}
+
+void
+impl_multithreaded_afw_pool_release(
+    AFW_POOL_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    //FIXME IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
+        impl_afw_pool_release(self, xctx);
+    //FIXME }
+    //FIXME IMPL_MULTITHREADED_LOCK_END;
+}
+
+void
+impl_multithreaded_afw_pool_get_reference(
+    AFW_POOL_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
+        impl_afw_pool_get_reference(self, xctx);
+    }
+    IMPL_MULTITHREADED_LOCK_END;
+}
+
+void
+impl_multithreaded_afw_pool_destroy(
+    AFW_POOL_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    //FIXME IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
+        impl_afw_pool_destroy(self, xctx);
+    //FIXME }
+    //FIXME IMPL_MULTITHREADED_LOCK_END;
+}
+
+
+apr_pool_t *
+impl_multithreaded_afw_pool_get_apr_pool(
+    AFW_POOL_SELF_T *self)
+{
+    apr_pool_t *result;
+
+    //FIXME IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
+        result = impl_afw_pool_get_apr_pool(self);
+    //}
+    //IMPL_MULTITHREADED_LOCK_END;
+
+    return result;
+}
+
+
+void *
+impl_multithreaded_afw_pool_calloc(
+    AFW_POOL_SELF_T *self,
+    afw_size_t size,
+    afw_xctx_t *xctx)
+{
+    void *result;
+
+    IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
+        result = impl_afw_pool_calloc(self, size, xctx);
+    }
+    IMPL_MULTITHREADED_LOCK_END;
+
+    return result;
+}
+
+void *
+impl_multithreaded_afw_pool_malloc(
+    AFW_POOL_SELF_T *self,
+    afw_size_t size,
+    afw_xctx_t *xctx)
+{
+    void *result;
+
+    IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
+        result = impl_afw_pool_malloc(self, size, xctx);
+    }
+    IMPL_MULTITHREADED_LOCK_END;
+
+    return result;
+}
+   
+void
+impl_multithreaded_afw_pool_free(
+    AFW_POOL_SELF_T *self,
+    void * address,
+    afw_size_t size,
+    afw_xctx_t *xctx)
+{
+    IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
+        impl_afw_pool_free(self, address, size, xctx);
+    }
+    IMPL_MULTITHREADED_LOCK_END;
+}
+
+void
+impl_multithreaded_afw_pool_register_cleanup_before(
+    AFW_POOL_SELF_T *self,
+    void * data,
+    void * data2,
+    afw_pool_cleanup_function_p_t cleanup,
+    afw_xctx_t *xctx)
+{
+    IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
+        impl_afw_pool_register_cleanup_before(self, data, data2, cleanup, xctx);
+    }
+    IMPL_MULTITHREADED_LOCK_END;
+}
+
+void
+impl_multithreaded_afw_pool_deregister_cleanup(
+    AFW_POOL_SELF_T *self,
+    void * data,
+    void * data2,
+    afw_pool_cleanup_function_p_t cleanup,
+    afw_xctx_t *xctx)
+{
+    IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
+        impl_afw_pool_deregister_cleanup(self, data, data2, cleanup, xctx);
+    }
+    IMPL_MULTITHREADED_LOCK_END;
 
 }
