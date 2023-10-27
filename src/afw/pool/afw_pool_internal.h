@@ -27,23 +27,41 @@
 
 AFW_BEGIN_DECLARES
 
+typedef struct afw_pool_internal_allocated_scope_memory_s
+afw_pool_internal_allocated_scope_memory_t;
+
+/* Allocated memory block in scope pool. */
+struct afw_pool_internal_allocated_memory_s {
+    afw_pool_internal_allocated_scope_memory_t *next;
+    /* Allocated memory starts here. */
+};
+
+
+typedef struct afw_pool_internal_free_memory_s
+afw_pool_internal_free_memory_t;
+
+/* Free memory block. */
+struct afw_pool_internal_free_memory_s {
+    afw_pool_internal_free_memory_t *next_free_memory;
+    afw_size_t size;
+    /* Free memory starts here. */
+};
+
 
 typedef struct afw_pool_internal_memory_block_s
 afw_pool_internal_memory_block_t;
 
-/*
- * Memory block.
- *
- * This is used to keep track of memory blocks in a pool. The blocks are kept
- * in two singly linked list, one for free blocks and one for allocated. The
- * size in the block does not include the size of the struct itself. The size
- * is either the size of the free memory block or the size of the allocated
- * memory block, depending on the list the block is in.
- */
+/* Free memory block. */
 struct afw_pool_internal_memory_block_s {
-    struct afw_pool_internal_memory_block_t *next;
     afw_size_t size;
+    void *end_of_memory_block; /* For quick bounds check. */
+    afw_pool_internal_memory_block_t *next_memory_block;
+    afw_pool_internal_free_memory_t *first_free_memory;
+    /* Memory for block starts here. */
 };
+
+
+
 
 
 typedef struct afw_pool_internal_self_s
@@ -75,11 +93,16 @@ struct afw_pool_internal_self_s {
     /** @brief First cleanup function. */
     afw_pool_cleanup_t *first_cleanup;
 
-    /* First free block. */
-    afw_pool_internal_memory_block_t *first_free_block;
-
-    /* First allocated block. */
-    afw_pool_internal_memory_block_t *first_allocated_block;
+    /*
+     * This is first allocated memory for scope pool or the first free memory
+     * block for others. Scope pool's memory is maintained in the parent. When a
+     * scope pool is released, the parent's free method is called for everything
+     * in the first_allocated_memory list.
+     */
+    union {
+        afw_pool_internal_allocated_scope_memory_t *first_allocated_memory;
+        afw_pool_internal_memory_block_t *first_memory_block;
+    };
 
     /**
      * @brief Pools reference count.

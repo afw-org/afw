@@ -21,19 +21,117 @@ AFW_LOCK_BEGIN((xctx)->env->multithreaded_pool_lock)
 #define IMPL_MULTITHREADED_LOCK_END \
 AFW_LOCK_END;
 
-/* Declares and rti/inf defines for interface afw_pool. */
+/* Declares and rti/inf defines for interface afw_pool for unmanaged pool. */
 #define AFW_POOL_SELF_T afw_pool_internal_self_t
 
-#define AFW_IMPLEMENTATION_ID "pool_singlethreaded"
-#define AFW_IMPLEMENTATION_INF_LABEL afw_pool_singlethreaded_inf
+#define AFW_IMPLEMENTATION_ID "unmanaged"
+#define AFW_IMPLEMENTATION_INF_LABEL afw_pool_unmanaged_inf
 #include "afw_pool_impl_declares.h"
 #undef AFW_IMPLEMENTATION_ID
 #undef AFW_IMPLEMENTATION_INF_LABEL
 
 #define AFW_POOL_INF_ONLY 1
 
-/* Make another inf that uses mutexes for multithreaded thread-safety.  */
-#define AFW_IMPLEMENTATION_ID "pool_multithreaded"
+/* Declares and rti/inf defines for interface afw_pool for managed pool. */
+#define AFW_IMPLEMENTATION_ID "managed"
+#define AFW_IMPLEMENTATION_INF_LABEL afw_pool_managed_inf
+
+static void
+impl_managed_afw_pool_release(
+    AFW_POOL_SELF_T *self,
+    afw_xctx_t *xctx);
+
+#define impl_afw_pool_release \
+    impl_managed_afw_pool_release
+
+static void *
+impl_managed_afw_pool_calloc(
+    AFW_POOL_SELF_T *self,
+    afw_size_t size,
+    afw_xctx_t *xctx);
+
+#define impl_afw_pool_calloc \
+    impl_managed_afw_pool_calloc
+
+static void *
+impl_managed_afw_pool_malloc(
+    AFW_POOL_SELF_T *self,
+    afw_size_t size,
+    afw_xctx_t *xctx);
+   
+#define impl_afw_pool_malloc \
+    impl_managed_afw_pool_malloc
+
+static void
+impl_managed_afw_pool_free(
+    AFW_POOL_SELF_T *self,
+    void * address,
+    afw_size_t size,
+    afw_xctx_t *xctx);
+
+#define impl_afw_pool_free \
+    impl_managed_afw_pool_free
+
+#include "afw_pool_impl_declares.h"
+#undef AFW_IMPLEMENTATION_ID
+#undef AFW_IMPLEMENTATION_INF_LABEL
+#undef impl_afw_pool_release
+#undef impl_afw_pool_calloc
+#undef impl_afw_pool_malloc
+#undef impl_afw_pool_free
+
+
+/* Declares and rti/inf defines for interface afw_pool for scope pool. */
+#define AFW_IMPLEMENTATION_ID "scope"
+#define AFW_IMPLEMENTATION_INF_LABEL afw_pool_scope_inf
+
+static void
+impl_scope_afw_pool_release(
+    AFW_POOL_SELF_T *self,
+    afw_xctx_t *xctx);
+
+#define impl_afw_pool_release \
+    impl_scope_afw_pool_release
+
+static void *
+impl_scope_afw_pool_calloc(
+    AFW_POOL_SELF_T *self,
+    afw_size_t size,
+    afw_xctx_t *xctx);
+
+#define impl_afw_pool_calloc \
+    impl_scope_afw_pool_calloc
+
+static void *
+impl_scope_afw_pool_malloc(
+    AFW_POOL_SELF_T *self,
+    afw_size_t size,
+    afw_xctx_t *xctx);
+   
+#define impl_afw_pool_malloc \
+    impl_scope_afw_pool_malloc
+
+static void
+impl_scope_afw_pool_free(
+    AFW_POOL_SELF_T *self,
+    void * address,
+    afw_size_t size,
+    afw_xctx_t *xctx);
+
+#define impl_afw_pool_free \
+    impl_scope_afw_pool_free
+
+#include "afw_pool_impl_declares.h"
+#undef AFW_IMPLEMENTATION_ID
+#undef AFW_IMPLEMENTATION_INF_LABEL
+#undef impl_afw_pool_release
+#undef impl_afw_pool_calloc
+#undef impl_afw_pool_malloc
+#undef impl_afw_pool_free
+
+
+/* Declares and rti/inf defines for interface afw_pool for multithreaded pool.*/
+#define AFW_IMPLEMENTATION_ID "multithreaded"
 #define AFW_IMPLEMENTATION_INF_LABEL afw_pool_multithreaded_inf
 
 static void
@@ -299,7 +397,7 @@ afw_pool_create(
     /* Create skeleton pool stuct. */
     self = (AFW_POOL_SELF_T *)impl_create(
         (afw_pool_internal_self_t *)parent,
-        &afw_pool_singlethreaded_inf, sizeof(AFW_POOL_SELF_T), xctx);
+        &afw_pool_unmanaged_inf, sizeof(AFW_POOL_SELF_T), xctx);
     self->reference_count = 1;
  
     /* If thread specific parent pool, this one is as well for same thread. */
@@ -331,7 +429,7 @@ afw_pool_internal_create_thread(
     /* Create skeleton pool stuct. */
     self = (AFW_POOL_SELF_T *)impl_create(
         NULL,
-        &afw_pool_singlethreaded_inf, sizeof(AFW_POOL_SELF_T), xctx);
+        &afw_pool_unmanaged_inf, sizeof(AFW_POOL_SELF_T), xctx);
     self->reference_count = 1;
     thread = apr_pcalloc(self->apr_p, size);
     self->thread = thread;
@@ -667,7 +765,7 @@ void afw_pool_print_debug_info(
     const afw_pool_t *pool,
     afw_xctx_t *xctx)
 {
-    if (pool->inf != &afw_pool_singlethreaded_inf) {
+    if (pool->inf != &afw_pool_unmanaged_inf) {
         printf("Not correct pool inf\n");
         return;
     }
@@ -685,7 +783,7 @@ void afw_pool_print_debug_info(
         (self->reference_count),
         (afw_integer_t)
             ((self->parent) &&
-                self->parent->pub.inf == &afw_pool_singlethreaded_inf
+                self->parent->pub.inf == &afw_pool_unmanaged_inf
                 ? self->parent->pool_number
                 : 0)
         );
@@ -710,6 +808,92 @@ void afw_pool_print_debug_info(
     }
 
 }
+
+/* --------------------------- managed implementations ---------------------- */
+
+void
+impl_managed_afw_pool_release(
+    AFW_POOL_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    
+}
+
+
+void *
+impl_managed_afw_pool_calloc(
+    AFW_POOL_SELF_T *self,
+    afw_size_t size,
+    afw_xctx_t *xctx)
+{
+    return NULL;
+}
+
+
+static void *
+impl_managed_afw_pool_malloc(
+    AFW_POOL_SELF_T *self,
+    afw_size_t size,
+    afw_xctx_t *xctx)
+{
+    return NULL;
+}
+
+
+static void
+impl_managed_afw_pool_free(
+    AFW_POOL_SELF_T *self,
+    void * address,
+    afw_size_t size,
+    afw_xctx_t *xctx)
+{
+    
+}
+
+
+/* --------------------------- scope implementations ------------------------ */
+
+void
+impl_scope_afw_pool_release(
+    AFW_POOL_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    
+}
+
+
+void *
+impl_scope_afw_pool_calloc(
+    AFW_POOL_SELF_T *self,
+    afw_size_t size,
+    afw_xctx_t *xctx)
+{
+    return NULL;
+}
+
+
+static void *
+impl_scope_afw_pool_malloc(
+    AFW_POOL_SELF_T *self,
+    afw_size_t size,
+    afw_xctx_t *xctx)
+{
+    return NULL;
+}
+
+
+static void
+impl_scope_afw_pool_free(
+    AFW_POOL_SELF_T *self,
+    void * address,
+    afw_size_t size,
+    afw_xctx_t *xctx)
+{
+    
+}
+
+
+/* ----------------------------multithreaded implementations ---------------- */
 
 void
 impl_multithreaded_afw_pool_release(
