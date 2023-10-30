@@ -33,6 +33,8 @@ afw_pool_internal_allocated_scope_memory_t;
 /* Allocated memory block in scope pool. */
 struct afw_pool_internal_allocated_memory_s {
     afw_pool_internal_allocated_scope_memory_t *next;
+    afw_pool_internal_allocated_scope_memory_t *prev;
+    afw_size_t size;
     /* Allocated memory starts here. */
 };
 

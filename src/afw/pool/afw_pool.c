@@ -7,8 +7,22 @@
  */
 
 /**
- * @file afw_pool_singlethreaded.c
- * @brief Adaptive Frameworksinglethreaded pool implementation.
+ * @file afw_pool.c
+ * @brief Adaptive Framework pool implementations.
+ * 
+ * All implementations release all memory when the pool is destroyed.
+ * 
+ * This c file implements the afw_pool interface for the following pool types:
+ * - unmanaged - Method free() is ignored.
+ * - managed - Memory is managed in blocks and freed memory is available for
+ *             reuse.
+ * - subpool - Memory is allocated in parent pool. Method free() adds the free
+ *             memory back to the parent pool. Any memory in the subpool that
+ *             is not explicitly freed will be added back to parent pool.
+ * - multithreaded -         This is a thread-safe managed pool that is
+ *                           protected with a mutex.
+ * - multithreaded_subpool - This is a thread-safe subpool protected with a
+ *                           mutex.
  */
 
 #include "afw_internal.h"
@@ -81,45 +95,45 @@ impl_managed_afw_pool_free(
 #undef impl_afw_pool_free
 
 
-/* Declares and rti/inf defines for interface afw_pool for scope pool. */
-#define AFW_IMPLEMENTATION_ID "scope"
-#define AFW_IMPLEMENTATION_INF_LABEL afw_pool_scope_inf
+/* Declares and rti/inf defines for interface afw_pool for subpool pool. */
+#define AFW_IMPLEMENTATION_ID "subpool"
+#define AFW_IMPLEMENTATION_INF_LABEL afw_pool_subpool_inf
 
 static void
-impl_scope_afw_pool_release(
+impl_subpool_afw_pool_release(
     AFW_POOL_SELF_T *self,
     afw_xctx_t *xctx);
 
 #define impl_afw_pool_release \
-    impl_scope_afw_pool_release
+    impl_subpool_afw_pool_release
 
 static void *
-impl_scope_afw_pool_calloc(
+impl_subpool_afw_pool_calloc(
     AFW_POOL_SELF_T *self,
     afw_size_t size,
     afw_xctx_t *xctx);
 
 #define impl_afw_pool_calloc \
-    impl_scope_afw_pool_calloc
+    impl_subpool_afw_pool_calloc
 
 static void *
-impl_scope_afw_pool_malloc(
+impl_subpool_afw_pool_malloc(
     AFW_POOL_SELF_T *self,
     afw_size_t size,
     afw_xctx_t *xctx);
    
 #define impl_afw_pool_malloc \
-    impl_scope_afw_pool_malloc
+    impl_subpool_afw_pool_malloc
 
 static void
-impl_scope_afw_pool_free(
+impl_subpool_afw_pool_free(
     AFW_POOL_SELF_T *self,
     void * address,
     afw_size_t size,
     afw_xctx_t *xctx);
 
 #define impl_afw_pool_free \
-    impl_scope_afw_pool_free
+    impl_subpool_afw_pool_free
 
 #include "afw_pool_impl_declares.h"
 #undef AFW_IMPLEMENTATION_ID
@@ -230,6 +244,106 @@ impl_multithreaded_afw_pool_deregister_cleanup(
 #undef impl_afw_pool_register_cleanup_before
 #undef impl_afw_pool_deregister_cleanup
 
+
+/* Declares and rti/inf defines for interface afw_pool for multithreaded_subpool pool.*/
+#define AFW_IMPLEMENTATION_ID "multithreaded_subpool"
+#define AFW_IMPLEMENTATION_INF_LABEL afw_pool_multithreaded_subpool_inf
+
+static void
+impl_multithreaded_subpool_afw_pool_release(
+    AFW_POOL_SELF_T *self,
+    afw_xctx_t *xctx);
+
+#define impl_afw_pool_release \
+    impl_multithreaded_subpool_afw_pool_release
+
+static void
+impl_multithreaded_subpool_afw_pool_get_reference(
+    AFW_POOL_SELF_T *self,
+    afw_xctx_t *xctx);
+
+#define impl_afw_pool_get_reference \
+    impl_multithreaded_subpool_afw_pool_get_reference
+
+static void
+impl_multithreaded_subpool_afw_pool_destroy(
+    AFW_POOL_SELF_T *self,
+    afw_xctx_t *xctx);
+
+#define impl_afw_pool_destroy \
+    impl_multithreaded_subpool_afw_pool_destroy
+
+static apr_pool_t *
+impl_multithreaded_subpool_afw_pool_get_apr_pool(
+    AFW_POOL_SELF_T *self);
+
+#define impl_afw_pool_get_apr_pool \
+    impl_multithreaded_subpool_afw_pool_get_apr_pool
+
+
+static void *
+impl_multithreaded_subpool_afw_pool_calloc(
+    AFW_POOL_SELF_T *self,
+    afw_size_t size,
+    afw_xctx_t *xctx);
+
+#define impl_afw_pool_calloc \
+    impl_multithreaded_subpool_afw_pool_calloc
+
+static void *
+impl_multithreaded_subpool_afw_pool_malloc(
+    AFW_POOL_SELF_T *self,
+    afw_size_t size,
+    afw_xctx_t *xctx);
+   
+#define impl_afw_pool_malloc \
+    impl_multithreaded_subpool_afw_pool_malloc
+
+static void
+impl_multithreaded_subpool_afw_pool_free(
+    AFW_POOL_SELF_T *self,
+    void * address,
+    afw_size_t size,
+    afw_xctx_t *xctx);
+
+#define impl_afw_pool_free \
+    impl_multithreaded_subpool_afw_pool_free
+
+static void
+impl_multithreaded_subpool_afw_pool_register_cleanup_before(
+    AFW_POOL_SELF_T *self,
+    void * data,
+    void * data2,
+    afw_pool_cleanup_function_p_t cleanup,
+    afw_xctx_t *xctx);
+
+#define impl_afw_pool_register_cleanup_before \
+    impl_multithreaded_subpool_afw_pool_register_cleanup_before
+
+static void
+impl_multithreaded_subpool_afw_pool_deregister_cleanup(
+    AFW_POOL_SELF_T *self,
+    void * data,
+    void * data2,
+    afw_pool_cleanup_function_p_t cleanup,
+    afw_xctx_t *xctx);
+
+#define impl_afw_pool_deregister_cleanup \
+    impl_multithreaded_subpool_afw_pool_deregister_cleanup
+    
+#include "afw_pool_impl_declares.h"
+
+#undef AFW_IMPLEMENTATION_ID
+#undef AFW_IMPLEMENTATION_INF_LABEL
+#undef impl_afw_pool_release
+#undef impl_afw_pool_get_reference
+#undef impl_afw_pool_destroy
+#undef impl_afw_pool_get_apr_pool
+#undef impl_afw_pool_calloc
+#undef impl_afw_pool_malloc
+#undef impl_afw_pool_free
+#undef impl_afw_pool_register_cleanup_before
+#undef impl_afw_pool_deregister_cleanup
 
 /* Debug macros only add code if AFW_POOL_DEBUG is defined. */
 #ifdef AFW_POOL_DEBUG
@@ -851,10 +965,10 @@ impl_managed_afw_pool_free(
 }
 
 
-/* --------------------------- scope implementations ------------------------ */
+/* --------------------------- subpool implementations ------------------------ */
 
 void
-impl_scope_afw_pool_release(
+impl_subpool_afw_pool_release(
     AFW_POOL_SELF_T *self,
     afw_xctx_t *xctx)
 {
@@ -863,7 +977,7 @@ impl_scope_afw_pool_release(
 
 
 void *
-impl_scope_afw_pool_calloc(
+impl_subpool_afw_pool_calloc(
     AFW_POOL_SELF_T *self,
     afw_size_t size,
     afw_xctx_t *xctx)
@@ -873,7 +987,7 @@ impl_scope_afw_pool_calloc(
 
 
 static void *
-impl_scope_afw_pool_malloc(
+impl_subpool_afw_pool_malloc(
     AFW_POOL_SELF_T *self,
     afw_size_t size,
     afw_xctx_t *xctx)
@@ -883,7 +997,7 @@ impl_scope_afw_pool_malloc(
 
 
 static void
-impl_scope_afw_pool_free(
+impl_subpool_afw_pool_free(
     AFW_POOL_SELF_T *self,
     void * address,
     afw_size_t size,
@@ -1005,6 +1119,131 @@ impl_multithreaded_afw_pool_register_cleanup_before(
 
 void
 impl_multithreaded_afw_pool_deregister_cleanup(
+    AFW_POOL_SELF_T *self,
+    void * data,
+    void * data2,
+    afw_pool_cleanup_function_p_t cleanup,
+    afw_xctx_t *xctx)
+{
+    IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
+        impl_afw_pool_deregister_cleanup(self, data, data2, cleanup, xctx);
+    }
+    IMPL_MULTITHREADED_LOCK_END;
+
+}
+
+/* ----------------------------multithreaded subpool implementations -------- */
+
+void
+impl_multithreaded_subpool_afw_pool_release(
+    AFW_POOL_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
+        impl_subpool_afw_pool_release(self, xctx);
+    }
+    IMPL_MULTITHREADED_LOCK_END;
+}
+
+void
+impl_multithreaded_subpool_afw_pool_get_reference(
+    AFW_POOL_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
+        impl_afw_pool_get_reference(self, xctx);
+    }
+    IMPL_MULTITHREADED_LOCK_END;
+}
+
+void
+impl_multithreaded_subpool_afw_pool_destroy(
+    AFW_POOL_SELF_T *self,
+    afw_xctx_t *xctx)
+{
+    IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
+        impl_afw_pool_destroy(self, xctx);
+    }
+    IMPL_MULTITHREADED_LOCK_END;
+}
+
+
+apr_pool_t *
+impl_multithreaded_subpool_afw_pool_get_apr_pool(
+    AFW_POOL_SELF_T *self)
+{
+    apr_pool_t *result;
+
+    //FIXME IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
+        result = impl_afw_pool_get_apr_pool(self);
+    //FIXME }
+    //FIXME MPL_MULTITHREADED_LOCK_END;
+
+    return result;
+}
+
+
+void *
+impl_multithreaded_subpool_afw_pool_calloc(
+    AFW_POOL_SELF_T *self,
+    afw_size_t size,
+    afw_xctx_t *xctx)
+{
+    void *result;
+
+    IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
+        result = impl_subpool_afw_pool_calloc(self, size, xctx);
+    }
+    IMPL_MULTITHREADED_LOCK_END;
+
+    return result;
+}
+
+void *
+impl_multithreaded_subpool_afw_pool_malloc(
+    AFW_POOL_SELF_T *self,
+    afw_size_t size,
+    afw_xctx_t *xctx)
+{
+    void *result;
+
+    IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
+        result = impl_subpool_afw_pool_malloc(self, size, xctx);
+    }
+    IMPL_MULTITHREADED_LOCK_END;
+
+    return result;
+}
+   
+void
+impl_multithreaded_subpool_afw_pool_free(
+    AFW_POOL_SELF_T *self,
+    void * address,
+    afw_size_t size,
+    afw_xctx_t *xctx)
+{
+    IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
+        impl_subpool_afw_pool_free(self, address, size, xctx);
+    }
+    IMPL_MULTITHREADED_LOCK_END;
+}
+
+void
+impl_multithreaded_subpool_afw_pool_register_cleanup_before(
+    AFW_POOL_SELF_T *self,
+    void * data,
+    void * data2,
+    afw_pool_cleanup_function_p_t cleanup,
+    afw_xctx_t *xctx)
+{
+    IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
+        impl_afw_pool_register_cleanup_before(self, data, data2, cleanup, xctx);
+    }
+    IMPL_MULTITHREADED_LOCK_END;
+}
+
+void
+impl_multithreaded_subpool_afw_pool_deregister_cleanup(
     AFW_POOL_SELF_T *self,
     void * data,
     void * data2,
