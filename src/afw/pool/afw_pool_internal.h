@@ -27,43 +27,16 @@
 
 AFW_BEGIN_DECLARES
 
-typedef struct afw_pool_internal_allocated_scope_memory_s
-afw_pool_internal_allocated_scope_memory_t;
+typedef struct afw_pool_internal_memory_s
+afw_pool_internal_memory_t;
 
 /* Allocated memory block in scope pool. */
-struct afw_pool_internal_allocated_memory_s {
-    afw_pool_internal_allocated_scope_memory_t *next;
-    afw_pool_internal_allocated_scope_memory_t *prev;
+struct afw_pool_internal_memory_s {
+    afw_pool_internal_memory_t *next;
+    afw_pool_internal_memory_t *prev;
     afw_size_t size;
     /* Allocated memory starts here. */
 };
-
-
-typedef struct afw_pool_internal_free_memory_s
-afw_pool_internal_free_memory_t;
-
-/* Free memory block. */
-struct afw_pool_internal_free_memory_s {
-    afw_pool_internal_free_memory_t *next_free_memory;
-    afw_size_t size;
-    /* Free memory starts here. */
-};
-
-
-typedef struct afw_pool_internal_memory_block_s
-afw_pool_internal_memory_block_t;
-
-/* Free memory block. */
-struct afw_pool_internal_memory_block_s {
-    afw_size_t size;
-    void *end_of_memory_block; /* For quick bounds check. */
-    afw_pool_internal_memory_block_t *next_memory_block;
-    afw_pool_internal_free_memory_t *first_free_memory;
-    /* Memory for block starts here. */
-};
-
-
-
 
 
 typedef struct afw_pool_internal_self_s
@@ -95,17 +68,6 @@ struct afw_pool_internal_self_s {
     /** @brief First cleanup function. */
     afw_pool_cleanup_t *first_cleanup;
 
-    /*
-     * This is first allocated memory for scope pool or the first free memory
-     * block for others. Scope pool's memory is maintained in the parent. When a
-     * scope pool is released, the parent's free method is called for everything
-     * in the first_allocated_memory list.
-     */
-    union {
-        afw_pool_internal_allocated_scope_memory_t *first_allocated_memory;
-        afw_pool_internal_memory_block_t *first_memory_block;
-    };
-
     /**
      * @brief Pools reference count.
      *
@@ -117,6 +79,28 @@ struct afw_pool_internal_self_s {
     /** @brief Bytes allocated via afw_pool_malloc()/afw_pool_calloc(). */
     afw_size_t bytes_allocated;
 
+    /*
+     * This is the head of the allocated memory in the pool except for the
+     * unmanaged pool implementation.
+     *
+     * When the next pointer is NULL, the
+     * AFW_POOL_INTERNAL_POOL_SELF_WITH_HEAD_ALLOCATED_MEMORY() macro can be
+     * used to get the address of the pool's self.
+     */
+    afw_pool_internal_memory_t head_allocated_memory;
+
+    /*
+     * This is the head of the free memory in the pool for the managed and the
+     * multithreaded pool implementations. Pool type unmanaged ignores the
+     * free() method. Pool type subpool and multithread_subpool return freed
+     * memory to their parent pool.
+     *
+     * When the next pointer is NULL, the
+     * AFW_POOL_INTERNAL_POOL_SELF_WITH_HEAD_FREE_MEMORY() macro can be used to
+     * get the address of the pool's self.
+     */
+    afw_pool_internal_memory_t head_free_memory;
+
     /**
      * @brief Thread associated with a thread specific pool.
      *
@@ -125,6 +109,16 @@ struct afw_pool_internal_self_s {
      */
     const afw_thread_t *thread;
 };
+
+
+#define AFW_POOL_INTERNAL_POOL_SELF_WITH_HEAD_ALLOCATED_MEMORY(head) \
+    (afw_pool_internal_self_t *) \
+    ((char *)head - offsetof(afw_pool_internal_self_t, head_allocated_memory))
+
+
+#define AFW_POOL_INTERNAL_POOL_SELF_WITH_HEAD_FREE_MEMORY(head) \
+    (afw_pool_internal_self_t *) \
+    ((char *)head - offsetof(afw_pool_internal_self_t, head_free_memory))
 
 
 /**
