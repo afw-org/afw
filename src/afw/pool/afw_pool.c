@@ -582,19 +582,38 @@ static afw_pool_internal_self_t *
 impl_create(
     afw_pool_internal_self_t *parent,
     const afw_pool_inf_t *inf,
+    afw_boolean_t managed,
     afw_size_t instance_size,
     afw_xctx_t *xctx)
 {
     apr_pool_t *apr_p;
     afw_pool_internal_self_t *self;
+    afw_size_t size;
+    afw_byte_t *mem;
+    afw_pool_internal_memory_block_t *block;
+
+    size = instance_size;
+    if (managed) {
+        size += sizeof(afw_pool_internal_memory_block_t);
+    }
 
     apr_pool_create(&apr_p, (parent) ? parent->apr_p : NULL);
     if (!apr_p) {
         AFW_THROW_ERROR_Z(memory, "Unable to allocate pool", xctx);
     }
-    self = apr_pcalloc(apr_p, instance_size);
-    if (!self) {
+    mem = apr_pcalloc(apr_p, size);
+    if (!mem) {
         AFW_THROW_ERROR_Z(memory, "Unable to allocate pool", xctx);
+    }
+    if (managed) {
+        self = (afw_pool_internal_self_t *)(mem +
+            sizeof(afw_pool_internal_memory_block_t));
+        block = (afw_pool_internal_memory_block_t *)mem;
+        block->size = instance_size;
+        self->head_allocated_memory = block;
+    }
+    else {
+        self = (afw_pool_internal_self_t *)mem;
     }
     self->pub.inf = inf;
     self->apr_p = apr_p;
@@ -626,13 +645,13 @@ afw_pool_create(
     }
     
     inf = ((AFW_POOL_SELF_T *)parent)->thread
-        ? &afw_pool_unmanaged_inf
-        : &afw_pool_multithreaded_unmanaged_inf;
+        ? &afw_pool_managed_inf
+        : &afw_pool_multithreaded_managed_inf;
 
     /* Create skeleton pool stuct. */
     self = (AFW_POOL_SELF_T *)impl_create(
         (afw_pool_internal_self_t *)parent,
-        inf, sizeof(AFW_POOL_SELF_T), xctx);
+        inf, true, sizeof(AFW_POOL_SELF_T), xctx);
     self->reference_count = 1;
  
     /* If thread specific parent pool, this one is as well for same thread. */
@@ -668,7 +687,7 @@ afw_pool_create_unmanaged(
     /* Create skeleton pool stuct. */
     self = (AFW_POOL_SELF_T *)impl_create(
         (afw_pool_internal_self_t *)parent,
-        inf, sizeof(AFW_POOL_SELF_T), xctx);
+        inf, false, sizeof(AFW_POOL_SELF_T), xctx);
     self->reference_count = 1;
  
     /* If thread specific parent pool, this one is as well for same thread. */
@@ -699,8 +718,7 @@ afw_pool_internal_create_thread(
     }
     /* Create skeleton pool stuct. */
     self = (AFW_POOL_SELF_T *)impl_create(
-        NULL,
-        &afw_pool_unmanaged_inf, sizeof(AFW_POOL_SELF_T), xctx);
+        NULL, &afw_pool_managed_inf, true, sizeof(AFW_POOL_SELF_T), xctx);
     self->reference_count = 1;
     thread = apr_pcalloc(self->apr_p, size);
     self->thread = thread;
@@ -718,6 +736,8 @@ afw_pool_internal_create_base_pool()
 {
     apr_pool_t *apr_p;
     AFW_POOL_SELF_T *self;
+    afw_byte_t *mem;
+    afw_pool_internal_memory_block_t *block;
 
     /* Create new pool for environment and initial xctx. */
     apr_pool_create(&apr_p, NULL);
@@ -725,16 +745,21 @@ afw_pool_internal_create_base_pool()
         return NULL;
     };
 
-    /* Allocate self. */
-    self = apr_pcalloc(apr_p,
-        sizeof(AFW_POOL_SELF_T));
-    if (!self) {
+    /* Allocate self with prefix and initialize. */
+    mem = apr_pcalloc(apr_p,
+        sizeof(AFW_POOL_SELF_T) + sizeof(afw_pool_internal_memory_block_t));
+    if (!mem) {
         return NULL;
     }
-    self->pub.inf = &afw_pool_multithreaded_unmanaged_inf;
-    self->apr_p = apr_p;
+    self = (afw_pool_internal_self_t *)(mem +
+        sizeof(afw_pool_internal_memory_block_t));
+    block = (afw_pool_internal_memory_block_t *)mem;
+    block->size = sizeof(AFW_POOL_SELF_T);
     self->name = afw_s_base;
+    self->pub.inf = &afw_pool_multithreaded_managed_inf;
+    self->apr_p = apr_p;
     self->pool_number = 1;
+    self->head_allocated_memory = block;
     self->reference_count = 1;
 
     return &self->pub;
@@ -1000,10 +1025,6 @@ void afw_pool_print_debug_info(
     const afw_pool_t *pool,
     afw_xctx_t *xctx)
 {
-    if (pool->inf != &afw_pool_unmanaged_inf) {
-        printf("Not correct pool inf\n");
-        return;
-    }
     const AFW_POOL_SELF_T *self = (const AFW_POOL_SELF_T *)pool;
 
     for (int i = 0; i < indent; i++) {
@@ -1016,11 +1037,7 @@ void afw_pool_print_debug_info(
         self->pool_number,
         (self->bytes_allocated),
         (self->reference_count),
-        (afw_integer_t)
-            ((self->parent) &&
-                self->parent->pub.inf == &afw_pool_unmanaged_inf
-                ? self->parent->pool_number
-                : 0)
+        self->parent->pool_number
         );
 
     // for (int i = 0; i < indent; i++) {
@@ -1052,7 +1069,11 @@ impl_managed_afw_pool_calloc(
     afw_size_t size,
     afw_xctx_t *xctx)
 {
-    return NULL;
+    void *result;
+
+    result = impl_managed_afw_pool_malloc(self, size, xctx);
+    memset(result, 0, size);
+    return result;
 }
 
 
@@ -1062,7 +1083,36 @@ impl_managed_afw_pool_malloc(
     afw_size_t size,
     afw_xctx_t *xctx)
 {
-    return NULL;
+    afw_byte_t *mem;
+    afw_pool_internal_memory_block_t *block;
+    void *result;
+
+    IMPL_PRINT_DEBUG_INFO_FZ(detail,
+        "afw_pool_*alloc " AFW_SIZE_T_FMT,
+        size);
+
+    /* Don't allow allocate for a size of 0. */
+    if (size == 0) {
+        AFW_THROW_ERROR_Z(general,
+            "Attempt to allocate memory for a size of 0",
+            xctx);
+    }
+
+    mem = apr_palloc(
+        self->apr_p, size + sizeof(afw_pool_internal_memory_block_t));
+    result = mem + sizeof(afw_pool_internal_memory_block_t);
+    block = (afw_pool_internal_memory_block_t *)mem;
+    block->size = size;
+    block->next = self->head_allocated_memory;
+    block->prev = NULL;
+    self->head_allocated_memory = block;
+    self->bytes_allocated += size;
+
+    if (!result) {
+        AFW_THROW_ERROR_Z(memory, "Allocate memory error", xctx);
+    }
+
+    return result;
 }
 
 
