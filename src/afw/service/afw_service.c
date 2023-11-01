@@ -479,7 +479,7 @@ impl_start_cb(
 
         /* Allocate and initialize new service instance. */
         old_service = service;
-        p = afw_pool_create_multithreaded(xctx->env->p, xctx);
+        p = afw_pool_create(xctx->env->p, xctx);
         service = afw_pool_calloc_type(p, afw_service_t, xctx);
         service->p = p;
         service->source_location = afw_utf8_clone(source_location,
@@ -1395,7 +1395,7 @@ impl_restart_get_cb(
         }
 
         /* Allocate and initialize new service instance. */
-        p = afw_pool_create_multithreaded(xctx->env->p, xctx);
+        p = afw_pool_create(xctx->env->p, xctx);
         service = afw_pool_calloc_type(p, afw_service_t, xctx);
         service->p = p;
         service->source_location = afw_utf8_clone(source_location,

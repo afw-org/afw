@@ -27,13 +27,25 @@
 
 AFW_BEGIN_DECLARES
 
-typedef struct afw_pool_internal_memory_s
-afw_pool_internal_memory_t;
+typedef struct afw_pool_internal_memory_block_s
+afw_pool_internal_memory_block_t;
 
-/* Allocated memory block in scope pool. */
-struct afw_pool_internal_memory_s {
-    afw_pool_internal_memory_t *next;
-    afw_pool_internal_memory_t *prev;
+/*
+ * This is used to keep up with both blocks of allocated and free memory for all
+ * except the unmanaged pool implementation. The heads of each is pointed to by
+ * the head_allocated_memory and head_free_memory members of
+ * afw_pool_internal_self_t.
+ *
+ * This struct is used as a prefix for each block of memory allocated via
+ * afw_pool_malloc() and afw_pool_calloc() as well as each block of free memory
+ * available for allocation.
+ *
+ * The subpool* implementations share the same free memory list but have their
+ * own allocated memory list.
+ */
+struct afw_pool_internal_memory_block_s {
+    afw_pool_internal_memory_block_t *next;
+    afw_pool_internal_memory_block_t *prev;
     afw_size_t size;
     /* Allocated memory starts here. */
 };
@@ -80,26 +92,16 @@ struct afw_pool_internal_self_s {
     afw_size_t bytes_allocated;
 
     /*
-     * This is the head of the allocated memory in the pool except for the
-     * unmanaged pool implementation.
-     *
-     * When the next pointer is NULL, the
-     * AFW_POOL_INTERNAL_POOL_SELF_WITH_HEAD_ALLOCATED_MEMORY() macro can be
-     * used to get the address of the pool's self.
+     * This points to the head of the allocated memory in the pool except for
+     * the unmanaged pool implementation.
      */
-    afw_pool_internal_memory_t head_allocated_memory;
+    afw_pool_internal_memory_block_t *head_allocated_memory;
 
     /*
-     * This is the head of the free memory in the pool for the managed and the
-     * multithreaded pool implementations. Pool type unmanaged ignores the
-     * free() method. Pool type subpool and multithread_subpool return freed
-     * memory to their parent pool.
-     *
-     * When the next pointer is NULL, the
-     * AFW_POOL_INTERNAL_POOL_SELF_WITH_HEAD_FREE_MEMORY() macro can be used to
-     * get the address of the pool's self.
+     * This points to the head of the allocated memory in the pool except for
+     * the unmanaged pool implementation.
      */
-    afw_pool_internal_memory_t head_free_memory;
+    afw_pool_internal_memory_block_t *head_free_memory;
 
     /**
      * @brief Thread associated with a thread specific pool.
@@ -134,7 +136,7 @@ afw_pool_internal_create_base_pool();
 
 /**
  * @internal
- * @brief Create thread struct in new thread specific pool with p  set.
+ * @brief Create thread struct in new thread specific pool with p set.
  * @param size of thread struct or -1 if sizeof(afw_thread_t) should be used.
  * @param xctx of caller.
  * @return new thread struct with p set.

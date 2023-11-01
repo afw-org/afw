@@ -28,7 +28,7 @@ afw_environment_configure_with_object(
     const afw_pool_t *p;
 
     /* Create new multithreaded pool */
-    p = afw_pool_create_multithreaded(xctx->env->p, xctx);
+    p = afw_pool_create(xctx->env->p, xctx);
 
     /* Clone conf and source_location to new pool. */
     conf = afw_object_create_clone(conf, p, xctx);
