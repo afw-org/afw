@@ -90,7 +90,9 @@ afw_pool_create(
  * memory is returned to the parent pool.
  */
 AFW_DECLARE(const afw_pool_t *)
-afw_pool_create_subpool(const afw_pool_t *parent, afw_xctx_t *xctx);
+afw_pool_create_subpool(
+    const afw_pool_t *parent, 
+    afw_xctx_t *xctx);
 
 
 

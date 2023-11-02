@@ -620,10 +620,20 @@ impl_create(
     self->parent = parent;
     self->pool_number = afw_atomic_integer_increment(
         &((afw_environment_t *)xctx->env)->pool_number);
+     self->reference_count = 1;
 
     /* If parent, add this new child. */
     if (parent) {
-        impl_add_child(parent, self, xctx);
+        self->thread = parent->thread;
+        if (self->thread) {
+            impl_add_child(parent, self, xctx);
+        }
+        else {
+            IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
+                impl_add_child(parent, self, xctx);
+            }
+            IMPL_MULTITHREADED_LOCK_END;
+        }
     }
 
     /* Return new pool. */
@@ -652,16 +662,52 @@ afw_pool_create(
     self = (AFW_POOL_SELF_T *)impl_create(
         (afw_pool_internal_self_t *)parent,
         inf, true, sizeof(AFW_POOL_SELF_T), xctx);
-    self->reference_count = 1;
- 
-    /* If thread specific parent pool, this one is as well for same thread. */
-    if (((AFW_POOL_SELF_T *)parent)->thread) {
-        self->thread = xctx->thread;
-    }
 
     IMPL_PRINT_DEBUG_INFO_FZ(minimal,
         "afw_pool_create " AFW_INTEGER_FMT,
         ((const AFW_POOL_SELF_T *)parent)->pool_number);
+
+    /* Return new pool. */
+    return &self->pub;
+}
+
+
+AFW_DEFINE(const afw_pool_t *)
+afw_pool_create_subpool(
+    const afw_pool_t *parent, afw_xctx_t *xctx)
+{
+    AFW_POOL_SELF_T *self;
+
+    /* Parent is required. */
+    if (!parent) {
+        AFW_THROW_ERROR_Z(general, "Parent required", xctx);
+    }
+
+    /* Create skeleton pool stuct. */
+    self = (AFW_POOL_SELF_T *)
+        afw_pool_calloc_type(parent, afw_pool_internal_self_t, xctx);
+    self->pub.inf = ((AFW_POOL_SELF_T *)parent)->thread
+        ? &afw_pool_subpool_inf
+        : &afw_pool_multithreaded_subpool_inf;
+    self->pool_number = afw_atomic_integer_increment(
+        &((afw_environment_t *)xctx->env)->pool_number);
+
+    self->parent = (AFW_POOL_SELF_T *)parent;
+    self->reference_count = 1;
+    self->thread = xctx->thread;
+    if (!self->parent->thread) {
+        IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
+            impl_add_child(self->parent, self, xctx);
+        }
+        IMPL_MULTITHREADED_LOCK_END;
+    }
+    else {
+        impl_add_child(self->parent, self, xctx);
+    }
+
+    IMPL_PRINT_DEBUG_INFO_FZ(minimal,
+        "afw_pool_create_subpool " AFW_INTEGER_FMT,
+        self->parent->pool_number);
 
     /* Return new pool. */
     return &self->pub;
@@ -696,7 +742,7 @@ afw_pool_create_unmanaged(
     }
 
     IMPL_PRINT_DEBUG_INFO_FZ(minimal,
-        "afw_pool_create " AFW_INTEGER_FMT,
+        "afw_pool_create_unmanaged " AFW_INTEGER_FMT,
         ((const AFW_POOL_SELF_T *)parent)->pool_number);
 
     /* Return new pool. */
