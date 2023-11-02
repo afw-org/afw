@@ -27,27 +27,14 @@
 
 AFW_BEGIN_DECLARES
 
-typedef struct afw_pool_internal_memory_block_s
-afw_pool_internal_memory_block_t;
+typedef struct afw_pool_internal_memory_block_prefix_s
+afw_pool_internal_memory_block_prefix_t;
 
-/*
- * This is used to keep up with both blocks of allocated and free memory for all
- * except the unmanaged pool implementation. The heads of each is pointed to by
- * the head_allocated_memory and head_free_memory members of
- * afw_pool_internal_self_t.
- *
- * This struct is used as a prefix for each block of memory allocated via
- * afw_pool_malloc() and afw_pool_calloc() as well as each block of free memory
- * available for allocation.
- *
- * The subpool* implementations share the same free memory list but have their
- * own allocated memory list.
- */
-struct afw_pool_internal_memory_block_s {
-    afw_pool_internal_memory_block_t *next;
-    afw_pool_internal_memory_block_t *prev;
+/* This is the prefix of all blocks of memory, both allocated and free. */
+struct afw_pool_internal_memory_block_prefix_s {
     afw_size_t size;
-    /* Allocated memory starts here. */
+    const afw_pool_t *p;
+    /* Allocated/free memory starts here. */
 };
 
 
@@ -95,13 +82,7 @@ struct afw_pool_internal_self_s {
      * This points to the head of the allocated memory in the pool except for
      * the unmanaged pool implementation.
      */
-    afw_pool_internal_memory_block_t *head_allocated_memory;
-
-    /*
-     * This points to the head of the allocated memory in the pool except for
-     * the unmanaged pool implementation.
-     */
-    afw_pool_internal_memory_block_t *head_free_memory;
+    afw_pool_internal_memory_block_prefix_t *head_free_memory;
 
     /**
      * @brief Thread associated with a thread specific pool.
@@ -111,6 +92,21 @@ struct afw_pool_internal_self_s {
      */
     const afw_thread_t *thread;
 };
+
+
+typedef struct afw_pool_internal_subpool_self_s
+afw_pool_internal_subpool_self_t;
+struct afw_pool_internal_subpool_self_s {
+
+    afw_pool_internal_self_t common;
+
+    /*
+     * This points to the head of the allocated memory in the pool except for
+     * the unmanaged pool implementation.
+     */
+    afw_pool_internal_memory_block_prefix_t *head_allocated_memory;
+};
+
 
 
 #define AFW_POOL_INTERNAL_POOL_SELF_WITH_HEAD_ALLOCATED_MEMORY(head) \

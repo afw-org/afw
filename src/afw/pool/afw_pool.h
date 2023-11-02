@@ -159,6 +159,20 @@ afw_pool_create_unmanaged(
     (type *) afw_pool_malloc(instance, sizeof(type), xctx)
 
 
+/**
+ * @brief Free memory in it's associated pool.
+ * @param address of memory to free.
+ * @param xctx of caller.
+ *
+ * The memory address must be one returned by a afw_pool_calloc() or
+ * afw_pool_malloc() call.
+ */
+AFW_DECLARE(void)
+afw_pool_free_memory(
+    void *address,
+    afw_xctx_t *xctx);
+
+
 AFW_END_DECLARES
 
 /** @} */

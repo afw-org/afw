@@ -5137,12 +5137,11 @@ typedef void *
     afw_size_t size,
     afw_xctx_t * xctx);
 
-/** @sa afw_pool_free() */
+/** @sa afw_pool_free_memory_internal() */
 typedef void
-(*afw_pool_free_t)(
+(*afw_pool_free_memory_internal_t)(
     const afw_pool_t * instance,
     void * address,
-    afw_size_t size,
     afw_xctx_t * xctx);
 
 /** @sa afw_pool_register_cleanup_before() */
@@ -5172,7 +5171,7 @@ struct afw_pool_inf_s {
     afw_pool_get_apr_pool_t get_apr_pool;
     afw_pool_calloc_t calloc;
     afw_pool_malloc_t malloc;
-    afw_pool_free_t free;
+    afw_pool_free_memory_internal_t free_memory_internal;
     afw_pool_register_cleanup_before_t register_cleanup_before;
     afw_pool_deregister_cleanup_t deregister_cleanup;
 };
@@ -5265,22 +5264,19 @@ struct afw_pool_inf_s {
 )
 
 /**
- * @brief Call method free of interface afw_pool
+ * @brief Call method free_memory_internal of interface afw_pool
  * @param instancePointer to this pool instance.
  * @param addressAddress of memory to free.
- * @param sizeSize of memory to free.
  * @param xctxThis is the caller's xctx.
  */
-#define afw_pool_free( \
+#define afw_pool_free_memory_internal( \
     instance, \
     address, \
-    size, \
     xctx \
 ) \
-(instance)->inf->free( \
+(instance)->inf->free_memory_internal( \
     (instance), \
     (address), \
-    (size), \
     (xctx) \
 )
 

@@ -5073,11 +5073,16 @@ AFW_DEFINE(const afw_request_handler_t *)
 
     </method>
 
-    <method name="free">
+    <method name="free_memory_internal">
 
       <description>
-        Free allocated memory in pool. If the pool implementation does not support
-        freeing memory, the call does nothing.
+        Free an allocated memory in pool. If the pool implementation does
+        not support freeing memory, the call does nothing.
+        
+        Use afw_pool_free_memory() instead of calling this method directly since
+        it will call the free_memory_internal() method of the correct pool
+        instance given the address returned from afw_pool_calloc() or
+        afw_pool_malloc().
       </description>
 
       <parameter name="instance" type="const afw_pool_t *">
@@ -5086,10 +5091,6 @@ AFW_DEFINE(const afw_request_handler_t *)
 
       <parameter name="address" type="void *">
         <description>Address of memory to free.</description>
-      </parameter>
-
-      <parameter name="size" type="afw_size_t">
-        <description>Size of memory to free.</description>
       </parameter>
 
       <parameter name="xctx" type="afw_xctx_t *">

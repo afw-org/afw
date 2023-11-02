@@ -153,13 +153,12 @@ impl_afw_pool_malloc(
     afw_xctx_t * xctx);
 #endif
 
-#ifndef impl_afw_pool_free
-/* Declare method free */
+#ifndef impl_afw_pool_free_memory_internal
+/* Declare method free_memory_internal */
 AFW_DECLARE_STATIC(void)
-impl_afw_pool_free(
+impl_afw_pool_free_memory_internal(
     AFW_POOL_SELF_T *self,
     void * address,
-    afw_size_t size,
     afw_xctx_t * xctx);
 #endif
 
@@ -220,8 +219,8 @@ impl_afw_pool_inf = {
     impl_afw_pool_calloc,
     (afw_pool_malloc_t)
     impl_afw_pool_malloc,
-    (afw_pool_free_t)
-    impl_afw_pool_free,
+    (afw_pool_free_memory_internal_t)
+    impl_afw_pool_free_memory_internal,
     (afw_pool_register_cleanup_before_t)
     impl_afw_pool_register_cleanup_before,
     (afw_pool_deregister_cleanup_t)
