@@ -596,6 +596,7 @@ impl_create(
     if (managed) {
         size += sizeof(afw_pool_internal_memory_block_t);
     }
+    size = APR_ALIGN_DEFAULT(size);
 
     apr_pool_create(&apr_p, (parent) ? parent->apr_p : NULL);
     if (!apr_p) {
@@ -609,7 +610,7 @@ impl_create(
         self = (afw_pool_internal_self_t *)(mem +
             sizeof(afw_pool_internal_memory_block_t));
         block = (afw_pool_internal_memory_block_t *)mem;
-        block->size = instance_size;
+        block->size = size;
         self->head_allocated_memory = block;
     }
     else {
@@ -784,6 +785,7 @@ afw_pool_internal_create_base_pool()
     AFW_POOL_SELF_T *self;
     afw_byte_t *mem;
     afw_pool_internal_memory_block_t *block;
+    afw_size_t size;
 
     /* Create new pool for environment and initial xctx. */
     apr_pool_create(&apr_p, NULL);
@@ -792,15 +794,16 @@ afw_pool_internal_create_base_pool()
     };
 
     /* Allocate self with prefix and initialize. */
-    mem = apr_pcalloc(apr_p,
+    size = APR_ALIGN_DEFAULT(
         sizeof(AFW_POOL_SELF_T) + sizeof(afw_pool_internal_memory_block_t));
+    mem = apr_pcalloc(apr_p, size);
     if (!mem) {
         return NULL;
     }
     self = (afw_pool_internal_self_t *)(mem +
         sizeof(afw_pool_internal_memory_block_t));
     block = (afw_pool_internal_memory_block_t *)mem;
-    block->size = sizeof(AFW_POOL_SELF_T);
+    block->size = size;
     self->name = afw_s_base;
     self->pub.inf = &afw_pool_multithreaded_managed_inf;
     self->apr_p = apr_p;
@@ -1131,6 +1134,7 @@ impl_managed_afw_pool_malloc(
 {
     afw_byte_t *mem;
     afw_pool_internal_memory_block_t *block;
+    afw_size_t size_with_block;
     void *result;
 
     IMPL_PRINT_DEBUG_INFO_FZ(detail,
@@ -1144,11 +1148,12 @@ impl_managed_afw_pool_malloc(
             xctx);
     }
 
-    mem = apr_palloc(
-        self->apr_p, size + sizeof(afw_pool_internal_memory_block_t));
+    size_with_block = APR_ALIGN_DEFAULT(
+        size + sizeof(afw_pool_internal_memory_block_t));
+    mem = apr_palloc(self->apr_p, size_with_block);
     result = mem + sizeof(afw_pool_internal_memory_block_t);
     block = (afw_pool_internal_memory_block_t *)mem;
-    block->size = size;
+    block->size = size_with_block;
     block->next = self->head_allocated_memory;
     block->prev = NULL;
     self->head_allocated_memory = block;
