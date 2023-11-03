@@ -97,39 +97,6 @@ afw_pool_create_subpool(
 
 
 /**
- * @brief Create a new pool.
- * @param parent of new pool.
- * @param xctx of caller.
- * @return new pool.
- *
- * A pool created with this function is either thread specific or a
- * multithreaded unmanaged pool, depending on the parent. The free() method
- * of an unmanaged pool is ignored. The only way to free the memory allocated
- * from an unmanaged pool is to destroy the pool.
- *
- * If the parent is a thread specific pool, the created pool will also be thread
- * specific. Thread specific pools are single threaded and are not thread safe.
- * If any of the pool functions are called from other than the specific thread,
- * an error is thrown.
- *
- * The only way to create a thread specific pool is by calling the
- * afw_thread_create() function and accessing the thread struct's p member. If
- * running in an AFW server, this is done when a request thread is created.
- *
- * If the parent is a multithread pool, the created pool will also be a
- * multithreaded pool.
- *
- * The base pool (xctx->env->p) for the environment is created when the
- * AFW environment is created and is a multithreaded pool.
- */
-AFW_DECLARE(const afw_pool_t *)
-afw_pool_create_unmanaged(
-    const afw_pool_t *parent,
-    afw_xctx_t *xctx);
-
-
-
-/**
  * @brief Macro to allocate cleared memory to hold type in pool.
  * @param instance of pool.
  * @param type to allocate.

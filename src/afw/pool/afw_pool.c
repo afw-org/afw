@@ -13,21 +13,19 @@
  * All implementations release all memory when the pool is destroyed.
  *
  * This c file implements the afw_pool interface for the following pool types:
- * - managed                 - This is a thread specific implementation. Memory
- *                             is managed in blocks and freed memory is
- *                             available for reuse by the pool.
- * - subpool                   This is a thread specific implementation. Memory
- *                             is allocated in parent pool. Method free() adds
- *                             the free memory back to the parent pool. Any
- *                             memory in the subpool that is not explicitly
- *                             freed will be added back to parent pool when the
- *                             subpool is destroyed.
- * - unmanaged               - This is a thread specific implementation. Method
- *                             free() is ignored. Memory is only freed when the
- *                             pool is destroyed.
- * - multithreaded           - This is a thread-safe version of managed.
- * - multithreaded_subpool   - This is a thread-safe version of subpool.
- * - multithreaded_unmanaged - This is a thread-safe version of unmanaged.
+ * - pool_inf                  - This is the basic non-threadsafe implementation
+ *                               of pool. Implementation multithreaded wraps
+ *                               this implementation to make it threadsafe.
+ * - subpool_inf               - This is the basic non-threadsafe implementation
+ *                               of subpool. Implementation
+ *                               multithreaded_subpool wraps this implementation
+ *                               to make it threadsafe. Method free() adds the
+ *                               free memory back to the parent pool. Any memory
+ *                               in the subpool that is not explicitly freed
+ *                               will be added back to parent pool when the
+ *                               subpool is destroyed.
+ * - multithreaded_inf         - This is a thread-safe version of pool.
+ * - multithreaded_subpool_inf - This is a thread-safe version of subpool.
  */
 
 #include "afw_internal.h"
@@ -41,67 +39,22 @@ AFW_LOCK_BEGIN((xctx)->env->multithreaded_pool_lock)
 AFW_LOCK_END;
 
 /*
- * The unmanaged pool methods begin with 'impl_afw_pool_' only.
+ * The pool methods begin with 'impl_afw_pool_' only.
  */
 #define AFW_POOL_SELF_T afw_pool_internal_self_t
 
-#define AFW_IMPLEMENTATION_ID "unmanaged"
-#define AFW_IMPLEMENTATION_INF_LABEL afw_pool_unmanaged_inf
+#define AFW_IMPLEMENTATION_ID "pool"
 #include "afw_pool_impl_declares.h"
 #undef AFW_IMPLEMENTATION_ID
-#undef AFW_IMPLEMENTATION_INF_LABEL
 
 #define AFW_POOL_INF_ONLY 1
 
 /*
- * Some of the managed pool methods begin with 'impl_managed_afw_pool_' but
- * the others are the same as unmanaged.
- */
-#define AFW_IMPLEMENTATION_ID "managed"
-#define AFW_IMPLEMENTATION_INF_LABEL afw_pool_managed_inf
-
-static void *
-impl_managed_afw_pool_calloc(
-    AFW_POOL_SELF_T *self,
-    afw_size_t size,
-    afw_xctx_t *xctx);
-
-#define impl_afw_pool_calloc \
-    impl_managed_afw_pool_calloc
-
-static void *
-impl_managed_afw_pool_malloc(
-    AFW_POOL_SELF_T *self,
-    afw_size_t size,
-    afw_xctx_t *xctx);
-   
-#define impl_afw_pool_malloc \
-    impl_managed_afw_pool_malloc
-
-static void
-impl_managed_afw_pool_free_memory_internal(
-    AFW_POOL_SELF_T *self,
-    void *address,
-    afw_xctx_t *xctx);
-
-#define impl_afw_pool_free_memory_internal \
-    impl_managed_afw_pool_free_memory_internal
-
-#include "afw_pool_impl_declares.h"
-#undef AFW_IMPLEMENTATION_ID
-#undef AFW_IMPLEMENTATION_INF_LABEL
-#undef impl_afw_pool_destroy
-#undef impl_afw_pool_calloc
-#undef impl_afw_pool_malloc
-#undef impl_afw_pool_free_memory_internal
-
-
-/*
  * Some of the subpool pool methods begin with 'impl_subpool_afw_pool_' but
- * the others are the same as unmanaged.
+ * the others are the same as the default.
  */
 #define AFW_IMPLEMENTATION_ID "subpool"
-#define AFW_IMPLEMENTATION_INF_LABEL afw_pool_subpool_inf
+#define AFW_IMPLEMENTATION_INF_LABEL impl_afw_pool_subpool_inf
 
 static void
 impl_subpool_afw_pool_destroy(
@@ -148,11 +101,11 @@ impl_subpool_afw_pool_free_memory_internal(
 
 
 /*
- * All of the multithreaded managed pool methods begin with
+ * All of the multithreaded pool methods begin with
  * 'impl_multithreaded_afw_pool_'.
  */
 #define AFW_IMPLEMENTATION_ID "multithreaded"
-#define AFW_IMPLEMENTATION_INF_LABEL afw_pool_multithreaded_managed_inf
+#define AFW_IMPLEMENTATION_INF_LABEL impl_afw_pool_multithreaded_inf
 
 static void
 impl_multithreaded_afw_pool_release(
@@ -255,7 +208,7 @@ impl_multithreaded_afw_pool_deregister_cleanup(
  * 'impl_multithreaded_subpool_afw_pool_'.
  */
 #define AFW_IMPLEMENTATION_ID "multithreaded_subpool"
-#define AFW_IMPLEMENTATION_INF_LABEL afw_pool_multithreaded_subpool_inf
+#define AFW_IMPLEMENTATION_INF_LABEL impl_afw_pool_multithreaded_subpool_inf
 
 static void
 impl_multithreaded_subpool_afw_pool_release(
@@ -337,109 +290,6 @@ impl_multithreaded_subpool_afw_pool_deregister_cleanup(
 
 #define impl_afw_pool_deregister_cleanup \
     impl_multithreaded_subpool_afw_pool_deregister_cleanup
-    
-#include "afw_pool_impl_declares.h"
-
-#undef AFW_IMPLEMENTATION_ID
-#undef AFW_IMPLEMENTATION_INF_LABEL
-#undef impl_afw_pool_release
-#undef impl_afw_pool_get_reference
-#undef impl_afw_pool_destroy
-#undef impl_afw_pool_get_apr_pool
-#undef impl_afw_pool_calloc
-#undef impl_afw_pool_malloc
-#undef impl_afw_pool_free_memory_internal
-#undef impl_afw_pool_register_cleanup_before
-#undef impl_afw_pool_deregister_cleanup
-
-
-/*
- * All of the multithreaded unmanaged pool methods begin with
- * 'impl_multithreaded_unmanaged_afw_pool_'.
- */
-#define AFW_IMPLEMENTATION_ID "multithreaded_unmanaged"
-#define AFW_IMPLEMENTATION_INF_LABEL afw_pool_multithreaded_unmanaged_inf
-
-static void
-impl_multithreaded_unmanaged_afw_pool_release(
-    AFW_POOL_SELF_T *self,
-    afw_xctx_t *xctx);
-
-#define impl_afw_pool_release \
-    impl_multithreaded_unmanaged_afw_pool_release
-
-static void
-impl_multithreaded_unmanaged_afw_pool_get_reference(
-    AFW_POOL_SELF_T *self,
-    afw_xctx_t *xctx);
-
-#define impl_afw_pool_get_reference \
-    impl_multithreaded_unmanaged_afw_pool_get_reference
-
-static void
-impl_multithreaded_unmanaged_afw_pool_destroy(
-    AFW_POOL_SELF_T *self,
-    afw_xctx_t *xctx);
-
-#define impl_afw_pool_destroy \
-    impl_multithreaded_unmanaged_afw_pool_destroy
-
-static apr_pool_t *
-impl_multithreaded_unmanaged_afw_pool_get_apr_pool(
-    AFW_POOL_SELF_T *self);
-
-#define impl_afw_pool_get_apr_pool \
-    impl_multithreaded_unmanaged_afw_pool_get_apr_pool
-
-
-static void *
-impl_multithreaded_unmanaged_afw_pool_calloc(
-    AFW_POOL_SELF_T *self,
-    afw_size_t size,
-    afw_xctx_t *xctx);
-
-#define impl_afw_pool_calloc \
-    impl_multithreaded_unmanaged_afw_pool_calloc
-
-static void *
-impl_multithreaded_unmanaged_afw_pool_malloc(
-    AFW_POOL_SELF_T *self,
-    afw_size_t size,
-    afw_xctx_t *xctx);
-   
-#define impl_afw_pool_malloc \
-    impl_multithreaded_unmanaged_afw_pool_malloc
-
-static void
-impl_multithreaded_unmanaged_afw_pool_free_memory_internal(
-    AFW_POOL_SELF_T *self,
-    void *address,
-    afw_xctx_t *xctx);
-
-#define impl_afw_pool_free_memory_internal \
-    impl_multithreaded_unmanaged_afw_pool_free_memory_internal
-
-static void
-impl_multithreaded_unmanaged_afw_pool_register_cleanup_before(
-    AFW_POOL_SELF_T *self,
-    void * data,
-    void * data2,
-    afw_pool_cleanup_function_p_t cleanup,
-    afw_xctx_t *xctx);
-
-#define impl_afw_pool_register_cleanup_before \
-    impl_multithreaded_unmanaged_afw_pool_register_cleanup_before
-
-static void
-impl_multithreaded_unmanaged_afw_pool_deregister_cleanup(
-    AFW_POOL_SELF_T *self,
-    void * data,
-    void * data2,
-    afw_pool_cleanup_function_p_t cleanup,
-    afw_xctx_t *xctx);
-
-#define impl_afw_pool_deregister_cleanup \
-    impl_multithreaded_unmanaged_afw_pool_deregister_cleanup
     
 #include "afw_pool_impl_declares.h"
 
@@ -577,7 +427,6 @@ static afw_pool_internal_self_t *
 impl_create(
     afw_pool_internal_self_t *parent,
     const afw_pool_inf_t *inf,
-    afw_boolean_t managed,
     afw_size_t instance_size,
     afw_xctx_t *xctx)
 {
@@ -585,13 +434,10 @@ impl_create(
     afw_pool_internal_self_t *self;
     afw_size_t size;
     afw_byte_t *mem;
-    afw_pool_internal_memory_block_prefix_t *block;
+    afw_pool_internal_memory_prefix_t *block;
 
-    size = instance_size;
-    if (managed) {
-        size += sizeof(afw_pool_internal_memory_block_prefix_t);
-    }
-    size = APR_ALIGN_DEFAULT(size);
+    size = APR_ALIGN_DEFAULT(
+        instance_size + sizeof(afw_pool_internal_memory_prefix_t));
 
     apr_pool_create(&apr_p, (parent) ? parent->apr_p : NULL);
     if (!apr_p) {
@@ -601,16 +447,11 @@ impl_create(
     if (!mem) {
         AFW_THROW_ERROR_Z(memory, "Unable to allocate pool", xctx);
     }
-    if (managed) {
-        self = (afw_pool_internal_self_t *)(mem +
-            sizeof(afw_pool_internal_memory_block_prefix_t));
-        block = (afw_pool_internal_memory_block_prefix_t *)mem;
-        block->p = (const afw_pool_t *)self;
-        block->size = size;
-    }
-    else {
-        self = (afw_pool_internal_self_t *)mem;
-    }
+    self = (afw_pool_internal_self_t *)(mem +
+        sizeof(afw_pool_internal_memory_prefix_t));
+    block = (afw_pool_internal_memory_prefix_t *)mem;
+    block->p = (const afw_pool_t *)self;
+    block->size = size;
     self->pub.inf = inf;
     self->apr_p = apr_p;
     self->parent = parent;
@@ -651,13 +492,13 @@ afw_pool_create(
     }
     
     inf = ((AFW_POOL_SELF_T *)parent)->thread
-        ? &afw_pool_managed_inf
-        : &afw_pool_multithreaded_managed_inf;
+        ? &impl_afw_pool_inf
+        : &impl_afw_pool_multithreaded_inf;
 
     /* Create skeleton pool stuct. */
     self = (AFW_POOL_SELF_T *)impl_create(
         (afw_pool_internal_self_t *)parent,
-        inf, true, sizeof(AFW_POOL_SELF_T), xctx);
+        inf, sizeof(AFW_POOL_SELF_T), xctx);
 
     IMPL_PRINT_DEBUG_INFO_FZ(minimal,
         "afw_pool_create " AFW_INTEGER_FMT,
@@ -683,8 +524,8 @@ afw_pool_create_subpool(
     self = (AFW_POOL_SELF_T *)
         afw_pool_calloc_type(parent, afw_pool_internal_self_t, xctx);
     self->pub.inf = ((AFW_POOL_SELF_T *)parent)->thread
-        ? &afw_pool_subpool_inf
-        : &afw_pool_multithreaded_subpool_inf;
+        ? &impl_afw_pool_subpool_inf
+        : &impl_afw_pool_multithreaded_subpool_inf;
     self->pool_number = afw_atomic_integer_increment(
         &((afw_environment_t *)xctx->env)->pool_number);
 
@@ -710,42 +551,6 @@ afw_pool_create_subpool(
 }
 
 
-AFW_DEFINE(const afw_pool_t *)
-afw_pool_create_unmanaged(
-    const afw_pool_t *parent, afw_xctx_t *xctx)
-{
-    AFW_POOL_SELF_T *self;
-    const afw_pool_inf_t *inf;
-
-    /* Parent is required. */
-    if (!parent) {
-        AFW_THROW_ERROR_Z(general, "Parent required", xctx);
-    }
-    
-    inf = ((AFW_POOL_SELF_T *)parent)->thread
-        ? &afw_pool_unmanaged_inf
-        : &afw_pool_multithreaded_unmanaged_inf;
-
-    /* Create skeleton pool stuct. */
-    self = (AFW_POOL_SELF_T *)impl_create(
-        (afw_pool_internal_self_t *)parent,
-        inf, false, sizeof(AFW_POOL_SELF_T), xctx);
-    self->reference_count = 1;
- 
-    /* If thread specific parent pool, this one is as well for same thread. */
-    if (((AFW_POOL_SELF_T *)parent)->thread) {
-        self->thread = xctx->thread;
-    }
-
-    IMPL_PRINT_DEBUG_INFO_FZ(minimal,
-        "afw_pool_create_unmanaged " AFW_INTEGER_FMT,
-        ((const AFW_POOL_SELF_T *)parent)->pool_number);
-
-    /* Return new pool. */
-    return &self->pub;
-}
-
-
 /* Create a new thread specific pool for xctx. */
 AFW_DEFINE(afw_thread_t *)
 afw_pool_internal_create_thread(
@@ -760,7 +565,7 @@ afw_pool_internal_create_thread(
     }
     /* Create skeleton pool stuct. */
     self = (AFW_POOL_SELF_T *)impl_create(
-        NULL, &afw_pool_managed_inf, true, sizeof(AFW_POOL_SELF_T), xctx);
+        NULL, &impl_afw_pool_inf, sizeof(AFW_POOL_SELF_T), xctx);
     self->reference_count = 1;
     thread = apr_pcalloc(self->apr_p, size);
     self->thread = thread;
@@ -779,7 +584,7 @@ afw_pool_internal_create_base_pool()
     apr_pool_t *apr_p;
     AFW_POOL_SELF_T *self;
     afw_byte_t *mem;
-    afw_pool_internal_memory_block_prefix_t *block;
+    afw_pool_internal_memory_prefix_t *block;
     afw_size_t size;
 
     /* Create new pool for environment and initial xctx. */
@@ -791,18 +596,18 @@ afw_pool_internal_create_base_pool()
     /* Allocate self with prefix and initialize. */
     size = APR_ALIGN_DEFAULT(
         sizeof(AFW_POOL_SELF_T) +
-        sizeof(afw_pool_internal_memory_block_prefix_t));
+        sizeof(afw_pool_internal_memory_prefix_t));
     mem = apr_pcalloc(apr_p, size);
     if (!mem) {
         return NULL;
     }
     self = (afw_pool_internal_self_t *)(mem +
-        sizeof(afw_pool_internal_memory_block_prefix_t));
-    block = (afw_pool_internal_memory_block_prefix_t *)mem;
+        sizeof(afw_pool_internal_memory_prefix_t));
+    block = (afw_pool_internal_memory_prefix_t *)mem;
     block->p = (const afw_pool_t *)self;
     block->size = size;
     self->name = afw_s_base;
-    self->pub.inf = &afw_pool_multithreaded_managed_inf;
+    self->pub.inf = &impl_afw_pool_multithreaded_inf;
     self->apr_p = apr_p;
     self->pool_number = 1;
     self->reference_count = 1;
@@ -816,17 +621,17 @@ afw_pool_free_memory(
     void *address,
     afw_xctx_t *xctx)
 {
-    const afw_pool_t *p;
+    afw_pool_internal_memory_prefix_t *block;
 
     if (!address) {
         return;
     }
 
-    p = (const afw_pool_t *)((char *)address - sizeof(afw_pool_t *));
+    block = AFW_POOL_INTERNAL_MEMORY_PREFIX(address);
 
     /* Might want to detect if p appears to be a valid pool. */
 
-    afw_pool_free_memory_internal(p, address, xctx);   
+    afw_pool_free_memory_internal(block->p, address, xctx);   
 }
 
 
@@ -953,24 +758,8 @@ impl_afw_pool_calloc(
 {
     void *result;
 
-    IMPL_PRINT_DEBUG_INFO_FZ(detail,
-        "afw_pool_calloc " AFW_SIZE_T_FMT,
-        size);
-
-    /* Don't allow allocate for a size of 0. */
-    if (size == 0) {
-        AFW_THROW_ERROR_Z(general,
-            "Attempt to allocate memory for a size of 0",
-            xctx);
-    }
-
-    result = apr_pcalloc(self->apr_p, size);
-    self->bytes_allocated += size;
-
-    if (!result) {
-        AFW_THROW_ERROR_Z(memory, "Allocate memory error", xctx);
-    }
-
+    result = impl_afw_pool_malloc(self, size, xctx);
+    memset(result, 0, size);
     return result;
 }
 
@@ -983,10 +772,13 @@ impl_afw_pool_malloc(
     afw_size_t size,
     afw_xctx_t *xctx)
 {
+    afw_byte_t *mem;
+    afw_pool_internal_memory_prefix_t *block;
+    afw_size_t size_with_block;
     void *result;
 
     IMPL_PRINT_DEBUG_INFO_FZ(detail,
-        "afw_pool_malloc " AFW_SIZE_T_FMT,
+        "afw_pool_*alloc " AFW_SIZE_T_FMT,
         size);
 
     /* Don't allow allocate for a size of 0. */
@@ -996,7 +788,13 @@ impl_afw_pool_malloc(
             xctx);
     }
 
-    result = apr_palloc(self->apr_p, size);
+    size_with_block = APR_ALIGN_DEFAULT(
+        size + sizeof(afw_pool_internal_memory_prefix_t));
+    mem = apr_palloc(self->apr_p, size_with_block);
+    result = mem + sizeof(afw_pool_internal_memory_prefix_t);
+    block = (afw_pool_internal_memory_prefix_t *)mem;
+    block->p = (const afw_pool_t *)self;
+    block->size = size_with_block;
     self->bytes_allocated += size;
 
     if (!result) {
@@ -1121,71 +919,6 @@ void afw_pool_print_debug_info(
 
 }
 
-/* --------------------------- managed implementations ---------------------- */
-
-void *
-impl_managed_afw_pool_calloc(
-    AFW_POOL_SELF_T *self,
-    afw_size_t size,
-    afw_xctx_t *xctx)
-{
-    void *result;
-
-    result = impl_managed_afw_pool_malloc(self, size, xctx);
-    memset(result, 0, size);
-    return result;
-}
-
-
-static void *
-impl_managed_afw_pool_malloc(
-    AFW_POOL_SELF_T *self,
-    afw_size_t size,
-    afw_xctx_t *xctx)
-{
-    afw_byte_t *mem;
-    afw_pool_internal_memory_block_prefix_t *block;
-    afw_size_t size_with_block;
-    void *result;
-
-    IMPL_PRINT_DEBUG_INFO_FZ(detail,
-        "afw_pool_*alloc " AFW_SIZE_T_FMT,
-        size);
-
-    /* Don't allow allocate for a size of 0. */
-    if (size == 0) {
-        AFW_THROW_ERROR_Z(general,
-            "Attempt to allocate memory for a size of 0",
-            xctx);
-    }
-
-    size_with_block = APR_ALIGN_DEFAULT(
-        size + sizeof(afw_pool_internal_memory_block_prefix_t));
-    mem = apr_palloc(self->apr_p, size_with_block);
-    result = mem + sizeof(afw_pool_internal_memory_block_prefix_t);
-    block = (afw_pool_internal_memory_block_prefix_t *)mem;
-    block->p = (const afw_pool_t *)self;
-    block->size = size_with_block;
-    self->bytes_allocated += size;
-
-    if (!result) {
-        AFW_THROW_ERROR_Z(memory, "Allocate memory error", xctx);
-    }
-
-    return result;
-}
-
-
-static void
-impl_managed_afw_pool_free_memory_internal(
-    AFW_POOL_SELF_T *self,
-    void *address,
-    afw_xctx_t *xctx)
-{
-    
-}
-
-
 /* --------------------------- subpool implementations ------------------------ */
 
 void
@@ -1227,7 +960,7 @@ impl_subpool_afw_pool_free_memory_internal(
 }
 
 
-/* ----------------------------multithreaded managed implementations -------- */
+/* ----------------------------multithreaded implementations -------- */
 
 void
 impl_multithreaded_afw_pool_release(
@@ -1287,7 +1020,7 @@ impl_multithreaded_afw_pool_calloc(
     void *result;
 
     IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
-        result = impl_managed_afw_pool_calloc(self, size, xctx);
+        result = impl_afw_pool_calloc(self, size, xctx);
     }
     IMPL_MULTITHREADED_LOCK_END;
 
@@ -1303,7 +1036,7 @@ impl_multithreaded_afw_pool_malloc(
     void *result;
 
     IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
-        result = impl_managed_afw_pool_malloc(self, size, xctx);
+        result = impl_afw_pool_malloc(self, size, xctx);
     }
     IMPL_MULTITHREADED_LOCK_END;
 
@@ -1317,7 +1050,7 @@ impl_multithreaded_afw_pool_free_memory_internal(
     afw_xctx_t *xctx)
 {
     IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
-        impl_managed_afw_pool_free_memory_internal(self, address, xctx);
+        impl_afw_pool_free_memory_internal(self, address, xctx);
     }
     IMPL_MULTITHREADED_LOCK_END;
 }
@@ -1473,130 +1206,4 @@ impl_multithreaded_subpool_afw_pool_deregister_cleanup(
     }
     IMPL_MULTITHREADED_LOCK_END;
 
-}
-
-
-/* ----------------------------multithreaded unmanaged implementations ------ */
-
-void
-impl_multithreaded_unmanaged_afw_pool_release(
-    AFW_POOL_SELF_T *self,
-    afw_xctx_t *xctx)
-{
-    IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
-        impl_afw_pool_release(self, xctx);
-    }
-    IMPL_MULTITHREADED_LOCK_END;
-}
-
-void
-impl_multithreaded_unmanaged_afw_pool_get_reference(
-    AFW_POOL_SELF_T *self,
-    afw_xctx_t *xctx)
-{
-    IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
-        impl_afw_pool_get_reference(self, xctx);
-    }
-    IMPL_MULTITHREADED_LOCK_END;
-}
-
-void
-impl_multithreaded_unmanaged_afw_pool_destroy(
-    AFW_POOL_SELF_T *self,
-    afw_xctx_t *xctx)
-{
-    IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
-        impl_afw_pool_destroy(self, xctx);
-    }
-    IMPL_MULTITHREADED_LOCK_END;
-}
-
-
-apr_pool_t *
-impl_multithreaded_unmanaged_afw_pool_get_apr_pool(
-    AFW_POOL_SELF_T *self)
-{
-    apr_pool_t *result;
-
-    //FIXME IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
-        result = impl_afw_pool_get_apr_pool(self);
-    //FIXME }
-    //FIXME MPL_MULTITHREADED_LOCK_END;
-
-    return result;
-}
-
-
-void *
-impl_multithreaded_unmanaged_afw_pool_calloc(
-    AFW_POOL_SELF_T *self,
-    afw_size_t size,
-    afw_xctx_t *xctx)
-{
-    void *result;
-
-    IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
-        result = impl_afw_pool_calloc(self, size, xctx);
-    }
-    IMPL_MULTITHREADED_LOCK_END;
-
-    return result;
-}
-
-void *
-impl_multithreaded_unmanaged_afw_pool_malloc(
-    AFW_POOL_SELF_T *self,
-    afw_size_t size,
-    afw_xctx_t *xctx)
-{
-    void *result;
-
-    IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
-        result = impl_afw_pool_malloc(self, size, xctx);
-    }
-    IMPL_MULTITHREADED_LOCK_END;
-
-    return result;
-}
-   
-void
-impl_multithreaded_unmanaged_afw_pool_free_memory_internal(
-    AFW_POOL_SELF_T *self,
-    void *address,
-    afw_xctx_t *xctx)
-{
-    IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
-        impl_afw_pool_free_memory_internal(self, address, xctx);
-    }
-    IMPL_MULTITHREADED_LOCK_END;
-}
-
-void
-impl_multithreaded_unmanaged_afw_pool_register_cleanup_before(
-    AFW_POOL_SELF_T *self,
-    void * data,
-    void * data2,
-    afw_pool_cleanup_function_p_t cleanup,
-    afw_xctx_t *xctx)
-{
-    IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
-        impl_afw_pool_register_cleanup_before(
-            self, data, data2, cleanup, xctx);
-    }
-    IMPL_MULTITHREADED_LOCK_END;
-}
-
-void
-impl_multithreaded_unmanaged_afw_pool_deregister_cleanup(
-    AFW_POOL_SELF_T *self,
-    void * data,
-    void * data2,
-    afw_pool_cleanup_function_p_t cleanup,
-    afw_xctx_t *xctx)
-{
-    IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
-        impl_afw_pool_deregister_cleanup(
-            self, data, data2, cleanup, xctx);
-    }
-    IMPL_MULTITHREADED_LOCK_END;
 }

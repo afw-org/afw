@@ -27,16 +27,23 @@
 
 AFW_BEGIN_DECLARES
 
-typedef struct afw_pool_internal_memory_block_prefix_s
-afw_pool_internal_memory_block_prefix_t;
+typedef struct afw_pool_internal_memory_prefix_s
+afw_pool_internal_memory_prefix_t;
 
-/* This is the prefix of all blocks of memory, both allocated and free. */
-struct afw_pool_internal_memory_block_prefix_s {
+/*
+ * This is the prefix before each address returned by afw_pool_calloc()
+ * and afw_pool_malloc().
+ */
+struct afw_pool_internal_memory_prefix_s {
     afw_size_t size;
     const afw_pool_t *p;
     /* Allocated/free memory starts here. */
 };
 
+
+#define AFW_POOL_INTERNAL_MEMORY_PREFIX(address) \
+    (afw_pool_internal_memory_prefix_t *) \
+        (((char *)address) - sizeof(afw_pool_internal_memory_prefix_t))
 
 typedef struct afw_pool_internal_self_s
 afw_pool_internal_self_t;
@@ -82,7 +89,7 @@ struct afw_pool_internal_self_s {
      * This points to the head of the allocated memory in the pool except for
      * the unmanaged pool implementation.
      */
-    afw_pool_internal_memory_block_prefix_t *head_free_memory;
+    afw_pool_internal_memory_prefix_t *head_free_memory;
 
     /**
      * @brief Thread associated with a thread specific pool.
@@ -104,7 +111,7 @@ struct afw_pool_internal_subpool_self_s {
      * This points to the head of the allocated memory in the pool except for
      * the unmanaged pool implementation.
      */
-    afw_pool_internal_memory_block_prefix_t *head_allocated_memory;
+    afw_pool_internal_memory_prefix_t *head_allocated_memory;
 };
 
 
