@@ -64,6 +64,13 @@ impl_subpool_afw_pool_destroy(
 #define impl_afw_pool_destroy \
     impl_subpool_afw_pool_destroy
 
+static apr_pool_t *
+impl_subpool_afw_pool_get_apr_pool(
+    AFW_POOL_SELF_T * self);
+
+#define impl_afw_pool_get_apr_pool \
+    impl_subpool_afw_pool_get_apr_pool
+
 static void *
 impl_subpool_afw_pool_calloc(
     AFW_POOL_SELF_T *self,
@@ -95,6 +102,7 @@ impl_subpool_afw_pool_free_memory_internal(
 #undef AFW_IMPLEMENTATION_ID
 #undef AFW_IMPLEMENTATION_INF_LABEL
 #undef impl_afw_pool_destroy
+#undef impl_afw_pool_get_apr_pool
 #undef impl_afw_pool_calloc
 #undef impl_afw_pool_malloc
 #undef impl_afw_pool_free_memory_internal
@@ -437,24 +445,30 @@ impl_create(
     afw_byte_t *mem;
     afw_pool_internal_memory_prefix_t *block;
 
-    size = (allocate_from_parent)
-        ? sizeof(afw_pool_internal_self_t)
-        : sizeof(afw_pool_internal_self_with_free_memory_head_t);
+    if (allocate_from_parent) {
+        if (!parent) {
+            AFW_THROW_ERROR_Z(general, "Parent required", xctx);
+        }
+        size = sizeof(afw_pool_internal_self_t);
+        apr_p = parent->apr_p;
+    }
+    else {
+        size = sizeof(afw_pool_internal_self_with_free_memory_head_t);
+        apr_pool_create(&apr_p, (parent) ? parent->apr_p : NULL);
+        if (!apr_p) {
+            AFW_THROW_ERROR_Z(memory, "Unable to allocate pool", xctx);
+        }
+        mem = apr_pcalloc(apr_p, size);
+        if (!mem) {
+            AFW_THROW_ERROR_Z(memory, "Unable to allocate memory for pool", xctx);
+        }
+    }
 
     size += (prefix_with_links)
         ? sizeof(afw_pool_internal_memory_prefix_with_links_t)
         : sizeof(afw_pool_internal_memory_prefix_t);
-
     size = APR_ALIGN_DEFAULT(size);
 
-    apr_pool_create(&apr_p, (parent) ? parent->apr_p : NULL);
-    if (!apr_p) {
-        AFW_THROW_ERROR_Z(memory, "Unable to allocate pool", xctx);
-    }
-    mem = apr_pcalloc(apr_p, size);
-    if (!mem) {
-        AFW_THROW_ERROR_Z(memory, "Unable to allocate memory for pool", xctx);
-    }
     if (prefix_with_links) {
         self = (afw_pool_internal_self_t *)(mem +
             sizeof(afw_pool_internal_memory_prefix_with_links_t));
@@ -477,10 +491,7 @@ impl_create(
 
     /* Subpools allocate from parent. */
     if (allocate_from_parent) {
-        if (!parent) {
-            AFW_THROW_ERROR_Z(general, "Parent required", xctx);
-        }
-        self->free_memory_head = parent->free_memory_head;
+         self->free_memory_head = parent->free_memory_head;
     }
     else {
         self->free_memory_head =
@@ -759,18 +770,11 @@ apr_pool_t *
 impl_afw_pool_get_apr_pool(
     AFW_POOL_SELF_T * self)
 {
-    int rv;
-
-    if (!self->apr_p) {
-        rv = apr_pool_create(&self->apr_p,
-            (self->parent) ? self->parent->apr_p : NULL);
-        if (rv != APR_SUCCESS) {
-            /** @fixme do something. */
-            //rv = 0/0;
-        }
+    if (!self->public_apr_p) {
+        self->public_apr_p = self->apr_p;
     }
 
-    return self->apr_p;
+    return self->public_apr_p;
 }
 
 /*
@@ -953,6 +957,26 @@ impl_subpool_afw_pool_destroy(
     afw_xctx_t *xctx)
 {
     
+}
+
+
+apr_pool_t *
+impl_subpool_afw_pool_get_apr_pool(
+    AFW_POOL_SELF_T * self)
+{
+    int rv;
+    apr_pool_t *parent_apr_p;
+
+    if (!self->public_apr_p) {
+        parent_apr_p = afw_pool_get_apr_pool((const afw_pool_t *)self->parent);
+        rv = apr_pool_create(&self->public_apr_p, parent_apr_p);
+        if (rv != APR_SUCCESS) {
+            /** @fixme do something. */
+            //rv = 0/0;
+        }
+    }
+
+    return self->public_apr_p;
 }
 
 
@@ -1153,7 +1177,7 @@ impl_multithreaded_subpool_afw_pool_get_apr_pool(
     apr_pool_t *result;
 
     //FIXME IMPL_MULTITHREADED_LOCK_BEGIN(xctx) {
-        result = impl_afw_pool_get_apr_pool(self);
+        result = impl_subpool_afw_pool_get_apr_pool(self);
     //FIXME }
     //FIXME MPL_MULTITHREADED_LOCK_END;
 

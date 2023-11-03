@@ -98,8 +98,17 @@ struct afw_pool_internal_self_s {
     /** @brief Unique number for pool. */
     afw_integer_t pool_number;
 
-    /** @brief Associated apr pool or NULL if it has not been created. */
+    /** @brief Associated apr pool. This might be the same a parent's. */
     apr_pool_t *apr_p;
+
+    /**
+     * @brief Public apr pool or NULL if not exposed yet.
+     * 
+     * This is set the first time when afw_pool_get_apr_pool() is called.
+     * If this pool allocates from parent, a new pool is created if needed. If
+     * not, public_apr_p is set to apr_p.
+     */
+    apr_pool_t *public_apr_p;
 
     /** @brief Optional pool name. */
     const afw_utf8_t *name;
