@@ -83,6 +83,7 @@ typedef struct afw_pool_internal_free_memory_head_s
 afw_pool_internal_free_memory_head_t;
 
 struct afw_pool_internal_free_memory_head_s {
+    /** @todo Have several heads for common sizes. */
     afw_pool_internal_free_memory_t *first;
     /* Put in multiple troughs of different sizes. */
 };

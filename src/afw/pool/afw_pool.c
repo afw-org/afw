@@ -458,16 +458,17 @@ impl_create(
         if (!apr_p) {
             AFW_THROW_ERROR_Z(memory, "Unable to allocate pool", xctx);
         }
-        mem = apr_pcalloc(apr_p, size);
-        if (!mem) {
-            AFW_THROW_ERROR_Z(memory, "Unable to allocate memory for pool", xctx);
-        }
     }
 
     size += (prefix_with_links)
         ? sizeof(afw_pool_internal_memory_prefix_with_links_t)
         : sizeof(afw_pool_internal_memory_prefix_t);
     size = APR_ALIGN_DEFAULT(size);
+
+    mem = apr_pcalloc(apr_p, size);
+    if (!mem) {
+        AFW_THROW_ERROR_Z(memory, "Unable to allocate memory for pool", xctx);
+    }
 
     if (prefix_with_links) {
         self = (afw_pool_internal_self_t *)(mem +
@@ -672,6 +673,65 @@ afw_pool_free_memory(
 }
 
 
+static void
+impl_pool_alloc(
+    afw_byte_t **address,
+    afw_size_t *actual_size,
+    AFW_POOL_SELF_T *self,
+    afw_size_t size,
+    afw_xctx_t *xctx)
+{
+    afw_pool_internal_free_memory_t *prev;
+    afw_pool_internal_free_memory_t *curr;
+    afw_pool_internal_free_memory_t *new_block;
+
+    *actual_size = APR_ALIGN_DEFAULT(size);
+
+    /** @todo Support more than one free chain for sizes. */
+    /* Just do first fit for now. */
+    curr = NULL;
+    prev = NULL;
+    if (self->free_memory_head) {
+        for (curr = self->free_memory_head->first;
+            curr && curr->size < *actual_size;
+            prev = curr, curr = curr->next);
+    }
+
+    if (curr) {
+        if (curr->size - *actual_size < sizeof(afw_pool_internal_free_memory_t))
+        {
+            /* Just use the whole block. */
+            if (!prev) {
+                self->free_memory_head->first = curr->next;
+            }
+            else {
+                prev->next = curr->next;
+            }
+        }
+        else {
+            /* Split the block. */
+            new_block = (afw_pool_internal_free_memory_t *)
+                (((char *)curr) + *actual_size);
+            new_block->size = curr->size - *actual_size;
+            new_block->next = curr->next;
+            if (!prev) {
+                self->free_memory_head->first = new_block;
+            }
+            else {
+                prev->next = new_block;
+            }
+        }
+    }
+    else {
+        curr = apr_palloc(self->apr_p, *actual_size);
+        if (!curr) {
+            AFW_THROW_ERROR_Z(memory, "Allocate memory error", xctx);
+        }
+    }
+
+    *address = (afw_byte_t *)curr;
+}
+
 /*
  * Implementation of method release for interface afw_pool.
  */
@@ -805,6 +865,7 @@ impl_afw_pool_malloc(
     afw_byte_t *mem;
     afw_pool_internal_memory_prefix_t *block;
     afw_size_t size_with_block;
+    afw_size_t actual_size;
     void *result;
 
     IMPL_PRINT_DEBUG_INFO_FZ(detail,
@@ -820,16 +881,13 @@ impl_afw_pool_malloc(
 
     size_with_block = APR_ALIGN_DEFAULT(
         size + sizeof(afw_pool_internal_memory_prefix_t));
-    mem = apr_palloc(self->apr_p, size_with_block);
+
+    impl_pool_alloc(&mem, &actual_size, self, size_with_block, xctx);
     result = mem + sizeof(afw_pool_internal_memory_prefix_t);
     block = (afw_pool_internal_memory_prefix_t *)mem;
     block->p = (const afw_pool_t *)self;
-    block->size = size_with_block;
+    block->size = actual_size;
     self->bytes_allocated += size;
-
-    if (!result) {
-        AFW_THROW_ERROR_Z(memory, "Allocate memory error", xctx);
-    }
 
     return result;
 }
@@ -986,7 +1044,11 @@ impl_subpool_afw_pool_calloc(
     afw_size_t size,
     afw_xctx_t *xctx)
 {
-    return NULL;
+    void *result;
+
+    result = impl_subpool_afw_pool_malloc(self, size, xctx);
+    memset(result, 0, size);
+    return result;
 }
 
 
@@ -996,7 +1058,38 @@ impl_subpool_afw_pool_malloc(
     afw_size_t size,
     afw_xctx_t *xctx)
 {
-    return NULL;
+    afw_byte_t *mem;
+    afw_pool_internal_memory_prefix_with_links_t *block;
+    afw_size_t size_with_block;
+    afw_size_t actual_size;
+    void *result;
+
+    IMPL_PRINT_DEBUG_INFO_FZ(detail,
+        "afw_pool_*alloc " AFW_SIZE_T_FMT,
+        size);
+
+    /* Don't allow allocate for a size of 0. */
+    if (size == 0) {
+        AFW_THROW_ERROR_Z(general,
+            "Attempt to allocate memory for a size of 0",
+            xctx);
+    }
+
+    size_with_block = APR_ALIGN_DEFAULT(
+        size + sizeof(afw_pool_internal_memory_prefix_with_links_t));
+
+    impl_pool_alloc(&mem, &actual_size, self, size_with_block, xctx);
+    result = mem + sizeof(afw_pool_internal_memory_prefix_with_links_t);
+    block = (afw_pool_internal_memory_prefix_with_links_t *)mem;
+    block->common.p = (const afw_pool_t *)self;
+    block->common.size = actual_size;
+    self->first_allocated_memory->prev = block;
+    block->next = self->first_allocated_memory;
+    block->prev = NULL;
+    self->first_allocated_memory = block;
+    self->bytes_allocated += size;
+
+    return result;
 }
 
 
