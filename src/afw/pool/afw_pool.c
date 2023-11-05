@@ -384,8 +384,27 @@ do { \
 
 #endif
 
+static afw_size_t impl_free_block_index_map[] = {
+#define XX(num) num,
+    AFW_POOL_INTERNAL_BLOCK_SIZE_MAP(XX)
+#undef XX
+    0
+};
 
+static int
+impl_get_free_block_index(
+    afw_size_t size)
+{
+    int i;
 
+    for (i = 0;
+        size <= impl_free_block_index_map[i] ||
+        impl_free_block_index_map[i] == 0;
+        i++);
+
+    return i;
+}
+ 
 static void
 impl_add_child(
     afw_pool_internal_self_t *parent,
@@ -684,6 +703,7 @@ impl_pool_alloc(
     afw_pool_internal_free_memory_t *prev;
     afw_pool_internal_free_memory_t *curr;
     afw_pool_internal_free_memory_t *new_block;
+    int i;
 
     *actual_size = APR_ALIGN_DEFAULT(size);
 
@@ -691,6 +711,10 @@ impl_pool_alloc(
     /* Just do first fit for now. */
     curr = NULL;
     prev = NULL;
+
+    i = impl_get_free_block_index(*actual_size);
+    i = i; /* FIXME Finish. */
+
     if (self->free_memory_head) {
         for (curr = self->free_memory_head->first;
             curr && curr->size < *actual_size;
@@ -730,6 +754,13 @@ impl_pool_alloc(
     }
 
     *address = (afw_byte_t *)curr;
+
+//#define __AFW_DEBUG_POOL_ALLOC_SIZE_
+#ifdef __AFW_DEBUG_POOL_ALLOC_SIZE_
+FILE *x = fopen("/tmp/afw_pool_alloc_size.txt", "a");
+fprintf(x, AFW_SIZE_T_FMT "\n", *actual_size);
+fclose(x);
+#endif
 }
 
 /*
