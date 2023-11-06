@@ -80,47 +80,11 @@ struct afw_pool_internal_free_memory_s {
 };
 
 
-/*
- * There are multiple free blocks lists for different free memory sizes. Sizes
- * greater then the highest free block size will be in the final free block list
- * that requires additional overhead that involves searching for adjacent free
- * memory.
- *
- * The following numbers were picked during development to cover more than 85%
- * of allocations during tests at that time. They can be adjust if needed. You
- * can do the following to get some information tha can help decide.
- *
- *  1) rm /tmp/afw_pool_alloc_size.txt
- *  2) Uncomment the //#define __AFW_DEBUG_POOL_ALLOC_SIZE_ line in
- *     impl_pool_alloc() and compile. Make sure to change it back after this.
- *  3) Run afwdev test -j plus start afwfcgi and retrieve a few objects or
- *     whatever you want to profile the allocations.
- *  4) Run script to get allocation sizes:
- *     $AFW_SRC_DIR/src/afw/pool/afw_pool_alloc_size.sh
- *  5) Pick the sizes that cover the most allocations.
- *
- */
-#define AFW_POOL_INTERNAL_BLOCK_SIZE_MAP(XX)                                  \
-    XX(24)                                                                     \
-    XX(32)                                                                     \
-    XX(40)                                                                     \
-    XX(56)                                                                     \
-    XX(64)                                                                     \
-
-typedef enum {
-#define XX(num) afw_pool_internal_free_block_size_ ## num,
-    AFW_POOL_INTERNAL_BLOCK_SIZE_MAP(XX)
-#undef XX
-    afw_pool_internal_free_block_size_remaining
-} afw_pool_internal_free_block_size_index_enum_t;
-
 typedef struct afw_pool_internal_free_memory_head_s
 afw_pool_internal_free_memory_head_t;
 /* @brief The head of each free memory free_block. */
 struct afw_pool_internal_free_memory_head_s {
     afw_pool_internal_free_memory_t *first; /* This will go away. */
-    afw_pool_internal_free_memory_t *free_block
-        [afw_pool_internal_free_block_size_remaining + 1];
 };
 
 typedef struct afw_pool_internal_self_s
