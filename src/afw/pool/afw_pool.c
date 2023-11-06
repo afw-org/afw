@@ -639,7 +639,6 @@ impl_free_memory(
     if (curr && ((char *)curr) == ((char *)freeing) + size) {
         freeing->size += curr->size;
         freeing->next = curr->next;
-        curr = curr->next;
         if (prev) {
             prev->next = freeing;
         }
@@ -907,6 +906,39 @@ impl_subpool_afw_pool_destroy(
 {
     afw_pool_internal_memory_prefix_with_links_t *memory;
     afw_pool_internal_memory_prefix_with_links_t *next;
+    afw_pool_internal_self_t *child;
+    afw_pool_cleanup_t *e;
+
+    IMPL_PRINT_DEBUG_INFO_Z(minimal, "afw_pool_destroy");
+
+    /*
+     * Call all of the cleanup routines for this pool before releasing children.
+     */
+    for (e = self->first_cleanup; e; e = e->next_cleanup) {
+        e->cleanup(e->data, e->data2, &self->pub, xctx);
+    }
+
+    /*
+     * Release children.
+     *
+     * Release of child sets self->first_child to its next sibling.
+     */
+    for (child = self->first_child;
+        child;
+        child = self->first_child)
+    {
+        afw_pool_release(&child->pub, xctx);
+    }
+
+    /* If parent, removed self as child. */
+    if (self->parent) {
+        impl_remove_as_child(self->parent, self, xctx);
+    }
+   
+    /* If public apr pool made for this subpool, destroy it. */
+    if (self->public_apr_p) {
+        apr_pool_destroy(self->public_apr_p);
+    }
 
     /* Return all allocated memory to the parent. */
     for (memory = self->first_allocated_memory;
@@ -988,9 +1020,11 @@ impl_subpool_afw_pool_malloc(
     block = (afw_pool_internal_memory_prefix_with_links_t *)mem;
     block->common.p = (const afw_pool_t *)self;
     block->common.size = actual_size;
-    self->first_allocated_memory->prev = block;
-    block->next = self->first_allocated_memory;
     block->prev = NULL;
+    block->next = self->first_allocated_memory;
+    if (self->first_allocated_memory) {
+        self->first_allocated_memory->prev = block;
+    }
     self->first_allocated_memory = block;
     self->bytes_allocated += size;
 

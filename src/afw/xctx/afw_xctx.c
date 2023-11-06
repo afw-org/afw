@@ -632,7 +632,7 @@ afw_xctx_scope_create(
             xctx);
     }
     
-    p = afw_pool_create(xctx->p, xctx);
+    p = afw_pool_create_subpool(xctx->p, xctx);
     scope = afw_pool_calloc(p,
         (
             sizeof(afw_xctx_scope_t) + // Size of struct.
