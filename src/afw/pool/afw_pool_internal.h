@@ -154,6 +154,8 @@ struct afw_pool_internal_self_s {
 
     /**
      * @brief Free memory head.
+     * 
+     * For subpool implementations, this is the same as the parent's.
      */
     afw_pool_internal_free_memory_head_t *free_memory_head;
 };
@@ -196,7 +198,8 @@ afw_pool_internal_create_thread(
     afw_xctx_t *xctx);
 
 
-void afw_pool_print_debug_info(
+AFW_DECLARE_INTERNAL(void)
+afw_pool_print_debug_info(
     int indent,
     const afw_pool_t *pool,
     afw_xctx_t *xctx);

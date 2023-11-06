@@ -523,9 +523,20 @@ impl_create(
     return self;
 }
 
-
+/*
+ * This finds the the first free memory block that is large enough to hold
+ * the requested size.
+ * 
+ * The size is always rounded up using APR_ALIGN_DEFAULT and will always be
+ * increased to at least the size of a afw_pool_internal_free_memory_t struct.
+ *
+ * If the block is larger than the requested size, the
+ * block is split and the remainder remains on free memory chain. If there is
+ * no block large enough, a new block of the requested size is allocated from
+ * the apr pool.
+ */
 static void
-impl_pool_alloc(
+impl_alloc_memory(
     afw_byte_t **address,
     afw_size_t *actual_size,
     AFW_POOL_SELF_T *self,
@@ -536,19 +547,22 @@ impl_pool_alloc(
     afw_pool_internal_free_memory_t *curr;
     afw_pool_internal_free_memory_t *new_block;
 
-    *actual_size = APR_ALIGN_DEFAULT(size);
+    *actual_size = APR_ALIGN_DEFAULT(
+        (size < sizeof(afw_pool_internal_free_memory_t))
+        ? sizeof(afw_pool_internal_free_memory_t)
+        : size
+    );
 
-    /** @todo Support more than one free chain for sizes. */
-    /* Just do first fit for now. */
+    /* Find the first free memory that fits. */
     curr = NULL;
     prev = NULL;
-
     if (self->free_memory_head) {
         for (curr = self->free_memory_head->first;
             curr && curr->size < *actual_size;
             prev = curr, curr = curr->next);
     }
 
+    /* If a free memory block found, use all or some of it. */
     if (curr) {
         if (curr->size - *actual_size < sizeof(afw_pool_internal_free_memory_t))
         {
@@ -574,6 +588,8 @@ impl_pool_alloc(
             }
         }
     }
+
+    /* If no free memory block found, allocate from apr pool. */
     else {
         curr = apr_palloc(self->apr_p, *actual_size);
         if (!curr) {
@@ -599,7 +615,44 @@ impl_free_memory(
     afw_size_t size,
     afw_xctx_t *xctx)
 {
-    
+    afw_pool_internal_free_memory_t *freeing;
+    afw_pool_internal_free_memory_t *prev;
+    afw_pool_internal_free_memory_t *curr;
+
+    freeing = (afw_pool_internal_free_memory_t *)address;
+    freeing->next = NULL;
+    freeing->size = size;
+
+    /* If this is first freed, set freeing as first and return. */
+    curr = self->free_memory_head->first;
+    if (!curr) {
+        self->free_memory_head->first = freeing;
+        return;
+    }
+
+    /* Find place in free chain with higher address. */
+    for (prev = NULL;
+        curr && curr < freeing;
+        prev = curr, curr = curr->next);
+
+    /* If freeing adjacent to curr, combine. */
+    if (curr && ((char *)curr) == ((char *)freeing) + size) {
+        freeing->size += curr->size;
+        freeing->next = curr->next;
+        curr = curr->next;
+        if (prev) {
+            prev->next = freeing;
+        }
+        else {
+            self->free_memory_head->first = freeing;
+        }
+    }
+
+    /* If freeing adjacent to prev, combine. */
+    if (prev && ((char *)prev) + prev->size == ((char *)freeing)) {
+        prev->size += freeing->size;
+        prev->next = freeing->next;
+     }
 }
 
 
@@ -737,7 +790,7 @@ impl_afw_pool_malloc(
 {
     afw_byte_t *mem;
     afw_pool_internal_memory_prefix_t *block;
-    afw_size_t size_with_block;
+    afw_size_t size_with_prefix;
     afw_size_t actual_size;
     void *result;
 
@@ -752,10 +805,9 @@ impl_afw_pool_malloc(
             xctx);
     }
 
-    size_with_block = APR_ALIGN_DEFAULT(
-        size + sizeof(afw_pool_internal_memory_prefix_t));
+    size_with_prefix = size + sizeof(afw_pool_internal_memory_prefix_t);
 
-    impl_pool_alloc(&mem, &actual_size, self, size_with_block, xctx);
+    impl_alloc_memory(&mem, &actual_size, self, size_with_prefix, xctx);
     result = mem + sizeof(afw_pool_internal_memory_prefix_t);
     block = (afw_pool_internal_memory_prefix_t *)mem;
     block->p = (const afw_pool_t *)self;
@@ -846,47 +898,6 @@ impl_afw_pool_deregister_cleanup(
 }
 
 
-void afw_pool_print_debug_info(
-    int indent,
-    const afw_pool_t *pool,
-    afw_xctx_t *xctx)
-{
-    const AFW_POOL_SELF_T *self = (const AFW_POOL_SELF_T *)pool;
-
-    for (int i = 0; i < indent; i++) {
-        printf("  ");
-    }
-
-    printf(
-        "pool " AFW_INTEGER_FMT " " AFW_SIZE_T_FMT " refs " AFW_INTEGER_FMT
-        " parent " AFW_INTEGER_FMT "\n",
-        self->pool_number,
-        (self->bytes_allocated),
-        (self->reference_count),
-        self->parent->pool_number
-        );
-
-    // for (int i = 0; i < indent; i++) {
-    //     printf("  ");
-    // }
-    // printf("Siblings:\n");
-    // for (const AFW_POOL_SELF_T *sibling = self->next_sibling;
-    //     sibling;
-    //     sibling = sibling->next_sibling)
-    // {
-    //     afw_pool_print_debug_info(indent + 2, &sibling->pub, xctx);
-    // }
-
-    for (
-        const afw_pool_internal_self_t *child = self->first_child;
-        child;
-        child = child->next_sibling)
-    {
-        afw_pool_print_debug_info(indent + 2, &child->pub, xctx);
-    }
-
-}
-
 /* --------------------------- subpool implementations ---------------------- */
 
 void
@@ -954,7 +965,7 @@ impl_subpool_afw_pool_malloc(
 {
     afw_byte_t *mem;
     afw_pool_internal_memory_prefix_with_links_t *block;
-    afw_size_t size_with_block;
+    afw_size_t size_with_prefix;
     afw_size_t actual_size;
     void *result;
 
@@ -969,10 +980,10 @@ impl_subpool_afw_pool_malloc(
             xctx);
     }
 
-    size_with_block = APR_ALIGN_DEFAULT(
-        size + sizeof(afw_pool_internal_memory_prefix_with_links_t));
+    size_with_prefix =
+        size + sizeof(afw_pool_internal_memory_prefix_with_links_t);
 
-    impl_pool_alloc(&mem, &actual_size, self, size_with_block, xctx);
+    impl_alloc_memory(&mem, &actual_size, self, size_with_prefix, xctx);
     result = mem + sizeof(afw_pool_internal_memory_prefix_with_links_t);
     block = (afw_pool_internal_memory_prefix_with_links_t *)mem;
     block->common.p = (const afw_pool_t *)self;
@@ -1262,6 +1273,7 @@ impl_multithreaded_subpool_afw_pool_deregister_cleanup(
 
 /* ---------------------------- extern functions ---------------------------- */
 
+
 AFW_DEFINE(const afw_pool_t *)
 afw_pool_create(
     const afw_pool_t *parent, afw_xctx_t *xctx)
@@ -1413,4 +1425,48 @@ afw_pool_free_memory(
     /* Might want to detect if p appears to be a valid pool. */
 
     afw_pool_free_memory_internal(block->p, address, xctx);   
+}
+
+
+
+AFW_DEFINE_INTERNAL(void)
+afw_pool_print_debug_info(
+    int indent,
+    const afw_pool_t *pool,
+    afw_xctx_t *xctx)
+{
+    const AFW_POOL_SELF_T *self = (const AFW_POOL_SELF_T *)pool;
+
+    for (int i = 0; i < indent; i++) {
+        printf("  ");
+    }
+
+    printf(
+        "pool " AFW_INTEGER_FMT " " AFW_SIZE_T_FMT " refs " AFW_INTEGER_FMT
+        " parent " AFW_INTEGER_FMT "\n",
+        self->pool_number,
+        (self->bytes_allocated),
+        (self->reference_count),
+        self->parent->pool_number
+        );
+
+    // for (int i = 0; i < indent; i++) {
+    //     printf("  ");
+    // }
+    // printf("Siblings:\n");
+    // for (const AFW_POOL_SELF_T *sibling = self->next_sibling;
+    //     sibling;
+    //     sibling = sibling->next_sibling)
+    // {
+    //     afw_pool_print_debug_info(indent + 2, &sibling->pub, xctx);
+    // }
+
+    for (
+        const afw_pool_internal_self_t *child = self->first_child;
+        child;
+        child = child->next_sibling)
+    {
+        afw_pool_print_debug_info(indent + 2, &child->pub, xctx);
+    }
+
 }
