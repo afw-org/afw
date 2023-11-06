@@ -27,11 +27,70 @@
 
 AFW_BEGIN_DECLARES
 
-typedef struct afw_pool_internal_common_self_s
-afw_pool_internal_common_self_t;
+typedef struct afw_pool_internal_memory_prefix_s
+afw_pool_internal_memory_prefix_t;
+
+/**
+ * @brief Memory prefix
+ * 
+ * This is the prefix before each address returned by afw_pool_calloc()
+ * and afw_pool_malloc() for implementations that do not keep a chain of
+ * allocated memory.
+ */
+struct afw_pool_internal_memory_prefix_s {
+    afw_size_t size;
+    const afw_pool_t *p;
+    /* Allocated/free memory starts here. */
+};
+
+#define AFW_POOL_INTERNAL_MEMORY_PREFIX(address) \
+    (afw_pool_internal_memory_prefix_t *) \
+    (((char *)address) - sizeof(afw_pool_internal_memory_prefix_t))
+
+typedef struct afw_pool_internal_memory_prefix_with_links_s
+afw_pool_internal_memory_prefix_with_links_t;
+
+/*
+ * @brief Memory prefix with links
+ *
+ * This is the prefix before each address returned by afw_pool_calloc()
+ * and afw_pool_malloc() for implementations that keep up with a chain of
+ * allocated memory like the subpool* implementations.
+ */
+struct afw_pool_internal_memory_prefix_with_links_s {
+    afw_pool_internal_memory_prefix_with_links_t *prev;
+    afw_pool_internal_memory_prefix_with_links_t *next;
+    /* Common prefix must always be at end. */
+    afw_pool_internal_memory_prefix_t common;
+    /* Allocated/free memory starts here. */
+};
+
+#define AFW_POOL_INTERNAL_MEMORY_PREFIX_WITH_LINKS(address) \
+    (afw_pool_internal_memory_prefix_with_links_t *) \
+    (((char *)address) - sizeof(afw_pool_internal_memory_prefix_with_links_t))
 
 
-struct afw_pool_internal_common_self_s {
+typedef struct afw_pool_internal_free_memory_s
+afw_pool_internal_free_memory_t;
+
+struct afw_pool_internal_free_memory_s {
+    afw_pool_internal_free_memory_t *next;
+    afw_size_t size;
+    /* Free memory starts here. */
+};
+
+
+typedef struct afw_pool_internal_free_memory_head_s
+afw_pool_internal_free_memory_head_t;
+/* @brief The head of each free memory free_block. */
+struct afw_pool_internal_free_memory_head_s {
+    afw_pool_internal_free_memory_t *first; /* This will go away. */
+};
+
+typedef struct afw_pool_internal_self_s
+afw_pool_internal_self_t;
+
+struct afw_pool_internal_self_s {
 
     afw_pool_t pub;
 
@@ -39,58 +98,40 @@ struct afw_pool_internal_common_self_s {
     /** @brief Unique number for pool. */
     afw_integer_t pool_number;
 
-    /** @brief Associated apr pool or NULL if it has not been created. */
+    /** @brief Associated apr pool. This might be the same a parent's. */
     apr_pool_t *apr_p;
+
+    /**
+     * @brief Public apr pool or NULL if not exposed yet.
+     * 
+     * This is set the first time when afw_pool_get_apr_pool() is called.
+     * If this pool allocates from parent, a new pool is created if needed. If
+     * not, public_apr_p is set to apr_p.
+     */
+    apr_pool_t *public_apr_p;
 
     /** @brief Optional pool name. */
     const afw_utf8_t *name;
 
     /** @brief Parent pool of this pool. */
-    afw_pool_internal_common_self_t *parent;
+    afw_pool_internal_self_t *parent;
 
     /* @brief First subpool of this pool. */
-    afw_pool_internal_common_self_t * AFW_ATOMIC first_child;
+    afw_pool_internal_self_t *first_child;
 
     /* @brief Next sibling of this pool. */
-    afw_pool_internal_common_self_t * AFW_ATOMIC next_sibling;
+    afw_pool_internal_self_t *next_sibling;
+
+    /**
+     * @brief Thread associated with a thread specific pool.
+     *
+     * If this is not NULL, this pool is thread specific and can only be
+     * accessed by this thread.
+     */
+    const afw_thread_t *thread;
 
     /** @brief First cleanup function. */
     afw_pool_cleanup_t *first_cleanup;
-};
-
-
-
-typedef struct afw_pool_internal_multithreaded_self_s
-afw_pool_internal_multithreaded_self_t;
-
-
-struct afw_pool_internal_multithreaded_self_s {
-
-    /* Common for both pool types. */
-    afw_pool_internal_common_self_t common;
-
-    /**
-     * @brief Pools reference count.
-     *
-     * This starts at 1 on create and is incremented and decremented
-     * by afw_pool_get_reference() and afw_pool_release().
-     */
-    AFW_ATOMIC afw_integer_t reference_count;
-
-    /** @brief Bytes allocated via afw_pool_malloc()/afw_pool_calloc(). */
-    AFW_ATOMIC afw_size_t bytes_allocated;
-
-};
-
-
-typedef struct afw_pool_internal_singlethreaded_self_s
-afw_pool_internal_singlethreaded_self_t;
-
-
-struct afw_pool_internal_singlethreaded_self_s {
-
-    /* Common for both pool types. */
-    afw_pool_internal_common_self_t common;
 
     /**
      * @brief Pools reference count.
@@ -104,36 +145,32 @@ struct afw_pool_internal_singlethreaded_self_s {
     afw_size_t bytes_allocated;
 
     /**
-     * @brief Thread associated with a thread specific pool.
-     *
-     * If this is not NULL, this pool is thread specific and can only be
-     * accessed by this thread.
+     * @brief First allocated memory.
+     * 
+     * This will be NULL if implementation does not keep up with allocated
+     * memory.
      */
-    const afw_thread_t *thread;
+    afw_pool_internal_memory_prefix_with_links_t *first_allocated_memory;
+
+    /**
+     * @brief Free memory head.
+     * 
+     * For subpool implementations, this is the same as the parent's.
+     */
+    afw_pool_internal_free_memory_head_t *free_memory_head;
 };
 
 
-AFW_DECLARE_INTERNAL(void)
-afw_pool_internal_add_child(
-    afw_pool_internal_common_self_t *parent,
-    afw_pool_internal_common_self_t *child, afw_xctx_t *xctx);
+typedef struct afw_pool_internal_self_with_free_memory_head_s
+afw_pool_internal_self_with_free_memory_head_t;
+struct afw_pool_internal_self_with_free_memory_head_s {
 
+    afw_pool_internal_self_t common;
 
-AFW_DECLARE_INTERNAL(void)
-afw_pool_internal_remove_as_child(
-    afw_pool_internal_common_self_t *parent,
-    afw_pool_internal_common_self_t *child,
-    afw_xctx_t *xctx);
+    /* Don't assess this directly. Use free_memory_head pointer instead. */
+    afw_pool_internal_free_memory_head_t memory_for_free_memory_head;
+};
 
-
-/* Create skeleton pool struct. */
-AFW_DECLARE_INTERNAL(afw_pool_internal_common_self_t *)
-afw_pool_internal_create(
-    afw_pool_internal_common_self_t *parent,
-    const afw_pool_inf_t *inf,
-    afw_size_t instance_size,
-    afw_xctx_t *xctx);
- 
 
 /**
  * @internal
@@ -148,7 +185,7 @@ afw_pool_internal_create_base_pool();
 
 /**
  * @internal
- * @brief Create thread struct in new thread specific pool with p  set.
+ * @brief Create thread struct in new thread specific pool with p set.
  * @param size of thread struct or -1 if sizeof(afw_thread_t) should be used.
  * @param xctx of caller.
  * @return new thread struct with p set.
@@ -161,83 +198,12 @@ afw_pool_internal_create_thread(
     afw_xctx_t *xctx);
 
 
-void afw_pool_print_debug_info(
+AFW_DECLARE_INTERNAL(void)
+afw_pool_print_debug_info(
     int indent,
     const afw_pool_t *pool,
     afw_xctx_t *xctx);
 
-
-
-#ifdef AFW_POOL_DEBUG
-
-#define AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_Z(level,info_z)
-#define AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_FZ(level,format_z,...)
-
-#else
-
-#define AFW_POOL_INTERNAL_DEBUG_LEVEL_detail  flag_index_debug_pool_detail
-#define AFW_POOL_INTERNAL_DEBUG_LEVEL_minimal flag_index_debug_pool
-
-#define AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_Z(level,info_z) \
-do { \
-    const afw_utf8_t *trace; \
-    if (afw_flag_is_active( \
-        xctx->env->AFW_POOL_INTERNAL_DEBUG_LEVEL_##level, xctx)) \
-    { \
-        trace = afw_os_backtrace(0, -1, xctx); \
-        afw_debug_write_fz(NULL, AFW__FILE_LINE__, xctx, \
-            "pool " AFW_INTEGER_FMT " " \
-            info_z \
-            ": before " AFW_SIZE_T_FMT \
-            " refs " AFW_INTEGER_FMT \
-            " parent " AFW_INTEGER_FMT \
-            " " AFW_IMPLEMENTATION_ID " " \
-            "%s" \
-            AFW_UTF8_FMT, \
-            self->common.pool_number, \
-            (self->bytes_allocated), \
-            (self->reference_count), \
-            (afw_integer_t)((self->common.parent) \
-                ? self->common.parent->pool_number : \
-                0), \
-            (char *)((trace) ? "\n" : ""), \
-            (int)((trace) ? (int)trace->len : 0), \
-            (const char *)((trace) ? (const char *)trace->s : "") \
-            ); \
-    } \
-} while (0) \
-
-#define AFW_POOL_INTERNAL_PRINT_DEBUG_INFO_FZ(level,format_z,...) \
-do { \
-    const afw_utf8_t *trace; \
-    if (afw_flag_is_active( \
-        xctx->env->AFW_POOL_INTERNAL_DEBUG_LEVEL_##level, xctx)) \
-    { \
-        trace = afw_os_backtrace(0, -1, xctx); \
-        afw_debug_write_fz(NULL, AFW__FILE_LINE__, xctx, \
-            "pool " AFW_INTEGER_FMT " " \
-            format_z \
-            ": before " AFW_SIZE_T_FMT \
-            " refs " AFW_INTEGER_FMT \
-            " parent " AFW_INTEGER_FMT \
-            " " AFW_IMPLEMENTATION_ID " " \
-            "%s" \
-            AFW_UTF8_FMT, \
-            self->common.pool_number, \
-            __VA_ARGS__, \
-            (self->bytes_allocated), \
-            (self->reference_count), \
-            (afw_integer_t)((self->common.parent) \
-                ? self->common.parent->pool_number \
-                : 0), \
-            (char *)((trace) ? "\n" : ""), \
-            (int)((trace) ? (int)trace->len : 0), \
-            (const char *)((trace) ? (const char *)trace->s : "") \
-            ); \
-    } \
-} while (0) \
-
-#endif
 
 AFW_END_DECLARES
 

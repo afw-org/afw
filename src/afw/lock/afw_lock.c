@@ -37,7 +37,7 @@ impl_lock_destroy(
 
 /* Create a lock. */
 AFW_DEFINE(const afw_lock_t *)
-afw_lock_create_environment_lock(
+afw_lock_create_environment_nested_lock(
     const afw_utf8_t *lock_id,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
@@ -54,7 +54,7 @@ afw_lock_create_environment_lock(
         ? lock_id
         : afw_s_a_empty_string;
     rv = apr_thread_mutex_create(&self->mutex,
-        APR_THREAD_MUTEX_UNNESTED, afw_pool_get_apr_pool(p));
+        APR_THREAD_MUTEX_NESTED, afw_pool_get_apr_pool(p));
     if (rv != APR_SUCCESS) {
         AFW_THROW_ERROR_RV_FZ(general, apr, rv, xctx,
             AFW_UTF8_FMT_Q

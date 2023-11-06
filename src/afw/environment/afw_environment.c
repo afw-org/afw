@@ -374,7 +374,7 @@ afw_environment_create(
 
     /* Create multithreaded pool lock. */
     env->pub.multithreaded_pool_lock =
-        afw_lock_create_environment_lock(
+        afw_lock_create_environment_nested_lock(
             afw_s_a_lock_multithreaded_pool, p, xctx);
 
     /* Create environment lock. */
