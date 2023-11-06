@@ -665,16 +665,7 @@ impl_afw_pool_release(
     AFW_POOL_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    /* If instance is NULL, just return. */
-    /** @fixme This should probably go away. */
-    if (!self) {
-        return;
-    }
-
     IMPL_PRINT_DEBUG_INFO_Z(minimal, "afw_pool_release");
-
-    //printf("pool " AFW_INTEGER_FMT " release refs " AFW_SIZE_T_FMT "\n",
-    //    self->pool_number, self->reference_count);
 
     /* Decrement reference count and release pools resources if zero. */
     if (--(self->reference_count) == 0) {
@@ -691,11 +682,6 @@ impl_afw_pool_get_reference(
     AFW_POOL_SELF_T *self,
     afw_xctx_t *xctx)
 {
-    /* If instance is NULL, just return. */
-    if (!self) {
-        return;
-    }
-
     IMPL_PRINT_DEBUG_INFO_Z(minimal, "afw_pool_get_reference");
 
     /* Decrement reference count. */
@@ -712,11 +698,6 @@ impl_afw_pool_destroy(
 {
     afw_pool_internal_self_t *child;
     afw_pool_cleanup_t *e;
-
-    /* If instance is NULL, just return. */
-    if (!self) {
-        return;
-    }
 
     IMPL_PRINT_DEBUG_INFO_Z(minimal, "afw_pool_destroy");
 
