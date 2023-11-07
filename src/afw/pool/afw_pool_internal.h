@@ -94,7 +94,6 @@ struct afw_pool_internal_self_s {
 
     afw_pool_t pub;
 
-    /*NOTE: Keep pool_number just after pub for debugging. */
     /** @brief Unique number for pool. */
     afw_integer_t pool_number;
 
@@ -181,21 +180,6 @@ struct afw_pool_internal_self_with_free_memory_head_s {
  */
 AFW_DECLARE(const afw_pool_t *)
 afw_pool_internal_create_base_pool();
-
-
-/**
- * @internal
- * @brief Create thread struct in new thread specific pool with p set.
- * @param size of thread struct or -1 if sizeof(afw_thread_t) should be used.
- * @param xctx of caller.
- * @return new thread struct with p set.
- *
- * This should only be called from afw_thread_create().
- */
-AFW_DECLARE(afw_thread_t *)
-afw_pool_internal_create_thread(
-    afw_size_t size,
-    afw_xctx_t *xctx);
 
 
 AFW_DECLARE_INTERNAL(void)

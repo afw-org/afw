@@ -1355,7 +1355,7 @@ afw_pool_create_subpool(
 
 /* Create a new thread specific pool for xctx. */
 AFW_DEFINE(afw_thread_t *)
-afw_pool_internal_create_thread(
+afw_pool_create_thread(
     afw_size_t size,
     afw_xctx_t *xctx)
 {
@@ -1377,7 +1377,7 @@ afw_pool_internal_create_thread(
     thread->p = (const afw_pool_t *)self;
 
     IMPL_PRINT_DEBUG_INFO_FZ(minimal,
-        "afw_pool_internal_create_thread " AFW_SIZE_T_FMT,
+        "afw_pool_create_thread " AFW_SIZE_T_FMT,
         size);
 
     return thread;

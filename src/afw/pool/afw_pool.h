@@ -49,7 +49,6 @@ struct afw_pool_cleanup_s {
 };
 
 
-
 /**
  * @brief Create a new pool.
  * @param parent of new pool.
@@ -86,14 +85,36 @@ afw_pool_create(
  * @return new pool.
  *
  * This creates a subpool of a parent pool. Memory is allocated from the parent
- * pool. When memory is freed in the subpool or it is destroyed, the freed
- * memory is returned to the parent pool.
+ * pool. When memory is freed in the subpool or the subpool is destroyed, the
+ * freed memory is returned to the parent pool.
+ * 
+ * Subpool's have a small amount of overhead per allocation as well as overhead
+ * when the subpool is destroyed but they can be useful in situations where
+ * the subpool will most often hold a small number of allocations that will
+ * usually total less than 4k. Externally, subpool are used the same as a pool.
+ * 
+ * This function is used by afw_xctx_scope_create() to create a unique subpool
+ * for each xctx scope with a parent pool of xctx->p.
  */
 AFW_DECLARE(const afw_pool_t *)
 afw_pool_create_subpool(
     const afw_pool_t *parent, 
     afw_xctx_t *xctx);
 
+
+/**
+ * @brief Create thread struct in new thread specific pool with p set.
+ * @param size of thread struct or -1 if sizeof(afw_thread_t) should be used.
+ * @param xctx of caller.
+ * @return new thread struct with p set.
+ *
+ * This function may be enhanced at a future time, but at this point it should
+ * be considered internal and only called from afw_thread_create().
+ */
+AFW_DECLARE(afw_thread_t *)
+afw_pool_create_thread(
+    afw_size_t size,
+    afw_xctx_t *xctx);
 
 
 /**
