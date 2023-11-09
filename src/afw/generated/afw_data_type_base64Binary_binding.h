@@ -74,7 +74,7 @@ afw_value_unmanaged_base64Binary_inf;
  * The lifetime of the value is managed by reference.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
-afw_value_managed_base64Binary_inf;
+afw_value_referenced_base64Binary_inf;
 
 /**
  * @brief Permanent managed (life of afw environment) value inf for data type base64Binary.
@@ -162,7 +162,7 @@ AFW_DECLARE(const afw_memory_t *)
 afw_value_as_base64Binary(const afw_value_t *value, afw_xctx_t *xctx);
 
 /**
- * @brief Allocate function for managed data type base64Binary value.
+ * @brief Allocate function for reference data type base64Binary value.
  * @param ptr place to put pointer to allocated memory for internal->s.
  * @param size of memory to allocate for internal->s.
  * @param xctx of caller.
@@ -172,7 +172,7 @@ afw_value_as_base64Binary(const afw_value_t *value, afw_xctx_t *xctx);
  * Set *ptr for the specified size to the bytes of the value.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_alloc_base64Binary(
+afw_value_alloc_referenced_base64Binary(
     const afw_byte_t **ptr,
     afw_size_t size,
     afw_xctx_t *xctx);
@@ -187,18 +187,18 @@ AFW_DECLARE(afw_value_base64Binary_t *)
 afw_value_allocate_base64Binary(const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**
- * @brief Create function for managed data type base64Binary value.
+ * @brief Create function for referenced data type base64Binary value.
  * @param internal.
  * @param p to use for returned value.
  * @param xctx of caller.
  * @return Created const afw_value_t *.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_create_base64Binary(const afw_memory_t * internal,
+afw_value_create_referenced_base64Binary(const afw_memory_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**
- * @brief Create function for managed data type base64Binary slice value.
+ * @brief Create function for referenced data type base64Binary slice value.
  * @param containing_value with a cType of 'afw_memory_t'.
  * @param offset in contain value's internal.
  * @param size of slice.
@@ -209,7 +209,7 @@ afw_value_create_base64Binary(const afw_memory_t * internal,
  * Set *ptr for the specified size to the bytes of the value.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_create_base64Binary_slice(
+afw_value_create_referenced_base64Binary_slice(
     const afw_value_t *containing_value,
     afw_size_t offset,
     afw_size_t size,

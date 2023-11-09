@@ -74,7 +74,7 @@ afw_value_unmanaged_unevaluated_inf;
  * The lifetime of the value is managed by reference.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
-afw_value_managed_unevaluated_inf;
+afw_value_referenced_unevaluated_inf;
 
 /**
  * @brief Permanent managed (life of afw environment) value inf for data type unevaluated.
@@ -162,7 +162,7 @@ AFW_DECLARE(const afw_value_t *)
 afw_value_as_unevaluated(const afw_value_t *value, afw_xctx_t *xctx);
 
 /**
- * @brief Allocate function for managed data type unevaluated value.
+ * @brief Allocate function for referenced data type unevaluated value.
  * @param internal place to put pointer to internal of value.
  * @param xctx of caller.
  * @return Allocated afw_value_t with appropriate inf set.
@@ -171,7 +171,7 @@ afw_value_as_unevaluated(const afw_value_t *value, afw_xctx_t *xctx);
  * 'const afw_value_t *' internal value before using.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_alloc_unevaluated(
+afw_value_alloc_referenced_unevaluated(
     const afw_value_t * **internal,
     afw_xctx_t *xctx);
 
@@ -185,14 +185,14 @@ AFW_DECLARE(afw_value_unevaluated_t *)
 afw_value_allocate_unevaluated(const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**
- * @brief Create function for managed data type unevaluated value.
+ * @brief Create function for referenced data type unevaluated value.
  * @param internal.
  * @param p to use for returned value.
  * @param xctx of caller.
  * @return Created const afw_value_t *.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_create_unevaluated(const afw_value_t * internal,
+afw_value_create_referenced_unevaluated(const afw_value_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**

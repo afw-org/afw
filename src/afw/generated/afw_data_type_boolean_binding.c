@@ -26,9 +26,9 @@
 #include "afw_runtime_object_maps.h"
 #include "afw_value_internal.h"
 
-/* Declaration for method optional_release for managed value. */
+/* Declaration for method optional_release for referenced value. */
 AFW_DECLARE_STATIC(void)
-impl_afw_value_managed_optional_release(
+impl_afw_value_referenced_optional_release(
     const afw_value_t *instance,
     afw_xctx_t *xctx);
 
@@ -41,9 +41,9 @@ impl_afw_value_unmanaged_get_reference(
     afw_xctx_t *xctx);
 
 
-/* Declaration for method get_reference for managed value. */
+/* Declaration for method get_reference for referenced value. */
 AFW_DECLARE_STATIC(const afw_value_t *)
-impl_afw_value_managed_get_reference(
+impl_afw_value_referenced_get_reference(
     const afw_value_t *instance,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
@@ -90,12 +90,12 @@ impl_afw_value_permanent_get_reference(
 #undef impl_afw_value_clone_or_reference
 
 /* Declares and rti/inf defines for interface afw_value */
-/* This is the inf for managed boolean values. For this one */
+/* This is the inf for referenced boolean values. For this one */
 /* optional_release releases value and get_reference returns new reference. */
-#define AFW_IMPLEMENTATION_ID "managed_boolean"
-#define AFW_IMPLEMENTATION_INF_LABEL afw_value_managed_boolean_inf
-#define impl_afw_value_optional_release impl_afw_value_managed_optional_release
-#define impl_afw_value_clone_or_reference impl_afw_value_managed_get_reference
+#define AFW_IMPLEMENTATION_ID "referenced_boolean"
+#define AFW_IMPLEMENTATION_INF_LABEL afw_value_referenced_boolean_inf
+#define impl_afw_value_optional_release impl_afw_value_referenced_optional_release
+#define impl_afw_value_clone_or_reference impl_afw_value_referenced_get_reference
 #define AFW_VALUE_INF_ONLY 1
 #include "afw_value_impl_declares.h"
 #undef AFW_IMPLEMENTATION_ID
@@ -264,16 +264,16 @@ afw_value_allocate_boolean(const afw_pool_t *p, afw_xctx_t *xctx)
     return result;
 }
 
-/* Create function for managed data type boolean value. */
+/* Create function for referenced data type boolean value. */
 AFW_DEFINE(const afw_value_t *)
-afw_value_create_boolean(afw_boolean_t internal,
+afw_value_create_referenced_boolean(afw_boolean_t internal,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
     afw_value_boolean_t *v;
 
     v = afw_pool_calloc(p, sizeof(afw_value_boolean_t),
         xctx);
-    v->inf = &afw_value_managed_boolean_inf;
+    v->inf = &afw_value_referenced_boolean_inf;
     v->internal = internal;
     return &v->pub;
 }
@@ -381,9 +381,9 @@ afw_object_get_next_property_as_boolean_source(
     return (((const afw_value_boolean_t *)value)->internal);
 }
 
-/* Implementation of method optional_release for managed value. */
+/* Implementation of method optional_release for referenced value. */
 AFW_DECLARE_STATIC(void)
-impl_afw_value_managed_optional_release(
+impl_afw_value_referenced_optional_release(
     const afw_value_t *instance,
     afw_xctx_t *xctx)
 {
@@ -402,14 +402,14 @@ impl_afw_value_unmanaged_get_reference(
 }
 
 
-/* Implementation of method get_reference for managed value. */
+/* Implementation of method get_reference for referenced value. */
 AFW_DECLARE_STATIC(const afw_value_t *)
-impl_afw_value_managed_get_reference(
+impl_afw_value_referenced_get_reference(
     const afw_value_t *instance,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    /* For unmanaged value, just return the instance passed. */
+    /* For referenced value, FIXME. */
     return instance;
 }
 
@@ -421,7 +421,7 @@ impl_afw_value_permanent_get_reference(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    /* For unmanaged value, just return the instance passed. */
+    /* For permanent value, just return the instance passed. */
     return instance;
 }
 

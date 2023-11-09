@@ -146,7 +146,7 @@ impl_afw_value_permanent_get_reference(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    /* For unmanaged value, just return the instance passed. */
+    /* For permanent value, just return the instance passed. */
     return instance;
 }
 
