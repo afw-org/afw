@@ -176,7 +176,7 @@ afw_value_alloc_referenced_dateTime(
     afw_xctx_t *xctx);
 
 /**
- * @brief Allocate function for unmanaged data type dateTime value.
+ * @brief Allocate function for data type dateTime value.
  * @param p to use for returned value.
  * @param xctx of caller.
  * @return Allocated afw_value_dateTime_t with appropriate inf set.
@@ -196,7 +196,7 @@ afw_value_create_referenced_dateTime(const afw_dateTime_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**
- * @brief Create function for unmanaged data type dateTime value.
+ * @brief Create function for data type dateTime value.
  * @param internal.
  * @param p to use for returned value.
  * @param xctx of caller.

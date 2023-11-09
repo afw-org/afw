@@ -178,7 +178,7 @@ afw_value_alloc_referenced_xpathExpression(
     afw_xctx_t *xctx);
 
 /**
- * @brief Allocate function for unmanaged data type xpathExpression value.
+ * @brief Allocate function for data type xpathExpression value.
  * @param p to use for returned value.
  * @param xctx of caller.
  * @return Allocated afw_value_xpathExpression_t with appropriate inf set.
@@ -216,7 +216,7 @@ afw_value_create_referenced_xpathExpression_slice(
     afw_xctx_t *xctx);
 
 /**
- * @brief Create function for unmanaged data type xpathExpression value.
+ * @brief Create function for data type xpathExpression value.
  * @param internal.
  * @param p to use for returned value.
  * @param xctx of caller.

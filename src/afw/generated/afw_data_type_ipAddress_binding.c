@@ -33,7 +33,7 @@ impl_afw_value_referenced_optional_release(
     afw_xctx_t *xctx);
 
 
-/* Declaration for method get_reference for unmanaged value. */
+/* Declaration for method get_reference for value. */
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_get_reference(
     const afw_value_t *instance,
@@ -75,7 +75,7 @@ impl_afw_value_permanent_get_reference(
     (const void *)&afw_data_type_ipAddress_direct
 
 /* Declares and rti/inf defines for interface afw_value */
-/* This is the inf for unmanaged ipAddress values. For this one */
+/* This is the inf for ipAddress values. For this one */
 /* optional_release is NULL and get_reference returns new reference. */
 #define AFW_IMPLEMENTATION_ID "ipAddress"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
@@ -252,7 +252,7 @@ afw_value_as_ipAddress(const afw_value_t *value, afw_xctx_t *xctx)
     return &(((const afw_value_ipAddress_t *)value)->internal);
 }
 
-/* Allocate function for unmanaged data type ipAddress values. */
+/* Allocate function for data type ipAddress values. */
 AFW_DEFINE(afw_value_ipAddress_t *)
 afw_value_allocate_ipAddress(const afw_pool_t *p, afw_xctx_t *xctx)
 {
@@ -291,7 +291,7 @@ afw_value_create_referenced_ipAddress_slice(
     AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
 }
 
-/* Create function for unmanaged data type ipAddress value. */
+/* Create function for data type ipAddress value. */
 AFW_DEFINE(const afw_value_t *)
 afw_value_create_ipAddress(const afw_utf8_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx)
@@ -399,7 +399,7 @@ impl_afw_value_referenced_optional_release(
     /** @todo this needs to release reference of value or free it. */
 }
 
-/* Implementation of method get_reference for  unmanaged value. */
+/* Implementation of method get_reference for value. */
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_get_reference(
     const afw_value_t *instance,

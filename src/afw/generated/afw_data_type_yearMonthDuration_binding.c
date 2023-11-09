@@ -33,7 +33,7 @@ impl_afw_value_referenced_optional_release(
     afw_xctx_t *xctx);
 
 
-/* Declaration for method get_reference for unmanaged value. */
+/* Declaration for method get_reference for value. */
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_get_reference(
     const afw_value_t *instance,
@@ -75,7 +75,7 @@ impl_afw_value_permanent_get_reference(
     (const void *)&afw_data_type_yearMonthDuration_direct
 
 /* Declares and rti/inf defines for interface afw_value */
-/* This is the inf for unmanaged yearMonthDuration values. For this one */
+/* This is the inf for yearMonthDuration values. For this one */
 /* optional_release is NULL and get_reference returns new reference. */
 #define AFW_IMPLEMENTATION_ID "yearMonthDuration"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
@@ -252,7 +252,7 @@ afw_value_as_yearMonthDuration(const afw_value_t *value, afw_xctx_t *xctx)
     return &(((const afw_value_yearMonthDuration_t *)value)->internal);
 }
 
-/* Allocate function for unmanaged data type yearMonthDuration values. */
+/* Allocate function for data type yearMonthDuration values. */
 AFW_DEFINE(afw_value_yearMonthDuration_t *)
 afw_value_allocate_yearMonthDuration(const afw_pool_t *p, afw_xctx_t *xctx)
 {
@@ -280,7 +280,7 @@ afw_value_create_referenced_yearMonthDuration(const afw_yearMonthDuration_t * in
     return &v->pub;
 }
 
-/* Create function for unmanaged data type yearMonthDuration value. */
+/* Create function for data type yearMonthDuration value. */
 AFW_DEFINE(const afw_value_t *)
 afw_value_create_yearMonthDuration(const afw_yearMonthDuration_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx)
@@ -388,7 +388,7 @@ impl_afw_value_referenced_optional_release(
     /** @todo this needs to release reference of value or free it. */
 }
 
-/* Implementation of method get_reference for  unmanaged value. */
+/* Implementation of method get_reference for value. */
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_get_reference(
     const afw_value_t *instance,

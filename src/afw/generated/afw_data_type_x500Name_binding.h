@@ -178,7 +178,7 @@ afw_value_alloc_referenced_x500Name(
     afw_xctx_t *xctx);
 
 /**
- * @brief Allocate function for unmanaged data type x500Name value.
+ * @brief Allocate function for data type x500Name value.
  * @param p to use for returned value.
  * @param xctx of caller.
  * @return Allocated afw_value_x500Name_t with appropriate inf set.
@@ -216,7 +216,7 @@ afw_value_create_referenced_x500Name_slice(
     afw_xctx_t *xctx);
 
 /**
- * @brief Create function for unmanaged data type x500Name value.
+ * @brief Create function for data type x500Name value.
  * @param internal.
  * @param p to use for returned value.
  * @param xctx of caller.

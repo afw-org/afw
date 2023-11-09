@@ -178,7 +178,7 @@ afw_value_alloc_referenced_string(
     afw_xctx_t *xctx);
 
 /**
- * @brief Allocate function for unmanaged data type string value.
+ * @brief Allocate function for data type string value.
  * @param p to use for returned value.
  * @param xctx of caller.
  * @return Allocated afw_value_string_t with appropriate inf set.
@@ -216,7 +216,7 @@ afw_value_create_referenced_string_slice(
     afw_xctx_t *xctx);
 
 /**
- * @brief Create function for unmanaged data type string value.
+ * @brief Create function for data type string value.
  * @param internal.
  * @param p to use for returned value.
  * @param xctx of caller.

@@ -33,7 +33,7 @@ impl_afw_value_referenced_optional_release(
     afw_xctx_t *xctx);
 
 
-/* Declaration for method get_reference for unmanaged value. */
+/* Declaration for method get_reference for value. */
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_get_reference(
     const afw_value_t *instance,
@@ -75,7 +75,7 @@ impl_afw_value_permanent_get_reference(
     (const void *)&afw_data_type_relaxed_json_direct
 
 /* Declares and rti/inf defines for interface afw_value */
-/* This is the inf for unmanaged relaxed_json values. For this one */
+/* This is the inf for relaxed_json values. For this one */
 /* optional_release is NULL and get_reference returns new reference. */
 #define AFW_IMPLEMENTATION_ID "relaxed_json"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
@@ -252,7 +252,7 @@ afw_value_as_relaxed_json(const afw_value_t *value, afw_xctx_t *xctx)
     return &(((const afw_value_relaxed_json_t *)value)->internal);
 }
 
-/* Allocate function for unmanaged data type relaxed_json values. */
+/* Allocate function for data type relaxed_json values. */
 AFW_DEFINE(afw_value_relaxed_json_t *)
 afw_value_allocate_relaxed_json(const afw_pool_t *p, afw_xctx_t *xctx)
 {
@@ -291,7 +291,7 @@ afw_value_create_referenced_relaxed_json_slice(
     AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
 }
 
-/* Create function for unmanaged data type relaxed_json value. */
+/* Create function for data type relaxed_json value. */
 AFW_DEFINE(const afw_value_t *)
 afw_value_create_relaxed_json(const afw_utf8_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx)
@@ -399,7 +399,7 @@ impl_afw_value_referenced_optional_release(
     /** @todo this needs to release reference of value or free it. */
 }
 
-/* Implementation of method get_reference for  unmanaged value. */
+/* Implementation of method get_reference for value. */
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_get_reference(
     const afw_value_t *instance,

@@ -33,7 +33,7 @@ impl_afw_value_referenced_optional_release(
     afw_xctx_t *xctx);
 
 
-/* Declaration for method get_reference for unmanaged value. */
+/* Declaration for method get_reference for value. */
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_get_reference(
     const afw_value_t *instance,
@@ -75,7 +75,7 @@ impl_afw_value_permanent_get_reference(
     (const void *)&afw_data_type_double_direct
 
 /* Declares and rti/inf defines for interface afw_value */
-/* This is the inf for unmanaged double values. For this one */
+/* This is the inf for double values. For this one */
 /* optional_release is NULL and get_reference returns new reference. */
 #define AFW_IMPLEMENTATION_ID "double"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
@@ -252,7 +252,7 @@ afw_value_as_double(const afw_value_t *value, afw_xctx_t *xctx)
     return (((const afw_value_double_t *)value)->internal);
 }
 
-/* Allocate function for unmanaged data type double values. */
+/* Allocate function for data type double values. */
 AFW_DEFINE(afw_value_double_t *)
 afw_value_allocate_double(const afw_pool_t *p, afw_xctx_t *xctx)
 {
@@ -278,7 +278,7 @@ afw_value_create_referenced_double(double internal,
     return &v->pub;
 }
 
-/* Create function for unmanaged data type double value. */
+/* Create function for data type double value. */
 AFW_DEFINE(const afw_value_t *)
 afw_value_create_double(double internal,
     const afw_pool_t *p, afw_xctx_t *xctx)
@@ -390,7 +390,7 @@ impl_afw_value_referenced_optional_release(
     /** @todo this needs to release reference of value or free it. */
 }
 
-/* Implementation of method get_reference for  unmanaged value. */
+/* Implementation of method get_reference for value. */
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_get_reference(
     const afw_value_t *instance,

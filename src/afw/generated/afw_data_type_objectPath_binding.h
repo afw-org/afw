@@ -178,7 +178,7 @@ afw_value_alloc_referenced_objectPath(
     afw_xctx_t *xctx);
 
 /**
- * @brief Allocate function for unmanaged data type objectPath value.
+ * @brief Allocate function for data type objectPath value.
  * @param p to use for returned value.
  * @param xctx of caller.
  * @return Allocated afw_value_objectPath_t with appropriate inf set.
@@ -216,7 +216,7 @@ afw_value_create_referenced_objectPath_slice(
     afw_xctx_t *xctx);
 
 /**
- * @brief Create function for unmanaged data type objectPath value.
+ * @brief Create function for data type objectPath value.
  * @param internal.
  * @param p to use for returned value.
  * @param xctx of caller.

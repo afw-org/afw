@@ -176,7 +176,7 @@ afw_value_alloc_referenced_null(
     afw_xctx_t *xctx);
 
 /**
- * @brief Allocate function for unmanaged data type null value.
+ * @brief Allocate function for data type null value.
  * @param p to use for returned value.
  * @param xctx of caller.
  * @return Allocated afw_value_null_t with appropriate inf set.
@@ -196,7 +196,7 @@ afw_value_create_referenced_null(void * internal,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**
- * @brief Create function for unmanaged data type null value.
+ * @brief Create function for data type null value.
  * @param internal.
  * @param p to use for returned value.
  * @param xctx of caller.

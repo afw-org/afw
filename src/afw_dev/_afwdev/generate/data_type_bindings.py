@@ -317,7 +317,7 @@ def write_h_section(fd, prefix, obj):
             fd.write('    afw_xctx_t *xctx);\n')
 
         fd.write('\n/**\n')
-        fd.write(' * @brief Allocate function for unmanaged data type ' + id + ' value.\n')
+        fd.write(' * @brief Allocate function for data type ' + id + ' value.\n')
         fd.write(' * @param p to use for returned value.\n')
         fd.write(' * @param xctx of caller.\n')
         fd.write(' * @return Allocated afw_value_' + id + '_t with appropriate inf set.\n')
@@ -374,7 +374,7 @@ def write_h_section(fd, prefix, obj):
             fd.write('    afw_xctx_t *xctx);\n')
 
         fd.write('\n/**\n')
-        fd.write(' * @brief Create function for unmanaged data type ' + id + ' value.\n')
+        fd.write(' * @brief Create function for data type ' + id + ' value.\n')
         fd.write(' * @param internal.\n')
         fd.write(' * @param p to use for returned value.\n')
         fd.write(' * @param xctx of caller.\n')
@@ -666,7 +666,7 @@ def write_c_section(fd, prefix, obj):
         fd.write('\n')
         
         fd.write('\n')
-        fd.write('/* Declaration for method get_reference for unmanaged value. */\n')
+        fd.write('/* Declaration for method get_reference for value. */\n')
         fd.write('AFW_DECLARE_STATIC(const afw_value_t *)\n')
         fd.write('impl_afw_value_get_reference(\n')
         fd.write('    const afw_value_t *instance,\n')
@@ -714,7 +714,7 @@ def write_c_section(fd, prefix, obj):
     if not special:
 
         fd.write('\n/* Declares and rti/inf defines for interface afw_value */\n')
-        fd.write('/* This is the inf for unmanaged ' + id + ' values. For this one */\n')
+        fd.write('/* This is the inf for ' + id + ' values. For this one */\n')
         fd.write('/* optional_release is NULL and get_reference returns new reference. */\n')
         fd.write('#define AFW_IMPLEMENTATION_ID "' + id + '"\n')
         fd.write('#define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA\n')
@@ -994,7 +994,7 @@ def write_c_section(fd, prefix, obj):
         fd.write('    return ' + amp_if_needed + '(((const afw_value_' + id + '_t *)value)->internal);\n')
         fd.write('}\n')
 
-        fd.write('\n/* Allocate function for unmanaged data type ' + id + ' values. */\n')
+        fd.write('\n/* Allocate function for data type ' + id + ' values. */\n')
         fd.write(define + '(afw_value_' + id + '_t *)\n')
         fd.write('afw_value_allocate_' + id + '(const afw_pool_t *p, afw_xctx_t *xctx)\n')
         fd.write('{\n')
@@ -1048,7 +1048,7 @@ def write_c_section(fd, prefix, obj):
             fd.write('    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);\n')
             fd.write('}\n')
 
-        fd.write('\n/* Create function for unmanaged data type ' + id + ' value. */\n')
+        fd.write('\n/* Create function for data type ' + id + ' value. */\n')
         fd.write(define + '(const afw_value_t *)\n')
         fd.write('afw_value_create_' + id + '(' + return_type + ' internal,\n')
         fd.write('    const afw_pool_t *p, afw_xctx_t *xctx)\n')
@@ -1236,7 +1236,7 @@ def write_c_section(fd, prefix, obj):
         fd.write('}\n')
         
         fd.write('\n')
-        fd.write('/* Implementation of method get_reference for  unmanaged value. */\n')
+        fd.write('/* Implementation of method get_reference for value. */\n')
         fd.write('AFW_DECLARE_STATIC(const afw_value_t *)\n')
         fd.write('impl_afw_value_get_reference(\n')
         fd.write('    const afw_value_t *instance,\n')
