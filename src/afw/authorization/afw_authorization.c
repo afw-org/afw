@@ -24,7 +24,7 @@ AFW_UTF8_LITERAL("/afw/_AdaptivePolicyId_/notApplicable");
 
 static const afw_value_string_t
 impl_authorization_decision_id_action_id_control = {
-    {&afw_value_unmanaged_string_inf},
+    {&afw_value_string_inf},
     AFW_UTF8_LITERAL("control")
 };
 
@@ -35,7 +35,7 @@ afw_authorization_action_id_control =
 
 static const afw_value_string_t
 impl_authorization_decision_id_action_id_create = {
-    {&afw_value_unmanaged_string_inf},
+    {&afw_value_string_inf},
     AFW_UTF8_LITERAL("create")
 };
 
@@ -46,7 +46,7 @@ afw_authorization_action_id_create =
 
 static const afw_value_string_t
 impl_authorization_decision_id_action_id_delete = {
-    {&afw_value_unmanaged_string_inf},
+    {&afw_value_string_inf},
     AFW_UTF8_LITERAL("delete")
 };
 
@@ -57,7 +57,7 @@ afw_authorization_action_id_delete =
 
 static const afw_value_string_t
 impl_authorization_decision_id_action_id_modify = {
-    {&afw_value_unmanaged_string_inf},
+    {&afw_value_string_inf},
     AFW_UTF8_LITERAL("modify")
 };
 
@@ -68,7 +68,7 @@ afw_authorization_action_id_modify =
 
 static const afw_value_string_t
 impl_authorization_decision_id_action_id_query = {
-    {&afw_value_unmanaged_string_inf},
+    {&afw_value_string_inf},
     AFW_UTF8_LITERAL("query")
 };
 
@@ -78,7 +78,7 @@ afw_authorization_action_id_query =
 
 static const afw_value_string_t
 impl_authorization_decision_id_action_id_read = {
-    {&afw_value_unmanaged_string_inf},
+    {&afw_value_string_inf},
     AFW_UTF8_LITERAL("read")
 };
 
@@ -89,7 +89,7 @@ afw_authorization_action_id_read =
 
 static const afw_value_string_t
 impl_authorization_decision_id_deny_value = {
-    {&afw_value_unmanaged_string_inf},
+    {&afw_value_string_inf},
     AFW_UTF8_LITERAL("deny")
 };
 
@@ -100,7 +100,7 @@ afw_authorization_decision_id_deny_value =
 
 static const afw_value_string_t
 impl_authorization_decision_id_indeterminate_value = {
-    {&afw_value_unmanaged_string_inf},
+    {&afw_value_string_inf},
     AFW_UTF8_LITERAL("indeterminate")
 };
 
@@ -111,7 +111,7 @@ afw_authorization_decision_id_indeterminate_value =
 
 static const afw_value_string_t
 impl_authorization_decision_id_indeterminateD_value = {
-    {&afw_value_unmanaged_string_inf},
+    {&afw_value_string_inf},
     AFW_UTF8_LITERAL("indeterminateD")
 };
 
@@ -122,7 +122,7 @@ afw_authorization_decision_id_indeterminateD_value =
 
 static const afw_value_string_t
 impl_authorization_decision_id_indeterminateDP_value = {
-    {&afw_value_unmanaged_string_inf},
+    {&afw_value_string_inf},
     AFW_UTF8_LITERAL("indeterminateDP")
 };
 
@@ -133,7 +133,7 @@ afw_authorization_decision_id_indeterminateDP_value =
 
 static const afw_value_string_t
 impl_authorization_decision_id_indeterminateP_value = {
-    {&afw_value_unmanaged_string_inf},
+    {&afw_value_string_inf},
     AFW_UTF8_LITERAL("indeterminateP")
 };
 
@@ -144,7 +144,7 @@ afw_authorization_decision_id_indeterminateP_value =
 
 static const afw_value_string_t
 impl_authorization_decision_id_notApplicable_value = {
-    {&afw_value_unmanaged_string_inf},
+    {&afw_value_string_inf},
     AFW_UTF8_LITERAL("notApplicable")
 };
 
@@ -155,7 +155,7 @@ afw_authorization_decision_id_notApplicable_value =
 
 static const afw_value_string_t
 impl_authorization_decision_id_permit_value = {
-    {&afw_value_unmanaged_string_inf},
+    {&afw_value_string_inf},
     AFW_UTF8_LITERAL("permit")
 };
 
@@ -167,7 +167,7 @@ afw_authorization_decision_id_permit_value =
 
 static const afw_value_string_t
 impl_authorization_mode_id_core_value = {
-    {&afw_value_unmanaged_string_inf},
+    {&afw_value_string_inf},
     AFW_UTF8_LITERAL("core")
 };
 
@@ -178,7 +178,7 @@ afw_authorization_mode_id_core_value =
 
 static const afw_value_string_t
 impl_authorization_mode_id_intermediate_value = {
-    {&afw_value_unmanaged_string_inf},
+    {&afw_value_string_inf},
     AFW_UTF8_LITERAL("intermediate")
 };
 
@@ -189,7 +189,7 @@ afw_authorization_mode_id_intermediate_value =
 
 static const afw_value_string_t
 impl_authorization_mode_id_user_value = {
-    {&afw_value_unmanaged_string_inf},
+    {&afw_value_string_inf},
     AFW_UTF8_LITERAL("user")
 };
 
@@ -215,7 +215,7 @@ afw_context_cb_variable_meta_t
 impl_current_variable_meta_requestId =
 {
     &afw_self_s_requestId,
-    &afw_value_unmanaged_string_inf,
+    &afw_value_string_inf,
     &afw_data_type_string_direct,
     "Request Id"
 };
@@ -247,7 +247,7 @@ afw_context_cb_variable_meta_t
 impl_current_variable_meta_resourceId =
 {
     &afw_self_s_resourceId,
-    &afw_value_unmanaged_string_inf,
+    &afw_value_string_inf,
     &afw_data_type_string_direct,
     "Resource Id"
 };
@@ -279,7 +279,7 @@ afw_context_cb_variable_meta_t
 impl_current_variable_meta_object =
 {
     &afw_self_s_object,
-    &afw_value_unmanaged_object_inf,
+    &afw_value_object_inf,
     &afw_data_type_object_direct,
     "Object"
 };
@@ -311,7 +311,7 @@ afw_context_cb_variable_meta_t
 impl_current_variable_meta_actionId =
 {
     &afw_self_s_actionId,
-    &afw_value_unmanaged_string_inf,
+    &afw_value_string_inf,
     &afw_data_type_string_direct,
     "Action Id"
 };
@@ -397,7 +397,7 @@ afw_authorization_internal_set_control(
         false, afw_data_type_anyURI, 1, p, xctx);
     afw_object_set_property_as_array(not_applicable_object,
         afw_s_applicablePolicies, list, xctx);
-    self->not_applicable_result = afw_value_create_object_unmanaged(not_applicable_object, p, xctx);
+    self->not_applicable_result = afw_value_create_object(not_applicable_object, p, xctx);
 
     /* Return self. */
     return self;
@@ -699,7 +699,7 @@ afw_authorization_check(
         afw_object_set_property(obj, afw_s_decisionId,
             afw_authorization_decision_id_indeterminate_value,
             xctx);
-        result = afw_value_create_object_unmanaged(obj, p, xctx);
+        result = afw_value_create_object(obj, p, xctx);
         decision_id = afw_s_indeterminate;
         final_decider = current_decider;
 
@@ -758,7 +758,7 @@ afw_authorization_check(
                 action_id_value, xctx);
             afw_object_set_property(obj, afw_s_resourceId,
                 request_id_value, xctx);
-            result = afw_value_create_object_unmanaged(obj, p, xctx);
+            result = afw_value_create_object(obj, p, xctx);
 
             s = afw_value_as_string(action_id_value, xctx);
             s2 = afw_value_as_string(resource_id_value, xctx);
@@ -790,7 +790,7 @@ impl_actionId_cb(
     }
 
     if (!ctx->action_id_value.inf && ctx->action_id) {
-        ctx->action_id_value.inf = {&afw_value_unmanaged_string_inf};
+        ctx->action_id_value.inf = {&afw_value_string_inf};
         afw_memory_copy(&ctx->action_id_value.internal, ctx->action_id);
     }
     return &ctx->action_id_value.pub;
@@ -801,7 +801,7 @@ afw_context_cb_variable_meta_t
 impl_actionId_meta =
 {
     &afw_self_s_actionId,
-    {&afw_value_unmanaged_string_inf},
+    {&afw_value_string_inf},
     &afw_data_type_string_direct,
     "Action Id"
 };

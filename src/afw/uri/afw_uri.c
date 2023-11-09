@@ -1973,7 +1973,7 @@ afw_uri_parsed_to_object(
         for (;;) {
             afw_uri_parse_next_token(&parser, xctx);
             if (!parser.token.s) break;
-            value = afw_value_create_string_unmanaged(&parser.token, p, xctx);
+            value = afw_value_create_string(&parser.token, p, xctx);
             afw_array_add_value(list, value, xctx);
         }
         afw_object_set_property_as_array(result,
@@ -1994,7 +1994,7 @@ afw_uri_parsed_to_object(
         for (;;) {
             afw_uri_parse_next_token(&parser, xctx);
             if (!parser.token.s) break;
-            value = afw_value_create_string_unmanaged(&parser.token, p, xctx);
+            value = afw_value_create_string(&parser.token, p, xctx);
             afw_array_add_value(list, value, xctx);
         }
         afw_object_set_property_as_array(result,
@@ -2015,7 +2015,7 @@ afw_uri_parsed_to_object(
         for (;;) {
             afw_uri_parse_next_token(&parser, xctx);
             if (!parser.token.s) break;
-            value = afw_value_create_string_unmanaged(&parser.token, p, xctx);
+            value = afw_value_create_string(&parser.token, p, xctx);
             afw_array_add_value(list, value, xctx);
         }
         afw_object_set_property_as_array(result,

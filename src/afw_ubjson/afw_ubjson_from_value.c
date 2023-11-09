@@ -273,7 +273,7 @@ static void convert_bag_to_ubjson(
     const afw_value_bag_t * bag)
 {
     afw_size_t count;
-    afw_value_unmanaged_t *entry;
+    afw_value_common_t *entry;
     const afw_data_type_t *data_type;
     const char *value;
 
@@ -308,7 +308,7 @@ static void convert_bag_to_ubjson(
         convert_integer_to_ubjson(wa, count);
     }
 
-    entry = afw_value_unmanaged_allocate(bag->data_type,
+    entry = afw_value_common_allocate(bag->data_type,
         wa->p, wa->xctx);
     
     /* now we can traverse the values */

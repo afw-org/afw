@@ -126,7 +126,7 @@ afw_array_convert_to_array_of_strings(
                 xctx);
         }
         s = afw_data_type_internal_to_utf8(
-            data_type, &((const afw_value_unmanaged_t *)value)->internal,
+            data_type, &((const afw_value_common_t *)value)->internal,
             p, xctx);
         memcpy(internal, s, sizeof(afw_utf8_t));
     }
@@ -266,7 +266,7 @@ impl_afw_array_get_entry_value(
     if (impl_afw_array_get_entry_internal(instance,
         index, &data_type, &internal, xctx))
     {
-        result = afw_value_unmanaged_create(
+        result = afw_value_common_create(
             internal, data_type, p, xctx);
     }
 
@@ -373,7 +373,7 @@ impl_afw_array_get_next_value(
 
     /* If not past end, create a single value and increment iterator. */
     else {
-        result = afw_value_unmanaged_create(
+        result = afw_value_common_create(
             (self->indirect) ? *(void **)*iterator: (void *)*iterator,
             self->data_type,
             p, xctx);

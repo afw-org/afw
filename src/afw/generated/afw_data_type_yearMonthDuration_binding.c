@@ -26,24 +26,24 @@
 #include "afw_runtime_object_maps.h"
 #include "afw_value_internal.h"
 
-/* Declaration for method optional_release for managed value. */
+/* Declaration for method optional_release for referenced value. */
 AFW_DECLARE_STATIC(void)
-impl_afw_value_managed_optional_release(
+impl_afw_value_referenced_optional_release(
     const afw_value_t *instance,
     afw_xctx_t *xctx);
 
 
-/* Declaration for method get_reference for unmanaged value. */
+/* Declaration for method get_reference for value. */
 AFW_DECLARE_STATIC(const afw_value_t *)
-impl_afw_value_unmanaged_get_reference(
+impl_afw_value_get_reference(
     const afw_value_t *instance,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 
-/* Declaration for method get_reference for managed value. */
+/* Declaration for method get_reference for referenced value. */
 AFW_DECLARE_STATIC(const afw_value_t *)
-impl_afw_value_managed_get_reference(
+impl_afw_value_referenced_get_reference(
     const afw_value_t *instance,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
@@ -75,13 +75,13 @@ impl_afw_value_permanent_get_reference(
     (const void *)&afw_data_type_yearMonthDuration_direct
 
 /* Declares and rti/inf defines for interface afw_value */
-/* This is the inf for unmanaged yearMonthDuration values. For this one */
+/* This is the inf for yearMonthDuration values. For this one */
 /* optional_release is NULL and get_reference returns new reference. */
 #define AFW_IMPLEMENTATION_ID "yearMonthDuration"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
-#define AFW_IMPLEMENTATION_INF_LABEL afw_value_unmanaged_yearMonthDuration_inf
+#define AFW_IMPLEMENTATION_INF_LABEL afw_value_yearMonthDuration_inf
 #define impl_afw_value_optional_release NULL
-#define impl_afw_value_clone_or_reference impl_afw_value_unmanaged_get_reference
+#define impl_afw_value_clone_or_reference impl_afw_value_get_reference
 #define impl_afw_value_create_iterator NULL
 #include "afw_value_impl_declares.h"
 #undef AFW_IMPLEMENTATION_ID
@@ -90,12 +90,12 @@ impl_afw_value_permanent_get_reference(
 #undef impl_afw_value_clone_or_reference
 
 /* Declares and rti/inf defines for interface afw_value */
-/* This is the inf for managed yearMonthDuration values. For this one */
+/* This is the inf for referenced yearMonthDuration values. For this one */
 /* optional_release releases value and get_reference returns new reference. */
-#define AFW_IMPLEMENTATION_ID "managed_yearMonthDuration"
-#define AFW_IMPLEMENTATION_INF_LABEL afw_value_managed_yearMonthDuration_inf
-#define impl_afw_value_optional_release impl_afw_value_managed_optional_release
-#define impl_afw_value_clone_or_reference impl_afw_value_managed_get_reference
+#define AFW_IMPLEMENTATION_ID "referenced_yearMonthDuration"
+#define AFW_IMPLEMENTATION_INF_LABEL afw_value_referenced_yearMonthDuration_inf
+#define impl_afw_value_optional_release impl_afw_value_referenced_optional_release
+#define impl_afw_value_clone_or_reference impl_afw_value_referenced_get_reference
 #define AFW_VALUE_INF_ONLY 1
 #include "afw_value_impl_declares.h"
 #undef AFW_IMPLEMENTATION_ID
@@ -177,7 +177,7 @@ afw_data_type_yearMonthDuration_direct = {
     sizeof(afw_yearMonthDuration_t),
     (const afw_array_t *)&impl_empty_array_of_yearMonthDuration,
     (const afw_value_t *)&impl_value_empty_array_of_yearMonthDuration,
-    &afw_value_unmanaged_yearMonthDuration_inf,
+    &afw_value_yearMonthDuration_inf,
     afw_compile_type_error,
     false,
     false,
@@ -223,7 +223,7 @@ afw_object_set_property_as_yearMonthDuration(
             xctx);
     }
 
-    v = afw_value_create_yearMonthDuration_unmanaged(internal, object->p, xctx);
+    v = afw_value_create_yearMonthDuration(internal, object->p, xctx);
     afw_object_set_property(object, property_name, v, xctx);
 }
 
@@ -252,7 +252,7 @@ afw_value_as_yearMonthDuration(const afw_value_t *value, afw_xctx_t *xctx)
     return &(((const afw_value_yearMonthDuration_t *)value)->internal);
 }
 
-/* Allocate function for unmanaged data type yearMonthDuration values. */
+/* Allocate function for data type yearMonthDuration values. */
 AFW_DEFINE(afw_value_yearMonthDuration_t *)
 afw_value_allocate_yearMonthDuration(const afw_pool_t *p, afw_xctx_t *xctx)
 {
@@ -260,11 +260,27 @@ afw_value_allocate_yearMonthDuration(const afw_pool_t *p, afw_xctx_t *xctx)
 
     result = afw_pool_calloc(p, sizeof(afw_value_yearMonthDuration_t),
         xctx);
-    result->inf = &afw_value_unmanaged_yearMonthDuration_inf;
+    result->inf = &afw_value_yearMonthDuration_inf;
     return result;
 }
 
-/* Create function for managed data type yearMonthDuration value. */
+/* Create function for referenced data type yearMonthDuration value. */
+AFW_DEFINE(const afw_value_t *)
+afw_value_create_referenced_yearMonthDuration(const afw_yearMonthDuration_t * internal,
+    const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    afw_value_yearMonthDuration_t *v;
+
+    v = afw_pool_calloc(p, sizeof(afw_value_yearMonthDuration_t),
+        xctx);
+    v->inf = &afw_value_referenced_yearMonthDuration_inf;
+    if (internal) {
+        memcpy(&v->internal, internal, sizeof(afw_yearMonthDuration_t));
+    }
+    return &v->pub;
+}
+
+/* Create function for data type yearMonthDuration value. */
 AFW_DEFINE(const afw_value_t *)
 afw_value_create_yearMonthDuration(const afw_yearMonthDuration_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx)
@@ -273,23 +289,7 @@ afw_value_create_yearMonthDuration(const afw_yearMonthDuration_t * internal,
 
     v = afw_pool_calloc(p, sizeof(afw_value_yearMonthDuration_t),
         xctx);
-    v->inf = &afw_value_managed_yearMonthDuration_inf;
-    if (internal) {
-        memcpy(&v->internal, internal, sizeof(afw_yearMonthDuration_t));
-    }
-    return &v->pub;
-}
-
-/* Create function for unmanaged data type yearMonthDuration value. */
-AFW_DEFINE(const afw_value_t *)
-afw_value_create_yearMonthDuration_unmanaged(const afw_yearMonthDuration_t * internal,
-    const afw_pool_t *p, afw_xctx_t *xctx)
-{
-    afw_value_yearMonthDuration_t *v;
-
-    v = afw_pool_calloc(p, sizeof(afw_value_yearMonthDuration_t),
-        xctx);
-    v->inf = &afw_value_unmanaged_yearMonthDuration_inf;
+    v->inf = &afw_value_yearMonthDuration_inf;
     if (internal) {
         memcpy(&v->internal, internal, sizeof(afw_yearMonthDuration_t));
     }
@@ -379,18 +379,18 @@ afw_object_get_next_property_as_yearMonthDuration_source(
     return &(((const afw_value_yearMonthDuration_t *)value)->internal);
 }
 
-/* Implementation of method optional_release for managed value. */
+/* Implementation of method optional_release for referenced value. */
 AFW_DECLARE_STATIC(void)
-impl_afw_value_managed_optional_release(
+impl_afw_value_referenced_optional_release(
     const afw_value_t *instance,
     afw_xctx_t *xctx)
 {
     /** @todo this needs to release reference of value or free it. */
 }
 
-/* Implementation of method get_reference for  unmanaged value. */
+/* Implementation of method get_reference for value. */
 AFW_DECLARE_STATIC(const afw_value_t *)
-impl_afw_value_unmanaged_get_reference(
+impl_afw_value_get_reference(
     const afw_value_t *instance,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
@@ -400,14 +400,14 @@ impl_afw_value_unmanaged_get_reference(
 }
 
 
-/* Implementation of method get_reference for managed value. */
+/* Implementation of method get_reference for referenced value. */
 AFW_DECLARE_STATIC(const afw_value_t *)
-impl_afw_value_managed_get_reference(
+impl_afw_value_referenced_get_reference(
     const afw_value_t *instance,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    /* For unmanaged value, just return the instance passed. */
+    /* For referenced value, FIXME. */
     return instance;
 }
 
@@ -419,7 +419,7 @@ impl_afw_value_permanent_get_reference(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    /* For unmanaged value, just return the instance passed. */
+    /* For permanent value, just return the instance passed. */
     return instance;
 }
 
@@ -460,7 +460,7 @@ impl_afw_value_decompile(
     afw_data_type_write_as_expression(
         afw_data_type_yearMonthDuration,
         writer,
-        (const void *)&(((const afw_value_unmanaged_t *)instance)->internal),
+        (const void *)&(((const afw_value_common_t *)instance)->internal),
         xctx);
 }
 

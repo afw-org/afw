@@ -26,24 +26,24 @@
 #include "afw_runtime_object_maps.h"
 #include "afw_value_internal.h"
 
-/* Declaration for method optional_release for managed value. */
+/* Declaration for method optional_release for referenced value. */
 AFW_DECLARE_STATIC(void)
-impl_afw_value_managed_optional_release(
+impl_afw_value_referenced_optional_release(
     const afw_value_t *instance,
     afw_xctx_t *xctx);
 
 
-/* Declaration for method get_reference for unmanaged value. */
+/* Declaration for method get_reference for value. */
 AFW_DECLARE_STATIC(const afw_value_t *)
-impl_afw_value_unmanaged_get_reference(
+impl_afw_value_get_reference(
     const afw_value_t *instance,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 
-/* Declaration for method get_reference for managed value. */
+/* Declaration for method get_reference for referenced value. */
 AFW_DECLARE_STATIC(const afw_value_t *)
-impl_afw_value_managed_get_reference(
+impl_afw_value_referenced_get_reference(
     const afw_value_t *instance,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
@@ -75,13 +75,13 @@ impl_afw_value_permanent_get_reference(
     (const void *)&afw_data_type_array_direct
 
 /* Declares and rti/inf defines for interface afw_value */
-/* This is the inf for unmanaged array values. For this one */
+/* This is the inf for array values. For this one */
 /* optional_release is NULL and get_reference returns new reference. */
 #define AFW_IMPLEMENTATION_ID "array"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
-#define AFW_IMPLEMENTATION_INF_LABEL afw_value_unmanaged_array_inf
+#define AFW_IMPLEMENTATION_INF_LABEL afw_value_array_inf
 #define impl_afw_value_optional_release NULL
-#define impl_afw_value_clone_or_reference impl_afw_value_unmanaged_get_reference
+#define impl_afw_value_clone_or_reference impl_afw_value_get_reference
 #define impl_afw_value_create_iterator NULL
 #include "afw_value_impl_declares.h"
 #undef AFW_IMPLEMENTATION_ID
@@ -90,12 +90,12 @@ impl_afw_value_permanent_get_reference(
 #undef impl_afw_value_clone_or_reference
 
 /* Declares and rti/inf defines for interface afw_value */
-/* This is the inf for managed array values. For this one */
+/* This is the inf for referenced array values. For this one */
 /* optional_release releases value and get_reference returns new reference. */
-#define AFW_IMPLEMENTATION_ID "managed_array"
-#define AFW_IMPLEMENTATION_INF_LABEL afw_value_managed_array_inf
-#define impl_afw_value_optional_release impl_afw_value_managed_optional_release
-#define impl_afw_value_clone_or_reference impl_afw_value_managed_get_reference
+#define AFW_IMPLEMENTATION_ID "referenced_array"
+#define AFW_IMPLEMENTATION_INF_LABEL afw_value_referenced_array_inf
+#define impl_afw_value_optional_release impl_afw_value_referenced_optional_release
+#define impl_afw_value_clone_or_reference impl_afw_value_referenced_get_reference
 #define AFW_VALUE_INF_ONLY 1
 #include "afw_value_impl_declares.h"
 #undef AFW_IMPLEMENTATION_ID
@@ -177,7 +177,7 @@ afw_data_type_array_direct = {
     sizeof(const afw_array_t *),
     (const afw_array_t *)&impl_empty_array_of_array,
     (const afw_value_t *)&impl_value_empty_array_of_array,
-    &afw_value_unmanaged_array_inf,
+    &afw_value_array_inf,
     afw_compile_type_error,
     true,
     false,
@@ -223,7 +223,7 @@ afw_object_set_property_as_array(
             xctx);
     }
 
-    v = afw_value_create_array_unmanaged(internal, object->p, xctx);
+    v = afw_value_create_array(internal, object->p, xctx);
     afw_object_set_property(object, property_name, v, xctx);
 }
 
@@ -252,7 +252,7 @@ afw_value_as_array(const afw_value_t *value, afw_xctx_t *xctx)
     return (((const afw_value_array_t *)value)->internal);
 }
 
-/* Allocate function for unmanaged data type array values. */
+/* Allocate function for data type array values. */
 AFW_DEFINE(afw_value_array_t *)
 afw_value_allocate_array(const afw_pool_t *p, afw_xctx_t *xctx)
 {
@@ -260,11 +260,25 @@ afw_value_allocate_array(const afw_pool_t *p, afw_xctx_t *xctx)
 
     result = afw_pool_calloc(p, sizeof(afw_value_array_t),
         xctx);
-    result->inf = &afw_value_unmanaged_array_inf;
+    result->inf = &afw_value_array_inf;
     return result;
 }
 
-/* Create function for managed data type array value. */
+/* Create function for referenced data type array value. */
+AFW_DEFINE(const afw_value_t *)
+afw_value_create_referenced_array(const afw_array_t * internal,
+    const afw_pool_t *p, afw_xctx_t *xctx)
+{
+    afw_value_array_t *v;
+
+    v = afw_pool_calloc(p, sizeof(afw_value_array_t),
+        xctx);
+    v->inf = &afw_value_referenced_array_inf;
+    v->internal = internal;
+    return &v->pub;
+}
+
+/* Create function for data type array value. */
 AFW_DEFINE(const afw_value_t *)
 afw_value_create_array(const afw_array_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx)
@@ -273,21 +287,7 @@ afw_value_create_array(const afw_array_t * internal,
 
     v = afw_pool_calloc(p, sizeof(afw_value_array_t),
         xctx);
-    v->inf = &afw_value_managed_array_inf;
-    v->internal = internal;
-    return &v->pub;
-}
-
-/* Create function for unmanaged data type array value. */
-AFW_DEFINE(const afw_value_t *)
-afw_value_create_array_unmanaged(const afw_array_t * internal,
-    const afw_pool_t *p, afw_xctx_t *xctx)
-{
-    afw_value_array_t *v;
-
-    v = afw_pool_calloc(p, sizeof(afw_value_array_t),
-        xctx);
-    v->inf = &afw_value_unmanaged_array_inf;
+    v->inf = &afw_value_array_inf;
     v->internal = internal;
     return &v->pub;
 }
@@ -375,18 +375,18 @@ afw_object_get_next_property_as_array_source(
     return (((const afw_value_array_t *)value)->internal);
 }
 
-/* Implementation of method optional_release for managed value. */
+/* Implementation of method optional_release for referenced value. */
 AFW_DECLARE_STATIC(void)
-impl_afw_value_managed_optional_release(
+impl_afw_value_referenced_optional_release(
     const afw_value_t *instance,
     afw_xctx_t *xctx)
 {
     /** @todo this needs to release reference of value or free it. */
 }
 
-/* Implementation of method get_reference for  unmanaged value. */
+/* Implementation of method get_reference for value. */
 AFW_DECLARE_STATIC(const afw_value_t *)
-impl_afw_value_unmanaged_get_reference(
+impl_afw_value_get_reference(
     const afw_value_t *instance,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
@@ -396,14 +396,14 @@ impl_afw_value_unmanaged_get_reference(
 }
 
 
-/* Implementation of method get_reference for managed value. */
+/* Implementation of method get_reference for referenced value. */
 AFW_DECLARE_STATIC(const afw_value_t *)
-impl_afw_value_managed_get_reference(
+impl_afw_value_referenced_get_reference(
     const afw_value_t *instance,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    /* For unmanaged value, just return the instance passed. */
+    /* For referenced value, FIXME. */
     return instance;
 }
 
@@ -415,7 +415,7 @@ impl_afw_value_permanent_get_reference(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    /* For unmanaged value, just return the instance passed. */
+    /* For permanent value, just return the instance passed. */
     return instance;
 }
 
@@ -456,7 +456,7 @@ impl_afw_value_decompile(
     afw_data_type_write_as_expression(
         afw_data_type_array,
         writer,
-        (const void *)&(((const afw_value_unmanaged_t *)instance)->internal),
+        (const void *)&(((const afw_value_common_t *)instance)->internal),
         xctx);
 }
 

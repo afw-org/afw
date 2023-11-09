@@ -65,11 +65,11 @@ impl_retrieve_cb(const afw_object_t *object, void *context,
         if (ctx->array) {
             afw_object_get_reference(object, xctx);
             afw_array_add_value(ctx->array,
-                afw_value_create_object_unmanaged(object, ctx->p, xctx), xctx);
+                afw_value_create_object(object, ctx->p, xctx), xctx);
         }
         else {
             ctx->argv[0] = ctx->objectCallback;
-            ctx->argv[1] = afw_value_create_object_unmanaged(object, p, xctx);
+            ctx->argv[1] = afw_value_create_object(object, p, xctx);
             ctx->argv[2] = ctx->userData;
             if (!ctx->call) {
                 ctx->call = afw_value_call_create(NULL,
@@ -119,7 +119,7 @@ impl_retrieve_to_response_cb(
             afw_s_intermediate, true, xctx);
         afw_object_set_property_as_object(response_object,
             afw_s_result, object, xctx);
-        object_value = afw_value_create_object_unmanaged(response_object, p, xctx);
+        object_value = afw_value_create_object(response_object, p, xctx);
         response_stream = afw_stream_standard(response_body, xctx);
         afw_content_type_write_value(ctx->response_content_type,
             object_value, ctx->object_options,
@@ -155,7 +155,7 @@ impl_retrieve_to_stream_cb(const afw_object_t *object, void *context,
     abort = false;
     if (object) {
         p = (object->p) ? object->p : ctx->p;
-        object_value = afw_value_create_object_unmanaged(object, p, xctx);
+        object_value = afw_value_create_object(object, p, xctx);
         afw_content_type_write_value(ctx->response_content_type,
             object_value, ctx->object_options,
             (void *)ctx->stream, ctx->stream->write_cb,
@@ -273,7 +273,7 @@ afw_function_execute_add_object(
         x->xctx);
 
     /* Return journal entry as response. */
-    return afw_value_create_object_unmanaged(journal_entry, x->p, x->xctx);
+    return afw_value_create_object(journal_entry, x->p, x->xctx);
 }
 
 
@@ -381,7 +381,7 @@ afw_function_execute_add_object_with_uri(
         x->xctx);
 
     /* Return journal entry as response. */
-    return afw_value_create_object_unmanaged(journal_entry, x->p, x->xctx);
+    return afw_value_create_object(journal_entry, x->p, x->xctx);
 }
 
 
@@ -502,7 +502,7 @@ afw_function_execute_convert_AdaptiveQueryCriteria_to_query_string(
         queryCriteria->internal, object_type, x->p, x->xctx);
     s = afw_query_criteria_to_query_string(criteria, style, x->p, x->xctx);
 
-    return afw_value_create_string_unmanaged(s, x->p, x->xctx);
+    return afw_value_create_string(s, x->p, x->xctx);
 }
 
 
@@ -592,7 +592,7 @@ afw_function_execute_convert_query_string_to_AdaptiveQueryCriteria(
         &queryString->internal, object_type, x->p, x->xctx);
     object = afw_query_criteria_to_AdaptiveQueryCriteria_object(
         criteria, x->p, x->xctx);
-    return afw_value_create_object_unmanaged(object, x->p, x->xctx);
+    return afw_value_create_object(object, x->p, x->xctx);
 }
 
 
@@ -685,7 +685,7 @@ afw_function_execute_delete_object(
         x->xctx);
 
     /* Return journal entry as response. */
-    return afw_value_create_object_unmanaged(journal_entry, x->p, x->xctx);
+    return afw_value_create_object(journal_entry, x->p, x->xctx);
 }
 
 
@@ -786,7 +786,7 @@ afw_function_execute_delete_object_with_uri(
         x->xctx);
 
     /* Return journal entry as response. */
-    return afw_value_create_object_unmanaged(journal_entry, x->p, x->xctx);
+    return afw_value_create_object(journal_entry, x->p, x->xctx);
 }
 
 
@@ -883,7 +883,7 @@ afw_function_execute_get_object(
         AFW_THROW_ERROR_Z(not_found, "Not found", x->xctx);
     }
 
-    return afw_value_create_object_unmanaged(obj, x->p, x->xctx);
+    return afw_value_create_object(obj, x->p, x->xctx);
 }
 
 
@@ -982,7 +982,7 @@ afw_function_execute_get_object_with_uri(
         AFW_THROW_ERROR_Z(not_found, "Not found", x->xctx);
     }
 
-    return afw_value_create_object_unmanaged(obj, x->p, x->xctx);
+    return afw_value_create_object(obj, x->p, x->xctx);
 }
 
 
@@ -1098,7 +1098,7 @@ afw_function_execute_modify_object(
         x->xctx);
 
     /* Return journal entry as response. */
-    return afw_value_create_object_unmanaged(journal_entry, x->p, x->xctx);
+    return afw_value_create_object(journal_entry, x->p, x->xctx);
 }
 
 
@@ -1220,7 +1220,7 @@ afw_function_execute_modify_object_with_uri(
         x->xctx);
 
     /* Return journal entry as response. */
-    return afw_value_create_object_unmanaged(journal_entry, x->p, x->xctx);
+    return afw_value_create_object(journal_entry, x->p, x->xctx);
 }
 
 
@@ -1307,7 +1307,7 @@ afw_function_execute_reconcile_object(
     /* If checkOnly, just add return journal entry with modify entries. */
     if (checkOnly && checkOnly->internal) {
         /** @fixme Make part of journal object. */
-        return afw_value_create_array_unmanaged(entries, x->p, x->xctx);
+        return afw_value_create_array(entries, x->p, x->xctx);
     }
 
 
@@ -1319,7 +1319,7 @@ afw_function_execute_reconcile_object(
     }
 
     /* Return journal entry as response. */
-    return afw_value_create_object_unmanaged(journal_entry, x->p, x->xctx);
+    return afw_value_create_object(journal_entry, x->p, x->xctx);
 }
 
 
@@ -1417,7 +1417,7 @@ afw_function_execute_replace_object(
         x->xctx);
 
     /* Return journal entry as response. */
-    return afw_value_create_object_unmanaged(journal_entry, x->p, x->xctx);
+    return afw_value_create_object(journal_entry, x->p, x->xctx);
 }
 
 
@@ -1520,7 +1520,7 @@ afw_function_execute_replace_object_with_uri(
         x->xctx);
 
     /* Return journal entry as response. */
-    return afw_value_create_object_unmanaged(journal_entry, x->p, x->xctx);
+    return afw_value_create_object(journal_entry, x->p, x->xctx);
 }
 
 
@@ -1636,7 +1636,7 @@ afw_function_execute_retrieve_objects(
         (adaptorTypeSpecific) ? adaptorTypeSpecific->internal: NULL,
         x->p, x->xctx);
 
-    return afw_value_create_array_unmanaged(ctx.array, x->p, x->xctx);
+    return afw_value_create_array(ctx.array, x->p, x->xctx);
 }
 
 
@@ -2179,7 +2179,7 @@ afw_function_execute_retrieve_objects_with_uri(
         x->p, x->xctx);
 
     /* Return retrieved objects as a array. */
-    return afw_value_create_array_unmanaged(ctx.array, x->p, x->xctx);
+    return afw_value_create_array(ctx.array, x->p, x->xctx);
 }
 
 
@@ -2687,7 +2687,7 @@ afw_function_execute_update_object(
         x->xctx);
 
     /* Return journal entry as response. */
-    return afw_value_create_object_unmanaged(journal_entry, x->p, x->xctx);
+    return afw_value_create_object(journal_entry, x->p, x->xctx);
 }
 
 
@@ -2792,7 +2792,7 @@ afw_function_execute_update_object_with_uri(
         x->xctx);
 
     /* Return journal entry as response. */
-    return afw_value_create_object_unmanaged(journal_entry, x->p, x->xctx);
+    return afw_value_create_object(journal_entry, x->p, x->xctx);
 }
 
 

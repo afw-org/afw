@@ -79,7 +79,7 @@ impl_afw_value_optional_evaluate(
         afw_object_set_property(to, property_name, v, xctx);
     }
 
-    return afw_value_create_object_unmanaged(to, p, xctx);
+    return afw_value_create_object(to, p, xctx);
 }
 
 /*
@@ -119,7 +119,7 @@ impl_afw_value_decompile(
     afw_data_type_write_as_expression(
         afw_data_type_object,
         writer,
-        (const void *)&(((const afw_value_unmanaged_t *)instance)->internal),
+        (const void *)&(((const afw_value_common_t *)instance)->internal),
         xctx);
 }
 

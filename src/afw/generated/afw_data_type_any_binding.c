@@ -146,7 +146,7 @@ impl_afw_value_permanent_get_reference(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    /* For unmanaged value, just return the instance passed. */
+    /* For permanent value, just return the instance passed. */
     return instance;
 }
 
@@ -187,7 +187,7 @@ impl_afw_value_decompile(
     afw_data_type_write_as_expression(
         afw_data_type_any,
         writer,
-        (const void *)&(((const afw_value_unmanaged_t *)instance)->internal),
+        (const void *)&(((const afw_value_common_t *)instance)->internal),
         xctx);
 }
 

@@ -128,7 +128,7 @@ afw_object_meta_get_object_id_value(
     if (!object_id) {
         return NULL;
     }
-    value = afw_value_create_string_unmanaged(object_id, instance->p, xctx);
+    value = afw_value_create_string(object_id, instance->p, xctx);
     return (const afw_value_string_t *)value;
 }
 
@@ -599,7 +599,7 @@ afw_object_meta_add_error(
             afw_s_hasErrors, afw_value_true, xctx);
     }
 
-    value = afw_value_create_string_unmanaged(message, instance->p, xctx);
+    value = afw_value_create_string(message, instance->p, xctx);
     afw_array_add_value(errors, value, xctx);
 }
 
@@ -773,7 +773,7 @@ afw_object_meta_add_property_error(
             afw_s_hasErrors, afw_value_true, xctx);
     }
 
-    value = afw_value_create_string_unmanaged(message, instance->p, xctx);
+    value = afw_value_create_string(message, instance->p, xctx);
     afw_array_add_value(errors, value, xctx);
 }
 

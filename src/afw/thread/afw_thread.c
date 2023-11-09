@@ -49,7 +49,7 @@ afw_thread_create(
     afw_thread_t *self;
     apr_status_t rv;
 
-    self = afw_pool_internal_create_thread(-1, xctx);
+    self = afw_pool_create_thread(-1, xctx);
     self->thread_attr = thread_attr;
     self->start_function = start_function;
     self->start_function_arg = start_function_arg;

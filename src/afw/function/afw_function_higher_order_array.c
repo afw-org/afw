@@ -71,7 +71,7 @@ impl_over_array(
             e.data_type = afw_array_get_data_type(e.array, e.xctx);
             if (e.data_type) {
                 *e.entry_arg_ptr = (const afw_value_t *)
-                    afw_value_unmanaged_allocate(e.data_type, e.p, e.xctx);
+                    afw_value_common_allocate(e.data_type, e.p, e.xctx);
             }
         }
     }
@@ -207,14 +207,14 @@ impl_bag_of_bag(
     }
 
     /* Allocate a single value to use for each bag1 entry. */
-    f_argv[1] = (afw_value_t *)afw_value_unmanaged_allocate(
+    f_argv[1] = (afw_value_t *)afw_value_common_allocate(
         data_type_1, x->p, x->xctx);
-    e1 = (void *)&((afw_value_unmanaged_t *)f_argv[1])->internal;
+    e1 = (void *)&((afw_value_common_t *)f_argv[1])->internal;
 
     /* Allocate a single value to use for each bag2 entry. */
-    f_argv[2] = (afw_value_t *)afw_value_unmanaged_allocate(
+    f_argv[2] = (afw_value_t *)afw_value_common_allocate(
         data_type_2, x->p, x->xctx);
-    e2 = (void *)&((afw_value_unmanaged_t *)f_argv[2])->internal;
+    e2 = (void *)&((afw_value_common_t *)f_argv[2])->internal;
 
     /* Call function for each combination of bag1 and bag2 entries. */
     is_true = true;
@@ -605,7 +605,7 @@ afw_function_execute_filter(
     data.filtered_array = afw_array_create_with_options(0, NULL, x->p, x->xctx);
     impl_over_array(x, impl_filter_cb, (void *)&data);
 
-    return afw_value_create_array_unmanaged(data.filtered_array, x->p, x->xctx);
+    return afw_value_create_array(data.filtered_array, x->p, x->xctx);
 }
 
 
@@ -622,7 +622,7 @@ impl_find_cb(impl_call_over_array_cb_e_t *e)
     AFW_VALUE_ASSERT_IS_DATA_TYPE(e->entry_result, boolean, e->xctx);
 
     if (((const afw_value_boolean_t *)e->entry_result)->internal) {
-        data->found_value = afw_value_unmanaged_create(
+        data->found_value = afw_value_common_create(
             e->entry_internal, e->data_type, e->p, e->xctx);
         return false;
     }
@@ -755,7 +755,7 @@ afw_function_execute_map(
 
     afw_array_determine_data_type_and_set_immutable(data.mapped_array, x->xctx);
     
-    return afw_value_create_array_unmanaged(data.mapped_array, x->p, x->xctx);
+    return afw_value_create_array(data.mapped_array, x->p, x->xctx);
 }
 
 
@@ -836,7 +836,7 @@ afw_function_execute_reduce(
 
 typedef struct {
     const afw_value_t *compareFunction;
-    afw_value_unmanaged_t *args[3];
+    afw_value_common_t *args[3];
     const void **values;
     afw_size_t c_type_size;
     afw_size_t count;
@@ -961,7 +961,7 @@ afw_function_execute_sort(
     ctx.xctx = x->xctx;
 
     /* The first arg is the function to call, and other 2 are typed arrays. */
-    ctx.args[0] = (afw_value_unmanaged_t *)
+    ctx.args[0] = (afw_value_common_t *)
         afw_function_evaluate_function_parameter(x->argv[1], ctx.p, ctx.xctx);
     ctx.compareFunction = afw_value_call_create(NULL,
         2, (const afw_value_t * const *)&ctx.args[0], false, ctx.p, ctx.xctx);
@@ -980,8 +980,8 @@ afw_function_execute_sort(
     }
 
     /* Allocate two values of the correct data type. */
-    ctx.args[1] = afw_value_unmanaged_allocate(data_type, ctx.p, ctx.xctx);
-    ctx.args[2] = afw_value_unmanaged_allocate(data_type, ctx.p, ctx.xctx);
+    ctx.args[1] = afw_value_common_allocate(data_type, ctx.p, ctx.xctx);
+    ctx.args[2] = afw_value_common_allocate(data_type, ctx.p, ctx.xctx);
 
     /* Make array of pointers to internal values. */
     ctx.values = afw_pool_malloc(ctx.p, sizeof(void *) * ctx.count, ctx.xctx);
@@ -998,5 +998,5 @@ afw_function_execute_sort(
     /* Return sorted array. */
     result_array = afw_array_create_wrapper_for_array(
         ctx.values, true, data_type, ctx.count, ctx.p, ctx.xctx);
-    return afw_value_create_array_unmanaged(result_array, ctx.p, ctx.xctx);
+    return afw_value_create_array(result_array, ctx.p, ctx.xctx);
 }

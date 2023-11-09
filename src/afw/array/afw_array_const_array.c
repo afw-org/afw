@@ -58,7 +58,7 @@ afw_array_const_create_array_of_objects(
     if (count > 0) {
         values = afw_pool_malloc(p, count * sizeof(afw_value_t *), xctx);
         for (o = objects, v = values, i = 0; i < count; o++, v++, i++) {
-            *v = afw_value_create_object_unmanaged(*o, p, xctx);
+            *v = afw_value_create_object(*o, p, xctx);
         }
     }
 

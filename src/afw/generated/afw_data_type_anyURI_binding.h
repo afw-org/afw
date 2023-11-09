@@ -66,7 +66,7 @@ afw_data_type_anyURI;
  * The lifetime of the value is the lifetime of its containing pool.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
-afw_value_unmanaged_anyURI_inf;
+afw_value_anyURI_inf;
 
 /**
  * @brief Managed evaluated value inf for data type anyURI.
@@ -74,7 +74,7 @@ afw_value_unmanaged_anyURI_inf;
  * The lifetime of the value is managed by reference.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
-afw_value_managed_anyURI_inf;
+afw_value_referenced_anyURI_inf;
 
 /**
  * @brief Permanent managed (life of afw environment) value inf for data type anyURI.
@@ -162,7 +162,7 @@ AFW_DECLARE(const afw_utf8_t *)
 afw_value_as_anyURI(const afw_value_t *value, afw_xctx_t *xctx);
 
 /**
- * @brief Allocate function for managed data type anyURI value.
+ * @brief Allocate function for referenced data type anyURI value.
  * @param s place to put pointer to allocated memory for internal->s.
  * @param len of memory to allocate for internal->s.
  * @param xctx of caller.
@@ -172,13 +172,13 @@ afw_value_as_anyURI(const afw_value_t *value, afw_xctx_t *xctx);
  * Set *s for the specified len to a valid utf-8 string.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_alloc_anyURI(
+afw_value_alloc_referenced_anyURI(
     afw_utf8_octet_t **s,
     afw_size_t len,
     afw_xctx_t *xctx);
 
 /**
- * @brief Allocate function for unmanaged data type anyURI value.
+ * @brief Allocate function for data type anyURI value.
  * @param p to use for returned value.
  * @param xctx of caller.
  * @return Allocated afw_value_anyURI_t with appropriate inf set.
@@ -187,18 +187,18 @@ AFW_DECLARE(afw_value_anyURI_t *)
 afw_value_allocate_anyURI(const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**
- * @brief Create function for managed data type anyURI value.
+ * @brief Create function for referenced data type anyURI value.
  * @param internal.
  * @param p to use for returned value.
  * @param xctx of caller.
  * @return Created const afw_value_t *.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_create_anyURI(const afw_utf8_t * internal,
+afw_value_create_referenced_anyURI(const afw_utf8_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**
- * @brief Create function for managed data type anyURI slice value.
+ * @brief Create function for referenced data type anyURI slice value.
  * @param containing_value with a cType of 'afw_utf8_t'.
  * @param offset in contain value's internal.
  * @param len of slice.
@@ -209,21 +209,21 @@ afw_value_create_anyURI(const afw_utf8_t * internal,
  * Set *s for the specified len to a valid utf-8 string.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_create_anyURI_slice(
+afw_value_create_referenced_anyURI_slice(
     const afw_value_t *containing_value,
     afw_size_t offset,
     afw_size_t len,
     afw_xctx_t *xctx);
 
 /**
- * @brief Create function for unmanaged data type anyURI value.
+ * @brief Create function for data type anyURI value.
  * @param internal.
  * @param p to use for returned value.
  * @param xctx of caller.
  * @return Created const afw_value_t *.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_create_anyURI_unmanaged(const afw_utf8_t * internal,
+afw_value_create_anyURI(const afw_utf8_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**

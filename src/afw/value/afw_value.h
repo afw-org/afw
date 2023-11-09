@@ -68,9 +68,9 @@ struct afw_value_info_s {
 
 
 /**
- * @brief Struct to access internal of all evaluated values.
+ * @brief Struct to access internal of all values.
  */
-struct afw_value_unmanaged_s {
+struct afw_value_common_s {
     /* Value inf union with afw_value_t pub to reduce casting needed. */
     union {
         const afw_value_inf_t *inf;
@@ -915,14 +915,14 @@ afw_value_contains(
 
 /**
  * @brief Macro to get const void * of the internal of a value
- * @param value internal must align with afw_value_unmanaged_t *.
+ * @param value internal must align with afw_value_common_t *.
  * @return const void * of internal.
  *
  * This should be used with extreme care.  The intended is to access internal
  * of an evaluated value.
  */
 #define AFW_VALUE_INTERNAL(_VALUE_) \
-((void *)(&((afw_value_unmanaged_t *)(_VALUE_))->internal))
+((void *)(&((afw_value_common_t *)(_VALUE_))->internal))
 
  
  
@@ -1233,10 +1233,10 @@ afw_value_block_finalize(
  * @param data_type of value.
  * @param p pool used for value.
  * @param xctx of caller.
- * @return Allocated afw_value_unmanaged_t.
+ * @return Allocated afw_value_common_t.
  */
-AFW_DECLARE(afw_value_unmanaged_t *)
-afw_value_unmanaged_allocate(
+AFW_DECLARE(afw_value_common_t *)
+afw_value_common_allocate(
     const afw_data_type_t *data_type,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
@@ -1252,7 +1252,7 @@ afw_value_unmanaged_allocate(
  * @return Created afw_value_t.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_unmanaged_create(
+afw_value_common_create(
     const void * value,
     const afw_data_type_t *data_type,
     const afw_pool_t *p,
@@ -1561,7 +1561,7 @@ afw_value_symbol_reference_create(
 
 
 
-/** Make an afw_value_unmanaged_t String using string in specified pool. */
+/** Make an afw_value_common_t String using string in specified pool. */
 AFW_DECLARE(const afw_value_t *)
 afw_value_make_single_string(
     const afw_utf8_octet_t *s,
@@ -1571,7 +1571,7 @@ afw_value_make_single_string(
 
 
 
-/** Make an afw_value_unmanaged_t String using copy of string in specified pool. */
+/** Make an afw_value_common_t String using copy of string in specified pool. */
 AFW_DECLARE(const afw_value_t *)
 afw_value_make_string_copy(
     const afw_utf8_octet_t *s,

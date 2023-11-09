@@ -446,7 +446,7 @@ afw_value_compiler_listing_to_string_instance(
             afw_data_type_write_as_expression(
                 afw_value_quick_data_type(value),
                 writer,
-                (const void *)&(((const afw_value_unmanaged_t *)value)->
+                (const void *)&(((const afw_value_common_t *)value)->
                     internal),
                 xctx);
         }

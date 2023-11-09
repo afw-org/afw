@@ -66,7 +66,7 @@ afw_data_type_double;
  * The lifetime of the value is the lifetime of its containing pool.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
-afw_value_unmanaged_double_inf;
+afw_value_double_inf;
 
 /**
  * @brief Managed evaluated value inf for data type double.
@@ -74,7 +74,7 @@ afw_value_unmanaged_double_inf;
  * The lifetime of the value is managed by reference.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
-afw_value_managed_double_inf;
+afw_value_referenced_double_inf;
 
 /**
  * @brief Permanent managed (life of afw environment) value inf for data type double.
@@ -162,7 +162,7 @@ AFW_DECLARE(double)
 afw_value_as_double(const afw_value_t *value, afw_xctx_t *xctx);
 
 /**
- * @brief Allocate function for managed data type double value.
+ * @brief Allocate function for referenced data type double value.
  * @param internal place to put pointer to internal of value.
  * @param xctx of caller.
  * @return Allocated afw_value_t with appropriate inf set.
@@ -171,12 +171,12 @@ afw_value_as_double(const afw_value_t *value, afw_xctx_t *xctx);
  * 'double' internal value before using.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_alloc_double(
+afw_value_alloc_referenced_double(
     double **internal,
     afw_xctx_t *xctx);
 
 /**
- * @brief Allocate function for unmanaged data type double value.
+ * @brief Allocate function for data type double value.
  * @param p to use for returned value.
  * @param xctx of caller.
  * @return Allocated afw_value_double_t with appropriate inf set.
@@ -185,7 +185,18 @@ AFW_DECLARE(afw_value_double_t *)
 afw_value_allocate_double(const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**
- * @brief Create function for managed data type double value.
+ * @brief Create function for referenced data type double value.
+ * @param internal.
+ * @param p to use for returned value.
+ * @param xctx of caller.
+ * @return Created const afw_value_t *.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_value_create_referenced_double(double internal,
+    const afw_pool_t *p, afw_xctx_t *xctx);
+
+/**
+ * @brief Create function for data type double value.
  * @param internal.
  * @param p to use for returned value.
  * @param xctx of caller.
@@ -193,17 +204,6 @@ afw_value_allocate_double(const afw_pool_t *p, afw_xctx_t *xctx);
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_create_double(double internal,
-    const afw_pool_t *p, afw_xctx_t *xctx);
-
-/**
- * @brief Create function for unmanaged data type double value.
- * @param internal.
- * @param p to use for returned value.
- * @param xctx of caller.
- * @return Created const afw_value_t *.
- */
-AFW_DECLARE(const afw_value_t *)
-afw_value_create_double_unmanaged(double internal,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**

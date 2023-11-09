@@ -156,7 +156,7 @@ impl_read_file_object(
                 memcpy(buff, finfo.name, size - 1);
                 data_string = afw_utf8_create((const afw_utf8_octet_t *)buff, size, p, xctx);
                 afw_array_add_value(filenames,
-                    afw_value_create_string_unmanaged(data_string, p, xctx),
+                    afw_value_create_string(data_string, p, xctx),
                     xctx);
             }
 
@@ -167,7 +167,7 @@ impl_read_file_object(
                 memcpy(buff, finfo.name, size);
                 data_string = afw_utf8_create((const afw_utf8_octet_t *)buff, size, p, xctx);
                 afw_array_add_value(filenames,
-                    afw_value_create_string_unmanaged(data_string, p, xctx),
+                    afw_value_create_string(data_string, p, xctx),
                     xctx);
             }
 
