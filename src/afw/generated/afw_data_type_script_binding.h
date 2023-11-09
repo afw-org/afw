@@ -66,7 +66,7 @@ afw_data_type_script;
  * The lifetime of the value is the lifetime of its containing pool.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
-afw_value_unmanaged_script_inf;
+afw_value_script_inf;
 
 /**
  * @brief Managed evaluated value inf for data type script.
@@ -223,7 +223,7 @@ afw_value_create_referenced_script_slice(
  * @return Created const afw_value_t *.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_create_script_unmanaged(const afw_utf8_t * internal,
+afw_value_create_script(const afw_utf8_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**

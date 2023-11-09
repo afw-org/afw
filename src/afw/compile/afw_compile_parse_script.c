@@ -702,7 +702,7 @@ impl_parse_ForStatement(afw_compile_parser_t *parser)
         argv[0] = &afw_function_definition_for.pub;
         argv[1] = NULL;
         if (list) {
-            argv[1] = afw_value_create_array_unmanaged(list, parser->p, parser->xctx);
+            argv[1] = afw_value_create_array(list, parser->p, parser->xctx);
         }
 
         /* Expression? ';' */
@@ -739,7 +739,7 @@ impl_parse_ForStatement(afw_compile_parser_t *parser)
         }
         argv[3] = NULL;
         if (list) {
-            argv[3] = afw_value_create_array_unmanaged(list, parser->p, parser->xctx);
+            argv[3] = afw_value_create_array(list, parser->p, parser->xctx);
         }
 
         break_allowed = parser->break_allowed;
@@ -1630,7 +1630,7 @@ afw_compile_parse_StatementList(
     if (building_list_not_block) {
         array = afw_array_const_create_array_of_values(
             argv, argc, parser->p, parser->xctx);
-        result = afw_value_create_array_unmanaged(array, parser->p, parser->xctx);
+        result = afw_value_create_array(array, parser->p, parser->xctx);
     }
 
     /* If building block, finalize and set result. */
@@ -2042,7 +2042,7 @@ afw_compile_parse_TestScript(
             }
             test_object = afw_object_create(parser->p, parser->xctx);
             afw_array_add_value(test_list,
-                afw_value_create_object_unmanaged(test_object, parser->p, parser->xctx),
+                afw_value_create_object(test_object, parser->p, parser->xctx),
                 parser->xctx);
             afw_object_set_property_as_string(test_object,
                 afw_s_test, string, parser->xctx);

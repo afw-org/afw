@@ -66,7 +66,7 @@ afw_data_type_unevaluated;
  * The lifetime of the value is the lifetime of its containing pool.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
-afw_value_unmanaged_unevaluated_inf;
+afw_value_unevaluated_inf;
 
 /**
  * @brief Managed evaluated value inf for data type unevaluated.
@@ -203,7 +203,7 @@ afw_value_create_referenced_unevaluated(const afw_value_t * internal,
  * @return Created const afw_value_t *.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_create_unevaluated_unmanaged(const afw_value_t * internal,
+afw_value_create_unevaluated(const afw_value_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**

@@ -138,7 +138,7 @@ afw_function_execute_apply_object_options(
     result = afw_object_view_create(object->internal,
         NULL, options, x->p, x->xctx);
 
-    return afw_value_create_object_unmanaged(result, x->p, x->xctx);
+    return afw_value_create_object(result, x->p, x->xctx);
 }
 
 

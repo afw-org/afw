@@ -70,7 +70,7 @@ afw_function_execute_compile_regexp(
 
     if (AFW_FUNCTION_PARAMETER_IS_PRESENT(2)) {
         listing = afw_function_evaluate_whitespace_parameter(x, 2);
-        result = afw_value_create_string_unmanaged(
+        result = afw_value_create_string(
             afw_value_compiler_listing_to_string(result, listing,
                 x->p, x->xctx),
             x->p, x->xctx);

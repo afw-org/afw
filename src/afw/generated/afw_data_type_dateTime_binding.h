@@ -66,7 +66,7 @@ afw_data_type_dateTime;
  * The lifetime of the value is the lifetime of its containing pool.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
-afw_value_unmanaged_dateTime_inf;
+afw_value_dateTime_inf;
 
 /**
  * @brief Managed evaluated value inf for data type dateTime.
@@ -203,7 +203,7 @@ afw_value_create_referenced_dateTime(const afw_dateTime_t * internal,
  * @return Created const afw_value_t *.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_create_dateTime_unmanaged(const afw_dateTime_t * internal,
+afw_value_create_dateTime(const afw_dateTime_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**

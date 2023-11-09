@@ -66,7 +66,7 @@ afw_data_type_string;
  * The lifetime of the value is the lifetime of its containing pool.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
-afw_value_unmanaged_string_inf;
+afw_value_string_inf;
 
 /**
  * @brief Managed evaluated value inf for data type string.
@@ -223,7 +223,7 @@ afw_value_create_referenced_string_slice(
  * @return Created const afw_value_t *.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_create_string_unmanaged(const afw_utf8_t * internal,
+afw_value_create_string(const afw_utf8_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**

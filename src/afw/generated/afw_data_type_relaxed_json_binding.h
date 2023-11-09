@@ -66,7 +66,7 @@ afw_data_type_relaxed_json;
  * The lifetime of the value is the lifetime of its containing pool.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
-afw_value_unmanaged_relaxed_json_inf;
+afw_value_relaxed_json_inf;
 
 /**
  * @brief Managed evaluated value inf for data type relaxed_json.
@@ -223,7 +223,7 @@ afw_value_create_referenced_relaxed_json_slice(
  * @return Created const afw_value_t *.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_create_relaxed_json_unmanaged(const afw_utf8_t * internal,
+afw_value_create_relaxed_json(const afw_utf8_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**

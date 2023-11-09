@@ -217,7 +217,7 @@ impl_afw_object_get_next_property(
         string = afw_utf8_create(c + 1, AFW_UTF8_Z_LEN, xctx->p, xctx);
     }
 
-    value = afw_value_create_string_unmanaged(string, xctx->p, xctx);
+    value = afw_value_create_string(string, xctx->p, xctx);
     (it->envp)++;
     return value;
 }

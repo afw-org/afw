@@ -318,7 +318,7 @@ afw_object_get_property_extended(
         };
          */
         if (meta_value) {
-            result = afw_value_create_string_unmanaged(meta_value, xctx->p, xctx);
+            result = afw_value_create_string(meta_value, xctx->p, xctx);
         }
         return result;
     }

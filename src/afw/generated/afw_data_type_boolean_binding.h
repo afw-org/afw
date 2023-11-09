@@ -66,7 +66,7 @@ afw_data_type_boolean;
  * The lifetime of the value is the lifetime of its containing pool.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
-afw_value_unmanaged_boolean_inf;
+afw_value_boolean_inf;
 
 /**
  * @brief Managed evaluated value inf for data type boolean.
@@ -203,7 +203,7 @@ afw_value_create_referenced_boolean(afw_boolean_t internal,
  * @return Created const afw_value_t *.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_create_boolean_unmanaged(afw_boolean_t internal,
+afw_value_create_boolean(afw_boolean_t internal,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**

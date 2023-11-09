@@ -110,7 +110,7 @@ impl_flag_add_included_by(
     /* If not an included_by->includes_value, make one. */
     else {
         included_by->includes_value = (const afw_value_array_t *)
-            afw_value_create_array_unmanaged(
+            afw_value_create_array(
                 afw_array_of_create(
                     afw_data_type_string, p, xctx),
                 p, xctx);
@@ -122,7 +122,7 @@ impl_flag_add_included_by(
         /* Add included_by to this flags included_by. */
         if (!flag->included_by_value) {
             flag->included_by_value = (const afw_value_array_t *)
-                afw_value_create_array_unmanaged(
+                afw_value_create_array(
                     afw_array_of_create(
                         afw_data_type_string, p, xctx),
                     p, xctx);
@@ -627,12 +627,12 @@ afw_flag_environment_register_flag(
 
         self = afw_pool_calloc_type(p, afw_flag_t, xctx);
         self->flag_id = flag_id;
-        self->flag_id_value = afw_value_create_string_unmanaged(flag_id, p, xctx);
+        self->flag_id_value = afw_value_create_string(flag_id, p, xctx);
         self->brief = brief;
         self->description = description;
         self->object = afw_runtime_object_create_indirect(
             afw_s__AdaptiveFlag_, self->flag_id, self, p, xctx);
-        self->object_value = afw_value_create_object_unmanaged(self->object,
+        self->object_value = afw_value_create_object(self->object,
             p, xctx);
         self->flag_index = (env->flags_count_registered)++;
         flags_count_allocated = env->flags_count_allocated;

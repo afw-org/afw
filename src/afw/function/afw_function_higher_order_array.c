@@ -605,7 +605,7 @@ afw_function_execute_filter(
     data.filtered_array = afw_array_create_with_options(0, NULL, x->p, x->xctx);
     impl_over_array(x, impl_filter_cb, (void *)&data);
 
-    return afw_value_create_array_unmanaged(data.filtered_array, x->p, x->xctx);
+    return afw_value_create_array(data.filtered_array, x->p, x->xctx);
 }
 
 
@@ -755,7 +755,7 @@ afw_function_execute_map(
 
     afw_array_determine_data_type_and_set_immutable(data.mapped_array, x->xctx);
     
-    return afw_value_create_array_unmanaged(data.mapped_array, x->p, x->xctx);
+    return afw_value_create_array(data.mapped_array, x->p, x->xctx);
 }
 
 
@@ -998,5 +998,5 @@ afw_function_execute_sort(
     /* Return sorted array. */
     result_array = afw_array_create_wrapper_for_array(
         ctx.values, true, data_type, ctx.count, ctx.p, ctx.xctx);
-    return afw_value_create_array_unmanaged(result_array, ctx.p, ctx.xctx);
+    return afw_value_create_array(result_array, ctx.p, ctx.xctx);
 }

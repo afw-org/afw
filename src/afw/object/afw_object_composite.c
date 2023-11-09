@@ -145,7 +145,7 @@ impl_afw_object_get_property(
                     o = afw_object_create_composite(
                         true, self->pub.p, xctx,
                         ((const afw_value_object_t *)result)->internal, NULL);
-                    result = afw_value_create_object_unmanaged(o, self->pub.p, xctx);
+                    result = afw_value_create_object(o, self->pub.p, xctx);
                     afw_object_set_property_as_object(self->mutable,
                         property_name, o, xctx);
                 }

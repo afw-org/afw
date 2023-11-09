@@ -218,15 +218,15 @@ void afw_environment_internal_register_core(afw_xctx_t *xctx)
     d0 = 0;
     env->pub.infinity = 1 / d0;
     env->pub.infinity_value =
-        afw_value_create_double_unmanaged(env->pub.infinity,
+        afw_value_create_double(env->pub.infinity,
             xctx->p, xctx);
     env->pub.minus_infinity = -1 / d0;
     env->pub.minus_infinity_value =
-        afw_value_create_double_unmanaged(env->pub.minus_infinity,
+        afw_value_create_double(env->pub.minus_infinity,
             xctx->p, xctx);
     env->pub.NaN = sqrt(-1);
     env->pub.NaN_value =
-        afw_value_create_double_unmanaged(env->pub.NaN,
+        afw_value_create_double(env->pub.NaN,
             xctx->p, xctx);
 
     /* Register core generated data_types, functions, etc. */

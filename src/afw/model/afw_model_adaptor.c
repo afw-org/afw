@@ -632,7 +632,7 @@ impl_execute_mapBackObject_thunk(
         cb_ctx->criteria,
         cb_ctx->p, xctx);
 
-    return afw_value_create_object_unmanaged(object, p, xctx);
+    return afw_value_create_object(object, p, xctx);
 }
 
 
@@ -1509,7 +1509,7 @@ afw_model_internal_complete_ctx_default_modify_object(
 
         /* Make a skeleton modify entry list and add it. */
         mapped_entry = afw_array_create_generic(ctx->p, xctx);
-        value = afw_value_create_array_unmanaged(mapped_entry, ctx->p, xctx);
+        value = afw_value_create_array(mapped_entry, ctx->p, xctx);
         afw_array_add_value(ctx->mapped_entries, value, xctx);
 
         /* Add type to entry. */
@@ -1602,7 +1602,7 @@ impl_afw_adaptor_session_modify_object(
             use_default_processing = false;
             entries_list = afw_adaptor_modify_entries_to_list(entry,
                 ctx->p, xctx);
-            ctx->modify_entries_value = afw_value_create_array_unmanaged(entries_list,
+            ctx->modify_entries_value = afw_value_create_array(entries_list,
                 ctx->p, xctx);
             value = afw_value_evaluate(ctx->model_object_type->onModifyObject,
                 ctx->p, xctx);

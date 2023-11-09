@@ -91,7 +91,7 @@ const afw_value_t * afw_yaml_parse_scalar(
             /** @fixme figure out if it should be a number.  
                 Maybe use the JSON code? For now, just try sscanf()*/
             if (sscanf((const char *)token->data.scalar.value, "%lf", &number) > 0) {
-                value = afw_value_create_double_unmanaged(number, parser->p, xctx);
+                value = afw_value_create_double(number, parser->p, xctx);
             } else if (strcmp((const char *)token->data.scalar.value, "true") == 0) {
                 value = afw_value_true;
             } else if (strcmp((const char *)token->data.scalar.value, "false") == 0) {
@@ -104,7 +104,7 @@ const afw_value_t * afw_yaml_parse_scalar(
                     strlen((const afw_utf8_octet_t *)token->data.scalar.value), parser->p,
                     xctx);
 
-                value = afw_value_create_string_unmanaged(str, parser->p, xctx);
+                value = afw_value_create_string(str, parser->p, xctx);
             }
             break;
 
@@ -119,7 +119,7 @@ const afw_value_t * afw_yaml_parse_scalar(
                 strlen((const afw_utf8_octet_t *)token->data.scalar.value),
                 parser->p, xctx);
 
-            value = afw_value_create_string_unmanaged(str, parser->p, xctx);
+            value = afw_value_create_string(str, parser->p, xctx);
             break;
     }
 
@@ -253,7 +253,7 @@ const afw_value_t * afw_yaml_parse_value(
                 /* FLOW mapping denotes {} map, while BLOCK uses spacing */
                 obj = afw_yaml_parse_object(parser, xctx);
             
-                value = afw_value_create_object_unmanaged(obj, parser->p, xctx);
+                value = afw_value_create_object(obj, parser->p, xctx);
                 break;
 
             case YAML_FLOW_ENTRY_TOKEN:
@@ -265,7 +265,7 @@ const afw_value_t * afw_yaml_parse_value(
                 /* FLOW sequence denotes [] list , while BLOCK sequence denotes - list */
                 list = afw_yaml_parse_list(parser, xctx);
 
-                value = afw_value_create_array_unmanaged(list, parser->p, xctx);
+                value = afw_value_create_array(list, parser->p, xctx);
                 break;
 
             case YAML_BLOCK_END_TOKEN:

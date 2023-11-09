@@ -171,7 +171,7 @@ afw_function_execute_decompile(
     whitespace = afw_function_evaluate_whitespace_parameter(x, 2);
     s = afw_value_decompile_to_string(x->argv[1], whitespace, x->p, x->xctx);
 
-    return afw_value_create_string_unmanaged(s, x->p, x->xctx);
+    return afw_value_create_string(s, x->p, x->xctx);
 }
 
 
@@ -441,7 +441,7 @@ afw_function_execute_stringify(
 
     s = afw_value_decompile_to_string(value, whitespace, x->p, x->xctx);
 
-    return afw_value_create_string_unmanaged(s, x->p, x->xctx);
+    return afw_value_create_string(s, x->p, x->xctx);
 }
 
 
@@ -569,7 +569,7 @@ afw_function_execute_test_script(
     AFW_ENDTRY;
 
     afw_xctx_statement_flow_reset_all_except_rethrow(xctx);
-    return afw_value_create_object_unmanaged(result, x->p, xctx);
+    return afw_value_create_object(result, x->p, xctx);
 }
 
 
@@ -697,7 +697,7 @@ afw_function_execute_test_template(
     AFW_ENDTRY;
   
     afw_xctx_statement_flow_reset_all_except_rethrow(xctx);
-    return afw_value_create_object_unmanaged(result, x->p, xctx);
+    return afw_value_create_object(result, x->p, xctx);
 }
 
 
@@ -825,7 +825,7 @@ afw_function_execute_test_value(
     AFW_ENDTRY;
   
     afw_xctx_statement_flow_reset_all_except_rethrow(xctx);
-    return afw_value_create_object_unmanaged(result, x->p, xctx);
+    return afw_value_create_object(result, x->p, xctx);
 }
 
 
@@ -885,7 +885,7 @@ afw_function_execute_qualifier(
         (forTesting && forTesting->internal),
         x->p, x->xctx);
 
-    return afw_value_create_object_unmanaged(object, x->p, x->xctx);
+    return afw_value_create_object(object, x->p, x->xctx);
 }
 
 
@@ -939,5 +939,5 @@ afw_function_execute_qualifiers(
         (forTesting && forTesting->internal),
         x->p, x->xctx);
 
-    return afw_value_create_object_unmanaged(object, x->p, x->xctx);
+    return afw_value_create_object(object, x->p, x->xctx);
 }

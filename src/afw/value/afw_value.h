@@ -68,7 +68,7 @@ struct afw_value_info_s {
 
 
 /**
- * @brief Struct to access internal of all evaluated values.
+ * @brief Struct to access internal of all values.
  */
 struct afw_value_common_s {
     /* Value inf union with afw_value_t pub to reduce casting needed. */

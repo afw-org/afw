@@ -66,7 +66,7 @@ afw_data_type_array;
  * The lifetime of the value is the lifetime of its containing pool.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
-afw_value_unmanaged_array_inf;
+afw_value_array_inf;
 
 /**
  * @brief Managed evaluated value inf for data type array.
@@ -203,7 +203,7 @@ afw_value_create_referenced_array(const afw_array_t * internal,
  * @return Created const afw_value_t *.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_create_array_unmanaged(const afw_array_t * internal,
+afw_value_create_array(const afw_array_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**

@@ -96,7 +96,7 @@ afw_function_execute_index_create(
             result = afw_object_create_managed(x->p, xctx);
             afw_object_set_property_as_object(result, afw_s_error,
                 afw_error_to_object(AFW_ERROR_THROWN, x->p, xctx), xctx);
-            return afw_value_create_object_unmanaged(result, x->p, xctx);
+            return afw_value_create_object(result, x->p, xctx);
         }
 
         AFW_ENDTRY;
@@ -144,7 +144,7 @@ afw_function_execute_index_create(
         (retroactive ? retroactive->internal : true), 
         (test ? test->internal : false), x->p, xctx);
 
-    return afw_value_create_object_unmanaged(result, x->p, xctx);
+    return afw_value_create_object(result, x->p, xctx);
 }
 
 
@@ -198,7 +198,7 @@ afw_function_execute_index_list(
         &adaptorId->internal, (objectType) ? &objectType->internal : NULL,
             x->p, x->xctx);
 
-    return afw_value_create_object_unmanaged(result, x->p, x->xctx);
+    return afw_value_create_object(result, x->p, x->xctx);
 }
 
 
@@ -248,5 +248,5 @@ afw_function_execute_index_remove(
     result = afw_adaptor_impl_index_remove(
         &adaptorId->internal, &key->internal, x->p, x->xctx);
 
-    return afw_value_create_object_unmanaged(result, x->p, x->xctx);
+    return afw_value_create_object(result, x->p, x->xctx);
 }

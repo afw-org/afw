@@ -35,7 +35,7 @@ impl_afw_value_referenced_optional_release(
 
 /* Declaration for method get_reference for unmanaged value. */
 AFW_DECLARE_STATIC(const afw_value_t *)
-impl_afw_value_unmanaged_get_reference(
+impl_afw_value_get_reference(
     const afw_value_t *instance,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
@@ -79,9 +79,9 @@ impl_afw_value_permanent_get_reference(
 /* optional_release is NULL and get_reference returns new reference. */
 #define AFW_IMPLEMENTATION_ID "dayTimeDuration"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
-#define AFW_IMPLEMENTATION_INF_LABEL afw_value_unmanaged_dayTimeDuration_inf
+#define AFW_IMPLEMENTATION_INF_LABEL afw_value_dayTimeDuration_inf
 #define impl_afw_value_optional_release NULL
-#define impl_afw_value_clone_or_reference impl_afw_value_unmanaged_get_reference
+#define impl_afw_value_clone_or_reference impl_afw_value_get_reference
 #define impl_afw_value_create_iterator NULL
 #include "afw_value_impl_declares.h"
 #undef AFW_IMPLEMENTATION_ID
@@ -177,7 +177,7 @@ afw_data_type_dayTimeDuration_direct = {
     sizeof(afw_dayTimeDuration_t),
     (const afw_array_t *)&impl_empty_array_of_dayTimeDuration,
     (const afw_value_t *)&impl_value_empty_array_of_dayTimeDuration,
-    &afw_value_unmanaged_dayTimeDuration_inf,
+    &afw_value_dayTimeDuration_inf,
     afw_compile_type_error,
     false,
     false,
@@ -223,7 +223,7 @@ afw_object_set_property_as_dayTimeDuration(
             xctx);
     }
 
-    v = afw_value_create_dayTimeDuration_unmanaged(internal, object->p, xctx);
+    v = afw_value_create_dayTimeDuration(internal, object->p, xctx);
     afw_object_set_property(object, property_name, v, xctx);
 }
 
@@ -260,7 +260,7 @@ afw_value_allocate_dayTimeDuration(const afw_pool_t *p, afw_xctx_t *xctx)
 
     result = afw_pool_calloc(p, sizeof(afw_value_dayTimeDuration_t),
         xctx);
-    result->inf = &afw_value_unmanaged_dayTimeDuration_inf;
+    result->inf = &afw_value_dayTimeDuration_inf;
     return result;
 }
 
@@ -282,14 +282,14 @@ afw_value_create_referenced_dayTimeDuration(const afw_dayTimeDuration_t * intern
 
 /* Create function for unmanaged data type dayTimeDuration value. */
 AFW_DEFINE(const afw_value_t *)
-afw_value_create_dayTimeDuration_unmanaged(const afw_dayTimeDuration_t * internal,
+afw_value_create_dayTimeDuration(const afw_dayTimeDuration_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
     afw_value_dayTimeDuration_t *v;
 
     v = afw_pool_calloc(p, sizeof(afw_value_dayTimeDuration_t),
         xctx);
-    v->inf = &afw_value_unmanaged_dayTimeDuration_inf;
+    v->inf = &afw_value_dayTimeDuration_inf;
     if (internal) {
         memcpy(&v->internal, internal, sizeof(afw_dayTimeDuration_t));
     }
@@ -390,7 +390,7 @@ impl_afw_value_referenced_optional_release(
 
 /* Implementation of method get_reference for  unmanaged value. */
 AFW_DECLARE_STATIC(const afw_value_t *)
-impl_afw_value_unmanaged_get_reference(
+impl_afw_value_get_reference(
     const afw_value_t *instance,
     const afw_pool_t *p,
     afw_xctx_t *xctx)

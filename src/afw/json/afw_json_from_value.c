@@ -602,7 +602,7 @@ afw_json_utf8_string_create(
     afw_value_string_t value;
     const afw_utf8_t *result;
 
-    value.inf = &afw_value_unmanaged_ia5String_inf;
+    value.inf = &afw_value_ia5String_inf;
     afw_memory_copy(&value.internal, string);
 
     result = afw_json_from_value(

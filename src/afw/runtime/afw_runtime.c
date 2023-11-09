@@ -627,30 +627,30 @@ impl_resolve_property(
         break;
 
     case afw_runtime_unresolved_primitive_type_number:
-        resolved->value = afw_value_create_double_unmanaged(
+        resolved->value = afw_value_create_double(
             unresolved->value.number, p, xctx);
         break;
 
     case afw_runtime_unresolved_primitive_type_integer:
-        resolved->value = afw_value_create_integer_unmanaged(
+        resolved->value = afw_value_create_integer(
             unresolved->value.integer, p, xctx);
         break;
 
     case afw_runtime_unresolved_primitive_type_array:
         list = impl_resolve_list(unresolved->value.array, p, xctx);
-        resolved->value = afw_value_create_array_unmanaged(list, p, xctx);
+        resolved->value = afw_value_create_array(list, p, xctx);
         break;
 
     case afw_runtime_unresolved_primitive_type_object:
         name = afw_utf8_create(unresolved->name, -1, p, xctx);
         object = impl_resolve_untyped_object(unresolved->value.object,
             embedding_object, name, p, xctx);
-        resolved->value = afw_value_create_object_unmanaged(object, p, xctx);
+        resolved->value = afw_value_create_object(object, p, xctx);
         break;
         
     case afw_runtime_unresolved_primitive_type_string:
         string = afw_utf8_from_utf8_z(unresolved->value.string, p, xctx);
-        resolved->value = afw_value_create_string_unmanaged(string, p, xctx);
+        resolved->value = afw_value_create_string(string, p, xctx);
         break;
 
     default:

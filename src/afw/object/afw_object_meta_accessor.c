@@ -219,7 +219,7 @@ impl_afw_object_get_next_property(
                         if (property_name) {
                             *property_name = afw_s_objectId;
                         }
-                        result = afw_value_create_string_unmanaged(s, p, xctx);
+                        result = afw_value_create_string(s, p, xctx);
                         goto return_result;
                     }
                 }
@@ -250,7 +250,7 @@ impl_afw_object_get_next_property(
                         if (property_name) {
                             *property_name = afw_s_objectType;
                         }
-                        result = afw_value_create_string_unmanaged(s, p, xctx);
+                        result = afw_value_create_string(s, p, xctx);
                         goto return_result;
                     }
                 }
@@ -280,7 +280,7 @@ impl_afw_object_get_next_property(
                         if (property_name) {
                             *property_name = afw_s_path;
                         }
-                        result = afw_value_create_string_unmanaged(s, p, xctx);
+                        result = afw_value_create_string(s, p, xctx);
                         goto return_result;
                     }
                 }

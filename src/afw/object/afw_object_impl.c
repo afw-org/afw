@@ -52,7 +52,7 @@ afw_object_impl_get_meta(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    return afw_value_create_object_unmanaged(instance->meta.meta_object,
+    return afw_value_create_object(instance->meta.meta_object,
         p, xctx);
 }
 
@@ -68,7 +68,7 @@ afw_object_impl_internal_get_meta(
     afw_xctx_t *xctx)
 {
     return (instance->meta.meta_object)
-        ? afw_value_create_object_unmanaged(instance->meta.meta_object,
+        ? afw_value_create_object(instance->meta.meta_object,
             p, xctx)
         : NULL;
 }

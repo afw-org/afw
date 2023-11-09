@@ -66,7 +66,7 @@ afw_data_type_yearMonthDuration;
  * The lifetime of the value is the lifetime of its containing pool.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
-afw_value_unmanaged_yearMonthDuration_inf;
+afw_value_yearMonthDuration_inf;
 
 /**
  * @brief Managed evaluated value inf for data type yearMonthDuration.
@@ -203,7 +203,7 @@ afw_value_create_referenced_yearMonthDuration(const afw_yearMonthDuration_t * in
  * @return Created const afw_value_t *.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_create_yearMonthDuration_unmanaged(const afw_yearMonthDuration_t * internal,
+afw_value_create_yearMonthDuration(const afw_yearMonthDuration_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**

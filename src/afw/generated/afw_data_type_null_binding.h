@@ -66,7 +66,7 @@ afw_data_type_null;
  * The lifetime of the value is the lifetime of its containing pool.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
-afw_value_unmanaged_null_inf;
+afw_value_null_inf;
 
 /**
  * @brief Managed evaluated value inf for data type null.
@@ -203,7 +203,7 @@ afw_value_create_referenced_null(void * internal,
  * @return Created const afw_value_t *.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_create_null_unmanaged(void * internal,
+afw_value_create_null(void * internal,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**

@@ -507,7 +507,7 @@ afw_value_make_single_string(
     afw_value_string_t *single;
 
     single = afw_pool_malloc_type(p, afw_value_string_t, xctx);
-    single->inf = &afw_value_unmanaged_string_inf;
+    single->inf = &afw_value_string_inf;
     single->internal.s = s;
     single->internal.len = (len == AFW_UTF8_Z_LEN) ? strlen(s) : len;
     return &single->pub;
@@ -525,7 +525,7 @@ afw_value_make_string_copy(
     afw_value_string_t *single;
 
     single = afw_pool_malloc_type(p, afw_value_string_t, xctx);
-    single->inf = &afw_value_unmanaged_string_inf;
+    single->inf = &afw_value_string_inf;
     single->internal.len = (len == AFW_UTF8_Z_LEN) ? strlen(s) : len;
     single->internal.s = (single->internal.len > 0)
         ? afw_memory_dup(s, single->internal.len, p, xctx)
@@ -547,7 +547,7 @@ afw_value_create_string_from_u8z(
     const afw_utf8_t *string;
 
     string = afw_utf8_create(string_z, AFW_UTF8_Z_LEN, p, xctx);
-    return afw_value_create_string_unmanaged(string, p, xctx);
+    return afw_value_create_string(string, p, xctx);
 }
 
 
@@ -656,7 +656,7 @@ afw_value_convert(
             list = afw_array_create_wrapper_for_array(
                 &((afw_value_common_t *)value)->internal, false,
                 v_data_type, 1, p, xctx);
-            result = afw_value_create_array_unmanaged(list, p, xctx);
+            result = afw_value_create_array(list, p, xctx);
         }
 
         /* Down convert from a single entry list. */
@@ -746,7 +746,7 @@ afw_value_string_from_internal(
         string = afw_data_type_internal_to_utf8(
             afw_value_get_data_type(value, xctx), value,
             p, xctx);
-        result = afw_value_create_string_unmanaged(string, p, xctx);
+        result = afw_value_create_string(string, p, xctx);
     }
 
     return result;
@@ -762,7 +762,7 @@ afw_value_create_dateTime_now_utc(
     afw_dateTime_t dateTime;
 
     afw_dateTime_set_now(NULL, &dateTime, xctx);
-    return afw_value_create_dateTime_unmanaged(&dateTime, p, xctx);
+    return afw_value_create_dateTime(&dateTime, p, xctx);
 }
 
 
@@ -775,7 +775,7 @@ afw_value_create_dateTime_now_local(
     afw_dateTime_t dateTime;
 
     afw_dateTime_set_now(&dateTime, NULL, xctx);
-    return afw_value_create_dateTime_unmanaged(&dateTime, p, xctx);
+    return afw_value_create_dateTime(&dateTime, p, xctx);
 }
 
 

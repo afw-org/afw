@@ -66,7 +66,7 @@ afw_data_type_template;
  * The lifetime of the value is the lifetime of its containing pool.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
-afw_value_unmanaged_template_inf;
+afw_value_template_inf;
 
 /**
  * @brief Managed evaluated value inf for data type template.
@@ -223,7 +223,7 @@ afw_value_create_referenced_template_slice(
  * @return Created const afw_value_t *.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_create_template_unmanaged(const afw_utf8_t * internal,
+afw_value_create_template(const afw_utf8_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**
