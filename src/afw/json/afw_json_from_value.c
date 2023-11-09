@@ -419,7 +419,7 @@ impl_convert_value_to_json(
             else {
                 string = afw_data_type_internal_to_utf8(
                     value_data_type,
-                    &((const afw_value_unmanaged_t *)value)->internal,
+                    &((const afw_value_common_t *)value)->internal,
                     wa->p, wa->xctx);
                 impl_write(wa, string->s, string->len);
             }

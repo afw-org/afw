@@ -1614,7 +1614,7 @@ impl_compare_value(
         data_type = afw_value_get_data_type(value, xctx);
         AFW_LIST_INITIALIZE_WRAPPER_FOR_ARRAY(
             &list_for_single_internal,
-            &((afw_value_unmanaged_t *)value)->internal, false,
+            &((afw_value_common_t *)value)->internal, false,
             data_type, 1);
         list = (afw_array_t *)&list_for_single_internal;
     }
@@ -1623,7 +1623,7 @@ impl_compare_value(
     switch (entry->op_id) {
 
     case afw_query_criteria_filter_op_id_eq:
-        i1 = (const void *)&((const afw_value_unmanaged_t *)entry_value)->internal;
+        i1 = (const void *)&((const afw_value_common_t *)entry_value)->internal;
         for (is_true = false, iterator = NULL;;) {
             afw_array_get_next_internal(list, &iterator, &entry_data_type, &i2, xctx);
             if (!i2) {
@@ -1642,7 +1642,7 @@ impl_compare_value(
         break;
 
     case afw_query_criteria_filter_op_id_ne:
-        i1 = (const void *)&((const afw_value_unmanaged_t *)entry_value)->internal;
+        i1 = (const void *)&((const afw_value_common_t *)entry_value)->internal;
         for (is_true = true, iterator = NULL;;) {
             afw_array_get_next_internal(list, &iterator, &entry_data_type, &i2, xctx);
             if (!i2) {
@@ -1661,7 +1661,7 @@ impl_compare_value(
         break;
 
     case afw_query_criteria_filter_op_id_lt:
-        i1 = (const void *)&((const afw_value_unmanaged_t *)entry_value)->internal;
+        i1 = (const void *)&((const afw_value_common_t *)entry_value)->internal;
         for (is_true = false, iterator = NULL;;) {
             afw_array_get_next_internal(list, &iterator, &entry_data_type, &i2, xctx);
             if (!i2) {
@@ -1680,7 +1680,7 @@ impl_compare_value(
         break;
 
     case afw_query_criteria_filter_op_id_le:
-        i1 = (const void *)&((const afw_value_unmanaged_t *)entry_value)->internal;
+        i1 = (const void *)&((const afw_value_common_t *)entry_value)->internal;
         for (is_true = false, iterator = NULL;;) {
             afw_array_get_next_internal(list, &iterator, &entry_data_type, &i2, xctx);
             if (!i2) {
@@ -1699,7 +1699,7 @@ impl_compare_value(
         break;
 
     case afw_query_criteria_filter_op_id_gt:
-        i1 = (const void *)&((const afw_value_unmanaged_t *)entry_value)->internal;
+        i1 = (const void *)&((const afw_value_common_t *)entry_value)->internal;
         for (is_true = false, iterator = NULL;;) {
             afw_array_get_next_internal(list, &iterator, &entry_data_type, &i2, xctx);
             if (!i2) {
@@ -1718,7 +1718,7 @@ impl_compare_value(
         break;
 
     case afw_query_criteria_filter_op_id_ge:
-        i1 = (const void *)&((const afw_value_unmanaged_t *)entry_value)->internal;
+        i1 = (const void *)&((const afw_value_common_t *)entry_value)->internal;
         for (is_true = false, iterator = NULL;;) {
             afw_array_get_next_internal(list, &iterator, &entry_data_type, &i2, xctx);
             if (!i2) {

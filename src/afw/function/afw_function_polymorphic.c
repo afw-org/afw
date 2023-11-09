@@ -1702,7 +1702,7 @@ afw_function_execute_one_and_only(
     afw_array_get_next_internal(array->internal,
         &iterator, &data_type, &internal, x->xctx);
 
-    return afw_value_unmanaged_create(internal, data_type, x->p, x->xctx);
+    return afw_value_common_create(internal, data_type, x->p, x->xctx);
 }
 
 

@@ -300,7 +300,7 @@ AFW_DEFINE(const afw_value_t *)
 afw_value_clone(const afw_value_t *value,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    afw_value_unmanaged_t *evaluated;
+    afw_value_common_t *evaluated;
 
     /* If value is NULL, return NULL. */
     if (!value) {
@@ -314,11 +314,11 @@ afw_value_clone(const afw_value_t *value,
 
     /* If value is evaluated, clone it. */
     if (value->inf->is_evaluated_of_data_type) {
-        evaluated = afw_value_unmanaged_allocate(
+        evaluated = afw_value_common_allocate(
             value->inf->is_evaluated_of_data_type, p, xctx);
         afw_data_type_clone_internal(value->inf->is_evaluated_of_data_type,
             (void *)&evaluated->internal,
-            (const void *)&((const afw_value_unmanaged_t *)value)->internal,
+            (const void *)&((const afw_value_common_t *)value)->internal,
             p, xctx);
         return &evaluated->pub;
     }
@@ -496,7 +496,7 @@ afw_value_as_utf8(const afw_value_t *value,
 
 
 
-/* Make an afw_value_unmanaged_t String using string in specified pool. */
+/* Make an afw_value_common_t String using string in specified pool. */
 AFW_DEFINE(const afw_value_t *)
 afw_value_make_single_string(
     const afw_utf8_octet_t *s,
@@ -514,7 +514,7 @@ afw_value_make_single_string(
 
 }
 
-/* Make an afw_value_unmanaged_t String using copy of string in specified pool. */
+/* Make an afw_value_common_t String using copy of string in specified pool. */
 AFW_DEFINE(const afw_value_t *)
 afw_value_make_string_copy(
     const afw_utf8_octet_t *s,
@@ -612,7 +612,7 @@ afw_value_convert(
 {
     const afw_value_t *result;
     const afw_data_type_t *v_data_type;
-    afw_value_unmanaged_t *single;
+    afw_value_common_t *single;
     const afw_array_t *list;
     const afw_iterator_t *iterator;
     const void *internal;
@@ -654,7 +654,7 @@ afw_value_convert(
         /* Upconvert to one entry list. */
         if (to_data_type == afw_data_type_array) {
             list = afw_array_create_wrapper_for_array(
-                &((afw_value_unmanaged_t *)value)->internal, false,
+                &((afw_value_common_t *)value)->internal, false,
                 v_data_type, 1, p, xctx);
             result = afw_value_create_array_unmanaged(list, p, xctx);
         }
@@ -672,7 +672,7 @@ afw_value_convert(
             iterator = NULL;
             afw_array_get_next_internal(list,
                 &iterator, &data_type, &internal, xctx);
-            single = afw_value_unmanaged_allocate(to_data_type, p, xctx);
+            single = afw_value_common_allocate(to_data_type, p, xctx);
             if (data_type == to_data_type) {
                 memcpy(AFW_VALUE_INTERNAL(single), internal, data_type->c_type_size);
             }
@@ -689,11 +689,11 @@ afw_value_convert(
 
         /* Not list. */
         else {
-            single = afw_value_unmanaged_allocate(to_data_type, p, xctx);
+            single = afw_value_common_allocate(to_data_type, p, xctx);
             afw_data_type_convert_internal(
                 v_data_type,
                 &single->internal,
-                &((const afw_value_unmanaged_t *)value)->internal,
+                &((const afw_value_common_t *)value)->internal,
                 to_data_type,
                 p, xctx);
             result = &single->pub;
@@ -903,8 +903,8 @@ afw_value_equal(const afw_value_t *value1, const afw_value_t *value2,
         if (value1->inf->is_evaluated_of_data_type ==
             value2->inf->is_evaluated_of_data_type)
         {
-            i1 = (const char *)&((const afw_value_unmanaged_t *)value1)->internal;
-            i2 = (const char *)&((const afw_value_unmanaged_t *)value2)->internal;
+            i1 = (const char *)&((const afw_value_common_t *)value1)->internal;
+            i2 = (const char *)&((const afw_value_common_t *)value2)->internal;
             result = afw_data_type_compare_internal(
                 value1->inf->is_evaluated_of_data_type, i1, i2, xctx) == 0;
         }
@@ -942,8 +942,8 @@ afw_value_compare(
     }
 
     if (afw_value_is_defined_and_evaluated(value1)) {
-        i1 = (const void *)&((const afw_value_unmanaged_t *)value1)->internal;
-        i2 = (const void *)&((const afw_value_unmanaged_t *)value2)->internal;
+        i1 = (const void *)&((const afw_value_common_t *)value1)->internal;
+        i2 = (const void *)&((const afw_value_common_t *)value2)->internal;
         result = afw_data_type_compare_internal(
             afw_value_get_data_type(value1, xctx),
             i1, i2, xctx);

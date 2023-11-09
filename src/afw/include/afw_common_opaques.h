@@ -866,12 +866,12 @@ typedef struct afw_compile_internal_value_contextual_s
 afw_compile_value_contextual_t;
 
 /**
- * Opaque typedef for afw_value_unmanaged_t.
+ * Opaque typedef for afw_value_common_t.
  *
  * See afw_value.h for struct and more information.
  */
-typedef struct afw_value_unmanaged_s
-afw_value_unmanaged_t;
+typedef struct afw_value_common_s
+afw_value_common_t;
 
 /**
  * Opaque typedef for afw_value_function_definition_t.

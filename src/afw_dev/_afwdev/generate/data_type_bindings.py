@@ -1367,7 +1367,7 @@ def write_c_section(fd, prefix, obj):
     fd.write('    afw_data_type_write_as_expression(\n')
     fd.write('        afw_data_type_' + id + ',\n')
     fd.write('        writer,\n')
-    fd.write('        (const void *)&(((const afw_value_unmanaged_t *)instance)->internal),\n')
+    fd.write('        (const void *)&(((const afw_value_common_t *)instance)->internal),\n')
     fd.write('        xctx);\n')
     fd.write('}\n')
     fd.write('\n')

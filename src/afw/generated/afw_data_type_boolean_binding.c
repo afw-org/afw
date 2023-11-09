@@ -462,7 +462,7 @@ impl_afw_value_decompile(
     afw_data_type_write_as_expression(
         afw_data_type_boolean,
         writer,
-        (const void *)&(((const afw_value_unmanaged_t *)instance)->internal),
+        (const void *)&(((const afw_value_common_t *)instance)->internal),
         xctx);
 }
 
