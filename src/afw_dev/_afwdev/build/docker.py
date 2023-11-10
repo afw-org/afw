@@ -1,5 +1,11 @@
 #! /usr/bin/env python3
 
+##
+# @file docker.py
+# @ingroup afwdev_build
+# @brief This file defines the build method for building docker images.
+#
+
 import os
 
 from _afwdev.common import msg, package
@@ -159,8 +165,15 @@ _docker_images = [
     ]
 ]
 
-# in addition to the tags specified by the info, the specific version info
-# that is specified by FROM in the Dockerfile will be added to the tag list
+##
+# @brief Gets the tags for a specific docker image.
+# @param options The options dictionary.
+# @param image The docker image name.
+# @param image_info The docker image info.
+# @details In addition to the tags specified by the info, the specific version 
+#          info that is specified by FROM in the Dockerfile will be added to 
+#          the tag list.
+#
 def get_tags(options, image, image_info):
 
     tags = []
@@ -176,7 +189,13 @@ def get_tags(options, image, image_info):
 
     return tags
 
-# This routine will build a specific docker image
+##
+# @brief Builds a specific docker image.
+# @param options The options dictionary.
+# @param image The docker image name.
+# @param image_info The docker image info.
+# @details This routine will build a specific docker image.
+#
 def build_image(options, image, image_info):
 
     cmd = 'docker buildx build --file ' + image_info['dockerFile']
@@ -191,12 +210,16 @@ def build_image(options, image, image_info):
     msg.highlighted_info("    Running: " + cmd)
     #os.system(cmd)
 
-# This routine will build docker images for the afw package
-# It currently uses the "buildx" docker plug-in, which supports multi-
-# architecture builds.  
+##
+# @brief Builds docker images.
+# @param options The options dictionary.
+# @details This routine will build docker images for the afw package
+#          It currently uses the "buildx" docker plug-in, which supports multi-
+#          architecture builds.  
 #
-# Because of this, it's required to run this on a system that has the 
-# plugins installed.
+#          Because of this, it's required to run this on a system that has the 
+#          plugins installed.
+#
 def build(options):
 
     msg.highlighted_info("Building docker images...")

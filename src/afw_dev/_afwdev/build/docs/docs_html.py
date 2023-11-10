@@ -1,8 +1,12 @@
+#! /usr/bin/env python3
+
+##
+# @file docs_html.py
+# @ingroup afwdev_build_docs
+# @brief This file implements some basic functions for creating doc HTML
+# @details This file implements some basic HTML functions for creating HTML 
+#          code that will use resource templates to build from.
 #
-# docs_html.py
-#
-# This file implements some basic HTML functions for creating HTML 
-# code that will use resource templates to build from.
 
 import html
 import json

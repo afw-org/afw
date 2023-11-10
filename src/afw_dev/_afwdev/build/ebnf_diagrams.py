@@ -1,10 +1,20 @@
 #!/usr/bin/env python3
 
+##
+# @file ebnf_diagrams.py
+# @ingroup afwdev_build
+# @brief This file defines the method for building EBNF diagrams.
+#
+
 import os
 import shutil
 import zipfile
 from _afwdev.common import msg, nfc
 
+##
+# @brief Builds EBNF diagrams.
+# @param options The options dictionary.
+#
 def build(options):        
 
     msg.highlighted_info('Building EBNF diagrams')

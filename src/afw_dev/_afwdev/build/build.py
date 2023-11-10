@@ -6,6 +6,15 @@
 # @brief This file contains the main entry point for the "build" subcommand.
 #
 
+##
+# @defgroup afwdev_build_docs docs
+# @ingroup afwdev_build
+# @brief The afwdev build --docs subcommand
+# @details The afwdev build subcommand is used to build different parts of 
+#        Adaptive Framework packages. The --docs option builds the 
+#        documentation for the Adaptive Framework package.
+#
+
 import os
 import sys
 import shlex

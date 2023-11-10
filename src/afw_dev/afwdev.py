@@ -1,8 +1,14 @@
 #! /usr/bin/env python3
 
 ##
+# @file afwdev.py
 # @defgroup afwdev afwdev
 # @ingroup afw_included_commands
+# @brief Command afwdev is a development tool used to create, extend, 
+#        maintain, and test an Adaptive Framework (AFW) Package.
+# @details An AFW package can be the one that holds the AFW core (afw) or other 
+#          AFW packages that contains AFW applications, commands, extensions, 
+#          layouts, servers, test data, etc.
 #
 
 import sys
@@ -1036,19 +1042,29 @@ def _msg_added_files(options):
     for file in added:
         msg.success('  ' + file)
 
+##
+# @ingroup afwdev
+# @brief Returns the version information, including git details
+# @param options The options dictionary
+# 
 def _get_version(options):
     opt = options.copy()
     info = resources.get_afwdev_git_info(opt)
     return info.get('version_with_git_info')
 
+##
+# @brief Returns the version string, without git details
+# @param options The options dictionary
+#
 def _get_version_string(options):
     opt = options.copy()
     info = resources.get_afwdev_git_info(opt)
     return info.get('version_string')
 
 
-#
-# Called by subcommands to make extension
+##
+# @brief called by subcommands to make extension
+# @param options The options dictionary
 #
 def _make_extension(options): 
     msg.highlighted_info("Adding extension " + options['implementation_id'], empty_before=True)
@@ -1089,8 +1105,9 @@ def _make_extension(options):
     _call_generated_generate(options)
 
 
-#
-# Called by subcommands to add an interface
+##
+# @brief Called by subcommands to add an interface
+# @param options The options dictionary
 #
 def _add_interface(options):
 
@@ -1124,8 +1141,9 @@ def _add_interface(options):
     with nfc.open(options['interface_c_path'], mode='w') as fd:
         fd.write(skeleton)
 
-#
-# Called by subcommands to generate a srcdir
+##
+# @brief Called by subcommands to generate a srcdir
+# @param options The options dictionary
 #
 def _call_generated_generate(options):
     opts = options.copy()
@@ -1136,8 +1154,9 @@ def _call_generated_generate(options):
     generate.generate(opts)
 
 
-#
-# Called by subcommands to generate primary manifest source.
+##
+# @brief Called by subcommands to generate primary manifest source.
+# @param options The options dictionary
 #
 def _generate_primary(options):
     opts = options.copy()
@@ -1156,8 +1175,12 @@ def _generate_primary(options):
     generate.root_generate(options)
 
 
-#
-# Called by subcommands to generate a register
+##
+# @brief Called by subcommands to generate a register
+# @param options The options dictionary
+# @param registry_type The registry type
+# @param registry_key The registry key
+# @param registry_value The registry value
 #
 def _generate_register(options, registry_type, registry_key, registry_value):
     afw_package = package.get_afw_package(options)
@@ -1171,8 +1194,10 @@ def _generate_register(options, registry_type, registry_key, registry_value):
         fd.write(skeleton)
 
 
-#
-# Subcommand add-adaptor-type
+##
+# @brief Subcommand add-adaptor-type
+# @param args The command line arguments
+# @param options The options dictionary
 #
 def _subcommand_add_adaptor_type(args, options):
     package.set_options_from_existing_package_srcdir(options, options['srcdir'])
@@ -1207,8 +1232,10 @@ def _subcommand_add_adaptor_type(args, options):
     msg.success('Skeleton adaptor type '  + options['implementation_id'] + ' added to ' + options['srcdir_relpath'] + '.')
     _msg_added_files(options)
 
-#
-# Subcommand add-content-type
+##
+# @brief Subcommand add-content-type
+# @param args The command line arguments
+# @param options The options dictionary
 #
 def _subcommand_add_content_type(args, options):
     package.set_options_from_existing_package_srcdir(options, options['srcdir'])
@@ -1231,8 +1258,10 @@ def _subcommand_add_content_type(args, options):
     _msg_added_files(options)
 
 
-#
-# Subcommand add-core-interface
+##
+# @brief Subcommand add-core-interface
+# @param args The command line arguments
+# @param options The options dictionary
 #
 def _subcommand_add_core_interface(args, options):
     package.set_options_from_existing_package_srcdir(options, options['srcdir'])
@@ -1247,8 +1276,10 @@ def _subcommand_add_core_interface(args, options):
     _msg_added_files(options)
 
 
-#
-# Subcommand add-log-type
+##
+# @brief Subcommand add-log-type
+# @param args The command line arguments
+# @param options The options dictionary
 #
 def _subcommand_add_log_type(args, options):
     
@@ -1288,8 +1319,10 @@ def _subcommand_add_log_type(args, options):
     _msg_added_files(options)
 
 
-#
-#  Subcommand afw-parser-info
+##
+# @brief Subcommand afw-parser-info
+# @param args The command line arguments
+# @param options The options dictionary
 #
 def _subcommand_afwdev_parser_info(args, options):
     
@@ -1300,8 +1333,10 @@ def _subcommand_afwdev_parser_info(args, options):
     msg.success('Parser info written to:  ' + options['output_path'])
 
 
-#
-#  Subcommand build
+##
+# @brief Subcommand build
+# @param args The command line arguments
+# @param options The options dictionary
 #
 def _subcommand_build(args, options):
     
@@ -1311,8 +1346,10 @@ def _subcommand_build(args, options):
     msg.success('Build successful')
 
 
-#
-#  Subcommand ebnf
+##
+# @brief Subcommand ebnf
+# @param args The command line arguments
+# @param options The options dictionary
 #
 def _subcommand_ebnf(args, options):
 
@@ -1323,8 +1360,10 @@ def _subcommand_ebnf(args, options):
 
 
 
-#
-# for subcommand
+##
+# @brief for subcommand
+# @param args The command line arguments
+# @param options The options dictionary
 #
 def _subcommand_for(args, options):
     options['subcommand'] = "for"
@@ -1422,8 +1461,10 @@ def _subcommand_generate(args, options):
 
 
 
-#
-#  Subcommand make-afw-package
+##
+# @brief Subcommand make-afw-package
+# @param args The command line arguments
+# @param options The options dictionary
 #
 def _subcommand_make_afw_package(args, options):
     msg.highlighted_info('Making skeleton Adaptive Framework package '+ options['afw_package_dir_path'] + '.', empty_before=True)
@@ -1480,8 +1521,10 @@ def _subcommand_make_afw_package(args, options):
     msg.success('Skeleton AFW package made in ' + options['afw_package_dir_path'] + '.')
     msg.success('Use other afwdev make-* subcommands and make changes as needed.')
 
-#
-#  Subcommand make-command
+##
+# @brief Subcommand make-command
+# @param args The command line arguments
+# @param options The options dictionary
 #
 def _subcommand_make_command(args, options):
     msg.highlighted_info("Making command " + options['produces'], empty_before=True)
@@ -1521,8 +1564,10 @@ def _subcommand_make_command(args, options):
     _msg_added_files(options)
 
 
-#
-#  Subcommand make-extension
+##
+# @brief Subcommand make-extension
+# @param args The command line arguments
+# @param options The options dictionary
 #
 def _subcommand_make_extension(args, options):
 
@@ -1541,8 +1586,10 @@ def _subcommand_make_extension(args, options):
 
 
 
-#
-#  Subcommand settings
+##
+# @brief Subcommand settings
+# @param args The command line arguments
+# @param options The options dictionary
 #
 def _subcommand_settings(args, options):
     options['subcommand'] = "settings"
@@ -1550,8 +1597,10 @@ def _subcommand_settings(args, options):
     print(nfc.json_dumps(options['afwdev_settings'], indent=2, sort_keys=True))
 
 
-#
-#  Subcommand task
+##
+# @brief Subcommand task
+# @param args The command line arguments
+# @param options The options dictionary
 #
 def _subcommand_task(args, options):
     options['subcommand'] = "task"
@@ -1623,8 +1672,8 @@ def _subcommand_validate(args, options):
     sys.exit(exit_code) 
 
 
-#
-# Parser setup
+##
+# @brief Parser setup
 #
 def _add_args(subparsers, info):
 
@@ -1821,8 +1870,10 @@ def _get_afwdev_settings(options):
     options['afwdev_settings'] = afwdev_settings
 
 
-#
-# Set afw-package path and args options for a subcommand
+##
+# @brief Set afw-package path and args options for a subcommand
+# @param args The command line arguments
+# @param options The options dictionary
 #
 def _set_package_and_args_options(args, options):
 
@@ -1903,8 +1954,9 @@ def _set_package_and_args_options(args, options):
         options[arg['optionName']] = v
 
 
-#
-# Parser setup
+##
+# @brief Parser setup
+# @param options The options dictionary
 #
 def _setup_parser(options):
 
@@ -1962,8 +2014,8 @@ def _setup_parser(options):
     #<<< End of parser setup
 
 
-#
-#  MAIN
+##
+# @brief main entry point
 #
 def main():
 

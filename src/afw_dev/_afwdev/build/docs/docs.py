@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
 
+##
+# @file docs.py
+# @ingroup afwdev_build_docs
+# @brief This file defines the build method for building documentation.
+#
+
 import os
 import pathlib
 import shutil
@@ -895,12 +901,12 @@ def run(options):
     # to the output directory
     copytree(doc_dir, doc_output_dir)
 
-#
-# build(options)
-#
-# This is the entry point from "afwdev build" where there is no srcdir option
-# specified. This routine will iterate over all srcdirs and build the docs for
-# each.
+##
+# @brief Builds documentation.
+# @param options The options dictionary.
+# @details This is the entry point from "afwdev build" where there is no srcdir 
+#          option specified. This routine will iterate over all srcdirs and 
+#          build the docs for each.
 #
 def build(options):
 

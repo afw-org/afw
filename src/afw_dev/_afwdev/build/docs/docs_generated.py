@@ -1,11 +1,14 @@
-# 
-# docs_generated.py
+#! /usr/bin/env python3
+
+##
+# @file docs_generated.py
+# @ingroup afwdev_build_docs
+# @brief Helper functions for building generated documentation
+# @details This script is intended to be temporary.
+#          The purpose of this script is to create documentation formats from 
+#          generated resources. Eventually, we would like to abstract this away 
+#          into a configuration file, generate/docs/config.txt or something.
 #
-# This script is intended to be temporary.
-#
-# The purpose of this script is to create documentation formats from 
-# generated resources. Eventually, we would like to abstract this away 
-# into a configuration file, generate/docs/config.txt or something.
 
 import os
 import pathlib
@@ -13,8 +16,15 @@ import re
 from lxml import etree
 from _afwdev.common import msg, nfc, package
     
-
-# This function generates the page data for an individual dataType
+##
+# @brief This function generates the page data for an individual dataType
+# @param fp The file pointer to write the page to
+# @param src The source data for the dataType
+# @param breadcrumbs The breadcrumbs for the page
+# @param nav_items The navigation items for the page
+# @param docsHtml The DocsHtml object
+# @param doc_root The root path for the documentation
+#
 def generate_data_type(fp, src, breadcrumbs, nav_items, docsHtml, doc_root):
 
     dataType = src["dataType"] 
@@ -45,7 +55,17 @@ def generate_data_type(fp, src, breadcrumbs, nav_items, docsHtml, doc_root):
 
     fp.write(docsHtml.page(doc_root, dataType, breadcrumbs, nav_items, content))
 
-    # This function generates an individual function category, listing all related functions
+##
+# @brief This function generates an individual function category, listing all 
+#        related functions
+# @param fp The file pointer to write the page to
+# @param src The source data for the function category
+# @param breadcrumbs The breadcrumbs for the page
+# @param nav_items The navigation items for the page
+# @param docsHtml The DocsHtml object
+# @param category_functions The list of functions in this category
+# @param doc_root The root path for the documentation
+#
 def generate_function_category(fp, src, breadcrumbs, nav_items, docsHtml, category_functions, doc_root):
 
     category = src["category"]
@@ -73,7 +93,13 @@ def generate_function_category(fp, src, breadcrumbs, nav_items, docsHtml, catego
 
     fp.write(docsHtml.page(doc_root, category, breadcrumbs, nav_items, content))
 
-# This function generates each dataType page, as well as the top-level index.html for all dataTypes.
+##
+# @brief This function generates each dataType page, as well as the top-level 
+#        index.html for all dataTypes.
+# @param options The options dictionary
+# @param docsHtml The DocsHtml object
+# @param generate_sidenav The function to generate the sidenav
+#
 def generate_data_types(options, docsHtml, generate_sidenav):
 
     msg.info("    Building Reference for Data Types") 
@@ -153,7 +179,15 @@ def generate_data_types(options, docsHtml, generate_sidenav):
 
         fp.write(docsHtml.page(doc_root, "Data Types", breadcrumbs, nav_items, content))
 
-# This function generates an individual function
+##
+# @brief This function generates an individual function
+# @param fp The file pointer to write the page to
+# @param src The source data for the function
+# @param breadcrumbs The breadcrumbs for the page
+# @param nav_items The navigation items for the page
+# @param docsHtml The DocsHtml object
+# @param doc_root The root path for the documentation
+#
 def generate_function(fp, src, breadcrumbs, nav_items, docsHtml, doc_root):
 
     functionId = src["functionId"]    
@@ -184,7 +218,15 @@ def generate_function(fp, src, breadcrumbs, nav_items, docsHtml, doc_root):
 
     fp.write(docsHtml.page(doc_root, functionId, breadcrumbs, nav_items, content))
 
-    # This function generates the page for an object type
+##
+# @brief This function generates the page for an object type
+# @param fp The file pointer to write the page to
+# @param src The source data for the object type
+# @param breadcrumbs The breadcrumbs for the page
+# @param nav_items The navigation items for the page
+# @param docsHtml The DocsHtml object
+# @param doc_root The root path for the documentation
+#
 def generate_object_type(fp, src, breadcrumbs, nav_items, docsHtml, doc_root):
 
     objectType = src["objectType"]    
@@ -224,7 +266,12 @@ def generate_object_type(fp, src, breadcrumbs, nav_items, docsHtml, doc_root):
 
     fp.write(docsHtml.page(doc_root, objectType, breadcrumbs, nav_items, content))
 
-# This function generates the page that lists all object types
+##
+# @brief This function generates the page that lists all object types
+# @param options The options dictionary
+# @param docsHtml The DocsHtml object
+# @param generate_sidenav The function to generate the sidenav
+#
 def generate_object_types(options, docsHtml, generate_sidenav):
 
     msg.info("    Building Reference for Object Types")
@@ -303,7 +350,13 @@ def generate_object_types(options, docsHtml, generate_sidenav):
 
         fp.write(docsHtml.page(doc_root, "Object Types", breadcrumbs, nav_items, content))
 
-# This function generates the functions list page, with all functions in a particular category
+##
+# @brief This function generates the functions list page, with all functions in 
+#        a particular category
+# @param options The options dictionary
+# @param docsHtml The DocsHtml object
+# @param generate_sidenav The function to generate the sidenav
+#
 def generate_functions(options, docsHtml, generate_sidenav):
 
     msg.info("    Building Reference for Functions")
@@ -354,7 +407,12 @@ def generate_functions(options, docsHtml, generate_sidenav):
                     functions.append(src)
 
 
-# This function generates a list of all function categories
+##
+# @brief This function generates a list of all function categories
+# @param options The options dictionary
+# @param docsHtml The DocsHtml object
+# @param generate_sidenav The function to generate the sidenav
+#
 def generate_function_categories(options, docsHtml, generate_sidenav):
 
     msg.info("    Building Reference for Function Categories")    
@@ -455,7 +513,11 @@ def generate_function_categories(options, docsHtml, generate_sidenav):
 
         fp.write(docsHtml.page(doc_root, "Function Categories", breadcrumbs, nav_items, content))            
 
-
+##
+# @brief This function generates the table for function categories
+# @param options The options dictionary
+# @param docsHtml The DocsHtml object
+#
 def generate_function_categories_table(options, docsHtml):
 
     func_cats_dir = options.get('func_cats_dir')    
@@ -475,7 +537,11 @@ def generate_function_categories_table(options, docsHtml):
 
     return content
 
-
+##
+# @brief This function generates the table for all data types
+# @param options The options dictionary
+# @param docsHtml The DocsHtml object
+#
 def generate_data_types_table(options, docsHtml):
 
     data_types_dir = options.get('data_types_dir')    
@@ -506,6 +572,11 @@ def get_paras(text):
     paras = re.split(r"\n *\n", text)        
     return "\n\n".join(map(lambda x: " ".join(x.split()), paras))
 
+##
+# @brief This function generates the page for an interface
+# @param options The options dictionary
+# @param docsHtml The DocsHtml object
+# 
 def generate_interfaces_table(options, docsHtml):
 
     interfaces_dir = options.get('interfaces_dir')      
@@ -530,10 +601,14 @@ def generate_interfaces_table(options, docsHtml):
 
     return content
 
-# For the afw_dev srcdir, this routine generates the Usage section of the 
-# documentation.
+##
+# @brief For the afw_dev srcdir, this routine generates the Usage section of 
+#        the documentation.
+# @param options The options dictionary
+# @param docsHtml The DocsHtml object
+# @details It could be generalized to other command-line usage options in the 
+#          future.
 #
-# It could be generalized to other command-line usage options in the future
 def generate_usage_table(options, docsHtml): 
 
     afwdev_info = options.get('afwdev_info')    
@@ -615,6 +690,14 @@ def generate_usage_table(options, docsHtml):
 
     return content
 
+##
+# @brief This function generates a list of properties for an object type
+# @param options The options dictionary
+# @param docsHtml The DocsHtml object
+# @param srcdir The srcdir to use
+# @param objectTypeId The object type id
+# @param propertyColumn The name of the property column
+#
 def generate_object_type_table(options, docsHtml, srcdir, objectTypeId, propertyColumn):
 
     generated_object_type_path = options.get('generated_dir') + 'objects/_AdaptiveObjectType_/' + objectTypeId + '.json'
