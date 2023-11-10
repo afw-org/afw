@@ -51,6 +51,10 @@ EOF
         exit 1
     fi
 
+    # change afw.pc and afw-config.cmake to reflect the final /usr/local install location
+    sed -i "s|prefix=${HOME}/afw-${VER_REL_ARCH}/usr/local|prefix=/usr/local|g" ${HOME}/afw-${VER_REL_ARCH}/usr/local/share/pkgconfig/afw.pc
+    sed -i "s|${HOME}/afw-${VER_REL_ARCH}/usr/local|/usr/local|g" ${HOME}/afw-${VER_REL_ARCH}/usr/local/lib/cmake/afw-${VER_REL_ARCH}/afw-config.cmake
+
     cd ${HOME}
     dpkg-deb --build --root-owner-group afw-${VER_REL_ARCH}
 
