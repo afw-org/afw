@@ -79,7 +79,7 @@ impl_afw_value_permanent_get_reference(
 /* optional_release is NULL and get_reference returns new reference. */
 #define AFW_IMPLEMENTATION_ID "dateTime"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
-#define AFW_IMPLEMENTATION_INF_LABEL afw_value_dateTime_inf
+#define AFW_IMPLEMENTATION_INF_LABEL afw_value_unmanaged_dateTime_inf
 #define impl_afw_value_optional_release NULL
 #define impl_afw_value_clone_or_reference impl_afw_value_get_reference
 #define impl_afw_value_create_iterator NULL
@@ -177,7 +177,7 @@ afw_data_type_dateTime_direct = {
     sizeof(afw_dateTime_t),
     (const afw_array_t *)&impl_empty_array_of_dateTime,
     (const afw_value_t *)&impl_value_empty_array_of_dateTime,
-    &afw_value_dateTime_inf,
+    &afw_value_unmanaged_dateTime_inf,
     afw_compile_type_error,
     false,
     false,
@@ -223,7 +223,7 @@ afw_object_set_property_as_dateTime(
             xctx);
     }
 
-    v = afw_value_create_dateTime(internal, object->p, xctx);
+    v = afw_value_create_unmanaged_dateTime(internal, object->p, xctx);
     afw_object_set_property(object, property_name, v, xctx);
 }
 
@@ -254,13 +254,13 @@ afw_value_as_dateTime(const afw_value_t *value, afw_xctx_t *xctx)
 
 /* Allocate function for data type dateTime values. */
 AFW_DEFINE(afw_value_dateTime_t *)
-afw_value_allocate_dateTime(const afw_pool_t *p, afw_xctx_t *xctx)
+afw_value_allocate_unmanaged_dateTime(const afw_pool_t *p, afw_xctx_t *xctx)
 {
     afw_value_dateTime_t *result;
 
     result = afw_pool_calloc(p, sizeof(afw_value_dateTime_t),
         xctx);
-    result->inf = &afw_value_dateTime_inf;
+    result->inf = &afw_value_unmanaged_dateTime_inf;
     return result;
 }
 
@@ -282,14 +282,14 @@ afw_value_create_managed_dateTime(const afw_dateTime_t * internal,
 
 /* Create function for data type dateTime value. */
 AFW_DEFINE(const afw_value_t *)
-afw_value_create_dateTime(const afw_dateTime_t * internal,
+afw_value_create_unmanaged_dateTime(const afw_dateTime_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
     afw_value_dateTime_t *v;
 
     v = afw_pool_calloc(p, sizeof(afw_value_dateTime_t),
         xctx);
-    v->inf = &afw_value_dateTime_inf;
+    v->inf = &afw_value_unmanaged_dateTime_inf;
     if (internal) {
         memcpy(&v->internal, internal, sizeof(afw_dateTime_t));
     }

@@ -156,7 +156,7 @@ impl_read_file_object(
                 memcpy(buff, finfo.name, size - 1);
                 data_string = afw_utf8_create((const afw_utf8_octet_t *)buff, size, p, xctx);
                 afw_array_add_value(filenames,
-                    afw_value_create_string(data_string, p, xctx),
+                    afw_value_create_unmanaged_string(data_string, p, xctx),
                     xctx);
             }
 
@@ -167,7 +167,7 @@ impl_read_file_object(
                 memcpy(buff, finfo.name, size);
                 data_string = afw_utf8_create((const afw_utf8_octet_t *)buff, size, p, xctx);
                 afw_array_add_value(filenames,
-                    afw_value_create_string(data_string, p, xctx),
+                    afw_value_create_unmanaged_string(data_string, p, xctx),
                     xctx);
             }
 
@@ -227,7 +227,7 @@ impl_read_file_object(
 
         /** The time the file was last accessed. */
         if (finfo.atime != 0) {
-            dateTime = afw_value_allocate_dateTime(object->p, xctx);
+            dateTime = afw_value_allocate_unmanaged_dateTime(object->p, xctx);
             afw_dateTime_set_from_apr_time(&dateTime->internal,
                 finfo.atime, xctx);
             afw_object_set_property(
@@ -236,7 +236,7 @@ impl_read_file_object(
 
         /** The time the file was created. */
         if (finfo.ctime != 0) {
-            dateTime = afw_value_allocate_dateTime(object->p, xctx);
+            dateTime = afw_value_allocate_unmanaged_dateTime(object->p, xctx);
             afw_dateTime_set_from_apr_time(&dateTime->internal,
                 finfo.ctime, xctx);
             afw_object_set_property(
@@ -245,7 +245,7 @@ impl_read_file_object(
 
         /** The time the file was last modified. */
         if (finfo.mtime != 0) {
-            dateTime = afw_value_allocate_dateTime(object->p, xctx);
+            dateTime = afw_value_allocate_unmanaged_dateTime(object->p, xctx);
             afw_dateTime_set_from_apr_time(&dateTime->internal,
                 finfo.mtime, xctx);
             afw_object_set_property(

@@ -347,7 +347,7 @@ afw_compile_parse_Evaluation(afw_compile_parser_t *parser)
                     AFW_COMPILE_THROW_ERROR_Z(
                         "Qualifier not allowed");
                 }
-                key = afw_value_create_string(
+                key = afw_value_create_unmanaged_string(
                     parser->token->identifier_name,
                     parser->p, parser->xctx);
                 result = afw_value_reference_by_key_create(
@@ -494,7 +494,7 @@ afw_compile_parse_FunctionSignature(
             signature->function_name_symbol = function_symbol;
         }
         signature->function_name_value = (const afw_value_string_t *)
-            afw_value_create_string(parser->token->identifier_name,
+            afw_value_create_unmanaged_string(parser->token->identifier_name,
                 parser->p, parser->xctx);
         if (function_name_value) {
             *function_name_value = signature->function_name_value;

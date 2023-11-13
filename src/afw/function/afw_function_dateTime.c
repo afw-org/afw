@@ -58,7 +58,7 @@ afw_function_execute_add_dayTimeDuration_dateTime(
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(arg2,
         2, dayTimeDuration);
 
-    result = afw_value_allocate_dateTime(x->p, x->xctx);
+    result = afw_value_allocate_unmanaged_dateTime(x->p, x->xctx);
     result->internal = arg1->internal;
     afw_dateTime_add_dayTimeDuration(&result->internal, &arg2->internal,
         x->xctx);
@@ -111,7 +111,7 @@ afw_function_execute_add_yearMonthDuration_dateTime(
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(arg2,
         2, yearMonthDuration);
 
-    result = afw_value_allocate_dateTime(x->p, x->xctx);
+    result = afw_value_allocate_unmanaged_dateTime(x->p, x->xctx);
     result->internal = arg1->internal;
     afw_dateTime_add_yearMonthDuration(&result->internal, &arg2->internal,
         x->xctx);
@@ -165,7 +165,7 @@ afw_function_execute_subtract_dayTimeDuration_dateTime(
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(arg2,
         2, dayTimeDuration);
 
-    result = afw_value_allocate_dateTime(x->p, x->xctx);
+    result = afw_value_allocate_unmanaged_dateTime(x->p, x->xctx);
     result->internal = arg1->internal;
     afw_dateTime_subtract_dayTimeDuration(&result->internal, &arg2->internal,
         x->xctx);
@@ -219,7 +219,7 @@ afw_function_execute_subtract_yearMonthDuration_dateTime(
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(arg2,
         2, yearMonthDuration);
 
-    result = afw_value_allocate_dateTime(x->p, x->xctx);
+    result = afw_value_allocate_unmanaged_dateTime(x->p, x->xctx);
     result->internal = arg1->internal;
     afw_dateTime_subtract_yearMonthDuration(&result->internal, &arg2->internal,
         x->xctx);

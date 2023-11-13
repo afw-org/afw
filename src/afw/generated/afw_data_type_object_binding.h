@@ -66,7 +66,7 @@ afw_data_type_object;
  * The lifetime of the value is the lifetime of its containing pool.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
-afw_value_object_inf;
+afw_value_unmanaged_object_inf;
 
 /**
  * @brief Managed evaluated value inf for data type object.
@@ -171,7 +171,7 @@ afw_value_as_object(const afw_value_t *value, afw_xctx_t *xctx);
  * 'const afw_object_t *' internal value before using.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_alloc_managed_object(
+afw_value_allocate_managed_object(
     const afw_object_t * **internal,
     afw_xctx_t *xctx);
 
@@ -182,7 +182,9 @@ afw_value_alloc_managed_object(
  * @return Allocated afw_value_object_t with appropriate inf set.
  */
 AFW_DECLARE(afw_value_object_t *)
-afw_value_allocate_object(const afw_pool_t *p, afw_xctx_t *xctx);
+afw_value_allocate_unmanaged_object(
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
 
 /**
  * @brief Create function for managed data type object value.
@@ -203,7 +205,7 @@ afw_value_create_managed_object(const afw_object_t * internal,
  * @return Created const afw_value_t *.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_create_object(const afw_object_t * internal,
+afw_value_create_unmanaged_object(const afw_object_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**

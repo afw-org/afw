@@ -42,7 +42,7 @@ impl_get_dataType(
 
     data_type = afw_value_get_data_type(self->evaluated_value, xctx);
     if (data_type) {
-        result = afw_value_create_string(
+        result = afw_value_create_unmanaged_string(
             &data_type->data_type_id, self->pub.p, xctx);
     }
 
@@ -61,7 +61,7 @@ impl_get_key(
     result = NULL;
 
     if (self->key) {
-        result = afw_value_create_string(
+        result = afw_value_create_unmanaged_string(
             self->key, self->pub.p, xctx);
     }
 
@@ -87,7 +87,7 @@ impl_get_valueInfId(
 {
     const afw_value_t *result;
 
-    result = afw_value_create_string(
+    result = afw_value_create_unmanaged_string(
         &self->value->inf->rti.implementation_id,
         self->pub.p, xctx);
 
@@ -376,7 +376,7 @@ afw_value_internal_create_meta_object_self(
     self->pub.p = p;
     self->value = value;
     self->evaluated_value = afw_value_evaluate(value, p, xctx);
-    self->meta_object_value.inf = &afw_value_object_inf;
+    self->meta_object_value.inf = &afw_value_unmanaged_object_inf;
     self->meta_object_value.internal = (const afw_object_t *)self;
     self->setter.inf = &impl_afw_object_setter_inf;
     self->setter.object = (const afw_object_t *)self;
@@ -417,7 +417,7 @@ afw_value_internal_get_evaluated_metas_default(
     metas[1] = NULL;
     list = afw_array_const_create_null_terminated_array_of_values(metas, p, xctx);
 
-    return afw_value_create_array(list, p, xctx);
+    return afw_value_create_unmanaged_array(list, p, xctx);
 }
 
 
@@ -462,7 +462,7 @@ afw_value_internal_get_evaluated_metas_for_array(
         afw_array_add_value(list, entry_meta, xctx);
     }
 
-    return afw_value_create_array(list, p, xctx);
+    return afw_value_create_unmanaged_array(list, p, xctx);
 }
 
 
@@ -513,5 +513,5 @@ afw_value_internal_get_evaluated_metas_for_object(
         afw_array_add_value(list, property_meta, xctx);
     }
 
-    return afw_value_create_array(list, p, xctx);
+    return afw_value_create_unmanaged_array(list, p, xctx);
 }

@@ -79,7 +79,7 @@ impl_afw_value_permanent_get_reference(
 /* optional_release is NULL and get_reference returns new reference. */
 #define AFW_IMPLEMENTATION_ID "ia5String"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
-#define AFW_IMPLEMENTATION_INF_LABEL afw_value_ia5String_inf
+#define AFW_IMPLEMENTATION_INF_LABEL afw_value_unmanaged_ia5String_inf
 #define impl_afw_value_optional_release NULL
 #define impl_afw_value_clone_or_reference impl_afw_value_get_reference
 #define impl_afw_value_create_iterator NULL
@@ -177,7 +177,7 @@ afw_data_type_ia5String_direct = {
     sizeof(afw_utf8_t),
     (const afw_array_t *)&impl_empty_array_of_ia5String,
     (const afw_value_t *)&impl_value_empty_array_of_ia5String,
-    &afw_value_ia5String_inf,
+    &afw_value_unmanaged_ia5String_inf,
     afw_compile_type_error,
     false,
     false,
@@ -223,7 +223,7 @@ afw_object_set_property_as_ia5String(
             xctx);
     }
 
-    v = afw_value_create_ia5String(internal, object->p, xctx);
+    v = afw_value_create_unmanaged_ia5String(internal, object->p, xctx);
     afw_object_set_property(object, property_name, v, xctx);
 }
 
@@ -254,13 +254,13 @@ afw_value_as_ia5String(const afw_value_t *value, afw_xctx_t *xctx)
 
 /* Allocate function for data type ia5String values. */
 AFW_DEFINE(afw_value_ia5String_t *)
-afw_value_allocate_ia5String(const afw_pool_t *p, afw_xctx_t *xctx)
+afw_value_allocate_unmanaged_ia5String(const afw_pool_t *p, afw_xctx_t *xctx)
 {
     afw_value_ia5String_t *result;
 
     result = afw_pool_calloc(p, sizeof(afw_value_ia5String_t),
         xctx);
-    result->inf = &afw_value_ia5String_inf;
+    result->inf = &afw_value_unmanaged_ia5String_inf;
     return result;
 }
 
@@ -293,14 +293,14 @@ afw_value_create_managed_ia5String_slice(
 
 /* Create function for data type ia5String value. */
 AFW_DEFINE(const afw_value_t *)
-afw_value_create_ia5String(const afw_utf8_t * internal,
+afw_value_create_unmanaged_ia5String(const afw_utf8_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
     afw_value_ia5String_t *v;
 
     v = afw_pool_calloc(p, sizeof(afw_value_ia5String_t),
         xctx);
-    v->inf = &afw_value_ia5String_inf;
+    v->inf = &afw_value_unmanaged_ia5String_inf;
     if (internal) {
         memcpy(&v->internal, internal, sizeof(afw_utf8_t));
     }

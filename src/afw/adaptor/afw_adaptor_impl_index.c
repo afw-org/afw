@@ -533,7 +533,7 @@ afw_boolean_t afw_adaptor_impl_index_cb(
     /* Add the object as a variable for the filter and value expressions to use */
     /** @fixme These need to be custom:: variables. See issue #54. */
     // afw_xctx_scope_deprecated_variable_set(afw_s_object, 
-    //     afw_value_create_object(object, xctx->p, xctx), xctx);
+    //     afw_value_create_unmanaged_object(object, xctx->p, xctx), xctx);
 
     /* The index "key" is the name that will match the query */
     key = ctx->key;

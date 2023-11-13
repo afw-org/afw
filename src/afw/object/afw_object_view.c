@@ -172,7 +172,7 @@ impl_shared_string_value(
 
     value = apr_hash_get(view->string_values, string->s, string->len);
     if (!value) {
-        value = afw_value_allocate_string(view->p, xctx);
+        value = afw_value_allocate_unmanaged_string(view->p, xctx);
         value->internal.s = string->s;
         value->internal.len = string->len;
         apr_hash_set(view->string_values,
@@ -212,7 +212,7 @@ impl_shared_path_value(
                 value = apr_hash_get(view->path_values,
                     parsed->normalized_uri.s, parsed->normalized_uri.len);
                 if (!value) {
-                    value = afw_value_allocate_anyURI(p, xctx);
+                    value = afw_value_allocate_unmanaged_anyURI(p, xctx);
                     value->internal.s = parsed->normalized_uri.s;
                     value->internal.len = parsed->normalized_uri.len;
                     apr_hash_set(view->path_values,
@@ -226,7 +226,7 @@ impl_shared_path_value(
     }
 
     if (!value) {
-        value = afw_value_allocate_anyURI(p, xctx);
+        value = afw_value_allocate_unmanaged_anyURI(p, xctx);
         value->internal.s = path->s;
         value->internal.len = path->len;
         apr_hash_set(view->path_values,
@@ -267,7 +267,7 @@ impl_make_value(
             view, self, property_name,
             ((const afw_value_object_t *)original_value)->internal,
             NULL, xctx);
-        result = afw_value_create_object(
+        result = afw_value_create_unmanaged_object(
             (const afw_object_t *)embedded_object, p, xctx);
     }
 
@@ -288,7 +288,7 @@ impl_make_value(
                 original_entry_value, xctx);
             afw_array_add_value(list, value, xctx);
         }
-        result = afw_value_create_array(list, p, xctx);
+        result = afw_value_create_unmanaged_array(list, p, xctx);
     }
 
     /* Return result. */
@@ -666,7 +666,7 @@ impl_additional_object_option_processing(
         (const afw_object_t *)self, xctx);
     if (parent_paths) {
 
-        resolved_parent_paths = afw_value_allocate_array(p, xctx);
+        resolved_parent_paths = afw_value_allocate_unmanaged_array(p, xctx);
         resolved_parent_paths->internal = afw_array_of_create(
             afw_data_type_anyURI, p, xctx);
         for (iterator = NULL;;) {
@@ -1134,8 +1134,8 @@ impl_object_create(
         }
         self->pub.meta.object_uri = &uri_parsed->path_parsed->normalized_path;
 
-        value = afw_value_create_anyURI(self->pub.meta.object_uri,
-            p, xctx);
+        value = afw_value_create_unmanaged_anyURI(
+            self->pub.meta.object_uri, p, xctx);
     }
 
     /* If this is entity object, add to list of loaded entity objects. */
@@ -1386,13 +1386,13 @@ afw_object_view_create(
 
     /* If reconcilable option, add reconcilable meta. */
     if (AFW_OBJECT_OPTION_IS(options, reconcilable)) {
-        self_value.inf = &afw_value_object_inf;
+        self_value.inf = &afw_value_unmanaged_object_inf;
         self_value.internal = (const afw_object_t *)self;
         reconcilable = afw_json_from_value(
             &self_value.pub,
             &afw_object_options_reconcilable_meta_property,
             p, xctx);
-        value = afw_value_create_string(reconcilable, p, xctx);
+        value = afw_value_create_unmanaged_string(reconcilable, p, xctx);
         impl_meta_set_property(self, afw_s_reconcilable, value, xctx);
     }
 

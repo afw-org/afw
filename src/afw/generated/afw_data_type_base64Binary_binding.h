@@ -66,7 +66,7 @@ afw_data_type_base64Binary;
  * The lifetime of the value is the lifetime of its containing pool.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
-afw_value_base64Binary_inf;
+afw_value_unmanaged_base64Binary_inf;
 
 /**
  * @brief Managed evaluated value inf for data type base64Binary.
@@ -172,7 +172,7 @@ afw_value_as_base64Binary(const afw_value_t *value, afw_xctx_t *xctx);
  * Set *ptr for the specified size to the bytes of the value.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_alloc_managed_base64Binary(
+afw_value_allocate_managed_base64Binary(
     const afw_byte_t **ptr,
     afw_size_t size,
     afw_xctx_t *xctx);
@@ -184,7 +184,9 @@ afw_value_alloc_managed_base64Binary(
  * @return Allocated afw_value_base64Binary_t with appropriate inf set.
  */
 AFW_DECLARE(afw_value_base64Binary_t *)
-afw_value_allocate_base64Binary(const afw_pool_t *p, afw_xctx_t *xctx);
+afw_value_allocate_unmanaged_base64Binary(
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
 
 /**
  * @brief Create function for managed data type base64Binary value.
@@ -223,7 +225,7 @@ afw_value_create_managed_base64Binary_slice(
  * @return Created const afw_value_t *.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_create_base64Binary(const afw_memory_t * internal,
+afw_value_create_unmanaged_base64Binary(const afw_memory_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**

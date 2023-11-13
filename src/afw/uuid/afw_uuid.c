@@ -46,7 +46,7 @@ afw_uuid_create_string(
     afw_uuid_t uuid;
     afw_value_string_t *string;
 
-    string = afw_value_allocate_string(p, xctx);
+    string = afw_value_allocate_unmanaged_string(p, xctx);
     string->internal.len = APR_UUID_FORMATTED_LENGTH + 1;
     string->internal.s = afw_pool_malloc(p, string->internal.len,
         xctx);

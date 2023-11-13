@@ -58,7 +58,7 @@ afw_function_execute_add_yearMonthDuration_date(
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(arg2,
         2, yearMonthDuration);
 
-    result = afw_value_allocate_date(x->p, x->xctx);
+    result = afw_value_allocate_unmanaged_date(x->p, x->xctx);
     result->internal = arg1->internal;
     afw_date_add_yearMonthDuration(&result->internal, &arg2->internal,
         x->xctx);
@@ -111,7 +111,7 @@ afw_function_execute_subtract_yearMonthDuration_date(
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(arg2, 2,
         yearMonthDuration);
 
-    result = afw_value_allocate_date(x->p, x->xctx);
+    result = afw_value_allocate_unmanaged_date(x->p, x->xctx);
     result->internal = arg1->internal;
     afw_date_subtract_yearMonthDuration(&result->internal, &arg2->internal,
         x->xctx);

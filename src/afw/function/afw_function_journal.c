@@ -90,7 +90,7 @@ afw_function_execute_journal_advance_cursor_for_consumer(
     
     result = afw_adaptor_journal_advance_cursor_for_consumer(
         &adaptorId->internal, &consumerId->internal, limit, x->p, x->xctx);
-    return afw_value_create_object(result, x->p, x->xctx);
+    return afw_value_create_unmanaged_object(result, x->p, x->xctx);
 }
 
 
@@ -143,7 +143,7 @@ afw_function_execute_journal_get_by_cursor(
     
     result = afw_adaptor_journal_get_by_cursor(
         &adaptorId->internal, &cursor->internal, x->p, x->xctx);
-    return afw_value_create_object(result, x->p, x->xctx);
+    return afw_value_create_unmanaged_object(result, x->p, x->xctx);
 }
 
 
@@ -190,7 +190,7 @@ afw_function_execute_journal_get_first(
    
     result = afw_adaptor_journal_get_first(
         &adaptorId->internal, x->p, x->xctx);
-    return afw_value_create_object(result, x->p, x->xctx);
+    return afw_value_create_unmanaged_object(result, x->p, x->xctx);
 }
 
 
@@ -243,7 +243,7 @@ afw_function_execute_journal_get_next_after_cursor(
     
     result = afw_adaptor_journal_get_next_after_cursor(
         &adaptorId->internal, &cursor->internal, x->p, x->xctx);
-    return afw_value_create_object(result, x->p, x->xctx);
+    return afw_value_create_unmanaged_object(result, x->p, x->xctx);
 }
 
 
@@ -332,7 +332,7 @@ afw_function_execute_journal_get_next_for_consumer(
     
     result = afw_adaptor_journal_get_next_for_consumer(
         &adaptorId->internal, &consumerId->internal, limit, x->p, x->xctx);
-    return afw_value_create_object(result, x->p, x->xctx);
+    return afw_value_create_unmanaged_object(result, x->p, x->xctx);
 }
 
 
@@ -414,7 +414,7 @@ afw_function_execute_journal_get_next_for_consumer_after_cursor(
     result = afw_adaptor_journal_get_next_for_consumer_after_cursor(
         &adaptorId->internal, &consumerId->internal, &cursor->internal,
         limit, x->p, x->xctx);
-    return afw_value_create_object(result, x->p, x->xctx);
+    return afw_value_create_unmanaged_object(result, x->p, x->xctx);
 }
 
 

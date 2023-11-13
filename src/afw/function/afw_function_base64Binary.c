@@ -53,7 +53,7 @@ afw_function_execute_decode_to_string_base64Binary(
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(value, 1, base64Binary);
 
-    result = afw_value_allocate_string(x->p, x->xctx);
+    result = afw_value_allocate_unmanaged_string(x->p, x->xctx);
     result->internal.s = (const afw_utf8_octet_t *)value->internal.ptr;
     result->internal.len = value->internal.size;
 

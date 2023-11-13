@@ -128,16 +128,16 @@ impl_log_current_variable_get_cb(
     result = NULL;
 
     if (afw_utf8_equal(name, afw_s_message)) {
-        result = afw_value_create_string(wa->message, wa->p, xctx);
+        result = afw_value_create_unmanaged_string(wa->message, wa->p, xctx);
     }
 
     else if (afw_utf8_equal(name, afw_s_xctxUUID)) {
-        result = afw_value_create_string(xctx->uuid, wa->p, xctx);
+        result = afw_value_create_unmanaged_string(xctx->uuid, wa->p, xctx);
     }
 
     else if (afw_utf8_equal(name, afw_s_source)) {
         if (wa->source_z) {
-            source = afw_value_allocate_string(wa->p, xctx);
+            source = afw_value_allocate_unmanaged_string(wa->p, xctx);
             source->internal.s = afw_utf8_z_source_file(wa->source_z);
             source->internal.len = strlen(source->internal.s);
             result = (const afw_value_t *)source;
@@ -193,21 +193,21 @@ void afw_log_internal_register_logType_context_type(
             context_type_object, afw_s_current, xctx);
     afw_context_variable_definition_add_z(variable_definitions,
         afw_s_message, afw_s_internal,
-        &afw_value_string_inf,
+        &afw_value_unmanaged_string_inf,
         "Message",
         "Unformatted message that is being logged.",
         NULL, NULL,
         xctx);
     afw_context_variable_definition_add_z(variable_definitions,
         afw_s_xctxUUID, afw_s_internal,
-        &afw_value_string_inf,
+        &afw_value_unmanaged_string_inf,
         "UUID",
         "The current UUID of the execution context (xctx).",
         NULL, NULL,
         xctx);
     afw_context_variable_definition_add_z(variable_definitions,
         afw_s_source, afw_s_internal,
-        &afw_value_string_inf,
+        &afw_value_unmanaged_string_inf,
         "Source",
         "Source file that issued message.",
         NULL, NULL,

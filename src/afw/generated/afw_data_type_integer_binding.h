@@ -66,7 +66,7 @@ afw_data_type_integer;
  * The lifetime of the value is the lifetime of its containing pool.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
-afw_value_integer_inf;
+afw_value_unmanaged_integer_inf;
 
 /**
  * @brief Managed evaluated value inf for data type integer.
@@ -171,7 +171,7 @@ afw_value_as_integer(const afw_value_t *value, afw_xctx_t *xctx);
  * 'afw_integer_t' internal value before using.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_alloc_managed_integer(
+afw_value_allocate_managed_integer(
     afw_integer_t **internal,
     afw_xctx_t *xctx);
 
@@ -182,7 +182,9 @@ afw_value_alloc_managed_integer(
  * @return Allocated afw_value_integer_t with appropriate inf set.
  */
 AFW_DECLARE(afw_value_integer_t *)
-afw_value_allocate_integer(const afw_pool_t *p, afw_xctx_t *xctx);
+afw_value_allocate_unmanaged_integer(
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
 
 /**
  * @brief Create function for managed data type integer value.
@@ -203,7 +205,7 @@ afw_value_create_managed_integer(afw_integer_t internal,
  * @return Created const afw_value_t *.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_create_integer(afw_integer_t internal,
+afw_value_create_unmanaged_integer(afw_integer_t internal,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**

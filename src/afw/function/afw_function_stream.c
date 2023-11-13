@@ -406,9 +406,8 @@ afw_function_execute_get_stream_error(
 {
     if (x->xctx->stream_anchor && x->xctx->stream_anchor->last_stream_error)
     {
-        return afw_value_create_string(
-            x->xctx->stream_anchor->last_stream_error,
-            x->p, x->xctx);
+        return afw_value_create_unmanaged_string(
+            x->xctx->stream_anchor->last_stream_error, x->p, x->xctx);
     }
     return afw_value_undefined;
 }
@@ -511,7 +510,8 @@ afw_function_execute_open_file(
             AFW_UTF8_FMT_ARG(&streamId->internal));
     }
 
-    return afw_value_create_integer((afw_integer_t)number, x->p, x->xctx);
+    return afw_value_create_unmanaged_integer(
+        (afw_integer_t)number, x->p, x->xctx);
 }
 
 
@@ -577,7 +577,8 @@ afw_function_execute_open_response(
             AFW_UTF8_FMT_ARG(&streamId->internal));
     }
 
-    return afw_value_create_integer((afw_integer_t)number, x->p, x->xctx);
+    return afw_value_create_unmanaged_integer(
+        (afw_integer_t)number, x->p, x->xctx);
 }
 
 
@@ -851,7 +852,7 @@ afw_function_execute_stream(
         integer = (afw_integer_t)number;
     }
 
-    return afw_value_create_integer(integer, x->p, x->xctx);
+    return afw_value_create_unmanaged_integer(integer, x->p, x->xctx);
 }
 
 

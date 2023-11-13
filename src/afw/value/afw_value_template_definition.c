@@ -207,7 +207,7 @@ impl_afw_value_decompile(
     afw_writer_write_z(writer, "evaluate_template(", xctx);
 
     /*impl_decompile_template(self, writer, xctx);*/
-    string_value.inf = &afw_value_string_inf;
+    string_value.inf = &afw_value_unmanaged_string_inf;
     string_value.internal.s = self->contextual->compiled_value->full_source->s +
         self->contextual->value_offset;
     string_value.internal.len = self->contextual->value_size;

@@ -59,7 +59,7 @@ afw_function_execute_random_base64Binary(
     }
 
 
-    result = afw_value_allocate_base64Binary(x->p, x->xctx);
+    result = afw_value_allocate_unmanaged_base64Binary(x->p, x->xctx);
     result->internal.size = (afw_size_t)numberOfOctets->internal;
     result->internal.ptr = afw_pool_malloc(x->p,
         result->internal.size, x->xctx);
@@ -117,7 +117,7 @@ afw_function_execute_random_digits(
     }
 
 
-    result = afw_value_allocate_string(x->p, x->xctx);
+    result = afw_value_allocate_unmanaged_string(x->p, x->xctx);
     result->internal.len = (afw_size_t)numberOfDigits->internal;
     result->internal.s = afw_pool_malloc(x->p, result->internal.len, x->xctx);
     apr_generate_random_bytes((unsigned char *)&n, sizeof(n));
@@ -180,7 +180,7 @@ afw_function_execute_random_hexBinary(
     }
 
 
-    result = afw_value_allocate_hexBinary(x->p, x->xctx);
+    result = afw_value_allocate_unmanaged_hexBinary(x->p, x->xctx);
     result->internal.size = (afw_size_t)numberOfOctets->internal;
     result->internal.ptr = afw_pool_malloc(x->p,
         result->internal.size, x->xctx);
@@ -242,7 +242,7 @@ afw_function_execute_random_integer(
             x->xctx);
     }
 
-    result = afw_value_allocate_integer(x->p, x->xctx);
+    result = afw_value_allocate_unmanaged_integer(x->p, x->xctx);
     apr_generate_random_bytes((unsigned char*)&result->internal,
         sizeof(afw_integer_t));
     if (result->internal < 0) {
@@ -332,7 +332,7 @@ afw_function_execute_random_number(
         }
     }
 
-    result = afw_value_allocate_double(x->p, x->xctx);
+    result = afw_value_allocate_unmanaged_double(x->p, x->xctx);
     result->internal = min + (random / ((afw_double_t)AFW_INTEGER_MAX / range));
 
     return &result->pub;

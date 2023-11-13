@@ -66,7 +66,7 @@ afw_data_type_array;
  * The lifetime of the value is the lifetime of its containing pool.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
-afw_value_array_inf;
+afw_value_unmanaged_array_inf;
 
 /**
  * @brief Managed evaluated value inf for data type array.
@@ -171,7 +171,7 @@ afw_value_as_array(const afw_value_t *value, afw_xctx_t *xctx);
  * 'const afw_array_t *' internal value before using.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_alloc_managed_array(
+afw_value_allocate_managed_array(
     const afw_array_t * **internal,
     afw_xctx_t *xctx);
 
@@ -182,7 +182,9 @@ afw_value_alloc_managed_array(
  * @return Allocated afw_value_array_t with appropriate inf set.
  */
 AFW_DECLARE(afw_value_array_t *)
-afw_value_allocate_array(const afw_pool_t *p, afw_xctx_t *xctx);
+afw_value_allocate_unmanaged_array(
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
 
 /**
  * @brief Create function for managed data type array value.
@@ -203,7 +205,7 @@ afw_value_create_managed_array(const afw_array_t * internal,
  * @return Created const afw_value_t *.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_create_array(const afw_array_t * internal,
+afw_value_create_unmanaged_array(const afw_array_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**

@@ -62,7 +62,7 @@ afw_function_execute_abs_double(
         AFW_THROW_ERROR_Z(arg_error, "arg is infinite", x->xctx);
     };
 
-    return afw_value_create_double(fabs(arg->internal), x->p, x->xctx);
+    return afw_value_create_unmanaged_double(fabs(arg->internal), x->p, x->xctx);
 }
 
 
@@ -111,7 +111,7 @@ afw_function_execute_add_double(
         sum += arg->internal;
     }
 
-    return afw_value_create_double(sum, x->p, x->xctx);
+    return afw_value_create_unmanaged_double(sum, x->p, x->xctx);
 }
 
 
@@ -153,7 +153,7 @@ afw_function_execute_ceil_double(
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(arg, 1, double);
 
-    return afw_value_create_double(ceil(arg->internal), x->p, x->xctx);
+    return afw_value_create_unmanaged_double(ceil(arg->internal), x->p, x->xctx);
 }
 
 
@@ -199,7 +199,7 @@ afw_function_execute_divide_double(
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(dividend, 1, double);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(divisor, 2, double);
 
-    return afw_value_create_double(
+    return afw_value_create_unmanaged_double(
         dividend->internal / divisor->internal, x->p, x->xctx);
 }
 
@@ -285,7 +285,8 @@ afw_function_execute_floor_double(
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(arg, 1, double);
 
-    return afw_value_create_double(floor(arg->internal), x->p, x->xctx);
+    return afw_value_create_unmanaged_double(
+        floor(arg->internal), x->p, x->xctx);
 }
 
 
@@ -334,7 +335,7 @@ afw_function_execute_multiply_double(
         result *= arg->internal;
     }
 
-    return afw_value_create_double(result, x->p, x->xctx);
+    return afw_value_create_unmanaged_double(result, x->p, x->xctx);
 }
 
 
@@ -427,7 +428,7 @@ afw_function_execute_pow_double(
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(exponent,
         x->argc, double);
-    result = afw_value_allocate_double(x->p, x->xctx);
+    result = afw_value_allocate_unmanaged_double(x->p, x->xctx);
 
     for (i = x->argc - 1; i >= 1; i--) {
         AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(base, i, double);
@@ -492,7 +493,8 @@ afw_function_execute_round_double(
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(arg, 1, double);
 
     /* Note: Uses round(), which seems right.  Might should use rint()? */
-    return afw_value_create_double(round(arg->internal), x->p, x->xctx);
+    return afw_value_create_unmanaged_double(
+        round(arg->internal), x->p, x->xctx);
 }
 
 
@@ -538,8 +540,8 @@ afw_function_execute_subtract_double(
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(arg1, 1, double);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(arg2, 2, double);
 
-    return afw_value_create_double(arg1->internal - arg2->internal,
-        x->p, x->xctx);
+    return afw_value_create_unmanaged_double(
+        arg1->internal - arg2->internal, x->p, x->xctx);
 }
 
 
@@ -579,7 +581,7 @@ afw_function_execute_to_integer_double(
     };
 
     d = trunc(arg->internal);
-    return afw_value_create_integer((afw_integer_t)d, x->p, x->xctx);
+    return afw_value_create_unmanaged_integer((afw_integer_t)d, x->p, x->xctx);
 }
 
 
@@ -620,5 +622,5 @@ afw_function_execute_negative_double(
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(arg, 1, double);
 
-    return afw_value_create_double(-arg->internal, x->p, x->xctx);
+    return afw_value_create_unmanaged_double(-arg->internal, x->p, x->xctx);
 }

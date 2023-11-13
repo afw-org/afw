@@ -22,7 +22,7 @@ impl_compile_type_ ## name ## _name =                                          \
                                                                                \
 static const afw_value_string_t                                                \
 impl_compile_type_ ## name ## _name_value =                                    \
-    {{&afw_value_string_inf}, AFW_UTF8_LITERAL(#name)};              \
+    {{&afw_value_unmanaged_string_inf}, AFW_UTF8_LITERAL(#name)};              \
                                                                                \
 static const afw_utf8_t                                                        \
 impl_compile_type_ ## name ## _description =                                   \
@@ -30,7 +30,7 @@ impl_compile_type_ ## name ## _description =                                   \
                                                                                \
 static const afw_value_string_t                                                \
 impl_compile_type_ ## name ## _description_value =                             \
-    {{&afw_value_string_inf}, AFW_UTF8_LITERAL(#description)};       \
+    {{&afw_value_unmanaged_string_inf}, AFW_UTF8_LITERAL(#description)};       \
 
 AFW_COMPILE_TYPE_MAP(XX)
     

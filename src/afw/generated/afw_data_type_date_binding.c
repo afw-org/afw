@@ -79,7 +79,7 @@ impl_afw_value_permanent_get_reference(
 /* optional_release is NULL and get_reference returns new reference. */
 #define AFW_IMPLEMENTATION_ID "date"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
-#define AFW_IMPLEMENTATION_INF_LABEL afw_value_date_inf
+#define AFW_IMPLEMENTATION_INF_LABEL afw_value_unmanaged_date_inf
 #define impl_afw_value_optional_release NULL
 #define impl_afw_value_clone_or_reference impl_afw_value_get_reference
 #define impl_afw_value_create_iterator NULL
@@ -177,7 +177,7 @@ afw_data_type_date_direct = {
     sizeof(afw_date_t),
     (const afw_array_t *)&impl_empty_array_of_date,
     (const afw_value_t *)&impl_value_empty_array_of_date,
-    &afw_value_date_inf,
+    &afw_value_unmanaged_date_inf,
     afw_compile_type_error,
     false,
     false,
@@ -223,7 +223,7 @@ afw_object_set_property_as_date(
             xctx);
     }
 
-    v = afw_value_create_date(internal, object->p, xctx);
+    v = afw_value_create_unmanaged_date(internal, object->p, xctx);
     afw_object_set_property(object, property_name, v, xctx);
 }
 
@@ -254,13 +254,13 @@ afw_value_as_date(const afw_value_t *value, afw_xctx_t *xctx)
 
 /* Allocate function for data type date values. */
 AFW_DEFINE(afw_value_date_t *)
-afw_value_allocate_date(const afw_pool_t *p, afw_xctx_t *xctx)
+afw_value_allocate_unmanaged_date(const afw_pool_t *p, afw_xctx_t *xctx)
 {
     afw_value_date_t *result;
 
     result = afw_pool_calloc(p, sizeof(afw_value_date_t),
         xctx);
-    result->inf = &afw_value_date_inf;
+    result->inf = &afw_value_unmanaged_date_inf;
     return result;
 }
 
@@ -282,14 +282,14 @@ afw_value_create_managed_date(const afw_date_t * internal,
 
 /* Create function for data type date value. */
 AFW_DEFINE(const afw_value_t *)
-afw_value_create_date(const afw_date_t * internal,
+afw_value_create_unmanaged_date(const afw_date_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
     afw_value_date_t *v;
 
     v = afw_pool_calloc(p, sizeof(afw_value_date_t),
         xctx);
-    v->inf = &afw_value_date_inf;
+    v->inf = &afw_value_unmanaged_date_inf;
     if (internal) {
         memcpy(&v->internal, internal, sizeof(afw_date_t));
     }

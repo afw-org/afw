@@ -66,7 +66,7 @@ afw_data_type_null;
  * The lifetime of the value is the lifetime of its containing pool.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
-afw_value_null_inf;
+afw_value_unmanaged_null_inf;
 
 /**
  * @brief Managed evaluated value inf for data type null.
@@ -171,7 +171,7 @@ afw_value_as_null(const afw_value_t *value, afw_xctx_t *xctx);
  * 'void *' internal value before using.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_alloc_managed_null(
+afw_value_allocate_managed_null(
     void * **internal,
     afw_xctx_t *xctx);
 
@@ -182,7 +182,9 @@ afw_value_alloc_managed_null(
  * @return Allocated afw_value_null_t with appropriate inf set.
  */
 AFW_DECLARE(afw_value_null_t *)
-afw_value_allocate_null(const afw_pool_t *p, afw_xctx_t *xctx);
+afw_value_allocate_unmanaged_null(
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
 
 /**
  * @brief Create function for managed data type null value.
@@ -203,7 +205,7 @@ afw_value_create_managed_null(void * internal,
  * @return Created const afw_value_t *.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_create_null(void * internal,
+afw_value_create_unmanaged_null(void * internal,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**

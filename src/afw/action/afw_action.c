@@ -83,7 +83,7 @@ impl_call_function(
                     value = afw_object_get_property(parent_request,
                         &(*a)->name->internal, xctx);
                     if (afw_value_is_object(value)) {
-                        argv[i] = afw_value_create_object(
+                        argv[i] = afw_value_create_unmanaged_object(
                             afw_object_create_merged(
                             ((const afw_value_object_t *)value)->
                                 internal,
@@ -337,7 +337,7 @@ afw_action_perform(
                 action_response_entry = afw_object_create_unmanaged(
                     response->p, xctx);
             }
-            action_response_entry_value = afw_value_create_object(
+            action_response_entry_value = afw_value_create_unmanaged_object(
                 action_response_entry, response->p, xctx);
             if (!afw_content_type_is_application_afw(response_content_type)) {
                 afw_array_add_value(action_response_entries,

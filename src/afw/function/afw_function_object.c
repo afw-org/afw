@@ -63,7 +63,7 @@ afw_function_execute_add_properties(
 
     AFW_FUNCTION_EVALUATE_DATA_TYPE_PARAMETER(target, 1, object);
     if (!target) {
-        target = afw_value_allocate_object(x->p, x->xctx);
+        target = afw_value_allocate_unmanaged_object(x->p, x->xctx);
         ((afw_value_object_t *)target)->internal =
             afw_object_create_unmanaged(x->p, x->xctx);
     }
@@ -138,7 +138,7 @@ afw_function_execute_apply_object_options(
     result = afw_object_view_create(object->internal,
         NULL, options, x->p, x->xctx);
 
-    return afw_value_create_object(result, x->p, x->xctx);
+    return afw_value_create_unmanaged_object(result, x->p, x->xctx);
 }
 
 

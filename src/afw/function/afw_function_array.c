@@ -156,7 +156,7 @@ afw_function_execute_array(
     }
 
     /* Return constructed array. */
-    return afw_value_create_array(array, x->p, x->xctx);
+    return afw_value_create_unmanaged_array(array, x->p, x->xctx);
 }
 
 
@@ -303,7 +303,7 @@ afw_function_execute_join(
     if (len > 0) {
         len -= sep->len;
         c = afw_pool_malloc(x->p, len, x->xctx);
-        result = afw_value_allocate_string(x->p, x->xctx);
+        result = afw_value_allocate_unmanaged_string(x->p, x->xctx);
         result->internal.len = len;
         result->internal.s = c;
         for (iterator = NULL;;) {
@@ -387,7 +387,7 @@ afw_function_execute_reverse(
         }
         afw_array_setter_insert_value(setter, value, 0, x->xctx);
     }
-    return afw_value_create_array(result_array, x->p, x->xctx);
+    return afw_value_create_unmanaged_array(result_array, x->p, x->xctx);
 }
 
 
@@ -488,5 +488,5 @@ afw_function_execute_slice(
         }
     }
     afw_array_determine_data_type_and_set_immutable(result_array, x->xctx);
-    return afw_value_create_array(result_array, x->p, x->xctx);
+    return afw_value_create_unmanaged_array(result_array, x->p, x->xctx);
 }

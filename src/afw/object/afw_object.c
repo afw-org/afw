@@ -75,7 +75,7 @@ afw_object_set_property_as_date_from_parts(
 {
     afw_value_date_t *value;
 
-    value = afw_value_allocate_date(instance->p, xctx);
+    value = afw_value_allocate_unmanaged_date(instance->p, xctx);
     afw_date_set_from_parts(
         &value->internal,
         year, month, day,
@@ -104,7 +104,7 @@ afw_object_set_property_as_dateTime_from_parts(
 {
     afw_value_dateTime_t *value;
 
-    value = afw_value_allocate_dateTime(instance->p, xctx);
+    value = afw_value_allocate_unmanaged_dateTime(instance->p, xctx);
     afw_dateTime_set_from_parts(
         &value->internal,
         year, month, day,
@@ -131,7 +131,7 @@ afw_object_set_property_as_dayTimeDuration_from_parts(
 {
     afw_value_dayTimeDuration_t *value;
 
-    value = afw_value_allocate_dayTimeDuration(instance->p, xctx);
+    value = afw_value_allocate_unmanaged_dayTimeDuration(instance->p, xctx);
     afw_dayTimeDuration_set_from_parts(
         &value->internal,
         is_positive,
@@ -156,7 +156,7 @@ afw_object_set_property_as_time_from_parts(
 {
     afw_value_time_t *value;
 
-    value = afw_value_allocate_time(instance->p, xctx);
+    value = afw_value_allocate_unmanaged_time(instance->p, xctx);
     afw_time_set_from_parts(
         &value->internal,
         hour, minute, second, microsecond,
@@ -179,7 +179,7 @@ afw_object_set_property_as_yearMonthDuration_from_parts(
 {
     afw_value_yearMonthDuration_t *value;
 
-    value = afw_value_allocate_yearMonthDuration(instance->p, xctx);
+    value = afw_value_allocate_unmanaged_yearMonthDuration(instance->p, xctx);
     afw_yearMonthDuration_set_from_parts(
         &value->internal, is_positive,
         years, months, 
@@ -199,7 +199,7 @@ afw_object_set_property_as_string_from_utf8_z(
 {
     afw_value_string_t *string;
 
-    string = afw_value_allocate_string(instance->p, xctx);
+    string = afw_value_allocate_unmanaged_string(instance->p, xctx);
     string->internal.s = string_z;
     string->internal.len = strlen(string_z);
 
@@ -318,7 +318,8 @@ afw_object_get_property_extended(
         };
          */
         if (meta_value) {
-            result = afw_value_create_string(meta_value, xctx->p, xctx);
+            result = afw_value_create_unmanaged_string(
+                meta_value, xctx->p, xctx);
         }
         return result;
     }

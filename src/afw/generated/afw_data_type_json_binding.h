@@ -66,7 +66,7 @@ afw_data_type_json;
  * The lifetime of the value is the lifetime of its containing pool.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
-afw_value_json_inf;
+afw_value_unmanaged_json_inf;
 
 /**
  * @brief Managed evaluated value inf for data type json.
@@ -172,7 +172,7 @@ afw_value_as_json(const afw_value_t *value, afw_xctx_t *xctx);
  * Set *s for the specified len to a valid utf-8 string.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_alloc_managed_json(
+afw_value_allocate_managed_json(
     afw_utf8_octet_t **s,
     afw_size_t len,
     afw_xctx_t *xctx);
@@ -184,7 +184,9 @@ afw_value_alloc_managed_json(
  * @return Allocated afw_value_json_t with appropriate inf set.
  */
 AFW_DECLARE(afw_value_json_t *)
-afw_value_allocate_json(const afw_pool_t *p, afw_xctx_t *xctx);
+afw_value_allocate_unmanaged_json(
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
 
 /**
  * @brief Create function for managed data type json value.
@@ -223,7 +225,7 @@ afw_value_create_managed_json_slice(
  * @return Created const afw_value_t *.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_create_json(const afw_utf8_t * internal,
+afw_value_create_unmanaged_json(const afw_utf8_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**

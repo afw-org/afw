@@ -773,8 +773,8 @@ afw_object_path_parsed_to_object(
         list = afw_array_of_create(
             afw_data_type_string, p, xctx);
         for (name = parsed->first_property_name; name; name = name->next) {
-            value = afw_value_create_string(&name->property_name,
-                p, xctx);
+            value = afw_value_create_unmanaged_string(
+                &name->property_name, p, xctx);
             afw_array_add_value(list, value, xctx);
         }
         afw_object_set_property_as_array(result,

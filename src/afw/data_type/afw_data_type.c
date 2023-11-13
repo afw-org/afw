@@ -788,7 +788,7 @@ impl_afw_data_type_function_utf8_to_internal(
 {
     const afw_value_t *value;
 
-    value = afw_value_create_string(from_utf8, p, xctx);
+    value = afw_value_create_unmanaged_string(from_utf8, p, xctx);
     memcpy(to_internal, (const void *)&value, sizeof(afw_value_t *));
 }
 
@@ -820,7 +820,7 @@ impl_afw_data_type_function_clone_internal(
 
     s = impl_afw_data_type_function_internal_to_utf8(
         NULL, from_internal, NULL, xctx);
-    value = afw_value_create_string(s, p, xctx);
+    value = afw_value_create_unmanaged_string(s, p, xctx);
     memcpy(to_internal, (const void *)&value, sizeof(afw_value_t *));
 }
 
@@ -945,7 +945,7 @@ impl_afw_data_type_array_internal_to_utf8(
 {
     afw_value_array_t array;
 
-    array.inf = &afw_value_array_inf;
+    array.inf = &afw_value_unmanaged_array_inf;
     array.internal = *(const afw_array_t **)from_internal;
     return afw_json_from_value(
         &array.pub, &afw_object_options_useNonStandardTokens,
@@ -1114,7 +1114,7 @@ impl_afw_data_type_object_internal_to_utf8(
 {
     afw_value_object_t obj;
 
-    obj.inf = &afw_value_object_inf;
+    obj.inf = &afw_value_unmanaged_object_inf;
     obj.internal = *(const afw_object_t **)from_internal;
 
     return afw_json_from_value(
@@ -1519,7 +1519,7 @@ impl_clone_and_set_property(
     /* If object, handle special to support embedding object. */
     if (afw_value_is_object(value)) {
         cloned_value = (const afw_value_t *)
-            afw_value_allocate_object(p, xctx);
+            afw_value_allocate_unmanaged_object(p, xctx);
         impl_clone_embedded_object(
             &((afw_value_object_t *)cloned_value)->internal,
             ((const afw_value_object_t *)value)->internal,

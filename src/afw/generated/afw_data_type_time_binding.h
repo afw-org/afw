@@ -66,7 +66,7 @@ afw_data_type_time;
  * The lifetime of the value is the lifetime of its containing pool.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
-afw_value_time_inf;
+afw_value_unmanaged_time_inf;
 
 /**
  * @brief Managed evaluated value inf for data type time.
@@ -171,7 +171,7 @@ afw_value_as_time(const afw_value_t *value, afw_xctx_t *xctx);
  * 'afw_time_t' internal value before using.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_alloc_managed_time(
+afw_value_allocate_managed_time(
     afw_time_t **internal,
     afw_xctx_t *xctx);
 
@@ -182,7 +182,9 @@ afw_value_alloc_managed_time(
  * @return Allocated afw_value_time_t with appropriate inf set.
  */
 AFW_DECLARE(afw_value_time_t *)
-afw_value_allocate_time(const afw_pool_t *p, afw_xctx_t *xctx);
+afw_value_allocate_unmanaged_time(
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
 
 /**
  * @brief Create function for managed data type time value.
@@ -203,7 +205,7 @@ afw_value_create_managed_time(const afw_time_t * internal,
  * @return Created const afw_value_t *.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_create_time(const afw_time_t * internal,
+afw_value_create_unmanaged_time(const afw_time_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**

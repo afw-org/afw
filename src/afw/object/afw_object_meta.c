@@ -128,7 +128,7 @@ afw_object_meta_get_object_id_value(
     if (!object_id) {
         return NULL;
     }
-    value = afw_value_create_string(object_id, instance->p, xctx);
+    value = afw_value_create_unmanaged_string(object_id, instance->p, xctx);
     return (const afw_value_string_t *)value;
 }
 
@@ -146,7 +146,7 @@ afw_object_meta_add_parent_path(
     const afw_object_t *meta;
 
     existing_parent_paths = afw_object_meta_get_parent_paths_value(instance, xctx);
-    parent_paths = afw_value_allocate_array(instance->p, xctx);
+    parent_paths = afw_value_allocate_unmanaged_array(instance->p, xctx);
 
     if (existing_parent_paths) {
         parent_paths->internal = afw_array_create_or_clone(
@@ -599,7 +599,7 @@ afw_object_meta_add_error(
             afw_s_hasErrors, afw_value_true, xctx);
     }
 
-    value = afw_value_create_string(message, instance->p, xctx);
+    value = afw_value_create_unmanaged_string(message, instance->p, xctx);
     afw_array_add_value(errors, value, xctx);
 }
 
@@ -773,7 +773,7 @@ afw_object_meta_add_property_error(
             afw_s_hasErrors, afw_value_true, xctx);
     }
 
-    value = afw_value_create_string(message, instance->p, xctx);
+    value = afw_value_create_unmanaged_string(message, instance->p, xctx);
     afw_array_add_value(errors, value, xctx);
 }
 

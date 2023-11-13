@@ -148,7 +148,7 @@ impl_afw_content_type_object_list_writer_write_object(
 
     /* Convert value and write. */
     (self->object_count)++;
-    value = afw_value_create_object(object, p, xctx);
+    value = afw_value_create_unmanaged_object(object, p, xctx);
     raw = afw_content_type_value_to_raw(self->content_type,
         value, self->options, p, xctx);
     self->callback(self->context, raw->ptr, raw->size, p, xctx);

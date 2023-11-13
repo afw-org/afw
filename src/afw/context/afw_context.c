@@ -215,28 +215,32 @@ afw_context_variable_definition_add_z(
             &data_type->data_type_id, xctx);
     }
     if (label_z) {
-        string_value = afw_value_allocate_string(definition->p, xctx);
+        string_value = afw_value_allocate_unmanaged_string(
+            definition->p, xctx);
         string_value->internal.s = label_z;
         string_value->internal.len = strlen(label_z);
         afw_object_set_property(definition, afw_s_label,
             &string_value->pub, xctx);
     }
     if (description_z) {
-        string_value = afw_value_allocate_string(definition->p, xctx);
+        string_value = afw_value_allocate_unmanaged_string(
+            definition->p, xctx);
         string_value->internal.s = description_z;
         string_value->internal.len = strlen(description_z);
         afw_object_set_property(definition, afw_s_description,
             &string_value->pub, xctx);
     }
     if (data_type_parameter_z) {
-        string_value = afw_value_allocate_string(definition->p, xctx);
+        string_value = afw_value_allocate_unmanaged_string(
+            definition->p, xctx);
         string_value->internal.s = data_type_parameter_z;
         string_value->internal.len = strlen(data_type_parameter_z);
         afw_object_set_property(definition, afw_s_dataTypeParameter,
             &string_value->pub, xctx);
     }
     if (data_type_parameter_formatted_z) {
-        string_value = afw_value_allocate_string(definition->p, xctx);
+        string_value = afw_value_allocate_unmanaged_string(
+            definition->p, xctx);
         string_value->internal.s = data_type_parameter_formatted_z;
         string_value->internal.len = strlen(data_type_parameter_formatted_z);
         afw_object_set_property(definition, afw_s_dataTypeParameterFormatted,
@@ -473,7 +477,7 @@ afw_context_variable_definitions_add_based_on_object_type_id(
 
         /* Clone pt and set source. */
         pt = afw_object_create_clone(pt, p, xctx);
-        source_value = afw_value_allocate_string(p, xctx);
+        source_value = afw_value_allocate_unmanaged_string(p, xctx);
         source_value->internal.len = object_type_id->len;
         source_value->internal.s = afw_memory_dup(
             object_type_id->s, object_type_id->len, p, xctx);

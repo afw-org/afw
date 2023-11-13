@@ -87,7 +87,8 @@ afw_compile_parse_Template(afw_compile_parser_t *parser)
                 }
                 string = afw_utf8_create(s, len, parser->p, parser->xctx);
                 APR_ARRAY_PUSH(values, const afw_value_t *) =
-                    afw_value_create_string(string, parser->p, parser->xctx);
+                    afw_value_create_unmanaged_string(
+                        string, parser->p, parser->xctx);
                 afw_compile_save_cursor(string_cursor);
                 continue;
             }
@@ -113,7 +114,8 @@ afw_compile_parse_Template(afw_compile_parser_t *parser)
                 afw_compile_source_buffer_length_from(string_cursor),
                 parser->p, parser->xctx);
             APR_ARRAY_PUSH(values, const afw_value_t *) =
-                afw_value_create_string(string, parser->p, parser->xctx);
+                afw_value_create_unmanaged_string(
+                    string, parser->p, parser->xctx);
         }
 
         /* If end, break out of loop. */
@@ -212,7 +214,8 @@ afw_compile_parse_TemplateString(afw_compile_parser_t *parser)
                 (afw_utf8_octet_t *)parser->s->elts, parser->s->nelts,
                 parser->p, parser->xctx);
             APR_ARRAY_PUSH(values, const afw_value_t *) =
-                afw_value_create_string(string, parser->p, parser->xctx);
+                afw_value_create_unmanaged_string(
+                    string, parser->p, parser->xctx);
             apr_array_clear(parser->s);
         }
 

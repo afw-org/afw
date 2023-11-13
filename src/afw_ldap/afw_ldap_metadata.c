@@ -274,7 +274,7 @@ impl_get_value(impl_lexical_t *self)
         s = afw_pool_malloc(self->p, count * sizeof(afw_utf8_t), self->xctx);
         list = afw_array_create_wrapper_for_array(s, false,
             afw_data_type_string, count, self->p, self->xctx);
-        val = afw_value_create_array(list, self->p, self->xctx);
+        val = afw_value_create_unmanaged_array(list, self->p, self->xctx);
         for (;;) {
             tkn = impl_get_token(self);
             if (afw_utf8_z_equal(tkn, ")")) break;
@@ -286,7 +286,7 @@ impl_get_value(impl_lexical_t *self)
     /* If not list, just return single value. */
     else {
         impl_set_string(self, &string);
-        val = afw_value_create_string(&string, self->p, self->xctx);
+        val = afw_value_create_unmanaged_string(&string, self->p, self->xctx);
     }
 
     /* Return single value or list. */
@@ -730,7 +730,7 @@ impl_a_property_to_object_type(
         name->s, name->len);
     if (parent) {
         s = afw_object_meta_get_path(parent, xctx);
-        parent_paths = afw_value_allocate_array(prop->p, xctx);
+        parent_paths = afw_value_allocate_unmanaged_array(prop->p, xctx);
         parent_paths->internal = afw_array_create_wrapper_for_array(
             (const void *)s, false, afw_data_type_anyURI, 1, prop->p, xctx);
         afw_object_meta_set_parent_paths(prop, parent_paths, xctx);
@@ -957,7 +957,7 @@ impl_add_parents_and_property_types(
 
     /* If there are parents, add parent paths and add attributes to list. */
     if (count2 > 0) {
-        parent_paths = afw_value_allocate_array(p, xctx);
+        parent_paths = afw_value_allocate_unmanaged_array(p, xctx);
         parent_paths->internal = afw_array_of_create(
             afw_data_type_anyURI, p, xctx);
         for (i = 0; i < count; i++, parent_id++) {

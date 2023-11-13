@@ -194,7 +194,7 @@ afw_function_execute_generate_uuid(
 
     uuid = afw_uuid_create_utf8(x->p, x->xctx);
     
-    return afw_value_create_string(uuid, x->p, x->xctx);
+    return afw_value_create_unmanaged_string(uuid, x->p, x->xctx);
 }
 
 
@@ -375,7 +375,7 @@ afw_function_execute_parse_uri(
         (currentPath) ? &currentPath->internal : NULL,
         x->p, x->xctx);
 
-    return afw_value_create_object(parsed, x->p, x->xctx);
+    return afw_value_create_unmanaged_object(parsed, x->p, x->xctx);
 }
 
 
@@ -420,7 +420,7 @@ afw_function_execute_perform(
    
     response = afw_action_perform(request->internal, NULL, NULL,
         x->p, x->xctx);
-    return afw_value_create_object(response, x->p, x->xctx);
+    return afw_value_create_unmanaged_object(response, x->p, x->xctx);
 }
 
 
@@ -456,7 +456,7 @@ const afw_value_t *
 afw_function_execute_execution_start_time_local(
     afw_function_execute_t *x)
 {
-    return afw_value_create_dateTime(
+    return afw_value_create_unmanaged_dateTime(
         &x->xctx->local_dateTime_when_created, x->p, x->xctx);
 }
 
@@ -493,7 +493,7 @@ const afw_value_t *
 afw_function_execute_execution_start_time_utc(
     afw_function_execute_t *x)
 {
-    return afw_value_create_dateTime(
+    return afw_value_create_unmanaged_dateTime(
         &x->xctx->utc_dateTime_when_created, x->p, x->xctx);
 }
 

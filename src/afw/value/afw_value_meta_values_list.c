@@ -184,5 +184,6 @@ afw_value_meta_values_list_for_list_create(
     AFW_VALUE_ASSERT_IS_DATA_TYPE(value, array, xctx);
     self->value = (const afw_value_array_t *)value;
 
-    return afw_value_create_array((const afw_array_t *)self, p, xctx);
+    return afw_value_create_unmanaged_array(
+        (const afw_array_t *)self, p, xctx);
 }

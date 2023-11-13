@@ -644,7 +644,7 @@ impl_token_to_value(impl_string_parser_t *parser)
     decoded = afw_uri_decode_create(parser->token.s, parser->token.len,
         parser->p, parser->xctx);
 
-    return afw_value_create_string(decoded, parser->p, parser->xctx);
+    return afw_value_create_unmanaged_string(decoded, parser->p, parser->xctx);
 }
 
 
@@ -893,7 +893,7 @@ impl_parse_string_list_value(impl_string_parser_t *parser)
     list = afw_array_create_wrapper_for_array(
         values->elts, false, afw_data_type_string,
         values->nelts, parser->p, parser->xctx);
-    result = afw_value_create_array(list, parser->p, parser->xctx);
+    result = afw_value_create_unmanaged_array(list, parser->p, parser->xctx);
     return result;
 }
 
@@ -972,7 +972,7 @@ impl_parse_string_relation(
             IMPL_STRING_THROW_ERROR_Z("Invalid value in relation");
         }
         decoded = impl_decode_token(parser);
-        entry->value = afw_value_create_string(
+        entry->value = afw_value_create_unmanaged_string(
             decoded, parser->p, parser->xctx);
     }
 
@@ -1283,8 +1283,8 @@ impl_parse_string_function(
         /* List value. */
         else {
             list = afw_array_create_generic(parser->p, parser->xctx);
-            entry->value = afw_value_create_array(list,
-                parser->p, parser->xctx);
+            entry->value = afw_value_create_unmanaged_array(
+                list, parser->p, parser->xctx);
             for (;;) {
                 impl_get_token(parser);
                 if (parser->token_type != impl_token_type_string) {
@@ -2168,7 +2168,7 @@ impl_criteria_filter_to_property_value(
         afw_object_set_property_as_array(filter, afw_s_filters, filters, xctx);
         for (e = entry->first_conjunctive_child; e; e = e->next_conjunctive_sibling) {
             o = impl_criteria_filter_to_property_value(e, p, xctx);
-            v = afw_value_create_object(o, p, xctx);
+            v = afw_value_create_unmanaged_object(o, p, xctx);
             afw_array_add_value(filters, v, xctx);
         }
     }
@@ -2200,7 +2200,7 @@ impl_criteria_select_to_property_value(
     result = afw_array_create_generic(p, xctx);
 
     for (e = select; *e; e++) {
-        v = afw_value_allocate_string(p, xctx);
+        v = afw_value_allocate_unmanaged_string(p, xctx);
         afw_memory_copy(&v->internal, *e);
         afw_array_add_value(result, &v->pub, xctx);
     }
@@ -2227,7 +2227,7 @@ impl_criteria_sort_to_property_value(
     result = afw_array_create_generic(p, xctx);
 
     for (e = sort_entry; e; e = e->next) {
-        v = afw_value_allocate_string(p, xctx);
+        v = afw_value_allocate_unmanaged_string(p, xctx);
         v->internal.len = e->property_name->len + 1;
         v->internal.s = c = afw_pool_malloc(p, v->internal.len, xctx);
         *c++ = (e->descending) ? '-' : '+';

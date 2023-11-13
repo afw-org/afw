@@ -218,7 +218,7 @@ afw_function_execute_bag(
             AFW_VALUE_INTERNAL(value), x->xctx);
     }
 
-    return afw_value_create_array(array, x->p, x->xctx);
+    return afw_value_create_unmanaged_array(array, x->p, x->xctx);
 }
 
 
@@ -269,7 +269,7 @@ afw_function_execute_bag_size(
 
     count = afw_array_get_count(arg->internal, x->xctx);
 
-    return afw_value_create_integer((afw_integer_t)count, x->p, x->xctx);
+    return afw_value_create_unmanaged_integer((afw_integer_t)count, x->p, x->xctx);
 }
 
 
@@ -367,7 +367,7 @@ afw_function_execute_compile(
         source, afw_s_a_empty_string, x->p, x->xctx);
     if (AFW_FUNCTION_PARAMETER_IS_PRESENT(2)) {
         listing = afw_function_evaluate_whitespace_parameter(x, 2);
-        result = afw_value_create_string(
+        result = afw_value_create_unmanaged_string(
             afw_value_compiler_listing_to_string(result, listing,
                 x->p, x->xctx),
             x->p, x->xctx);
@@ -966,7 +966,7 @@ afw_function_execute_index_of(
     }
 
 return_result:
-    return afw_value_create_integer(result, x->p, x->xctx);
+    return afw_value_create_unmanaged_integer(result, x->p, x->xctx);
 }
 
 
@@ -1045,7 +1045,7 @@ afw_function_execute_intersection(
         }
     }
 
-    return afw_value_create_array(array, x->p, x->xctx);
+    return afw_value_create_unmanaged_array(array, x->p, x->xctx);
 }
 
 
@@ -1253,7 +1253,7 @@ afw_function_execute_length(
             ;
     }
 
-    return afw_value_create_integer(length, x->p, x->xctx);
+    return afw_value_create_unmanaged_integer(length, x->p, x->xctx);
 }
 
 
@@ -1844,7 +1844,7 @@ afw_function_execute_repeat(
         AFW_THROW_ERROR_Z(arg_error, "Parameter times exceeds 1000", x->xctx);
     }
 
-    result = afw_value_allocate_string(x->p, x->xctx);
+    result = afw_value_allocate_unmanaged_string(x->p, x->xctx);
     result->internal.len = (afw_size_t)times->internal * value->internal.len;
     result->internal.s = s = afw_pool_malloc(x->p,
         result->internal.len, x->xctx);
@@ -1968,7 +1968,7 @@ afw_function_execute_replace(
     len = remaining.len - (count * match->internal.len) +
         (count * replacement->internal.len);
     s = afw_pool_malloc(x->p, len, x->xctx);
-    result = afw_value_allocate_string(x->p, x->xctx);
+    result = afw_value_allocate_unmanaged_string(x->p, x->xctx);
     result->internal.len = len;
     result->internal.s = s;
 
@@ -2139,7 +2139,7 @@ afw_function_execute_split(
 
     array = afw_array_create_with_options(0, afw_data_type_string,
         x->p, x->xctx);
-    result = afw_value_create_array(array, x->p, x->xctx);
+    result = afw_value_create_unmanaged_array(array, x->p, x->xctx);
     afw_memory_copy(&remaining, &(((afw_value_string_t *)value)->internal));
 
     if (separator) {
@@ -2419,7 +2419,7 @@ afw_function_execute_substring(
     }
 
     /* Return substring. */
-    return afw_value_create_string(&substring, x->p, x->xctx);
+    return afw_value_create_unmanaged_string(&substring, x->p, x->xctx);
 }
 
 
@@ -2492,7 +2492,7 @@ afw_function_execute_union(
         impl_add_nondups_to_array(data_type, arrayn->internal, array, x->xctx);
     }
 
-    return afw_value_create_array(array, x->p, x->xctx);
+    return afw_value_create_unmanaged_array(array, x->p, x->xctx);
 }
 
 
@@ -2593,7 +2593,7 @@ afw_function_execute_last_index_of(
     }
 
 return_result:
-    return afw_value_create_integer(result, x->p, x->xctx);
+    return afw_value_create_unmanaged_integer(result, x->p, x->xctx);
 }
 
 
@@ -2742,7 +2742,7 @@ afw_function_execute_url_encode(
         AFW_URI_OCTET_ENCODE_URI, x->p, x->xctx);
     
     /* Return String value. */
-    return afw_value_create_string(s, x->p, x->xctx);
+    return afw_value_create_unmanaged_string(s, x->p, x->xctx);
 }
 
 
@@ -2790,7 +2790,7 @@ afw_function_execute_encode_as_base64Binary(
     /* Only string supported at the moment. */
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(value, 1, string);
 
-    result = afw_value_allocate_base64Binary(x->p, x->xctx);
+    result = afw_value_allocate_unmanaged_base64Binary(x->p, x->xctx);
     result->internal.ptr = (const afw_octet_t *)value->internal.s;
     result->internal.size = value->internal.len;
 
@@ -2842,7 +2842,7 @@ afw_function_execute_encode_as_hexBinary(
     /* Only string supported at the moment. */
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(value, 1, string);
 
-    result = afw_value_allocate_hexBinary(x->p, x->xctx);
+    result = afw_value_allocate_unmanaged_hexBinary(x->p, x->xctx);
     result->internal.ptr = (const afw_octet_t *)value->internal.s;
     result->internal.size = value->internal.len;
 

@@ -322,7 +322,7 @@ afw_command_local_request_create(
         properties, afw_s_QUERY_STRING, xctx);
 
     /* Overwrite CONTENT_LENGTH */
-    value = afw_value_create_integer(
+    value = afw_value_create_unmanaged_integer(
         (afw_integer_t)self->pub.content_length, p, xctx);
     s = afw_value_as_utf8(value, p, xctx);
     afw_object_set_property_as_string(

@@ -79,7 +79,7 @@ impl_afw_value_optional_evaluate(
         afw_object_set_property(to, property_name, v, xctx);
     }
 
-    return afw_value_create_object(to, p, xctx);
+    return afw_value_create_unmanaged_object(to, p, xctx);
 }
 
 /*

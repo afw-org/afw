@@ -191,13 +191,15 @@ afw_compile_parse_List(
     else if (!list) {
         list = afw_array_create_generic(parser->p, parser->xctx);
         afw_array_set_immutable(list, parser->xctx);
-        result = afw_value_create_array(list, parser->p, parser->xctx);
+        result = afw_value_create_unmanaged_array(
+            list, parser->p, parser->xctx);
     }
 
     /* Else result is an evaluated list value. */
     else {
         afw_array_set_immutable(list, parser->xctx);
-        result = afw_value_create_array(list, parser->p, parser->xctx);
+        result = afw_value_create_unmanaged_array(
+            list, parser->p, parser->xctx);
     }
 
     /* Return list value or call to add_entries. */
@@ -411,8 +413,8 @@ afw_compile_parse_Object(
                             parser->p, parser->xctx);
                         if (args) { /** @fixme Review how this can happen.*/
                             afw_compile_args_add_value(args,
-                                afw_value_create_object(obj,
-                                    parser->p, parser->xctx));
+                                afw_value_create_unmanaged_object(
+                                    obj, parser->p, parser->xctx));
                         }
                     }
                     afw_object_set_property(obj, parser->property_name, v,
@@ -467,7 +469,8 @@ afw_compile_parse_Object(
     /* Else result is object value. */
     else {
         afw_object_meta_set_meta_object(obj, _meta_, parser->xctx);
-        result = afw_value_create_object(obj, parser->p, parser->xctx);
+        result = afw_value_create_unmanaged_object(
+            obj, parser->p, parser->xctx);
     }
 
     /* Restore saved embedding object and property name. */
@@ -518,19 +521,19 @@ afw_compile_parse_Json(afw_compile_parser_t *parser)
         break;
 
     case afw_compile_token_type_integer:
-        value = afw_value_create_integer(
+        value = afw_value_create_unmanaged_integer(
             parser->token->integer,
             parser->p, parser->xctx);
         break;
 
     case afw_compile_token_type_number:
-        value = afw_value_create_double(
+        value = afw_value_create_unmanaged_double(
             parser->token->number,
             parser->p, parser->xctx);
         break;
 
     case afw_compile_token_type_utf8_string:
-        value = afw_value_create_string(parser->token->string,
+        value = afw_value_create_unmanaged_string(parser->token->string,
             parser->p, parser->xctx);
         break;
 
@@ -608,21 +611,21 @@ afw_compile_parse_Literal(
 
     case afw_compile_token_type_integer:
         matches_production = true;
-        value = afw_value_create_integer(
+        value = afw_value_create_unmanaged_integer(
             parser->token->integer,
             parser->p, parser->xctx);
         break;
 
     case afw_compile_token_type_number:
         matches_production = true;
-        value = afw_value_create_double(
+        value = afw_value_create_unmanaged_double(
             parser->token->number,
             parser->p, parser->xctx);
         break;
 
     case afw_compile_token_type_utf8_string:
         matches_production = true;
-        value = afw_value_create_string(parser->token->string,
+        value = afw_value_create_unmanaged_string(parser->token->string,
             parser->p, parser->xctx);
         break;
 

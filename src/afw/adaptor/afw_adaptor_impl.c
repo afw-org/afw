@@ -565,7 +565,7 @@ afw_adaptor_impl_set_supported_core_object_type(
         path = afw_object_meta_get_path(e->object, xctx);
         afw_object_meta_set_ids(e->object, &adaptor->adaptor_id,
             afw_s__AdaptiveObjectType_, object_type_id, xctx);
-        parent_paths = afw_value_allocate_array(p, xctx);
+        parent_paths = afw_value_allocate_unmanaged_array(p, xctx);
         parent_paths->internal = afw_array_create_wrapper_for_array(
             (const void *)path, false, afw_data_type_anyURI, 1, p, xctx);
         afw_object_meta_set_parent_paths(e->object, parent_paths, xctx);
@@ -811,13 +811,13 @@ impl_check_authorization(
     const afw_value_t *resource_id_value;
     const afw_value_t *object_value;
 
-    resource_id_value = afw_value_create_string(
+    resource_id_value = afw_value_create_unmanaged_string(
         ctx->resource_id,
         ctx->p, xctx);
 
     object_value = NULL;
     if (ctx->impl_request && ctx->impl_request->request) {
-        object_value = afw_value_create_object(
+        object_value = afw_value_create_unmanaged_object(
             ctx->impl_request->request,
             ctx->p, xctx);
     }
@@ -851,8 +851,8 @@ impl_authorization_cb(
     if (!resource_id) {
         AFW_THROW_ERROR_Z(general, "Missing path", xctx);
     }
-    resource_id_value = afw_value_create_string(resource_id, ctx->p, xctx);
-    object_value = afw_value_create_object(object, ctx->p, xctx);
+    resource_id_value = afw_value_create_unmanaged_string(resource_id, ctx->p, xctx);
+    object_value = afw_value_create_unmanaged_object(object, ctx->p, xctx);
     afw_authorization_check(true, NULL,
         resource_id_value, object_value,
         afw_authorization_action_id_read, ctx->p, xctx);
