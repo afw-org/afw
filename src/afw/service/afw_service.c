@@ -848,7 +848,7 @@ impl_AdaptiveService_cb(
 
             p = original_object->p;
 
-            object = afw_object_create(p, xctx);
+            object = afw_object_create_unmanaged(p, xctx);
 
             service_id = afw_object_old_get_property_as_string(
                 original_object,
@@ -1086,7 +1086,7 @@ afw_service_get_object(
         AFW_CATCH_UNHANDLED{
             result = ctx.last_object;
             if (!result) {
-                result = afw_object_create(p, xctx);
+                result = afw_object_create_unmanaged(p, xctx);
             }
             afw_object_set_property_as_string(result,
                 afw_s_serviceId, service_id, xctx);

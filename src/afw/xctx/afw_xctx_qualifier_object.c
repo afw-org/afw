@@ -71,7 +71,7 @@ afw_xctx_qualifiers_object_create(
     const afw_object_t *qualifier;
     const afw_xctx_qualifier_stack_entry_t *c;
 
-    qualifiers = afw_object_create(p, xctx);
+    qualifiers = afw_object_create_unmanaged(p, xctx);
     for (c = xctx->qualifier_stack->top;
         c >= xctx->qualifier_stack->first;
         c--)

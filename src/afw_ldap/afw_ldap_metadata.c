@@ -311,7 +311,7 @@ impl_parse_schema_entry(
     const afw_value_t *val;
 
     self = impl_create_lexical_analyzer(string, p, xctx);
-    obj = afw_object_create(p, xctx);
+    obj = afw_object_create_unmanaged(p, xctx);
 
     /* Starts with '(' */
     tkn = impl_get_token(self);
@@ -608,7 +608,7 @@ impl_make_property_type_and_handler_hash_tables(
 
                 /* Create property type object and set ids. */
                 attribute_type->property_type_object =
-                    afw_object_create(metadata->p, xctx);
+                    afw_object_create_unmanaged(metadata->p, xctx);
                 id = afw_object_meta_get_object_id(attribute_type_object, xctx);
                 afw_object_meta_set_ids(
                     attribute_type->property_type_object,
@@ -1061,7 +1061,7 @@ impl_make_object_types(
         apr_hash_this(hi, NULL, NULL, (void **)&object_class_object);
 
         /* Create _AdaptiveObjectType_ and initialize. */
-        object_type_object = afw_object_create(p, xctx);
+        object_type_object = afw_object_create_unmanaged(p, xctx);
         id = afw_object_meta_get_object_id(object_class_object, xctx);
         afw_object_meta_set_ids(object_type_object, adaptor_id,
             afw_ldap_s__AdaptiveObjectType_, id, xctx);

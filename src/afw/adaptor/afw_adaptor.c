@@ -561,7 +561,7 @@ afw_adaptor_internal_register_afw_adaptor(afw_xctx_t *xctx)
     const afw_pool_t *p;
 
     p = afw_pool_create(xctx->env->p, xctx);
-    conf = afw_object_create(p, xctx);
+    conf = afw_object_create_unmanaged(p, xctx);
     afw_object_set_property_as_string(conf,
         afw_s_type, afw_s_adaptor, xctx);
     afw_object_set_property_as_string(conf,

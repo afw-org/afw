@@ -94,7 +94,7 @@ struct afw_value_any_s {
 /**
  * @brief extern for data type any struct.
  *
- * This should only be referenced in the linkage unit the extern is
+ * This should only be managed in the linkage unit the extern is
  * defined in.  Use afw_data_type_any when not referencing in
  * a static.
  */
@@ -104,11 +104,11 @@ afw_data_type_any_direct;
 /**
  * @brief extern for data type any inf.
  *
- * This should only be referenced in the linkage unit the extern is
+ * This should only be managed in the linkage unit the extern is
  * defined in.
  *
  * The implementation of the data type must define this.  It is
- * referenced by the generated data type instance.
+ * managed by the generated data type instance.
  */
 AFW_DECLARE_INTERNAL_CONST_DATA(afw_data_type_inf_t)
 afw_data_type_any_inf;

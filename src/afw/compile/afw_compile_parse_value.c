@@ -407,7 +407,7 @@ afw_compile_parse_Object(
                  */
                 else if (!afw_value_is_object(v)) {
                     if (!obj) {
-                        obj = afw_object_create(
+                        obj = afw_object_create_unmanaged(
                             parser->p, parser->xctx);
                         if (args) { /** @fixme Review how this can happen.*/
                             afw_compile_args_add_value(args,

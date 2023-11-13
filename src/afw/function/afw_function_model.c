@@ -217,7 +217,7 @@ afw_function_execute_model_default_add_object_action(
 
     AFW_ENDTRY;
 
-    result = afw_object_create(x->p, xctx);
+    result = afw_object_create_unmanaged(x->p, xctx);
     afw_object_set_property(result, afw_s_function,
         &impl_value_add_object.pub, xctx);
     afw_object_set_property_as_string(result, afw_s_adaptorId,
@@ -361,7 +361,7 @@ afw_function_execute_model_default_delete_object_action(
 
     AFW_ENDTRY;
 
-    result = afw_object_create(x->p, xctx);
+    result = afw_object_create_unmanaged(x->p, xctx);
     afw_object_set_property(result, afw_s_function,
         &impl_value_delete_object.pub, xctx);
     afw_object_set_property_as_string(result, afw_s_adaptorId,
@@ -533,7 +533,7 @@ afw_function_execute_model_default_modify_object_action(
 
     AFW_ENDTRY;
 
-    result = afw_object_create(x->p, xctx);
+    result = afw_object_create_unmanaged(x->p, xctx);
     afw_object_set_property(result, afw_s_function,
         &impl_value_modify_object.pub, xctx);
     afw_object_set_property_as_string(result, afw_s_adaptorId,
@@ -683,7 +683,7 @@ afw_function_execute_model_default_replace_object_action(
 
     AFW_ENDTRY;
 
-    result = afw_object_create(x->p, xctx);
+    result = afw_object_create_unmanaged(x->p, xctx);
     afw_object_set_property(result, afw_s_function,
         &impl_value_replace_object.pub, xctx);
     afw_object_set_property_as_string(result, afw_s_adaptorId,

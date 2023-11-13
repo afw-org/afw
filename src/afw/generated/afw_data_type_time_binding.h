@@ -74,7 +74,7 @@ afw_value_time_inf;
  * The lifetime of the value is managed by reference.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
-afw_value_referenced_time_inf;
+afw_value_managed_time_inf;
 
 /**
  * @brief Permanent managed (life of afw environment) value inf for data type time.
@@ -162,7 +162,7 @@ AFW_DECLARE(const afw_time_t *)
 afw_value_as_time(const afw_value_t *value, afw_xctx_t *xctx);
 
 /**
- * @brief Allocate function for referenced data type time value.
+ * @brief Allocate function for managed data type time value.
  * @param internal place to put pointer to internal of value.
  * @param xctx of caller.
  * @return Allocated afw_value_t with appropriate inf set.
@@ -171,7 +171,7 @@ afw_value_as_time(const afw_value_t *value, afw_xctx_t *xctx);
  * 'afw_time_t' internal value before using.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_alloc_referenced_time(
+afw_value_alloc_managed_time(
     afw_time_t **internal,
     afw_xctx_t *xctx);
 
@@ -185,14 +185,14 @@ AFW_DECLARE(afw_value_time_t *)
 afw_value_allocate_time(const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**
- * @brief Create function for referenced data type time value.
+ * @brief Create function for managed data type time value.
  * @param internal.
  * @param p to use for returned value.
  * @param xctx of caller.
  * @return Created const afw_value_t *.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_create_referenced_time(const afw_time_t * internal,
+afw_value_create_managed_time(const afw_time_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**
@@ -398,7 +398,7 @@ afw_array_of_time_remove(
 /**
  * @brief extern for data type time struct.
  *
- * This should only be referenced in the linkage unit the extern is
+ * This should only be managed in the linkage unit the extern is
  * defined in.  Use afw_data_type_time when not referencing in
  * a static.
  */
@@ -408,11 +408,11 @@ afw_data_type_time_direct;
 /**
  * @brief extern for data type time inf.
  *
- * This should only be referenced in the linkage unit the extern is
+ * This should only be managed in the linkage unit the extern is
  * defined in.
  *
  * The implementation of the data type must define this.  It is
- * referenced by the generated data type instance.
+ * managed by the generated data type instance.
  */
 AFW_DECLARE_INTERNAL_CONST_DATA(afw_data_type_inf_t)
 afw_data_type_time_inf;

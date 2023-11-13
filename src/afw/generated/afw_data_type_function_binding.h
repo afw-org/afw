@@ -74,7 +74,7 @@ afw_value_function_inf;
  * The lifetime of the value is managed by reference.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
-afw_value_referenced_function_inf;
+afw_value_managed_function_inf;
 
 /**
  * @brief Permanent managed (life of afw environment) value inf for data type function.
@@ -162,7 +162,7 @@ AFW_DECLARE(const afw_value_t *)
 afw_value_as_function(const afw_value_t *value, afw_xctx_t *xctx);
 
 /**
- * @brief Allocate function for referenced data type function value.
+ * @brief Allocate function for managed data type function value.
  * @param internal place to put pointer to internal of value.
  * @param xctx of caller.
  * @return Allocated afw_value_t with appropriate inf set.
@@ -171,7 +171,7 @@ afw_value_as_function(const afw_value_t *value, afw_xctx_t *xctx);
  * 'const afw_value_t *' internal value before using.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_alloc_referenced_function(
+afw_value_alloc_managed_function(
     const afw_value_t * **internal,
     afw_xctx_t *xctx);
 
@@ -185,14 +185,14 @@ AFW_DECLARE(afw_value_function_t *)
 afw_value_allocate_function(const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**
- * @brief Create function for referenced data type function value.
+ * @brief Create function for managed data type function value.
  * @param internal.
  * @param p to use for returned value.
  * @param xctx of caller.
  * @return Created const afw_value_t *.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_create_referenced_function(const afw_value_t * internal,
+afw_value_create_managed_function(const afw_value_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**
@@ -398,7 +398,7 @@ afw_array_of_function_remove(
 /**
  * @brief extern for data type function struct.
  *
- * This should only be referenced in the linkage unit the extern is
+ * This should only be managed in the linkage unit the extern is
  * defined in.  Use afw_data_type_function when not referencing in
  * a static.
  */
@@ -408,11 +408,11 @@ afw_data_type_function_direct;
 /**
  * @brief extern for data type function inf.
  *
- * This should only be referenced in the linkage unit the extern is
+ * This should only be managed in the linkage unit the extern is
  * defined in.
  *
  * The implementation of the data type must define this.  It is
- * referenced by the generated data type instance.
+ * managed by the generated data type instance.
  */
 AFW_DECLARE_INTERNAL_CONST_DATA(afw_data_type_inf_t)
 afw_data_type_function_inf;

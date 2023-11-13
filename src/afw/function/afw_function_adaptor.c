@@ -114,7 +114,7 @@ impl_retrieve_to_response_cb(
 
     if (object) {
         p = (object->p) ? object->p : ctx->p;
-        response_object = afw_object_create(p, xctx);
+        response_object = afw_object_create_unmanaged(p, xctx);
         afw_object_set_property_as_boolean(response_object,
             afw_s_intermediate, true, xctx);
         afw_object_set_property_as_object(response_object,

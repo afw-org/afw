@@ -74,7 +74,7 @@ afw_value_ia5String_inf;
  * The lifetime of the value is managed by reference.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
-afw_value_referenced_ia5String_inf;
+afw_value_managed_ia5String_inf;
 
 /**
  * @brief Permanent managed (life of afw environment) value inf for data type ia5String.
@@ -162,7 +162,7 @@ AFW_DECLARE(const afw_utf8_t *)
 afw_value_as_ia5String(const afw_value_t *value, afw_xctx_t *xctx);
 
 /**
- * @brief Allocate function for referenced data type ia5String value.
+ * @brief Allocate function for managed data type ia5String value.
  * @param s place to put pointer to allocated memory for internal->s.
  * @param len of memory to allocate for internal->s.
  * @param xctx of caller.
@@ -172,7 +172,7 @@ afw_value_as_ia5String(const afw_value_t *value, afw_xctx_t *xctx);
  * Set *s for the specified len to a valid utf-8 string.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_alloc_referenced_ia5String(
+afw_value_alloc_managed_ia5String(
     afw_utf8_octet_t **s,
     afw_size_t len,
     afw_xctx_t *xctx);
@@ -187,18 +187,18 @@ AFW_DECLARE(afw_value_ia5String_t *)
 afw_value_allocate_ia5String(const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**
- * @brief Create function for referenced data type ia5String value.
+ * @brief Create function for managed data type ia5String value.
  * @param internal.
  * @param p to use for returned value.
  * @param xctx of caller.
  * @return Created const afw_value_t *.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_create_referenced_ia5String(const afw_utf8_t * internal,
+afw_value_create_managed_ia5String(const afw_utf8_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**
- * @brief Create function for referenced data type ia5String slice value.
+ * @brief Create function for managed data type ia5String slice value.
  * @param containing_value with a cType of 'afw_utf8_t'.
  * @param offset in contain value's internal.
  * @param len of slice.
@@ -209,7 +209,7 @@ afw_value_create_referenced_ia5String(const afw_utf8_t * internal,
  * Set *s for the specified len to a valid utf-8 string.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_create_referenced_ia5String_slice(
+afw_value_create_managed_ia5String_slice(
     const afw_value_t *containing_value,
     afw_size_t offset,
     afw_size_t len,
@@ -418,7 +418,7 @@ afw_array_of_ia5String_remove(
 /**
  * @brief extern for data type ia5String struct.
  *
- * This should only be referenced in the linkage unit the extern is
+ * This should only be managed in the linkage unit the extern is
  * defined in.  Use afw_data_type_ia5String when not referencing in
  * a static.
  */
@@ -428,11 +428,11 @@ afw_data_type_ia5String_direct;
 /**
  * @brief extern for data type ia5String inf.
  *
- * This should only be referenced in the linkage unit the extern is
+ * This should only be managed in the linkage unit the extern is
  * defined in.
  *
  * The implementation of the data type must define this.  It is
- * referenced by the generated data type instance.
+ * managed by the generated data type instance.
  */
 AFW_DECLARE_INTERNAL_CONST_DATA(afw_data_type_inf_t)
 afw_data_type_ia5String_inf;

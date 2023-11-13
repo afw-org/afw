@@ -741,7 +741,7 @@ afw_object_memory_associative_array_create(
  * object's pool.  The lifetime of the object's pool will be controlled by
  * calls to the object's get_reference() and release() methods.
  */
-#define AFW_OBJECT_MEMORY_OPTION_default              0
+#define AFW_OBJECT_MEMORY_OPTION_managed              0
 
 
 /**
@@ -764,29 +764,7 @@ afw_object_memory_associative_array_create(
  * the object's pool.  The lifetime of the object's pool will be controlled
  * by calls to the object's get_reference() and release() methods.
  */
-#define AFW_OBJECT_MEMORY_OPTION_cede_p               (1 << 1)
-
-
-/**
- * @brief Clone values on set.
- *
- * Calls to the objects setter functions will clone the input value to the
- * pool of the object.  This is useful if the lifetime of the object is longer
- * than the lifetime of the input values.
- */
-#define AFW_OBJECT_MEMORY_OPTION_clone_on_set            (1 << 2)
-
-
-/**
- * @brief Object cedes control of the specified pool and clone on set.
- *
- * The p passed to create will cede control to the object and be considered
- * the object's pool.  The lifetime of the object's pool will be controlled
- * by calls to the object's get_reference() and release() methods.
- */
-#define AFW_OBJECT_MEMORY_OPTION_cede_p_and_clone_on_set \
-    AFW_OBJECT_MEMORY_OPTION_cede_p + \
-    AFW_OBJECT_MEMORY_OPTION_clone_on_set
+#define AFW_OBJECT_MEMORY_OPTION_managed_cede_p               (1 << 1)
 
 
 /** @brief Test memory object option mask option. */
@@ -913,15 +891,15 @@ afw_object_create_properties_callback(
  *
  * ... allocate memory and register cleanup using new_p ...
  *
- * object = afw_object_create_and_cede_p(new_p, xctx);
+ * object = afw_object_create_managed_cede_p(new_p, xctx);
  *
  * ... set properties and use object ...
  *
  * afw_object_release(object, xctx);
  */
-#define afw_object_create_and_cede_p(p, xctx) \
+#define afw_object_create_managed_cede_p(p, xctx) \
     afw_object_create_with_options( \
-        AFW_OBJECT_MEMORY_OPTION_cede_p, p, xctx)
+        AFW_OBJECT_MEMORY_OPTION_managed_cede_p, p, xctx)
 
 
 /**
@@ -936,28 +914,7 @@ afw_object_create_properties_callback(
  */
 #define afw_object_create_managed(p, xctx) \
     afw_object_create_with_options( \
-        AFW_OBJECT_MEMORY_OPTION_default, p, xctx)
-
-
-/**
- * @brief Create an empty entity object in its own pool and clone values on set.
- * @param p to use for the object.
- * @param xctx of caller.
- * @return instance of new object.
- *
- * Note: This might go away during memory manage rewrite (#51) since normal
- *       managed objects will have an enhanced version of this.
- * 
- * This is like afw_object_create_managed() except that the value of a
- * set_property() is cloned into the object's pool.
- * 
- * This function creates a subpool of the pool specified to hold the object
- * and it's properties.  A call to afw_object_release() for this object will
- * release this subpool.
- */
-#define afw_object_create_clone_on_set(p, xctx) \
-    afw_object_create_with_options( \
-        AFW_OBJECT_MEMORY_OPTION_clone_on_set, p, xctx)
+        AFW_OBJECT_MEMORY_OPTION_managed, p, xctx)
 
 
 /**
@@ -969,7 +926,7 @@ afw_object_create_properties_callback(
  * Reference counting is not done for an unmanaged object, so the lifetime of
  * the object will be controlled by the lifetime of the p specified.
  */
-#define afw_object_create(p, xctx) \
+#define afw_object_create_unmanaged(p, xctx) \
     afw_object_create_with_options( \
         AFW_OBJECT_MEMORY_OPTION_unmanaged, p, xctx)
 
@@ -1024,7 +981,7 @@ afw_object_insure_embedded_exists(
  * @param xctx of caller.
  *
  * This macro will call afw_object_create_managed,
- * afw_object_create_and_cede_p() or
+ * afw_object_create_managed_cede_p() or
  * afw_object_create_embedded() depending on whether embedding_object
  * is NULL and cede_p is true.
  *
@@ -1042,7 +999,7 @@ afw_object_insure_embedded_exists(
     if (always_create_unmanaged || \
         (property_name && afw_utf8_equal(property_name, afw_s__meta_))) \
     { \
-        result = afw_object_create(entity_p, xctx); \
+        result = afw_object_create_unmanaged(entity_p, xctx); \
     } \
     else if (embedding_object) { \
         result = afw_object_create_embedded( \
@@ -1051,8 +1008,8 @@ afw_object_insure_embedded_exists(
     else { \
         result = afw_object_create_with_options( \
             (cede_p) \
-            ? AFW_OBJECT_MEMORY_OPTION_cede_p \
-            : AFW_OBJECT_MEMORY_OPTION_default, \
+            ? AFW_OBJECT_MEMORY_OPTION_managed_cede_p \
+            : AFW_OBJECT_MEMORY_OPTION_managed, \
             entity_p, xctx); \
     } \
 

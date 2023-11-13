@@ -261,7 +261,7 @@ impl_adapt_object_from_adaptor(
 
     /* Add a variable qualifier and remove it when finished. */
     top = afw_xctx_qualifier_stack_top_get(xctx);
-    object = afw_object_create_and_cede_p(
+    object = afw_object_create_managed_cede_p(
         p, xctx);
     AFW_TRY {
 
@@ -1299,7 +1299,7 @@ afw_model_internal_create_basic_to_adaptor_mapped_object(
     const afw_iterator_t *iterator;
 
     /* */
-    result = afw_object_create(p, xctx);
+    result = afw_object_create_unmanaged(p, xctx);
 
     /* Loop processing object. */
     iterator = NULL;
@@ -1788,7 +1788,7 @@ impl_afw_adaptor_session_delete_object(
 
         /* If no onDeleteObjector or it returned undefined, do default processing. */
         if (use_default_processing) {
-            journal_entry = afw_object_create(ctx->p, xctx);
+            journal_entry = afw_object_create_unmanaged(ctx->p, xctx);
             afw_model_internal_complete_ctx_default_delete_object(ctx, xctx);
             afw_adaptor_delete_object(self->adaptor->mapped_adaptor_id,
                 ctx->mapped_object_type_id, ctx->mapped_object_id,

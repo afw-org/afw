@@ -74,7 +74,7 @@ afw_value_base64Binary_inf;
  * The lifetime of the value is managed by reference.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
-afw_value_referenced_base64Binary_inf;
+afw_value_managed_base64Binary_inf;
 
 /**
  * @brief Permanent managed (life of afw environment) value inf for data type base64Binary.
@@ -172,7 +172,7 @@ afw_value_as_base64Binary(const afw_value_t *value, afw_xctx_t *xctx);
  * Set *ptr for the specified size to the bytes of the value.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_alloc_referenced_base64Binary(
+afw_value_alloc_managed_base64Binary(
     const afw_byte_t **ptr,
     afw_size_t size,
     afw_xctx_t *xctx);
@@ -187,18 +187,18 @@ AFW_DECLARE(afw_value_base64Binary_t *)
 afw_value_allocate_base64Binary(const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**
- * @brief Create function for referenced data type base64Binary value.
+ * @brief Create function for managed data type base64Binary value.
  * @param internal.
  * @param p to use for returned value.
  * @param xctx of caller.
  * @return Created const afw_value_t *.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_create_referenced_base64Binary(const afw_memory_t * internal,
+afw_value_create_managed_base64Binary(const afw_memory_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**
- * @brief Create function for referenced data type base64Binary slice value.
+ * @brief Create function for managed data type base64Binary slice value.
  * @param containing_value with a cType of 'afw_memory_t'.
  * @param offset in contain value's internal.
  * @param size of slice.
@@ -209,7 +209,7 @@ afw_value_create_referenced_base64Binary(const afw_memory_t * internal,
  * Set *ptr for the specified size to the bytes of the value.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_create_referenced_base64Binary_slice(
+afw_value_create_managed_base64Binary_slice(
     const afw_value_t *containing_value,
     afw_size_t offset,
     afw_size_t size,
@@ -418,7 +418,7 @@ afw_array_of_base64Binary_remove(
 /**
  * @brief extern for data type base64Binary struct.
  *
- * This should only be referenced in the linkage unit the extern is
+ * This should only be managed in the linkage unit the extern is
  * defined in.  Use afw_data_type_base64Binary when not referencing in
  * a static.
  */
@@ -428,11 +428,11 @@ afw_data_type_base64Binary_direct;
 /**
  * @brief extern for data type base64Binary inf.
  *
- * This should only be referenced in the linkage unit the extern is
+ * This should only be managed in the linkage unit the extern is
  * defined in.
  *
  * The implementation of the data type must define this.  It is
- * referenced by the generated data type instance.
+ * managed by the generated data type instance.
  */
 AFW_DECLARE_INTERNAL_CONST_DATA(afw_data_type_inf_t)
 afw_data_type_base64Binary_inf;

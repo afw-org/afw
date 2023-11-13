@@ -1552,7 +1552,7 @@ impl_afw_data_type_object_clone_internal(
     const afw_object_t *to;
 
     from = *(const afw_object_t * *)from_internal;
-    to = afw_object_create(p, xctx);
+    to = afw_object_create_unmanaged(p, xctx);
     memcpy(to_internal, &to, sizeof(const afw_object_t *));
     impl_object_clone_properties_and_meta(to, from, NULL, xctx);
 }

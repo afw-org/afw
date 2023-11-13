@@ -26,9 +26,9 @@
 #include "afw_runtime_object_maps.h"
 #include "afw_value_internal.h"
 
-/* Declaration for method optional_release for referenced value. */
+/* Declaration for method optional_release for managed value. */
 AFW_DECLARE_STATIC(void)
-impl_afw_value_referenced_optional_release(
+impl_afw_value_managed_optional_release(
     const afw_value_t *instance,
     afw_xctx_t *xctx);
 
@@ -41,9 +41,9 @@ impl_afw_value_get_reference(
     afw_xctx_t *xctx);
 
 
-/* Declaration for method get_reference for referenced value. */
+/* Declaration for method get_reference for managed value. */
 AFW_DECLARE_STATIC(const afw_value_t *)
-impl_afw_value_referenced_get_reference(
+impl_afw_value_managed_get_reference(
     const afw_value_t *instance,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
@@ -90,12 +90,12 @@ impl_afw_value_permanent_get_reference(
 #undef impl_afw_value_clone_or_reference
 
 /* Declares and rti/inf defines for interface afw_value */
-/* This is the inf for referenced null values. For this one */
+/* This is the inf for managed null values. For this one */
 /* optional_release releases value and get_reference returns new reference. */
-#define AFW_IMPLEMENTATION_ID "referenced_null"
-#define AFW_IMPLEMENTATION_INF_LABEL afw_value_referenced_null_inf
-#define impl_afw_value_optional_release impl_afw_value_referenced_optional_release
-#define impl_afw_value_clone_or_reference impl_afw_value_referenced_get_reference
+#define AFW_IMPLEMENTATION_ID "managed_null"
+#define AFW_IMPLEMENTATION_INF_LABEL afw_value_managed_null_inf
+#define impl_afw_value_optional_release impl_afw_value_managed_optional_release
+#define impl_afw_value_clone_or_reference impl_afw_value_managed_get_reference
 #define AFW_VALUE_INF_ONLY 1
 #include "afw_value_impl_declares.h"
 #undef AFW_IMPLEMENTATION_ID
@@ -264,16 +264,16 @@ afw_value_allocate_null(const afw_pool_t *p, afw_xctx_t *xctx)
     return result;
 }
 
-/* Create function for referenced data type null value. */
+/* Create function for managed data type null value. */
 AFW_DEFINE(const afw_value_t *)
-afw_value_create_referenced_null(void * internal,
+afw_value_create_managed_null(void * internal,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
     afw_value_null_t *v;
 
     v = afw_pool_calloc(p, sizeof(afw_value_null_t),
         xctx);
-    v->inf = &afw_value_referenced_null_inf;
+    v->inf = &afw_value_managed_null_inf;
     v->internal = internal;
     return &v->pub;
 }
@@ -375,9 +375,9 @@ afw_object_get_next_property_as_null_source(
     return (((const afw_value_null_t *)value)->internal);
 }
 
-/* Implementation of method optional_release for referenced value. */
+/* Implementation of method optional_release for managed value. */
 AFW_DECLARE_STATIC(void)
-impl_afw_value_referenced_optional_release(
+impl_afw_value_managed_optional_release(
     const afw_value_t *instance,
     afw_xctx_t *xctx)
 {
@@ -396,14 +396,14 @@ impl_afw_value_get_reference(
 }
 
 
-/* Implementation of method get_reference for referenced value. */
+/* Implementation of method get_reference for managed value. */
 AFW_DECLARE_STATIC(const afw_value_t *)
-impl_afw_value_referenced_get_reference(
+impl_afw_value_managed_get_reference(
     const afw_value_t *instance,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    /* For referenced value, FIXME. */
+    /* For managed value, FIXME. */
     return instance;
 }
 

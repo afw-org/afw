@@ -68,7 +68,7 @@ afw_context_type_create(
 {
     const afw_object_t *result;
 
-    result = afw_object_create(p, xctx);
+    result = afw_object_create_unmanaged(p, xctx);
     afw_object_meta_set_ids(result, afw_s_afw,
         afw_s__AdaptiveContextType_, context_type_id, xctx);
 
@@ -391,7 +391,7 @@ afw_context_variable_definitions_add_based_on_object(
 
         /* If not a pt at this point, make one using value meta. */
         if (!pt) {
-            pt = afw_object_create(p, xctx);
+            pt = afw_object_create_unmanaged(p, xctx);
             if (value_data_type) {
                 afw_object_set_property_as_string(pt,
                     afw_s_dataType, &value_data_type->data_type_id, xctx);

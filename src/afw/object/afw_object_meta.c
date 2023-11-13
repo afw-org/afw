@@ -409,7 +409,7 @@ afw_object_meta_set_empty(
     /* Set meta in instance. */
     result = impl_set_meta_object(
         (afw_object_t *)instance,
-        afw_object_create(instance->p, xctx),
+        afw_object_create_unmanaged(instance->p, xctx),
         xctx);
 
     return result;
@@ -1040,7 +1040,7 @@ impl_afw_object_setter_set_property(
 
     else {
         if (!self->delta) {
-            self->delta = afw_object_create(self->pub.p, xctx);
+            self->delta = afw_object_create_unmanaged(self->pub.p, xctx);
         }
         afw_object_set_property(self->delta, property_name, value, xctx);
     }

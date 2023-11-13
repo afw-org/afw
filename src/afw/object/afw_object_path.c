@@ -327,7 +327,7 @@ impl_object_path_parse(
             if (afw_utf8_equal(token, afw_s_a_semicolon)) {
                 state = impl_state_option_name;
                 parsed->options_object =
-                    afw_object_create(p, xctx);
+                    afw_object_create_unmanaged(p, xctx);
                 break;
             }
 

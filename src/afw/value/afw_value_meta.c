@@ -354,7 +354,7 @@ impl_afw_object_setter_set_property(
     }
 
     if (!self->additional) {
-        self->additional = afw_object_create(self->pub.p, xctx);
+        self->additional = afw_object_create_unmanaged(self->pub.p, xctx);
     }
 
     afw_object_set_property(self->additional, property_name, value, xctx);

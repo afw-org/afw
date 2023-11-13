@@ -402,7 +402,7 @@ impl_harvest_object_type(
     afw_boolean_t found;
     const afw_value_t *value;
 
-    result = afw_object_create(p, xctx);
+    result = afw_object_create_unmanaged(p, xctx);
     afw_object_meta_set_ids(result,
         adaptor_id,
         afw_s__AdaptiveObjectType_,

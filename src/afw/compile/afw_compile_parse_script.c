@@ -1964,7 +1964,7 @@ afw_compile_parse_TestScript(
         }
     }
 
-    test_script_object = afw_object_create(parser->p, parser->xctx);
+    test_script_object = afw_object_create_unmanaged(parser->p, parser->xctx);
     test_list = afw_array_of_create(afw_data_type_object,
         parser->p, parser->xctx);
     afw_object_set_property_as_array(test_script_object,
@@ -2040,7 +2040,7 @@ afw_compile_parse_TestScript(
             if (!key) {
                 break;
             }
-            test_object = afw_object_create(parser->p, parser->xctx);
+            test_object = afw_object_create_unmanaged(parser->p, parser->xctx);
             afw_array_add_value(test_list,
                 afw_value_create_object(test_object, parser->p, parser->xctx),
                 parser->xctx);

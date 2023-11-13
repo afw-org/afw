@@ -65,7 +65,7 @@ afw_function_execute_add_properties(
     if (!target) {
         target = afw_value_allocate_object(x->p, x->xctx);
         ((afw_value_object_t *)target)->internal =
-            afw_object_create(x->p, x->xctx);
+            afw_object_create_unmanaged(x->p, x->xctx);
     }
 
     for (count = 2; count <= x->argc; count++)

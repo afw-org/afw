@@ -2158,7 +2158,7 @@ impl_criteria_filter_to_property_value(
         return NULL;
     }
 
-    filter = afw_object_create(p, xctx);
+    filter = afw_object_create_unmanaged(p, xctx);
     afw_object_set_property_as_string(filter, afw_s_op, entry->op_name, xctx);
 
     if (entry->op_id == afw_query_criteria_filter_op_id_and ||

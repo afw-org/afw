@@ -67,7 +67,7 @@ impl_afw_value_optional_evaluate(
     const afw_utf8_t *property_name;
 
     from = ((const afw_value_object_expression_t *)instance)->internal;
-    to = afw_object_create(p, xctx);
+    to = afw_object_create_unmanaged(p, xctx);
 
     for (iterator = NULL;;) {
         v = afw_object_get_next_property(from, &iterator, &property_name,

@@ -55,7 +55,7 @@ afw_object_create_composite(
     self->pub.p = p;
     self->immutable = !mutable;
     if (mutable) {
-        self->mutable = afw_object_create(p, xctx);
+        self->mutable = afw_object_create_unmanaged(p, xctx);
     }
 
     va_start(objects, xctx);

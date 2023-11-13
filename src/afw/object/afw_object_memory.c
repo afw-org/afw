@@ -36,7 +36,8 @@ afw_object_create_with_options(
 
     /* If neither unmanaged or cede_p, create subpool for object. */
     if (options &
-        (AFW_OBJECT_MEMORY_OPTION_unmanaged | AFW_OBJECT_MEMORY_OPTION_cede_p))
+        (AFW_OBJECT_MEMORY_OPTION_unmanaged |
+        AFW_OBJECT_MEMORY_OPTION_managed_cede_p))
     {
         p = afw_pool_create(p, xctx);
     }
@@ -46,7 +47,7 @@ afw_object_create_with_options(
     self->pub.inf = &impl_afw_object_inf;
     self->pub.p = p;
     self->unmanaged = AFW_OBJECT_MEMORY_OPTION_IS(options, unmanaged);
-    self->clone_on_set = AFW_OBJECT_MEMORY_OPTION_IS(options, clone_on_set);
+    //FIXME self->clone_on_set = AFW_OBJECT_MEMORY_OPTION_IS(options, clone_on_set);
     self->reference_count = (self->unmanaged) ? 0 : 1;
     self->setter.inf = &impl_afw_object_setter_inf;
     self->setter.object = (const afw_object_t *)self;

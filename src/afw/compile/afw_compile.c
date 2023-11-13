@@ -481,7 +481,7 @@ afw_compile_object_all_template_properties(
     if (!source_location) {
         source_location = afw_s_a_empty_string;
     }
-    result = afw_object_create(p, xctx);
+    result = afw_object_create_unmanaged(p, xctx);
     iterator = NULL;
     while ((value = afw_object_get_next_property(
         object, &iterator, &property_name, xctx)))

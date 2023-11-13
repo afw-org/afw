@@ -334,7 +334,7 @@ afw_action_perform(
                     response->p, xctx);
             }
             else {
-                action_response_entry = afw_object_create(
+                action_response_entry = afw_object_create_unmanaged(
                     response->p, xctx);
             }
             action_response_entry_value = afw_value_create_object(

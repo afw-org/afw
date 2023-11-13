@@ -174,7 +174,7 @@ impl_create_environment_variables_object(
     const afw_utf8_t *name;
     const afw_utf8_t *value;
 
-    result = afw_object_create(xctx->p, xctx);
+    result = afw_object_create_unmanaged(xctx->p, xctx);
     afw_object_meta_set_ids(result,
         afw_s_afw,
         afw_s__AdaptiveSystemInfo_,

@@ -330,7 +330,7 @@ impl_read_and_process_request(
              * break out of loop.
              */
             self->pub.request_count++;
-            self->this_request_properties = afw_object_create(p, xctx);
+            self->this_request_properties = afw_object_create_unmanaged(p, xctx);
             switch (self->mode) {
 
             case afw_command_local_server_mode_action:
@@ -377,7 +377,7 @@ impl_read_and_process_request(
                 string = afw_utf8_create(
                     (const afw_utf8_octet_t *)input->ptr, input->size,
                     p, xctx);
-                action_object = afw_object_create(p, xctx);
+                action_object = afw_object_create_unmanaged(p, xctx);
                 afw_object_set_property_as_string(action_object,
                     afw_s_function, afw_s_evaluate_script, xctx);
                 afw_object_set_property_as_string(action_object,
@@ -597,7 +597,7 @@ afw_command_local_server_write_error(
     const afw_utf8_t *string;
     int rv;
 
-    response_object = afw_object_create(xctx->p, xctx);
+    response_object = afw_object_create_unmanaged(xctx->p, xctx);
 
     status = (self->fatal_error) ? afw_s_fatal : afw_s_error;
     afw_object_set_property_as_string(response_object,
