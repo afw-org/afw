@@ -1,6 +1,10 @@
 #! /usr/bin/env python3
 
-#
+##
+# @file data_type_bindings.py
+# @ingroup afwdev_generate
+# @brief This file contains the functions used to generate C data type bindings.
+# @details 
 # FIXME: These comments are a work in progress and don't necessarily represent
 # what this module does.
 #

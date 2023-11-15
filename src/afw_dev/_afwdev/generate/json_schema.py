@@ -1,5 +1,11 @@
 #! /usr/bin/env python3
 
+##
+# @file json_schema.py
+# @ingroup afwdev_generate
+# @brief This file contains the functions used to generate JSON schema files
+#
+
 import os
 import glob
 from _afwdev.common import msg, package, resources, nfc

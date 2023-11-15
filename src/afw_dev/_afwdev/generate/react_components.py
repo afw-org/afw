@@ -1,9 +1,12 @@
 #! /usr/bin/env python3
 
+##
+# @file react_components.py
+# @ingroup afwdev_generate
+#
+
 from _afwdev.common import direct
-
 import os
-
 from _afwdev.common import msg, nfc
 from _afwdev.generate import c
 

@@ -1,5 +1,11 @@
 #! /usr/bin/env python3
 
+##
+# @file python_bindings.py
+# @ingroup afwdev_generate
+# @brief This file contains the functions used to generate Python bindings.
+#
+
 import os
 import keyword
 

@@ -1,5 +1,12 @@
 #! /usr/bin/env python3
 
+##
+# @file ebnf.py
+# @ingroup afwdev_generate
+# @brief This file contains the functions used to maintain EBNF integration
+#        with associated C source.
+#
+
 import os
 import glob
 import fnmatch

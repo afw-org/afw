@@ -1,6 +1,9 @@
 #! /usr/bin/env python3
 
-#other syntax: from urllib.request import Request, urlopen
+##
+# @file function_bindings.py
+# @ingroup afwdev_generate
+#
 
 import os
 from _afwdev.common import direct

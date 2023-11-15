@@ -1,6 +1,11 @@
 import copy
 import os
 
+##
+# @file polymorphic_functions.py
+# @ingroup afwdev_generate
+#
+
 from _afwdev.common import direct
 from _afwdev.common import msg, nfc
 

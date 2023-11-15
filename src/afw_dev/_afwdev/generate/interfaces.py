@@ -1,5 +1,10 @@
 #! /usr/bin/env python3
 
+##
+# @file interfaces.py
+# @ingroup afwdev_generate
+#
+
 import os
 import fnmatch
 import json

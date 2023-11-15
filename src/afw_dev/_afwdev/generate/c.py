@@ -1,5 +1,11 @@
 #! /usr/bin/env python3
 
+##
+# @file c.py
+# @ingroup afwdev_generate
+# @brief This file contains the functions used to generate some common C code.
+#
+
 import os
 import re
 from _afwdev.common import msg, nfc

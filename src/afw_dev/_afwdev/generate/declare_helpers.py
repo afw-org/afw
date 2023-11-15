@@ -1,5 +1,10 @@
 #! /usr/bin/env python3
 
+##
+# @file declare_helpers.py
+# @ingroup afwdev_generate
+#
+
 import os
 from _afwdev.generate import c
 from _afwdev.common import msg, nfc

@@ -1,3 +1,10 @@
+#!/usr/bin/env python3
+
+##
+# @file refresh_comments.py
+# @ingroup afwdev_generate
+#
+
 import os
 import shutil
 import fnmatch

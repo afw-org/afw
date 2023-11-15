@@ -1,5 +1,11 @@
 #! /usr/bin/env python3
 
+##
+# @file cmake.py
+# @ingroup afwdev_generate
+# @brief This file contains the functions used to generate cmake dependencies.
+#
+
 import os
 import glob
 from _afwdev.common import msg, package, resources, nfc

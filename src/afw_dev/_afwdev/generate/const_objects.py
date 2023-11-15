@@ -1,5 +1,11 @@
 #! /usr/bin/env python3
 
+##
+# @file const_objects.py
+# @ingroup afwdev_generate
+# @brief This file contains the functions used to generate C const objects.
+#
+
 import os
 from _afwdev.generate import property_type
 from _afwdev.common import msg, nfc

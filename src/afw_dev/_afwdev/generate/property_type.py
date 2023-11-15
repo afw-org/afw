@@ -1,5 +1,10 @@
 from _afwdev.common import msg, nfc
 
+##
+# @file property_type.py
+# @ingroup afwdev_generate
+#
+
 object_types = {}
 
 def prepare(objects):

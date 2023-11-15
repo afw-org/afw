@@ -1,5 +1,11 @@
 #! /usr/bin/env python3
 
+##
+# @file strings.py
+# @ingroup afwdev_generate
+# @brief This file contains the functions used to generate string constants.
+#
+
 import os, fnmatch, re, uuid
 from _afwdev.generate import c
 from _afwdev.common import msg, nfc

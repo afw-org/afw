@@ -1,5 +1,10 @@
 #! /usr/bin/env python3
 
+##
+# @file runtime_object_maps.py
+# @ingroup afwdev_generate
+#
+
 from _afwdev.common import direct
 import os
 

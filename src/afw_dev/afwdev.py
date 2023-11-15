@@ -1420,8 +1420,8 @@ def _subcommand_for(args, options):
 # @ingroup afwdev
 # @brief The afwdev generate subcommand
 # @details The generate subcommand is used to generate different parts of
-#        Adaptive Framework. This includes generated source code, generated 
-#        diagrams, documentation and schema definitions.
+#          Adaptive Framework. This includes generated source code, generated 
+#          diagrams, language bindings, documentation and schema definitions.
 #
 def _subcommand_generate(args, options):
     afw_package = package.get_afw_package(options)

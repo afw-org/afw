@@ -1,5 +1,11 @@
 #! /usr/bin/env python3
 
+##
+# @file javascript_bindings.py
+# @ingroup afwdev_generate
+# @brief This file contains the functions used to generate Javascript bindings.
+#
+
 import os
 import shutil
 from _afwdev.common import direct
