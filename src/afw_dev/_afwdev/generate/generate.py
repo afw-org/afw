@@ -6,6 +6,11 @@
 # @brief This file contains the main entry point for the "generate" subcommand.
 #
 
+##
+# @defgroup afw_bindings Language Bindings
+# @ingroup package_afw
+#
+
 import glob
 import os
 import sys
