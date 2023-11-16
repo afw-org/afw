@@ -71,13 +71,13 @@ afw_value_unmanaged_objectPath_inf;
 /**
  * @brief Managed evaluated value inf for data type objectPath.
  *
- * The lifetime of the value is managed by reference.
+ * The lifetime of the value is managed by reference count in xctx->p.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_managed_objectPath_inf;
 
 /**
- * @brief Permanent managed (life of afw environment) value inf for data type objectPath.
+ * @brief Permanent (life of afw environment) value inf for data type objectPath.
  *
  * The lifetime of the value is the lifetime of the afw environment.
  */
@@ -127,8 +127,11 @@ afw_value_permanent_objectPath_inf;
  * @param xctx of caller.
  */
 AFW_DECLARE(void)
-afw_data_type_objectPath_to_internal(afw_utf8_t *to_internal,
-    const afw_utf8_t *from_utf8, const afw_pool_t *p, afw_xctx_t *xctx);
+afw_data_type_objectPath_to_internal(
+    afw_utf8_t *to_internal,
+    const afw_utf8_t *from_utf8,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
 
 /**
  * @brief Convert data type objectPath internal representation to utf-8.
@@ -138,8 +141,10 @@ afw_data_type_objectPath_to_internal(afw_utf8_t *to_internal,
  * @return (const afw_utf8_t *) normalized string representation of value.
  */
 AFW_DECLARE(const afw_utf8_t *)
-afw_data_type_objectPath_to_utf8(const afw_utf8_t * internal,
-    const afw_pool_t *p, afw_xctx_t *xctx);
+afw_data_type_objectPath_to_utf8(
+    const afw_utf8_t * internal,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
 
 /** @brief struct for data type objectPath values. */
 struct afw_value_objectPath_s {
@@ -153,13 +158,34 @@ struct afw_value_objectPath_s {
     afw_utf8_t internal;
 };
 
+/** @brief struct for managed data type objectPath values.
+ *
+ * This is the same as afw_value_objectPath_s with the addition of a
+ * reference count. This is intended for internal use only.
+ */
+struct afw_value_objectPath_managed_s {
+    /** @brief  Value inf union with afw_value_t pub to reduce casting needed. */
+    union {
+        const afw_value_inf_t *inf;
+        afw_value_t pub;
+    };
+
+    /** @brief  Internal afw_utf8_t value. */
+    afw_utf8_t internal;
+
+    /** @brief  Reference count for value. */
+    afw_size_t reference_count;
+};
+
 /**
  * @brief Typesafe cast of data type objectPath.
  * @param value (const afw_value_t *).
  * @return (const afw_utf8_t *)
  */
 AFW_DECLARE(const afw_utf8_t *)
-afw_value_as_objectPath(const afw_value_t *value, afw_xctx_t *xctx);
+afw_value_as_objectPath(
+    const afw_value_t *value,
+    afw_xctx_t *xctx);
 
 /**
  * @brief Allocate function for managed data type objectPath value.
@@ -168,8 +194,13 @@ afw_value_as_objectPath(const afw_value_t *value, afw_xctx_t *xctx);
  * @param xctx of caller.
  * @return Allocated afw_value_objectPath_t with appropriate inf set.
  *
- * This value and memory for the specified len is allocated in xctx->p.
- * Set *s for the specified len to a valid utf-8 string.
+ * This allocates both the memory for the value and the memory for the internal
+ * afw_utf8_t for the 'len' specified. A non-const pointer to 's' is/
+ * returned in the 's' parameter, where its storage should be modified. This
+ * can be a little more efficient than using the corresponding create since the
+ * create makes a copy.
+ *
+ * The memory is allocated in xctx->p and its lifetime is managed by reference count.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_allocate_managed_objectPath(
@@ -182,6 +213,8 @@ afw_value_allocate_managed_objectPath(
  * @param p to use for returned value.
  * @param xctx of caller.
  * @return Allocated afw_value_objectPath_t with appropriate inf set.
+ *
+ * The value's lifetime is not managed so it will last for the life of the pool.
  */
 AFW_DECLARE(afw_value_objectPath_t *)
 afw_value_allocate_unmanaged_objectPath(
@@ -194,10 +227,14 @@ afw_value_allocate_unmanaged_objectPath(
  * @param p to use for returned value.
  * @param xctx of caller.
  * @return Created const afw_value_t *.
+ *
+ * The value's lifetime is managed by reference count.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_create_managed_objectPath(const afw_utf8_t * internal,
-    const afw_pool_t *p, afw_xctx_t *xctx);
+afw_value_create_managed_objectPath(
+    const afw_utf8_t * internal,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
 
 /**
  * @brief Create function for managed data type objectPath slice value.
@@ -218,11 +255,13 @@ afw_value_create_managed_objectPath_slice(
     afw_xctx_t *xctx);
 
 /**
- * @brief Create function for data type objectPath value.
+ * @brief Create function for unmanaged data type objectPath value.
  * @param internal.
  * @param p to use for returned value.
  * @param xctx of caller.
  * @return Created const afw_value_t *.
+ *
+ * The value's lifetime is not managed so it will last for the life of the pool.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_create_unmanaged_objectPath(const afw_utf8_t * internal,

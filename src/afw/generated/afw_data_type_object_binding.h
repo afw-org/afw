@@ -71,13 +71,13 @@ afw_value_unmanaged_object_inf;
 /**
  * @brief Managed evaluated value inf for data type object.
  *
- * The lifetime of the value is managed by reference.
+ * The lifetime of the value is managed by reference count in xctx->p.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_managed_object_inf;
 
 /**
- * @brief Permanent managed (life of afw environment) value inf for data type object.
+ * @brief Permanent (life of afw environment) value inf for data type object.
  *
  * The lifetime of the value is the lifetime of the afw environment.
  */
@@ -127,8 +127,11 @@ afw_value_permanent_object_inf;
  * @param xctx of caller.
  */
 AFW_DECLARE(void)
-afw_data_type_object_to_internal(const afw_object_t * *to_internal,
-    const afw_utf8_t *from_utf8, const afw_pool_t *p, afw_xctx_t *xctx);
+afw_data_type_object_to_internal(
+    const afw_object_t * *to_internal,
+    const afw_utf8_t *from_utf8,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
 
 /**
  * @brief Convert data type object internal representation to utf-8.
@@ -138,8 +141,10 @@ afw_data_type_object_to_internal(const afw_object_t * *to_internal,
  * @return (const afw_utf8_t *) normalized string representation of value.
  */
 AFW_DECLARE(const afw_utf8_t *)
-afw_data_type_object_to_utf8(const afw_object_t * internal,
-    const afw_pool_t *p, afw_xctx_t *xctx);
+afw_data_type_object_to_utf8(
+    const afw_object_t * internal,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
 
 /** @brief struct for data type object values. */
 struct afw_value_object_s {
@@ -153,13 +158,34 @@ struct afw_value_object_s {
     const afw_object_t * internal;
 };
 
+/** @brief struct for managed data type object values.
+ *
+ * This is the same as afw_value_object_s with the addition of a
+ * reference count. This is intended for internal use only.
+ */
+struct afw_value_object_managed_s {
+    /** @brief  Value inf union with afw_value_t pub to reduce casting needed. */
+    union {
+        const afw_value_inf_t *inf;
+        afw_value_t pub;
+    };
+
+    /** @brief  Internal const afw_object_t * value. */
+    const afw_object_t * internal;
+
+    /** @brief  Reference count for value. */
+    afw_size_t reference_count;
+};
+
 /**
  * @brief Typesafe cast of data type object.
  * @param value (const afw_value_t *).
  * @return (const afw_object_t *)
  */
 AFW_DECLARE(const afw_object_t *)
-afw_value_as_object(const afw_value_t *value, afw_xctx_t *xctx);
+afw_value_as_object(
+    const afw_value_t *value,
+    afw_xctx_t *xctx);
 
 /**
  * @brief Allocate function for managed data type object value.
@@ -167,8 +193,11 @@ afw_value_as_object(const afw_value_t *value, afw_xctx_t *xctx);
  * @param xctx of caller.
  * @return Allocated afw_value_t with appropriate inf set.
  *
- * This value is allocated in xctx->p. Set *internal to the 
- * 'const afw_object_t *' internal value before using.
+ * This allocates memory for the value in xctx->p. Set *internal to the 
+ * 'const afw_object_t *' internal value before using. The corresponding create is
+ * often more appropriate to use.
+ *
+ * The value's lifetime is managed by reference count.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_allocate_managed_object(
@@ -180,6 +209,8 @@ afw_value_allocate_managed_object(
  * @param p to use for returned value.
  * @param xctx of caller.
  * @return Allocated afw_value_object_t with appropriate inf set.
+ *
+ * The value's lifetime is not managed so it will last for the life of the pool.
  */
 AFW_DECLARE(afw_value_object_t *)
 afw_value_allocate_unmanaged_object(
@@ -192,17 +223,23 @@ afw_value_allocate_unmanaged_object(
  * @param p to use for returned value.
  * @param xctx of caller.
  * @return Created const afw_value_t *.
+ *
+ * The value's lifetime is managed by reference count.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_create_managed_object(const afw_object_t * internal,
-    const afw_pool_t *p, afw_xctx_t *xctx);
+afw_value_create_managed_object(
+    const afw_object_t * internal,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
 
 /**
- * @brief Create function for data type object value.
+ * @brief Create function for unmanaged data type object value.
  * @param internal.
  * @param p to use for returned value.
  * @param xctx of caller.
  * @return Created const afw_value_t *.
+ *
+ * The value's lifetime is not managed so it will last for the life of the pool.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_create_unmanaged_object(const afw_object_t * internal,

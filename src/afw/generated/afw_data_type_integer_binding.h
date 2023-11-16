@@ -71,13 +71,13 @@ afw_value_unmanaged_integer_inf;
 /**
  * @brief Managed evaluated value inf for data type integer.
  *
- * The lifetime of the value is managed by reference.
+ * The lifetime of the value is managed by reference count in xctx->p.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_managed_integer_inf;
 
 /**
- * @brief Permanent managed (life of afw environment) value inf for data type integer.
+ * @brief Permanent (life of afw environment) value inf for data type integer.
  *
  * The lifetime of the value is the lifetime of the afw environment.
  */
@@ -127,8 +127,11 @@ afw_value_permanent_integer_inf;
  * @param xctx of caller.
  */
 AFW_DECLARE(void)
-afw_data_type_integer_to_internal(afw_integer_t *to_internal,
-    const afw_utf8_t *from_utf8, const afw_pool_t *p, afw_xctx_t *xctx);
+afw_data_type_integer_to_internal(
+    afw_integer_t *to_internal,
+    const afw_utf8_t *from_utf8,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
 
 /**
  * @brief Convert data type integer internal representation to utf-8.
@@ -138,8 +141,10 @@ afw_data_type_integer_to_internal(afw_integer_t *to_internal,
  * @return (const afw_utf8_t *) normalized string representation of value.
  */
 AFW_DECLARE(const afw_utf8_t *)
-afw_data_type_integer_to_utf8(afw_integer_t internal,
-    const afw_pool_t *p, afw_xctx_t *xctx);
+afw_data_type_integer_to_utf8(
+    afw_integer_t internal,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
 
 /** @brief struct for data type integer values. */
 struct afw_value_integer_s {
@@ -153,13 +158,34 @@ struct afw_value_integer_s {
     afw_integer_t internal;
 };
 
+/** @brief struct for managed data type integer values.
+ *
+ * This is the same as afw_value_integer_s with the addition of a
+ * reference count. This is intended for internal use only.
+ */
+struct afw_value_integer_managed_s {
+    /** @brief  Value inf union with afw_value_t pub to reduce casting needed. */
+    union {
+        const afw_value_inf_t *inf;
+        afw_value_t pub;
+    };
+
+    /** @brief  Internal afw_integer_t value. */
+    afw_integer_t internal;
+
+    /** @brief  Reference count for value. */
+    afw_size_t reference_count;
+};
+
 /**
  * @brief Typesafe cast of data type integer.
  * @param value (const afw_value_t *).
  * @return (afw_integer_t)
  */
 AFW_DECLARE(afw_integer_t)
-afw_value_as_integer(const afw_value_t *value, afw_xctx_t *xctx);
+afw_value_as_integer(
+    const afw_value_t *value,
+    afw_xctx_t *xctx);
 
 /**
  * @brief Allocate function for managed data type integer value.
@@ -167,8 +193,11 @@ afw_value_as_integer(const afw_value_t *value, afw_xctx_t *xctx);
  * @param xctx of caller.
  * @return Allocated afw_value_t with appropriate inf set.
  *
- * This value is allocated in xctx->p. Set *internal to the 
- * 'afw_integer_t' internal value before using.
+ * This allocates memory for the value in xctx->p. Set *internal to the 
+ * 'afw_integer_t' internal value before using. The corresponding create is
+ * often more appropriate to use.
+ *
+ * The value's lifetime is managed by reference count.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_allocate_managed_integer(
@@ -180,6 +209,8 @@ afw_value_allocate_managed_integer(
  * @param p to use for returned value.
  * @param xctx of caller.
  * @return Allocated afw_value_integer_t with appropriate inf set.
+ *
+ * The value's lifetime is not managed so it will last for the life of the pool.
  */
 AFW_DECLARE(afw_value_integer_t *)
 afw_value_allocate_unmanaged_integer(
@@ -192,17 +223,23 @@ afw_value_allocate_unmanaged_integer(
  * @param p to use for returned value.
  * @param xctx of caller.
  * @return Created const afw_value_t *.
+ *
+ * The value's lifetime is managed by reference count.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_create_managed_integer(afw_integer_t internal,
-    const afw_pool_t *p, afw_xctx_t *xctx);
+afw_value_create_managed_integer(
+    afw_integer_t internal,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
 
 /**
- * @brief Create function for data type integer value.
+ * @brief Create function for unmanaged data type integer value.
  * @param internal.
  * @param p to use for returned value.
  * @param xctx of caller.
  * @return Created const afw_value_t *.
+ *
+ * The value's lifetime is not managed so it will last for the life of the pool.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_create_unmanaged_integer(afw_integer_t internal,

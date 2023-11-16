@@ -252,6 +252,22 @@ afw_value_as_yearMonthDuration(const afw_value_t *value, afw_xctx_t *xctx)
     return &(((const afw_value_yearMonthDuration_t *)value)->internal);
 }
 
+/* Allocate function for managed data type yearMonthDuration value. */
+AFW_DEFINE(const afw_value_t *)
+afw_value_allocate_managed_yearMonthDuration(
+    afw_yearMonthDuration_t **internal,
+    afw_xctx_t *xctx)
+{
+    afw_value_yearMonthDuration_managed_t *result;
+
+    result = afw_xctx_malloc(sizeof(afw_value_yearMonthDuration_managed_t), xctx);
+    result->inf = &afw_value_managed_yearMonthDuration_inf;
+    afw_memory_clear(&result->internal);
+    *internal = &result->internal;
+    result->reference_count = 0;
+    return &result->pub;
+}
+
 /* Allocate function for data type yearMonthDuration values. */
 AFW_DEFINE(afw_value_yearMonthDuration_t *)
 afw_value_allocate_unmanaged_yearMonthDuration(const afw_pool_t *p, afw_xctx_t *xctx)
@@ -385,17 +401,28 @@ impl_afw_value_managed_optional_release(
     const afw_value_t *instance,
     afw_xctx_t *xctx)
 {
-    /** @todo this needs to release reference of value or free it. */
+    afw_value_yearMonthDuration_managed_t *self =
+        (afw_value_yearMonthDuration_managed_t *)instance;
+
+    /* If reference count is 1 or less, free value's memory. */
+    if (self->reference_count <= 1) {
+        afw_pool_free_memory((void *)instance, xctx);
+    }
+    
+    /* If not freeing memory, decrement reference count. */
+    else {
+        self->reference_count--;
+    }
 }
 
-/* Implementation of method get_reference for value. */
+/* Implementation of method get_reference for unmanaged value. */
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_get_reference(
     const afw_value_t *instance,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    /** @todo this needs to addref or return a copy. */
+    /* No reference counting takes place for unmanaged value. */
     return instance;
 }
 
@@ -407,7 +434,11 @@ impl_afw_value_managed_get_reference(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    /* For managed value, FIXME. */
+    afw_value_yearMonthDuration_managed_t *self =
+        (afw_value_yearMonthDuration_managed_t *)instance;
+
+    /* Increment reference count and return instance. */
+    self->reference_count++;
     return instance;
 }
 

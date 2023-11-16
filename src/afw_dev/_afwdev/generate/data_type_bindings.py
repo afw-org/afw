@@ -21,9 +21,13 @@
 # structs for each data type as mentioned below.
 #
 # There is an afw_value_<dataType>_t struct for each data type whose first
-# member is an afw_value_t struct with a name of pub. The afw_value_<dataType>_t
-# struct has a field for the internal representation of the value. The internal
-# representation is the cType of the data type.
+# member is an afw_value_t struct with a name of 'pub'. The
+# afw_value_<dataType>_t struct has a field for the internal representation of
+# the value. The internal representation is the cType of the data type.
+#
+# There is also an afw_value_<dataType>_managed_t struct for each data type that
+# is mainly intended for internal use. Its is the same as afw_value_<dataType>_t
+# with an additional member for the reference count.
 #
 # This module generates <dataType> related *.c and *.h files. The files are:
 #
@@ -49,7 +53,7 @@
 #   ---------+---------------------------------------------------------------
 #   permanent | Must exist for life of afw environment. Mostly generated const.
 #   managed | Managed by reference count.
-#   managed_slice | Managed by reference count. Is a slice of another value.
+#   managed_slice | Managed by reference count. Is a slice of another managed value.
 #   unmanaged | Not managed by reference count. Lifetime is lifetime of pool.
 #
 # Note: 'managed_slice' is only produced for data types with cType of
@@ -71,19 +75,42 @@
 #
 #   afw_value_as_<dataType>()
 #
-# There are convenience macros/functions to access the internal part of
-# properties of objects and elements of arrays as the data type's cType:
+# Functions are generated to allocate and create adaptive values.
+#
+#   afw_value_allocate_managed_<dataType>()
+#   afw_value_allocate_unmanaged_<dataType>()
+#   afw_value_allocate_permanent_<dataType>()
+#   afw_value_create_managed_<dataType>()
+#   afw_value_create_unmanaged_<dataType>()
+#   afw_value_create_permanent_<dataType>()
+#
+# There are functions to create slices of values if appropriate:
+#
+#   afw_value_create_managed_<dataType>_slice()
+#
+# There are functions to get the value of a property of an object:
 #
 #   afw_object_get_property_as_<dataType>()
 #   afw_object_get_next_property_as_<dataType>()
+#
+# There are functions to set the value of a property of an object:
+#
 #   afw_object_set_property_as_<dataType>()
+#
+# There are functions to get the next value of an array of values:
+#
 #   afw_array_of_<dataType>_get_next()
+#
+# There are functions to add and remove values from an array of values:
+#
 #   afw_array_of_<dataType>_add()
 #   afw_array_of_<dataType>_remove()
-#   afw_data_type_<dataType>_direct
 #
-# Functions are generated to allocate and create adaptive values.
+# There are functions to convert to and from the data type's cType:
 #
+#   afw_data_type_<dataType>_to_internal()
+#   afw_data_type_<dataType>_to_utf8()
+
 
 
 import os
@@ -116,8 +143,11 @@ def write_typedefs_h_section(fd, prefix, obj):
     fd.write('\n/** @brief Typedef for data type ' + id + ' return. */\n')
     fd.write('typedef ' + return_type + ' ' + prefix + 'data_type_' + id + '_return_t;\n')
 
-    fd.write('\n/** @brief Typedef for data type ' + id + ' evaluated value. */\n')
+    fd.write('\n/** @brief Typedef for data type ' + id + ' value. */\n')
     fd.write('typedef struct afw_value_' + id + '_s\n' + '    afw_value_' + id + '_t;\n')
+
+    fd.write('\n/** @brief Typedef for data type ' + id + ' managed value. */\n')
+    fd.write('typedef struct afw_value_' + id + '_managed_s\n' + '    afw_value_' + id + '_managed_t;\n')
 
 
 
@@ -182,13 +212,13 @@ def write_h_section(fd, prefix, obj):
         fd.write('\n/**\n')
         fd.write(' * @brief Managed evaluated value inf for data type ' + id + '.\n')
         fd.write(' *\n')
-        fd.write(' * The lifetime of the value is managed by reference.\n')
+        fd.write(' * The lifetime of the value is managed by reference count in xctx->p.\n')
         fd.write(' */\n')
         fd.write(declare_data + '(afw_value_inf_t)\n')
         fd.write('afw_value_managed_' + id + '_inf;\n')
 
     fd.write('\n/**\n')
-    fd.write(' * @brief Permanent managed (life of afw environment) value inf for data type ' + id + '.\n')
+    fd.write(' * @brief Permanent (life of afw environment) value inf for data type ' + id + '.\n')
     fd.write(' *\n')
     fd.write(' * The lifetime of the value is the lifetime of the afw environment.\n')
     fd.write(' */\n')
@@ -239,8 +269,8 @@ def write_h_section(fd, prefix, obj):
         fd.write(' * @param p to use for returned internal.\n')
         fd.write(' * @param xctx of caller.\n')
         fd.write(' */\n')
-        fd.write(declare + '(void)\nafw_data_type_' + id + '_to_internal(' + ctype + ' *to_internal,\n')
-        fd.write('    const afw_utf8_t *from_utf8, const afw_pool_t *p, afw_xctx_t *xctx);\n')
+        fd.write(declare + '(void)\nafw_data_type_' + id + '_to_internal(\n    ' + ctype + ' *to_internal,\n')
+        fd.write('    const afw_utf8_t *from_utf8,\n    const afw_pool_t *p,\n    afw_xctx_t *xctx);\n')
 
         fd.write('\n/**\n')
         fd.write(' * @brief Convert data type ' + id + ' internal representation to utf-8.\n')
@@ -249,8 +279,8 @@ def write_h_section(fd, prefix, obj):
         fd.write(' * @param xctx of caller.\n')
         fd.write(' * @return (const afw_utf8_t *) normalized string representation of value.\n')
         fd.write(' */\n')
-        fd.write(declare + '(const afw_utf8_t *)\nafw_data_type_' + id + '_to_utf8(' + return_type + ' internal,\n')
-        fd.write('    const afw_pool_t *p, afw_xctx_t *xctx);\n')
+        fd.write(declare + '(const afw_utf8_t *)\nafw_data_type_' + id + '_to_utf8(\n    ' + return_type + ' internal,\n')
+        fd.write('    const afw_pool_t *p,\n    afw_xctx_t *xctx);\n')
 
     fd.write('\n/** @brief struct for data type ' + id + ' values. */\n')
     fd.write('struct afw_value_' + id + '_s {\n')
@@ -264,6 +294,25 @@ def write_h_section(fd, prefix, obj):
     fd.write('    ' + ctype + ' internal;\n')
     fd.write('};\n')
 
+    fd.write('\n/** @brief struct for managed data type ' + id + ' values.\n')
+    fd.write(' *\n')
+    fd.write(' * This is the same as afw_value_' + id + '_s with the addition of a\n')
+    fd.write(' * reference count. This is intended for internal use only.\n')
+    fd.write(' */\n')
+    fd.write('struct afw_value_' + id + '_managed_s {\n')
+    fd.write('    /** @brief  Value inf union with afw_value_t pub to reduce casting needed. */\n')
+    fd.write('    union {\n')
+    fd.write('        const afw_value_inf_t *inf;\n')
+    fd.write('        afw_value_t pub;\n')
+    fd.write('    };\n')
+    fd.write('\n')
+    fd.write('    /** @brief  Internal ' + ctype + ' value. */\n')
+    fd.write('    ' + ctype + ' internal;\n')
+    fd.write('\n')
+    fd.write('    /** @brief  Reference count for value. */\n')
+    fd.write('    afw_size_t reference_count;\n')
+    fd.write('};\n')
+
     if not special:
         fd.write('\n/**\n')
         fd.write(' * @brief Typesafe cast of data type ' + id + '.\n')
@@ -271,7 +320,7 @@ def write_h_section(fd, prefix, obj):
         fd.write(' * @return (' + return_type + ')\n')
         fd.write(' */\n')
         fd.write(declare + '(' + return_type + ')\n')
-        fd.write('afw_value_as_' + id + '(const afw_value_t *value, afw_xctx_t *xctx);\n')
+        fd.write('afw_value_as_' + id + '(\n    const afw_value_t *value,\n    afw_xctx_t *xctx);\n')
 
         if ctype == 'afw_utf8_t':
             fd.write('\n/**\n')
@@ -281,8 +330,13 @@ def write_h_section(fd, prefix, obj):
             fd.write(' * @param xctx of caller.\n')
             fd.write(' * @return Allocated afw_value_' + id + '_t with appropriate inf set.\n')
             fd.write(' *\n')
-            fd.write(' * This value and memory for the specified len is allocated in xctx->p.\n')
-            fd.write(' * Set *s for the specified len to a valid utf-8 string.\n')
+            fd.write(' * This allocates both the memory for the value and the memory for the internal\n')
+            fd.write(' * afw_utf8_t for the \'len\' specified. A non-const pointer to \'s\' is/\n')
+            fd.write(' * returned in the \'s\' parameter, where its storage should be modified. This\n')
+            fd.write(' * can be a little more efficient than using the corresponding create since the\n')
+            fd.write(' * create makes a copy.\n')
+            fd.write(' *\n')
+            fd.write(' * The memory is allocated in xctx->p and its lifetime is managed by reference count.\n')
             fd.write(' */\n')
             fd.write(declare + '(const afw_value_t *)\n')
             fd.write('afw_value_allocate_managed_' + id + '(\n')
@@ -297,8 +351,13 @@ def write_h_section(fd, prefix, obj):
             fd.write(' * @param xctx of caller.\n')
             fd.write(' * @return Allocated afw_value_t with appropriate inf set.\n')
             fd.write(' *\n')
-            fd.write(' * This value and memory for the specified size is allocated in xctx->p.\n')
-            fd.write(' * Set *ptr for the specified size to the bytes of the value.\n')
+            fd.write(' * This allocates both the memory for the value and the memory for the internal\n')
+            fd.write(' * afw_memory_t for the \'size\' specified. A non-const pointer \'ptr\' is/\n')
+            fd.write(' * returned in the \'ptr\' parameter, where its storage should be modified. This\n')
+            fd.write(' * can be a little more efficient than using the corresponding create since the\n')
+            fd.write(' * create makes a copy.\n')
+            fd.write(' *\n')
+            fd.write(' * The memory is allocated in xctx->p and its lifetime is managed by reference count.\n')
             fd.write(' */\n')
             fd.write(declare + '(const afw_value_t *)\n')
             fd.write('afw_value_allocate_managed_' + id + '(\n')
@@ -312,8 +371,11 @@ def write_h_section(fd, prefix, obj):
             fd.write(' * @param xctx of caller.\n')
             fd.write(' * @return Allocated afw_value_t with appropriate inf set.\n')
             fd.write(' *\n')
-            fd.write(' * This value is allocated in xctx->p. Set *internal to the \n')
-            fd.write(' * \'' + ctype + '\' internal value before using.\n')
+            fd.write(' * This allocates memory for the value in xctx->p. Set *internal to the \n')
+            fd.write(' * \'' + ctype + '\' internal value before using. The corresponding create is\n')
+            fd.write(' * often more appropriate to use.\n')
+            fd.write(' *\n')
+            fd.write(' * The value\'s lifetime is managed by reference count.\n')
             fd.write(' */\n')
             fd.write(declare + '(const afw_value_t *)\n')
             fd.write('afw_value_allocate_managed_' + id + '(\n')
@@ -325,6 +387,8 @@ def write_h_section(fd, prefix, obj):
         fd.write(' * @param p to use for returned value.\n')
         fd.write(' * @param xctx of caller.\n')
         fd.write(' * @return Allocated afw_value_' + id + '_t with appropriate inf set.\n')
+        fd.write(' *\n')
+        fd.write(' * The value\'s lifetime is not managed so it will last for the life of the pool.\n')
         fd.write(' */\n')
         fd.write(declare + '(afw_value_' + id + '_t *)\n')
         fd.write('afw_value_allocate_unmanaged_' + id + '(\n    const afw_pool_t *p,\n    afw_xctx_t *xctx);\n')
@@ -335,10 +399,12 @@ def write_h_section(fd, prefix, obj):
         fd.write(' * @param p to use for returned value.\n')
         fd.write(' * @param xctx of caller.\n')
         fd.write(' * @return Created const afw_value_t *.\n')
+        fd.write(' *\n')
+        fd.write(' * The value\'s lifetime is managed by reference count.\n')
         fd.write(' */\n')
         fd.write(declare + '(const afw_value_t *)\n')
-        fd.write('afw_value_create_managed_' + id + '(' + return_type + ' internal,\n')
-        fd.write('    const afw_pool_t *p, afw_xctx_t *xctx);\n')
+        fd.write('afw_value_create_managed_' + id + '(\n    ' + return_type + ' internal,\n')
+        fd.write('    const afw_pool_t *p,\n    afw_xctx_t *xctx);\n')
 
         if ctype == 'afw_utf8_t':
             fd.write('\n/**\n')
@@ -378,11 +444,13 @@ def write_h_section(fd, prefix, obj):
             fd.write('    afw_xctx_t *xctx);\n')
 
         fd.write('\n/**\n')
-        fd.write(' * @brief Create function for data type ' + id + ' value.\n')
+        fd.write(' * @brief Create function for unmanaged data type ' + id + ' value.\n')
         fd.write(' * @param internal.\n')
         fd.write(' * @param p to use for returned value.\n')
         fd.write(' * @param xctx of caller.\n')
         fd.write(' * @return Created const afw_value_t *.\n')
+        fd.write(' *\n')
+        fd.write(' * The value\'s lifetime is not managed so it will last for the life of the pool.\n')
         fd.write(' */\n')
         fd.write(declare + '(const afw_value_t *)\n')
         fd.write('afw_value_create_unmanaged_' + id + '(' + return_type + ' internal,\n')
@@ -998,6 +1066,57 @@ def write_c_section(fd, prefix, obj):
         fd.write('    return ' + amp_if_needed + '(((const afw_value_' + id + '_t *)value)->internal);\n')
         fd.write('}\n')
 
+        fd.write('\n/* Allocate function for managed data type ' + id + ' value. */\n')
+        if ctype == 'afw_utf8_t':
+            fd.write(define + '(const afw_value_t *)\n')
+            fd.write('afw_value_allocate_managed_' + id + '(\n')
+            fd.write('    afw_utf8_octet_t **s,\n')
+            fd.write('    afw_size_t len,\n')
+            fd.write('    afw_xctx_t *xctx)\n')
+            fd.write('{\n')
+            fd.write('    afw_value_' + id + '_managed_t *result;\n')
+            fd.write('\n')
+            fd.write('    result = afw_xctx_malloc(sizeof(afw_value_' + id + '_managed_t) + len, xctx);\n')
+            fd.write('    result->inf = &afw_value_managed_' + id + '_inf;\n')
+            fd.write('    result->internal.len = len;\n')
+            fd.write('    result->internal.s = (const afw_utf8_octet_t *)result + sizeof(afw_value_' + id + '_t);\n')
+            fd.write('    *s = (afw_utf8_octet_t *)result->internal.s;\n')
+            fd.write('    result->reference_count = 0;\n')
+            fd.write('    return &result->pub;\n')
+            fd.write('}\n')
+        elif ctype == 'afw_memory_t':
+            fd.write(define + '(const afw_value_t *)\n')
+            fd.write('afw_value_allocate_managed_' + id + '(\n')
+            fd.write('    const afw_byte_t **ptr,\n')
+            fd.write('    afw_size_t size,\n')
+            fd.write('    afw_xctx_t *xctx)\n')
+            fd.write('{\n')
+            fd.write('    afw_value_' + id + '_managed_t *result;\n')
+            fd.write('\n')
+            fd.write('    result = afw_xctx_malloc(sizeof(afw_value_' + id + '_managed_t) + size, xctx);\n')
+            fd.write('    result->inf = &afw_value_managed_' + id + '_inf;\n')
+            fd.write('    result->internal.size = size;\n')
+            fd.write('    result->internal.ptr = (const afw_byte_t *)result + sizeof(afw_value_' + id + '_t);\n')
+            fd.write('    *ptr = (afw_byte_t *)result->internal.ptr;\n')
+            fd.write('    result->reference_count = 0;\n')
+            fd.write('    return &result->pub;\n')
+            fd.write('}\n')
+        else:
+            fd.write(define + '(const afw_value_t *)\n')
+            fd.write('afw_value_allocate_managed_' + id + '(\n')
+            fd.write('    ' + ctype + ' **internal,\n')
+            fd.write('    afw_xctx_t *xctx)\n')
+            fd.write('{\n')
+            fd.write('    afw_value_' + id + '_managed_t *result;\n')
+            fd.write('\n')
+            fd.write('    result = afw_xctx_malloc(sizeof(afw_value_' + id + '_managed_t), xctx);\n')
+            fd.write('    result->inf = &afw_value_managed_' + id + '_inf;\n')
+            fd.write('    afw_memory_clear(&result->internal);\n')
+            fd.write('    *internal = &result->internal;\n')
+            fd.write('    result->reference_count = 0;\n')
+            fd.write('    return &result->pub;\n')
+            fd.write('}\n')
+
         fd.write('\n/* Allocate function for data type ' + id + ' values. */\n')
         fd.write(define + '(afw_value_' + id + '_t *)\n')
         fd.write('afw_value_allocate_unmanaged_' + id + '(const afw_pool_t *p, afw_xctx_t *xctx)\n')
@@ -1236,18 +1355,28 @@ def write_c_section(fd, prefix, obj):
         fd.write('    const afw_value_t *instance,\n')
         fd.write('    afw_xctx_t *xctx)\n')
         fd.write('{\n')
-        fd.write('    /** @todo this needs to release reference of value or free it. */\n')
+        fd.write('    afw_value_' + id + '_managed_t *self =\n')
+        fd.write('        (afw_value_' + id + '_managed_t *)instance;\n')
+        fd.write('\n')
+        fd.write('    /* If reference count is 1 or less, free value\'s memory. */\n')    
+        fd.write('    if (self->reference_count <= 1) {\n')
+        fd.write('        afw_pool_free_memory((void *)instance, xctx);\n')
+        fd.write('    }\n')
+        fd.write('    \n    /* If not freeing memory, decrement reference count. */\n')    
+        fd.write('    else {\n')
+        fd.write('        self->reference_count--;\n')
+        fd.write('    }\n')
         fd.write('}\n')
         
         fd.write('\n')
-        fd.write('/* Implementation of method get_reference for value. */\n')
+        fd.write('/* Implementation of method get_reference for unmanaged value. */\n')
         fd.write('AFW_DECLARE_STATIC(const afw_value_t *)\n')
         fd.write('impl_afw_value_get_reference(\n')
         fd.write('    const afw_value_t *instance,\n')
         fd.write('    const afw_pool_t *p,\n')
         fd.write('    afw_xctx_t *xctx)\n')
         fd.write('{\n')
-        fd.write('    /** @todo this needs to addref or return a copy. */\n')
+        fd.write('    /* No reference counting takes place for unmanaged value. */\n')
         fd.write('    return instance;\n')
         fd.write('}\n')
         fd.write('\n')
@@ -1260,7 +1389,11 @@ def write_c_section(fd, prefix, obj):
         fd.write('    const afw_pool_t *p,\n')
         fd.write('    afw_xctx_t *xctx)\n')
         fd.write('{\n')
-        fd.write('    /* For managed value, FIXME. */\n')
+        fd.write('    afw_value_' + id + '_managed_t *self =\n')
+        fd.write('        (afw_value_' + id + '_managed_t *)instance;\n')
+        fd.write('\n')
+        fd.write('    /* Increment reference count and return instance. */\n')    
+        fd.write('    self->reference_count++;\n')
         fd.write('    return instance;\n')
         fd.write('}\n')
         fd.write('\n')

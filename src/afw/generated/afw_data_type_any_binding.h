@@ -61,7 +61,7 @@ AFW_DECLARE_CONST_DATA(afw_data_type_t *)
 afw_data_type_any;
 
 /**
- * @brief Permanent managed (life of afw environment) value inf for data type any.
+ * @brief Permanent (life of afw environment) value inf for data type any.
  *
  * The lifetime of the value is the lifetime of the afw environment.
  */
@@ -89,6 +89,25 @@ struct afw_value_any_s {
 
     /** @brief  Internal const afw_value_t * value. */
     const afw_value_t * internal;
+};
+
+/** @brief struct for managed data type any values.
+ *
+ * This is the same as afw_value_any_s with the addition of a
+ * reference count. This is intended for internal use only.
+ */
+struct afw_value_any_managed_s {
+    /** @brief  Value inf union with afw_value_t pub to reduce casting needed. */
+    union {
+        const afw_value_inf_t *inf;
+        afw_value_t pub;
+    };
+
+    /** @brief  Internal const afw_value_t * value. */
+    const afw_value_t * internal;
+
+    /** @brief  Reference count for value. */
+    afw_size_t reference_count;
 };
 
 /**
