@@ -7,6 +7,12 @@
  */
 
 
+/**
+ * @file script.ts
+ * @ingroup afw_bindings_javascript
+ * @brief This file contains the Javascript bindings for the script category.
+ */
+
 interface IAnyObject {
     [prop : string] : any;
 }

@@ -9,7 +9,9 @@
  */
 
 /**
- * Class definition for function category higher_order_array
+ * @file higher_order_array.php
+ * @ingroup afw_bindings_php
+ * @brief Class definition for function category higher_order_array
  */
 class higher_order_array
 {
@@ -17,7 +19,7 @@ class higher_order_array
 
     /**
      * Constructs the higher_order_array class, using a session.
-     *
+     */
     public function __construct($session = null)
     {
         $this->session = $session;

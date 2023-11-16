@@ -1,3 +1,11 @@
+#!/usr/bin/env perl
+
+#**
+# @file date.pm
+# @ingroup afw_bindings_perl
+# @brief This file contains the Perl bindings for the date category.
+#*
+
 package afw::date;
 use strict;
 use warnings;

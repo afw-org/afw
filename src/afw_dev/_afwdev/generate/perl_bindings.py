@@ -6,6 +6,11 @@
 # @brief This file contains the functions used to generate Perl bindings.
 #
 
+##
+# @defgroup afw_bindings_perl Perl
+# @ingroup afw_bindings
+#
+
 import os
 import keyword
 
@@ -45,6 +50,14 @@ def generate(generated_by, data_type_list, objects_dir_path, generated_dir_path,
         filename = category + '.pm'
         msg.info('Generating ' + filename)
         with nfc.open(generated_dir_path + filename, 'w') as fd:
+            fd.write('#!/usr/bin/env perl\n\n')
+
+            fd.write('#**\n')
+            fd.write('# @file ' + filename + '\n')
+            fd.write('# @ingroup afw_bindings_perl\n')
+            fd.write('# @brief This file contains the Perl bindings for the ' + category + ' category.\n')
+            fd.write('#*\n\n')
+
             fd.write('package afw::' + category + ';\n')
             fd.write('use strict;\n')
             fd.write('use warnings;\n')

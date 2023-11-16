@@ -1,3 +1,11 @@
+#!/usr/bin/env perl
+
+#**
+# @file polymorphic.pm
+# @ingroup afw_bindings_perl
+# @brief This file contains the Perl bindings for the polymorphic category.
+#*
+
 package afw::polymorphic;
 use strict;
 use warnings;

@@ -9,7 +9,9 @@
  */
 
 /**
- * Class definition for function category yearMonthDuration
+ * @file yearMonthDuration.php
+ * @ingroup afw_bindings_php
+ * @brief Class definition for function category yearMonthDuration
  */
 class yearMonthDuration
 {
@@ -17,7 +19,7 @@ class yearMonthDuration
 
     /**
      * Constructs the yearMonthDuration class, using a session.
-     *
+     */
     public function __construct($session = null)
     {
         $this->session = $session;

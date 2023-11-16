@@ -9,7 +9,9 @@
  */
 
 /**
- * Class definition for function category compiler
+ * @file compiler.php
+ * @ingroup afw_bindings_php
+ * @brief Class definition for function category compiler
  */
 class compiler
 {
@@ -17,7 +19,7 @@ class compiler
 
     /**
      * Constructs the compiler class, using a session.
-     *
+     */
     public function __construct($session = null)
     {
         $this->session = $session;

@@ -9,7 +9,9 @@
  */
 
 /**
- * Class definition for function category boolean
+ * @file boolean.php
+ * @ingroup afw_bindings_php
+ * @brief Class definition for function category boolean
  */
 class boolean
 {
@@ -17,7 +19,7 @@ class boolean
 
     /**
      * Constructs the boolean class, using a session.
-     *
+     */
     public function __construct($session = null)
     {
         $this->session = $session;

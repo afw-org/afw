@@ -9,7 +9,9 @@
  */
 
 /**
- * Class definition for function category double
+ * @file double.php
+ * @ingroup afw_bindings_php
+ * @brief Class definition for function category double
  */
 class double
 {
@@ -17,7 +19,7 @@ class double
 
     /**
      * Constructs the double class, using a session.
-     *
+     */
     public function __construct($session = null)
     {
         $this->session = $session;

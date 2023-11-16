@@ -1,3 +1,11 @@
+#!/usr/bin/env perl
+
+#**
+# @file boolean.pm
+# @ingroup afw_bindings_perl
+# @brief This file contains the Perl bindings for the boolean category.
+#*
+
 package afw::boolean;
 use strict;
 use warnings;

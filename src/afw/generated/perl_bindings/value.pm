@@ -1,3 +1,11 @@
+#!/usr/bin/env perl
+
+#**
+# @file value.pm
+# @ingroup afw_bindings_perl
+# @brief This file contains the Perl bindings for the value category.
+#*
+
 package afw::value;
 use strict;
 use warnings;

@@ -1,3 +1,11 @@
+#!/usr/bin/env perl
+
+#**
+# @file indexes.pm
+# @ingroup afw_bindings_perl
+# @brief This file contains the Perl bindings for the indexes category.
+#*
+
 package afw::indexes;
 use strict;
 use warnings;

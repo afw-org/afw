@@ -9,7 +9,9 @@
  */
 
 /**
- * Class definition for function category base64Binary
+ * @file base64Binary.php
+ * @ingroup afw_bindings_php
+ * @brief Class definition for function category base64Binary
  */
 class base64Binary
 {
@@ -17,7 +19,7 @@ class base64Binary
 
     /**
      * Constructs the base64Binary class, using a session.
-     *
+     */
     public function __construct($session = null)
     {
         $this->session = $session;

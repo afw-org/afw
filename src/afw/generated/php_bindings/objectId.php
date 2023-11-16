@@ -9,7 +9,9 @@
  */
 
 /**
- * Class definition for function category objectId
+ * @file objectId.php
+ * @ingroup afw_bindings_php
+ * @brief Class definition for function category objectId
  */
 class objectId
 {
@@ -17,7 +19,7 @@ class objectId
 
     /**
      * Constructs the objectId class, using a session.
-     *
+     */
     public function __construct($session = null)
     {
         $this->session = $session;

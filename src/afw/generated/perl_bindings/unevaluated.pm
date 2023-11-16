@@ -1,3 +1,11 @@
+#!/usr/bin/env perl
+
+#**
+# @file unevaluated.pm
+# @ingroup afw_bindings_perl
+# @brief This file contains the Perl bindings for the unevaluated category.
+#*
+
 package afw::unevaluated;
 use strict;
 use warnings;

@@ -7,6 +7,12 @@
  */
 
 
+/**
+ * @file relaxed_json.ts
+ * @ingroup afw_bindings_javascript
+ * @brief This file contains the Javascript bindings for the relaxed_json category.
+ */
+
 interface IAnyObject {
     [prop : string] : any;
 }

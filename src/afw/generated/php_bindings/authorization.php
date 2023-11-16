@@ -9,7 +9,9 @@
  */
 
 /**
- * Class definition for function category authorization
+ * @file authorization.php
+ * @ingroup afw_bindings_php
+ * @brief Class definition for function category authorization
  */
 class authorization
 {
@@ -17,7 +19,7 @@ class authorization
 
     /**
      * Constructs the authorization class, using a session.
-     *
+     */
     public function __construct($session = null)
     {
         $this->session = $session;

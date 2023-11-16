@@ -7,6 +7,12 @@
  */
 
 
+/**
+ * @file anyURI.ts
+ * @ingroup afw_bindings_javascript
+ * @brief This file contains the Javascript bindings for the anyURI category.
+ */
+
 interface IAnyObject {
     [prop : string] : any;
 }

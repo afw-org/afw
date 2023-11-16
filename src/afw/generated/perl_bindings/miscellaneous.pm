@@ -1,3 +1,11 @@
+#!/usr/bin/env perl
+
+#**
+# @file miscellaneous.pm
+# @ingroup afw_bindings_perl
+# @brief This file contains the Perl bindings for the miscellaneous category.
+#*
+
 package afw::miscellaneous;
 use strict;
 use warnings;

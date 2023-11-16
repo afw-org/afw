@@ -1,3 +1,11 @@
+#!/usr/bin/env perl
+
+#**
+# @file relaxed_json.pm
+# @ingroup afw_bindings_perl
+# @brief This file contains the Perl bindings for the relaxed_json category.
+#*
+
 package afw::relaxed_json;
 use strict;
 use warnings;

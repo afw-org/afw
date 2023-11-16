@@ -9,7 +9,9 @@
  */
 
 /**
- * Class definition for function category password
+ * @file password.php
+ * @ingroup afw_bindings_php
+ * @brief Class definition for function category password
  */
 class password
 {
@@ -17,7 +19,7 @@ class password
 
     /**
      * Constructs the password class, using a session.
-     *
+     */
     public function __construct($session = null)
     {
         $this->session = $session;

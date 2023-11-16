@@ -1,3 +1,11 @@
+#!/usr/bin/env perl
+
+#**
+# @file ia5String.pm
+# @ingroup afw_bindings_perl
+# @brief This file contains the Perl bindings for the ia5String category.
+#*
+
 package afw::ia5String;
 use strict;
 use warnings;

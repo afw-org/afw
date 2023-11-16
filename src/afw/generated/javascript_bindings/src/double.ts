@@ -7,6 +7,12 @@
  */
 
 
+/**
+ * @file double.ts
+ * @ingroup afw_bindings_javascript
+ * @brief This file contains the Javascript bindings for the double category.
+ */
+
 interface IAnyObject {
     [prop : string] : any;
 }

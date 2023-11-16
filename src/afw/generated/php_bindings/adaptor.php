@@ -9,7 +9,9 @@
  */
 
 /**
- * Class definition for function category adaptor
+ * @file adaptor.php
+ * @ingroup afw_bindings_php
+ * @brief Class definition for function category adaptor
  */
 class adaptor
 {
@@ -17,7 +19,7 @@ class adaptor
 
     /**
      * Constructs the adaptor class, using a session.
-     *
+     */
     public function __construct($session = null)
     {
         $this->session = $session;

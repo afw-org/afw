@@ -1,3 +1,11 @@
+#!/usr/bin/env perl
+
+#**
+# @file object.pm
+# @ingroup afw_bindings_perl
+# @brief This file contains the Perl bindings for the object category.
+#*
+
 package afw::object;
 use strict;
 use warnings;

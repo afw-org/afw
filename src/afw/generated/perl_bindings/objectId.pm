@@ -1,3 +1,11 @@
+#!/usr/bin/env perl
+
+#**
+# @file objectId.pm
+# @ingroup afw_bindings_perl
+# @brief This file contains the Perl bindings for the objectId category.
+#*
+
 package afw::objectId;
 use strict;
 use warnings;

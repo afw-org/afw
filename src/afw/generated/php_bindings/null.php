@@ -9,7 +9,9 @@
  */
 
 /**
- * Class definition for function category null
+ * @file null.php
+ * @ingroup afw_bindings_php
+ * @brief Class definition for function category null
  */
 class null
 {
@@ -17,7 +19,7 @@ class null
 
     /**
      * Constructs the null class, using a session.
-     *
+     */
     public function __construct($session = null)
     {
         $this->session = $session;

@@ -1,3 +1,11 @@
+#!/usr/bin/env perl
+
+#**
+# @file hexBinary.pm
+# @ingroup afw_bindings_perl
+# @brief This file contains the Perl bindings for the hexBinary category.
+#*
+
 package afw::hexBinary;
 use strict;
 use warnings;

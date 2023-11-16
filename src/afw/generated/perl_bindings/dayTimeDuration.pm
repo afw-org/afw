@@ -1,3 +1,11 @@
+#!/usr/bin/env perl
+
+#**
+# @file dayTimeDuration.pm
+# @ingroup afw_bindings_perl
+# @brief This file contains the Perl bindings for the dayTimeDuration category.
+#*
+
 package afw::dayTimeDuration;
 use strict;
 use warnings;

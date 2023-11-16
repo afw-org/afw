@@ -7,6 +7,12 @@
  */
 
 
+/**
+ * @file rfc822Name.ts
+ * @ingroup afw_bindings_javascript
+ * @brief This file contains the Javascript bindings for the rfc822Name category.
+ */
+
 interface IAnyObject {
     [prop : string] : any;
 }

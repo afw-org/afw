@@ -1,3 +1,11 @@
+#!/usr/bin/env perl
+
+#**
+# @file random.pm
+# @ingroup afw_bindings_perl
+# @brief This file contains the Perl bindings for the random category.
+#*
+
 package afw::random;
 use strict;
 use warnings;

@@ -1,3 +1,11 @@
+#!/usr/bin/env perl
+
+#**
+# @file function.pm
+# @ingroup afw_bindings_perl
+# @brief This file contains the Perl bindings for the function category.
+#*
+
 package afw::function;
 use strict;
 use warnings;

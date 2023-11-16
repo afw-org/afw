@@ -7,6 +7,12 @@
  */
 
 
+/**
+ * @file yearMonthDuration.ts
+ * @ingroup afw_bindings_javascript
+ * @brief This file contains the Javascript bindings for the yearMonthDuration category.
+ */
+
 interface IAnyObject {
     [prop : string] : any;
 }

@@ -9,7 +9,9 @@
  */
 
 /**
- * Class definition for function category journal
+ * @file journal.php
+ * @ingroup afw_bindings_php
+ * @brief Class definition for function category journal
  */
 class journal
 {
@@ -17,7 +19,7 @@ class journal
 
     /**
      * Constructs the journal class, using a session.
-     *
+     */
     public function __construct($session = null)
     {
         $this->session = $session;

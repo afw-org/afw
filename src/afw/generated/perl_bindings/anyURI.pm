@@ -1,3 +1,11 @@
+#!/usr/bin/env perl
+
+#**
+# @file anyURI.pm
+# @ingroup afw_bindings_perl
+# @brief This file contains the Perl bindings for the anyURI category.
+#*
+
 package afw::anyURI;
 use strict;
 use warnings;

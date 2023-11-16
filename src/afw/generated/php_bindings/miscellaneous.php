@@ -9,7 +9,9 @@
  */
 
 /**
- * Class definition for function category miscellaneous
+ * @file miscellaneous.php
+ * @ingroup afw_bindings_php
+ * @brief Class definition for function category miscellaneous
  */
 class miscellaneous
 {
@@ -17,7 +19,7 @@ class miscellaneous
 
     /**
      * Constructs the miscellaneous class, using a session.
-     *
+     */
     public function __construct($session = null)
     {
         $this->session = $session;

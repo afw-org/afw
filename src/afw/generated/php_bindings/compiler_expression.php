@@ -9,7 +9,9 @@
  */
 
 /**
- * Class definition for function category compiler_expression
+ * @file compiler_expression.php
+ * @ingroup afw_bindings_php
+ * @brief Class definition for function category compiler_expression
  */
 class compiler_expression
 {
@@ -17,7 +19,7 @@ class compiler_expression
 
     /**
      * Constructs the compiler_expression class, using a session.
-     *
+     */
     public function __construct($session = null)
     {
         $this->session = $session;

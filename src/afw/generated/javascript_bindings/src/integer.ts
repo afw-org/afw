@@ -7,6 +7,12 @@
  */
 
 
+/**
+ * @file integer.ts
+ * @ingroup afw_bindings_javascript
+ * @brief This file contains the Javascript bindings for the integer category.
+ */
+
 interface IAnyObject {
     [prop : string] : any;
 }

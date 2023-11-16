@@ -7,6 +7,12 @@
  */
 
 
+/**
+ * @file higher_order_array.ts
+ * @ingroup afw_bindings_javascript
+ * @brief This file contains the Javascript bindings for the higher_order_array category.
+ */
+
 interface IAnyObject {
     [prop : string] : any;
 }

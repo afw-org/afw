@@ -1,3 +1,11 @@
+#!/usr/bin/env perl
+
+#**
+# @file compiler_script.pm
+# @ingroup afw_bindings_perl
+# @brief This file contains the Perl bindings for the compiler_script category.
+#*
+
 package afw::compiler_script;
 use strict;
 use warnings;

@@ -7,6 +7,12 @@
  */
 
 
+/**
+ * @file journal.ts
+ * @ingroup afw_bindings_javascript
+ * @brief This file contains the Javascript bindings for the journal category.
+ */
+
 interface IAnyObject {
     [prop : string] : any;
 }

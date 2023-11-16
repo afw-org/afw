@@ -1,3 +1,11 @@
+#!/usr/bin/env perl
+
+#**
+# @file stream.pm
+# @ingroup afw_bindings_perl
+# @brief This file contains the Perl bindings for the stream category.
+#*
+
 package afw::stream;
 use strict;
 use warnings;

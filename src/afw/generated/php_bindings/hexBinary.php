@@ -9,7 +9,9 @@
  */
 
 /**
- * Class definition for function category hexBinary
+ * @file hexBinary.php
+ * @ingroup afw_bindings_php
+ * @brief Class definition for function category hexBinary
  */
 class hexBinary
 {
@@ -17,7 +19,7 @@ class hexBinary
 
     /**
      * Constructs the hexBinary class, using a session.
-     *
+     */
     public function __construct($session = null)
     {
         $this->session = $session;

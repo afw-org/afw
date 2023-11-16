@@ -1,3 +1,11 @@
+#!/usr/bin/env perl
+
+#**
+# @file dateTime.pm
+# @ingroup afw_bindings_perl
+# @brief This file contains the Perl bindings for the dateTime category.
+#*
+
 package afw::dateTime;
 use strict;
 use warnings;

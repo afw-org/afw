@@ -1,3 +1,11 @@
+#!/usr/bin/env perl
+
+#**
+# @file yearMonthDuration.pm
+# @ingroup afw_bindings_perl
+# @brief This file contains the Perl bindings for the yearMonthDuration category.
+#*
+
 package afw::yearMonthDuration;
 use strict;
 use warnings;

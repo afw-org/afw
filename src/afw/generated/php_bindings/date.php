@@ -9,7 +9,9 @@
  */
 
 /**
- * Class definition for function category date
+ * @file date.php
+ * @ingroup afw_bindings_php
+ * @brief Class definition for function category date
  */
 class date
 {
@@ -17,7 +19,7 @@ class date
 
     /**
      * Constructs the date class, using a session.
-     *
+     */
     public function __construct($session = null)
     {
         $this->session = $session;

@@ -7,6 +7,12 @@
  */
 
 
+/**
+ * @file base64Binary.ts
+ * @ingroup afw_bindings_javascript
+ * @brief This file contains the Javascript bindings for the base64Binary category.
+ */
+
 interface IAnyObject {
     [prop : string] : any;
 }

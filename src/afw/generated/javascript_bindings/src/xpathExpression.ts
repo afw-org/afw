@@ -7,6 +7,12 @@
  */
 
 
+/**
+ * @file xpathExpression.ts
+ * @ingroup afw_bindings_javascript
+ * @brief This file contains the Javascript bindings for the xpathExpression category.
+ */
+
 interface IAnyObject {
     [prop : string] : any;
 }

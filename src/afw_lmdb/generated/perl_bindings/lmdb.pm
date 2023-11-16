@@ -1,3 +1,11 @@
+#!/usr/bin/env perl
+
+#**
+# @file lmdb.pm
+# @ingroup afw_bindings_perl
+# @brief This file contains the Perl bindings for the lmdb category.
+#*
+
 package afw::lmdb;
 use strict;
 use warnings;

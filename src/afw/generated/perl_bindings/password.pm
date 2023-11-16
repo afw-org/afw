@@ -1,3 +1,11 @@
+#!/usr/bin/env perl
+
+#**
+# @file password.pm
+# @ingroup afw_bindings_perl
+# @brief This file contains the Perl bindings for the password category.
+#*
+
 package afw::password;
 use strict;
 use warnings;

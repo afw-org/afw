@@ -6,6 +6,11 @@
 # @brief This file contains the functions used to generate Javascript bindings.
 #
 
+##
+# @defgroup afw_bindings_javascript Javascript
+# @ingroup afw_bindings
+#
+
 import os
 import shutil
 from _afwdev.common import direct
@@ -88,6 +93,13 @@ def generate(generated_by, data_type_list, objects_dir_path, generated_dir_path,
         with nfc.open(generated_dir_path + '/src/' + filename, 'w') as fd:
             c.write_copyright(fd, 'Javascript Bindings for ' + category)
             fd.write('\n')
+
+            fd.write('\n')
+            fd.write('/**\n')
+            fd.write(' * @file ' + filename + '\n')
+            fd.write(' * @ingroup afw_bindings_javascript\n')
+            fd.write(' * @brief This file contains the Javascript bindings for the ' + category + ' category.\n')
+            fd.write(' */\n')
 
             fd.write('\n')
             fd.write('interface IAnyObject {\n')

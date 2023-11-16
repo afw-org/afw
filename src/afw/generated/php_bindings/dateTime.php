@@ -9,7 +9,9 @@
  */
 
 /**
- * Class definition for function category dateTime
+ * @file dateTime.php
+ * @ingroup afw_bindings_php
+ * @brief Class definition for function category dateTime
  */
 class dateTime
 {
@@ -17,7 +19,7 @@ class dateTime
 
     /**
      * Constructs the dateTime class, using a session.
-     *
+     */
     public function __construct($session = null)
     {
         $this->session = $session;

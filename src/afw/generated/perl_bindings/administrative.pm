@@ -1,3 +1,11 @@
+#!/usr/bin/env perl
+
+#**
+# @file administrative.pm
+# @ingroup afw_bindings_perl
+# @brief This file contains the Perl bindings for the administrative category.
+#*
+
 package afw::administrative;
 use strict;
 use warnings;

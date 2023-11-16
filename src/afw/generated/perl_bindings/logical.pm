@@ -1,3 +1,11 @@
+#!/usr/bin/env perl
+
+#**
+# @file logical.pm
+# @ingroup afw_bindings_perl
+# @brief This file contains the Perl bindings for the logical category.
+#*
+
 package afw::logical;
 use strict;
 use warnings;

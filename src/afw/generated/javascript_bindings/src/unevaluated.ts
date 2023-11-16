@@ -7,6 +7,12 @@
  */
 
 
+/**
+ * @file unevaluated.ts
+ * @ingroup afw_bindings_javascript
+ * @brief This file contains the Javascript bindings for the unevaluated category.
+ */
+
 interface IAnyObject {
     [prop : string] : any;
 }

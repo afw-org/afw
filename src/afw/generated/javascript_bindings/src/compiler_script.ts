@@ -7,6 +7,12 @@
  */
 
 
+/**
+ * @file compiler_script.ts
+ * @ingroup afw_bindings_javascript
+ * @brief This file contains the Javascript bindings for the compiler_script category.
+ */
+
 interface IAnyObject {
     [prop : string] : any;
 }

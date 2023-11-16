@@ -1,3 +1,11 @@
+#!/usr/bin/env perl
+
+#**
+# @file rfc822Name.pm
+# @ingroup afw_bindings_perl
+# @brief This file contains the Perl bindings for the rfc822Name category.
+#*
+
 package afw::rfc822Name;
 use strict;
 use warnings;

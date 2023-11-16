@@ -1,3 +1,11 @@
+#!/usr/bin/env perl
+
+#**
+# @file double.pm
+# @ingroup afw_bindings_perl
+# @brief This file contains the Perl bindings for the double category.
+#*
+
 package afw::double;
 use strict;
 use warnings;

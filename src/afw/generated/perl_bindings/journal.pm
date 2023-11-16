@@ -1,3 +1,11 @@
+#!/usr/bin/env perl
+
+#**
+# @file journal.pm
+# @ingroup afw_bindings_perl
+# @brief This file contains the Perl bindings for the journal category.
+#*
+
 package afw::journal;
 use strict;
 use warnings;

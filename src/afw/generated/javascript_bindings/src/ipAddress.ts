@@ -7,6 +7,12 @@
  */
 
 
+/**
+ * @file ipAddress.ts
+ * @ingroup afw_bindings_javascript
+ * @brief This file contains the Javascript bindings for the ipAddress category.
+ */
+
 interface IAnyObject {
     [prop : string] : any;
 }

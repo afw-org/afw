@@ -7,6 +7,12 @@
  */
 
 
+/**
+ * @file x500Name.ts
+ * @ingroup afw_bindings_javascript
+ * @brief This file contains the Javascript bindings for the x500Name category.
+ */
+
 interface IAnyObject {
     [prop : string] : any;
 }

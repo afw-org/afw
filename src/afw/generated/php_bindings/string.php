@@ -9,7 +9,9 @@
  */
 
 /**
- * Class definition for function category string
+ * @file string.php
+ * @ingroup afw_bindings_php
+ * @brief Class definition for function category string
  */
 class string
 {
@@ -17,7 +19,7 @@ class string
 
     /**
      * Constructs the string class, using a session.
-     *
+     */
     public function __construct($session = null)
     {
         $this->session = $session;

@@ -9,7 +9,9 @@
  */
 
 /**
- * Class definition for function category objectPath
+ * @file objectPath.php
+ * @ingroup afw_bindings_php
+ * @brief Class definition for function category objectPath
  */
 class objectPath
 {
@@ -17,7 +19,7 @@ class objectPath
 
     /**
      * Constructs the objectPath class, using a session.
-     *
+     */
     public function __construct($session = null)
     {
         $this->session = $session;

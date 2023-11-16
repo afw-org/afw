@@ -1,3 +1,11 @@
+#!/usr/bin/env perl
+
+#**
+# @file xpathExpression.pm
+# @ingroup afw_bindings_perl
+# @brief This file contains the Perl bindings for the xpathExpression category.
+#*
+
 package afw::xpathExpression;
 use strict;
 use warnings;

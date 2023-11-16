@@ -1,3 +1,11 @@
+#!/usr/bin/env perl
+
+#**
+# @file authorization.pm
+# @ingroup afw_bindings_perl
+# @brief This file contains the Perl bindings for the authorization category.
+#*
+
 package afw::authorization;
 use strict;
 use warnings;

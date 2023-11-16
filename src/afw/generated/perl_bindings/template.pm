@@ -1,3 +1,11 @@
+#!/usr/bin/env perl
+
+#**
+# @file template.pm
+# @ingroup afw_bindings_perl
+# @brief This file contains the Perl bindings for the template category.
+#*
+
 package afw::template;
 use strict;
 use warnings;

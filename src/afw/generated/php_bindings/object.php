@@ -9,7 +9,9 @@
  */
 
 /**
- * Class definition for function category object
+ * @file object.php
+ * @ingroup afw_bindings_php
+ * @brief Class definition for function category object
  */
 class object
 {
@@ -17,7 +19,7 @@ class object
 
     /**
      * Constructs the object class, using a session.
-     *
+     */
     public function __construct($session = null)
     {
         $this->session = $session;

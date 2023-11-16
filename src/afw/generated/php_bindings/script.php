@@ -9,7 +9,9 @@
  */
 
 /**
- * Class definition for function category script
+ * @file script.php
+ * @ingroup afw_bindings_php
+ * @brief Class definition for function category script
  */
 class script
 {
@@ -17,7 +19,7 @@ class script
 
     /**
      * Constructs the script class, using a session.
-     *
+     */
     public function __construct($session = null)
     {
         $this->session = $session;

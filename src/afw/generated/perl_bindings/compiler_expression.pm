@@ -1,3 +1,11 @@
+#!/usr/bin/env perl
+
+#**
+# @file compiler_expression.pm
+# @ingroup afw_bindings_perl
+# @brief This file contains the Perl bindings for the compiler_expression category.
+#*
+
 package afw::compiler_expression;
 use strict;
 use warnings;

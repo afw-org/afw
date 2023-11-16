@@ -9,7 +9,9 @@
  */
 
 /**
- * Class definition for function category relaxed_json
+ * @file relaxed_json.php
+ * @ingroup afw_bindings_php
+ * @brief Class definition for function category relaxed_json
  */
 class relaxed_json
 {
@@ -17,7 +19,7 @@ class relaxed_json
 
     /**
      * Constructs the relaxed_json class, using a session.
-     *
+     */
     public function __construct($session = null)
     {
         $this->session = $session;

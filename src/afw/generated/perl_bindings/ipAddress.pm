@@ -1,3 +1,11 @@
+#!/usr/bin/env perl
+
+#**
+# @file ipAddress.pm
+# @ingroup afw_bindings_perl
+# @brief This file contains the Perl bindings for the ipAddress category.
+#*
+
 package afw::ipAddress;
 use strict;
 use warnings;

@@ -1,3 +1,11 @@
+#!/usr/bin/env perl
+
+#**
+# @file script.pm
+# @ingroup afw_bindings_perl
+# @brief This file contains the Perl bindings for the script category.
+#*
+
 package afw::script;
 use strict;
 use warnings;

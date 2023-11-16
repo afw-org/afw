@@ -1,3 +1,11 @@
+#!/usr/bin/env perl
+
+#**
+# @file string.pm
+# @ingroup afw_bindings_perl
+# @brief This file contains the Perl bindings for the string category.
+#*
+
 package afw::string;
 use strict;
 use warnings;

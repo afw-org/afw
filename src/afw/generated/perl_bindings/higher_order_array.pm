@@ -1,3 +1,11 @@
+#!/usr/bin/env perl
+
+#**
+# @file higher_order_array.pm
+# @ingroup afw_bindings_perl
+# @brief This file contains the Perl bindings for the higher_order_array category.
+#*
+
 package afw::higher_order_array;
 use strict;
 use warnings;

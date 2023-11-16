@@ -7,6 +7,12 @@
  */
 
 
+/**
+ * @file lmdb.ts
+ * @ingroup afw_bindings_javascript
+ * @brief This file contains the Javascript bindings for the lmdb category.
+ */
+
 interface IAnyObject {
     [prop : string] : any;
 }

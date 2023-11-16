@@ -9,7 +9,9 @@
  */
 
 /**
- * Class definition for function category anyURI
+ * @file anyURI.php
+ * @ingroup afw_bindings_php
+ * @brief Class definition for function category anyURI
  */
 class anyURI
 {
@@ -17,7 +19,7 @@ class anyURI
 
     /**
      * Constructs the anyURI class, using a session.
-     *
+     */
     public function __construct($session = null)
     {
         $this->session = $session;

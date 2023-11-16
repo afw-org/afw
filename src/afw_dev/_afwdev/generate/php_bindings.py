@@ -6,6 +6,11 @@
 # @brief This file contains the functions used to generate PHP bindings.
 #
 
+##
+# @defgroup afw_bindings_php PHP
+# @ingroup afw_bindings
+#
+
 import os
 import keyword
 
@@ -51,7 +56,9 @@ def generate(generated_by, data_type_list, objects_dir_path, generated_dir_path,
 
             fd.write('\n')
             fd.write('/**\n')
-            fd.write(' * Class definition for function category ' + category + '\n')
+            fd.write(' * @file ' + filename + '\n')
+            fd.write(' * @ingroup afw_bindings_php\n')
+            fd.write(' * @brief Class definition for function category ' + category + '\n')
             fd.write(' */\n')
             fd.write('class ' + category + '\n')
             fd.write('{\n')
@@ -63,7 +70,7 @@ def generate(generated_by, data_type_list, objects_dir_path, generated_dir_path,
             # generate constructor
             fd.write('    /**\n')
             fd.write('     * Constructs the ' + category + ' class, using a session.\n')
-            fd.write('     *\n')
+            fd.write('     */\n')
             fd.write('    public function __construct($session = null)\n')
             fd.write('    {\n')
             fd.write('        $this->session = $session;\n')

@@ -1,3 +1,11 @@
+#!/usr/bin/env perl
+
+#**
+# @file null.pm
+# @ingroup afw_bindings_perl
+# @brief This file contains the Perl bindings for the null category.
+#*
+
 package afw::null;
 use strict;
 use warnings;

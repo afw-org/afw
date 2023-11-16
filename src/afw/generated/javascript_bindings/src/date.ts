@@ -7,6 +7,12 @@
  */
 
 
+/**
+ * @file date.ts
+ * @ingroup afw_bindings_javascript
+ * @brief This file contains the Javascript bindings for the date category.
+ */
+
 interface IAnyObject {
     [prop : string] : any;
 }

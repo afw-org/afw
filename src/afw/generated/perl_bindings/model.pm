@@ -1,3 +1,11 @@
+#!/usr/bin/env perl
+
+#**
+# @file model.pm
+# @ingroup afw_bindings_perl
+# @brief This file contains the Perl bindings for the model category.
+#*
+
 package afw::model;
 use strict;
 use warnings;

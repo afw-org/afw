@@ -9,7 +9,9 @@
  */
 
 /**
- * Class definition for function category integer
+ * @file integer.php
+ * @ingroup afw_bindings_php
+ * @brief Class definition for function category integer
  */
 class integer
 {
@@ -17,7 +19,7 @@ class integer
 
     /**
      * Constructs the integer class, using a session.
-     *
+     */
     public function __construct($session = null)
     {
         $this->session = $session;

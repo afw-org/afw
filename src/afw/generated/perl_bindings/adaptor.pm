@@ -1,3 +1,11 @@
+#!/usr/bin/env perl
+
+#**
+# @file adaptor.pm
+# @ingroup afw_bindings_perl
+# @brief This file contains the Perl bindings for the adaptor category.
+#*
+
 package afw::adaptor;
 use strict;
 use warnings;

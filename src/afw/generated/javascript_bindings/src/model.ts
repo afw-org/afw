@@ -7,6 +7,12 @@
  */
 
 
+/**
+ * @file model.ts
+ * @ingroup afw_bindings_javascript
+ * @brief This file contains the Javascript bindings for the model category.
+ */
+
 interface IAnyObject {
     [prop : string] : any;
 }

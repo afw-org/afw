@@ -9,7 +9,9 @@
  */
 
 /**
- * Class definition for function category regexp
+ * @file regexp.php
+ * @ingroup afw_bindings_php
+ * @brief Class definition for function category regexp
  */
 class regexp
 {
@@ -17,7 +19,7 @@ class regexp
 
     /**
      * Constructs the regexp class, using a session.
-     *
+     */
     public function __construct($session = null)
     {
         $this->session = $session;
