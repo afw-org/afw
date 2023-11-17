@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <doc>
     <title>Python Bindings</title>
+    <section>
+        <link href="/docs/doxygen/html/group__afw__bindings__python.html" text="Doxygen Reference" />
+    </section>
 </doc>
