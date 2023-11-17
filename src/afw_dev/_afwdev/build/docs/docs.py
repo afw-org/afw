@@ -515,9 +515,13 @@ def generate_doc_html_content(options, cwd, path, docsHtml, element, level):
             href = src
 
         if text is None:
-            text = get_text(element)    
+            text = get_text(element)  
 
-        content += docsHtml.link(text, href)
+        if not text:
+            msg.error("    Could not find 'text' attribute for link: " + href)  
+
+        else:
+            content += docsHtml.link(text, href)
 
     elif tag == 'function-categories-table':
         content += docs_generated.generate_function_categories_table(
