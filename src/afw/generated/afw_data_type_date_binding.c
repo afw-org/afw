@@ -282,17 +282,19 @@ afw_value_allocate_unmanaged_date(const afw_pool_t *p, afw_xctx_t *xctx)
 
 /* Create function for managed data type date value. */
 AFW_DEFINE(const afw_value_t *)
-afw_value_create_managed_date(const afw_date_t * internal,
-    const afw_pool_t *p, afw_xctx_t *xctx)
+afw_value_create_managed_date(
+    const afw_date_t * internal,
+    afw_xctx_t *xctx)
 {
-    afw_value_date_t *v;
+    afw_value_date_managed_t *v;
 
-    v = afw_pool_calloc(p, sizeof(afw_value_date_t),
-        xctx);
+    v = afw_xctx_calloc(
+        sizeof(afw_value_date_managed_t), xctx);
     v->inf = &afw_value_managed_date_inf;
     if (internal) {
         memcpy(&v->internal, internal, sizeof(afw_date_t));
     }
+
     return &v->pub;
 }
 

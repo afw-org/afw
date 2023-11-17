@@ -264,7 +264,7 @@ afw_value_allocate_managed_template(
     result = afw_xctx_malloc(sizeof(afw_value_template_managed_t) + len, xctx);
     result->inf = &afw_value_managed_template_inf;
     result->internal.len = len;
-    result->internal.s = (const afw_utf8_octet_t *)result + sizeof(afw_value_template_t);
+    result->internal.s = (const afw_utf8_octet_t *)result + sizeof(afw_value_template_managed_t);
     *s = (afw_utf8_octet_t *)result->internal.s;
     result->reference_count = 0;
     return &result->pub;
@@ -284,17 +284,22 @@ afw_value_allocate_unmanaged_template(const afw_pool_t *p, afw_xctx_t *xctx)
 
 /* Create function for managed data type template value. */
 AFW_DEFINE(const afw_value_t *)
-afw_value_create_managed_template(const afw_utf8_t * internal,
-    const afw_pool_t *p, afw_xctx_t *xctx)
+afw_value_create_managed_template(
+    const afw_utf8_t * internal,
+    afw_xctx_t *xctx)
 {
-    afw_value_template_t *v;
+    afw_value_template_managed_t *v;
+    afw_size_t len;
 
-    v = afw_pool_calloc(p, sizeof(afw_value_template_t),
-        xctx);
+    len = (internal) ? internal->len : 0;
+    v = afw_xctx_calloc(
+        sizeof(afw_value_template_managed_t) + len, xctx);
     v->inf = &afw_value_managed_template_inf;
-    if (internal) {
-        memcpy(&v->internal, internal, sizeof(afw_utf8_t));
-    }
+    v->internal.len = len;
+    v->internal.s = (const afw_utf8_octet_t *)v +
+        sizeof(afw_value_template_managed_t);
+    memcpy((void *)v->internal.s, internal->s, len);
+
     return &v->pub;
 }
 

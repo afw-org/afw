@@ -264,7 +264,7 @@ afw_value_allocate_managed_hexBinary(
     result = afw_xctx_malloc(sizeof(afw_value_hexBinary_managed_t) + size, xctx);
     result->inf = &afw_value_managed_hexBinary_inf;
     result->internal.size = size;
-    result->internal.ptr = (const afw_byte_t *)result + sizeof(afw_value_hexBinary_t);
+    result->internal.ptr = (const afw_byte_t *)result + sizeof(afw_value_hexBinary_managed_t);
     *ptr = (afw_byte_t *)result->internal.ptr;
     result->reference_count = 0;
     return &result->pub;
@@ -284,17 +284,23 @@ afw_value_allocate_unmanaged_hexBinary(const afw_pool_t *p, afw_xctx_t *xctx)
 
 /* Create function for managed data type hexBinary value. */
 AFW_DEFINE(const afw_value_t *)
-afw_value_create_managed_hexBinary(const afw_memory_t * internal,
-    const afw_pool_t *p, afw_xctx_t *xctx)
+afw_value_create_managed_hexBinary(
+    const afw_memory_t * internal,
+    afw_xctx_t *xctx)
 {
-    afw_value_hexBinary_t *v;
+    afw_value_hexBinary_managed_t *v;
 
-    v = afw_pool_calloc(p, sizeof(afw_value_hexBinary_t),
-        xctx);
+    afw_size_t size;
+
+    size = (internal) ? internal->size : 0;
+    v = afw_xctx_calloc(
+        sizeof(afw_value_hexBinary_managed_t) + size, xctx);
     v->inf = &afw_value_managed_hexBinary_inf;
-    if (internal) {
-        memcpy(&v->internal, internal, sizeof(afw_memory_t));
-    }
+    v->internal.size = (internal) ? internal->size : 0;
+    v->internal.ptr = (const afw_byte_t *)v +
+        sizeof(afw_value_hexBinary_managed_t);
+    memcpy((void *)v->internal.ptr, internal->ptr, size);
+
     return &v->pub;
 }
 

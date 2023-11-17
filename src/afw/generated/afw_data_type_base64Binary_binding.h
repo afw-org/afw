@@ -187,6 +187,8 @@ afw_value_as_base64Binary(
     const afw_value_t *value,
     afw_xctx_t *xctx);
 
+/* FIXME: The allocates for managed will probably go away. */
+
 /**
  * @brief Allocate function for reference data type base64Binary value.
  * @param ptr place to put pointer to allocated memory for internal->s.
@@ -224,7 +226,6 @@ afw_value_allocate_unmanaged_base64Binary(
 /**
  * @brief Create function for managed data type base64Binary value.
  * @param internal.
- * @param p to use for returned value.
  * @param xctx of caller.
  * @return Created const afw_value_t *.
  *
@@ -233,7 +234,6 @@ afw_value_allocate_unmanaged_base64Binary(
 AFW_DECLARE(const afw_value_t *)
 afw_value_create_managed_base64Binary(
     const afw_memory_t * internal,
-    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 /**

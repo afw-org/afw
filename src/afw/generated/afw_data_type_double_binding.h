@@ -187,6 +187,8 @@ afw_value_as_double(
     const afw_value_t *value,
     afw_xctx_t *xctx);
 
+/* FIXME: The allocates for managed will probably go away. */
+
 /**
  * @brief Allocate function for managed data type double value.
  * @param internal place to put pointer to internal of value.
@@ -220,7 +222,6 @@ afw_value_allocate_unmanaged_double(
 /**
  * @brief Create function for managed data type double value.
  * @param internal.
- * @param p to use for returned value.
  * @param xctx of caller.
  * @return Created const afw_value_t *.
  *
@@ -229,7 +230,6 @@ afw_value_allocate_unmanaged_double(
 AFW_DECLARE(const afw_value_t *)
 afw_value_create_managed_double(
     double internal,
-    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 /**

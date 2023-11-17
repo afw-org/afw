@@ -282,15 +282,18 @@ afw_value_allocate_unmanaged_array(const afw_pool_t *p, afw_xctx_t *xctx)
 
 /* Create function for managed data type array value. */
 AFW_DEFINE(const afw_value_t *)
-afw_value_create_managed_array(const afw_array_t * internal,
-    const afw_pool_t *p, afw_xctx_t *xctx)
+afw_value_create_managed_array(
+    const afw_array_t * internal,
+    afw_xctx_t *xctx)
 {
-    afw_value_array_t *v;
+    afw_value_array_managed_t *v;
 
-    v = afw_pool_calloc(p, sizeof(afw_value_array_t),
-        xctx);
+    v = afw_xctx_malloc(
+        sizeof(afw_value_array_managed_t), xctx);
     v->inf = &afw_value_managed_array_inf;
     v->internal = internal;
+    v->reference_count = 0;
+
     return &v->pub;
 }
 

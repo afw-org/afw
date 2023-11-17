@@ -187,6 +187,8 @@ afw_value_as_boolean(
     const afw_value_t *value,
     afw_xctx_t *xctx);
 
+/* FIXME: The allocates for managed will probably go away. */
+
 /**
  * @brief Allocate function for managed data type boolean value.
  * @param internal place to put pointer to internal of value.
@@ -220,7 +222,6 @@ afw_value_allocate_unmanaged_boolean(
 /**
  * @brief Create function for managed data type boolean value.
  * @param internal.
- * @param p to use for returned value.
  * @param xctx of caller.
  * @return Created const afw_value_t *.
  *
@@ -229,7 +230,6 @@ afw_value_allocate_unmanaged_boolean(
 AFW_DECLARE(const afw_value_t *)
 afw_value_create_managed_boolean(
     afw_boolean_t internal,
-    const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 /**
