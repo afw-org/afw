@@ -18,7 +18,8 @@
             "name": "Linux-arm64",
             "includePath": [
                 "${workspaceFolder}/**",
-                "/usr/include/apr-1.0"
+                "/usr/include/apr-1.0",
+                "/usr/include/libxml2"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",
