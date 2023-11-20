@@ -11,6 +11,12 @@
 #          layouts, servers, test data, etc.
 #
 
+##
+# @defgroup afwdev_common common
+# @ingroup afwdev
+#
+
+
 import sys
 import argparse
 import os
@@ -415,14 +421,6 @@ _info_afwdev_parser_info = {
     ]
 }
 
-##
-# @defgroup afwdev_build build
-# @ingroup afwdev
-# @brief The afwdev build subcommand
-# @details The afwdev build subcommand is used to build different parts of 
-#        Adaptive Framework packages, including C source code, Javascript 
-#        apps and modules, and documentation.
-#
 _info_build_all = {
     "optionName": "build_all",
     "arg": "--all",     

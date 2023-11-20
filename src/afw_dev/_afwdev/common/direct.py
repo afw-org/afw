@@ -1,5 +1,12 @@
 #! /usr/bin/env python3
 
+##
+# @file direct.py
+# @ingroup afwdev_common
+# @brief This file contains some common functions for direct file object 
+#        retrieval.
+#
+
 import os
 import fnmatch
 from _afwdev.common import msg, nfc

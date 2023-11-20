@@ -1,5 +1,12 @@
 #! /usr/bin/env python3
 
+##
+# @file resources.py
+# @ingroup afwdev_common
+# @brief This file contains some common functions for working with resources 
+#        associated with afw packages.
+#
+
 import os
 import re
 import zipfile

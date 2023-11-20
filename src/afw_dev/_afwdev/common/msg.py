@@ -1,3 +1,11 @@
+#!/usr/bin/env python3
+
+##
+# @file msg.py
+# @ingroup afwdev_common
+# @brief This file contains some common functions for message logging.
+#
+
 import os
 import sys
 

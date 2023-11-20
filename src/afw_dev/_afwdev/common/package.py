@@ -1,5 +1,11 @@
 #! /usr/bin/env python3
 
+##
+# @file package.py
+# @ingroup afwdev_common
+# @brief This file contains some common functions for working with afw packages.
+#
+
 import os
 from _afwdev.common import msg, nfc
 from _afwdev.validate import validate

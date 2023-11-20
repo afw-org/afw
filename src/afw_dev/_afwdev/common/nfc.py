@@ -1,3 +1,11 @@
+#!/usr/bin/env python3
+
+##
+# @file nfc.py
+# @ingroup afwdev_common
+# @brief This file contains some common functions for normalizing unicode.
+#
+
 import json
 import unicodedata
 import builtins
