@@ -56,12 +56,12 @@ afw_function_execute_and(
     for (n = 1; n <= x->argc; n++) {
         AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(v, n, boolean);
         if (!v->internal) {
-            return afw_value_false;
+            return afw_boolean_v_false;
         }
     }
 
     /* Return true if no args evaluated to false. */
-    return afw_value_true;
+    return afw_boolean_v_true;
 }
 
 
@@ -127,8 +127,8 @@ afw_function_execute_n_of(
 
     /* Return true if there were enough trues. */
     return (trues >= n->internal)
-        ? afw_value_true
-        : afw_value_false;
+        ? afw_boolean_v_true
+        : afw_boolean_v_false;
 }
 
 
@@ -171,8 +171,8 @@ afw_function_execute_not(
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(condition, 1, boolean);
 
     return (condition->internal)
-        ? afw_value_false
-        : afw_value_true;
+        ? afw_boolean_v_false
+        : afw_boolean_v_true;
 }
 
 
@@ -218,10 +218,10 @@ afw_function_execute_or(
     for (n = 1; n <= x->argc; n++) {
         AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(v, n, boolean);
         if (v->internal) {
-            return afw_value_true;
+            return afw_boolean_v_true;
         }
     }
 
     /* Return false if no args evaluated to true. */
-    return afw_value_false;
+    return afw_boolean_v_false;
 }

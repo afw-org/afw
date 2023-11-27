@@ -410,12 +410,12 @@ const afw_value_t * afw_ubjson_parse_value(
 
         /* Boolean true */
         case AFW_UBJSON_MARKER_TRUE:
-            value = afw_value_true;
+            value = afw_boolean_v_true;
             break;
 
         /* Boolean false */
         case AFW_UBJSON_MARKER_FALSE:
-            value = afw_value_false;
+            value = afw_boolean_v_false;
             break;
 
         /* Numeric types */

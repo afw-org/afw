@@ -217,7 +217,7 @@ impl_afw_value_optional_evaluate(
                 evaluated_value, xctx);
 
             afw_object_set_property(test, afw_s_passed,
-                afw_value_true,
+                afw_boolean_v_true,
                 xctx);
 
             passed_value =
@@ -229,8 +229,8 @@ impl_afw_value_optional_evaluate(
                         afw_value_equal(evaluated_value, expected_value, xctx)
                     )
                 )
-                ? afw_value_true
-                : afw_value_false;
+                ? afw_boolean_v_true
+                : afw_boolean_v_false;
             afw_object_set_property(test, afw_s_passed, passed_value, xctx);
         }
 
@@ -261,8 +261,8 @@ impl_afw_value_optional_evaluate(
             /* Set passed only if this is an expected error. */
             passed_value =
                 expected_error
-                ? afw_value_true
-                : afw_value_false;
+                ? afw_boolean_v_true
+                : afw_boolean_v_false;
             afw_object_set_property(test, afw_s_passed, passed_value, xctx);
 
             /* errorReason */

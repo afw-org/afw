@@ -451,14 +451,14 @@ afw_function_execute_extension_load(
         afw_environemnt_registry_type_extension,
         &extension_id->internal, x->xctx))
     {
-        return afw_value_false;
+        return afw_boolean_v_false;
     }
 
     /* Load extension and return true. */
     afw_environment_load_extension(
         &extension_id->internal, NULL, NULL, x->xctx);
 
-    return afw_value_true;
+    return afw_boolean_v_true;
 }
 
 
@@ -582,21 +582,21 @@ afw_function_execute_registry_key_check(
         &registry_type_value->internal, load_extension, x->xctx);
 
     if (!registry_type) {
-        result = afw_value_false;
+        result = afw_boolean_v_false;
     }
 
     else if (load_extension) {
         result =
             (afw_environment_registry_get(
                 registry_type->number, &key_value->internal, x->xctx))
-            ? afw_value_true
-            : afw_value_false;
+            ? afw_boolean_v_true
+            : afw_boolean_v_false;
     }
     else {
         result = (afw_environment_registry_key_exists(
             registry_type->number, &key_value->internal, x->xctx))
-            ? afw_value_true
-            : afw_value_false;
+            ? afw_boolean_v_true
+            : afw_boolean_v_false;
     }
 
     return result;

@@ -353,7 +353,7 @@ impl_object_path_parse(
                 (is_reserved && !afw_utf8_equal(token, afw_s_a_equal)))
             {
                 afw_object_set_property(parsed->options_object,
-                    name, afw_value_true, xctx);
+                    name, afw_boolean_v_true, xctx);
             }
 
             if (at_end) {
@@ -788,37 +788,37 @@ afw_object_path_parsed_to_object(
 
     if (parsed->substitution_occurred) {
         afw_object_set_property(result,
-            afw_s_substitutionOccurred, afw_value_true, xctx);
+            afw_s_substitutionOccurred, afw_boolean_v_true, xctx);
     }
 
     if (parsed->substituted_adaptor_id) {
         afw_object_set_property(result,
-            afw_s_substitutedAdaptorId, afw_value_true, xctx);
+            afw_s_substitutedAdaptorId, afw_boolean_v_true, xctx);
     }
 
     if (parsed->substituted_object_type_id) {
         afw_object_set_property(result,
-            afw_s_substitutedObjectTypeId, afw_value_true, xctx);
+            afw_s_substitutedObjectTypeId, afw_boolean_v_true, xctx);
     }
 
     if (parsed->substituted_entire_object_id) {
         afw_object_set_property(result,
-            afw_s_substitutedEntireObjectId, afw_value_true, xctx);
+            afw_s_substitutedEntireObjectId, afw_boolean_v_true, xctx);
     }
 
     if (parsed->substituted_entity_object_id) {
         afw_object_set_property(result,
-            afw_s_substitutedEntityObjectId, afw_value_true, xctx);
+            afw_s_substitutedEntityObjectId, afw_boolean_v_true, xctx);
     }
 
     if (parsed->substituted_property_name) {
         afw_object_set_property(result,
-            afw_s_substitutedPropertyName, afw_value_true, xctx);
+            afw_s_substitutedPropertyName, afw_boolean_v_true, xctx);
     }
 
     if (parsed->contains_unresolved_substitutions) {
         afw_object_set_property(result,
-            afw_s_containsUnresolvedSubstitutions, afw_value_true, xctx);
+            afw_s_containsUnresolvedSubstitutions, afw_boolean_v_true, xctx);
     }
 
     return result;}

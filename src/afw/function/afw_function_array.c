@@ -227,11 +227,11 @@ afw_function_execute_includes_array(
         item = afw_array_get_entry_value(array->internal, index, x->p, xctx);
 
         if (afw_value_equal(item, searchElement, xctx)) {
-            return afw_value_true;
+            return afw_boolean_v_true;
         }
     }
 
-    return afw_value_false;
+    return afw_boolean_v_false;
 }
 
 /*
@@ -328,7 +328,7 @@ afw_function_execute_join(
 
     /* If len is zero, return empty string. */
     else {
-        return afw_value_empty_string;
+        return afw_v_a_empty_string;
     }
 }
 

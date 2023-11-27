@@ -88,8 +88,8 @@ afw_function_execute_compare_uri(
             (isValuePath) ? isValuePath->internal: false,
             (currentPath) ? &currentPath->internal: NULL,
             x->p, x->xctx)
-        ? afw_value_true
-        : afw_value_false;
+        ? afw_boolean_v_true
+        : afw_boolean_v_false;
 }
 
 
@@ -629,8 +629,8 @@ afw_function_execute_variable_is_not_null(
     value = afw_xctx_get_optionally_qualified_variable(&qualifier, &name, x->xctx);
 
     return (value && !afw_value_is_null(value))
-        ? afw_value_true
-        : afw_value_false;
+        ? afw_boolean_v_true
+        : afw_boolean_v_false;
 }
 
 
@@ -671,7 +671,7 @@ afw_function_execute_is_nullish(
 
     AFW_FUNCTION_EVALUATE_PARAMETER(value, 1);
 
-    return afw_value_is_nullish(value) ? afw_value_true : afw_value_false;
+    return afw_value_is_nullish(value) ? afw_boolean_v_true : afw_boolean_v_false;
 }
 
 
@@ -712,7 +712,7 @@ afw_function_execute_is_defined(
 
     AFW_FUNCTION_EVALUATE_PARAMETER(value, 1);
 
-    return value ? afw_value_true : afw_value_false;
+    return value ? afw_boolean_v_true : afw_boolean_v_false;
 }
 
 
@@ -762,7 +762,7 @@ afw_function_execute_variable_exists(
 
     value = afw_xctx_get_optionally_qualified_variable(&qualifier, &name, x->xctx);
 
-    return (value) ? afw_value_true : afw_value_false;
+    return (value) ? afw_boolean_v_true : afw_boolean_v_false;
 }
 
 

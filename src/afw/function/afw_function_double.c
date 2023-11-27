@@ -242,8 +242,8 @@ afw_function_execute_is_finite(
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(number, 1, double);
 
     return afw_number_is_finite(number->internal)
-        ? afw_value_true
-        : afw_value_false;
+        ? afw_boolean_v_true
+        : afw_boolean_v_false;
 }
 
 
@@ -378,8 +378,8 @@ afw_function_execute_is_NaN(
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(number, 1, double);
 
     return afw_number_is_NaN(number->internal)
-        ? afw_value_true
-        : afw_value_false;
+        ? afw_boolean_v_true
+        : afw_boolean_v_false;
 }
 
 

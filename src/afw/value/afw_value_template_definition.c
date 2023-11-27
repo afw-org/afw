@@ -100,7 +100,7 @@ impl_afw_value_optional_evaluate(
 
     /* If no values, return empty string value. */
     else if (self->count == 0) {
-        result = afw_value_empty_string;
+        result = afw_v_a_empty_string;
     }
 
     /* If more than one value, produce concatenated string. */

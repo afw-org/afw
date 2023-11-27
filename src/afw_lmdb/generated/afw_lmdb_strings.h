@@ -2785,45 +2785,33 @@ extern const afw_value_string_t \
 
 
 
-/** @brief #define for unquoted integer 1 */
-#define AFW_LMDB_INTEGER_U_1 \
-    1
-
-/** @brief #define for quoted integer 1 */
-#define AFW_LMDB_INTEGER_Q_1 \
-    "1"
-
 /** @brief 'afw_value_integer_t' for 1 */
 extern const afw_value_integer_t \
     afw_lmdb_integer_self_v_1;
 
+/** @brief 'const afw_value_t *' for integer 1 */
+#define afw_lmdb_integer_v_1 \
+    (&afw_lmdb_integer_self_v_1.pub)
 
 
-/** @brief #define for unquoted integer -1 */
-#define AFW_LMDB_INTEGER_U_zz___1 \
-    -1
-
-/** @brief #define for quoted integer -1 */
-#define AFW_LMDB_INTEGER_Q_zz___1 \
-    "-1"
 
 /** @brief 'afw_value_integer_t' for -1 */
 extern const afw_value_integer_t \
     afw_lmdb_integer_self_v_zz___1;
 
+/** @brief 'const afw_value_t *' for integer -1 */
+#define afw_lmdb_integer_v_zz___1 \
+    (&afw_lmdb_integer_self_v_zz___1.pub)
 
 
-/** @brief #define for unquoted boolean false */
-#define AFW_LMDB_BOOLEAN_U_false \
-    false
-
-/** @brief #define for quoted boolean false */
-#define AFW_LMDB_BOOLEAN_Q_false \
-    "false"
 
 /** @brief 'afw_value_boolean_t' for false */
 extern const afw_value_boolean_t \
     afw_lmdb_boolean_self_v_false;
+
+/** @brief 'const afw_value_t *' for boolean false */
+#define afw_lmdb_boolean_v_false \
+    (&afw_lmdb_boolean_self_v_false.pub)
 
 
 

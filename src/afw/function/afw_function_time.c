@@ -108,7 +108,7 @@ afw_function_execute_in_range_time(
 
     /* Return boolean result of in range test. */
     return (usec1 >= usec2 && usec1 <= usec3)
-        ? afw_value_true : afw_value_false;
+        ? afw_boolean_v_true : afw_boolean_v_false;
 
     /** @fixme
      * This still doesn't feel right. 
