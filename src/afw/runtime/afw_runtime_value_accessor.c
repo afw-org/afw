@@ -617,7 +617,7 @@ afw_runtime_value_accessor_ensure_afw_components_extension_loaded(
 {
     afw_environment_load_extension(afw_s_afw_components, NULL, NULL, xctx);
     
-    return afw_value_true;
+    return afw_boolean_v_true;
 }
 
 

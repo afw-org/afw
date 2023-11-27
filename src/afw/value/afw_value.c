@@ -48,46 +48,6 @@ AFW_DEFINE_CONST_DATA(afw_value_t *)
 afw_value_unique_default_case_value =
 { &impl_value_unique_default_case_value.pub };
 
-static const afw_value_integer_t
-impl_value_integer_1 = {
-    {&afw_value_permanent_integer_inf},
-    1
-};
-
-AFW_DEFINE_CONST_DATA(afw_value_t *)
-afw_value_integer_1 =
-{ &impl_value_integer_1.pub };
-
-static const afw_value_string_t
-impl_value_empty_string = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL("")
-};
-
-AFW_DEFINE_CONST_DATA(afw_value_t *)
-afw_value_empty_string =
-{ &impl_value_empty_string.pub };
-
-static const afw_value_boolean_t
-impl_value_true = {
-    {&afw_value_permanent_boolean_inf},
-    AFW_TRUE
-};
-
-AFW_DEFINE_CONST_DATA(afw_value_t *)
-afw_value_true =
-{ &impl_value_true.pub };
-
-static const afw_value_boolean_t
-impl_value_false = {
-    {&afw_value_permanent_boolean_inf},
-    AFW_FALSE
-};
-
-AFW_DEFINE_CONST_DATA(afw_value_t *)
-afw_value_false =
-{ &impl_value_false.pub };
-
 
 /* Compile a value. */
 AFW_DEFINE(const afw_value_t *)

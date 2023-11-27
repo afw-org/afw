@@ -362,10 +362,10 @@ impl_syntax_handler_single_boolean_to_value(
     }
 
     if ((*bv)->bv_len == 4 && memcmp((*bv)->bv_val, "TRUE", 4) == 0) {
-        result = afw_value_true;
+        result = afw_boolean_v_true;
     }
     else if ((*bv)->bv_len == 5 && memcmp((*bv)->bv_val, "FALSE", 5) == 0) {
-        result = afw_value_false;
+        result = afw_boolean_v_false;
     }
     else {
         AFW_THROW_ERROR_Z(general, "Invalid ldap boolean value", xctx);

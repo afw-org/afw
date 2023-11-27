@@ -53390,7 +53390,7 @@ afw_boolean_self_v_true = {
 };
 
 const afw_value_double_t
-afw_double_self_v_1raisedto1 = {
+afw_double_self_v_1 = {
     {&afw_value_permanent_double_inf},
     1.0e1
 };

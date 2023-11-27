@@ -252,6 +252,24 @@ afw_value_as_base64Binary(const afw_value_t *value, afw_xctx_t *xctx)
     return &(((const afw_value_base64Binary_t *)value)->internal);
 }
 
+/* Allocate function for managed data type base64Binary value. */
+AFW_DEFINE(const afw_value_t *)
+afw_value_allocate_managed_base64Binary(
+    const afw_byte_t **ptr,
+    afw_size_t size,
+    afw_xctx_t *xctx)
+{
+    afw_value_base64Binary_managed_t *result;
+
+    result = afw_xctx_malloc(sizeof(afw_value_base64Binary_managed_t) + size, xctx);
+    result->inf = &afw_value_managed_base64Binary_inf;
+    result->internal.size = size;
+    result->internal.ptr = (const afw_byte_t *)result + sizeof(afw_value_base64Binary_managed_t);
+    *ptr = (afw_byte_t *)result->internal.ptr;
+    result->reference_count = 0;
+    return &result->pub;
+}
+
 /* Allocate function for data type base64Binary values. */
 AFW_DEFINE(afw_value_base64Binary_t *)
 afw_value_allocate_unmanaged_base64Binary(const afw_pool_t *p, afw_xctx_t *xctx)
@@ -266,17 +284,23 @@ afw_value_allocate_unmanaged_base64Binary(const afw_pool_t *p, afw_xctx_t *xctx)
 
 /* Create function for managed data type base64Binary value. */
 AFW_DEFINE(const afw_value_t *)
-afw_value_create_managed_base64Binary(const afw_memory_t * internal,
-    const afw_pool_t *p, afw_xctx_t *xctx)
+afw_value_create_managed_base64Binary(
+    const afw_memory_t * internal,
+    afw_xctx_t *xctx)
 {
-    afw_value_base64Binary_t *v;
+    afw_value_base64Binary_managed_t *v;
 
-    v = afw_pool_calloc(p, sizeof(afw_value_base64Binary_t),
-        xctx);
+    afw_size_t size;
+
+    size = (internal) ? internal->size : 0;
+    v = afw_xctx_calloc(
+        sizeof(afw_value_base64Binary_managed_t) + size, xctx);
     v->inf = &afw_value_managed_base64Binary_inf;
-    if (internal) {
-        memcpy(&v->internal, internal, sizeof(afw_memory_t));
-    }
+    v->internal.size = (internal) ? internal->size : 0;
+    v->internal.ptr = (const afw_byte_t *)v +
+        sizeof(afw_value_base64Binary_managed_t);
+    memcpy((void *)v->internal.ptr, internal->ptr, size);
+
     return &v->pub;
 }
 
@@ -396,17 +420,28 @@ impl_afw_value_managed_optional_release(
     const afw_value_t *instance,
     afw_xctx_t *xctx)
 {
-    /** @todo this needs to release reference of value or free it. */
+    afw_value_base64Binary_managed_t *self =
+        (afw_value_base64Binary_managed_t *)instance;
+
+    /* If reference count is 1 or less, free value's memory. */
+    if (self->reference_count <= 1) {
+        afw_pool_free_memory((void *)instance, xctx);
+    }
+    
+    /* If not freeing memory, decrement reference count. */
+    else {
+        self->reference_count--;
+    }
 }
 
-/* Implementation of method get_reference for value. */
+/* Implementation of method get_reference for unmanaged value. */
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_get_reference(
     const afw_value_t *instance,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    /** @todo this needs to addref or return a copy. */
+    /* No reference counting takes place for unmanaged value. */
     return instance;
 }
 
@@ -418,7 +453,11 @@ impl_afw_value_managed_get_reference(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    /* For managed value, FIXME. */
+    afw_value_base64Binary_managed_t *self =
+        (afw_value_base64Binary_managed_t *)instance;
+
+    /* Increment reference count and return instance. */
+    self->reference_count++;
     return instance;
 }
 

@@ -153,10 +153,10 @@ afw_function_execute_at_least_one_member_of(
         afw_array_get_next_internal(array1->internal, &iterator,
             &data_type, &internal, x->xctx);
         if (!internal) {
-            return afw_value_false;
+            return afw_boolean_v_false;
         }
         if (impl_is_in_array(data_type, internal, array2->internal, x->xctx)) {
-            return afw_value_true;
+            return afw_boolean_v_true;
         }
     }
 }
@@ -437,8 +437,8 @@ afw_function_execute_ends_with(
             memcmp(a1->internal.s + (a1->internal.len - a2->internal.len),
                 a2->internal.s, a2->internal.len) == 0
         )
-        ? afw_value_true
-        : afw_value_false;
+        ? afw_boolean_v_true
+        : afw_boolean_v_false;
 }
 
 
@@ -503,11 +503,11 @@ afw_function_execute_eq(
     /* Handle undefined/null special case. */
     if (afw_value_is_undefined(arg1) || afw_value_is_null(arg1)) {
         return (afw_value_is_undefined(arg2) || afw_value_is_null(arg2))
-            ? afw_value_true
-            : afw_value_false;
+            ? afw_boolean_v_true
+            : afw_boolean_v_false;
     }
     if (afw_value_is_undefined(arg2) || afw_value_is_null(arg2)) {
-        return afw_value_false;
+        return afw_boolean_v_false;
     }
 
     arg1_data_type = afw_value_get_data_type(arg1, x->xctx);
@@ -524,13 +524,13 @@ afw_function_execute_eq(
             afw_number_is_NaN(((afw_value_double_t *)arg2)->internal)
         ))
     {
-        return afw_value_false;
+        return afw_boolean_v_false;
     }
 
     cmp = afw_data_type_compare_internal(arg1_data_type,
         AFW_VALUE_INTERNAL(arg1), AFW_VALUE_INTERNAL(arg2), x->xctx);
 
-    return (cmp == 0) ? afw_value_true : afw_value_false;
+    return (cmp == 0) ? afw_boolean_v_true : afw_boolean_v_false;
 }
 
 
@@ -591,11 +591,11 @@ afw_function_execute_eqx(
     /* Handle undefined/null special case. */
     if (afw_value_is_undefined(arg1)) {
         return (afw_value_is_undefined(arg2))
-            ? afw_value_true
-            : afw_value_false;
+            ? afw_boolean_v_true
+            : afw_boolean_v_false;
     }
     if (afw_value_is_undefined(arg2)) {
-        return afw_value_false;
+        return afw_boolean_v_false;
     }
 
     /* If either arg is NaN, return false. */
@@ -607,7 +607,7 @@ afw_function_execute_eqx(
         afw_number_is_NaN(((afw_value_double_t *)arg2)->internal))
         )
     {
-        return afw_value_false;
+        return afw_boolean_v_false;
     }
 
     arg1_data_type = afw_value_get_data_type(arg1, x->xctx);
@@ -622,7 +622,7 @@ afw_function_execute_eqx(
             AFW_VALUE_INTERNAL(arg1), AFW_VALUE_INTERNAL(arg2), x->xctx);
     }
 
-    return (cmp == 0) ? afw_value_true : afw_value_false;
+    return (cmp == 0) ? afw_boolean_v_true : afw_boolean_v_false;
 }
 
 
@@ -693,14 +693,14 @@ afw_function_execute_ge(
             afw_number_is_NaN(((afw_value_double_t *)arg2)->internal)
         ))
     {
-        return afw_value_false;
+        return afw_boolean_v_false;
     }
 
     cmp = afw_data_type_compare_internal(
         arg1_data_type,
         AFW_VALUE_INTERNAL(arg1), AFW_VALUE_INTERNAL(arg2), x->xctx);
 
-    return (cmp >= 0) ? afw_value_true : afw_value_false;
+    return (cmp >= 0) ? afw_boolean_v_true : afw_boolean_v_false;
 }
 
 
@@ -771,13 +771,13 @@ afw_function_execute_gt(
             afw_number_is_NaN(((afw_value_double_t *)arg2)->internal)
         ))
     {
-        return afw_value_false;
+        return afw_boolean_v_false;
     }
 
     cmp = afw_data_type_compare_internal(arg1_data_type,
         AFW_VALUE_INTERNAL(arg1), AFW_VALUE_INTERNAL(arg2), x->xctx);
 
-    return (cmp > 0) ? afw_value_true : afw_value_false;
+    return (cmp > 0) ? afw_boolean_v_true : afw_boolean_v_false;
 }
 
 
@@ -861,11 +861,11 @@ afw_function_execute_includes(
 
     for ( ; a2->internal.len <= len; c++, len--) {
         if (memcmp(c, a2->internal.s, a2->internal.len) == 0) {
-            return afw_value_true;
+            return afw_boolean_v_true;
         }
     }
 
-    return afw_value_false;
+    return afw_boolean_v_false;
 }
 
 
@@ -1108,8 +1108,8 @@ afw_function_execute_is_in(
 
     return impl_is_in_array(data_type, AFW_VALUE_INTERNAL(value),
         array->internal, x->xctx)
-        ? afw_value_true
-        : afw_value_false;
+        ? afw_boolean_v_true
+        : afw_boolean_v_false;
 }
 
 
@@ -1180,13 +1180,13 @@ afw_function_execute_le(
             afw_number_is_NaN(((afw_value_double_t *)arg2)->internal)
         ))
     {
-        return afw_value_false;
+        return afw_boolean_v_false;
     }
 
     cmp = afw_data_type_compare_internal(arg1_data_type,
         AFW_VALUE_INTERNAL(arg1), AFW_VALUE_INTERNAL(arg2), x->xctx);
 
-    return (cmp <= 0) ? afw_value_true : afw_value_false;
+    return (cmp <= 0) ? afw_boolean_v_true : afw_boolean_v_false;
 }
 
 
@@ -1324,13 +1324,13 @@ afw_function_execute_lt(
             afw_number_is_NaN(((afw_value_double_t *)arg2)->internal)
         ))
     {
-        return afw_value_false;
+        return afw_boolean_v_false;
     }
 
     cmp = afw_data_type_compare_internal(arg1_data_type,
         AFW_VALUE_INTERNAL(arg1), AFW_VALUE_INTERNAL(arg2), x->xctx);
 
-    return (cmp < 0) ? afw_value_true : afw_value_false;
+    return (cmp < 0) ? afw_boolean_v_true : afw_boolean_v_false;
 }
 
 
@@ -1518,11 +1518,11 @@ afw_function_execute_ne(
     /* Handle undefined/null special case. */
     if (afw_value_is_undefined(arg1) || afw_value_is_null(arg1)) {
         return (afw_value_is_undefined(arg2) || afw_value_is_null(arg2))
-            ? afw_value_false
-            : afw_value_true;
+            ? afw_boolean_v_false
+            : afw_boolean_v_true;
     }
     if (afw_value_is_undefined(arg2) || afw_value_is_null(arg2)) {
-        return afw_value_true;
+        return afw_boolean_v_true;
     }
 
     arg1_data_type = afw_value_get_data_type(arg1, x->xctx);
@@ -1539,15 +1539,15 @@ afw_function_execute_ne(
             afw_number_is_NaN(((afw_value_double_t *)arg2)->internal)
         ))
     {
-        return afw_value_true;
+        return afw_boolean_v_true;
     }
 
     cmp = afw_data_type_compare_internal(arg1_data_type,
         AFW_VALUE_INTERNAL(arg1), AFW_VALUE_INTERNAL(arg2), x->xctx);
 
     return (cmp == 0)
-        ? afw_value_false
-        : afw_value_true;
+        ? afw_boolean_v_false
+        : afw_boolean_v_true;
 }
 
 
@@ -1608,11 +1608,11 @@ afw_function_execute_nex(
     /* Handle undefined/null special case. */
     if (afw_value_is_undefined(arg1)) {
         return (afw_value_is_undefined(arg2))
-            ? afw_value_false
-            : afw_value_true;
+            ? afw_boolean_v_false
+            : afw_boolean_v_true;
     }
     if (afw_value_is_undefined(arg2)) {
-        return afw_value_true;
+        return afw_boolean_v_true;
     }
 
     /* If either arg is NaN, return false. */
@@ -1624,7 +1624,7 @@ afw_function_execute_nex(
         afw_number_is_NaN(((afw_value_double_t *)arg2)->internal))
         )
     {
-        return afw_value_true;
+        return afw_boolean_v_true;
     }
 
     arg1_data_type = afw_value_get_data_type(arg1, x->xctx);
@@ -1639,7 +1639,7 @@ afw_function_execute_nex(
             AFW_VALUE_INTERNAL(arg1), AFW_VALUE_INTERNAL(arg2), x->xctx);
     }
 
-    return (cmp == 0) ? afw_value_false : afw_value_true;
+    return (cmp == 0) ? afw_boolean_v_false : afw_boolean_v_true;
 }
 
 
@@ -1776,7 +1776,7 @@ afw_function_execute_regexp_match(
     }
 
     /* xmlRegexpExec returns: 1 if it matches, 0 if not */
-    result = xmlRegexpExec(rx, s_z) == 0 ? afw_value_false : afw_value_true;
+    result = xmlRegexpExec(rx, s_z) == 0 ? afw_boolean_v_false : afw_boolean_v_true;
     xmlRegFreeRegexp(rx);
 
     return result;
@@ -1836,7 +1836,7 @@ afw_function_execute_repeat(
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(times, 2, integer);
 
     if (times->internal <= 0) {
-        return afw_value_empty_string;
+        return afw_v_a_empty_string;
     }
 
     /** @fixme How should this limit be handled? 1000 was arbitrary. */
@@ -1939,7 +1939,7 @@ afw_function_execute_replace(
     /* Count number of replacement that will be made. */
     afw_memory_copy(&remaining, &(((afw_value_string_t *)value)->internal));
     if (remaining.len == 0) {
-        return afw_value_empty_string;
+        return afw_v_a_empty_string;
     }
     for (count = 0; count < limit && remaining.len > match->internal.len; )
     {
@@ -2055,8 +2055,8 @@ afw_function_execute_set_equals(
 
     return (impl_is_subset_array(array1->internal, array2->internal, x->xctx) &&
         impl_is_subset_array(array2->internal, array1->internal, x->xctx))
-        ? afw_value_true
-        : afw_value_false;
+        ? afw_boolean_v_true
+        : afw_boolean_v_false;
 }
 
 
@@ -2238,8 +2238,8 @@ afw_function_execute_starts_with(
             a1->internal.len >= a2->internal.len &&
             memcmp(a1->internal.s, a2->internal.s, a2->internal.len) == 0
         )
-        ? afw_value_true
-        : afw_value_false;
+        ? afw_boolean_v_true
+        : afw_boolean_v_false;
 }
 
 
@@ -2301,8 +2301,8 @@ afw_function_execute_subset(
     }
 
     return impl_is_subset_array(array1->internal, array2->internal, x->xctx)
-        ? afw_value_true
-        : afw_value_false;
+        ? afw_boolean_v_true
+        : afw_boolean_v_false;
 }
 
 
@@ -2896,11 +2896,11 @@ afw_function_execute_is(
     AFW_FUNCTION_EVALUATE_PARAMETER(arg, 1);
 
     if (afw_value_is_undefined(arg)) {
-        return afw_value_false;
+        return afw_boolean_v_false;
     }
 
     data_type = afw_value_get_data_type(arg, x->xctx);
     return (x->data_type == data_type)
-        ? afw_value_true
-        : afw_value_false;
+        ? afw_boolean_v_true
+        : afw_boolean_v_false;
 }

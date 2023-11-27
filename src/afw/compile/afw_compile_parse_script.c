@@ -275,7 +275,7 @@ afw_compile_parse_AssignmentOperation(
 
     if (function) {
         if (expression_is_one) {
-            result = afw_value_integer_1;
+            result = afw_integer_v_1;
         }
         else {
             result = afw_compile_parse_Expression(parser);
@@ -1993,7 +1993,7 @@ afw_compile_parse_TestScript(
         if (afw_utf8_equal(key, afw_s_skip)) {
             if (afw_utf8_equal(string, afw_s_true)) {
                 afw_object_set_property(test_script_object,
-                    key, afw_value_true, parser->xctx);
+                    key, afw_boolean_v_true, parser->xctx);
             }
             else if (!afw_utf8_equal(string, afw_s_false)) {
                 AFW_COMPILE_THROW_ERROR_Z(
@@ -2058,7 +2058,7 @@ afw_compile_parse_TestScript(
                     AFW_COMPILE_THROW_ERROR_Z("'test:' missing");
                 }
                 afw_object_set_property(test_object,
-                    key, afw_value_true, parser->xctx);
+                    key, afw_boolean_v_true, parser->xctx);
             }
             else if (!afw_utf8_equal(string, afw_s_false)) {
                 AFW_COMPILE_THROW_ERROR_Z(

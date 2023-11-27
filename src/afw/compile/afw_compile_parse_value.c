@@ -516,8 +516,8 @@ afw_compile_parse_Json(afw_compile_parser_t *parser)
 
     case afw_compile_token_type_boolean:
         value = (parser->token->boolean)
-            ? afw_value_true
-            : afw_value_false;
+            ? afw_boolean_v_true
+            : afw_boolean_v_false;
         break;
 
     case afw_compile_token_type_integer:
@@ -605,8 +605,8 @@ afw_compile_parse_Literal(
     case afw_compile_token_type_boolean:
         matches_production = true;
         value = (parser->token->boolean)
-            ? afw_value_true
-            : afw_value_false;
+            ? afw_boolean_v_true
+            : afw_boolean_v_false;
         break;
 
     case afw_compile_token_type_integer:

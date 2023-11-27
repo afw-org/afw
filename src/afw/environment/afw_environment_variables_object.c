@@ -53,7 +53,7 @@ impl_load_all_variables(impl_self_t *self, afw_xctx_t *xctx)
 
         if (!afw_object_has_property(self->properties, &property_name, xctx)) {
             if (!*c) {
-                value = afw_value_empty_string;
+                value = afw_v_a_empty_string;
             }
             else {
                 value = afw_value_create_string_from_u8z(c + 1,

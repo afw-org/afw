@@ -348,7 +348,7 @@ impl_parse_schema_entry(
             afw_utf8_z_equal(kwd, "NO-USER-MODIFICATION")
             )
         {
-            val = afw_value_true;
+            val = afw_boolean_v_true;
         }
 
         /* If any other keyword, get following value and set. */
@@ -662,14 +662,14 @@ impl_make_property_type_and_handler_hash_tables(
                     afw_object_set_property(
                         attribute_type->property_type_object,
                         afw_s_allowWrite,
-                        afw_value_false,
+                        afw_boolean_v_false,
                         xctx);
                 }
 
                 /* If you can read it, you can query it. */
                 afw_object_set_property_as_boolean(
                     attribute_type->property_type_object,
-                    afw_s_allowQuery, afw_value_true, xctx);
+                    afw_s_allowQuery, afw_boolean_v_true, xctx);
 
                 /* Description. */
                 value = afw_object_get_property(attribute_type_object, afw_ldap_s_DESC,
@@ -739,7 +739,7 @@ impl_a_property_to_object_type(
     /* If required, add required property. */
     if (required) {
         afw_object_set_property(prop, afw_s_required,
-            afw_value_true, xctx);
+            afw_boolean_v_true, xctx);
     }
 }
 
@@ -1070,16 +1070,16 @@ impl_make_object_types(
         afw_object_set_property(object_type_object, afw_s_allowEntity,
             (afw_object_old_get_property_as_boolean_deprecated(object_class_object,
                 afw_ldap_s_STRUCTURAL, xctx))
-            ? afw_value_true
-            : afw_value_false,
+            ? afw_boolean_v_true
+            : afw_boolean_v_false,
             xctx);
 
         afw_object_set_property(object_type_object, afw_s_allowAdd,
-            afw_value_true, xctx);
+            afw_boolean_v_true, xctx);
         afw_object_set_property(object_type_object, afw_s_allowChange,
-            afw_value_true, xctx);
+            afw_boolean_v_true, xctx);
         afw_object_set_property(object_type_object, afw_s_allowDelete,
-            afw_value_true, xctx);
+            afw_boolean_v_true, xctx);
 
         /*
          * Set otherProperties to cover all operational properties.  These
@@ -1088,7 +1088,7 @@ impl_make_object_types(
         other_properties = afw_object_create_embedded(
             object_type_object, afw_s_otherProperties, xctx);
         afw_object_set_property(other_properties,
-            afw_s_allowWrite, afw_value_false, xctx);
+            afw_s_allowWrite, afw_boolean_v_false, xctx);
 
         /* Add object type to object_type_objects ht. */
         apr_hash_set(metadata->object_type_objects, id->s, id->len,

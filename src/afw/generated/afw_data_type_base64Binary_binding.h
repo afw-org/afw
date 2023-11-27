@@ -71,13 +71,13 @@ afw_value_unmanaged_base64Binary_inf;
 /**
  * @brief Managed evaluated value inf for data type base64Binary.
  *
- * The lifetime of the value is managed by reference.
+ * The lifetime of the value is managed by reference count in xctx->p.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_managed_base64Binary_inf;
 
 /**
- * @brief Permanent managed (life of afw environment) value inf for data type base64Binary.
+ * @brief Permanent (life of afw environment) value inf for data type base64Binary.
  *
  * The lifetime of the value is the lifetime of the afw environment.
  */
@@ -127,8 +127,11 @@ afw_value_permanent_base64Binary_inf;
  * @param xctx of caller.
  */
 AFW_DECLARE(void)
-afw_data_type_base64Binary_to_internal(afw_memory_t *to_internal,
-    const afw_utf8_t *from_utf8, const afw_pool_t *p, afw_xctx_t *xctx);
+afw_data_type_base64Binary_to_internal(
+    afw_memory_t *to_internal,
+    const afw_utf8_t *from_utf8,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
 
 /**
  * @brief Convert data type base64Binary internal representation to utf-8.
@@ -138,8 +141,10 @@ afw_data_type_base64Binary_to_internal(afw_memory_t *to_internal,
  * @return (const afw_utf8_t *) normalized string representation of value.
  */
 AFW_DECLARE(const afw_utf8_t *)
-afw_data_type_base64Binary_to_utf8(const afw_memory_t * internal,
-    const afw_pool_t *p, afw_xctx_t *xctx);
+afw_data_type_base64Binary_to_utf8(
+    const afw_memory_t * internal,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
 
 /** @brief struct for data type base64Binary values. */
 struct afw_value_base64Binary_s {
@@ -153,13 +158,36 @@ struct afw_value_base64Binary_s {
     afw_memory_t internal;
 };
 
+/** @brief struct for managed data type base64Binary values.
+ *
+ * This is the same as afw_value_base64Binary_s with the addition of a
+ * reference count. This is intended for internal use only.
+ */
+struct afw_value_base64Binary_managed_s {
+    /** @brief  Value inf union with afw_value_t pub to reduce casting needed. */
+    union {
+        const afw_value_inf_t *inf;
+        afw_value_t pub;
+    };
+
+    /** @brief  Internal afw_memory_t value. */
+    afw_memory_t internal;
+
+    /** @brief  Reference count for value. */
+    afw_size_t reference_count;
+};
+
 /**
  * @brief Typesafe cast of data type base64Binary.
  * @param value (const afw_value_t *).
  * @return (const afw_memory_t *)
  */
 AFW_DECLARE(const afw_memory_t *)
-afw_value_as_base64Binary(const afw_value_t *value, afw_xctx_t *xctx);
+afw_value_as_base64Binary(
+    const afw_value_t *value,
+    afw_xctx_t *xctx);
+
+/* FIXME: The allocates for managed will probably go away. */
 
 /**
  * @brief Allocate function for reference data type base64Binary value.
@@ -168,8 +196,13 @@ afw_value_as_base64Binary(const afw_value_t *value, afw_xctx_t *xctx);
  * @param xctx of caller.
  * @return Allocated afw_value_t with appropriate inf set.
  *
- * This value and memory for the specified size is allocated in xctx->p.
- * Set *ptr for the specified size to the bytes of the value.
+ * This allocates both the memory for the value and the memory for the internal
+ * afw_memory_t for the 'size' specified. A non-const pointer 'ptr' is/
+ * returned in the 'ptr' parameter, where its storage should be modified. This
+ * can be a little more efficient than using the corresponding create since the
+ * create makes a copy.
+ *
+ * The memory is allocated in xctx->p and its lifetime is managed by reference count.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_allocate_managed_base64Binary(
@@ -182,6 +215,8 @@ afw_value_allocate_managed_base64Binary(
  * @param p to use for returned value.
  * @param xctx of caller.
  * @return Allocated afw_value_base64Binary_t with appropriate inf set.
+ *
+ * The value's lifetime is not managed so it will last for the life of the pool.
  */
 AFW_DECLARE(afw_value_base64Binary_t *)
 afw_value_allocate_unmanaged_base64Binary(
@@ -191,13 +226,15 @@ afw_value_allocate_unmanaged_base64Binary(
 /**
  * @brief Create function for managed data type base64Binary value.
  * @param internal.
- * @param p to use for returned value.
  * @param xctx of caller.
  * @return Created const afw_value_t *.
+ *
+ * The value's lifetime is managed by reference count.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_create_managed_base64Binary(const afw_memory_t * internal,
-    const afw_pool_t *p, afw_xctx_t *xctx);
+afw_value_create_managed_base64Binary(
+    const afw_memory_t * internal,
+    afw_xctx_t *xctx);
 
 /**
  * @brief Create function for managed data type base64Binary slice value.
@@ -218,11 +255,13 @@ afw_value_create_managed_base64Binary_slice(
     afw_xctx_t *xctx);
 
 /**
- * @brief Create function for data type base64Binary value.
+ * @brief Create function for unmanaged data type base64Binary value.
  * @param internal.
  * @param p to use for returned value.
  * @param xctx of caller.
  * @return Created const afw_value_t *.
+ *
+ * The value's lifetime is not managed so it will last for the life of the pool.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_create_unmanaged_base64Binary(const afw_memory_t * internal,

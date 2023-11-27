@@ -905,7 +905,7 @@ afw_error_add_to_object(
 
     /* Add properties to object. */
 
-    afw_object_set_property(object, afw_s_error, afw_value_true, xctx);
+    afw_object_set_property(object, afw_s_error, afw_boolean_v_true, xctx);
 
     afw_object_set_property_as_integer(object,
         afw_s_errorCode, error->code, xctx);

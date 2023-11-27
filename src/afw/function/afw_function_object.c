@@ -253,7 +253,7 @@ afw_function_execute_property_delete(
         afw_object_set_property(object->internal,
             &name->internal, NULL, x->xctx);
     }
-    return (has) ? afw_value_true : afw_value_false;
+    return (has) ? afw_boolean_v_true : afw_boolean_v_false;
 }
 
 
@@ -338,7 +338,7 @@ afw_function_execute_property_delete_by_reference(
         afw_object_set_property(object->internal,
             &name->internal, NULL, x->xctx);
     }
-    return (has) ? afw_value_true : afw_value_false;
+    return (has) ? afw_boolean_v_true : afw_boolean_v_false;
 }
 
 
@@ -387,7 +387,7 @@ afw_function_execute_property_exists(
 
     has = afw_object_has_property(object->internal, &name->internal, x->xctx);
 
-    return (has) ? afw_value_true : afw_value_false;
+    return (has) ? afw_boolean_v_true : afw_boolean_v_false;
 }
 
 
@@ -502,6 +502,6 @@ afw_function_execute_property_is_not_null(
         x->xctx);
 
     return (value && !afw_value_is_null(value))
-        ? afw_value_true
-        : afw_value_false;
+        ? afw_boolean_v_true
+        : afw_boolean_v_false;
 }

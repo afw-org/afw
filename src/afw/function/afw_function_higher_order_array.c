@@ -158,7 +158,7 @@ impl_of(
     impl_over_array(x, impl_of_cb, (void *)&data);
 
     /* Return true or false based on result. */
-    return data.result ? afw_value_true : afw_value_false;
+    return data.result ? afw_boolean_v_true : afw_boolean_v_false;
 }
 
 static const afw_value_t *
@@ -261,7 +261,7 @@ impl_bag_of_bag(
     }
 
     /* If made it though loop, result is whatever is_true is. */
-    return (is_true) ? afw_value_true : afw_value_false;
+    return (is_true) ? afw_boolean_v_true : afw_boolean_v_false;
 }
 
 

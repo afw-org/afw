@@ -153,15 +153,10 @@ def generate_h(options, generated_by, prefix, generated_dir_path):
                     fd.write('\n/** @brief \'const afw_value_t *\' for ' + q_name + ' */\n')
                     fd.write('#define ' + use_prefix + 'v_' + name + ' \\\n    (&' +  use_prefix + 'self_v_' + name + '.pub)\n')              
                 elif supported_dataTypes[dataType] == '':
-                    fd.write('\n/** @brief #define for unquoted ' + dataType + ' ' + value + ' */\n')
-                    fd.write('#define ' + use_prefix.upper() + 'U_' + name  + ' \\\n')
-                    fd.write('    ' + value + '\n')
-                    fd.write('\n/** @brief #define for quoted ' + dataType + ' ' + value + ' */\n')
-                    fd.write('#define ' + use_prefix.upper() + 'Q_' + name  + ' \\\n')
-                    line = repr(value)[1:-1].replace('"', '\\"')
-                    fd.write('    "' + line + '"\n')
                     fd.write('\n/** @brief \'afw_value_' + dataType + '_t\' for ' + value + ' */\n')
                     fd.write('extern const afw_value_' + dataType + '_t \\\n    ' + use_prefix + 'self_v_' + name + ';\n')            
+                    fd.write('\n/** @brief \'const afw_value_t *\' for ' + dataType + ' ' + value + ' */\n')
+                    fd.write('#define ' + use_prefix + 'v_' + name + ' \\\n    (&' +  use_prefix + 'self_v_' + name + '.pub)\n')              
                 else:
                     msg.error_exit(
                         'Unsupported supported_dataTypes[\'' +

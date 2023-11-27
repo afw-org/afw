@@ -120,7 +120,7 @@ impl_read_file_object(
             object_id,
             xctx);
         afw_object_set_property(object,
-            afw_vfs_s_isDirectory, afw_value_true, xctx);
+            afw_vfs_s_isDirectory, afw_boolean_v_true, xctx);
         vfs_path = afw_utf8_printf(p, xctx,
             "/" AFW_UTF8_FMT "/" AFW_UTF8_FMT,
             AFW_UTF8_FMT_ARG(&self->pub.adaptor->adaptor_id),

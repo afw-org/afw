@@ -252,6 +252,24 @@ afw_value_as_json(const afw_value_t *value, afw_xctx_t *xctx)
     return &(((const afw_value_json_t *)value)->internal);
 }
 
+/* Allocate function for managed data type json value. */
+AFW_DEFINE(const afw_value_t *)
+afw_value_allocate_managed_json(
+    afw_utf8_octet_t **s,
+    afw_size_t len,
+    afw_xctx_t *xctx)
+{
+    afw_value_json_managed_t *result;
+
+    result = afw_xctx_malloc(sizeof(afw_value_json_managed_t) + len, xctx);
+    result->inf = &afw_value_managed_json_inf;
+    result->internal.len = len;
+    result->internal.s = (const afw_utf8_octet_t *)result + sizeof(afw_value_json_managed_t);
+    *s = (afw_utf8_octet_t *)result->internal.s;
+    result->reference_count = 0;
+    return &result->pub;
+}
+
 /* Allocate function for data type json values. */
 AFW_DEFINE(afw_value_json_t *)
 afw_value_allocate_unmanaged_json(const afw_pool_t *p, afw_xctx_t *xctx)
@@ -266,17 +284,22 @@ afw_value_allocate_unmanaged_json(const afw_pool_t *p, afw_xctx_t *xctx)
 
 /* Create function for managed data type json value. */
 AFW_DEFINE(const afw_value_t *)
-afw_value_create_managed_json(const afw_utf8_t * internal,
-    const afw_pool_t *p, afw_xctx_t *xctx)
+afw_value_create_managed_json(
+    const afw_utf8_t * internal,
+    afw_xctx_t *xctx)
 {
-    afw_value_json_t *v;
+    afw_value_json_managed_t *v;
+    afw_size_t len;
 
-    v = afw_pool_calloc(p, sizeof(afw_value_json_t),
-        xctx);
+    len = (internal) ? internal->len : 0;
+    v = afw_xctx_calloc(
+        sizeof(afw_value_json_managed_t) + len, xctx);
     v->inf = &afw_value_managed_json_inf;
-    if (internal) {
-        memcpy(&v->internal, internal, sizeof(afw_utf8_t));
-    }
+    v->internal.len = len;
+    v->internal.s = (const afw_utf8_octet_t *)v +
+        sizeof(afw_value_json_managed_t);
+    memcpy((void *)v->internal.s, internal->s, len);
+
     return &v->pub;
 }
 
@@ -396,17 +419,28 @@ impl_afw_value_managed_optional_release(
     const afw_value_t *instance,
     afw_xctx_t *xctx)
 {
-    /** @todo this needs to release reference of value or free it. */
+    afw_value_json_managed_t *self =
+        (afw_value_json_managed_t *)instance;
+
+    /* If reference count is 1 or less, free value's memory. */
+    if (self->reference_count <= 1) {
+        afw_pool_free_memory((void *)instance, xctx);
+    }
+    
+    /* If not freeing memory, decrement reference count. */
+    else {
+        self->reference_count--;
+    }
 }
 
-/* Implementation of method get_reference for value. */
+/* Implementation of method get_reference for unmanaged value. */
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_get_reference(
     const afw_value_t *instance,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    /** @todo this needs to addref or return a copy. */
+    /* No reference counting takes place for unmanaged value. */
     return instance;
 }
 
@@ -418,7 +452,11 @@ impl_afw_value_managed_get_reference(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    /* For managed value, FIXME. */
+    afw_value_json_managed_t *self =
+        (afw_value_json_managed_t *)instance;
+
+    /* Increment reference count and return instance. */
+    self->reference_count++;
     return instance;
 }
 

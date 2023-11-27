@@ -380,7 +380,7 @@ afw_action_perform(
                 impl_add_stream_properties(action_response_entry, p, xctx);
                 stream = afw_stream_standard(response_body, xctx);
                 afw_object_set_property(action_response_entry,
-                    afw_s_intermediate, afw_value_true, xctx);
+                    afw_s_intermediate, afw_boolean_v_true, xctx);
                 afw_content_type_write_value(
                     response_content_type,
                     action_response_entry_value,

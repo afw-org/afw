@@ -143,7 +143,7 @@ impl_log_current_variable_get_cb(
             result = (const afw_value_t *)source;
         }
         else {
-            result = afw_value_empty_string;
+            result = afw_v_a_empty_string;
         }
     }
 

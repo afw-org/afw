@@ -723,7 +723,7 @@ impl_execute_returnObject_thunk(
     /* Call original callback. */
     abort = cb_ctx->original_callback(object, cb_ctx->original_context, xctx);
 
-    return abort ? afw_value_true : afw_value_false;
+    return abort ? afw_boolean_v_true : afw_boolean_v_false;
 }
 
 

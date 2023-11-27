@@ -512,13 +512,13 @@ impl_update_allow(
     afw_xctx_t *xctx)
 {
     afw_object_set_property(object, afw_s_allowEntity,
-        (allow_entity) ? afw_value_true : afw_value_false, xctx);
+        (allow_entity) ? afw_boolean_v_true : afw_boolean_v_false, xctx);
     afw_object_set_property(object, afw_s_allowAdd,
-        (allow_write) ? afw_value_true : afw_value_false, xctx);
+        (allow_write) ? afw_boolean_v_true : afw_boolean_v_false, xctx);
     afw_object_set_property(object, afw_s_allowChange,
-        (allow_write) ? afw_value_true : afw_value_false, xctx);
+        (allow_write) ? afw_boolean_v_true : afw_boolean_v_false, xctx);
     afw_object_set_property(object, afw_s_allowDelete,
-        (allow_write) ? afw_value_true : afw_value_false, xctx);
+        (allow_write) ? afw_boolean_v_true : afw_boolean_v_false, xctx);
 }
 
 
@@ -599,17 +599,17 @@ afw_adaptor_impl_generic_object_type_object_get(
     afw_object_set_property_as_string(result, afw_s_objectType,
         objectType, xctx);
     afw_object_set_property_as_boolean(result,
-        afw_s_allowAdd, afw_value_true, xctx);
+        afw_s_allowAdd, afw_boolean_v_true, xctx);
     afw_object_set_property_as_boolean(result,
-        afw_s_allowChange, afw_value_true, xctx);
+        afw_s_allowChange, afw_boolean_v_true, xctx);
     afw_object_set_property_as_boolean(result,
-        afw_s_allowDelete, afw_value_true, xctx);
+        afw_s_allowDelete, afw_boolean_v_true, xctx);
     other_properties = afw_object_create_embedded(result,
         afw_s_otherProperties, xctx);
     afw_object_set_property_as_boolean(other_properties,
-        afw_s_allowQuery, afw_value_true, xctx);
+        afw_s_allowQuery, afw_boolean_v_true, xctx);
     afw_object_set_property_as_boolean(other_properties,
-        afw_s_allowWrite, afw_value_true, xctx);
+        afw_s_allowWrite, afw_boolean_v_true, xctx);
 
     return result;
 }

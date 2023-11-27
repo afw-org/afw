@@ -622,8 +622,8 @@ impl_resolve_property(
 
     case afw_runtime_unresolved_primitive_type_boolean:
         resolved->value = (unresolved->value.boolean)
-            ? afw_value_true
-            : afw_value_false;
+            ? afw_boolean_v_true
+            : afw_boolean_v_false;
         break;
 
     case afw_runtime_unresolved_primitive_type_number:

@@ -356,14 +356,6 @@ afw_value_undefined;
 
 
 /**
- * @brief Adaptive value integer 1.
- */
-AFW_DECLARE_CONST_DATA(afw_value_t *)
-afw_value_integer_1;
-
-
-
-/**
  * @brief Unique value used to represent default case for switch().
  *
  * This is a unique value used to make the default case in parameters passed
@@ -374,32 +366,15 @@ AFW_DECLARE_CONST_DATA(afw_value_t *)
 afw_value_unique_default_case_value;
 
 
-/** @brief Adaptive value empty string. */
-AFW_DECLARE_CONST_DATA(afw_value_t *)
-afw_value_empty_string;
-
-
-
-/** @brief Adaptive value true. */
-AFW_DECLARE_CONST_DATA(afw_value_t *)
-afw_value_true;
-
-
-
-/** @brief Adaptive value false. */
-AFW_DECLARE_CONST_DATA(afw_value_t *)
-afw_value_false;
-
-
 
 /**
  * @brief Value for boolean variable.
  * @param variable
- * @return afw_value_true or afw_value_false
+ * @return afw_boolean_v_true or afw_boolean_v_false
  */
 #define afw_value_for_boolean(variable) (variable) \
-    ? afw_value_true \
-    : afw_value_false
+    ? afw_boolean_v_true \
+    : afw_boolean_v_false
 
 
 

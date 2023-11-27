@@ -408,11 +408,11 @@ impl_harvest_object_type(
         afw_s__AdaptiveObjectType_,
         object_type_id, xctx);
     afw_object_meta_set_property(result,
-        afw_s_allowAdd, afw_value_false, xctx);
+        afw_s_allowAdd, afw_boolean_v_false, xctx);
     afw_object_meta_set_property(result,
-        afw_s_allowChange, afw_value_false, xctx);
+        afw_s_allowChange, afw_boolean_v_false, xctx);
     afw_object_meta_set_property(result,
-        afw_s_allowDelete, afw_value_false, xctx);
+        afw_s_allowDelete, afw_boolean_v_false, xctx);
 
     /* If object has resolvedParentPaths, use as parentPaths. */
     value = afw_object_meta_get_property(object,

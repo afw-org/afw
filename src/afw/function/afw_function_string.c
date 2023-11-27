@@ -71,7 +71,7 @@ afw_function_execute_add_string(
 
     /* If length is 0, return empty string. */
     if (len == 0) {
-        return afw_value_empty_string;
+        return afw_v_a_empty_string;
     }
 
     /* Concatenate strings. */
@@ -147,7 +147,7 @@ afw_function_execute_concat(
 
     /* If length is 0, return empty string. */
     if (len == 0) {
-        return afw_value_empty_string;
+        return afw_v_a_empty_string;
     }
 
     /* Concatenate strings. */
@@ -211,7 +211,7 @@ afw_function_execute_eq_ignore_case_string(
     cmp = afw_utf8_compare_ignore_case(
         &arg1->internal, &arg2->internal, x->xctx);
 
-    return (cmp == 0) ? afw_value_true : afw_value_false;
+    return (cmp == 0) ? afw_boolean_v_true : afw_boolean_v_false;
 }
 
 
@@ -364,7 +364,7 @@ afw_function_execute_string(
 
     /* If length is 0, return empty string. */
     if (len == 0) {
-        return afw_value_empty_string;
+        return afw_v_a_empty_string;
     }
 
     /* Concatenate strings. */

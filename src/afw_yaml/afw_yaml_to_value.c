@@ -94,9 +94,9 @@ const afw_value_t * afw_yaml_parse_scalar(
                 value = afw_value_create_unmanaged_double(
                     number, parser->p, xctx);
             } else if (strcmp((const char *)token->data.scalar.value, "true") == 0) {
-                value = afw_value_true;
+                value = afw_boolean_v_true;
             } else if (strcmp((const char *)token->data.scalar.value, "false") == 0) {
-                value = afw_value_false;
+                value = afw_boolean_v_false;
             } else if (strcmp((const char *)token->data.scalar.value, "null") == 0) {
                 value = afw_value_null;
             } else {

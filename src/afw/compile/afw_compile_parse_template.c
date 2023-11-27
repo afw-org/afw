@@ -132,7 +132,7 @@ afw_compile_parse_Template(afw_compile_parser_t *parser)
 
     /* If no elements, return empty string. */
     if (values->nelts == 0) {
-        return afw_value_empty_string;
+        return afw_v_a_empty_string;
     }
 
     /* If only one element and it is a string, return string value. */
@@ -235,7 +235,7 @@ afw_compile_parse_TemplateString(afw_compile_parser_t *parser)
 
     /* If no elements, return empty string. */
     if (values->nelts == 0) {
-        return afw_value_empty_string;
+        return afw_v_a_empty_string;
     }
 
     /* If only one element and it is a string, return string value. */

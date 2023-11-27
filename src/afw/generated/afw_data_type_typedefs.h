@@ -44,9 +44,13 @@ typedef const afw_value_t * afw_data_type_any_parameter_t;
 /** @brief Typedef for data type any return. */
 typedef const afw_value_t * afw_data_type_any_return_t;
 
-/** @brief Typedef for data type any evaluated value. */
+/** @brief Typedef for data type any value. */
 typedef struct afw_value_any_s
     afw_value_any_t;
+
+/** @brief Typedef for data type any managed value. */
+typedef struct afw_value_any_managed_s
+    afw_value_any_managed_t;
 
 /** @} */
 
@@ -64,9 +68,13 @@ typedef const afw_utf8_t * afw_data_type_anyURI_parameter_t;
 /** @brief Typedef for data type anyURI return. */
 typedef const afw_utf8_t * afw_data_type_anyURI_return_t;
 
-/** @brief Typedef for data type anyURI evaluated value. */
+/** @brief Typedef for data type anyURI value. */
 typedef struct afw_value_anyURI_s
     afw_value_anyURI_t;
+
+/** @brief Typedef for data type anyURI managed value. */
+typedef struct afw_value_anyURI_managed_s
+    afw_value_anyURI_managed_t;
 
 /** @} */
 
@@ -84,9 +92,13 @@ typedef const afw_array_t * afw_data_type_array_parameter_t;
 /** @brief Typedef for data type array return. */
 typedef const afw_array_t * afw_data_type_array_return_t;
 
-/** @brief Typedef for data type array evaluated value. */
+/** @brief Typedef for data type array value. */
 typedef struct afw_value_array_s
     afw_value_array_t;
+
+/** @brief Typedef for data type array managed value. */
+typedef struct afw_value_array_managed_s
+    afw_value_array_managed_t;
 
 /** @} */
 
@@ -104,9 +116,13 @@ typedef const afw_memory_t * afw_data_type_base64Binary_parameter_t;
 /** @brief Typedef for data type base64Binary return. */
 typedef const afw_memory_t * afw_data_type_base64Binary_return_t;
 
-/** @brief Typedef for data type base64Binary evaluated value. */
+/** @brief Typedef for data type base64Binary value. */
 typedef struct afw_value_base64Binary_s
     afw_value_base64Binary_t;
+
+/** @brief Typedef for data type base64Binary managed value. */
+typedef struct afw_value_base64Binary_managed_s
+    afw_value_base64Binary_managed_t;
 
 /** @} */
 
@@ -124,9 +140,13 @@ typedef const afw_boolean_t * afw_data_type_boolean_parameter_t;
 /** @brief Typedef for data type boolean return. */
 typedef afw_boolean_t afw_data_type_boolean_return_t;
 
-/** @brief Typedef for data type boolean evaluated value. */
+/** @brief Typedef for data type boolean value. */
 typedef struct afw_value_boolean_s
     afw_value_boolean_t;
+
+/** @brief Typedef for data type boolean managed value. */
+typedef struct afw_value_boolean_managed_s
+    afw_value_boolean_managed_t;
 
 /** @} */
 
@@ -144,9 +164,13 @@ typedef const afw_date_t * afw_data_type_date_parameter_t;
 /** @brief Typedef for data type date return. */
 typedef const afw_date_t * afw_data_type_date_return_t;
 
-/** @brief Typedef for data type date evaluated value. */
+/** @brief Typedef for data type date value. */
 typedef struct afw_value_date_s
     afw_value_date_t;
+
+/** @brief Typedef for data type date managed value. */
+typedef struct afw_value_date_managed_s
+    afw_value_date_managed_t;
 
 /** @} */
 
@@ -164,9 +188,13 @@ typedef const afw_dateTime_t * afw_data_type_dateTime_parameter_t;
 /** @brief Typedef for data type dateTime return. */
 typedef const afw_dateTime_t * afw_data_type_dateTime_return_t;
 
-/** @brief Typedef for data type dateTime evaluated value. */
+/** @brief Typedef for data type dateTime value. */
 typedef struct afw_value_dateTime_s
     afw_value_dateTime_t;
+
+/** @brief Typedef for data type dateTime managed value. */
+typedef struct afw_value_dateTime_managed_s
+    afw_value_dateTime_managed_t;
 
 /** @} */
 
@@ -184,9 +212,13 @@ typedef const afw_dayTimeDuration_t * afw_data_type_dayTimeDuration_parameter_t;
 /** @brief Typedef for data type dayTimeDuration return. */
 typedef const afw_dayTimeDuration_t * afw_data_type_dayTimeDuration_return_t;
 
-/** @brief Typedef for data type dayTimeDuration evaluated value. */
+/** @brief Typedef for data type dayTimeDuration value. */
 typedef struct afw_value_dayTimeDuration_s
     afw_value_dayTimeDuration_t;
+
+/** @brief Typedef for data type dayTimeDuration managed value. */
+typedef struct afw_value_dayTimeDuration_managed_s
+    afw_value_dayTimeDuration_managed_t;
 
 /** @} */
 
@@ -204,9 +236,13 @@ typedef const afw_utf8_t * afw_data_type_dnsName_parameter_t;
 /** @brief Typedef for data type dnsName return. */
 typedef const afw_utf8_t * afw_data_type_dnsName_return_t;
 
-/** @brief Typedef for data type dnsName evaluated value. */
+/** @brief Typedef for data type dnsName value. */
 typedef struct afw_value_dnsName_s
     afw_value_dnsName_t;
+
+/** @brief Typedef for data type dnsName managed value. */
+typedef struct afw_value_dnsName_managed_s
+    afw_value_dnsName_managed_t;
 
 /** @} */
 
@@ -224,9 +260,13 @@ typedef const double * afw_data_type_double_parameter_t;
 /** @brief Typedef for data type double return. */
 typedef double afw_data_type_double_return_t;
 
-/** @brief Typedef for data type double evaluated value. */
+/** @brief Typedef for data type double value. */
 typedef struct afw_value_double_s
     afw_value_double_t;
+
+/** @brief Typedef for data type double managed value. */
+typedef struct afw_value_double_managed_s
+    afw_value_double_managed_t;
 
 /** @} */
 
@@ -244,9 +284,13 @@ typedef const afw_value_t * afw_data_type_function_parameter_t;
 /** @brief Typedef for data type function return. */
 typedef const afw_value_t * afw_data_type_function_return_t;
 
-/** @brief Typedef for data type function evaluated value. */
+/** @brief Typedef for data type function value. */
 typedef struct afw_value_function_s
     afw_value_function_t;
+
+/** @brief Typedef for data type function managed value. */
+typedef struct afw_value_function_managed_s
+    afw_value_function_managed_t;
 
 /** @} */
 
@@ -264,9 +308,13 @@ typedef const afw_memory_t * afw_data_type_hexBinary_parameter_t;
 /** @brief Typedef for data type hexBinary return. */
 typedef const afw_memory_t * afw_data_type_hexBinary_return_t;
 
-/** @brief Typedef for data type hexBinary evaluated value. */
+/** @brief Typedef for data type hexBinary value. */
 typedef struct afw_value_hexBinary_s
     afw_value_hexBinary_t;
+
+/** @brief Typedef for data type hexBinary managed value. */
+typedef struct afw_value_hexBinary_managed_s
+    afw_value_hexBinary_managed_t;
 
 /** @} */
 
@@ -284,9 +332,13 @@ typedef const afw_utf8_t * afw_data_type_ia5String_parameter_t;
 /** @brief Typedef for data type ia5String return. */
 typedef const afw_utf8_t * afw_data_type_ia5String_return_t;
 
-/** @brief Typedef for data type ia5String evaluated value. */
+/** @brief Typedef for data type ia5String value. */
 typedef struct afw_value_ia5String_s
     afw_value_ia5String_t;
+
+/** @brief Typedef for data type ia5String managed value. */
+typedef struct afw_value_ia5String_managed_s
+    afw_value_ia5String_managed_t;
 
 /** @} */
 
@@ -304,9 +356,13 @@ typedef const afw_integer_t * afw_data_type_integer_parameter_t;
 /** @brief Typedef for data type integer return. */
 typedef afw_integer_t afw_data_type_integer_return_t;
 
-/** @brief Typedef for data type integer evaluated value. */
+/** @brief Typedef for data type integer value. */
 typedef struct afw_value_integer_s
     afw_value_integer_t;
+
+/** @brief Typedef for data type integer managed value. */
+typedef struct afw_value_integer_managed_s
+    afw_value_integer_managed_t;
 
 /** @} */
 
@@ -324,9 +380,13 @@ typedef const afw_utf8_t * afw_data_type_ipAddress_parameter_t;
 /** @brief Typedef for data type ipAddress return. */
 typedef const afw_utf8_t * afw_data_type_ipAddress_return_t;
 
-/** @brief Typedef for data type ipAddress evaluated value. */
+/** @brief Typedef for data type ipAddress value. */
 typedef struct afw_value_ipAddress_s
     afw_value_ipAddress_t;
+
+/** @brief Typedef for data type ipAddress managed value. */
+typedef struct afw_value_ipAddress_managed_s
+    afw_value_ipAddress_managed_t;
 
 /** @} */
 
@@ -344,9 +404,13 @@ typedef const afw_utf8_t * afw_data_type_json_parameter_t;
 /** @brief Typedef for data type json return. */
 typedef const afw_utf8_t * afw_data_type_json_return_t;
 
-/** @brief Typedef for data type json evaluated value. */
+/** @brief Typedef for data type json value. */
 typedef struct afw_value_json_s
     afw_value_json_t;
+
+/** @brief Typedef for data type json managed value. */
+typedef struct afw_value_json_managed_s
+    afw_value_json_managed_t;
 
 /** @} */
 
@@ -364,9 +428,13 @@ typedef const void * afw_data_type_null_parameter_t;
 /** @brief Typedef for data type null return. */
 typedef void * afw_data_type_null_return_t;
 
-/** @brief Typedef for data type null evaluated value. */
+/** @brief Typedef for data type null value. */
 typedef struct afw_value_null_s
     afw_value_null_t;
+
+/** @brief Typedef for data type null managed value. */
+typedef struct afw_value_null_managed_s
+    afw_value_null_managed_t;
 
 /** @} */
 
@@ -384,9 +452,13 @@ typedef const afw_object_t * afw_data_type_object_parameter_t;
 /** @brief Typedef for data type object return. */
 typedef const afw_object_t * afw_data_type_object_return_t;
 
-/** @brief Typedef for data type object evaluated value. */
+/** @brief Typedef for data type object value. */
 typedef struct afw_value_object_s
     afw_value_object_t;
+
+/** @brief Typedef for data type object managed value. */
+typedef struct afw_value_object_managed_s
+    afw_value_object_managed_t;
 
 /** @} */
 
@@ -404,9 +476,13 @@ typedef const afw_utf8_t * afw_data_type_objectId_parameter_t;
 /** @brief Typedef for data type objectId return. */
 typedef const afw_utf8_t * afw_data_type_objectId_return_t;
 
-/** @brief Typedef for data type objectId evaluated value. */
+/** @brief Typedef for data type objectId value. */
 typedef struct afw_value_objectId_s
     afw_value_objectId_t;
+
+/** @brief Typedef for data type objectId managed value. */
+typedef struct afw_value_objectId_managed_s
+    afw_value_objectId_managed_t;
 
 /** @} */
 
@@ -424,9 +500,13 @@ typedef const afw_utf8_t * afw_data_type_objectPath_parameter_t;
 /** @brief Typedef for data type objectPath return. */
 typedef const afw_utf8_t * afw_data_type_objectPath_return_t;
 
-/** @brief Typedef for data type objectPath evaluated value. */
+/** @brief Typedef for data type objectPath value. */
 typedef struct afw_value_objectPath_s
     afw_value_objectPath_t;
+
+/** @brief Typedef for data type objectPath managed value. */
+typedef struct afw_value_objectPath_managed_s
+    afw_value_objectPath_managed_t;
 
 /** @} */
 
@@ -444,9 +524,13 @@ typedef const afw_utf8_t * afw_data_type_password_parameter_t;
 /** @brief Typedef for data type password return. */
 typedef const afw_utf8_t * afw_data_type_password_return_t;
 
-/** @brief Typedef for data type password evaluated value. */
+/** @brief Typedef for data type password value. */
 typedef struct afw_value_password_s
     afw_value_password_t;
+
+/** @brief Typedef for data type password managed value. */
+typedef struct afw_value_password_managed_s
+    afw_value_password_managed_t;
 
 /** @} */
 
@@ -464,9 +548,13 @@ typedef const afw_utf8_t * afw_data_type_regexp_parameter_t;
 /** @brief Typedef for data type regexp return. */
 typedef const afw_utf8_t * afw_data_type_regexp_return_t;
 
-/** @brief Typedef for data type regexp evaluated value. */
+/** @brief Typedef for data type regexp value. */
 typedef struct afw_value_regexp_s
     afw_value_regexp_t;
+
+/** @brief Typedef for data type regexp managed value. */
+typedef struct afw_value_regexp_managed_s
+    afw_value_regexp_managed_t;
 
 /** @} */
 
@@ -484,9 +572,13 @@ typedef const afw_utf8_t * afw_data_type_relaxed_json_parameter_t;
 /** @brief Typedef for data type relaxed_json return. */
 typedef const afw_utf8_t * afw_data_type_relaxed_json_return_t;
 
-/** @brief Typedef for data type relaxed_json evaluated value. */
+/** @brief Typedef for data type relaxed_json value. */
 typedef struct afw_value_relaxed_json_s
     afw_value_relaxed_json_t;
+
+/** @brief Typedef for data type relaxed_json managed value. */
+typedef struct afw_value_relaxed_json_managed_s
+    afw_value_relaxed_json_managed_t;
 
 /** @} */
 
@@ -504,9 +596,13 @@ typedef const afw_utf8_t * afw_data_type_rfc822Name_parameter_t;
 /** @brief Typedef for data type rfc822Name return. */
 typedef const afw_utf8_t * afw_data_type_rfc822Name_return_t;
 
-/** @brief Typedef for data type rfc822Name evaluated value. */
+/** @brief Typedef for data type rfc822Name value. */
 typedef struct afw_value_rfc822Name_s
     afw_value_rfc822Name_t;
+
+/** @brief Typedef for data type rfc822Name managed value. */
+typedef struct afw_value_rfc822Name_managed_s
+    afw_value_rfc822Name_managed_t;
 
 /** @} */
 
@@ -524,9 +620,13 @@ typedef const afw_utf8_t * afw_data_type_script_parameter_t;
 /** @brief Typedef for data type script return. */
 typedef const afw_utf8_t * afw_data_type_script_return_t;
 
-/** @brief Typedef for data type script evaluated value. */
+/** @brief Typedef for data type script value. */
 typedef struct afw_value_script_s
     afw_value_script_t;
+
+/** @brief Typedef for data type script managed value. */
+typedef struct afw_value_script_managed_s
+    afw_value_script_managed_t;
 
 /** @} */
 
@@ -544,9 +644,13 @@ typedef const afw_utf8_t * afw_data_type_string_parameter_t;
 /** @brief Typedef for data type string return. */
 typedef const afw_utf8_t * afw_data_type_string_return_t;
 
-/** @brief Typedef for data type string evaluated value. */
+/** @brief Typedef for data type string value. */
 typedef struct afw_value_string_s
     afw_value_string_t;
+
+/** @brief Typedef for data type string managed value. */
+typedef struct afw_value_string_managed_s
+    afw_value_string_managed_t;
 
 /** @} */
 
@@ -564,9 +668,13 @@ typedef const afw_utf8_t * afw_data_type_template_parameter_t;
 /** @brief Typedef for data type template return. */
 typedef const afw_utf8_t * afw_data_type_template_return_t;
 
-/** @brief Typedef for data type template evaluated value. */
+/** @brief Typedef for data type template value. */
 typedef struct afw_value_template_s
     afw_value_template_t;
+
+/** @brief Typedef for data type template managed value. */
+typedef struct afw_value_template_managed_s
+    afw_value_template_managed_t;
 
 /** @} */
 
@@ -584,9 +692,13 @@ typedef const afw_time_t * afw_data_type_time_parameter_t;
 /** @brief Typedef for data type time return. */
 typedef const afw_time_t * afw_data_type_time_return_t;
 
-/** @brief Typedef for data type time evaluated value. */
+/** @brief Typedef for data type time value. */
 typedef struct afw_value_time_s
     afw_value_time_t;
+
+/** @brief Typedef for data type time managed value. */
+typedef struct afw_value_time_managed_s
+    afw_value_time_managed_t;
 
 /** @} */
 
@@ -604,9 +716,13 @@ typedef const void * afw_data_type_undefined_parameter_t;
 /** @brief Typedef for data type undefined return. */
 typedef void * afw_data_type_undefined_return_t;
 
-/** @brief Typedef for data type undefined evaluated value. */
+/** @brief Typedef for data type undefined value. */
 typedef struct afw_value_undefined_s
     afw_value_undefined_t;
+
+/** @brief Typedef for data type undefined managed value. */
+typedef struct afw_value_undefined_managed_s
+    afw_value_undefined_managed_t;
 
 /** @} */
 
@@ -624,9 +740,13 @@ typedef const afw_value_t * afw_data_type_unevaluated_parameter_t;
 /** @brief Typedef for data type unevaluated return. */
 typedef const afw_value_t * afw_data_type_unevaluated_return_t;
 
-/** @brief Typedef for data type unevaluated evaluated value. */
+/** @brief Typedef for data type unevaluated value. */
 typedef struct afw_value_unevaluated_s
     afw_value_unevaluated_t;
+
+/** @brief Typedef for data type unevaluated managed value. */
+typedef struct afw_value_unevaluated_managed_s
+    afw_value_unevaluated_managed_t;
 
 /** @} */
 
@@ -644,9 +764,13 @@ typedef const afw_value_t * afw_data_type_unknown_parameter_t;
 /** @brief Typedef for data type unknown return. */
 typedef const afw_value_t * afw_data_type_unknown_return_t;
 
-/** @brief Typedef for data type unknown evaluated value. */
+/** @brief Typedef for data type unknown value. */
 typedef struct afw_value_unknown_s
     afw_value_unknown_t;
+
+/** @brief Typedef for data type unknown managed value. */
+typedef struct afw_value_unknown_managed_s
+    afw_value_unknown_managed_t;
 
 /** @} */
 
@@ -664,9 +788,13 @@ typedef const void * afw_data_type_void_parameter_t;
 /** @brief Typedef for data type void return. */
 typedef void * afw_data_type_void_return_t;
 
-/** @brief Typedef for data type void evaluated value. */
+/** @brief Typedef for data type void value. */
 typedef struct afw_value_void_s
     afw_value_void_t;
+
+/** @brief Typedef for data type void managed value. */
+typedef struct afw_value_void_managed_s
+    afw_value_void_managed_t;
 
 /** @} */
 
@@ -684,9 +812,13 @@ typedef const afw_utf8_t * afw_data_type_x500Name_parameter_t;
 /** @brief Typedef for data type x500Name return. */
 typedef const afw_utf8_t * afw_data_type_x500Name_return_t;
 
-/** @brief Typedef for data type x500Name evaluated value. */
+/** @brief Typedef for data type x500Name value. */
 typedef struct afw_value_x500Name_s
     afw_value_x500Name_t;
+
+/** @brief Typedef for data type x500Name managed value. */
+typedef struct afw_value_x500Name_managed_s
+    afw_value_x500Name_managed_t;
 
 /** @} */
 
@@ -704,9 +836,13 @@ typedef const afw_utf8_t * afw_data_type_xpathExpression_parameter_t;
 /** @brief Typedef for data type xpathExpression return. */
 typedef const afw_utf8_t * afw_data_type_xpathExpression_return_t;
 
-/** @brief Typedef for data type xpathExpression evaluated value. */
+/** @brief Typedef for data type xpathExpression value. */
 typedef struct afw_value_xpathExpression_s
     afw_value_xpathExpression_t;
+
+/** @brief Typedef for data type xpathExpression managed value. */
+typedef struct afw_value_xpathExpression_managed_s
+    afw_value_xpathExpression_managed_t;
 
 /** @} */
 
@@ -724,9 +860,13 @@ typedef const afw_yearMonthDuration_t * afw_data_type_yearMonthDuration_paramete
 /** @brief Typedef for data type yearMonthDuration return. */
 typedef const afw_yearMonthDuration_t * afw_data_type_yearMonthDuration_return_t;
 
-/** @brief Typedef for data type yearMonthDuration evaluated value. */
+/** @brief Typedef for data type yearMonthDuration value. */
 typedef struct afw_value_yearMonthDuration_s
     afw_value_yearMonthDuration_t;
+
+/** @brief Typedef for data type yearMonthDuration managed value. */
+typedef struct afw_value_yearMonthDuration_managed_s
+    afw_value_yearMonthDuration_managed_t;
 
 /** @} */
 
