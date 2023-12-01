@@ -353,6 +353,23 @@ set(CPACK_PACKAGE_DESCRIPTION           "${afw_package_description}")
 set(CPACK_PACKAGE_DESCRIPTION_SUMMARY   "${afw_package_brief}")
 set(CPACK_PACKAGE_HOMEPAGE_URL          "${afw_package_homePageUrl}")
 set(CPACK_PACKAGE_CONTACT               "${afw_package_bugReportEmail}")
+set(CPACK_PACKAGE_VERSION               "${afw_package_version}")
+set(CPACK_PACKAGE_FILE_NAME             "${afw_package_afwPackageId}-${afw_package_version}_${CMAKE_SYSTEM_PROCESSOR}")
+
+# set the output package format, based on the current distribution
+if(UNIX)
+  # look for dpkg and rpm to determine the package format to use
+  find_program(DPKG dpkg)
+  find_program(RPM rpmbuild)
+
+  if(DPKG)
+    set(CPACK_GENERATOR "DEB")
+  elseif(RPM)
+    set(CPACK_GENERATOR "RPM")
+  else()
+    set(CPACK_GENERATOR "TZ")
+  endif()
+endif()
 
 # Use git archive to generate a tarball of the source tree without untracked files
 execute_process(
