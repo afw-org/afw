@@ -60,6 +60,20 @@ def build(options):
     if rc.returncode != 0:
         msg.error_exit("CMake configure failed " + str(rc))
 
+    # cpack
+    if options.get('build_package', False):
+        print(options['afw_package_dir_path'])
+        _package_command = ['cpack']
+        if msg.is_verbose:
+            _package_command.extend(['--verbose'])
+        msg.highlighted_info('Running ' + str(" ".join(_package_command)))
+        rc = subprocess.run(_package_command,
+            cwd=options['afw_package_dir_path'] + 'build/cmake',
+            stdout=stdout_capture)
+        if rc.returncode != 0:
+            msg.error_exit("cpack failed " + str(rc))
+        
+
     # if --scan was specified, run analyze-build
     if options.get('build_scan', True):
         # on Ubuntu, the analyze-build symlink is broken, so

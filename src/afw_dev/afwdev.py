@@ -555,6 +555,14 @@ _info_build_web_root = {
     "help": "The root directory for the web server on this local system."
 }
 
+_info_build_package = {
+    "optionName": "build_package",
+    "arg": "--package",     
+    "action": "store_true",    
+    "default": False,
+    "help": "Build a distributable package based on the current distribution (.rpm/.deb/.tar)."
+}
+
 
 _info_build = {
     "subcommand": "build",
@@ -580,6 +588,7 @@ under. The --all selects all of those contexts.
         _info_build_jobs,
         _info_build_js,
         _info_build_maxloop,
+        _info_build_package,
         _info_build_prefix,
         _info_build_scan,
         _info_build_sudo,
