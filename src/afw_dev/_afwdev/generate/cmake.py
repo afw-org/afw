@@ -352,6 +352,7 @@ set(CPACK_PACKAGE_NAME                  "${afw_package_afwPackageId}")
 set(CPACK_PACKAGE_DESCRIPTION           "${afw_package_description}")
 set(CPACK_PACKAGE_DESCRIPTION_SUMMARY   "${afw_package_brief}")
 set(CPACK_PACKAGE_HOMEPAGE_URL          "${afw_package_homePageUrl}")
+set(CPACK_PACKAGE_CONTACT               "${afw_package_bugReportEmail}")
 
 # Use git archive to generate a tarball of the source tree without untracked files
 execute_process(
@@ -395,6 +396,10 @@ def _root_generate_afw_package_basic_build(options, afw_package):
 # you can selectively include the following commands in CMakeLists.txt as
 # needed.
 #
+
+# We set the PROJECT_VERSION here, instead of in the top-level project() 
+# command, because the afw-package.json variables are not available at the time.
+set(PROJECT_VERSION ${afw_package_version})
 
 # Variables for each property in afw-package.json.
 include(generated/afw_package_variables.cmake)

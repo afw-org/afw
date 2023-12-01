@@ -17,6 +17,10 @@
 # needed.
 #
 
+# We set the PROJECT_VERSION here, instead of in the top-level project() 
+# command, because the afw-package.json variables are not available at the time.
+set(PROJECT_VERSION ${afw_package_version})
+
 # Variables for each property in afw-package.json.
 include(generated/afw_package_variables.cmake)
 

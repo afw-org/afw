@@ -22,6 +22,7 @@ set(CPACK_PACKAGE_NAME                  "${afw_package_afwPackageId}")
 set(CPACK_PACKAGE_DESCRIPTION           "${afw_package_description}")
 set(CPACK_PACKAGE_DESCRIPTION_SUMMARY   "${afw_package_brief}")
 set(CPACK_PACKAGE_HOMEPAGE_URL          "${afw_package_homePageUrl}")
+set(CPACK_PACKAGE_CONTACT               "${afw_package_bugReportEmail}")
 
 # Use git archive to generate a tarball of the source tree without untracked files
 execute_process(
