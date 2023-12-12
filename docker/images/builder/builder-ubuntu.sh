@@ -4,7 +4,6 @@
 #
 #   docker build
 #     [-e DEB_VERSION=<version>] 
-#     [-e DEB_RELEASE=<release>] 
 #     [-e BUILD_TARGET=<target>]
 #     -t ghcr.io/afw-org/afw-builder:ubuntu .
 #
@@ -21,45 +20,24 @@ cd /src
 
 # use what was passed in, defaulting to afwdev
 DEB_VERSION=${DEB_VERSION:=`./afwdev --version-string`}
-DEB_RELEASE=${DEB_RELEASE:='0'}
 BUILD_TARGET=${BUILD_TARGET:='c'}
 ARCH=`arch`
-VER_REL_ARCH=${DEB_VERSION}-${DEB_RELEASE}_${ARCH}
 
-echo "Building ${DEB_VERSION}-${DEB_RELEASE}, target: ${BUILD_TARGET}"
+echo "Building ${DEB_VERSION}, target: ${BUILD_TARGET}"
 
 if [ "$BUILD_TARGET" == "c" ] || [ "$BUILD_TARGET" == "all" ]; 
 then
     echo "Building C code..."    
 
-    # build the source
-    mkdir -p ${HOME}/afw-${VER_REL_ARCH}/usr/local
-    mkdir -p ${HOME}/afw-${VER_REL_ARCH}/DEBIAN
-
-    # dynamically create our control file
-    cat << EOF > ${HOME}/afw-${VER_REL_ARCH}/DEBIAN/control
-Package: afw
-Maintainer: info@adaptiveframework.org
-Architecture: ${ARCH}
-Version: ${DEB_VERSION}-${DEB_RELEASE}
-Description: Adaptive Framework is a set of interfaces for developing servers, requests, object access, etc. in an adaptive way, along with implementations, language bindings, commands, and administrative applications.
-EOF
-
-    cd /src && ./afwdev build --prefix ${HOME}/afw-${VER_REL_ARCH}/usr/local --install
+    # build for default location of /usr/local
+    cd /src && ./afwdev build --prefix /usr/local --package
     if [ $? -ne 0 ]; then
         echo "** Core Build failed!"
         exit 1
     fi
 
-    # change afw.pc and afw-config.cmake to reflect the final /usr/local install location
-    sed -i "s|prefix=${HOME}/afw-${VER_REL_ARCH}/usr/local|prefix=/usr/local|g" ${HOME}/afw-${VER_REL_ARCH}/usr/local/share/pkgconfig/afw.pc
-    sed -i "s|${HOME}/afw-${VER_REL_ARCH}/usr/local|/usr/local|g" ${HOME}/afw-${VER_REL_ARCH}/usr/local/lib/cmake/afw-${DEB_VERSION}/afw-config.cmake
-
-    cd ${HOME}
-    dpkg-deb --build --root-owner-group afw-${VER_REL_ARCH}
-
     # copy to /    
-    cp afw-${DEB_VERSION}-${DEB_RELEASE}_${ARCH}.deb /afw-${DEB_VERSION}-${DEB_RELEASE}-ubuntu_${ARCH}.deb
+    cp build/cmake/afw-${DEB_VERSION}_${ARCH}.deb /afw-${DEB_VERSION}-ubuntu_${ARCH}.deb
 fi
 
 if [ "$BUILD_TARGET" == "js" ] || [ "$BUILD_TARGET" == "all" ]; 
@@ -69,11 +47,11 @@ then
     cd /src && \
     ./afwdev build --js --docs && \
     cd /src/build/js && \
-    tar cf /afw-apps-${DEB_VERSION}-${DEB_RELEASE}.tar apps
+    tar cf /afw-apps-${DEB_VERSION}.tar apps
     cd /src/build/ && \
-    tar cf /afw-docs-${DEB_VERSION}-${DEB_RELEASE}.tar docs
+    tar cf /afw-docs-${DEB_VERSION}.tar docs
 
     echo ""
-    echo "File afw-apps-${DEB_VERSION}-${DEB_RELEASE}.tar created."
-    echo "File afw-docs-${DEB_VERSION}-${DEB_RELEASE}.tar created."
+    echo "File afw-apps-${DEB_VERSION}.tar created."
+    echo "File afw-docs-${DEB_VERSION}.tar created."
 fi
