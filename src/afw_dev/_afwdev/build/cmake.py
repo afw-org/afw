@@ -32,6 +32,11 @@ def build(options):
     _configure_command.extend(['-S', '.', '-B', options['build_directory_rpath_cmake']])
     if options.get('build_prefix') is not None:
         _configure_command.extend(['-DCMAKE_INSTALL_PREFIX=' + options.get('build_prefix')])
+    if options.get('build_package', False) and options.get('build_prefix') is not None:
+        # The CPACK_INSTALL_PREFIX is used to specify where files get installed into target system
+        _configure_command.extend(['-DCPACK_INSTALL_PREFIX=' + options.get('build_prefix')])
+        # the CPACK_PACKAGING_INSTALL_PREFIX is used to specify where files get located in the package (internally)
+        _configure_command.extend(['-DCPACK_PACKAGING_INSTALL_PREFIX=' + options.get('build_prefix')])
     if options.get('build_scan') is True:
         _configure_command.extend(['-DCMAKE_EXPORT_COMPILE_COMMANDS=YES'])
     msg.highlighted_info('Running ' + str(" ".join(_configure_command)))
@@ -62,10 +67,9 @@ def build(options):
 
     # cpack
     if options.get('build_package', False):
-        print(options['afw_package_dir_path'])
         _package_command = ['cpack']
         if msg.is_verbose:
-            _package_command.extend(['--verbose'])
+            _package_command.extend(['--verbose'])        
         msg.highlighted_info('Running ' + str(" ".join(_package_command)))
         rc = subprocess.run(_package_command,
             cwd=options['afw_package_dir_path'] + 'build/cmake',
