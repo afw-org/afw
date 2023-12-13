@@ -23,7 +23,7 @@ RPM_VERSION=${RPM_VERSION:=`./afwdev --version-string`}
 BUILD_TARGET=${BUILD_TARGET:='c'}
 ARCH=`arch`
 
-echo "Building ${RPM_VERSION}-${RPM_RELEASE}, target: ${BUILD_TARGET}"
+echo "Building ${RPM_VERSION}, target: ${BUILD_TARGET}"
 
 
 if [ "$BUILD_TARGET" == "c" ] || [ "$BUILD_TARGET" == "all" ]; 

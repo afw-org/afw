@@ -37,7 +37,7 @@ if(UNIX)
   elseif(RPM)
     set(CPACK_GENERATOR "RPM")
   else()
-    set(CPACK_GENERATOR "TZ")
+    set(CPACK_GENERATOR "TGZ")
   endif()
 endif()
 

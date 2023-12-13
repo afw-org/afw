@@ -4,12 +4,11 @@
 #
 #   docker build 
 #     [-e TAR_VERSION=<version>] 
-#     [-e TAR_RELEASE=<release>] 
 #     [-e BUILD_TARGET=<target>]
 #     -f docker/images/builder/Dockerfile.alpine
 #     -t ghcr.io/afw-org/afw-builder:alpine .
 #
-# The TAR_VERSION and TAR_RELEASE env vars can be specified at run-time to name 
+# The TAR_VERSION env var can be specified at run-time to name 
 #   the output file.
 #
 
@@ -23,32 +22,31 @@ cd /src
 
 # use what was passed in, defaulting to afwdev
 TAR_VERSION=${TAR_VERSION:=`./afwdev --version-string`}
-TAR_RELEASE=${TAR_RELEASE:='0'}
 BUILD_TARGET=${BUILD_TARGET:='c'}
 ARCH=`arch`
 
-echo "Building ${TAR_VERSION}-${TAR_RELEASE}, target: ${BUILD_TARGET}"
+echo "Building ${TAR_VERSION}, target: ${BUILD_TARGET}"
 
 if [ "$BUILD_TARGET" == "c" ] || [ "$BUILD_TARGET" == "all" ]; 
 then
     echo "Building C code..."
-    mkdir -p ${HOME}/dist-${TAR_VERSION}
 
     # build the source
-    ./afwdev build --prefix ${HOME}/dist-${TAR_VERSION}/usr/local --install
+    ./afwdev build --prefix /usr/local --package
     if [ $? -ne 0 ]; then
         echo "** Core Build failed!"
         exit 1
     fi
 
     # Create a TAR file from the build
-    cd ${HOME}/dist-${TAR_VERSION} && tar cvf afw-${TAR_VERSION}-${TAR_RELEASE}-alpine.${ARCH}.tar * 
+    cd build/cmake/_CPack_Packages/Linux/TGZ/afw-${TAR_VERSION}_${ARCH}
+    tar cvf afw-${TAR_VERSION}-alpine.${ARCH}.tar * 
 
     # copy to /
-    cp afw-${TAR_VERSION}-${TAR_RELEASE}-alpine.${ARCH}.tar /
+    cp afw-${TAR_VERSION}-alpine.${ARCH}.tar /
     
     echo ""
-    echo "File afw-${TAR_VERSION}-${TAR_RELEASE}-alpine.${ARCH}.tar created."
+    echo "File afw-${TAR_VERSION}-alpine.${ARCH}.tar created."
 fi
 
 if [ "$BUILD_TARGET" == "js" ] || [ "$BUILD_TARGET" == "all" ]; 
@@ -58,11 +56,11 @@ then
     cd /src && \
     ./afwdev build --js --docs && \
     cd /src/build/js && \
-    tar cf /afw-apps-${TAR_VERSION}-${TAR_RELEASE}.tar apps
+    tar cf /afw-apps-${TAR_VERSION}.tar apps
     cd /src/build && \
-    tar cf /afw-docs-${TAR_VERSION}-${TAR_RELEASE}.tar docs
+    tar cf /afw-docs-${TAR_VERSION}.tar docs
 
     echo ""
-    echo "File /afw-apps-${TAR_VERSION}-${TAR_RELEASE}.tar created."   
-    echo "File /afw-docs-${TAR_VERSION}-${TAR_RELEASE}.tar created." 
+    echo "File /afw-apps-${TAR_VERSION}.tar created."   
+    echo "File /afw-docs-${TAR_VERSION}.tar created." 
 fi

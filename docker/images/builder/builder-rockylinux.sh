@@ -8,7 +8,7 @@
 #     -f docker/images/builder/Dockerfile.rockylinux
 #     -t ghcr.io/afw-org/afw-dev-base:rockylinux .
 #
-# The RPM_VERSION and RPM_RELEASE env vars can be specified at run-time to 
+# The RPM_VERSION env var can be specified at run-time to 
 #   name the output file.
 #
 
