@@ -53,6 +53,6 @@ then
     tar cf /afw-docs-${RPM_VERSION}.tar docs
 
     echo ""
-    echo "File /afw-apps-${RPM_VERSION.tar created."
+    echo "File /afw-apps-${RPM_VERSION}.tar created."
     echo "File /afw-docs-${RPM_VERSION}.tar created."
 fi
