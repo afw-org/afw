@@ -3,7 +3,6 @@ FROM ghcr.io/afw-org/afw-dev-base:rockylinux AS build-stage-c
 
 COPY ./ /src
 COPY ./docker/images/builder/builder-rockylinux.sh /builder.sh
-COPY ./docker/images/builder/afw.spec /afw.spec
 
 RUN chmod +x /builder.sh && /builder.sh
 

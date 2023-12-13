@@ -3,7 +3,6 @@ FROM ghcr.io/afw-org/afw-dev-base:opensuse AS build-stage-c
 
 COPY ./ /src
 COPY ./docker/images/builder/builder-opensuse.sh /builder.sh
-COPY ./docker/images/builder/afw.spec /afw.spec
 
 RUN chmod +x /builder.sh && /builder.sh
 
