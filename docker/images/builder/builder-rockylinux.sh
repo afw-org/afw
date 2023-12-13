@@ -12,8 +12,6 @@
 #   name the output file.
 #
 
-mkdir -p ${HOME}/rpmbuild/{BUILD,RPMS,SOURCES,SPECS,SRPMS,tmp}
-
 if [ ! -f /src/afw-package.json ]; then
     echo "** You need to map the source directory into /src in order to build."
     exit 1
@@ -51,11 +49,11 @@ then
     cd /src && \
     ./afwdev build --js --docs && \
     cd build/js && \
-    tar cf /afw-apps-${RPM_VERSION}-${RPM_RELEASE}.tar apps
+    tar cf /afw-apps-${RPM_VERSION}.tar apps
     cd /src/build && \
-    tar cf /afw-docs-${RPM_VERSION}-${RPM_RELEASE}.tar docs
+    tar cf /afw-docs-${RPM_VERSION}.tar docs
 
     echo ""
-    echo "File /afw-apps-${RPM_VERSION}-${RPM_RELEASE}.tar created."
-    echo "File /afw-docs-${RPM_VERSION}-${RPM_RELEASE}.tar created."
+    echo "File /afw-apps-${RPM_VERSION}.tar created."
+    echo "File /afw-docs-${RPM_VERSION}.tar created."
 fi

@@ -24,7 +24,6 @@ jobs:
               run: |
                   ./afwdev --version
                   echo "VERSION=`./afwdev --version-string`" >> $GITHUB_ENV
-                  echo "RELEASE=0" >> $GITHUB_ENV 
 
             - name: Setup Node.js
               uses: actions/setup-node@v3
@@ -54,25 +53,25 @@ jobs:
               run: |
                   ./afwdev build --docs
                   cd build
-                  tar cvf afw-docs-${{ env.VERSION }}-${{ env.RELEASE }}.tar docs
+                  tar cvf afw-docs-${{ env.VERSION }}.tar docs
 
             - name: Build JS Apps and Packages
               run: |
                   ./afwdev build --js -j
                   cd build/js
-                  tar cvf afw-apps-${{ env.VERSION }}-${{ env.RELEASE }}.tar apps
+                  tar cvf afw-apps-${{ env.VERSION }}.tar apps
 
             - name: Upload Web Apps
               uses: actions/upload-artifact@v3
               with:
-                  name: afw-apps-${{ env.VERSION }}-${{ env.RELEASE }}.tar
-                  path: build/js/afw-apps-${{ env.VERSION }}-${{ env.RELEASE }}.tar
+                  name: afw-apps-${{ env.VERSION }}.tar
+                  path: build/js/afw-apps-${{ env.VERSION }}.tar
 
             - name: Upload Docs
               uses: actions/upload-artifact@v3
               with:
-                  name: afw-docs-${{ env.VERSION }}-${{ env.RELEASE }}.tar
-                  path: build/afw-docs-${{ env.VERSION }}-${{ env.RELEASE }}.tar
+                  name: afw-docs-${{ env.VERSION }}.tar
+                  path: build/afw-docs-${{ env.VERSION }}.tar
 
     build_c_rockylinux:
         name: Build RockyLinux C Libraries and Apps
@@ -95,8 +94,7 @@ jobs:
               run: |
                   git config --global --add safe.directory "*"
                   ./afwdev --version
-                  echo "VERSION=`./afwdev --version-string`" >> $GITHUB_ENV
-                  echo "RELEASE=0" >> $GITHUB_ENV                  
+                  echo "VERSION=`./afwdev --version-string`" >> $GITHUB_ENV                
 
             - name: Create Packages
               run: |
@@ -106,14 +104,14 @@ jobs:
             - name: Upload amd64 Artifacts
               uses: actions/upload-artifact@v3
               with:
-                  name: afw-${{ env.VERSION }}-${{ env.RELEASE }}.el8.x86_64.rpm
-                  path: linux_amd64/afw-${{ env.VERSION }}-${{ env.RELEASE }}.x86_64.rpm
+                  name: afw-${{ env.VERSION }}.rockylinux.x86_64.rpm
+                  path: linux_amd64/afw-${{ env.VERSION }}.x86_64.rpm
 
             - name: Upload arm64 Artifacts
               uses: actions/upload-artifact@v3
               with:
-                  name: afw-${{ env.VERSION }}-${{ env.RELEASE }}.el8.aarch64.rpm
-                  path: linux_arm64/afw-${{ env.VERSION }}-${{ env.RELEASE }}.aarch64.rpm
+                  name: afw-${{ env.VERSION }}.rockylinux.aarch64.rpm
+                  path: linux_arm64/afw-${{ env.VERSION }}.aarch64.rpm
 
     build_c_opensuse:
         name: Build OpenSUSE/Leap C Libraries and Apps
@@ -137,7 +135,6 @@ jobs:
                   git config --global --add safe.directory "*"
                   ./afwdev --version
                   echo "VERSION=`./afwdev --version-string`" >> $GITHUB_ENV
-                  echo "RELEASE=0" >> $GITHUB_ENV
 
             - name: Login to ghcr.io
               uses: docker/login-action@v2
@@ -154,14 +151,14 @@ jobs:
             - name: Upload amd64 Artifacts
               uses: actions/upload-artifact@v3
               with:
-                  name: afw-${{ env.VERSION }}-${{ env.RELEASE }}.x86_64.rpm
-                  path: linux_amd64/afw-${{ env.VERSION }}-${{ env.RELEASE }}.x86_64.rpm
+                  name: afw-${{ env.VERSION }}.x86_64.rpm
+                  path: linux_amd64/afw-${{ env.VERSION }}.x86_64.rpm
 
             - name: Upload arm64 Artifacts
               uses: actions/upload-artifact@v3
               with:
-                  name: afw-${{ env.VERSION }}-${{ env.RELEASE }}.aarch64.rpm
-                  path: linux_arm4/afw-${{ env.VERSION }}-${{ env.RELEASE }}.aarch64.rpm
+                  name: afw-${{ env.VERSION }}.aarch64.rpm
+                  path: linux_arm4/afw-${{ env.VERSION }}.aarch64.rpm
 
     build_c_alpine:
         name: Build Alpine Linux C Libraries and Apps
@@ -185,7 +182,6 @@ jobs:
                   git config --global --add safe.directory "*"
                   ./afwdev --version
                   echo "VERSION=`./afwdev --version-string`" >> $GITHUB_ENV
-                  echo "RELEASE=0" >> $GITHUB_ENV
 
             - name: Login to ghcr.io
               uses: docker/login-action@v2
@@ -202,14 +198,14 @@ jobs:
             - name: Upload amd64 Artifacts
               uses: actions/upload-artifact@v3
               with:
-                  name: afw-${{ env.VERSION }}-${{ env.RELEASE }}-alpine.x86_64.tar
-                  path: linux_amd64/afw-${{ env.VERSION }}-${{ env.RELEASE }}-alpine.x86_64.tar
+                  name: afw-${{ env.VERSION }}-alpine.x86_64.tar
+                  path: linux_amd64/afw-${{ env.VERSION }}-alpine.x86_64.tar
 
             - name: Upload arm64 Artifacts
               uses: actions/upload-artifact@v3
               with:
-                  name: afw-${{ env.VERSION }}-${{ env.RELEASE }}-alpine.aarch64.tar
-                  path: linux_arm64/afw-${{ env.VERSION }}-${{ env.RELEASE }}-alpine.aarch64.tar
+                  name: afw-${{ env.VERSION }}-alpine.aarch64.tar
+                  path: linux_arm64/afw-${{ env.VERSION }}-alpine.aarch64.tar
 
     build_c_ubuntu:
         name: Build Ubuntu Linux C Libraries and Apps
@@ -233,7 +229,6 @@ jobs:
                   git config --global --add safe.directory "*"
                   ./afwdev --version
                   echo "VERSION=`./afwdev --version-string`" >> $GITHUB_ENV
-                  echo "RELEASE=0" >> $GITHUB_ENV
 
             - name: Create Packages
               run: |
@@ -243,14 +238,14 @@ jobs:
             - name: Upload amd64 Artifacts
               uses: actions/upload-artifact@v3
               with:
-                  name: afw-${{ env.VERSION }}-${{ env.RELEASE }}_x86_64.deb
-                  path: linux_amd64/afw-${{ env.VERSION }}-${{ env.RELEASE }}_x86_64.deb
+                  name: afw-${{ env.VERSION }}_x86_64.deb
+                  path: linux_amd64/afw-${{ env.VERSION }}_x86_64.deb
 
             - name: Upload arm64 Artifacts
               uses: actions/upload-artifact@v3
               with:
-                  name: afw-${{ env.VERSION }}-${{ env.RELEASE }}_aarch64.deb
-                  path: linux_arm64/afw-${{ env.VERSION }}-${{ env.RELEASE }}_aarch64.deb
+                  name: afw-${{ env.VERSION }}_aarch64.deb
+                  path: linux_arm64/afw-${{ env.VERSION }}_aarch64.deb
 
     build_docker_afwfcgi:
         name: Build Docker Image afwfcgi
@@ -274,22 +269,21 @@ jobs:
               run: |
                   git config --global --add safe.directory "*"
                   ./afwdev --version
-                  echo "VERSION=`./afwdev --version-string`" >> $GITHUB_ENV
-                  echo "RELEASE=0" >> $GITHUB_ENV              
+                  echo "VERSION=`./afwdev --version-string`" >> $GITHUB_ENV     
 
             - name: Build ghcr.io/afw-org/afwfcgi image
               run: |
                 docker buildx create --use
-                docker buildx build --platform linux/amd64,linux/arm64 -t ghcr.io/afw-org/afwfcgi:alpine3.16.4-${{ env.VERSION }}-${{ env.RELEASE }} -f docker/images/afwfcgi/Dockerfile.alpine .
+                docker buildx build --platform linux/amd64,linux/arm64 -t ghcr.io/afw-org/afwfcgi:alpine3.16.4-${{ env.VERSION }} -f docker/images/afwfcgi/Dockerfile.alpine .
 
             - name: Export Docker Image
-              run: docker save --output afw-afwfcgi-${{ env.VERSION }}-${{ env.RELEASE }}.tar ghcr.io/afw-org/afwfcgi:alpine3.16.4-${{ env.VERSION }}-${{ env.RELEASE }}
+              run: docker save --output afw-afwfcgi-${{ env.VERSION }}.tar ghcr.io/afw-org/afwfcgi:alpine3.16.4-${{ env.VERSION }}
 
             - name: Upload afwfcgi Image Artifact
               uses: actions/upload-artifact@v3
               with:
-                  name: docker-afw-afwfcgi-${{ env.VERSION }}-${{ env.RELEASE }}.tar
-                  path: afw-afwfcgi-${{ env.VERSION }}-${{ env.RELEASE }}.tar
+                  name: docker-afw-afwfcgi-${{ env.VERSION }}.tar
+                  path: afw-afwfcgi-${{ env.VERSION }}.tar
 
     build_docker_afw:
         name: Build Docker Image afw
@@ -313,22 +307,21 @@ jobs:
               run: |
                   git config --global --add safe.directory "*"
                   ./afwdev --version
-                  echo "VERSION=`./afwdev --version-string`" >> $GITHUB_ENV
-                  echo "RELEASE=0" >> $GITHUB_ENV                     
+                  echo "VERSION=`./afwdev --version-string`" >> $GITHUB_ENV            
 
             - name: Build ghcr.io/afw-org/afw image
               run: |
                   docker buildx create --use
-                  docker buildx build --platform linux/amd64,linux/arm64 -t ghcr.io/afw-org/afw:alpine3.16.4-${{ env.VERSION }}-${{ env.RELEASE }} -f docker/images/afw/Dockerfile.alpine .
+                  docker buildx build --platform linux/amd64,linux/arm64 -t ghcr.io/afw-org/afw:alpine3.16.4-${{ env.VERSION }} -f docker/images/afw/Dockerfile.alpine .
 
             - name: Export Docker Image
-              run: docker save --output afw-${{ env.VERSION }}-${{ env.RELEASE }}.tar ghcr.io/afw-org/afw:alpine3.16.4-${{ env.VERSION }}-${{ env.RELEASE }}
+              run: docker save --output afw-${{ env.VERSION }}.tar ghcr.io/afw-org/afw:alpine3.16.4-${{ env.VERSION }}
 
             - name: Upload afw Image Artifact
               uses: actions/upload-artifact@v3
               with:
-                  name: docker-afw-${{ env.VERSION }}-${{ env.RELEASE }}.tar
-                  path: afw-${{ env.VERSION }}-${{ env.RELEASE }}.tar
+                  name: docker-afw-${{ env.VERSION }}.tar
+                  path: afw-${{ env.VERSION }}.tar
 
     build_docker_afw_dev:
       name: Build Docker Image afw-dev
@@ -353,21 +346,20 @@ jobs:
                 git config --global --add safe.directory "*"
                 ./afwdev --version
                 echo "VERSION=`./afwdev --version-string`" >> $GITHUB_ENV
-                echo "RELEASE=0" >> $GITHUB_ENV
           
           - name: Build ghcr.io/afw-org/afw-dev image
             run: |
                 docker buildx create --use
-                docker buildx build --platform linux/amd64,linux/arm64 -t ghcr.io/afw-org/afw-dev:alpine3.16.4-${{ env.VERSION }}-${{ env.RELEASE }} -f docker/images/afw-dev/Dockerfile.alpine .
+                docker buildx build --platform linux/amd64,linux/arm64 -t ghcr.io/afw-org/afw-dev:alpine3.16.4-${{ env.VERSION }} -f docker/images/afw-dev/Dockerfile.alpine .
 
           - name: Export Docker Image
-            run: docker save --output afw-dev-${{ env.VERSION }}-${{ env.RELEASE }}.tar ghcr.io/afw-org/afw-dev:alpine3.16.4-${{ env.VERSION }}-${{ env.RELEASE }}
+            run: docker save --output afw-dev-${{ env.VERSION }}.tar ghcr.io/afw-org/afw-dev:alpine3.16.4-${{ env.VERSION }}
 
           - name: Upload afw-dev Image Artifact
             uses: actions/upload-artifact@v3
             with:
-                name: docker-afw-dev-${{ env.VERSION }}-${{ env.RELEASE }}.tar
-                path: afw-${{ env.VERSION }}-${{ env.RELEASE }}.tar
+                name: docker-afw-dev-${{ env.VERSION }}.tar
+                path: afw-${{ env.VERSION }}.tar
 
     build_docker_admin:
         name: Build Docker Image afw-admin
@@ -392,18 +384,17 @@ jobs:
                   git config --global --add safe.directory "*"
                   ./afwdev --version
                   echo "VERSION=`./afwdev --version-string`" >> $GITHUB_ENV
-                  echo "RELEASE=0" >> $GITHUB_ENV
             
             - name: Build ghcr.io/afw-org/afw-admin image
               run: |
                   docker buildx create --use
-                  docker buildx build --platform linux/amd64,linux/arm64 -t ghcr.io/afw-org/afw-admin:${{ env.VERSION }}-${{ env.RELEASE }} -f docker/images/afw-admin/Dockerfile .
+                  docker buildx build --platform linux/amd64,linux/arm64 -t ghcr.io/afw-org/afw-admin:${{ env.VERSION }} -f docker/images/afw-admin/Dockerfile .
 
             - name: Export Docker Image
-              run: docker save --output afw-admin-${{ env.VERSION }}-${{ env.RELEASE }}.tar ghcr.io/afw-org/afw-admin:${{ env.VERSION }}-${{ env.RELEASE }}
+              run: docker save --output afw-admin-${{ env.VERSION }}.tar ghcr.io/afw-org/afw-admin:${{ env.VERSION }}
 
             - name: Upload Admin Image Artifact
               uses: actions/upload-artifact@v3
               with:
-                  name: docker-afw-admin-${{ env.VERSION }}-${{ env.RELEASE }}.tar
-                  path: afw-admin-${{ env.VERSION }}-${{ env.RELEASE }}.tar
+                  name: docker-afw-admin-${{ env.VERSION }}.tar
+                  path: afw-admin-${{ env.VERSION }}.tar
