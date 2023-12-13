@@ -4,7 +4,6 @@
 #
 #   docker build
 #     [-e RPM_VERSION=<version>] 
-#     [-e RPM_RELEASE=<release>] 
 #     [-e BUILD_TARGET=<target>]
 #     -f docker/images/builder/Dockerfile.rockylinux
 #     -t ghcr.io/afw-org/afw-dev-base:rockylinux .
@@ -25,32 +24,24 @@ cd /src
 
 # use what was passed in, defaulting to afwdev
 RPM_VERSION=${RPM_VERSION:=`./afwdev --version-string`}
-RPM_RELEASE=${RPM_RELEASE:='0'}
 BUILD_TARGET=${BUILD_TARGET:='c'}
 ARCH=`arch`
 
-echo "Building ${RPM_VERSION}-${RPM_RELEASE}, target: ${BUILD_TARGET}"
+echo "Building ${RPM_VERSION}, target: ${BUILD_TARGET}"
 
 if [ "$BUILD_TARGET" == "c" ] || [ "$BUILD_TARGET" == "all" ]; 
 then
     echo "Building C code..."
 
-    cp /afw.spec ${HOME}/rpmbuild/SPECS/
-
     # build the source
-    cd /src && ./afwdev build --prefix ${HOME}/rpmbuild/SOURCES/afw-${RPM_VERSION}/usr/local --install
+    cd /src && ./afwdev build --prefix /usr/local --package
     if [ $? -ne 0 ]; then
         echo "** Core Build failed!"
         exit 1
     fi
 
-    cd ${HOME}/rpmbuild/SOURCES 
-    tar czf afw-${RPM_VERSION}-${RPM_RELEASE}.tar.gz afw-${RPM_VERSION}
-
-    cd ${HOME}/rpmbuild && rpmbuild --define "debug_package %{nil}" --define "version ${RPM_VERSION}" --define "release ${RPM_RELEASE}" -ba SPECS/afw.spec
-
     # copy to /    
-    cp /root/rpmbuild/RPMS/${ARCH}/afw-${RPM_VERSION}-${RPM_RELEASE}.${ARCH}.rpm /afw-${RPM_VERSION}-${RPM_RELEASE}-rockylinux.${ARCH}.rpm
+    cp build/cmake/afw-${RPM_VERSION}_${ARCH}.rpm /afw-${RPM_VERSION}-rockylinux.${ARCH}.rpm
 fi
 
 if [ "$BUILD_TARGET" == "js" ] || [ "$BUILD_TARGET" == "all" ]; 
