@@ -39,7 +39,7 @@ then
     fi
 
     # copy to /
-    cp build/cmake/afw-${TAR_VERSION}_${ARCH}.tar.gz /afw-${TAR_VERSION}-alpine.${ARCH}.tar.gz /
+    cp build/cmake/afw-${TAR_VERSION}_${ARCH}.tar.gz /afw-${TAR_VERSION}-alpine.${ARCH}.tar.gz
     
     echo ""
     echo "File afw-${TAR_VERSION}-alpine.${ARCH}.tar.gz created."

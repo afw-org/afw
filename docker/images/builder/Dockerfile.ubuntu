@@ -18,4 +18,4 @@ RUN chmod +x /builder.sh && BUILD_TARGET=js /builder.sh
 FROM scratch
 
 COPY --from=build-stage-c /*.deb /
-COPY --from=build-stage-c /*.tar /
+COPY --from=build-stage-js /*.tar /

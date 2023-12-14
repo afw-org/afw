@@ -20,7 +20,7 @@ RUN chmod +x /builder.sh && BUILD_TARGET=js /builder.sh
 # into the local file system
 FROM scratch as build-stage
 
-COPY --from=build-stage-c /*.tar /
+COPY --from=build-stage-c /*.tar.gz /
 COPY --from=build-stage-js /*.tar /
 
 
@@ -33,12 +33,12 @@ LABEL org.opencontainers.image.source https://github.com/afw-org/afw
 RUN apk add --no-cache nginx supervisor
 
 # obtain the artifacts from build-stage
-COPY --from=build-stage /afw-*alpine*.tar /
+COPY --from=build-stage /afw-*alpine*.tar.gz /
 COPY --from=build-stage /afw-apps-*.tar /var/lib/nginx/html
 COPY --from=build-stage /afw-docs-*.tar /var/lib/nginx/html
 
 RUN cd / && tar xzvf /afw-*alpine*.tar.gz --strip-components=1 && \
-    rm -f /afw-*alpine*.tar && \
+    rm -f /afw-*alpine*.tar.gz && \
     cd /var/lib/nginx/html && tar xvf afw-apps-*.tar && rm -f afw-apps-*.tar && \
     tar xvf afw-docs-*.tar && rm -f afw-docs-*.tar
 
