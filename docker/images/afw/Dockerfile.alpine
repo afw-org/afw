@@ -37,7 +37,8 @@ COPY --from=build-stage /afw-*alpine*.tar /
 COPY --from=build-stage /afw-apps-*.tar /var/lib/nginx/html
 COPY --from=build-stage /afw-docs-*.tar /var/lib/nginx/html
 
-RUN cd / && tar xvf /afw-*alpine*.tar && rm -f /afw-*alpine*.tar && \
+RUN cd / && tar xzvf /afw-*alpine*.tar.gz --strip-components=1 && \
+    rm -f /afw-*alpine*.tar && \
     cd /var/lib/nginx/html && tar xvf afw-apps-*.tar && rm -f afw-apps-*.tar && \
     tar xvf afw-docs-*.tar && rm -f afw-docs-*.tar
 

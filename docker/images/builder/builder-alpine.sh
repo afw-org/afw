@@ -38,15 +38,11 @@ then
         exit 1
     fi
 
-    # Create a TAR file from the build
-    cd build/cmake/_CPack_Packages/Linux/TGZ/afw-${TAR_VERSION}_${ARCH}
-    tar cvf afw-${TAR_VERSION}-alpine.${ARCH}.tar * 
-
     # copy to /
-    cp afw-${TAR_VERSION}-alpine.${ARCH}.tar /
+    cp build/cmake/afw-${TAR_VERSION}_${ARCH}.tar.gz /afw-${TAR_VERSION}-alpine.${ARCH}.tar.gz /
     
     echo ""
-    echo "File afw-${TAR_VERSION}-alpine.${ARCH}.tar created."
+    echo "File afw-${TAR_VERSION}-alpine.${ARCH}.tar.gz created."
 fi
 
 if [ "$BUILD_TARGET" == "js" ] || [ "$BUILD_TARGET" == "all" ]; 
