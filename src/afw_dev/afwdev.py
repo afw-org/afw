@@ -1491,6 +1491,7 @@ def _subcommand_make_afw_package(args, options):
                         'description': options['description'],
                         'homePageUrl': 'https://github.com/afw-org',
                         'installPackageSubdir':'afw',
+                        'copyright':'Copyright (c) <Your Copyright Here>',
                         'srcdirs': {
                         },
                         'version': '0.0.0'

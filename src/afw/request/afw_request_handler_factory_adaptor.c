@@ -2,7 +2,7 @@
 /*
  * Implementation of afw_request_handler_factory interface for adaptor
  *
- * Copyright (c) 2010-2023 Clemson University
+ * Copyright (c) 2010-2024 Clemson University
  *
  */
 

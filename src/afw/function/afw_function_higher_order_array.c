@@ -2,7 +2,7 @@
 /*
  * afw_function_execute_* functions for higher_order_array
  *
- * Copyright (c) 2010-2023 Clemson University
+ * Copyright (c) 2010-2024 Clemson University
  *
  */
 

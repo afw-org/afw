@@ -2,7 +2,7 @@
 /*
  * Implementation of afw_adaptor_factory interface for afw_runtime
  *
- * Copyright (c) 2010-2023 Clemson University
+ * Copyright (c) 2010-2024 Clemson University
  *
  */
 
