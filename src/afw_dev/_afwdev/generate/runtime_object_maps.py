@@ -8,7 +8,7 @@
 from _afwdev.common import direct
 import os
 
-from _afwdev.common import msg, nfc
+from _afwdev.common import msg, nfc, package
 from _afwdev.generate import c
 
 def sort_use_id_cb(obj):
@@ -182,10 +182,14 @@ def generate(generated_by, options):
     #list = [obj for obj in list if obj.get('runtime') is not None]
 
     filename = options['prefix'] + 'runtime_object_maps.c'
+
+    afw_package = package.get_afw_package(options)
+    copyright = afw_package.get('copyright')
+
     msg.info('Generating ' + filename)
     onGetValueCFunctionNames = []
     with nfc.open(options['generated_dir_path'] + filename, mode='w') as fd:
-        c.write_c_prologue(fd, generated_by, 'Adaptive Framework Runtime Object Mapping')
+        c.write_c_prologue(fd, generated_by, 'Adaptive Framework Runtime Object Mapping', copyright)
         c.write_doxygen_file_section(fd, filename, 'Adaptive Framework runtime object mapping.')
         fd.write('\n')
         fd.write('#include "afw.h"\n')
@@ -230,7 +234,7 @@ def generate(generated_by, options):
     filename = options['prefix'] + 'runtime_object_maps.h'
     msg.info('Generating ' + filename)
     with nfc.open(options['generated_dir_path'] + filename, mode='w') as fd:
-        c.write_h_prologue(fd, generated_by, 'Adaptive Framework Runtime Object Mapping Header', filename)
+        c.write_h_prologue(fd, generated_by, 'Adaptive Framework Runtime Object Mapping Header', copyright, filename)
         c.write_doxygen_file_section(fd, filename, 'Adaptive Framework runtime object mapping header.')
         fd.write('\n')
         for obj in list:

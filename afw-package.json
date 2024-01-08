@@ -16,6 +16,7 @@
             "-fsigned-char"
         ]
     },
+    "copyright": "Copyright (c) 2010-2024 Clemson University",
     "description": "This is the Adaptive Framework (AFW) base which includes library libafw, the afw and afwdev commands, the core UI support, the AFW Administration application, plus a base set of extensions and server implementations.",
     "homePageUrl": "https://github.com/afw-org",
     "installPackageSubdir": "afw",

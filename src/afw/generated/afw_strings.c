@@ -2,7 +2,7 @@
 /*
  * Adaptive Framework Const
  *
- * Copyright (c) 2010-2023 Clemson University
+ * Copyright (c) 2010-2024 Clemson University
  *
  */
 
@@ -215,6 +215,12 @@ const afw_value_string_t
 afw_self_v_Console = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Console)
+};
+
+const afw_value_string_t
+afw_self_v_Copyright = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_Copyright)
 };
 
 const afw_value_string_t
@@ -11129,6 +11135,12 @@ const afw_value_string_t
 afw_self_v_convert_query_string_to_AdaptiveQueryCriteria = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_convert_query_string_to_AdaptiveQueryCriteria)
+};
+
+const afw_value_string_t
+afw_self_v_copyright = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_copyright)
 };
 
 const afw_value_string_t
@@ -30590,6 +30602,12 @@ afw_self_v_zz__2252 = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__2253 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__2253)
+};
+
+const afw_value_string_t
 afw_self_v_zz__226 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__226)
@@ -38531,6 +38549,12 @@ const afw_value_string_t
 afw_self_v_zz__Converts_value_to_string = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Converts_value_to_string)
+};
+
+const afw_value_string_t
+afw_self_v_zz__Copyright__c__2010_2024_Clemson_University = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Copyright__c__2010_2024_Clemson_University)
 };
 
 const afw_value_string_t

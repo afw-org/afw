@@ -2,7 +2,7 @@
 /*
  * Adaptive Framework (afw_ldap_) Strings Header
  *
- * Copyright (c) 2010-2023 Clemson University
+ * Copyright (c) 2010-2024 Clemson University
  *
  */
 

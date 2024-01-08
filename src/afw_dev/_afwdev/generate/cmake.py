@@ -303,7 +303,8 @@ def _root_generate_add_subdirectories(options, afw_package):
 
 def _root_generate_config_header_in(options, afw_package):
 
-    filename = afw_package['afwPackageLabel'] + '_config.h.in'
+    filename = afw_package['afwPackageLabel'] + '_config.h.in'    
+    copyright = afw_package.get('copyright')
     msg.info('Writing ' + filename)
     afw_config_build_prefix = afw_package['afwPackageLabel'].upper() + '_CONFIG_'
     afw_config_build_prefix_has = afw_config_build_prefix + 'HAS_'
@@ -311,6 +312,7 @@ def _root_generate_config_header_in(options, afw_package):
         c.write_h_prologue(fd,
             'afwdev generate',
             'Config file for ' + afw_package['afwPackageId'],
+            copyright,
             afw_package['afwPackageLabel'] + '_config.h')
             
         fd.write('#define ' + afw_config_build_prefix + 'INSTALL_BINDIR "@AFW_PACKAGE_INSTALL_BINDIR@"\n')

@@ -115,7 +115,7 @@
 
 import os
 from _afwdev.generate import c
-from _afwdev.common import msg, nfc
+from _afwdev.common import msg, nfc, package
 
 
 def write_typedefs_h_section(fd, prefix, obj):
@@ -1629,10 +1629,10 @@ def write_c_section(fd, prefix, obj):
         fd.write('}\n')
 
 
-def generate_h(prefix, obj, id, generated_by, dir, filename, options):
+def generate_h(prefix, obj, id, generated_by, dir, copyright, filename, options):
     msg.info('Generating ' + filename)
     with nfc.open(dir+filename, mode='w') as fd:
-        c.write_h_prologue(fd, generated_by, 'Adaptive Data Type ' + id , filename)
+        c.write_h_prologue(fd, generated_by, 'Adaptive Data Type ' + id , copyright, filename)
         fd.write('\n#include "afw_minimal.h"\n')
         fd.write('#include "' + prefix + 'data_type_typedefs.h"\n')
         fd.write('#include "' + prefix + 'declare_helpers.h"\n')
@@ -1656,9 +1656,9 @@ def generate_h(prefix, obj, id, generated_by, dir, filename, options):
         c.write_h_epilogue(fd, filename)
 
 
-def generate_typedefs_h(prefix, data_type_array, id, generated_by, dir, filename, options):
+def generate_typedefs_h(prefix, data_type_array, id, generated_by, dir, copyright, filename, options):
     with nfc.open(dir+filename, mode='w') as fd:
-        c.write_h_prologue(fd, generated_by, 'Adaptive Data Type Typedefs ' + id , filename)
+        c.write_h_prologue(fd, generated_by, 'Adaptive Data Type Typedefs ' + id, copyright, filename)
         c.write_doxygen_file_section(fd, filename, 'Adaptive data type typedefs ' + id + ' header.')
         fd.write('\n#include "afw_minimal.h"\n')
         fd.write('#include "' + prefix + 'declare_helpers.h"\n')
@@ -1680,10 +1680,10 @@ def generate_typedefs_h(prefix, data_type_array, id, generated_by, dir, filename
         c.write_h_epilogue(fd, filename)
 
 
-def generate_c(prefix, obj, id, generated_by, dir, filename):
+def generate_c(prefix, obj, id, generated_by, dir, copyright, filename):
     msg.info('Generating ' + filename)
     with nfc.open(dir+filename, mode='w') as fd:
-        c.write_c_prologue(fd, generated_by, 'Adaptive Framework Core Data Types ')
+        c.write_c_prologue(fd, generated_by, 'Adaptive Framework Core Data Types ', copyright)
         c.write_doxygen_file_section(fd, filename, 'Adaptive Framework core data types.')
         fd.write('\n')
         fd.write('#include "afw.h"\n')
@@ -1699,6 +1699,9 @@ def generate(generated_by, prefix, data_type_array, generated_dir_path, options)
     # Just return if no data types
     if len(data_type_array) == 0: return
 
+    afw_package = package.get_afw_package(options)
+    copyright = afw_package.get('copyright')
+
     # Make sure generated/ directory structure exists
     os.makedirs(generated_dir_path, exist_ok=True)
 
@@ -1706,19 +1709,19 @@ def generate(generated_by, prefix, data_type_array, generated_dir_path, options)
     for obj in data_type_array:
         id = obj['_meta_']['objectId']
         filename = prefix + 'data_type_' + id + '_binding.h'
-        generate_h(prefix, obj, id, generated_by, generated_dir_path, filename, options)
+        generate_h(prefix, obj, id, generated_by, generated_dir_path, copyright, filename, options)
 
     # Generate <prefix>_data_type_typedefs.h
     filename = prefix + 'data_type_typedefs.h'
     msg.info('Generating ' + filename)
     with nfc.open(generated_dir_path + filename, mode='w') as fd:
-        generate_typedefs_h(prefix, data_type_array, id, generated_by, generated_dir_path, filename, options)
+        generate_typedefs_h(prefix, data_type_array, id, generated_by, generated_dir_path, copyright, filename, options)
 
     # Generate <prefix>_data_type_bindings.h
     filename = prefix + 'data_type_bindings.h'
     msg.info('Generating ' + filename)
     with nfc.open(generated_dir_path + filename, mode='w') as fd:
-        c.write_h_prologue(fd, generated_by, 'Adaptive Framework Data Type Bindings', filename)
+        c.write_h_prologue(fd, generated_by, 'Adaptive Framework Data Type Bindings', copyright, filename)
         c.write_doxygen_file_section(fd, filename, 'Adaptive Framework core data type bindings header.')
         fd.write('\n')
 
@@ -1771,13 +1774,13 @@ def generate(generated_by, prefix, data_type_array, generated_dir_path, options)
     for obj in data_type_array:
         id = obj['_meta_']['objectId']
         filename = prefix + 'data_type_' + id + '_binding.c'
-        generate_c(prefix, obj, id, generated_by, generated_dir_path, filename)
+        generate_c(prefix, obj, id, generated_by, generated_dir_path, copyright, filename)
 
     # Generate <prefix>data_types_bindings.c
     filename = prefix + 'data_type_bindings.c'
     msg.info('Generating ' + filename)
     with nfc.open(generated_dir_path + filename, mode='w') as fd:
-        c.write_c_prologue(fd, generated_by, 'Adaptive Framework Data Type Bindings')
+        c.write_c_prologue(fd, generated_by, 'Adaptive Framework Data Type Bindings', copyright)
         c.write_doxygen_file_section(fd, filename, 'Adaptive Framework data type bindings.')
         fd.write('\n')
         fd.write('#include "afw.h"\n')

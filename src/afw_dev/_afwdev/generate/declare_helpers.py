@@ -7,7 +7,7 @@
 
 import os
 from _afwdev.generate import c
-from _afwdev.common import msg, nfc
+from _afwdev.common import msg, nfc, package
 
 def generate(generated_by, options):
 
@@ -19,10 +19,12 @@ def generate(generated_by, options):
     filename = prefix + 'declare_helpers.h'
     srcdir = prefix[:-1]
     srcdir_path = '/src/'+ srcdir + '/ source'
+    afw_package = package.get_afw_package(options)
+    copyright = afw_package.get('copyright')
     msg.info('Generating ' + filename)
     os.makedirs(generated_dir_path, exist_ok=True)
     with nfc.open(generated_dir_path + filename, mode='w') as fd:
-        c.write_h_prologue(fd, generated_by, 'Adaptive Framework Declare Helpers for ' + prefix, filename)
+        c.write_h_prologue(fd, generated_by, 'Adaptive Framework Declare Helpers for ' + prefix, copyright, filename)
         c.write_doxygen_file_section(fd, filename, 'Adaptive Framework declare helpers for ' + prefix)
         
         fd.write('\n\n')

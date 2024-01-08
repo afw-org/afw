@@ -31,6 +31,7 @@ set(afw_package
     "brief"
     "bugReportEmail"
     "compileOptions"
+    "copyright"
     "description"
     "homePageUrl"
     "installPackageSubdir"
@@ -46,6 +47,7 @@ set(afw_package_compileOptions
     "GNU"
 )
 set(afw_package_compileOptions_GNU -std=c11 -g -Wall -Wextra -Wno-missing-field-initializers -Wno-unused-parameter -Wno-sign-compare -Wno-implicit-fallthrough -Werror -fsigned-char)
+set(afw_package_copyright "Copyright (c) 2010-2024 Clemson University")
 set(afw_package_description "This is the Adaptive Framework (AFW) base which includes library libafw, the afw and afwdev commands, the core UI support, the AFW Administration application, plus a base set of extensions and server implementations.")
 set(afw_package_homePageUrl "https://github.com/afw-org")
 set(afw_package_installPackageSubdir "afw")

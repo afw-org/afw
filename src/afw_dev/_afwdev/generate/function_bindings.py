@@ -7,7 +7,7 @@
 
 import os
 from _afwdev.common import direct
-from _afwdev.common import msg, nfc
+from _afwdev.common import msg, nfc, package
 from _afwdev.generate import c
 from _afwdev.generate.strings import get_string_label
 
@@ -257,6 +257,10 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
     list = direct.retrieve_objects_direct(object_dir_path + '_AdaptiveFunctionGenerate_/')
     list.sort(key=sort_category_functionLabel_cb)
 
+    # get the copyright text
+    afw_package = package.get_afw_package(options)
+    copyright = afw_package.get('copyright')
+
     # Generate function_binding.h and generate list of categories
     categories = []
     category = None
@@ -266,7 +270,7 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
     msg.info('Generating ' + filename)
     with nfc.open(generated_dir_path + filename, mode='w') as fd:
         c.write_h_prologue(fd, generated_by,
-            'Adaptive Framework Core Adaptive Function Bindings', filename)
+            'Adaptive Framework Core Adaptive Function Bindings', copyright, filename)
         c.write_doxygen_file_section(fd, filename,
             'Adaptive Framework core adaptive function bindings header.')
         fd.write('\n')
@@ -419,7 +423,7 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
     msg.info('Generating ' + filename)
     with nfc.open(generated_dir_path + filename, mode='w') as fd:
         c.write_c_prologue(fd, generated_by, 
-            'Adaptive Framework Core Adaptive Function Bindings ')
+            'Adaptive Framework Core Adaptive Function Bindings ', copyright)
         c.write_doxygen_file_section(fd, filename,
             'Adaptive Framework core adaptive function bindings.')
         fd.write('\n')
@@ -830,7 +834,7 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
             filename = options['prefix'] + 'function_polymorphic.c'
             msg.info('Generating skeleton ' + filename)
             with nfc.open(generated_dir_path + 'function_closet/' + filename, mode='w') as fd:
-                c.write_copyright(fd, prefix + 'common polymorphic function_execute_* functions')
+                c.write_copyright(fd, prefix + 'common polymorphic function_execute_* functions', copyright)
                 c.write_doxygen_file_section(fd, filename,
                     prefix + 'common polymorphic function_execute_* functions.')
                 fd.write('\n')
@@ -876,7 +880,7 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
 
         msg.info('Generating skeleton ' + filename)
         with nfc.open(generated_dir_path + 'function_closet/' + filename, mode='w') as fd:
-            c.write_copyright(fd, prefix + 'function_execute_* functions for ' + category)
+            c.write_copyright(fd, prefix + 'function_execute_* functions for ' + category, copyright)
             c.write_doxygen_file_section(fd, filename,
                 prefix + 'function_execute_* functions for ' + category + '.')
             fd.write('\n')

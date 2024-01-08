@@ -8,7 +8,7 @@
 
 import os
 import re
-from _afwdev.common import msg, nfc
+from _afwdev.common import msg, nfc, package
 
 def get_generated_by(generated_by):
     return \
@@ -27,22 +27,23 @@ def write_generated_by(fd, generated_by):
     fd.write(get_generated_by(generated_by))
 
 
-def get_copyright(title):
+def get_copyright(title, copyright):
     #t = title
     #if (len(t) < 73):
     #    t += ' '*(73 - len(t))
+
     return \
     "// See the 'COPYING' file in the project root for licensing information.\n" + \
     "/*\n" + \
     " * " + title + "\n" + \
     " *\n" + \
-    " * Copyright (c) 2010-2023 Clemson University\n" + \
+    " * " + copyright + "\n" + \
     " *\n" + \
     " */\n"
 
 
-def write_copyright(fd, title):
-    fd.write(get_copyright(title))
+def write_copyright(fd, title, copyright):
+    fd.write(get_copyright(title, copyright))
 
 
 def get_doxygen_file_section(filename, brief, more=False):
@@ -60,18 +61,18 @@ def write_doxygen_file_section(fd, filename, brief, more=False):
     fd.write(get_doxygen_file_section(filename, brief, more))
 
 
-def get_c_prologue(fd, generated_by, title):
-    return get_copyright(title) + '\n' + get_generated_by(generated_by) + '\n'
+def get_c_prologue(fd, generated_by, title, copyright):
+    return get_copyright(title, copyright) + '\n' + get_generated_by(generated_by) + '\n'
 
 
-def write_c_prologue(fd, generated_by, title):
-    fd.write(get_c_prologue(fd, generated_by, title))
+def write_c_prologue(fd, generated_by, title, copyright):
+    fd.write(get_c_prologue(fd, generated_by, title, copyright))
 
 
-def get_h_prologue(generated_by, title, filename):
+def get_h_prologue(generated_by, title, copyright, filename):
     guard = ('__' + filename + '__').upper().replace('.', '_')
     return \
-    get_copyright(title) + \
+    get_copyright(title, copyright) + \
     "\n" + \
     get_generated_by(generated_by) + \
     "\n" + \
@@ -79,8 +80,8 @@ def get_h_prologue(generated_by, title, filename):
     "#define " + guard + "\n\n"
 
 
-def write_h_prologue(fd, generated_by, title, filename):
-    fd.write(get_h_prologue(generated_by, title, filename))
+def write_h_prologue(fd, generated_by, title, copyright, filename):
+    fd.write(get_h_prologue(generated_by, title, copyright, filename))
 
 
 def get_h_epilogue(filename):
@@ -304,7 +305,9 @@ def replace_file_copyright(srcdir_path, src_file) :
         msg.info('Updating copyright in ' + src_file)
         with nfc.open(file_path, mode='w') as fd:
             try:
-                write_copyright(fd, title)
+                # FIXME this will need the text of the copyright to write out, which should 
+                # be taken from afw-package.json
+                write_copyright(fd, title, copyright)
 
                 if len(directives) > 0:
                     fd.write('\n')

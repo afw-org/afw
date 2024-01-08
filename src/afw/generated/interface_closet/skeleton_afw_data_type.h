@@ -2,7 +2,7 @@
 /*
  * Interface afw_data_type implementation for <afwdev {implementation_id}>
  *
- * Copyright (c) 2010-2023 Clemson University
+ * Copyright (c) 2010-2024 Clemson University
  *
  */
 

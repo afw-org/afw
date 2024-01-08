@@ -147,6 +147,11 @@
                     "title": "Compile Options",
                     "type": "object"
                 },
+                "copyright": {
+                    "description": "This is a text string that will be used as the copyright inserted into source files during the generate process.",
+                    "title": "Copyright",
+                    "type": "string"
+                },
                 "description": {
                     "description": "This describes this repository.",
                     "title": "Description",

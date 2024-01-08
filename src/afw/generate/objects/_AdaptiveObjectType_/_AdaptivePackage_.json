@@ -40,6 +40,12 @@
             "label": "Compile Options",
             "required": false
         },
+        "copyright": {
+            "dataType": "string",
+            "description": "This is a text string that will be used as the copyright inserted into source files during the generate process.",
+            "label": "Copyright",
+            "required": false
+        },
         "description": {
             "dataType": "string",
             "description": "This describes this repository.",

@@ -4,7 +4,7 @@
 /*
  * PHP Bindings for relaxed_json
  *
- * Copyright (c) 2010-2023 Clemson University
+ * Copyright (c) 2010-2024 Clemson University
  *
  */
 
