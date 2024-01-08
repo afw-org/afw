@@ -2,7 +2,7 @@
 /*
  * Interface afw_object Implementation for afw_xctx_qualifier_object
  *
- * Copyright (c) 2010-2023 Clemson University
+ * Copyright (c) 2010-2024 Clemson University
  *
  */
 

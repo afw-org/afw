@@ -2,7 +2,7 @@
 /*
  * Adaptive Framework - Log Header for Basic Log  DEPRECATED
  *
- * Copyright (c) 2010-2023 Clemson University
+ * Copyright (c) 2010-2024 Clemson University
  *
  */
 

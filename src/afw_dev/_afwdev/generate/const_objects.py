@@ -8,7 +8,7 @@
 
 import os
 from _afwdev.generate import property_type
-from _afwdev.common import msg, nfc
+from _afwdev.common import msg, nfc, package
 from _afwdev.generate import c
 from _afwdev.common import direct
 from _afwdev.generate.strings import get_string_label
@@ -448,9 +448,13 @@ def generate(generated_by, prefix, object_dir_path,
     list.sort(key=sort_use_id_cb)
 
     filename = prefix + 'const_objects.h'
+
+    afw_package = package.get_afw_package(options)
+    copyright = afw_package.get('copyright')
+
     msg.info('Generating ' + filename)
     with nfc.open(generated_dir_path + filename, mode='w') as fd:
-        c.write_h_prologue(fd, generated_by, 'Adaptive Framework Builtin Objects Header', filename)
+        c.write_h_prologue(fd, generated_by, 'Adaptive Framework Builtin Objects Header', copyright, filename)
         c.write_doxygen_file_section(fd, filename, 'Adaptive Framework builtin objects header.')
         fd.write('\n#include "afw_interface.h"\n')
         fd.write('\n\n/**\n')
@@ -463,7 +467,7 @@ def generate(generated_by, prefix, object_dir_path,
     filename = prefix + 'const_objects.c'
     msg.info('Generating ' + filename)
     with nfc.open(generated_dir_path + filename, mode='w') as fd:
-        c.write_c_prologue(fd, generated_by, 'Adaptive Framework Const')
+        c.write_c_prologue(fd, generated_by, 'Adaptive Framework Const', copyright)
         c.write_doxygen_file_section(fd, filename, 'Adaptive Framework builtin objects.')
         fd.write('\n')
         fd.write('#include "afw.h"\n')

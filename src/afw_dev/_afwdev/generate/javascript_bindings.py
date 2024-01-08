@@ -14,7 +14,7 @@
 import os
 import shutil
 from _afwdev.common import direct
-from _afwdev.common import msg, nfc
+from _afwdev.common import msg, nfc, package
 from _afwdev.generate import c
 
 def is_reserved_keyword(name):
@@ -73,6 +73,9 @@ def generate(generated_by, data_type_list, objects_dir_path, generated_dir_path,
     categories = []
     category = None
 
+    afw_package = package.get_afw_package(options)
+    copyright = afw_package.get('copyright')
+
     for obj in list:
         id = obj['functionLabel']
         x = obj.get('category')
@@ -91,7 +94,7 @@ def generate(generated_by, data_type_list, objects_dir_path, generated_dir_path,
         filename = category + '.ts'
         msg.info('Generating ' + filename)
         with nfc.open(generated_dir_path + '/src/' + filename, 'w') as fd:
-            c.write_copyright(fd, 'Javascript Bindings for ' + category)
+            c.write_copyright(fd, 'Javascript Bindings for ' + category, copyright)
             fd.write('\n')
 
             fd.write('\n')

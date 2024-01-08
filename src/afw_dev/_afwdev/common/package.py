@@ -23,6 +23,7 @@ _optional_afw_package_properties = [
     'brief',
     'bugReportEmail',
     'compileOptions',
+    'copyright',
     'description',
     'homePageUrl',
     'installPackageSubdir',
@@ -138,6 +139,8 @@ def get_afw_package(options):
     options['afw_package']['afwPackageLabel'] = options['afw_package']['afwPackageId'].replace('-','_')
     options['afwPackageId'] = options['afw_package']['afwPackageId']
     options['afwPackageGitInfoBaseName'] = options['afwPackageId'].replace('-','_') + '_git_info'
+    # set the default copyright, if not present
+    options['afw_package']['copyright'] = options['afw_package'].get('copyright', 'Copyright (c) 2010-2024 Clemson University')
     return options['afw_package']
 
 

@@ -15,13 +15,13 @@ from _afwdev.common import msg, nfc
 
 
 # ---- <name>.h ----
-def generate_h(generated_by, prefix, name, tree, generated_dir_path):
+def generate_h(generated_by, prefix, name, tree, generated_dir_path, copyright):
 
     root = tree.getroot()
     filename = name + '.h'
     msg.info('Generating ' + filename)
     with nfc.open(generated_dir_path + filename, mode='w') as fd:
-        c.write_h_prologue(fd, generated_by, 'Interface ' + name + ' Header', filename)
+        c.write_h_prologue(fd, generated_by, 'Interface ' + name + ' Header', copyright, filename)
         c.write_doxygen_file_section(fd, filename, 'Interface' + name + ' header.')
 
         fd.write('\n')
@@ -178,13 +178,13 @@ def generate_h(generated_by, prefix, name, tree, generated_dir_path):
         c.write_h_epilogue(fd, filename)
 
 # ---- <name>_opaques.h ----
-def generate_opaques_h(generated_by, prefix, name, tree, generated_dir_path):
+def generate_opaques_h(generated_by, prefix, name, tree, generated_dir_path, copyright):
 
     root = tree.getroot()
     filename = name + '_opaques.h'
     msg.info('Generating ' + filename)
     with nfc.open(generated_dir_path + filename, mode='w') as fd:
-        c.write_h_prologue(fd, generated_by, 'Interface ' + name + ' Opaque Typedefs', filename)
+        c.write_h_prologue(fd, generated_by, 'Interface ' + name + ' Opaque Typedefs', copyright, filename)
         c.write_doxygen_file_section(fd, filename, 'Interface ' + name + ' opaque typedefs.')
 
         fd.write('/**\n * @addtogroup ' + name + ' Interfaces\n')
@@ -207,7 +207,7 @@ def generate_opaques_h(generated_by, prefix, name, tree, generated_dir_path):
         c.write_h_epilogue(fd, filename)
 
 # ---- <interface>_impl_declares.h ----
-def generate_impl_declares_hs(generated_by, prefix, name, tree, generated_dir_path):
+def generate_impl_declares_hs(generated_by, prefix, name, tree, generated_dir_path, copyright):
     root = tree.getroot()
     for interface in root.findall('interface'):
         interface_name = interface.get('name')
@@ -217,7 +217,7 @@ def generate_impl_declares_hs(generated_by, prefix, name, tree, generated_dir_pa
         with nfc.open(generated_dir_path + filename, mode='w') as fd:
             guard = ('__' + filename + '__').upper().replace('.', '_')
             inf_only = (interface_name + '_INF_ONLY').upper().replace('.', '_')
-            fd.write(c.get_copyright('Interface ' + name + ' Implementation Declares'))
+            fd.write(c.get_copyright('Interface ' + name + ' Implementation Declares', copyright))
 
             fd.write('\n')
             fd.write('#include "' + name + '_opaques.h"\n')
@@ -417,7 +417,7 @@ def generate_impl_declares_hs(generated_by, prefix, name, tree, generated_dir_pa
             fd.write('\n/** @} */\n')
 
 
-def generate_skeletons_hs(generated_by, prefix, name, tree, generated_dir_path):
+def generate_skeletons_hs(generated_by, prefix, name, tree, generated_dir_path, copyright):
     root = tree.getroot()
     for interface in root.findall('interface'):
         interface_name = interface.get('name')
@@ -426,7 +426,7 @@ def generate_skeletons_hs(generated_by, prefix, name, tree, generated_dir_path):
         msg.info('Generating ' + filename)
         with nfc.open(generated_dir_path + filename, mode='w') as fd:
 
-            fd.write(c.get_copyright('Interface ' + interface_name + ' implementation for <afwdev {implementation_id}>'))
+            fd.write(c.get_copyright('Interface ' + interface_name + ' implementation for <afwdev {implementation_id}>', copyright))
            
             fd.write('\n')
             guard = ("__<afwdev {prefixed_interface_name.upper().replace('.', '_')}>_H__")
@@ -648,7 +648,7 @@ def generate_skeletons_cs(generated_by, prefix, name, tree, generated_dir_path):
 
 
 # ---- skeleton_header.h ----
-def generate_skeleton_header(generated_by, prefix, generated_dir_path):
+def generate_skeleton_header(generated_by, prefix, generated_dir_path, copyright):
 
     filename = 'interface_closet/skeleton_header.h'
     msg.info('Generating ' + filename)
@@ -657,7 +657,7 @@ def generate_skeleton_header(generated_by, prefix, generated_dir_path):
         fd.write('#ifdef __@todo_H__\n')
         fd.write('#define __@todo_H__\n\n')
 
-        fd.write(c.get_copyright('@todo title of header'))
+        fd.write(c.get_copyright('@todo title of header', copyright))
 
         c.write_doxygen_file_section(fd, '@todo.h', '@todo brief of header.')
 
@@ -715,7 +715,7 @@ def generate_objects(generated_by, prefix, name, tree, generated_dir_path):
     
 
 
-def generate(generated_by, prefix, interfaces_dir_path, generated_dir_path):
+def generate(generated_by, prefix, interfaces_dir_path, generated_dir_path, copyright):
 
     # Make sure generated/ directory structure exists
     os.makedirs(generated_dir_path, exist_ok=True)
@@ -728,10 +728,10 @@ def generate(generated_by, prefix, interfaces_dir_path, generated_dir_path):
             if fnmatch.fnmatch(file, '*.xml'):
                 tree = ET.parse(interfaces_dir_path + file)
                 name = file[:-4]
-                generate_h(generated_by, prefix, name, tree, generated_dir_path)
-                generate_opaques_h(generated_by, prefix, name, tree, generated_dir_path)
-                generate_impl_declares_hs(generated_by, prefix, name, tree, generated_dir_path)
-                generate_skeletons_hs(generated_by, prefix, name, tree, generated_dir_path)
+                generate_h(generated_by, prefix, name, tree, generated_dir_path, copyright)
+                generate_opaques_h(generated_by, prefix, name, tree, generated_dir_path, copyright)
+                generate_impl_declares_hs(generated_by, prefix, name, tree, generated_dir_path, copyright)
+                generate_skeletons_hs(generated_by, prefix, name, tree, generated_dir_path, copyright)
                 generate_skeletons_cs(generated_by, prefix, name, tree, generated_dir_path)
-                generate_skeleton_header(generated_by, prefix, generated_dir_path)
+                generate_skeleton_header(generated_by, prefix, generated_dir_path, copyright)
                 generate_objects(generated_by, prefix, name, tree, generated_dir_path)

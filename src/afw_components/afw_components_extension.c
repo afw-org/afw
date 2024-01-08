@@ -2,7 +2,7 @@
 /*
  * Interface afw_extension Implementation for afw_components
  *
- * Copyright (c) 2010-2023 Clemson University
+ * Copyright (c) 2010-2024 Clemson University
  *
  */
 

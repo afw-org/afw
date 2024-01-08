@@ -2,7 +2,7 @@
 /*
  * Adaptive Framework Object Implementation for an Adaptive Value's Meta
  *
- * Copyright (c) 2010-2023 Clemson University
+ * Copyright (c) 2010-2024 Clemson University
  *
  */
 

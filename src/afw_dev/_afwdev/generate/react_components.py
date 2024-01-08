@@ -7,7 +7,7 @@
 
 from _afwdev.common import direct
 import os
-from _afwdev.common import msg, nfc
+from _afwdev.common import msg, nfc, package
 from _afwdev.generate import c
 
 
@@ -816,7 +816,7 @@ def generate_prop_types(fd, objectTypes, objectType, componentType, implementati
     fd.write('\n')
     fd.write('export default propTypes;\n')
 
-def generate_typescript(fd, objectTypes, objectType, componentType, implementationId, layoutComponentType):    
+def generate_typescript(fd, objectTypes, objectType, componentType, implementationId, copyright, layoutComponentType):    
 
     category = layoutComponentType.get('category')
     description = layoutComponentType.get('description')
@@ -824,7 +824,7 @@ def generate_typescript(fd, objectTypes, objectType, componentType, implementati
     propsInterface = 'I' + implementationId + 'Props'
 
     # write out the license
-    c.write_copyright(fd, 'React Component definition for ' + implementationId)   
+    c.write_copyright(fd, 'React Component definition for ' + implementationId, copyright)   
 
     fd.write('\n')
     fd.write('import React from "react";\n') 
@@ -879,14 +879,14 @@ def generate_typescript(fd, objectTypes, objectType, componentType, implementati
     fd.write('\n')
     fd.write('export default React.memo(' + implementationId + ');\n')
 
-def generate_javascript(fd, objectTypes, objectType, componentType, implementationId, layoutComponentType):  
+def generate_javascript(fd, objectTypes, objectType, componentType, implementationId, copyright, layoutComponentType):  
 
     category = layoutComponentType.get('category')
     description = layoutComponentType.get('description')
     brief = layoutComponentType.get('brief')  
 
     # write out the license
-    c.write_copyright(fd, 'React Component definition for ' + implementationId)
+    c.write_copyright(fd, 'React Component definition for ' + implementationId, copyright)
 
     fd.write('\n')
     fd.write('import {memo} from "react";\n')
@@ -946,6 +946,9 @@ def generate(generated_by, options):
     os.makedirs(options['generated_dir_path'], exist_ok=True)
     os.makedirs(os.path.dirname(options['generated_dir_path'] + 'react_component_closet/'), exist_ok=True)    
 
+    afw_package = package.get_afw_package(options)
+    copyright = afw_package.get('copyright')
+
     # Get all object types and sort by id.
     objectTypes = []
     objectTypesHash = {}
@@ -1003,7 +1006,8 @@ def generate(generated_by, options):
 
         msg.info('Generating React Component in Javascript: ' + componentType)
         with nfc.open(closet_dir + componentType + '.js', mode='w') as fd:
-            generate_javascript(fd, objectTypesHash, objectTypesHash[instanceObjectType], componentType, implementationId, layoutComponentType)
+            generate_javascript(fd, objectTypesHash, objectTypesHash[instanceObjectType], 
+                                componentType, implementationId, copyright, layoutComponentType)
 
         msg.info('  Generating propTypes..')
         with nfc.open(closet_dir + componentType + '.propTypes.js', mode='w') as fd:
@@ -1013,12 +1017,14 @@ def generate(generated_by, options):
         msg.info('  Generating React Component in Typescript..')
         with nfc.open(closet_dir + componentType + '.tsx', mode='w') as fd:
             # Generate React propTypes from the property type definitions
-            generate_typescript(fd, objectTypesHash, objectTypesHash[instanceObjectType], componentType, implementationId, layoutComponentType)
+            generate_typescript(fd, objectTypesHash, objectTypesHash[instanceObjectType], 
+                                componentType, implementationId, copyright, layoutComponentType)
 
         msg.info('  Generating typescript type definition..')
         with nfc.open(closet_dir + componentType + '.types.ts', mode='w') as fd:
             # Generate React typescript interface definitions from the property type definitions
-            generate_typescript_types(fd, objectTypesHash, objectTypesHash[instanceObjectType], componentType, implementationId, layoutComponentType)
+            generate_typescript_types(fd, objectTypesHash, objectTypesHash[instanceObjectType], 
+                                      componentType, implementationId, layoutComponentType)
 
         msg.info('  Generating index..')
         with nfc.open(closet_dir + 'index.js', mode='w') as fd:
@@ -1040,10 +1046,12 @@ def generate(generated_by, options):
 
         msg.info('  Generating Storybook..')
         with nfc.open(closet_dir + componentType + '.stories.js', mode='w') as fd:
-            generate_stories(fd, objectTypesHash, objectTypesHash[instanceObjectType], componentType, implementationId, layoutComponentType)            
+            generate_stories(fd, objectTypesHash, objectTypesHash[instanceObjectType], 
+                             componentType, implementationId, layoutComponentType)            
 
         msg.info('  Generating README..')
         with nfc.open(closet_dir + 'README.md', mode='w') as fd:
-            generate_readme(fd, objectTypesHash, objectTypesHash[instanceObjectType], componentType, implementationId, layoutComponentType)            
+            generate_readme(fd, objectTypesHash, objectTypesHash[instanceObjectType], 
+                            componentType, implementationId, layoutComponentType)            
                   
 

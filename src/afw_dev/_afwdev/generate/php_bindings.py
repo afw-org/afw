@@ -15,7 +15,7 @@ import os
 import keyword
 
 from _afwdev.common import direct
-from _afwdev.common import msg, nfc
+from _afwdev.common import msg, nfc, package
 from _afwdev.generate import c
 
 def sort_category_functionLabel_cb(obj):
@@ -37,6 +37,9 @@ def generate(generated_by, data_type_list, objects_dir_path, generated_dir_path,
     categories = []
     category = None
 
+    afw_package = package.get_afw_package(options)
+    copyright = afw_package.get('copyright')
+
     for obj in list:
         id = obj['functionLabel']
         x = obj.get('category')
@@ -52,7 +55,7 @@ def generate(generated_by, data_type_list, objects_dir_path, generated_dir_path,
         with nfc.open(generated_dir_path + filename, 'w') as fd:
             fd.write('<?php\n\n')
 
-            c.write_copyright(fd, 'PHP Bindings for ' + category)
+            c.write_copyright(fd, 'PHP Bindings for ' + category, copyright)
 
             fd.write('\n')
             fd.write('/**\n')

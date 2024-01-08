@@ -2,7 +2,7 @@
 /*
  * Adaptive Framework Version (afw_components_) Header
  *
- * Copyright (c) 2010-2023 Clemson University
+ * Copyright (c) 2010-2024 Clemson University
  *
  */
 

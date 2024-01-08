@@ -46,9 +46,12 @@ def generated_h(options):
     filename = options['prefix'] + 'generated.h'
     prefix = options['prefix']    
     srcdir = prefix[:-1]
+    afw_package = package.get_afw_package(options)
+    copyright = afw_package.get('copyright')
     msg.info('Generating ' + filename)
     with nfc.open(options['generated_dir_path'] + filename, mode='w') as fd:
-        c.write_h_prologue(fd, options['generated_by'], 'Adaptive Framework Register Generated (' + srcdir + ') Header', filename)
+        c.write_h_prologue(fd, options['generated_by'], 
+                           'Adaptive Framework Register Generated (' + srcdir + ') Header', copyright, filename)
         c.write_doxygen_file_section(fd, filename, 'Adaptive Framework register generated (' + srcdir + ') header.')
 
         fd.write('\n#include "afw_minimal.h"\n')
@@ -96,9 +99,12 @@ def generated_version_h(options):
     filename = options['prefix'] + 'version_info.h'
     prefix = options['prefix']
     uprefix = prefix.upper()    
+    afw_package = package.get_afw_package(options)
+    copyright = afw_package.get('copyright')
     msg.info('Generating ' + filename)
     with nfc.open(options['generated_dir_path'] + filename, mode='w') as fd:
-        c.write_h_prologue(fd, options['generated_by'], 'Adaptive Framework Version (' + options['prefix'] + ') Header', filename)
+        c.write_h_prologue(fd, options['generated_by'], 
+                           'Adaptive Framework Version (' + options['prefix'] + ') Header', copyright, filename)
         c.write_doxygen_file_section(fd, filename, 'Adaptive Framework Version (' + options['prefix'] + ') header.')
         fd.write('\n\n')
 
@@ -128,10 +134,13 @@ def generated_version_h(options):
 def generated_c(options):
 
     filename = options['prefix'] + 'generated.c'
+    afw_package = package.get_afw_package(options)
+    copyright = afw_package.get('copyright')
+
     msg.info('Generating ' + filename)
     with nfc.open(options['generated_dir_path'] + filename, mode='w') as fd:
         c.write_c_prologue(fd, options['generated_by'],
-            'Adaptive Framework Register Generated (' + options['prefix'] + ')')
+            'Adaptive Framework Register Generated (' + options['prefix'] + ')', copyright)
         c.write_doxygen_file_section(fd, filename, 'Adaptive Framework register generated (' + options['prefix'] + ').')
         fd.write('\n')
 
@@ -616,7 +625,7 @@ def generate(passed_options):
 
     # Generate optional interfaces.
     if options['interfaces']:
-        interfaces.generate(generated_by, options['prefix'], options['interfaces_dir_path'], options['generated_dir_path'] )
+        interfaces.generate(generated_by, options['prefix'], options['interfaces_dir_path'], options['generated_dir_path'], afw_package.get('copyright') )
 
     # Figure out object types needed for const objects
     gen_const_objectTypes = []
