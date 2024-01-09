@@ -17,19 +17,7 @@
             for installation and configuration instructions for your Operating 
             System.
         </paragraph>
-    </section>
-    <section>
-        <title>Docker Compose</title>
-        <paragraph>
-            This project also uses an orchestration tool for Docker, called 
-            Docker Compose. Docker Compose reads a configuration file that may 
-            contain one or more containers, along with their runtime settings, 
-            such as disk volumes mounts, network routes and environment 
-            variables. For installation and configuration, follow the 
-            documentation at 
-            <link href="https://docs.docker.com/compose/">https://docs.docker.com/compose/</link>.
-        </paragraph>
-    </section>
+    </section>    
     <section>
         <title>Visual Studio Code</title>
         <paragraph>
