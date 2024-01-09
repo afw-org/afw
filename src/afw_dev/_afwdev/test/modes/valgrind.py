@@ -15,7 +15,7 @@
 import os
 import subprocess
 
-from _afwdev.common import msg, nfc
+from _afwdev.common import msg, nfc, resources
 
 ##
 # @brief Runs the tests under the afw command line tool and valgrind.
@@ -63,11 +63,12 @@ def run_test(test, options, testEnvironment=None, testGroupConfig=None):
             # determine the path to valgrind.suppress
             # FIXME this needs to be a resource that we load/copy into the temp dir
             afw_package_dir_path = options.get("afw_package_dir_path")
+            resources.copy_resources(options, "test/", todir=work_dir)            
 
             msg.debug("Running test script: %s" % test)
             p = subprocess.run([
                 'valgrind', 
-                '--suppressions={0}/src/afw_dev/_afwdev/test/valgrind.suppress'.format(afw_package_dir_path), 
+                '--suppressions={0}/valgrind.suppress'.format(work_dir), 
                 '--xml=yes', 
                 '--xml-fd=2', 
                 '--show-possibly-lost=no'
