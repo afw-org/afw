@@ -1,4 +1,6 @@
 {
     "TestString1": "This is a test string.",
-    "TestInteger1": 42
+    "TestInteger1": 42,
+    "TestDouble1": 42.0,
+    "TestBoolean1": true
 }

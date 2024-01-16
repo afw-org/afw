@@ -1672,7 +1672,7 @@ impl_compare_value(
             }
             is_true = afw_data_type_compare_internal(
                 afw_value_get_data_type(value, xctx),
-                i1, i2, xctx) < 0;
+                i2, i1, xctx) < 0;
             if (is_true) {
                 break;
             }
@@ -1691,7 +1691,7 @@ impl_compare_value(
             }
             is_true = afw_data_type_compare_internal(
                 afw_value_get_data_type(value, xctx),
-                i1, i2, xctx) <= 0;
+                i2, i1, xctx) <= 0;
             if (is_true) {
                 break;
             }
@@ -1710,7 +1710,7 @@ impl_compare_value(
             }
             is_true = afw_data_type_compare_internal(
                 afw_value_get_data_type(value, xctx),
-                i1, i2, xctx) > 0;
+                i2, i1, xctx) > 0;
             if (is_true) {
                 break;
             }
@@ -1729,7 +1729,7 @@ impl_compare_value(
             }
             is_true = afw_data_type_compare_internal(
                 afw_value_get_data_type(value, xctx),
-                i1, i2, xctx) >= 0;
+                i2, i1, xctx) >= 0;
             if (is_true) {
                 break;
             }

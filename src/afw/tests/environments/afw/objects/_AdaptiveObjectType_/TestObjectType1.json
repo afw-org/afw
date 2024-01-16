@@ -12,6 +12,14 @@
         "TestInteger1": {
             "dataType": "integer",
             "allowQuery": true
+        },
+        "TestDouble1": {
+            "dataType": "double",
+            "allowQuery": true
+        },
+        "TestBoolean1": {
+            "dataType": "boolean",
+            "allowQuery": true
         }
     }     
 }
