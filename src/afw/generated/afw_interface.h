@@ -2977,6 +2977,26 @@ struct afw_array_setter_inf_s {
 /** @brief Interface afw_array public struct. */
 struct afw_array_s {
     const afw_array_inf_t *inf;
+
+    /**
+     * This is the pool containing the array. This will be NULL if the
+     * array is a const array.
+     * 
+     * This pool can be use to allocate memory that will last for the life
+     * of the array and to register callback functions to call when the
+     * array is released.
+     * 
+     * Depending on the afw_array implementation, this may be a subpool
+     * of the pool the array was created in. If it is a subpool, the
+     * release() method will release the subpool.
+     */
+    const afw_pool_t * p;
+
+    /**
+     * The adaptive value associated with this array instance. The lifetime
+     * of this value is the same as the lifetime of the array.
+     */
+    const afw_value_t * value;
 };
 
 /** @brief define for interface afw_array name. */
@@ -3566,6 +3586,12 @@ struct afw_object_s {
      * release() method will release the subpool.
      */
     const afw_pool_t * p;
+
+    /**
+     * The adaptive value associated with this object instance. The lifetime
+     * of this value is the same as the lifetime of the object.
+     */
+    const afw_value_t * value;
 
     /**
      * This is the meta associated with this object. See afw_object_meta.h

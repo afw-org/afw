@@ -135,12 +135,16 @@ static const afw_utf8_t
 impl_data_type_path_yearMonthDuration =
     AFW_UTF8_LITERAL("/afw/_AdaptiveDataType_/yearMonthDuration");
 
+static const afw_value_object_t
+impl_data_type_object_yearMonthDuration__value;
+
 /* Data type yearMonthDuration object. */
 static const afw_runtime_object_indirect_t
 impl_data_type_object_yearMonthDuration = {
     {
         &afw_runtime_inf__AdaptiveDataType_,
         NULL,
+        (const afw_value_t *)&impl_data_type_object_yearMonthDuration__value,
         {
             NULL,
             NULL,
@@ -150,6 +154,12 @@ impl_data_type_object_yearMonthDuration = {
         }
     },
     (void *)&afw_data_type_yearMonthDuration_direct
+};
+
+static const afw_value_object_t
+impl_data_type_object_yearMonthDuration__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_data_type_object_yearMonthDuration
 };
 
 /* Value for empty array of yearMonthDuration. */

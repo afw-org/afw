@@ -135,12 +135,16 @@ static const afw_utf8_t
 impl_data_type_path_ia5String =
     AFW_UTF8_LITERAL("/afw/_AdaptiveDataType_/ia5String");
 
+static const afw_value_object_t
+impl_data_type_object_ia5String__value;
+
 /* Data type ia5String object. */
 static const afw_runtime_object_indirect_t
 impl_data_type_object_ia5String = {
     {
         &afw_runtime_inf__AdaptiveDataType_,
         NULL,
+        (const afw_value_t *)&impl_data_type_object_ia5String__value,
         {
             NULL,
             NULL,
@@ -150,6 +154,12 @@ impl_data_type_object_ia5String = {
         }
     },
     (void *)&afw_data_type_ia5String_direct
+};
+
+static const afw_value_object_t
+impl_data_type_object_ia5String__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_data_type_object_ia5String
 };
 
 /* Value for empty array of ia5String. */

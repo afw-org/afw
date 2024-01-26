@@ -167,12 +167,17 @@ def write_const_core_c(options, fd, prefix, obj, path, embedder):
     fd.write(meta.get('_label_') + '_meta_path =\n')
     fd.write('    AFW_UTF8_LITERAL("' + path + '");\n')
 
+    value_label = meta.get('_label_') + '__value'
+    fd.write('\nstatic const afw_value_object_t\n')
+    fd.write(value_label + ';\n')
+
     if embedder is None:
         fd.write('\nstatic const afw_runtime_const_object_instance_t\n')
         fd.write(meta.get('_label_') + ' = {\n')
         fd.write('    {\n')
         fd.write('        &afw_runtime_inf_' + meta.get('objectType') + ',\n')
         fd.write('        NULL,\n')
+        fd.write('        (const afw_value_t *)&' + value_label + ',\n')
         fd.write('        {\n')
         fd.write('            (const afw_object_t *)&' + meta.get('_label_') + '_meta_object,\n')
         fd.write('            NULL,\n')
@@ -190,6 +195,7 @@ def write_const_core_c(options, fd, prefix, obj, path, embedder):
         fd.write('    {\n')
         fd.write('        &afw_runtime_inf_const_embedded_untyped_object,\n')
         fd.write('        NULL,\n')
+        fd.write('        (const afw_value_t *)&' + value_label + ',\n')
         fd.write('        {\n')
         fd.write('            (const afw_object_t *)&' + meta.get('_label_') + '_meta_object,\n')
         fd.write('            (const afw_object_t *)&' + embedder['_meta_']['_label_'] + ',\n')
@@ -204,6 +210,13 @@ def write_const_core_c(options, fd, prefix, obj, path, embedder):
         fd.write('    },\n')
         fd.write('    &' + meta.get('_label_') + '_properties[0]\n')
         fd.write('};\n')
+
+    fd.write('\nstatic const afw_value_object_t\n')
+    fd.write(value_label + ' = {\n')
+    fd.write('    {&afw_value_permanent_object_inf},\n')
+    fd.write('    (const afw_object_t *)&' + meta.get('_label_') +'\n')
+    fd.write('};\n')
+
 
 def write_const_unresolved_c(fd, prefix, obj, path, embedder):
     s_ = '&' + prefix + 'self_s_'

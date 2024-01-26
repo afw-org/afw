@@ -135,12 +135,16 @@ static const afw_utf8_t
 impl_data_type_path_x500Name =
     AFW_UTF8_LITERAL("/afw/_AdaptiveDataType_/x500Name");
 
+static const afw_value_object_t
+impl_data_type_object_x500Name__value;
+
 /* Data type x500Name object. */
 static const afw_runtime_object_indirect_t
 impl_data_type_object_x500Name = {
     {
         &afw_runtime_inf__AdaptiveDataType_,
         NULL,
+        (const afw_value_t *)&impl_data_type_object_x500Name__value,
         {
             NULL,
             NULL,
@@ -150,6 +154,12 @@ impl_data_type_object_x500Name = {
         }
     },
     (void *)&afw_data_type_x500Name_direct
+};
+
+static const afw_value_object_t
+impl_data_type_object_x500Name__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_data_type_object_x500Name
 };
 
 /* Value for empty array of x500Name. */

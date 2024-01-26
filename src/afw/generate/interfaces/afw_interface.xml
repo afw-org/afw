@@ -2907,6 +2907,31 @@ impl_afw_content_type =
       Adaptive value array interface.
     </description>
 
+
+    <variable name="p" type="const afw_pool_t *">
+      <description>
+        This is the pool containing the array. This will be NULL if the
+        array is a const array.
+
+        This pool can be use to allocate memory that will last for the life
+        of the array and to register callback functions to call when the
+        array is released.
+
+        Depending on the afw_array implementation, this may be a subpool
+        of the pool the array was created in. If it is a subpool, the
+        release() method will release the subpool.
+      </description>
+    </variable>
+
+
+    <variable name="value" type="const afw_value_t *">
+      <description>
+        The adaptive value associated with this array instance. The lifetime
+        of this value is the same as the lifetime of the array.
+      </description>
+    </variable>
+
+
     <method name="release">
 
       <description>
@@ -3549,6 +3574,14 @@ AFW_DEFINE(const afw_log_t *)
     </variable>
 
 
+    <variable name="value" type="const afw_value_t *">
+        <description>
+          The adaptive value associated with this object instance. The lifetime
+          of this value is the same as the lifetime of the object.
+        </description>
+    </variable>
+
+    
     <variable name="meta" type="afw_object_meta_t">
       <description>
         This is the meta associated with this object. See afw_object_meta.h

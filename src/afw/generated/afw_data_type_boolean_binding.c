@@ -135,12 +135,16 @@ static const afw_utf8_t
 impl_data_type_path_boolean =
     AFW_UTF8_LITERAL("/afw/_AdaptiveDataType_/boolean");
 
+static const afw_value_object_t
+impl_data_type_object_boolean__value;
+
 /* Data type boolean object. */
 static const afw_runtime_object_indirect_t
 impl_data_type_object_boolean = {
     {
         &afw_runtime_inf__AdaptiveDataType_,
         NULL,
+        (const afw_value_t *)&impl_data_type_object_boolean__value,
         {
             NULL,
             NULL,
@@ -150,6 +154,12 @@ impl_data_type_object_boolean = {
         }
     },
     (void *)&afw_data_type_boolean_direct
+};
+
+static const afw_value_object_t
+impl_data_type_object_boolean__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_data_type_object_boolean
 };
 
 /* Value for empty array of boolean. */

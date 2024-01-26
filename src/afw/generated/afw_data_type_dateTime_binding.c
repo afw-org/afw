@@ -135,12 +135,16 @@ static const afw_utf8_t
 impl_data_type_path_dateTime =
     AFW_UTF8_LITERAL("/afw/_AdaptiveDataType_/dateTime");
 
+static const afw_value_object_t
+impl_data_type_object_dateTime__value;
+
 /* Data type dateTime object. */
 static const afw_runtime_object_indirect_t
 impl_data_type_object_dateTime = {
     {
         &afw_runtime_inf__AdaptiveDataType_,
         NULL,
+        (const afw_value_t *)&impl_data_type_object_dateTime__value,
         {
             NULL,
             NULL,
@@ -150,6 +154,12 @@ impl_data_type_object_dateTime = {
         }
     },
     (void *)&afw_data_type_dateTime_direct
+};
+
+static const afw_value_object_t
+impl_data_type_object_dateTime__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_data_type_object_dateTime
 };
 
 /* Value for empty array of dateTime. */
