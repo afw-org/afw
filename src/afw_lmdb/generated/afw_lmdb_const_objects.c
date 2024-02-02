@@ -26,83 +26,80 @@
 #include "afw_lmdb_generated.h"
 
 
-static const afw_runtime_unresolved_const_object_t
+static const afw_runtime_const_object_instance_t
 impl_1;
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_instance_t
 impl_2;
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_instance_t
 impl_3;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb/propertyTypes/information
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_3_property_value_allowQuery = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_3_property_allowQuery = {
-    "allowQuery",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_allowQuery,
+    &impl_3_property_value_allowQuery.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_3_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "object"
-    }
+    &afw_lmdb_self_s_dataType,
+    &afw_lmdb_self_v_object.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_3_property_dataTypeParameter = {
-    "dataTypeParameter",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "_AdaptiveAdaptorMetrics_adaptor_lmdb_information"
-    }
+    &afw_lmdb_self_s_dataTypeParameter,
+    &afw_lmdb_self_v__AdaptiveAdaptorMetrics_adaptor_lmdb_information.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_3_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Information about the LMDB environment, its collection of databases."
-    }
+    &afw_lmdb_self_s_description,
+    &afw_lmdb_self_v_zz__2522.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_3_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Information"
-    }
+    &afw_lmdb_self_s_label,
+    &afw_lmdb_self_v_Information.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_3_property_value_required = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+static const afw_runtime_property_t
 impl_3_property_required = {
-    "required",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = true
-    }
+    &afw_lmdb_self_s_required,
+    &impl_3_property_value_required.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_3_property_value_unique = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_3_property_unique = {
-    "unique",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_unique,
+    &impl_3_property_value_unique.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_3_properties[] = {
     &impl_3_property_allowQuery,
     &impl_3_property_dataType,
@@ -114,82 +111,113 @@ impl_3_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_3_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_3,
+    NULL
+};
+
+static const afw_utf8_t
+impl_3_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb/propertyTypes/information");
+
+static const afw_value_object_t
+impl_3__value;
+
+static const afw_runtime_const_object_instance_t
 impl_3 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_3__value,
+        {
+            (const afw_object_t *)&impl_3_meta_object,
+            (const afw_object_t *)&impl_2,
+            &afw_lmdb_self_s_information,
+            &afw_lmdb_self_s__AdaptiveValueMeta_,
+            &impl_3_meta_path
+        }
+    },
     &impl_3_properties[0]
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_value_object_t
+impl_3__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_3
+};
+
+static const afw_runtime_const_object_instance_t
 impl_4;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb/propertyTypes/statistics
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_4_property_value_allowQuery = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_4_property_allowQuery = {
-    "allowQuery",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_allowQuery,
+    &impl_4_property_value_allowQuery.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_4_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "object"
-    }
+    &afw_lmdb_self_s_dataType,
+    &afw_lmdb_self_v_object.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_4_property_dataTypeParameter = {
-    "dataTypeParameter",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "_AdaptiveAdaptorMetrics_adaptor_lmdb_statistics"
-    }
+    &afw_lmdb_self_s_dataTypeParameter,
+    &afw_lmdb_self_v__AdaptiveAdaptorMetrics_adaptor_lmdb_statistics.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_4_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Information about individual LMDB databases."
-    }
+    &afw_lmdb_self_s_description,
+    &afw_lmdb_self_v_zz__Information_about_individual_LMDB_databases_.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_4_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Statistics"
-    }
+    &afw_lmdb_self_s_label,
+    &afw_lmdb_self_v_Statistics.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_4_property_value_required = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+static const afw_runtime_property_t
 impl_4_property_required = {
-    "required",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = true
-    }
+    &afw_lmdb_self_s_required,
+    &impl_4_property_value_required.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_4_property_value_unique = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_4_property_unique = {
-    "unique",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_unique,
+    &impl_4_property_value_unique.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_4_properties[] = {
     &impl_4_property_allowQuery,
     &impl_4_property_dataType,
@@ -201,82 +229,113 @@ impl_4_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_4_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_4,
+    NULL
+};
+
+static const afw_utf8_t
+impl_4_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb/propertyTypes/statistics");
+
+static const afw_value_object_t
+impl_4__value;
+
+static const afw_runtime_const_object_instance_t
 impl_4 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_4__value,
+        {
+            (const afw_object_t *)&impl_4_meta_object,
+            (const afw_object_t *)&impl_2,
+            &afw_lmdb_self_s_statistics,
+            &afw_lmdb_self_s__AdaptiveValueMeta_,
+            &impl_4_meta_path
+        }
+    },
     &impl_4_properties[0]
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_value_object_t
+impl_4__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_4
+};
+
+static const afw_runtime_const_object_instance_t
 impl_5;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb/propertyTypes/version
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_5_property_value_allowQuery = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_5_property_allowQuery = {
-    "allowQuery",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_allowQuery,
+    &impl_5_property_value_allowQuery.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_5_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "object"
-    }
+    &afw_lmdb_self_s_dataType,
+    &afw_lmdb_self_v_object.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_5_property_dataTypeParameter = {
-    "dataTypeParameter",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "_AdaptiveAdaptorMetrics_adaptor_lmdb_version"
-    }
+    &afw_lmdb_self_s_dataTypeParameter,
+    &afw_lmdb_self_v__AdaptiveAdaptorMetrics_adaptor_lmdb_version.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_5_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Version information reported by LMDB."
-    }
+    &afw_lmdb_self_s_description,
+    &afw_lmdb_self_v_zz__Version_information_reported_by_LMDB_.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_5_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Version"
-    }
+    &afw_lmdb_self_s_label,
+    &afw_lmdb_self_v_Version.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_5_property_value_required = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+static const afw_runtime_property_t
 impl_5_property_required = {
-    "required",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = true
-    }
+    &afw_lmdb_self_s_required,
+    &impl_5_property_value_required.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_5_property_value_unique = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_5_property_unique = {
-    "unique",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_unique,
+    &impl_5_property_value_unique.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_5_properties[] = {
     &impl_5_property_allowQuery,
     &impl_5_property_dataType,
@@ -288,43 +347,86 @@ impl_5_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_5_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_5,
+    NULL
+};
+
+static const afw_utf8_t
+impl_5_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb/propertyTypes/version");
+
+static const afw_value_object_t
+impl_5__value;
+
+static const afw_runtime_const_object_instance_t
 impl_5 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_5__value,
+        {
+            (const afw_object_t *)&impl_5_meta_object,
+            (const afw_object_t *)&impl_2,
+            &afw_lmdb_self_s_version,
+            &afw_lmdb_self_s__AdaptiveValueMeta_,
+            &impl_5_meta_path
+        }
+    },
     &impl_5_properties[0]
+};
+
+static const afw_value_object_t
+impl_5__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_5
 };
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb/propertyTypes
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_2_property_value_information = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_3
+};
+
+static const afw_runtime_property_t
 impl_2_property_information = {
-    "information",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_3
-    }
+    &afw_lmdb_self_s_information,
+    &impl_2_property_value_information.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_2_property_value_statistics = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_4
+};
+
+static const afw_runtime_property_t
 impl_2_property_statistics = {
-    "statistics",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_4
-    }
+    &afw_lmdb_self_s_statistics,
+    &impl_2_property_value_statistics.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_2_property_value_version = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_5
+};
+
+static const afw_runtime_property_t
 impl_2_property_version = {
-    "version",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_5
-    }
+    &afw_lmdb_self_s_version,
+    &impl_2_property_value_version.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_2_properties[] = {
     &impl_2_property_information,
     &impl_2_property_statistics,
@@ -332,22 +434,59 @@ impl_2_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_2_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_2,
+    NULL
+};
+
+static const afw_utf8_t
+impl_2_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb/propertyTypes");
+
+static const afw_value_object_t
+impl_2__value;
+
+static const afw_runtime_const_object_instance_t
 impl_2 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_2__value,
+        {
+            (const afw_object_t *)&impl_2_meta_object,
+            (const afw_object_t *)&impl_1,
+            &afw_lmdb_self_s_propertyTypes,
+            &afw_lmdb_self_s__AdaptivePropertyTypes_,
+            &impl_2_meta_path
+        }
+    },
     &impl_2_properties[0]
+};
+
+static const afw_value_object_t
+impl_2__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_2
 };
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_1_property_value_allowEntity = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_1_property_allowEntity = {
-    "allowEntity",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_allowEntity,
+    &impl_1_property_value_allowEntity.pub
 };
 
 static const afw_utf8_t
@@ -355,50 +494,51 @@ impl_1_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/lmdb_extension")
 };
 
-static const afw_runtime_unresolved_const_array_t
+static const afw_array_wrapper_for_array_self_t
 impl_1_list_collectionURIs = {
-    AFW_UTF8_LITERAL("string"),
+    &afw_array_wrapper_for_array_inf,
+    &afw_data_type_string_direct,
     sizeof(impl_1_array_collectionURIs) / sizeof(afw_utf8_t),
-    (const void *)&impl_1_array_collectionURIs
+    &impl_1_array_collectionURIs
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_array_t
+impl_1_property_value_collectionURIs = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_1_list_collectionURIs
+};
+
+static const afw_runtime_property_t
 impl_1_property_collectionURIs = {
-    "collectionURIs",
-    {
-        .type = afw_runtime_unresolved_primitive_type_array,
-        .array = &impl_1_list_collectionURIs
-    }
+    &afw_lmdb_self_s_collectionURIs,
+    &impl_1_property_value_collectionURIs.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_1_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Object type for LMDB adaptor additional metrics."
-    }
+    &afw_lmdb_self_s_description,
+    &afw_lmdb_self_v_zz__Object_type_for_LMDB_adaptor_additional_metrics_.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_1_property_objectType = {
-    "objectType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "_AdaptiveAdaptorMetrics_adaptor_lmdb"
-    }
+    &afw_lmdb_self_s_objectType,
+    &afw_lmdb_self_v__AdaptiveAdaptorMetrics_adaptor_lmdb.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_1_property_value_propertyTypes = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_2
+};
+
+static const afw_runtime_property_t
 impl_1_property_propertyTypes = {
-    "propertyTypes",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_2
-    }
+    &afw_lmdb_self_s_propertyTypes,
+    &impl_1_property_value_propertyTypes.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_1_properties[] = {
     &impl_1_property_allowEntity,
     &impl_1_property_collectionURIs,
@@ -408,86 +548,113 @@ impl_1_properties[] = {
     NULL
 };
 
+static const afw_runtime_const_object_meta_object_t
+impl_1_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_1,
+    NULL
+};
+
 static const afw_utf8_t
 impl_1_meta_path =
     AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb");
 
-static const afw_runtime_unresolved_const_object_t
+static const afw_value_object_t
+impl_1__value;
+
+static const afw_runtime_const_object_instance_t
 impl_1 = {
-    &afw_lmdb_self_s__AdaptiveObjectType_,
-    &afw_lmdb_self_s__AdaptiveAdaptorMetrics_adaptor_lmdb,
-    &impl_1_meta_path,
+    {
+        &afw_runtime_inf__AdaptiveObjectType_,
+        NULL,
+        (const afw_value_t *)&impl_1__value,
+        {
+            (const afw_object_t *)&impl_1_meta_object,
+            NULL,
+            &afw_lmdb_self_s__AdaptiveAdaptorMetrics_adaptor_lmdb,
+            &afw_lmdb_self_s__AdaptiveObjectType_,
+            &impl_1_meta_path
+        }
+    },
     &impl_1_properties[0]
 };
 
-static const afw_runtime_unresolved_const_object_t
+static const afw_value_object_t
+impl_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1
+};
+
+static const afw_runtime_const_object_instance_t
 impl_6;
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_instance_t
 impl_7;
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_instance_t
 impl_8;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_information/propertyTypes/last_pgno
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_8_property_value_allowQuery = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_8_property_allowQuery = {
-    "allowQuery",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_allowQuery,
+    &impl_8_property_value_allowQuery.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_8_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "integer"
-    }
+    &afw_lmdb_self_s_dataType,
+    &afw_lmdb_self_v_integer.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_8_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "ID of last used page."
-    }
+    &afw_lmdb_self_s_description,
+    &afw_lmdb_self_v_zz__ID_of_last_used_page_.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_8_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Last Page Number"
-    }
+    &afw_lmdb_self_s_label,
+    &afw_lmdb_self_v_zz__Last_Page_Number.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_8_property_value_required = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+static const afw_runtime_property_t
 impl_8_property_required = {
-    "required",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = true
-    }
+    &afw_lmdb_self_s_required,
+    &impl_8_property_value_required.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_8_property_value_unique = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_8_property_unique = {
-    "unique",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_unique,
+    &impl_8_property_value_unique.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_8_properties[] = {
     &impl_8_property_allowQuery,
     &impl_8_property_dataType,
@@ -498,73 +665,107 @@ impl_8_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_8_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_8,
+    NULL
+};
+
+static const afw_utf8_t
+impl_8_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_information/propertyTypes/last_pgno");
+
+static const afw_value_object_t
+impl_8__value;
+
+static const afw_runtime_const_object_instance_t
 impl_8 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_8__value,
+        {
+            (const afw_object_t *)&impl_8_meta_object,
+            (const afw_object_t *)&impl_7,
+            &afw_lmdb_self_s_last_pgno,
+            &afw_lmdb_self_s__AdaptiveValueMeta_,
+            &impl_8_meta_path
+        }
+    },
     &impl_8_properties[0]
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_value_object_t
+impl_8__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_8
+};
+
+static const afw_runtime_const_object_instance_t
 impl_9;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_information/propertyTypes/last_txnid
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_9_property_value_allowQuery = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_9_property_allowQuery = {
-    "allowQuery",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_allowQuery,
+    &impl_9_property_value_allowQuery.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_9_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "integer"
-    }
+    &afw_lmdb_self_s_dataType,
+    &afw_lmdb_self_v_integer.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_9_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "ID of last committed transaction."
-    }
+    &afw_lmdb_self_s_description,
+    &afw_lmdb_self_v_zz__ID_of_last_committed_transaction_.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_9_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Last Transaction Id"
-    }
+    &afw_lmdb_self_s_label,
+    &afw_lmdb_self_v_zz__Last_Transaction_Id.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_9_property_value_required = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+static const afw_runtime_property_t
 impl_9_property_required = {
-    "required",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = true
-    }
+    &afw_lmdb_self_s_required,
+    &impl_9_property_value_required.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_9_property_value_unique = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_9_property_unique = {
-    "unique",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_unique,
+    &impl_9_property_value_unique.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_9_properties[] = {
     &impl_9_property_allowQuery,
     &impl_9_property_dataType,
@@ -575,73 +776,107 @@ impl_9_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_9_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_9,
+    NULL
+};
+
+static const afw_utf8_t
+impl_9_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_information/propertyTypes/last_txnid");
+
+static const afw_value_object_t
+impl_9__value;
+
+static const afw_runtime_const_object_instance_t
 impl_9 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_9__value,
+        {
+            (const afw_object_t *)&impl_9_meta_object,
+            (const afw_object_t *)&impl_7,
+            &afw_lmdb_self_s_last_txnid,
+            &afw_lmdb_self_s__AdaptiveValueMeta_,
+            &impl_9_meta_path
+        }
+    },
     &impl_9_properties[0]
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_value_object_t
+impl_9__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_9
+};
+
+static const afw_runtime_const_object_instance_t
 impl_10;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_information/propertyTypes/mapaddr
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_10_property_value_allowQuery = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_10_property_allowQuery = {
-    "allowQuery",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_allowQuery,
+    &impl_10_property_value_allowQuery.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_10_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "integer"
-    }
+    &afw_lmdb_self_s_dataType,
+    &afw_lmdb_self_v_integer.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_10_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Address of database map in RAM."
-    }
+    &afw_lmdb_self_s_description,
+    &afw_lmdb_self_v_zz__Address_of_database_map_in_RAM_.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_10_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Map Address"
-    }
+    &afw_lmdb_self_s_label,
+    &afw_lmdb_self_v_zz__Map_Address.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_10_property_value_required = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+static const afw_runtime_property_t
 impl_10_property_required = {
-    "required",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = true
-    }
+    &afw_lmdb_self_s_required,
+    &impl_10_property_value_required.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_10_property_value_unique = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_10_property_unique = {
-    "unique",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_unique,
+    &impl_10_property_value_unique.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_10_properties[] = {
     &impl_10_property_allowQuery,
     &impl_10_property_dataType,
@@ -652,73 +887,107 @@ impl_10_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_10_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_10,
+    NULL
+};
+
+static const afw_utf8_t
+impl_10_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_information/propertyTypes/mapaddr");
+
+static const afw_value_object_t
+impl_10__value;
+
+static const afw_runtime_const_object_instance_t
 impl_10 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_10__value,
+        {
+            (const afw_object_t *)&impl_10_meta_object,
+            (const afw_object_t *)&impl_7,
+            &afw_lmdb_self_s_mapaddr,
+            &afw_lmdb_self_s__AdaptiveValueMeta_,
+            &impl_10_meta_path
+        }
+    },
     &impl_10_properties[0]
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_value_object_t
+impl_10__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_10
+};
+
+static const afw_runtime_const_object_instance_t
 impl_11;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_information/propertyTypes/mapsize
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_11_property_value_allowQuery = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_11_property_allowQuery = {
-    "allowQuery",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_allowQuery,
+    &impl_11_property_value_allowQuery.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_11_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "integer"
-    }
+    &afw_lmdb_self_s_dataType,
+    &afw_lmdb_self_v_integer.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_11_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Size of database map in RAM."
-    }
+    &afw_lmdb_self_s_description,
+    &afw_lmdb_self_v_zz__Size_of_database_map_in_RAM_.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_11_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Map Size"
-    }
+    &afw_lmdb_self_s_label,
+    &afw_lmdb_self_v_zz__Map_Size.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_11_property_value_required = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+static const afw_runtime_property_t
 impl_11_property_required = {
-    "required",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = true
-    }
+    &afw_lmdb_self_s_required,
+    &impl_11_property_value_required.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_11_property_value_unique = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_11_property_unique = {
-    "unique",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_unique,
+    &impl_11_property_value_unique.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_11_properties[] = {
     &impl_11_property_allowQuery,
     &impl_11_property_dataType,
@@ -729,82 +998,119 @@ impl_11_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_11_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_11,
+    NULL
+};
+
+static const afw_utf8_t
+impl_11_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_information/propertyTypes/mapsize");
+
+static const afw_value_object_t
+impl_11__value;
+
+static const afw_runtime_const_object_instance_t
 impl_11 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_11__value,
+        {
+            (const afw_object_t *)&impl_11_meta_object,
+            (const afw_object_t *)&impl_7,
+            &afw_lmdb_self_s_mapsize,
+            &afw_lmdb_self_s__AdaptiveValueMeta_,
+            &impl_11_meta_path
+        }
+    },
     &impl_11_properties[0]
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_value_object_t
+impl_11__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_11
+};
+
+static const afw_runtime_const_object_instance_t
 impl_12;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_information/propertyTypes/maxreaders
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_12_property_value_allowQuery = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_12_property_allowQuery = {
-    "allowQuery",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_allowQuery,
+    &impl_12_property_value_allowQuery.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_12_property_value_allowWrite = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_12_property_allowWrite = {
-    "allowWrite",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_allowWrite,
+    &impl_12_property_value_allowWrite.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_12_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "integer"
-    }
+    &afw_lmdb_self_s_dataType,
+    &afw_lmdb_self_v_integer.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_12_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Maximum number of reader slots in simultaneous use since the lock file was initialized."
-    }
+    &afw_lmdb_self_s_description,
+    &afw_lmdb_self_v_zz__2523.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_12_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Max Readers"
-    }
+    &afw_lmdb_self_s_label,
+    &afw_lmdb_self_v_zz__Max_Readers.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_12_property_value_required = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+static const afw_runtime_property_t
 impl_12_property_required = {
-    "required",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = true
-    }
+    &afw_lmdb_self_s_required,
+    &impl_12_property_value_required.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_12_property_value_unique = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_12_property_unique = {
-    "unique",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_unique,
+    &impl_12_property_value_unique.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_12_properties[] = {
     &impl_12_property_allowQuery,
     &impl_12_property_allowWrite,
@@ -816,73 +1122,107 @@ impl_12_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_12_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_12,
+    NULL
+};
+
+static const afw_utf8_t
+impl_12_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_information/propertyTypes/maxreaders");
+
+static const afw_value_object_t
+impl_12__value;
+
+static const afw_runtime_const_object_instance_t
 impl_12 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_12__value,
+        {
+            (const afw_object_t *)&impl_12_meta_object,
+            (const afw_object_t *)&impl_7,
+            &afw_lmdb_self_s_maxreaders,
+            &afw_lmdb_self_s__AdaptiveValueMeta_,
+            &impl_12_meta_path
+        }
+    },
     &impl_12_properties[0]
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_value_object_t
+impl_12__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_12
+};
+
+static const afw_runtime_const_object_instance_t
 impl_13;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_information/propertyTypes/numreaders
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_13_property_value_allowQuery = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_13_property_allowQuery = {
-    "allowQuery",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_allowQuery,
+    &impl_13_property_value_allowQuery.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_13_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "integer"
-    }
+    &afw_lmdb_self_s_dataType,
+    &afw_lmdb_self_v_integer.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_13_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Number of reader slots allocated in the lock file. Equivalent to the value maxreaders specified by the first process opening the Environment."
-    }
+    &afw_lmdb_self_s_description,
+    &afw_lmdb_self_v_zz__2524.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_13_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Number Readers"
-    }
+    &afw_lmdb_self_s_label,
+    &afw_lmdb_self_v_zz__Number_Readers.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_13_property_value_required = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+static const afw_runtime_property_t
 impl_13_property_required = {
-    "required",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = true
-    }
+    &afw_lmdb_self_s_required,
+    &impl_13_property_value_required.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_13_property_value_unique = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_13_property_unique = {
-    "unique",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_unique,
+    &impl_13_property_value_unique.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_13_properties[] = {
     &impl_13_property_allowQuery,
     &impl_13_property_dataType,
@@ -893,70 +1233,122 @@ impl_13_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_13_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_13,
+    NULL
+};
+
+static const afw_utf8_t
+impl_13_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_information/propertyTypes/numreaders");
+
+static const afw_value_object_t
+impl_13__value;
+
+static const afw_runtime_const_object_instance_t
 impl_13 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_13__value,
+        {
+            (const afw_object_t *)&impl_13_meta_object,
+            (const afw_object_t *)&impl_7,
+            &afw_lmdb_self_s_numreaders,
+            &afw_lmdb_self_s__AdaptiveValueMeta_,
+            &impl_13_meta_path
+        }
+    },
     &impl_13_properties[0]
+};
+
+static const afw_value_object_t
+impl_13__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_13
 };
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_information/propertyTypes
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_7_property_value_last_pgno = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_8
+};
+
+static const afw_runtime_property_t
 impl_7_property_last_pgno = {
-    "last_pgno",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_8
-    }
+    &afw_lmdb_self_s_last_pgno,
+    &impl_7_property_value_last_pgno.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_7_property_value_last_txnid = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_9
+};
+
+static const afw_runtime_property_t
 impl_7_property_last_txnid = {
-    "last_txnid",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_9
-    }
+    &afw_lmdb_self_s_last_txnid,
+    &impl_7_property_value_last_txnid.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_7_property_value_mapaddr = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_10
+};
+
+static const afw_runtime_property_t
 impl_7_property_mapaddr = {
-    "mapaddr",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_10
-    }
+    &afw_lmdb_self_s_mapaddr,
+    &impl_7_property_value_mapaddr.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_7_property_value_mapsize = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_11
+};
+
+static const afw_runtime_property_t
 impl_7_property_mapsize = {
-    "mapsize",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_11
-    }
+    &afw_lmdb_self_s_mapsize,
+    &impl_7_property_value_mapsize.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_7_property_value_maxreaders = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_12
+};
+
+static const afw_runtime_property_t
 impl_7_property_maxreaders = {
-    "maxreaders",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_12
-    }
+    &afw_lmdb_self_s_maxreaders,
+    &impl_7_property_value_maxreaders.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_7_property_value_numreaders = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_13
+};
+
+static const afw_runtime_property_t
 impl_7_property_numreaders = {
-    "numreaders",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_13
-    }
+    &afw_lmdb_self_s_numreaders,
+    &impl_7_property_value_numreaders.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_7_properties[] = {
     &impl_7_property_last_pgno,
     &impl_7_property_last_txnid,
@@ -967,22 +1359,59 @@ impl_7_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_7_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_7,
+    NULL
+};
+
+static const afw_utf8_t
+impl_7_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_information/propertyTypes");
+
+static const afw_value_object_t
+impl_7__value;
+
+static const afw_runtime_const_object_instance_t
 impl_7 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_7__value,
+        {
+            (const afw_object_t *)&impl_7_meta_object,
+            (const afw_object_t *)&impl_6,
+            &afw_lmdb_self_s_propertyTypes,
+            &afw_lmdb_self_s__AdaptivePropertyTypes_,
+            &impl_7_meta_path
+        }
+    },
     &impl_7_properties[0]
+};
+
+static const afw_value_object_t
+impl_7__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_7
 };
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_information
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_6_property_value_allowEntity = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_6_property_allowEntity = {
-    "allowEntity",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_allowEntity,
+    &impl_6_property_value_allowEntity.pub
 };
 
 static const afw_utf8_t
@@ -990,50 +1419,51 @@ impl_6_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/lmdb_extension")
 };
 
-static const afw_runtime_unresolved_const_array_t
+static const afw_array_wrapper_for_array_self_t
 impl_6_list_collectionURIs = {
-    AFW_UTF8_LITERAL("string"),
+    &afw_array_wrapper_for_array_inf,
+    &afw_data_type_string_direct,
     sizeof(impl_6_array_collectionURIs) / sizeof(afw_utf8_t),
-    (const void *)&impl_6_array_collectionURIs
+    &impl_6_array_collectionURIs
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_array_t
+impl_6_property_value_collectionURIs = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_6_list_collectionURIs
+};
+
+static const afw_runtime_property_t
 impl_6_property_collectionURIs = {
-    "collectionURIs",
-    {
-        .type = afw_runtime_unresolved_primitive_type_array,
-        .array = &impl_6_list_collectionURIs
-    }
+    &afw_lmdb_self_s_collectionURIs,
+    &impl_6_property_value_collectionURIs.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_6_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Information about the LMDB environment, its collection of databases. Uses the mdb_env_info() routine."
-    }
+    &afw_lmdb_self_s_description,
+    &afw_lmdb_self_v_zz__2525.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_6_property_objectType = {
-    "objectType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "_AdaptiveAdaptorMetrics_adaptor_lmdb_information"
-    }
+    &afw_lmdb_self_s_objectType,
+    &afw_lmdb_self_v__AdaptiveAdaptorMetrics_adaptor_lmdb_information.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_6_property_value_propertyTypes = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_7
+};
+
+static const afw_runtime_property_t
 impl_6_property_propertyTypes = {
-    "propertyTypes",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_7
-    }
+    &afw_lmdb_self_s_propertyTypes,
+    &impl_6_property_value_propertyTypes.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_6_properties[] = {
     &impl_6_property_allowEntity,
     &impl_6_property_collectionURIs,
@@ -1043,86 +1473,113 @@ impl_6_properties[] = {
     NULL
 };
 
+static const afw_runtime_const_object_meta_object_t
+impl_6_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_6,
+    NULL
+};
+
 static const afw_utf8_t
 impl_6_meta_path =
     AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_information");
 
-static const afw_runtime_unresolved_const_object_t
+static const afw_value_object_t
+impl_6__value;
+
+static const afw_runtime_const_object_instance_t
 impl_6 = {
-    &afw_lmdb_self_s__AdaptiveObjectType_,
-    &afw_lmdb_self_s__AdaptiveAdaptorMetrics_adaptor_lmdb_information,
-    &impl_6_meta_path,
+    {
+        &afw_runtime_inf__AdaptiveObjectType_,
+        NULL,
+        (const afw_value_t *)&impl_6__value,
+        {
+            (const afw_object_t *)&impl_6_meta_object,
+            NULL,
+            &afw_lmdb_self_s__AdaptiveAdaptorMetrics_adaptor_lmdb_information,
+            &afw_lmdb_self_s__AdaptiveObjectType_,
+            &impl_6_meta_path
+        }
+    },
     &impl_6_properties[0]
 };
 
-static const afw_runtime_unresolved_const_object_t
+static const afw_value_object_t
+impl_6__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_6
+};
+
+static const afw_runtime_const_object_instance_t
 impl_14;
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_instance_t
 impl_15;
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_instance_t
 impl_16;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_statistic/propertyTypes/branch_pages
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_16_property_value_allowQuery = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_16_property_allowQuery = {
-    "allowQuery",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_allowQuery,
+    &impl_16_property_value_allowQuery.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_16_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "integer"
-    }
+    &afw_lmdb_self_s_dataType,
+    &afw_lmdb_self_v_integer.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_16_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Number of internal (non-leaf) pages."
-    }
+    &afw_lmdb_self_s_description,
+    &afw_lmdb_self_v_zz__Number_of_internal__non_leaf__pages_.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_16_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Branch Pages"
-    }
+    &afw_lmdb_self_s_label,
+    &afw_lmdb_self_v_zz__Branch_Pages.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_16_property_value_required = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+static const afw_runtime_property_t
 impl_16_property_required = {
-    "required",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = true
-    }
+    &afw_lmdb_self_s_required,
+    &impl_16_property_value_required.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_16_property_value_unique = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_16_property_unique = {
-    "unique",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_unique,
+    &impl_16_property_value_unique.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_16_properties[] = {
     &impl_16_property_allowQuery,
     &impl_16_property_dataType,
@@ -1133,73 +1590,107 @@ impl_16_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_16_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_16,
+    NULL
+};
+
+static const afw_utf8_t
+impl_16_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_statistic/propertyTypes/branch_pages");
+
+static const afw_value_object_t
+impl_16__value;
+
+static const afw_runtime_const_object_instance_t
 impl_16 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_16__value,
+        {
+            (const afw_object_t *)&impl_16_meta_object,
+            (const afw_object_t *)&impl_15,
+            &afw_lmdb_self_s_branch_pages,
+            &afw_lmdb_self_s__AdaptiveValueMeta_,
+            &impl_16_meta_path
+        }
+    },
     &impl_16_properties[0]
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_value_object_t
+impl_16__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_16
+};
+
+static const afw_runtime_const_object_instance_t
 impl_17;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_statistic/propertyTypes/depth
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_17_property_value_allowQuery = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_17_property_allowQuery = {
-    "allowQuery",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_allowQuery,
+    &impl_17_property_value_allowQuery.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_17_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "integer"
-    }
+    &afw_lmdb_self_s_dataType,
+    &afw_lmdb_self_v_integer.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_17_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Height of the B-tree"
-    }
+    &afw_lmdb_self_s_description,
+    &afw_lmdb_self_v_zz__Height_of_the_B_tree.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_17_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Depth"
-    }
+    &afw_lmdb_self_s_label,
+    &afw_lmdb_self_v_Depth.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_17_property_value_required = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+static const afw_runtime_property_t
 impl_17_property_required = {
-    "required",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = true
-    }
+    &afw_lmdb_self_s_required,
+    &impl_17_property_value_required.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_17_property_value_unique = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_17_property_unique = {
-    "unique",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_unique,
+    &impl_17_property_value_unique.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_17_properties[] = {
     &impl_17_property_allowQuery,
     &impl_17_property_dataType,
@@ -1210,73 +1701,107 @@ impl_17_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_17_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_17,
+    NULL
+};
+
+static const afw_utf8_t
+impl_17_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_statistic/propertyTypes/depth");
+
+static const afw_value_object_t
+impl_17__value;
+
+static const afw_runtime_const_object_instance_t
 impl_17 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_17__value,
+        {
+            (const afw_object_t *)&impl_17_meta_object,
+            (const afw_object_t *)&impl_15,
+            &afw_lmdb_self_s_depth,
+            &afw_lmdb_self_s__AdaptiveValueMeta_,
+            &impl_17_meta_path
+        }
+    },
     &impl_17_properties[0]
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_value_object_t
+impl_17__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_17
+};
+
+static const afw_runtime_const_object_instance_t
 impl_18;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_statistic/propertyTypes/entries
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_18_property_value_allowQuery = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_18_property_allowQuery = {
-    "allowQuery",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_allowQuery,
+    &impl_18_property_value_allowQuery.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_18_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "integer"
-    }
+    &afw_lmdb_self_s_dataType,
+    &afw_lmdb_self_v_integer.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_18_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Number of data items."
-    }
+    &afw_lmdb_self_s_description,
+    &afw_lmdb_self_v_zz__Number_of_data_items_.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_18_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Entries"
-    }
+    &afw_lmdb_self_s_label,
+    &afw_lmdb_self_v_Entries.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_18_property_value_required = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+static const afw_runtime_property_t
 impl_18_property_required = {
-    "required",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = true
-    }
+    &afw_lmdb_self_s_required,
+    &impl_18_property_value_required.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_18_property_value_unique = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_18_property_unique = {
-    "unique",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_unique,
+    &impl_18_property_value_unique.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_18_properties[] = {
     &impl_18_property_allowQuery,
     &impl_18_property_dataType,
@@ -1287,73 +1812,107 @@ impl_18_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_18_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_18,
+    NULL
+};
+
+static const afw_utf8_t
+impl_18_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_statistic/propertyTypes/entries");
+
+static const afw_value_object_t
+impl_18__value;
+
+static const afw_runtime_const_object_instance_t
 impl_18 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_18__value,
+        {
+            (const afw_object_t *)&impl_18_meta_object,
+            (const afw_object_t *)&impl_15,
+            &afw_lmdb_self_s_entries,
+            &afw_lmdb_self_s__AdaptiveValueMeta_,
+            &impl_18_meta_path
+        }
+    },
     &impl_18_properties[0]
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_value_object_t
+impl_18__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_18
+};
+
+static const afw_runtime_const_object_instance_t
 impl_19;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_statistic/propertyTypes/leaf_pages
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_19_property_value_allowQuery = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_19_property_allowQuery = {
-    "allowQuery",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_allowQuery,
+    &impl_19_property_value_allowQuery.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_19_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "integer"
-    }
+    &afw_lmdb_self_s_dataType,
+    &afw_lmdb_self_v_integer.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_19_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Number of leaf pages."
-    }
+    &afw_lmdb_self_s_description,
+    &afw_lmdb_self_v_zz__Number_of_leaf_pages_.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_19_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Leaf Pages"
-    }
+    &afw_lmdb_self_s_label,
+    &afw_lmdb_self_v_zz__Leaf_Pages.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_19_property_value_required = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+static const afw_runtime_property_t
 impl_19_property_required = {
-    "required",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = true
-    }
+    &afw_lmdb_self_s_required,
+    &impl_19_property_value_required.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_19_property_value_unique = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_19_property_unique = {
-    "unique",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_unique,
+    &impl_19_property_value_unique.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_19_properties[] = {
     &impl_19_property_allowQuery,
     &impl_19_property_dataType,
@@ -1364,82 +1923,119 @@ impl_19_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_19_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_19,
+    NULL
+};
+
+static const afw_utf8_t
+impl_19_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_statistic/propertyTypes/leaf_pages");
+
+static const afw_value_object_t
+impl_19__value;
+
+static const afw_runtime_const_object_instance_t
 impl_19 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_19__value,
+        {
+            (const afw_object_t *)&impl_19_meta_object,
+            (const afw_object_t *)&impl_15,
+            &afw_lmdb_self_s_leaf_pages,
+            &afw_lmdb_self_s__AdaptiveValueMeta_,
+            &impl_19_meta_path
+        }
+    },
     &impl_19_properties[0]
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_value_object_t
+impl_19__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_19
+};
+
+static const afw_runtime_const_object_instance_t
 impl_20;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_statistic/propertyTypes/overflow_pages
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_20_property_value_allowQuery = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_20_property_allowQuery = {
-    "allowQuery",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_allowQuery,
+    &impl_20_property_value_allowQuery.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_20_property_value_allowWrite = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_20_property_allowWrite = {
-    "allowWrite",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_allowWrite,
+    &impl_20_property_value_allowWrite.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_20_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "integer"
-    }
+    &afw_lmdb_self_s_dataType,
+    &afw_lmdb_self_v_integer.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_20_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Number of overflow pages."
-    }
+    &afw_lmdb_self_s_description,
+    &afw_lmdb_self_v_zz__Number_of_overflow_pages_.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_20_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Overflow Pages"
-    }
+    &afw_lmdb_self_s_label,
+    &afw_lmdb_self_v_zz__Overflow_Pages.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_20_property_value_required = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+static const afw_runtime_property_t
 impl_20_property_required = {
-    "required",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = true
-    }
+    &afw_lmdb_self_s_required,
+    &impl_20_property_value_required.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_20_property_value_unique = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_20_property_unique = {
-    "unique",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_unique,
+    &impl_20_property_value_unique.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_20_properties[] = {
     &impl_20_property_allowQuery,
     &impl_20_property_allowWrite,
@@ -1451,73 +2047,107 @@ impl_20_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_20_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_20,
+    NULL
+};
+
+static const afw_utf8_t
+impl_20_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_statistic/propertyTypes/overflow_pages");
+
+static const afw_value_object_t
+impl_20__value;
+
+static const afw_runtime_const_object_instance_t
 impl_20 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_20__value,
+        {
+            (const afw_object_t *)&impl_20_meta_object,
+            (const afw_object_t *)&impl_15,
+            &afw_lmdb_self_s_overflow_pages,
+            &afw_lmdb_self_s__AdaptiveValueMeta_,
+            &impl_20_meta_path
+        }
+    },
     &impl_20_properties[0]
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_value_object_t
+impl_20__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_20
+};
+
+static const afw_runtime_const_object_instance_t
 impl_21;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_statistic/propertyTypes/psize
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_21_property_value_allowQuery = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_21_property_allowQuery = {
-    "allowQuery",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_allowQuery,
+    &impl_21_property_value_allowQuery.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_21_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "integer"
-    }
+    &afw_lmdb_self_s_dataType,
+    &afw_lmdb_self_v_integer.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_21_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Size of a database page in bytes."
-    }
+    &afw_lmdb_self_s_description,
+    &afw_lmdb_self_v_zz__Size_of_a_database_page_in_bytes_.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_21_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Page Size"
-    }
+    &afw_lmdb_self_s_label,
+    &afw_lmdb_self_v_zz__Page_Size.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_21_property_value_required = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+static const afw_runtime_property_t
 impl_21_property_required = {
-    "required",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = true
-    }
+    &afw_lmdb_self_s_required,
+    &impl_21_property_value_required.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_21_property_value_unique = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_21_property_unique = {
-    "unique",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_unique,
+    &impl_21_property_value_unique.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_21_properties[] = {
     &impl_21_property_allowQuery,
     &impl_21_property_dataType,
@@ -1528,70 +2158,122 @@ impl_21_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_21_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_21,
+    NULL
+};
+
+static const afw_utf8_t
+impl_21_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_statistic/propertyTypes/psize");
+
+static const afw_value_object_t
+impl_21__value;
+
+static const afw_runtime_const_object_instance_t
 impl_21 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_21__value,
+        {
+            (const afw_object_t *)&impl_21_meta_object,
+            (const afw_object_t *)&impl_15,
+            &afw_lmdb_self_s_psize,
+            &afw_lmdb_self_s__AdaptiveValueMeta_,
+            &impl_21_meta_path
+        }
+    },
     &impl_21_properties[0]
+};
+
+static const afw_value_object_t
+impl_21__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_21
 };
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_statistic/propertyTypes
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_15_property_value_branch_pages = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_16
+};
+
+static const afw_runtime_property_t
 impl_15_property_branch_pages = {
-    "branch_pages",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_16
-    }
+    &afw_lmdb_self_s_branch_pages,
+    &impl_15_property_value_branch_pages.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_15_property_value_depth = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_17
+};
+
+static const afw_runtime_property_t
 impl_15_property_depth = {
-    "depth",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_17
-    }
+    &afw_lmdb_self_s_depth,
+    &impl_15_property_value_depth.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_15_property_value_entries = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_18
+};
+
+static const afw_runtime_property_t
 impl_15_property_entries = {
-    "entries",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_18
-    }
+    &afw_lmdb_self_s_entries,
+    &impl_15_property_value_entries.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_15_property_value_leaf_pages = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_19
+};
+
+static const afw_runtime_property_t
 impl_15_property_leaf_pages = {
-    "leaf_pages",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_19
-    }
+    &afw_lmdb_self_s_leaf_pages,
+    &impl_15_property_value_leaf_pages.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_15_property_value_overflow_pages = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_20
+};
+
+static const afw_runtime_property_t
 impl_15_property_overflow_pages = {
-    "overflow_pages",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_20
-    }
+    &afw_lmdb_self_s_overflow_pages,
+    &impl_15_property_value_overflow_pages.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_15_property_value_psize = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_21
+};
+
+static const afw_runtime_property_t
 impl_15_property_psize = {
-    "psize",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_21
-    }
+    &afw_lmdb_self_s_psize,
+    &impl_15_property_value_psize.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_15_properties[] = {
     &impl_15_property_branch_pages,
     &impl_15_property_depth,
@@ -1602,22 +2284,59 @@ impl_15_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_15_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_15,
+    NULL
+};
+
+static const afw_utf8_t
+impl_15_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_statistic/propertyTypes");
+
+static const afw_value_object_t
+impl_15__value;
+
+static const afw_runtime_const_object_instance_t
 impl_15 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_15__value,
+        {
+            (const afw_object_t *)&impl_15_meta_object,
+            (const afw_object_t *)&impl_14,
+            &afw_lmdb_self_s_propertyTypes,
+            &afw_lmdb_self_s__AdaptivePropertyTypes_,
+            &impl_15_meta_path
+        }
+    },
     &impl_15_properties[0]
+};
+
+static const afw_value_object_t
+impl_15__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_15
 };
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_statistic
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_14_property_value_allowEntity = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_14_property_allowEntity = {
-    "allowEntity",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_allowEntity,
+    &impl_14_property_value_allowEntity.pub
 };
 
 static const afw_utf8_t
@@ -1625,50 +2344,51 @@ impl_14_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/lmdb_extension")
 };
 
-static const afw_runtime_unresolved_const_array_t
+static const afw_array_wrapper_for_array_self_t
 impl_14_list_collectionURIs = {
-    AFW_UTF8_LITERAL("string"),
+    &afw_array_wrapper_for_array_inf,
+    &afw_data_type_string_direct,
     sizeof(impl_14_array_collectionURIs) / sizeof(afw_utf8_t),
-    (const void *)&impl_14_array_collectionURIs
+    &impl_14_array_collectionURIs
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_array_t
+impl_14_property_value_collectionURIs = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_14_list_collectionURIs
+};
+
+static const afw_runtime_property_t
 impl_14_property_collectionURIs = {
-    "collectionURIs",
-    {
-        .type = afw_runtime_unresolved_primitive_type_array,
-        .array = &impl_14_list_collectionURIs
-    }
+    &afw_lmdb_self_s_collectionURIs,
+    &impl_14_property_value_collectionURIs.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_14_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Information about a LMDB database. Uses the mdb_env_stat() routine."
-    }
+    &afw_lmdb_self_s_description,
+    &afw_lmdb_self_v_zz__2526.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_14_property_objectType = {
-    "objectType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "_AdaptiveAdaptorMetrics_adaptor_lmdb_statistic"
-    }
+    &afw_lmdb_self_s_objectType,
+    &afw_lmdb_self_v__AdaptiveAdaptorMetrics_adaptor_lmdb_statistic.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_14_property_value_propertyTypes = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_15
+};
+
+static const afw_runtime_property_t
 impl_14_property_propertyTypes = {
-    "propertyTypes",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_15
-    }
+    &afw_lmdb_self_s_propertyTypes,
+    &impl_14_property_value_propertyTypes.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_14_properties[] = {
     &impl_14_property_allowEntity,
     &impl_14_property_collectionURIs,
@@ -1678,69 +2398,127 @@ impl_14_properties[] = {
     NULL
 };
 
+static const afw_runtime_const_object_meta_object_t
+impl_14_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_14,
+    NULL
+};
+
 static const afw_utf8_t
 impl_14_meta_path =
     AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_statistic");
 
-static const afw_runtime_unresolved_const_object_t
+static const afw_value_object_t
+impl_14__value;
+
+static const afw_runtime_const_object_instance_t
 impl_14 = {
-    &afw_lmdb_self_s__AdaptiveObjectType_,
-    &afw_lmdb_self_s__AdaptiveAdaptorMetrics_adaptor_lmdb_statistic,
-    &impl_14_meta_path,
+    {
+        &afw_runtime_inf__AdaptiveObjectType_,
+        NULL,
+        (const afw_value_t *)&impl_14__value,
+        {
+            (const afw_object_t *)&impl_14_meta_object,
+            NULL,
+            &afw_lmdb_self_s__AdaptiveAdaptorMetrics_adaptor_lmdb_statistic,
+            &afw_lmdb_self_s__AdaptiveObjectType_,
+            &impl_14_meta_path
+        }
+    },
     &impl_14_properties[0]
 };
 
-static const afw_runtime_unresolved_const_object_t
+static const afw_value_object_t
+impl_14__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_14
+};
+
+static const afw_runtime_const_object_instance_t
 impl_22;
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_instance_t
 impl_23;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_statistics/otherProperties
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_23_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "object"
-    }
+    &afw_lmdb_self_s_dataType,
+    &afw_lmdb_self_v_object.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_23_property_dataTypeParameter = {
-    "dataTypeParameter",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "_AdaptiveAdaptorMetrics_adaptor_lmdb_statistic"
-    }
+    &afw_lmdb_self_s_dataTypeParameter,
+    &afw_lmdb_self_v__AdaptiveAdaptorMetrics_adaptor_lmdb_statistic.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_23_properties[] = {
     &impl_23_property_dataType,
     &impl_23_property_dataTypeParameter,
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_23_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_23,
+    NULL
+};
+
+static const afw_utf8_t
+impl_23_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_statistics/otherProperties");
+
+static const afw_value_object_t
+impl_23__value;
+
+static const afw_runtime_const_object_instance_t
 impl_23 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_23__value,
+        {
+            (const afw_object_t *)&impl_23_meta_object,
+            (const afw_object_t *)&impl_22,
+            &afw_lmdb_self_s_otherProperties,
+            &afw_lmdb_self_s__AdaptiveValueMeta_,
+            &impl_23_meta_path
+        }
+    },
     &impl_23_properties[0]
+};
+
+static const afw_value_object_t
+impl_23__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_23
 };
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_statistics
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_22_property_value_allowEntity = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_22_property_allowEntity = {
-    "allowEntity",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_allowEntity,
+    &impl_22_property_value_allowEntity.pub
 };
 
 static const afw_utf8_t
@@ -1748,50 +2526,51 @@ impl_22_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/lmdb_extension")
 };
 
-static const afw_runtime_unresolved_const_array_t
+static const afw_array_wrapper_for_array_self_t
 impl_22_list_collectionURIs = {
-    AFW_UTF8_LITERAL("string"),
+    &afw_array_wrapper_for_array_inf,
+    &afw_data_type_string_direct,
     sizeof(impl_22_array_collectionURIs) / sizeof(afw_utf8_t),
-    (const void *)&impl_22_array_collectionURIs
+    &impl_22_array_collectionURIs
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_array_t
+impl_22_property_value_collectionURIs = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_22_list_collectionURIs
+};
+
+static const afw_runtime_property_t
 impl_22_property_collectionURIs = {
-    "collectionURIs",
-    {
-        .type = afw_runtime_unresolved_primitive_type_array,
-        .array = &impl_22_list_collectionURIs
-    }
+    &afw_lmdb_self_s_collectionURIs,
+    &impl_22_property_value_collectionURIs.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_22_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Information about each LMDB database. Uses the mdb_env_stat() routine."
-    }
+    &afw_lmdb_self_s_description,
+    &afw_lmdb_self_v_zz__2527.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_22_property_objectType = {
-    "objectType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "_AdaptiveAdaptorMetrics_adaptor_lmdb_statistics"
-    }
+    &afw_lmdb_self_s_objectType,
+    &afw_lmdb_self_v__AdaptiveAdaptorMetrics_adaptor_lmdb_statistics.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_22_property_value_otherProperties = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_23
+};
+
+static const afw_runtime_property_t
 impl_22_property_otherProperties = {
-    "otherProperties",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_23
-    }
+    &afw_lmdb_self_s_otherProperties,
+    &impl_22_property_value_otherProperties.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_22_properties[] = {
     &impl_22_property_allowEntity,
     &impl_22_property_collectionURIs,
@@ -1801,86 +2580,113 @@ impl_22_properties[] = {
     NULL
 };
 
+static const afw_runtime_const_object_meta_object_t
+impl_22_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_22,
+    NULL
+};
+
 static const afw_utf8_t
 impl_22_meta_path =
     AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_statistics");
 
-static const afw_runtime_unresolved_const_object_t
+static const afw_value_object_t
+impl_22__value;
+
+static const afw_runtime_const_object_instance_t
 impl_22 = {
-    &afw_lmdb_self_s__AdaptiveObjectType_,
-    &afw_lmdb_self_s__AdaptiveAdaptorMetrics_adaptor_lmdb_statistics,
-    &impl_22_meta_path,
+    {
+        &afw_runtime_inf__AdaptiveObjectType_,
+        NULL,
+        (const afw_value_t *)&impl_22__value,
+        {
+            (const afw_object_t *)&impl_22_meta_object,
+            NULL,
+            &afw_lmdb_self_s__AdaptiveAdaptorMetrics_adaptor_lmdb_statistics,
+            &afw_lmdb_self_s__AdaptiveObjectType_,
+            &impl_22_meta_path
+        }
+    },
     &impl_22_properties[0]
 };
 
-static const afw_runtime_unresolved_const_object_t
+static const afw_value_object_t
+impl_22__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_22
+};
+
+static const afw_runtime_const_object_instance_t
 impl_24;
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_instance_t
 impl_25;
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_instance_t
 impl_26;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_version/propertyTypes/major
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_26_property_value_allowQuery = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_26_property_allowQuery = {
-    "allowQuery",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_allowQuery,
+    &impl_26_property_value_allowQuery.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_26_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "integer"
-    }
+    &afw_lmdb_self_s_dataType,
+    &afw_lmdb_self_v_integer.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_26_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Major version"
-    }
+    &afw_lmdb_self_s_description,
+    &afw_lmdb_self_v_zz__Major_version.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_26_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Major"
-    }
+    &afw_lmdb_self_s_label,
+    &afw_lmdb_self_v_Major.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_26_property_value_required = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+static const afw_runtime_property_t
 impl_26_property_required = {
-    "required",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = true
-    }
+    &afw_lmdb_self_s_required,
+    &impl_26_property_value_required.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_26_property_value_unique = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_26_property_unique = {
-    "unique",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_unique,
+    &impl_26_property_value_unique.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_26_properties[] = {
     &impl_26_property_allowQuery,
     &impl_26_property_dataType,
@@ -1891,73 +2697,107 @@ impl_26_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_26_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_26,
+    NULL
+};
+
+static const afw_utf8_t
+impl_26_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_version/propertyTypes/major");
+
+static const afw_value_object_t
+impl_26__value;
+
+static const afw_runtime_const_object_instance_t
 impl_26 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_26__value,
+        {
+            (const afw_object_t *)&impl_26_meta_object,
+            (const afw_object_t *)&impl_25,
+            &afw_lmdb_self_s_major,
+            &afw_lmdb_self_s__AdaptiveValueMeta_,
+            &impl_26_meta_path
+        }
+    },
     &impl_26_properties[0]
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_value_object_t
+impl_26__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_26
+};
+
+static const afw_runtime_const_object_instance_t
 impl_27;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_version/propertyTypes/minor
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_27_property_value_allowQuery = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_27_property_allowQuery = {
-    "allowQuery",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_allowQuery,
+    &impl_27_property_value_allowQuery.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_27_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "integer"
-    }
+    &afw_lmdb_self_s_dataType,
+    &afw_lmdb_self_v_integer.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_27_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Minor version"
-    }
+    &afw_lmdb_self_s_description,
+    &afw_lmdb_self_v_zz__Minor_version.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_27_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Minor"
-    }
+    &afw_lmdb_self_s_label,
+    &afw_lmdb_self_v_Minor.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_27_property_value_required = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+static const afw_runtime_property_t
 impl_27_property_required = {
-    "required",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = true
-    }
+    &afw_lmdb_self_s_required,
+    &impl_27_property_value_required.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_27_property_value_unique = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_27_property_unique = {
-    "unique",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_unique,
+    &impl_27_property_value_unique.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_27_properties[] = {
     &impl_27_property_allowQuery,
     &impl_27_property_dataType,
@@ -1968,73 +2808,107 @@ impl_27_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_27_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_27,
+    NULL
+};
+
+static const afw_utf8_t
+impl_27_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_version/propertyTypes/minor");
+
+static const afw_value_object_t
+impl_27__value;
+
+static const afw_runtime_const_object_instance_t
 impl_27 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_27__value,
+        {
+            (const afw_object_t *)&impl_27_meta_object,
+            (const afw_object_t *)&impl_25,
+            &afw_lmdb_self_s_minor,
+            &afw_lmdb_self_s__AdaptiveValueMeta_,
+            &impl_27_meta_path
+        }
+    },
     &impl_27_properties[0]
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_value_object_t
+impl_27__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_27
+};
+
+static const afw_runtime_const_object_instance_t
 impl_28;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_version/propertyTypes/patch
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_28_property_value_allowQuery = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_28_property_allowQuery = {
-    "allowQuery",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_allowQuery,
+    &impl_28_property_value_allowQuery.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_28_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "integer"
-    }
+    &afw_lmdb_self_s_dataType,
+    &afw_lmdb_self_v_integer.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_28_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Patch version"
-    }
+    &afw_lmdb_self_s_description,
+    &afw_lmdb_self_v_zz__Patch_version.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_28_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Patch"
-    }
+    &afw_lmdb_self_s_label,
+    &afw_lmdb_self_v_Patch.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_28_property_value_required = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+static const afw_runtime_property_t
 impl_28_property_required = {
-    "required",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = true
-    }
+    &afw_lmdb_self_s_required,
+    &impl_28_property_value_required.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_28_property_value_unique = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_28_property_unique = {
-    "unique",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_unique,
+    &impl_28_property_value_unique.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_28_properties[] = {
     &impl_28_property_allowQuery,
     &impl_28_property_dataType,
@@ -2045,73 +2919,107 @@ impl_28_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_28_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_28,
+    NULL
+};
+
+static const afw_utf8_t
+impl_28_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_version/propertyTypes/patch");
+
+static const afw_value_object_t
+impl_28__value;
+
+static const afw_runtime_const_object_instance_t
 impl_28 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_28__value,
+        {
+            (const afw_object_t *)&impl_28_meta_object,
+            (const afw_object_t *)&impl_25,
+            &afw_lmdb_self_s_patch,
+            &afw_lmdb_self_s__AdaptiveValueMeta_,
+            &impl_28_meta_path
+        }
+    },
     &impl_28_properties[0]
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_value_object_t
+impl_28__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_28
+};
+
+static const afw_runtime_const_object_instance_t
 impl_29;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_version/propertyTypes/version_string
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_29_property_value_allowQuery = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_29_property_allowQuery = {
-    "allowQuery",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_allowQuery,
+    &impl_29_property_value_allowQuery.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_29_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "string"
-    }
+    &afw_lmdb_self_s_dataType,
+    &afw_lmdb_self_v_string.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_29_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Patch version string"
-    }
+    &afw_lmdb_self_s_description,
+    &afw_lmdb_self_v_zz__Patch_version_string.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_29_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Version String"
-    }
+    &afw_lmdb_self_s_label,
+    &afw_lmdb_self_v_zz__Version_String.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_29_property_value_required = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+static const afw_runtime_property_t
 impl_29_property_required = {
-    "required",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = true
-    }
+    &afw_lmdb_self_s_required,
+    &impl_29_property_value_required.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_29_property_value_unique = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_29_property_unique = {
-    "unique",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_unique,
+    &impl_29_property_value_unique.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_29_properties[] = {
     &impl_29_property_allowQuery,
     &impl_29_property_dataType,
@@ -2122,52 +3030,98 @@ impl_29_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_29_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_29,
+    NULL
+};
+
+static const afw_utf8_t
+impl_29_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_version/propertyTypes/version_string");
+
+static const afw_value_object_t
+impl_29__value;
+
+static const afw_runtime_const_object_instance_t
 impl_29 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_29__value,
+        {
+            (const afw_object_t *)&impl_29_meta_object,
+            (const afw_object_t *)&impl_25,
+            &afw_lmdb_self_s_version_string,
+            &afw_lmdb_self_s__AdaptiveValueMeta_,
+            &impl_29_meta_path
+        }
+    },
     &impl_29_properties[0]
+};
+
+static const afw_value_object_t
+impl_29__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_29
 };
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_version/propertyTypes
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_25_property_value_major = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_26
+};
+
+static const afw_runtime_property_t
 impl_25_property_major = {
-    "major",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_26
-    }
+    &afw_lmdb_self_s_major,
+    &impl_25_property_value_major.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_25_property_value_minor = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_27
+};
+
+static const afw_runtime_property_t
 impl_25_property_minor = {
-    "minor",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_27
-    }
+    &afw_lmdb_self_s_minor,
+    &impl_25_property_value_minor.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_25_property_value_patch = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_28
+};
+
+static const afw_runtime_property_t
 impl_25_property_patch = {
-    "patch",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_28
-    }
+    &afw_lmdb_self_s_patch,
+    &impl_25_property_value_patch.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_25_property_value_version_string = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_29
+};
+
+static const afw_runtime_property_t
 impl_25_property_version_string = {
-    "version_string",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_29
-    }
+    &afw_lmdb_self_s_version_string,
+    &impl_25_property_value_version_string.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_25_properties[] = {
     &impl_25_property_major,
     &impl_25_property_minor,
@@ -2176,22 +3130,59 @@ impl_25_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_25_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_25,
+    NULL
+};
+
+static const afw_utf8_t
+impl_25_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_version/propertyTypes");
+
+static const afw_value_object_t
+impl_25__value;
+
+static const afw_runtime_const_object_instance_t
 impl_25 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_25__value,
+        {
+            (const afw_object_t *)&impl_25_meta_object,
+            (const afw_object_t *)&impl_24,
+            &afw_lmdb_self_s_propertyTypes,
+            &afw_lmdb_self_s__AdaptivePropertyTypes_,
+            &impl_25_meta_path
+        }
+    },
     &impl_25_properties[0]
+};
+
+static const afw_value_object_t
+impl_25__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_25
 };
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_version
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_24_property_value_allowEntity = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_24_property_allowEntity = {
-    "allowEntity",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_allowEntity,
+    &impl_24_property_value_allowEntity.pub
 };
 
 static const afw_utf8_t
@@ -2199,50 +3190,51 @@ impl_24_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/lmdb_extension")
 };
 
-static const afw_runtime_unresolved_const_array_t
+static const afw_array_wrapper_for_array_self_t
 impl_24_list_collectionURIs = {
-    AFW_UTF8_LITERAL("string"),
+    &afw_array_wrapper_for_array_inf,
+    &afw_data_type_string_direct,
     sizeof(impl_24_array_collectionURIs) / sizeof(afw_utf8_t),
-    (const void *)&impl_24_array_collectionURIs
+    &impl_24_array_collectionURIs
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_array_t
+impl_24_property_value_collectionURIs = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_24_list_collectionURIs
+};
+
+static const afw_runtime_property_t
 impl_24_property_collectionURIs = {
-    "collectionURIs",
-    {
-        .type = afw_runtime_unresolved_primitive_type_array,
-        .array = &impl_24_list_collectionURIs
-    }
+    &afw_lmdb_self_s_collectionURIs,
+    &impl_24_property_value_collectionURIs.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_24_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Version information reported by LMDB mdb_version() routine."
-    }
+    &afw_lmdb_self_s_description,
+    &afw_lmdb_self_v_zz__Version_information_reported_by_LMDB_mdb_version___routine_.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_24_property_objectType = {
-    "objectType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "_AdaptiveAdaptorMetrics_adaptor_lmdb_version"
-    }
+    &afw_lmdb_self_s_objectType,
+    &afw_lmdb_self_v__AdaptiveAdaptorMetrics_adaptor_lmdb_version.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_24_property_value_propertyTypes = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_25
+};
+
+static const afw_runtime_property_t
 impl_24_property_propertyTypes = {
-    "propertyTypes",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_25
-    }
+    &afw_lmdb_self_s_propertyTypes,
+    &impl_24_property_value_propertyTypes.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_24_properties[] = {
     &impl_24_property_allowEntity,
     &impl_24_property_collectionURIs,
@@ -2252,95 +3244,119 @@ impl_24_properties[] = {
     NULL
 };
 
+static const afw_runtime_const_object_meta_object_t
+impl_24_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_24,
+    NULL
+};
+
 static const afw_utf8_t
 impl_24_meta_path =
     AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_version");
 
-static const afw_runtime_unresolved_const_object_t
+static const afw_value_object_t
+impl_24__value;
+
+static const afw_runtime_const_object_instance_t
 impl_24 = {
-    &afw_lmdb_self_s__AdaptiveObjectType_,
-    &afw_lmdb_self_s__AdaptiveAdaptorMetrics_adaptor_lmdb_version,
-    &impl_24_meta_path,
+    {
+        &afw_runtime_inf__AdaptiveObjectType_,
+        NULL,
+        (const afw_value_t *)&impl_24__value,
+        {
+            (const afw_object_t *)&impl_24_meta_object,
+            NULL,
+            &afw_lmdb_self_s__AdaptiveAdaptorMetrics_adaptor_lmdb_version,
+            &afw_lmdb_self_s__AdaptiveObjectType_,
+            &impl_24_meta_path
+        }
+    },
     &impl_24_properties[0]
 };
 
-static const afw_runtime_unresolved_const_object_t
+static const afw_value_object_t
+impl_24__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_24
+};
+
+static const afw_runtime_const_object_instance_t
 impl_30;
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_instance_t
 impl_31;
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_instance_t
 impl_32;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb/propertyTypes/env
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_32_property_value_allowQuery = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+static const afw_runtime_property_t
 impl_32_property_allowQuery = {
-    "allowQuery",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = true
-    }
+    &afw_lmdb_self_s_allowQuery,
+    &impl_32_property_value_allowQuery.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_32_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "object"
-    }
+    &afw_lmdb_self_s_dataType,
+    &afw_lmdb_self_v_object.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_32_property_dataTypeParameter = {
-    "dataTypeParameter",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "_AdaptiveConf_adaptor_lmdb_env"
-    }
+    &afw_lmdb_self_s_dataTypeParameter,
+    &afw_lmdb_self_v__AdaptiveConf_adaptor_lmdb_env.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_32_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Environment settings for LMDB."
-    }
+    &afw_lmdb_self_s_description,
+    &afw_lmdb_self_v_zz__Environment_settings_for_LMDB_.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_32_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Environment"
-    }
+    &afw_lmdb_self_s_label,
+    &afw_lmdb_self_v_Environment.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_32_property_value_required = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+static const afw_runtime_property_t
 impl_32_property_required = {
-    "required",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = true
-    }
+    &afw_lmdb_self_s_required,
+    &impl_32_property_value_required.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_32_property_value_unique = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_32_property_unique = {
-    "unique",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_unique,
+    &impl_32_property_value_unique.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_32_properties[] = {
     &impl_32_property_allowQuery,
     &impl_32_property_dataType,
@@ -2352,82 +3368,113 @@ impl_32_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_32_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_32,
+    NULL
+};
+
+static const afw_utf8_t
+impl_32_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb/propertyTypes/env");
+
+static const afw_value_object_t
+impl_32__value;
+
+static const afw_runtime_const_object_instance_t
 impl_32 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_32__value,
+        {
+            (const afw_object_t *)&impl_32_meta_object,
+            (const afw_object_t *)&impl_31,
+            &afw_lmdb_self_s_env,
+            &afw_lmdb_self_s__AdaptiveValueMeta_,
+            &impl_32_meta_path
+        }
+    },
     &impl_32_properties[0]
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_value_object_t
+impl_32__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_32
+};
+
+static const afw_runtime_const_object_instance_t
 impl_33;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb/propertyTypes/limits
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_33_property_value_allowQuery = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+static const afw_runtime_property_t
 impl_33_property_allowQuery = {
-    "allowQuery",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = true
-    }
+    &afw_lmdb_self_s_allowQuery,
+    &impl_33_property_value_allowQuery.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_33_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "object"
-    }
+    &afw_lmdb_self_s_dataType,
+    &afw_lmdb_self_v_object.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_33_property_dataTypeParameter = {
-    "dataTypeParameter",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "_AdaptiveConf_adaptor_lmdb_limits"
-    }
+    &afw_lmdb_self_s_dataTypeParameter,
+    &afw_lmdb_self_v__AdaptiveConf_adaptor_lmdb_limits.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_33_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Database limits for LMDB."
-    }
+    &afw_lmdb_self_s_description,
+    &afw_lmdb_self_v_zz__Database_limits_for_LMDB_.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_33_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Limits"
-    }
+    &afw_lmdb_self_s_label,
+    &afw_lmdb_self_v_Limits.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_33_property_value_required = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+static const afw_runtime_property_t
 impl_33_property_required = {
-    "required",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = true
-    }
+    &afw_lmdb_self_s_required,
+    &impl_33_property_value_required.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_33_property_value_unique = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_33_property_unique = {
-    "unique",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_unique,
+    &impl_33_property_value_unique.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_33_properties[] = {
     &impl_33_property_allowQuery,
     &impl_33_property_dataType,
@@ -2439,34 +3486,74 @@ impl_33_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_33_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_33,
+    NULL
+};
+
+static const afw_utf8_t
+impl_33_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb/propertyTypes/limits");
+
+static const afw_value_object_t
+impl_33__value;
+
+static const afw_runtime_const_object_instance_t
 impl_33 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_33__value,
+        {
+            (const afw_object_t *)&impl_33_meta_object,
+            (const afw_object_t *)&impl_31,
+            &afw_lmdb_self_s_limits,
+            &afw_lmdb_self_s__AdaptiveValueMeta_,
+            &impl_33_meta_path
+        }
+    },
     &impl_33_properties[0]
+};
+
+static const afw_value_object_t
+impl_33__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_33
 };
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb/propertyTypes
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_31_property_value_env = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_32
+};
+
+static const afw_runtime_property_t
 impl_31_property_env = {
-    "env",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_32
-    }
+    &afw_lmdb_self_s_env,
+    &impl_31_property_value_env.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_31_property_value_limits = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_33
+};
+
+static const afw_runtime_property_t
 impl_31_property_limits = {
-    "limits",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_33
-    }
+    &afw_lmdb_self_s_limits,
+    &impl_31_property_value_limits.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_31_properties[] = {
     &impl_31_property_env,
     &impl_31_property_limits,
@@ -2478,24 +3565,73 @@ impl_31_parentPaths_array[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor/propertyTypes")
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
-impl_31 = {
-    &impl_31_properties[0],
+static const afw_array_wrapper_for_array_self_t
+impl_31_parentPaths_list = {
+    &afw_array_wrapper_for_array_inf,
+    &afw_data_type_anyURI_direct,
     sizeof(impl_31_parentPaths_array) / sizeof(afw_utf8_t),
-    &impl_31_parentPaths_array[0]
+    (const void *)&impl_31_parentPaths_array
+};
+
+static const afw_value_array_t
+impl_31_parentPaths = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_31_parentPaths_list
+};
+
+static const afw_runtime_const_object_meta_object_t
+impl_31_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_31,
+    &impl_31_parentPaths
+};
+
+static const afw_utf8_t
+impl_31_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb/propertyTypes");
+
+static const afw_value_object_t
+impl_31__value;
+
+static const afw_runtime_const_object_instance_t
+impl_31 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_31__value,
+        {
+            (const afw_object_t *)&impl_31_meta_object,
+            (const afw_object_t *)&impl_30,
+            &afw_lmdb_self_s_propertyTypes,
+            &afw_lmdb_self_s__AdaptivePropertyTypes_,
+            &impl_31_meta_path
+        }
+    },
+    &impl_31_properties[0]
+};
+
+static const afw_value_object_t
+impl_31__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_31
 };
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_30_property_value_allowEntity = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_30_property_allowEntity = {
-    "allowEntity",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_allowEntity,
+    &impl_30_property_value_allowEntity.pub
 };
 
 static const afw_utf8_t
@@ -2503,50 +3639,51 @@ impl_30_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/lmdb_extension")
 };
 
-static const afw_runtime_unresolved_const_array_t
+static const afw_array_wrapper_for_array_self_t
 impl_30_list_collectionURIs = {
-    AFW_UTF8_LITERAL("string"),
+    &afw_array_wrapper_for_array_inf,
+    &afw_data_type_string_direct,
     sizeof(impl_30_array_collectionURIs) / sizeof(afw_utf8_t),
-    (const void *)&impl_30_array_collectionURIs
+    &impl_30_array_collectionURIs
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_array_t
+impl_30_property_value_collectionURIs = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_30_list_collectionURIs
+};
+
+static const afw_runtime_property_t
 impl_30_property_collectionURIs = {
-    "collectionURIs",
-    {
-        .type = afw_runtime_unresolved_primitive_type_array,
-        .array = &impl_30_list_collectionURIs
-    }
+    &afw_lmdb_self_s_collectionURIs,
+    &impl_30_property_value_collectionURIs.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_30_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Object type for type=adaptor adaptor_type=lmdb conf entries."
-    }
+    &afw_lmdb_self_s_description,
+    &afw_lmdb_self_v_zz__Object_type_for_type_adaptor_adaptor_type_lmdb_conf_entries_.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_30_property_objectType = {
-    "objectType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "_AdaptiveConf_adaptor_lmdb"
-    }
+    &afw_lmdb_self_s_objectType,
+    &afw_lmdb_self_v__AdaptiveConf_adaptor_lmdb.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_30_property_value_propertyTypes = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_31
+};
+
+static const afw_runtime_property_t
 impl_30_property_propertyTypes = {
-    "propertyTypes",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_31
-    }
+    &afw_lmdb_self_s_propertyTypes,
+    &impl_30_property_value_propertyTypes.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_30_properties[] = {
     &impl_30_property_allowEntity,
     &impl_30_property_collectionURIs,
@@ -2556,86 +3693,113 @@ impl_30_properties[] = {
     NULL
 };
 
+static const afw_runtime_const_object_meta_object_t
+impl_30_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_30,
+    NULL
+};
+
 static const afw_utf8_t
 impl_30_meta_path =
     AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb");
 
-static const afw_runtime_unresolved_const_object_t
+static const afw_value_object_t
+impl_30__value;
+
+static const afw_runtime_const_object_instance_t
 impl_30 = {
-    &afw_lmdb_self_s__AdaptiveObjectType_,
-    &afw_lmdb_self_s__AdaptiveConf_adaptor_lmdb,
-    &impl_30_meta_path,
+    {
+        &afw_runtime_inf__AdaptiveObjectType_,
+        NULL,
+        (const afw_value_t *)&impl_30__value,
+        {
+            (const afw_object_t *)&impl_30_meta_object,
+            NULL,
+            &afw_lmdb_self_s__AdaptiveConf_adaptor_lmdb,
+            &afw_lmdb_self_s__AdaptiveObjectType_,
+            &impl_30_meta_path
+        }
+    },
     &impl_30_properties[0]
 };
 
-static const afw_runtime_unresolved_const_object_t
+static const afw_value_object_t
+impl_30__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_30
+};
+
+static const afw_runtime_const_object_instance_t
 impl_34;
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_instance_t
 impl_35;
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_instance_t
 impl_36;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb_env/propertyTypes/mapsize
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_36_property_value_allowQuery = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+static const afw_runtime_property_t
 impl_36_property_allowQuery = {
-    "allowQuery",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = true
-    }
+    &afw_lmdb_self_s_allowQuery,
+    &impl_36_property_value_allowQuery.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_36_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "integer"
-    }
+    &afw_lmdb_self_s_dataType,
+    &afw_lmdb_self_v_integer.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_36_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Size of the memory map to use for the environment. The size should be a multiple of OS page size"
-    }
+    &afw_lmdb_self_s_description,
+    &afw_lmdb_self_v_zz__2528.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_36_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Map Size"
-    }
+    &afw_lmdb_self_s_label,
+    &afw_lmdb_self_v_zz__Map_Size.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_36_property_value_required = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+static const afw_runtime_property_t
 impl_36_property_required = {
-    "required",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = true
-    }
+    &afw_lmdb_self_s_required,
+    &impl_36_property_value_required.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_36_property_value_unique = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_36_property_unique = {
-    "unique",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_unique,
+    &impl_36_property_value_unique.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_36_properties[] = {
     &impl_36_property_allowQuery,
     &impl_36_property_dataType,
@@ -2646,73 +3810,107 @@ impl_36_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_36_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_36,
+    NULL
+};
+
+static const afw_utf8_t
+impl_36_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb_env/propertyTypes/mapsize");
+
+static const afw_value_object_t
+impl_36__value;
+
+static const afw_runtime_const_object_instance_t
 impl_36 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_36__value,
+        {
+            (const afw_object_t *)&impl_36_meta_object,
+            (const afw_object_t *)&impl_35,
+            &afw_lmdb_self_s_mapsize,
+            &afw_lmdb_self_s__AdaptiveValueMeta_,
+            &impl_36_meta_path
+        }
+    },
     &impl_36_properties[0]
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_value_object_t
+impl_36__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_36
+};
+
+static const afw_runtime_const_object_instance_t
 impl_37;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb_env/propertyTypes/maxdbs
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_37_property_value_allowQuery = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+static const afw_runtime_property_t
 impl_37_property_allowQuery = {
-    "allowQuery",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = true
-    }
+    &afw_lmdb_self_s_allowQuery,
+    &impl_37_property_value_allowQuery.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_37_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "integer"
-    }
+    &afw_lmdb_self_s_dataType,
+    &afw_lmdb_self_v_integer.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_37_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Maximum number of named databases for the environment."
-    }
+    &afw_lmdb_self_s_description,
+    &afw_lmdb_self_v_zz__Maximum_number_of_named_databases_for_the_environment_.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_37_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Max Databases"
-    }
+    &afw_lmdb_self_s_label,
+    &afw_lmdb_self_v_zz__Max_Databases.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_37_property_value_required = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+static const afw_runtime_property_t
 impl_37_property_required = {
-    "required",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = true
-    }
+    &afw_lmdb_self_s_required,
+    &impl_37_property_value_required.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_37_property_value_unique = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_37_property_unique = {
-    "unique",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_unique,
+    &impl_37_property_value_unique.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_37_properties[] = {
     &impl_37_property_allowQuery,
     &impl_37_property_dataType,
@@ -2723,73 +3921,107 @@ impl_37_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_37_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_37,
+    NULL
+};
+
+static const afw_utf8_t
+impl_37_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb_env/propertyTypes/maxdbs");
+
+static const afw_value_object_t
+impl_37__value;
+
+static const afw_runtime_const_object_instance_t
 impl_37 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_37__value,
+        {
+            (const afw_object_t *)&impl_37_meta_object,
+            (const afw_object_t *)&impl_35,
+            &afw_lmdb_self_s_maxdbs,
+            &afw_lmdb_self_s__AdaptiveValueMeta_,
+            &impl_37_meta_path
+        }
+    },
     &impl_37_properties[0]
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_value_object_t
+impl_37__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_37
+};
+
+static const afw_runtime_const_object_instance_t
 impl_38;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb_env/propertyTypes/maxreaders
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_38_property_value_allowQuery = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+static const afw_runtime_property_t
 impl_38_property_allowQuery = {
-    "allowQuery",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = true
-    }
+    &afw_lmdb_self_s_allowQuery,
+    &impl_38_property_value_allowQuery.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_38_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "integer"
-    }
+    &afw_lmdb_self_s_dataType,
+    &afw_lmdb_self_v_integer.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_38_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Number of reader slots allocated in the lock file."
-    }
+    &afw_lmdb_self_s_description,
+    &afw_lmdb_self_v_zz__Number_of_reader_slots_allocated_in_the_lock_file_.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_38_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Max Readers"
-    }
+    &afw_lmdb_self_s_label,
+    &afw_lmdb_self_v_zz__Max_Readers.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_38_property_value_required = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+static const afw_runtime_property_t
 impl_38_property_required = {
-    "required",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = true
-    }
+    &afw_lmdb_self_s_required,
+    &impl_38_property_value_required.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_38_property_value_unique = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_38_property_unique = {
-    "unique",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_unique,
+    &impl_38_property_value_unique.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_38_properties[] = {
     &impl_38_property_allowQuery,
     &impl_38_property_dataType,
@@ -2800,73 +4032,107 @@ impl_38_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_38_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_38,
+    NULL
+};
+
+static const afw_utf8_t
+impl_38_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb_env/propertyTypes/maxreaders");
+
+static const afw_value_object_t
+impl_38__value;
+
+static const afw_runtime_const_object_instance_t
 impl_38 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_38__value,
+        {
+            (const afw_object_t *)&impl_38_meta_object,
+            (const afw_object_t *)&impl_35,
+            &afw_lmdb_self_s_maxreaders,
+            &afw_lmdb_self_s__AdaptiveValueMeta_,
+            &impl_38_meta_path
+        }
+    },
     &impl_38_properties[0]
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_value_object_t
+impl_38__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_38
+};
+
+static const afw_runtime_const_object_instance_t
 impl_39;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb_env/propertyTypes/mode
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_39_property_value_allowQuery = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+static const afw_runtime_property_t
 impl_39_property_allowQuery = {
-    "allowQuery",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = true
-    }
+    &afw_lmdb_self_s_allowQuery,
+    &impl_39_property_value_allowQuery.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_39_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "integer"
-    }
+    &afw_lmdb_self_s_dataType,
+    &afw_lmdb_self_v_integer.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_39_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Database file mode (in decimal) for LMDB."
-    }
+    &afw_lmdb_self_s_description,
+    &afw_lmdb_self_v_zz__Database_file_mode__in_decimal__for_LMDB_.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_39_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Mode"
-    }
+    &afw_lmdb_self_s_label,
+    &afw_lmdb_self_v_Mode.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_39_property_value_required = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+static const afw_runtime_property_t
 impl_39_property_required = {
-    "required",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = true
-    }
+    &afw_lmdb_self_s_required,
+    &impl_39_property_value_required.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_39_property_value_unique = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_39_property_unique = {
-    "unique",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_unique,
+    &impl_39_property_value_unique.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_39_properties[] = {
     &impl_39_property_allowQuery,
     &impl_39_property_dataType,
@@ -2877,73 +4143,107 @@ impl_39_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_39_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_39,
+    NULL
+};
+
+static const afw_utf8_t
+impl_39_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb_env/propertyTypes/mode");
+
+static const afw_value_object_t
+impl_39__value;
+
+static const afw_runtime_const_object_instance_t
 impl_39 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_39__value,
+        {
+            (const afw_object_t *)&impl_39_meta_object,
+            (const afw_object_t *)&impl_35,
+            &afw_lmdb_self_s_mode,
+            &afw_lmdb_self_s__AdaptiveValueMeta_,
+            &impl_39_meta_path
+        }
+    },
     &impl_39_properties[0]
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_value_object_t
+impl_39__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_39
+};
+
+static const afw_runtime_const_object_instance_t
 impl_40;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb_env/propertyTypes/path
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_40_property_value_allowQuery = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+static const afw_runtime_property_t
 impl_40_property_allowQuery = {
-    "allowQuery",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = true
-    }
+    &afw_lmdb_self_s_allowQuery,
+    &impl_40_property_value_allowQuery.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_40_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "string"
-    }
+    &afw_lmdb_self_s_dataType,
+    &afw_lmdb_self_v_string.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_40_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Database path for LMDB."
-    }
+    &afw_lmdb_self_s_description,
+    &afw_lmdb_self_v_zz__Database_path_for_LMDB_.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_40_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Path"
-    }
+    &afw_lmdb_self_s_label,
+    &afw_lmdb_self_v_Path.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_40_property_value_required = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+static const afw_runtime_property_t
 impl_40_property_required = {
-    "required",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = true
-    }
+    &afw_lmdb_self_s_required,
+    &impl_40_property_value_required.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_40_property_value_unique = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_40_property_unique = {
-    "unique",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_unique,
+    &impl_40_property_value_unique.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_40_properties[] = {
     &impl_40_property_allowQuery,
     &impl_40_property_dataType,
@@ -2954,61 +4254,110 @@ impl_40_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_40_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_40,
+    NULL
+};
+
+static const afw_utf8_t
+impl_40_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb_env/propertyTypes/path");
+
+static const afw_value_object_t
+impl_40__value;
+
+static const afw_runtime_const_object_instance_t
 impl_40 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_40__value,
+        {
+            (const afw_object_t *)&impl_40_meta_object,
+            (const afw_object_t *)&impl_35,
+            &afw_lmdb_self_s_path,
+            &afw_lmdb_self_s__AdaptiveValueMeta_,
+            &impl_40_meta_path
+        }
+    },
     &impl_40_properties[0]
+};
+
+static const afw_value_object_t
+impl_40__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_40
 };
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb_env/propertyTypes
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_35_property_value_mapsize = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_36
+};
+
+static const afw_runtime_property_t
 impl_35_property_mapsize = {
-    "mapsize",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_36
-    }
+    &afw_lmdb_self_s_mapsize,
+    &impl_35_property_value_mapsize.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_35_property_value_maxdbs = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_37
+};
+
+static const afw_runtime_property_t
 impl_35_property_maxdbs = {
-    "maxdbs",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_37
-    }
+    &afw_lmdb_self_s_maxdbs,
+    &impl_35_property_value_maxdbs.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_35_property_value_maxreaders = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_38
+};
+
+static const afw_runtime_property_t
 impl_35_property_maxreaders = {
-    "maxreaders",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_38
-    }
+    &afw_lmdb_self_s_maxreaders,
+    &impl_35_property_value_maxreaders.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_35_property_value_mode = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_39
+};
+
+static const afw_runtime_property_t
 impl_35_property_mode = {
-    "mode",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_39
-    }
+    &afw_lmdb_self_s_mode,
+    &impl_35_property_value_mode.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_35_property_value_path = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_40
+};
+
+static const afw_runtime_property_t
 impl_35_property_path = {
-    "path",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_40
-    }
+    &afw_lmdb_self_s_path,
+    &impl_35_property_value_path.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_35_properties[] = {
     &impl_35_property_mapsize,
     &impl_35_property_maxdbs,
@@ -3018,22 +4367,59 @@ impl_35_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_35_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_35,
+    NULL
+};
+
+static const afw_utf8_t
+impl_35_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb_env/propertyTypes");
+
+static const afw_value_object_t
+impl_35__value;
+
+static const afw_runtime_const_object_instance_t
 impl_35 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_35__value,
+        {
+            (const afw_object_t *)&impl_35_meta_object,
+            (const afw_object_t *)&impl_34,
+            &afw_lmdb_self_s_propertyTypes,
+            &afw_lmdb_self_s__AdaptivePropertyTypes_,
+            &impl_35_meta_path
+        }
+    },
     &impl_35_properties[0]
+};
+
+static const afw_value_object_t
+impl_35__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_35
 };
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb_env
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_34_property_value_allowEntity = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_34_property_allowEntity = {
-    "allowEntity",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_allowEntity,
+    &impl_34_property_value_allowEntity.pub
 };
 
 static const afw_utf8_t
@@ -3041,50 +4427,51 @@ impl_34_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/lmdb_extension")
 };
 
-static const afw_runtime_unresolved_const_array_t
+static const afw_array_wrapper_for_array_self_t
 impl_34_list_collectionURIs = {
-    AFW_UTF8_LITERAL("string"),
+    &afw_array_wrapper_for_array_inf,
+    &afw_data_type_string_direct,
     sizeof(impl_34_array_collectionURIs) / sizeof(afw_utf8_t),
-    (const void *)&impl_34_array_collectionURIs
+    &impl_34_array_collectionURIs
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_array_t
+impl_34_property_value_collectionURIs = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_34_list_collectionURIs
+};
+
+static const afw_runtime_property_t
 impl_34_property_collectionURIs = {
-    "collectionURIs",
-    {
-        .type = afw_runtime_unresolved_primitive_type_array,
-        .array = &impl_34_list_collectionURIs
-    }
+    &afw_lmdb_self_s_collectionURIs,
+    &impl_34_property_value_collectionURIs.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_34_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Object type for type=adaptor adaptor_type=lmdb env conf entries."
-    }
+    &afw_lmdb_self_s_description,
+    &afw_lmdb_self_v_zz__2529.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_34_property_objectType = {
-    "objectType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "_AdaptiveConf_adaptor_lmdb_env"
-    }
+    &afw_lmdb_self_s_objectType,
+    &afw_lmdb_self_v__AdaptiveConf_adaptor_lmdb_env.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_34_property_value_propertyTypes = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_35
+};
+
+static const afw_runtime_property_t
 impl_34_property_propertyTypes = {
-    "propertyTypes",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_35
-    }
+    &afw_lmdb_self_s_propertyTypes,
+    &impl_34_property_value_propertyTypes.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_34_properties[] = {
     &impl_34_property_allowEntity,
     &impl_34_property_collectionURIs,
@@ -3094,95 +4481,119 @@ impl_34_properties[] = {
     NULL
 };
 
+static const afw_runtime_const_object_meta_object_t
+impl_34_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_34,
+    NULL
+};
+
 static const afw_utf8_t
 impl_34_meta_path =
     AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb_env");
 
-static const afw_runtime_unresolved_const_object_t
+static const afw_value_object_t
+impl_34__value;
+
+static const afw_runtime_const_object_instance_t
 impl_34 = {
-    &afw_lmdb_self_s__AdaptiveObjectType_,
-    &afw_lmdb_self_s__AdaptiveConf_adaptor_lmdb_env,
-    &impl_34_meta_path,
+    {
+        &afw_runtime_inf__AdaptiveObjectType_,
+        NULL,
+        (const afw_value_t *)&impl_34__value,
+        {
+            (const afw_object_t *)&impl_34_meta_object,
+            NULL,
+            &afw_lmdb_self_s__AdaptiveConf_adaptor_lmdb_env,
+            &afw_lmdb_self_s__AdaptiveObjectType_,
+            &impl_34_meta_path
+        }
+    },
     &impl_34_properties[0]
 };
 
-static const afw_runtime_unresolved_const_object_t
+static const afw_value_object_t
+impl_34__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_34
+};
+
+static const afw_runtime_const_object_instance_t
 impl_41;
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_instance_t
 impl_42;
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_instance_t
 impl_43;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb_limits/propertyTypes/size
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_43_property_value_allowQuery = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+static const afw_runtime_property_t
 impl_43_property_allowQuery = {
-    "allowQuery",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = true
-    }
+    &afw_lmdb_self_s_allowQuery,
+    &impl_43_property_value_allowQuery.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_43_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "object"
-    }
+    &afw_lmdb_self_s_dataType,
+    &afw_lmdb_self_v_object.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_43_property_dataTypeParameter = {
-    "dataTypeParameter",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "_AdaptiveConf_adaptor_lmdb_limits_size"
-    }
+    &afw_lmdb_self_s_dataTypeParameter,
+    &afw_lmdb_self_v__AdaptiveConf_adaptor_lmdb_limits_size.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_43_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Size limits for requests."
-    }
+    &afw_lmdb_self_s_description,
+    &afw_lmdb_self_v_zz__Size_limits_for_requests_.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_43_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Size Limits"
-    }
+    &afw_lmdb_self_s_label,
+    &afw_lmdb_self_v_zz__Size_Limits.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_43_property_value_required = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+static const afw_runtime_property_t
 impl_43_property_required = {
-    "required",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = true
-    }
+    &afw_lmdb_self_s_required,
+    &impl_43_property_value_required.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_43_property_value_unique = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_43_property_unique = {
-    "unique",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_unique,
+    &impl_43_property_value_unique.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_43_properties[] = {
     &impl_43_property_allowQuery,
     &impl_43_property_dataType,
@@ -3194,82 +4605,113 @@ impl_43_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_43_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_43,
+    NULL
+};
+
+static const afw_utf8_t
+impl_43_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb_limits/propertyTypes/size");
+
+static const afw_value_object_t
+impl_43__value;
+
+static const afw_runtime_const_object_instance_t
 impl_43 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_43__value,
+        {
+            (const afw_object_t *)&impl_43_meta_object,
+            (const afw_object_t *)&impl_42,
+            &afw_lmdb_self_s_size,
+            &afw_lmdb_self_s__AdaptiveValueMeta_,
+            &impl_43_meta_path
+        }
+    },
     &impl_43_properties[0]
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_value_object_t
+impl_43__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_43
+};
+
+static const afw_runtime_const_object_instance_t
 impl_44;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb_limits/propertyTypes/time
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_44_property_value_allowQuery = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+static const afw_runtime_property_t
 impl_44_property_allowQuery = {
-    "allowQuery",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = true
-    }
+    &afw_lmdb_self_s_allowQuery,
+    &impl_44_property_value_allowQuery.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_44_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "object"
-    }
+    &afw_lmdb_self_s_dataType,
+    &afw_lmdb_self_v_object.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_44_property_dataTypeParameter = {
-    "dataTypeParameter",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "_AdaptiveConf_adaptor_lmdb_limits_time"
-    }
+    &afw_lmdb_self_s_dataTypeParameter,
+    &afw_lmdb_self_v__AdaptiveConf_adaptor_lmdb_limits_time.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_44_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Time limits for requests."
-    }
+    &afw_lmdb_self_s_description,
+    &afw_lmdb_self_v_zz__Time_limits_for_requests_.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_44_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Time Limits"
-    }
+    &afw_lmdb_self_s_label,
+    &afw_lmdb_self_v_zz__Time_Limits.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_44_property_value_required = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+static const afw_runtime_property_t
 impl_44_property_required = {
-    "required",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = true
-    }
+    &afw_lmdb_self_s_required,
+    &impl_44_property_value_required.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_44_property_value_unique = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_44_property_unique = {
-    "unique",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_unique,
+    &impl_44_property_value_unique.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_44_properties[] = {
     &impl_44_property_allowQuery,
     &impl_44_property_dataType,
@@ -3281,56 +4723,133 @@ impl_44_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_44_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_44,
+    NULL
+};
+
+static const afw_utf8_t
+impl_44_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb_limits/propertyTypes/time");
+
+static const afw_value_object_t
+impl_44__value;
+
+static const afw_runtime_const_object_instance_t
 impl_44 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_44__value,
+        {
+            (const afw_object_t *)&impl_44_meta_object,
+            (const afw_object_t *)&impl_42,
+            &afw_lmdb_self_s_time,
+            &afw_lmdb_self_s__AdaptiveValueMeta_,
+            &impl_44_meta_path
+        }
+    },
     &impl_44_properties[0]
+};
+
+static const afw_value_object_t
+impl_44__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_44
 };
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb_limits/propertyTypes
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_42_property_value_size = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_43
+};
+
+static const afw_runtime_property_t
 impl_42_property_size = {
-    "size",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_43
-    }
+    &afw_lmdb_self_s_size,
+    &impl_42_property_value_size.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_42_property_value_time = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_44
+};
+
+static const afw_runtime_property_t
 impl_42_property_time = {
-    "time",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_44
-    }
+    &afw_lmdb_self_s_time,
+    &impl_42_property_value_time.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_42_properties[] = {
     &impl_42_property_size,
     &impl_42_property_time,
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_42_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_42,
+    NULL
+};
+
+static const afw_utf8_t
+impl_42_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb_limits/propertyTypes");
+
+static const afw_value_object_t
+impl_42__value;
+
+static const afw_runtime_const_object_instance_t
 impl_42 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_42__value,
+        {
+            (const afw_object_t *)&impl_42_meta_object,
+            (const afw_object_t *)&impl_41,
+            &afw_lmdb_self_s_propertyTypes,
+            &afw_lmdb_self_s__AdaptivePropertyTypes_,
+            &impl_42_meta_path
+        }
+    },
     &impl_42_properties[0]
+};
+
+static const afw_value_object_t
+impl_42__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_42
 };
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb_limits
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_41_property_value_allowEntity = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_41_property_allowEntity = {
-    "allowEntity",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_allowEntity,
+    &impl_41_property_value_allowEntity.pub
 };
 
 static const afw_utf8_t
@@ -3338,50 +4857,51 @@ impl_41_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/lmdb_extension")
 };
 
-static const afw_runtime_unresolved_const_array_t
+static const afw_array_wrapper_for_array_self_t
 impl_41_list_collectionURIs = {
-    AFW_UTF8_LITERAL("string"),
+    &afw_array_wrapper_for_array_inf,
+    &afw_data_type_string_direct,
     sizeof(impl_41_array_collectionURIs) / sizeof(afw_utf8_t),
-    (const void *)&impl_41_array_collectionURIs
+    &impl_41_array_collectionURIs
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_array_t
+impl_41_property_value_collectionURIs = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_41_list_collectionURIs
+};
+
+static const afw_runtime_property_t
 impl_41_property_collectionURIs = {
-    "collectionURIs",
-    {
-        .type = afw_runtime_unresolved_primitive_type_array,
-        .array = &impl_41_list_collectionURIs
-    }
+    &afw_lmdb_self_s_collectionURIs,
+    &impl_41_property_value_collectionURIs.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_41_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Object type for type=adaptor adaptor_type=lmdb limit conf entries."
-    }
+    &afw_lmdb_self_s_description,
+    &afw_lmdb_self_v_zz__2530.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_41_property_objectType = {
-    "objectType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "_AdaptiveConf_adaptor_lmdb_limits"
-    }
+    &afw_lmdb_self_s_objectType,
+    &afw_lmdb_self_v__AdaptiveConf_adaptor_lmdb_limits.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_41_property_value_propertyTypes = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_42
+};
+
+static const afw_runtime_property_t
 impl_41_property_propertyTypes = {
-    "propertyTypes",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_42
-    }
+    &afw_lmdb_self_s_propertyTypes,
+    &impl_41_property_value_propertyTypes.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_41_properties[] = {
     &impl_41_property_allowEntity,
     &impl_41_property_collectionURIs,
@@ -3391,86 +4911,113 @@ impl_41_properties[] = {
     NULL
 };
 
+static const afw_runtime_const_object_meta_object_t
+impl_41_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_41,
+    NULL
+};
+
 static const afw_utf8_t
 impl_41_meta_path =
     AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb_limits");
 
-static const afw_runtime_unresolved_const_object_t
+static const afw_value_object_t
+impl_41__value;
+
+static const afw_runtime_const_object_instance_t
 impl_41 = {
-    &afw_lmdb_self_s__AdaptiveObjectType_,
-    &afw_lmdb_self_s__AdaptiveConf_adaptor_lmdb_limits,
-    &impl_41_meta_path,
+    {
+        &afw_runtime_inf__AdaptiveObjectType_,
+        NULL,
+        (const afw_value_t *)&impl_41__value,
+        {
+            (const afw_object_t *)&impl_41_meta_object,
+            NULL,
+            &afw_lmdb_self_s__AdaptiveConf_adaptor_lmdb_limits,
+            &afw_lmdb_self_s__AdaptiveObjectType_,
+            &impl_41_meta_path
+        }
+    },
     &impl_41_properties[0]
 };
 
-static const afw_runtime_unresolved_const_object_t
+static const afw_value_object_t
+impl_41__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_41
+};
+
+static const afw_runtime_const_object_instance_t
 impl_45;
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_instance_t
 impl_46;
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_instance_t
 impl_47;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb_limits_size/propertyTypes/hard
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_47_property_value_allowQuery = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_47_property_allowQuery = {
-    "allowQuery",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_allowQuery,
+    &impl_47_property_value_allowQuery.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_47_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "integer"
-    }
+    &afw_lmdb_self_s_dataType,
+    &afw_lmdb_self_v_integer.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_47_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Hard size limit for requests."
-    }
+    &afw_lmdb_self_s_description,
+    &afw_lmdb_self_v_zz__Hard_size_limit_for_requests_.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_47_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Hard Limit"
-    }
+    &afw_lmdb_self_s_label,
+    &afw_lmdb_self_v_zz__Hard_Limit.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_47_property_value_required = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+static const afw_runtime_property_t
 impl_47_property_required = {
-    "required",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = true
-    }
+    &afw_lmdb_self_s_required,
+    &impl_47_property_value_required.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_47_property_value_unique = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_47_property_unique = {
-    "unique",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_unique,
+    &impl_47_property_value_unique.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_47_properties[] = {
     &impl_47_property_allowQuery,
     &impl_47_property_dataType,
@@ -3481,73 +5028,107 @@ impl_47_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_47_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_47,
+    NULL
+};
+
+static const afw_utf8_t
+impl_47_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb_limits_size/propertyTypes/hard");
+
+static const afw_value_object_t
+impl_47__value;
+
+static const afw_runtime_const_object_instance_t
 impl_47 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_47__value,
+        {
+            (const afw_object_t *)&impl_47_meta_object,
+            (const afw_object_t *)&impl_46,
+            &afw_lmdb_self_s_hard,
+            &afw_lmdb_self_s__AdaptiveValueMeta_,
+            &impl_47_meta_path
+        }
+    },
     &impl_47_properties[0]
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_value_object_t
+impl_47__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_47
+};
+
+static const afw_runtime_const_object_instance_t
 impl_48;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb_limits_size/propertyTypes/soft
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_48_property_value_allowQuery = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_48_property_allowQuery = {
-    "allowQuery",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_allowQuery,
+    &impl_48_property_value_allowQuery.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_48_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "integer"
-    }
+    &afw_lmdb_self_s_dataType,
+    &afw_lmdb_self_v_integer.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_48_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Soft size limit for requests."
-    }
+    &afw_lmdb_self_s_description,
+    &afw_lmdb_self_v_zz__Soft_size_limit_for_requests_.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_48_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Soft Limit"
-    }
+    &afw_lmdb_self_s_label,
+    &afw_lmdb_self_v_zz__Soft_Limit.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_48_property_value_required = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+static const afw_runtime_property_t
 impl_48_property_required = {
-    "required",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = true
-    }
+    &afw_lmdb_self_s_required,
+    &impl_48_property_value_required.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_48_property_value_unique = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_48_property_unique = {
-    "unique",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_unique,
+    &impl_48_property_value_unique.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_48_properties[] = {
     &impl_48_property_allowQuery,
     &impl_48_property_dataType,
@@ -3558,56 +5139,133 @@ impl_48_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_48_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_48,
+    NULL
+};
+
+static const afw_utf8_t
+impl_48_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb_limits_size/propertyTypes/soft");
+
+static const afw_value_object_t
+impl_48__value;
+
+static const afw_runtime_const_object_instance_t
 impl_48 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_48__value,
+        {
+            (const afw_object_t *)&impl_48_meta_object,
+            (const afw_object_t *)&impl_46,
+            &afw_lmdb_self_s_soft,
+            &afw_lmdb_self_s__AdaptiveValueMeta_,
+            &impl_48_meta_path
+        }
+    },
     &impl_48_properties[0]
+};
+
+static const afw_value_object_t
+impl_48__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_48
 };
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb_limits_size/propertyTypes
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_46_property_value_hard = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_47
+};
+
+static const afw_runtime_property_t
 impl_46_property_hard = {
-    "hard",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_47
-    }
+    &afw_lmdb_self_s_hard,
+    &impl_46_property_value_hard.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_46_property_value_soft = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_48
+};
+
+static const afw_runtime_property_t
 impl_46_property_soft = {
-    "soft",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_48
-    }
+    &afw_lmdb_self_s_soft,
+    &impl_46_property_value_soft.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_46_properties[] = {
     &impl_46_property_hard,
     &impl_46_property_soft,
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_46_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_46,
+    NULL
+};
+
+static const afw_utf8_t
+impl_46_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb_limits_size/propertyTypes");
+
+static const afw_value_object_t
+impl_46__value;
+
+static const afw_runtime_const_object_instance_t
 impl_46 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_46__value,
+        {
+            (const afw_object_t *)&impl_46_meta_object,
+            (const afw_object_t *)&impl_45,
+            &afw_lmdb_self_s_propertyTypes,
+            &afw_lmdb_self_s__AdaptivePropertyTypes_,
+            &impl_46_meta_path
+        }
+    },
     &impl_46_properties[0]
+};
+
+static const afw_value_object_t
+impl_46__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_46
 };
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb_limits_size
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_45_property_value_allowEntity = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_45_property_allowEntity = {
-    "allowEntity",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_allowEntity,
+    &impl_45_property_value_allowEntity.pub
 };
 
 static const afw_utf8_t
@@ -3615,50 +5273,51 @@ impl_45_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/lmdb_extension")
 };
 
-static const afw_runtime_unresolved_const_array_t
+static const afw_array_wrapper_for_array_self_t
 impl_45_list_collectionURIs = {
-    AFW_UTF8_LITERAL("string"),
+    &afw_array_wrapper_for_array_inf,
+    &afw_data_type_string_direct,
     sizeof(impl_45_array_collectionURIs) / sizeof(afw_utf8_t),
-    (const void *)&impl_45_array_collectionURIs
+    &impl_45_array_collectionURIs
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_array_t
+impl_45_property_value_collectionURIs = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_45_list_collectionURIs
+};
+
+static const afw_runtime_property_t
 impl_45_property_collectionURIs = {
-    "collectionURIs",
-    {
-        .type = afw_runtime_unresolved_primitive_type_array,
-        .array = &impl_45_list_collectionURIs
-    }
+    &afw_lmdb_self_s_collectionURIs,
+    &impl_45_property_value_collectionURIs.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_45_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Object type for type=adaptor adaptor_type=lmdb size limit conf entries."
-    }
+    &afw_lmdb_self_s_description,
+    &afw_lmdb_self_v_zz__2531.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_45_property_objectType = {
-    "objectType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "_AdaptiveConf_adaptor_lmdb_limits_size"
-    }
+    &afw_lmdb_self_s_objectType,
+    &afw_lmdb_self_v__AdaptiveConf_adaptor_lmdb_limits_size.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_45_property_value_propertyTypes = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_46
+};
+
+static const afw_runtime_property_t
 impl_45_property_propertyTypes = {
-    "propertyTypes",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_46
-    }
+    &afw_lmdb_self_s_propertyTypes,
+    &impl_45_property_value_propertyTypes.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_45_properties[] = {
     &impl_45_property_allowEntity,
     &impl_45_property_collectionURIs,
@@ -3668,86 +5327,113 @@ impl_45_properties[] = {
     NULL
 };
 
+static const afw_runtime_const_object_meta_object_t
+impl_45_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_45,
+    NULL
+};
+
 static const afw_utf8_t
 impl_45_meta_path =
     AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb_limits_size");
 
-static const afw_runtime_unresolved_const_object_t
+static const afw_value_object_t
+impl_45__value;
+
+static const afw_runtime_const_object_instance_t
 impl_45 = {
-    &afw_lmdb_self_s__AdaptiveObjectType_,
-    &afw_lmdb_self_s__AdaptiveConf_adaptor_lmdb_limits_size,
-    &impl_45_meta_path,
+    {
+        &afw_runtime_inf__AdaptiveObjectType_,
+        NULL,
+        (const afw_value_t *)&impl_45__value,
+        {
+            (const afw_object_t *)&impl_45_meta_object,
+            NULL,
+            &afw_lmdb_self_s__AdaptiveConf_adaptor_lmdb_limits_size,
+            &afw_lmdb_self_s__AdaptiveObjectType_,
+            &impl_45_meta_path
+        }
+    },
     &impl_45_properties[0]
 };
 
-static const afw_runtime_unresolved_const_object_t
+static const afw_value_object_t
+impl_45__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_45
+};
+
+static const afw_runtime_const_object_instance_t
 impl_49;
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_instance_t
 impl_50;
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_instance_t
 impl_51;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb_limits_time/propertyTypes/hard
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_51_property_value_allowQuery = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_51_property_allowQuery = {
-    "allowQuery",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_allowQuery,
+    &impl_51_property_value_allowQuery.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_51_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "integer"
-    }
+    &afw_lmdb_self_s_dataType,
+    &afw_lmdb_self_v_integer.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_51_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Hard time limit for requests."
-    }
+    &afw_lmdb_self_s_description,
+    &afw_lmdb_self_v_zz__Hard_time_limit_for_requests_.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_51_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Hard Limit"
-    }
+    &afw_lmdb_self_s_label,
+    &afw_lmdb_self_v_zz__Hard_Limit.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_51_property_value_required = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+static const afw_runtime_property_t
 impl_51_property_required = {
-    "required",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = true
-    }
+    &afw_lmdb_self_s_required,
+    &impl_51_property_value_required.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_51_property_value_unique = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_51_property_unique = {
-    "unique",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_unique,
+    &impl_51_property_value_unique.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_51_properties[] = {
     &impl_51_property_allowQuery,
     &impl_51_property_dataType,
@@ -3758,73 +5444,107 @@ impl_51_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_51_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_51,
+    NULL
+};
+
+static const afw_utf8_t
+impl_51_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb_limits_time/propertyTypes/hard");
+
+static const afw_value_object_t
+impl_51__value;
+
+static const afw_runtime_const_object_instance_t
 impl_51 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_51__value,
+        {
+            (const afw_object_t *)&impl_51_meta_object,
+            (const afw_object_t *)&impl_50,
+            &afw_lmdb_self_s_hard,
+            &afw_lmdb_self_s__AdaptiveValueMeta_,
+            &impl_51_meta_path
+        }
+    },
     &impl_51_properties[0]
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_value_object_t
+impl_51__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_51
+};
+
+static const afw_runtime_const_object_instance_t
 impl_52;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb_limits_time/propertyTypes/soft
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_52_property_value_allowQuery = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_52_property_allowQuery = {
-    "allowQuery",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_allowQuery,
+    &impl_52_property_value_allowQuery.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_52_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "integer"
-    }
+    &afw_lmdb_self_s_dataType,
+    &afw_lmdb_self_v_integer.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_52_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Soft time limit for requests."
-    }
+    &afw_lmdb_self_s_description,
+    &afw_lmdb_self_v_zz__Soft_time_limit_for_requests_.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_52_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Soft Limit"
-    }
+    &afw_lmdb_self_s_label,
+    &afw_lmdb_self_v_zz__Soft_Limit.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_52_property_value_required = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+static const afw_runtime_property_t
 impl_52_property_required = {
-    "required",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = true
-    }
+    &afw_lmdb_self_s_required,
+    &impl_52_property_value_required.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_52_property_value_unique = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_52_property_unique = {
-    "unique",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_unique,
+    &impl_52_property_value_unique.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_52_properties[] = {
     &impl_52_property_allowQuery,
     &impl_52_property_dataType,
@@ -3835,56 +5555,133 @@ impl_52_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_52_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_52,
+    NULL
+};
+
+static const afw_utf8_t
+impl_52_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb_limits_time/propertyTypes/soft");
+
+static const afw_value_object_t
+impl_52__value;
+
+static const afw_runtime_const_object_instance_t
 impl_52 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_52__value,
+        {
+            (const afw_object_t *)&impl_52_meta_object,
+            (const afw_object_t *)&impl_50,
+            &afw_lmdb_self_s_soft,
+            &afw_lmdb_self_s__AdaptiveValueMeta_,
+            &impl_52_meta_path
+        }
+    },
     &impl_52_properties[0]
+};
+
+static const afw_value_object_t
+impl_52__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_52
 };
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb_limits_time/propertyTypes
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_50_property_value_hard = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_51
+};
+
+static const afw_runtime_property_t
 impl_50_property_hard = {
-    "hard",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_51
-    }
+    &afw_lmdb_self_s_hard,
+    &impl_50_property_value_hard.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_50_property_value_soft = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_52
+};
+
+static const afw_runtime_property_t
 impl_50_property_soft = {
-    "soft",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_52
-    }
+    &afw_lmdb_self_s_soft,
+    &impl_50_property_value_soft.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_50_properties[] = {
     &impl_50_property_hard,
     &impl_50_property_soft,
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_50_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_50,
+    NULL
+};
+
+static const afw_utf8_t
+impl_50_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb_limits_time/propertyTypes");
+
+static const afw_value_object_t
+impl_50__value;
+
+static const afw_runtime_const_object_instance_t
 impl_50 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_50__value,
+        {
+            (const afw_object_t *)&impl_50_meta_object,
+            (const afw_object_t *)&impl_49,
+            &afw_lmdb_self_s_propertyTypes,
+            &afw_lmdb_self_s__AdaptivePropertyTypes_,
+            &impl_50_meta_path
+        }
+    },
     &impl_50_properties[0]
+};
+
+static const afw_value_object_t
+impl_50__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_50
 };
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb_limits_time
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_49_property_value_allowEntity = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_49_property_allowEntity = {
-    "allowEntity",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_lmdb_self_s_allowEntity,
+    &impl_49_property_value_allowEntity.pub
 };
 
 static const afw_utf8_t
@@ -3892,50 +5689,51 @@ impl_49_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/lmdb_extension")
 };
 
-static const afw_runtime_unresolved_const_array_t
+static const afw_array_wrapper_for_array_self_t
 impl_49_list_collectionURIs = {
-    AFW_UTF8_LITERAL("string"),
+    &afw_array_wrapper_for_array_inf,
+    &afw_data_type_string_direct,
     sizeof(impl_49_array_collectionURIs) / sizeof(afw_utf8_t),
-    (const void *)&impl_49_array_collectionURIs
+    &impl_49_array_collectionURIs
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_array_t
+impl_49_property_value_collectionURIs = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_49_list_collectionURIs
+};
+
+static const afw_runtime_property_t
 impl_49_property_collectionURIs = {
-    "collectionURIs",
-    {
-        .type = afw_runtime_unresolved_primitive_type_array,
-        .array = &impl_49_list_collectionURIs
-    }
+    &afw_lmdb_self_s_collectionURIs,
+    &impl_49_property_value_collectionURIs.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_49_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Object type for type=adaptor adaptor_type=lmdb time limit conf entries."
-    }
+    &afw_lmdb_self_s_description,
+    &afw_lmdb_self_v_zz__2532.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_49_property_objectType = {
-    "objectType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "_AdaptiveConf_adaptor_lmdb_limits_time"
-    }
+    &afw_lmdb_self_s_objectType,
+    &afw_lmdb_self_v__AdaptiveConf_adaptor_lmdb_limits_time.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_49_property_value_propertyTypes = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_50
+};
+
+static const afw_runtime_property_t
 impl_49_property_propertyTypes = {
-    "propertyTypes",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_50
-    }
+    &afw_lmdb_self_s_propertyTypes,
+    &impl_49_property_value_propertyTypes.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_49_properties[] = {
     &impl_49_property_allowEntity,
     &impl_49_property_collectionURIs,
@@ -3945,53 +5743,71 @@ impl_49_properties[] = {
     NULL
 };
 
+static const afw_runtime_const_object_meta_object_t
+impl_49_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_49,
+    NULL
+};
+
 static const afw_utf8_t
 impl_49_meta_path =
     AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb_limits_time");
 
-static const afw_runtime_unresolved_const_object_t
+static const afw_value_object_t
+impl_49__value;
+
+static const afw_runtime_const_object_instance_t
 impl_49 = {
-    &afw_lmdb_self_s__AdaptiveObjectType_,
-    &afw_lmdb_self_s__AdaptiveConf_adaptor_lmdb_limits_time,
-    &impl_49_meta_path,
+    {
+        &afw_runtime_inf__AdaptiveObjectType_,
+        NULL,
+        (const afw_value_t *)&impl_49__value,
+        {
+            (const afw_object_t *)&impl_49_meta_object,
+            NULL,
+            &afw_lmdb_self_s__AdaptiveConf_adaptor_lmdb_limits_time,
+            &afw_lmdb_self_s__AdaptiveObjectType_,
+            &impl_49_meta_path
+        }
+    },
     &impl_49_properties[0]
 };
 
-static const afw_runtime_unresolved_const_object_t
+static const afw_value_object_t
+impl_49__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_49
+};
+
+static const afw_runtime_const_object_instance_t
 impl_53;
 
 /*
  * /afw/_AdaptiveFunctionCategory_/lmdb
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_53_property_brief = {
-    "brief",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Lightning Memory-Mapped Database (LMDB) functions."
-    }
+    &afw_lmdb_self_s_brief,
+    &afw_lmdb_self_v_zz__Lightning_Memory_Mapped_Database__LMDB__functions_.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_53_property_category = {
-    "category",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "lmdb"
-    }
+    &afw_lmdb_self_s_category,
+    &afw_lmdb_self_v_lmdb.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_53_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "This category provides adaptive functions for interacting with a Lightning Memory-Mapped Database (LMDB)."
-    }
+    &afw_lmdb_self_s_description,
+    &afw_lmdb_self_v_zz__2533.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_53_properties[] = {
     &impl_53_property_brief,
     &impl_53_property_category,
@@ -3999,47 +5815,77 @@ impl_53_properties[] = {
     NULL
 };
 
+static const afw_runtime_const_object_meta_object_t
+impl_53_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_53,
+    NULL
+};
+
 static const afw_utf8_t
 impl_53_meta_path =
     AFW_UTF8_LITERAL("/afw/_AdaptiveFunctionCategory_/lmdb");
 
-static const afw_runtime_unresolved_const_object_t
+static const afw_value_object_t
+impl_53__value;
+
+static const afw_runtime_const_object_instance_t
 impl_53 = {
-    &afw_lmdb_self_s__AdaptiveFunctionCategory_,
-    &afw_lmdb_self_s_lmdb,
-    &impl_53_meta_path,
+    {
+        &afw_runtime_inf__AdaptiveFunctionCategory_,
+        NULL,
+        (const afw_value_t *)&impl_53__value,
+        {
+            (const afw_object_t *)&impl_53_meta_object,
+            NULL,
+            &afw_lmdb_self_s_lmdb,
+            &afw_lmdb_self_s__AdaptiveFunctionCategory_,
+            &impl_53_meta_path
+        }
+    },
     &impl_53_properties[0]
 };
 
-static const afw_runtime_unresolved_const_object_t
+static const afw_value_object_t
+impl_53__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_53
+};
+
+static const afw_runtime_const_object_instance_t
 impl_54;
 
 /*
  * /afw/_AdaptiveCollection_/lmdb_extension
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_54_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Adaptive Framework LMDB extension collection."
-    }
+    &afw_lmdb_self_s_description,
+    &afw_lmdb_self_v_zz__Adaptive_Framework_LMDB_extension_collection_.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_54_property_objectId = {
-    "objectId",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "lmdb_extension"
-    }
+    &afw_lmdb_self_s_objectId,
+    &afw_lmdb_self_v_lmdb_extension.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_54_properties[] = {
     &impl_54_property_description,
     &impl_54_property_objectId,
+    NULL
+};
+
+static const afw_runtime_const_object_meta_object_t
+impl_54_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_54,
     NULL
 };
 
@@ -4047,36 +5893,54 @@ static const afw_utf8_t
 impl_54_meta_path =
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/lmdb_extension");
 
-static const afw_runtime_unresolved_const_object_t
+static const afw_value_object_t
+impl_54__value;
+
+static const afw_runtime_const_object_instance_t
 impl_54 = {
-    &afw_lmdb_self_s__AdaptiveCollection_,
-    &afw_lmdb_self_s_lmdb_extension,
-    &impl_54_meta_path,
+    {
+        &afw_runtime_inf__AdaptiveCollection_,
+        NULL,
+        (const afw_value_t *)&impl_54__value,
+        {
+            (const afw_object_t *)&impl_54_meta_object,
+            NULL,
+            &afw_lmdb_self_s_lmdb_extension,
+            &afw_lmdb_self_s__AdaptiveCollection_,
+            &impl_54_meta_path
+        }
+    },
     &impl_54_properties[0]
 };
 
-/* NULL terminated list of unresolved objects. */
-static const afw_runtime_unresolved_const_object_t *
+static const afw_value_object_t
+impl_54__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_54
+};
+
+/* NULL terminated list of objects. */
+static const afw_object_t *
 impl_const_objects[] = {
-    &impl_1,
-    &impl_6,
-    &impl_14,
-    &impl_22,
-    &impl_24,
-    &impl_30,
-    &impl_34,
-    &impl_41,
-    &impl_45,
-    &impl_49,
-    &impl_53,
-    &impl_54,
+    (const afw_object_t *)&impl_1,
+    (const afw_object_t *)&impl_6,
+    (const afw_object_t *)&impl_14,
+    (const afw_object_t *)&impl_22,
+    (const afw_object_t *)&impl_24,
+    (const afw_object_t *)&impl_30,
+    (const afw_object_t *)&impl_34,
+    (const afw_object_t *)&impl_41,
+    (const afw_object_t *)&impl_45,
+    (const afw_object_t *)&impl_49,
+    (const afw_object_t *)&impl_53,
+    (const afw_object_t *)&impl_54,
     NULL
 };
 
-/* Resolved and set const objects */
+/* Set const objects */
 void
 afw_lmdb_const_objects_register(afw_xctx_t *xctx)
 {
-    afw_runtime_env_resolve_and_set_const_objects(
+    afw_runtime_env_set_objects(
         &impl_const_objects[0], false, xctx);
 }

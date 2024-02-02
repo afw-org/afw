@@ -30,61 +30,61 @@
  * @brief Runtime object inf for object type _AdaptiveAdaptorMetrics_adaptor_lmdb
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_lmdb_runtime_inf__AdaptiveAdaptorMetrics_adaptor_lmdb;
+afw_runtime_inf__AdaptiveAdaptorMetrics_adaptor_lmdb;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveAdaptorMetrics_adaptor_lmdb_information
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_lmdb_runtime_inf__AdaptiveAdaptorMetrics_adaptor_lmdb_information;
+afw_runtime_inf__AdaptiveAdaptorMetrics_adaptor_lmdb_information;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveAdaptorMetrics_adaptor_lmdb_statistic
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_lmdb_runtime_inf__AdaptiveAdaptorMetrics_adaptor_lmdb_statistic;
+afw_runtime_inf__AdaptiveAdaptorMetrics_adaptor_lmdb_statistic;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveAdaptorMetrics_adaptor_lmdb_statistics
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_lmdb_runtime_inf__AdaptiveAdaptorMetrics_adaptor_lmdb_statistics;
+afw_runtime_inf__AdaptiveAdaptorMetrics_adaptor_lmdb_statistics;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveAdaptorMetrics_adaptor_lmdb_version
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_lmdb_runtime_inf__AdaptiveAdaptorMetrics_adaptor_lmdb_version;
+afw_runtime_inf__AdaptiveAdaptorMetrics_adaptor_lmdb_version;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveConf_adaptor_lmdb
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_lmdb_runtime_inf__AdaptiveConf_adaptor_lmdb;
+afw_runtime_inf__AdaptiveConf_adaptor_lmdb;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveConf_adaptor_lmdb_env
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_lmdb_runtime_inf__AdaptiveConf_adaptor_lmdb_env;
+afw_runtime_inf__AdaptiveConf_adaptor_lmdb_env;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveConf_adaptor_lmdb_limits
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_lmdb_runtime_inf__AdaptiveConf_adaptor_lmdb_limits;
+afw_runtime_inf__AdaptiveConf_adaptor_lmdb_limits;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveConf_adaptor_lmdb_limits_size
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_lmdb_runtime_inf__AdaptiveConf_adaptor_lmdb_limits_size;
+afw_runtime_inf__AdaptiveConf_adaptor_lmdb_limits_size;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveConf_adaptor_lmdb_limits_time
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_lmdb_runtime_inf__AdaptiveConf_adaptor_lmdb_limits_time;
+afw_runtime_inf__AdaptiveConf_adaptor_lmdb_limits_time;
 
 /**
  * @brief Register (afw_lmdb_) runtime object maps.

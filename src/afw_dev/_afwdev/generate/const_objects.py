@@ -181,8 +181,8 @@ def write_const_core_c(options, fd, prefix, obj, path, embedder):
         fd.write('        {\n')
         fd.write('            (const afw_object_t *)&' + meta.get('_label_') + '_meta_object,\n')
         fd.write('            NULL,\n')
-        fd.write('            ' + s_ +  meta.get('objectId') + ',\n')
-        fd.write('            ' + s_ +  meta.get('objectType') + ',\n')
+        fd.write('            &' + get_string_label(options, meta.get('objectId'), 'self_s') + ',\n')
+        fd.write('            &' + get_string_label(options, meta.get('objectType'), 'self_s') + ',\n')
         fd.write('            &' + meta.get('_label_') + '_meta_path\n')
         fd.write('        }\n')
         fd.write('    },\n')
@@ -199,9 +199,10 @@ def write_const_core_c(options, fd, prefix, obj, path, embedder):
         fd.write('        {\n')
         fd.write('            (const afw_object_t *)&' + meta.get('_label_') + '_meta_object,\n')
         fd.write('            (const afw_object_t *)&' + embedder['_meta_']['_label_'] + ',\n')
-        fd.write('            &' + prefix + 'self_s_' + meta.get('propname') + ',\n')
+        fd.write('            &' + get_string_label(options, meta.get('propname'), 'self_s') + ',\n')
+
         if meta.get('objectType') is not None and meta.get('objectType') != '':
-            fd.write('            ' + s_ +  meta.get('objectType') + ',\n')
+            fd.write('            &' + get_string_label(options, meta.get('objectType'), 'self_s') + ',\n')
         else:
             fd.write('            NULL,\n')
         fd.write('            &' + meta.get('_label_') + '_meta_path\n')
@@ -453,6 +454,9 @@ def generate(generated_by, prefix, object_dir_path,
     # Get all object types and sort by id.
     list = []
     resolved = options['core']
+
+    #FIXME Temporary
+    resolved = True
 
     for objectType in objectTypes:
         path = object_dir_path + objectType + '/'

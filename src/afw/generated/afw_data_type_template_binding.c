@@ -308,7 +308,9 @@ afw_value_create_managed_template(
     v->internal.len = len;
     v->internal.s = (const afw_utf8_octet_t *)v +
         sizeof(afw_value_template_managed_t);
-    memcpy((void *)v->internal.s, internal->s, len);
+    if (internal && internal->s) {
+        memcpy((void *)v->internal.s, internal->s, len);
+    }
 
     return &v->pub;
 }

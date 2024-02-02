@@ -46,8 +46,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_AdaptiveProperty = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_AdaptiveProperty,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_AdaptiveProperty, 
     impl_runtime_meta__AdaptiveLayoutComponentType_AdaptiveProperty);
 
 
@@ -61,8 +61,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Autocomplete = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_Autocomplete,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_Autocomplete, 
     impl_runtime_meta__AdaptiveLayoutComponentType_Autocomplete);
 
 
@@ -76,8 +76,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Autocomplete_Option = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_Autocomplete_Option,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_Autocomplete_Option, 
     impl_runtime_meta__AdaptiveLayoutComponentType_Autocomplete_Option);
 
 
@@ -91,8 +91,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Box = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_Box,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_Box, 
     impl_runtime_meta__AdaptiveLayoutComponentType_Box);
 
 
@@ -106,8 +106,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_BoxItem = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_BoxItem,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_BoxItem, 
     impl_runtime_meta__AdaptiveLayoutComponentType_BoxItem);
 
 
@@ -121,8 +121,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Breadcrumb = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_Breadcrumb,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_Breadcrumb, 
     impl_runtime_meta__AdaptiveLayoutComponentType_Breadcrumb);
 
 
@@ -136,8 +136,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_BreadcrumbItem = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_BreadcrumbItem,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_BreadcrumbItem, 
     impl_runtime_meta__AdaptiveLayoutComponentType_BreadcrumbItem);
 
 
@@ -151,8 +151,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Button = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_Button,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_Button, 
     impl_runtime_meta__AdaptiveLayoutComponentType_Button);
 
 
@@ -166,8 +166,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Callout = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_Callout,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_Callout, 
     impl_runtime_meta__AdaptiveLayoutComponentType_Callout);
 
 
@@ -181,8 +181,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Chart = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_Chart,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_Chart, 
     impl_runtime_meta__AdaptiveLayoutComponentType_Chart);
 
 
@@ -196,8 +196,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Chart_Data = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_Chart_Data,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_Chart_Data, 
     impl_runtime_meta__AdaptiveLayoutComponentType_Chart_Data);
 
 
@@ -211,8 +211,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Checkbox = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_Checkbox,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_Checkbox, 
     impl_runtime_meta__AdaptiveLayoutComponentType_Checkbox);
 
 
@@ -226,8 +226,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_ChoiceGroup = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_ChoiceGroup,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_ChoiceGroup, 
     impl_runtime_meta__AdaptiveLayoutComponentType_ChoiceGroup);
 
 
@@ -241,8 +241,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_ChoiceGroup_Option = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_ChoiceGroup_Option,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_ChoiceGroup_Option, 
     impl_runtime_meta__AdaptiveLayoutComponentType_ChoiceGroup_Option);
 
 
@@ -256,8 +256,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_CodeEditor = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_CodeEditor,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_CodeEditor, 
     impl_runtime_meta__AdaptiveLayoutComponentType_CodeEditor);
 
 
@@ -271,8 +271,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Collapsible = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_Collapsible,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_Collapsible, 
     impl_runtime_meta__AdaptiveLayoutComponentType_Collapsible);
 
 
@@ -286,8 +286,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Common = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_Common,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_Common, 
     impl_runtime_meta__AdaptiveLayoutComponentType_Common);
 
 
@@ -301,8 +301,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_DatePicker = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_DatePicker,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_DatePicker, 
     impl_runtime_meta__AdaptiveLayoutComponentType_DatePicker);
 
 
@@ -316,8 +316,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_DateTimePicker = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_DateTimePicker,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_DateTimePicker, 
     impl_runtime_meta__AdaptiveLayoutComponentType_DateTimePicker);
 
 
@@ -331,8 +331,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Dialog = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_Dialog,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_Dialog, 
     impl_runtime_meta__AdaptiveLayoutComponentType_Dialog);
 
 
@@ -346,8 +346,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_DiffEditor = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_DiffEditor,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_DiffEditor, 
     impl_runtime_meta__AdaptiveLayoutComponentType_DiffEditor);
 
 
@@ -361,8 +361,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Divider = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_Divider,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_Divider, 
     impl_runtime_meta__AdaptiveLayoutComponentType_Divider);
 
 
@@ -376,8 +376,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Drawer = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_Drawer,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_Drawer, 
     impl_runtime_meta__AdaptiveLayoutComponentType_Drawer);
 
 
@@ -391,8 +391,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Dropdown = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_Dropdown,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_Dropdown, 
     impl_runtime_meta__AdaptiveLayoutComponentType_Dropdown);
 
 
@@ -406,8 +406,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_DropdownEditor = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_DropdownEditor,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_DropdownEditor, 
     impl_runtime_meta__AdaptiveLayoutComponentType_DropdownEditor);
 
 
@@ -421,8 +421,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Dropdown_Option = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_Dropdown_Option,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_Dropdown_Option, 
     impl_runtime_meta__AdaptiveLayoutComponentType_Dropdown_Option);
 
 
@@ -436,8 +436,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_EditableCallout = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_EditableCallout,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_EditableCallout, 
     impl_runtime_meta__AdaptiveLayoutComponentType_EditableCallout);
 
 
@@ -451,8 +451,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_EditableLabel = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_EditableLabel,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_EditableLabel, 
     impl_runtime_meta__AdaptiveLayoutComponentType_EditableLabel);
 
 
@@ -466,8 +466,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Hidden = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_Hidden,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_Hidden, 
     impl_runtime_meta__AdaptiveLayoutComponentType_Hidden);
 
 
@@ -481,8 +481,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Icon = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_Icon,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_Icon, 
     impl_runtime_meta__AdaptiveLayoutComponentType_Icon);
 
 
@@ -496,8 +496,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Image = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_Image,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_Image, 
     impl_runtime_meta__AdaptiveLayoutComponentType_Image);
 
 
@@ -511,8 +511,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Label = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_Label,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_Label, 
     impl_runtime_meta__AdaptiveLayoutComponentType_Label);
 
 
@@ -526,8 +526,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Link = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_Link,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_Link, 
     impl_runtime_meta__AdaptiveLayoutComponentType_Link);
 
 
@@ -541,8 +541,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_List = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_List,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_List, 
     impl_runtime_meta__AdaptiveLayoutComponentType_List);
 
 
@@ -556,8 +556,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_ListEditor = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_ListEditor,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_ListEditor, 
     impl_runtime_meta__AdaptiveLayoutComponentType_ListEditor);
 
 
@@ -571,8 +571,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_ListEditor_Item = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_ListEditor_Item,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_ListEditor_Item, 
     impl_runtime_meta__AdaptiveLayoutComponentType_ListEditor_Item);
 
 
@@ -586,8 +586,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Menu = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_Menu,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_Menu, 
     impl_runtime_meta__AdaptiveLayoutComponentType_Menu);
 
 
@@ -601,8 +601,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Menu_Item = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_Menu_Item,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_Menu_Item, 
     impl_runtime_meta__AdaptiveLayoutComponentType_Menu_Item);
 
 
@@ -616,8 +616,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Message = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_Message,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_Message, 
     impl_runtime_meta__AdaptiveLayoutComponentType_Message);
 
 
@@ -631,8 +631,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Modal = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_Modal,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_Modal, 
     impl_runtime_meta__AdaptiveLayoutComponentType_Modal);
 
 
@@ -646,8 +646,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Native = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_Native,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_Native, 
     impl_runtime_meta__AdaptiveLayoutComponentType_Native);
 
 
@@ -661,8 +661,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Nav = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_Nav,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_Nav, 
     impl_runtime_meta__AdaptiveLayoutComponentType_Nav);
 
 
@@ -676,8 +676,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Nav_Item = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_Nav_Item,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_Nav_Item, 
     impl_runtime_meta__AdaptiveLayoutComponentType_Nav_Item);
 
 
@@ -691,8 +691,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Paper = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_Paper,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_Paper, 
     impl_runtime_meta__AdaptiveLayoutComponentType_Paper);
 
 
@@ -706,8 +706,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Picker = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_Picker,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_Picker, 
     impl_runtime_meta__AdaptiveLayoutComponentType_Picker);
 
 
@@ -721,8 +721,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Picker_Item = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_Picker_Item,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_Picker_Item, 
     impl_runtime_meta__AdaptiveLayoutComponentType_Picker_Item);
 
 
@@ -736,8 +736,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Responsive = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_Responsive,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_Responsive, 
     impl_runtime_meta__AdaptiveLayoutComponentType_Responsive);
 
 
@@ -751,8 +751,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_ResponsiveCol = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_ResponsiveCol,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_ResponsiveCol, 
     impl_runtime_meta__AdaptiveLayoutComponentType_ResponsiveCol);
 
 
@@ -766,8 +766,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_ResponsiveRow = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_ResponsiveRow,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_ResponsiveRow, 
     impl_runtime_meta__AdaptiveLayoutComponentType_ResponsiveRow);
 
 
@@ -781,8 +781,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Responsive_Breakpoints = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_Responsive_Breakpoints,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_Responsive_Breakpoints, 
     impl_runtime_meta__AdaptiveLayoutComponentType_Responsive_Breakpoints);
 
 
@@ -796,8 +796,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Skeleton = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_Skeleton,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_Skeleton, 
     impl_runtime_meta__AdaptiveLayoutComponentType_Skeleton);
 
 
@@ -811,8 +811,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Slider = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_Slider,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_Slider, 
     impl_runtime_meta__AdaptiveLayoutComponentType_Slider);
 
 
@@ -826,8 +826,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Snackbar = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_Snackbar,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_Snackbar, 
     impl_runtime_meta__AdaptiveLayoutComponentType_Snackbar);
 
 
@@ -841,8 +841,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_SpinButton = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_SpinButton,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_SpinButton, 
     impl_runtime_meta__AdaptiveLayoutComponentType_SpinButton);
 
 
@@ -856,8 +856,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Spinner = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_Spinner,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_Spinner, 
     impl_runtime_meta__AdaptiveLayoutComponentType_Spinner);
 
 
@@ -871,8 +871,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Stepper = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_Stepper,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_Stepper, 
     impl_runtime_meta__AdaptiveLayoutComponentType_Stepper);
 
 
@@ -886,8 +886,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Style = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_Style,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_Style, 
     impl_runtime_meta__AdaptiveLayoutComponentType_Style);
 
 
@@ -901,8 +901,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Table = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_Table,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_Table, 
     impl_runtime_meta__AdaptiveLayoutComponentType_Table);
 
 
@@ -916,8 +916,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Table_Column = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_Table_Column,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_Table_Column, 
     impl_runtime_meta__AdaptiveLayoutComponentType_Table_Column);
 
 
@@ -931,8 +931,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Table_Row = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_Table_Row,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_Table_Row, 
     impl_runtime_meta__AdaptiveLayoutComponentType_Table_Row);
 
 
@@ -946,8 +946,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Tabs = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_Tabs,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_Tabs, 
     impl_runtime_meta__AdaptiveLayoutComponentType_Tabs);
 
 
@@ -961,8 +961,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Tabs_Tab = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_Tabs_Tab,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_Tabs_Tab, 
     impl_runtime_meta__AdaptiveLayoutComponentType_Tabs_Tab);
 
 
@@ -976,8 +976,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_TextField = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_TextField,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_TextField, 
     impl_runtime_meta__AdaptiveLayoutComponentType_TextField);
 
 
@@ -991,8 +991,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_TimeDuration = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_TimeDuration,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_TimeDuration, 
     impl_runtime_meta__AdaptiveLayoutComponentType_TimeDuration);
 
 
@@ -1006,8 +1006,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_TimePicker = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_TimePicker,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_TimePicker, 
     impl_runtime_meta__AdaptiveLayoutComponentType_TimePicker);
 
 
@@ -1021,8 +1021,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_TimezonePicker = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_TimezonePicker,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_TimezonePicker, 
     impl_runtime_meta__AdaptiveLayoutComponentType_TimezonePicker);
 
 
@@ -1036,8 +1036,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Toggle = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_Toggle,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_Toggle, 
     impl_runtime_meta__AdaptiveLayoutComponentType_Toggle);
 
 
@@ -1051,8 +1051,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_ToggleButtons = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_ToggleButtons,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_ToggleButtons, 
     impl_runtime_meta__AdaptiveLayoutComponentType_ToggleButtons);
 
 
@@ -1066,8 +1066,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Toolbar = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_Toolbar,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_Toolbar, 
     impl_runtime_meta__AdaptiveLayoutComponentType_Toolbar);
 
 
@@ -1081,8 +1081,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Tooltip = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_Tooltip,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_Tooltip, 
     impl_runtime_meta__AdaptiveLayoutComponentType_Tooltip);
 
 
@@ -1096,8 +1096,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Tree = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_Tree,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_Tree, 
     impl_runtime_meta__AdaptiveLayoutComponentType_Tree);
 
 
@@ -1111,8 +1111,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Tree_Node = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_Tree_Node,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_Tree_Node, 
     impl_runtime_meta__AdaptiveLayoutComponentType_Tree_Node);
 
 
@@ -1126,8 +1126,8 @@ impl_runtime_meta__AdaptiveLayoutComponentType_Typography = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayoutComponentType_Typography,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayoutComponentType_Typography, 
     impl_runtime_meta__AdaptiveLayoutComponentType_Typography);
 
 
@@ -1141,8 +1141,8 @@ impl_runtime_meta__AdaptiveLayout_ObjectResponsive = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayout_ObjectResponsive,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayout_ObjectResponsive, 
     impl_runtime_meta__AdaptiveLayout_ObjectResponsive);
 
 
@@ -1156,8 +1156,8 @@ impl_runtime_meta__AdaptiveLayout_ObjectResponsive_embedded = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayout_ObjectResponsive_embedded,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayout_ObjectResponsive_embedded, 
     impl_runtime_meta__AdaptiveLayout_ObjectResponsive_embedded);
 
 
@@ -1171,8 +1171,8 @@ impl_runtime_meta__AdaptiveLayout_ObjectResponsive_filterOptions = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayout_ObjectResponsive_filterOptions,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayout_ObjectResponsive_filterOptions, 
     impl_runtime_meta__AdaptiveLayout_ObjectResponsive_filterOptions);
 
 
@@ -1186,8 +1186,8 @@ impl_runtime_meta__AdaptiveLayout_ObjectResponsive_preferredComponent = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayout_ObjectResponsive_preferredComponent,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayout_ObjectResponsive_preferredComponent, 
     impl_runtime_meta__AdaptiveLayout_ObjectResponsive_preferredComponent);
 
 
@@ -1201,90 +1201,90 @@ impl_runtime_meta__AdaptiveLayout_ObjectResponsive_sortOptions = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLayout_ObjectResponsive_sortOptions,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLayout_ObjectResponsive_sortOptions, 
     impl_runtime_meta__AdaptiveLayout_ObjectResponsive_sortOptions);
 
-/* NULL terminated list of rti pointers. */
-static const afw_interface_implementation_rti_t * impl_rti[] = {
-    &impl_runtime_rti__AdaptiveLayoutComponentType_AdaptiveProperty,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_Autocomplete,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_Autocomplete_Option,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_Box,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_BoxItem,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_Breadcrumb,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_BreadcrumbItem,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_Button,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_Callout,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_Chart,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_Chart_Data,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_Checkbox,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_ChoiceGroup,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_ChoiceGroup_Option,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_CodeEditor,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_Collapsible,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_Common,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_DatePicker,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_DateTimePicker,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_Dialog,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_DiffEditor,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_Divider,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_Drawer,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_Dropdown,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_DropdownEditor,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_Dropdown_Option,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_EditableCallout,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_EditableLabel,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_Hidden,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_Icon,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_Image,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_Label,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_Link,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_List,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_ListEditor,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_ListEditor_Item,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_Menu,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_Menu_Item,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_Message,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_Modal,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_Native,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_Nav,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_Nav_Item,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_Paper,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_Picker,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_Picker_Item,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_Responsive,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_ResponsiveCol,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_ResponsiveRow,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_Responsive_Breakpoints,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_Skeleton,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_Slider,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_Snackbar,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_SpinButton,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_Spinner,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_Stepper,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_Style,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_Table,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_Table_Column,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_Table_Row,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_Tabs,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_Tabs_Tab,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_TextField,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_TimeDuration,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_TimePicker,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_TimezonePicker,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_Toggle,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_ToggleButtons,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_Toolbar,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_Tooltip,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_Tree,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_Tree_Node,
-    &impl_runtime_rti__AdaptiveLayoutComponentType_Typography,
-    &impl_runtime_rti__AdaptiveLayout_ObjectResponsive,
-    &impl_runtime_rti__AdaptiveLayout_ObjectResponsive_embedded,
-    &impl_runtime_rti__AdaptiveLayout_ObjectResponsive_filterOptions,
-    &impl_runtime_rti__AdaptiveLayout_ObjectResponsive_preferredComponent,
-    &impl_runtime_rti__AdaptiveLayout_ObjectResponsive_sortOptions,
+/* NULL terminated list of inf pointers. */
+static const afw_object_inf_t * impl_inf[] = {
+    &afw_runtime_inf__AdaptiveLayoutComponentType_AdaptiveProperty,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_Autocomplete,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_Autocomplete_Option,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_Box,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_BoxItem,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_Breadcrumb,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_BreadcrumbItem,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_Button,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_Callout,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_Chart,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_Chart_Data,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_Checkbox,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_ChoiceGroup,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_ChoiceGroup_Option,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_CodeEditor,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_Collapsible,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_Common,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_DatePicker,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_DateTimePicker,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_Dialog,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_DiffEditor,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_Divider,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_Drawer,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_Dropdown,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_DropdownEditor,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_Dropdown_Option,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_EditableCallout,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_EditableLabel,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_Hidden,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_Icon,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_Image,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_Label,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_Link,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_List,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_ListEditor,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_ListEditor_Item,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_Menu,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_Menu_Item,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_Message,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_Modal,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_Native,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_Nav,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_Nav_Item,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_Paper,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_Picker,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_Picker_Item,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_Responsive,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_ResponsiveCol,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_ResponsiveRow,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_Responsive_Breakpoints,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_Skeleton,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_Slider,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_Snackbar,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_SpinButton,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_Spinner,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_Stepper,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_Style,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_Table,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_Table_Column,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_Table_Row,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_Tabs,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_Tabs_Tab,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_TextField,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_TimeDuration,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_TimePicker,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_TimezonePicker,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_Toggle,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_ToggleButtons,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_Toolbar,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_Tooltip,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_Tree,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_Tree_Node,
+    &afw_runtime_inf__AdaptiveLayoutComponentType_Typography,
+    &afw_runtime_inf__AdaptiveLayout_ObjectResponsive,
+    &afw_runtime_inf__AdaptiveLayout_ObjectResponsive_embedded,
+    &afw_runtime_inf__AdaptiveLayout_ObjectResponsive_filterOptions,
+    &afw_runtime_inf__AdaptiveLayout_ObjectResponsive_preferredComponent,
+    &afw_runtime_inf__AdaptiveLayout_ObjectResponsive_sortOptions,
     NULL
 };
 
@@ -1292,7 +1292,7 @@ static const afw_interface_implementation_rti_t * impl_rti[] = {
 void afw_components_register_runtime_object_maps(
     afw_xctx_t *xctx)
 {
-    afw_runtime_resolve_and_register_object_map_infs(
-        &impl_rti[0], 
+    afw_runtime_register_object_map_infs(
+        &impl_inf[0], 
         xctx);
 }

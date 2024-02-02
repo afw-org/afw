@@ -46,8 +46,8 @@ impl_runtime_meta__AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects, 
     impl_runtime_meta__AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects);
 
 
@@ -61,8 +61,8 @@ impl_runtime_meta__AdaptiveConf_adaptor_vfs = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveConf_adaptor_vfs,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveConf_adaptor_vfs, 
     impl_runtime_meta__AdaptiveConf_adaptor_vfs);
 
 
@@ -76,15 +76,15 @@ impl_runtime_meta__AdaptiveFile_vfs = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveFile_vfs,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveFile_vfs, 
     impl_runtime_meta__AdaptiveFile_vfs);
 
-/* NULL terminated list of rti pointers. */
-static const afw_interface_implementation_rti_t * impl_rti[] = {
-    &impl_runtime_rti__AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects,
-    &impl_runtime_rti__AdaptiveConf_adaptor_vfs,
-    &impl_runtime_rti__AdaptiveFile_vfs,
+/* NULL terminated list of inf pointers. */
+static const afw_object_inf_t * impl_inf[] = {
+    &afw_runtime_inf__AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects,
+    &afw_runtime_inf__AdaptiveConf_adaptor_vfs,
+    &afw_runtime_inf__AdaptiveFile_vfs,
     NULL
 };
 
@@ -92,7 +92,7 @@ static const afw_interface_implementation_rti_t * impl_rti[] = {
 void afw_vfs_register_runtime_object_maps(
     afw_xctx_t *xctx)
 {
-    afw_runtime_resolve_and_register_object_map_infs(
-        &impl_rti[0], 
+    afw_runtime_register_object_map_infs(
+        &impl_inf[0], 
         xctx);
 }

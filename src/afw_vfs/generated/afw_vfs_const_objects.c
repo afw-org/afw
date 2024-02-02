@@ -26,102 +26,121 @@
 #include "afw_vfs_generated.h"
 
 
-static const afw_runtime_unresolved_const_object_t
+static const afw_runtime_const_object_instance_t
 impl_1;
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_instance_t
 impl_2;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects/otherProperties
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_2_property_brief = {
-    "brief",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Custom property"
-    }
+    &afw_vfs_self_s_brief,
+    &afw_vfs_self_v_zz__Custom_property.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_2_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Custom property."
-    }
+    &afw_vfs_self_s_description,
+    &afw_vfs_self_v_zz__Custom_property_.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_2_properties[] = {
     &impl_2_property_brief,
     &impl_2_property_description,
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_2_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_2,
+    NULL
+};
+
+static const afw_utf8_t
+impl_2_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects/otherProperties");
+
+static const afw_value_object_t
+impl_2__value;
+
+static const afw_runtime_const_object_instance_t
 impl_2 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_2__value,
+        {
+            (const afw_object_t *)&impl_2_meta_object,
+            (const afw_object_t *)&impl_1,
+            &afw_vfs_self_s_otherProperties,
+            &afw_vfs_self_s__AdaptiveValueMeta_,
+            &impl_2_meta_path
+        }
+    },
     &impl_2_properties[0]
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_value_object_t
+impl_2__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_2
+};
+
+static const afw_runtime_const_object_instance_t
 impl_3;
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_instance_t
 impl_4;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects/propertyTypes/includeHidden
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_4_property_brief = {
-    "brief",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Include"
-    }
+    &afw_vfs_self_s_brief,
+    &afw_vfs_self_v_Include.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_4_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "boolean"
-    }
+    &afw_vfs_self_s_dataType,
+    &afw_vfs_self_v_boolean.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_4_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "If true, filenames that begin with dot ('.') will be included."
-    }
+    &afw_vfs_self_s_description,
+    &afw_vfs_self_v_zz__2534.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_4_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Include Hidden"
-    }
+    &afw_vfs_self_s_label,
+    &afw_vfs_self_v_zz__Include_Hidden.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_4_property_value_required = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_4_property_required = {
-    "required",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_vfs_self_s_required,
+    &impl_4_property_value_required.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_4_properties[] = {
     &impl_4_property_brief,
     &impl_4_property_dataType,
@@ -131,64 +150,89 @@ impl_4_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_4_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_4,
+    NULL
+};
+
+static const afw_utf8_t
+impl_4_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects/propertyTypes/includeHidden");
+
+static const afw_value_object_t
+impl_4__value;
+
+static const afw_runtime_const_object_instance_t
 impl_4 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_4__value,
+        {
+            (const afw_object_t *)&impl_4_meta_object,
+            (const afw_object_t *)&impl_3,
+            &afw_vfs_self_s_includeHidden,
+            &afw_vfs_self_s__AdaptiveValueMeta_,
+            &impl_4_meta_path
+        }
+    },
     &impl_4_properties[0]
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_value_object_t
+impl_4__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_4
+};
+
+static const afw_runtime_const_object_instance_t
 impl_5;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects/propertyTypes/recursive
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_5_property_brief = {
-    "brief",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Recursively traverse directories"
-    }
+    &afw_vfs_self_s_brief,
+    &afw_vfs_self_v_zz__Recursively_traverse_directories.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_5_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "boolean"
-    }
+    &afw_vfs_self_s_dataType,
+    &afw_vfs_self_v_boolean.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_5_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "If true, directories will be recursively traversed."
-    }
+    &afw_vfs_self_s_description,
+    &afw_vfs_self_v_zz__If_true__directories_will_be_recursively_traversed_.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_5_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Recursive"
-    }
+    &afw_vfs_self_s_label,
+    &afw_vfs_self_v_Recursive.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_5_property_value_required = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_5_property_required = {
-    "required",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_vfs_self_s_required,
+    &impl_5_property_value_required.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_5_properties[] = {
     &impl_5_property_brief,
     &impl_5_property_dataType,
@@ -198,64 +242,89 @@ impl_5_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_5_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_5,
+    NULL
+};
+
+static const afw_utf8_t
+impl_5_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects/propertyTypes/recursive");
+
+static const afw_value_object_t
+impl_5__value;
+
+static const afw_runtime_const_object_instance_t
 impl_5 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_5__value,
+        {
+            (const afw_object_t *)&impl_5_meta_object,
+            (const afw_object_t *)&impl_3,
+            &afw_vfs_self_s_recursive,
+            &afw_vfs_self_s__AdaptiveValueMeta_,
+            &impl_5_meta_path
+        }
+    },
     &impl_5_properties[0]
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_value_object_t
+impl_5__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_5
+};
+
+static const afw_runtime_const_object_instance_t
 impl_6;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects/propertyTypes/subdirectory
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_6_property_brief = {
-    "brief",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Subdirectory"
-    }
+    &afw_vfs_self_s_brief,
+    &afw_vfs_self_v_Subdirectory.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_6_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "string"
-    }
+    &afw_vfs_self_s_dataType,
+    &afw_vfs_self_v_string.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_6_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "If specified, the retrieve will start in the specified vfs subdirectory instead of the vfs root. The value can not start with '/', must end with '/', and can not contain '\\', './' or '../'."
-    }
+    &afw_vfs_self_s_description,
+    &afw_vfs_self_v_zz__2535.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_6_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Subdirectory"
-    }
+    &afw_vfs_self_s_label,
+    &afw_vfs_self_v_Subdirectory.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_6_property_value_required = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_6_property_required = {
-    "required",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_vfs_self_s_required,
+    &impl_6_property_value_required.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_6_properties[] = {
     &impl_6_property_brief,
     &impl_6_property_dataType,
@@ -265,64 +334,89 @@ impl_6_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_6_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_6,
+    NULL
+};
+
+static const afw_utf8_t
+impl_6_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects/propertyTypes/subdirectory");
+
+static const afw_value_object_t
+impl_6__value;
+
+static const afw_runtime_const_object_instance_t
 impl_6 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_6__value,
+        {
+            (const afw_object_t *)&impl_6_meta_object,
+            (const afw_object_t *)&impl_3,
+            &afw_vfs_self_s_subdirectory,
+            &afw_vfs_self_s__AdaptiveValueMeta_,
+            &impl_6_meta_path
+        }
+    },
     &impl_6_properties[0]
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_value_object_t
+impl_6__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_6
+};
+
+static const afw_runtime_const_object_instance_t
 impl_7;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects/propertyTypes/suffix
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_7_property_brief = {
-    "brief",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Filename suffix"
-    }
+    &afw_vfs_self_s_brief,
+    &afw_vfs_self_v_zz__Filename_suffix.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_7_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "string"
-    }
+    &afw_vfs_self_s_dataType,
+    &afw_vfs_self_v_string.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_7_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "If specified, only files with filenames that end with the specified suffix are included."
-    }
+    &afw_vfs_self_s_description,
+    &afw_vfs_self_v_zz__2536.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_7_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Filename Suffix"
-    }
+    &afw_vfs_self_s_label,
+    &afw_vfs_self_v_zz__Filename_Suffix.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_7_property_value_required = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_7_property_required = {
-    "required",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_vfs_self_s_required,
+    &impl_7_property_value_required.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_7_properties[] = {
     &impl_7_property_brief,
     &impl_7_property_dataType,
@@ -332,52 +426,98 @@ impl_7_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_7_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_7,
+    NULL
+};
+
+static const afw_utf8_t
+impl_7_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects/propertyTypes/suffix");
+
+static const afw_value_object_t
+impl_7__value;
+
+static const afw_runtime_const_object_instance_t
 impl_7 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_7__value,
+        {
+            (const afw_object_t *)&impl_7_meta_object,
+            (const afw_object_t *)&impl_3,
+            &afw_vfs_self_s_suffix,
+            &afw_vfs_self_s__AdaptiveValueMeta_,
+            &impl_7_meta_path
+        }
+    },
     &impl_7_properties[0]
+};
+
+static const afw_value_object_t
+impl_7__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_7
 };
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects/propertyTypes
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_3_property_value_includeHidden = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_4
+};
+
+static const afw_runtime_property_t
 impl_3_property_includeHidden = {
-    "includeHidden",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_4
-    }
+    &afw_vfs_self_s_includeHidden,
+    &impl_3_property_value_includeHidden.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_3_property_value_recursive = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_5
+};
+
+static const afw_runtime_property_t
 impl_3_property_recursive = {
-    "recursive",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_5
-    }
+    &afw_vfs_self_s_recursive,
+    &impl_3_property_value_recursive.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_3_property_value_subdirectory = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_6
+};
+
+static const afw_runtime_property_t
 impl_3_property_subdirectory = {
-    "subdirectory",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_6
-    }
+    &afw_vfs_self_s_subdirectory,
+    &impl_3_property_value_subdirectory.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_3_property_value_suffix = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_7
+};
+
+static const afw_runtime_property_t
 impl_3_property_suffix = {
-    "suffix",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_7
-    }
+    &afw_vfs_self_s_suffix,
+    &impl_3_property_value_suffix.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_3_properties[] = {
     &impl_3_property_includeHidden,
     &impl_3_property_recursive,
@@ -386,49 +526,95 @@ impl_3_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_3_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_3,
+    NULL
+};
+
+static const afw_utf8_t
+impl_3_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects/propertyTypes");
+
+static const afw_value_object_t
+impl_3__value;
+
+static const afw_runtime_const_object_instance_t
 impl_3 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_3__value,
+        {
+            (const afw_object_t *)&impl_3_meta_object,
+            (const afw_object_t *)&impl_1,
+            &afw_vfs_self_s_propertyTypes,
+            &afw_vfs_self_s__AdaptivePropertyTypes_,
+            &impl_3_meta_path
+        }
+    },
     &impl_3_properties[0]
+};
+
+static const afw_value_object_t
+impl_3__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_3
 };
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_1_property_value_allowAdd = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_1_property_allowAdd = {
-    "allowAdd",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_vfs_self_s_allowAdd,
+    &impl_1_property_value_allowAdd.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_1_property_value_allowChange = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_1_property_allowChange = {
-    "allowChange",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_vfs_self_s_allowChange,
+    &impl_1_property_value_allowChange.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_1_property_value_allowDelete = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_1_property_allowDelete = {
-    "allowDelete",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_vfs_self_s_allowDelete,
+    &impl_1_property_value_allowDelete.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_1_property_value_allowEntity = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_1_property_allowEntity = {
-    "allowEntity",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_vfs_self_s_allowEntity,
+    &impl_1_property_value_allowEntity.pub
 };
 
 static const afw_utf8_t
@@ -436,59 +622,63 @@ impl_1_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/vfs_extension")
 };
 
-static const afw_runtime_unresolved_const_array_t
+static const afw_array_wrapper_for_array_self_t
 impl_1_list_collectionURIs = {
-    AFW_UTF8_LITERAL("string"),
+    &afw_array_wrapper_for_array_inf,
+    &afw_data_type_string_direct,
     sizeof(impl_1_array_collectionURIs) / sizeof(afw_utf8_t),
-    (const void *)&impl_1_array_collectionURIs
+    &impl_1_array_collectionURIs
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_array_t
+impl_1_property_value_collectionURIs = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_1_list_collectionURIs
+};
+
+static const afw_runtime_property_t
 impl_1_property_collectionURIs = {
-    "collectionURIs",
-    {
-        .type = afw_runtime_unresolved_primitive_type_array,
-        .array = &impl_1_list_collectionURIs
-    }
+    &afw_vfs_self_s_collectionURIs,
+    &impl_1_property_value_collectionURIs.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_1_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "This is the object type for the optional adaptorTypeSpecific parameter of the retrieve_objects() adaptive function when the adaptorType of the adaptorId is vfs."
-    }
+    &afw_vfs_self_s_description,
+    &afw_vfs_self_v_zz__2537.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_1_property_objectType = {
-    "objectType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "_AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects"
-    }
+    &afw_vfs_self_s_objectType,
+    &afw_vfs_self_v__AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_1_property_value_otherProperties = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_2
+};
+
+static const afw_runtime_property_t
 impl_1_property_otherProperties = {
-    "otherProperties",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_2
-    }
+    &afw_vfs_self_s_otherProperties,
+    &impl_1_property_value_otherProperties.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_1_property_value_propertyTypes = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_3
+};
+
+static const afw_runtime_property_t
 impl_1_property_propertyTypes = {
-    "propertyTypes",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_3
-    }
+    &afw_vfs_self_s_propertyTypes,
+    &impl_1_property_value_propertyTypes.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_1_properties[] = {
     &impl_1_property_allowAdd,
     &impl_1_property_allowChange,
@@ -502,77 +692,89 @@ impl_1_properties[] = {
     NULL
 };
 
+static const afw_runtime_const_object_meta_object_t
+impl_1_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_1,
+    NULL
+};
+
 static const afw_utf8_t
 impl_1_meta_path =
     AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects");
 
-static const afw_runtime_unresolved_const_object_t
+static const afw_value_object_t
+impl_1__value;
+
+static const afw_runtime_const_object_instance_t
 impl_1 = {
-    &afw_vfs_self_s__AdaptiveObjectType_,
-    &afw_vfs_self_s__AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects,
-    &impl_1_meta_path,
+    {
+        &afw_runtime_inf__AdaptiveObjectType_,
+        NULL,
+        (const afw_value_t *)&impl_1__value,
+        {
+            (const afw_object_t *)&impl_1_meta_object,
+            NULL,
+            &afw_vfs_self_s__AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects,
+            &afw_vfs_self_s__AdaptiveObjectType_,
+            &impl_1_meta_path
+        }
+    },
     &impl_1_properties[0]
 };
 
-static const afw_runtime_unresolved_const_object_t
+static const afw_value_object_t
+impl_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1
+};
+
+static const afw_runtime_const_object_instance_t
 impl_8;
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_instance_t
 impl_9;
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_instance_t
 impl_10;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_vfs/propertyTypes/markExecutable
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_10_property_brief = {
-    "brief",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "vfsPath filename patterns to mark as executable"
-    }
+    &afw_vfs_self_s_brief,
+    &afw_vfs_self_v_zz__vfsPath_filename_patterns_to_mark_as_executable.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_10_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "array"
-    }
+    &afw_vfs_self_s_dataType,
+    &afw_vfs_self_v_array.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_10_property_dataTypeParameter = {
-    "dataTypeParameter",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "string"
-    }
+    &afw_vfs_self_s_dataTypeParameter,
+    &afw_vfs_self_v_string.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_10_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "This is a list of vfsPath filename patterns whose host files should be marked as executable when written. For instance, ['*.as'] will mark Adaptive Scripts whose vfsPath ends with '.as' as executable.\n\nA PATTERN match uses Apache apr function apr_fnmatch() which interprets a pattern as follows:\n\nThere are no illegal patterns.\n\nPATTERN: Backslash followed by any character, including another backslash.\nMATCHES: That character exactly.\n\nPATTERN: ?\nMATCHES: Any single character.\n\nPATTERN: *\nMATCHES: Any sequence of zero or more characters. (Note that multiple *s in a row are equivalent to one.)\n\nPATTERN: Any character other than \\?*[ or a \\ at the end of the pattern\nMATCHES: That character exactly. (Case sensitive.)\n\nPATTERN: [ followed by a class description followed by ]\nMATCHES: A single character described by the class description. (Never matches, if the class description reaches until the end of the string without a ].) If the first character of the class description is ^ or !, the sense of the description is reversed. The rest of the class description is a list of single characters or pairs of characters separated by -. Any of those characters can have a backslash in front of them, which is ignored; this lets you use the characters ] and - in the character class, as well as ^ and ! at the beginning. The pattern matches a single character if it is one of the listed characters or falls into one of the listed ranges (inclusive, case sensitive). Ranges with the first character larger than the second are legal but never match. Edge cases: [] never matches, and [^] and [!] always match without consuming a character.\n\nNote that these patterns attempt to match the entire vfsPath, not just find a substring matching the pattern."
-    }
+    &afw_vfs_self_s_description,
+    &afw_vfs_self_v_zz__2538.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_10_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Mark Executable"
-    }
+    &afw_vfs_self_s_label,
+    &afw_vfs_self_v_zz__Mark_Executable.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_10_properties[] = {
     &impl_10_property_brief,
     &impl_10_property_dataType,
@@ -582,73 +784,95 @@ impl_10_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_10_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_10,
+    NULL
+};
+
+static const afw_utf8_t
+impl_10_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_vfs/propertyTypes/markExecutable");
+
+static const afw_value_object_t
+impl_10__value;
+
+static const afw_runtime_const_object_instance_t
 impl_10 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_10__value,
+        {
+            (const afw_object_t *)&impl_10_meta_object,
+            (const afw_object_t *)&impl_9,
+            &afw_vfs_self_s_markExecutable,
+            &afw_vfs_self_s__AdaptiveValueMeta_,
+            &impl_10_meta_path
+        }
+    },
     &impl_10_properties[0]
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_value_object_t
+impl_10__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_10
+};
+
+static const afw_runtime_const_object_instance_t
 impl_11;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_vfs/propertyTypes/vfsMap
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_11_property_brief = {
-    "brief",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "VFS to operating system directory map"
-    }
+    &afw_vfs_self_s_brief,
+    &afw_vfs_self_v_zz__VFS_to_operating_system_directory_map.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_11_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "array"
-    }
+    &afw_vfs_self_s_dataType,
+    &afw_vfs_self_v_array.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_11_property_dataTypeParameter = {
-    "dataTypeParameter",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "string"
-    }
+    &afw_vfs_self_s_dataTypeParameter,
+    &afw_vfs_self_v_string.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_11_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "This property is a list of vfs map entries.\n\nThe vfsPath of objects in this vfs adaptor is of the form:\n\n/<adaptorId>/<objectId>\n\nWhere <adaptorId> is the id of this adaptor and where <objectId> is the relative path from the vfs root directory ('<adaptorId>/') to the associated file or directory. An <objectId> of a directory ends with a slash ('/').\n\nEach vfsMap entry is a string of the form:\n\n<objectId_prefix>=<host file system directory path>\n\n<objectId_prefix> can be empty if the entry applies to files and directories in the vfs root directory or the objectId of a directory within the vfs.\n\nThe <host file system directory path> must end in a slash ('/'). A backslash is tolerated on a Windows host. The host system file path is the <objectId> with <objectId_prefix> removed appended to the associated <host file system directory path>.\n\nThe map entry with the longest matching <objectId_prefix> is the one used for any adaptor functions objectId parameter.\n\nFor retrieve_objects*() the entries are processed in longest to shortest <objectId_prefix> order. If 'subdirectory' is supplied in the retrieve_objects*() adaptorSpecific parameter, only matching entries are used. Note, that depending on the vfsMap, a single physical file or directory can appear multiple times with different vfsPaths."
-    }
+    &afw_vfs_self_s_description,
+    &afw_vfs_self_v_zz__2539.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_11_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "VFS Map"
-    }
+    &afw_vfs_self_s_label,
+    &afw_vfs_self_v_zz__VFS_Map.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_11_property_value_required = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+static const afw_runtime_property_t
 impl_11_property_required = {
-    "required",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = true
-    }
+    &afw_vfs_self_s_required,
+    &impl_11_property_value_required.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_11_properties[] = {
     &impl_11_property_brief,
     &impl_11_property_dataType,
@@ -659,34 +883,74 @@ impl_11_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_11_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_11,
+    NULL
+};
+
+static const afw_utf8_t
+impl_11_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_vfs/propertyTypes/vfsMap");
+
+static const afw_value_object_t
+impl_11__value;
+
+static const afw_runtime_const_object_instance_t
 impl_11 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_11__value,
+        {
+            (const afw_object_t *)&impl_11_meta_object,
+            (const afw_object_t *)&impl_9,
+            &afw_vfs_self_s_vfsMap,
+            &afw_vfs_self_s__AdaptiveValueMeta_,
+            &impl_11_meta_path
+        }
+    },
     &impl_11_properties[0]
+};
+
+static const afw_value_object_t
+impl_11__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_11
 };
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_vfs/propertyTypes
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_9_property_value_markExecutable = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_10
+};
+
+static const afw_runtime_property_t
 impl_9_property_markExecutable = {
-    "markExecutable",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_10
-    }
+    &afw_vfs_self_s_markExecutable,
+    &impl_9_property_value_markExecutable.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_9_property_value_vfsMap = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_11
+};
+
+static const afw_runtime_property_t
 impl_9_property_vfsMap = {
-    "vfsMap",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_11
-    }
+    &afw_vfs_self_s_vfsMap,
+    &impl_9_property_value_vfsMap.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_9_properties[] = {
     &impl_9_property_markExecutable,
     &impl_9_property_vfsMap,
@@ -698,24 +962,73 @@ impl_9_parentPaths_array[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor/propertyTypes")
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
-impl_9 = {
-    &impl_9_properties[0],
+static const afw_array_wrapper_for_array_self_t
+impl_9_parentPaths_list = {
+    &afw_array_wrapper_for_array_inf,
+    &afw_data_type_anyURI_direct,
     sizeof(impl_9_parentPaths_array) / sizeof(afw_utf8_t),
-    &impl_9_parentPaths_array[0]
+    (const void *)&impl_9_parentPaths_array
+};
+
+static const afw_value_array_t
+impl_9_parentPaths = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_9_parentPaths_list
+};
+
+static const afw_runtime_const_object_meta_object_t
+impl_9_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_9,
+    &impl_9_parentPaths
+};
+
+static const afw_utf8_t
+impl_9_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_vfs/propertyTypes");
+
+static const afw_value_object_t
+impl_9__value;
+
+static const afw_runtime_const_object_instance_t
+impl_9 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_9__value,
+        {
+            (const afw_object_t *)&impl_9_meta_object,
+            (const afw_object_t *)&impl_8,
+            &afw_vfs_self_s_propertyTypes,
+            &afw_vfs_self_s__AdaptivePropertyTypes_,
+            &impl_9_meta_path
+        }
+    },
+    &impl_9_properties[0]
+};
+
+static const afw_value_object_t
+impl_9__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_9
 };
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_vfs
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_8_property_value_allowEntity = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_8_property_allowEntity = {
-    "allowEntity",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_vfs_self_s_allowEntity,
+    &impl_8_property_value_allowEntity.pub
 };
 
 static const afw_utf8_t
@@ -723,50 +1036,51 @@ impl_8_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/vfs_extension")
 };
 
-static const afw_runtime_unresolved_const_array_t
+static const afw_array_wrapper_for_array_self_t
 impl_8_list_collectionURIs = {
-    AFW_UTF8_LITERAL("string"),
+    &afw_array_wrapper_for_array_inf,
+    &afw_data_type_string_direct,
     sizeof(impl_8_array_collectionURIs) / sizeof(afw_utf8_t),
-    (const void *)&impl_8_array_collectionURIs
+    &impl_8_array_collectionURIs
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_array_t
+impl_8_property_value_collectionURIs = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_8_list_collectionURIs
+};
+
+static const afw_runtime_property_t
 impl_8_property_collectionURIs = {
-    "collectionURIs",
-    {
-        .type = afw_runtime_unresolved_primitive_type_array,
-        .array = &impl_8_list_collectionURIs
-    }
+    &afw_vfs_self_s_collectionURIs,
+    &impl_8_property_value_collectionURIs.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_8_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Adaptive Framework configuration component for type=adaptor adaptorType=vfs. This is a virtual file system adaptor that allows files to be accessed as objects that have a 'data' property and additional file stats properties. The vfs path to files begins with '/', the adaptor name, '/_AdaptiveFile_vfs'. The path of the operating system directory as well as the paths to subdirectories are defined in the 'vfsMap' property."
-    }
+    &afw_vfs_self_s_description,
+    &afw_vfs_self_v_zz__2540.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_8_property_objectType = {
-    "objectType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "_AdaptiveConf_adaptor_vfs"
-    }
+    &afw_vfs_self_s_objectType,
+    &afw_vfs_self_v__AdaptiveConf_adaptor_vfs.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_8_property_value_propertyTypes = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_9
+};
+
+static const afw_runtime_property_t
 impl_8_property_propertyTypes = {
-    "propertyTypes",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_9
-    }
+    &afw_vfs_self_s_propertyTypes,
+    &impl_8_property_value_propertyTypes.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_8_properties[] = {
     &impl_8_property_allowEntity,
     &impl_8_property_collectionURIs,
@@ -776,77 +1090,95 @@ impl_8_properties[] = {
     NULL
 };
 
+static const afw_runtime_const_object_meta_object_t
+impl_8_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_8,
+    NULL
+};
+
 static const afw_utf8_t
 impl_8_meta_path =
     AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_vfs");
 
-static const afw_runtime_unresolved_const_object_t
+static const afw_value_object_t
+impl_8__value;
+
+static const afw_runtime_const_object_instance_t
 impl_8 = {
-    &afw_vfs_self_s__AdaptiveObjectType_,
-    &afw_vfs_self_s__AdaptiveConf_adaptor_vfs,
-    &impl_8_meta_path,
+    {
+        &afw_runtime_inf__AdaptiveObjectType_,
+        NULL,
+        (const afw_value_t *)&impl_8__value,
+        {
+            (const afw_object_t *)&impl_8_meta_object,
+            NULL,
+            &afw_vfs_self_s__AdaptiveConf_adaptor_vfs,
+            &afw_vfs_self_s__AdaptiveObjectType_,
+            &impl_8_meta_path
+        }
+    },
     &impl_8_properties[0]
 };
 
-static const afw_runtime_unresolved_const_object_t
+static const afw_value_object_t
+impl_8__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_8
+};
+
+static const afw_runtime_const_object_instance_t
 impl_12;
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_instance_t
 impl_13;
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_instance_t
 impl_14;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveFile_vfs/propertyTypes/data
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_14_property_brief = {
-    "brief",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Contents of file"
-    }
+    &afw_vfs_self_s_brief,
+    &afw_vfs_self_v_zz__Contents_of_file.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_14_property_defaultValue = {
-    "defaultValue",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = ""
-    }
+    &afw_vfs_self_s_defaultValue,
+    &afw_vfs_self_v_zz__.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_14_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "This is the contents of the file. If this is a directory, data is a list of strings containing the name from its entries. If this is not a directory and the data is valid utf-8, data is a string otherwise, it is hexBinary. This property is ignored when adding a directory."
-    }
+    &afw_vfs_self_s_description,
+    &afw_vfs_self_v_zz__2541.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_14_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Data"
-    }
+    &afw_vfs_self_s_label,
+    &afw_vfs_self_v_Data.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_14_property_value_required = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_14_property_required = {
-    "required",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_vfs_self_s_required,
+    &impl_14_property_value_required.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_14_properties[] = {
     &impl_14_property_brief,
     &impl_14_property_defaultValue,
@@ -856,64 +1188,89 @@ impl_14_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_14_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_14,
+    NULL
+};
+
+static const afw_utf8_t
+impl_14_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveFile_vfs/propertyTypes/data");
+
+static const afw_value_object_t
+impl_14__value;
+
+static const afw_runtime_const_object_instance_t
 impl_14 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_14__value,
+        {
+            (const afw_object_t *)&impl_14_meta_object,
+            (const afw_object_t *)&impl_13,
+            &afw_vfs_self_s_data,
+            &afw_vfs_self_s__AdaptiveValueMeta_,
+            &impl_14_meta_path
+        }
+    },
     &impl_14_properties[0]
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_value_object_t
+impl_14__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_14
+};
+
+static const afw_runtime_const_object_instance_t
 impl_15;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveFile_vfs/propertyTypes/isDirectory
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_15_property_value_allowWrite = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_15_property_allowWrite = {
-    "allowWrite",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_vfs_self_s_allowWrite,
+    &impl_15_property_value_allowWrite.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_15_property_brief = {
-    "brief",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Is directory"
-    }
+    &afw_vfs_self_s_brief,
+    &afw_vfs_self_v_zz__Is_directory.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_15_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "boolean"
-    }
+    &afw_vfs_self_s_dataType,
+    &afw_vfs_self_v_boolean.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_15_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "This is true if this is a directory. This property is read-only. A slash ('/') at the end of an objectId is used to indicate this in requests."
-    }
+    &afw_vfs_self_s_description,
+    &afw_vfs_self_v_zz__2542.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_15_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Is Directory"
-    }
+    &afw_vfs_self_s_label,
+    &afw_vfs_self_v_zz__Is_Directory.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_15_properties[] = {
     &impl_15_property_allowWrite,
     &impl_15_property_brief,
@@ -923,64 +1280,89 @@ impl_15_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_15_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_15,
+    NULL
+};
+
+static const afw_utf8_t
+impl_15_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveFile_vfs/propertyTypes/isDirectory");
+
+static const afw_value_object_t
+impl_15__value;
+
+static const afw_runtime_const_object_instance_t
 impl_15 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_15__value,
+        {
+            (const afw_object_t *)&impl_15_meta_object,
+            (const afw_object_t *)&impl_13,
+            &afw_vfs_self_s_isDirectory,
+            &afw_vfs_self_s__AdaptiveValueMeta_,
+            &impl_15_meta_path
+        }
+    },
     &impl_15_properties[0]
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_value_object_t
+impl_15__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_15
+};
+
+static const afw_runtime_const_object_instance_t
 impl_16;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveFile_vfs/propertyTypes/timeAccessed
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_16_property_brief = {
-    "brief",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Time last accessed"
-    }
+    &afw_vfs_self_s_brief,
+    &afw_vfs_self_v_zz__Time_last_accessed.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_16_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "dateTime"
-    }
+    &afw_vfs_self_s_dataType,
+    &afw_vfs_self_v_dateTime.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_16_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "This is the time the file was last accessed."
-    }
+    &afw_vfs_self_s_description,
+    &afw_vfs_self_v_zz__This_is_the_time_the_file_was_last_accessed_.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_16_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Time Accessed"
-    }
+    &afw_vfs_self_s_label,
+    &afw_vfs_self_v_zz__Time_Accessed.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_16_property_value_required = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_16_property_required = {
-    "required",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_vfs_self_s_required,
+    &impl_16_property_value_required.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_16_properties[] = {
     &impl_16_property_brief,
     &impl_16_property_dataType,
@@ -990,64 +1372,89 @@ impl_16_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_16_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_16,
+    NULL
+};
+
+static const afw_utf8_t
+impl_16_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveFile_vfs/propertyTypes/timeAccessed");
+
+static const afw_value_object_t
+impl_16__value;
+
+static const afw_runtime_const_object_instance_t
 impl_16 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_16__value,
+        {
+            (const afw_object_t *)&impl_16_meta_object,
+            (const afw_object_t *)&impl_13,
+            &afw_vfs_self_s_timeAccessed,
+            &afw_vfs_self_s__AdaptiveValueMeta_,
+            &impl_16_meta_path
+        }
+    },
     &impl_16_properties[0]
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_value_object_t
+impl_16__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_16
+};
+
+static const afw_runtime_const_object_instance_t
 impl_17;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveFile_vfs/propertyTypes/timeCreated
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_17_property_brief = {
-    "brief",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Time created"
-    }
+    &afw_vfs_self_s_brief,
+    &afw_vfs_self_v_zz__Time_created.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_17_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "dateTime"
-    }
+    &afw_vfs_self_s_dataType,
+    &afw_vfs_self_v_dateTime.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_17_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "This is the time the file was created."
-    }
+    &afw_vfs_self_s_description,
+    &afw_vfs_self_v_zz__This_is_the_time_the_file_was_created_.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_17_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Time Created"
-    }
+    &afw_vfs_self_s_label,
+    &afw_vfs_self_v_zz__Time_Created.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_17_property_value_required = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_17_property_required = {
-    "required",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_vfs_self_s_required,
+    &impl_17_property_value_required.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_17_properties[] = {
     &impl_17_property_brief,
     &impl_17_property_dataType,
@@ -1057,64 +1464,89 @@ impl_17_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_17_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_17,
+    NULL
+};
+
+static const afw_utf8_t
+impl_17_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveFile_vfs/propertyTypes/timeCreated");
+
+static const afw_value_object_t
+impl_17__value;
+
+static const afw_runtime_const_object_instance_t
 impl_17 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_17__value,
+        {
+            (const afw_object_t *)&impl_17_meta_object,
+            (const afw_object_t *)&impl_13,
+            &afw_vfs_self_s_timeCreated,
+            &afw_vfs_self_s__AdaptiveValueMeta_,
+            &impl_17_meta_path
+        }
+    },
     &impl_17_properties[0]
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_value_object_t
+impl_17__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_17
+};
+
+static const afw_runtime_const_object_instance_t
 impl_18;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveFile_vfs/propertyTypes/timeModified
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_18_property_brief = {
-    "brief",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Time last modified"
-    }
+    &afw_vfs_self_s_brief,
+    &afw_vfs_self_v_zz__Time_last_modified.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_18_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "dateTime"
-    }
+    &afw_vfs_self_s_dataType,
+    &afw_vfs_self_v_dateTime.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_18_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "This is the time the file was last modified."
-    }
+    &afw_vfs_self_s_description,
+    &afw_vfs_self_v_zz__This_is_the_time_the_file_was_last_modified_.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_18_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Time Modified"
-    }
+    &afw_vfs_self_s_label,
+    &afw_vfs_self_v_zz__Time_Modified.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_18_property_value_required = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_18_property_required = {
-    "required",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_vfs_self_s_required,
+    &impl_18_property_value_required.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_18_properties[] = {
     &impl_18_property_brief,
     &impl_18_property_dataType,
@@ -1124,64 +1556,89 @@ impl_18_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_18_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_18,
+    NULL
+};
+
+static const afw_utf8_t
+impl_18_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveFile_vfs/propertyTypes/timeModified");
+
+static const afw_value_object_t
+impl_18__value;
+
+static const afw_runtime_const_object_instance_t
 impl_18 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_18__value,
+        {
+            (const afw_object_t *)&impl_18_meta_object,
+            (const afw_object_t *)&impl_13,
+            &afw_vfs_self_s_timeModified,
+            &afw_vfs_self_s__AdaptiveValueMeta_,
+            &impl_18_meta_path
+        }
+    },
     &impl_18_properties[0]
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_value_object_t
+impl_18__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_18
+};
+
+static const afw_runtime_const_object_instance_t
 impl_19;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveFile_vfs/propertyTypes/vfsPath
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_19_property_value_allowWrite = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_19_property_allowWrite = {
-    "allowWrite",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_vfs_self_s_allowWrite,
+    &impl_19_property_value_allowWrite.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_19_property_brief = {
-    "brief",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "VFS path"
-    }
+    &afw_vfs_self_s_brief,
+    &afw_vfs_self_v_zz__VFS_path.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_19_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "anyURI"
-    }
+    &afw_vfs_self_s_dataType,
+    &afw_vfs_self_v_anyURI.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_19_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "This is the vfs path within this instance of Adaptive Framework. This property is read-only."
-    }
+    &afw_vfs_self_s_description,
+    &afw_vfs_self_v_zz__2543.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_19_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "VFS Path"
-    }
+    &afw_vfs_self_s_label,
+    &afw_vfs_self_v_zz__VFS_Path.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_19_properties[] = {
     &impl_19_property_allowWrite,
     &impl_19_property_brief,
@@ -1191,70 +1648,122 @@ impl_19_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_19_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_19,
+    NULL
+};
+
+static const afw_utf8_t
+impl_19_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveFile_vfs/propertyTypes/vfsPath");
+
+static const afw_value_object_t
+impl_19__value;
+
+static const afw_runtime_const_object_instance_t
 impl_19 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_19__value,
+        {
+            (const afw_object_t *)&impl_19_meta_object,
+            (const afw_object_t *)&impl_13,
+            &afw_vfs_self_s_vfsPath,
+            &afw_vfs_self_s__AdaptiveValueMeta_,
+            &impl_19_meta_path
+        }
+    },
     &impl_19_properties[0]
+};
+
+static const afw_value_object_t
+impl_19__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_19
 };
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveFile_vfs/propertyTypes
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_13_property_value_data = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_14
+};
+
+static const afw_runtime_property_t
 impl_13_property_data = {
-    "data",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_14
-    }
+    &afw_vfs_self_s_data,
+    &impl_13_property_value_data.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_13_property_value_isDirectory = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_15
+};
+
+static const afw_runtime_property_t
 impl_13_property_isDirectory = {
-    "isDirectory",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_15
-    }
+    &afw_vfs_self_s_isDirectory,
+    &impl_13_property_value_isDirectory.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_13_property_value_timeAccessed = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_16
+};
+
+static const afw_runtime_property_t
 impl_13_property_timeAccessed = {
-    "timeAccessed",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_16
-    }
+    &afw_vfs_self_s_timeAccessed,
+    &impl_13_property_value_timeAccessed.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_13_property_value_timeCreated = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_17
+};
+
+static const afw_runtime_property_t
 impl_13_property_timeCreated = {
-    "timeCreated",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_17
-    }
+    &afw_vfs_self_s_timeCreated,
+    &impl_13_property_value_timeCreated.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_13_property_value_timeModified = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_18
+};
+
+static const afw_runtime_property_t
 impl_13_property_timeModified = {
-    "timeModified",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_18
-    }
+    &afw_vfs_self_s_timeModified,
+    &impl_13_property_value_timeModified.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_13_property_value_vfsPath = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_19
+};
+
+static const afw_runtime_property_t
 impl_13_property_vfsPath = {
-    "vfsPath",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_19
-    }
+    &afw_vfs_self_s_vfsPath,
+    &impl_13_property_value_vfsPath.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_13_properties[] = {
     &impl_13_property_data,
     &impl_13_property_isDirectory,
@@ -1265,22 +1774,59 @@ impl_13_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_13_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_13,
+    NULL
+};
+
+static const afw_utf8_t
+impl_13_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveFile_vfs/propertyTypes");
+
+static const afw_value_object_t
+impl_13__value;
+
+static const afw_runtime_const_object_instance_t
 impl_13 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_13__value,
+        {
+            (const afw_object_t *)&impl_13_meta_object,
+            (const afw_object_t *)&impl_12,
+            &afw_vfs_self_s_propertyTypes,
+            &afw_vfs_self_s__AdaptivePropertyTypes_,
+            &impl_13_meta_path
+        }
+    },
     &impl_13_properties[0]
+};
+
+static const afw_value_object_t
+impl_13__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_13
 };
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveFile_vfs
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_12_property_value_allowEntity = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+static const afw_runtime_property_t
 impl_12_property_allowEntity = {
-    "allowEntity",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = true
-    }
+    &afw_vfs_self_s_allowEntity,
+    &impl_12_property_value_allowEntity.pub
 };
 
 static const afw_utf8_t
@@ -1288,50 +1834,51 @@ impl_12_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/vfs_extension")
 };
 
-static const afw_runtime_unresolved_const_array_t
+static const afw_array_wrapper_for_array_self_t
 impl_12_list_collectionURIs = {
-    AFW_UTF8_LITERAL("string"),
+    &afw_array_wrapper_for_array_inf,
+    &afw_data_type_string_direct,
     sizeof(impl_12_array_collectionURIs) / sizeof(afw_utf8_t),
-    (const void *)&impl_12_array_collectionURIs
+    &impl_12_array_collectionURIs
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_array_t
+impl_12_property_value_collectionURIs = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_12_list_collectionURIs
+};
+
+static const afw_runtime_property_t
 impl_12_property_collectionURIs = {
-    "collectionURIs",
-    {
-        .type = afw_runtime_unresolved_primitive_type_array,
-        .array = &impl_12_list_collectionURIs
-    }
+    &afw_vfs_self_s_collectionURIs,
+    &impl_12_property_value_collectionURIs.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_12_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "This is the single object type of objects in a vfs adaptor."
-    }
+    &afw_vfs_self_s_description,
+    &afw_vfs_self_v_zz__This_is_the_single_object_type_of_objects_in_a_vfs_adaptor_.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_12_property_objectType = {
-    "objectType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "_AdaptiveFile_vfs"
-    }
+    &afw_vfs_self_s_objectType,
+    &afw_vfs_self_v__AdaptiveFile_vfs.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_12_property_value_propertyTypes = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_13
+};
+
+static const afw_runtime_property_t
 impl_12_property_propertyTypes = {
-    "propertyTypes",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_13
-    }
+    &afw_vfs_self_s_propertyTypes,
+    &impl_12_property_value_propertyTypes.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_12_properties[] = {
     &impl_12_property_allowEntity,
     &impl_12_property_collectionURIs,
@@ -1341,31 +1888,58 @@ impl_12_properties[] = {
     NULL
 };
 
-static const afw_utf8_t
-impl_12_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveFile_vfs");
-
-static const afw_runtime_unresolved_const_object_t
-impl_12 = {
-    &afw_vfs_self_s__AdaptiveObjectType_,
-    &afw_vfs_self_s__AdaptiveFile_vfs,
-    &impl_12_meta_path,
-    &impl_12_properties[0]
-};
-
-/* NULL terminated list of unresolved objects. */
-static const afw_runtime_unresolved_const_object_t *
-impl_const_objects[] = {
-    &impl_1,
-    &impl_8,
+static const afw_runtime_const_object_meta_object_t
+impl_12_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
     &impl_12,
     NULL
 };
 
-/* Resolved and set const objects */
+static const afw_utf8_t
+impl_12_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveFile_vfs");
+
+static const afw_value_object_t
+impl_12__value;
+
+static const afw_runtime_const_object_instance_t
+impl_12 = {
+    {
+        &afw_runtime_inf__AdaptiveObjectType_,
+        NULL,
+        (const afw_value_t *)&impl_12__value,
+        {
+            (const afw_object_t *)&impl_12_meta_object,
+            NULL,
+            &afw_vfs_self_s__AdaptiveFile_vfs,
+            &afw_vfs_self_s__AdaptiveObjectType_,
+            &impl_12_meta_path
+        }
+    },
+    &impl_12_properties[0]
+};
+
+static const afw_value_object_t
+impl_12__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_12
+};
+
+/* NULL terminated list of objects. */
+static const afw_object_t *
+impl_const_objects[] = {
+    (const afw_object_t *)&impl_1,
+    (const afw_object_t *)&impl_8,
+    (const afw_object_t *)&impl_12,
+    NULL
+};
+
+/* Set const objects */
 void
 afw_vfs_const_objects_register(afw_xctx_t *xctx)
 {
-    afw_runtime_env_resolve_and_set_const_objects(
+    afw_runtime_env_set_objects(
         &impl_const_objects[0], false, xctx);
 }

@@ -309,7 +309,9 @@ afw_value_create_managed_hexBinary(
     v->internal.size = (internal) ? internal->size : 0;
     v->internal.ptr = (const afw_byte_t *)v +
         sizeof(afw_value_hexBinary_managed_t);
-    memcpy((void *)v->internal.ptr, internal->ptr, size);
+    if (internal && internal->ptr) {
+       memcpy((void *)v->internal.ptr, internal->ptr, size);
+    }
 
     return &v->pub;
 }

@@ -22,7 +22,7 @@ def write_h_map(fd, prefix, obj, options):
     fd.write(' * @brief Runtime object inf for object type ' + id + '\n')
     fd.write(' */\n')
     fd.write('AFW_DECLARE_CONST_DATA(afw_object_inf_t)\n')
-    fd.write(prefix + 'runtime_inf_' + id + ';\n')
+    fd.write('afw_runtime_inf_' + id + ';\n')
     
 
 def write_c_map(fd, prefix, obj, options, onGetValueCFunctionNames):
@@ -83,10 +83,10 @@ def write_c_map(fd, prefix, obj, options, onGetValueCFunctionNames):
             if propertyType.get('dataType') is None:
                 fd.write('        { NULL },\n')
             else:
-                if options['core']:
-                    fd.write('        { &afw_data_type_' + propertyType.get('dataType') + '_direct },\n')
-                else:
-                    fd.write('        .unresolved_data_type_id = ' + s_ +  propertyType.get('dataType') + ',\n')
+                #FIXME if options['core']:
+                fd.write('        { &afw_data_type_' + propertyType.get('dataType') + '_direct },\n')
+                #FIXME else:
+                #FIXME     fd.write('        .unresolved_data_type_id = ' + s_ +  propertyType.get('dataType') + ',\n')
 
             # dataType and dataTypeParameter
             dataTypeParameter = propertyType.get('dataTypeParameter', '')
@@ -97,10 +97,10 @@ def write_c_map(fd, prefix, obj, options, onGetValueCFunctionNames):
 
             if propertyType.get('dataTypeParameter') is not None and propertyType.get('dataType','') == 'array':
                 dataTypeParameter = propertyType.get('dataTypeParameter').split()[0]
-                if options['core']:
-                    fd.write('        { &afw_data_type_' + dataTypeParameter + '_direct },\n')
-                else:
-                    fd.write('        .unresolved_data_type_parameter_data_type_id = ' + s_ +  dataTypeParameter + ',\n')
+                #FIXME if options['core']:
+                fd.write('        { &afw_data_type_' + dataTypeParameter + '_direct },\n')
+                #FIXME else:
+                #FIXME     fd.write('        .unresolved_data_type_parameter_data_type_id = ' + s_ +  dataTypeParameter + ',\n')
             else:
                 fd.write('        { NULL },\n')
 
@@ -111,10 +111,10 @@ def write_c_map(fd, prefix, obj, options, onGetValueCFunctionNames):
             else:
                 valueAccessor = propertyType_runtime.get("valueAccessor", "default")
                 fd.write('        ' + s_ + valueAccessor + ',\n')
-                if options['core']:
-                    fd.write('        afw_runtime_value_accessor_' + valueAccessor + '\n')
-                else:
-                    fd.write('        NULL\n')
+                #FIXME if options['core']:
+                fd.write('        afw_runtime_value_accessor_' + valueAccessor + '\n')
+                #FIXME else:
+                #FIXME     fd.write('        NULL\n')
 
             fd.write('    }')
             remaining -= 1
@@ -158,14 +158,14 @@ def write_c_map(fd, prefix, obj, options, onGetValueCFunctionNames):
     # end of afw_runtime_object_type_meta_t.
     fd.write('};\n')
 
-    if options['core']:
-        fd.write('\nAFW_RUNTIME_OBJECT_INF( \n')
-        fd.write('    ' + prefix + 'runtime_inf_' + id + ', \n')
-        fd.write('    impl_runtime_meta_' + id + ');\n')
-    else:
-        fd.write('\nAFW_RUNTIME_OBJECT_RTI( \n')
-        fd.write('    impl_runtime_rti_' + id + ',\n')
-        fd.write('    impl_runtime_meta_' + id + ');\n')
+    #FIXME if options['core']:
+    fd.write('\nAFW_RUNTIME_OBJECT_INF( \n')
+    fd.write('    afw_runtime_inf_' + id + ', \n')
+    fd.write('    impl_runtime_meta_' + id + ');\n')
+    #FIXME  else:
+    #FIXME     fd.write('\nAFW_RUNTIME_OBJECT_RTI( \n')
+    #FIXME     fd.write('    impl_runtime_rti_' + id + ',\n')
+    #FIXME     fd.write('    impl_runtime_meta_' + id + ');\n')
 
 
 def generate(generated_by, options):
@@ -200,36 +200,36 @@ def generate(generated_by, options):
         for obj in list:
             write_c_map(fd, options['prefix'], obj, options, onGetValueCFunctionNames);
 
-        if options['core']:
-            fd.write('\n/* NULL terminated list of inf pointers. */\n')
-            fd.write('static const afw_object_inf_t * impl_inf[] = {\n')
-            for obj in list:
-                fd.write('    &afw_runtime_inf_' + obj['_meta_']['objectId'] + ',\n')
-            fd.write('    NULL\n')
-            fd.write('};\n')
-            fd.write('\n/* Register (' + options['prefix'] + ') runtime object maps. */\n')
-            fd.write('void ' + options['prefix'] + 'register_runtime_object_maps(\n')
-            fd.write('    afw_xctx_t *xctx)\n')
-            fd.write('{\n')
-            fd.write('    afw_runtime_register_object_map_infs(\n')
-            fd.write('        &impl_inf[0], \n')
-            fd.write('        xctx);\n')
-            fd.write('}\n')
-        else:
-            fd.write('\n/* NULL terminated list of rti pointers. */\n')
-            fd.write('static const afw_interface_implementation_rti_t * impl_rti[] = {\n')
-            for obj in list:
-                fd.write('    &impl_runtime_rti_' + obj['_meta_']['objectId'] + ',\n')
-            fd.write('    NULL\n')
-            fd.write('};\n')
-            fd.write('\n/* Register (' + options['prefix'] + ') runtime object maps. */\n')
-            fd.write('void ' + options['prefix'] + 'register_runtime_object_maps(\n')
-            fd.write('    afw_xctx_t *xctx)\n')
-            fd.write('{\n')
-            fd.write('    afw_runtime_resolve_and_register_object_map_infs(\n')
-            fd.write('        &impl_rti[0], \n')
-            fd.write('        xctx);\n')
-            fd.write('}\n')
+        #FIXME if options['core']:
+        fd.write('\n/* NULL terminated list of inf pointers. */\n')
+        fd.write('static const afw_object_inf_t * impl_inf[] = {\n')
+        for obj in list:
+            fd.write('    &afw_runtime_inf_' + obj['_meta_']['objectId'] + ',\n')
+        fd.write('    NULL\n')
+        fd.write('};\n')
+        fd.write('\n/* Register (' + options['prefix'] + ') runtime object maps. */\n')
+        fd.write('void ' + options['prefix'] + 'register_runtime_object_maps(\n')
+        fd.write('    afw_xctx_t *xctx)\n')
+        fd.write('{\n')
+        fd.write('    afw_runtime_register_object_map_infs(\n')
+        fd.write('        &impl_inf[0], \n')
+        fd.write('        xctx);\n')
+        fd.write('}\n')
+        #FIXME else:
+            # fd.write('\n/* NULL terminated list of rti pointers. */\n')
+            # fd.write('static const afw_interface_implementation_rti_t * impl_rti[] = {\n')
+            # for obj in list:
+            #     fd.write('    &impl_runtime_rti_' + obj['_meta_']['objectId'] + ',\n')
+            # fd.write('    NULL\n')
+            # fd.write('};\n')
+            # fd.write('\n/* Register (' + options['prefix'] + ') runtime object maps. */\n')
+            # fd.write('void ' + options['prefix'] + 'register_runtime_object_maps(\n')
+            # fd.write('    afw_xctx_t *xctx)\n')
+            # fd.write('{\n')
+            # fd.write('    afw_runtime_resolve_and_register_object_map_infs(\n')
+            # fd.write('        &impl_rti[0], \n')
+            # fd.write('        xctx);\n')
+            # fd.write('}\n')
 
     filename = options['prefix'] + 'runtime_object_maps.h'
     msg.info('Generating ' + filename)

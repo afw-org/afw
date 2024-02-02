@@ -30,61 +30,61 @@
  * @brief Runtime object inf for object type _AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_ldap_runtime_inf__AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects;
+afw_runtime_inf__AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveConf_adaptor_ldap
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_ldap_runtime_inf__AdaptiveConf_adaptor_ldap;
+afw_runtime_inf__AdaptiveConf_adaptor_ldap;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveConf_adaptor_ldap_bind
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_ldap_runtime_inf__AdaptiveConf_adaptor_ldap_bind;
+afw_runtime_inf__AdaptiveConf_adaptor_ldap_bind;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLdapAttributeType_
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_ldap_runtime_inf__AdaptiveLdapAttributeType_;
+afw_runtime_inf__AdaptiveLdapAttributeType_;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLdapMatchingRuleUse_
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_ldap_runtime_inf__AdaptiveLdapMatchingRuleUse_;
+afw_runtime_inf__AdaptiveLdapMatchingRuleUse_;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLdapMatchingRule_
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_ldap_runtime_inf__AdaptiveLdapMatchingRule_;
+afw_runtime_inf__AdaptiveLdapMatchingRule_;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLdapObjectClass_
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_ldap_runtime_inf__AdaptiveLdapObjectClass_;
+afw_runtime_inf__AdaptiveLdapObjectClass_;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLdapRootDse_
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_ldap_runtime_inf__AdaptiveLdapRootDse_;
+afw_runtime_inf__AdaptiveLdapRootDse_;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLdapSchema_
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_ldap_runtime_inf__AdaptiveLdapSchema_;
+afw_runtime_inf__AdaptiveLdapSchema_;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLdapSyntax_
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_ldap_runtime_inf__AdaptiveLdapSyntax_;
+afw_runtime_inf__AdaptiveLdapSyntax_;
 
 /**
  * @brief Register (afw_ldap_) runtime object maps.

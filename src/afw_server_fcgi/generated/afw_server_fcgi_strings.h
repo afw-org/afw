@@ -627,4 +627,30 @@ extern const afw_value_string_t \
 
 
 
+/** @brief #define for string in quotes */
+#define AFW_SERVER_FCGI_Q_zz__Adaptive_Framework_afw_server_fcgi_collection_ \
+    "Adaptive Framework afw_server_fcgi collection."
+
+/** @brief 'afw_utf8_t' for AFW_SERVER_FCGI_Q_zz__Adaptive_Framework_afw_server_fcgi_collection_ */
+#define afw_server_fcgi_s_zz__Adaptive_Framework_afw_server_fcgi_collection_ \
+    (&afw_server_fcgi_self_v_zz__Adaptive_Framework_afw_server_fcgi_collection_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_SERVER_FCGI_Q_zz__Adaptive_Framework_afw_server_fcgi_collection_ */
+#define afw_server_fcgi_self_s_zz__Adaptive_Framework_afw_server_fcgi_collection_ \
+    (afw_server_fcgi_self_v_zz__Adaptive_Framework_afw_server_fcgi_collection_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_SERVER_FCGI_Q_zz__Adaptive_Framework_afw_server_fcgi_collection_ */
+extern const afw_value_string_t \
+    afw_server_fcgi_self_v_zz__Adaptive_Framework_afw_server_fcgi_collection_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_SERVER_FCGI_Q_zz__Adaptive_Framework_afw_server_fcgi_collection_ */
+#define afw_server_fcgi_z_zz__Adaptive_Framework_afw_server_fcgi_collection_ \
+    (afw_server_fcgi_self_v_zz__Adaptive_Framework_afw_server_fcgi_collection_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_SERVER_FCGI_Q_zz__Adaptive_Framework_afw_server_fcgi_collection_ */
+#define afw_server_fcgi_v_zz__Adaptive_Framework_afw_server_fcgi_collection_ \
+    (&afw_server_fcgi_self_v_zz__Adaptive_Framework_afw_server_fcgi_collection_.pub)
+
+
+
 #endif /* __AFW_SERVER_FCGI_STRINGS_H__ */

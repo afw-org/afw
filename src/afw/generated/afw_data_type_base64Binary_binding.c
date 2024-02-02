@@ -309,7 +309,9 @@ afw_value_create_managed_base64Binary(
     v->internal.size = (internal) ? internal->size : 0;
     v->internal.ptr = (const afw_byte_t *)v +
         sizeof(afw_value_base64Binary_managed_t);
-    memcpy((void *)v->internal.ptr, internal->ptr, size);
+    if (internal && internal->ptr) {
+       memcpy((void *)v->internal.ptr, internal->ptr, size);
+    }
 
     return &v->pub;
 }

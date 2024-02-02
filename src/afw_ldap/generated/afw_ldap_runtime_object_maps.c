@@ -37,8 +37,8 @@ impl_runtime_meta__AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects, 
     impl_runtime_meta__AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects);
 
 
@@ -52,8 +52,8 @@ impl_runtime_meta__AdaptiveConf_adaptor_ldap = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveConf_adaptor_ldap,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveConf_adaptor_ldap, 
     impl_runtime_meta__AdaptiveConf_adaptor_ldap);
 
 
@@ -67,8 +67,8 @@ impl_runtime_meta__AdaptiveConf_adaptor_ldap_bind = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveConf_adaptor_ldap_bind,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveConf_adaptor_ldap_bind, 
     impl_runtime_meta__AdaptiveConf_adaptor_ldap_bind);
 
 
@@ -82,8 +82,8 @@ impl_runtime_meta__AdaptiveLdapAttributeType_ = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLdapAttributeType_,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLdapAttributeType_, 
     impl_runtime_meta__AdaptiveLdapAttributeType_);
 
 
@@ -97,8 +97,8 @@ impl_runtime_meta__AdaptiveLdapMatchingRuleUse_ = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLdapMatchingRuleUse_,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLdapMatchingRuleUse_, 
     impl_runtime_meta__AdaptiveLdapMatchingRuleUse_);
 
 
@@ -112,8 +112,8 @@ impl_runtime_meta__AdaptiveLdapMatchingRule_ = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLdapMatchingRule_,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLdapMatchingRule_, 
     impl_runtime_meta__AdaptiveLdapMatchingRule_);
 
 
@@ -127,8 +127,8 @@ impl_runtime_meta__AdaptiveLdapObjectClass_ = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLdapObjectClass_,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLdapObjectClass_, 
     impl_runtime_meta__AdaptiveLdapObjectClass_);
 
 
@@ -142,8 +142,8 @@ impl_runtime_meta__AdaptiveLdapRootDse_ = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLdapRootDse_,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLdapRootDse_, 
     impl_runtime_meta__AdaptiveLdapRootDse_);
 
 
@@ -157,8 +157,8 @@ impl_runtime_meta__AdaptiveLdapSchema_ = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLdapSchema_,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLdapSchema_, 
     impl_runtime_meta__AdaptiveLdapSchema_);
 
 
@@ -172,22 +172,22 @@ impl_runtime_meta__AdaptiveLdapSyntax_ = {
     false,
 };
 
-AFW_RUNTIME_OBJECT_RTI( 
-    impl_runtime_rti__AdaptiveLdapSyntax_,
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveLdapSyntax_, 
     impl_runtime_meta__AdaptiveLdapSyntax_);
 
-/* NULL terminated list of rti pointers. */
-static const afw_interface_implementation_rti_t * impl_rti[] = {
-    &impl_runtime_rti__AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects,
-    &impl_runtime_rti__AdaptiveConf_adaptor_ldap,
-    &impl_runtime_rti__AdaptiveConf_adaptor_ldap_bind,
-    &impl_runtime_rti__AdaptiveLdapAttributeType_,
-    &impl_runtime_rti__AdaptiveLdapMatchingRuleUse_,
-    &impl_runtime_rti__AdaptiveLdapMatchingRule_,
-    &impl_runtime_rti__AdaptiveLdapObjectClass_,
-    &impl_runtime_rti__AdaptiveLdapRootDse_,
-    &impl_runtime_rti__AdaptiveLdapSchema_,
-    &impl_runtime_rti__AdaptiveLdapSyntax_,
+/* NULL terminated list of inf pointers. */
+static const afw_object_inf_t * impl_inf[] = {
+    &afw_runtime_inf__AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects,
+    &afw_runtime_inf__AdaptiveConf_adaptor_ldap,
+    &afw_runtime_inf__AdaptiveConf_adaptor_ldap_bind,
+    &afw_runtime_inf__AdaptiveLdapAttributeType_,
+    &afw_runtime_inf__AdaptiveLdapMatchingRuleUse_,
+    &afw_runtime_inf__AdaptiveLdapMatchingRule_,
+    &afw_runtime_inf__AdaptiveLdapObjectClass_,
+    &afw_runtime_inf__AdaptiveLdapRootDse_,
+    &afw_runtime_inf__AdaptiveLdapSchema_,
+    &afw_runtime_inf__AdaptiveLdapSyntax_,
     NULL
 };
 
@@ -195,7 +195,7 @@ static const afw_interface_implementation_rti_t * impl_rti[] = {
 void afw_ldap_register_runtime_object_maps(
     afw_xctx_t *xctx)
 {
-    afw_runtime_resolve_and_register_object_map_infs(
-        &impl_rti[0], 
+    afw_runtime_register_object_map_infs(
+        &impl_inf[0], 
         xctx);
 }

@@ -26,65 +26,62 @@
 #include "afw_ldap_generated.h"
 
 
-static const afw_runtime_unresolved_const_object_t
+static const afw_runtime_const_object_instance_t
 impl_1;
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_instance_t
 impl_2;
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_instance_t
 impl_3;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects/propertyTypes/base
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_3_property_value_allowQuery = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+static const afw_runtime_property_t
 impl_3_property_allowQuery = {
-    "allowQuery",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = true
-    }
+    &afw_ldap_self_s_allowQuery,
+    &impl_3_property_value_allowQuery.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_3_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "string"
-    }
+    &afw_ldap_self_s_dataType,
+    &afw_ldap_self_v_string.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_3_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "This is used as the base for ldap_search()."
-    }
+    &afw_ldap_self_s_description,
+    &afw_ldap_self_v_zz__This_is_used_as_the_base_for_ldap_search___.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_3_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Base Override"
-    }
+    &afw_ldap_self_s_label,
+    &afw_ldap_self_v_zz__Base_Override.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_3_property_value_required = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_3_property_required = {
-    "required",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_ldap_self_s_required,
+    &impl_3_property_value_required.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_3_properties[] = {
     &impl_3_property_allowQuery,
     &impl_3_property_dataType,
@@ -94,73 +91,156 @@ impl_3_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_3_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_3,
+    NULL
+};
+
+static const afw_utf8_t
+impl_3_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects/propertyTypes/base");
+
+static const afw_value_object_t
+impl_3__value;
+
+static const afw_runtime_const_object_instance_t
 impl_3 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_3__value,
+        {
+            (const afw_object_t *)&impl_3_meta_object,
+            (const afw_object_t *)&impl_2,
+            &afw_ldap_self_s_base,
+            &afw_ldap_self_s__AdaptiveValueMeta_,
+            &impl_3_meta_path
+        }
+    },
     &impl_3_properties[0]
+};
+
+static const afw_value_object_t
+impl_3__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_3
 };
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects/propertyTypes
  */
 
-static const afw_runtime_unresolved_property_t
-impl_2_property_base = {
-    "base",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_3
-    }
+static const afw_value_object_t
+impl_2_property_value_base = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_3
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t
+impl_2_property_base = {
+    &afw_ldap_self_s_base,
+    &impl_2_property_value_base.pub
+};
+
+static const afw_runtime_property_t *
 impl_2_properties[] = {
     &impl_2_property_base,
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_2_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_2,
+    NULL
+};
+
+static const afw_utf8_t
+impl_2_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects/propertyTypes");
+
+static const afw_value_object_t
+impl_2__value;
+
+static const afw_runtime_const_object_instance_t
 impl_2 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_2__value,
+        {
+            (const afw_object_t *)&impl_2_meta_object,
+            (const afw_object_t *)&impl_1,
+            &afw_ldap_self_s_propertyTypes,
+            &afw_ldap_self_s__AdaptivePropertyTypes_,
+            &impl_2_meta_path
+        }
+    },
     &impl_2_properties[0]
+};
+
+static const afw_value_object_t
+impl_2__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_2
 };
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_1_property_value_allowAdd = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_1_property_allowAdd = {
-    "allowAdd",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_ldap_self_s_allowAdd,
+    &impl_1_property_value_allowAdd.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_1_property_value_allowChange = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_1_property_allowChange = {
-    "allowChange",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_ldap_self_s_allowChange,
+    &impl_1_property_value_allowChange.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_1_property_value_allowDelete = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_1_property_allowDelete = {
-    "allowDelete",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_ldap_self_s_allowDelete,
+    &impl_1_property_value_allowDelete.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_1_property_value_allowEntity = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_1_property_allowEntity = {
-    "allowEntity",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_ldap_self_s_allowEntity,
+    &impl_1_property_value_allowEntity.pub
 };
 
 static const afw_utf8_t
@@ -168,50 +248,51 @@ impl_1_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/ldap_extension")
 };
 
-static const afw_runtime_unresolved_const_array_t
+static const afw_array_wrapper_for_array_self_t
 impl_1_list_collectionURIs = {
-    AFW_UTF8_LITERAL("string"),
+    &afw_array_wrapper_for_array_inf,
+    &afw_data_type_string_direct,
     sizeof(impl_1_array_collectionURIs) / sizeof(afw_utf8_t),
-    (const void *)&impl_1_array_collectionURIs
+    &impl_1_array_collectionURIs
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_array_t
+impl_1_property_value_collectionURIs = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_1_list_collectionURIs
+};
+
+static const afw_runtime_property_t
 impl_1_property_collectionURIs = {
-    "collectionURIs",
-    {
-        .type = afw_runtime_unresolved_primitive_type_array,
-        .array = &impl_1_list_collectionURIs
-    }
+    &afw_ldap_self_s_collectionURIs,
+    &impl_1_property_value_collectionURIs.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_1_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "This is the object type for the optional adaptorTypeSpecific parameter of the retrieve_objects() adaptive function when the adaptorType of the adaptorId is ldap."
-    }
+    &afw_ldap_self_s_description,
+    &afw_ldap_self_v_zz__2512.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_1_property_objectType = {
-    "objectType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "_AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects"
-    }
+    &afw_ldap_self_s_objectType,
+    &afw_ldap_self_v__AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_1_property_value_propertyTypes = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_2
+};
+
+static const afw_runtime_property_t
 impl_1_property_propertyTypes = {
-    "propertyTypes",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_2
-    }
+    &afw_ldap_self_s_propertyTypes,
+    &impl_1_property_value_propertyTypes.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_1_properties[] = {
     &impl_1_property_allowAdd,
     &impl_1_property_allowChange,
@@ -224,86 +305,107 @@ impl_1_properties[] = {
     NULL
 };
 
+static const afw_runtime_const_object_meta_object_t
+impl_1_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_1,
+    NULL
+};
+
 static const afw_utf8_t
 impl_1_meta_path =
     AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects");
 
-static const afw_runtime_unresolved_const_object_t
+static const afw_value_object_t
+impl_1__value;
+
+static const afw_runtime_const_object_instance_t
 impl_1 = {
-    &afw_ldap_self_s__AdaptiveObjectType_,
-    &afw_ldap_self_s__AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects,
-    &impl_1_meta_path,
+    {
+        &afw_runtime_inf__AdaptiveObjectType_,
+        NULL,
+        (const afw_value_t *)&impl_1__value,
+        {
+            (const afw_object_t *)&impl_1_meta_object,
+            NULL,
+            &afw_ldap_self_s__AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects,
+            &afw_ldap_self_s__AdaptiveObjectType_,
+            &impl_1_meta_path
+        }
+    },
     &impl_1_properties[0]
 };
 
-static const afw_runtime_unresolved_const_object_t
+static const afw_value_object_t
+impl_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1
+};
+
+static const afw_runtime_const_object_instance_t
 impl_4;
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_instance_t
 impl_5;
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_instance_t
 impl_6;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_ldap/propertyTypes/bindParameters
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_6_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "template"
-    }
+    &afw_ldap_self_s_dataType,
+    &afw_ldap_self_v_template.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_6_property_dataTypeParameter = {
-    "dataTypeParameter",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "object _AdaptiveConf_adaptor_ldap_bind"
-    }
+    &afw_ldap_self_s_dataTypeParameter,
+    &afw_ldap_self_v_zz__object__AdaptiveConf_adaptor_ldap_bind.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_6_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Bind parameters for this LDAP adaptor."
-    }
+    &afw_ldap_self_s_description,
+    &afw_ldap_self_v_zz__Bind_parameters_for_this_LDAP_adaptor_.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_6_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Bind Parameters"
-    }
+    &afw_ldap_self_s_label,
+    &afw_ldap_self_v_zz__Bind_Parameters.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_6_property_value_required = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+static const afw_runtime_property_t
 impl_6_property_required = {
-    "required",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = true
-    }
+    &afw_ldap_self_s_required,
+    &impl_6_property_value_required.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_6_property_value_unique = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_6_property_unique = {
-    "unique",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_ldap_self_s_unique,
+    &impl_6_property_value_unique.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_6_properties[] = {
     &impl_6_property_dataType,
     &impl_6_property_dataTypeParameter,
@@ -314,73 +416,107 @@ impl_6_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_6_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_6,
+    NULL
+};
+
+static const afw_utf8_t
+impl_6_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_ldap/propertyTypes/bindParameters");
+
+static const afw_value_object_t
+impl_6__value;
+
+static const afw_runtime_const_object_instance_t
 impl_6 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_6__value,
+        {
+            (const afw_object_t *)&impl_6_meta_object,
+            (const afw_object_t *)&impl_5,
+            &afw_ldap_self_s_bindParameters,
+            &afw_ldap_self_s__AdaptiveValueMeta_,
+            &impl_6_meta_path
+        }
+    },
     &impl_6_properties[0]
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_value_object_t
+impl_6__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_6
+};
+
+static const afw_runtime_const_object_instance_t
 impl_7;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_ldap/propertyTypes/preventVerifyCert
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_7_property_value_allowQuery = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+static const afw_runtime_property_t
 impl_7_property_allowQuery = {
-    "allowQuery",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = true
-    }
+    &afw_ldap_self_s_allowQuery,
+    &impl_7_property_value_allowQuery.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_7_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "boolean"
-    }
+    &afw_ldap_self_s_dataType,
+    &afw_ldap_self_v_boolean.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_7_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Specify true to prevent the ldap server certificate from being verified when url uses the LDAPS scheme. If this parameter is false or not specified, the adaptor does not influence the decision to verify the server certificate."
-    }
+    &afw_ldap_self_s_description,
+    &afw_ldap_self_v_zz__2513.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_7_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Prevent Verify Cert"
-    }
+    &afw_ldap_self_s_label,
+    &afw_ldap_self_v_zz__Prevent_Verify_Cert.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_7_property_value_required = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_7_property_required = {
-    "required",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_ldap_self_s_required,
+    &impl_7_property_value_required.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_7_property_value_unique = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_7_property_unique = {
-    "unique",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_ldap_self_s_unique,
+    &impl_7_property_value_unique.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_7_properties[] = {
     &impl_7_property_allowQuery,
     &impl_7_property_dataType,
@@ -391,73 +527,107 @@ impl_7_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_7_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_7,
+    NULL
+};
+
+static const afw_utf8_t
+impl_7_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_ldap/propertyTypes/preventVerifyCert");
+
+static const afw_value_object_t
+impl_7__value;
+
+static const afw_runtime_const_object_instance_t
 impl_7 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_7__value,
+        {
+            (const afw_object_t *)&impl_7_meta_object,
+            (const afw_object_t *)&impl_5,
+            &afw_ldap_self_s_preventVerifyCert,
+            &afw_ldap_self_s__AdaptiveValueMeta_,
+            &impl_7_meta_path
+        }
+    },
     &impl_7_properties[0]
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_value_object_t
+impl_7__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_7
+};
+
+static const afw_runtime_const_object_instance_t
 impl_8;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_ldap/propertyTypes/url
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_8_property_value_allowQuery = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+static const afw_runtime_property_t
 impl_8_property_allowQuery = {
-    "allowQuery",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = true
-    }
+    &afw_ldap_self_s_allowQuery,
+    &impl_8_property_value_allowQuery.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_8_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "string"
-    }
+    &afw_ldap_self_s_dataType,
+    &afw_ldap_self_v_string.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_8_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "URL of LDAP Server. For example, ldaps://ldap-server:636"
-    }
+    &afw_ldap_self_s_description,
+    &afw_ldap_self_v_zz__URL_of_LDAP_Server__For_example__ldaps___ldap_server_636.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_8_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Url"
-    }
+    &afw_ldap_self_s_label,
+    &afw_ldap_self_v_Url.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_8_property_value_required = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+static const afw_runtime_property_t
 impl_8_property_required = {
-    "required",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = true
-    }
+    &afw_ldap_self_s_required,
+    &impl_8_property_value_required.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_8_property_value_unique = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_8_property_unique = {
-    "unique",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_ldap_self_s_unique,
+    &impl_8_property_value_unique.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_8_properties[] = {
     &impl_8_property_allowQuery,
     &impl_8_property_dataType,
@@ -468,43 +638,86 @@ impl_8_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_8_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_8,
+    NULL
+};
+
+static const afw_utf8_t
+impl_8_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_ldap/propertyTypes/url");
+
+static const afw_value_object_t
+impl_8__value;
+
+static const afw_runtime_const_object_instance_t
 impl_8 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_8__value,
+        {
+            (const afw_object_t *)&impl_8_meta_object,
+            (const afw_object_t *)&impl_5,
+            &afw_ldap_self_s_url,
+            &afw_ldap_self_s__AdaptiveValueMeta_,
+            &impl_8_meta_path
+        }
+    },
     &impl_8_properties[0]
+};
+
+static const afw_value_object_t
+impl_8__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_8
 };
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_ldap/propertyTypes
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_5_property_value_bindParameters = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_6
+};
+
+static const afw_runtime_property_t
 impl_5_property_bindParameters = {
-    "bindParameters",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_6
-    }
+    &afw_ldap_self_s_bindParameters,
+    &impl_5_property_value_bindParameters.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_5_property_value_preventVerifyCert = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_7
+};
+
+static const afw_runtime_property_t
 impl_5_property_preventVerifyCert = {
-    "preventVerifyCert",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_7
-    }
+    &afw_ldap_self_s_preventVerifyCert,
+    &impl_5_property_value_preventVerifyCert.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_5_property_value_url = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_8
+};
+
+static const afw_runtime_property_t
 impl_5_property_url = {
-    "url",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_8
-    }
+    &afw_ldap_self_s_url,
+    &impl_5_property_value_url.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_5_properties[] = {
     &impl_5_property_bindParameters,
     &impl_5_property_preventVerifyCert,
@@ -517,24 +730,73 @@ impl_5_parentPaths_array[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor/propertyTypes")
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
-impl_5 = {
-    &impl_5_properties[0],
+static const afw_array_wrapper_for_array_self_t
+impl_5_parentPaths_list = {
+    &afw_array_wrapper_for_array_inf,
+    &afw_data_type_anyURI_direct,
     sizeof(impl_5_parentPaths_array) / sizeof(afw_utf8_t),
-    &impl_5_parentPaths_array[0]
+    (const void *)&impl_5_parentPaths_array
+};
+
+static const afw_value_array_t
+impl_5_parentPaths = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_5_parentPaths_list
+};
+
+static const afw_runtime_const_object_meta_object_t
+impl_5_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_5,
+    &impl_5_parentPaths
+};
+
+static const afw_utf8_t
+impl_5_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_ldap/propertyTypes");
+
+static const afw_value_object_t
+impl_5__value;
+
+static const afw_runtime_const_object_instance_t
+impl_5 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_5__value,
+        {
+            (const afw_object_t *)&impl_5_meta_object,
+            (const afw_object_t *)&impl_4,
+            &afw_ldap_self_s_propertyTypes,
+            &afw_ldap_self_s__AdaptivePropertyTypes_,
+            &impl_5_meta_path
+        }
+    },
+    &impl_5_properties[0]
+};
+
+static const afw_value_object_t
+impl_5__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_5
 };
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_ldap
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_4_property_value_allowEntity = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_4_property_allowEntity = {
-    "allowEntity",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_ldap_self_s_allowEntity,
+    &impl_4_property_value_allowEntity.pub
 };
 
 static const afw_utf8_t
@@ -542,50 +804,51 @@ impl_4_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/ldap_extension")
 };
 
-static const afw_runtime_unresolved_const_array_t
+static const afw_array_wrapper_for_array_self_t
 impl_4_list_collectionURIs = {
-    AFW_UTF8_LITERAL("string"),
+    &afw_array_wrapper_for_array_inf,
+    &afw_data_type_string_direct,
     sizeof(impl_4_array_collectionURIs) / sizeof(afw_utf8_t),
-    (const void *)&impl_4_array_collectionURIs
+    &impl_4_array_collectionURIs
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_array_t
+impl_4_property_value_collectionURIs = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_4_list_collectionURIs
+};
+
+static const afw_runtime_property_t
 impl_4_property_collectionURIs = {
-    "collectionURIs",
-    {
-        .type = afw_runtime_unresolved_primitive_type_array,
-        .array = &impl_4_list_collectionURIs
-    }
+    &afw_ldap_self_s_collectionURIs,
+    &impl_4_property_value_collectionURIs.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_4_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Object type for type=adaptor adaptor_type=ldap conf entries."
-    }
+    &afw_ldap_self_s_description,
+    &afw_ldap_self_v_zz__Object_type_for_type_adaptor_adaptor_type_ldap_conf_entries_.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_4_property_objectType = {
-    "objectType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "_AdaptiveConf_adaptor_ldap"
-    }
+    &afw_ldap_self_s_objectType,
+    &afw_ldap_self_v__AdaptiveConf_adaptor_ldap.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_4_property_value_propertyTypes = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_5
+};
+
+static const afw_runtime_property_t
 impl_4_property_propertyTypes = {
-    "propertyTypes",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_5
-    }
+    &afw_ldap_self_s_propertyTypes,
+    &impl_4_property_value_propertyTypes.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_4_properties[] = {
     &impl_4_property_allowEntity,
     &impl_4_property_collectionURIs,
@@ -595,86 +858,113 @@ impl_4_properties[] = {
     NULL
 };
 
+static const afw_runtime_const_object_meta_object_t
+impl_4_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_4,
+    NULL
+};
+
 static const afw_utf8_t
 impl_4_meta_path =
     AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_ldap");
 
-static const afw_runtime_unresolved_const_object_t
+static const afw_value_object_t
+impl_4__value;
+
+static const afw_runtime_const_object_instance_t
 impl_4 = {
-    &afw_ldap_self_s__AdaptiveObjectType_,
-    &afw_ldap_self_s__AdaptiveConf_adaptor_ldap,
-    &impl_4_meta_path,
+    {
+        &afw_runtime_inf__AdaptiveObjectType_,
+        NULL,
+        (const afw_value_t *)&impl_4__value,
+        {
+            (const afw_object_t *)&impl_4_meta_object,
+            NULL,
+            &afw_ldap_self_s__AdaptiveConf_adaptor_ldap,
+            &afw_ldap_self_s__AdaptiveObjectType_,
+            &impl_4_meta_path
+        }
+    },
     &impl_4_properties[0]
 };
 
-static const afw_runtime_unresolved_const_object_t
+static const afw_value_object_t
+impl_4__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_4
+};
+
+static const afw_runtime_const_object_instance_t
 impl_9;
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_instance_t
 impl_10;
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_instance_t
 impl_11;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_ldap_bind/propertyTypes/dn
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_11_property_value_allowQuery = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+static const afw_runtime_property_t
 impl_11_property_allowQuery = {
-    "allowQuery",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = true
-    }
+    &afw_ldap_self_s_allowQuery,
+    &impl_11_property_value_allowQuery.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_11_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "string"
-    }
+    &afw_ldap_self_s_dataType,
+    &afw_ldap_self_v_string.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_11_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Distinguished Name (DN) to bind with."
-    }
+    &afw_ldap_self_s_description,
+    &afw_ldap_self_v_zz__Distinguished_Name__DN__to_bind_with_.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_11_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Bind DN"
-    }
+    &afw_ldap_self_s_label,
+    &afw_ldap_self_v_zz__Bind_DN.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_11_property_value_required = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+static const afw_runtime_property_t
 impl_11_property_required = {
-    "required",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = true
-    }
+    &afw_ldap_self_s_required,
+    &impl_11_property_value_required.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_11_property_value_unique = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_11_property_unique = {
-    "unique",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_ldap_self_s_unique,
+    &impl_11_property_value_unique.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_11_properties[] = {
     &impl_11_property_allowQuery,
     &impl_11_property_dataType,
@@ -685,73 +975,107 @@ impl_11_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_11_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_11,
+    NULL
+};
+
+static const afw_utf8_t
+impl_11_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_ldap_bind/propertyTypes/dn");
+
+static const afw_value_object_t
+impl_11__value;
+
+static const afw_runtime_const_object_instance_t
 impl_11 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_11__value,
+        {
+            (const afw_object_t *)&impl_11_meta_object,
+            (const afw_object_t *)&impl_10,
+            &afw_ldap_self_s_dn,
+            &afw_ldap_self_s__AdaptiveValueMeta_,
+            &impl_11_meta_path
+        }
+    },
     &impl_11_properties[0]
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_value_object_t
+impl_11__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_11
+};
+
+static const afw_runtime_const_object_instance_t
 impl_12;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_ldap_bind/propertyTypes/password
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_12_property_value_allowQuery = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+static const afw_runtime_property_t
 impl_12_property_allowQuery = {
-    "allowQuery",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = true
-    }
+    &afw_ldap_self_s_allowQuery,
+    &impl_12_property_value_allowQuery.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_12_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "password"
-    }
+    &afw_ldap_self_s_dataType,
+    &afw_ldap_self_v_password.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_12_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Password to bind with."
-    }
+    &afw_ldap_self_s_description,
+    &afw_ldap_self_v_zz__Password_to_bind_with_.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_12_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Bind Password"
-    }
+    &afw_ldap_self_s_label,
+    &afw_ldap_self_v_zz__Bind_Password.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_12_property_value_required = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+static const afw_runtime_property_t
 impl_12_property_required = {
-    "required",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = true
-    }
+    &afw_ldap_self_s_required,
+    &impl_12_property_value_required.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_12_property_value_unique = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_12_property_unique = {
-    "unique",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_ldap_self_s_unique,
+    &impl_12_property_value_unique.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_12_properties[] = {
     &impl_12_property_allowQuery,
     &impl_12_property_dataType,
@@ -762,83 +1086,169 @@ impl_12_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_12_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_12,
+    NULL
+};
+
+static const afw_utf8_t
+impl_12_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_ldap_bind/propertyTypes/password");
+
+static const afw_value_object_t
+impl_12__value;
+
+static const afw_runtime_const_object_instance_t
 impl_12 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_12__value,
+        {
+            (const afw_object_t *)&impl_12_meta_object,
+            (const afw_object_t *)&impl_10,
+            &afw_ldap_self_s_password,
+            &afw_ldap_self_s__AdaptiveValueMeta_,
+            &impl_12_meta_path
+        }
+    },
     &impl_12_properties[0]
+};
+
+static const afw_value_object_t
+impl_12__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_12
 };
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_ldap_bind/propertyTypes
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_10_property_value_dn = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_11
+};
+
+static const afw_runtime_property_t
 impl_10_property_dn = {
-    "dn",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_11
-    }
+    &afw_ldap_self_s_dn,
+    &impl_10_property_value_dn.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_10_property_value_password = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_12
+};
+
+static const afw_runtime_property_t
 impl_10_property_password = {
-    "password",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_12
-    }
+    &afw_ldap_self_s_password,
+    &impl_10_property_value_password.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_10_properties[] = {
     &impl_10_property_dn,
     &impl_10_property_password,
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_10_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_10,
+    NULL
+};
+
+static const afw_utf8_t
+impl_10_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_ldap_bind/propertyTypes");
+
+static const afw_value_object_t
+impl_10__value;
+
+static const afw_runtime_const_object_instance_t
 impl_10 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_10__value,
+        {
+            (const afw_object_t *)&impl_10_meta_object,
+            (const afw_object_t *)&impl_9,
+            &afw_ldap_self_s_propertyTypes,
+            &afw_ldap_self_s__AdaptivePropertyTypes_,
+            &impl_10_meta_path
+        }
+    },
     &impl_10_properties[0]
+};
+
+static const afw_value_object_t
+impl_10__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_10
 };
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_ldap_bind
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_9_property_value_allowAdd = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_9_property_allowAdd = {
-    "allowAdd",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_ldap_self_s_allowAdd,
+    &impl_9_property_value_allowAdd.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_9_property_value_allowChange = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_9_property_allowChange = {
-    "allowChange",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_ldap_self_s_allowChange,
+    &impl_9_property_value_allowChange.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_9_property_value_allowDelete = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_9_property_allowDelete = {
-    "allowDelete",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_ldap_self_s_allowDelete,
+    &impl_9_property_value_allowDelete.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_9_property_value_allowEntity = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_9_property_allowEntity = {
-    "allowEntity",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_ldap_self_s_allowEntity,
+    &impl_9_property_value_allowEntity.pub
 };
 
 static const afw_utf8_t
@@ -846,50 +1256,51 @@ impl_9_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/ldap_extension")
 };
 
-static const afw_runtime_unresolved_const_array_t
+static const afw_array_wrapper_for_array_self_t
 impl_9_list_collectionURIs = {
-    AFW_UTF8_LITERAL("string"),
+    &afw_array_wrapper_for_array_inf,
+    &afw_data_type_string_direct,
     sizeof(impl_9_array_collectionURIs) / sizeof(afw_utf8_t),
-    (const void *)&impl_9_array_collectionURIs
+    &impl_9_array_collectionURIs
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_array_t
+impl_9_property_value_collectionURIs = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_9_list_collectionURIs
+};
+
+static const afw_runtime_property_t
 impl_9_property_collectionURIs = {
-    "collectionURIs",
-    {
-        .type = afw_runtime_unresolved_primitive_type_array,
-        .array = &impl_9_list_collectionURIs
-    }
+    &afw_ldap_self_s_collectionURIs,
+    &impl_9_property_value_collectionURIs.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_9_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Object type for type=adaptor adaptor_type=ldap bind parameter object type."
-    }
+    &afw_ldap_self_s_description,
+    &afw_ldap_self_v_zz__2514.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_9_property_objectType = {
-    "objectType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "_AdaptiveConf_adaptor_ldap_bind"
-    }
+    &afw_ldap_self_s_objectType,
+    &afw_ldap_self_v__AdaptiveConf_adaptor_ldap_bind.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_9_property_value_propertyTypes = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_10
+};
+
+static const afw_runtime_property_t
 impl_9_property_propertyTypes = {
-    "propertyTypes",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_10
-    }
+    &afw_ldap_self_s_propertyTypes,
+    &impl_9_property_value_propertyTypes.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_9_properties[] = {
     &impl_9_property_allowAdd,
     &impl_9_property_allowChange,
@@ -902,230 +1313,415 @@ impl_9_properties[] = {
     NULL
 };
 
+static const afw_runtime_const_object_meta_object_t
+impl_9_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_9,
+    NULL
+};
+
 static const afw_utf8_t
 impl_9_meta_path =
     AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_ldap_bind");
 
-static const afw_runtime_unresolved_const_object_t
+static const afw_value_object_t
+impl_9__value;
+
+static const afw_runtime_const_object_instance_t
 impl_9 = {
-    &afw_ldap_self_s__AdaptiveObjectType_,
-    &afw_ldap_self_s__AdaptiveConf_adaptor_ldap_bind,
-    &impl_9_meta_path,
+    {
+        &afw_runtime_inf__AdaptiveObjectType_,
+        NULL,
+        (const afw_value_t *)&impl_9__value,
+        {
+            (const afw_object_t *)&impl_9_meta_object,
+            NULL,
+            &afw_ldap_self_s__AdaptiveConf_adaptor_ldap_bind,
+            &afw_ldap_self_s__AdaptiveObjectType_,
+            &impl_9_meta_path
+        }
+    },
     &impl_9_properties[0]
 };
 
-static const afw_runtime_unresolved_const_object_t
+static const afw_value_object_t
+impl_9__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_9
+};
+
+static const afw_runtime_const_object_instance_t
 impl_13;
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_instance_t
 impl_14;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveLdapAttributeType_/otherProperties
  */
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_14_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_14_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_14,
+    NULL
+};
+
+static const afw_utf8_t
+impl_14_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLdapAttributeType_/otherProperties");
+
+static const afw_value_object_t
+impl_14__value;
+
+static const afw_runtime_const_object_instance_t
 impl_14 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_14__value,
+        {
+            (const afw_object_t *)&impl_14_meta_object,
+            (const afw_object_t *)&impl_13,
+            &afw_ldap_self_s_otherProperties,
+            &afw_ldap_self_s__AdaptiveValueMeta_,
+            &impl_14_meta_path
+        }
+    },
     &impl_14_properties[0]
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_value_object_t
+impl_14__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_14
+};
+
+static const afw_runtime_const_object_instance_t
 impl_15;
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_instance_t
 impl_16;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveLdapAttributeType_/propertyTypes/DESC
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_16_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "string"
-    }
+    &afw_ldap_self_s_dataType,
+    &afw_ldap_self_v_string.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_16_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Description"
-    }
+    &afw_ldap_self_s_label,
+    &afw_ldap_self_v_Description.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_16_properties[] = {
     &impl_16_property_dataType,
     &impl_16_property_label,
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_16_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_16,
+    NULL
+};
+
+static const afw_utf8_t
+impl_16_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLdapAttributeType_/propertyTypes/DESC");
+
+static const afw_value_object_t
+impl_16__value;
+
+static const afw_runtime_const_object_instance_t
 impl_16 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_16__value,
+        {
+            (const afw_object_t *)&impl_16_meta_object,
+            (const afw_object_t *)&impl_15,
+            &afw_ldap_self_s_DESC,
+            &afw_ldap_self_s__AdaptiveValueMeta_,
+            &impl_16_meta_path
+        }
+    },
     &impl_16_properties[0]
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_value_object_t
+impl_16__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_16
+};
+
+static const afw_runtime_const_object_instance_t
 impl_17;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveLdapAttributeType_/propertyTypes/SINGLE_VALUE
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_17_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "boolean"
-    }
+    &afw_ldap_self_s_dataType,
+    &afw_ldap_self_v_boolean.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_17_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Is Single"
-    }
+    &afw_ldap_self_s_label,
+    &afw_ldap_self_v_zz__Is_Single.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_17_properties[] = {
     &impl_17_property_dataType,
     &impl_17_property_label,
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_17_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_17,
+    NULL
+};
+
+static const afw_utf8_t
+impl_17_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLdapAttributeType_/propertyTypes/SINGLE_VALUE");
+
+static const afw_value_object_t
+impl_17__value;
+
+static const afw_runtime_const_object_instance_t
 impl_17 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_17__value,
+        {
+            (const afw_object_t *)&impl_17_meta_object,
+            (const afw_object_t *)&impl_15,
+            &afw_ldap_self_s_SINGLE_VALUE,
+            &afw_ldap_self_s__AdaptiveValueMeta_,
+            &impl_17_meta_path
+        }
+    },
     &impl_17_properties[0]
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_value_object_t
+impl_17__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_17
+};
+
+static const afw_runtime_const_object_instance_t
 impl_18;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveLdapAttributeType_/propertyTypes/SYNTAX
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_18_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "string"
-    }
+    &afw_ldap_self_s_dataType,
+    &afw_ldap_self_v_string.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_18_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Syntax"
-    }
+    &afw_ldap_self_s_label,
+    &afw_ldap_self_v_Syntax.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_18_properties[] = {
     &impl_18_property_dataType,
     &impl_18_property_label,
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_18_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_18,
+    NULL
+};
+
+static const afw_utf8_t
+impl_18_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLdapAttributeType_/propertyTypes/SYNTAX");
+
+static const afw_value_object_t
+impl_18__value;
+
+static const afw_runtime_const_object_instance_t
 impl_18 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_18__value,
+        {
+            (const afw_object_t *)&impl_18_meta_object,
+            (const afw_object_t *)&impl_15,
+            &afw_ldap_self_s_SYNTAX,
+            &afw_ldap_self_s__AdaptiveValueMeta_,
+            &impl_18_meta_path
+        }
+    },
     &impl_18_properties[0]
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_value_object_t
+impl_18__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_18
+};
+
+static const afw_runtime_const_object_instance_t
 impl_19;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveLdapAttributeType_/propertyTypes/numericoid
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_19_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "string"
-    }
+    &afw_ldap_self_s_dataType,
+    &afw_ldap_self_v_string.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_19_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Numeric OID"
-    }
+    &afw_ldap_self_s_label,
+    &afw_ldap_self_v_zz__Numeric_OID.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_19_properties[] = {
     &impl_19_property_dataType,
     &impl_19_property_label,
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_19_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_19,
+    NULL
+};
+
+static const afw_utf8_t
+impl_19_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLdapAttributeType_/propertyTypes/numericoid");
+
+static const afw_value_object_t
+impl_19__value;
+
+static const afw_runtime_const_object_instance_t
 impl_19 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_19__value,
+        {
+            (const afw_object_t *)&impl_19_meta_object,
+            (const afw_object_t *)&impl_15,
+            &afw_ldap_self_s_numericoid,
+            &afw_ldap_self_s__AdaptiveValueMeta_,
+            &impl_19_meta_path
+        }
+    },
     &impl_19_properties[0]
+};
+
+static const afw_value_object_t
+impl_19__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_19
 };
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveLdapAttributeType_/propertyTypes
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_15_property_value_DESC = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_16
+};
+
+static const afw_runtime_property_t
 impl_15_property_DESC = {
-    "DESC",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_16
-    }
+    &afw_ldap_self_s_DESC,
+    &impl_15_property_value_DESC.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_15_property_value_SINGLE_VALUE = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_17
+};
+
+static const afw_runtime_property_t
 impl_15_property_SINGLE_VALUE = {
-    "SINGLE_VALUE",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_17
-    }
+    &afw_ldap_self_s_SINGLE_VALUE,
+    &impl_15_property_value_SINGLE_VALUE.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_15_property_value_SYNTAX = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_18
+};
+
+static const afw_runtime_property_t
 impl_15_property_SYNTAX = {
-    "SYNTAX",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_18
-    }
+    &afw_ldap_self_s_SYNTAX,
+    &impl_15_property_value_SYNTAX.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_15_property_value_numericoid = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_19
+};
+
+static const afw_runtime_property_t
 impl_15_property_numericoid = {
-    "numericoid",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_19
-    }
+    &afw_ldap_self_s_numericoid,
+    &impl_15_property_value_numericoid.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_15_properties[] = {
     &impl_15_property_DESC,
     &impl_15_property_SINGLE_VALUE,
@@ -1134,49 +1730,95 @@ impl_15_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_15_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_15,
+    NULL
+};
+
+static const afw_utf8_t
+impl_15_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLdapAttributeType_/propertyTypes");
+
+static const afw_value_object_t
+impl_15__value;
+
+static const afw_runtime_const_object_instance_t
 impl_15 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_15__value,
+        {
+            (const afw_object_t *)&impl_15_meta_object,
+            (const afw_object_t *)&impl_13,
+            &afw_ldap_self_s_propertyTypes,
+            &afw_ldap_self_s__AdaptivePropertyTypes_,
+            &impl_15_meta_path
+        }
+    },
     &impl_15_properties[0]
+};
+
+static const afw_value_object_t
+impl_15__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_15
 };
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveLdapAttributeType_
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_13_property_value_allowAdd = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_13_property_allowAdd = {
-    "allowAdd",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_ldap_self_s_allowAdd,
+    &impl_13_property_value_allowAdd.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_13_property_value_allowChange = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_13_property_allowChange = {
-    "allowChange",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_ldap_self_s_allowChange,
+    &impl_13_property_value_allowChange.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_13_property_value_allowDelete = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_13_property_allowDelete = {
-    "allowDelete",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_ldap_self_s_allowDelete,
+    &impl_13_property_value_allowDelete.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_13_property_value_allowEntity = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+static const afw_runtime_property_t
 impl_13_property_allowEntity = {
-    "allowEntity",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = true
-    }
+    &afw_ldap_self_s_allowEntity,
+    &impl_13_property_value_allowEntity.pub
 };
 
 static const afw_utf8_t
@@ -1184,59 +1826,63 @@ impl_13_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/ldap_extension")
 };
 
-static const afw_runtime_unresolved_const_array_t
+static const afw_array_wrapper_for_array_self_t
 impl_13_list_collectionURIs = {
-    AFW_UTF8_LITERAL("string"),
+    &afw_array_wrapper_for_array_inf,
+    &afw_data_type_string_direct,
     sizeof(impl_13_array_collectionURIs) / sizeof(afw_utf8_t),
-    (const void *)&impl_13_array_collectionURIs
+    &impl_13_array_collectionURIs
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_array_t
+impl_13_property_value_collectionURIs = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_13_list_collectionURIs
+};
+
+static const afw_runtime_property_t
 impl_13_property_collectionURIs = {
-    "collectionURIs",
-    {
-        .type = afw_runtime_unresolved_primitive_type_array,
-        .array = &impl_13_list_collectionURIs
-    }
+    &afw_ldap_self_s_collectionURIs,
+    &impl_13_property_value_collectionURIs.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_13_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Object type for type=adaptor adaptor_type=ldap synthetic attribute type object."
-    }
+    &afw_ldap_self_s_description,
+    &afw_ldap_self_v_zz__2515.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_13_property_objectType = {
-    "objectType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "_AdaptiveLdapAttributeType_"
-    }
+    &afw_ldap_self_s_objectType,
+    &afw_ldap_self_v__AdaptiveLdapAttributeType_.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_13_property_value_otherProperties = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_14
+};
+
+static const afw_runtime_property_t
 impl_13_property_otherProperties = {
-    "otherProperties",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_14
-    }
+    &afw_ldap_self_s_otherProperties,
+    &impl_13_property_value_otherProperties.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_13_property_value_propertyTypes = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_15
+};
+
+static const afw_runtime_property_t
 impl_13_property_propertyTypes = {
-    "propertyTypes",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_15
-    }
+    &afw_ldap_self_s_propertyTypes,
+    &impl_13_property_value_propertyTypes.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_13_properties[] = {
     &impl_13_property_allowAdd,
     &impl_13_property_allowChange,
@@ -1250,76 +1896,149 @@ impl_13_properties[] = {
     NULL
 };
 
+static const afw_runtime_const_object_meta_object_t
+impl_13_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_13,
+    NULL
+};
+
 static const afw_utf8_t
 impl_13_meta_path =
     AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLdapAttributeType_");
 
-static const afw_runtime_unresolved_const_object_t
+static const afw_value_object_t
+impl_13__value;
+
+static const afw_runtime_const_object_instance_t
 impl_13 = {
-    &afw_ldap_self_s__AdaptiveObjectType_,
-    &afw_ldap_self_s__AdaptiveLdapAttributeType_,
-    &impl_13_meta_path,
+    {
+        &afw_runtime_inf__AdaptiveObjectType_,
+        NULL,
+        (const afw_value_t *)&impl_13__value,
+        {
+            (const afw_object_t *)&impl_13_meta_object,
+            NULL,
+            &afw_ldap_self_s__AdaptiveLdapAttributeType_,
+            &afw_ldap_self_s__AdaptiveObjectType_,
+            &impl_13_meta_path
+        }
+    },
     &impl_13_properties[0]
 };
 
-static const afw_runtime_unresolved_const_object_t
+static const afw_value_object_t
+impl_13__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_13
+};
+
+static const afw_runtime_const_object_instance_t
 impl_20;
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_instance_t
 impl_21;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveLdapMatchingRuleUse_/otherProperties
  */
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_21_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_21_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_21,
+    NULL
+};
+
+static const afw_utf8_t
+impl_21_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLdapMatchingRuleUse_/otherProperties");
+
+static const afw_value_object_t
+impl_21__value;
+
+static const afw_runtime_const_object_instance_t
 impl_21 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_21__value,
+        {
+            (const afw_object_t *)&impl_21_meta_object,
+            (const afw_object_t *)&impl_20,
+            &afw_ldap_self_s_otherProperties,
+            &afw_ldap_self_s__AdaptiveValueMeta_,
+            &impl_21_meta_path
+        }
+    },
     &impl_21_properties[0]
+};
+
+static const afw_value_object_t
+impl_21__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_21
 };
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveLdapMatchingRuleUse_
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_20_property_value_allowAdd = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_20_property_allowAdd = {
-    "allowAdd",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_ldap_self_s_allowAdd,
+    &impl_20_property_value_allowAdd.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_20_property_value_allowChange = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_20_property_allowChange = {
-    "allowChange",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_ldap_self_s_allowChange,
+    &impl_20_property_value_allowChange.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_20_property_value_allowDelete = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_20_property_allowDelete = {
-    "allowDelete",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_ldap_self_s_allowDelete,
+    &impl_20_property_value_allowDelete.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_20_property_value_allowEntity = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+static const afw_runtime_property_t
 impl_20_property_allowEntity = {
-    "allowEntity",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = true
-    }
+    &afw_ldap_self_s_allowEntity,
+    &impl_20_property_value_allowEntity.pub
 };
 
 static const afw_utf8_t
@@ -1327,50 +2046,51 @@ impl_20_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/ldap_extension")
 };
 
-static const afw_runtime_unresolved_const_array_t
+static const afw_array_wrapper_for_array_self_t
 impl_20_list_collectionURIs = {
-    AFW_UTF8_LITERAL("string"),
+    &afw_array_wrapper_for_array_inf,
+    &afw_data_type_string_direct,
     sizeof(impl_20_array_collectionURIs) / sizeof(afw_utf8_t),
-    (const void *)&impl_20_array_collectionURIs
+    &impl_20_array_collectionURIs
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_array_t
+impl_20_property_value_collectionURIs = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_20_list_collectionURIs
+};
+
+static const afw_runtime_property_t
 impl_20_property_collectionURIs = {
-    "collectionURIs",
-    {
-        .type = afw_runtime_unresolved_primitive_type_array,
-        .array = &impl_20_list_collectionURIs
-    }
+    &afw_ldap_self_s_collectionURIs,
+    &impl_20_property_value_collectionURIs.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_20_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Object type for type=adaptor adaptor_type=ldap synthetic matching rule use object."
-    }
+    &afw_ldap_self_s_description,
+    &afw_ldap_self_v_zz__2516.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_20_property_objectType = {
-    "objectType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "_AdaptiveLdapMatchingRuleUse_"
-    }
+    &afw_ldap_self_s_objectType,
+    &afw_ldap_self_v__AdaptiveLdapMatchingRuleUse_.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_20_property_value_otherProperties = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_21
+};
+
+static const afw_runtime_property_t
 impl_20_property_otherProperties = {
-    "otherProperties",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_21
-    }
+    &afw_ldap_self_s_otherProperties,
+    &impl_20_property_value_otherProperties.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_20_properties[] = {
     &impl_20_property_allowAdd,
     &impl_20_property_allowChange,
@@ -1383,76 +2103,149 @@ impl_20_properties[] = {
     NULL
 };
 
+static const afw_runtime_const_object_meta_object_t
+impl_20_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_20,
+    NULL
+};
+
 static const afw_utf8_t
 impl_20_meta_path =
     AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLdapMatchingRuleUse_");
 
-static const afw_runtime_unresolved_const_object_t
+static const afw_value_object_t
+impl_20__value;
+
+static const afw_runtime_const_object_instance_t
 impl_20 = {
-    &afw_ldap_self_s__AdaptiveObjectType_,
-    &afw_ldap_self_s__AdaptiveLdapMatchingRuleUse_,
-    &impl_20_meta_path,
+    {
+        &afw_runtime_inf__AdaptiveObjectType_,
+        NULL,
+        (const afw_value_t *)&impl_20__value,
+        {
+            (const afw_object_t *)&impl_20_meta_object,
+            NULL,
+            &afw_ldap_self_s__AdaptiveLdapMatchingRuleUse_,
+            &afw_ldap_self_s__AdaptiveObjectType_,
+            &impl_20_meta_path
+        }
+    },
     &impl_20_properties[0]
 };
 
-static const afw_runtime_unresolved_const_object_t
+static const afw_value_object_t
+impl_20__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_20
+};
+
+static const afw_runtime_const_object_instance_t
 impl_22;
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_instance_t
 impl_23;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveLdapMatchingRule_/otherProperties
  */
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_23_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_23_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_23,
+    NULL
+};
+
+static const afw_utf8_t
+impl_23_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLdapMatchingRule_/otherProperties");
+
+static const afw_value_object_t
+impl_23__value;
+
+static const afw_runtime_const_object_instance_t
 impl_23 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_23__value,
+        {
+            (const afw_object_t *)&impl_23_meta_object,
+            (const afw_object_t *)&impl_22,
+            &afw_ldap_self_s_otherProperties,
+            &afw_ldap_self_s__AdaptiveValueMeta_,
+            &impl_23_meta_path
+        }
+    },
     &impl_23_properties[0]
+};
+
+static const afw_value_object_t
+impl_23__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_23
 };
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveLdapMatchingRule_
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_22_property_value_allowAdd = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_22_property_allowAdd = {
-    "allowAdd",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_ldap_self_s_allowAdd,
+    &impl_22_property_value_allowAdd.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_22_property_value_allowChange = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_22_property_allowChange = {
-    "allowChange",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_ldap_self_s_allowChange,
+    &impl_22_property_value_allowChange.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_22_property_value_allowDelete = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_22_property_allowDelete = {
-    "allowDelete",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_ldap_self_s_allowDelete,
+    &impl_22_property_value_allowDelete.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_22_property_value_allowEntity = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+static const afw_runtime_property_t
 impl_22_property_allowEntity = {
-    "allowEntity",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = true
-    }
+    &afw_ldap_self_s_allowEntity,
+    &impl_22_property_value_allowEntity.pub
 };
 
 static const afw_utf8_t
@@ -1460,50 +2253,51 @@ impl_22_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/ldap_extension")
 };
 
-static const afw_runtime_unresolved_const_array_t
+static const afw_array_wrapper_for_array_self_t
 impl_22_list_collectionURIs = {
-    AFW_UTF8_LITERAL("string"),
+    &afw_array_wrapper_for_array_inf,
+    &afw_data_type_string_direct,
     sizeof(impl_22_array_collectionURIs) / sizeof(afw_utf8_t),
-    (const void *)&impl_22_array_collectionURIs
+    &impl_22_array_collectionURIs
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_array_t
+impl_22_property_value_collectionURIs = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_22_list_collectionURIs
+};
+
+static const afw_runtime_property_t
 impl_22_property_collectionURIs = {
-    "collectionURIs",
-    {
-        .type = afw_runtime_unresolved_primitive_type_array,
-        .array = &impl_22_list_collectionURIs
-    }
+    &afw_ldap_self_s_collectionURIs,
+    &impl_22_property_value_collectionURIs.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_22_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Object type for type=adaptor adaptor_type=ldap synthetic matching rule object."
-    }
+    &afw_ldap_self_s_description,
+    &afw_ldap_self_v_zz__2517.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_22_property_objectType = {
-    "objectType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "_AdaptiveLdapMatchingRule_"
-    }
+    &afw_ldap_self_s_objectType,
+    &afw_ldap_self_v__AdaptiveLdapMatchingRule_.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_22_property_value_otherProperties = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_23
+};
+
+static const afw_runtime_property_t
 impl_22_property_otherProperties = {
-    "otherProperties",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_23
-    }
+    &afw_ldap_self_s_otherProperties,
+    &impl_22_property_value_otherProperties.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_22_properties[] = {
     &impl_22_property_allowAdd,
     &impl_22_property_allowChange,
@@ -1516,76 +2310,128 @@ impl_22_properties[] = {
     NULL
 };
 
+static const afw_runtime_const_object_meta_object_t
+impl_22_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_22,
+    NULL
+};
+
 static const afw_utf8_t
 impl_22_meta_path =
     AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLdapMatchingRule_");
 
-static const afw_runtime_unresolved_const_object_t
+static const afw_value_object_t
+impl_22__value;
+
+static const afw_runtime_const_object_instance_t
 impl_22 = {
-    &afw_ldap_self_s__AdaptiveObjectType_,
-    &afw_ldap_self_s__AdaptiveLdapMatchingRule_,
-    &impl_22_meta_path,
+    {
+        &afw_runtime_inf__AdaptiveObjectType_,
+        NULL,
+        (const afw_value_t *)&impl_22__value,
+        {
+            (const afw_object_t *)&impl_22_meta_object,
+            NULL,
+            &afw_ldap_self_s__AdaptiveLdapMatchingRule_,
+            &afw_ldap_self_s__AdaptiveObjectType_,
+            &impl_22_meta_path
+        }
+    },
     &impl_22_properties[0]
 };
 
-static const afw_runtime_unresolved_const_object_t
+static const afw_value_object_t
+impl_22__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_22
+};
+
+static const afw_runtime_const_object_instance_t
 impl_24;
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_instance_t
 impl_25;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveLdapObjectClass_/otherProperties
  */
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_25_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_25_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_25,
+    NULL
+};
+
+static const afw_utf8_t
+impl_25_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLdapObjectClass_/otherProperties");
+
+static const afw_value_object_t
+impl_25__value;
+
+static const afw_runtime_const_object_instance_t
 impl_25 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_25__value,
+        {
+            (const afw_object_t *)&impl_25_meta_object,
+            (const afw_object_t *)&impl_24,
+            &afw_ldap_self_s_otherProperties,
+            &afw_ldap_self_s__AdaptiveValueMeta_,
+            &impl_25_meta_path
+        }
+    },
     &impl_25_properties[0]
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_value_object_t
+impl_25__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_25
+};
+
+static const afw_runtime_const_object_instance_t
 impl_26;
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_instance_t
 impl_27;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveLdapObjectClass_/propertyTypes/ABSTRACT
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_27_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "boolean"
-    }
+    &afw_ldap_self_s_dataType,
+    &afw_ldap_self_v_boolean.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_27_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Abstract Class"
-    }
+    &afw_ldap_self_s_description,
+    &afw_ldap_self_v_zz__Abstract_Class.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_27_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Abstract"
-    }
+    &afw_ldap_self_s_label,
+    &afw_ldap_self_v_Abstract.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_27_properties[] = {
     &impl_27_property_dataType,
     &impl_27_property_description,
@@ -1593,46 +2439,71 @@ impl_27_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_27_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_27,
+    NULL
+};
+
+static const afw_utf8_t
+impl_27_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLdapObjectClass_/propertyTypes/ABSTRACT");
+
+static const afw_value_object_t
+impl_27__value;
+
+static const afw_runtime_const_object_instance_t
 impl_27 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_27__value,
+        {
+            (const afw_object_t *)&impl_27_meta_object,
+            (const afw_object_t *)&impl_26,
+            &afw_ldap_self_s_ABSTRACT,
+            &afw_ldap_self_s__AdaptiveValueMeta_,
+            &impl_27_meta_path
+        }
+    },
     &impl_27_properties[0]
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_value_object_t
+impl_27__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_27
+};
+
+static const afw_runtime_const_object_instance_t
 impl_28;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveLdapObjectClass_/propertyTypes/AUXILIARY
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_28_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "boolean"
-    }
+    &afw_ldap_self_s_dataType,
+    &afw_ldap_self_v_boolean.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_28_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Auxiliary Class"
-    }
+    &afw_ldap_self_s_description,
+    &afw_ldap_self_v_zz__Auxiliary_Class.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_28_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Auxiliary"
-    }
+    &afw_ldap_self_s_label,
+    &afw_ldap_self_v_Auxiliary.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_28_properties[] = {
     &impl_28_property_dataType,
     &impl_28_property_description,
@@ -1640,92 +2511,142 @@ impl_28_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_28_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_28,
+    NULL
+};
+
+static const afw_utf8_t
+impl_28_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLdapObjectClass_/propertyTypes/AUXILIARY");
+
+static const afw_value_object_t
+impl_28__value;
+
+static const afw_runtime_const_object_instance_t
 impl_28 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_28__value,
+        {
+            (const afw_object_t *)&impl_28_meta_object,
+            (const afw_object_t *)&impl_26,
+            &afw_ldap_self_s_AUXILIARY,
+            &afw_ldap_self_s__AdaptiveValueMeta_,
+            &impl_28_meta_path
+        }
+    },
     &impl_28_properties[0]
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_value_object_t
+impl_28__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_28
+};
+
+static const afw_runtime_const_object_instance_t
 impl_29;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveLdapObjectClass_/propertyTypes/DESC
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_29_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "string"
-    }
+    &afw_ldap_self_s_dataType,
+    &afw_ldap_self_v_string.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_29_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Description"
-    }
+    &afw_ldap_self_s_label,
+    &afw_ldap_self_v_Description.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_29_properties[] = {
     &impl_29_property_dataType,
     &impl_29_property_label,
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_29_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_29,
+    NULL
+};
+
+static const afw_utf8_t
+impl_29_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLdapObjectClass_/propertyTypes/DESC");
+
+static const afw_value_object_t
+impl_29__value;
+
+static const afw_runtime_const_object_instance_t
 impl_29 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_29__value,
+        {
+            (const afw_object_t *)&impl_29_meta_object,
+            (const afw_object_t *)&impl_26,
+            &afw_ldap_self_s_DESC,
+            &afw_ldap_self_s__AdaptiveValueMeta_,
+            &impl_29_meta_path
+        }
+    },
     &impl_29_properties[0]
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_value_object_t
+impl_29__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_29
+};
+
+static const afw_runtime_const_object_instance_t
 impl_30;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveLdapObjectClass_/propertyTypes/MAY
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_30_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "array"
-    }
+    &afw_ldap_self_s_dataType,
+    &afw_ldap_self_v_array.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_30_property_dataTypeParameter = {
-    "dataTypeParameter",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "string"
-    }
+    &afw_ldap_self_s_dataTypeParameter,
+    &afw_ldap_self_v_string.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_30_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Optional attributes of class."
-    }
+    &afw_ldap_self_s_description,
+    &afw_ldap_self_v_zz__Optional_attributes_of_class_.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_30_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Optional"
-    }
+    &afw_ldap_self_s_label,
+    &afw_ldap_self_v_Optional.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_30_properties[] = {
     &impl_30_property_dataType,
     &impl_30_property_dataTypeParameter,
@@ -1734,55 +2655,77 @@ impl_30_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_30_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_30,
+    NULL
+};
+
+static const afw_utf8_t
+impl_30_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLdapObjectClass_/propertyTypes/MAY");
+
+static const afw_value_object_t
+impl_30__value;
+
+static const afw_runtime_const_object_instance_t
 impl_30 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_30__value,
+        {
+            (const afw_object_t *)&impl_30_meta_object,
+            (const afw_object_t *)&impl_26,
+            &afw_ldap_self_s_MAY,
+            &afw_ldap_self_s__AdaptiveValueMeta_,
+            &impl_30_meta_path
+        }
+    },
     &impl_30_properties[0]
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_value_object_t
+impl_30__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_30
+};
+
+static const afw_runtime_const_object_instance_t
 impl_31;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveLdapObjectClass_/propertyTypes/MUST
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_31_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "array"
-    }
+    &afw_ldap_self_s_dataType,
+    &afw_ldap_self_v_array.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_31_property_dataTypeParameter = {
-    "dataTypeParameter",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "string"
-    }
+    &afw_ldap_self_s_dataTypeParameter,
+    &afw_ldap_self_v_string.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_31_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Required attributes of class."
-    }
+    &afw_ldap_self_s_description,
+    &afw_ldap_self_v_zz__Required_attributes_of_class_.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_31_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Required"
-    }
+    &afw_ldap_self_s_label,
+    &afw_ldap_self_v_Required.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_31_properties[] = {
     &impl_31_property_dataType,
     &impl_31_property_dataTypeParameter,
@@ -1791,55 +2734,77 @@ impl_31_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_31_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_31,
+    NULL
+};
+
+static const afw_utf8_t
+impl_31_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLdapObjectClass_/propertyTypes/MUST");
+
+static const afw_value_object_t
+impl_31__value;
+
+static const afw_runtime_const_object_instance_t
 impl_31 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_31__value,
+        {
+            (const afw_object_t *)&impl_31_meta_object,
+            (const afw_object_t *)&impl_26,
+            &afw_ldap_self_s_MUST,
+            &afw_ldap_self_s__AdaptiveValueMeta_,
+            &impl_31_meta_path
+        }
+    },
     &impl_31_properties[0]
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_value_object_t
+impl_31__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_31
+};
+
+static const afw_runtime_const_object_instance_t
 impl_32;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveLdapObjectClass_/propertyTypes/NAME
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_32_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "array"
-    }
+    &afw_ldap_self_s_dataType,
+    &afw_ldap_self_v_array.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_32_property_dataTypeParameter = {
-    "dataTypeParameter",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "string"
-    }
+    &afw_ldap_self_s_dataTypeParameter,
+    &afw_ldap_self_v_string.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_32_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Name of class."
-    }
+    &afw_ldap_self_s_description,
+    &afw_ldap_self_v_zz__Name_of_class_.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_32_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Name"
-    }
+    &afw_ldap_self_s_label,
+    &afw_ldap_self_v_Name.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_32_properties[] = {
     &impl_32_property_dataType,
     &impl_32_property_dataTypeParameter,
@@ -1848,46 +2813,71 @@ impl_32_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_32_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_32,
+    NULL
+};
+
+static const afw_utf8_t
+impl_32_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLdapObjectClass_/propertyTypes/NAME");
+
+static const afw_value_object_t
+impl_32__value;
+
+static const afw_runtime_const_object_instance_t
 impl_32 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_32__value,
+        {
+            (const afw_object_t *)&impl_32_meta_object,
+            (const afw_object_t *)&impl_26,
+            &afw_ldap_self_s_NAME,
+            &afw_ldap_self_s__AdaptiveValueMeta_,
+            &impl_32_meta_path
+        }
+    },
     &impl_32_properties[0]
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_value_object_t
+impl_32__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_32
+};
+
+static const afw_runtime_const_object_instance_t
 impl_33;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveLdapObjectClass_/propertyTypes/STRUCTURAL
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_33_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "boolean"
-    }
+    &afw_ldap_self_s_dataType,
+    &afw_ldap_self_v_boolean.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_33_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Structural Class"
-    }
+    &afw_ldap_self_s_description,
+    &afw_ldap_self_v_zz__Structural_Class.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_33_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Structural"
-    }
+    &afw_ldap_self_s_label,
+    &afw_ldap_self_v_Structural.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_33_properties[] = {
     &impl_33_property_dataType,
     &impl_33_property_description,
@@ -1895,55 +2885,77 @@ impl_33_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_33_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_33,
+    NULL
+};
+
+static const afw_utf8_t
+impl_33_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLdapObjectClass_/propertyTypes/STRUCTURAL");
+
+static const afw_value_object_t
+impl_33__value;
+
+static const afw_runtime_const_object_instance_t
 impl_33 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_33__value,
+        {
+            (const afw_object_t *)&impl_33_meta_object,
+            (const afw_object_t *)&impl_26,
+            &afw_ldap_self_s_STRUCTURAL,
+            &afw_ldap_self_s__AdaptiveValueMeta_,
+            &impl_33_meta_path
+        }
+    },
     &impl_33_properties[0]
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_value_object_t
+impl_33__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_33
+};
+
+static const afw_runtime_const_object_instance_t
 impl_34;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveLdapObjectClass_/propertyTypes/SUP
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_34_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "array"
-    }
+    &afw_ldap_self_s_dataType,
+    &afw_ldap_self_v_array.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_34_property_dataTypeParameter = {
-    "dataTypeParameter",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "string"
-    }
+    &afw_ldap_self_s_dataTypeParameter,
+    &afw_ldap_self_v_string.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_34_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Superior classes."
-    }
+    &afw_ldap_self_s_description,
+    &afw_ldap_self_v_zz__Superior_classes_.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_34_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Sup"
-    }
+    &afw_ldap_self_s_label,
+    &afw_ldap_self_v_Sup.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_34_properties[] = {
     &impl_34_property_dataType,
     &impl_34_property_dataTypeParameter,
@@ -1952,134 +2964,223 @@ impl_34_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_34_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_34,
+    NULL
+};
+
+static const afw_utf8_t
+impl_34_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLdapObjectClass_/propertyTypes/SUP");
+
+static const afw_value_object_t
+impl_34__value;
+
+static const afw_runtime_const_object_instance_t
 impl_34 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_34__value,
+        {
+            (const afw_object_t *)&impl_34_meta_object,
+            (const afw_object_t *)&impl_26,
+            &afw_ldap_self_s_SUP,
+            &afw_ldap_self_s__AdaptiveValueMeta_,
+            &impl_34_meta_path
+        }
+    },
     &impl_34_properties[0]
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_value_object_t
+impl_34__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_34
+};
+
+static const afw_runtime_const_object_instance_t
 impl_35;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveLdapObjectClass_/propertyTypes/numericoid
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_35_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "string"
-    }
+    &afw_ldap_self_s_dataType,
+    &afw_ldap_self_v_string.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_35_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Numeric OID"
-    }
+    &afw_ldap_self_s_label,
+    &afw_ldap_self_v_zz__Numeric_OID.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_35_properties[] = {
     &impl_35_property_dataType,
     &impl_35_property_label,
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_35_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_35,
+    NULL
+};
+
+static const afw_utf8_t
+impl_35_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLdapObjectClass_/propertyTypes/numericoid");
+
+static const afw_value_object_t
+impl_35__value;
+
+static const afw_runtime_const_object_instance_t
 impl_35 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_35__value,
+        {
+            (const afw_object_t *)&impl_35_meta_object,
+            (const afw_object_t *)&impl_26,
+            &afw_ldap_self_s_numericoid,
+            &afw_ldap_self_s__AdaptiveValueMeta_,
+            &impl_35_meta_path
+        }
+    },
     &impl_35_properties[0]
+};
+
+static const afw_value_object_t
+impl_35__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_35
 };
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveLdapObjectClass_/propertyTypes
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_26_property_value_ABSTRACT = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_27
+};
+
+static const afw_runtime_property_t
 impl_26_property_ABSTRACT = {
-    "ABSTRACT",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_27
-    }
+    &afw_ldap_self_s_ABSTRACT,
+    &impl_26_property_value_ABSTRACT.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_26_property_value_AUXILIARY = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_28
+};
+
+static const afw_runtime_property_t
 impl_26_property_AUXILIARY = {
-    "AUXILIARY",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_28
-    }
+    &afw_ldap_self_s_AUXILIARY,
+    &impl_26_property_value_AUXILIARY.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_26_property_value_DESC = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_29
+};
+
+static const afw_runtime_property_t
 impl_26_property_DESC = {
-    "DESC",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_29
-    }
+    &afw_ldap_self_s_DESC,
+    &impl_26_property_value_DESC.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_26_property_value_MAY = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_30
+};
+
+static const afw_runtime_property_t
 impl_26_property_MAY = {
-    "MAY",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_30
-    }
+    &afw_ldap_self_s_MAY,
+    &impl_26_property_value_MAY.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_26_property_value_MUST = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_31
+};
+
+static const afw_runtime_property_t
 impl_26_property_MUST = {
-    "MUST",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_31
-    }
+    &afw_ldap_self_s_MUST,
+    &impl_26_property_value_MUST.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_26_property_value_NAME = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_32
+};
+
+static const afw_runtime_property_t
 impl_26_property_NAME = {
-    "NAME",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_32
-    }
+    &afw_ldap_self_s_NAME,
+    &impl_26_property_value_NAME.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_26_property_value_STRUCTURAL = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_33
+};
+
+static const afw_runtime_property_t
 impl_26_property_STRUCTURAL = {
-    "STRUCTURAL",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_33
-    }
+    &afw_ldap_self_s_STRUCTURAL,
+    &impl_26_property_value_STRUCTURAL.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_26_property_value_SUP = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_34
+};
+
+static const afw_runtime_property_t
 impl_26_property_SUP = {
-    "SUP",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_34
-    }
+    &afw_ldap_self_s_SUP,
+    &impl_26_property_value_SUP.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_26_property_value_numericoid = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_35
+};
+
+static const afw_runtime_property_t
 impl_26_property_numericoid = {
-    "numericoid",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_35
-    }
+    &afw_ldap_self_s_numericoid,
+    &impl_26_property_value_numericoid.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_26_properties[] = {
     &impl_26_property_ABSTRACT,
     &impl_26_property_AUXILIARY,
@@ -2093,49 +3194,95 @@ impl_26_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_26_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_26,
+    NULL
+};
+
+static const afw_utf8_t
+impl_26_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLdapObjectClass_/propertyTypes");
+
+static const afw_value_object_t
+impl_26__value;
+
+static const afw_runtime_const_object_instance_t
 impl_26 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_26__value,
+        {
+            (const afw_object_t *)&impl_26_meta_object,
+            (const afw_object_t *)&impl_24,
+            &afw_ldap_self_s_propertyTypes,
+            &afw_ldap_self_s__AdaptivePropertyTypes_,
+            &impl_26_meta_path
+        }
+    },
     &impl_26_properties[0]
+};
+
+static const afw_value_object_t
+impl_26__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_26
 };
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveLdapObjectClass_
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_24_property_value_allowAdd = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_24_property_allowAdd = {
-    "allowAdd",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_ldap_self_s_allowAdd,
+    &impl_24_property_value_allowAdd.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_24_property_value_allowChange = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_24_property_allowChange = {
-    "allowChange",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_ldap_self_s_allowChange,
+    &impl_24_property_value_allowChange.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_24_property_value_allowDelete = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_24_property_allowDelete = {
-    "allowDelete",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_ldap_self_s_allowDelete,
+    &impl_24_property_value_allowDelete.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_24_property_value_allowEntity = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+static const afw_runtime_property_t
 impl_24_property_allowEntity = {
-    "allowEntity",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = true
-    }
+    &afw_ldap_self_s_allowEntity,
+    &impl_24_property_value_allowEntity.pub
 };
 
 static const afw_utf8_t
@@ -2143,59 +3290,63 @@ impl_24_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/ldap_extension")
 };
 
-static const afw_runtime_unresolved_const_array_t
+static const afw_array_wrapper_for_array_self_t
 impl_24_list_collectionURIs = {
-    AFW_UTF8_LITERAL("string"),
+    &afw_array_wrapper_for_array_inf,
+    &afw_data_type_string_direct,
     sizeof(impl_24_array_collectionURIs) / sizeof(afw_utf8_t),
-    (const void *)&impl_24_array_collectionURIs
+    &impl_24_array_collectionURIs
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_array_t
+impl_24_property_value_collectionURIs = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_24_list_collectionURIs
+};
+
+static const afw_runtime_property_t
 impl_24_property_collectionURIs = {
-    "collectionURIs",
-    {
-        .type = afw_runtime_unresolved_primitive_type_array,
-        .array = &impl_24_list_collectionURIs
-    }
+    &afw_ldap_self_s_collectionURIs,
+    &impl_24_property_value_collectionURIs.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_24_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Object type for type=adaptor adaptor_type=ldap synthetic object class object."
-    }
+    &afw_ldap_self_s_description,
+    &afw_ldap_self_v_zz__2518.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_24_property_objectType = {
-    "objectType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "_AdaptiveLdapObjectClass_"
-    }
+    &afw_ldap_self_s_objectType,
+    &afw_ldap_self_v__AdaptiveLdapObjectClass_.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_24_property_value_otherProperties = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_25
+};
+
+static const afw_runtime_property_t
 impl_24_property_otherProperties = {
-    "otherProperties",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_25
-    }
+    &afw_ldap_self_s_otherProperties,
+    &impl_24_property_value_otherProperties.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_24_property_value_propertyTypes = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_26
+};
+
+static const afw_runtime_property_t
 impl_24_property_propertyTypes = {
-    "propertyTypes",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_26
-    }
+    &afw_ldap_self_s_propertyTypes,
+    &impl_24_property_value_propertyTypes.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_24_properties[] = {
     &impl_24_property_allowAdd,
     &impl_24_property_allowChange,
@@ -2209,76 +3360,149 @@ impl_24_properties[] = {
     NULL
 };
 
+static const afw_runtime_const_object_meta_object_t
+impl_24_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_24,
+    NULL
+};
+
 static const afw_utf8_t
 impl_24_meta_path =
     AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLdapObjectClass_");
 
-static const afw_runtime_unresolved_const_object_t
+static const afw_value_object_t
+impl_24__value;
+
+static const afw_runtime_const_object_instance_t
 impl_24 = {
-    &afw_ldap_self_s__AdaptiveObjectType_,
-    &afw_ldap_self_s__AdaptiveLdapObjectClass_,
-    &impl_24_meta_path,
+    {
+        &afw_runtime_inf__AdaptiveObjectType_,
+        NULL,
+        (const afw_value_t *)&impl_24__value,
+        {
+            (const afw_object_t *)&impl_24_meta_object,
+            NULL,
+            &afw_ldap_self_s__AdaptiveLdapObjectClass_,
+            &afw_ldap_self_s__AdaptiveObjectType_,
+            &impl_24_meta_path
+        }
+    },
     &impl_24_properties[0]
 };
 
-static const afw_runtime_unresolved_const_object_t
+static const afw_value_object_t
+impl_24__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_24
+};
+
+static const afw_runtime_const_object_instance_t
 impl_36;
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_instance_t
 impl_37;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveLdapRootDse_/otherProperties
  */
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_37_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_37_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_37,
+    NULL
+};
+
+static const afw_utf8_t
+impl_37_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLdapRootDse_/otherProperties");
+
+static const afw_value_object_t
+impl_37__value;
+
+static const afw_runtime_const_object_instance_t
 impl_37 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_37__value,
+        {
+            (const afw_object_t *)&impl_37_meta_object,
+            (const afw_object_t *)&impl_36,
+            &afw_ldap_self_s_otherProperties,
+            &afw_ldap_self_s__AdaptiveValueMeta_,
+            &impl_37_meta_path
+        }
+    },
     &impl_37_properties[0]
+};
+
+static const afw_value_object_t
+impl_37__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_37
 };
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveLdapRootDse_
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_36_property_value_allowAdd = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_36_property_allowAdd = {
-    "allowAdd",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_ldap_self_s_allowAdd,
+    &impl_36_property_value_allowAdd.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_36_property_value_allowChange = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_36_property_allowChange = {
-    "allowChange",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_ldap_self_s_allowChange,
+    &impl_36_property_value_allowChange.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_36_property_value_allowDelete = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_36_property_allowDelete = {
-    "allowDelete",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_ldap_self_s_allowDelete,
+    &impl_36_property_value_allowDelete.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_36_property_value_allowEntity = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+static const afw_runtime_property_t
 impl_36_property_allowEntity = {
-    "allowEntity",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = true
-    }
+    &afw_ldap_self_s_allowEntity,
+    &impl_36_property_value_allowEntity.pub
 };
 
 static const afw_utf8_t
@@ -2286,50 +3510,51 @@ impl_36_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/ldap_extension")
 };
 
-static const afw_runtime_unresolved_const_array_t
+static const afw_array_wrapper_for_array_self_t
 impl_36_list_collectionURIs = {
-    AFW_UTF8_LITERAL("string"),
+    &afw_array_wrapper_for_array_inf,
+    &afw_data_type_string_direct,
     sizeof(impl_36_array_collectionURIs) / sizeof(afw_utf8_t),
-    (const void *)&impl_36_array_collectionURIs
+    &impl_36_array_collectionURIs
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_array_t
+impl_36_property_value_collectionURIs = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_36_list_collectionURIs
+};
+
+static const afw_runtime_property_t
 impl_36_property_collectionURIs = {
-    "collectionURIs",
-    {
-        .type = afw_runtime_unresolved_primitive_type_array,
-        .array = &impl_36_list_collectionURIs
-    }
+    &afw_ldap_self_s_collectionURIs,
+    &impl_36_property_value_collectionURIs.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_36_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Object type for type=adaptor adaptor_type=ldap synthetic root dse object."
-    }
+    &afw_ldap_self_s_description,
+    &afw_ldap_self_v_zz__2519.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_36_property_objectType = {
-    "objectType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "_AdaptiveLdapRootDse_"
-    }
+    &afw_ldap_self_s_objectType,
+    &afw_ldap_self_v__AdaptiveLdapRootDse_.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_36_property_value_otherProperties = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_37
+};
+
+static const afw_runtime_property_t
 impl_36_property_otherProperties = {
-    "otherProperties",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_37
-    }
+    &afw_ldap_self_s_otherProperties,
+    &impl_36_property_value_otherProperties.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_36_properties[] = {
     &impl_36_property_allowAdd,
     &impl_36_property_allowChange,
@@ -2342,76 +3567,149 @@ impl_36_properties[] = {
     NULL
 };
 
+static const afw_runtime_const_object_meta_object_t
+impl_36_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_36,
+    NULL
+};
+
 static const afw_utf8_t
 impl_36_meta_path =
     AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLdapRootDse_");
 
-static const afw_runtime_unresolved_const_object_t
+static const afw_value_object_t
+impl_36__value;
+
+static const afw_runtime_const_object_instance_t
 impl_36 = {
-    &afw_ldap_self_s__AdaptiveObjectType_,
-    &afw_ldap_self_s__AdaptiveLdapRootDse_,
-    &impl_36_meta_path,
+    {
+        &afw_runtime_inf__AdaptiveObjectType_,
+        NULL,
+        (const afw_value_t *)&impl_36__value,
+        {
+            (const afw_object_t *)&impl_36_meta_object,
+            NULL,
+            &afw_ldap_self_s__AdaptiveLdapRootDse_,
+            &afw_ldap_self_s__AdaptiveObjectType_,
+            &impl_36_meta_path
+        }
+    },
     &impl_36_properties[0]
 };
 
-static const afw_runtime_unresolved_const_object_t
+static const afw_value_object_t
+impl_36__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_36
+};
+
+static const afw_runtime_const_object_instance_t
 impl_38;
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_instance_t
 impl_39;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveLdapSchema_/otherProperties
  */
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_39_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_39_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_39,
+    NULL
+};
+
+static const afw_utf8_t
+impl_39_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLdapSchema_/otherProperties");
+
+static const afw_value_object_t
+impl_39__value;
+
+static const afw_runtime_const_object_instance_t
 impl_39 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_39__value,
+        {
+            (const afw_object_t *)&impl_39_meta_object,
+            (const afw_object_t *)&impl_38,
+            &afw_ldap_self_s_otherProperties,
+            &afw_ldap_self_s__AdaptiveValueMeta_,
+            &impl_39_meta_path
+        }
+    },
     &impl_39_properties[0]
+};
+
+static const afw_value_object_t
+impl_39__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_39
 };
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveLdapSchema_
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_38_property_value_allowAdd = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_38_property_allowAdd = {
-    "allowAdd",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_ldap_self_s_allowAdd,
+    &impl_38_property_value_allowAdd.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_38_property_value_allowChange = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_38_property_allowChange = {
-    "allowChange",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_ldap_self_s_allowChange,
+    &impl_38_property_value_allowChange.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_38_property_value_allowDelete = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_38_property_allowDelete = {
-    "allowDelete",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_ldap_self_s_allowDelete,
+    &impl_38_property_value_allowDelete.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_38_property_value_allowEntity = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+static const afw_runtime_property_t
 impl_38_property_allowEntity = {
-    "allowEntity",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = true
-    }
+    &afw_ldap_self_s_allowEntity,
+    &impl_38_property_value_allowEntity.pub
 };
 
 static const afw_utf8_t
@@ -2419,50 +3717,51 @@ impl_38_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/ldap_extension")
 };
 
-static const afw_runtime_unresolved_const_array_t
+static const afw_array_wrapper_for_array_self_t
 impl_38_list_collectionURIs = {
-    AFW_UTF8_LITERAL("string"),
+    &afw_array_wrapper_for_array_inf,
+    &afw_data_type_string_direct,
     sizeof(impl_38_array_collectionURIs) / sizeof(afw_utf8_t),
-    (const void *)&impl_38_array_collectionURIs
+    &impl_38_array_collectionURIs
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_array_t
+impl_38_property_value_collectionURIs = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_38_list_collectionURIs
+};
+
+static const afw_runtime_property_t
 impl_38_property_collectionURIs = {
-    "collectionURIs",
-    {
-        .type = afw_runtime_unresolved_primitive_type_array,
-        .array = &impl_38_list_collectionURIs
-    }
+    &afw_ldap_self_s_collectionURIs,
+    &impl_38_property_value_collectionURIs.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_38_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Object type for type=adaptor adaptor_type=ldap synthetic schema object."
-    }
+    &afw_ldap_self_s_description,
+    &afw_ldap_self_v_zz__2520.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_38_property_objectType = {
-    "objectType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "_AdaptiveLdapSchema_"
-    }
+    &afw_ldap_self_s_objectType,
+    &afw_ldap_self_v__AdaptiveLdapSchema_.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_38_property_value_otherProperties = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_39
+};
+
+static const afw_runtime_property_t
 impl_38_property_otherProperties = {
-    "otherProperties",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_39
-    }
+    &afw_ldap_self_s_otherProperties,
+    &impl_38_property_value_otherProperties.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_38_properties[] = {
     &impl_38_property_allowAdd,
     &impl_38_property_allowChange,
@@ -2475,187 +3774,356 @@ impl_38_properties[] = {
     NULL
 };
 
+static const afw_runtime_const_object_meta_object_t
+impl_38_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_38,
+    NULL
+};
+
 static const afw_utf8_t
 impl_38_meta_path =
     AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLdapSchema_");
 
-static const afw_runtime_unresolved_const_object_t
+static const afw_value_object_t
+impl_38__value;
+
+static const afw_runtime_const_object_instance_t
 impl_38 = {
-    &afw_ldap_self_s__AdaptiveObjectType_,
-    &afw_ldap_self_s__AdaptiveLdapSchema_,
-    &impl_38_meta_path,
+    {
+        &afw_runtime_inf__AdaptiveObjectType_,
+        NULL,
+        (const afw_value_t *)&impl_38__value,
+        {
+            (const afw_object_t *)&impl_38_meta_object,
+            NULL,
+            &afw_ldap_self_s__AdaptiveLdapSchema_,
+            &afw_ldap_self_s__AdaptiveObjectType_,
+            &impl_38_meta_path
+        }
+    },
     &impl_38_properties[0]
 };
 
-static const afw_runtime_unresolved_const_object_t
+static const afw_value_object_t
+impl_38__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_38
+};
+
+static const afw_runtime_const_object_instance_t
 impl_40;
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_instance_t
 impl_41;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveLdapSyntax_/otherProperties
  */
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_41_properties[] = {
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_41_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_41,
+    NULL
+};
+
+static const afw_utf8_t
+impl_41_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLdapSyntax_/otherProperties");
+
+static const afw_value_object_t
+impl_41__value;
+
+static const afw_runtime_const_object_instance_t
 impl_41 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_41__value,
+        {
+            (const afw_object_t *)&impl_41_meta_object,
+            (const afw_object_t *)&impl_40,
+            &afw_ldap_self_s_otherProperties,
+            &afw_ldap_self_s__AdaptiveValueMeta_,
+            &impl_41_meta_path
+        }
+    },
     &impl_41_properties[0]
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_value_object_t
+impl_41__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_41
+};
+
+static const afw_runtime_const_object_instance_t
 impl_42;
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_instance_t
 impl_43;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveLdapSyntax_/propertyTypes/DESC
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_43_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "string"
-    }
+    &afw_ldap_self_s_dataType,
+    &afw_ldap_self_v_string.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_43_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Description"
-    }
+    &afw_ldap_self_s_label,
+    &afw_ldap_self_v_Description.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_43_properties[] = {
     &impl_43_property_dataType,
     &impl_43_property_label,
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_43_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_43,
+    NULL
+};
+
+static const afw_utf8_t
+impl_43_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLdapSyntax_/propertyTypes/DESC");
+
+static const afw_value_object_t
+impl_43__value;
+
+static const afw_runtime_const_object_instance_t
 impl_43 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_43__value,
+        {
+            (const afw_object_t *)&impl_43_meta_object,
+            (const afw_object_t *)&impl_42,
+            &afw_ldap_self_s_DESC,
+            &afw_ldap_self_s__AdaptiveValueMeta_,
+            &impl_43_meta_path
+        }
+    },
     &impl_43_properties[0]
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_value_object_t
+impl_43__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_43
+};
+
+static const afw_runtime_const_object_instance_t
 impl_44;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveLdapSyntax_/propertyTypes/numericoid
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_44_property_dataType = {
-    "dataType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "string"
-    }
+    &afw_ldap_self_s_dataType,
+    &afw_ldap_self_v_string.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_44_property_label = {
-    "label",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Numeric OID"
-    }
+    &afw_ldap_self_s_label,
+    &afw_ldap_self_v_zz__Numeric_OID.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_44_properties[] = {
     &impl_44_property_dataType,
     &impl_44_property_label,
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_44_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_44,
+    NULL
+};
+
+static const afw_utf8_t
+impl_44_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLdapSyntax_/propertyTypes/numericoid");
+
+static const afw_value_object_t
+impl_44__value;
+
+static const afw_runtime_const_object_instance_t
 impl_44 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_44__value,
+        {
+            (const afw_object_t *)&impl_44_meta_object,
+            (const afw_object_t *)&impl_42,
+            &afw_ldap_self_s_numericoid,
+            &afw_ldap_self_s__AdaptiveValueMeta_,
+            &impl_44_meta_path
+        }
+    },
     &impl_44_properties[0]
+};
+
+static const afw_value_object_t
+impl_44__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_44
 };
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveLdapSyntax_/propertyTypes
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_42_property_value_DESC = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_43
+};
+
+static const afw_runtime_property_t
 impl_42_property_DESC = {
-    "DESC",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_43
-    }
+    &afw_ldap_self_s_DESC,
+    &impl_42_property_value_DESC.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_42_property_value_numericoid = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_44
+};
+
+static const afw_runtime_property_t
 impl_42_property_numericoid = {
-    "numericoid",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_44
-    }
+    &afw_ldap_self_s_numericoid,
+    &impl_42_property_value_numericoid.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_42_properties[] = {
     &impl_42_property_DESC,
     &impl_42_property_numericoid,
     NULL
 };
 
-static const afw_runtime_unresolved_const_embedded_untyped_object_t
+static const afw_runtime_const_object_meta_object_t
+impl_42_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_42,
+    NULL
+};
+
+static const afw_utf8_t
+impl_42_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLdapSyntax_/propertyTypes");
+
+static const afw_value_object_t
+impl_42__value;
+
+static const afw_runtime_const_object_instance_t
 impl_42 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_42__value,
+        {
+            (const afw_object_t *)&impl_42_meta_object,
+            (const afw_object_t *)&impl_40,
+            &afw_ldap_self_s_propertyTypes,
+            &afw_ldap_self_s__AdaptivePropertyTypes_,
+            &impl_42_meta_path
+        }
+    },
     &impl_42_properties[0]
+};
+
+static const afw_value_object_t
+impl_42__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_42
 };
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveLdapSyntax_
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_40_property_value_allowAdd = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_40_property_allowAdd = {
-    "allowAdd",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_ldap_self_s_allowAdd,
+    &impl_40_property_value_allowAdd.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_40_property_value_allowChange = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_40_property_allowChange = {
-    "allowChange",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_ldap_self_s_allowChange,
+    &impl_40_property_value_allowChange.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_40_property_value_allowDelete = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
 impl_40_property_allowDelete = {
-    "allowDelete",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = false
-    }
+    &afw_ldap_self_s_allowDelete,
+    &impl_40_property_value_allowDelete.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_boolean_t
+impl_40_property_value_allowEntity = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+static const afw_runtime_property_t
 impl_40_property_allowEntity = {
-    "allowEntity",
-    {
-        .type = afw_runtime_unresolved_primitive_type_boolean,
-        .boolean = true
-    }
+    &afw_ldap_self_s_allowEntity,
+    &impl_40_property_value_allowEntity.pub
 };
 
 static const afw_utf8_t
@@ -2663,59 +4131,63 @@ impl_40_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/ldap_extension")
 };
 
-static const afw_runtime_unresolved_const_array_t
+static const afw_array_wrapper_for_array_self_t
 impl_40_list_collectionURIs = {
-    AFW_UTF8_LITERAL("string"),
+    &afw_array_wrapper_for_array_inf,
+    &afw_data_type_string_direct,
     sizeof(impl_40_array_collectionURIs) / sizeof(afw_utf8_t),
-    (const void *)&impl_40_array_collectionURIs
+    &impl_40_array_collectionURIs
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_array_t
+impl_40_property_value_collectionURIs = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_40_list_collectionURIs
+};
+
+static const afw_runtime_property_t
 impl_40_property_collectionURIs = {
-    "collectionURIs",
-    {
-        .type = afw_runtime_unresolved_primitive_type_array,
-        .array = &impl_40_list_collectionURIs
-    }
+    &afw_ldap_self_s_collectionURIs,
+    &impl_40_property_value_collectionURIs.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_40_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Object type for type=adaptor adaptor_type=ldap synthetic syntax object."
-    }
+    &afw_ldap_self_s_description,
+    &afw_ldap_self_v_zz__2521.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_40_property_objectType = {
-    "objectType",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "_AdaptiveLdapSyntax_"
-    }
+    &afw_ldap_self_s_objectType,
+    &afw_ldap_self_v__AdaptiveLdapSyntax_.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_40_property_value_otherProperties = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_41
+};
+
+static const afw_runtime_property_t
 impl_40_property_otherProperties = {
-    "otherProperties",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_41
-    }
+    &afw_ldap_self_s_otherProperties,
+    &impl_40_property_value_otherProperties.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_value_object_t
+impl_40_property_value_propertyTypes = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_42
+};
+
+static const afw_runtime_property_t
 impl_40_property_propertyTypes = {
-    "propertyTypes",
-    {
-        .type = afw_runtime_unresolved_primitive_type_object,
-        .object = &impl_42
-    }
+    &afw_ldap_self_s_propertyTypes,
+    &impl_40_property_value_propertyTypes.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_40_properties[] = {
     &impl_40_property_allowAdd,
     &impl_40_property_allowChange,
@@ -2729,47 +4201,77 @@ impl_40_properties[] = {
     NULL
 };
 
+static const afw_runtime_const_object_meta_object_t
+impl_40_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_40,
+    NULL
+};
+
 static const afw_utf8_t
 impl_40_meta_path =
     AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLdapSyntax_");
 
-static const afw_runtime_unresolved_const_object_t
+static const afw_value_object_t
+impl_40__value;
+
+static const afw_runtime_const_object_instance_t
 impl_40 = {
-    &afw_ldap_self_s__AdaptiveObjectType_,
-    &afw_ldap_self_s__AdaptiveLdapSyntax_,
-    &impl_40_meta_path,
+    {
+        &afw_runtime_inf__AdaptiveObjectType_,
+        NULL,
+        (const afw_value_t *)&impl_40__value,
+        {
+            (const afw_object_t *)&impl_40_meta_object,
+            NULL,
+            &afw_ldap_self_s__AdaptiveLdapSyntax_,
+            &afw_ldap_self_s__AdaptiveObjectType_,
+            &impl_40_meta_path
+        }
+    },
     &impl_40_properties[0]
 };
 
-static const afw_runtime_unresolved_const_object_t
+static const afw_value_object_t
+impl_40__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_40
+};
+
+static const afw_runtime_const_object_instance_t
 impl_45;
 
 /*
  * /afw/_AdaptiveCollection_/ldap_extension
  */
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_45_property_description = {
-    "description",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "Adaptive Framework LDAP extension collection."
-    }
+    &afw_ldap_self_s_description,
+    &afw_ldap_self_v_zz__Adaptive_Framework_LDAP_extension_collection_.pub
 };
 
-static const afw_runtime_unresolved_property_t
+static const afw_runtime_property_t
 impl_45_property_objectId = {
-    "objectId",
-    {
-        .type = afw_runtime_unresolved_primitive_type_string,
-        .string = "ldap_extension"
-    }
+    &afw_ldap_self_s_objectId,
+    &afw_ldap_self_v_ldap_extension.pub
 };
 
-static const afw_runtime_unresolved_property_t *
+static const afw_runtime_property_t *
 impl_45_properties[] = {
     &impl_45_property_description,
     &impl_45_property_objectId,
+    NULL
+};
+
+static const afw_runtime_const_object_meta_object_t
+impl_45_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf
+    },
+    &impl_45,
     NULL
 };
 
@@ -2777,35 +4279,53 @@ static const afw_utf8_t
 impl_45_meta_path =
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/ldap_extension");
 
-static const afw_runtime_unresolved_const_object_t
+static const afw_value_object_t
+impl_45__value;
+
+static const afw_runtime_const_object_instance_t
 impl_45 = {
-    &afw_ldap_self_s__AdaptiveCollection_,
-    &afw_ldap_self_s_ldap_extension,
-    &impl_45_meta_path,
+    {
+        &afw_runtime_inf__AdaptiveCollection_,
+        NULL,
+        (const afw_value_t *)&impl_45__value,
+        {
+            (const afw_object_t *)&impl_45_meta_object,
+            NULL,
+            &afw_ldap_self_s_ldap_extension,
+            &afw_ldap_self_s__AdaptiveCollection_,
+            &impl_45_meta_path
+        }
+    },
     &impl_45_properties[0]
 };
 
-/* NULL terminated list of unresolved objects. */
-static const afw_runtime_unresolved_const_object_t *
+static const afw_value_object_t
+impl_45__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_45
+};
+
+/* NULL terminated list of objects. */
+static const afw_object_t *
 impl_const_objects[] = {
-    &impl_1,
-    &impl_4,
-    &impl_9,
-    &impl_13,
-    &impl_20,
-    &impl_22,
-    &impl_24,
-    &impl_36,
-    &impl_38,
-    &impl_40,
-    &impl_45,
+    (const afw_object_t *)&impl_1,
+    (const afw_object_t *)&impl_4,
+    (const afw_object_t *)&impl_9,
+    (const afw_object_t *)&impl_13,
+    (const afw_object_t *)&impl_20,
+    (const afw_object_t *)&impl_22,
+    (const afw_object_t *)&impl_24,
+    (const afw_object_t *)&impl_36,
+    (const afw_object_t *)&impl_38,
+    (const afw_object_t *)&impl_40,
+    (const afw_object_t *)&impl_45,
     NULL
 };
 
-/* Resolved and set const objects */
+/* Set const objects */
 void
 afw_ldap_const_objects_register(afw_xctx_t *xctx)
 {
-    afw_runtime_env_resolve_and_set_const_objects(
+    afw_runtime_env_set_objects(
         &impl_const_objects[0], false, xctx);
 }
