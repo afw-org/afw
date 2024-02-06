@@ -637,46 +637,6 @@ typedef struct afw_runtime_property_s
 afw_runtime_property_t;
 
 /**
- * Opaque typedef for afw_runtime_unresolved_const_array_t.
- *
- * See afw_runtime.h for struct and more information.
- */
-typedef struct afw_runtime_unresolved_const_array_s
-afw_runtime_unresolved_const_array_t;
-
-/**
- * Opaque typedef for afw_runtime_unresolved_const_object_t.
- *
- * See afw_runtime.h for struct and more information.
- */
-typedef struct afw_runtime_unresolved_const_object_s
-afw_runtime_unresolved_const_object_t;
-
-/**
- * Opaque typedef for afw_runtime_unresolved_property_t.
- *
- * See afw_runtime.h for struct and more information.
- */
-typedef struct afw_runtime_unresolved_property_s
-afw_runtime_unresolved_property_t;
-
-/**
- * Opaque typedef for afw_runtime_unresolved_const_embedded_untyped_object_t.
- *
- * See afw_runtime.h for struct and more information.
- */
-typedef struct afw_runtime_unresolved_const_embedded_untyped_object_s
-afw_runtime_unresolved_const_embedded_untyped_object_t;
-
-/**
- * Opaque typedef for afw_runtime_unresolved_value_t.
- *
- * See afw_runtime.h for struct and more information.
- */
-typedef struct afw_runtime_unresolved_value_s
-afw_runtime_unresolved_value_t;
-
-/**
  * Opaque typedef for afw_xctx_evaluation_stack_t.
  *
  * See afw_common.h for struct and more information.

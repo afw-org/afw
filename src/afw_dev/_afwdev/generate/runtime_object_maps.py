@@ -81,9 +81,9 @@ def write_c_map(fd, prefix, obj, options, onGetValueCFunctionNames):
                 fd.write('        -1,\n')
 
             if propertyType.get('dataType') is None:
-                fd.write('        { NULL },\n')
+                fd.write('        NULL,\n')
             else:
-                fd.write('        { &afw_data_type_' + propertyType.get('dataType') + '_direct },\n')
+                fd.write('        &afw_data_type_' + propertyType.get('dataType') + '_direct,\n')
 
             # dataType and dataTypeParameter
             dataTypeParameter = propertyType.get('dataTypeParameter', '')
@@ -94,9 +94,9 @@ def write_c_map(fd, prefix, obj, options, onGetValueCFunctionNames):
 
             if propertyType.get('dataTypeParameter') is not None and propertyType.get('dataType','') == 'array':
                 dataTypeParameter = propertyType.get('dataTypeParameter').split()[0]
-                fd.write('        { &afw_data_type_' + dataTypeParameter + '_direct },\n')
+                fd.write('        &afw_data_type_' + dataTypeParameter + '_direct,\n')
             else:
-                fd.write('        { NULL },\n')
+                fd.write('        NULL,\n')
 
             # valueAccessor or onGetValueCFunctionName
             if propertyType_runtime.get("onGetValueCFunctionName") is not None:
