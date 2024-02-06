@@ -43,6 +43,10 @@ def generate(generated_by, options):
         fd.write('#define ' + uprefix + 'END_DECLARES\n')
         fd.write('#endif\n')
 
+        fd.write('#if defined(WIN32)\n')
+        fd.write('#error afw is not currently supported on Windows\n')
+        fd.write('#endif\n')
+
         fd.write('\n\n')
         fd.write('/* #defines for declspec and calling convention. */\n')
         if exports:

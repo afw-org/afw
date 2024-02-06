@@ -1,9 +1,27 @@
 # Building for Windows
-(tested on Windows 11, 64-bit)
 
-*********** This is a work in progress and is not complete ***********
+** Windows is not currently supported **
 
-There are multiple ways to build Adaptive Framework on a Windows system. If you use wsl or wsl2, you can build using instructions from 
+If you do need to run afw on Windows, use WSL, Docker, or a VM to run it under
+Linux.
+
+The const data produced by `afwdev generate` accesses external data. This is
+not supported by Windows DLLs. To access external symbols in DLLs,
+dll import/export is needed and those symbols can not be accessed externally
+by static const defines. This is needed to access things like **inf** and
+**data type** instances.
+
+Adaptive Framework originally supported resolving of these references by using
+additional code that run when extensions were loaded. That became
+increasingly complex and the support was removed.
+
+If support is added back for Windows, cmake will need to support static builds
+and software on Windows that uses afw will need to statically link in afw and
+all extensions that will be accessed. This may be safer anyways because of the
+way DLLs are located.
+
+
+** Old information that may be useful if support is added **
 
 ## Source Build Dependencies
 
