@@ -135,12 +135,16 @@ static const afw_utf8_t
 impl_data_type_path_array =
     AFW_UTF8_LITERAL("/afw/_AdaptiveDataType_/array");
 
+static const afw_value_object_t
+impl_data_type_object_array__value;
+
 /* Data type array object. */
 static const afw_runtime_object_indirect_t
 impl_data_type_object_array = {
     {
         &afw_runtime_inf__AdaptiveDataType_,
         NULL,
+        (const afw_value_t *)&impl_data_type_object_array__value,
         {
             NULL,
             NULL,
@@ -150,6 +154,12 @@ impl_data_type_object_array = {
         }
     },
     (void *)&afw_data_type_array_direct
+};
+
+static const afw_value_object_t
+impl_data_type_object_array__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_data_type_object_array
 };
 
 /* Value for empty array of array. */

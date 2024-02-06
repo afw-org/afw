@@ -162,3 +162,9 @@ afw_server_fcgi_self_v_uint32 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_SERVER_FCGI_Q_uint32)
 };
+
+const afw_value_string_t
+afw_server_fcgi_self_v_zz__Adaptive_Framework_afw_server_fcgi_collection_ = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_SERVER_FCGI_Q_zz__Adaptive_Framework_afw_server_fcgi_collection_)
+};

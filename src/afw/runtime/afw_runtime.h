@@ -92,9 +92,6 @@ struct afw_runtime_object_type_meta_s {
 
 /**
  * @brief Struct for runtime object map property.
- *
- * Members dataType and accessor will be resolved when
- * registered if NULL.
  */
 struct afw_runtime_object_map_property_s {
 
@@ -116,16 +113,9 @@ struct afw_runtime_object_map_property_s {
     afw_size_t count_offset;
 
     /**
-     * Member data_type is always used except for the struct passed to
-     * afw_runtime_resolve_and_register_object_map_infs(), which will create
-     * a new struct and set its data_type to the data type named by member
-     * unresolved_data_type_id.  Member unresolved_data_type_id should
-     * only be accessed by afw_runtime_resolve_and_register_object_map_infs().
+     * Data type.
      */
-    union {
-        const afw_data_type_t *data_type;
-        const afw_utf8_t *unresolved_data_type_id;
-    };
+    const afw_data_type_t *data_type;
 
     /**
      * This is the dataTypeParameter.  If dataType is array, 'object ' is stripped off
@@ -134,13 +124,9 @@ struct afw_runtime_object_map_property_s {
     afw_utf8_t data_type_parameter;
 
     /**
-     * If data_type_parameter is a single data type, this is its pointer.  If not
-     * core, this is resolved at register time.
+     * If data_type_parameter is a single data type, this is its pointer.
      */
-    union {
-        const afw_data_type_t *data_type_parameter_data_type;
-        const afw_utf8_t *unresolved_data_type_parameter_data_type_id;
-    };
+    const afw_data_type_t *data_type_parameter_data_type;
 
     /**
      * @brief Name of registered runtime value accessor function.
@@ -209,115 +195,6 @@ struct afw_runtime_const_object_meta_object_s {
 struct afw_runtime_property_s {
     const afw_utf8_t *name;
     const afw_value_t *value;
-};
-
-
-
-struct afw_runtime_unresolved_const_array_s {
-
-    /** Object type Id. */
-    afw_utf8_t data_type_id;
-
-    /** Object Id. */
-    afw_size_t count;
-
-    /** Path to array. */
-    const void *array;
-};
-
-
-
-struct afw_runtime_unresolved_const_object_s {
-
-    /** Object type Id. */
-    const afw_utf8_t *object_type_id;
-
-    /** Object Id. */
-    const afw_utf8_t *object_id;
-
-    /** Path to object. */
-    const afw_utf8_t *path;
-
-    /** NULL terminated array of read-only properties. */ 
-    const afw_runtime_unresolved_property_t * const * properties;
-
-    /** Path to parent or empty string. */
-    afw_utf8_t parent_path;
-
-};
-
-
-
-struct afw_runtime_unresolved_const_embedded_untyped_object_s {
-
-    /** NULL terminated array of read-only properties. */ 
-    const afw_runtime_unresolved_property_t * (*properties);
-
-    /** Number of parent paths. */
-    afw_size_t parent_paths_count;
-
-    /** Array of parent paths. */
-    const afw_utf8_t *parent_paths;
-};
-
-
-
-/** @brief Runtime unresolved primitive value. */
-typedef enum afw_runtime_unresolved_primitive_type_e {
-
-    /** value is NULL for false and non-NULL for true. */
-    afw_runtime_unresolved_primitive_type_boolean,
-
-    /** value points to (double) */
-    afw_runtime_unresolved_primitive_type_number,
-
-    /** value points to (integer) */
-    afw_runtime_unresolved_primitive_type_integer,
-
-    /** afw_runtime_unresolved_const_array_t. */
-    afw_runtime_unresolved_primitive_type_array,
-
-    /**
-     * value points to 
-     * afw_runtime_unresolved_const_embedded_untyped_object_s.
-     */
-    afw_runtime_unresolved_primitive_type_object,
-
-    /** @brief value points to afw_utf8_z_t. */
-    afw_runtime_unresolved_primitive_type_string
-
-} afw_runtime_unresolved_primitive_type_t;
-
-
-
-/** @brief Runtime unresolved value. */
-struct afw_runtime_unresolved_value_s{
-
-    /** @brief Primitive type of value. */
-    afw_runtime_unresolved_primitive_type_t type;
-
-    /** @brief Pointer to value based on type. */
-    const union {
-        afw_boolean_t boolean;
-        afw_double_t number;
-        afw_integer_t integer;
-        const afw_runtime_unresolved_const_array_t *array;
-        const afw_runtime_unresolved_const_embedded_untyped_object_t *object;
-        const afw_utf8_z_t *string;
-    };
-};
-
-
-
-/** @brief Runtime unresolved property. */
-struct afw_runtime_unresolved_property_s {
-
-    /** @brief Property name. */
-    const afw_utf8_z_t *name;
-
-    /** @brief Unresolved value. */
-    afw_runtime_unresolved_value_t value;
-
 };
 
 
@@ -445,20 +322,6 @@ afw_runtime_env_create_and_set_indirect_object_using_inf(
     void * internal,
     afw_boolean_t overwrite,
     afw_xctx_t *xctx);
-
-
-
-/**
- * @brief Resolve and set a NULL terminated array of object pointers in the
- *    xctx's runtime objects.
- * @param unresolved NULL terminated array of unresolved object pointers.
- * @param overwrite whether to throw error is object with path exists.
- * @param xctx of caller.
- */
-AFW_DECLARE(void)
-afw_runtime_env_resolve_and_set_const_objects(
-    const afw_runtime_unresolved_const_object_t * const * unresolved,
-    afw_boolean_t overwrite, afw_xctx_t *xctx);
 
 
 
@@ -594,35 +457,6 @@ afw_runtime_register_object_map_infs(
 );
 
 
-
-/**
- * @brief Create and register runtime object map interfaces.
- * @param rti is NULL terminate array of rti pointers.
- * @param xctx
- *
- * rti->implementation_specific MUST pointed to
- * afw_runtime_object_type_meta_t of map.
- */
-AFW_DECLARE(void)
-afw_runtime_resolve_and_register_object_map_infs(
-    const afw_interface_implementation_rti_t * const * rti,
-    afw_xctx_t *xctx
-);
-
-
-
-/**
- * @brief Resolve a runtime const object.
- * @param unresolved is an unresolved runtime object.
- * @param p to use.
- * @param xctx of caller.
- * @return resolved object.
- */
-AFW_DECLARE(const afw_object_t *)
-afw_runtime_resolve_const_object(
-    const afw_runtime_unresolved_const_object_t *unresolved,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx);
 
 #define AFW_RUNTIME_OBJECT_RTI(label_, meta_)                                   \
                                                                                 \

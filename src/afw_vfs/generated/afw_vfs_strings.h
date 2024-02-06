@@ -30,6 +30,110 @@
 
 
 /** @brief #define for string in quotes */
+#define AFW_VFS_Q_Data \
+    "Data"
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_Data */
+#define afw_vfs_s_Data \
+    (&afw_vfs_self_v_Data.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_Data */
+#define afw_vfs_self_s_Data \
+    (afw_vfs_self_v_Data.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_Data */
+extern const afw_value_string_t \
+    afw_vfs_self_v_Data;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_Data */
+#define afw_vfs_z_Data \
+    (afw_vfs_self_v_Data.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_Data */
+#define afw_vfs_v_Data \
+    (&afw_vfs_self_v_Data.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_VFS_Q_Include \
+    "Include"
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_Include */
+#define afw_vfs_s_Include \
+    (&afw_vfs_self_v_Include.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_Include */
+#define afw_vfs_self_s_Include \
+    (afw_vfs_self_v_Include.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_Include */
+extern const afw_value_string_t \
+    afw_vfs_self_v_Include;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_Include */
+#define afw_vfs_z_Include \
+    (afw_vfs_self_v_Include.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_Include */
+#define afw_vfs_v_Include \
+    (&afw_vfs_self_v_Include.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_VFS_Q_Recursive \
+    "Recursive"
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_Recursive */
+#define afw_vfs_s_Recursive \
+    (&afw_vfs_self_v_Recursive.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_Recursive */
+#define afw_vfs_self_s_Recursive \
+    (afw_vfs_self_v_Recursive.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_Recursive */
+extern const afw_value_string_t \
+    afw_vfs_self_v_Recursive;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_Recursive */
+#define afw_vfs_z_Recursive \
+    (afw_vfs_self_v_Recursive.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_Recursive */
+#define afw_vfs_v_Recursive \
+    (&afw_vfs_self_v_Recursive.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_VFS_Q_Subdirectory \
+    "Subdirectory"
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_Subdirectory */
+#define afw_vfs_s_Subdirectory \
+    (&afw_vfs_self_v_Subdirectory.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_Subdirectory */
+#define afw_vfs_self_s_Subdirectory \
+    (afw_vfs_self_v_Subdirectory.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_Subdirectory */
+extern const afw_value_string_t \
+    afw_vfs_self_v_Subdirectory;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_Subdirectory */
+#define afw_vfs_z_Subdirectory \
+    (afw_vfs_self_v_Subdirectory.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_Subdirectory */
+#define afw_vfs_v_Subdirectory \
+    (&afw_vfs_self_v_Subdirectory.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_VFS_Q__AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects \
     "_AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects"
 
@@ -234,6 +338,58 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_VFS_Q__AdaptivePolymorphicFunction_ */
 #define afw_vfs_v__AdaptivePolymorphicFunction_ \
     (&afw_vfs_self_v__AdaptivePolymorphicFunction_.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_VFS_Q__AdaptivePropertyTypes_ \
+    "_AdaptivePropertyTypes_"
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q__AdaptivePropertyTypes_ */
+#define afw_vfs_s__AdaptivePropertyTypes_ \
+    (&afw_vfs_self_v__AdaptivePropertyTypes_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q__AdaptivePropertyTypes_ */
+#define afw_vfs_self_s__AdaptivePropertyTypes_ \
+    (afw_vfs_self_v__AdaptivePropertyTypes_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q__AdaptivePropertyTypes_ */
+extern const afw_value_string_t \
+    afw_vfs_self_v__AdaptivePropertyTypes_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q__AdaptivePropertyTypes_ */
+#define afw_vfs_z__AdaptivePropertyTypes_ \
+    (afw_vfs_self_v__AdaptivePropertyTypes_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q__AdaptivePropertyTypes_ */
+#define afw_vfs_v__AdaptivePropertyTypes_ \
+    (&afw_vfs_self_v__AdaptivePropertyTypes_.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_VFS_Q__AdaptiveValueMeta_ \
+    "_AdaptiveValueMeta_"
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q__AdaptiveValueMeta_ */
+#define afw_vfs_s__AdaptiveValueMeta_ \
+    (&afw_vfs_self_v__AdaptiveValueMeta_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q__AdaptiveValueMeta_ */
+#define afw_vfs_self_s__AdaptiveValueMeta_ \
+    (afw_vfs_self_v__AdaptiveValueMeta_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q__AdaptiveValueMeta_ */
+extern const afw_value_string_t \
+    afw_vfs_self_v__AdaptiveValueMeta_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q__AdaptiveValueMeta_ */
+#define afw_vfs_z__AdaptiveValueMeta_ \
+    (afw_vfs_self_v__AdaptiveValueMeta_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q__AdaptiveValueMeta_ */
+#define afw_vfs_v__AdaptiveValueMeta_ \
+    (&afw_vfs_self_v__AdaptiveValueMeta_.pub)
 
 
 
@@ -1196,6 +1352,968 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_VFS_Q_vfsPath */
 #define afw_vfs_v_vfsPath \
     (&afw_vfs_self_v_vfsPath.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_VFS_Q_zz__ \
+    ""
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__ */
+#define afw_vfs_s_zz__ \
+    (&afw_vfs_self_v_zz__.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__ */
+#define afw_vfs_self_s_zz__ \
+    (afw_vfs_self_v_zz__.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__ */
+extern const afw_value_string_t \
+    afw_vfs_self_v_zz__;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__ */
+#define afw_vfs_z_zz__ \
+    (afw_vfs_self_v_zz__.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__ */
+#define afw_vfs_v_zz__ \
+    (&afw_vfs_self_v_zz__.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_VFS_Q_zz__2534 \
+    "If true, filenames that begin with dot ('.') will be included."
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2534 */
+#define afw_vfs_s_zz__2534 \
+    (&afw_vfs_self_v_zz__2534.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2534 */
+#define afw_vfs_self_s_zz__2534 \
+    (afw_vfs_self_v_zz__2534.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__2534 */
+extern const afw_value_string_t \
+    afw_vfs_self_v_zz__2534;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__2534 */
+#define afw_vfs_z_zz__2534 \
+    (afw_vfs_self_v_zz__2534.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__2534 */
+#define afw_vfs_v_zz__2534 \
+    (&afw_vfs_self_v_zz__2534.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_VFS_Q_zz__2535 \
+    "If specified, the retrieve will start in the specified vfs subdirectory instead of the vfs root. The value can not start with '/', must end with '/', and can not contain '\\', './' or '../'."
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2535 */
+#define afw_vfs_s_zz__2535 \
+    (&afw_vfs_self_v_zz__2535.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2535 */
+#define afw_vfs_self_s_zz__2535 \
+    (afw_vfs_self_v_zz__2535.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__2535 */
+extern const afw_value_string_t \
+    afw_vfs_self_v_zz__2535;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__2535 */
+#define afw_vfs_z_zz__2535 \
+    (afw_vfs_self_v_zz__2535.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__2535 */
+#define afw_vfs_v_zz__2535 \
+    (&afw_vfs_self_v_zz__2535.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_VFS_Q_zz__2536 \
+    "If specified, only files with filenames that end with the specified suffix are included."
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2536 */
+#define afw_vfs_s_zz__2536 \
+    (&afw_vfs_self_v_zz__2536.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2536 */
+#define afw_vfs_self_s_zz__2536 \
+    (afw_vfs_self_v_zz__2536.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__2536 */
+extern const afw_value_string_t \
+    afw_vfs_self_v_zz__2536;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__2536 */
+#define afw_vfs_z_zz__2536 \
+    (afw_vfs_self_v_zz__2536.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__2536 */
+#define afw_vfs_v_zz__2536 \
+    (&afw_vfs_self_v_zz__2536.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_VFS_Q_zz__2537 \
+    "This is the object type for the optional adaptorTypeSpecific parameter of the retrieve_objects() adaptive function when the adaptorType of the adaptorId is vfs."
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2537 */
+#define afw_vfs_s_zz__2537 \
+    (&afw_vfs_self_v_zz__2537.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2537 */
+#define afw_vfs_self_s_zz__2537 \
+    (afw_vfs_self_v_zz__2537.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__2537 */
+extern const afw_value_string_t \
+    afw_vfs_self_v_zz__2537;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__2537 */
+#define afw_vfs_z_zz__2537 \
+    (afw_vfs_self_v_zz__2537.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__2537 */
+#define afw_vfs_v_zz__2537 \
+    (&afw_vfs_self_v_zz__2537.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_VFS_Q_zz__2538 \
+    "This is a list of vfsPath filename patterns whose host files should be marked as executable when written. For instance, ['*.as'] will mark Adaptive Scripts whose vfsPath ends with '.as' as executable.\n\nA PATTERN match uses Apache apr function apr_fnmatch() which interprets a pattern as follows:\n\nThere are no illegal patterns.\n\nPATTERN: Backslash followed by any character, including another backslash.\nMATCHES: That character exactly.\n\nPATTERN: ?\nMATCHES: Any single character.\n\nPATTERN: *\nMATCHES: Any sequence of zero or more characters. (Note that multiple *s in a row are equivalent to one.)\n\nPATTERN: Any character other than \\?*[ or a \\ at the end of the pattern\nMATCHES: That character exactly. (Case sensitive.)\n\nPATTERN: [ followed by a class description followed by ]\nMATCHES: A single character described by the class description. (Never matches, if the class description reaches until the end of the string without a ].) If the first character of the class description is ^ or !, the sense of the description is reversed. The rest of the class description is a list of single characters or pairs of characters separated by -. Any of those characters can have a backslash in front of them, which is ignored; this lets you use the characters ] and - in the character class, as well as ^ and ! at the beginning. The pattern matches a single character if it is one of the listed characters or falls into one of the listed ranges (inclusive, case sensitive). Ranges with the first character larger than the second are legal but never match. Edge cases: [] never matches, and [^] and [!] always match without consuming a character.\n\nNote that these patterns attempt to match the entire vfsPath, not just find a substring matching the pattern."
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2538 */
+#define afw_vfs_s_zz__2538 \
+    (&afw_vfs_self_v_zz__2538.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2538 */
+#define afw_vfs_self_s_zz__2538 \
+    (afw_vfs_self_v_zz__2538.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__2538 */
+extern const afw_value_string_t \
+    afw_vfs_self_v_zz__2538;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__2538 */
+#define afw_vfs_z_zz__2538 \
+    (afw_vfs_self_v_zz__2538.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__2538 */
+#define afw_vfs_v_zz__2538 \
+    (&afw_vfs_self_v_zz__2538.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_VFS_Q_zz__2539 \
+    "This property is a list of vfs map entries.\n\nThe vfsPath of objects in this vfs adaptor is of the form:\n\n/<adaptorId>/<objectId>\n\nWhere <adaptorId> is the id of this adaptor and where <objectId> is the relative path from the vfs root directory ('<adaptorId>/') to the associated file or directory. An <objectId> of a directory ends with a slash ('/').\n\nEach vfsMap entry is a string of the form:\n\n<objectId_prefix>=<host file system directory path>\n\n<objectId_prefix> can be empty if the entry applies to files and directories in the vfs root directory or the objectId of a directory within the vfs.\n\nThe <host file system directory path> must end in a slash ('/'). A backslash is tolerated on a Windows host. The host system file path is the <objectId> with <objectId_prefix> removed appended to the associated <host file system directory path>.\n\nThe map entry with the longest matching <objectId_prefix> is the one used for any adaptor functions objectId parameter.\n\nFor retrieve_objects*() the entries are processed in longest to shortest <objectId_prefix> order. If 'subdirectory' is supplied in the retrieve_objects*() adaptorSpecific parameter, only matching entries are used. Note, that depending on the vfsMap, a single physical file or directory can appear multiple times with different vfsPaths."
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2539 */
+#define afw_vfs_s_zz__2539 \
+    (&afw_vfs_self_v_zz__2539.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2539 */
+#define afw_vfs_self_s_zz__2539 \
+    (afw_vfs_self_v_zz__2539.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__2539 */
+extern const afw_value_string_t \
+    afw_vfs_self_v_zz__2539;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__2539 */
+#define afw_vfs_z_zz__2539 \
+    (afw_vfs_self_v_zz__2539.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__2539 */
+#define afw_vfs_v_zz__2539 \
+    (&afw_vfs_self_v_zz__2539.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_VFS_Q_zz__2540 \
+    "Adaptive Framework configuration component for type=adaptor adaptorType=vfs. This is a virtual file system adaptor that allows files to be accessed as objects that have a 'data' property and additional file stats properties. The vfs path to files begins with '/', the adaptor name, '/_AdaptiveFile_vfs'. The path of the operating system directory as well as the paths to subdirectories are defined in the 'vfsMap' property."
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2540 */
+#define afw_vfs_s_zz__2540 \
+    (&afw_vfs_self_v_zz__2540.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2540 */
+#define afw_vfs_self_s_zz__2540 \
+    (afw_vfs_self_v_zz__2540.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__2540 */
+extern const afw_value_string_t \
+    afw_vfs_self_v_zz__2540;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__2540 */
+#define afw_vfs_z_zz__2540 \
+    (afw_vfs_self_v_zz__2540.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__2540 */
+#define afw_vfs_v_zz__2540 \
+    (&afw_vfs_self_v_zz__2540.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_VFS_Q_zz__2541 \
+    "This is the contents of the file. If this is a directory, data is a list of strings containing the name from its entries. If this is not a directory and the data is valid utf-8, data is a string otherwise, it is hexBinary. This property is ignored when adding a directory."
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2541 */
+#define afw_vfs_s_zz__2541 \
+    (&afw_vfs_self_v_zz__2541.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2541 */
+#define afw_vfs_self_s_zz__2541 \
+    (afw_vfs_self_v_zz__2541.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__2541 */
+extern const afw_value_string_t \
+    afw_vfs_self_v_zz__2541;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__2541 */
+#define afw_vfs_z_zz__2541 \
+    (afw_vfs_self_v_zz__2541.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__2541 */
+#define afw_vfs_v_zz__2541 \
+    (&afw_vfs_self_v_zz__2541.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_VFS_Q_zz__2542 \
+    "This is true if this is a directory. This property is read-only. A slash ('/') at the end of an objectId is used to indicate this in requests."
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2542 */
+#define afw_vfs_s_zz__2542 \
+    (&afw_vfs_self_v_zz__2542.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2542 */
+#define afw_vfs_self_s_zz__2542 \
+    (afw_vfs_self_v_zz__2542.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__2542 */
+extern const afw_value_string_t \
+    afw_vfs_self_v_zz__2542;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__2542 */
+#define afw_vfs_z_zz__2542 \
+    (afw_vfs_self_v_zz__2542.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__2542 */
+#define afw_vfs_v_zz__2542 \
+    (&afw_vfs_self_v_zz__2542.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_VFS_Q_zz__2543 \
+    "This is the vfs path within this instance of Adaptive Framework. This property is read-only."
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2543 */
+#define afw_vfs_s_zz__2543 \
+    (&afw_vfs_self_v_zz__2543.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2543 */
+#define afw_vfs_self_s_zz__2543 \
+    (afw_vfs_self_v_zz__2543.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__2543 */
+extern const afw_value_string_t \
+    afw_vfs_self_v_zz__2543;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__2543 */
+#define afw_vfs_z_zz__2543 \
+    (afw_vfs_self_v_zz__2543.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__2543 */
+#define afw_vfs_v_zz__2543 \
+    (&afw_vfs_self_v_zz__2543.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_VFS_Q_zz__Contents_of_file \
+    "Contents of file"
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__Contents_of_file */
+#define afw_vfs_s_zz__Contents_of_file \
+    (&afw_vfs_self_v_zz__Contents_of_file.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__Contents_of_file */
+#define afw_vfs_self_s_zz__Contents_of_file \
+    (afw_vfs_self_v_zz__Contents_of_file.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__Contents_of_file */
+extern const afw_value_string_t \
+    afw_vfs_self_v_zz__Contents_of_file;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__Contents_of_file */
+#define afw_vfs_z_zz__Contents_of_file \
+    (afw_vfs_self_v_zz__Contents_of_file.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__Contents_of_file */
+#define afw_vfs_v_zz__Contents_of_file \
+    (&afw_vfs_self_v_zz__Contents_of_file.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_VFS_Q_zz__Custom_property \
+    "Custom property"
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__Custom_property */
+#define afw_vfs_s_zz__Custom_property \
+    (&afw_vfs_self_v_zz__Custom_property.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__Custom_property */
+#define afw_vfs_self_s_zz__Custom_property \
+    (afw_vfs_self_v_zz__Custom_property.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__Custom_property */
+extern const afw_value_string_t \
+    afw_vfs_self_v_zz__Custom_property;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__Custom_property */
+#define afw_vfs_z_zz__Custom_property \
+    (afw_vfs_self_v_zz__Custom_property.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__Custom_property */
+#define afw_vfs_v_zz__Custom_property \
+    (&afw_vfs_self_v_zz__Custom_property.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_VFS_Q_zz__Custom_property_ \
+    "Custom property."
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__Custom_property_ */
+#define afw_vfs_s_zz__Custom_property_ \
+    (&afw_vfs_self_v_zz__Custom_property_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__Custom_property_ */
+#define afw_vfs_self_s_zz__Custom_property_ \
+    (afw_vfs_self_v_zz__Custom_property_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__Custom_property_ */
+extern const afw_value_string_t \
+    afw_vfs_self_v_zz__Custom_property_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__Custom_property_ */
+#define afw_vfs_z_zz__Custom_property_ \
+    (afw_vfs_self_v_zz__Custom_property_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__Custom_property_ */
+#define afw_vfs_v_zz__Custom_property_ \
+    (&afw_vfs_self_v_zz__Custom_property_.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_VFS_Q_zz__Filename_Suffix \
+    "Filename Suffix"
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__Filename_Suffix */
+#define afw_vfs_s_zz__Filename_Suffix \
+    (&afw_vfs_self_v_zz__Filename_Suffix.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__Filename_Suffix */
+#define afw_vfs_self_s_zz__Filename_Suffix \
+    (afw_vfs_self_v_zz__Filename_Suffix.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__Filename_Suffix */
+extern const afw_value_string_t \
+    afw_vfs_self_v_zz__Filename_Suffix;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__Filename_Suffix */
+#define afw_vfs_z_zz__Filename_Suffix \
+    (afw_vfs_self_v_zz__Filename_Suffix.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__Filename_Suffix */
+#define afw_vfs_v_zz__Filename_Suffix \
+    (&afw_vfs_self_v_zz__Filename_Suffix.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_VFS_Q_zz__Filename_suffix \
+    "Filename suffix"
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__Filename_suffix */
+#define afw_vfs_s_zz__Filename_suffix \
+    (&afw_vfs_self_v_zz__Filename_suffix.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__Filename_suffix */
+#define afw_vfs_self_s_zz__Filename_suffix \
+    (afw_vfs_self_v_zz__Filename_suffix.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__Filename_suffix */
+extern const afw_value_string_t \
+    afw_vfs_self_v_zz__Filename_suffix;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__Filename_suffix */
+#define afw_vfs_z_zz__Filename_suffix \
+    (afw_vfs_self_v_zz__Filename_suffix.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__Filename_suffix */
+#define afw_vfs_v_zz__Filename_suffix \
+    (&afw_vfs_self_v_zz__Filename_suffix.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_VFS_Q_zz__If_true__directories_will_be_recursively_traversed_ \
+    "If true, directories will be recursively traversed."
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__If_true__directories_will_be_recursively_traversed_ */
+#define afw_vfs_s_zz__If_true__directories_will_be_recursively_traversed_ \
+    (&afw_vfs_self_v_zz__If_true__directories_will_be_recursively_traversed_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__If_true__directories_will_be_recursively_traversed_ */
+#define afw_vfs_self_s_zz__If_true__directories_will_be_recursively_traversed_ \
+    (afw_vfs_self_v_zz__If_true__directories_will_be_recursively_traversed_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__If_true__directories_will_be_recursively_traversed_ */
+extern const afw_value_string_t \
+    afw_vfs_self_v_zz__If_true__directories_will_be_recursively_traversed_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__If_true__directories_will_be_recursively_traversed_ */
+#define afw_vfs_z_zz__If_true__directories_will_be_recursively_traversed_ \
+    (afw_vfs_self_v_zz__If_true__directories_will_be_recursively_traversed_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__If_true__directories_will_be_recursively_traversed_ */
+#define afw_vfs_v_zz__If_true__directories_will_be_recursively_traversed_ \
+    (&afw_vfs_self_v_zz__If_true__directories_will_be_recursively_traversed_.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_VFS_Q_zz__Include_Hidden \
+    "Include Hidden"
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__Include_Hidden */
+#define afw_vfs_s_zz__Include_Hidden \
+    (&afw_vfs_self_v_zz__Include_Hidden.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__Include_Hidden */
+#define afw_vfs_self_s_zz__Include_Hidden \
+    (afw_vfs_self_v_zz__Include_Hidden.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__Include_Hidden */
+extern const afw_value_string_t \
+    afw_vfs_self_v_zz__Include_Hidden;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__Include_Hidden */
+#define afw_vfs_z_zz__Include_Hidden \
+    (afw_vfs_self_v_zz__Include_Hidden.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__Include_Hidden */
+#define afw_vfs_v_zz__Include_Hidden \
+    (&afw_vfs_self_v_zz__Include_Hidden.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_VFS_Q_zz__Is_Directory \
+    "Is Directory"
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__Is_Directory */
+#define afw_vfs_s_zz__Is_Directory \
+    (&afw_vfs_self_v_zz__Is_Directory.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__Is_Directory */
+#define afw_vfs_self_s_zz__Is_Directory \
+    (afw_vfs_self_v_zz__Is_Directory.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__Is_Directory */
+extern const afw_value_string_t \
+    afw_vfs_self_v_zz__Is_Directory;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__Is_Directory */
+#define afw_vfs_z_zz__Is_Directory \
+    (afw_vfs_self_v_zz__Is_Directory.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__Is_Directory */
+#define afw_vfs_v_zz__Is_Directory \
+    (&afw_vfs_self_v_zz__Is_Directory.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_VFS_Q_zz__Is_directory \
+    "Is directory"
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__Is_directory */
+#define afw_vfs_s_zz__Is_directory \
+    (&afw_vfs_self_v_zz__Is_directory.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__Is_directory */
+#define afw_vfs_self_s_zz__Is_directory \
+    (afw_vfs_self_v_zz__Is_directory.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__Is_directory */
+extern const afw_value_string_t \
+    afw_vfs_self_v_zz__Is_directory;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__Is_directory */
+#define afw_vfs_z_zz__Is_directory \
+    (afw_vfs_self_v_zz__Is_directory.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__Is_directory */
+#define afw_vfs_v_zz__Is_directory \
+    (&afw_vfs_self_v_zz__Is_directory.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_VFS_Q_zz__Mark_Executable \
+    "Mark Executable"
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__Mark_Executable */
+#define afw_vfs_s_zz__Mark_Executable \
+    (&afw_vfs_self_v_zz__Mark_Executable.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__Mark_Executable */
+#define afw_vfs_self_s_zz__Mark_Executable \
+    (afw_vfs_self_v_zz__Mark_Executable.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__Mark_Executable */
+extern const afw_value_string_t \
+    afw_vfs_self_v_zz__Mark_Executable;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__Mark_Executable */
+#define afw_vfs_z_zz__Mark_Executable \
+    (afw_vfs_self_v_zz__Mark_Executable.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__Mark_Executable */
+#define afw_vfs_v_zz__Mark_Executable \
+    (&afw_vfs_self_v_zz__Mark_Executable.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_VFS_Q_zz__Recursively_traverse_directories \
+    "Recursively traverse directories"
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__Recursively_traverse_directories */
+#define afw_vfs_s_zz__Recursively_traverse_directories \
+    (&afw_vfs_self_v_zz__Recursively_traverse_directories.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__Recursively_traverse_directories */
+#define afw_vfs_self_s_zz__Recursively_traverse_directories \
+    (afw_vfs_self_v_zz__Recursively_traverse_directories.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__Recursively_traverse_directories */
+extern const afw_value_string_t \
+    afw_vfs_self_v_zz__Recursively_traverse_directories;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__Recursively_traverse_directories */
+#define afw_vfs_z_zz__Recursively_traverse_directories \
+    (afw_vfs_self_v_zz__Recursively_traverse_directories.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__Recursively_traverse_directories */
+#define afw_vfs_v_zz__Recursively_traverse_directories \
+    (&afw_vfs_self_v_zz__Recursively_traverse_directories.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_VFS_Q_zz__This_is_the_single_object_type_of_objects_in_a_vfs_adaptor_ \
+    "This is the single object type of objects in a vfs adaptor."
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__This_is_the_single_object_type_of_objects_in_a_vfs_adaptor_ */
+#define afw_vfs_s_zz__This_is_the_single_object_type_of_objects_in_a_vfs_adaptor_ \
+    (&afw_vfs_self_v_zz__This_is_the_single_object_type_of_objects_in_a_vfs_adaptor_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__This_is_the_single_object_type_of_objects_in_a_vfs_adaptor_ */
+#define afw_vfs_self_s_zz__This_is_the_single_object_type_of_objects_in_a_vfs_adaptor_ \
+    (afw_vfs_self_v_zz__This_is_the_single_object_type_of_objects_in_a_vfs_adaptor_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__This_is_the_single_object_type_of_objects_in_a_vfs_adaptor_ */
+extern const afw_value_string_t \
+    afw_vfs_self_v_zz__This_is_the_single_object_type_of_objects_in_a_vfs_adaptor_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__This_is_the_single_object_type_of_objects_in_a_vfs_adaptor_ */
+#define afw_vfs_z_zz__This_is_the_single_object_type_of_objects_in_a_vfs_adaptor_ \
+    (afw_vfs_self_v_zz__This_is_the_single_object_type_of_objects_in_a_vfs_adaptor_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__This_is_the_single_object_type_of_objects_in_a_vfs_adaptor_ */
+#define afw_vfs_v_zz__This_is_the_single_object_type_of_objects_in_a_vfs_adaptor_ \
+    (&afw_vfs_self_v_zz__This_is_the_single_object_type_of_objects_in_a_vfs_adaptor_.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_VFS_Q_zz__This_is_the_time_the_file_was_created_ \
+    "This is the time the file was created."
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__This_is_the_time_the_file_was_created_ */
+#define afw_vfs_s_zz__This_is_the_time_the_file_was_created_ \
+    (&afw_vfs_self_v_zz__This_is_the_time_the_file_was_created_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__This_is_the_time_the_file_was_created_ */
+#define afw_vfs_self_s_zz__This_is_the_time_the_file_was_created_ \
+    (afw_vfs_self_v_zz__This_is_the_time_the_file_was_created_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__This_is_the_time_the_file_was_created_ */
+extern const afw_value_string_t \
+    afw_vfs_self_v_zz__This_is_the_time_the_file_was_created_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__This_is_the_time_the_file_was_created_ */
+#define afw_vfs_z_zz__This_is_the_time_the_file_was_created_ \
+    (afw_vfs_self_v_zz__This_is_the_time_the_file_was_created_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__This_is_the_time_the_file_was_created_ */
+#define afw_vfs_v_zz__This_is_the_time_the_file_was_created_ \
+    (&afw_vfs_self_v_zz__This_is_the_time_the_file_was_created_.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_VFS_Q_zz__This_is_the_time_the_file_was_last_accessed_ \
+    "This is the time the file was last accessed."
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__This_is_the_time_the_file_was_last_accessed_ */
+#define afw_vfs_s_zz__This_is_the_time_the_file_was_last_accessed_ \
+    (&afw_vfs_self_v_zz__This_is_the_time_the_file_was_last_accessed_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__This_is_the_time_the_file_was_last_accessed_ */
+#define afw_vfs_self_s_zz__This_is_the_time_the_file_was_last_accessed_ \
+    (afw_vfs_self_v_zz__This_is_the_time_the_file_was_last_accessed_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__This_is_the_time_the_file_was_last_accessed_ */
+extern const afw_value_string_t \
+    afw_vfs_self_v_zz__This_is_the_time_the_file_was_last_accessed_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__This_is_the_time_the_file_was_last_accessed_ */
+#define afw_vfs_z_zz__This_is_the_time_the_file_was_last_accessed_ \
+    (afw_vfs_self_v_zz__This_is_the_time_the_file_was_last_accessed_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__This_is_the_time_the_file_was_last_accessed_ */
+#define afw_vfs_v_zz__This_is_the_time_the_file_was_last_accessed_ \
+    (&afw_vfs_self_v_zz__This_is_the_time_the_file_was_last_accessed_.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_VFS_Q_zz__This_is_the_time_the_file_was_last_modified_ \
+    "This is the time the file was last modified."
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__This_is_the_time_the_file_was_last_modified_ */
+#define afw_vfs_s_zz__This_is_the_time_the_file_was_last_modified_ \
+    (&afw_vfs_self_v_zz__This_is_the_time_the_file_was_last_modified_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__This_is_the_time_the_file_was_last_modified_ */
+#define afw_vfs_self_s_zz__This_is_the_time_the_file_was_last_modified_ \
+    (afw_vfs_self_v_zz__This_is_the_time_the_file_was_last_modified_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__This_is_the_time_the_file_was_last_modified_ */
+extern const afw_value_string_t \
+    afw_vfs_self_v_zz__This_is_the_time_the_file_was_last_modified_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__This_is_the_time_the_file_was_last_modified_ */
+#define afw_vfs_z_zz__This_is_the_time_the_file_was_last_modified_ \
+    (afw_vfs_self_v_zz__This_is_the_time_the_file_was_last_modified_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__This_is_the_time_the_file_was_last_modified_ */
+#define afw_vfs_v_zz__This_is_the_time_the_file_was_last_modified_ \
+    (&afw_vfs_self_v_zz__This_is_the_time_the_file_was_last_modified_.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_VFS_Q_zz__Time_Accessed \
+    "Time Accessed"
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__Time_Accessed */
+#define afw_vfs_s_zz__Time_Accessed \
+    (&afw_vfs_self_v_zz__Time_Accessed.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__Time_Accessed */
+#define afw_vfs_self_s_zz__Time_Accessed \
+    (afw_vfs_self_v_zz__Time_Accessed.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__Time_Accessed */
+extern const afw_value_string_t \
+    afw_vfs_self_v_zz__Time_Accessed;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__Time_Accessed */
+#define afw_vfs_z_zz__Time_Accessed \
+    (afw_vfs_self_v_zz__Time_Accessed.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__Time_Accessed */
+#define afw_vfs_v_zz__Time_Accessed \
+    (&afw_vfs_self_v_zz__Time_Accessed.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_VFS_Q_zz__Time_Created \
+    "Time Created"
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__Time_Created */
+#define afw_vfs_s_zz__Time_Created \
+    (&afw_vfs_self_v_zz__Time_Created.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__Time_Created */
+#define afw_vfs_self_s_zz__Time_Created \
+    (afw_vfs_self_v_zz__Time_Created.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__Time_Created */
+extern const afw_value_string_t \
+    afw_vfs_self_v_zz__Time_Created;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__Time_Created */
+#define afw_vfs_z_zz__Time_Created \
+    (afw_vfs_self_v_zz__Time_Created.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__Time_Created */
+#define afw_vfs_v_zz__Time_Created \
+    (&afw_vfs_self_v_zz__Time_Created.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_VFS_Q_zz__Time_Modified \
+    "Time Modified"
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__Time_Modified */
+#define afw_vfs_s_zz__Time_Modified \
+    (&afw_vfs_self_v_zz__Time_Modified.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__Time_Modified */
+#define afw_vfs_self_s_zz__Time_Modified \
+    (afw_vfs_self_v_zz__Time_Modified.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__Time_Modified */
+extern const afw_value_string_t \
+    afw_vfs_self_v_zz__Time_Modified;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__Time_Modified */
+#define afw_vfs_z_zz__Time_Modified \
+    (afw_vfs_self_v_zz__Time_Modified.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__Time_Modified */
+#define afw_vfs_v_zz__Time_Modified \
+    (&afw_vfs_self_v_zz__Time_Modified.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_VFS_Q_zz__Time_created \
+    "Time created"
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__Time_created */
+#define afw_vfs_s_zz__Time_created \
+    (&afw_vfs_self_v_zz__Time_created.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__Time_created */
+#define afw_vfs_self_s_zz__Time_created \
+    (afw_vfs_self_v_zz__Time_created.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__Time_created */
+extern const afw_value_string_t \
+    afw_vfs_self_v_zz__Time_created;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__Time_created */
+#define afw_vfs_z_zz__Time_created \
+    (afw_vfs_self_v_zz__Time_created.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__Time_created */
+#define afw_vfs_v_zz__Time_created \
+    (&afw_vfs_self_v_zz__Time_created.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_VFS_Q_zz__Time_last_accessed \
+    "Time last accessed"
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__Time_last_accessed */
+#define afw_vfs_s_zz__Time_last_accessed \
+    (&afw_vfs_self_v_zz__Time_last_accessed.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__Time_last_accessed */
+#define afw_vfs_self_s_zz__Time_last_accessed \
+    (afw_vfs_self_v_zz__Time_last_accessed.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__Time_last_accessed */
+extern const afw_value_string_t \
+    afw_vfs_self_v_zz__Time_last_accessed;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__Time_last_accessed */
+#define afw_vfs_z_zz__Time_last_accessed \
+    (afw_vfs_self_v_zz__Time_last_accessed.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__Time_last_accessed */
+#define afw_vfs_v_zz__Time_last_accessed \
+    (&afw_vfs_self_v_zz__Time_last_accessed.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_VFS_Q_zz__Time_last_modified \
+    "Time last modified"
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__Time_last_modified */
+#define afw_vfs_s_zz__Time_last_modified \
+    (&afw_vfs_self_v_zz__Time_last_modified.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__Time_last_modified */
+#define afw_vfs_self_s_zz__Time_last_modified \
+    (afw_vfs_self_v_zz__Time_last_modified.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__Time_last_modified */
+extern const afw_value_string_t \
+    afw_vfs_self_v_zz__Time_last_modified;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__Time_last_modified */
+#define afw_vfs_z_zz__Time_last_modified \
+    (afw_vfs_self_v_zz__Time_last_modified.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__Time_last_modified */
+#define afw_vfs_v_zz__Time_last_modified \
+    (&afw_vfs_self_v_zz__Time_last_modified.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_VFS_Q_zz__VFS_Map \
+    "VFS Map"
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__VFS_Map */
+#define afw_vfs_s_zz__VFS_Map \
+    (&afw_vfs_self_v_zz__VFS_Map.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__VFS_Map */
+#define afw_vfs_self_s_zz__VFS_Map \
+    (afw_vfs_self_v_zz__VFS_Map.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__VFS_Map */
+extern const afw_value_string_t \
+    afw_vfs_self_v_zz__VFS_Map;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__VFS_Map */
+#define afw_vfs_z_zz__VFS_Map \
+    (afw_vfs_self_v_zz__VFS_Map.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__VFS_Map */
+#define afw_vfs_v_zz__VFS_Map \
+    (&afw_vfs_self_v_zz__VFS_Map.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_VFS_Q_zz__VFS_Path \
+    "VFS Path"
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__VFS_Path */
+#define afw_vfs_s_zz__VFS_Path \
+    (&afw_vfs_self_v_zz__VFS_Path.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__VFS_Path */
+#define afw_vfs_self_s_zz__VFS_Path \
+    (afw_vfs_self_v_zz__VFS_Path.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__VFS_Path */
+extern const afw_value_string_t \
+    afw_vfs_self_v_zz__VFS_Path;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__VFS_Path */
+#define afw_vfs_z_zz__VFS_Path \
+    (afw_vfs_self_v_zz__VFS_Path.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__VFS_Path */
+#define afw_vfs_v_zz__VFS_Path \
+    (&afw_vfs_self_v_zz__VFS_Path.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_VFS_Q_zz__VFS_path \
+    "VFS path"
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__VFS_path */
+#define afw_vfs_s_zz__VFS_path \
+    (&afw_vfs_self_v_zz__VFS_path.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__VFS_path */
+#define afw_vfs_self_s_zz__VFS_path \
+    (afw_vfs_self_v_zz__VFS_path.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__VFS_path */
+extern const afw_value_string_t \
+    afw_vfs_self_v_zz__VFS_path;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__VFS_path */
+#define afw_vfs_z_zz__VFS_path \
+    (afw_vfs_self_v_zz__VFS_path.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__VFS_path */
+#define afw_vfs_v_zz__VFS_path \
+    (&afw_vfs_self_v_zz__VFS_path.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_VFS_Q_zz__VFS_to_operating_system_directory_map \
+    "VFS to operating system directory map"
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__VFS_to_operating_system_directory_map */
+#define afw_vfs_s_zz__VFS_to_operating_system_directory_map \
+    (&afw_vfs_self_v_zz__VFS_to_operating_system_directory_map.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__VFS_to_operating_system_directory_map */
+#define afw_vfs_self_s_zz__VFS_to_operating_system_directory_map \
+    (afw_vfs_self_v_zz__VFS_to_operating_system_directory_map.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__VFS_to_operating_system_directory_map */
+extern const afw_value_string_t \
+    afw_vfs_self_v_zz__VFS_to_operating_system_directory_map;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__VFS_to_operating_system_directory_map */
+#define afw_vfs_z_zz__VFS_to_operating_system_directory_map \
+    (afw_vfs_self_v_zz__VFS_to_operating_system_directory_map.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__VFS_to_operating_system_directory_map */
+#define afw_vfs_v_zz__VFS_to_operating_system_directory_map \
+    (&afw_vfs_self_v_zz__VFS_to_operating_system_directory_map.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_VFS_Q_zz__vfsPath_filename_patterns_to_mark_as_executable \
+    "vfsPath filename patterns to mark as executable"
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__vfsPath_filename_patterns_to_mark_as_executable */
+#define afw_vfs_s_zz__vfsPath_filename_patterns_to_mark_as_executable \
+    (&afw_vfs_self_v_zz__vfsPath_filename_patterns_to_mark_as_executable.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__vfsPath_filename_patterns_to_mark_as_executable */
+#define afw_vfs_self_s_zz__vfsPath_filename_patterns_to_mark_as_executable \
+    (afw_vfs_self_v_zz__vfsPath_filename_patterns_to_mark_as_executable.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__vfsPath_filename_patterns_to_mark_as_executable */
+extern const afw_value_string_t \
+    afw_vfs_self_v_zz__vfsPath_filename_patterns_to_mark_as_executable;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__vfsPath_filename_patterns_to_mark_as_executable */
+#define afw_vfs_z_zz__vfsPath_filename_patterns_to_mark_as_executable \
+    (afw_vfs_self_v_zz__vfsPath_filename_patterns_to_mark_as_executable.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__vfsPath_filename_patterns_to_mark_as_executable */
+#define afw_vfs_v_zz__vfsPath_filename_patterns_to_mark_as_executable \
+    (&afw_vfs_self_v_zz__vfsPath_filename_patterns_to_mark_as_executable.pub)
 
 
 

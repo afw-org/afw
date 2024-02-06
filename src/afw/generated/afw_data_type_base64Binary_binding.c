@@ -135,12 +135,16 @@ static const afw_utf8_t
 impl_data_type_path_base64Binary =
     AFW_UTF8_LITERAL("/afw/_AdaptiveDataType_/base64Binary");
 
+static const afw_value_object_t
+impl_data_type_object_base64Binary__value;
+
 /* Data type base64Binary object. */
 static const afw_runtime_object_indirect_t
 impl_data_type_object_base64Binary = {
     {
         &afw_runtime_inf__AdaptiveDataType_,
         NULL,
+        (const afw_value_t *)&impl_data_type_object_base64Binary__value,
         {
             NULL,
             NULL,
@@ -150,6 +154,12 @@ impl_data_type_object_base64Binary = {
         }
     },
     (void *)&afw_data_type_base64Binary_direct
+};
+
+static const afw_value_object_t
+impl_data_type_object_base64Binary__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_data_type_object_base64Binary
 };
 
 /* Value for empty array of base64Binary. */
@@ -299,7 +309,9 @@ afw_value_create_managed_base64Binary(
     v->internal.size = (internal) ? internal->size : 0;
     v->internal.ptr = (const afw_byte_t *)v +
         sizeof(afw_value_base64Binary_managed_t);
-    memcpy((void *)v->internal.ptr, internal->ptr, size);
+    if (internal && internal->ptr) {
+       memcpy((void *)v->internal.ptr, internal->ptr, size);
+    }
 
     return &v->pub;
 }

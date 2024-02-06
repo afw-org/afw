@@ -864,12 +864,17 @@ def write_c_section(fd, prefix, obj):
     fd.write('    AFW_UTF8_LITERAL("' + '/afw/_AdaptiveDataType_/' +  id + '");\n')
 
     # Data type object
+    value_label = 'impl_data_type_object_' + id + '__value'
+    fd.write('\nstatic const afw_value_object_t\n')
+    fd.write(value_label + ';\n')
+
     fd.write('\n/* Data type ' + id + ' object. */\n')
     fd.write('static const afw_runtime_object_indirect_t\n')
     fd.write('impl_data_type_object_' + id + ' = {\n')
     fd.write('    {\n')
     fd.write('        &afw_runtime_inf__AdaptiveDataType_,\n')
     fd.write('        NULL,\n')
+    fd.write('        (const afw_value_t *)&' + value_label + ',\n')
     fd.write('        {\n')
     fd.write('            NULL,\n')
     fd.write('            NULL,\n')
@@ -879,6 +884,12 @@ def write_c_section(fd, prefix, obj):
     fd.write('        }\n')
     fd.write('    },\n')
     fd.write('    (void *)&' + prefix + 'data_type_' + id + '_direct\n')
+    fd.write('};\n')
+
+    fd.write('\nstatic const afw_value_object_t\n')
+    fd.write(value_label + ' = {\n')
+    fd.write('    {&afw_value_permanent_object_inf},\n')
+    fd.write('    (const afw_object_t *)&impl_data_type_object_' + id +'\n')
     fd.write('};\n')
 
     # Declare for empty array of this data type
@@ -1175,7 +1186,9 @@ def write_c_section(fd, prefix, obj):
             fd.write('    v->inf = &afw_value_managed_' + id + '_inf;\n')
             fd.write('    v->internal.len = len;\n')
             fd.write('    v->internal.s = (const afw_utf8_octet_t *)v +\n        sizeof(afw_value_' + id + '_managed_t);\n')
-            fd.write('    memcpy((void *)v->internal.s, internal->s, len);\n')
+            fd.write('    if (internal && internal->s) {\n')
+            fd.write('        memcpy((void *)v->internal.s, internal->s, len);\n')
+            fd.write('    }\n')
         elif ctype == 'afw_memory_t':
             fd.write('\n')
             fd.write('    afw_size_t size;\n')
@@ -1186,7 +1199,9 @@ def write_c_section(fd, prefix, obj):
             fd.write('    v->inf = &afw_value_managed_' + id + '_inf;\n')
             fd.write('    v->internal.size = (internal) ? internal->size : 0;\n')
             fd.write('    v->internal.ptr = (const afw_byte_t *)v +\n        sizeof(afw_value_' + id + '_managed_t);\n')
-            fd.write('    memcpy((void *)v->internal.ptr, internal->ptr, size);\n')
+            fd.write('    if (internal && internal->ptr) {\n')
+            fd.write('       memcpy((void *)v->internal.ptr, internal->ptr, size);\n')
+            fd.write('    }\n')
         elif direct_return == True:
             fd.write('\n')
             fd.write('    v = afw_xctx_malloc(\n')

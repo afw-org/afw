@@ -135,12 +135,16 @@ static const afw_utf8_t
 impl_data_type_path_xpathExpression =
     AFW_UTF8_LITERAL("/afw/_AdaptiveDataType_/xpathExpression");
 
+static const afw_value_object_t
+impl_data_type_object_xpathExpression__value;
+
 /* Data type xpathExpression object. */
 static const afw_runtime_object_indirect_t
 impl_data_type_object_xpathExpression = {
     {
         &afw_runtime_inf__AdaptiveDataType_,
         NULL,
+        (const afw_value_t *)&impl_data_type_object_xpathExpression__value,
         {
             NULL,
             NULL,
@@ -150,6 +154,12 @@ impl_data_type_object_xpathExpression = {
         }
     },
     (void *)&afw_data_type_xpathExpression_direct
+};
+
+static const afw_value_object_t
+impl_data_type_object_xpathExpression__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_data_type_object_xpathExpression
 };
 
 /* Value for empty array of xpathExpression. */
@@ -298,7 +308,9 @@ afw_value_create_managed_xpathExpression(
     v->internal.len = len;
     v->internal.s = (const afw_utf8_octet_t *)v +
         sizeof(afw_value_xpathExpression_managed_t);
-    memcpy((void *)v->internal.s, internal->s, len);
+    if (internal && internal->s) {
+        memcpy((void *)v->internal.s, internal->s, len);
+    }
 
     return &v->pub;
 }

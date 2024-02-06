@@ -31,6 +31,11 @@ def sort_category_functionLabel_cb(obj):
 
 # afw_value_function_parameter_t
 def write_parameter(fd, prefix, options, label, p, embedding_object_label, property_name):
+    if options['core']:
+        value_label = label + '__value'
+        fd.write('\nstatic const afw_value_object_t\n')
+        fd.write(value_label + ';\n')
+
     fd.write('\nstatic const afw_value_function_parameter_t\n')
     fd.write(label + ' = {\n')
 
@@ -38,9 +43,13 @@ def write_parameter(fd, prefix, options, label, p, embedding_object_label, prope
     fd.write('    {\n')
     if options['core']:
         fd.write('        &afw_runtime_inf__AdaptiveFunctionParameter_,\n')
+        fd.write('        NULL,\n')
+        fd.write('        (const afw_value_t *)&' + value_label + ',\n')
     else:
         fd.write('        NULL,\n')
-    fd.write('        NULL,\n')
+        fd.write('        NULL,\n')
+        fd.write('        NULL,\n')
+
     fd.write('        {\n')
     fd.write('            NULL,\n')
     fd.write('            NULL,\n')
@@ -110,6 +119,14 @@ def write_parameter(fd, prefix, options, label, p, embedding_object_label, prope
     fd.write('    &' + get_string_label(options, polymorphicDataTypeParameter, 'self_v', dataType='boolean') + ',\n')
 
     fd.write('};\n')
+
+    if options['core']:    
+        fd.write('\nstatic const afw_value_object_t\n')
+        fd.write(value_label + ' = {\n')
+        fd.write('    {&afw_value_permanent_object_inf},\n')
+        fd.write('    (const afw_object_t *)&' + label +'\n')
+        fd.write('};\n')
+
 
 def function_arg(fd, arg):
     types = []
@@ -452,6 +469,11 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
             fd.write('    AFW_UTF8_LITERAL("' + '/afw/_AdaptiveFunction_/' +  label + '");\n')
 
             # Create runtime object for this function
+            if options['core']:
+                value_label = 'impl_object__' + label + '__value'
+                fd.write('\nstatic const afw_value_object_t\n')
+                fd.write(value_label + ';\n')
+
             fd.write('\nstatic const afw_runtime_object_indirect_t\n')
             fd.write('impl_object__' + label + ' = {\n') 
             fd.write('    {\n')
@@ -460,6 +482,10 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
             else:
                 fd.write('        NULL,\n')
             fd.write('        NULL,\n')
+            if options['core']:
+                fd.write('        (const afw_value_t *)&' + value_label + ',\n')
+            else:
+                fd.write('        NULL, /* Resolved at runtime. */\n')
             fd.write('        {\n')
             fd.write('            NULL,\n')
             fd.write('            NULL,\n')
@@ -799,6 +825,13 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
             fd.write('    &' + get_string_label(options, signatureOnly, 'self_v', dataType='boolean') + ',\n')
 
             fd.write('};\n')
+
+            if options['core']:
+                fd.write('\nstatic const afw_value_object_t\n')
+                fd.write(value_label + ' = {\n')
+                fd.write('    {&afw_value_permanent_object_inf},\n')
+                fd.write('    (const afw_object_t *)&impl_object__' + label +'\n')
+                fd.write('};\n')
 
         fd.write('\nstatic const afw_value_function_definition_t * \n')
         fd.write('impl_function_bindings[] = {\n')

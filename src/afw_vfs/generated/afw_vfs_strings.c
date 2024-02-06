@@ -26,6 +26,30 @@
 #include "afw_vfs_strings.h"
 
 const afw_value_string_t
+afw_vfs_self_v_Data = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_Data)
+};
+
+const afw_value_string_t
+afw_vfs_self_v_Include = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_Include)
+};
+
+const afw_value_string_t
+afw_vfs_self_v_Recursive = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_Recursive)
+};
+
+const afw_value_string_t
+afw_vfs_self_v_Subdirectory = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_Subdirectory)
+};
+
+const afw_value_string_t
 afw_vfs_self_v__AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_VFS_Q__AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects)
@@ -71,6 +95,18 @@ const afw_value_string_t
 afw_vfs_self_v__AdaptivePolymorphicFunction_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_VFS_Q__AdaptivePolymorphicFunction_)
+};
+
+const afw_value_string_t
+afw_vfs_self_v__AdaptivePropertyTypes_ = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q__AdaptivePropertyTypes_)
+};
+
+const afw_value_string_t
+afw_vfs_self_v__AdaptiveValueMeta_ = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q__AdaptiveValueMeta_)
 };
 
 const afw_value_string_t
@@ -293,4 +329,226 @@ const afw_value_string_t
 afw_vfs_self_v_vfsPath = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_VFS_Q_vfsPath)
+};
+
+const afw_value_string_t
+afw_vfs_self_v_zz__ = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__)
+};
+
+const afw_value_string_t
+afw_vfs_self_v_zz__2534 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2534)
+};
+
+const afw_value_string_t
+afw_vfs_self_v_zz__2535 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2535)
+};
+
+const afw_value_string_t
+afw_vfs_self_v_zz__2536 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2536)
+};
+
+const afw_value_string_t
+afw_vfs_self_v_zz__2537 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2537)
+};
+
+const afw_value_string_t
+afw_vfs_self_v_zz__2538 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2538)
+};
+
+const afw_value_string_t
+afw_vfs_self_v_zz__2539 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2539)
+};
+
+const afw_value_string_t
+afw_vfs_self_v_zz__2540 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2540)
+};
+
+const afw_value_string_t
+afw_vfs_self_v_zz__2541 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2541)
+};
+
+const afw_value_string_t
+afw_vfs_self_v_zz__2542 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2542)
+};
+
+const afw_value_string_t
+afw_vfs_self_v_zz__2543 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2543)
+};
+
+const afw_value_string_t
+afw_vfs_self_v_zz__Contents_of_file = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__Contents_of_file)
+};
+
+const afw_value_string_t
+afw_vfs_self_v_zz__Custom_property = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__Custom_property)
+};
+
+const afw_value_string_t
+afw_vfs_self_v_zz__Custom_property_ = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__Custom_property_)
+};
+
+const afw_value_string_t
+afw_vfs_self_v_zz__Filename_Suffix = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__Filename_Suffix)
+};
+
+const afw_value_string_t
+afw_vfs_self_v_zz__Filename_suffix = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__Filename_suffix)
+};
+
+const afw_value_string_t
+afw_vfs_self_v_zz__If_true__directories_will_be_recursively_traversed_ = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__If_true__directories_will_be_recursively_traversed_)
+};
+
+const afw_value_string_t
+afw_vfs_self_v_zz__Include_Hidden = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__Include_Hidden)
+};
+
+const afw_value_string_t
+afw_vfs_self_v_zz__Is_Directory = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__Is_Directory)
+};
+
+const afw_value_string_t
+afw_vfs_self_v_zz__Is_directory = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__Is_directory)
+};
+
+const afw_value_string_t
+afw_vfs_self_v_zz__Mark_Executable = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__Mark_Executable)
+};
+
+const afw_value_string_t
+afw_vfs_self_v_zz__Recursively_traverse_directories = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__Recursively_traverse_directories)
+};
+
+const afw_value_string_t
+afw_vfs_self_v_zz__This_is_the_single_object_type_of_objects_in_a_vfs_adaptor_ = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__This_is_the_single_object_type_of_objects_in_a_vfs_adaptor_)
+};
+
+const afw_value_string_t
+afw_vfs_self_v_zz__This_is_the_time_the_file_was_created_ = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__This_is_the_time_the_file_was_created_)
+};
+
+const afw_value_string_t
+afw_vfs_self_v_zz__This_is_the_time_the_file_was_last_accessed_ = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__This_is_the_time_the_file_was_last_accessed_)
+};
+
+const afw_value_string_t
+afw_vfs_self_v_zz__This_is_the_time_the_file_was_last_modified_ = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__This_is_the_time_the_file_was_last_modified_)
+};
+
+const afw_value_string_t
+afw_vfs_self_v_zz__Time_Accessed = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__Time_Accessed)
+};
+
+const afw_value_string_t
+afw_vfs_self_v_zz__Time_Created = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__Time_Created)
+};
+
+const afw_value_string_t
+afw_vfs_self_v_zz__Time_Modified = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__Time_Modified)
+};
+
+const afw_value_string_t
+afw_vfs_self_v_zz__Time_created = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__Time_created)
+};
+
+const afw_value_string_t
+afw_vfs_self_v_zz__Time_last_accessed = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__Time_last_accessed)
+};
+
+const afw_value_string_t
+afw_vfs_self_v_zz__Time_last_modified = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__Time_last_modified)
+};
+
+const afw_value_string_t
+afw_vfs_self_v_zz__VFS_Map = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__VFS_Map)
+};
+
+const afw_value_string_t
+afw_vfs_self_v_zz__VFS_Path = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__VFS_Path)
+};
+
+const afw_value_string_t
+afw_vfs_self_v_zz__VFS_path = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__VFS_path)
+};
+
+const afw_value_string_t
+afw_vfs_self_v_zz__VFS_to_operating_system_directory_map = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__VFS_to_operating_system_directory_map)
+};
+
+const afw_value_string_t
+afw_vfs_self_v_zz__vfsPath_filename_patterns_to_mark_as_executable = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__vfsPath_filename_patterns_to_mark_as_executable)
 };

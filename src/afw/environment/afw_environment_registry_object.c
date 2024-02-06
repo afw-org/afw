@@ -32,10 +32,14 @@
 static const afw_utf8_t impl_path =
 AFW_UTF8_LITERAL("/afw/_AdaptiveEnvironmentRegistry_/current");
 
+static const afw_value_object_t
+impl_current_object__value;
+
 static const afw_object_t
 impl_current_object = {
     &impl_afw_object_inf,
     NULL,
+    (const afw_value_t *)&impl_current_object__value,
     {
         NULL,
         NULL,
@@ -45,6 +49,11 @@ impl_current_object = {
     }
 };
 
+static const afw_value_object_t
+impl_current_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_current_object
+};
 
 
 /* Get current environment registry object. */

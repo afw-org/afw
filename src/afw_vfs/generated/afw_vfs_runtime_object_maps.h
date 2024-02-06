@@ -30,19 +30,19 @@
  * @brief Runtime object inf for object type _AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_vfs_runtime_inf__AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects;
+afw_runtime_inf__AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveConf_adaptor_vfs
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_vfs_runtime_inf__AdaptiveConf_adaptor_vfs;
+afw_runtime_inf__AdaptiveConf_adaptor_vfs;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveFile_vfs
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_vfs_runtime_inf__AdaptiveFile_vfs;
+afw_runtime_inf__AdaptiveFile_vfs;
 
 /**
  * @brief Register (afw_vfs_) runtime object maps.

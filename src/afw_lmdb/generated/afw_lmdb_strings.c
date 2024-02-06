@@ -26,6 +26,24 @@
 #include "afw_lmdb_strings.h"
 
 const afw_value_string_t
+afw_lmdb_self_v_Depth = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_Depth)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_Entries = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_Entries)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_Environment = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_Environment)
+};
+
+const afw_value_string_t
 afw_lmdb_self_v_Extern = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_LMDB_Q_Extern)
@@ -38,15 +56,69 @@ afw_lmdb_self_v_Index = {
 };
 
 const afw_value_string_t
+afw_lmdb_self_v_Information = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_Information)
+};
+
+const afw_value_string_t
 afw_lmdb_self_v_Journal = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_LMDB_Q_Journal)
 };
 
 const afw_value_string_t
+afw_lmdb_self_v_Limits = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_Limits)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_Major = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_Major)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_Minor = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_Minor)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_Mode = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_Mode)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_Patch = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_Patch)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_Path = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_Path)
+};
+
+const afw_value_string_t
 afw_lmdb_self_v_Primary = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_LMDB_Q_Primary)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_Statistics = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_Statistics)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_Version = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_Version)
 };
 
 const afw_value_string_t
@@ -143,6 +215,18 @@ const afw_value_string_t
 afw_lmdb_self_v__AdaptiveObjectType_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_LMDB_Q__AdaptiveObjectType_)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v__AdaptivePropertyTypes_ = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q__AdaptivePropertyTypes_)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v__AdaptiveValueMeta_ = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q__AdaptiveValueMeta_)
 };
 
 const afw_value_string_t
@@ -608,9 +692,99 @@ afw_lmdb_self_v_zz__ = {
 };
 
 const afw_value_string_t
+afw_lmdb_self_v_zz__2522 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2522)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__2523 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2523)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__2524 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2524)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__2525 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2525)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__2526 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2526)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__2527 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2527)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__2528 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2528)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__2529 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2529)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__2530 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2530)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__2531 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2531)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__2532 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2532)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__2533 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2533)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__Adaptive_Framework_LMDB_extension_collection_ = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Adaptive_Framework_LMDB_extension_collection_)
+};
+
+const afw_value_string_t
 afw_lmdb_self_v_zz__Adaptor_Id_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Adaptor_Id_)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__Address_of_database_map_in_RAM_ = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Address_of_database_map_in_RAM_)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__Branch_Pages = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Branch_Pages)
 };
 
 const afw_value_string_t
@@ -620,9 +794,177 @@ afw_lmdb_self_v_zz__Check_for_stale_entries_in_the_reader_lock_table_ = {
 };
 
 const afw_value_string_t
+afw_lmdb_self_v_zz__Database_file_mode__in_decimal__for_LMDB_ = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Database_file_mode__in_decimal__for_LMDB_)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__Database_limits_for_LMDB_ = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Database_limits_for_LMDB_)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__Database_path_for_LMDB_ = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Database_path_for_LMDB_)
+};
+
+const afw_value_string_t
 afw_lmdb_self_v_zz__Dump_the_entries_in_the_reader_lock_table_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Dump_the_entries_in_the_reader_lock_table_)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__Environment_settings_for_LMDB_ = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Environment_settings_for_LMDB_)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__Hard_Limit = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Hard_Limit)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__Hard_size_limit_for_requests_ = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Hard_size_limit_for_requests_)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__Hard_time_limit_for_requests_ = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Hard_time_limit_for_requests_)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__Height_of_the_B_tree = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Height_of_the_B_tree)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__ID_of_last_committed_transaction_ = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__ID_of_last_committed_transaction_)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__ID_of_last_used_page_ = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__ID_of_last_used_page_)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__Information_about_individual_LMDB_databases_ = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Information_about_individual_LMDB_databases_)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__Last_Page_Number = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Last_Page_Number)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__Last_Transaction_Id = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Last_Transaction_Id)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__Leaf_Pages = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Leaf_Pages)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__Lightning_Memory_Mapped_Database__LMDB__functions_ = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Lightning_Memory_Mapped_Database__LMDB__functions_)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__Major_version = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Major_version)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__Map_Address = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Map_Address)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__Map_Size = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Map_Size)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__Max_Databases = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Max_Databases)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__Max_Readers = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Max_Readers)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__Maximum_number_of_named_databases_for_the_environment_ = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Maximum_number_of_named_databases_for_the_environment_)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__Minor_version = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Minor_version)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__Number_Readers = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Number_Readers)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__Number_of_data_items_ = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Number_of_data_items_)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__Number_of_internal__non_leaf__pages_ = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Number_of_internal__non_leaf__pages_)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__Number_of_leaf_pages_ = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Number_of_leaf_pages_)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__Number_of_overflow_pages_ = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Number_of_overflow_pages_)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__Number_of_reader_slots_allocated_in_the_lock_file_ = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Number_of_reader_slots_allocated_in_the_lock_file_)
 };
 
 const afw_value_string_t
@@ -632,9 +974,117 @@ afw_lmdb_self_v_zz__Number_of_stale_slots_that_were_cleared_ = {
 };
 
 const afw_value_string_t
+afw_lmdb_self_v_zz__Object_type_for_LMDB_adaptor_additional_metrics_ = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Object_type_for_LMDB_adaptor_additional_metrics_)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__Object_type_for_type_adaptor_adaptor_type_lmdb_conf_entries_ = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Object_type_for_type_adaptor_adaptor_type_lmdb_conf_entries_)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__Overflow_Pages = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Overflow_Pages)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__Page_Size = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Page_Size)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__Patch_version = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Patch_version)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__Patch_version_string = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Patch_version_string)
+};
+
+const afw_value_string_t
 afw_lmdb_self_v_zz__Reader_entries_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Reader_entries_)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__Size_Limits = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Size_Limits)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__Size_limits_for_requests_ = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Size_limits_for_requests_)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__Size_of_a_database_page_in_bytes_ = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Size_of_a_database_page_in_bytes_)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__Size_of_database_map_in_RAM_ = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Size_of_database_map_in_RAM_)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__Soft_Limit = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Soft_Limit)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__Soft_size_limit_for_requests_ = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Soft_size_limit_for_requests_)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__Soft_time_limit_for_requests_ = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Soft_time_limit_for_requests_)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__Time_Limits = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Time_Limits)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__Time_limits_for_requests_ = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Time_limits_for_requests_)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__Version_String = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Version_String)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__Version_information_reported_by_LMDB_ = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Version_information_reported_by_LMDB_)
+};
+
+const afw_value_string_t
+afw_lmdb_self_v_zz__Version_information_reported_by_LMDB_mdb_version___routine_ = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Version_information_reported_by_LMDB_mdb_version___routine_)
 };
 
 const afw_value_string_t

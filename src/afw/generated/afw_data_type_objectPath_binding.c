@@ -135,12 +135,16 @@ static const afw_utf8_t
 impl_data_type_path_objectPath =
     AFW_UTF8_LITERAL("/afw/_AdaptiveDataType_/objectPath");
 
+static const afw_value_object_t
+impl_data_type_object_objectPath__value;
+
 /* Data type objectPath object. */
 static const afw_runtime_object_indirect_t
 impl_data_type_object_objectPath = {
     {
         &afw_runtime_inf__AdaptiveDataType_,
         NULL,
+        (const afw_value_t *)&impl_data_type_object_objectPath__value,
         {
             NULL,
             NULL,
@@ -150,6 +154,12 @@ impl_data_type_object_objectPath = {
         }
     },
     (void *)&afw_data_type_objectPath_direct
+};
+
+static const afw_value_object_t
+impl_data_type_object_objectPath__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_data_type_object_objectPath
 };
 
 /* Value for empty array of objectPath. */
@@ -298,7 +308,9 @@ afw_value_create_managed_objectPath(
     v->internal.len = len;
     v->internal.s = (const afw_utf8_octet_t *)v +
         sizeof(afw_value_objectPath_managed_t);
-    memcpy((void *)v->internal.s, internal->s, len);
+    if (internal && internal->s) {
+        memcpy((void *)v->internal.s, internal->s, len);
+    }
 
     return &v->pub;
 }

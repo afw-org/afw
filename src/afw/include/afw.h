@@ -63,6 +63,7 @@
 #include "afw_request_impl.h"
 #include "afw_request_handler.h"
 #include "afw_runtime.h"
+#include "afw_runtime_object_maps.h"
 #include "afw_runtime_value_accessor.h"
 #include "afw_safe_cast.h"
 #include "afw_service.h"

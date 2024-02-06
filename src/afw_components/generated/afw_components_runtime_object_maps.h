@@ -30,469 +30,469 @@
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_AdaptiveProperty
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_AdaptiveProperty;
+afw_runtime_inf__AdaptiveLayoutComponentType_AdaptiveProperty;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_Autocomplete
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_Autocomplete;
+afw_runtime_inf__AdaptiveLayoutComponentType_Autocomplete;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_Autocomplete_Option
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_Autocomplete_Option;
+afw_runtime_inf__AdaptiveLayoutComponentType_Autocomplete_Option;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_Box
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_Box;
+afw_runtime_inf__AdaptiveLayoutComponentType_Box;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_BoxItem
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_BoxItem;
+afw_runtime_inf__AdaptiveLayoutComponentType_BoxItem;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_Breadcrumb
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_Breadcrumb;
+afw_runtime_inf__AdaptiveLayoutComponentType_Breadcrumb;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_BreadcrumbItem
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_BreadcrumbItem;
+afw_runtime_inf__AdaptiveLayoutComponentType_BreadcrumbItem;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_Button
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_Button;
+afw_runtime_inf__AdaptiveLayoutComponentType_Button;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_Callout
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_Callout;
+afw_runtime_inf__AdaptiveLayoutComponentType_Callout;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_Chart
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_Chart;
+afw_runtime_inf__AdaptiveLayoutComponentType_Chart;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_Chart_Data
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_Chart_Data;
+afw_runtime_inf__AdaptiveLayoutComponentType_Chart_Data;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_Checkbox
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_Checkbox;
+afw_runtime_inf__AdaptiveLayoutComponentType_Checkbox;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_ChoiceGroup
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_ChoiceGroup;
+afw_runtime_inf__AdaptiveLayoutComponentType_ChoiceGroup;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_ChoiceGroup_Option
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_ChoiceGroup_Option;
+afw_runtime_inf__AdaptiveLayoutComponentType_ChoiceGroup_Option;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_CodeEditor
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_CodeEditor;
+afw_runtime_inf__AdaptiveLayoutComponentType_CodeEditor;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_Collapsible
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_Collapsible;
+afw_runtime_inf__AdaptiveLayoutComponentType_Collapsible;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_Common
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_Common;
+afw_runtime_inf__AdaptiveLayoutComponentType_Common;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_DatePicker
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_DatePicker;
+afw_runtime_inf__AdaptiveLayoutComponentType_DatePicker;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_DateTimePicker
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_DateTimePicker;
+afw_runtime_inf__AdaptiveLayoutComponentType_DateTimePicker;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_Dialog
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_Dialog;
+afw_runtime_inf__AdaptiveLayoutComponentType_Dialog;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_DiffEditor
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_DiffEditor;
+afw_runtime_inf__AdaptiveLayoutComponentType_DiffEditor;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_Divider
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_Divider;
+afw_runtime_inf__AdaptiveLayoutComponentType_Divider;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_Drawer
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_Drawer;
+afw_runtime_inf__AdaptiveLayoutComponentType_Drawer;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_Dropdown
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_Dropdown;
+afw_runtime_inf__AdaptiveLayoutComponentType_Dropdown;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_DropdownEditor
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_DropdownEditor;
+afw_runtime_inf__AdaptiveLayoutComponentType_DropdownEditor;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_Dropdown_Option
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_Dropdown_Option;
+afw_runtime_inf__AdaptiveLayoutComponentType_Dropdown_Option;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_EditableCallout
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_EditableCallout;
+afw_runtime_inf__AdaptiveLayoutComponentType_EditableCallout;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_EditableLabel
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_EditableLabel;
+afw_runtime_inf__AdaptiveLayoutComponentType_EditableLabel;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_Hidden
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_Hidden;
+afw_runtime_inf__AdaptiveLayoutComponentType_Hidden;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_Icon
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_Icon;
+afw_runtime_inf__AdaptiveLayoutComponentType_Icon;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_Image
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_Image;
+afw_runtime_inf__AdaptiveLayoutComponentType_Image;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_Label
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_Label;
+afw_runtime_inf__AdaptiveLayoutComponentType_Label;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_Link
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_Link;
+afw_runtime_inf__AdaptiveLayoutComponentType_Link;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_List
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_List;
+afw_runtime_inf__AdaptiveLayoutComponentType_List;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_ListEditor
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_ListEditor;
+afw_runtime_inf__AdaptiveLayoutComponentType_ListEditor;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_ListEditor_Item
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_ListEditor_Item;
+afw_runtime_inf__AdaptiveLayoutComponentType_ListEditor_Item;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_Menu
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_Menu;
+afw_runtime_inf__AdaptiveLayoutComponentType_Menu;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_Menu_Item
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_Menu_Item;
+afw_runtime_inf__AdaptiveLayoutComponentType_Menu_Item;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_Message
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_Message;
+afw_runtime_inf__AdaptiveLayoutComponentType_Message;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_Modal
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_Modal;
+afw_runtime_inf__AdaptiveLayoutComponentType_Modal;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_Native
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_Native;
+afw_runtime_inf__AdaptiveLayoutComponentType_Native;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_Nav
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_Nav;
+afw_runtime_inf__AdaptiveLayoutComponentType_Nav;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_Nav_Item
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_Nav_Item;
+afw_runtime_inf__AdaptiveLayoutComponentType_Nav_Item;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_Paper
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_Paper;
+afw_runtime_inf__AdaptiveLayoutComponentType_Paper;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_Picker
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_Picker;
+afw_runtime_inf__AdaptiveLayoutComponentType_Picker;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_Picker_Item
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_Picker_Item;
+afw_runtime_inf__AdaptiveLayoutComponentType_Picker_Item;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_Responsive
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_Responsive;
+afw_runtime_inf__AdaptiveLayoutComponentType_Responsive;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_ResponsiveCol
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_ResponsiveCol;
+afw_runtime_inf__AdaptiveLayoutComponentType_ResponsiveCol;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_ResponsiveRow
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_ResponsiveRow;
+afw_runtime_inf__AdaptiveLayoutComponentType_ResponsiveRow;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_Responsive_Breakpoints
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_Responsive_Breakpoints;
+afw_runtime_inf__AdaptiveLayoutComponentType_Responsive_Breakpoints;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_Skeleton
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_Skeleton;
+afw_runtime_inf__AdaptiveLayoutComponentType_Skeleton;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_Slider
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_Slider;
+afw_runtime_inf__AdaptiveLayoutComponentType_Slider;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_Snackbar
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_Snackbar;
+afw_runtime_inf__AdaptiveLayoutComponentType_Snackbar;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_SpinButton
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_SpinButton;
+afw_runtime_inf__AdaptiveLayoutComponentType_SpinButton;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_Spinner
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_Spinner;
+afw_runtime_inf__AdaptiveLayoutComponentType_Spinner;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_Stepper
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_Stepper;
+afw_runtime_inf__AdaptiveLayoutComponentType_Stepper;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_Style
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_Style;
+afw_runtime_inf__AdaptiveLayoutComponentType_Style;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_Table
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_Table;
+afw_runtime_inf__AdaptiveLayoutComponentType_Table;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_Table_Column
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_Table_Column;
+afw_runtime_inf__AdaptiveLayoutComponentType_Table_Column;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_Table_Row
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_Table_Row;
+afw_runtime_inf__AdaptiveLayoutComponentType_Table_Row;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_Tabs
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_Tabs;
+afw_runtime_inf__AdaptiveLayoutComponentType_Tabs;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_Tabs_Tab
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_Tabs_Tab;
+afw_runtime_inf__AdaptiveLayoutComponentType_Tabs_Tab;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_TextField
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_TextField;
+afw_runtime_inf__AdaptiveLayoutComponentType_TextField;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_TimeDuration
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_TimeDuration;
+afw_runtime_inf__AdaptiveLayoutComponentType_TimeDuration;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_TimePicker
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_TimePicker;
+afw_runtime_inf__AdaptiveLayoutComponentType_TimePicker;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_TimezonePicker
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_TimezonePicker;
+afw_runtime_inf__AdaptiveLayoutComponentType_TimezonePicker;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_Toggle
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_Toggle;
+afw_runtime_inf__AdaptiveLayoutComponentType_Toggle;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_ToggleButtons
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_ToggleButtons;
+afw_runtime_inf__AdaptiveLayoutComponentType_ToggleButtons;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_Toolbar
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_Toolbar;
+afw_runtime_inf__AdaptiveLayoutComponentType_Toolbar;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_Tooltip
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_Tooltip;
+afw_runtime_inf__AdaptiveLayoutComponentType_Tooltip;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_Tree
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_Tree;
+afw_runtime_inf__AdaptiveLayoutComponentType_Tree;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_Tree_Node
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_Tree_Node;
+afw_runtime_inf__AdaptiveLayoutComponentType_Tree_Node;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayoutComponentType_Typography
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayoutComponentType_Typography;
+afw_runtime_inf__AdaptiveLayoutComponentType_Typography;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayout_ObjectResponsive
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayout_ObjectResponsive;
+afw_runtime_inf__AdaptiveLayout_ObjectResponsive;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayout_ObjectResponsive_embedded
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayout_ObjectResponsive_embedded;
+afw_runtime_inf__AdaptiveLayout_ObjectResponsive_embedded;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayout_ObjectResponsive_filterOptions
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayout_ObjectResponsive_filterOptions;
+afw_runtime_inf__AdaptiveLayout_ObjectResponsive_filterOptions;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayout_ObjectResponsive_preferredComponent
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayout_ObjectResponsive_preferredComponent;
+afw_runtime_inf__AdaptiveLayout_ObjectResponsive_preferredComponent;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLayout_ObjectResponsive_sortOptions
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_components_runtime_inf__AdaptiveLayout_ObjectResponsive_sortOptions;
+afw_runtime_inf__AdaptiveLayout_ObjectResponsive_sortOptions;
 
 /**
  * @brief Register (afw_components_) runtime object maps.
