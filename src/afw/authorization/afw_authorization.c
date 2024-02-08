@@ -556,7 +556,11 @@ afw_authorization_check(
 
         /* Do check. */
         if (check) {
-            result = afw_value_evaluate(check, p, xctx);
+            /* temporarily set mode to intermediate during check to avoid infinite recursion */
+            AFW_XCTX_AUTHORIZATION_MODE_BEGIN(intermediate) {
+                result = afw_value_evaluate(check, p, xctx);
+            }
+            AFW_XCTX_AUTHORIZATION_MODE_END;
 
             if (!result || afw_value_is_null(result)) {
                 decision_id = afw_s_notApplicable;
@@ -594,7 +598,7 @@ afw_authorization_check(
                     "decisionId " AFW_UTF8_FMT_Q,
                     property_name, AFW_UTF8_FMT_ARG(decision_id));
             }
-        }
+        }        
 
         /* Check with authorization handlers. */
         if (!final_result && xctx->mode != afw_authorization_mode_id_core_value) {
@@ -646,8 +650,12 @@ afw_authorization_check(
                             continue;
                         }
                     }
-                    result2 = afw_authorization_handler_check(ah,
-                        resource_id_value, object_value, action_id_value, p, xctx);
+                    /* temporarily set mode to intermediate during check to avoid infinite recursion */
+                    AFW_XCTX_AUTHORIZATION_MODE_BEGIN(intermediate) {
+                        result2 = afw_authorization_handler_check(ah,
+                            resource_id_value, object_value, action_id_value, p, xctx);
+                    }
+                    AFW_XCTX_AUTHORIZATION_MODE_END;
                     if (result2) {
                         decision_id2 = afw_object_old_get_property_as_string(
                             ((const afw_value_object_t *)result2)->internal,
@@ -694,6 +702,10 @@ afw_authorization_check(
 
     }
     AFW_CATCH_UNHANDLED{
+        afw_trace_z(1, 
+            xctx->env->flag_index_trace_authorization_check, 
+            NULL, "Caught unhandled exception", xctx);
+
         obj = afw_object_create_unmanaged(p, xctx);
         afw_object_meta_set_object_type_id(obj,
             afw_s__AdaptiveAuthorizationResult_, xctx);
