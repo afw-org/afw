@@ -48,13 +48,24 @@ impl_2_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_2_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_2_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_2_meta_object__value
     },
     &impl_2,
     NULL
+};
+
+static const afw_value_object_t
+impl_2_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_2_meta_object
 };
 
 static const afw_utf8_t
@@ -150,13 +161,24 @@ impl_4_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_4_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_4_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_4_meta_object__value
     },
     &impl_4,
     NULL
+};
+
+static const afw_value_object_t
+impl_4_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_4_meta_object
 };
 
 static const afw_utf8_t
@@ -235,13 +257,24 @@ impl_5_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_5_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_5_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_5_meta_object__value
     },
     &impl_5,
     NULL
+};
+
+static const afw_value_object_t
+impl_5_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_5_meta_object
 };
 
 static const afw_utf8_t
@@ -309,13 +342,24 @@ impl_3_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_3_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_3_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_3_meta_object__value
     },
     &impl_3,
     NULL
+};
+
+static const afw_value_object_t
+impl_3_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_3_meta_object
 };
 
 static const afw_utf8_t
@@ -405,12 +449,25 @@ impl_1_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_1_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_1_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_1_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_1_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_1_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_1_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_1_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -468,13 +525,24 @@ impl_1_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1_meta_object__value
     },
     &impl_1,
     NULL
+};
+
+static const afw_value_object_t
+impl_1_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1_meta_object
 };
 
 static const afw_utf8_t
@@ -529,13 +597,24 @@ impl_7_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_7_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_7_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_7_meta_object__value
     },
     &impl_7,
     NULL
+};
+
+static const afw_value_object_t
+impl_7_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_7_meta_object
 };
 
 static const afw_utf8_t
@@ -631,13 +710,24 @@ impl_9_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_9_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_9_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_9_meta_object__value
     },
     &impl_9,
     NULL
+};
+
+static const afw_value_object_t
+impl_9_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_9_meta_object
 };
 
 static const afw_utf8_t
@@ -723,13 +813,24 @@ impl_10_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_10_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_10_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_10_meta_object__value
     },
     &impl_10,
     NULL
+};
+
+static const afw_value_object_t
+impl_10_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_10_meta_object
 };
 
 static const afw_utf8_t
@@ -808,13 +909,24 @@ impl_11_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_11_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_11_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_11_meta_object__value
     },
     &impl_11,
     NULL
+};
+
+static const afw_value_object_t
+impl_11_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_11_meta_object
 };
 
 static const afw_utf8_t
@@ -895,13 +1007,24 @@ impl_8_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_8_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_8_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_8_meta_object__value
     },
     &impl_8,
     NULL
+};
+
+static const afw_value_object_t
+impl_8_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_8_meta_object
 };
 
 static const afw_utf8_t
@@ -991,12 +1114,25 @@ impl_6_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_6_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_6_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_6_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_6_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_6_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_6_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_6_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -1054,13 +1190,24 @@ impl_6_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_6_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_6_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_6_meta_object__value
     },
     &impl_6,
     NULL
+};
+
+static const afw_value_object_t
+impl_6_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_6_meta_object
 };
 
 static const afw_utf8_t
@@ -1121,13 +1268,24 @@ impl_15_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_15_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_15_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_15_meta_object__value
     },
     &impl_15,
     NULL
+};
+
+static const afw_value_object_t
+impl_15_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_15_meta_object
 };
 
 static const afw_utf8_t
@@ -1242,13 +1400,24 @@ impl_14_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_14_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_14_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_14_meta_object__value
     },
     &impl_14,
     NULL
+};
+
+static const afw_value_object_t
+impl_14_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_14_meta_object
 };
 
 static const afw_utf8_t
@@ -1316,13 +1485,24 @@ impl_17_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_17_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_17_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_17_meta_object__value
     },
     &impl_17,
     NULL
+};
+
+static const afw_value_object_t
+impl_17_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_17_meta_object
 };
 
 static const afw_utf8_t
@@ -1437,13 +1617,24 @@ impl_16_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_16_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_16_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_16_meta_object__value
     },
     &impl_16,
     NULL
+};
+
+static const afw_value_object_t
+impl_16_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_16_meta_object
 };
 
 static const afw_utf8_t
@@ -1498,13 +1689,24 @@ impl_19_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_19_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_19_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_19_meta_object__value
     },
     &impl_19,
     NULL
+};
+
+static const afw_value_object_t
+impl_19_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_19_meta_object
 };
 
 static const afw_utf8_t
@@ -1619,13 +1821,24 @@ impl_18_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_18_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_18_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_18_meta_object__value
     },
     &impl_18,
     NULL
+};
+
+static const afw_value_object_t
+impl_18_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_18_meta_object
 };
 
 static const afw_utf8_t
@@ -1680,13 +1893,24 @@ impl_21_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_21_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_21_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_21_meta_object__value
     },
     &impl_21,
     NULL
+};
+
+static const afw_value_object_t
+impl_21_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_21_meta_object
 };
 
 static const afw_utf8_t
@@ -1801,13 +2025,24 @@ impl_20_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_20_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_20_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_20_meta_object__value
     },
     &impl_20,
     NULL
+};
+
+static const afw_value_object_t
+impl_20_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_20_meta_object
 };
 
 static const afw_utf8_t
@@ -1862,13 +2097,24 @@ impl_23_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_23_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_23_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_23_meta_object__value
     },
     &impl_23,
     NULL
+};
+
+static const afw_value_object_t
+impl_23_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_23_meta_object
 };
 
 static const afw_utf8_t
@@ -1983,13 +2229,24 @@ impl_22_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_22_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_22_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_22_meta_object__value
     },
     &impl_22,
     NULL
+};
+
+static const afw_value_object_t
+impl_22_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_22_meta_object
 };
 
 static const afw_utf8_t
@@ -2044,13 +2301,24 @@ impl_25_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_25_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_25_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_25_meta_object__value
     },
     &impl_25,
     NULL
+};
+
+static const afw_value_object_t
+impl_25_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_25_meta_object
 };
 
 static const afw_utf8_t
@@ -2165,13 +2433,24 @@ impl_24_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_24_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_24_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_24_meta_object__value
     },
     &impl_24,
     NULL
+};
+
+static const afw_value_object_t
+impl_24_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_24_meta_object
 };
 
 static const afw_utf8_t
@@ -2226,13 +2505,24 @@ impl_27_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_27_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_27_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_27_meta_object__value
     },
     &impl_27,
     NULL
+};
+
+static const afw_value_object_t
+impl_27_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_27_meta_object
 };
 
 static const afw_utf8_t
@@ -2347,13 +2637,24 @@ impl_26_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_26_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_26_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_26_meta_object__value
     },
     &impl_26,
     NULL
+};
+
+static const afw_value_object_t
+impl_26_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_26_meta_object
 };
 
 static const afw_utf8_t
@@ -2408,13 +2709,24 @@ impl_29_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_29_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_29_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_29_meta_object__value
     },
     &impl_29,
     NULL
+};
+
+static const afw_value_object_t
+impl_29_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_29_meta_object
 };
 
 static const afw_utf8_t
@@ -2529,13 +2841,24 @@ impl_28_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_28_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_28_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_28_meta_object__value
     },
     &impl_28,
     NULL
+};
+
+static const afw_value_object_t
+impl_28_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_28_meta_object
 };
 
 static const afw_utf8_t
@@ -2681,13 +3004,24 @@ impl_13_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_13_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_13_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_13_meta_object__value
     },
     &impl_13,
     NULL
+};
+
+static const afw_value_object_t
+impl_13_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_13_meta_object
 };
 
 static const afw_utf8_t
@@ -2755,13 +3089,24 @@ impl_31_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_31_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_31_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_31_meta_object__value
     },
     &impl_31,
     NULL
+};
+
+static const afw_value_object_t
+impl_31_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_31_meta_object
 };
 
 static const afw_utf8_t
@@ -2836,13 +3181,24 @@ impl_30_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_30_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_30_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_30_meta_object__value
     },
     &impl_30,
     NULL
+};
+
+static const afw_value_object_t
+impl_30_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_30_meta_object
 };
 
 static const afw_utf8_t
@@ -2932,12 +3288,25 @@ impl_12_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_12_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_12_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_12_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_12_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_12_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_12_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_12_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -3002,13 +3371,24 @@ impl_12_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_12_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_12_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_12_meta_object__value
     },
     &impl_12,
     NULL
+};
+
+static const afw_value_object_t
+impl_12_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_12_meta_object
 };
 
 static const afw_utf8_t
@@ -3069,13 +3449,24 @@ impl_35_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_35_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_35_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_35_meta_object__value
     },
     &impl_35,
     NULL
+};
+
+static const afw_value_object_t
+impl_35_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_35_meta_object
 };
 
 static const afw_utf8_t
@@ -3171,13 +3562,24 @@ impl_34_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_34_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_34_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_34_meta_object__value
     },
     &impl_34,
     NULL
+};
+
+static const afw_value_object_t
+impl_34_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_34_meta_object
 };
 
 static const afw_utf8_t
@@ -3232,13 +3634,24 @@ impl_37_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_37_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_37_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_37_meta_object__value
     },
     &impl_37,
     NULL
+};
+
+static const afw_value_object_t
+impl_37_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_37_meta_object
 };
 
 static const afw_utf8_t
@@ -3341,13 +3754,24 @@ impl_36_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_36_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_36_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_36_meta_object__value
     },
     &impl_36,
     NULL
+};
+
+static const afw_value_object_t
+impl_36_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_36_meta_object
 };
 
 static const afw_utf8_t
@@ -3415,13 +3839,24 @@ impl_33_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_33_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_33_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_33_meta_object__value
     },
     &impl_33,
     NULL
+};
+
+static const afw_value_object_t
+impl_33_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_33_meta_object
 };
 
 static const afw_utf8_t
@@ -3476,13 +3911,24 @@ impl_39_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_39_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_39_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_39_meta_object__value
     },
     &impl_39,
     NULL
+};
+
+static const afw_value_object_t
+impl_39_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_39_meta_object
 };
 
 static const afw_utf8_t
@@ -3557,13 +4003,24 @@ impl_38_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_38_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_38_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_38_meta_object__value
     },
     &impl_38,
     NULL
+};
+
+static const afw_value_object_t
+impl_38_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_38_meta_object
 };
 
 static const afw_utf8_t
@@ -3653,12 +4110,25 @@ impl_32_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_32_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_32_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_32_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_32_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_32_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_32_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_32_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -3723,13 +4193,24 @@ impl_32_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_32_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_32_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_32_meta_object__value
     },
     &impl_32,
     NULL
+};
+
+static const afw_value_object_t
+impl_32_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_32_meta_object
 };
 
 static const afw_utf8_t
@@ -3797,13 +4278,24 @@ impl_43_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_43_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_43_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_43_meta_object__value
     },
     &impl_43,
     NULL
+};
+
+static const afw_value_object_t
+impl_43_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_43_meta_object
 };
 
 static const afw_utf8_t
@@ -3899,13 +4391,24 @@ impl_42_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_42_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_42_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_42_meta_object__value
     },
     &impl_42,
     NULL
+};
+
+static const afw_value_object_t
+impl_42_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_42_meta_object
 };
 
 static const afw_utf8_t
@@ -3967,13 +4470,24 @@ impl_45_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_45_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_45_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_45_meta_object__value
     },
     &impl_45,
     NULL
+};
+
+static const afw_value_object_t
+impl_45_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_45_meta_object
 };
 
 static const afw_utf8_t
@@ -4076,13 +4590,24 @@ impl_44_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_44_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_44_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_44_meta_object__value
     },
     &impl_44,
     NULL
+};
+
+static const afw_value_object_t
+impl_44_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_44_meta_object
 };
 
 static const afw_utf8_t
@@ -4155,13 +4680,24 @@ impl_46_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_46_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_46_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_46_meta_object__value
     },
     &impl_46,
     NULL
+};
+
+static const afw_value_object_t
+impl_46_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_46_meta_object
 };
 
 static const afw_utf8_t
@@ -4216,13 +4752,24 @@ impl_48_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_48_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_48_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_48_meta_object__value
     },
     &impl_48,
     NULL
+};
+
+static const afw_value_object_t
+impl_48_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_48_meta_object
 };
 
 static const afw_utf8_t
@@ -4318,13 +4865,24 @@ impl_47_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_47_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_47_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_47_meta_object__value
     },
     &impl_47,
     NULL
+};
+
+static const afw_value_object_t
+impl_47_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_47_meta_object
 };
 
 static const afw_utf8_t
@@ -4386,13 +4944,24 @@ impl_50_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_50_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_50_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_50_meta_object__value
     },
     &impl_50,
     NULL
+};
+
+static const afw_value_object_t
+impl_50_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_50_meta_object
 };
 
 static const afw_utf8_t
@@ -4488,13 +5057,24 @@ impl_49_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_49_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_49_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_49_meta_object__value
     },
     &impl_49,
     NULL
+};
+
+static const afw_value_object_t
+impl_49_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_49_meta_object
 };
 
 static const afw_utf8_t
@@ -4556,13 +5136,24 @@ impl_52_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_52_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_52_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_52_meta_object__value
     },
     &impl_52,
     NULL
+};
+
+static const afw_value_object_t
+impl_52_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_52_meta_object
 };
 
 static const afw_utf8_t
@@ -4665,13 +5256,24 @@ impl_51_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_51_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_51_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_51_meta_object__value
     },
     &impl_51,
     NULL
+};
+
+static const afw_value_object_t
+impl_51_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_51_meta_object
 };
 
 static const afw_utf8_t
@@ -4791,13 +5393,24 @@ impl_41_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_41_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_41_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_41_meta_object__value
     },
     &impl_41,
     NULL
+};
+
+static const afw_value_object_t
+impl_41_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_41_meta_object
 };
 
 static const afw_utf8_t
@@ -4865,13 +5478,24 @@ impl_54_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_54_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_54_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_54_meta_object__value
     },
     &impl_54,
     NULL
+};
+
+static const afw_value_object_t
+impl_54_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_54_meta_object
 };
 
 static const afw_utf8_t
@@ -4946,13 +5570,24 @@ impl_53_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_53_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_53_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_53_meta_object__value
     },
     &impl_53,
     NULL
+};
+
+static const afw_value_object_t
+impl_53_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_53_meta_object
 };
 
 static const afw_utf8_t
@@ -5042,12 +5677,25 @@ impl_40_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_40_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_40_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_40_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_40_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_40_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_40_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_40_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -5112,13 +5760,24 @@ impl_40_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_40_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_40_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_40_meta_object__value
     },
     &impl_40,
     NULL
+};
+
+static const afw_value_object_t
+impl_40_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_40_meta_object
 };
 
 static const afw_utf8_t
@@ -5186,13 +5845,24 @@ impl_58_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_58_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_58_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_58_meta_object__value
     },
     &impl_58,
     NULL
+};
+
+static const afw_value_object_t
+impl_58_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_58_meta_object
 };
 
 static const afw_utf8_t
@@ -5275,13 +5945,24 @@ impl_57_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_57_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_57_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_57_meta_object__value
     },
     &impl_57,
     NULL
+};
+
+static const afw_value_object_t
+impl_57_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_57_meta_object
 };
 
 static const afw_utf8_t
@@ -5336,13 +6017,24 @@ impl_56_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_56_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_56_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_56_meta_object__value
     },
     &impl_56,
     NULL
+};
+
+static const afw_value_object_t
+impl_56_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_56_meta_object
 };
 
 static const afw_utf8_t
@@ -5410,13 +6102,24 @@ impl_60_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_60_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_60_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_60_meta_object__value
     },
     &impl_60,
     NULL
+};
+
+static const afw_value_object_t
+impl_60_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_60_meta_object
 };
 
 static const afw_utf8_t
@@ -5491,13 +6194,24 @@ impl_59_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_59_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_59_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_59_meta_object__value
     },
     &impl_59,
     NULL
+};
+
+static const afw_value_object_t
+impl_59_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_59_meta_object
 };
 
 static const afw_utf8_t
@@ -5587,12 +6301,25 @@ impl_55_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_55_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_55_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_55_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_55_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_55_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_55_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_55_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -5657,13 +6384,24 @@ impl_55_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_55_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_55_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_55_meta_object__value
     },
     &impl_55,
     NULL
+};
+
+static const afw_value_object_t
+impl_55_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_55_meta_object
 };
 
 static const afw_utf8_t
@@ -5711,13 +6449,24 @@ impl_62_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_62_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_62_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_62_meta_object__value
     },
     &impl_62,
     NULL
+};
+
+static const afw_value_object_t
+impl_62_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_62_meta_object
 };
 
 static const afw_utf8_t
@@ -5769,7 +6518,7 @@ impl_63_parentPaths_array[] = {
 
 static const afw_array_wrapper_for_array_self_t
 impl_63_parentPaths_list = {
-    &afw_array_wrapper_for_array_inf,
+    { &afw_array_wrapper_for_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_63_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_63_parentPaths_array
@@ -5781,13 +6530,24 @@ impl_63_parentPaths = {
     (const afw_array_t *)&impl_63_parentPaths_list
 };
 
+static const afw_value_object_t
+impl_63_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_63_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_63_meta_object__value
     },
     &impl_63,
     &impl_63_parentPaths
+};
+
+static const afw_value_object_t
+impl_63_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_63_meta_object
 };
 
 static const afw_utf8_t
@@ -5877,12 +6637,25 @@ impl_61_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_61_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_61_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_61_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_61_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_61_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_61_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_61_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -5947,13 +6720,24 @@ impl_61_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_61_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_61_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_61_meta_object__value
     },
     &impl_61,
     NULL
+};
+
+static const afw_value_object_t
+impl_61_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_61_meta_object
 };
 
 static const afw_utf8_t
@@ -6058,13 +6842,24 @@ impl_66_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_66_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_66_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_66_meta_object__value
     },
     &impl_66,
     NULL
+};
+
+static const afw_value_object_t
+impl_66_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_66_meta_object
 };
 
 static const afw_utf8_t
@@ -6164,13 +6959,24 @@ impl_67_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_67_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_67_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_67_meta_object__value
     },
     &impl_67,
     NULL
+};
+
+static const afw_value_object_t
+impl_67_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_67_meta_object
 };
 
 static const afw_utf8_t
@@ -6269,13 +7075,24 @@ impl_68_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_68_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_68_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_68_meta_object__value
     },
     &impl_68,
     NULL
+};
+
+static const afw_value_object_t
+impl_68_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_68_meta_object
 };
 
 static const afw_utf8_t
@@ -6375,13 +7192,24 @@ impl_69_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_69_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_69_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_69_meta_object__value
     },
     &impl_69,
     NULL
+};
+
+static const afw_value_object_t
+impl_69_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_69_meta_object
 };
 
 static const afw_utf8_t
@@ -6475,13 +7303,24 @@ impl_65_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_65_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_65_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_65_meta_object__value
     },
     &impl_65,
     NULL
+};
+
+static const afw_value_object_t
+impl_65_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_65_meta_object
 };
 
 static const afw_utf8_t
@@ -6571,12 +7410,25 @@ impl_64_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_64_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_64_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_64_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_64_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_64_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_64_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_64_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -6628,13 +7480,24 @@ impl_64_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_64_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_64_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_64_meta_object__value
     },
     &impl_64,
     NULL
+};
+
+static const afw_value_object_t
+impl_64_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_64_meta_object
 };
 
 static const afw_utf8_t
@@ -6739,13 +7602,24 @@ impl_72_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_72_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_72_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_72_meta_object__value
     },
     &impl_72,
     NULL
+};
+
+static const afw_value_object_t
+impl_72_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_72_meta_object
 };
 
 static const afw_utf8_t
@@ -6831,13 +7705,24 @@ impl_73_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_73_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_73_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_73_meta_object__value
     },
     &impl_73,
     NULL
+};
+
+static const afw_value_object_t
+impl_73_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_73_meta_object
 };
 
 static const afw_utf8_t
@@ -6943,13 +7828,24 @@ impl_74_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_74_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_74_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_74_meta_object__value
     },
     &impl_74,
     NULL
+};
+
+static const afw_value_object_t
+impl_74_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_74_meta_object
 };
 
 static const afw_utf8_t
@@ -7048,13 +7944,24 @@ impl_75_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_75_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_75_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_75_meta_object__value
     },
     &impl_75,
     NULL
+};
+
+static const afw_value_object_t
+impl_75_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_75_meta_object
 };
 
 static const afw_utf8_t
@@ -7148,13 +8055,24 @@ impl_71_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_71_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_71_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_71_meta_object__value
     },
     &impl_71,
     NULL
+};
+
+static const afw_value_object_t
+impl_71_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_71_meta_object
 };
 
 static const afw_utf8_t
@@ -7244,12 +8162,25 @@ impl_70_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_70_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_70_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_70_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_70_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_70_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_70_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_70_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -7308,13 +8239,24 @@ impl_70_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_70_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_70_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_70_meta_object__value
     },
     &impl_70,
     NULL
+};
+
+static const afw_value_object_t
+impl_70_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_70_meta_object
 };
 
 static const afw_utf8_t
@@ -7375,13 +8317,24 @@ impl_79_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_79_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_79_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_79_meta_object__value
     },
     &impl_79,
     NULL
+};
+
+static const afw_value_object_t
+impl_79_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_79_meta_object
 };
 
 static const afw_utf8_t
@@ -7477,13 +8430,24 @@ impl_78_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_78_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_78_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_78_meta_object__value
     },
     &impl_78,
     NULL
+};
+
+static const afw_value_object_t
+impl_78_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_78_meta_object
 };
 
 static const afw_utf8_t
@@ -7538,13 +8502,24 @@ impl_81_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_81_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_81_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_81_meta_object__value
     },
     &impl_81,
     NULL
+};
+
+static const afw_value_object_t
+impl_81_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_81_meta_object
 };
 
 static const afw_utf8_t
@@ -7647,13 +8622,24 @@ impl_80_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_80_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_80_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_80_meta_object__value
     },
     &impl_80,
     NULL
+};
+
+static const afw_value_object_t
+impl_80_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_80_meta_object
 };
 
 static const afw_utf8_t
@@ -7721,13 +8707,24 @@ impl_77_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_77_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_77_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_77_meta_object__value
     },
     &impl_77,
     NULL
+};
+
+static const afw_value_object_t
+impl_77_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_77_meta_object
 };
 
 static const afw_utf8_t
@@ -7782,13 +8779,24 @@ impl_83_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_83_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_83_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_83_meta_object__value
     },
     &impl_83,
     NULL
+};
+
+static const afw_value_object_t
+impl_83_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_83_meta_object
 };
 
 static const afw_utf8_t
@@ -7863,13 +8871,24 @@ impl_82_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_82_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_82_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_82_meta_object__value
     },
     &impl_82,
     NULL
+};
+
+static const afw_value_object_t
+impl_82_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_82_meta_object
 };
 
 static const afw_utf8_t
@@ -7923,12 +8942,25 @@ impl_76_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_76_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_76_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_76_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_76_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_76_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_76_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_76_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -7990,13 +9022,24 @@ impl_76_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_76_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_76_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_76_meta_object__value
     },
     &impl_76,
     NULL
+};
+
+static const afw_value_object_t
+impl_76_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_76_meta_object
 };
 
 static const afw_utf8_t
@@ -8064,13 +9107,24 @@ impl_87_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_87_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_87_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_87_meta_object__value
     },
     &impl_87,
     NULL
+};
+
+static const afw_value_object_t
+impl_87_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_87_meta_object
 };
 
 static const afw_utf8_t
@@ -8166,13 +9220,24 @@ impl_86_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_86_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_86_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_86_meta_object__value
     },
     &impl_86,
     NULL
+};
+
+static const afw_value_object_t
+impl_86_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_86_meta_object
 };
 
 static const afw_utf8_t
@@ -8227,13 +9292,24 @@ impl_89_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_89_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_89_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_89_meta_object__value
     },
     &impl_89,
     NULL
+};
+
+static const afw_value_object_t
+impl_89_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_89_meta_object
 };
 
 static const afw_utf8_t
@@ -8329,13 +9405,24 @@ impl_88_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_88_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_88_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_88_meta_object__value
     },
     &impl_88,
     NULL
+};
+
+static const afw_value_object_t
+impl_88_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_88_meta_object
 };
 
 static const afw_utf8_t
@@ -8421,13 +9508,24 @@ impl_90_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_90_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_90_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_90_meta_object__value
     },
     &impl_90,
     NULL
+};
+
+static const afw_value_object_t
+impl_90_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_90_meta_object
 };
 
 static const afw_utf8_t
@@ -8482,13 +9580,24 @@ impl_92_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_92_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_92_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_92_meta_object__value
     },
     &impl_92,
     NULL
+};
+
+static const afw_value_object_t
+impl_92_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_92_meta_object
 };
 
 static const afw_utf8_t
@@ -8584,13 +9693,24 @@ impl_91_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_91_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_91_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_91_meta_object__value
     },
     &impl_91,
     NULL
+};
+
+static const afw_value_object_t
+impl_91_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_91_meta_object
 };
 
 static const afw_utf8_t
@@ -8652,13 +9772,24 @@ impl_94_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_94_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_94_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_94_meta_object__value
     },
     &impl_94,
     NULL
+};
+
+static const afw_value_object_t
+impl_94_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_94_meta_object
 };
 
 static const afw_utf8_t
@@ -8754,13 +9885,24 @@ impl_93_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_93_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_93_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_93_meta_object__value
     },
     &impl_93,
     NULL
+};
+
+static const afw_value_object_t
+impl_93_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_93_meta_object
 };
 
 static const afw_utf8_t
@@ -8822,13 +9964,24 @@ impl_96_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_96_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_96_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_96_meta_object__value
     },
     &impl_96,
     NULL
+};
+
+static const afw_value_object_t
+impl_96_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_96_meta_object
 };
 
 static const afw_utf8_t
@@ -8931,13 +10084,24 @@ impl_95_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_95_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_95_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_95_meta_object__value
     },
     &impl_95,
     NULL
+};
+
+static const afw_value_object_t
+impl_95_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_95_meta_object
 };
 
 static const afw_utf8_t
@@ -9057,13 +10221,24 @@ impl_85_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_85_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_85_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_85_meta_object__value
     },
     &impl_85,
     NULL
+};
+
+static const afw_value_object_t
+impl_85_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_85_meta_object
 };
 
 static const afw_utf8_t
@@ -9131,13 +10306,24 @@ impl_98_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_98_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_98_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_98_meta_object__value
     },
     &impl_98,
     NULL
+};
+
+static const afw_value_object_t
+impl_98_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_98_meta_object
 };
 
 static const afw_utf8_t
@@ -9212,13 +10398,24 @@ impl_97_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_97_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_97_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_97_meta_object__value
     },
     &impl_97,
     NULL
+};
+
+static const afw_value_object_t
+impl_97_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_97_meta_object
 };
 
 static const afw_utf8_t
@@ -9272,12 +10469,25 @@ impl_84_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_84_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_84_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_84_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_84_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_84_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_84_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_84_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -9339,13 +10549,24 @@ impl_84_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_84_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_84_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_84_meta_object__value
     },
     &impl_84,
     NULL
+};
+
+static const afw_value_object_t
+impl_84_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_84_meta_object
 };
 
 static const afw_utf8_t
@@ -9450,13 +10671,24 @@ impl_101_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_101_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_101_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_101_meta_object__value
     },
     &impl_101,
     NULL
+};
+
+static const afw_value_object_t
+impl_101_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_101_meta_object
 };
 
 static const afw_utf8_t
@@ -9562,13 +10794,24 @@ impl_102_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_102_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_102_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_102_meta_object__value
     },
     &impl_102,
     NULL
+};
+
+static const afw_value_object_t
+impl_102_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_102_meta_object
 };
 
 static const afw_utf8_t
@@ -9654,13 +10897,24 @@ impl_103_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_103_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_103_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_103_meta_object__value
     },
     &impl_103,
     NULL
+};
+
+static const afw_value_object_t
+impl_103_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_103_meta_object
 };
 
 static const afw_utf8_t
@@ -9741,13 +10995,24 @@ impl_100_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_100_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_100_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_100_meta_object__value
     },
     &impl_100,
     NULL
+};
+
+static const afw_value_object_t
+impl_100_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_100_meta_object
 };
 
 static const afw_utf8_t
@@ -9837,12 +11102,25 @@ impl_99_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_99_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_99_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_99_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_99_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_99_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_99_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_99_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -9901,13 +11179,24 @@ impl_99_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_99_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_99_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_99_meta_object__value
     },
     &impl_99,
     NULL
+};
+
+static const afw_value_object_t
+impl_99_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_99_meta_object
 };
 
 static const afw_utf8_t
@@ -9993,13 +11282,24 @@ impl_106_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_106_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_106_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_106_meta_object__value
     },
     &impl_106,
     NULL
+};
+
+static const afw_value_object_t
+impl_106_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_106_meta_object
 };
 
 static const afw_utf8_t
@@ -10079,13 +11379,24 @@ impl_107_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_107_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_107_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_107_meta_object__value
     },
     &impl_107,
     NULL
+};
+
+static const afw_value_object_t
+impl_107_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_107_meta_object
 };
 
 static const afw_utf8_t
@@ -10157,12 +11468,25 @@ impl_108_array_possibleValues[] = {
     AFW_UTF8_LITERAL("permit")
 };
 
+static const afw_value_array_t
+impl_108_list_possibleValues__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_108_list_possibleValues = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_108_list_possibleValues__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_108_array_possibleValues) / sizeof(afw_utf8_t),
     &impl_108_array_possibleValues
+};
+
+static const afw_value_array_t
+impl_108_list_possibleValues__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_108_list_possibleValues
 };
 
 static const afw_value_array_t
@@ -10200,13 +11524,24 @@ impl_108_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_108_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_108_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_108_meta_object__value
     },
     &impl_108,
     NULL
+};
+
+static const afw_value_object_t
+impl_108_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_108_meta_object
 };
 
 static const afw_utf8_t
@@ -10299,13 +11634,24 @@ impl_109_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_109_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_109_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_109_meta_object__value
     },
     &impl_109,
     NULL
+};
+
+static const afw_value_object_t
+impl_109_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_109_meta_object
 };
 
 static const afw_utf8_t
@@ -10385,13 +11731,24 @@ impl_110_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_110_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_110_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_110_meta_object__value
     },
     &impl_110,
     NULL
+};
+
+static const afw_value_object_t
+impl_110_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_110_meta_object
 };
 
 static const afw_utf8_t
@@ -10464,13 +11821,24 @@ impl_111_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_111_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_111_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_111_meta_object__value
     },
     &impl_111,
     NULL
+};
+
+static const afw_value_object_t
+impl_111_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_111_meta_object
 };
 
 static const afw_utf8_t
@@ -10590,13 +11958,24 @@ impl_105_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_105_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_105_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_105_meta_object__value
     },
     &impl_105,
     NULL
+};
+
+static const afw_value_object_t
+impl_105_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_105_meta_object
 };
 
 static const afw_utf8_t
@@ -10686,12 +12065,25 @@ impl_104_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_104_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_104_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_104_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_104_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_104_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_104_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_104_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -10743,13 +12135,24 @@ impl_104_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_104_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_104_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_104_meta_object__value
     },
     &impl_104,
     NULL
+};
+
+static const afw_value_object_t
+impl_104_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_104_meta_object
 };
 
 static const afw_utf8_t
@@ -10834,13 +12237,24 @@ impl_114_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_114_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_114_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_114_meta_object__value
     },
     &impl_114,
     NULL
+};
+
+static const afw_value_object_t
+impl_114_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_114_meta_object
 };
 
 static const afw_utf8_t
@@ -10926,13 +12340,24 @@ impl_115_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_115_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_115_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_115_meta_object__value
     },
     &impl_115,
     NULL
+};
+
+static const afw_value_object_t
+impl_115_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_115_meta_object
 };
 
 static const afw_utf8_t
@@ -11024,13 +12449,24 @@ impl_116_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_116_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_116_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_116_meta_object__value
     },
     &impl_116,
     NULL
+};
+
+static const afw_value_object_t
+impl_116_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_116_meta_object
 };
 
 static const afw_utf8_t
@@ -11109,13 +12545,24 @@ impl_117_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_117_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_117_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_117_meta_object__value
     },
     &impl_117,
     NULL
+};
+
+static const afw_value_object_t
+impl_117_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_117_meta_object
 };
 
 static const afw_utf8_t
@@ -11209,13 +12656,24 @@ impl_113_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_113_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_113_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_113_meta_object__value
     },
     &impl_113,
     NULL
+};
+
+static const afw_value_object_t
+impl_113_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_113_meta_object
 };
 
 static const afw_utf8_t
@@ -11269,12 +12727,25 @@ impl_112_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_112_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_112_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_112_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_112_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_112_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_112_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_112_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -11323,13 +12794,24 @@ impl_112_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_112_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_112_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_112_meta_object__value
     },
     &impl_112,
     NULL
+};
+
+static const afw_value_object_t
+impl_112_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_112_meta_object
 };
 
 static const afw_utf8_t
@@ -11390,13 +12872,24 @@ impl_121_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_121_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_121_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_121_meta_object__value
     },
     &impl_121,
     NULL
+};
+
+static const afw_value_object_t
+impl_121_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_121_meta_object
 };
 
 static const afw_utf8_t
@@ -11499,13 +12992,24 @@ impl_120_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_120_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_120_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_120_meta_object__value
     },
     &impl_120,
     NULL
+};
+
+static const afw_value_object_t
+impl_120_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_120_meta_object
 };
 
 static const afw_utf8_t
@@ -11567,13 +13071,24 @@ impl_123_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_123_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_123_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_123_meta_object__value
     },
     &impl_123,
     NULL
+};
+
+static const afw_value_object_t
+impl_123_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_123_meta_object
 };
 
 static const afw_utf8_t
@@ -11669,13 +13184,24 @@ impl_122_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_122_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_122_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_122_meta_object__value
     },
     &impl_122,
     NULL
+};
+
+static const afw_value_object_t
+impl_122_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_122_meta_object
 };
 
 static const afw_utf8_t
@@ -11737,13 +13263,24 @@ impl_125_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_125_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_125_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_125_meta_object__value
     },
     &impl_125,
     NULL
+};
+
+static const afw_value_object_t
+impl_125_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_125_meta_object
 };
 
 static const afw_utf8_t
@@ -11839,13 +13376,24 @@ impl_124_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_124_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_124_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_124_meta_object__value
     },
     &impl_124,
     NULL
+};
+
+static const afw_value_object_t
+impl_124_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_124_meta_object
 };
 
 static const afw_utf8_t
@@ -11907,13 +13455,24 @@ impl_127_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_127_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_127_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_127_meta_object__value
     },
     &impl_127,
     NULL
+};
+
+static const afw_value_object_t
+impl_127_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_127_meta_object
 };
 
 static const afw_utf8_t
@@ -12009,13 +13568,24 @@ impl_126_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_126_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_126_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_126_meta_object__value
     },
     &impl_126,
     NULL
+};
+
+static const afw_value_object_t
+impl_126_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_126_meta_object
 };
 
 static const afw_utf8_t
@@ -12070,13 +13640,24 @@ impl_129_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_129_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_129_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_129_meta_object__value
     },
     &impl_129,
     NULL
+};
+
+static const afw_value_object_t
+impl_129_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_129_meta_object
 };
 
 static const afw_utf8_t
@@ -12172,13 +13753,24 @@ impl_128_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_128_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_128_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_128_meta_object__value
     },
     &impl_128,
     NULL
+};
+
+static const afw_value_object_t
+impl_128_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_128_meta_object
 };
 
 static const afw_utf8_t
@@ -12240,13 +13832,24 @@ impl_131_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_131_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_131_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_131_meta_object__value
     },
     &impl_131,
     NULL
+};
+
+static const afw_value_object_t
+impl_131_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_131_meta_object
 };
 
 static const afw_utf8_t
@@ -12342,13 +13945,24 @@ impl_130_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_130_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_130_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_130_meta_object__value
     },
     &impl_130,
     NULL
+};
+
+static const afw_value_object_t
+impl_130_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_130_meta_object
 };
 
 static const afw_utf8_t
@@ -12410,13 +14024,24 @@ impl_133_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_133_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_133_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_133_meta_object__value
     },
     &impl_133,
     NULL
+};
+
+static const afw_value_object_t
+impl_133_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_133_meta_object
 };
 
 static const afw_utf8_t
@@ -12512,13 +14137,24 @@ impl_132_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_132_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_132_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_132_meta_object__value
     },
     &impl_132,
     NULL
+};
+
+static const afw_value_object_t
+impl_132_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_132_meta_object
 };
 
 static const afw_utf8_t
@@ -12580,13 +14216,24 @@ impl_135_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_135_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_135_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_135_meta_object__value
     },
     &impl_135,
     NULL
+};
+
+static const afw_value_object_t
+impl_135_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_135_meta_object
 };
 
 static const afw_utf8_t
@@ -12682,13 +14329,24 @@ impl_134_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_134_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_134_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_134_meta_object__value
     },
     &impl_134,
     NULL
+};
+
+static const afw_value_object_t
+impl_134_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_134_meta_object
 };
 
 static const afw_utf8_t
@@ -12743,13 +14401,24 @@ impl_137_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_137_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_137_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_137_meta_object__value
     },
     &impl_137,
     NULL
+};
+
+static const afw_value_object_t
+impl_137_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_137_meta_object
 };
 
 static const afw_utf8_t
@@ -12845,13 +14514,24 @@ impl_136_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_136_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_136_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_136_meta_object__value
     },
     &impl_136,
     NULL
+};
+
+static const afw_value_object_t
+impl_136_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_136_meta_object
 };
 
 static const afw_utf8_t
@@ -12906,13 +14586,24 @@ impl_139_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_139_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_139_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_139_meta_object__value
     },
     &impl_139,
     NULL
+};
+
+static const afw_value_object_t
+impl_139_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_139_meta_object
 };
 
 static const afw_utf8_t
@@ -13008,13 +14699,24 @@ impl_138_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_138_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_138_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_138_meta_object__value
     },
     &impl_138,
     NULL
+};
+
+static const afw_value_object_t
+impl_138_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_138_meta_object
 };
 
 static const afw_utf8_t
@@ -13186,13 +14888,24 @@ impl_119_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_119_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_119_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_119_meta_object__value
     },
     &impl_119,
     NULL
+};
+
+static const afw_value_object_t
+impl_119_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_119_meta_object
 };
 
 static const afw_utf8_t
@@ -13247,13 +14960,24 @@ impl_141_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_141_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_141_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_141_meta_object__value
     },
     &impl_141,
     NULL
+};
+
+static const afw_value_object_t
+impl_141_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_141_meta_object
 };
 
 static const afw_utf8_t
@@ -13328,13 +15052,24 @@ impl_140_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_140_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_140_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_140_meta_object__value
     },
     &impl_140,
     NULL
+};
+
+static const afw_value_object_t
+impl_140_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_140_meta_object
 };
 
 static const afw_utf8_t
@@ -13424,12 +15159,25 @@ impl_118_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_118_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_118_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_118_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_118_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_118_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_118_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_118_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -13494,13 +15242,24 @@ impl_118_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_118_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_118_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_118_meta_object__value
     },
     &impl_118,
     NULL
+};
+
+static const afw_value_object_t
+impl_118_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_118_meta_object
 };
 
 static const afw_utf8_t
@@ -13599,13 +15358,24 @@ impl_144_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_144_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_144_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_144_meta_object__value
     },
     &impl_144,
     NULL
+};
+
+static const afw_value_object_t
+impl_144_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_144_meta_object
 };
 
 static const afw_utf8_t
@@ -13691,13 +15461,24 @@ impl_145_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_145_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_145_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_145_meta_object__value
     },
     &impl_145,
     NULL
+};
+
+static const afw_value_object_t
+impl_145_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_145_meta_object
 };
 
 static const afw_utf8_t
@@ -13783,13 +15564,24 @@ impl_146_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_146_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_146_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_146_meta_object__value
     },
     &impl_146,
     NULL
+};
+
+static const afw_value_object_t
+impl_146_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_146_meta_object
 };
 
 static const afw_utf8_t
@@ -13888,13 +15680,24 @@ impl_147_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_147_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_147_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_147_meta_object__value
     },
     &impl_147,
     NULL
+};
+
+static const afw_value_object_t
+impl_147_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_147_meta_object
 };
 
 static const afw_utf8_t
@@ -13988,13 +15791,24 @@ impl_143_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_143_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_143_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_143_meta_object__value
     },
     &impl_143,
     NULL
+};
+
+static const afw_value_object_t
+impl_143_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_143_meta_object
 };
 
 static const afw_utf8_t
@@ -14048,12 +15862,25 @@ impl_142_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_142_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_142_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_142_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_142_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_142_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_142_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_142_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -14102,13 +15929,24 @@ impl_142_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_142_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_142_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_142_meta_object__value
     },
     &impl_142,
     NULL
+};
+
+static const afw_value_object_t
+impl_142_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_142_meta_object
 };
 
 static const afw_utf8_t
@@ -14200,13 +16038,24 @@ impl_150_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_150_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_150_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_150_meta_object__value
     },
     &impl_150,
     NULL
+};
+
+static const afw_value_object_t
+impl_150_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_150_meta_object
 };
 
 static const afw_utf8_t
@@ -14305,13 +16154,24 @@ impl_151_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_151_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_151_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_151_meta_object__value
     },
     &impl_151,
     NULL
+};
+
+static const afw_value_object_t
+impl_151_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_151_meta_object
 };
 
 static const afw_utf8_t
@@ -14397,13 +16257,24 @@ impl_152_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_152_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_152_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_152_meta_object__value
     },
     &impl_152,
     NULL
+};
+
+static const afw_value_object_t
+impl_152_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_152_meta_object
 };
 
 static const afw_utf8_t
@@ -14489,13 +16360,24 @@ impl_153_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_153_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_153_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_153_meta_object__value
     },
     &impl_153,
     NULL
+};
+
+static const afw_value_object_t
+impl_153_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_153_meta_object
 };
 
 static const afw_utf8_t
@@ -14596,7 +16478,7 @@ impl_149_parentPaths_array[] = {
 
 static const afw_array_wrapper_for_array_self_t
 impl_149_parentPaths_list = {
-    &afw_array_wrapper_for_array_inf,
+    { &afw_array_wrapper_for_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_149_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_149_parentPaths_array
@@ -14608,13 +16490,24 @@ impl_149_parentPaths = {
     (const afw_array_t *)&impl_149_parentPaths_list
 };
 
+static const afw_value_object_t
+impl_149_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_149_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_149_meta_object__value
     },
     &impl_149,
     &impl_149_parentPaths
+};
+
+static const afw_value_object_t
+impl_149_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_149_meta_object
 };
 
 static const afw_utf8_t
@@ -14668,12 +16561,25 @@ impl_148_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_148_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_148_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_148_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_148_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_148_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_148_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_148_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -14722,13 +16628,24 @@ impl_148_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_148_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_148_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_148_meta_object__value
     },
     &impl_148,
     NULL
+};
+
+static const afw_value_object_t
+impl_148_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_148_meta_object
 };
 
 static const afw_utf8_t
@@ -14783,7 +16700,7 @@ impl_155_parentPaths_array[] = {
 
 static const afw_array_wrapper_for_array_self_t
 impl_155_parentPaths_list = {
-    &afw_array_wrapper_for_array_inf,
+    { &afw_array_wrapper_for_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_155_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_155_parentPaths_array
@@ -14795,13 +16712,24 @@ impl_155_parentPaths = {
     (const afw_array_t *)&impl_155_parentPaths_list
 };
 
+static const afw_value_object_t
+impl_155_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_155_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_155_meta_object__value
     },
     &impl_155,
     &impl_155_parentPaths
+};
+
+static const afw_value_object_t
+impl_155_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_155_meta_object
 };
 
 static const afw_utf8_t
@@ -14891,12 +16819,25 @@ impl_154_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_154_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_154_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_154_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_154_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_154_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_154_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_154_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -14948,13 +16889,24 @@ impl_154_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_154_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_154_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_154_meta_object__value
     },
     &impl_154,
     NULL
+};
+
+static const afw_value_object_t
+impl_154_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_154_meta_object
 };
 
 static const afw_utf8_t
@@ -15059,13 +17011,24 @@ impl_158_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_158_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_158_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_158_meta_object__value
     },
     &impl_158,
     NULL
+};
+
+static const afw_value_object_t
+impl_158_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_158_meta_object
 };
 
 static const afw_utf8_t
@@ -15151,13 +17114,24 @@ impl_159_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_159_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_159_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_159_meta_object__value
     },
     &impl_159,
     NULL
+};
+
+static const afw_value_object_t
+impl_159_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_159_meta_object
 };
 
 static const afw_utf8_t
@@ -15243,13 +17217,24 @@ impl_160_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_160_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_160_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_160_meta_object__value
     },
     &impl_160,
     NULL
+};
+
+static const afw_value_object_t
+impl_160_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_160_meta_object
 };
 
 static const afw_utf8_t
@@ -15335,13 +17320,24 @@ impl_161_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_161_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_161_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_161_meta_object__value
     },
     &impl_161,
     NULL
+};
+
+static const afw_value_object_t
+impl_161_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_161_meta_object
 };
 
 static const afw_utf8_t
@@ -15427,13 +17423,24 @@ impl_162_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_162_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_162_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_162_meta_object__value
     },
     &impl_162,
     NULL
+};
+
+static const afw_value_object_t
+impl_162_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_162_meta_object
 };
 
 static const afw_utf8_t
@@ -15532,13 +17539,24 @@ impl_163_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_163_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_163_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_163_meta_object__value
     },
     &impl_163,
     NULL
+};
+
+static const afw_value_object_t
+impl_163_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_163_meta_object
 };
 
 static const afw_utf8_t
@@ -15665,7 +17683,7 @@ impl_157_parentPaths_array[] = {
 
 static const afw_array_wrapper_for_array_self_t
 impl_157_parentPaths_list = {
-    &afw_array_wrapper_for_array_inf,
+    { &afw_array_wrapper_for_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_157_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_157_parentPaths_array
@@ -15677,13 +17695,24 @@ impl_157_parentPaths = {
     (const afw_array_t *)&impl_157_parentPaths_list
 };
 
+static const afw_value_object_t
+impl_157_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_157_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_157_meta_object__value
     },
     &impl_157,
     &impl_157_parentPaths
+};
+
+static const afw_value_object_t
+impl_157_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_157_meta_object
 };
 
 static const afw_utf8_t
@@ -15737,12 +17766,25 @@ impl_156_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_156_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_156_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_156_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_156_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_156_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_156_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_156_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -15791,13 +17833,24 @@ impl_156_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_156_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_156_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_156_meta_object__value
     },
     &impl_156,
     NULL
+};
+
+static const afw_value_object_t
+impl_156_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_156_meta_object
 };
 
 static const afw_utf8_t
@@ -15896,13 +17949,24 @@ impl_166_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_166_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_166_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_166_meta_object__value
     },
     &impl_166,
     NULL
+};
+
+static const afw_value_object_t
+impl_166_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_166_meta_object
 };
 
 static const afw_utf8_t
@@ -16001,13 +18065,24 @@ impl_167_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_167_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_167_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_167_meta_object__value
     },
     &impl_167,
     NULL
+};
+
+static const afw_value_object_t
+impl_167_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_167_meta_object
 };
 
 static const afw_utf8_t
@@ -16106,13 +18181,24 @@ impl_168_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_168_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_168_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_168_meta_object__value
     },
     &impl_168,
     NULL
+};
+
+static const afw_value_object_t
+impl_168_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_168_meta_object
 };
 
 static const afw_utf8_t
@@ -16211,13 +18297,24 @@ impl_169_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_169_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_169_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_169_meta_object__value
     },
     &impl_169,
     NULL
+};
+
+static const afw_value_object_t
+impl_169_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_169_meta_object
 };
 
 static const afw_utf8_t
@@ -16318,7 +18415,7 @@ impl_165_parentPaths_array[] = {
 
 static const afw_array_wrapper_for_array_self_t
 impl_165_parentPaths_list = {
-    &afw_array_wrapper_for_array_inf,
+    { &afw_array_wrapper_for_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_165_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_165_parentPaths_array
@@ -16330,13 +18427,24 @@ impl_165_parentPaths = {
     (const afw_array_t *)&impl_165_parentPaths_list
 };
 
+static const afw_value_object_t
+impl_165_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_165_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_165_meta_object__value
     },
     &impl_165,
     &impl_165_parentPaths
+};
+
+static const afw_value_object_t
+impl_165_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_165_meta_object
 };
 
 static const afw_utf8_t
@@ -16390,12 +18498,25 @@ impl_164_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_164_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_164_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_164_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_164_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_164_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_164_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_164_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -16444,13 +18565,24 @@ impl_164_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_164_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_164_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_164_meta_object__value
     },
     &impl_164,
     NULL
+};
+
+static const afw_value_object_t
+impl_164_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_164_meta_object
 };
 
 static const afw_utf8_t
@@ -16555,13 +18687,24 @@ impl_172_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_172_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_172_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_172_meta_object__value
     },
     &impl_172,
     NULL
+};
+
+static const afw_value_object_t
+impl_172_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_172_meta_object
 };
 
 static const afw_utf8_t
@@ -16654,13 +18797,24 @@ impl_173_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_173_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_173_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_173_meta_object__value
     },
     &impl_173,
     NULL
+};
+
+static const afw_value_object_t
+impl_173_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_173_meta_object
 };
 
 static const afw_utf8_t
@@ -16759,13 +18913,24 @@ impl_174_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_174_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_174_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_174_meta_object__value
     },
     &impl_174,
     NULL
+};
+
+static const afw_value_object_t
+impl_174_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_174_meta_object
 };
 
 static const afw_utf8_t
@@ -16864,13 +19029,24 @@ impl_175_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_175_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_175_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_175_meta_object__value
     },
     &impl_175,
     NULL
+};
+
+static const afw_value_object_t
+impl_175_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_175_meta_object
 };
 
 static const afw_utf8_t
@@ -16963,13 +19139,24 @@ impl_176_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_176_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_176_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_176_meta_object__value
     },
     &impl_176,
     NULL
+};
+
+static const afw_value_object_t
+impl_176_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_176_meta_object
 };
 
 static const afw_utf8_t
@@ -17068,13 +19255,24 @@ impl_177_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_177_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_177_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_177_meta_object__value
     },
     &impl_177,
     NULL
+};
+
+static const afw_value_object_t
+impl_177_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_177_meta_object
 };
 
 static const afw_utf8_t
@@ -17180,13 +19378,24 @@ impl_178_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_178_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_178_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_178_meta_object__value
     },
     &impl_178,
     NULL
+};
+
+static const afw_value_object_t
+impl_178_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_178_meta_object
 };
 
 static const afw_utf8_t
@@ -17279,13 +19488,24 @@ impl_179_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_179_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_179_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_179_meta_object__value
     },
     &impl_179,
     NULL
+};
+
+static const afw_value_object_t
+impl_179_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_179_meta_object
 };
 
 static const afw_utf8_t
@@ -17378,13 +19598,24 @@ impl_180_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_180_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_180_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_180_meta_object__value
     },
     &impl_180,
     NULL
+};
+
+static const afw_value_object_t
+impl_180_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_180_meta_object
 };
 
 static const afw_utf8_t
@@ -17483,13 +19714,24 @@ impl_181_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_181_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_181_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_181_meta_object__value
     },
     &impl_181,
     NULL
+};
+
+static const afw_value_object_t
+impl_181_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_181_meta_object
 };
 
 static const afw_utf8_t
@@ -17589,13 +19831,24 @@ impl_182_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_182_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_182_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_182_meta_object__value
     },
     &impl_182,
     NULL
+};
+
+static const afw_value_object_t
+impl_182_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_182_meta_object
 };
 
 static const afw_utf8_t
@@ -17675,13 +19928,24 @@ impl_183_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_183_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_183_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_183_meta_object__value
     },
     &impl_183,
     NULL
+};
+
+static const afw_value_object_t
+impl_183_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_183_meta_object
 };
 
 static const afw_utf8_t
@@ -17787,13 +20051,24 @@ impl_184_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_184_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_184_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_184_meta_object__value
     },
     &impl_184,
     NULL
+};
+
+static const afw_value_object_t
+impl_184_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_184_meta_object
 };
 
 static const afw_utf8_t
@@ -17892,13 +20167,24 @@ impl_185_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_185_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_185_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_185_meta_object__value
     },
     &impl_185,
     NULL
+};
+
+static const afw_value_object_t
+impl_185_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_185_meta_object
 };
 
 static const afw_utf8_t
@@ -18129,7 +20415,7 @@ impl_171_parentPaths_array[] = {
 
 static const afw_array_wrapper_for_array_self_t
 impl_171_parentPaths_list = {
-    &afw_array_wrapper_for_array_inf,
+    { &afw_array_wrapper_for_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_171_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_171_parentPaths_array
@@ -18141,13 +20427,24 @@ impl_171_parentPaths = {
     (const afw_array_t *)&impl_171_parentPaths_list
 };
 
+static const afw_value_object_t
+impl_171_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_171_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_171_meta_object__value
     },
     &impl_171,
     &impl_171_parentPaths
+};
+
+static const afw_value_object_t
+impl_171_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_171_meta_object
 };
 
 static const afw_utf8_t
@@ -18201,12 +20498,25 @@ impl_170_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_170_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_170_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_170_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_170_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_170_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_170_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_170_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -18255,13 +20565,24 @@ impl_170_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_170_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_170_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_170_meta_object__value
     },
     &impl_170,
     NULL
+};
+
+static const afw_value_object_t
+impl_170_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_170_meta_object
 };
 
 static const afw_utf8_t
@@ -18366,13 +20687,24 @@ impl_188_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_188_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_188_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_188_meta_object__value
     },
     &impl_188,
     NULL
+};
+
+static const afw_value_object_t
+impl_188_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_188_meta_object
 };
 
 static const afw_utf8_t
@@ -18471,13 +20803,24 @@ impl_189_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_189_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_189_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_189_meta_object__value
     },
     &impl_189,
     NULL
+};
+
+static const afw_value_object_t
+impl_189_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_189_meta_object
 };
 
 static const afw_utf8_t
@@ -18563,13 +20906,24 @@ impl_190_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_190_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_190_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_190_meta_object__value
     },
     &impl_190,
     NULL
+};
+
+static const afw_value_object_t
+impl_190_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_190_meta_object
 };
 
 static const afw_utf8_t
@@ -18668,13 +21022,24 @@ impl_191_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_191_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_191_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_191_meta_object__value
     },
     &impl_191,
     NULL
+};
+
+static const afw_value_object_t
+impl_191_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_191_meta_object
 };
 
 static const afw_utf8_t
@@ -18812,13 +21177,24 @@ impl_192_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_192_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_192_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_192_meta_object__value
     },
     &impl_192,
     NULL
+};
+
+static const afw_value_object_t
+impl_192_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_192_meta_object
 };
 
 static const afw_utf8_t
@@ -18917,13 +21293,24 @@ impl_193_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_193_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_193_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_193_meta_object__value
     },
     &impl_193,
     NULL
+};
+
+static const afw_value_object_t
+impl_193_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_193_meta_object
 };
 
 static const afw_utf8_t
@@ -19050,7 +21437,7 @@ impl_187_parentPaths_array[] = {
 
 static const afw_array_wrapper_for_array_self_t
 impl_187_parentPaths_list = {
-    &afw_array_wrapper_for_array_inf,
+    { &afw_array_wrapper_for_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_187_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_187_parentPaths_array
@@ -19062,13 +21449,24 @@ impl_187_parentPaths = {
     (const afw_array_t *)&impl_187_parentPaths_list
 };
 
+static const afw_value_object_t
+impl_187_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_187_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_187_meta_object__value
     },
     &impl_187,
     &impl_187_parentPaths
+};
+
+static const afw_value_object_t
+impl_187_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_187_meta_object
 };
 
 static const afw_utf8_t
@@ -19122,12 +21520,25 @@ impl_186_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_186_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_186_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_186_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_186_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_186_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_186_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_186_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -19176,13 +21587,24 @@ impl_186_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_186_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_186_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_186_meta_object__value
     },
     &impl_186,
     NULL
+};
+
+static const afw_value_object_t
+impl_186_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_186_meta_object
 };
 
 static const afw_utf8_t
@@ -19301,13 +21723,24 @@ impl_196_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_196_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_196_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_196_meta_object__value
     },
     &impl_196,
     NULL
+};
+
+static const afw_value_object_t
+impl_196_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_196_meta_object
 };
 
 static const afw_utf8_t
@@ -19387,13 +21820,24 @@ impl_197_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_197_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_197_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_197_meta_object__value
     },
     &impl_197,
     NULL
+};
+
+static const afw_value_object_t
+impl_197_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_197_meta_object
 };
 
 static const afw_utf8_t
@@ -19468,7 +21912,7 @@ impl_195_parentPaths_array[] = {
 
 static const afw_array_wrapper_for_array_self_t
 impl_195_parentPaths_list = {
-    &afw_array_wrapper_for_array_inf,
+    { &afw_array_wrapper_for_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_195_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_195_parentPaths_array
@@ -19480,13 +21924,24 @@ impl_195_parentPaths = {
     (const afw_array_t *)&impl_195_parentPaths_list
 };
 
+static const afw_value_object_t
+impl_195_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_195_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_195_meta_object__value
     },
     &impl_195,
     &impl_195_parentPaths
+};
+
+static const afw_value_object_t
+impl_195_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_195_meta_object
 };
 
 static const afw_utf8_t
@@ -19540,12 +21995,25 @@ impl_194_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_194_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_194_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_194_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_194_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_194_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_194_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_194_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -19594,13 +22062,24 @@ impl_194_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_194_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_194_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_194_meta_object__value
     },
     &impl_194,
     NULL
+};
+
+static const afw_value_object_t
+impl_194_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_194_meta_object
 };
 
 static const afw_utf8_t
@@ -19692,13 +22171,24 @@ impl_200_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_200_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_200_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_200_meta_object__value
     },
     &impl_200,
     NULL
+};
+
+static const afw_value_object_t
+impl_200_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_200_meta_object
 };
 
 static const afw_utf8_t
@@ -19784,13 +22274,24 @@ impl_201_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_201_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_201_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_201_meta_object__value
     },
     &impl_201,
     NULL
+};
+
+static const afw_value_object_t
+impl_201_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_201_meta_object
 };
 
 static const afw_utf8_t
@@ -19865,7 +22366,7 @@ impl_199_parentPaths_array[] = {
 
 static const afw_array_wrapper_for_array_self_t
 impl_199_parentPaths_list = {
-    &afw_array_wrapper_for_array_inf,
+    { &afw_array_wrapper_for_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_199_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_199_parentPaths_array
@@ -19877,13 +22378,24 @@ impl_199_parentPaths = {
     (const afw_array_t *)&impl_199_parentPaths_list
 };
 
+static const afw_value_object_t
+impl_199_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_199_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_199_meta_object__value
     },
     &impl_199,
     &impl_199_parentPaths
+};
+
+static const afw_value_object_t
+impl_199_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_199_meta_object
 };
 
 static const afw_utf8_t
@@ -19937,12 +22449,25 @@ impl_198_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_198_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_198_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_198_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_198_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_198_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_198_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_198_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -19991,13 +22516,24 @@ impl_198_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_198_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_198_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_198_meta_object__value
     },
     &impl_198,
     NULL
+};
+
+static const afw_value_object_t
+impl_198_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_198_meta_object
 };
 
 static const afw_utf8_t
@@ -20089,13 +22625,24 @@ impl_204_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_204_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_204_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_204_meta_object__value
     },
     &impl_204,
     NULL
+};
+
+static const afw_value_object_t
+impl_204_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_204_meta_object
 };
 
 static const afw_utf8_t
@@ -20181,13 +22728,24 @@ impl_205_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_205_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_205_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_205_meta_object__value
     },
     &impl_205,
     NULL
+};
+
+static const afw_value_object_t
+impl_205_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_205_meta_object
 };
 
 static const afw_utf8_t
@@ -20280,13 +22838,24 @@ impl_206_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_206_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_206_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_206_meta_object__value
     },
     &impl_206,
     NULL
+};
+
+static const afw_value_object_t
+impl_206_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_206_meta_object
 };
 
 static const afw_utf8_t
@@ -20372,13 +22941,24 @@ impl_207_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_207_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_207_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_207_meta_object__value
     },
     &impl_207,
     NULL
+};
+
+static const afw_value_object_t
+impl_207_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_207_meta_object
 };
 
 static const afw_utf8_t
@@ -20464,13 +23044,24 @@ impl_208_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_208_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_208_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_208_meta_object__value
     },
     &impl_208,
     NULL
+};
+
+static const afw_value_object_t
+impl_208_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_208_meta_object
 };
 
 static const afw_utf8_t
@@ -20556,13 +23147,24 @@ impl_209_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_209_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_209_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_209_meta_object__value
     },
     &impl_209,
     NULL
+};
+
+static const afw_value_object_t
+impl_209_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_209_meta_object
 };
 
 static const afw_utf8_t
@@ -20668,13 +23270,24 @@ impl_210_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_210_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_210_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_210_meta_object__value
     },
     &impl_210,
     NULL
+};
+
+static const afw_value_object_t
+impl_210_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_210_meta_object
 };
 
 static const afw_utf8_t
@@ -20767,13 +23380,24 @@ impl_211_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_211_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_211_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_211_meta_object__value
     },
     &impl_211,
     NULL
+};
+
+static const afw_value_object_t
+impl_211_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_211_meta_object
 };
 
 static const afw_utf8_t
@@ -20859,13 +23483,24 @@ impl_212_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_212_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_212_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_212_meta_object__value
     },
     &impl_212,
     NULL
+};
+
+static const afw_value_object_t
+impl_212_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_212_meta_object
 };
 
 static const afw_utf8_t
@@ -20964,13 +23599,24 @@ impl_213_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_213_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_213_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_213_meta_object__value
     },
     &impl_213,
     NULL
+};
+
+static const afw_value_object_t
+impl_213_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_213_meta_object
 };
 
 static const afw_utf8_t
@@ -21069,13 +23715,24 @@ impl_214_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_214_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_214_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_214_meta_object__value
     },
     &impl_214,
     NULL
+};
+
+static const afw_value_object_t
+impl_214_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_214_meta_object
 };
 
 static const afw_utf8_t
@@ -21161,13 +23818,24 @@ impl_215_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_215_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_215_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_215_meta_object__value
     },
     &impl_215,
     NULL
+};
+
+static const afw_value_object_t
+impl_215_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_215_meta_object
 };
 
 static const afw_utf8_t
@@ -21253,13 +23921,24 @@ impl_216_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_216_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_216_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_216_meta_object__value
     },
     &impl_216,
     NULL
+};
+
+static const afw_value_object_t
+impl_216_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_216_meta_object
 };
 
 static const afw_utf8_t
@@ -21345,13 +24024,24 @@ impl_217_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_217_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_217_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_217_meta_object__value
     },
     &impl_217,
     NULL
+};
+
+static const afw_value_object_t
+impl_217_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_217_meta_object
 };
 
 static const afw_utf8_t
@@ -21437,13 +24127,24 @@ impl_218_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_218_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_218_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_218_meta_object__value
     },
     &impl_218,
     NULL
+};
+
+static const afw_value_object_t
+impl_218_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_218_meta_object
 };
 
 static const afw_utf8_t
@@ -21529,13 +24230,24 @@ impl_219_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_219_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_219_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_219_meta_object__value
     },
     &impl_219,
     NULL
+};
+
+static const afw_value_object_t
+impl_219_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_219_meta_object
 };
 
 static const afw_utf8_t
@@ -21621,13 +24333,24 @@ impl_220_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_220_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_220_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_220_meta_object__value
     },
     &impl_220,
     NULL
+};
+
+static const afw_value_object_t
+impl_220_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_220_meta_object
 };
 
 static const afw_utf8_t
@@ -21713,13 +24436,24 @@ impl_221_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_221_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_221_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_221_meta_object__value
     },
     &impl_221,
     NULL
+};
+
+static const afw_value_object_t
+impl_221_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_221_meta_object
 };
 
 static const afw_utf8_t
@@ -21805,13 +24539,24 @@ impl_222_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_222_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_222_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_222_meta_object__value
     },
     &impl_222,
     NULL
+};
+
+static const afw_value_object_t
+impl_222_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_222_meta_object
 };
 
 static const afw_utf8_t
@@ -21897,13 +24642,24 @@ impl_223_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_223_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_223_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_223_meta_object__value
     },
     &impl_223,
     NULL
+};
+
+static const afw_value_object_t
+impl_223_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_223_meta_object
 };
 
 static const afw_utf8_t
@@ -21989,13 +24745,24 @@ impl_224_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_224_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_224_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_224_meta_object__value
     },
     &impl_224,
     NULL
+};
+
+static const afw_value_object_t
+impl_224_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_224_meta_object
 };
 
 static const afw_utf8_t
@@ -22317,7 +25084,7 @@ impl_203_parentPaths_array[] = {
 
 static const afw_array_wrapper_for_array_self_t
 impl_203_parentPaths_list = {
-    &afw_array_wrapper_for_array_inf,
+    { &afw_array_wrapper_for_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_203_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_203_parentPaths_array
@@ -22329,13 +25096,24 @@ impl_203_parentPaths = {
     (const afw_array_t *)&impl_203_parentPaths_list
 };
 
+static const afw_value_object_t
+impl_203_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_203_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_203_meta_object__value
     },
     &impl_203,
     &impl_203_parentPaths
+};
+
+static const afw_value_object_t
+impl_203_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_203_meta_object
 };
 
 static const afw_utf8_t
@@ -22389,12 +25167,25 @@ impl_202_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_202_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_202_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_202_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_202_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_202_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_202_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_202_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -22443,13 +25234,24 @@ impl_202_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_202_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_202_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_202_meta_object__value
     },
     &impl_202,
     NULL
+};
+
+static const afw_value_object_t
+impl_202_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_202_meta_object
 };
 
 static const afw_utf8_t
@@ -22504,7 +25306,7 @@ impl_226_parentPaths_array[] = {
 
 static const afw_array_wrapper_for_array_self_t
 impl_226_parentPaths_list = {
-    &afw_array_wrapper_for_array_inf,
+    { &afw_array_wrapper_for_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_226_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_226_parentPaths_array
@@ -22516,13 +25318,24 @@ impl_226_parentPaths = {
     (const afw_array_t *)&impl_226_parentPaths_list
 };
 
+static const afw_value_object_t
+impl_226_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_226_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_226_meta_object__value
     },
     &impl_226,
     &impl_226_parentPaths
+};
+
+static const afw_value_object_t
+impl_226_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_226_meta_object
 };
 
 static const afw_utf8_t
@@ -22576,12 +25389,25 @@ impl_225_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_225_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_225_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_225_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_225_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_225_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_225_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_225_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -22630,13 +25456,24 @@ impl_225_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_225_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_225_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_225_meta_object__value
     },
     &impl_225,
     NULL
+};
+
+static const afw_value_object_t
+impl_225_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_225_meta_object
 };
 
 static const afw_utf8_t
@@ -22691,7 +25528,7 @@ impl_228_parentPaths_array[] = {
 
 static const afw_array_wrapper_for_array_self_t
 impl_228_parentPaths_list = {
-    &afw_array_wrapper_for_array_inf,
+    { &afw_array_wrapper_for_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_228_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_228_parentPaths_array
@@ -22703,13 +25540,24 @@ impl_228_parentPaths = {
     (const afw_array_t *)&impl_228_parentPaths_list
 };
 
+static const afw_value_object_t
+impl_228_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_228_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_228_meta_object__value
     },
     &impl_228,
     &impl_228_parentPaths
+};
+
+static const afw_value_object_t
+impl_228_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_228_meta_object
 };
 
 static const afw_utf8_t
@@ -22763,12 +25611,25 @@ impl_227_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_227_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_227_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_227_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_227_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_227_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_227_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_227_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -22817,13 +25678,24 @@ impl_227_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_227_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_227_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_227_meta_object__value
     },
     &impl_227,
     NULL
+};
+
+static const afw_value_object_t
+impl_227_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_227_meta_object
 };
 
 static const afw_utf8_t
@@ -22915,13 +25787,24 @@ impl_231_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_231_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_231_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_231_meta_object__value
     },
     &impl_231,
     NULL
+};
+
+static const afw_value_object_t
+impl_231_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_231_meta_object
 };
 
 static const afw_utf8_t
@@ -23007,13 +25890,24 @@ impl_232_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_232_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_232_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_232_meta_object__value
     },
     &impl_232,
     NULL
+};
+
+static const afw_value_object_t
+impl_232_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_232_meta_object
 };
 
 static const afw_utf8_t
@@ -23099,13 +25993,24 @@ impl_233_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_233_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_233_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_233_meta_object__value
     },
     &impl_233,
     NULL
+};
+
+static const afw_value_object_t
+impl_233_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_233_meta_object
 };
 
 static const afw_utf8_t
@@ -23191,13 +26096,24 @@ impl_234_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_234_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_234_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_234_meta_object__value
     },
     &impl_234,
     NULL
+};
+
+static const afw_value_object_t
+impl_234_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_234_meta_object
 };
 
 static const afw_utf8_t
@@ -23283,13 +26199,24 @@ impl_235_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_235_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_235_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_235_meta_object__value
     },
     &impl_235,
     NULL
+};
+
+static const afw_value_object_t
+impl_235_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_235_meta_object
 };
 
 static const afw_utf8_t
@@ -23388,13 +26315,24 @@ impl_236_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_236_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_236_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_236_meta_object__value
     },
     &impl_236,
     NULL
+};
+
+static const afw_value_object_t
+impl_236_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_236_meta_object
 };
 
 static const afw_utf8_t
@@ -23480,13 +26418,24 @@ impl_237_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_237_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_237_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_237_meta_object__value
     },
     &impl_237,
     NULL
+};
+
+static const afw_value_object_t
+impl_237_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_237_meta_object
 };
 
 static const afw_utf8_t
@@ -23572,13 +26521,24 @@ impl_238_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_238_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_238_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_238_meta_object__value
     },
     &impl_238,
     NULL
+};
+
+static const afw_value_object_t
+impl_238_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_238_meta_object
 };
 
 static const afw_utf8_t
@@ -23731,7 +26691,7 @@ impl_230_parentPaths_array[] = {
 
 static const afw_array_wrapper_for_array_self_t
 impl_230_parentPaths_list = {
-    &afw_array_wrapper_for_array_inf,
+    { &afw_array_wrapper_for_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_230_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_230_parentPaths_array
@@ -23743,13 +26703,24 @@ impl_230_parentPaths = {
     (const afw_array_t *)&impl_230_parentPaths_list
 };
 
+static const afw_value_object_t
+impl_230_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_230_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_230_meta_object__value
     },
     &impl_230,
     &impl_230_parentPaths
+};
+
+static const afw_value_object_t
+impl_230_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_230_meta_object
 };
 
 static const afw_utf8_t
@@ -23803,12 +26774,25 @@ impl_229_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_229_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_229_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_229_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_229_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_229_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_229_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_229_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -23857,13 +26841,24 @@ impl_229_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_229_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_229_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_229_meta_object__value
     },
     &impl_229,
     NULL
+};
+
+static const afw_value_object_t
+impl_229_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_229_meta_object
 };
 
 static const afw_utf8_t
@@ -23955,13 +26950,24 @@ impl_241_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_241_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_241_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_241_meta_object__value
     },
     &impl_241,
     NULL
+};
+
+static const afw_value_object_t
+impl_241_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_241_meta_object
 };
 
 static const afw_utf8_t
@@ -24060,13 +27066,24 @@ impl_242_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_242_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_242_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_242_meta_object__value
     },
     &impl_242,
     NULL
+};
+
+static const afw_value_object_t
+impl_242_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_242_meta_object
 };
 
 static const afw_utf8_t
@@ -24141,7 +27158,7 @@ impl_240_parentPaths_array[] = {
 
 static const afw_array_wrapper_for_array_self_t
 impl_240_parentPaths_list = {
-    &afw_array_wrapper_for_array_inf,
+    { &afw_array_wrapper_for_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_240_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_240_parentPaths_array
@@ -24153,13 +27170,24 @@ impl_240_parentPaths = {
     (const afw_array_t *)&impl_240_parentPaths_list
 };
 
+static const afw_value_object_t
+impl_240_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_240_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_240_meta_object__value
     },
     &impl_240,
     &impl_240_parentPaths
+};
+
+static const afw_value_object_t
+impl_240_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_240_meta_object
 };
 
 static const afw_utf8_t
@@ -24213,12 +27241,25 @@ impl_239_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_239_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_239_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_239_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_239_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_239_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_239_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_239_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -24267,13 +27308,24 @@ impl_239_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_239_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_239_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_239_meta_object__value
     },
     &impl_239,
     NULL
+};
+
+static const afw_value_object_t
+impl_239_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_239_meta_object
 };
 
 static const afw_utf8_t
@@ -24365,13 +27417,24 @@ impl_245_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_245_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_245_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_245_meta_object__value
     },
     &impl_245,
     NULL
+};
+
+static const afw_value_object_t
+impl_245_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_245_meta_object
 };
 
 static const afw_utf8_t
@@ -24464,13 +27527,24 @@ impl_246_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_246_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_246_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_246_meta_object__value
     },
     &impl_246,
     NULL
+};
+
+static const afw_value_object_t
+impl_246_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_246_meta_object
 };
 
 static const afw_utf8_t
@@ -24556,13 +27630,24 @@ impl_247_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_247_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_247_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_247_meta_object__value
     },
     &impl_247,
     NULL
+};
+
+static const afw_value_object_t
+impl_247_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_247_meta_object
 };
 
 static const afw_utf8_t
@@ -24650,7 +27735,7 @@ impl_244_parentPaths_array[] = {
 
 static const afw_array_wrapper_for_array_self_t
 impl_244_parentPaths_list = {
-    &afw_array_wrapper_for_array_inf,
+    { &afw_array_wrapper_for_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_244_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_244_parentPaths_array
@@ -24662,13 +27747,24 @@ impl_244_parentPaths = {
     (const afw_array_t *)&impl_244_parentPaths_list
 };
 
+static const afw_value_object_t
+impl_244_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_244_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_244_meta_object__value
     },
     &impl_244,
     &impl_244_parentPaths
+};
+
+static const afw_value_object_t
+impl_244_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_244_meta_object
 };
 
 static const afw_utf8_t
@@ -24722,12 +27818,25 @@ impl_243_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_243_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_243_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_243_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_243_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_243_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_243_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_243_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -24776,13 +27885,24 @@ impl_243_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_243_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_243_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_243_meta_object__value
     },
     &impl_243,
     NULL
+};
+
+static const afw_value_object_t
+impl_243_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_243_meta_object
 };
 
 static const afw_utf8_t
@@ -24850,13 +27970,24 @@ impl_251_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_251_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_251_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_251_meta_object__value
     },
     &impl_251,
     NULL
+};
+
+static const afw_value_object_t
+impl_251_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_251_meta_object
 };
 
 static const afw_utf8_t
@@ -24939,13 +28070,24 @@ impl_250_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_250_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_250_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_250_meta_object__value
     },
     &impl_250,
     NULL
+};
+
+static const afw_value_object_t
+impl_250_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_250_meta_object
 };
 
 static const afw_utf8_t
@@ -25000,13 +28142,24 @@ impl_249_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_249_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_249_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_249_meta_object__value
     },
     &impl_249,
     NULL
+};
+
+static const afw_value_object_t
+impl_249_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_249_meta_object
 };
 
 static const afw_utf8_t
@@ -25074,13 +28227,24 @@ impl_253_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_253_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_253_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_253_meta_object__value
     },
     &impl_253,
     NULL
+};
+
+static const afw_value_object_t
+impl_253_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_253_meta_object
 };
 
 static const afw_utf8_t
@@ -25155,13 +28319,24 @@ impl_252_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_252_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_252_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_252_meta_object__value
     },
     &impl_252,
     NULL
+};
+
+static const afw_value_object_t
+impl_252_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_252_meta_object
 };
 
 static const afw_utf8_t
@@ -25251,12 +28426,25 @@ impl_248_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_248_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_248_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_248_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_248_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_248_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_248_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_248_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -25321,13 +28509,24 @@ impl_248_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_248_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_248_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_248_meta_object__value
     },
     &impl_248,
     NULL
+};
+
+static const afw_value_object_t
+impl_248_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_248_meta_object
 };
 
 static const afw_utf8_t
@@ -25419,13 +28618,24 @@ impl_256_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_256_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_256_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_256_meta_object__value
     },
     &impl_256,
     NULL
+};
+
+static const afw_value_object_t
+impl_256_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_256_meta_object
 };
 
 static const afw_utf8_t
@@ -25518,13 +28728,24 @@ impl_257_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_257_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_257_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_257_meta_object__value
     },
     &impl_257,
     NULL
+};
+
+static const afw_value_object_t
+impl_257_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_257_meta_object
 };
 
 static const afw_utf8_t
@@ -25617,13 +28838,24 @@ impl_258_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_258_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_258_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_258_meta_object__value
     },
     &impl_258,
     NULL
+};
+
+static const afw_value_object_t
+impl_258_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_258_meta_object
 };
 
 static const afw_utf8_t
@@ -25709,13 +28941,24 @@ impl_259_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_259_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_259_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_259_meta_object__value
     },
     &impl_259,
     NULL
+};
+
+static const afw_value_object_t
+impl_259_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_259_meta_object
 };
 
 static const afw_utf8_t
@@ -25809,13 +29052,24 @@ impl_255_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_255_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_255_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_255_meta_object__value
     },
     &impl_255,
     NULL
+};
+
+static const afw_value_object_t
+impl_255_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_255_meta_object
 };
 
 static const afw_utf8_t
@@ -25905,12 +29159,25 @@ impl_254_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_254_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_254_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_254_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_254_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_254_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_254_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_254_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -25969,13 +29236,24 @@ impl_254_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_254_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_254_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_254_meta_object__value
     },
     &impl_254,
     NULL
+};
+
+static const afw_value_object_t
+impl_254_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_254_meta_object
 };
 
 static const afw_utf8_t
@@ -26080,13 +29358,24 @@ impl_262_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_262_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_262_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_262_meta_object__value
     },
     &impl_262,
     NULL
+};
+
+static const afw_value_object_t
+impl_262_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_262_meta_object
 };
 
 static const afw_utf8_t
@@ -26185,13 +29474,24 @@ impl_263_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_263_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_263_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_263_meta_object__value
     },
     &impl_263,
     NULL
+};
+
+static const afw_value_object_t
+impl_263_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_263_meta_object
 };
 
 static const afw_utf8_t
@@ -26266,7 +29566,7 @@ impl_261_parentPaths_array[] = {
 
 static const afw_array_wrapper_for_array_self_t
 impl_261_parentPaths_list = {
-    &afw_array_wrapper_for_array_inf,
+    { &afw_array_wrapper_for_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_261_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_261_parentPaths_array
@@ -26278,13 +29578,24 @@ impl_261_parentPaths = {
     (const afw_array_t *)&impl_261_parentPaths_list
 };
 
+static const afw_value_object_t
+impl_261_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_261_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_261_meta_object__value
     },
     &impl_261,
     &impl_261_parentPaths
+};
+
+static const afw_value_object_t
+impl_261_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_261_meta_object
 };
 
 static const afw_utf8_t
@@ -26374,12 +29685,25 @@ impl_260_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_260_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_260_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_260_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_260_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_260_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_260_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_260_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -26431,13 +29755,24 @@ impl_260_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_260_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_260_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_260_meta_object__value
     },
     &impl_260,
     NULL
+};
+
+static const afw_value_object_t
+impl_260_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_260_meta_object
 };
 
 static const afw_utf8_t
@@ -26542,13 +29877,24 @@ impl_266_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_266_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_266_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_266_meta_object__value
     },
     &impl_266,
     NULL
+};
+
+static const afw_value_object_t
+impl_266_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_266_meta_object
 };
 
 static const afw_utf8_t
@@ -26647,13 +29993,24 @@ impl_267_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_267_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_267_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_267_meta_object__value
     },
     &impl_267,
     NULL
+};
+
+static const afw_value_object_t
+impl_267_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_267_meta_object
 };
 
 static const afw_utf8_t
@@ -26715,13 +30072,24 @@ impl_269_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_269_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_269_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_269_meta_object__value
     },
     &impl_269,
     NULL
+};
+
+static const afw_value_object_t
+impl_269_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_269_meta_object
 };
 
 static const afw_utf8_t
@@ -26830,13 +30198,24 @@ impl_268_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_268_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_268_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_268_meta_object__value
     },
     &impl_268,
     NULL
+};
+
+static const afw_value_object_t
+impl_268_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_268_meta_object
 };
 
 static const afw_utf8_t
@@ -26891,13 +30270,24 @@ impl_271_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_271_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_271_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_271_meta_object__value
     },
     &impl_271,
     NULL
+};
+
+static const afw_value_object_t
+impl_271_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_271_meta_object
 };
 
 static const afw_utf8_t
@@ -27006,13 +30396,24 @@ impl_270_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_270_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_270_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_270_meta_object__value
     },
     &impl_270,
     NULL
+};
+
+static const afw_value_object_t
+impl_270_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_270_meta_object
 };
 
 static const afw_utf8_t
@@ -27067,13 +30468,24 @@ impl_273_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_273_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_273_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_273_meta_object__value
     },
     &impl_273,
     NULL
+};
+
+static const afw_value_object_t
+impl_273_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_273_meta_object
 };
 
 static const afw_utf8_t
@@ -27156,12 +30568,25 @@ impl_272_array_possibleValues[] = {
     AFW_UTF8_LITERAL("Type")
 };
 
+static const afw_value_array_t
+impl_272_list_possibleValues__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_272_list_possibleValues = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_272_list_possibleValues__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_272_array_possibleValues) / sizeof(afw_utf8_t),
     &impl_272_array_possibleValues
+};
+
+static const afw_value_array_t
+impl_272_list_possibleValues__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_272_list_possibleValues
 };
 
 static const afw_value_array_t
@@ -27213,13 +30638,24 @@ impl_272_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_272_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_272_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_272_meta_object__value
     },
     &impl_272,
     NULL
+};
+
+static const afw_value_object_t
+impl_272_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_272_meta_object
 };
 
 static const afw_utf8_t
@@ -27325,13 +30761,24 @@ impl_274_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_274_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_274_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_274_meta_object__value
     },
     &impl_274,
     NULL
+};
+
+static const afw_value_object_t
+impl_274_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_274_meta_object
 };
 
 static const afw_utf8_t
@@ -27417,13 +30864,24 @@ impl_275_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_275_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_275_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_275_meta_object__value
     },
     &impl_275,
     NULL
+};
+
+static const afw_value_object_t
+impl_275_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_275_meta_object
 };
 
 static const afw_utf8_t
@@ -27509,13 +30967,24 @@ impl_276_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_276_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_276_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_276_meta_object__value
     },
     &impl_276,
     NULL
+};
+
+static const afw_value_object_t
+impl_276_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_276_meta_object
 };
 
 static const afw_utf8_t
@@ -27570,13 +31039,24 @@ impl_278_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_278_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_278_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_278_meta_object__value
     },
     &impl_278,
     NULL
+};
+
+static const afw_value_object_t
+impl_278_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_278_meta_object
 };
 
 static const afw_utf8_t
@@ -27698,13 +31178,24 @@ impl_277_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_277_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_277_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_277_meta_object__value
     },
     &impl_277,
     NULL
+};
+
+static const afw_value_object_t
+impl_277_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_277_meta_object
 };
 
 static const afw_utf8_t
@@ -27803,13 +31294,24 @@ impl_279_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_279_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_279_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_279_meta_object__value
     },
     &impl_279,
     NULL
+};
+
+static const afw_value_object_t
+impl_279_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_279_meta_object
 };
 
 static const afw_utf8_t
@@ -27908,13 +31410,24 @@ impl_280_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_280_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_280_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_280_meta_object__value
     },
     &impl_280,
     NULL
+};
+
+static const afw_value_object_t
+impl_280_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_280_meta_object
 };
 
 static const afw_utf8_t
@@ -28013,13 +31526,24 @@ impl_281_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_281_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_281_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_281_meta_object__value
     },
     &impl_281,
     NULL
+};
+
+static const afw_value_object_t
+impl_281_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_281_meta_object
 };
 
 static const afw_utf8_t
@@ -28105,13 +31629,24 @@ impl_282_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_282_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_282_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_282_meta_object__value
     },
     &impl_282,
     NULL
+};
+
+static const afw_value_object_t
+impl_282_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_282_meta_object
 };
 
 static const afw_utf8_t
@@ -28197,13 +31732,24 @@ impl_283_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_283_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_283_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_283_meta_object__value
     },
     &impl_283,
     NULL
+};
+
+static const afw_value_object_t
+impl_283_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_283_meta_object
 };
 
 static const afw_utf8_t
@@ -28289,13 +31835,24 @@ impl_284_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_284_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_284_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_284_meta_object__value
     },
     &impl_284,
     NULL
+};
+
+static const afw_value_object_t
+impl_284_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_284_meta_object
 };
 
 static const afw_utf8_t
@@ -28532,13 +32089,24 @@ impl_265_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_265_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_265_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_265_meta_object__value
     },
     &impl_265,
     NULL
+};
+
+static const afw_value_object_t
+impl_265_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_265_meta_object
 };
 
 static const afw_utf8_t
@@ -28593,13 +32161,24 @@ impl_286_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_286_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_286_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_286_meta_object__value
     },
     &impl_286,
     NULL
+};
+
+static const afw_value_object_t
+impl_286_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_286_meta_object
 };
 
 static const afw_utf8_t
@@ -28674,13 +32253,24 @@ impl_285_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_285_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_285_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_285_meta_object__value
     },
     &impl_285,
     NULL
+};
+
+static const afw_value_object_t
+impl_285_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_285_meta_object
 };
 
 static const afw_utf8_t
@@ -28770,12 +32360,25 @@ impl_264_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_264_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_264_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_264_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_264_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_264_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_264_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_264_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -28840,13 +32443,24 @@ impl_264_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_264_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_264_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_264_meta_object__value
     },
     &impl_264,
     NULL
+};
+
+static const afw_value_object_t
+impl_264_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_264_meta_object
 };
 
 static const afw_utf8_t
@@ -28907,13 +32521,24 @@ impl_290_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_290_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_290_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_290_meta_object__value
     },
     &impl_290,
     NULL
+};
+
+static const afw_value_object_t
+impl_290_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_290_meta_object
 };
 
 static const afw_utf8_t
@@ -29009,13 +32634,24 @@ impl_289_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_289_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_289_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_289_meta_object__value
     },
     &impl_289,
     NULL
+};
+
+static const afw_value_object_t
+impl_289_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_289_meta_object
 };
 
 static const afw_utf8_t
@@ -29070,13 +32706,24 @@ impl_292_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_292_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_292_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_292_meta_object__value
     },
     &impl_292,
     NULL
+};
+
+static const afw_value_object_t
+impl_292_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_292_meta_object
 };
 
 static const afw_utf8_t
@@ -29172,13 +32819,24 @@ impl_291_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_291_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_291_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_291_meta_object__value
     },
     &impl_291,
     NULL
+};
+
+static const afw_value_object_t
+impl_291_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_291_meta_object
 };
 
 static const afw_utf8_t
@@ -29233,13 +32891,24 @@ impl_294_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_294_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_294_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_294_meta_object__value
     },
     &impl_294,
     NULL
+};
+
+static const afw_value_object_t
+impl_294_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_294_meta_object
 };
 
 static const afw_utf8_t
@@ -29342,13 +33011,24 @@ impl_293_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_293_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_293_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_293_meta_object__value
     },
     &impl_293,
     NULL
+};
+
+static const afw_value_object_t
+impl_293_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_293_meta_object
 };
 
 static const afw_utf8_t
@@ -29410,13 +33090,24 @@ impl_296_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_296_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_296_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_296_meta_object__value
     },
     &impl_296,
     NULL
+};
+
+static const afw_value_object_t
+impl_296_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_296_meta_object
 };
 
 static const afw_utf8_t
@@ -29512,13 +33203,24 @@ impl_295_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_295_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_295_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_295_meta_object__value
     },
     &impl_295,
     NULL
+};
+
+static const afw_value_object_t
+impl_295_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_295_meta_object
 };
 
 static const afw_utf8_t
@@ -29580,13 +33282,24 @@ impl_298_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_298_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_298_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_298_meta_object__value
     },
     &impl_298,
     NULL
+};
+
+static const afw_value_object_t
+impl_298_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_298_meta_object
 };
 
 static const afw_utf8_t
@@ -29682,13 +33395,24 @@ impl_297_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_297_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_297_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_297_meta_object__value
     },
     &impl_297,
     NULL
+};
+
+static const afw_value_object_t
+impl_297_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_297_meta_object
 };
 
 static const afw_utf8_t
@@ -29795,13 +33519,24 @@ impl_288_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_288_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_288_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_288_meta_object__value
     },
     &impl_288,
     NULL
+};
+
+static const afw_value_object_t
+impl_288_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_288_meta_object
 };
 
 static const afw_utf8_t
@@ -29869,13 +33604,24 @@ impl_300_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_300_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_300_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_300_meta_object__value
     },
     &impl_300,
     NULL
+};
+
+static const afw_value_object_t
+impl_300_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_300_meta_object
 };
 
 static const afw_utf8_t
@@ -29950,13 +33696,24 @@ impl_299_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_299_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_299_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_299_meta_object__value
     },
     &impl_299,
     NULL
+};
+
+static const afw_value_object_t
+impl_299_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_299_meta_object
 };
 
 static const afw_utf8_t
@@ -30046,12 +33803,25 @@ impl_287_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_287_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_287_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_287_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_287_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_287_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_287_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_287_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -30116,13 +33886,24 @@ impl_287_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_287_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_287_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_287_meta_object__value
     },
     &impl_287,
     NULL
+};
+
+static const afw_value_object_t
+impl_287_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_287_meta_object
 };
 
 static const afw_utf8_t
@@ -30177,13 +33958,24 @@ impl_302_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_302_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_302_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_302_meta_object__value
     },
     &impl_302,
     NULL
+};
+
+static const afw_value_object_t
+impl_302_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_302_meta_object
 };
 
 static const afw_utf8_t
@@ -30273,12 +34065,25 @@ impl_301_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_301_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_301_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_301_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_301_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_301_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_301_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_301_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -30330,13 +34135,24 @@ impl_301_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_301_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_301_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_301_meta_object__value
     },
     &impl_301,
     NULL
+};
+
+static const afw_value_object_t
+impl_301_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_301_meta_object
 };
 
 static const afw_utf8_t
@@ -30391,13 +34207,24 @@ impl_304_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_304_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_304_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_304_meta_object__value
     },
     &impl_304,
     NULL
+};
+
+static const afw_value_object_t
+impl_304_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_304_meta_object
 };
 
 static const afw_utf8_t
@@ -30451,12 +34278,25 @@ impl_303_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_303_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_303_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_303_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_303_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_303_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_303_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_303_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -30505,13 +34345,24 @@ impl_303_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_303_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_303_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_303_meta_object__value
     },
     &impl_303,
     NULL
+};
+
+static const afw_value_object_t
+impl_303_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_303_meta_object
 };
 
 static const afw_utf8_t
@@ -30572,13 +34423,24 @@ impl_308_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_308_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_308_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_308_meta_object__value
     },
     &impl_308,
     NULL
+};
+
+static const afw_value_object_t
+impl_308_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_308_meta_object
 };
 
 static const afw_utf8_t
@@ -30674,13 +34536,24 @@ impl_307_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_307_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_307_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_307_meta_object__value
     },
     &impl_307,
     NULL
+};
+
+static const afw_value_object_t
+impl_307_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_307_meta_object
 };
 
 static const afw_utf8_t
@@ -30735,13 +34608,24 @@ impl_306_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_306_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_306_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_306_meta_object__value
     },
     &impl_306,
     NULL
+};
+
+static const afw_value_object_t
+impl_306_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_306_meta_object
 };
 
 static const afw_utf8_t
@@ -30809,13 +34693,24 @@ impl_310_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_310_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_310_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_310_meta_object__value
     },
     &impl_310,
     NULL
+};
+
+static const afw_value_object_t
+impl_310_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_310_meta_object
 };
 
 static const afw_utf8_t
@@ -30890,13 +34785,24 @@ impl_309_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_309_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_309_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_309_meta_object__value
     },
     &impl_309,
     NULL
+};
+
+static const afw_value_object_t
+impl_309_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_309_meta_object
 };
 
 static const afw_utf8_t
@@ -30986,12 +34892,25 @@ impl_305_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_305_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_305_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_305_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_305_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_305_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_305_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_305_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -31056,13 +34975,24 @@ impl_305_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_305_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_305_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_305_meta_object__value
     },
     &impl_305,
     NULL
+};
+
+static const afw_value_object_t
+impl_305_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_305_meta_object
 };
 
 static const afw_utf8_t
@@ -31110,13 +35040,24 @@ impl_312_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_312_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_312_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_312_meta_object__value
     },
     &impl_312,
     NULL
+};
+
+static const afw_value_object_t
+impl_312_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_312_meta_object
 };
 
 static const afw_utf8_t
@@ -31192,13 +35133,24 @@ impl_314_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_314_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_314_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_314_meta_object__value
     },
     &impl_314,
     NULL
+};
+
+static const afw_value_object_t
+impl_314_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_314_meta_object
 };
 
 static const afw_utf8_t
@@ -31278,13 +35230,24 @@ impl_315_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_315_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_315_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_315_meta_object__value
     },
     &impl_315,
     NULL
+};
+
+static const afw_value_object_t
+impl_315_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_315_meta_object
 };
 
 static const afw_utf8_t
@@ -31364,13 +35327,24 @@ impl_316_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_316_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_316_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_316_meta_object__value
     },
     &impl_316,
     NULL
+};
+
+static const afw_value_object_t
+impl_316_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_316_meta_object
 };
 
 static const afw_utf8_t
@@ -31443,13 +35417,24 @@ impl_317_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_317_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_317_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_317_meta_object__value
     },
     &impl_317,
     NULL
+};
+
+static const afw_value_object_t
+impl_317_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_317_meta_object
 };
 
 static const afw_utf8_t
@@ -31515,13 +35500,24 @@ impl_318_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_318_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_318_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_318_meta_object__value
     },
     &impl_318,
     NULL
+};
+
+static const afw_value_object_t
+impl_318_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_318_meta_object
 };
 
 static const afw_utf8_t
@@ -31594,13 +35590,24 @@ impl_319_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_319_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_319_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_319_meta_object__value
     },
     &impl_319,
     NULL
+};
+
+static const afw_value_object_t
+impl_319_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_319_meta_object
 };
 
 static const afw_utf8_t
@@ -31673,13 +35680,24 @@ impl_320_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_320_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_320_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_320_meta_object__value
     },
     &impl_320,
     NULL
+};
+
+static const afw_value_object_t
+impl_320_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_320_meta_object
 };
 
 static const afw_utf8_t
@@ -31752,13 +35770,24 @@ impl_321_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_321_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_321_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_321_meta_object__value
     },
     &impl_321,
     NULL
+};
+
+static const afw_value_object_t
+impl_321_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_321_meta_object
 };
 
 static const afw_utf8_t
@@ -31831,13 +35860,24 @@ impl_322_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_322_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_322_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_322_meta_object__value
     },
     &impl_322,
     NULL
+};
+
+static const afw_value_object_t
+impl_322_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_322_meta_object
 };
 
 static const afw_utf8_t
@@ -31910,13 +35950,24 @@ impl_323_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_323_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_323_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_323_meta_object__value
     },
     &impl_323,
     NULL
+};
+
+static const afw_value_object_t
+impl_323_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_323_meta_object
 };
 
 static const afw_utf8_t
@@ -31989,13 +36040,24 @@ impl_324_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_324_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_324_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_324_meta_object__value
     },
     &impl_324,
     NULL
+};
+
+static const afw_value_object_t
+impl_324_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_324_meta_object
 };
 
 static const afw_utf8_t
@@ -32068,13 +36130,24 @@ impl_325_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_325_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_325_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_325_meta_object__value
     },
     &impl_325,
     NULL
+};
+
+static const afw_value_object_t
+impl_325_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_325_meta_object
 };
 
 static const afw_utf8_t
@@ -32147,13 +36220,24 @@ impl_326_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_326_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_326_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_326_meta_object__value
     },
     &impl_326,
     NULL
+};
+
+static const afw_value_object_t
+impl_326_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_326_meta_object
 };
 
 static const afw_utf8_t
@@ -32226,13 +36310,24 @@ impl_327_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_327_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_327_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_327_meta_object__value
     },
     &impl_327,
     NULL
+};
+
+static const afw_value_object_t
+impl_327_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_327_meta_object
 };
 
 static const afw_utf8_t
@@ -32305,13 +36400,24 @@ impl_328_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_328_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_328_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_328_meta_object__value
     },
     &impl_328,
     NULL
+};
+
+static const afw_value_object_t
+impl_328_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_328_meta_object
 };
 
 static const afw_utf8_t
@@ -32384,13 +36490,24 @@ impl_329_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_329_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_329_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_329_meta_object__value
     },
     &impl_329,
     NULL
+};
+
+static const afw_value_object_t
+impl_329_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_329_meta_object
 };
 
 static const afw_utf8_t
@@ -32463,13 +36580,24 @@ impl_330_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_330_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_330_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_330_meta_object__value
     },
     &impl_330,
     NULL
+};
+
+static const afw_value_object_t
+impl_330_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_330_meta_object
 };
 
 static const afw_utf8_t
@@ -32542,13 +36670,24 @@ impl_331_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_331_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_331_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_331_meta_object__value
     },
     &impl_331,
     NULL
+};
+
+static const afw_value_object_t
+impl_331_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_331_meta_object
 };
 
 static const afw_utf8_t
@@ -32621,13 +36760,24 @@ impl_332_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_332_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_332_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_332_meta_object__value
     },
     &impl_332,
     NULL
+};
+
+static const afw_value_object_t
+impl_332_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_332_meta_object
 };
 
 static const afw_utf8_t
@@ -32700,13 +36850,24 @@ impl_333_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_333_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_333_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_333_meta_object__value
     },
     &impl_333,
     NULL
+};
+
+static const afw_value_object_t
+impl_333_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_333_meta_object
 };
 
 static const afw_utf8_t
@@ -32779,13 +36940,24 @@ impl_334_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_334_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_334_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_334_meta_object__value
     },
     &impl_334,
     NULL
+};
+
+static const afw_value_object_t
+impl_334_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_334_meta_object
 };
 
 static const afw_utf8_t
@@ -33100,13 +37272,24 @@ impl_313_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_313_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_313_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_313_meta_object__value
     },
     &impl_313,
     NULL
+};
+
+static const afw_value_object_t
+impl_313_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_313_meta_object
 };
 
 static const afw_utf8_t
@@ -33196,12 +37379,25 @@ impl_311_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_311_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_311_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_311_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_311_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_311_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_311_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_311_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -33266,13 +37462,24 @@ impl_311_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_311_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_311_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_311_meta_object__value
     },
     &impl_311,
     NULL
+};
+
+static const afw_value_object_t
+impl_311_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_311_meta_object
 };
 
 static const afw_utf8_t
@@ -33333,13 +37540,24 @@ impl_338_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_338_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_338_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_338_meta_object__value
     },
     &impl_338,
     NULL
+};
+
+static const afw_value_object_t
+impl_338_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_338_meta_object
 };
 
 static const afw_utf8_t
@@ -33435,13 +37653,24 @@ impl_337_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_337_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_337_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_337_meta_object__value
     },
     &impl_337,
     NULL
+};
+
+static const afw_value_object_t
+impl_337_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_337_meta_object
 };
 
 static const afw_utf8_t
@@ -33496,13 +37725,24 @@ impl_340_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_340_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_340_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_340_meta_object__value
     },
     &impl_340,
     NULL
+};
+
+static const afw_value_object_t
+impl_340_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_340_meta_object
 };
 
 static const afw_utf8_t
@@ -33598,13 +37838,24 @@ impl_339_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_339_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_339_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_339_meta_object__value
     },
     &impl_339,
     NULL
+};
+
+static const afw_value_object_t
+impl_339_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_339_meta_object
 };
 
 static const afw_utf8_t
@@ -33659,13 +37910,24 @@ impl_342_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_342_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_342_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_342_meta_object__value
     },
     &impl_342,
     NULL
+};
+
+static const afw_value_object_t
+impl_342_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_342_meta_object
 };
 
 static const afw_utf8_t
@@ -33761,13 +38023,24 @@ impl_341_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_341_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_341_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_341_meta_object__value
     },
     &impl_341,
     NULL
+};
+
+static const afw_value_object_t
+impl_341_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_341_meta_object
 };
 
 static const afw_utf8_t
@@ -33848,13 +38121,24 @@ impl_336_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_336_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_336_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_336_meta_object__value
     },
     &impl_336,
     NULL
+};
+
+static const afw_value_object_t
+impl_336_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_336_meta_object
 };
 
 static const afw_utf8_t
@@ -33909,13 +38193,24 @@ impl_344_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_344_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_344_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_344_meta_object__value
     },
     &impl_344,
     NULL
+};
+
+static const afw_value_object_t
+impl_344_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_344_meta_object
 };
 
 static const afw_utf8_t
@@ -33990,13 +38285,24 @@ impl_343_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_343_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_343_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_343_meta_object__value
     },
     &impl_343,
     NULL
+};
+
+static const afw_value_object_t
+impl_343_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_343_meta_object
 };
 
 static const afw_utf8_t
@@ -34086,12 +38392,25 @@ impl_335_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_335_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_335_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_335_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_335_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_335_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_335_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_335_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -34156,13 +38475,24 @@ impl_335_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_335_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_335_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_335_meta_object__value
     },
     &impl_335,
     NULL
+};
+
+static const afw_value_object_t
+impl_335_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_335_meta_object
 };
 
 static const afw_utf8_t
@@ -34230,13 +38560,24 @@ impl_348_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_348_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_348_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_348_meta_object__value
     },
     &impl_348,
     NULL
+};
+
+static const afw_value_object_t
+impl_348_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_348_meta_object
 };
 
 static const afw_utf8_t
@@ -34339,13 +38680,24 @@ impl_347_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_347_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_347_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_347_meta_object__value
     },
     &impl_347,
     NULL
+};
+
+static const afw_value_object_t
+impl_347_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_347_meta_object
 };
 
 static const afw_utf8_t
@@ -34400,13 +38752,24 @@ impl_350_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_350_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_350_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_350_meta_object__value
     },
     &impl_350,
     NULL
+};
+
+static const afw_value_object_t
+impl_350_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_350_meta_object
 };
 
 static const afw_utf8_t
@@ -34502,13 +38865,24 @@ impl_349_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_349_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_349_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_349_meta_object__value
     },
     &impl_349,
     NULL
+};
+
+static const afw_value_object_t
+impl_349_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_349_meta_object
 };
 
 static const afw_utf8_t
@@ -34563,13 +38937,24 @@ impl_352_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_352_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_352_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_352_meta_object__value
     },
     &impl_352,
     NULL
+};
+
+static const afw_value_object_t
+impl_352_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_352_meta_object
 };
 
 static const afw_utf8_t
@@ -34672,13 +39057,24 @@ impl_351_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_351_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_351_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_351_meta_object__value
     },
     &impl_351,
     NULL
+};
+
+static const afw_value_object_t
+impl_351_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_351_meta_object
 };
 
 static const afw_utf8_t
@@ -34740,13 +39136,24 @@ impl_354_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_354_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_354_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_354_meta_object__value
     },
     &impl_354,
     NULL
+};
+
+static const afw_value_object_t
+impl_354_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_354_meta_object
 };
 
 static const afw_utf8_t
@@ -34842,13 +39249,24 @@ impl_353_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_353_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_353_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_353_meta_object__value
     },
     &impl_353,
     NULL
+};
+
+static const afw_value_object_t
+impl_353_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_353_meta_object
 };
 
 static const afw_utf8_t
@@ -34910,13 +39328,24 @@ impl_356_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_356_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_356_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_356_meta_object__value
     },
     &impl_356,
     NULL
+};
+
+static const afw_value_object_t
+impl_356_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_356_meta_object
 };
 
 static const afw_utf8_t
@@ -35012,13 +39441,24 @@ impl_355_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_355_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_355_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_355_meta_object__value
     },
     &impl_355,
     NULL
+};
+
+static const afw_value_object_t
+impl_355_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_355_meta_object
 };
 
 static const afw_utf8_t
@@ -35080,13 +39520,24 @@ impl_358_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_358_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_358_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_358_meta_object__value
     },
     &impl_358,
     NULL
+};
+
+static const afw_value_object_t
+impl_358_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_358_meta_object
 };
 
 static const afw_utf8_t
@@ -35189,13 +39640,24 @@ impl_357_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_357_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_357_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_357_meta_object__value
     },
     &impl_357,
     NULL
+};
+
+static const afw_value_object_t
+impl_357_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_357_meta_object
 };
 
 static const afw_utf8_t
@@ -35257,13 +39719,24 @@ impl_360_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_360_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_360_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_360_meta_object__value
     },
     &impl_360,
     NULL
+};
+
+static const afw_value_object_t
+impl_360_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_360_meta_object
 };
 
 static const afw_utf8_t
@@ -35366,13 +39839,24 @@ impl_359_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_359_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_359_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_359_meta_object__value
     },
     &impl_359,
     NULL
+};
+
+static const afw_value_object_t
+impl_359_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_359_meta_object
 };
 
 static const afw_utf8_t
@@ -35505,13 +39989,24 @@ impl_346_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_346_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_346_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_346_meta_object__value
     },
     &impl_346,
     NULL
+};
+
+static const afw_value_object_t
+impl_346_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_346_meta_object
 };
 
 static const afw_utf8_t
@@ -35566,13 +40061,24 @@ impl_362_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_362_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_362_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_362_meta_object__value
     },
     &impl_362,
     NULL
+};
+
+static const afw_value_object_t
+impl_362_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_362_meta_object
 };
 
 static const afw_utf8_t
@@ -35647,13 +40153,24 @@ impl_361_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_361_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_361_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_361_meta_object__value
     },
     &impl_361,
     NULL
+};
+
+static const afw_value_object_t
+impl_361_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_361_meta_object
 };
 
 static const afw_utf8_t
@@ -35743,12 +40260,25 @@ impl_345_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_345_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_345_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_345_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_345_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_345_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_345_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_345_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -35813,13 +40343,24 @@ impl_345_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_345_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_345_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_345_meta_object__value
     },
     &impl_345,
     NULL
+};
+
+static const afw_value_object_t
+impl_345_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_345_meta_object
 };
 
 static const afw_utf8_t
@@ -35924,13 +40465,24 @@ impl_365_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_365_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_365_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_365_meta_object__value
     },
     &impl_365,
     NULL
+};
+
+static const afw_value_object_t
+impl_365_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_365_meta_object
 };
 
 static const afw_utf8_t
@@ -36029,13 +40581,24 @@ impl_366_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_366_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_366_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_366_meta_object__value
     },
     &impl_366,
     NULL
+};
+
+static const afw_value_object_t
+impl_366_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_366_meta_object
 };
 
 static const afw_utf8_t
@@ -36134,13 +40697,24 @@ impl_367_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_367_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_367_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_367_meta_object__value
     },
     &impl_367,
     NULL
+};
+
+static const afw_value_object_t
+impl_367_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_367_meta_object
 };
 
 static const afw_utf8_t
@@ -36233,13 +40807,24 @@ impl_368_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_368_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_368_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_368_meta_object__value
     },
     &impl_368,
     NULL
+};
+
+static const afw_value_object_t
+impl_368_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_368_meta_object
 };
 
 static const afw_utf8_t
@@ -36333,13 +40918,24 @@ impl_364_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_364_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_364_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_364_meta_object__value
     },
     &impl_364,
     NULL
+};
+
+static const afw_value_object_t
+impl_364_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_364_meta_object
 };
 
 static const afw_utf8_t
@@ -36393,12 +40989,25 @@ impl_363_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_363_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_363_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_363_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_363_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_363_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_363_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_363_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -36447,13 +41056,24 @@ impl_363_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_363_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_363_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_363_meta_object__value
     },
     &impl_363,
     NULL
+};
+
+static const afw_value_object_t
+impl_363_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_363_meta_object
 };
 
 static const afw_utf8_t
@@ -36551,13 +41171,24 @@ impl_371_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_371_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_371_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_371_meta_object__value
     },
     &impl_371,
     NULL
+};
+
+static const afw_value_object_t
+impl_371_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_371_meta_object
 };
 
 static const afw_utf8_t
@@ -36649,13 +41280,24 @@ impl_372_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_372_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_372_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_372_meta_object__value
     },
     &impl_372,
     NULL
+};
+
+static const afw_value_object_t
+impl_372_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_372_meta_object
 };
 
 static const afw_utf8_t
@@ -36754,13 +41396,24 @@ impl_373_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_373_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_373_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_373_meta_object__value
     },
     &impl_373,
     NULL
+};
+
+static const afw_value_object_t
+impl_373_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_373_meta_object
 };
 
 static const afw_utf8_t
@@ -36852,13 +41505,24 @@ impl_374_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_374_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_374_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_374_meta_object__value
     },
     &impl_374,
     NULL
+};
+
+static const afw_value_object_t
+impl_374_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_374_meta_object
 };
 
 static const afw_utf8_t
@@ -36931,13 +41595,24 @@ impl_375_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_375_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_375_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_375_meta_object__value
     },
     &impl_375,
     NULL
+};
+
+static const afw_value_object_t
+impl_375_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_375_meta_object
 };
 
 static const afw_utf8_t
@@ -37029,13 +41704,24 @@ impl_376_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_376_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_376_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_376_meta_object__value
     },
     &impl_376,
     NULL
+};
+
+static const afw_value_object_t
+impl_376_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_376_meta_object
 };
 
 static const afw_utf8_t
@@ -37134,13 +41820,24 @@ impl_377_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_377_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_377_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_377_meta_object__value
     },
     &impl_377,
     NULL
+};
+
+static const afw_value_object_t
+impl_377_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_377_meta_object
 };
 
 static const afw_utf8_t
@@ -37232,13 +41929,24 @@ impl_378_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_378_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_378_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_378_meta_object__value
     },
     &impl_378,
     NULL
+};
+
+static const afw_value_object_t
+impl_378_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_378_meta_object
 };
 
 static const afw_utf8_t
@@ -37337,13 +42045,24 @@ impl_379_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_379_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_379_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_379_meta_object__value
     },
     &impl_379,
     NULL
+};
+
+static const afw_value_object_t
+impl_379_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_379_meta_object
 };
 
 static const afw_utf8_t
@@ -37502,13 +42221,24 @@ impl_370_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_370_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_370_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_370_meta_object__value
     },
     &impl_370,
     NULL
+};
+
+static const afw_value_object_t
+impl_370_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_370_meta_object
 };
 
 static const afw_utf8_t
@@ -37562,12 +42292,25 @@ impl_369_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_369_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_369_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_369_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_369_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_369_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_369_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_369_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -37623,13 +42366,24 @@ impl_369_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_369_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_369_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_369_meta_object__value
     },
     &impl_369,
     NULL
+};
+
+static const afw_value_object_t
+impl_369_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_369_meta_object
 };
 
 static const afw_utf8_t
@@ -37734,13 +42488,24 @@ impl_382_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_382_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_382_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_382_meta_object__value
     },
     &impl_382,
     NULL
+};
+
+static const afw_value_object_t
+impl_382_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_382_meta_object
 };
 
 static const afw_utf8_t
@@ -37839,13 +42604,24 @@ impl_383_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_383_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_383_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_383_meta_object__value
     },
     &impl_383,
     NULL
+};
+
+static const afw_value_object_t
+impl_383_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_383_meta_object
 };
 
 static const afw_utf8_t
@@ -37913,13 +42689,24 @@ impl_381_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_381_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_381_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_381_meta_object__value
     },
     &impl_381,
     NULL
+};
+
+static const afw_value_object_t
+impl_381_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_381_meta_object
 };
 
 static const afw_utf8_t
@@ -37973,12 +42760,25 @@ impl_380_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_380_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_380_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_380_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_380_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_380_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_380_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_380_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -38027,13 +42827,24 @@ impl_380_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_380_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_380_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_380_meta_object__value
     },
     &impl_380,
     NULL
+};
+
+static const afw_value_object_t
+impl_380_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_380_meta_object
 };
 
 static const afw_utf8_t
@@ -38138,13 +42949,24 @@ impl_386_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_386_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_386_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_386_meta_object__value
     },
     &impl_386,
     NULL
+};
+
+static const afw_value_object_t
+impl_386_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_386_meta_object
 };
 
 static const afw_utf8_t
@@ -38243,13 +43065,24 @@ impl_387_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_387_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_387_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_387_meta_object__value
     },
     &impl_387,
     NULL
+};
+
+static const afw_value_object_t
+impl_387_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_387_meta_object
 };
 
 static const afw_utf8_t
@@ -38348,13 +43181,24 @@ impl_388_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_388_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_388_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_388_meta_object__value
     },
     &impl_388,
     NULL
+};
+
+static const afw_value_object_t
+impl_388_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_388_meta_object
 };
 
 static const afw_utf8_t
@@ -38453,13 +43297,24 @@ impl_389_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_389_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_389_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_389_meta_object__value
     },
     &impl_389,
     NULL
+};
+
+static const afw_value_object_t
+impl_389_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_389_meta_object
 };
 
 static const afw_utf8_t
@@ -38558,13 +43413,24 @@ impl_390_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_390_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_390_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_390_meta_object__value
     },
     &impl_390,
     NULL
+};
+
+static const afw_value_object_t
+impl_390_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_390_meta_object
 };
 
 static const afw_utf8_t
@@ -38663,13 +43529,24 @@ impl_391_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_391_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_391_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_391_meta_object__value
     },
     &impl_391,
     NULL
+};
+
+static const afw_value_object_t
+impl_391_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_391_meta_object
 };
 
 static const afw_utf8_t
@@ -38768,13 +43645,24 @@ impl_392_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_392_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_392_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_392_meta_object__value
     },
     &impl_392,
     NULL
+};
+
+static const afw_value_object_t
+impl_392_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_392_meta_object
 };
 
 static const afw_utf8_t
@@ -38873,13 +43761,24 @@ impl_393_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_393_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_393_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_393_meta_object__value
     },
     &impl_393,
     NULL
+};
+
+static const afw_value_object_t
+impl_393_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_393_meta_object
 };
 
 static const afw_utf8_t
@@ -38985,13 +43884,24 @@ impl_394_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_394_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_394_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_394_meta_object__value
     },
     &impl_394,
     NULL
+};
+
+static const afw_value_object_t
+impl_394_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_394_meta_object
 };
 
 static const afw_utf8_t
@@ -39077,13 +43987,24 @@ impl_395_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_395_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_395_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_395_meta_object__value
     },
     &impl_395,
     NULL
+};
+
+static const afw_value_object_t
+impl_395_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_395_meta_object
 };
 
 static const afw_utf8_t
@@ -39176,13 +44097,24 @@ impl_396_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_396_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_396_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_396_meta_object__value
     },
     &impl_396,
     NULL
+};
+
+static const afw_value_object_t
+impl_396_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_396_meta_object
 };
 
 static const afw_utf8_t
@@ -39281,13 +44213,24 @@ impl_397_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_397_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_397_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_397_meta_object__value
     },
     &impl_397,
     NULL
+};
+
+static const afw_value_object_t
+impl_397_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_397_meta_object
 };
 
 static const afw_utf8_t
@@ -39386,13 +44329,24 @@ impl_398_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_398_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_398_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_398_meta_object__value
     },
     &impl_398,
     NULL
+};
+
+static const afw_value_object_t
+impl_398_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_398_meta_object
 };
 
 static const afw_utf8_t
@@ -39491,13 +44445,24 @@ impl_399_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_399_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_399_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_399_meta_object__value
     },
     &impl_399,
     NULL
+};
+
+static const afw_value_object_t
+impl_399_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_399_meta_object
 };
 
 static const afw_utf8_t
@@ -39583,13 +44548,24 @@ impl_400_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_400_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_400_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_400_meta_object__value
     },
     &impl_400,
     NULL
+};
+
+static const afw_value_object_t
+impl_400_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_400_meta_object
 };
 
 static const afw_utf8_t
@@ -39669,13 +44645,24 @@ impl_401_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_401_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_401_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_401_meta_object__value
     },
     &impl_401,
     NULL
+};
+
+static const afw_value_object_t
+impl_401_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_401_meta_object
 };
 
 static const afw_utf8_t
@@ -39774,13 +44761,24 @@ impl_402_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_402_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_402_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_402_meta_object__value
     },
     &impl_402,
     NULL
+};
+
+static const afw_value_object_t
+impl_402_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_402_meta_object
 };
 
 static const afw_utf8_t
@@ -39886,13 +44884,24 @@ impl_403_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_403_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_403_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_403_meta_object__value
     },
     &impl_403,
     NULL
+};
+
+static const afw_value_object_t
+impl_403_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_403_meta_object
 };
 
 static const afw_utf8_t
@@ -39991,13 +45000,24 @@ impl_404_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_404_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_404_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_404_meta_object__value
     },
     &impl_404,
     NULL
+};
+
+static const afw_value_object_t
+impl_404_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_404_meta_object
 };
 
 static const afw_utf8_t
@@ -40096,13 +45116,24 @@ impl_405_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_405_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_405_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_405_meta_object__value
     },
     &impl_405,
     NULL
+};
+
+static const afw_value_object_t
+impl_405_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_405_meta_object
 };
 
 static const afw_utf8_t
@@ -40201,13 +45232,24 @@ impl_406_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_406_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_406_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_406_meta_object__value
     },
     &impl_406,
     NULL
+};
+
+static const afw_value_object_t
+impl_406_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_406_meta_object
 };
 
 static const afw_utf8_t
@@ -40306,13 +45348,24 @@ impl_407_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_407_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_407_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_407_meta_object__value
     },
     &impl_407,
     NULL
+};
+
+static const afw_value_object_t
+impl_407_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_407_meta_object
 };
 
 static const afw_utf8_t
@@ -40418,13 +45471,24 @@ impl_408_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_408_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_408_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_408_meta_object__value
     },
     &impl_408,
     NULL
+};
+
+static const afw_value_object_t
+impl_408_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_408_meta_object
 };
 
 static const afw_utf8_t
@@ -40510,13 +45574,24 @@ impl_409_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_409_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_409_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_409_meta_object__value
     },
     &impl_409,
     NULL
+};
+
+static const afw_value_object_t
+impl_409_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_409_meta_object
 };
 
 static const afw_utf8_t
@@ -40609,13 +45684,24 @@ impl_410_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_410_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_410_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_410_meta_object__value
     },
     &impl_410,
     NULL
+};
+
+static const afw_value_object_t
+impl_410_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_410_meta_object
 };
 
 static const afw_utf8_t
@@ -40701,13 +45787,24 @@ impl_411_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_411_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_411_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_411_meta_object__value
     },
     &impl_411,
     NULL
+};
+
+static const afw_value_object_t
+impl_411_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_411_meta_object
 };
 
 static const afw_utf8_t
@@ -40806,13 +45903,24 @@ impl_412_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_412_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_412_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_412_meta_object__value
     },
     &impl_412,
     NULL
+};
+
+static const afw_value_object_t
+impl_412_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_412_meta_object
 };
 
 static const afw_utf8_t
@@ -41205,13 +46313,24 @@ impl_385_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_385_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_385_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_385_meta_object__value
     },
     &impl_385,
     NULL
+};
+
+static const afw_value_object_t
+impl_385_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_385_meta_object
 };
 
 static const afw_utf8_t
@@ -41265,12 +46384,25 @@ impl_384_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_384_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_384_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_384_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_384_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_384_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_384_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_384_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -41319,13 +46451,24 @@ impl_384_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_384_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_384_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_384_meta_object__value
     },
     &impl_384,
     NULL
+};
+
+static const afw_value_object_t
+impl_384_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_384_meta_object
 };
 
 static const afw_utf8_t
@@ -41386,13 +46529,24 @@ impl_416_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_416_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_416_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_416_meta_object__value
     },
     &impl_416,
     NULL
+};
+
+static const afw_value_object_t
+impl_416_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_416_meta_object
 };
 
 static const afw_utf8_t
@@ -41488,13 +46642,24 @@ impl_415_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_415_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_415_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_415_meta_object__value
     },
     &impl_415,
     NULL
+};
+
+static const afw_value_object_t
+impl_415_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_415_meta_object
 };
 
 static const afw_utf8_t
@@ -41549,13 +46714,24 @@ impl_418_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_418_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_418_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_418_meta_object__value
     },
     &impl_418,
     NULL
+};
+
+static const afw_value_object_t
+impl_418_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_418_meta_object
 };
 
 static const afw_utf8_t
@@ -41664,13 +46840,24 @@ impl_417_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_417_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_417_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_417_meta_object__value
     },
     &impl_417,
     NULL
+};
+
+static const afw_value_object_t
+impl_417_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_417_meta_object
 };
 
 static const afw_utf8_t
@@ -41725,13 +46912,24 @@ impl_420_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_420_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_420_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_420_meta_object__value
     },
     &impl_420,
     NULL
+};
+
+static const afw_value_object_t
+impl_420_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_420_meta_object
 };
 
 static const afw_utf8_t
@@ -41840,13 +47038,24 @@ impl_419_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_419_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_419_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_419_meta_object__value
     },
     &impl_419,
     NULL
+};
+
+static const afw_value_object_t
+impl_419_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_419_meta_object
 };
 
 static const afw_utf8_t
@@ -41901,13 +47110,24 @@ impl_422_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_422_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_422_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_422_meta_object__value
     },
     &impl_422,
     NULL
+};
+
+static const afw_value_object_t
+impl_422_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_422_meta_object
 };
 
 static const afw_utf8_t
@@ -42016,13 +47236,24 @@ impl_421_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_421_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_421_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_421_meta_object__value
     },
     &impl_421,
     NULL
+};
+
+static const afw_value_object_t
+impl_421_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_421_meta_object
 };
 
 static const afw_utf8_t
@@ -42077,13 +47308,24 @@ impl_424_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_424_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_424_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_424_meta_object__value
     },
     &impl_424,
     NULL
+};
+
+static const afw_value_object_t
+impl_424_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_424_meta_object
 };
 
 static const afw_utf8_t
@@ -42186,13 +47428,24 @@ impl_423_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_423_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_423_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_423_meta_object__value
     },
     &impl_423,
     NULL
+};
+
+static const afw_value_object_t
+impl_423_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_423_meta_object
 };
 
 static const afw_utf8_t
@@ -42247,13 +47500,24 @@ impl_426_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_426_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_426_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_426_meta_object__value
     },
     &impl_426,
     NULL
+};
+
+static const afw_value_object_t
+impl_426_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_426_meta_object
 };
 
 static const afw_utf8_t
@@ -42349,13 +47613,24 @@ impl_425_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_425_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_425_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_425_meta_object__value
     },
     &impl_425,
     NULL
+};
+
+static const afw_value_object_t
+impl_425_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_425_meta_object
 };
 
 static const afw_utf8_t
@@ -42410,13 +47685,24 @@ impl_428_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_428_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_428_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_428_meta_object__value
     },
     &impl_428,
     NULL
+};
+
+static const afw_value_object_t
+impl_428_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_428_meta_object
 };
 
 static const afw_utf8_t
@@ -42512,13 +47798,24 @@ impl_427_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_427_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_427_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_427_meta_object__value
     },
     &impl_427,
     NULL
+};
+
+static const afw_value_object_t
+impl_427_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_427_meta_object
 };
 
 static const afw_utf8_t
@@ -42573,13 +47870,24 @@ impl_430_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_430_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_430_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_430_meta_object__value
     },
     &impl_430,
     NULL
+};
+
+static const afw_value_object_t
+impl_430_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_430_meta_object
 };
 
 static const afw_utf8_t
@@ -42688,13 +47996,24 @@ impl_429_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_429_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_429_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_429_meta_object__value
     },
     &impl_429,
     NULL
+};
+
+static const afw_value_object_t
+impl_429_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_429_meta_object
 };
 
 static const afw_utf8_t
@@ -42749,13 +48068,24 @@ impl_432_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_432_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_432_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_432_meta_object__value
     },
     &impl_432,
     NULL
+};
+
+static const afw_value_object_t
+impl_432_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_432_meta_object
 };
 
 static const afw_utf8_t
@@ -42851,13 +48181,24 @@ impl_431_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_431_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_431_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_431_meta_object__value
     },
     &impl_431,
     NULL
+};
+
+static const afw_value_object_t
+impl_431_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_431_meta_object
 };
 
 static const afw_utf8_t
@@ -42912,13 +48253,24 @@ impl_434_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_434_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_434_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_434_meta_object__value
     },
     &impl_434,
     NULL
+};
+
+static const afw_value_object_t
+impl_434_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_434_meta_object
 };
 
 static const afw_utf8_t
@@ -43014,13 +48366,24 @@ impl_433_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_433_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_433_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_433_meta_object__value
     },
     &impl_433,
     NULL
+};
+
+static const afw_value_object_t
+impl_433_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_433_meta_object
 };
 
 static const afw_utf8_t
@@ -43192,13 +48555,24 @@ impl_414_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_414_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_414_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_414_meta_object__value
     },
     &impl_414,
     NULL
+};
+
+static const afw_value_object_t
+impl_414_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_414_meta_object
 };
 
 static const afw_utf8_t
@@ -43246,13 +48620,24 @@ impl_436_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_436_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_436_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_436_meta_object__value
     },
     &impl_436,
     NULL
+};
+
+static const afw_value_object_t
+impl_436_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_436_meta_object
 };
 
 static const afw_utf8_t
@@ -43327,13 +48712,24 @@ impl_435_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_435_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_435_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_435_meta_object__value
     },
     &impl_435,
     NULL
+};
+
+static const afw_value_object_t
+impl_435_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_435_meta_object
 };
 
 static const afw_utf8_t
@@ -43387,12 +48783,25 @@ impl_413_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_413_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_413_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_413_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_413_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_413_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_413_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_413_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -43454,13 +48863,24 @@ impl_413_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_413_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_413_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_413_meta_object__value
     },
     &impl_413,
     NULL
+};
+
+static const afw_value_object_t
+impl_413_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_413_meta_object
 };
 
 static const afw_utf8_t
@@ -43521,13 +48941,24 @@ impl_440_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_440_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_440_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_440_meta_object__value
     },
     &impl_440,
     NULL
+};
+
+static const afw_value_object_t
+impl_440_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_440_meta_object
 };
 
 static const afw_utf8_t
@@ -43636,13 +49067,24 @@ impl_439_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_439_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_439_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_439_meta_object__value
     },
     &impl_439,
     NULL
+};
+
+static const afw_value_object_t
+impl_439_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_439_meta_object
 };
 
 static const afw_utf8_t
@@ -43697,13 +49139,24 @@ impl_442_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_442_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_442_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_442_meta_object__value
     },
     &impl_442,
     NULL
+};
+
+static const afw_value_object_t
+impl_442_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_442_meta_object
 };
 
 static const afw_utf8_t
@@ -43812,13 +49265,24 @@ impl_441_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_441_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_441_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_441_meta_object__value
     },
     &impl_441,
     NULL
+};
+
+static const afw_value_object_t
+impl_441_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_441_meta_object
 };
 
 static const afw_utf8_t
@@ -43873,13 +49337,24 @@ impl_444_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_444_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_444_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_444_meta_object__value
     },
     &impl_444,
     NULL
+};
+
+static const afw_value_object_t
+impl_444_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_444_meta_object
 };
 
 static const afw_utf8_t
@@ -43988,13 +49463,24 @@ impl_443_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_443_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_443_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_443_meta_object__value
     },
     &impl_443,
     NULL
+};
+
+static const afw_value_object_t
+impl_443_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_443_meta_object
 };
 
 static const afw_utf8_t
@@ -44049,13 +49535,24 @@ impl_446_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_446_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_446_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_446_meta_object__value
     },
     &impl_446,
     NULL
+};
+
+static const afw_value_object_t
+impl_446_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_446_meta_object
 };
 
 static const afw_utf8_t
@@ -44164,13 +49661,24 @@ impl_445_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_445_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_445_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_445_meta_object__value
     },
     &impl_445,
     NULL
+};
+
+static const afw_value_object_t
+impl_445_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_445_meta_object
 };
 
 static const afw_utf8_t
@@ -44225,13 +49733,24 @@ impl_448_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_448_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_448_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_448_meta_object__value
     },
     &impl_448,
     NULL
+};
+
+static const afw_value_object_t
+impl_448_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_448_meta_object
 };
 
 static const afw_utf8_t
@@ -44340,13 +49859,24 @@ impl_447_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_447_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_447_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_447_meta_object__value
     },
     &impl_447,
     NULL
+};
+
+static const afw_value_object_t
+impl_447_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_447_meta_object
 };
 
 static const afw_utf8_t
@@ -44445,13 +49975,24 @@ impl_449_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_449_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_449_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_449_meta_object__value
     },
     &impl_449,
     NULL
+};
+
+static const afw_value_object_t
+impl_449_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_449_meta_object
 };
 
 static const afw_utf8_t
@@ -44506,13 +50047,24 @@ impl_451_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_451_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_451_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_451_meta_object__value
     },
     &impl_451,
     NULL
+};
+
+static const afw_value_object_t
+impl_451_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_451_meta_object
 };
 
 static const afw_utf8_t
@@ -44621,13 +50173,24 @@ impl_450_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_450_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_450_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_450_meta_object__value
     },
     &impl_450,
     NULL
+};
+
+static const afw_value_object_t
+impl_450_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_450_meta_object
 };
 
 static const afw_utf8_t
@@ -44682,13 +50245,24 @@ impl_453_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_453_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_453_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_453_meta_object__value
     },
     &impl_453,
     NULL
+};
+
+static const afw_value_object_t
+impl_453_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_453_meta_object
 };
 
 static const afw_utf8_t
@@ -44804,13 +50378,24 @@ impl_452_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_452_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_452_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_452_meta_object__value
     },
     &impl_452,
     NULL
+};
+
+static const afw_value_object_t
+impl_452_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_452_meta_object
 };
 
 static const afw_utf8_t
@@ -44865,13 +50450,24 @@ impl_455_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_455_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_455_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_455_meta_object__value
     },
     &impl_455,
     NULL
+};
+
+static const afw_value_object_t
+impl_455_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_455_meta_object
 };
 
 static const afw_utf8_t
@@ -44974,13 +50570,24 @@ impl_454_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_454_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_454_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_454_meta_object__value
     },
     &impl_454,
     NULL
+};
+
+static const afw_value_object_t
+impl_454_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_454_meta_object
 };
 
 static const afw_utf8_t
@@ -45035,13 +50642,24 @@ impl_457_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_457_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_457_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_457_meta_object__value
     },
     &impl_457,
     NULL
+};
+
+static const afw_value_object_t
+impl_457_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_457_meta_object
 };
 
 static const afw_utf8_t
@@ -45157,13 +50775,24 @@ impl_456_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_456_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_456_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_456_meta_object__value
     },
     &impl_456,
     NULL
+};
+
+static const afw_value_object_t
+impl_456_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_456_meta_object
 };
 
 static const afw_utf8_t
@@ -45218,13 +50847,24 @@ impl_459_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_459_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_459_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_459_meta_object__value
     },
     &impl_459,
     NULL
+};
+
+static const afw_value_object_t
+impl_459_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_459_meta_object
 };
 
 static const afw_utf8_t
@@ -45333,13 +50973,24 @@ impl_458_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_458_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_458_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_458_meta_object__value
     },
     &impl_458,
     NULL
+};
+
+static const afw_value_object_t
+impl_458_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_458_meta_object
 };
 
 static const afw_utf8_t
@@ -45394,13 +51045,24 @@ impl_461_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_461_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_461_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_461_meta_object__value
     },
     &impl_461,
     NULL
+};
+
+static const afw_value_object_t
+impl_461_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_461_meta_object
 };
 
 static const afw_utf8_t
@@ -45509,13 +51171,24 @@ impl_460_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_460_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_460_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_460_meta_object__value
     },
     &impl_460,
     NULL
+};
+
+static const afw_value_object_t
+impl_460_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_460_meta_object
 };
 
 static const afw_utf8_t
@@ -45570,13 +51243,24 @@ impl_463_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_463_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_463_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_463_meta_object__value
     },
     &impl_463,
     NULL
+};
+
+static const afw_value_object_t
+impl_463_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_463_meta_object
 };
 
 static const afw_utf8_t
@@ -45685,13 +51369,24 @@ impl_462_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_462_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_462_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_462_meta_object__value
     },
     &impl_462,
     NULL
+};
+
+static const afw_value_object_t
+impl_462_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_462_meta_object
 };
 
 static const afw_utf8_t
@@ -45746,13 +51441,24 @@ impl_465_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_465_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_465_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_465_meta_object__value
     },
     &impl_465,
     NULL
+};
+
+static const afw_value_object_t
+impl_465_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_465_meta_object
 };
 
 static const afw_utf8_t
@@ -45861,13 +51567,24 @@ impl_464_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_464_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_464_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_464_meta_object__value
     },
     &impl_464,
     NULL
+};
+
+static const afw_value_object_t
+impl_464_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_464_meta_object
 };
 
 static const afw_utf8_t
@@ -45922,13 +51639,24 @@ impl_467_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_467_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_467_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_467_meta_object__value
     },
     &impl_467,
     NULL
+};
+
+static const afw_value_object_t
+impl_467_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_467_meta_object
 };
 
 static const afw_utf8_t
@@ -46037,13 +51765,24 @@ impl_466_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_466_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_466_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_466_meta_object__value
     },
     &impl_466,
     NULL
+};
+
+static const afw_value_object_t
+impl_466_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_466_meta_object
 };
 
 static const afw_utf8_t
@@ -46098,13 +51837,24 @@ impl_469_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_469_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_469_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_469_meta_object__value
     },
     &impl_469,
     NULL
+};
+
+static const afw_value_object_t
+impl_469_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_469_meta_object
 };
 
 static const afw_utf8_t
@@ -46200,13 +51950,24 @@ impl_468_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_468_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_468_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_468_meta_object__value
     },
     &impl_468,
     NULL
+};
+
+static const afw_value_object_t
+impl_468_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_468_meta_object
 };
 
 static const afw_utf8_t
@@ -46261,13 +52022,24 @@ impl_471_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_471_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_471_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_471_meta_object__value
     },
     &impl_471,
     NULL
+};
+
+static const afw_value_object_t
+impl_471_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_471_meta_object
 };
 
 static const afw_utf8_t
@@ -46357,13 +52129,24 @@ impl_470_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_470_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_470_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_470_meta_object__value
     },
     &impl_470,
     NULL
+};
+
+static const afw_value_object_t
+impl_470_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_470_meta_object
 };
 
 static const afw_utf8_t
@@ -46418,13 +52201,24 @@ impl_473_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_473_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_473_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_473_meta_object__value
     },
     &impl_473,
     NULL
+};
+
+static const afw_value_object_t
+impl_473_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_473_meta_object
 };
 
 static const afw_utf8_t
@@ -46533,13 +52327,24 @@ impl_472_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_472_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_472_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_472_meta_object__value
     },
     &impl_472,
     NULL
+};
+
+static const afw_value_object_t
+impl_472_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_472_meta_object
 };
 
 static const afw_utf8_t
@@ -46594,13 +52399,24 @@ impl_475_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_475_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_475_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_475_meta_object__value
     },
     &impl_475,
     NULL
+};
+
+static const afw_value_object_t
+impl_475_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_475_meta_object
 };
 
 static const afw_utf8_t
@@ -46716,13 +52532,24 @@ impl_474_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_474_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_474_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_474_meta_object__value
     },
     &impl_474,
     NULL
+};
+
+static const afw_value_object_t
+impl_474_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_474_meta_object
 };
 
 static const afw_utf8_t
@@ -46777,13 +52604,24 @@ impl_477_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_477_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_477_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_477_meta_object__value
     },
     &impl_477,
     NULL
+};
+
+static const afw_value_object_t
+impl_477_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_477_meta_object
 };
 
 static const afw_utf8_t
@@ -46892,13 +52730,24 @@ impl_476_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_476_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_476_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_476_meta_object__value
     },
     &impl_476,
     NULL
+};
+
+static const afw_value_object_t
+impl_476_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_476_meta_object
 };
 
 static const afw_utf8_t
@@ -47004,13 +52853,24 @@ impl_478_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_478_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_478_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_478_meta_object__value
     },
     &impl_478,
     NULL
+};
+
+static const afw_value_object_t
+impl_478_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_478_meta_object
 };
 
 static const afw_utf8_t
@@ -47065,13 +52925,24 @@ impl_480_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_480_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_480_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_480_meta_object__value
     },
     &impl_480,
     NULL
+};
+
+static const afw_value_object_t
+impl_480_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_480_meta_object
 };
 
 static const afw_utf8_t
@@ -47174,13 +53045,24 @@ impl_479_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_479_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_479_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_479_meta_object__value
     },
     &impl_479,
     NULL
+};
+
+static const afw_value_object_t
+impl_479_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_479_meta_object
 };
 
 static const afw_utf8_t
@@ -47235,13 +53117,24 @@ impl_482_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_482_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_482_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_482_meta_object__value
     },
     &impl_482,
     NULL
+};
+
+static const afw_value_object_t
+impl_482_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_482_meta_object
 };
 
 static const afw_utf8_t
@@ -47337,13 +53230,24 @@ impl_481_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_481_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_481_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_481_meta_object__value
     },
     &impl_481,
     NULL
+};
+
+static const afw_value_object_t
+impl_481_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_481_meta_object
 };
 
 static const afw_utf8_t
@@ -47398,13 +53302,24 @@ impl_484_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_484_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_484_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_484_meta_object__value
     },
     &impl_484,
     NULL
+};
+
+static const afw_value_object_t
+impl_484_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_484_meta_object
 };
 
 static const afw_utf8_t
@@ -47513,13 +53428,24 @@ impl_483_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_483_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_483_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_483_meta_object__value
     },
     &impl_483,
     NULL
+};
+
+static const afw_value_object_t
+impl_483_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_483_meta_object
 };
 
 static const afw_utf8_t
@@ -47873,13 +53799,24 @@ impl_438_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_438_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_438_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_438_meta_object__value
     },
     &impl_438,
     NULL
+};
+
+static const afw_value_object_t
+impl_438_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_438_meta_object
 };
 
 static const afw_utf8_t
@@ -47934,13 +53871,24 @@ impl_486_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_486_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_486_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_486_meta_object__value
     },
     &impl_486,
     NULL
+};
+
+static const afw_value_object_t
+impl_486_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_486_meta_object
 };
 
 static const afw_utf8_t
@@ -48015,13 +53963,24 @@ impl_485_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_485_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_485_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_485_meta_object__value
     },
     &impl_485,
     NULL
+};
+
+static const afw_value_object_t
+impl_485_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_485_meta_object
 };
 
 static const afw_utf8_t
@@ -48075,12 +54034,25 @@ impl_437_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_437_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_437_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_437_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_437_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_437_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_437_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_437_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -48142,13 +54114,24 @@ impl_437_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_437_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_437_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_437_meta_object__value
     },
     &impl_437,
     NULL
+};
+
+static const afw_value_object_t
+impl_437_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_437_meta_object
 };
 
 static const afw_utf8_t
@@ -48260,13 +54243,24 @@ impl_489_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_489_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_489_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_489_meta_object__value
     },
     &impl_489,
     NULL
+};
+
+static const afw_value_object_t
+impl_489_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_489_meta_object
 };
 
 static const afw_utf8_t
@@ -48365,13 +54359,24 @@ impl_490_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_490_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_490_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_490_meta_object__value
     },
     &impl_490,
     NULL
+};
+
+static const afw_value_object_t
+impl_490_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_490_meta_object
 };
 
 static const afw_utf8_t
@@ -48439,13 +54444,24 @@ impl_488_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_488_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_488_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_488_meta_object__value
     },
     &impl_488,
     NULL
+};
+
+static const afw_value_object_t
+impl_488_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_488_meta_object
 };
 
 static const afw_utf8_t
@@ -48499,12 +54515,25 @@ impl_487_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_487_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_487_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_487_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_487_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_487_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_487_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_487_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -48553,13 +54582,24 @@ impl_487_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_487_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_487_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_487_meta_object__value
     },
     &impl_487,
     NULL
+};
+
+static const afw_value_object_t
+impl_487_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_487_meta_object
 };
 
 static const afw_utf8_t
@@ -48607,13 +54647,24 @@ impl_492_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_492_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_492_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_492_meta_object__value
     },
     &impl_492,
     NULL
+};
+
+static const afw_value_object_t
+impl_492_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_492_meta_object
 };
 
 static const afw_utf8_t
@@ -48667,12 +54718,25 @@ impl_491_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_491_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_491_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_491_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_491_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_491_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_491_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_491_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -48714,13 +54778,24 @@ impl_491_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_491_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_491_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_491_meta_object__value
     },
     &impl_491,
     NULL
+};
+
+static const afw_value_object_t
+impl_491_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_491_meta_object
 };
 
 static const afw_utf8_t
@@ -48768,13 +54843,24 @@ impl_494_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_494_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_494_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_494_meta_object__value
     },
     &impl_494,
     NULL
+};
+
+static const afw_value_object_t
+impl_494_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_494_meta_object
 };
 
 static const afw_utf8_t
@@ -48828,12 +54914,25 @@ impl_493_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_493_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_493_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_493_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_493_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_493_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_493_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_493_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -48875,13 +54974,24 @@ impl_493_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_493_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_493_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_493_meta_object__value
     },
     &impl_493,
     NULL
+};
+
+static const afw_value_object_t
+impl_493_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_493_meta_object
 };
 
 static const afw_utf8_t
@@ -48929,13 +55039,24 @@ impl_496_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_496_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_496_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_496_meta_object__value
     },
     &impl_496,
     NULL
+};
+
+static const afw_value_object_t
+impl_496_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_496_meta_object
 };
 
 static const afw_utf8_t
@@ -49018,13 +55139,24 @@ impl_498_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_498_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_498_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_498_meta_object__value
     },
     &impl_498,
     NULL
+};
+
+static const afw_value_object_t
+impl_498_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_498_meta_object
 };
 
 static const afw_utf8_t
@@ -49104,13 +55236,24 @@ impl_499_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_499_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_499_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_499_meta_object__value
     },
     &impl_499,
     NULL
+};
+
+static const afw_value_object_t
+impl_499_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_499_meta_object
 };
 
 static const afw_utf8_t
@@ -49190,13 +55333,24 @@ impl_500_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_500_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_500_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_500_meta_object__value
     },
     &impl_500,
     NULL
+};
+
+static const afw_value_object_t
+impl_500_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_500_meta_object
 };
 
 static const afw_utf8_t
@@ -49277,13 +55431,24 @@ impl_497_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_497_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_497_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_497_meta_object__value
     },
     &impl_497,
     NULL
+};
+
+static const afw_value_object_t
+impl_497_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_497_meta_object
 };
 
 static const afw_utf8_t
@@ -49337,12 +55502,25 @@ impl_495_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_495_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_495_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_495_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_495_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_495_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_495_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_495_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -49404,13 +55582,24 @@ impl_495_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_495_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_495_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_495_meta_object__value
     },
     &impl_495,
     NULL
+};
+
+static const afw_value_object_t
+impl_495_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_495_meta_object
 };
 
 static const afw_utf8_t
@@ -49515,13 +55704,24 @@ impl_503_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_503_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_503_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_503_meta_object__value
     },
     &impl_503,
     NULL
+};
+
+static const afw_value_object_t
+impl_503_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_503_meta_object
 };
 
 static const afw_utf8_t
@@ -49614,13 +55814,24 @@ impl_504_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_504_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_504_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_504_meta_object__value
     },
     &impl_504,
     NULL
+};
+
+static const afw_value_object_t
+impl_504_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_504_meta_object
 };
 
 static const afw_utf8_t
@@ -49706,13 +55917,24 @@ impl_505_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_505_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_505_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_505_meta_object__value
     },
     &impl_505,
     NULL
+};
+
+static const afw_value_object_t
+impl_505_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_505_meta_object
 };
 
 static const afw_utf8_t
@@ -49793,13 +56015,24 @@ impl_502_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_502_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_502_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_502_meta_object__value
     },
     &impl_502,
     NULL
+};
+
+static const afw_value_object_t
+impl_502_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_502_meta_object
 };
 
 static const afw_utf8_t
@@ -49853,12 +56086,25 @@ impl_501_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_501_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_501_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_501_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_501_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_501_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_501_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_501_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -49907,13 +56153,24 @@ impl_501_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_501_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_501_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_501_meta_object__value
     },
     &impl_501,
     NULL
+};
+
+static const afw_value_object_t
+impl_501_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_501_meta_object
 };
 
 static const afw_utf8_t
@@ -50018,13 +56275,24 @@ impl_508_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_508_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_508_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_508_meta_object__value
     },
     &impl_508,
     NULL
+};
+
+static const afw_value_object_t
+impl_508_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_508_meta_object
 };
 
 static const afw_utf8_t
@@ -50123,13 +56391,24 @@ impl_509_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_509_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_509_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_509_meta_object__value
     },
     &impl_509,
     NULL
+};
+
+static const afw_value_object_t
+impl_509_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_509_meta_object
 };
 
 static const afw_utf8_t
@@ -50228,13 +56507,24 @@ impl_510_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_510_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_510_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_510_meta_object__value
     },
     &impl_510,
     NULL
+};
+
+static const afw_value_object_t
+impl_510_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_510_meta_object
 };
 
 static const afw_utf8_t
@@ -50340,13 +56630,24 @@ impl_511_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_511_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_511_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_511_meta_object__value
     },
     &impl_511,
     NULL
+};
+
+static const afw_value_object_t
+impl_511_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_511_meta_object
 };
 
 static const afw_utf8_t
@@ -50432,13 +56733,24 @@ impl_512_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_512_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_512_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_512_meta_object__value
     },
     &impl_512,
     NULL
+};
+
+static const afw_value_object_t
+impl_512_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_512_meta_object
 };
 
 static const afw_utf8_t
@@ -50537,13 +56849,24 @@ impl_513_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_513_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_513_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_513_meta_object__value
     },
     &impl_513,
     NULL
+};
+
+static const afw_value_object_t
+impl_513_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_513_meta_object
 };
 
 static const afw_utf8_t
@@ -50642,13 +56965,24 @@ impl_514_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_514_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_514_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_514_meta_object__value
     },
     &impl_514,
     NULL
+};
+
+static const afw_value_object_t
+impl_514_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_514_meta_object
 };
 
 static const afw_utf8_t
@@ -50747,13 +57081,24 @@ impl_515_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_515_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_515_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_515_meta_object__value
     },
     &impl_515,
     NULL
+};
+
+static const afw_value_object_t
+impl_515_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_515_meta_object
 };
 
 static const afw_utf8_t
@@ -50899,13 +57244,24 @@ impl_507_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_507_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_507_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_507_meta_object__value
     },
     &impl_507,
     NULL
+};
+
+static const afw_value_object_t
+impl_507_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_507_meta_object
 };
 
 static const afw_utf8_t
@@ -50959,12 +57315,25 @@ impl_506_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_506_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_506_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_506_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_506_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_506_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_506_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_506_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -51020,13 +57389,24 @@ impl_506_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_506_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_506_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_506_meta_object__value
     },
     &impl_506,
     NULL
+};
+
+static const afw_value_object_t
+impl_506_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_506_meta_object
 };
 
 static const afw_utf8_t
@@ -51131,13 +57511,24 @@ impl_518_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_518_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_518_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_518_meta_object__value
     },
     &impl_518,
     NULL
+};
+
+static const afw_value_object_t
+impl_518_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_518_meta_object
 };
 
 static const afw_utf8_t
@@ -51236,13 +57627,24 @@ impl_519_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_519_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_519_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_519_meta_object__value
     },
     &impl_519,
     NULL
+};
+
+static const afw_value_object_t
+impl_519_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_519_meta_object
 };
 
 static const afw_utf8_t
@@ -51310,13 +57712,24 @@ impl_517_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_517_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_517_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_517_meta_object__value
     },
     &impl_517,
     NULL
+};
+
+static const afw_value_object_t
+impl_517_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_517_meta_object
 };
 
 static const afw_utf8_t
@@ -51370,12 +57783,25 @@ impl_516_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_516_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_516_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_516_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_516_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_516_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_516_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_516_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -51431,13 +57857,24 @@ impl_516_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_516_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_516_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_516_meta_object__value
     },
     &impl_516,
     NULL
+};
+
+static const afw_value_object_t
+impl_516_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_516_meta_object
 };
 
 static const afw_utf8_t
@@ -51498,13 +57935,24 @@ impl_523_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_523_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_523_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_523_meta_object__value
     },
     &impl_523,
     NULL
+};
+
+static const afw_value_object_t
+impl_523_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_523_meta_object
 };
 
 static const afw_utf8_t
@@ -51600,13 +58048,24 @@ impl_522_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_522_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_522_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_522_meta_object__value
     },
     &impl_522,
     NULL
+};
+
+static const afw_value_object_t
+impl_522_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_522_meta_object
 };
 
 static const afw_utf8_t
@@ -51668,13 +58127,24 @@ impl_525_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_525_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_525_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_525_meta_object__value
     },
     &impl_525,
     NULL
+};
+
+static const afw_value_object_t
+impl_525_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_525_meta_object
 };
 
 static const afw_utf8_t
@@ -51770,13 +58240,24 @@ impl_524_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_524_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_524_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_524_meta_object__value
     },
     &impl_524,
     NULL
+};
+
+static const afw_value_object_t
+impl_524_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_524_meta_object
 };
 
 static const afw_utf8_t
@@ -51838,13 +58319,24 @@ impl_527_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_527_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_527_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_527_meta_object__value
     },
     &impl_527,
     NULL
+};
+
+static const afw_value_object_t
+impl_527_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_527_meta_object
 };
 
 static const afw_utf8_t
@@ -51940,13 +58432,24 @@ impl_526_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_526_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_526_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_526_meta_object__value
     },
     &impl_526,
     NULL
+};
+
+static const afw_value_object_t
+impl_526_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_526_meta_object
 };
 
 static const afw_utf8_t
@@ -52001,13 +58504,24 @@ impl_529_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_529_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_529_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_529_meta_object__value
     },
     &impl_529,
     NULL
+};
+
+static const afw_value_object_t
+impl_529_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_529_meta_object
 };
 
 static const afw_utf8_t
@@ -52110,13 +58624,24 @@ impl_528_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_528_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_528_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_528_meta_object__value
     },
     &impl_528,
     NULL
+};
+
+static const afw_value_object_t
+impl_528_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_528_meta_object
 };
 
 static const afw_utf8_t
@@ -52178,13 +58703,24 @@ impl_531_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_531_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_531_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_531_meta_object__value
     },
     &impl_531,
     NULL
+};
+
+static const afw_value_object_t
+impl_531_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_531_meta_object
 };
 
 static const afw_utf8_t
@@ -52280,13 +58816,24 @@ impl_530_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_530_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_530_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_530_meta_object__value
     },
     &impl_530,
     NULL
+};
+
+static const afw_value_object_t
+impl_530_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_530_meta_object
 };
 
 static const afw_utf8_t
@@ -52393,13 +58940,24 @@ impl_521_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_521_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_521_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_521_meta_object__value
     },
     &impl_521,
     NULL
+};
+
+static const afw_value_object_t
+impl_521_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_521_meta_object
 };
 
 static const afw_utf8_t
@@ -52454,13 +59012,24 @@ impl_533_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_533_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_533_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_533_meta_object__value
     },
     &impl_533,
     NULL
+};
+
+static const afw_value_object_t
+impl_533_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_533_meta_object
 };
 
 static const afw_utf8_t
@@ -52535,13 +59104,24 @@ impl_532_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_532_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_532_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_532_meta_object__value
     },
     &impl_532,
     NULL
+};
+
+static const afw_value_object_t
+impl_532_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_532_meta_object
 };
 
 static const afw_utf8_t
@@ -52631,12 +59211,25 @@ impl_520_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_520_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_520_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_520_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_520_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_520_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_520_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_520_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -52701,13 +59294,24 @@ impl_520_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_520_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_520_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_520_meta_object__value
     },
     &impl_520,
     NULL
+};
+
+static const afw_value_object_t
+impl_520_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_520_meta_object
 };
 
 static const afw_utf8_t
@@ -52768,13 +59372,24 @@ impl_537_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_537_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_537_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_537_meta_object__value
     },
     &impl_537,
     NULL
+};
+
+static const afw_value_object_t
+impl_537_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_537_meta_object
 };
 
 static const afw_utf8_t
@@ -52877,13 +59492,24 @@ impl_536_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_536_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_536_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_536_meta_object__value
     },
     &impl_536,
     NULL
+};
+
+static const afw_value_object_t
+impl_536_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_536_meta_object
 };
 
 static const afw_utf8_t
@@ -52938,13 +59564,24 @@ impl_539_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_539_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_539_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_539_meta_object__value
     },
     &impl_539,
     NULL
+};
+
+static const afw_value_object_t
+impl_539_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_539_meta_object
 };
 
 static const afw_utf8_t
@@ -53040,13 +59677,24 @@ impl_538_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_538_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_538_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_538_meta_object__value
     },
     &impl_538,
     NULL
+};
+
+static const afw_value_object_t
+impl_538_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_538_meta_object
 };
 
 static const afw_utf8_t
@@ -53114,13 +59762,24 @@ impl_535_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_535_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_535_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_535_meta_object__value
     },
     &impl_535,
     NULL
+};
+
+static const afw_value_object_t
+impl_535_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_535_meta_object
 };
 
 static const afw_utf8_t
@@ -53175,13 +59834,24 @@ impl_541_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_541_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_541_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_541_meta_object__value
     },
     &impl_541,
     NULL
+};
+
+static const afw_value_object_t
+impl_541_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_541_meta_object
 };
 
 static const afw_utf8_t
@@ -53256,13 +59926,24 @@ impl_540_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_540_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_540_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_540_meta_object__value
     },
     &impl_540,
     NULL
+};
+
+static const afw_value_object_t
+impl_540_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_540_meta_object
 };
 
 static const afw_utf8_t
@@ -53352,12 +60033,25 @@ impl_534_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_534_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_534_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_534_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_534_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_534_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_534_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_534_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -53422,13 +60116,24 @@ impl_534_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_534_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_534_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_534_meta_object__value
     },
     &impl_534,
     NULL
+};
+
+static const afw_value_object_t
+impl_534_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_534_meta_object
 };
 
 static const afw_utf8_t
@@ -53489,13 +60194,24 @@ impl_545_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_545_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_545_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_545_meta_object__value
     },
     &impl_545,
     NULL
+};
+
+static const afw_value_object_t
+impl_545_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_545_meta_object
 };
 
 static const afw_utf8_t
@@ -53591,13 +60307,24 @@ impl_544_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_544_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_544_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_544_meta_object__value
     },
     &impl_544,
     NULL
+};
+
+static const afw_value_object_t
+impl_544_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_544_meta_object
 };
 
 static const afw_utf8_t
@@ -53683,13 +60410,24 @@ impl_546_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_546_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_546_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_546_meta_object__value
     },
     &impl_546,
     NULL
+};
+
+static const afw_value_object_t
+impl_546_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_546_meta_object
 };
 
 static const afw_utf8_t
@@ -53751,13 +60489,24 @@ impl_548_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_548_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_548_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_548_meta_object__value
     },
     &impl_548,
     NULL
+};
+
+static const afw_value_object_t
+impl_548_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_548_meta_object
 };
 
 static const afw_utf8_t
@@ -53853,13 +60602,24 @@ impl_547_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_547_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_547_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_547_meta_object__value
     },
     &impl_547,
     NULL
+};
+
+static const afw_value_object_t
+impl_547_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_547_meta_object
 };
 
 static const afw_utf8_t
@@ -53921,13 +60681,24 @@ impl_550_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_550_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_550_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_550_meta_object__value
     },
     &impl_550,
     NULL
+};
+
+static const afw_value_object_t
+impl_550_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_550_meta_object
 };
 
 static const afw_utf8_t
@@ -54023,13 +60794,24 @@ impl_549_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_549_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_549_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_549_meta_object__value
     },
     &impl_549,
     NULL
+};
+
+static const afw_value_object_t
+impl_549_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_549_meta_object
 };
 
 static const afw_utf8_t
@@ -54123,13 +60905,24 @@ impl_543_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_543_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_543_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_543_meta_object__value
     },
     &impl_543,
     NULL
+};
+
+static const afw_value_object_t
+impl_543_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_543_meta_object
 };
 
 static const afw_utf8_t
@@ -54197,13 +60990,24 @@ impl_552_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_552_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_552_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_552_meta_object__value
     },
     &impl_552,
     NULL
+};
+
+static const afw_value_object_t
+impl_552_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_552_meta_object
 };
 
 static const afw_utf8_t
@@ -54278,13 +61082,24 @@ impl_551_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_551_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_551_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_551_meta_object__value
     },
     &impl_551,
     NULL
+};
+
+static const afw_value_object_t
+impl_551_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_551_meta_object
 };
 
 static const afw_utf8_t
@@ -54374,12 +61189,25 @@ impl_542_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_542_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_542_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_542_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_542_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_542_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_542_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_542_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -54444,13 +61272,24 @@ impl_542_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_542_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_542_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_542_meta_object__value
     },
     &impl_542,
     NULL
+};
+
+static const afw_value_object_t
+impl_542_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_542_meta_object
 };
 
 static const afw_utf8_t
@@ -54542,13 +61381,24 @@ impl_555_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_555_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_555_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_555_meta_object__value
     },
     &impl_555,
     NULL
+};
+
+static const afw_value_object_t
+impl_555_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_555_meta_object
 };
 
 static const afw_utf8_t
@@ -54641,13 +61491,24 @@ impl_556_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_556_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_556_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_556_meta_object__value
     },
     &impl_556,
     NULL
+};
+
+static const afw_value_object_t
+impl_556_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_556_meta_object
 };
 
 static const afw_utf8_t
@@ -54746,13 +61607,24 @@ impl_557_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_557_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_557_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_557_meta_object__value
     },
     &impl_557,
     NULL
+};
+
+static const afw_value_object_t
+impl_557_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_557_meta_object
 };
 
 static const afw_utf8_t
@@ -54851,13 +61723,24 @@ impl_558_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_558_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_558_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_558_meta_object__value
     },
     &impl_558,
     NULL
+};
+
+static const afw_value_object_t
+impl_558_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_558_meta_object
 };
 
 static const afw_utf8_t
@@ -54937,13 +61820,24 @@ impl_559_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_559_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_559_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_559_meta_object__value
     },
     &impl_559,
     NULL
+};
+
+static const afw_value_object_t
+impl_559_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_559_meta_object
 };
 
 static const afw_utf8_t
@@ -55023,13 +61917,24 @@ impl_560_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_560_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_560_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_560_meta_object__value
     },
     &impl_560,
     NULL
+};
+
+static const afw_value_object_t
+impl_560_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_560_meta_object
 };
 
 static const afw_utf8_t
@@ -55149,13 +62054,24 @@ impl_554_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_554_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_554_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_554_meta_object__value
     },
     &impl_554,
     NULL
+};
+
+static const afw_value_object_t
+impl_554_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_554_meta_object
 };
 
 static const afw_utf8_t
@@ -55209,12 +62125,25 @@ impl_553_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_553_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_553_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_553_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_553_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_553_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_553_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_553_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -55263,13 +62192,24 @@ impl_553_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_553_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_553_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_553_meta_object__value
     },
     &impl_553,
     NULL
+};
+
+static const afw_value_object_t
+impl_553_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_553_meta_object
 };
 
 static const afw_utf8_t
@@ -55361,13 +62301,24 @@ impl_563_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_563_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_563_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_563_meta_object__value
     },
     &impl_563,
     NULL
+};
+
+static const afw_value_object_t
+impl_563_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_563_meta_object
 };
 
 static const afw_utf8_t
@@ -55447,13 +62398,24 @@ impl_564_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_564_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_564_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_564_meta_object__value
     },
     &impl_564,
     NULL
+};
+
+static const afw_value_object_t
+impl_564_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_564_meta_object
 };
 
 static const afw_utf8_t
@@ -55552,13 +62514,24 @@ impl_565_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_565_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_565_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_565_meta_object__value
     },
     &impl_565,
     NULL
+};
+
+static const afw_value_object_t
+impl_565_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_565_meta_object
 };
 
 static const afw_utf8_t
@@ -55646,7 +62619,7 @@ impl_562_parentPaths_array[] = {
 
 static const afw_array_wrapper_for_array_self_t
 impl_562_parentPaths_list = {
-    &afw_array_wrapper_for_array_inf,
+    { &afw_array_wrapper_for_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_562_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_562_parentPaths_array
@@ -55658,13 +62631,24 @@ impl_562_parentPaths = {
     (const afw_array_t *)&impl_562_parentPaths_list
 };
 
+static const afw_value_object_t
+impl_562_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_562_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_562_meta_object__value
     },
     &impl_562,
     &impl_562_parentPaths
+};
+
+static const afw_value_object_t
+impl_562_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_562_meta_object
 };
 
 static const afw_utf8_t
@@ -55718,12 +62702,25 @@ impl_561_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_561_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_561_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_561_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_561_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_561_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_561_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_561_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -55772,13 +62769,24 @@ impl_561_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_561_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_561_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_561_meta_object__value
     },
     &impl_561,
     NULL
+};
+
+static const afw_value_object_t
+impl_561_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_561_meta_object
 };
 
 static const afw_utf8_t
@@ -55840,13 +62848,24 @@ impl_567_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_567_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_567_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_567_meta_object__value
     },
     &impl_567,
     NULL
+};
+
+static const afw_value_object_t
+impl_567_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_567_meta_object
 };
 
 static const afw_utf8_t
@@ -55900,12 +62919,25 @@ impl_566_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_566_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_566_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_566_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_566_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_566_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_566_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_566_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -55954,13 +62986,24 @@ impl_566_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_566_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_566_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_566_meta_object__value
     },
     &impl_566,
     NULL
+};
+
+static const afw_value_object_t
+impl_566_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_566_meta_object
 };
 
 static const afw_utf8_t
@@ -56065,13 +63108,24 @@ impl_570_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_570_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_570_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_570_meta_object__value
     },
     &impl_570,
     NULL
+};
+
+static const afw_value_object_t
+impl_570_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_570_meta_object
 };
 
 static const afw_utf8_t
@@ -56170,13 +63224,24 @@ impl_571_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_571_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_571_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_571_meta_object__value
     },
     &impl_571,
     NULL
+};
+
+static const afw_value_object_t
+impl_571_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_571_meta_object
 };
 
 static const afw_utf8_t
@@ -56249,13 +63314,24 @@ impl_572_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_572_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_572_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_572_meta_object__value
     },
     &impl_572,
     NULL
+};
+
+static const afw_value_object_t
+impl_572_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_572_meta_object
 };
 
 static const afw_utf8_t
@@ -56335,13 +63411,24 @@ impl_573_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_573_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_573_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_573_meta_object__value
     },
     &impl_573,
     NULL
+};
+
+static const afw_value_object_t
+impl_573_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_573_meta_object
 };
 
 static const afw_utf8_t
@@ -56421,13 +63508,24 @@ impl_574_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_574_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_574_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_574_meta_object__value
     },
     &impl_574,
     NULL
+};
+
+static const afw_value_object_t
+impl_574_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_574_meta_object
 };
 
 static const afw_utf8_t
@@ -56500,13 +63598,24 @@ impl_575_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_575_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_575_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_575_meta_object__value
     },
     &impl_575,
     NULL
+};
+
+static const afw_value_object_t
+impl_575_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_575_meta_object
 };
 
 static const afw_utf8_t
@@ -56579,13 +63688,24 @@ impl_576_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_576_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_576_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_576_meta_object__value
     },
     &impl_576,
     NULL
+};
+
+static const afw_value_object_t
+impl_576_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_576_meta_object
 };
 
 static const afw_utf8_t
@@ -56658,13 +63778,24 @@ impl_577_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_577_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_577_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_577_meta_object__value
     },
     &impl_577,
     NULL
+};
+
+static const afw_value_object_t
+impl_577_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_577_meta_object
 };
 
 static const afw_utf8_t
@@ -56744,13 +63875,24 @@ impl_578_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_578_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_578_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_578_meta_object__value
     },
     &impl_578,
     NULL
+};
+
+static const afw_value_object_t
+impl_578_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_578_meta_object
 };
 
 static const afw_utf8_t
@@ -56830,13 +63972,24 @@ impl_579_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_579_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_579_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_579_meta_object__value
     },
     &impl_579,
     NULL
+};
+
+static const afw_value_object_t
+impl_579_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_579_meta_object
 };
 
 static const afw_utf8_t
@@ -56909,13 +64062,24 @@ impl_580_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_580_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_580_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_580_meta_object__value
     },
     &impl_580,
     NULL
+};
+
+static const afw_value_object_t
+impl_580_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_580_meta_object
 };
 
 static const afw_utf8_t
@@ -56995,13 +64159,24 @@ impl_581_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_581_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_581_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_581_meta_object__value
     },
     &impl_581,
     NULL
+};
+
+static const afw_value_object_t
+impl_581_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_581_meta_object
 };
 
 static const afw_utf8_t
@@ -57074,13 +64249,24 @@ impl_582_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_582_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_582_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_582_meta_object__value
     },
     &impl_582,
     NULL
+};
+
+static const afw_value_object_t
+impl_582_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_582_meta_object
 };
 
 static const afw_utf8_t
@@ -57160,13 +64346,24 @@ impl_583_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_583_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_583_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_583_meta_object__value
     },
     &impl_583,
     NULL
+};
+
+static const afw_value_object_t
+impl_583_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_583_meta_object
 };
 
 static const afw_utf8_t
@@ -57397,7 +64594,7 @@ impl_569_parentPaths_array[] = {
 
 static const afw_array_wrapper_for_array_self_t
 impl_569_parentPaths_list = {
-    &afw_array_wrapper_for_array_inf,
+    { &afw_array_wrapper_for_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_569_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_569_parentPaths_array
@@ -57409,13 +64606,24 @@ impl_569_parentPaths = {
     (const afw_array_t *)&impl_569_parentPaths_list
 };
 
+static const afw_value_object_t
+impl_569_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_569_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_569_meta_object__value
     },
     &impl_569,
     &impl_569_parentPaths
+};
+
+static const afw_value_object_t
+impl_569_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_569_meta_object
 };
 
 static const afw_utf8_t
@@ -57469,12 +64677,25 @@ impl_568_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_568_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_568_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_568_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_568_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_568_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_568_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_568_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -57523,13 +64744,24 @@ impl_568_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_568_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_568_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_568_meta_object__value
     },
     &impl_568,
     NULL
+};
+
+static const afw_value_object_t
+impl_568_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_568_meta_object
 };
 
 static const afw_utf8_t
@@ -57590,13 +64822,24 @@ impl_587_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_587_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_587_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_587_meta_object__value
     },
     &impl_587,
     NULL
+};
+
+static const afw_value_object_t
+impl_587_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_587_meta_object
 };
 
 static const afw_utf8_t
@@ -57679,13 +64922,24 @@ impl_586_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_586_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_586_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_586_meta_object__value
     },
     &impl_586,
     NULL
+};
+
+static const afw_value_object_t
+impl_586_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_586_meta_object
 };
 
 static const afw_utf8_t
@@ -57740,13 +64994,24 @@ impl_589_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_589_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_589_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_589_meta_object__value
     },
     &impl_589,
     NULL
+};
+
+static const afw_value_object_t
+impl_589_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_589_meta_object
 };
 
 static const afw_utf8_t
@@ -57829,13 +65094,24 @@ impl_588_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_588_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_588_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_588_meta_object__value
     },
     &impl_588,
     NULL
+};
+
+static const afw_value_object_t
+impl_588_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_588_meta_object
 };
 
 static const afw_utf8_t
@@ -57890,13 +65166,24 @@ impl_591_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_591_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_591_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_591_meta_object__value
     },
     &impl_591,
     NULL
+};
+
+static const afw_value_object_t
+impl_591_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_591_meta_object
 };
 
 static const afw_utf8_t
@@ -57979,13 +65266,24 @@ impl_590_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_590_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_590_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_590_meta_object__value
     },
     &impl_590,
     NULL
+};
+
+static const afw_value_object_t
+impl_590_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_590_meta_object
 };
 
 static const afw_utf8_t
@@ -58040,13 +65338,24 @@ impl_593_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_593_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_593_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_593_meta_object__value
     },
     &impl_593,
     NULL
+};
+
+static const afw_value_object_t
+impl_593_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_593_meta_object
 };
 
 static const afw_utf8_t
@@ -58129,13 +65438,24 @@ impl_592_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_592_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_592_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_592_meta_object__value
     },
     &impl_592,
     NULL
+};
+
+static const afw_value_object_t
+impl_592_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_592_meta_object
 };
 
 static const afw_utf8_t
@@ -58190,13 +65510,24 @@ impl_595_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_595_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_595_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_595_meta_object__value
     },
     &impl_595,
     NULL
+};
+
+static const afw_value_object_t
+impl_595_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_595_meta_object
 };
 
 static const afw_utf8_t
@@ -58279,13 +65610,24 @@ impl_594_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_594_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_594_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_594_meta_object__value
     },
     &impl_594,
     NULL
+};
+
+static const afw_value_object_t
+impl_594_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_594_meta_object
 };
 
 static const afw_utf8_t
@@ -58340,13 +65682,24 @@ impl_597_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_597_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_597_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_597_meta_object__value
     },
     &impl_597,
     NULL
+};
+
+static const afw_value_object_t
+impl_597_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_597_meta_object
 };
 
 static const afw_utf8_t
@@ -58429,13 +65782,24 @@ impl_596_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_596_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_596_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_596_meta_object__value
     },
     &impl_596,
     NULL
+};
+
+static const afw_value_object_t
+impl_596_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_596_meta_object
 };
 
 static const afw_utf8_t
@@ -58490,13 +65854,24 @@ impl_599_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_599_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_599_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_599_meta_object__value
     },
     &impl_599,
     NULL
+};
+
+static const afw_value_object_t
+impl_599_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_599_meta_object
 };
 
 static const afw_utf8_t
@@ -58579,13 +65954,24 @@ impl_598_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_598_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_598_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_598_meta_object__value
     },
     &impl_598,
     NULL
+};
+
+static const afw_value_object_t
+impl_598_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_598_meta_object
 };
 
 static const afw_utf8_t
@@ -58640,13 +66026,24 @@ impl_601_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_601_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_601_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_601_meta_object__value
     },
     &impl_601,
     NULL
+};
+
+static const afw_value_object_t
+impl_601_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_601_meta_object
 };
 
 static const afw_utf8_t
@@ -58722,13 +66119,24 @@ impl_600_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_600_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_600_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_600_meta_object__value
     },
     &impl_600,
     NULL
+};
+
+static const afw_value_object_t
+impl_600_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_600_meta_object
 };
 
 static const afw_utf8_t
@@ -58874,13 +66282,24 @@ impl_585_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_585_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_585_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_585_meta_object__value
     },
     &impl_585,
     NULL
+};
+
+static const afw_value_object_t
+impl_585_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_585_meta_object
 };
 
 static const afw_utf8_t
@@ -58925,13 +66344,24 @@ impl_602_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_602_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_602_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_602_meta_object__value
     },
     &impl_602,
     NULL
+};
+
+static const afw_value_object_t
+impl_602_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_602_meta_object
 };
 
 static const afw_utf8_t
@@ -58973,12 +66403,25 @@ impl_584_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_584_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_584_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_584_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_584_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_584_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_584_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_584_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -59039,13 +66482,24 @@ impl_584_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_584_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_584_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_584_meta_object__value
     },
     &impl_584,
     NULL
+};
+
+static const afw_value_object_t
+impl_584_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_584_meta_object
 };
 
 static const afw_utf8_t
@@ -59106,13 +66560,24 @@ impl_606_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_606_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_606_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_606_meta_object__value
     },
     &impl_606,
     NULL
+};
+
+static const afw_value_object_t
+impl_606_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_606_meta_object
 };
 
 static const afw_utf8_t
@@ -59195,13 +66660,24 @@ impl_605_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_605_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_605_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_605_meta_object__value
     },
     &impl_605,
     NULL
+};
+
+static const afw_value_object_t
+impl_605_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_605_meta_object
 };
 
 static const afw_utf8_t
@@ -59256,13 +66732,24 @@ impl_608_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_608_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_608_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_608_meta_object__value
     },
     &impl_608,
     NULL
+};
+
+static const afw_value_object_t
+impl_608_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_608_meta_object
 };
 
 static const afw_utf8_t
@@ -59345,13 +66832,24 @@ impl_607_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_607_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_607_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_607_meta_object__value
     },
     &impl_607,
     NULL
+};
+
+static const afw_value_object_t
+impl_607_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_607_meta_object
 };
 
 static const afw_utf8_t
@@ -59406,13 +66904,24 @@ impl_610_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_610_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_610_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_610_meta_object__value
     },
     &impl_610,
     NULL
+};
+
+static const afw_value_object_t
+impl_610_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_610_meta_object
 };
 
 static const afw_utf8_t
@@ -59495,13 +67004,24 @@ impl_609_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_609_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_609_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_609_meta_object__value
     },
     &impl_609,
     NULL
+};
+
+static const afw_value_object_t
+impl_609_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_609_meta_object
 };
 
 static const afw_utf8_t
@@ -59556,13 +67076,24 @@ impl_612_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_612_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_612_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_612_meta_object__value
     },
     &impl_612,
     NULL
+};
+
+static const afw_value_object_t
+impl_612_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_612_meta_object
 };
 
 static const afw_utf8_t
@@ -59645,13 +67176,24 @@ impl_611_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_611_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_611_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_611_meta_object__value
     },
     &impl_611,
     NULL
+};
+
+static const afw_value_object_t
+impl_611_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_611_meta_object
 };
 
 static const afw_utf8_t
@@ -59706,13 +67248,24 @@ impl_614_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_614_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_614_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_614_meta_object__value
     },
     &impl_614,
     NULL
+};
+
+static const afw_value_object_t
+impl_614_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_614_meta_object
 };
 
 static const afw_utf8_t
@@ -59795,13 +67348,24 @@ impl_613_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_613_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_613_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_613_meta_object__value
     },
     &impl_613,
     NULL
+};
+
+static const afw_value_object_t
+impl_613_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_613_meta_object
 };
 
 static const afw_utf8_t
@@ -59856,13 +67420,24 @@ impl_616_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_616_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_616_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_616_meta_object__value
     },
     &impl_616,
     NULL
+};
+
+static const afw_value_object_t
+impl_616_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_616_meta_object
 };
 
 static const afw_utf8_t
@@ -59945,13 +67520,24 @@ impl_615_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_615_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_615_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_615_meta_object__value
     },
     &impl_615,
     NULL
+};
+
+static const afw_value_object_t
+impl_615_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_615_meta_object
 };
 
 static const afw_utf8_t
@@ -60006,13 +67592,24 @@ impl_618_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_618_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_618_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_618_meta_object__value
     },
     &impl_618,
     NULL
+};
+
+static const afw_value_object_t
+impl_618_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_618_meta_object
 };
 
 static const afw_utf8_t
@@ -60088,13 +67685,24 @@ impl_617_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_617_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_617_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_617_meta_object__value
     },
     &impl_617,
     NULL
+};
+
+static const afw_value_object_t
+impl_617_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_617_meta_object
 };
 
 static const afw_utf8_t
@@ -60227,13 +67835,24 @@ impl_604_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_604_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_604_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_604_meta_object__value
     },
     &impl_604,
     NULL
+};
+
+static const afw_value_object_t
+impl_604_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_604_meta_object
 };
 
 static const afw_utf8_t
@@ -60278,13 +67897,24 @@ impl_619_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_619_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_619_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_619_meta_object__value
     },
     &impl_619,
     NULL
+};
+
+static const afw_value_object_t
+impl_619_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_619_meta_object
 };
 
 static const afw_utf8_t
@@ -60326,12 +67956,25 @@ impl_603_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_603_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_603_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_603_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_603_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_603_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_603_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_603_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -60392,13 +68035,24 @@ impl_603_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_603_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_603_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_603_meta_object__value
     },
     &impl_603,
     NULL
+};
+
+static const afw_value_object_t
+impl_603_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_603_meta_object
 };
 
 static const afw_utf8_t
@@ -60459,13 +68113,24 @@ impl_623_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_623_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_623_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_623_meta_object__value
     },
     &impl_623,
     NULL
+};
+
+static const afw_value_object_t
+impl_623_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_623_meta_object
 };
 
 static const afw_utf8_t
@@ -60548,13 +68213,24 @@ impl_622_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_622_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_622_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_622_meta_object__value
     },
     &impl_622,
     NULL
+};
+
+static const afw_value_object_t
+impl_622_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_622_meta_object
 };
 
 static const afw_utf8_t
@@ -60609,13 +68285,24 @@ impl_625_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_625_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_625_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_625_meta_object__value
     },
     &impl_625,
     NULL
+};
+
+static const afw_value_object_t
+impl_625_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_625_meta_object
 };
 
 static const afw_utf8_t
@@ -60698,13 +68385,24 @@ impl_624_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_624_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_624_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_624_meta_object__value
     },
     &impl_624,
     NULL
+};
+
+static const afw_value_object_t
+impl_624_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_624_meta_object
 };
 
 static const afw_utf8_t
@@ -60759,13 +68457,24 @@ impl_627_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_627_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_627_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_627_meta_object__value
     },
     &impl_627,
     NULL
+};
+
+static const afw_value_object_t
+impl_627_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_627_meta_object
 };
 
 static const afw_utf8_t
@@ -60848,13 +68557,24 @@ impl_626_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_626_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_626_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_626_meta_object__value
     },
     &impl_626,
     NULL
+};
+
+static const afw_value_object_t
+impl_626_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_626_meta_object
 };
 
 static const afw_utf8_t
@@ -60909,13 +68629,24 @@ impl_629_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_629_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_629_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_629_meta_object__value
     },
     &impl_629,
     NULL
+};
+
+static const afw_value_object_t
+impl_629_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_629_meta_object
 };
 
 static const afw_utf8_t
@@ -60998,13 +68729,24 @@ impl_628_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_628_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_628_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_628_meta_object__value
     },
     &impl_628,
     NULL
+};
+
+static const afw_value_object_t
+impl_628_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_628_meta_object
 };
 
 static const afw_utf8_t
@@ -61059,13 +68801,24 @@ impl_631_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_631_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_631_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_631_meta_object__value
     },
     &impl_631,
     NULL
+};
+
+static const afw_value_object_t
+impl_631_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_631_meta_object
 };
 
 static const afw_utf8_t
@@ -61148,13 +68901,24 @@ impl_630_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_630_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_630_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_630_meta_object__value
     },
     &impl_630,
     NULL
+};
+
+static const afw_value_object_t
+impl_630_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_630_meta_object
 };
 
 static const afw_utf8_t
@@ -61209,13 +68973,24 @@ impl_633_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_633_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_633_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_633_meta_object__value
     },
     &impl_633,
     NULL
+};
+
+static const afw_value_object_t
+impl_633_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_633_meta_object
 };
 
 static const afw_utf8_t
@@ -61298,13 +69073,24 @@ impl_632_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_632_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_632_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_632_meta_object__value
     },
     &impl_632,
     NULL
+};
+
+static const afw_value_object_t
+impl_632_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_632_meta_object
 };
 
 static const afw_utf8_t
@@ -61359,13 +69145,24 @@ impl_635_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_635_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_635_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_635_meta_object__value
     },
     &impl_635,
     NULL
+};
+
+static const afw_value_object_t
+impl_635_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_635_meta_object
 };
 
 static const afw_utf8_t
@@ -61448,13 +69245,24 @@ impl_634_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_634_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_634_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_634_meta_object__value
     },
     &impl_634,
     NULL
+};
+
+static const afw_value_object_t
+impl_634_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_634_meta_object
 };
 
 static const afw_utf8_t
@@ -61509,13 +69317,24 @@ impl_637_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_637_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_637_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_637_meta_object__value
     },
     &impl_637,
     NULL
+};
+
+static const afw_value_object_t
+impl_637_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_637_meta_object
 };
 
 static const afw_utf8_t
@@ -61591,13 +69410,24 @@ impl_636_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_636_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_636_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_636_meta_object__value
     },
     &impl_636,
     NULL
+};
+
+static const afw_value_object_t
+impl_636_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_636_meta_object
 };
 
 static const afw_utf8_t
@@ -61652,13 +69482,24 @@ impl_639_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_639_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_639_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_639_meta_object__value
     },
     &impl_639,
     NULL
+};
+
+static const afw_value_object_t
+impl_639_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_639_meta_object
 };
 
 static const afw_utf8_t
@@ -61741,13 +69582,24 @@ impl_638_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_638_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_638_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_638_meta_object__value
     },
     &impl_638,
     NULL
+};
+
+static const afw_value_object_t
+impl_638_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_638_meta_object
 };
 
 static const afw_utf8_t
@@ -61802,13 +69654,24 @@ impl_641_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_641_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_641_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_641_meta_object__value
     },
     &impl_641,
     NULL
+};
+
+static const afw_value_object_t
+impl_641_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_641_meta_object
 };
 
 static const afw_utf8_t
@@ -61891,13 +69754,24 @@ impl_640_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_640_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_640_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_640_meta_object__value
     },
     &impl_640,
     NULL
+};
+
+static const afw_value_object_t
+impl_640_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_640_meta_object
 };
 
 static const afw_utf8_t
@@ -61952,13 +69826,24 @@ impl_643_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_643_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_643_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_643_meta_object__value
     },
     &impl_643,
     NULL
+};
+
+static const afw_value_object_t
+impl_643_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_643_meta_object
 };
 
 static const afw_utf8_t
@@ -62041,13 +69926,24 @@ impl_642_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_642_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_642_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_642_meta_object__value
     },
     &impl_642,
     NULL
+};
+
+static const afw_value_object_t
+impl_642_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_642_meta_object
 };
 
 static const afw_utf8_t
@@ -62102,13 +69998,24 @@ impl_645_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_645_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_645_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_645_meta_object__value
     },
     &impl_645,
     NULL
+};
+
+static const afw_value_object_t
+impl_645_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_645_meta_object
 };
 
 static const afw_utf8_t
@@ -62191,13 +70098,24 @@ impl_644_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_644_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_644_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_644_meta_object__value
     },
     &impl_644,
     NULL
+};
+
+static const afw_value_object_t
+impl_644_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_644_meta_object
 };
 
 static const afw_utf8_t
@@ -62252,13 +70170,24 @@ impl_647_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_647_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_647_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_647_meta_object__value
     },
     &impl_647,
     NULL
+};
+
+static const afw_value_object_t
+impl_647_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_647_meta_object
 };
 
 static const afw_utf8_t
@@ -62334,13 +70263,24 @@ impl_646_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_646_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_646_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_646_meta_object__value
     },
     &impl_646,
     NULL
+};
+
+static const afw_value_object_t
+impl_646_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_646_meta_object
 };
 
 static const afw_utf8_t
@@ -62395,13 +70335,24 @@ impl_649_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_649_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_649_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_649_meta_object__value
     },
     &impl_649,
     NULL
+};
+
+static const afw_value_object_t
+impl_649_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_649_meta_object
 };
 
 static const afw_utf8_t
@@ -62477,13 +70428,24 @@ impl_648_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_648_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_648_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_648_meta_object__value
     },
     &impl_648,
     NULL
+};
+
+static const afw_value_object_t
+impl_648_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_648_meta_object
 };
 
 static const afw_utf8_t
@@ -62707,13 +70669,24 @@ impl_621_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_621_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_621_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_621_meta_object__value
     },
     &impl_621,
     NULL
+};
+
+static const afw_value_object_t
+impl_621_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_621_meta_object
 };
 
 static const afw_utf8_t
@@ -62758,13 +70731,24 @@ impl_650_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_650_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_650_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_650_meta_object__value
     },
     &impl_650,
     NULL
+};
+
+static const afw_value_object_t
+impl_650_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_650_meta_object
 };
 
 static const afw_utf8_t
@@ -62806,12 +70790,25 @@ impl_620_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_620_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_620_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_620_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_620_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_620_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_620_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_620_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -62872,13 +70869,24 @@ impl_620_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_620_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_620_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_620_meta_object__value
     },
     &impl_620,
     NULL
+};
+
+static const afw_value_object_t
+impl_620_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_620_meta_object
 };
 
 static const afw_utf8_t
@@ -62939,13 +70947,24 @@ impl_654_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_654_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_654_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_654_meta_object__value
     },
     &impl_654,
     NULL
+};
+
+static const afw_value_object_t
+impl_654_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_654_meta_object
 };
 
 static const afw_utf8_t
@@ -63028,13 +71047,24 @@ impl_653_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_653_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_653_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_653_meta_object__value
     },
     &impl_653,
     NULL
+};
+
+static const afw_value_object_t
+impl_653_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_653_meta_object
 };
 
 static const afw_utf8_t
@@ -63089,13 +71119,24 @@ impl_656_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_656_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_656_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_656_meta_object__value
     },
     &impl_656,
     NULL
+};
+
+static const afw_value_object_t
+impl_656_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_656_meta_object
 };
 
 static const afw_utf8_t
@@ -63178,13 +71219,24 @@ impl_655_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_655_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_655_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_655_meta_object__value
     },
     &impl_655,
     NULL
+};
+
+static const afw_value_object_t
+impl_655_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_655_meta_object
 };
 
 static const afw_utf8_t
@@ -63239,13 +71291,24 @@ impl_658_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_658_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_658_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_658_meta_object__value
     },
     &impl_658,
     NULL
+};
+
+static const afw_value_object_t
+impl_658_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_658_meta_object
 };
 
 static const afw_utf8_t
@@ -63328,13 +71391,24 @@ impl_657_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_657_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_657_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_657_meta_object__value
     },
     &impl_657,
     NULL
+};
+
+static const afw_value_object_t
+impl_657_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_657_meta_object
 };
 
 static const afw_utf8_t
@@ -63389,13 +71463,24 @@ impl_660_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_660_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_660_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_660_meta_object__value
     },
     &impl_660,
     NULL
+};
+
+static const afw_value_object_t
+impl_660_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_660_meta_object
 };
 
 static const afw_utf8_t
@@ -63478,13 +71563,24 @@ impl_659_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_659_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_659_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_659_meta_object__value
     },
     &impl_659,
     NULL
+};
+
+static const afw_value_object_t
+impl_659_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_659_meta_object
 };
 
 static const afw_utf8_t
@@ -63539,13 +71635,24 @@ impl_662_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_662_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_662_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_662_meta_object__value
     },
     &impl_662,
     NULL
+};
+
+static const afw_value_object_t
+impl_662_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_662_meta_object
 };
 
 static const afw_utf8_t
@@ -63628,13 +71735,24 @@ impl_661_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_661_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_661_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_661_meta_object__value
     },
     &impl_661,
     NULL
+};
+
+static const afw_value_object_t
+impl_661_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_661_meta_object
 };
 
 static const afw_utf8_t
@@ -63689,13 +71807,24 @@ impl_664_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_664_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_664_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_664_meta_object__value
     },
     &impl_664,
     NULL
+};
+
+static const afw_value_object_t
+impl_664_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_664_meta_object
 };
 
 static const afw_utf8_t
@@ -63778,13 +71907,24 @@ impl_663_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_663_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_663_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_663_meta_object__value
     },
     &impl_663,
     NULL
+};
+
+static const afw_value_object_t
+impl_663_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_663_meta_object
 };
 
 static const afw_utf8_t
@@ -63839,13 +71979,24 @@ impl_666_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_666_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_666_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_666_meta_object__value
     },
     &impl_666,
     NULL
+};
+
+static const afw_value_object_t
+impl_666_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_666_meta_object
 };
 
 static const afw_utf8_t
@@ -63921,13 +72072,24 @@ impl_665_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_665_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_665_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_665_meta_object__value
     },
     &impl_665,
     NULL
+};
+
+static const afw_value_object_t
+impl_665_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_665_meta_object
 };
 
 static const afw_utf8_t
@@ -63982,13 +72144,24 @@ impl_668_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_668_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_668_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_668_meta_object__value
     },
     &impl_668,
     NULL
+};
+
+static const afw_value_object_t
+impl_668_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_668_meta_object
 };
 
 static const afw_utf8_t
@@ -64071,13 +72244,24 @@ impl_667_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_667_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_667_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_667_meta_object__value
     },
     &impl_667,
     NULL
+};
+
+static const afw_value_object_t
+impl_667_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_667_meta_object
 };
 
 static const afw_utf8_t
@@ -64132,13 +72316,24 @@ impl_670_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_670_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_670_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_670_meta_object__value
     },
     &impl_670,
     NULL
+};
+
+static const afw_value_object_t
+impl_670_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_670_meta_object
 };
 
 static const afw_utf8_t
@@ -64221,13 +72416,24 @@ impl_669_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_669_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_669_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_669_meta_object__value
     },
     &impl_669,
     NULL
+};
+
+static const afw_value_object_t
+impl_669_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_669_meta_object
 };
 
 static const afw_utf8_t
@@ -64282,13 +72488,24 @@ impl_672_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_672_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_672_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_672_meta_object__value
     },
     &impl_672,
     NULL
+};
+
+static const afw_value_object_t
+impl_672_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_672_meta_object
 };
 
 static const afw_utf8_t
@@ -64371,13 +72588,24 @@ impl_671_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_671_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_671_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_671_meta_object__value
     },
     &impl_671,
     NULL
+};
+
+static const afw_value_object_t
+impl_671_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_671_meta_object
 };
 
 static const afw_utf8_t
@@ -64432,13 +72660,24 @@ impl_674_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_674_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_674_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_674_meta_object__value
     },
     &impl_674,
     NULL
+};
+
+static const afw_value_object_t
+impl_674_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_674_meta_object
 };
 
 static const afw_utf8_t
@@ -64521,13 +72760,24 @@ impl_673_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_673_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_673_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_673_meta_object__value
     },
     &impl_673,
     NULL
+};
+
+static const afw_value_object_t
+impl_673_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_673_meta_object
 };
 
 static const afw_utf8_t
@@ -64582,13 +72832,24 @@ impl_676_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_676_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_676_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_676_meta_object__value
     },
     &impl_676,
     NULL
+};
+
+static const afw_value_object_t
+impl_676_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_676_meta_object
 };
 
 static const afw_utf8_t
@@ -64664,13 +72925,24 @@ impl_675_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_675_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_675_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_675_meta_object__value
     },
     &impl_675,
     NULL
+};
+
+static const afw_value_object_t
+impl_675_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_675_meta_object
 };
 
 static const afw_utf8_t
@@ -64725,13 +72997,24 @@ impl_678_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_678_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_678_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_678_meta_object__value
     },
     &impl_678,
     NULL
+};
+
+static const afw_value_object_t
+impl_678_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_678_meta_object
 };
 
 static const afw_utf8_t
@@ -64807,13 +73090,24 @@ impl_677_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_677_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_677_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_677_meta_object__value
     },
     &impl_677,
     NULL
+};
+
+static const afw_value_object_t
+impl_677_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_677_meta_object
 };
 
 static const afw_utf8_t
@@ -65024,13 +73318,24 @@ impl_652_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_652_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_652_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_652_meta_object__value
     },
     &impl_652,
     NULL
+};
+
+static const afw_value_object_t
+impl_652_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_652_meta_object
 };
 
 static const afw_utf8_t
@@ -65075,13 +73380,24 @@ impl_679_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_679_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_679_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_679_meta_object__value
     },
     &impl_679,
     NULL
+};
+
+static const afw_value_object_t
+impl_679_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_679_meta_object
 };
 
 static const afw_utf8_t
@@ -65123,12 +73439,25 @@ impl_651_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_651_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_651_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_651_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_651_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_651_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_651_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_651_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -65189,13 +73518,24 @@ impl_651_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_651_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_651_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_651_meta_object__value
     },
     &impl_651,
     NULL
+};
+
+static const afw_value_object_t
+impl_651_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_651_meta_object
 };
 
 static const afw_utf8_t
@@ -65256,13 +73596,24 @@ impl_683_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_683_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_683_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_683_meta_object__value
     },
     &impl_683,
     NULL
+};
+
+static const afw_value_object_t
+impl_683_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_683_meta_object
 };
 
 static const afw_utf8_t
@@ -65345,13 +73696,24 @@ impl_682_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_682_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_682_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_682_meta_object__value
     },
     &impl_682,
     NULL
+};
+
+static const afw_value_object_t
+impl_682_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_682_meta_object
 };
 
 static const afw_utf8_t
@@ -65406,13 +73768,24 @@ impl_685_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_685_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_685_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_685_meta_object__value
     },
     &impl_685,
     NULL
+};
+
+static const afw_value_object_t
+impl_685_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_685_meta_object
 };
 
 static const afw_utf8_t
@@ -65495,13 +73868,24 @@ impl_684_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_684_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_684_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_684_meta_object__value
     },
     &impl_684,
     NULL
+};
+
+static const afw_value_object_t
+impl_684_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_684_meta_object
 };
 
 static const afw_utf8_t
@@ -65556,13 +73940,24 @@ impl_687_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_687_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_687_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_687_meta_object__value
     },
     &impl_687,
     NULL
+};
+
+static const afw_value_object_t
+impl_687_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_687_meta_object
 };
 
 static const afw_utf8_t
@@ -65652,13 +74047,24 @@ impl_686_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_686_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_686_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_686_meta_object__value
     },
     &impl_686,
     NULL
+};
+
+static const afw_value_object_t
+impl_686_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_686_meta_object
 };
 
 static const afw_utf8_t
@@ -65713,13 +74119,24 @@ impl_689_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_689_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_689_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_689_meta_object__value
     },
     &impl_689,
     NULL
+};
+
+static const afw_value_object_t
+impl_689_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_689_meta_object
 };
 
 static const afw_utf8_t
@@ -65802,13 +74219,24 @@ impl_688_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_688_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_688_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_688_meta_object__value
     },
     &impl_688,
     NULL
+};
+
+static const afw_value_object_t
+impl_688_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_688_meta_object
 };
 
 static const afw_utf8_t
@@ -65863,13 +74291,24 @@ impl_691_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_691_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_691_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_691_meta_object__value
     },
     &impl_691,
     NULL
+};
+
+static const afw_value_object_t
+impl_691_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_691_meta_object
 };
 
 static const afw_utf8_t
@@ -65952,13 +74391,24 @@ impl_690_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_690_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_690_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_690_meta_object__value
     },
     &impl_690,
     NULL
+};
+
+static const afw_value_object_t
+impl_690_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_690_meta_object
 };
 
 static const afw_utf8_t
@@ -66013,13 +74463,24 @@ impl_693_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_693_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_693_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_693_meta_object__value
     },
     &impl_693,
     NULL
+};
+
+static const afw_value_object_t
+impl_693_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_693_meta_object
 };
 
 static const afw_utf8_t
@@ -66102,13 +74563,24 @@ impl_692_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_692_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_692_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_692_meta_object__value
     },
     &impl_692,
     NULL
+};
+
+static const afw_value_object_t
+impl_692_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_692_meta_object
 };
 
 static const afw_utf8_t
@@ -66163,13 +74635,24 @@ impl_695_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_695_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_695_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_695_meta_object__value
     },
     &impl_695,
     NULL
+};
+
+static const afw_value_object_t
+impl_695_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_695_meta_object
 };
 
 static const afw_utf8_t
@@ -66252,13 +74735,24 @@ impl_694_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_694_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_694_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_694_meta_object__value
     },
     &impl_694,
     NULL
+};
+
+static const afw_value_object_t
+impl_694_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_694_meta_object
 };
 
 static const afw_utf8_t
@@ -66313,13 +74807,24 @@ impl_697_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_697_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_697_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_697_meta_object__value
     },
     &impl_697,
     NULL
+};
+
+static const afw_value_object_t
+impl_697_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_697_meta_object
 };
 
 static const afw_utf8_t
@@ -66395,13 +74900,24 @@ impl_696_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_696_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_696_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_696_meta_object__value
     },
     &impl_696,
     NULL
+};
+
+static const afw_value_object_t
+impl_696_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_696_meta_object
 };
 
 static const afw_utf8_t
@@ -66547,13 +75063,24 @@ impl_681_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_681_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_681_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_681_meta_object__value
     },
     &impl_681,
     NULL
+};
+
+static const afw_value_object_t
+impl_681_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_681_meta_object
 };
 
 static const afw_utf8_t
@@ -66598,13 +75125,24 @@ impl_698_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_698_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_698_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_698_meta_object__value
     },
     &impl_698,
     NULL
+};
+
+static const afw_value_object_t
+impl_698_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_698_meta_object
 };
 
 static const afw_utf8_t
@@ -66646,12 +75184,25 @@ impl_680_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_680_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_680_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_680_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_680_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_680_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_680_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_680_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -66712,13 +75263,24 @@ impl_680_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_680_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_680_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_680_meta_object__value
     },
     &impl_680,
     NULL
+};
+
+static const afw_value_object_t
+impl_680_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_680_meta_object
 };
 
 static const afw_utf8_t
@@ -66779,13 +75341,24 @@ impl_702_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_702_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_702_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_702_meta_object__value
     },
     &impl_702,
     NULL
+};
+
+static const afw_value_object_t
+impl_702_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_702_meta_object
 };
 
 static const afw_utf8_t
@@ -66868,13 +75441,24 @@ impl_701_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_701_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_701_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_701_meta_object__value
     },
     &impl_701,
     NULL
+};
+
+static const afw_value_object_t
+impl_701_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_701_meta_object
 };
 
 static const afw_utf8_t
@@ -66929,13 +75513,24 @@ impl_704_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_704_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_704_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_704_meta_object__value
     },
     &impl_704,
     NULL
+};
+
+static const afw_value_object_t
+impl_704_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_704_meta_object
 };
 
 static const afw_utf8_t
@@ -67018,13 +75613,24 @@ impl_703_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_703_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_703_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_703_meta_object__value
     },
     &impl_703,
     NULL
+};
+
+static const afw_value_object_t
+impl_703_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_703_meta_object
 };
 
 static const afw_utf8_t
@@ -67079,13 +75685,24 @@ impl_706_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_706_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_706_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_706_meta_object__value
     },
     &impl_706,
     NULL
+};
+
+static const afw_value_object_t
+impl_706_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_706_meta_object
 };
 
 static const afw_utf8_t
@@ -67168,13 +75785,24 @@ impl_705_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_705_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_705_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_705_meta_object__value
     },
     &impl_705,
     NULL
+};
+
+static const afw_value_object_t
+impl_705_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_705_meta_object
 };
 
 static const afw_utf8_t
@@ -67229,13 +75857,24 @@ impl_708_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_708_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_708_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_708_meta_object__value
     },
     &impl_708,
     NULL
+};
+
+static const afw_value_object_t
+impl_708_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_708_meta_object
 };
 
 static const afw_utf8_t
@@ -67318,13 +75957,24 @@ impl_707_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_707_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_707_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_707_meta_object__value
     },
     &impl_707,
     NULL
+};
+
+static const afw_value_object_t
+impl_707_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_707_meta_object
 };
 
 static const afw_utf8_t
@@ -67379,13 +76029,24 @@ impl_710_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_710_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_710_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_710_meta_object__value
     },
     &impl_710,
     NULL
+};
+
+static const afw_value_object_t
+impl_710_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_710_meta_object
 };
 
 static const afw_utf8_t
@@ -67468,13 +76129,24 @@ impl_709_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_709_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_709_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_709_meta_object__value
     },
     &impl_709,
     NULL
+};
+
+static const afw_value_object_t
+impl_709_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_709_meta_object
 };
 
 static const afw_utf8_t
@@ -67529,13 +76201,24 @@ impl_712_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_712_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_712_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_712_meta_object__value
     },
     &impl_712,
     NULL
+};
+
+static const afw_value_object_t
+impl_712_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_712_meta_object
 };
 
 static const afw_utf8_t
@@ -67618,13 +76301,24 @@ impl_711_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_711_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_711_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_711_meta_object__value
     },
     &impl_711,
     NULL
+};
+
+static const afw_value_object_t
+impl_711_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_711_meta_object
 };
 
 static const afw_utf8_t
@@ -67679,13 +76373,24 @@ impl_714_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_714_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_714_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_714_meta_object__value
     },
     &impl_714,
     NULL
+};
+
+static const afw_value_object_t
+impl_714_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_714_meta_object
 };
 
 static const afw_utf8_t
@@ -67768,13 +76473,24 @@ impl_713_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_713_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_713_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_713_meta_object__value
     },
     &impl_713,
     NULL
+};
+
+static const afw_value_object_t
+impl_713_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_713_meta_object
 };
 
 static const afw_utf8_t
@@ -67829,13 +76545,24 @@ impl_716_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_716_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_716_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_716_meta_object__value
     },
     &impl_716,
     NULL
+};
+
+static const afw_value_object_t
+impl_716_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_716_meta_object
 };
 
 static const afw_utf8_t
@@ -67911,13 +76638,24 @@ impl_715_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_715_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_715_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_715_meta_object__value
     },
     &impl_715,
     NULL
+};
+
+static const afw_value_object_t
+impl_715_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_715_meta_object
 };
 
 static const afw_utf8_t
@@ -67972,13 +76710,24 @@ impl_718_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_718_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_718_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_718_meta_object__value
     },
     &impl_718,
     NULL
+};
+
+static const afw_value_object_t
+impl_718_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_718_meta_object
 };
 
 static const afw_utf8_t
@@ -68061,13 +76810,24 @@ impl_717_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_717_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_717_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_717_meta_object__value
     },
     &impl_717,
     NULL
+};
+
+static const afw_value_object_t
+impl_717_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_717_meta_object
 };
 
 static const afw_utf8_t
@@ -68122,13 +76882,24 @@ impl_720_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_720_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_720_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_720_meta_object__value
     },
     &impl_720,
     NULL
+};
+
+static const afw_value_object_t
+impl_720_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_720_meta_object
 };
 
 static const afw_utf8_t
@@ -68204,13 +76975,24 @@ impl_719_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_719_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_719_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_719_meta_object__value
     },
     &impl_719,
     NULL
+};
+
+static const afw_value_object_t
+impl_719_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_719_meta_object
 };
 
 static const afw_utf8_t
@@ -68382,13 +77164,24 @@ impl_700_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_700_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_700_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_700_meta_object__value
     },
     &impl_700,
     NULL
+};
+
+static const afw_value_object_t
+impl_700_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_700_meta_object
 };
 
 static const afw_utf8_t
@@ -68433,13 +77226,24 @@ impl_721_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_721_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_721_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_721_meta_object__value
     },
     &impl_721,
     NULL
+};
+
+static const afw_value_object_t
+impl_721_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_721_meta_object
 };
 
 static const afw_utf8_t
@@ -68481,12 +77285,25 @@ impl_699_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_699_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_699_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_699_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_699_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_699_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_699_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_699_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -68547,13 +77364,24 @@ impl_699_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_699_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_699_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_699_meta_object__value
     },
     &impl_699,
     NULL
+};
+
+static const afw_value_object_t
+impl_699_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_699_meta_object
 };
 
 static const afw_utf8_t
@@ -68614,13 +77442,24 @@ impl_725_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_725_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_725_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_725_meta_object__value
     },
     &impl_725,
     NULL
+};
+
+static const afw_value_object_t
+impl_725_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_725_meta_object
 };
 
 static const afw_utf8_t
@@ -68703,13 +77542,24 @@ impl_724_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_724_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_724_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_724_meta_object__value
     },
     &impl_724,
     NULL
+};
+
+static const afw_value_object_t
+impl_724_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_724_meta_object
 };
 
 static const afw_utf8_t
@@ -68764,13 +77614,24 @@ impl_727_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_727_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_727_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_727_meta_object__value
     },
     &impl_727,
     NULL
+};
+
+static const afw_value_object_t
+impl_727_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_727_meta_object
 };
 
 static const afw_utf8_t
@@ -68853,13 +77714,24 @@ impl_726_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_726_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_726_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_726_meta_object__value
     },
     &impl_726,
     NULL
+};
+
+static const afw_value_object_t
+impl_726_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_726_meta_object
 };
 
 static const afw_utf8_t
@@ -68914,13 +77786,24 @@ impl_729_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_729_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_729_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_729_meta_object__value
     },
     &impl_729,
     NULL
+};
+
+static const afw_value_object_t
+impl_729_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_729_meta_object
 };
 
 static const afw_utf8_t
@@ -69003,13 +77886,24 @@ impl_728_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_728_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_728_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_728_meta_object__value
     },
     &impl_728,
     NULL
+};
+
+static const afw_value_object_t
+impl_728_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_728_meta_object
 };
 
 static const afw_utf8_t
@@ -69064,13 +77958,24 @@ impl_731_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_731_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_731_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_731_meta_object__value
     },
     &impl_731,
     NULL
+};
+
+static const afw_value_object_t
+impl_731_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_731_meta_object
 };
 
 static const afw_utf8_t
@@ -69153,13 +78058,24 @@ impl_730_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_730_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_730_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_730_meta_object__value
     },
     &impl_730,
     NULL
+};
+
+static const afw_value_object_t
+impl_730_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_730_meta_object
 };
 
 static const afw_utf8_t
@@ -69214,13 +78130,24 @@ impl_733_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_733_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_733_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_733_meta_object__value
     },
     &impl_733,
     NULL
+};
+
+static const afw_value_object_t
+impl_733_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_733_meta_object
 };
 
 static const afw_utf8_t
@@ -69303,13 +78230,24 @@ impl_732_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_732_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_732_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_732_meta_object__value
     },
     &impl_732,
     NULL
+};
+
+static const afw_value_object_t
+impl_732_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_732_meta_object
 };
 
 static const afw_utf8_t
@@ -69364,13 +78302,24 @@ impl_735_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_735_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_735_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_735_meta_object__value
     },
     &impl_735,
     NULL
+};
+
+static const afw_value_object_t
+impl_735_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_735_meta_object
 };
 
 static const afw_utf8_t
@@ -69453,13 +78402,24 @@ impl_734_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_734_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_734_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_734_meta_object__value
     },
     &impl_734,
     NULL
+};
+
+static const afw_value_object_t
+impl_734_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_734_meta_object
 };
 
 static const afw_utf8_t
@@ -69514,13 +78474,24 @@ impl_737_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_737_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_737_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_737_meta_object__value
     },
     &impl_737,
     NULL
+};
+
+static const afw_value_object_t
+impl_737_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_737_meta_object
 };
 
 static const afw_utf8_t
@@ -69603,13 +78574,24 @@ impl_736_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_736_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_736_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_736_meta_object__value
     },
     &impl_736,
     NULL
+};
+
+static const afw_value_object_t
+impl_736_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_736_meta_object
 };
 
 static const afw_utf8_t
@@ -69664,13 +78646,24 @@ impl_739_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_739_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_739_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_739_meta_object__value
     },
     &impl_739,
     NULL
+};
+
+static const afw_value_object_t
+impl_739_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_739_meta_object
 };
 
 static const afw_utf8_t
@@ -69746,13 +78739,24 @@ impl_738_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_738_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_738_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_738_meta_object__value
     },
     &impl_738,
     NULL
+};
+
+static const afw_value_object_t
+impl_738_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_738_meta_object
 };
 
 static const afw_utf8_t
@@ -69898,13 +78902,24 @@ impl_723_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_723_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_723_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_723_meta_object__value
     },
     &impl_723,
     NULL
+};
+
+static const afw_value_object_t
+impl_723_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_723_meta_object
 };
 
 static const afw_utf8_t
@@ -69949,13 +78964,24 @@ impl_740_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_740_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_740_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_740_meta_object__value
     },
     &impl_740,
     NULL
+};
+
+static const afw_value_object_t
+impl_740_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_740_meta_object
 };
 
 static const afw_utf8_t
@@ -69997,12 +79023,25 @@ impl_722_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_722_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_722_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_722_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_722_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_722_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_722_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_722_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -70063,13 +79102,24 @@ impl_722_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_722_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_722_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_722_meta_object__value
     },
     &impl_722,
     NULL
+};
+
+static const afw_value_object_t
+impl_722_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_722_meta_object
 };
 
 static const afw_utf8_t
@@ -70130,13 +79180,24 @@ impl_744_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_744_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_744_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_744_meta_object__value
     },
     &impl_744,
     NULL
+};
+
+static const afw_value_object_t
+impl_744_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_744_meta_object
 };
 
 static const afw_utf8_t
@@ -70219,13 +79280,24 @@ impl_743_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_743_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_743_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_743_meta_object__value
     },
     &impl_743,
     NULL
+};
+
+static const afw_value_object_t
+impl_743_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_743_meta_object
 };
 
 static const afw_utf8_t
@@ -70280,13 +79352,24 @@ impl_746_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_746_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_746_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_746_meta_object__value
     },
     &impl_746,
     NULL
+};
+
+static const afw_value_object_t
+impl_746_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_746_meta_object
 };
 
 static const afw_utf8_t
@@ -70369,13 +79452,24 @@ impl_745_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_745_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_745_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_745_meta_object__value
     },
     &impl_745,
     NULL
+};
+
+static const afw_value_object_t
+impl_745_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_745_meta_object
 };
 
 static const afw_utf8_t
@@ -70430,13 +79524,24 @@ impl_748_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_748_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_748_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_748_meta_object__value
     },
     &impl_748,
     NULL
+};
+
+static const afw_value_object_t
+impl_748_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_748_meta_object
 };
 
 static const afw_utf8_t
@@ -70519,13 +79624,24 @@ impl_747_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_747_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_747_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_747_meta_object__value
     },
     &impl_747,
     NULL
+};
+
+static const afw_value_object_t
+impl_747_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_747_meta_object
 };
 
 static const afw_utf8_t
@@ -70580,13 +79696,24 @@ impl_750_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_750_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_750_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_750_meta_object__value
     },
     &impl_750,
     NULL
+};
+
+static const afw_value_object_t
+impl_750_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_750_meta_object
 };
 
 static const afw_utf8_t
@@ -70669,13 +79796,24 @@ impl_749_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_749_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_749_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_749_meta_object__value
     },
     &impl_749,
     NULL
+};
+
+static const afw_value_object_t
+impl_749_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_749_meta_object
 };
 
 static const afw_utf8_t
@@ -70730,13 +79868,24 @@ impl_752_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_752_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_752_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_752_meta_object__value
     },
     &impl_752,
     NULL
+};
+
+static const afw_value_object_t
+impl_752_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_752_meta_object
 };
 
 static const afw_utf8_t
@@ -70819,13 +79968,24 @@ impl_751_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_751_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_751_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_751_meta_object__value
     },
     &impl_751,
     NULL
+};
+
+static const afw_value_object_t
+impl_751_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_751_meta_object
 };
 
 static const afw_utf8_t
@@ -70880,13 +80040,24 @@ impl_754_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_754_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_754_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_754_meta_object__value
     },
     &impl_754,
     NULL
+};
+
+static const afw_value_object_t
+impl_754_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_754_meta_object
 };
 
 static const afw_utf8_t
@@ -70969,13 +80140,24 @@ impl_753_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_753_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_753_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_753_meta_object__value
     },
     &impl_753,
     NULL
+};
+
+static const afw_value_object_t
+impl_753_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_753_meta_object
 };
 
 static const afw_utf8_t
@@ -71030,13 +80212,24 @@ impl_756_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_756_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_756_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_756_meta_object__value
     },
     &impl_756,
     NULL
+};
+
+static const afw_value_object_t
+impl_756_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_756_meta_object
 };
 
 static const afw_utf8_t
@@ -71119,13 +80312,24 @@ impl_755_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_755_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_755_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_755_meta_object__value
     },
     &impl_755,
     NULL
+};
+
+static const afw_value_object_t
+impl_755_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_755_meta_object
 };
 
 static const afw_utf8_t
@@ -71180,13 +80384,24 @@ impl_758_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_758_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_758_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_758_meta_object__value
     },
     &impl_758,
     NULL
+};
+
+static const afw_value_object_t
+impl_758_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_758_meta_object
 };
 
 static const afw_utf8_t
@@ -71262,13 +80477,24 @@ impl_757_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_757_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_757_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_757_meta_object__value
     },
     &impl_757,
     NULL
+};
+
+static const afw_value_object_t
+impl_757_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_757_meta_object
 };
 
 static const afw_utf8_t
@@ -71414,13 +80640,24 @@ impl_742_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_742_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_742_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_742_meta_object__value
     },
     &impl_742,
     NULL
+};
+
+static const afw_value_object_t
+impl_742_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_742_meta_object
 };
 
 static const afw_utf8_t
@@ -71465,13 +80702,24 @@ impl_759_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_759_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_759_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_759_meta_object__value
     },
     &impl_759,
     NULL
+};
+
+static const afw_value_object_t
+impl_759_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_759_meta_object
 };
 
 static const afw_utf8_t
@@ -71513,12 +80761,25 @@ impl_741_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_741_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_741_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_741_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_741_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_741_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_741_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_741_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -71579,13 +80840,24 @@ impl_741_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_741_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_741_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_741_meta_object__value
     },
     &impl_741,
     NULL
+};
+
+static const afw_value_object_t
+impl_741_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_741_meta_object
 };
 
 static const afw_utf8_t
@@ -71646,13 +80918,24 @@ impl_763_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_763_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_763_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_763_meta_object__value
     },
     &impl_763,
     NULL
+};
+
+static const afw_value_object_t
+impl_763_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_763_meta_object
 };
 
 static const afw_utf8_t
@@ -71735,13 +81018,24 @@ impl_762_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_762_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_762_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_762_meta_object__value
     },
     &impl_762,
     NULL
+};
+
+static const afw_value_object_t
+impl_762_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_762_meta_object
 };
 
 static const afw_utf8_t
@@ -71796,13 +81090,24 @@ impl_765_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_765_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_765_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_765_meta_object__value
     },
     &impl_765,
     NULL
+};
+
+static const afw_value_object_t
+impl_765_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_765_meta_object
 };
 
 static const afw_utf8_t
@@ -71885,13 +81190,24 @@ impl_764_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_764_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_764_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_764_meta_object__value
     },
     &impl_764,
     NULL
+};
+
+static const afw_value_object_t
+impl_764_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_764_meta_object
 };
 
 static const afw_utf8_t
@@ -71946,13 +81262,24 @@ impl_767_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_767_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_767_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_767_meta_object__value
     },
     &impl_767,
     NULL
+};
+
+static const afw_value_object_t
+impl_767_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_767_meta_object
 };
 
 static const afw_utf8_t
@@ -72042,13 +81369,24 @@ impl_766_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_766_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_766_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_766_meta_object__value
     },
     &impl_766,
     NULL
+};
+
+static const afw_value_object_t
+impl_766_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_766_meta_object
 };
 
 static const afw_utf8_t
@@ -72103,13 +81441,24 @@ impl_769_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_769_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_769_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_769_meta_object__value
     },
     &impl_769,
     NULL
+};
+
+static const afw_value_object_t
+impl_769_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_769_meta_object
 };
 
 static const afw_utf8_t
@@ -72192,13 +81541,24 @@ impl_768_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_768_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_768_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_768_meta_object__value
     },
     &impl_768,
     NULL
+};
+
+static const afw_value_object_t
+impl_768_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_768_meta_object
 };
 
 static const afw_utf8_t
@@ -72253,13 +81613,24 @@ impl_771_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_771_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_771_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_771_meta_object__value
     },
     &impl_771,
     NULL
+};
+
+static const afw_value_object_t
+impl_771_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_771_meta_object
 };
 
 static const afw_utf8_t
@@ -72342,13 +81713,24 @@ impl_770_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_770_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_770_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_770_meta_object__value
     },
     &impl_770,
     NULL
+};
+
+static const afw_value_object_t
+impl_770_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_770_meta_object
 };
 
 static const afw_utf8_t
@@ -72403,13 +81785,24 @@ impl_773_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_773_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_773_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_773_meta_object__value
     },
     &impl_773,
     NULL
+};
+
+static const afw_value_object_t
+impl_773_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_773_meta_object
 };
 
 static const afw_utf8_t
@@ -72492,13 +81885,24 @@ impl_772_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_772_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_772_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_772_meta_object__value
     },
     &impl_772,
     NULL
+};
+
+static const afw_value_object_t
+impl_772_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_772_meta_object
 };
 
 static const afw_utf8_t
@@ -72553,13 +81957,24 @@ impl_775_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_775_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_775_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_775_meta_object__value
     },
     &impl_775,
     NULL
+};
+
+static const afw_value_object_t
+impl_775_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_775_meta_object
 };
 
 static const afw_utf8_t
@@ -72649,13 +82064,24 @@ impl_774_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_774_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_774_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_774_meta_object__value
     },
     &impl_774,
     NULL
+};
+
+static const afw_value_object_t
+impl_774_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_774_meta_object
 };
 
 static const afw_utf8_t
@@ -72710,13 +82136,24 @@ impl_777_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_777_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_777_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_777_meta_object__value
     },
     &impl_777,
     NULL
+};
+
+static const afw_value_object_t
+impl_777_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_777_meta_object
 };
 
 static const afw_utf8_t
@@ -72806,13 +82243,24 @@ impl_776_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_776_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_776_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_776_meta_object__value
     },
     &impl_776,
     NULL
+};
+
+static const afw_value_object_t
+impl_776_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_776_meta_object
 };
 
 static const afw_utf8_t
@@ -72867,13 +82315,24 @@ impl_779_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_779_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_779_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_779_meta_object__value
     },
     &impl_779,
     NULL
+};
+
+static const afw_value_object_t
+impl_779_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_779_meta_object
 };
 
 static const afw_utf8_t
@@ -72949,13 +82408,24 @@ impl_778_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_778_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_778_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_778_meta_object__value
     },
     &impl_778,
     NULL
+};
+
+static const afw_value_object_t
+impl_778_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_778_meta_object
 };
 
 static const afw_utf8_t
@@ -73114,13 +82584,24 @@ impl_761_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_761_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_761_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_761_meta_object__value
     },
     &impl_761,
     NULL
+};
+
+static const afw_value_object_t
+impl_761_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_761_meta_object
 };
 
 static const afw_utf8_t
@@ -73165,13 +82646,24 @@ impl_780_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_780_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_780_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_780_meta_object__value
     },
     &impl_780,
     NULL
+};
+
+static const afw_value_object_t
+impl_780_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_780_meta_object
 };
 
 static const afw_utf8_t
@@ -73213,12 +82705,25 @@ impl_760_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_760_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_760_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_760_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_760_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_760_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_760_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_760_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -73279,13 +82784,24 @@ impl_760_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_760_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_760_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_760_meta_object__value
     },
     &impl_760,
     NULL
+};
+
+static const afw_value_object_t
+impl_760_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_760_meta_object
 };
 
 static const afw_utf8_t
@@ -73346,13 +82862,24 @@ impl_784_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_784_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_784_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_784_meta_object__value
     },
     &impl_784,
     NULL
+};
+
+static const afw_value_object_t
+impl_784_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_784_meta_object
 };
 
 static const afw_utf8_t
@@ -73435,13 +82962,24 @@ impl_783_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_783_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_783_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_783_meta_object__value
     },
     &impl_783,
     NULL
+};
+
+static const afw_value_object_t
+impl_783_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_783_meta_object
 };
 
 static const afw_utf8_t
@@ -73496,13 +83034,24 @@ impl_786_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_786_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_786_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_786_meta_object__value
     },
     &impl_786,
     NULL
+};
+
+static const afw_value_object_t
+impl_786_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_786_meta_object
 };
 
 static const afw_utf8_t
@@ -73585,13 +83134,24 @@ impl_785_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_785_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_785_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_785_meta_object__value
     },
     &impl_785,
     NULL
+};
+
+static const afw_value_object_t
+impl_785_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_785_meta_object
 };
 
 static const afw_utf8_t
@@ -73646,13 +83206,24 @@ impl_788_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_788_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_788_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_788_meta_object__value
     },
     &impl_788,
     NULL
+};
+
+static const afw_value_object_t
+impl_788_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_788_meta_object
 };
 
 static const afw_utf8_t
@@ -73735,13 +83306,24 @@ impl_787_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_787_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_787_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_787_meta_object__value
     },
     &impl_787,
     NULL
+};
+
+static const afw_value_object_t
+impl_787_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_787_meta_object
 };
 
 static const afw_utf8_t
@@ -73796,13 +83378,24 @@ impl_790_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_790_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_790_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_790_meta_object__value
     },
     &impl_790,
     NULL
+};
+
+static const afw_value_object_t
+impl_790_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_790_meta_object
 };
 
 static const afw_utf8_t
@@ -73885,13 +83478,24 @@ impl_789_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_789_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_789_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_789_meta_object__value
     },
     &impl_789,
     NULL
+};
+
+static const afw_value_object_t
+impl_789_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_789_meta_object
 };
 
 static const afw_utf8_t
@@ -73946,13 +83550,24 @@ impl_792_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_792_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_792_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_792_meta_object__value
     },
     &impl_792,
     NULL
+};
+
+static const afw_value_object_t
+impl_792_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_792_meta_object
 };
 
 static const afw_utf8_t
@@ -74035,13 +83650,24 @@ impl_791_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_791_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_791_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_791_meta_object__value
     },
     &impl_791,
     NULL
+};
+
+static const afw_value_object_t
+impl_791_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_791_meta_object
 };
 
 static const afw_utf8_t
@@ -74096,13 +83722,24 @@ impl_794_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_794_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_794_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_794_meta_object__value
     },
     &impl_794,
     NULL
+};
+
+static const afw_value_object_t
+impl_794_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_794_meta_object
 };
 
 static const afw_utf8_t
@@ -74185,13 +83822,24 @@ impl_793_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_793_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_793_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_793_meta_object__value
     },
     &impl_793,
     NULL
+};
+
+static const afw_value_object_t
+impl_793_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_793_meta_object
 };
 
 static const afw_utf8_t
@@ -74246,13 +83894,24 @@ impl_796_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_796_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_796_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_796_meta_object__value
     },
     &impl_796,
     NULL
+};
+
+static const afw_value_object_t
+impl_796_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_796_meta_object
 };
 
 static const afw_utf8_t
@@ -74335,13 +83994,24 @@ impl_795_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_795_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_795_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_795_meta_object__value
     },
     &impl_795,
     NULL
+};
+
+static const afw_value_object_t
+impl_795_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_795_meta_object
 };
 
 static const afw_utf8_t
@@ -74396,13 +84066,24 @@ impl_798_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_798_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_798_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_798_meta_object__value
     },
     &impl_798,
     NULL
+};
+
+static const afw_value_object_t
+impl_798_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_798_meta_object
 };
 
 static const afw_utf8_t
@@ -74485,13 +84166,24 @@ impl_797_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_797_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_797_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_797_meta_object__value
     },
     &impl_797,
     NULL
+};
+
+static const afw_value_object_t
+impl_797_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_797_meta_object
 };
 
 static const afw_utf8_t
@@ -74546,13 +84238,24 @@ impl_800_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_800_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_800_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_800_meta_object__value
     },
     &impl_800,
     NULL
+};
+
+static const afw_value_object_t
+impl_800_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_800_meta_object
 };
 
 static const afw_utf8_t
@@ -74628,13 +84331,24 @@ impl_799_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_799_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_799_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_799_meta_object__value
     },
     &impl_799,
     NULL
+};
+
+static const afw_value_object_t
+impl_799_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_799_meta_object
 };
 
 static const afw_utf8_t
@@ -74689,13 +84403,24 @@ impl_802_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_802_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_802_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_802_meta_object__value
     },
     &impl_802,
     NULL
+};
+
+static const afw_value_object_t
+impl_802_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_802_meta_object
 };
 
 static const afw_utf8_t
@@ -74771,13 +84496,24 @@ impl_801_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_801_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_801_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_801_meta_object__value
     },
     &impl_801,
     NULL
+};
+
+static const afw_value_object_t
+impl_801_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_801_meta_object
 };
 
 static const afw_utf8_t
@@ -74949,13 +84685,24 @@ impl_782_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_782_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_782_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_782_meta_object__value
     },
     &impl_782,
     NULL
+};
+
+static const afw_value_object_t
+impl_782_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_782_meta_object
 };
 
 static const afw_utf8_t
@@ -75000,13 +84747,24 @@ impl_803_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_803_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_803_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_803_meta_object__value
     },
     &impl_803,
     NULL
+};
+
+static const afw_value_object_t
+impl_803_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_803_meta_object
 };
 
 static const afw_utf8_t
@@ -75048,12 +84806,25 @@ impl_781_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_781_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_781_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_781_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_781_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_781_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_781_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_781_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -75114,13 +84885,24 @@ impl_781_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_781_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_781_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_781_meta_object__value
     },
     &impl_781,
     NULL
+};
+
+static const afw_value_object_t
+impl_781_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_781_meta_object
 };
 
 static const afw_utf8_t
@@ -75181,13 +84963,24 @@ impl_807_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_807_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_807_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_807_meta_object__value
     },
     &impl_807,
     NULL
+};
+
+static const afw_value_object_t
+impl_807_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_807_meta_object
 };
 
 static const afw_utf8_t
@@ -75270,13 +85063,24 @@ impl_806_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_806_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_806_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_806_meta_object__value
     },
     &impl_806,
     NULL
+};
+
+static const afw_value_object_t
+impl_806_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_806_meta_object
 };
 
 static const afw_utf8_t
@@ -75331,13 +85135,24 @@ impl_809_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_809_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_809_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_809_meta_object__value
     },
     &impl_809,
     NULL
+};
+
+static const afw_value_object_t
+impl_809_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_809_meta_object
 };
 
 static const afw_utf8_t
@@ -75420,13 +85235,24 @@ impl_808_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_808_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_808_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_808_meta_object__value
     },
     &impl_808,
     NULL
+};
+
+static const afw_value_object_t
+impl_808_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_808_meta_object
 };
 
 static const afw_utf8_t
@@ -75481,13 +85307,24 @@ impl_811_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_811_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_811_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_811_meta_object__value
     },
     &impl_811,
     NULL
+};
+
+static const afw_value_object_t
+impl_811_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_811_meta_object
 };
 
 static const afw_utf8_t
@@ -75570,13 +85407,24 @@ impl_810_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_810_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_810_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_810_meta_object__value
     },
     &impl_810,
     NULL
+};
+
+static const afw_value_object_t
+impl_810_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_810_meta_object
 };
 
 static const afw_utf8_t
@@ -75631,13 +85479,24 @@ impl_813_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_813_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_813_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_813_meta_object__value
     },
     &impl_813,
     NULL
+};
+
+static const afw_value_object_t
+impl_813_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_813_meta_object
 };
 
 static const afw_utf8_t
@@ -75720,13 +85579,24 @@ impl_812_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_812_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_812_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_812_meta_object__value
     },
     &impl_812,
     NULL
+};
+
+static const afw_value_object_t
+impl_812_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_812_meta_object
 };
 
 static const afw_utf8_t
@@ -75781,13 +85651,24 @@ impl_815_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_815_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_815_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_815_meta_object__value
     },
     &impl_815,
     NULL
+};
+
+static const afw_value_object_t
+impl_815_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_815_meta_object
 };
 
 static const afw_utf8_t
@@ -75870,13 +85751,24 @@ impl_814_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_814_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_814_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_814_meta_object__value
     },
     &impl_814,
     NULL
+};
+
+static const afw_value_object_t
+impl_814_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_814_meta_object
 };
 
 static const afw_utf8_t
@@ -75931,13 +85823,24 @@ impl_817_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_817_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_817_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_817_meta_object__value
     },
     &impl_817,
     NULL
+};
+
+static const afw_value_object_t
+impl_817_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_817_meta_object
 };
 
 static const afw_utf8_t
@@ -76013,13 +85916,24 @@ impl_816_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_816_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_816_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_816_meta_object__value
     },
     &impl_816,
     NULL
+};
+
+static const afw_value_object_t
+impl_816_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_816_meta_object
 };
 
 static const afw_utf8_t
@@ -76139,13 +86053,24 @@ impl_805_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_805_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_805_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_805_meta_object__value
     },
     &impl_805,
     NULL
+};
+
+static const afw_value_object_t
+impl_805_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_805_meta_object
 };
 
 static const afw_utf8_t
@@ -76190,13 +86115,24 @@ impl_818_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_818_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_818_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_818_meta_object__value
     },
     &impl_818,
     NULL
+};
+
+static const afw_value_object_t
+impl_818_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_818_meta_object
 };
 
 static const afw_utf8_t
@@ -76250,12 +86186,25 @@ impl_804_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_804_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_804_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_804_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_804_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_804_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_804_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_804_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -76317,13 +86266,24 @@ impl_804_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_804_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_804_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_804_meta_object__value
     },
     &impl_804,
     NULL
+};
+
+static const afw_value_object_t
+impl_804_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_804_meta_object
 };
 
 static const afw_utf8_t
@@ -76409,13 +86369,24 @@ impl_821_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_821_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_821_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_821_meta_object__value
     },
     &impl_821,
     NULL
+};
+
+static const afw_value_object_t
+impl_821_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_821_meta_object
 };
 
 static const afw_utf8_t
@@ -76488,13 +86459,24 @@ impl_822_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_822_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_822_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_822_meta_object__value
     },
     &impl_822,
     NULL
+};
+
+static const afw_value_object_t
+impl_822_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_822_meta_object
 };
 
 static const afw_utf8_t
@@ -76588,13 +86570,24 @@ impl_823_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_823_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_823_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_823_meta_object__value
     },
     &impl_823,
     NULL
+};
+
+static const afw_value_object_t
+impl_823_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_823_meta_object
 };
 
 static const afw_utf8_t
@@ -76688,13 +86681,24 @@ impl_824_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_824_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_824_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_824_meta_object__value
     },
     &impl_824,
     NULL
+};
+
+static const afw_value_object_t
+impl_824_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_824_meta_object
 };
 
 static const afw_utf8_t
@@ -76781,13 +86785,24 @@ impl_825_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_825_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_825_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_825_meta_object__value
     },
     &impl_825,
     NULL
+};
+
+static const afw_value_object_t
+impl_825_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_825_meta_object
 };
 
 static const afw_utf8_t
@@ -76881,13 +86896,24 @@ impl_826_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_826_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_826_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_826_meta_object__value
     },
     &impl_826,
     NULL
+};
+
+static const afw_value_object_t
+impl_826_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_826_meta_object
 };
 
 static const afw_utf8_t
@@ -76981,13 +87007,24 @@ impl_827_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_827_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_827_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_827_meta_object__value
     },
     &impl_827,
     NULL
+};
+
+static const afw_value_object_t
+impl_827_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_827_meta_object
 };
 
 static const afw_utf8_t
@@ -77081,13 +87118,24 @@ impl_828_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_828_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_828_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_828_meta_object__value
     },
     &impl_828,
     NULL
+};
+
+static const afw_value_object_t
+impl_828_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_828_meta_object
 };
 
 static const afw_utf8_t
@@ -77181,13 +87229,24 @@ impl_829_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_829_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_829_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_829_meta_object__value
     },
     &impl_829,
     NULL
+};
+
+static const afw_value_object_t
+impl_829_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_829_meta_object
 };
 
 static const afw_utf8_t
@@ -77267,13 +87326,24 @@ impl_830_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_830_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_830_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_830_meta_object__value
     },
     &impl_830,
     NULL
+};
+
+static const afw_value_object_t
+impl_830_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_830_meta_object
 };
 
 static const afw_utf8_t
@@ -77452,7 +87522,7 @@ impl_820_parentPaths_array[] = {
 
 static const afw_array_wrapper_for_array_self_t
 impl_820_parentPaths_list = {
-    &afw_array_wrapper_for_array_inf,
+    { &afw_array_wrapper_for_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_820_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_820_parentPaths_array
@@ -77464,13 +87534,24 @@ impl_820_parentPaths = {
     (const afw_array_t *)&impl_820_parentPaths_list
 };
 
+static const afw_value_object_t
+impl_820_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_820_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_820_meta_object__value
     },
     &impl_820,
     &impl_820_parentPaths
+};
+
+static const afw_value_object_t
+impl_820_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_820_meta_object
 };
 
 static const afw_utf8_t
@@ -77524,12 +87605,25 @@ impl_819_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_819_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_819_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_819_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_819_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_819_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_819_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_819_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -77578,13 +87672,24 @@ impl_819_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_819_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_819_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_819_meta_object__value
     },
     &impl_819,
     NULL
+};
+
+static const afw_value_object_t
+impl_819_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_819_meta_object
 };
 
 static const afw_utf8_t
@@ -77660,13 +87765,24 @@ impl_832_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_832_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_832_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_832_meta_object__value
     },
     &impl_832,
     NULL
+};
+
+static const afw_value_object_t
+impl_832_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_832_meta_object
 };
 
 static const afw_utf8_t
@@ -77720,12 +87836,25 @@ impl_831_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_831_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_831_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_831_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_831_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_831_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_831_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_831_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -77774,13 +87903,24 @@ impl_831_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_831_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_831_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_831_meta_object__value
     },
     &impl_831,
     NULL
+};
+
+static const afw_value_object_t
+impl_831_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_831_meta_object
 };
 
 static const afw_utf8_t
@@ -77872,13 +88012,24 @@ impl_835_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_835_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_835_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_835_meta_object__value
     },
     &impl_835,
     NULL
+};
+
+static const afw_value_object_t
+impl_835_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_835_meta_object
 };
 
 static const afw_utf8_t
@@ -77958,13 +88109,24 @@ impl_836_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_836_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_836_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_836_meta_object__value
     },
     &impl_836,
     NULL
+};
+
+static const afw_value_object_t
+impl_836_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_836_meta_object
 };
 
 static const afw_utf8_t
@@ -78037,13 +88199,24 @@ impl_837_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_837_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_837_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_837_meta_object__value
     },
     &impl_837,
     NULL
+};
+
+static const afw_value_object_t
+impl_837_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_837_meta_object
 };
 
 static const afw_utf8_t
@@ -78116,13 +88289,24 @@ impl_838_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_838_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_838_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_838_meta_object__value
     },
     &impl_838,
     NULL
+};
+
+static const afw_value_object_t
+impl_838_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_838_meta_object
 };
 
 static const afw_utf8_t
@@ -78202,13 +88386,24 @@ impl_839_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_839_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_839_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_839_meta_object__value
     },
     &impl_839,
     NULL
+};
+
+static const afw_value_object_t
+impl_839_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_839_meta_object
 };
 
 static const afw_utf8_t
@@ -78288,13 +88483,24 @@ impl_840_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_840_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_840_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_840_meta_object__value
     },
     &impl_840,
     NULL
+};
+
+static const afw_value_object_t
+impl_840_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_840_meta_object
 };
 
 static const afw_utf8_t
@@ -78374,13 +88580,24 @@ impl_841_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_841_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_841_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_841_meta_object__value
     },
     &impl_841,
     NULL
+};
+
+static const afw_value_object_t
+impl_841_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_841_meta_object
 };
 
 static const afw_utf8_t
@@ -78466,13 +88683,24 @@ impl_842_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_842_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_842_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_842_meta_object__value
     },
     &impl_842,
     NULL
+};
+
+static const afw_value_object_t
+impl_842_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_842_meta_object
 };
 
 static const afw_utf8_t
@@ -78625,7 +88853,7 @@ impl_834_parentPaths_array[] = {
 
 static const afw_array_wrapper_for_array_self_t
 impl_834_parentPaths_list = {
-    &afw_array_wrapper_for_array_inf,
+    { &afw_array_wrapper_for_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_834_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_834_parentPaths_array
@@ -78637,13 +88865,24 @@ impl_834_parentPaths = {
     (const afw_array_t *)&impl_834_parentPaths_list
 };
 
+static const afw_value_object_t
+impl_834_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_834_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_834_meta_object__value
     },
     &impl_834,
     &impl_834_parentPaths
+};
+
+static const afw_value_object_t
+impl_834_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_834_meta_object
 };
 
 static const afw_utf8_t
@@ -78685,12 +88924,25 @@ impl_833_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_833_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_833_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_833_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_833_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_833_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_833_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_833_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -78738,13 +88990,24 @@ impl_833_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_833_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_833_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_833_meta_object__value
     },
     &impl_833,
     NULL
+};
+
+static const afw_value_object_t
+impl_833_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_833_meta_object
 };
 
 static const afw_utf8_t
@@ -78820,13 +89083,24 @@ impl_844_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_844_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_844_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_844_meta_object__value
     },
     &impl_844,
     NULL
+};
+
+static const afw_value_object_t
+impl_844_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_844_meta_object
 };
 
 static const afw_utf8_t
@@ -78880,12 +89154,25 @@ impl_843_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_843_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_843_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_843_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_843_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_843_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_843_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_843_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -78934,13 +89221,24 @@ impl_843_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_843_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_843_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_843_meta_object__value
     },
     &impl_843,
     NULL
+};
+
+static const afw_value_object_t
+impl_843_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_843_meta_object
 };
 
 static const afw_utf8_t
@@ -79039,13 +89337,24 @@ impl_847_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_847_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_847_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_847_meta_object__value
     },
     &impl_847,
     NULL
+};
+
+static const afw_value_object_t
+impl_847_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_847_meta_object
 };
 
 static const afw_utf8_t
@@ -79125,13 +89434,24 @@ impl_848_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_848_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_848_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_848_meta_object__value
     },
     &impl_848,
     NULL
+};
+
+static const afw_value_object_t
+impl_848_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_848_meta_object
 };
 
 static const afw_utf8_t
@@ -79224,13 +89544,24 @@ impl_849_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_849_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_849_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_849_meta_object__value
     },
     &impl_849,
     NULL
+};
+
+static const afw_value_object_t
+impl_849_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_849_meta_object
 };
 
 static const afw_utf8_t
@@ -79316,13 +89647,24 @@ impl_850_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_850_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_850_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_850_meta_object__value
     },
     &impl_850,
     NULL
+};
+
+static const afw_value_object_t
+impl_850_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_850_meta_object
 };
 
 static const afw_utf8_t
@@ -79454,13 +89796,24 @@ impl_851_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_851_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_851_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_851_meta_object__value
     },
     &impl_851,
     NULL
+};
+
+static const afw_value_object_t
+impl_851_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_851_meta_object
 };
 
 static const afw_utf8_t
@@ -79546,13 +89899,24 @@ impl_852_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_852_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_852_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_852_meta_object__value
     },
     &impl_852,
     NULL
+};
+
+static const afw_value_object_t
+impl_852_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_852_meta_object
 };
 
 static const afw_utf8_t
@@ -79645,13 +90009,24 @@ impl_853_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_853_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_853_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_853_meta_object__value
     },
     &impl_853,
     NULL
+};
+
+static const afw_value_object_t
+impl_853_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_853_meta_object
 };
 
 static const afw_utf8_t
@@ -79784,13 +90159,24 @@ impl_846_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_846_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_846_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_846_meta_object__value
     },
     &impl_846,
     NULL
+};
+
+static const afw_value_object_t
+impl_846_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_846_meta_object
 };
 
 static const afw_utf8_t
@@ -79844,12 +90230,25 @@ impl_845_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_845_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_845_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_845_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_845_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_845_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_845_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_845_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -79905,13 +90304,24 @@ impl_845_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_845_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_845_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_845_meta_object__value
     },
     &impl_845,
     NULL
+};
+
+static const afw_value_object_t
+impl_845_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_845_meta_object
 };
 
 static const afw_utf8_t
@@ -79990,13 +90400,24 @@ impl_856_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_856_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_856_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_856_meta_object__value
     },
     &impl_856,
     NULL
+};
+
+static const afw_value_object_t
+impl_856_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_856_meta_object
 };
 
 static const afw_utf8_t
@@ -80082,13 +90503,24 @@ impl_857_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_857_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_857_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_857_meta_object__value
     },
     &impl_857,
     NULL
+};
+
+static const afw_value_object_t
+impl_857_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_857_meta_object
 };
 
 static const afw_utf8_t
@@ -80174,13 +90606,24 @@ impl_858_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_858_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_858_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_858_meta_object__value
     },
     &impl_858,
     NULL
+};
+
+static const afw_value_object_t
+impl_858_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_858_meta_object
 };
 
 static const afw_utf8_t
@@ -80266,13 +90709,24 @@ impl_859_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_859_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_859_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_859_meta_object__value
     },
     &impl_859,
     NULL
+};
+
+static const afw_value_object_t
+impl_859_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_859_meta_object
 };
 
 static const afw_utf8_t
@@ -80358,13 +90812,24 @@ impl_860_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_860_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_860_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_860_meta_object__value
     },
     &impl_860,
     NULL
+};
+
+static const afw_value_object_t
+impl_860_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_860_meta_object
 };
 
 static const afw_utf8_t
@@ -80450,13 +90915,24 @@ impl_861_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_861_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_861_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_861_meta_object__value
     },
     &impl_861,
     NULL
+};
+
+static const afw_value_object_t
+impl_861_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_861_meta_object
 };
 
 static const afw_utf8_t
@@ -80542,13 +91018,24 @@ impl_862_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_862_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_862_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_862_meta_object__value
     },
     &impl_862,
     NULL
+};
+
+static const afw_value_object_t
+impl_862_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_862_meta_object
 };
 
 static const afw_utf8_t
@@ -80634,13 +91121,24 @@ impl_863_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_863_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_863_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_863_meta_object__value
     },
     &impl_863,
     NULL
+};
+
+static const afw_value_object_t
+impl_863_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_863_meta_object
 };
 
 static const afw_utf8_t
@@ -80726,13 +91224,24 @@ impl_864_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_864_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_864_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_864_meta_object__value
     },
     &impl_864,
     NULL
+};
+
+static const afw_value_object_t
+impl_864_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_864_meta_object
 };
 
 static const afw_utf8_t
@@ -80818,13 +91327,24 @@ impl_865_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_865_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_865_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_865_meta_object__value
     },
     &impl_865,
     NULL
+};
+
+static const afw_value_object_t
+impl_865_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_865_meta_object
 };
 
 static const afw_utf8_t
@@ -80910,13 +91430,24 @@ impl_866_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_866_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_866_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_866_meta_object__value
     },
     &impl_866,
     NULL
+};
+
+static const afw_value_object_t
+impl_866_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_866_meta_object
 };
 
 static const afw_utf8_t
@@ -81002,13 +91533,24 @@ impl_867_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_867_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_867_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_867_meta_object__value
     },
     &impl_867,
     NULL
+};
+
+static const afw_value_object_t
+impl_867_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_867_meta_object
 };
 
 static const afw_utf8_t
@@ -81094,13 +91636,24 @@ impl_868_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_868_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_868_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_868_meta_object__value
     },
     &impl_868,
     NULL
+};
+
+static const afw_value_object_t
+impl_868_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_868_meta_object
 };
 
 static const afw_utf8_t
@@ -81186,13 +91739,24 @@ impl_869_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_869_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_869_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_869_meta_object__value
     },
     &impl_869,
     NULL
+};
+
+static const afw_value_object_t
+impl_869_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_869_meta_object
 };
 
 static const afw_utf8_t
@@ -81278,13 +91842,24 @@ impl_870_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_870_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_870_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_870_meta_object__value
     },
     &impl_870,
     NULL
+};
+
+static const afw_value_object_t
+impl_870_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_870_meta_object
 };
 
 static const afw_utf8_t
@@ -81370,13 +91945,24 @@ impl_871_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_871_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_871_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_871_meta_object__value
     },
     &impl_871,
     NULL
+};
+
+static const afw_value_object_t
+impl_871_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_871_meta_object
 };
 
 static const afw_utf8_t
@@ -81462,13 +92048,24 @@ impl_872_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_872_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_872_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_872_meta_object__value
     },
     &impl_872,
     NULL
+};
+
+static const afw_value_object_t
+impl_872_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_872_meta_object
 };
 
 static const afw_utf8_t
@@ -81554,13 +92151,24 @@ impl_873_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_873_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_873_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_873_meta_object__value
     },
     &impl_873,
     NULL
+};
+
+static const afw_value_object_t
+impl_873_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_873_meta_object
 };
 
 static const afw_utf8_t
@@ -81646,13 +92254,24 @@ impl_874_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_874_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_874_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_874_meta_object__value
     },
     &impl_874,
     NULL
+};
+
+static const afw_value_object_t
+impl_874_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_874_meta_object
 };
 
 static const afw_utf8_t
@@ -81738,13 +92357,24 @@ impl_875_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_875_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_875_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_875_meta_object__value
     },
     &impl_875,
     NULL
+};
+
+static const afw_value_object_t
+impl_875_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_875_meta_object
 };
 
 static const afw_utf8_t
@@ -82046,13 +92676,24 @@ impl_855_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_855_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_855_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_855_meta_object__value
     },
     &impl_855,
     NULL
+};
+
+static const afw_value_object_t
+impl_855_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_855_meta_object
 };
 
 static const afw_utf8_t
@@ -82106,12 +92747,25 @@ impl_854_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_854_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_854_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_854_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_854_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_854_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_854_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_854_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -82160,13 +92814,24 @@ impl_854_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_854_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_854_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_854_meta_object__value
     },
     &impl_854,
     NULL
+};
+
+static const afw_value_object_t
+impl_854_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_854_meta_object
 };
 
 static const afw_utf8_t
@@ -82271,13 +92936,24 @@ impl_878_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_878_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_878_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_878_meta_object__value
     },
     &impl_878,
     NULL
+};
+
+static const afw_value_object_t
+impl_878_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_878_meta_object
 };
 
 static const afw_utf8_t
@@ -82376,13 +93052,24 @@ impl_879_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_879_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_879_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_879_meta_object__value
     },
     &impl_879,
     NULL
+};
+
+static const afw_value_object_t
+impl_879_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_879_meta_object
 };
 
 static const afw_utf8_t
@@ -82481,13 +93168,24 @@ impl_880_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_880_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_880_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_880_meta_object__value
     },
     &impl_880,
     NULL
+};
+
+static const afw_value_object_t
+impl_880_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_880_meta_object
 };
 
 static const afw_utf8_t
@@ -82586,13 +93284,24 @@ impl_881_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_881_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_881_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_881_meta_object__value
     },
     &impl_881,
     NULL
+};
+
+static const afw_value_object_t
+impl_881_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_881_meta_object
 };
 
 static const afw_utf8_t
@@ -82685,13 +93394,24 @@ impl_882_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_882_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_882_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_882_meta_object__value
     },
     &impl_882,
     NULL
+};
+
+static const afw_value_object_t
+impl_882_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_882_meta_object
 };
 
 static const afw_utf8_t
@@ -82784,13 +93504,24 @@ impl_883_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_883_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_883_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_883_meta_object__value
     },
     &impl_883,
     NULL
+};
+
+static const afw_value_object_t
+impl_883_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_883_meta_object
 };
 
 static const afw_utf8_t
@@ -82876,13 +93607,24 @@ impl_884_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_884_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_884_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_884_meta_object__value
     },
     &impl_884,
     NULL
+};
+
+static const afw_value_object_t
+impl_884_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_884_meta_object
 };
 
 static const afw_utf8_t
@@ -82968,13 +93710,24 @@ impl_885_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_885_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_885_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_885_meta_object__value
     },
     &impl_885,
     NULL
+};
+
+static const afw_value_object_t
+impl_885_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_885_meta_object
 };
 
 static const afw_utf8_t
@@ -83060,13 +93813,24 @@ impl_886_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_886_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_886_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_886_meta_object__value
     },
     &impl_886,
     NULL
+};
+
+static const afw_value_object_t
+impl_886_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_886_meta_object
 };
 
 static const afw_utf8_t
@@ -83152,13 +93916,24 @@ impl_887_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_887_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_887_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_887_meta_object__value
     },
     &impl_887,
     NULL
+};
+
+static const afw_value_object_t
+impl_887_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_887_meta_object
 };
 
 static const afw_utf8_t
@@ -83244,13 +94019,24 @@ impl_888_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_888_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_888_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_888_meta_object__value
     },
     &impl_888,
     NULL
+};
+
+static const afw_value_object_t
+impl_888_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_888_meta_object
 };
 
 static const afw_utf8_t
@@ -83343,13 +94129,24 @@ impl_889_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_889_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_889_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_889_meta_object__value
     },
     &impl_889,
     NULL
+};
+
+static const afw_value_object_t
+impl_889_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_889_meta_object
 };
 
 static const afw_utf8_t
@@ -83442,13 +94239,24 @@ impl_890_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_890_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_890_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_890_meta_object__value
     },
     &impl_890,
     NULL
+};
+
+static const afw_value_object_t
+impl_890_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_890_meta_object
 };
 
 static const afw_utf8_t
@@ -83534,13 +94342,24 @@ impl_891_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_891_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_891_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_891_meta_object__value
     },
     &impl_891,
     NULL
+};
+
+static const afw_value_object_t
+impl_891_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_891_meta_object
 };
 
 static const afw_utf8_t
@@ -83620,13 +94439,24 @@ impl_892_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_892_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_892_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_892_meta_object__value
     },
     &impl_892,
     NULL
+};
+
+static const afw_value_object_t
+impl_892_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_892_meta_object
 };
 
 static const afw_utf8_t
@@ -83706,13 +94536,24 @@ impl_893_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_893_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_893_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_893_meta_object__value
     },
     &impl_893,
     NULL
+};
+
+static const afw_value_object_t
+impl_893_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_893_meta_object
 };
 
 static const afw_utf8_t
@@ -83962,13 +94803,24 @@ impl_877_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_877_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_877_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_877_meta_object__value
     },
     &impl_877,
     NULL
+};
+
+static const afw_value_object_t
+impl_877_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_877_meta_object
 };
 
 static const afw_utf8_t
@@ -84022,12 +94874,25 @@ impl_876_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_876_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_876_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_876_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_876_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_876_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_876_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_876_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -84090,13 +94955,24 @@ impl_876_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_876_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_876_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_876_meta_object__value
     },
     &impl_876,
     NULL
+};
+
+static const afw_value_object_t
+impl_876_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_876_meta_object
 };
 
 static const afw_utf8_t
@@ -84158,13 +95034,24 @@ impl_895_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_895_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_895_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_895_meta_object__value
     },
     &impl_895,
     NULL
+};
+
+static const afw_value_object_t
+impl_895_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_895_meta_object
 };
 
 static const afw_utf8_t
@@ -84218,12 +95105,25 @@ impl_894_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_894_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_894_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_894_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_894_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_894_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_894_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_894_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -84272,13 +95172,24 @@ impl_894_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_894_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_894_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_894_meta_object__value
     },
     &impl_894,
     NULL
+};
+
+static const afw_value_object_t
+impl_894_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_894_meta_object
 };
 
 static const afw_utf8_t
@@ -84326,13 +95237,24 @@ impl_897_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_897_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_897_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_897_meta_object__value
     },
     &impl_897,
     NULL
+};
+
+static const afw_value_object_t
+impl_897_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_897_meta_object
 };
 
 static const afw_utf8_t
@@ -84386,12 +95308,25 @@ impl_896_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_896_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_896_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_896_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_896_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_896_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_896_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_896_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -84433,13 +95368,24 @@ impl_896_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_896_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_896_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_896_meta_object__value
     },
     &impl_896,
     NULL
+};
+
+static const afw_value_object_t
+impl_896_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_896_meta_object
 };
 
 static const afw_utf8_t
@@ -84515,13 +95461,24 @@ impl_899_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_899_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_899_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_899_meta_object__value
     },
     &impl_899,
     NULL
+};
+
+static const afw_value_object_t
+impl_899_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_899_meta_object
 };
 
 static const afw_utf8_t
@@ -84575,12 +95532,25 @@ impl_898_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_898_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_898_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_898_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_898_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_898_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_898_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_898_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -84629,13 +95599,24 @@ impl_898_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_898_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_898_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_898_meta_object__value
     },
     &impl_898,
     NULL
+};
+
+static const afw_value_object_t
+impl_898_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_898_meta_object
 };
 
 static const afw_utf8_t
@@ -84720,13 +95701,24 @@ impl_902_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_902_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_902_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_902_meta_object__value
     },
     &impl_902,
     NULL
+};
+
+static const afw_value_object_t
+impl_902_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_902_meta_object
 };
 
 static const afw_utf8_t
@@ -84805,13 +95797,24 @@ impl_903_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_903_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_903_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_903_meta_object__value
     },
     &impl_903,
     NULL
+};
+
+static const afw_value_object_t
+impl_903_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_903_meta_object
 };
 
 static const afw_utf8_t
@@ -84890,13 +95893,24 @@ impl_904_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_904_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_904_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_904_meta_object__value
     },
     &impl_904,
     NULL
+};
+
+static const afw_value_object_t
+impl_904_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_904_meta_object
 };
 
 static const afw_utf8_t
@@ -84975,13 +95989,24 @@ impl_905_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_905_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_905_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_905_meta_object__value
     },
     &impl_905,
     NULL
+};
+
+static const afw_value_object_t
+impl_905_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_905_meta_object
 };
 
 static const afw_utf8_t
@@ -85060,13 +96085,24 @@ impl_906_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_906_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_906_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_906_meta_object__value
     },
     &impl_906,
     NULL
+};
+
+static const afw_value_object_t
+impl_906_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_906_meta_object
 };
 
 static const afw_utf8_t
@@ -85145,13 +96181,24 @@ impl_907_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_907_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_907_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_907_meta_object__value
     },
     &impl_907,
     NULL
+};
+
+static const afw_value_object_t
+impl_907_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_907_meta_object
 };
 
 static const afw_utf8_t
@@ -85230,13 +96277,24 @@ impl_908_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_908_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_908_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_908_meta_object__value
     },
     &impl_908,
     NULL
+};
+
+static const afw_value_object_t
+impl_908_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_908_meta_object
 };
 
 static const afw_utf8_t
@@ -85315,13 +96373,24 @@ impl_909_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_909_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_909_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_909_meta_object__value
     },
     &impl_909,
     NULL
+};
+
+static const afw_value_object_t
+impl_909_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_909_meta_object
 };
 
 static const afw_utf8_t
@@ -85400,13 +96469,24 @@ impl_910_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_910_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_910_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_910_meta_object__value
     },
     &impl_910,
     NULL
+};
+
+static const afw_value_object_t
+impl_910_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_910_meta_object
 };
 
 static const afw_utf8_t
@@ -85472,13 +96552,24 @@ impl_911_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_911_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_911_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_911_meta_object__value
     },
     &impl_911,
     NULL
+};
+
+static const afw_value_object_t
+impl_911_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_911_meta_object
 };
 
 static const afw_utf8_t
@@ -85650,13 +96741,24 @@ impl_901_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_901_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_901_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_901_meta_object__value
     },
     &impl_901,
     NULL
+};
+
+static const afw_value_object_t
+impl_901_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_901_meta_object
 };
 
 static const afw_utf8_t
@@ -85746,12 +96848,25 @@ impl_900_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_900_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_900_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_900_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_900_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_900_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_900_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_900_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -85803,13 +96918,24 @@ impl_900_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_900_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_900_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_900_meta_object__value
     },
     &impl_900,
     NULL
+};
+
+static const afw_value_object_t
+impl_900_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_900_meta_object
 };
 
 static const afw_utf8_t
@@ -85885,13 +97011,24 @@ impl_913_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_913_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_913_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_913_meta_object__value
     },
     &impl_913,
     NULL
+};
+
+static const afw_value_object_t
+impl_913_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_913_meta_object
 };
 
 static const afw_utf8_t
@@ -85981,12 +97118,25 @@ impl_912_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_912_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_912_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_912_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_912_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_912_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_912_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_912_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -86038,13 +97188,24 @@ impl_912_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_912_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_912_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_912_meta_object__value
     },
     &impl_912,
     NULL
+};
+
+static const afw_value_object_t
+impl_912_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_912_meta_object
 };
 
 static const afw_utf8_t
@@ -86129,13 +97290,24 @@ impl_916_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_916_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_916_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_916_meta_object__value
     },
     &impl_916,
     NULL
+};
+
+static const afw_value_object_t
+impl_916_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_916_meta_object
 };
 
 static const afw_utf8_t
@@ -86214,13 +97386,24 @@ impl_917_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_917_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_917_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_917_meta_object__value
     },
     &impl_917,
     NULL
+};
+
+static const afw_value_object_t
+impl_917_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_917_meta_object
 };
 
 static const afw_utf8_t
@@ -86299,13 +97482,24 @@ impl_918_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_918_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_918_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_918_meta_object__value
     },
     &impl_918,
     NULL
+};
+
+static const afw_value_object_t
+impl_918_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_918_meta_object
 };
 
 static const afw_utf8_t
@@ -86384,13 +97578,24 @@ impl_919_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_919_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_919_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_919_meta_object__value
     },
     &impl_919,
     NULL
+};
+
+static const afw_value_object_t
+impl_919_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_919_meta_object
 };
 
 static const afw_utf8_t
@@ -86476,13 +97681,24 @@ impl_920_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_920_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_920_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_920_meta_object__value
     },
     &impl_920,
     NULL
+};
+
+static const afw_value_object_t
+impl_920_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_920_meta_object
 };
 
 static const afw_utf8_t
@@ -86561,13 +97777,24 @@ impl_921_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_921_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_921_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_921_meta_object__value
     },
     &impl_921,
     NULL
+};
+
+static const afw_value_object_t
+impl_921_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_921_meta_object
 };
 
 static const afw_utf8_t
@@ -86646,13 +97873,24 @@ impl_922_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_922_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_922_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_922_meta_object__value
     },
     &impl_922,
     NULL
+};
+
+static const afw_value_object_t
+impl_922_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_922_meta_object
 };
 
 static const afw_utf8_t
@@ -86731,13 +97969,24 @@ impl_923_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_923_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_923_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_923_meta_object__value
     },
     &impl_923,
     NULL
+};
+
+static const afw_value_object_t
+impl_923_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_923_meta_object
 };
 
 static const afw_utf8_t
@@ -86816,13 +98065,24 @@ impl_924_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_924_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_924_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_924_meta_object__value
     },
     &impl_924,
     NULL
+};
+
+static const afw_value_object_t
+impl_924_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_924_meta_object
 };
 
 static const afw_utf8_t
@@ -86901,13 +98161,24 @@ impl_925_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_925_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_925_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_925_meta_object__value
     },
     &impl_925,
     NULL
+};
+
+static const afw_value_object_t
+impl_925_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_925_meta_object
 };
 
 static const afw_utf8_t
@@ -86993,13 +98264,24 @@ impl_926_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_926_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_926_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_926_meta_object__value
     },
     &impl_926,
     NULL
+};
+
+static const afw_value_object_t
+impl_926_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_926_meta_object
 };
 
 static const afw_utf8_t
@@ -87078,13 +98360,24 @@ impl_927_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_927_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_927_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_927_meta_object__value
     },
     &impl_927,
     NULL
+};
+
+static const afw_value_object_t
+impl_927_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_927_meta_object
 };
 
 static const afw_utf8_t
@@ -87163,13 +98456,24 @@ impl_928_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_928_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_928_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_928_meta_object__value
     },
     &impl_928,
     NULL
+};
+
+static const afw_value_object_t
+impl_928_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_928_meta_object
 };
 
 static const afw_utf8_t
@@ -87380,13 +98684,24 @@ impl_915_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_915_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_915_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_915_meta_object__value
     },
     &impl_915,
     NULL
+};
+
+static const afw_value_object_t
+impl_915_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_915_meta_object
 };
 
 static const afw_utf8_t
@@ -87476,12 +98791,25 @@ impl_914_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_914_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_914_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_914_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_914_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_914_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_914_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_914_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -87533,13 +98861,24 @@ impl_914_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_914_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_914_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_914_meta_object__value
     },
     &impl_914,
     NULL
+};
+
+static const afw_value_object_t
+impl_914_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_914_meta_object
 };
 
 static const afw_utf8_t
@@ -87618,13 +98957,24 @@ impl_931_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_931_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_931_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_931_meta_object__value
     },
     &impl_931,
     NULL
+};
+
+static const afw_value_object_t
+impl_931_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_931_meta_object
 };
 
 static const afw_utf8_t
@@ -87697,13 +99047,24 @@ impl_932_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_932_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_932_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_932_meta_object__value
     },
     &impl_932,
     NULL
+};
+
+static const afw_value_object_t
+impl_932_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_932_meta_object
 };
 
 static const afw_utf8_t
@@ -87776,13 +99137,24 @@ impl_933_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_933_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_933_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_933_meta_object__value
     },
     &impl_933,
     NULL
+};
+
+static const afw_value_object_t
+impl_933_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_933_meta_object
 };
 
 static const afw_utf8_t
@@ -87855,13 +99227,24 @@ impl_934_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_934_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_934_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_934_meta_object__value
     },
     &impl_934,
     NULL
+};
+
+static const afw_value_object_t
+impl_934_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_934_meta_object
 };
 
 static const afw_utf8_t
@@ -87934,13 +99317,24 @@ impl_935_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_935_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_935_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_935_meta_object__value
     },
     &impl_935,
     NULL
+};
+
+static const afw_value_object_t
+impl_935_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_935_meta_object
 };
 
 static const afw_utf8_t
@@ -88013,13 +99407,24 @@ impl_936_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_936_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_936_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_936_meta_object__value
     },
     &impl_936,
     NULL
+};
+
+static const afw_value_object_t
+impl_936_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_936_meta_object
 };
 
 static const afw_utf8_t
@@ -88092,13 +99497,24 @@ impl_937_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_937_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_937_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_937_meta_object__value
     },
     &impl_937,
     NULL
+};
+
+static const afw_value_object_t
+impl_937_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_937_meta_object
 };
 
 static const afw_utf8_t
@@ -88171,13 +99587,24 @@ impl_938_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_938_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_938_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_938_meta_object__value
     },
     &impl_938,
     NULL
+};
+
+static const afw_value_object_t
+impl_938_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_938_meta_object
 };
 
 static const afw_utf8_t
@@ -88250,13 +99677,24 @@ impl_939_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_939_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_939_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_939_meta_object__value
     },
     &impl_939,
     NULL
+};
+
+static const afw_value_object_t
+impl_939_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_939_meta_object
 };
 
 static const afw_utf8_t
@@ -88329,13 +99767,24 @@ impl_940_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_940_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_940_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_940_meta_object__value
     },
     &impl_940,
     NULL
+};
+
+static const afw_value_object_t
+impl_940_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_940_meta_object
 };
 
 static const afw_utf8_t
@@ -88408,13 +99857,24 @@ impl_941_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_941_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_941_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_941_meta_object__value
     },
     &impl_941,
     NULL
+};
+
+static const afw_value_object_t
+impl_941_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_941_meta_object
 };
 
 static const afw_utf8_t
@@ -88487,13 +99947,24 @@ impl_942_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_942_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_942_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_942_meta_object__value
     },
     &impl_942,
     NULL
+};
+
+static const afw_value_object_t
+impl_942_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_942_meta_object
 };
 
 static const afw_utf8_t
@@ -88566,13 +100037,24 @@ impl_943_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_943_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_943_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_943_meta_object__value
     },
     &impl_943,
     NULL
+};
+
+static const afw_value_object_t
+impl_943_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_943_meta_object
 };
 
 static const afw_utf8_t
@@ -88645,13 +100127,24 @@ impl_944_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_944_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_944_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_944_meta_object__value
     },
     &impl_944,
     NULL
+};
+
+static const afw_value_object_t
+impl_944_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_944_meta_object
 };
 
 static const afw_utf8_t
@@ -88724,13 +100217,24 @@ impl_945_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_945_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_945_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_945_meta_object__value
     },
     &impl_945,
     NULL
+};
+
+static const afw_value_object_t
+impl_945_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_945_meta_object
 };
 
 static const afw_utf8_t
@@ -88803,13 +100307,24 @@ impl_946_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_946_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_946_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_946_meta_object__value
     },
     &impl_946,
     NULL
+};
+
+static const afw_value_object_t
+impl_946_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_946_meta_object
 };
 
 static const afw_utf8_t
@@ -88882,13 +100397,24 @@ impl_947_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_947_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_947_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_947_meta_object__value
     },
     &impl_947,
     NULL
+};
+
+static const afw_value_object_t
+impl_947_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_947_meta_object
 };
 
 static const afw_utf8_t
@@ -88961,13 +100487,24 @@ impl_948_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_948_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_948_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_948_meta_object__value
     },
     &impl_948,
     NULL
+};
+
+static const afw_value_object_t
+impl_948_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_948_meta_object
 };
 
 static const afw_utf8_t
@@ -89040,13 +100577,24 @@ impl_949_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_949_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_949_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_949_meta_object__value
     },
     &impl_949,
     NULL
+};
+
+static const afw_value_object_t
+impl_949_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_949_meta_object
 };
 
 static const afw_utf8_t
@@ -89119,13 +100667,24 @@ impl_950_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_950_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_950_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_950_meta_object__value
     },
     &impl_950,
     NULL
+};
+
+static const afw_value_object_t
+impl_950_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_950_meta_object
 };
 
 static const afw_utf8_t
@@ -89205,13 +100764,24 @@ impl_951_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_951_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_951_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_951_meta_object__value
     },
     &impl_951,
     NULL
+};
+
+static const afw_value_object_t
+impl_951_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_951_meta_object
 };
 
 static const afw_utf8_t
@@ -89526,13 +101096,24 @@ impl_930_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_930_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_930_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_930_meta_object__value
     },
     &impl_930,
     NULL
+};
+
+static const afw_value_object_t
+impl_930_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_930_meta_object
 };
 
 static const afw_utf8_t
@@ -89622,12 +101203,25 @@ impl_929_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_929_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_929_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_929_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_929_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_929_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_929_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_929_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -89679,13 +101273,24 @@ impl_929_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_929_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_929_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_929_meta_object__value
     },
     &impl_929,
     NULL
+};
+
+static const afw_value_object_t
+impl_929_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_929_meta_object
 };
 
 static const afw_utf8_t
@@ -89790,13 +101395,24 @@ impl_954_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_954_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_954_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_954_meta_object__value
     },
     &impl_954,
     NULL
+};
+
+static const afw_value_object_t
+impl_954_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_954_meta_object
 };
 
 static const afw_utf8_t
@@ -89889,13 +101505,24 @@ impl_955_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_955_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_955_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_955_meta_object__value
     },
     &impl_955,
     NULL
+};
+
+static const afw_value_object_t
+impl_955_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_955_meta_object
 };
 
 static const afw_utf8_t
@@ -89981,13 +101608,24 @@ impl_956_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_956_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_956_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_956_meta_object__value
     },
     &impl_956,
     NULL
+};
+
+static const afw_value_object_t
+impl_956_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_956_meta_object
 };
 
 static const afw_utf8_t
@@ -90086,13 +101724,24 @@ impl_957_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_957_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_957_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_957_meta_object__value
     },
     &impl_957,
     NULL
+};
+
+static const afw_value_object_t
+impl_957_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_957_meta_object
 };
 
 static const afw_utf8_t
@@ -90151,13 +101800,24 @@ impl_958_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_958_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_958_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_958_meta_object__value
     },
     &impl_958,
     NULL
+};
+
+static const afw_value_object_t
+impl_958_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_958_meta_object
 };
 
 static const afw_utf8_t
@@ -90271,7 +101931,7 @@ impl_953_parentPaths_array[] = {
 
 static const afw_array_wrapper_for_array_self_t
 impl_953_parentPaths_list = {
-    &afw_array_wrapper_for_array_inf,
+    { &afw_array_wrapper_for_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_953_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_953_parentPaths_array
@@ -90283,13 +101943,24 @@ impl_953_parentPaths = {
     (const afw_array_t *)&impl_953_parentPaths_list
 };
 
+static const afw_value_object_t
+impl_953_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_953_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_953_meta_object__value
     },
     &impl_953,
     &impl_953_parentPaths
+};
+
+static const afw_value_object_t
+impl_953_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_953_meta_object
 };
 
 static const afw_utf8_t
@@ -90343,12 +102014,25 @@ impl_952_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_952_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_952_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_952_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_952_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_952_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_952_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_952_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -90397,13 +102081,24 @@ impl_952_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_952_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_952_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_952_meta_object__value
     },
     &impl_952,
     NULL
+};
+
+static const afw_value_object_t
+impl_952_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_952_meta_object
 };
 
 static const afw_utf8_t
@@ -90465,13 +102160,24 @@ impl_960_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_960_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_960_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_960_meta_object__value
     },
     &impl_960,
     NULL
+};
+
+static const afw_value_object_t
+impl_960_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_960_meta_object
 };
 
 static const afw_utf8_t
@@ -90525,12 +102231,25 @@ impl_959_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_959_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_959_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_959_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_959_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_959_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_959_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_959_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -90579,13 +102298,24 @@ impl_959_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_959_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_959_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_959_meta_object__value
     },
     &impl_959,
     NULL
+};
+
+static const afw_value_object_t
+impl_959_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_959_meta_object
 };
 
 static const afw_utf8_t
@@ -90677,13 +102407,24 @@ impl_963_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_963_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_963_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_963_meta_object__value
     },
     &impl_963,
     NULL
+};
+
+static const afw_value_object_t
+impl_963_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_963_meta_object
 };
 
 static const afw_utf8_t
@@ -90769,13 +102510,24 @@ impl_964_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_964_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_964_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_964_meta_object__value
     },
     &impl_964,
     NULL
+};
+
+static const afw_value_object_t
+impl_964_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_964_meta_object
 };
 
 static const afw_utf8_t
@@ -90868,13 +102620,24 @@ impl_965_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_965_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_965_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_965_meta_object__value
     },
     &impl_965,
     NULL
+};
+
+static const afw_value_object_t
+impl_965_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_965_meta_object
 };
 
 static const afw_utf8_t
@@ -90960,13 +102723,24 @@ impl_966_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_966_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_966_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_966_meta_object__value
     },
     &impl_966,
     NULL
+};
+
+static const afw_value_object_t
+impl_966_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_966_meta_object
 };
 
 static const afw_utf8_t
@@ -91052,13 +102826,24 @@ impl_967_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_967_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_967_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_967_meta_object__value
     },
     &impl_967,
     NULL
+};
+
+static const afw_value_object_t
+impl_967_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_967_meta_object
 };
 
 static const afw_utf8_t
@@ -91151,13 +102936,24 @@ impl_968_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_968_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_968_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_968_meta_object__value
     },
     &impl_968,
     NULL
+};
+
+static const afw_value_object_t
+impl_968_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_968_meta_object
 };
 
 static const afw_utf8_t
@@ -91243,13 +103039,24 @@ impl_969_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_969_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_969_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_969_meta_object__value
     },
     &impl_969,
     NULL
+};
+
+static const afw_value_object_t
+impl_969_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_969_meta_object
 };
 
 static const afw_utf8_t
@@ -91348,13 +103155,24 @@ impl_970_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_970_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_970_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_970_meta_object__value
     },
     &impl_970,
     NULL
+};
+
+static const afw_value_object_t
+impl_970_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_970_meta_object
 };
 
 static const afw_utf8_t
@@ -91500,13 +103318,24 @@ impl_962_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_962_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_962_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_962_meta_object__value
     },
     &impl_962,
     NULL
+};
+
+static const afw_value_object_t
+impl_962_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_962_meta_object
 };
 
 static const afw_utf8_t
@@ -91560,12 +103389,25 @@ impl_961_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_961_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_961_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_961_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_961_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_961_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_961_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_961_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -91614,13 +103456,24 @@ impl_961_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_961_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_961_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_961_meta_object__value
     },
     &impl_961,
     NULL
+};
+
+static const afw_value_object_t
+impl_961_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_961_meta_object
 };
 
 static const afw_utf8_t
@@ -91682,13 +103535,24 @@ impl_972_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_972_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_972_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_972_meta_object__value
     },
     &impl_972,
     NULL
+};
+
+static const afw_value_object_t
+impl_972_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_972_meta_object
 };
 
 static const afw_utf8_t
@@ -91742,12 +103606,25 @@ impl_971_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_971_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_971_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_971_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_971_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_971_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_971_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_971_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -91796,13 +103673,24 @@ impl_971_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_971_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_971_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_971_meta_object__value
     },
     &impl_971,
     NULL
+};
+
+static const afw_value_object_t
+impl_971_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_971_meta_object
 };
 
 static const afw_utf8_t
@@ -91888,13 +103776,24 @@ impl_975_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_975_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_975_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_975_meta_object__value
     },
     &impl_975,
     NULL
+};
+
+static const afw_value_object_t
+impl_975_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_975_meta_object
 };
 
 static const afw_utf8_t
@@ -91974,12 +103873,25 @@ impl_976_array_possibleValues[] = {
     AFW_UTF8_LITERAL("or")
 };
 
+static const afw_value_array_t
+impl_976_list_possibleValues__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_976_list_possibleValues = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_976_list_possibleValues__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_976_array_possibleValues) / sizeof(afw_utf8_t),
     &impl_976_array_possibleValues
+};
+
+static const afw_value_array_t
+impl_976_list_possibleValues__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_976_list_possibleValues
 };
 
 static const afw_value_array_t
@@ -92017,13 +103929,24 @@ impl_976_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_976_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_976_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_976_meta_object__value
     },
     &impl_976,
     NULL
+};
+
+static const afw_value_object_t
+impl_976_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_976_meta_object
 };
 
 static const afw_utf8_t
@@ -92096,13 +104019,24 @@ impl_977_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_977_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_977_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_977_meta_object__value
     },
     &impl_977,
     NULL
+};
+
+static const afw_value_object_t
+impl_977_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_977_meta_object
 };
 
 static const afw_utf8_t
@@ -92175,13 +104109,24 @@ impl_978_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_978_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_978_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_978_meta_object__value
     },
     &impl_978,
     NULL
+};
+
+static const afw_value_object_t
+impl_978_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_978_meta_object
 };
 
 static const afw_utf8_t
@@ -92275,13 +104220,24 @@ impl_974_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_974_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_974_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_974_meta_object__value
     },
     &impl_974,
     NULL
+};
+
+static const afw_value_object_t
+impl_974_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_974_meta_object
 };
 
 static const afw_utf8_t
@@ -92371,12 +104327,25 @@ impl_973_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_973_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_973_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_973_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_973_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_973_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_973_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_973_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -92428,13 +104397,24 @@ impl_973_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_973_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_973_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_973_meta_object__value
     },
     &impl_973,
     NULL
+};
+
+static const afw_value_object_t
+impl_973_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_973_meta_object
 };
 
 static const afw_utf8_t
@@ -92533,13 +104513,24 @@ impl_981_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_981_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_981_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_981_meta_object__value
     },
     &impl_981,
     NULL
+};
+
+static const afw_value_object_t
+impl_981_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_981_meta_object
 };
 
 static const afw_utf8_t
@@ -92619,13 +104610,24 @@ impl_982_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_982_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_982_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_982_meta_object__value
     },
     &impl_982,
     NULL
+};
+
+static const afw_value_object_t
+impl_982_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_982_meta_object
 };
 
 static const afw_utf8_t
@@ -92705,13 +104707,24 @@ impl_983_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_983_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_983_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_983_meta_object__value
     },
     &impl_983,
     NULL
+};
+
+static const afw_value_object_t
+impl_983_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_983_meta_object
 };
 
 static const afw_utf8_t
@@ -92784,13 +104797,24 @@ impl_984_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_984_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_984_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_984_meta_object__value
     },
     &impl_984,
     NULL
+};
+
+static const afw_value_object_t
+impl_984_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_984_meta_object
 };
 
 static const afw_utf8_t
@@ -92884,13 +104908,24 @@ impl_980_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_980_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_980_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_980_meta_object__value
     },
     &impl_980,
     NULL
+};
+
+static const afw_value_object_t
+impl_980_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_980_meta_object
 };
 
 static const afw_utf8_t
@@ -92980,12 +105015,25 @@ impl_979_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_979_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_979_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_979_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_979_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_979_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_979_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_979_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -93037,13 +105085,24 @@ impl_979_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_979_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_979_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_979_meta_object__value
     },
     &impl_979,
     NULL
+};
+
+static const afw_value_object_t
+impl_979_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_979_meta_object
 };
 
 static const afw_utf8_t
@@ -93091,13 +105150,24 @@ impl_986_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_986_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_986_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_986_meta_object__value
     },
     &impl_986,
     NULL
+};
+
+static const afw_value_object_t
+impl_986_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_986_meta_object
 };
 
 static const afw_utf8_t
@@ -93173,13 +105243,24 @@ impl_988_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_988_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_988_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_988_meta_object__value
     },
     &impl_988,
     NULL
+};
+
+static const afw_value_object_t
+impl_988_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_988_meta_object
 };
 
 static const afw_utf8_t
@@ -93234,13 +105315,24 @@ impl_987_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_987_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_987_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_987_meta_object__value
     },
     &impl_987,
     NULL
+};
+
+static const afw_value_object_t
+impl_987_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_987_meta_object
 };
 
 static const afw_utf8_t
@@ -93330,12 +105422,25 @@ impl_985_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_985_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_985_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_985_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_985_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_985_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_985_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_985_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -93400,13 +105505,24 @@ impl_985_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_985_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_985_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_985_meta_object__value
     },
     &impl_985,
     NULL
+};
+
+static const afw_value_object_t
+impl_985_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_985_meta_object
 };
 
 static const afw_utf8_t
@@ -93467,13 +105583,24 @@ impl_992_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_992_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_992_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_992_meta_object__value
     },
     &impl_992,
     NULL
+};
+
+static const afw_value_object_t
+impl_992_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_992_meta_object
 };
 
 static const afw_utf8_t
@@ -93576,13 +105703,24 @@ impl_991_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_991_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_991_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_991_meta_object__value
     },
     &impl_991,
     NULL
+};
+
+static const afw_value_object_t
+impl_991_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_991_meta_object
 };
 
 static const afw_utf8_t
@@ -93637,13 +105775,24 @@ impl_994_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_994_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_994_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_994_meta_object__value
     },
     &impl_994,
     NULL
+};
+
+static const afw_value_object_t
+impl_994_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_994_meta_object
 };
 
 static const afw_utf8_t
@@ -93739,13 +105888,24 @@ impl_993_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_993_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_993_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_993_meta_object__value
     },
     &impl_993,
     NULL
+};
+
+static const afw_value_object_t
+impl_993_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_993_meta_object
 };
 
 static const afw_utf8_t
@@ -93813,13 +105973,24 @@ impl_990_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_990_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_990_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_990_meta_object__value
     },
     &impl_990,
     NULL
+};
+
+static const afw_value_object_t
+impl_990_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_990_meta_object
 };
 
 static const afw_utf8_t
@@ -93874,13 +106045,24 @@ impl_996_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_996_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_996_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_996_meta_object__value
     },
     &impl_996,
     NULL
+};
+
+static const afw_value_object_t
+impl_996_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_996_meta_object
 };
 
 static const afw_utf8_t
@@ -93955,13 +106137,24 @@ impl_995_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_995_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_995_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_995_meta_object__value
     },
     &impl_995,
     NULL
+};
+
+static const afw_value_object_t
+impl_995_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_995_meta_object
 };
 
 static const afw_utf8_t
@@ -94051,12 +106244,25 @@ impl_989_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_989_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_989_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_989_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_989_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_989_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_989_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_989_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -94121,13 +106327,24 @@ impl_989_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_989_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_989_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_989_meta_object__value
     },
     &impl_989,
     NULL
+};
+
+static const afw_value_object_t
+impl_989_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_989_meta_object
 };
 
 static const afw_utf8_t
@@ -94175,13 +106392,24 @@ impl_998_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_998_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_998_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_998_meta_object__value
     },
     &impl_998,
     NULL
+};
+
+static const afw_value_object_t
+impl_998_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_998_meta_object
 };
 
 static const afw_utf8_t
@@ -94233,7 +106461,7 @@ impl_999_parentPaths_array[] = {
 
 static const afw_array_wrapper_for_array_self_t
 impl_999_parentPaths_list = {
-    &afw_array_wrapper_for_array_inf,
+    { &afw_array_wrapper_for_array_inf, NULL, NULL },
     &afw_data_type_anyURI_direct,
     sizeof(impl_999_parentPaths_array) / sizeof(afw_utf8_t),
     (const void *)&impl_999_parentPaths_array
@@ -94245,13 +106473,24 @@ impl_999_parentPaths = {
     (const afw_array_t *)&impl_999_parentPaths_list
 };
 
+static const afw_value_object_t
+impl_999_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_999_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_999_meta_object__value
     },
     &impl_999,
     &impl_999_parentPaths
+};
+
+static const afw_value_object_t
+impl_999_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_999_meta_object
 };
 
 static const afw_utf8_t
@@ -94341,12 +106580,25 @@ impl_997_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_997_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_997_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_997_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_997_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_997_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_997_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_997_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -94411,13 +106663,24 @@ impl_997_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_997_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_997_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_997_meta_object__value
     },
     &impl_997,
     NULL
+};
+
+static const afw_value_object_t
+impl_997_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_997_meta_object
 };
 
 static const afw_utf8_t
@@ -94472,13 +106735,24 @@ impl_1001_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1001_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1001_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1001_meta_object__value
     },
     &impl_1001,
     NULL
+};
+
+static const afw_value_object_t
+impl_1001_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1001_meta_object
 };
 
 static const afw_utf8_t
@@ -94547,13 +106821,24 @@ impl_1003_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1003_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1003_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1003_meta_object__value
     },
     &impl_1003,
     NULL
+};
+
+static const afw_value_object_t
+impl_1003_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1003_meta_object
 };
 
 static const afw_utf8_t
@@ -94619,13 +106904,24 @@ impl_1004_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1004_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1004_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1004_meta_object__value
     },
     &impl_1004,
     NULL
+};
+
+static const afw_value_object_t
+impl_1004_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1004_meta_object
 };
 
 static const afw_utf8_t
@@ -94691,13 +106987,24 @@ impl_1005_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1005_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1005_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1005_meta_object__value
     },
     &impl_1005,
     NULL
+};
+
+static const afw_value_object_t
+impl_1005_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1005_meta_object
 };
 
 static const afw_utf8_t
@@ -94763,13 +107070,24 @@ impl_1006_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1006_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1006_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1006_meta_object__value
     },
     &impl_1006,
     NULL
+};
+
+static const afw_value_object_t
+impl_1006_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1006_meta_object
 };
 
 static const afw_utf8_t
@@ -94835,13 +107153,24 @@ impl_1007_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1007_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1007_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1007_meta_object__value
     },
     &impl_1007,
     NULL
+};
+
+static const afw_value_object_t
+impl_1007_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1007_meta_object
 };
 
 static const afw_utf8_t
@@ -94907,13 +107236,24 @@ impl_1008_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1008_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1008_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1008_meta_object__value
     },
     &impl_1008,
     NULL
+};
+
+static const afw_value_object_t
+impl_1008_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1008_meta_object
 };
 
 static const afw_utf8_t
@@ -94979,13 +107319,24 @@ impl_1009_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1009_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1009_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1009_meta_object__value
     },
     &impl_1009,
     NULL
+};
+
+static const afw_value_object_t
+impl_1009_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1009_meta_object
 };
 
 static const afw_utf8_t
@@ -95051,13 +107402,24 @@ impl_1010_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1010_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1010_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1010_meta_object__value
     },
     &impl_1010,
     NULL
+};
+
+static const afw_value_object_t
+impl_1010_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1010_meta_object
 };
 
 static const afw_utf8_t
@@ -95123,13 +107485,24 @@ impl_1011_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1011_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1011_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1011_meta_object__value
     },
     &impl_1011,
     NULL
+};
+
+static const afw_value_object_t
+impl_1011_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1011_meta_object
 };
 
 static const afw_utf8_t
@@ -95195,13 +107568,24 @@ impl_1012_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1012_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1012_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1012_meta_object__value
     },
     &impl_1012,
     NULL
+};
+
+static const afw_value_object_t
+impl_1012_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1012_meta_object
 };
 
 static const afw_utf8_t
@@ -95267,13 +107651,24 @@ impl_1013_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1013_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1013_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1013_meta_object__value
     },
     &impl_1013,
     NULL
+};
+
+static const afw_value_object_t
+impl_1013_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1013_meta_object
 };
 
 static const afw_utf8_t
@@ -95339,13 +107734,24 @@ impl_1014_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1014_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1014_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1014_meta_object__value
     },
     &impl_1014,
     NULL
+};
+
+static const afw_value_object_t
+impl_1014_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1014_meta_object
 };
 
 static const afw_utf8_t
@@ -95411,13 +107817,24 @@ impl_1015_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1015_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1015_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1015_meta_object__value
     },
     &impl_1015,
     NULL
+};
+
+static const afw_value_object_t
+impl_1015_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1015_meta_object
 };
 
 static const afw_utf8_t
@@ -95483,13 +107900,24 @@ impl_1016_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1016_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1016_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1016_meta_object__value
     },
     &impl_1016,
     NULL
+};
+
+static const afw_value_object_t
+impl_1016_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1016_meta_object
 };
 
 static const afw_utf8_t
@@ -95555,13 +107983,24 @@ impl_1017_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1017_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1017_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1017_meta_object__value
     },
     &impl_1017,
     NULL
+};
+
+static const afw_value_object_t
+impl_1017_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1017_meta_object
 };
 
 static const afw_utf8_t
@@ -95627,13 +108066,24 @@ impl_1018_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1018_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1018_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1018_meta_object__value
     },
     &impl_1018,
     NULL
+};
+
+static const afw_value_object_t
+impl_1018_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1018_meta_object
 };
 
 static const afw_utf8_t
@@ -95699,13 +108149,24 @@ impl_1019_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1019_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1019_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1019_meta_object__value
     },
     &impl_1019,
     NULL
+};
+
+static const afw_value_object_t
+impl_1019_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1019_meta_object
 };
 
 static const afw_utf8_t
@@ -95771,13 +108232,24 @@ impl_1020_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1020_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1020_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1020_meta_object__value
     },
     &impl_1020,
     NULL
+};
+
+static const afw_value_object_t
+impl_1020_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1020_meta_object
 };
 
 static const afw_utf8_t
@@ -95843,13 +108315,24 @@ impl_1021_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1021_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1021_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1021_meta_object__value
     },
     &impl_1021,
     NULL
+};
+
+static const afw_value_object_t
+impl_1021_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1021_meta_object
 };
 
 static const afw_utf8_t
@@ -95915,13 +108398,24 @@ impl_1022_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1022_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1022_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1022_meta_object__value
     },
     &impl_1022,
     NULL
+};
+
+static const afw_value_object_t
+impl_1022_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1022_meta_object
 };
 
 static const afw_utf8_t
@@ -95987,13 +108481,24 @@ impl_1023_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1023_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1023_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1023_meta_object__value
     },
     &impl_1023,
     NULL
+};
+
+static const afw_value_object_t
+impl_1023_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1023_meta_object
 };
 
 static const afw_utf8_t
@@ -96059,13 +108564,24 @@ impl_1024_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1024_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1024_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1024_meta_object__value
     },
     &impl_1024,
     NULL
+};
+
+static const afw_value_object_t
+impl_1024_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1024_meta_object
 };
 
 static const afw_utf8_t
@@ -96131,13 +108647,24 @@ impl_1025_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1025_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1025_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1025_meta_object__value
     },
     &impl_1025,
     NULL
+};
+
+static const afw_value_object_t
+impl_1025_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1025_meta_object
 };
 
 static const afw_utf8_t
@@ -96203,13 +108730,24 @@ impl_1026_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1026_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1026_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1026_meta_object__value
     },
     &impl_1026,
     NULL
+};
+
+static const afw_value_object_t
+impl_1026_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1026_meta_object
 };
 
 static const afw_utf8_t
@@ -96275,13 +108813,24 @@ impl_1027_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1027_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1027_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1027_meta_object__value
     },
     &impl_1027,
     NULL
+};
+
+static const afw_value_object_t
+impl_1027_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1027_meta_object
 };
 
 static const afw_utf8_t
@@ -96347,13 +108896,24 @@ impl_1028_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1028_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1028_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1028_meta_object__value
     },
     &impl_1028,
     NULL
+};
+
+static const afw_value_object_t
+impl_1028_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1028_meta_object
 };
 
 static const afw_utf8_t
@@ -96419,13 +108979,24 @@ impl_1029_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1029_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1029_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1029_meta_object__value
     },
     &impl_1029,
     NULL
+};
+
+static const afw_value_object_t
+impl_1029_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1029_meta_object
 };
 
 static const afw_utf8_t
@@ -96491,13 +109062,24 @@ impl_1030_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1030_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1030_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1030_meta_object__value
     },
     &impl_1030,
     NULL
+};
+
+static const afw_value_object_t
+impl_1030_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1030_meta_object
 };
 
 static const afw_utf8_t
@@ -96563,13 +109145,24 @@ impl_1031_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1031_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1031_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1031_meta_object__value
     },
     &impl_1031,
     NULL
+};
+
+static const afw_value_object_t
+impl_1031_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1031_meta_object
 };
 
 static const afw_utf8_t
@@ -96635,13 +109228,24 @@ impl_1032_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1032_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1032_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1032_meta_object__value
     },
     &impl_1032,
     NULL
+};
+
+static const afw_value_object_t
+impl_1032_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1032_meta_object
 };
 
 static const afw_utf8_t
@@ -96707,13 +109311,24 @@ impl_1033_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1033_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1033_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1033_meta_object__value
     },
     &impl_1033,
     NULL
+};
+
+static const afw_value_object_t
+impl_1033_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1033_meta_object
 };
 
 static const afw_utf8_t
@@ -96779,13 +109394,24 @@ impl_1034_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1034_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1034_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1034_meta_object__value
     },
     &impl_1034,
     NULL
+};
+
+static const afw_value_object_t
+impl_1034_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1034_meta_object
 };
 
 static const afw_utf8_t
@@ -96851,13 +109477,24 @@ impl_1035_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1035_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1035_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1035_meta_object__value
     },
     &impl_1035,
     NULL
+};
+
+static const afw_value_object_t
+impl_1035_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1035_meta_object
 };
 
 static const afw_utf8_t
@@ -96923,13 +109560,24 @@ impl_1036_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1036_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1036_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1036_meta_object__value
     },
     &impl_1036,
     NULL
+};
+
+static const afw_value_object_t
+impl_1036_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1036_meta_object
 };
 
 static const afw_utf8_t
@@ -96995,13 +109643,24 @@ impl_1037_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1037_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1037_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1037_meta_object__value
     },
     &impl_1037,
     NULL
+};
+
+static const afw_value_object_t
+impl_1037_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1037_meta_object
 };
 
 static const afw_utf8_t
@@ -97067,13 +109726,24 @@ impl_1038_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1038_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1038_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1038_meta_object__value
     },
     &impl_1038,
     NULL
+};
+
+static const afw_value_object_t
+impl_1038_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1038_meta_object
 };
 
 static const afw_utf8_t
@@ -97139,13 +109809,24 @@ impl_1039_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1039_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1039_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1039_meta_object__value
     },
     &impl_1039,
     NULL
+};
+
+static const afw_value_object_t
+impl_1039_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1039_meta_object
 };
 
 static const afw_utf8_t
@@ -97211,13 +109892,24 @@ impl_1040_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1040_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1040_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1040_meta_object__value
     },
     &impl_1040,
     NULL
+};
+
+static const afw_value_object_t
+impl_1040_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1040_meta_object
 };
 
 static const afw_utf8_t
@@ -97283,13 +109975,24 @@ impl_1041_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1041_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1041_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1041_meta_object__value
     },
     &impl_1041,
     NULL
+};
+
+static const afw_value_object_t
+impl_1041_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1041_meta_object
 };
 
 static const afw_utf8_t
@@ -97355,13 +110058,24 @@ impl_1042_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1042_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1042_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1042_meta_object__value
     },
     &impl_1042,
     NULL
+};
+
+static const afw_value_object_t
+impl_1042_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1042_meta_object
 };
 
 static const afw_utf8_t
@@ -97427,13 +110141,24 @@ impl_1043_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1043_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1043_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1043_meta_object__value
     },
     &impl_1043,
     NULL
+};
+
+static const afw_value_object_t
+impl_1043_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1043_meta_object
 };
 
 static const afw_utf8_t
@@ -97499,13 +110224,24 @@ impl_1044_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1044_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1044_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1044_meta_object__value
     },
     &impl_1044,
     NULL
+};
+
+static const afw_value_object_t
+impl_1044_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1044_meta_object
 };
 
 static const afw_utf8_t
@@ -97571,13 +110307,24 @@ impl_1045_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1045_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1045_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1045_meta_object__value
     },
     &impl_1045,
     NULL
+};
+
+static const afw_value_object_t
+impl_1045_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1045_meta_object
 };
 
 static const afw_utf8_t
@@ -97643,13 +110390,24 @@ impl_1046_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1046_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1046_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1046_meta_object__value
     },
     &impl_1046,
     NULL
+};
+
+static const afw_value_object_t
+impl_1046_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1046_meta_object
 };
 
 static const afw_utf8_t
@@ -97715,13 +110473,24 @@ impl_1047_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1047_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1047_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1047_meta_object__value
     },
     &impl_1047,
     NULL
+};
+
+static const afw_value_object_t
+impl_1047_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1047_meta_object
 };
 
 static const afw_utf8_t
@@ -98348,13 +111117,24 @@ impl_1002_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1002_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1002_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1002_meta_object__value
     },
     &impl_1002,
     NULL
+};
+
+static const afw_value_object_t
+impl_1002_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1002_meta_object
 };
 
 static const afw_utf8_t
@@ -98408,12 +111188,25 @@ impl_1000_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_1000_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_1000_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_1000_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_1000_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_1000_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_1000_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_1000_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -98475,13 +111268,24 @@ impl_1000_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1000_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1000_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1000_meta_object__value
     },
     &impl_1000,
     NULL
+};
+
+static const afw_value_object_t
+impl_1000_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1000_meta_object
 };
 
 static const afw_utf8_t
@@ -98529,13 +111333,24 @@ impl_1049_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1049_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1049_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1049_meta_object__value
     },
     &impl_1049,
     NULL
+};
+
+static const afw_value_object_t
+impl_1049_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1049_meta_object
 };
 
 static const afw_utf8_t
@@ -98611,13 +111426,24 @@ impl_1051_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1051_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1051_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1051_meta_object__value
     },
     &impl_1051,
     NULL
+};
+
+static const afw_value_object_t
+impl_1051_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1051_meta_object
 };
 
 static const afw_utf8_t
@@ -98683,13 +111509,24 @@ impl_1052_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1052_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1052_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1052_meta_object__value
     },
     &impl_1052,
     NULL
+};
+
+static const afw_value_object_t
+impl_1052_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1052_meta_object
 };
 
 static const afw_utf8_t
@@ -98762,13 +111599,24 @@ impl_1053_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1053_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1053_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1053_meta_object__value
     },
     &impl_1053,
     NULL
+};
+
+static const afw_value_object_t
+impl_1053_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1053_meta_object
 };
 
 static const afw_utf8_t
@@ -98841,13 +111689,24 @@ impl_1054_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1054_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1054_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1054_meta_object__value
     },
     &impl_1054,
     NULL
+};
+
+static const afw_value_object_t
+impl_1054_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1054_meta_object
 };
 
 static const afw_utf8_t
@@ -98941,13 +111800,24 @@ impl_1050_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1050_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1050_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1050_meta_object__value
     },
     &impl_1050,
     NULL
+};
+
+static const afw_value_object_t
+impl_1050_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1050_meta_object
 };
 
 static const afw_utf8_t
@@ -99037,12 +111907,25 @@ impl_1048_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_1048_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_1048_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_1048_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_1048_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_1048_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_1048_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_1048_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -99107,13 +111990,24 @@ impl_1048_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1048_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1048_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1048_meta_object__value
     },
     &impl_1048,
     NULL
+};
+
+static const afw_value_object_t
+impl_1048_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1048_meta_object
 };
 
 static const afw_utf8_t
@@ -99161,13 +112055,24 @@ impl_1056_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1056_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1056_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1056_meta_object__value
     },
     &impl_1056,
     NULL
+};
+
+static const afw_value_object_t
+impl_1056_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1056_meta_object
 };
 
 static const afw_utf8_t
@@ -99250,13 +112155,24 @@ impl_1058_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1058_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1058_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1058_meta_object__value
     },
     &impl_1058,
     NULL
+};
+
+static const afw_value_object_t
+impl_1058_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1058_meta_object
 };
 
 static const afw_utf8_t
@@ -99329,13 +112245,24 @@ impl_1059_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1059_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1059_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1059_meta_object__value
     },
     &impl_1059,
     NULL
+};
+
+static const afw_value_object_t
+impl_1059_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1059_meta_object
 };
 
 static const afw_utf8_t
@@ -99415,13 +112342,24 @@ impl_1060_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1060_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1060_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1060_meta_object__value
     },
     &impl_1060,
     NULL
+};
+
+static const afw_value_object_t
+impl_1060_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1060_meta_object
 };
 
 static const afw_utf8_t
@@ -99494,13 +112432,24 @@ impl_1061_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1061_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1061_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1061_meta_object__value
     },
     &impl_1061,
     NULL
+};
+
+static const afw_value_object_t
+impl_1061_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1061_meta_object
 };
 
 static const afw_utf8_t
@@ -99566,13 +112515,24 @@ impl_1062_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1062_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1062_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1062_meta_object__value
     },
     &impl_1062,
     NULL
+};
+
+static const afw_value_object_t
+impl_1062_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1062_meta_object
 };
 
 static const afw_utf8_t
@@ -99658,13 +112618,24 @@ impl_1063_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1063_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1063_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1063_meta_object__value
     },
     &impl_1063,
     NULL
+};
+
+static const afw_value_object_t
+impl_1063_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1063_meta_object
 };
 
 static const afw_utf8_t
@@ -99735,12 +112706,25 @@ impl_1064_array_possibleValues[] = {
     AFW_UTF8_LITERAL("success")
 };
 
+static const afw_value_array_t
+impl_1064_list_possibleValues__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_1064_list_possibleValues = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_1064_list_possibleValues__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_1064_array_possibleValues) / sizeof(afw_utf8_t),
     &impl_1064_array_possibleValues
+};
+
+static const afw_value_array_t
+impl_1064_list_possibleValues__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_1064_list_possibleValues
 };
 
 static const afw_value_array_t
@@ -99765,13 +112749,24 @@ impl_1064_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1064_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1064_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1064_meta_object__value
     },
     &impl_1064,
     NULL
+};
+
+static const afw_value_object_t
+impl_1064_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1064_meta_object
 };
 
 static const afw_utf8_t
@@ -99844,13 +112839,24 @@ impl_1065_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1065_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1065_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1065_meta_object__value
     },
     &impl_1065,
     NULL
+};
+
+static const afw_value_object_t
+impl_1065_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1065_meta_object
 };
 
 static const afw_utf8_t
@@ -99923,13 +112929,24 @@ impl_1066_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1066_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1066_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1066_meta_object__value
     },
     &impl_1066,
     NULL
+};
+
+static const afw_value_object_t
+impl_1066_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1066_meta_object
 };
 
 static const afw_utf8_t
@@ -100088,13 +113105,24 @@ impl_1057_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1057_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1057_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1057_meta_object__value
     },
     &impl_1057,
     NULL
+};
+
+static const afw_value_object_t
+impl_1057_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1057_meta_object
 };
 
 static const afw_utf8_t
@@ -100184,12 +113212,25 @@ impl_1055_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_1055_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_1055_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_1055_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_1055_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_1055_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_1055_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_1055_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -100247,13 +113288,24 @@ impl_1055_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1055_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1055_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1055_meta_object__value
     },
     &impl_1055,
     NULL
+};
+
+static const afw_value_object_t
+impl_1055_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1055_meta_object
 };
 
 static const afw_utf8_t
@@ -100315,13 +113367,24 @@ impl_1068_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1068_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1068_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1068_meta_object__value
     },
     &impl_1068,
     NULL
+};
+
+static const afw_value_object_t
+impl_1068_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1068_meta_object
 };
 
 static const afw_utf8_t
@@ -100375,12 +113438,25 @@ impl_1067_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_1067_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_1067_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_1067_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_1067_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_1067_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_1067_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_1067_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -100422,13 +113498,24 @@ impl_1067_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1067_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1067_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1067_meta_object__value
     },
     &impl_1067,
     NULL
+};
+
+static const afw_value_object_t
+impl_1067_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1067_meta_object
 };
 
 static const afw_utf8_t
@@ -100489,13 +113576,24 @@ impl_1072_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1072_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1072_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1072_meta_object__value
     },
     &impl_1072,
     NULL
+};
+
+static const afw_value_object_t
+impl_1072_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1072_meta_object
 };
 
 static const afw_utf8_t
@@ -100591,13 +113689,24 @@ impl_1071_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1071_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1071_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1071_meta_object__value
     },
     &impl_1071,
     NULL
+};
+
+static const afw_value_object_t
+impl_1071_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1071_meta_object
 };
 
 static const afw_utf8_t
@@ -100652,13 +113761,24 @@ impl_1070_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1070_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1070_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1070_meta_object__value
     },
     &impl_1070,
     NULL
+};
+
+static const afw_value_object_t
+impl_1070_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1070_meta_object
 };
 
 static const afw_utf8_t
@@ -100726,13 +113846,24 @@ impl_1074_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1074_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1074_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1074_meta_object__value
     },
     &impl_1074,
     NULL
+};
+
+static const afw_value_object_t
+impl_1074_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1074_meta_object
 };
 
 static const afw_utf8_t
@@ -100807,13 +113938,24 @@ impl_1073_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1073_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1073_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1073_meta_object__value
     },
     &impl_1073,
     NULL
+};
+
+static const afw_value_object_t
+impl_1073_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1073_meta_object
 };
 
 static const afw_utf8_t
@@ -100867,12 +114009,25 @@ impl_1069_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_1069_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_1069_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_1069_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_1069_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_1069_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_1069_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_1069_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -100934,13 +114089,24 @@ impl_1069_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1069_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1069_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1069_meta_object__value
     },
     &impl_1069,
     NULL
+};
+
+static const afw_value_object_t
+impl_1069_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1069_meta_object
 };
 
 static const afw_utf8_t
@@ -101019,13 +114185,24 @@ impl_1077_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1077_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1077_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1077_meta_object__value
     },
     &impl_1077,
     NULL
+};
+
+static const afw_value_object_t
+impl_1077_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1077_meta_object
 };
 
 static const afw_utf8_t
@@ -101098,13 +114275,24 @@ impl_1078_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1078_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1078_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1078_meta_object__value
     },
     &impl_1078,
     NULL
+};
+
+static const afw_value_object_t
+impl_1078_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1078_meta_object
 };
 
 static const afw_utf8_t
@@ -101172,13 +114360,24 @@ impl_1076_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1076_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1076_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1076_meta_object__value
     },
     &impl_1076,
     NULL
+};
+
+static const afw_value_object_t
+impl_1076_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1076_meta_object
 };
 
 static const afw_utf8_t
@@ -101232,12 +114431,25 @@ impl_1075_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_1075_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_1075_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_1075_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_1075_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_1075_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_1075_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_1075_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -101286,13 +114498,24 @@ impl_1075_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1075_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1075_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1075_meta_object__value
     },
     &impl_1075,
     NULL
+};
+
+static const afw_value_object_t
+impl_1075_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1075_meta_object
 };
 
 static const afw_utf8_t
@@ -101353,13 +114576,24 @@ impl_1082_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1082_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1082_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1082_meta_object__value
     },
     &impl_1082,
     NULL
+};
+
+static const afw_value_object_t
+impl_1082_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1082_meta_object
 };
 
 static const afw_utf8_t
@@ -101455,13 +114689,24 @@ impl_1081_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1081_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1081_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1081_meta_object__value
     },
     &impl_1081,
     NULL
+};
+
+static const afw_value_object_t
+impl_1081_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1081_meta_object
 };
 
 static const afw_utf8_t
@@ -101516,13 +114761,24 @@ impl_1080_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1080_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1080_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1080_meta_object__value
     },
     &impl_1080,
     NULL
+};
+
+static const afw_value_object_t
+impl_1080_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1080_meta_object
 };
 
 static const afw_utf8_t
@@ -101590,13 +114846,24 @@ impl_1084_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1084_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1084_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1084_meta_object__value
     },
     &impl_1084,
     NULL
+};
+
+static const afw_value_object_t
+impl_1084_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1084_meta_object
 };
 
 static const afw_utf8_t
@@ -101671,13 +114938,24 @@ impl_1083_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1083_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1083_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1083_meta_object__value
     },
     &impl_1083,
     NULL
+};
+
+static const afw_value_object_t
+impl_1083_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1083_meta_object
 };
 
 static const afw_utf8_t
@@ -101767,12 +115045,25 @@ impl_1079_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_1079_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_1079_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_1079_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_1079_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_1079_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_1079_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_1079_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -101837,13 +115128,24 @@ impl_1079_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1079_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1079_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1079_meta_object__value
     },
     &impl_1079,
     NULL
+};
+
+static const afw_value_object_t
+impl_1079_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1079_meta_object
 };
 
 static const afw_utf8_t
@@ -101922,13 +115224,24 @@ impl_1087_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1087_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1087_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1087_meta_object__value
     },
     &impl_1087,
     NULL
+};
+
+static const afw_value_object_t
+impl_1087_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1087_meta_object
 };
 
 static const afw_utf8_t
@@ -102008,13 +115321,24 @@ impl_1088_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1088_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1088_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1088_meta_object__value
     },
     &impl_1088,
     NULL
+};
+
+static const afw_value_object_t
+impl_1088_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1088_meta_object
 };
 
 static const afw_utf8_t
@@ -102087,13 +115411,24 @@ impl_1089_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1089_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1089_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1089_meta_object__value
     },
     &impl_1089,
     NULL
+};
+
+static const afw_value_object_t
+impl_1089_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1089_meta_object
 };
 
 static const afw_utf8_t
@@ -102174,13 +115509,24 @@ impl_1086_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1086_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1086_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1086_meta_object__value
     },
     &impl_1086,
     NULL
+};
+
+static const afw_value_object_t
+impl_1086_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1086_meta_object
 };
 
 static const afw_utf8_t
@@ -102270,12 +115616,25 @@ impl_1085_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_1085_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_1085_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_1085_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_1085_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_1085_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_1085_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_1085_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -102327,13 +115686,24 @@ impl_1085_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1085_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1085_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1085_meta_object__value
     },
     &impl_1085,
     NULL
+};
+
+static const afw_value_object_t
+impl_1085_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1085_meta_object
 };
 
 static const afw_utf8_t
@@ -102412,13 +115782,24 @@ impl_1092_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1092_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1092_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1092_meta_object__value
     },
     &impl_1092,
     NULL
+};
+
+static const afw_value_object_t
+impl_1092_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1092_meta_object
 };
 
 static const afw_utf8_t
@@ -102491,13 +115872,24 @@ impl_1093_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1093_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1093_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1093_meta_object__value
     },
     &impl_1093,
     NULL
+};
+
+static const afw_value_object_t
+impl_1093_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1093_meta_object
 };
 
 static const afw_utf8_t
@@ -102570,13 +115962,24 @@ impl_1094_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1094_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1094_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1094_meta_object__value
     },
     &impl_1094,
     NULL
+};
+
+static const afw_value_object_t
+impl_1094_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1094_meta_object
 };
 
 static const afw_utf8_t
@@ -102649,13 +116052,24 @@ impl_1095_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1095_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1095_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1095_meta_object__value
     },
     &impl_1095,
     NULL
+};
+
+static const afw_value_object_t
+impl_1095_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1095_meta_object
 };
 
 static const afw_utf8_t
@@ -102749,13 +116163,24 @@ impl_1091_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1091_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1091_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1091_meta_object__value
     },
     &impl_1091,
     NULL
+};
+
+static const afw_value_object_t
+impl_1091_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1091_meta_object
 };
 
 static const afw_utf8_t
@@ -102845,12 +116270,25 @@ impl_1090_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_1090_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_1090_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_1090_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_1090_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_1090_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_1090_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_1090_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -102902,13 +116340,24 @@ impl_1090_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1090_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1090_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1090_meta_object__value
     },
     &impl_1090,
     NULL
+};
+
+static const afw_value_object_t
+impl_1090_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1090_meta_object
 };
 
 static const afw_utf8_t
@@ -102969,13 +116418,24 @@ impl_1099_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1099_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1099_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1099_meta_object__value
     },
     &impl_1099,
     NULL
+};
+
+static const afw_value_object_t
+impl_1099_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1099_meta_object
 };
 
 static const afw_utf8_t
@@ -103071,13 +116531,24 @@ impl_1098_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1098_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1098_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1098_meta_object__value
     },
     &impl_1098,
     NULL
+};
+
+static const afw_value_object_t
+impl_1098_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1098_meta_object
 };
 
 static const afw_utf8_t
@@ -103132,13 +116603,24 @@ impl_1097_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1097_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1097_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1097_meta_object__value
     },
     &impl_1097,
     NULL
+};
+
+static const afw_value_object_t
+impl_1097_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1097_meta_object
 };
 
 static const afw_utf8_t
@@ -103206,13 +116688,24 @@ impl_1101_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1101_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1101_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1101_meta_object__value
     },
     &impl_1101,
     NULL
+};
+
+static const afw_value_object_t
+impl_1101_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1101_meta_object
 };
 
 static const afw_utf8_t
@@ -103287,13 +116780,24 @@ impl_1100_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1100_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1100_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1100_meta_object__value
     },
     &impl_1100,
     NULL
+};
+
+static const afw_value_object_t
+impl_1100_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1100_meta_object
 };
 
 static const afw_utf8_t
@@ -103383,12 +116887,25 @@ impl_1096_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_1096_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_1096_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_1096_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_1096_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_1096_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_1096_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_1096_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -103453,13 +116970,24 @@ impl_1096_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1096_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1096_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1096_meta_object__value
     },
     &impl_1096,
     NULL
+};
+
+static const afw_value_object_t
+impl_1096_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1096_meta_object
 };
 
 static const afw_utf8_t
@@ -103527,13 +117055,24 @@ impl_1105_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1105_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1105_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1105_meta_object__value
     },
     &impl_1105,
     NULL
+};
+
+static const afw_value_object_t
+impl_1105_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1105_meta_object
 };
 
 static const afw_utf8_t
@@ -103629,13 +117168,24 @@ impl_1104_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1104_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1104_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1104_meta_object__value
     },
     &impl_1104,
     NULL
+};
+
+static const afw_value_object_t
+impl_1104_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1104_meta_object
 };
 
 static const afw_utf8_t
@@ -103697,13 +117247,24 @@ impl_1107_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1107_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1107_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1107_meta_object__value
     },
     &impl_1107,
     NULL
+};
+
+static const afw_value_object_t
+impl_1107_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1107_meta_object
 };
 
 static const afw_utf8_t
@@ -103799,13 +117360,24 @@ impl_1106_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1106_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1106_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1106_meta_object__value
     },
     &impl_1106,
     NULL
+};
+
+static const afw_value_object_t
+impl_1106_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1106_meta_object
 };
 
 static const afw_utf8_t
@@ -103917,13 +117489,24 @@ impl_1108_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1108_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1108_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1108_meta_object__value
     },
     &impl_1108,
     NULL
+};
+
+static const afw_value_object_t
+impl_1108_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1108_meta_object
 };
 
 static const afw_utf8_t
@@ -103978,13 +117561,24 @@ impl_1110_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1110_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1110_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1110_meta_object__value
     },
     &impl_1110,
     NULL
+};
+
+static const afw_value_object_t
+impl_1110_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1110_meta_object
 };
 
 static const afw_utf8_t
@@ -104106,13 +117700,24 @@ impl_1109_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1109_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1109_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1109_meta_object__value
     },
     &impl_1109,
     NULL
+};
+
+static const afw_value_object_t
+impl_1109_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1109_meta_object
 };
 
 static const afw_utf8_t
@@ -104167,13 +117772,24 @@ impl_1112_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1112_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1112_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1112_meta_object__value
     },
     &impl_1112,
     NULL
+};
+
+static const afw_value_object_t
+impl_1112_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1112_meta_object
 };
 
 static const afw_utf8_t
@@ -104295,13 +117911,24 @@ impl_1111_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1111_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1111_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1111_meta_object__value
     },
     &impl_1111,
     NULL
+};
+
+static const afw_value_object_t
+impl_1111_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1111_meta_object
 };
 
 static const afw_utf8_t
@@ -104363,13 +117990,24 @@ impl_1114_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1114_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1114_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1114_meta_object__value
     },
     &impl_1114,
     NULL
+};
+
+static const afw_value_object_t
+impl_1114_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1114_meta_object
 };
 
 static const afw_utf8_t
@@ -104465,13 +118103,24 @@ impl_1113_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1113_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1113_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1113_meta_object__value
     },
     &impl_1113,
     NULL
+};
+
+static const afw_value_object_t
+impl_1113_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1113_meta_object
 };
 
 static const afw_utf8_t
@@ -104533,13 +118182,24 @@ impl_1116_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1116_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1116_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1116_meta_object__value
     },
     &impl_1116,
     NULL
+};
+
+static const afw_value_object_t
+impl_1116_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1116_meta_object
 };
 
 static const afw_utf8_t
@@ -104635,13 +118295,24 @@ impl_1115_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1115_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1115_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1115_meta_object__value
     },
     &impl_1115,
     NULL
+};
+
+static const afw_value_object_t
+impl_1115_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1115_meta_object
 };
 
 static const afw_utf8_t
@@ -104703,13 +118374,24 @@ impl_1118_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1118_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1118_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1118_meta_object__value
     },
     &impl_1118,
     NULL
+};
+
+static const afw_value_object_t
+impl_1118_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1118_meta_object
 };
 
 static const afw_utf8_t
@@ -104805,13 +118487,24 @@ impl_1117_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1117_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1117_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1117_meta_object__value
     },
     &impl_1117,
     NULL
+};
+
+static const afw_value_object_t
+impl_1117_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1117_meta_object
 };
 
 static const afw_utf8_t
@@ -104866,13 +118559,24 @@ impl_1120_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1120_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1120_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1120_meta_object__value
     },
     &impl_1120,
     NULL
+};
+
+static const afw_value_object_t
+impl_1120_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1120_meta_object
 };
 
 static const afw_utf8_t
@@ -104994,13 +118698,24 @@ impl_1119_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1119_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1119_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1119_meta_object__value
     },
     &impl_1119,
     NULL
+};
+
+static const afw_value_object_t
+impl_1119_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1119_meta_object
 };
 
 static const afw_utf8_t
@@ -105055,13 +118770,24 @@ impl_1122_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1122_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1122_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1122_meta_object__value
     },
     &impl_1122,
     NULL
+};
+
+static const afw_value_object_t
+impl_1122_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1122_meta_object
 };
 
 static const afw_utf8_t
@@ -105183,13 +118909,24 @@ impl_1121_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1121_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1121_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1121_meta_object__value
     },
     &impl_1121,
     NULL
+};
+
+static const afw_value_object_t
+impl_1121_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1121_meta_object
 };
 
 static const afw_utf8_t
@@ -105361,13 +119098,24 @@ impl_1103_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1103_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1103_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1103_meta_object__value
     },
     &impl_1103,
     NULL
+};
+
+static const afw_value_object_t
+impl_1103_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1103_meta_object
 };
 
 static const afw_utf8_t
@@ -105422,13 +119170,24 @@ impl_1124_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1124_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1124_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1124_meta_object__value
     },
     &impl_1124,
     NULL
+};
+
+static const afw_value_object_t
+impl_1124_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1124_meta_object
 };
 
 static const afw_utf8_t
@@ -105503,13 +119262,24 @@ impl_1123_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1123_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1123_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1123_meta_object__value
     },
     &impl_1123,
     NULL
+};
+
+static const afw_value_object_t
+impl_1123_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1123_meta_object
 };
 
 static const afw_utf8_t
@@ -105599,12 +119369,25 @@ impl_1102_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/afw_server_fcgi")
 };
 
+static const afw_value_array_t
+impl_1102_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_1102_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_1102_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_1102_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_1102_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_1102_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_1102_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -105669,13 +119452,24 @@ impl_1102_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1102_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1102_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1102_meta_object__value
     },
     &impl_1102,
     NULL
+};
+
+static const afw_value_object_t
+impl_1102_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1102_meta_object
 };
 
 static const afw_utf8_t
@@ -105754,13 +119548,24 @@ impl_1127_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1127_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1127_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1127_meta_object__value
     },
     &impl_1127,
     NULL
+};
+
+static const afw_value_object_t
+impl_1127_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1127_meta_object
 };
 
 static const afw_utf8_t
@@ -105846,13 +119651,24 @@ impl_1128_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1128_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1128_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1128_meta_object__value
     },
     &impl_1128,
     NULL
+};
+
+static const afw_value_object_t
+impl_1128_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1128_meta_object
 };
 
 static const afw_utf8_t
@@ -105945,13 +119761,24 @@ impl_1129_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1129_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1129_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1129_meta_object__value
     },
     &impl_1129,
     NULL
+};
+
+static const afw_value_object_t
+impl_1129_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1129_meta_object
 };
 
 static const afw_utf8_t
@@ -106032,13 +119859,24 @@ impl_1126_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1126_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1126_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1126_meta_object__value
     },
     &impl_1126,
     NULL
+};
+
+static const afw_value_object_t
+impl_1126_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1126_meta_object
 };
 
 static const afw_utf8_t
@@ -106128,12 +119966,25 @@ impl_1125_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_1125_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_1125_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_1125_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_1125_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_1125_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_1125_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_1125_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -106192,13 +120043,24 @@ impl_1125_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1125_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1125_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1125_meta_object__value
     },
     &impl_1125,
     NULL
+};
+
+static const afw_value_object_t
+impl_1125_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1125_meta_object
 };
 
 static const afw_utf8_t
@@ -106259,13 +120121,24 @@ impl_1133_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1133_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1133_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1133_meta_object__value
     },
     &impl_1133,
     NULL
+};
+
+static const afw_value_object_t
+impl_1133_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1133_meta_object
 };
 
 static const afw_utf8_t
@@ -106368,13 +120241,24 @@ impl_1132_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1132_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1132_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1132_meta_object__value
     },
     &impl_1132,
     NULL
+};
+
+static const afw_value_object_t
+impl_1132_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1132_meta_object
 };
 
 static const afw_utf8_t
@@ -106429,13 +120313,24 @@ impl_1135_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1135_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1135_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1135_meta_object__value
     },
     &impl_1135,
     NULL
+};
+
+static const afw_value_object_t
+impl_1135_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1135_meta_object
 };
 
 static const afw_utf8_t
@@ -106538,13 +120433,24 @@ impl_1134_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1134_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1134_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1134_meta_object__value
     },
     &impl_1134,
     NULL
+};
+
+static const afw_value_object_t
+impl_1134_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1134_meta_object
 };
 
 static const afw_utf8_t
@@ -106599,13 +120505,24 @@ impl_1137_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1137_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1137_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1137_meta_object__value
     },
     &impl_1137,
     NULL
+};
+
+static const afw_value_object_t
+impl_1137_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1137_meta_object
 };
 
 static const afw_utf8_t
@@ -106701,13 +120618,24 @@ impl_1136_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1136_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1136_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1136_meta_object__value
     },
     &impl_1136,
     NULL
+};
+
+static const afw_value_object_t
+impl_1136_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1136_meta_object
 };
 
 static const afw_utf8_t
@@ -106762,13 +120690,24 @@ impl_1139_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1139_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1139_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1139_meta_object__value
     },
     &impl_1139,
     NULL
+};
+
+static const afw_value_object_t
+impl_1139_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1139_meta_object
 };
 
 static const afw_utf8_t
@@ -106864,13 +120803,24 @@ impl_1138_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1138_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1138_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1138_meta_object__value
     },
     &impl_1138,
     NULL
+};
+
+static const afw_value_object_t
+impl_1138_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1138_meta_object
 };
 
 static const afw_utf8_t
@@ -106964,13 +120914,24 @@ impl_1131_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1131_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1131_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1131_meta_object__value
     },
     &impl_1131,
     NULL
+};
+
+static const afw_value_object_t
+impl_1131_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1131_meta_object
 };
 
 static const afw_utf8_t
@@ -107025,13 +120986,24 @@ impl_1141_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1141_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1141_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1141_meta_object__value
     },
     &impl_1141,
     NULL
+};
+
+static const afw_value_object_t
+impl_1141_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1141_meta_object
 };
 
 static const afw_utf8_t
@@ -107106,13 +121078,24 @@ impl_1140_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1140_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1140_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1140_meta_object__value
     },
     &impl_1140,
     NULL
+};
+
+static const afw_value_object_t
+impl_1140_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1140_meta_object
 };
 
 static const afw_utf8_t
@@ -107202,12 +121185,25 @@ impl_1130_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_1130_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_1130_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_1130_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_1130_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_1130_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_1130_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_1130_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -107272,13 +121268,24 @@ impl_1130_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1130_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1130_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1130_meta_object__value
     },
     &impl_1130,
     NULL
+};
+
+static const afw_value_object_t
+impl_1130_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1130_meta_object
 };
 
 static const afw_utf8_t
@@ -107363,13 +121370,24 @@ impl_1144_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1144_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1144_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1144_meta_object__value
     },
     &impl_1144,
     NULL
+};
+
+static const afw_value_object_t
+impl_1144_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1144_meta_object
 };
 
 static const afw_utf8_t
@@ -107448,13 +121466,24 @@ impl_1145_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1145_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1145_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1145_meta_object__value
     },
     &impl_1145,
     NULL
+};
+
+static const afw_value_object_t
+impl_1145_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1145_meta_object
 };
 
 static const afw_utf8_t
@@ -107533,13 +121562,24 @@ impl_1146_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1146_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1146_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1146_meta_object__value
     },
     &impl_1146,
     NULL
+};
+
+static const afw_value_object_t
+impl_1146_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1146_meta_object
 };
 
 static const afw_utf8_t
@@ -107618,13 +121658,24 @@ impl_1147_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1147_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1147_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1147_meta_object__value
     },
     &impl_1147,
     NULL
+};
+
+static const afw_value_object_t
+impl_1147_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1147_meta_object
 };
 
 static const afw_utf8_t
@@ -107703,13 +121754,24 @@ impl_1148_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1148_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1148_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1148_meta_object__value
     },
     &impl_1148,
     NULL
+};
+
+static const afw_value_object_t
+impl_1148_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1148_meta_object
 };
 
 static const afw_utf8_t
@@ -107788,13 +121850,24 @@ impl_1149_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1149_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1149_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1149_meta_object__value
     },
     &impl_1149,
     NULL
+};
+
+static const afw_value_object_t
+impl_1149_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1149_meta_object
 };
 
 static const afw_utf8_t
@@ -107873,13 +121946,24 @@ impl_1150_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1150_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1150_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1150_meta_object__value
     },
     &impl_1150,
     NULL
+};
+
+static const afw_value_object_t
+impl_1150_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1150_meta_object
 };
 
 static const afw_utf8_t
@@ -107958,13 +122042,24 @@ impl_1151_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1151_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1151_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1151_meta_object__value
     },
     &impl_1151,
     NULL
+};
+
+static const afw_value_object_t
+impl_1151_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1151_meta_object
 };
 
 static const afw_utf8_t
@@ -108043,13 +122138,24 @@ impl_1152_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1152_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1152_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1152_meta_object__value
     },
     &impl_1152,
     NULL
+};
+
+static const afw_value_object_t
+impl_1152_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1152_meta_object
 };
 
 static const afw_utf8_t
@@ -108128,13 +122234,24 @@ impl_1153_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1153_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1153_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1153_meta_object__value
     },
     &impl_1153,
     NULL
+};
+
+static const afw_value_object_t
+impl_1153_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1153_meta_object
 };
 
 static const afw_utf8_t
@@ -108220,13 +122337,24 @@ impl_1154_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1154_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1154_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1154_meta_object__value
     },
     &impl_1154,
     NULL
+};
+
+static const afw_value_object_t
+impl_1154_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1154_meta_object
 };
 
 static const afw_utf8_t
@@ -108305,13 +122433,24 @@ impl_1155_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1155_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1155_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1155_meta_object__value
     },
     &impl_1155,
     NULL
+};
+
+static const afw_value_object_t
+impl_1155_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1155_meta_object
 };
 
 static const afw_utf8_t
@@ -108390,13 +122529,24 @@ impl_1156_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1156_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1156_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1156_meta_object__value
     },
     &impl_1156,
     NULL
+};
+
+static const afw_value_object_t
+impl_1156_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1156_meta_object
 };
 
 static const afw_utf8_t
@@ -108482,13 +122632,24 @@ impl_1157_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1157_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1157_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1157_meta_object__value
     },
     &impl_1157,
     NULL
+};
+
+static const afw_value_object_t
+impl_1157_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1157_meta_object
 };
 
 static const afw_utf8_t
@@ -108567,13 +122728,24 @@ impl_1158_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1158_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1158_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1158_meta_object__value
     },
     &impl_1158,
     NULL
+};
+
+static const afw_value_object_t
+impl_1158_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1158_meta_object
 };
 
 static const afw_utf8_t
@@ -108652,13 +122824,24 @@ impl_1159_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1159_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1159_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1159_meta_object__value
     },
     &impl_1159,
     NULL
+};
+
+static const afw_value_object_t
+impl_1159_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1159_meta_object
 };
 
 static const afw_utf8_t
@@ -108737,13 +122920,24 @@ impl_1160_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1160_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1160_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1160_meta_object__value
     },
     &impl_1160,
     NULL
+};
+
+static const afw_value_object_t
+impl_1160_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1160_meta_object
 };
 
 static const afw_utf8_t
@@ -108822,13 +123016,24 @@ impl_1161_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1161_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1161_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1161_meta_object__value
     },
     &impl_1161,
     NULL
+};
+
+static const afw_value_object_t
+impl_1161_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1161_meta_object
 };
 
 static const afw_utf8_t
@@ -109104,13 +123309,24 @@ impl_1143_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1143_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1143_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1143_meta_object__value
     },
     &impl_1143,
     NULL
+};
+
+static const afw_value_object_t
+impl_1143_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1143_meta_object
 };
 
 static const afw_utf8_t
@@ -109200,12 +123416,25 @@ impl_1142_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_1142_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_1142_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_1142_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_1142_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_1142_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_1142_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_1142_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -109264,13 +123493,24 @@ impl_1142_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1142_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1142_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1142_meta_object__value
     },
     &impl_1142,
     NULL
+};
+
+static const afw_value_object_t
+impl_1142_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1142_meta_object
 };
 
 static const afw_utf8_t
@@ -109331,13 +123571,24 @@ impl_1165_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1165_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1165_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1165_meta_object__value
     },
     &impl_1165,
     NULL
+};
+
+static const afw_value_object_t
+impl_1165_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1165_meta_object
 };
 
 static const afw_utf8_t
@@ -109433,13 +123684,24 @@ impl_1164_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1164_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1164_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1164_meta_object__value
     },
     &impl_1164,
     NULL
+};
+
+static const afw_value_object_t
+impl_1164_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1164_meta_object
 };
 
 static const afw_utf8_t
@@ -109494,13 +123756,24 @@ impl_1163_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1163_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1163_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1163_meta_object__value
     },
     &impl_1163,
     NULL
+};
+
+static const afw_value_object_t
+impl_1163_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1163_meta_object
 };
 
 static const afw_utf8_t
@@ -109568,13 +123841,24 @@ impl_1167_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1167_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1167_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1167_meta_object__value
     },
     &impl_1167,
     NULL
+};
+
+static const afw_value_object_t
+impl_1167_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1167_meta_object
 };
 
 static const afw_utf8_t
@@ -109649,13 +123933,24 @@ impl_1166_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1166_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1166_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1166_meta_object__value
     },
     &impl_1166,
     NULL
+};
+
+static const afw_value_object_t
+impl_1166_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1166_meta_object
 };
 
 static const afw_utf8_t
@@ -109745,12 +124040,25 @@ impl_1162_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_1162_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_1162_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_1162_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_1162_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_1162_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_1162_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_1162_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -109815,13 +124123,24 @@ impl_1162_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1162_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1162_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1162_meta_object__value
     },
     &impl_1162,
     NULL
+};
+
+static const afw_value_object_t
+impl_1162_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1162_meta_object
 };
 
 static const afw_utf8_t
@@ -109869,13 +124188,24 @@ impl_1169_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1169_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1169_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1169_meta_object__value
     },
     &impl_1169,
     NULL
+};
+
+static const afw_value_object_t
+impl_1169_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1169_meta_object
 };
 
 static const afw_utf8_t
@@ -109929,12 +124259,25 @@ impl_1168_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_1168_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_1168_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_1168_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_1168_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_1168_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_1168_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_1168_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -109983,13 +124326,24 @@ impl_1168_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1168_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1168_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1168_meta_object__value
     },
     &impl_1168,
     NULL
+};
+
+static const afw_value_object_t
+impl_1168_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1168_meta_object
 };
 
 static const afw_utf8_t
@@ -110088,13 +124442,24 @@ impl_1172_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1172_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1172_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1172_meta_object__value
     },
     &impl_1172,
     NULL
+};
+
+static const afw_value_object_t
+impl_1172_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1172_meta_object
 };
 
 static const afw_utf8_t
@@ -110180,13 +124545,24 @@ impl_1173_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1173_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1173_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1173_meta_object__value
     },
     &impl_1173,
     NULL
+};
+
+static const afw_value_object_t
+impl_1173_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1173_meta_object
 };
 
 static const afw_utf8_t
@@ -110266,13 +124642,24 @@ impl_1174_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1174_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1174_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1174_meta_object__value
     },
     &impl_1174,
     NULL
+};
+
+static const afw_value_object_t
+impl_1174_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1174_meta_object
 };
 
 static const afw_utf8_t
@@ -110353,13 +124740,24 @@ impl_1171_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1171_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1171_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1171_meta_object__value
     },
     &impl_1171,
     NULL
+};
+
+static const afw_value_object_t
+impl_1171_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1171_meta_object
 };
 
 static const afw_utf8_t
@@ -110413,12 +124811,25 @@ impl_1170_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_1170_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_1170_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_1170_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_1170_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_1170_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_1170_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_1170_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -110474,13 +124885,24 @@ impl_1170_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1170_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1170_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1170_meta_object__value
     },
     &impl_1170,
     NULL
+};
+
+static const afw_value_object_t
+impl_1170_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1170_meta_object
 };
 
 static const afw_utf8_t
@@ -110542,13 +124964,24 @@ impl_1176_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1176_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1176_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1176_meta_object__value
     },
     &impl_1176,
     NULL
+};
+
+static const afw_value_object_t
+impl_1176_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1176_meta_object
 };
 
 static const afw_utf8_t
@@ -110602,12 +125035,25 @@ impl_1175_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_1175_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_1175_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_1175_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_1175_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_1175_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_1175_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_1175_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -110656,13 +125102,24 @@ impl_1175_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1175_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1175_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1175_meta_object__value
     },
     &impl_1175,
     NULL
+};
+
+static const afw_value_object_t
+impl_1175_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1175_meta_object
 };
 
 static const afw_utf8_t
@@ -110717,13 +125174,24 @@ impl_1178_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1178_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1178_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1178_meta_object__value
     },
     &impl_1178,
     NULL
+};
+
+static const afw_value_object_t
+impl_1178_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1178_meta_object
 };
 
 static const afw_utf8_t
@@ -110777,12 +125245,25 @@ impl_1177_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_1177_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_1177_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_1177_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_1177_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_1177_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_1177_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_1177_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -110831,13 +125312,24 @@ impl_1177_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1177_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1177_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1177_meta_object__value
     },
     &impl_1177,
     NULL
+};
+
+static const afw_value_object_t
+impl_1177_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1177_meta_object
 };
 
 static const afw_utf8_t
@@ -110899,13 +125391,24 @@ impl_1180_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1180_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1180_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1180_meta_object__value
     },
     &impl_1180,
     NULL
+};
+
+static const afw_value_object_t
+impl_1180_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1180_meta_object
 };
 
 static const afw_utf8_t
@@ -110981,13 +125484,24 @@ impl_1182_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1182_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1182_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1182_meta_object__value
     },
     &impl_1182,
     NULL
+};
+
+static const afw_value_object_t
+impl_1182_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1182_meta_object
 };
 
 static const afw_utf8_t
@@ -111073,13 +125587,24 @@ impl_1183_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1183_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1183_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1183_meta_object__value
     },
     &impl_1183,
     NULL
+};
+
+static const afw_value_object_t
+impl_1183_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1183_meta_object
 };
 
 static const afw_utf8_t
@@ -111165,13 +125690,24 @@ impl_1184_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1184_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1184_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1184_meta_object__value
     },
     &impl_1184,
     NULL
+};
+
+static const afw_value_object_t
+impl_1184_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1184_meta_object
 };
 
 static const afw_utf8_t
@@ -111257,13 +125793,24 @@ impl_1185_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1185_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1185_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1185_meta_object__value
     },
     &impl_1185,
     NULL
+};
+
+static const afw_value_object_t
+impl_1185_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1185_meta_object
 };
 
 static const afw_utf8_t
@@ -111356,13 +125903,24 @@ impl_1186_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1186_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1186_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1186_meta_object__value
     },
     &impl_1186,
     NULL
+};
+
+static const afw_value_object_t
+impl_1186_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1186_meta_object
 };
 
 static const afw_utf8_t
@@ -111435,13 +125993,24 @@ impl_1187_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1187_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1187_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1187_meta_object__value
     },
     &impl_1187,
     NULL
+};
+
+static const afw_value_object_t
+impl_1187_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1187_meta_object
 };
 
 static const afw_utf8_t
@@ -111561,13 +126130,24 @@ impl_1181_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1181_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1181_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1181_meta_object__value
     },
     &impl_1181,
     NULL
+};
+
+static const afw_value_object_t
+impl_1181_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1181_meta_object
 };
 
 static const afw_utf8_t
@@ -111621,12 +126201,25 @@ impl_1179_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_1179_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_1179_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_1179_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_1179_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_1179_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_1179_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_1179_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -111688,13 +126281,24 @@ impl_1179_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1179_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1179_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1179_meta_object__value
     },
     &impl_1179,
     NULL
+};
+
+static const afw_value_object_t
+impl_1179_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1179_meta_object
 };
 
 static const afw_utf8_t
@@ -111756,13 +126360,24 @@ impl_1189_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1189_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1189_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1189_meta_object__value
     },
     &impl_1189,
     NULL
+};
+
+static const afw_value_object_t
+impl_1189_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1189_meta_object
 };
 
 static const afw_utf8_t
@@ -111838,13 +126453,24 @@ impl_1191_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1191_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1191_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1191_meta_object__value
     },
     &impl_1191,
     NULL
+};
+
+static const afw_value_object_t
+impl_1191_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1191_meta_object
 };
 
 static const afw_utf8_t
@@ -111917,13 +126543,24 @@ impl_1192_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1192_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1192_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1192_meta_object__value
     },
     &impl_1192,
     NULL
+};
+
+static const afw_value_object_t
+impl_1192_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1192_meta_object
 };
 
 static const afw_utf8_t
@@ -111996,13 +126633,24 @@ impl_1193_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1193_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1193_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1193_meta_object__value
     },
     &impl_1193,
     NULL
+};
+
+static const afw_value_object_t
+impl_1193_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1193_meta_object
 };
 
 static const afw_utf8_t
@@ -112088,13 +126736,24 @@ impl_1194_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1194_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1194_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1194_meta_object__value
     },
     &impl_1194,
     NULL
+};
+
+static const afw_value_object_t
+impl_1194_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1194_meta_object
 };
 
 static const afw_utf8_t
@@ -112167,13 +126826,24 @@ impl_1195_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1195_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1195_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1195_meta_object__value
     },
     &impl_1195,
     NULL
+};
+
+static const afw_value_object_t
+impl_1195_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1195_meta_object
 };
 
 static const afw_utf8_t
@@ -112246,13 +126916,24 @@ impl_1196_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1196_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1196_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1196_meta_object__value
     },
     &impl_1196,
     NULL
+};
+
+static const afw_value_object_t
+impl_1196_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1196_meta_object
 };
 
 static const afw_utf8_t
@@ -112325,13 +127006,24 @@ impl_1197_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1197_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1197_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1197_meta_object__value
     },
     &impl_1197,
     NULL
+};
+
+static const afw_value_object_t
+impl_1197_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1197_meta_object
 };
 
 static const afw_utf8_t
@@ -112404,13 +127096,24 @@ impl_1198_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1198_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1198_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1198_meta_object__value
     },
     &impl_1198,
     NULL
+};
+
+static const afw_value_object_t
+impl_1198_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1198_meta_object
 };
 
 static const afw_utf8_t
@@ -112496,13 +127199,24 @@ impl_1199_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1199_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1199_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1199_meta_object__value
     },
     &impl_1199,
     NULL
+};
+
+static const afw_value_object_t
+impl_1199_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1199_meta_object
 };
 
 static const afw_utf8_t
@@ -112575,13 +127289,24 @@ impl_1200_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1200_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1200_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1200_meta_object__value
     },
     &impl_1200,
     NULL
+};
+
+static const afw_value_object_t
+impl_1200_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1200_meta_object
 };
 
 static const afw_utf8_t
@@ -112654,13 +127379,24 @@ impl_1201_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1201_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1201_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1201_meta_object__value
     },
     &impl_1201,
     NULL
+};
+
+static const afw_value_object_t
+impl_1201_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1201_meta_object
 };
 
 static const afw_utf8_t
@@ -112733,13 +127469,24 @@ impl_1202_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1202_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1202_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1202_meta_object__value
     },
     &impl_1202,
     NULL
+};
+
+static const afw_value_object_t
+impl_1202_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1202_meta_object
 };
 
 static const afw_utf8_t
@@ -112825,13 +127572,24 @@ impl_1203_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1203_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1203_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1203_meta_object__value
     },
     &impl_1203,
     NULL
+};
+
+static const afw_value_object_t
+impl_1203_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1203_meta_object
 };
 
 static const afw_utf8_t
@@ -112897,13 +127655,24 @@ impl_1204_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1204_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1204_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1204_meta_object__value
     },
     &impl_1204,
     NULL
+};
+
+static const afw_value_object_t
+impl_1204_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1204_meta_object
 };
 
 static const afw_utf8_t
@@ -112976,13 +127745,24 @@ impl_1205_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1205_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1205_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1205_meta_object__value
     },
     &impl_1205,
     NULL
+};
+
+static const afw_value_object_t
+impl_1205_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1205_meta_object
 };
 
 static const afw_utf8_t
@@ -113068,13 +127848,24 @@ impl_1206_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1206_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1206_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1206_meta_object__value
     },
     &impl_1206,
     NULL
+};
+
+static const afw_value_object_t
+impl_1206_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1206_meta_object
 };
 
 static const afw_utf8_t
@@ -113147,13 +127938,24 @@ impl_1207_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1207_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1207_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1207_meta_object__value
     },
     &impl_1207,
     NULL
+};
+
+static const afw_value_object_t
+impl_1207_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1207_meta_object
 };
 
 static const afw_utf8_t
@@ -113226,13 +128028,24 @@ impl_1208_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1208_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1208_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1208_meta_object__value
     },
     &impl_1208,
     NULL
+};
+
+static const afw_value_object_t
+impl_1208_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1208_meta_object
 };
 
 static const afw_utf8_t
@@ -113305,13 +128118,24 @@ impl_1209_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1209_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1209_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1209_meta_object__value
     },
     &impl_1209,
     NULL
+};
+
+static const afw_value_object_t
+impl_1209_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1209_meta_object
 };
 
 static const afw_utf8_t
@@ -113384,13 +128208,24 @@ impl_1210_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1210_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1210_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1210_meta_object__value
     },
     &impl_1210,
     NULL
+};
+
+static const afw_value_object_t
+impl_1210_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1210_meta_object
 };
 
 static const afw_utf8_t
@@ -113476,13 +128311,24 @@ impl_1211_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1211_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1211_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1211_meta_object__value
     },
     &impl_1211,
     NULL
+};
+
+static const afw_value_object_t
+impl_1211_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1211_meta_object
 };
 
 static const afw_utf8_t
@@ -113555,13 +128401,24 @@ impl_1212_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1212_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1212_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1212_meta_object__value
     },
     &impl_1212,
     NULL
+};
+
+static const afw_value_object_t
+impl_1212_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1212_meta_object
 };
 
 static const afw_utf8_t
@@ -113634,13 +128491,24 @@ impl_1213_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1213_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1213_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1213_meta_object__value
     },
     &impl_1213,
     NULL
+};
+
+static const afw_value_object_t
+impl_1213_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1213_meta_object
 };
 
 static const afw_utf8_t
@@ -113713,13 +128581,24 @@ impl_1214_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1214_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1214_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1214_meta_object__value
     },
     &impl_1214,
     NULL
+};
+
+static const afw_value_object_t
+impl_1214_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1214_meta_object
 };
 
 static const afw_utf8_t
@@ -113805,13 +128684,24 @@ impl_1215_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1215_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1215_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1215_meta_object__value
     },
     &impl_1215,
     NULL
+};
+
+static const afw_value_object_t
+impl_1215_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1215_meta_object
 };
 
 static const afw_utf8_t
@@ -114178,13 +129068,24 @@ impl_1190_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1190_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1190_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1190_meta_object__value
     },
     &impl_1190,
     NULL
+};
+
+static const afw_value_object_t
+impl_1190_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1190_meta_object
 };
 
 static const afw_utf8_t
@@ -114238,12 +129139,25 @@ impl_1188_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_1188_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_1188_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_1188_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_1188_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_1188_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_1188_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_1188_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -114305,13 +129219,24 @@ impl_1188_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1188_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1188_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1188_meta_object__value
     },
     &impl_1188,
     NULL
+};
+
+static const afw_value_object_t
+impl_1188_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1188_meta_object
 };
 
 static const afw_utf8_t
@@ -114372,13 +129297,24 @@ impl_1219_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1219_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1219_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1219_meta_object__value
     },
     &impl_1219,
     NULL
+};
+
+static const afw_value_object_t
+impl_1219_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1219_meta_object
 };
 
 static const afw_utf8_t
@@ -114474,13 +129410,24 @@ impl_1218_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1218_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1218_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1218_meta_object__value
     },
     &impl_1218,
     NULL
+};
+
+static const afw_value_object_t
+impl_1218_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1218_meta_object
 };
 
 static const afw_utf8_t
@@ -114535,13 +129482,24 @@ impl_1217_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1217_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1217_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1217_meta_object__value
     },
     &impl_1217,
     NULL
+};
+
+static const afw_value_object_t
+impl_1217_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1217_meta_object
 };
 
 static const afw_utf8_t
@@ -114609,13 +129567,24 @@ impl_1221_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1221_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1221_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1221_meta_object__value
     },
     &impl_1221,
     NULL
+};
+
+static const afw_value_object_t
+impl_1221_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1221_meta_object
 };
 
 static const afw_utf8_t
@@ -114690,13 +129659,24 @@ impl_1220_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1220_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1220_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1220_meta_object__value
     },
     &impl_1220,
     NULL
+};
+
+static const afw_value_object_t
+impl_1220_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1220_meta_object
 };
 
 static const afw_utf8_t
@@ -114786,12 +129766,25 @@ impl_1216_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_1216_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_1216_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_1216_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_1216_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_1216_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_1216_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_1216_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -114856,13 +129849,24 @@ impl_1216_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1216_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1216_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1216_meta_object__value
     },
     &impl_1216,
     NULL
+};
+
+static const afw_value_object_t
+impl_1216_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1216_meta_object
 };
 
 static const afw_utf8_t
@@ -114954,13 +129958,24 @@ impl_1224_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1224_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1224_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1224_meta_object__value
     },
     &impl_1224,
     NULL
+};
+
+static const afw_value_object_t
+impl_1224_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1224_meta_object
 };
 
 static const afw_utf8_t
@@ -115046,13 +130061,24 @@ impl_1225_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1225_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1225_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1225_meta_object__value
     },
     &impl_1225,
     NULL
+};
+
+static const afw_value_object_t
+impl_1225_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1225_meta_object
 };
 
 static const afw_utf8_t
@@ -115138,13 +130164,24 @@ impl_1226_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1226_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1226_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1226_meta_object__value
     },
     &impl_1226,
     NULL
+};
+
+static const afw_value_object_t
+impl_1226_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1226_meta_object
 };
 
 static const afw_utf8_t
@@ -115230,13 +130267,24 @@ impl_1227_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1227_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1227_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1227_meta_object__value
     },
     &impl_1227,
     NULL
+};
+
+static const afw_value_object_t
+impl_1227_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1227_meta_object
 };
 
 static const afw_utf8_t
@@ -115322,13 +130370,24 @@ impl_1228_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1228_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1228_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1228_meta_object__value
     },
     &impl_1228,
     NULL
+};
+
+static const afw_value_object_t
+impl_1228_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1228_meta_object
 };
 
 static const afw_utf8_t
@@ -115421,13 +130480,24 @@ impl_1229_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1229_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1229_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1229_meta_object__value
     },
     &impl_1229,
     NULL
+};
+
+static const afw_value_object_t
+impl_1229_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1229_meta_object
 };
 
 static const afw_utf8_t
@@ -115513,13 +130583,24 @@ impl_1230_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1230_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1230_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1230_meta_object__value
     },
     &impl_1230,
     NULL
+};
+
+static const afw_value_object_t
+impl_1230_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1230_meta_object
 };
 
 static const afw_utf8_t
@@ -115605,13 +130686,24 @@ impl_1231_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1231_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1231_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1231_meta_object__value
     },
     &impl_1231,
     NULL
+};
+
+static const afw_value_object_t
+impl_1231_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1231_meta_object
 };
 
 static const afw_utf8_t
@@ -115697,13 +130789,24 @@ impl_1232_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1232_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1232_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1232_meta_object__value
     },
     &impl_1232,
     NULL
+};
+
+static const afw_value_object_t
+impl_1232_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1232_meta_object
 };
 
 static const afw_utf8_t
@@ -115789,13 +130892,24 @@ impl_1233_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1233_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1233_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1233_meta_object__value
     },
     &impl_1233,
     NULL
+};
+
+static const afw_value_object_t
+impl_1233_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1233_meta_object
 };
 
 static const afw_utf8_t
@@ -115874,13 +130988,24 @@ impl_1234_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1234_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1234_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1234_meta_object__value
     },
     &impl_1234,
     NULL
+};
+
+static const afw_value_object_t
+impl_1234_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1234_meta_object
 };
 
 static const afw_utf8_t
@@ -115973,13 +131098,24 @@ impl_1235_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1235_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1235_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1235_meta_object__value
     },
     &impl_1235,
     NULL
+};
+
+static const afw_value_object_t
+impl_1235_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1235_meta_object
 };
 
 static const afw_utf8_t
@@ -116072,13 +131208,24 @@ impl_1236_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1236_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1236_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1236_meta_object__value
     },
     &impl_1236,
     NULL
+};
+
+static const afw_value_object_t
+impl_1236_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1236_meta_object
 };
 
 static const afw_utf8_t
@@ -116164,13 +131311,24 @@ impl_1237_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1237_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1237_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1237_meta_object__value
     },
     &impl_1237,
     NULL
+};
+
+static const afw_value_object_t
+impl_1237_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1237_meta_object
 };
 
 static const afw_utf8_t
@@ -116256,13 +131414,24 @@ impl_1238_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1238_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1238_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1238_meta_object__value
     },
     &impl_1238,
     NULL
+};
+
+static const afw_value_object_t
+impl_1238_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1238_meta_object
 };
 
 static const afw_utf8_t
@@ -116348,13 +131517,24 @@ impl_1239_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1239_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1239_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1239_meta_object__value
     },
     &impl_1239,
     NULL
+};
+
+static const afw_value_object_t
+impl_1239_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1239_meta_object
 };
 
 static const afw_utf8_t
@@ -116433,13 +131613,24 @@ impl_1240_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1240_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1240_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1240_meta_object__value
     },
     &impl_1240,
     NULL
+};
+
+static const afw_value_object_t
+impl_1240_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1240_meta_object
 };
 
 static const afw_utf8_t
@@ -116525,13 +131716,24 @@ impl_1241_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1241_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1241_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1241_meta_object__value
     },
     &impl_1241,
     NULL
+};
+
+static const afw_value_object_t
+impl_1241_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1241_meta_object
 };
 
 static const afw_utf8_t
@@ -116610,13 +131812,24 @@ impl_1242_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1242_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1242_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1242_meta_object__value
     },
     &impl_1242,
     NULL
+};
+
+static const afw_value_object_t
+impl_1242_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1242_meta_object
 };
 
 static const afw_utf8_t
@@ -116702,13 +131915,24 @@ impl_1243_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1243_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1243_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1243_meta_object__value
     },
     &impl_1243,
     NULL
+};
+
+static const afw_value_object_t
+impl_1243_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1243_meta_object
 };
 
 static const afw_utf8_t
@@ -116794,13 +132018,24 @@ impl_1244_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1244_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1244_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1244_meta_object__value
     },
     &impl_1244,
     NULL
+};
+
+static const afw_value_object_t
+impl_1244_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1244_meta_object
 };
 
 static const afw_utf8_t
@@ -116886,13 +132121,24 @@ impl_1245_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1245_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1245_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1245_meta_object__value
     },
     &impl_1245,
     NULL
+};
+
+static const afw_value_object_t
+impl_1245_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1245_meta_object
 };
 
 static const afw_utf8_t
@@ -116991,13 +132237,24 @@ impl_1246_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1246_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1246_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1246_meta_object__value
     },
     &impl_1246,
     NULL
+};
+
+static const afw_value_object_t
+impl_1246_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1246_meta_object
 };
 
 static const afw_utf8_t
@@ -117090,13 +132347,24 @@ impl_1247_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1247_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1247_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1247_meta_object__value
     },
     &impl_1247,
     NULL
+};
+
+static const afw_value_object_t
+impl_1247_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1247_meta_object
 };
 
 static const afw_utf8_t
@@ -117175,13 +132443,24 @@ impl_1248_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1248_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1248_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1248_meta_object__value
     },
     &impl_1248,
     NULL
+};
+
+static const afw_value_object_t
+impl_1248_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1248_meta_object
 };
 
 static const afw_utf8_t
@@ -117261,13 +132540,24 @@ impl_1249_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1249_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1249_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1249_meta_object__value
     },
     &impl_1249,
     NULL
+};
+
+static const afw_value_object_t
+impl_1249_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1249_meta_object
 };
 
 static const afw_utf8_t
@@ -117353,13 +132643,24 @@ impl_1250_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1250_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1250_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1250_meta_object__value
     },
     &impl_1250,
     NULL
+};
+
+static const afw_value_object_t
+impl_1250_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1250_meta_object
 };
 
 static const afw_utf8_t
@@ -117445,13 +132746,24 @@ impl_1251_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1251_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1251_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1251_meta_object__value
     },
     &impl_1251,
     NULL
+};
+
+static const afw_value_object_t
+impl_1251_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1251_meta_object
 };
 
 static const afw_utf8_t
@@ -117550,13 +132862,24 @@ impl_1252_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1252_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1252_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1252_meta_object__value
     },
     &impl_1252,
     NULL
+};
+
+static const afw_value_object_t
+impl_1252_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1252_meta_object
 };
 
 static const afw_utf8_t
@@ -117975,13 +133298,24 @@ impl_1223_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1223_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1223_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1223_meta_object__value
     },
     &impl_1223,
     NULL
+};
+
+static const afw_value_object_t
+impl_1223_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1223_meta_object
 };
 
 static const afw_utf8_t
@@ -118035,12 +133369,25 @@ impl_1222_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_1222_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_1222_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_1222_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_1222_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_1222_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_1222_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_1222_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -118089,13 +133436,24 @@ impl_1222_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1222_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1222_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1222_meta_object__value
     },
     &impl_1222,
     NULL
+};
+
+static const afw_value_object_t
+impl_1222_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1222_meta_object
 };
 
 static const afw_utf8_t
@@ -118174,13 +133532,24 @@ impl_1255_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1255_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1255_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1255_meta_object__value
     },
     &impl_1255,
     NULL
+};
+
+static const afw_value_object_t
+impl_1255_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1255_meta_object
 };
 
 static const afw_utf8_t
@@ -118253,13 +133622,24 @@ impl_1256_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1256_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1256_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1256_meta_object__value
     },
     &impl_1256,
     NULL
+};
+
+static const afw_value_object_t
+impl_1256_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1256_meta_object
 };
 
 static const afw_utf8_t
@@ -118332,13 +133712,24 @@ impl_1257_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1257_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1257_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1257_meta_object__value
     },
     &impl_1257,
     NULL
+};
+
+static const afw_value_object_t
+impl_1257_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1257_meta_object
 };
 
 static const afw_utf8_t
@@ -118411,13 +133802,24 @@ impl_1258_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1258_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1258_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1258_meta_object__value
     },
     &impl_1258,
     NULL
+};
+
+static const afw_value_object_t
+impl_1258_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1258_meta_object
 };
 
 static const afw_utf8_t
@@ -118490,13 +133892,24 @@ impl_1259_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1259_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1259_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1259_meta_object__value
     },
     &impl_1259,
     NULL
+};
+
+static const afw_value_object_t
+impl_1259_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1259_meta_object
 };
 
 static const afw_utf8_t
@@ -118569,13 +133982,24 @@ impl_1260_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1260_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1260_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1260_meta_object__value
     },
     &impl_1260,
     NULL
+};
+
+static const afw_value_object_t
+impl_1260_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1260_meta_object
 };
 
 static const afw_utf8_t
@@ -118648,13 +134072,24 @@ impl_1261_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1261_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1261_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1261_meta_object__value
     },
     &impl_1261,
     NULL
+};
+
+static const afw_value_object_t
+impl_1261_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1261_meta_object
 };
 
 static const afw_utf8_t
@@ -118734,13 +134169,24 @@ impl_1262_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1262_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1262_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1262_meta_object__value
     },
     &impl_1262,
     NULL
+};
+
+static const afw_value_object_t
+impl_1262_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1262_meta_object
 };
 
 static const afw_utf8_t
@@ -118813,13 +134259,24 @@ impl_1263_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1263_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1263_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1263_meta_object__value
     },
     &impl_1263,
     NULL
+};
+
+static const afw_value_object_t
+impl_1263_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1263_meta_object
 };
 
 static const afw_utf8_t
@@ -118892,13 +134349,24 @@ impl_1264_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1264_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1264_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1264_meta_object__value
     },
     &impl_1264,
     NULL
+};
+
+static const afw_value_object_t
+impl_1264_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1264_meta_object
 };
 
 static const afw_utf8_t
@@ -118971,13 +134439,24 @@ impl_1265_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1265_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1265_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1265_meta_object__value
     },
     &impl_1265,
     NULL
+};
+
+static const afw_value_object_t
+impl_1265_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1265_meta_object
 };
 
 static const afw_utf8_t
@@ -119050,13 +134529,24 @@ impl_1266_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1266_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1266_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1266_meta_object__value
     },
     &impl_1266,
     NULL
+};
+
+static const afw_value_object_t
+impl_1266_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1266_meta_object
 };
 
 static const afw_utf8_t
@@ -119129,13 +134619,24 @@ impl_1267_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1267_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1267_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1267_meta_object__value
     },
     &impl_1267,
     NULL
+};
+
+static const afw_value_object_t
+impl_1267_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1267_meta_object
 };
 
 static const afw_utf8_t
@@ -119208,13 +134709,24 @@ impl_1268_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1268_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1268_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1268_meta_object__value
     },
     &impl_1268,
     NULL
+};
+
+static const afw_value_object_t
+impl_1268_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1268_meta_object
 };
 
 static const afw_utf8_t
@@ -119287,13 +134799,24 @@ impl_1269_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1269_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1269_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1269_meta_object__value
     },
     &impl_1269,
     NULL
+};
+
+static const afw_value_object_t
+impl_1269_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1269_meta_object
 };
 
 static const afw_utf8_t
@@ -119359,13 +134882,24 @@ impl_1270_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1270_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1270_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1270_meta_object__value
     },
     &impl_1270,
     NULL
+};
+
+static const afw_value_object_t
+impl_1270_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1270_meta_object
 };
 
 static const afw_utf8_t
@@ -119615,13 +135149,24 @@ impl_1254_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1254_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1254_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1254_meta_object__value
     },
     &impl_1254,
     NULL
+};
+
+static const afw_value_object_t
+impl_1254_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1254_meta_object
 };
 
 static const afw_utf8_t
@@ -119675,12 +135220,25 @@ impl_1253_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_1253_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_1253_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_1253_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_1253_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_1253_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_1253_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_1253_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -119729,13 +135287,24 @@ impl_1253_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1253_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1253_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1253_meta_object__value
     },
     &impl_1253,
     NULL
+};
+
+static const afw_value_object_t
+impl_1253_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1253_meta_object
 };
 
 static const afw_utf8_t
@@ -119790,13 +135359,24 @@ impl_1272_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1272_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1272_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1272_meta_object__value
     },
     &impl_1272,
     NULL
+};
+
+static const afw_value_object_t
+impl_1272_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1272_meta_object
 };
 
 static const afw_utf8_t
@@ -119872,13 +135452,24 @@ impl_1274_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1274_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1274_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1274_meta_object__value
     },
     &impl_1274,
     NULL
+};
+
+static const afw_value_object_t
+impl_1274_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1274_meta_object
 };
 
 static const afw_utf8_t
@@ -119951,13 +135542,24 @@ impl_1275_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1275_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1275_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1275_meta_object__value
     },
     &impl_1275,
     NULL
+};
+
+static const afw_value_object_t
+impl_1275_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1275_meta_object
 };
 
 static const afw_utf8_t
@@ -120030,13 +135632,24 @@ impl_1276_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1276_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1276_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1276_meta_object__value
     },
     &impl_1276,
     NULL
+};
+
+static const afw_value_object_t
+impl_1276_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1276_meta_object
 };
 
 static const afw_utf8_t
@@ -120109,13 +135722,24 @@ impl_1277_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1277_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1277_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1277_meta_object__value
     },
     &impl_1277,
     NULL
+};
+
+static const afw_value_object_t
+impl_1277_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1277_meta_object
 };
 
 static const afw_utf8_t
@@ -120188,13 +135812,24 @@ impl_1278_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1278_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1278_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1278_meta_object__value
     },
     &impl_1278,
     NULL
+};
+
+static const afw_value_object_t
+impl_1278_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1278_meta_object
 };
 
 static const afw_utf8_t
@@ -120267,13 +135902,24 @@ impl_1279_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1279_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1279_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1279_meta_object__value
     },
     &impl_1279,
     NULL
+};
+
+static const afw_value_object_t
+impl_1279_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1279_meta_object
 };
 
 static const afw_utf8_t
@@ -120346,13 +135992,24 @@ impl_1280_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1280_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1280_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1280_meta_object__value
     },
     &impl_1280,
     NULL
+};
+
+static const afw_value_object_t
+impl_1280_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1280_meta_object
 };
 
 static const afw_utf8_t
@@ -120425,13 +136082,24 @@ impl_1281_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1281_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1281_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1281_meta_object__value
     },
     &impl_1281,
     NULL
+};
+
+static const afw_value_object_t
+impl_1281_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1281_meta_object
 };
 
 static const afw_utf8_t
@@ -120504,13 +136172,24 @@ impl_1282_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1282_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1282_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1282_meta_object__value
     },
     &impl_1282,
     NULL
+};
+
+static const afw_value_object_t
+impl_1282_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1282_meta_object
 };
 
 static const afw_utf8_t
@@ -120583,13 +136262,24 @@ impl_1283_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1283_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1283_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1283_meta_object__value
     },
     &impl_1283,
     NULL
+};
+
+static const afw_value_object_t
+impl_1283_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1283_meta_object
 };
 
 static const afw_utf8_t
@@ -120761,13 +136451,24 @@ impl_1273_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1273_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1273_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1273_meta_object__value
     },
     &impl_1273,
     NULL
+};
+
+static const afw_value_object_t
+impl_1273_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1273_meta_object
 };
 
 static const afw_utf8_t
@@ -120857,12 +136558,25 @@ impl_1271_array_collectionURIs[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/core")
 };
 
+static const afw_value_array_t
+impl_1271_list_collectionURIs__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_1271_list_collectionURIs = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_1271_list_collectionURIs__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_1271_array_collectionURIs) / sizeof(afw_utf8_t),
     &impl_1271_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_1271_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_1271_list_collectionURIs
 };
 
 static const afw_value_array_t
@@ -120934,13 +136648,24 @@ impl_1271_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1271_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1271_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1271_meta_object__value
     },
     &impl_1271,
     NULL
+};
+
+static const afw_value_object_t
+impl_1271_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1271_meta_object
 };
 
 static const afw_utf8_t
@@ -121006,13 +136731,24 @@ impl_1284_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1284_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1284_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1284_meta_object__value
     },
     &impl_1284,
     NULL
+};
+
+static const afw_value_object_t
+impl_1284_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1284_meta_object
 };
 
 static const afw_utf8_t
@@ -121078,13 +136814,24 @@ impl_1285_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1285_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1285_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1285_meta_object__value
     },
     &impl_1285,
     NULL
+};
+
+static const afw_value_object_t
+impl_1285_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1285_meta_object
 };
 
 static const afw_utf8_t
@@ -121143,13 +136890,24 @@ impl_1286_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1286_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1286_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1286_meta_object__value
     },
     &impl_1286,
     NULL
+};
+
+static const afw_value_object_t
+impl_1286_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1286_meta_object
 };
 
 static const afw_utf8_t
@@ -121206,12 +136964,25 @@ impl_1288_array_GNU[] = {
     AFW_UTF8_LITERAL("-std=c11")
 };
 
+static const afw_value_array_t
+impl_1288_list_GNU__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_1288_list_GNU = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_1288_list_GNU__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_1288_array_GNU) / sizeof(afw_utf8_t),
     &impl_1288_array_GNU
+};
+
+static const afw_value_array_t
+impl_1288_list_GNU__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_1288_list_GNU
 };
 
 static const afw_value_array_t
@@ -121232,13 +137003,24 @@ impl_1288_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1288_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1288_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1288_meta_object__value
     },
     &impl_1288,
     NULL
+};
+
+static const afw_value_object_t
+impl_1288_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1288_meta_object
 };
 
 static const afw_utf8_t
@@ -121335,13 +137117,24 @@ impl_1290_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1290_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1290_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1290_meta_object__value
     },
     &impl_1290,
     NULL
+};
+
+static const afw_value_object_t
+impl_1290_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1290_meta_object
 };
 
 static const afw_utf8_t
@@ -121428,13 +137221,24 @@ impl_1291_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1291_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1291_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1291_meta_object__value
     },
     &impl_1291,
     NULL
+};
+
+static const afw_value_object_t
+impl_1291_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1291_meta_object
 };
 
 static const afw_utf8_t
@@ -121521,13 +137325,24 @@ impl_1292_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1292_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1292_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1292_meta_object__value
     },
     &impl_1292,
     NULL
+};
+
+static const afw_value_object_t
+impl_1292_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1292_meta_object
 };
 
 static const afw_utf8_t
@@ -121614,13 +137429,24 @@ impl_1293_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1293_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1293_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1293_meta_object__value
     },
     &impl_1293,
     NULL
+};
+
+static const afw_value_object_t
+impl_1293_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1293_meta_object
 };
 
 static const afw_utf8_t
@@ -121714,13 +137540,24 @@ impl_1294_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1294_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1294_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1294_meta_object__value
     },
     &impl_1294,
     NULL
+};
+
+static const afw_value_object_t
+impl_1294_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1294_meta_object
 };
 
 static const afw_utf8_t
@@ -121814,13 +137651,24 @@ impl_1295_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1295_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1295_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1295_meta_object__value
     },
     &impl_1295,
     NULL
+};
+
+static const afw_value_object_t
+impl_1295_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1295_meta_object
 };
 
 static const afw_utf8_t
@@ -121907,13 +137755,24 @@ impl_1296_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1296_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1296_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1296_meta_object__value
     },
     &impl_1296,
     NULL
+};
+
+static const afw_value_object_t
+impl_1296_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1296_meta_object
 };
 
 static const afw_utf8_t
@@ -122000,13 +137859,24 @@ impl_1297_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1297_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1297_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1297_meta_object__value
     },
     &impl_1297,
     NULL
+};
+
+static const afw_value_object_t
+impl_1297_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1297_meta_object
 };
 
 static const afw_utf8_t
@@ -122093,13 +137963,24 @@ impl_1298_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1298_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1298_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1298_meta_object__value
     },
     &impl_1298,
     NULL
+};
+
+static const afw_value_object_t
+impl_1298_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1298_meta_object
 };
 
 static const afw_utf8_t
@@ -122160,13 +138041,24 @@ impl_1300_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1300_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1300_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1300_meta_object__value
     },
     &impl_1300,
     NULL
+};
+
+static const afw_value_object_t
+impl_1300_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1300_meta_object
 };
 
 static const afw_utf8_t
@@ -122270,13 +138162,24 @@ impl_1299_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1299_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1299_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1299_meta_object__value
     },
     &impl_1299,
     NULL
+};
+
+static const afw_value_object_t
+impl_1299_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1299_meta_object
 };
 
 static const afw_utf8_t
@@ -122383,13 +138286,24 @@ impl_1301_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1301_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1301_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1301_meta_object__value
     },
     &impl_1301,
     NULL
+};
+
+static const afw_value_object_t
+impl_1301_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1301_meta_object
 };
 
 static const afw_utf8_t
@@ -122496,13 +138410,24 @@ impl_1302_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1302_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1302_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1302_meta_object__value
     },
     &impl_1302,
     NULL
+};
+
+static const afw_value_object_t
+impl_1302_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1302_meta_object
 };
 
 static const afw_utf8_t
@@ -122589,13 +138514,24 @@ impl_1303_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1303_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1303_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1303_meta_object__value
     },
     &impl_1303,
     NULL
+};
+
+static const afw_value_object_t
+impl_1303_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1303_meta_object
 };
 
 static const afw_utf8_t
@@ -122702,13 +138638,24 @@ impl_1304_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1304_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1304_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1304_meta_object__value
     },
     &impl_1304,
     NULL
+};
+
+static const afw_value_object_t
+impl_1304_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1304_meta_object
 };
 
 static const afw_utf8_t
@@ -122795,13 +138742,24 @@ impl_1305_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1305_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1305_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1305_meta_object__value
     },
     &impl_1305,
     NULL
+};
+
+static const afw_value_object_t
+impl_1305_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1305_meta_object
 };
 
 static const afw_utf8_t
@@ -122908,13 +138866,24 @@ impl_1306_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1306_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1306_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1306_meta_object__value
     },
     &impl_1306,
     NULL
+};
+
+static const afw_value_object_t
+impl_1306_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1306_meta_object
 };
 
 static const afw_utf8_t
@@ -123021,13 +138990,24 @@ impl_1307_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1307_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1307_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1307_meta_object__value
     },
     &impl_1307,
     NULL
+};
+
+static const afw_value_object_t
+impl_1307_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1307_meta_object
 };
 
 static const afw_utf8_t
@@ -123134,13 +139114,24 @@ impl_1308_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1308_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1308_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1308_meta_object__value
     },
     &impl_1308,
     NULL
+};
+
+static const afw_value_object_t
+impl_1308_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1308_meta_object
 };
 
 static const afw_utf8_t
@@ -123416,13 +139407,24 @@ impl_1289_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1289_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1289_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1289_meta_object__value
     },
     &impl_1289,
     NULL
+};
+
+static const afw_value_object_t
+impl_1289_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1289_meta_object
 };
 
 static const afw_utf8_t
@@ -123560,13 +139562,24 @@ impl_1287_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1287_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1287_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1287_meta_object__value
     },
     &impl_1287,
     NULL
+};
+
+static const afw_value_object_t
+impl_1287_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1287_meta_object
 };
 
 static const afw_utf8_t
@@ -123625,13 +139638,24 @@ impl_1309_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1309_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1309_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1309_meta_object__value
     },
     &impl_1309,
     NULL
+};
+
+static const afw_value_object_t
+impl_1309_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1309_meta_object
 };
 
 static const afw_utf8_t
@@ -123690,13 +139714,24 @@ impl_1310_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1310_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1310_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1310_meta_object__value
     },
     &impl_1310,
     NULL
+};
+
+static const afw_value_object_t
+impl_1310_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1310_meta_object
 };
 
 static const afw_utf8_t
@@ -123755,13 +139790,24 @@ impl_1311_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1311_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1311_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1311_meta_object__value
     },
     &impl_1311,
     NULL
+};
+
+static const afw_value_object_t
+impl_1311_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1311_meta_object
 };
 
 static const afw_utf8_t
@@ -123820,13 +139866,24 @@ impl_1312_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1312_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1312_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1312_meta_object__value
     },
     &impl_1312,
     NULL
+};
+
+static const afw_value_object_t
+impl_1312_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1312_meta_object
 };
 
 static const afw_utf8_t
@@ -123885,13 +139942,24 @@ impl_1313_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1313_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1313_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1313_meta_object__value
     },
     &impl_1313,
     NULL
+};
+
+static const afw_value_object_t
+impl_1313_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1313_meta_object
 };
 
 static const afw_utf8_t
@@ -123950,13 +140018,24 @@ impl_1314_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1314_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1314_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1314_meta_object__value
     },
     &impl_1314,
     NULL
+};
+
+static const afw_value_object_t
+impl_1314_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1314_meta_object
 };
 
 static const afw_utf8_t
@@ -124015,13 +140094,24 @@ impl_1315_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1315_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1315_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1315_meta_object__value
     },
     &impl_1315,
     NULL
+};
+
+static const afw_value_object_t
+impl_1315_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1315_meta_object
 };
 
 static const afw_utf8_t
@@ -124080,13 +140170,24 @@ impl_1316_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1316_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1316_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1316_meta_object__value
     },
     &impl_1316,
     NULL
+};
+
+static const afw_value_object_t
+impl_1316_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1316_meta_object
 };
 
 static const afw_utf8_t
@@ -124145,13 +140246,24 @@ impl_1317_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1317_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1317_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1317_meta_object__value
     },
     &impl_1317,
     NULL
+};
+
+static const afw_value_object_t
+impl_1317_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1317_meta_object
 };
 
 static const afw_utf8_t
@@ -124210,13 +140322,24 @@ impl_1318_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1318_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1318_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1318_meta_object__value
     },
     &impl_1318,
     NULL
+};
+
+static const afw_value_object_t
+impl_1318_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1318_meta_object
 };
 
 static const afw_utf8_t
@@ -124275,13 +140398,24 @@ impl_1319_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1319_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1319_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1319_meta_object__value
     },
     &impl_1319,
     NULL
+};
+
+static const afw_value_object_t
+impl_1319_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1319_meta_object
 };
 
 static const afw_utf8_t
@@ -124340,13 +140474,24 @@ impl_1320_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1320_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1320_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1320_meta_object__value
     },
     &impl_1320,
     NULL
+};
+
+static const afw_value_object_t
+impl_1320_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1320_meta_object
 };
 
 static const afw_utf8_t
@@ -124405,13 +140550,24 @@ impl_1321_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1321_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1321_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1321_meta_object__value
     },
     &impl_1321,
     NULL
+};
+
+static const afw_value_object_t
+impl_1321_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1321_meta_object
 };
 
 static const afw_utf8_t
@@ -124617,12 +140773,25 @@ impl_1322_array_providesObjects[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLayout_ObjectResponsive_sortOptions")
 };
 
+static const afw_value_array_t
+impl_1322_list_providesObjects__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_1322_list_providesObjects = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_1322_list_providesObjects__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_1322_array_providesObjects) / sizeof(afw_utf8_t),
     &impl_1322_array_providesObjects
+};
+
+static const afw_value_array_t
+impl_1322_list_providesObjects__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_1322_list_providesObjects
 };
 
 static const afw_value_array_t
@@ -124637,12 +140806,25 @@ impl_1322_property_providesObjects = {
     &impl_1322_property_value_providesObjects.pub
 };
 
+static const afw_value_array_t
+impl_1322_list_registers__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_1322_list_registers = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_1322_list_registers__value
+    },
     &afw_data_type_string_direct,
     0,
     NULL
+};
+
+static const afw_value_array_t
+impl_1322_list_registers__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_1322_list_registers
 };
 
 static const afw_value_array_t
@@ -124668,13 +140850,24 @@ impl_1322_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1322_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1322_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1322_meta_object__value
     },
     &impl_1322,
     NULL
+};
+
+static const afw_value_object_t
+impl_1322_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1322_meta_object
 };
 
 static const afw_utf8_t
@@ -124733,13 +140926,24 @@ impl_1323_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1323_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1323_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1323_meta_object__value
     },
     &impl_1323,
     NULL
+};
+
+static const afw_value_object_t
+impl_1323_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1323_meta_object
 };
 
 static const afw_utf8_t
@@ -124798,13 +141002,24 @@ impl_1324_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1324_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1324_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1324_meta_object__value
     },
     &impl_1324,
     NULL
+};
+
+static const afw_value_object_t
+impl_1324_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1324_meta_object
 };
 
 static const afw_utf8_t
@@ -124863,13 +141078,24 @@ impl_1325_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1325_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1325_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1325_meta_object__value
     },
     &impl_1325,
     NULL
+};
+
+static const afw_value_object_t
+impl_1325_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1325_meta_object
 };
 
 static const afw_utf8_t
@@ -124928,13 +141154,24 @@ impl_1326_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1326_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1326_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1326_meta_object__value
     },
     &impl_1326,
     NULL
+};
+
+static const afw_value_object_t
+impl_1326_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1326_meta_object
 };
 
 static const afw_utf8_t
@@ -124993,13 +141230,24 @@ impl_1327_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1327_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1327_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1327_meta_object__value
     },
     &impl_1327,
     NULL
+};
+
+static const afw_value_object_t
+impl_1327_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1327_meta_object
 };
 
 static const afw_utf8_t
@@ -125058,13 +141306,24 @@ impl_1328_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1328_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1328_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1328_meta_object__value
     },
     &impl_1328,
     NULL
+};
+
+static const afw_value_object_t
+impl_1328_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1328_meta_object
 };
 
 static const afw_utf8_t
@@ -125143,12 +141402,25 @@ impl_1329_array_providesObjects[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveLdapSyntax_")
 };
 
+static const afw_value_array_t
+impl_1329_list_providesObjects__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_1329_list_providesObjects = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_1329_list_providesObjects__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_1329_array_providesObjects) / sizeof(afw_utf8_t),
     &impl_1329_array_providesObjects
+};
+
+static const afw_value_array_t
+impl_1329_list_providesObjects__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_1329_list_providesObjects
 };
 
 static const afw_value_array_t
@@ -125169,12 +141441,25 @@ impl_1329_array_registers[] = {
     AFW_UTF8_LITERAL("error_rv_decoder/ldap")
 };
 
+static const afw_value_array_t
+impl_1329_list_registers__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_1329_list_registers = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_1329_list_registers__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_1329_array_registers) / sizeof(afw_utf8_t),
     &impl_1329_array_registers
+};
+
+static const afw_value_array_t
+impl_1329_list_registers__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_1329_list_registers
 };
 
 static const afw_value_array_t
@@ -125200,13 +141485,24 @@ impl_1329_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1329_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1329_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1329_meta_object__value
     },
     &impl_1329,
     NULL
+};
+
+static const afw_value_object_t
+impl_1329_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1329_meta_object
 };
 
 static const afw_utf8_t
@@ -125286,12 +141582,25 @@ impl_1330_array_providesObjects[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb_limits_time")
 };
 
+static const afw_value_array_t
+impl_1330_list_providesObjects__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_1330_list_providesObjects = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_1330_list_providesObjects__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_1330_array_providesObjects) / sizeof(afw_utf8_t),
     &impl_1330_array_providesObjects
+};
+
+static const afw_value_array_t
+impl_1330_list_providesObjects__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_1330_list_providesObjects
 };
 
 static const afw_value_array_t
@@ -125312,12 +141621,25 @@ impl_1330_array_registers[] = {
     AFW_UTF8_LITERAL("error_rv_decoder/lmdb")
 };
 
+static const afw_value_array_t
+impl_1330_list_registers__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_1330_list_registers = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_1330_list_registers__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_1330_array_registers) / sizeof(afw_utf8_t),
     &impl_1330_array_registers
+};
+
+static const afw_value_array_t
+impl_1330_list_registers__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_1330_list_registers
 };
 
 static const afw_value_array_t
@@ -125343,13 +141665,24 @@ impl_1330_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1330_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1330_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1330_meta_object__value
     },
     &impl_1330,
     NULL
+};
+
+static const afw_value_object_t
+impl_1330_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1330_meta_object
 };
 
 static const afw_utf8_t
@@ -125408,13 +141741,24 @@ impl_1331_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1331_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1331_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1331_meta_object__value
     },
     &impl_1331,
     NULL
+};
+
+static const afw_value_object_t
+impl_1331_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1331_meta_object
 };
 
 static const afw_utf8_t
@@ -125473,13 +141817,24 @@ impl_1332_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1332_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1332_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1332_meta_object__value
     },
     &impl_1332,
     NULL
+};
+
+static const afw_value_object_t
+impl_1332_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1332_meta_object
 };
 
 static const afw_utf8_t
@@ -125538,13 +141893,24 @@ impl_1333_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1333_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1333_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1333_meta_object__value
     },
     &impl_1333,
     NULL
+};
+
+static const afw_value_object_t
+impl_1333_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1333_meta_object
 };
 
 static const afw_utf8_t
@@ -125603,13 +141969,24 @@ impl_1334_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1334_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1334_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1334_meta_object__value
     },
     &impl_1334,
     NULL
+};
+
+static const afw_value_object_t
+impl_1334_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1334_meta_object
 };
 
 static const afw_utf8_t
@@ -125668,13 +142045,24 @@ impl_1335_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1335_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1335_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1335_meta_object__value
     },
     &impl_1335,
     NULL
+};
+
+static const afw_value_object_t
+impl_1335_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1335_meta_object
 };
 
 static const afw_utf8_t
@@ -125733,13 +142121,24 @@ impl_1336_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1336_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1336_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1336_meta_object__value
     },
     &impl_1336,
     NULL
+};
+
+static const afw_value_object_t
+impl_1336_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1336_meta_object
 };
 
 static const afw_utf8_t
@@ -125798,13 +142197,24 @@ impl_1337_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1337_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1337_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1337_meta_object__value
     },
     &impl_1337,
     NULL
+};
+
+static const afw_value_object_t
+impl_1337_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1337_meta_object
 };
 
 static const afw_utf8_t
@@ -125863,13 +142273,24 @@ impl_1338_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1338_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1338_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1338_meta_object__value
     },
     &impl_1338,
     NULL
+};
+
+static const afw_value_object_t
+impl_1338_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1338_meta_object
 };
 
 static const afw_utf8_t
@@ -125928,13 +142349,24 @@ impl_1339_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1339_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1339_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1339_meta_object__value
     },
     &impl_1339,
     NULL
+};
+
+static const afw_value_object_t
+impl_1339_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1339_meta_object
 };
 
 static const afw_utf8_t
@@ -125993,13 +142425,24 @@ impl_1340_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1340_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1340_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1340_meta_object__value
     },
     &impl_1340,
     NULL
+};
+
+static const afw_value_object_t
+impl_1340_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1340_meta_object
 };
 
 static const afw_utf8_t
@@ -126058,13 +142501,24 @@ impl_1341_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1341_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1341_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1341_meta_object__value
     },
     &impl_1341,
     NULL
+};
+
+static const afw_value_object_t
+impl_1341_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1341_meta_object
 };
 
 static const afw_utf8_t
@@ -126123,13 +142577,24 @@ impl_1342_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1342_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1342_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1342_meta_object__value
     },
     &impl_1342,
     NULL
+};
+
+static const afw_value_object_t
+impl_1342_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1342_meta_object
 };
 
 static const afw_utf8_t
@@ -126198,12 +142663,25 @@ impl_1343_array_registers[] = {
     AFW_UTF8_LITERAL("content_type/ubjson")
 };
 
+static const afw_value_array_t
+impl_1343_list_registers__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_1343_list_registers = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_1343_list_registers__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_1343_array_registers) / sizeof(afw_utf8_t),
     &impl_1343_array_registers
+};
+
+static const afw_value_array_t
+impl_1343_list_registers__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_1343_list_registers
 };
 
 static const afw_value_array_t
@@ -126228,13 +142706,24 @@ impl_1343_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1343_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1343_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1343_meta_object__value
     },
     &impl_1343,
     NULL
+};
+
+static const afw_value_object_t
+impl_1343_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1343_meta_object
 };
 
 static const afw_utf8_t
@@ -126293,13 +142782,24 @@ impl_1344_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1344_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1344_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1344_meta_object__value
     },
     &impl_1344,
     NULL
+};
+
+static const afw_value_object_t
+impl_1344_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1344_meta_object
 };
 
 static const afw_utf8_t
@@ -126358,13 +142858,24 @@ impl_1345_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1345_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1345_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1345_meta_object__value
     },
     &impl_1345,
     NULL
+};
+
+static const afw_value_object_t
+impl_1345_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1345_meta_object
 };
 
 static const afw_utf8_t
@@ -126435,12 +142946,25 @@ impl_1346_array_providesObjects[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveFile_vfs")
 };
 
+static const afw_value_array_t
+impl_1346_list_providesObjects__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_1346_list_providesObjects = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_1346_list_providesObjects__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_1346_array_providesObjects) / sizeof(afw_utf8_t),
     &impl_1346_array_providesObjects
+};
+
+static const afw_value_array_t
+impl_1346_list_providesObjects__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_1346_list_providesObjects
 };
 
 static const afw_value_array_t
@@ -126460,12 +142984,25 @@ impl_1346_array_registers[] = {
     AFW_UTF8_LITERAL("adaptor_type/vfs")
 };
 
+static const afw_value_array_t
+impl_1346_list_registers__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_1346_list_registers = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_1346_list_registers__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_1346_array_registers) / sizeof(afw_utf8_t),
     &impl_1346_array_registers
+};
+
+static const afw_value_array_t
+impl_1346_list_registers__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_1346_list_registers
 };
 
 static const afw_value_array_t
@@ -126491,13 +143028,24 @@ impl_1346_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1346_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1346_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1346_meta_object__value
     },
     &impl_1346,
     NULL
+};
+
+static const afw_value_object_t
+impl_1346_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1346_meta_object
 };
 
 static const afw_utf8_t
@@ -126556,13 +143104,24 @@ impl_1347_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1347_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1347_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1347_meta_object__value
     },
     &impl_1347,
     NULL
+};
+
+static const afw_value_object_t
+impl_1347_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1347_meta_object
 };
 
 static const afw_utf8_t
@@ -126631,12 +143190,25 @@ impl_1348_array_providesObjects[] = {
     AFW_UTF8_LITERAL("/afw/_AdaptiveManifest_/afw_yaml")
 };
 
+static const afw_value_array_t
+impl_1348_list_providesObjects__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_1348_list_providesObjects = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_1348_list_providesObjects__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_1348_array_providesObjects) / sizeof(afw_utf8_t),
     &impl_1348_array_providesObjects
+};
+
+static const afw_value_array_t
+impl_1348_list_providesObjects__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_1348_list_providesObjects
 };
 
 static const afw_value_array_t
@@ -126657,12 +143229,25 @@ impl_1348_array_registers[] = {
     AFW_UTF8_LITERAL("content_type/yaml")
 };
 
+static const afw_value_array_t
+impl_1348_list_registers__value;
+
 static const afw_array_wrapper_for_array_self_t
 impl_1348_list_registers = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_1348_list_registers__value
+    },
     &afw_data_type_string_direct,
     sizeof(impl_1348_array_registers) / sizeof(afw_utf8_t),
     &impl_1348_array_registers
+};
+
+static const afw_value_array_t
+impl_1348_list_registers__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_1348_list_registers
 };
 
 static const afw_value_array_t
@@ -126688,13 +143273,24 @@ impl_1348_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1348_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1348_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1348_meta_object__value
     },
     &impl_1348,
     NULL
+};
+
+static const afw_value_object_t
+impl_1348_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1348_meta_object
 };
 
 static const afw_utf8_t
@@ -126773,13 +143369,24 @@ impl_1349_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1349_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1349_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1349_meta_object__value
     },
     &impl_1349,
     NULL
+};
+
+static const afw_value_object_t
+impl_1349_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1349_meta_object
 };
 
 static const afw_utf8_t
@@ -126858,13 +143465,24 @@ impl_1350_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1350_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1350_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1350_meta_object__value
     },
     &impl_1350,
     NULL
+};
+
+static const afw_value_object_t
+impl_1350_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1350_meta_object
 };
 
 static const afw_utf8_t
@@ -126930,13 +143548,24 @@ impl_1351_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1351_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1351_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1351_meta_object__value
     },
     &impl_1351,
     NULL
+};
+
+static const afw_value_object_t
+impl_1351_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1351_meta_object
 };
 
 static const afw_utf8_t
@@ -127015,13 +143644,24 @@ impl_1352_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1352_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1352_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1352_meta_object__value
     },
     &impl_1352,
     NULL
+};
+
+static const afw_value_object_t
+impl_1352_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1352_meta_object
 };
 
 static const afw_utf8_t
@@ -127100,13 +143740,24 @@ impl_1353_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1353_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1353_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1353_meta_object__value
     },
     &impl_1353,
     NULL
+};
+
+static const afw_value_object_t
+impl_1353_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1353_meta_object
 };
 
 static const afw_utf8_t
@@ -127172,13 +143823,24 @@ impl_1354_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1354_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1354_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1354_meta_object__value
     },
     &impl_1354,
     NULL
+};
+
+static const afw_value_object_t
+impl_1354_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1354_meta_object
 };
 
 static const afw_utf8_t
@@ -127244,13 +143906,24 @@ impl_1355_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1355_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1355_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1355_meta_object__value
     },
     &impl_1355,
     NULL
+};
+
+static const afw_value_object_t
+impl_1355_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1355_meta_object
 };
 
 static const afw_utf8_t
@@ -127316,13 +143989,24 @@ impl_1356_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1356_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1356_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1356_meta_object__value
     },
     &impl_1356,
     NULL
+};
+
+static const afw_value_object_t
+impl_1356_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1356_meta_object
 };
 
 static const afw_utf8_t
@@ -127388,13 +144072,24 @@ impl_1357_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1357_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1357_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1357_meta_object__value
     },
     &impl_1357,
     NULL
+};
+
+static const afw_value_object_t
+impl_1357_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1357_meta_object
 };
 
 static const afw_utf8_t
@@ -127453,13 +144148,24 @@ impl_1358_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1358_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1358_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1358_meta_object__value
     },
     &impl_1358,
     NULL
+};
+
+static const afw_value_object_t
+impl_1358_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1358_meta_object
 };
 
 static const afw_utf8_t
@@ -127538,13 +144244,24 @@ impl_1359_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1359_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1359_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1359_meta_object__value
     },
     &impl_1359,
     NULL
+};
+
+static const afw_value_object_t
+impl_1359_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1359_meta_object
 };
 
 static const afw_utf8_t
@@ -127623,13 +144340,24 @@ impl_1360_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1360_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1360_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1360_meta_object__value
     },
     &impl_1360,
     NULL
+};
+
+static const afw_value_object_t
+impl_1360_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1360_meta_object
 };
 
 static const afw_utf8_t
@@ -127708,13 +144436,24 @@ impl_1361_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1361_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1361_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1361_meta_object__value
     },
     &impl_1361,
     NULL
+};
+
+static const afw_value_object_t
+impl_1361_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1361_meta_object
 };
 
 static const afw_utf8_t
@@ -127780,13 +144519,24 @@ impl_1362_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1362_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1362_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1362_meta_object__value
     },
     &impl_1362,
     NULL
+};
+
+static const afw_value_object_t
+impl_1362_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1362_meta_object
 };
 
 static const afw_utf8_t
@@ -127865,13 +144615,24 @@ impl_1363_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1363_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1363_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1363_meta_object__value
     },
     &impl_1363,
     NULL
+};
+
+static const afw_value_object_t
+impl_1363_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1363_meta_object
 };
 
 static const afw_utf8_t
@@ -127950,13 +144711,24 @@ impl_1364_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1364_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1364_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1364_meta_object__value
     },
     &impl_1364,
     NULL
+};
+
+static const afw_value_object_t
+impl_1364_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1364_meta_object
 };
 
 static const afw_utf8_t
@@ -128035,13 +144807,24 @@ impl_1365_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1365_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1365_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1365_meta_object__value
     },
     &impl_1365,
     NULL
+};
+
+static const afw_value_object_t
+impl_1365_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1365_meta_object
 };
 
 static const afw_utf8_t
@@ -128120,13 +144903,24 @@ impl_1366_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1366_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1366_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1366_meta_object__value
     },
     &impl_1366,
     NULL
+};
+
+static const afw_value_object_t
+impl_1366_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1366_meta_object
 };
 
 static const afw_utf8_t
@@ -128192,13 +144986,24 @@ impl_1367_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1367_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1367_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1367_meta_object__value
     },
     &impl_1367,
     NULL
+};
+
+static const afw_value_object_t
+impl_1367_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1367_meta_object
 };
 
 static const afw_utf8_t
@@ -128277,13 +145082,24 @@ impl_1368_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1368_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1368_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1368_meta_object__value
     },
     &impl_1368,
     NULL
+};
+
+static const afw_value_object_t
+impl_1368_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1368_meta_object
 };
 
 static const afw_utf8_t
@@ -128349,13 +145165,24 @@ impl_1369_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1369_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1369_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1369_meta_object__value
     },
     &impl_1369,
     NULL
+};
+
+static const afw_value_object_t
+impl_1369_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1369_meta_object
 };
 
 static const afw_utf8_t
@@ -128434,13 +145261,24 @@ impl_1370_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1370_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1370_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1370_meta_object__value
     },
     &impl_1370,
     NULL
+};
+
+static const afw_value_object_t
+impl_1370_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1370_meta_object
 };
 
 static const afw_utf8_t
@@ -128519,13 +145357,24 @@ impl_1371_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1371_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1371_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1371_meta_object__value
     },
     &impl_1371,
     NULL
+};
+
+static const afw_value_object_t
+impl_1371_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1371_meta_object
 };
 
 static const afw_utf8_t
@@ -128604,13 +145453,24 @@ impl_1372_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1372_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1372_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1372_meta_object__value
     },
     &impl_1372,
     NULL
+};
+
+static const afw_value_object_t
+impl_1372_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1372_meta_object
 };
 
 static const afw_utf8_t
@@ -128676,13 +145536,24 @@ impl_1373_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1373_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1373_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1373_meta_object__value
     },
     &impl_1373,
     NULL
+};
+
+static const afw_value_object_t
+impl_1373_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1373_meta_object
 };
 
 static const afw_utf8_t
@@ -128761,13 +145632,24 @@ impl_1374_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1374_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1374_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1374_meta_object__value
     },
     &impl_1374,
     NULL
+};
+
+static const afw_value_object_t
+impl_1374_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1374_meta_object
 };
 
 static const afw_utf8_t
@@ -128833,13 +145715,24 @@ impl_1375_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1375_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1375_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1375_meta_object__value
     },
     &impl_1375,
     NULL
+};
+
+static const afw_value_object_t
+impl_1375_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1375_meta_object
 };
 
 static const afw_utf8_t
@@ -128918,13 +145811,24 @@ impl_1376_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1376_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1376_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1376_meta_object__value
     },
     &impl_1376,
     NULL
+};
+
+static const afw_value_object_t
+impl_1376_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1376_meta_object
 };
 
 static const afw_utf8_t
@@ -128990,13 +145894,24 @@ impl_1377_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1377_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1377_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1377_meta_object__value
     },
     &impl_1377,
     NULL
+};
+
+static const afw_value_object_t
+impl_1377_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1377_meta_object
 };
 
 static const afw_utf8_t
@@ -129075,13 +145990,24 @@ impl_1378_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1378_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1378_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1378_meta_object__value
     },
     &impl_1378,
     NULL
+};
+
+static const afw_value_object_t
+impl_1378_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1378_meta_object
 };
 
 static const afw_utf8_t
@@ -129147,13 +146073,24 @@ impl_1379_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1379_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1379_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1379_meta_object__value
     },
     &impl_1379,
     NULL
+};
+
+static const afw_value_object_t
+impl_1379_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1379_meta_object
 };
 
 static const afw_utf8_t
@@ -129219,13 +146156,24 @@ impl_1380_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1380_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1380_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1380_meta_object__value
     },
     &impl_1380,
     NULL
+};
+
+static const afw_value_object_t
+impl_1380_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1380_meta_object
 };
 
 static const afw_utf8_t
@@ -129291,13 +146239,24 @@ impl_1381_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1381_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1381_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1381_meta_object__value
     },
     &impl_1381,
     NULL
+};
+
+static const afw_value_object_t
+impl_1381_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1381_meta_object
 };
 
 static const afw_utf8_t
@@ -129363,13 +146322,24 @@ impl_1382_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1382_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1382_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1382_meta_object__value
     },
     &impl_1382,
     NULL
+};
+
+static const afw_value_object_t
+impl_1382_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1382_meta_object
 };
 
 static const afw_utf8_t
@@ -129448,13 +146418,24 @@ impl_1383_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1383_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1383_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1383_meta_object__value
     },
     &impl_1383,
     NULL
+};
+
+static const afw_value_object_t
+impl_1383_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1383_meta_object
 };
 
 static const afw_utf8_t
@@ -129533,13 +146514,24 @@ impl_1384_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1384_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1384_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1384_meta_object__value
     },
     &impl_1384,
     NULL
+};
+
+static const afw_value_object_t
+impl_1384_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1384_meta_object
 };
 
 static const afw_utf8_t
@@ -129618,13 +146610,24 @@ impl_1385_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1385_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1385_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1385_meta_object__value
     },
     &impl_1385,
     NULL
+};
+
+static const afw_value_object_t
+impl_1385_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1385_meta_object
 };
 
 static const afw_utf8_t
@@ -129703,13 +146706,24 @@ impl_1386_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1386_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1386_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1386_meta_object__value
     },
     &impl_1386,
     NULL
+};
+
+static const afw_value_object_t
+impl_1386_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1386_meta_object
 };
 
 static const afw_utf8_t
@@ -129788,13 +146802,24 @@ impl_1387_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1387_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1387_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1387_meta_object__value
     },
     &impl_1387,
     NULL
+};
+
+static const afw_value_object_t
+impl_1387_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1387_meta_object
 };
 
 static const afw_utf8_t
@@ -129860,13 +146885,24 @@ impl_1388_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1388_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1388_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1388_meta_object__value
     },
     &impl_1388,
     NULL
+};
+
+static const afw_value_object_t
+impl_1388_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1388_meta_object
 };
 
 static const afw_utf8_t
@@ -129932,13 +146968,24 @@ impl_1389_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1389_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1389_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1389_meta_object__value
     },
     &impl_1389,
     NULL
+};
+
+static const afw_value_object_t
+impl_1389_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1389_meta_object
 };
 
 static const afw_utf8_t
@@ -130004,13 +147051,24 @@ impl_1390_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1390_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1390_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1390_meta_object__value
     },
     &impl_1390,
     NULL
+};
+
+static const afw_value_object_t
+impl_1390_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1390_meta_object
 };
 
 static const afw_utf8_t
@@ -130089,13 +147147,24 @@ impl_1391_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1391_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1391_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1391_meta_object__value
     },
     &impl_1391,
     NULL
+};
+
+static const afw_value_object_t
+impl_1391_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1391_meta_object
 };
 
 static const afw_utf8_t
@@ -130174,13 +147243,24 @@ impl_1392_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1392_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1392_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1392_meta_object__value
     },
     &impl_1392,
     NULL
+};
+
+static const afw_value_object_t
+impl_1392_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1392_meta_object
 };
 
 static const afw_utf8_t
@@ -130259,13 +147339,24 @@ impl_1393_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1393_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1393_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1393_meta_object__value
     },
     &impl_1393,
     NULL
+};
+
+static const afw_value_object_t
+impl_1393_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1393_meta_object
 };
 
 static const afw_utf8_t
@@ -130344,13 +147435,24 @@ impl_1394_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1394_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1394_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1394_meta_object__value
     },
     &impl_1394,
     NULL
+};
+
+static const afw_value_object_t
+impl_1394_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1394_meta_object
 };
 
 static const afw_utf8_t
@@ -130416,13 +147518,24 @@ impl_1395_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1395_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1395_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1395_meta_object__value
     },
     &impl_1395,
     NULL
+};
+
+static const afw_value_object_t
+impl_1395_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1395_meta_object
 };
 
 static const afw_utf8_t
@@ -130501,13 +147614,24 @@ impl_1396_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1396_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1396_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1396_meta_object__value
     },
     &impl_1396,
     NULL
+};
+
+static const afw_value_object_t
+impl_1396_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1396_meta_object
 };
 
 static const afw_utf8_t
@@ -130586,13 +147710,24 @@ impl_1397_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1397_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1397_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1397_meta_object__value
     },
     &impl_1397,
     NULL
+};
+
+static const afw_value_object_t
+impl_1397_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1397_meta_object
 };
 
 static const afw_utf8_t
@@ -130671,13 +147806,24 @@ impl_1398_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1398_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1398_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1398_meta_object__value
     },
     &impl_1398,
     NULL
+};
+
+static const afw_value_object_t
+impl_1398_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1398_meta_object
 };
 
 static const afw_utf8_t
@@ -130743,13 +147889,24 @@ impl_1399_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1399_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1399_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1399_meta_object__value
     },
     &impl_1399,
     NULL
+};
+
+static const afw_value_object_t
+impl_1399_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1399_meta_object
 };
 
 static const afw_utf8_t
@@ -130815,13 +147972,24 @@ impl_1400_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1400_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1400_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1400_meta_object__value
     },
     &impl_1400,
     NULL
+};
+
+static const afw_value_object_t
+impl_1400_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1400_meta_object
 };
 
 static const afw_utf8_t
@@ -130900,13 +148068,24 @@ impl_1401_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1401_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1401_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1401_meta_object__value
     },
     &impl_1401,
     NULL
+};
+
+static const afw_value_object_t
+impl_1401_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1401_meta_object
 };
 
 static const afw_utf8_t
@@ -130972,13 +148151,24 @@ impl_1402_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1402_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1402_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1402_meta_object__value
     },
     &impl_1402,
     NULL
+};
+
+static const afw_value_object_t
+impl_1402_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1402_meta_object
 };
 
 static const afw_utf8_t
@@ -131044,13 +148234,24 @@ impl_1403_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1403_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1403_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1403_meta_object__value
     },
     &impl_1403,
     NULL
+};
+
+static const afw_value_object_t
+impl_1403_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1403_meta_object
 };
 
 static const afw_utf8_t
@@ -131129,13 +148330,24 @@ impl_1404_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1404_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1404_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1404_meta_object__value
     },
     &impl_1404,
     NULL
+};
+
+static const afw_value_object_t
+impl_1404_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1404_meta_object
 };
 
 static const afw_utf8_t

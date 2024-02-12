@@ -41,8 +41,8 @@ afw_array_create_wrapper_for_array(
     const afw_octet_t *ptr;
 
     self = afw_pool_calloc_type(p, afw_array_wrapper_for_array_self_t, xctx);
-    self->inf = &afw_array_wrapper_for_array_inf;
-    self->p = p;
+    self->pub.inf = &afw_array_wrapper_for_array_inf;
+    self->pub.p = p;
     self->internal = internal;
     self->data_type = data_type;
     self->count = count;
@@ -103,8 +103,8 @@ afw_array_convert_to_array_of_strings(
     /* Allocate array for internal values and self for wrapper. */
     internal = afw_pool_malloc(p, count * sizeof(afw_utf8_t), xctx);
     self = afw_pool_calloc_type(p, afw_array_wrapper_for_array_self_t, xctx);
-    self->inf = &afw_array_wrapper_for_array_inf;
-    self->p = p;
+    self->pub.inf = &afw_array_wrapper_for_array_inf;
+    self->pub.p = p;
     self->internal = internal;
     self->data_type = afw_data_type_string;
     self->count = count;

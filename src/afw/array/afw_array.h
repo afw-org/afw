@@ -235,11 +235,10 @@ afw_array_create_wrapper_for_array(
  * this.
  */
 typedef struct afw_array_wrapper_for_array_self_s {
-    const afw_array_inf_t *inf;
+    afw_array_t pub;
     const afw_data_type_t *data_type;
     afw_size_t count;
     const void *internal;
-    const afw_pool_t *p;
     afw_boolean_t indirect;
 } afw_array_wrapper_for_array_self_t;
 
@@ -275,8 +274,8 @@ afw_array_wrapper_for_array_inf;
  */
 #define AFW_LIST_INITIALIZE_WRAPPER_FOR_ARRAY( \
 instance, _internal, _indirect, _data_type, _count) \
-    (instance)->inf = &afw_array_wrapper_for_array_inf; \
-    (instance)->p = NULL; \
+    (instance)->pub.inf = &afw_array_wrapper_for_array_inf; \
+    (instance)->pub.p = NULL; \
     (instance)->internal = _internal; \
     (instance)->indirect = _indirect; \
     (instance)->data_type = _data_type; \
@@ -296,8 +295,8 @@ instance, _internal, _indirect, _data_type, _count) \
  */
 #define AFW_LIST_INITIALIZE_WRAPPER_FOR_ARRAY_P(instance, \
 _internal, _indirect, _data_type, _count, _p) \
-    (instance)->inf = &afw_array_wrapper_for_array_inf; \
-    (instance)->p = _p; \
+    (instance)->pub.inf = &afw_array_wrapper_for_array_inf; \
+    (instance)->pub.p = _p; \
     (instance)->internal = _internal; \
     (instance)->indirect = _indirect; \
     (instance)->data_type = _data_type; \

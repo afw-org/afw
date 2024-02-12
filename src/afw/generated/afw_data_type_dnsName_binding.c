@@ -200,7 +200,11 @@ afw_data_type_dnsName_direct = {
 /* Value for empty array of dnsName. */
 AFW_DEFINE_INTERNAL_CONST_DATA(afw_array_wrapper_for_array_self_t)
 impl_empty_array_of_dnsName = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_value_empty_array_of_dnsName
+    },
     &afw_data_type_dnsName_direct,
     0
 };
