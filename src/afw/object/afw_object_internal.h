@@ -51,6 +51,7 @@ struct afw_object_internal_name_value_entry_s {
 
 struct afw_object_internal_memory_object_s {
     afw_object_t pub;
+    afw_value_object_t value;
     afw_object_setter_t setter;
 
     /*
@@ -76,6 +77,7 @@ struct afw_object_internal_memory_object_s {
 /* Self for meta accessor object. */
 typedef struct {
     afw_object_t pub;
+    afw_value_object_t value;
 
     /* Mutable object or NULL if always immutable. */
     const afw_object_t *mutable;
@@ -96,6 +98,7 @@ typedef struct {
 /* Self for meta accessor object. */
 typedef struct {
     afw_object_t pub;
+    afw_value_object_t value;
     afw_object_setter_t setter;
 
     /* Passed on create. */
@@ -117,8 +120,7 @@ typedef struct {
 /* Self for meta accessor object. */
 typedef struct {
     afw_object_t pub;
-
-    /* Private implementation variables */
+    afw_value_object_t value;
     const afw_object_t *instance;
     const afw_object_options_t *options;
     const afw_iterator_t *iterator;
@@ -126,34 +128,6 @@ typedef struct {
     afw_boolean_t limited_meta;
 
 } afw_object_internal_meta_accessor_self_t;
-
-
-/* Self for meta properties object. */
-typedef struct {
-    afw_object_t pub;
-
-} afw_object_internal_meta_properties_self_t;
-
-
-/* Self for meta property object. */
-typedef struct {
-    afw_object_t pub;
-
-} afw_object_internal_meta_property_self_t;
-
-
-/* Self for meta propertyType object. */
-typedef struct {
-    afw_object_t pub;
-
-} afw_object_internal_meta_propertyType_self_t;
-
-
-/* Self for meta propertyTypes object. */
-typedef struct {
-    afw_object_t pub;
-
-} afw_object_internal_meta_propertyTypes_self_t;
 
 
 /* Self typedef "const for key value string" entry. */
@@ -168,7 +142,7 @@ afw_object_const_key_value_string_entry_s {
 typedef struct
 afw_object_const_key_value_self_s {
     afw_object_t pub;
-
+    afw_value_object_t value;
     afw_size_t entry_count;
     const afw_object_const_key_value_string_entry_t *entry;
     const afw_object_const_key_value_string_entry_t *entry_end;
@@ -180,6 +154,7 @@ afw_object_const_key_value_self_s {
 typedef struct
 afw_object_aggregate_external_self_s {
     afw_object_t pub;
+    afw_value_object_t value;
     const afw_object_t * const *object_list;
     struct {
         const afw_object_t * const *object;

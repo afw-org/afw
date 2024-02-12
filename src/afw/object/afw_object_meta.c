@@ -49,6 +49,9 @@ impl_set_meta_object(
         afw_object_meta_object_t, xctx);
     meta_self->pub.p = self->p;
     meta_self->pub.inf = &impl_afw_object_inf;
+    meta_self->value.inf = &afw_value_managed_object_inf;
+    meta_self->value.internal = (const afw_object_t *)self;
+    meta_self->pub.value = (const afw_value_t *)&meta_self->value;
     meta_self->pub.meta.embedding_object = self;
     meta_self->pub.meta.id = afw_s_a_meta_key;
     meta_self->pub.meta.object_type_uri = afw_s__AdaptiveMeta_;

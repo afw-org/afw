@@ -46,6 +46,9 @@ afw_object_create_with_options(
     self = afw_pool_calloc_type(p, afw_object_internal_memory_object_t, xctx);
     self->pub.inf = &impl_afw_object_inf;
     self->pub.p = p;
+    self->value.inf = &afw_value_managed_object_inf;
+    self->value.internal = (const afw_object_t *)self;
+    self->pub.value = (const afw_value_t *)&self->value;
     self->unmanaged = AFW_OBJECT_MEMORY_OPTION_IS(options, unmanaged);
     //FIXME self->clone_on_set = AFW_OBJECT_MEMORY_OPTION_IS(options, clone_on_set);
     self->reference_count = (self->unmanaged) ? 0 : 1;
@@ -81,6 +84,9 @@ afw_object_create_embedded(
     self = afw_pool_calloc_type(p, afw_object_internal_memory_object_t, xctx);
     self->pub.inf = &impl_afw_object_inf;
     self->pub.p = p;
+    self->value.inf = &afw_value_managed_object_inf;
+    self->value.internal = (const afw_object_t *)self;
+    self->pub.value = (const afw_value_t *)&self->value;
     self->pub.meta.embedding_object = embedding_object;
     self->pub.meta.id = property_name;
     self->managed_by_entity = true;

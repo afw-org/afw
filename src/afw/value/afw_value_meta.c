@@ -88,7 +88,7 @@ impl_get_valueInfId(
     const afw_value_t *result;
 
     result = afw_value_create_unmanaged_string(
-        &self->value->inf->rti.implementation_id,
+        &self->associated_value->inf->rti.implementation_id,
         self->pub.p, xctx);
 
     return result;
@@ -364,7 +364,7 @@ impl_afw_object_setter_set_property(
 
 AFW_DEFINE_INTERNAL(afw_value_meta_object_self_t *)
 afw_value_internal_create_meta_object_self(
-    const afw_value_t *value,
+    const afw_value_t *associated_value,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
@@ -374,8 +374,8 @@ afw_value_internal_create_meta_object_self(
 
     self->pub.inf = &impl_afw_object_inf;
     self->pub.p = p;
-    self->value = value;
-    self->evaluated_value = afw_value_evaluate(value, p, xctx);
+    self->associated_value = associated_value;
+    self->evaluated_value = afw_value_evaluate(associated_value, p, xctx);
     self->meta_object_value.inf = &afw_value_unmanaged_object_inf;
     self->meta_object_value.internal = (const afw_object_t *)self;
     self->setter.inf = &impl_afw_object_setter_inf;
