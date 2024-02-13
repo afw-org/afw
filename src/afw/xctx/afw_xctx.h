@@ -205,7 +205,7 @@ do { \
  * AFW_XCTX_AUTHORIZATION_MODE_END;
  */
 #define AFW_XCTX_AUTHORIZATION_MODE_BEGIN(modeId) \
-const afw_value_t *this_PREVIOUS_MODE = \
+    const afw_value_t *this_PREVIOUS_MODE = xctx->mode; \
     xctx->mode = afw_authorization_mode_id_ ## modeId ## _value; \
 AFW_TRY
 
