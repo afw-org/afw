@@ -32,6 +32,7 @@ AFW_BEGIN_DECLARES
 typedef struct
 afw_xctx_qualifier_object_self_s {
     afw_object_t pub;
+    afw_value_object_t value;
     afw_size_t reference_count;
     const afw_utf8_t *qualifier;
     afw_boolean_t for_testing;

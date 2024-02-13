@@ -33,6 +33,7 @@
  */
 typedef struct impl_afw_array_const_array_of_values_self_s {
     afw_array_t pub;
+    afw_value_array_t value;
 
     /* Private implementation variables */
     const afw_value_t *const *values;
@@ -99,6 +100,10 @@ afw_array_const_create_array_of_values(
     self = afw_pool_calloc_type(p,
         impl_afw_array_const_array_of_values_self_t, xctx);
     self->pub.inf = &impl_afw_array_inf;
+    self->pub.p = p;
+    self->value.inf = &afw_value_managed_array_inf;
+    self->value.internal = (const afw_array_t *)self;
+    self->pub.value = (const afw_value_t *)&self->value;
     if (count > 0) {
         self->values = values;
         self->end_of_values = &values[count];

@@ -53,6 +53,9 @@ afw_object_meta_create_accessor_with_options(
     self = afw_pool_calloc_type(p, afw_object_internal_meta_accessor_self_t, xctx);
     self->pub.inf = &impl_afw_object_inf;
     self->pub.p = p;
+    self->value.inf = &afw_value_managed_object_inf;
+    self->value.internal = (const afw_object_t *)self;
+    self->pub.value = (const afw_value_t *)&self->value;
     self->options = options;
     self->instance = instance;
     self->embedded = (instance->meta.embedding_object != NULL);

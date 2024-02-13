@@ -28,6 +28,7 @@ AFW_BEGIN_DECLARES
 
 typedef struct afw_object_impl_property_meta_object_self_s {
     afw_object_t pub;
+    afw_value_object_t value;
     afw_object_setter_t setter;
     const afw_object_t *owning_object;
     afw_value_object_t meta_object_value;

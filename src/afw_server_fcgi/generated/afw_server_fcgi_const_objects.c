@@ -52,13 +52,24 @@ impl_1_properties[] = {
     NULL
 };
 
+static const afw_value_object_t
+impl_1_meta_object__value;
+
 static const afw_runtime_const_object_meta_object_t
 impl_1_meta_object = {
     {
-        &afw_runtime_inf_const_meta_object_inf
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_1_meta_object__value
     },
     &impl_1,
     NULL
+};
+
+static const afw_value_object_t
+impl_1_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_1_meta_object
 };
 
 static const afw_utf8_t

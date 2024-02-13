@@ -142,7 +142,7 @@ impl_afw_array_get_setter(
 
 AFW_DEFINE_INTERNAL(const afw_value_t *)
 afw_value_meta_values_list_for_object_create(
-    const afw_value_t *value,
+    const afw_value_t *associated_value,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
@@ -150,9 +150,12 @@ afw_value_meta_values_list_for_object_create(
 
     self = afw_xctx_calloc_type(afw_value_meta_values_object_list_self_t, xctx);
     self->pub.inf = &impl_afw_array_inf;
-    self->p = p;
-    AFW_VALUE_ASSERT_IS_DATA_TYPE(value, object, xctx);
-    self->value = (const afw_value_object_t *)value;
+    self->pub.p = p;
+    self->value.inf = &afw_value_managed_array_inf;
+    self->value.internal = (const afw_array_t *)self;
+    self->pub.value = (const afw_value_t *)&self->value;
+    AFW_VALUE_ASSERT_IS_DATA_TYPE(associated_value, object, xctx);
+    self->associated_value = (const afw_value_object_t *)associated_value;
 
     return afw_value_create_unmanaged_array(
         (const afw_array_t *)self, p, xctx);

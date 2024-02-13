@@ -22,6 +22,7 @@
 
 typedef struct impl_self_s {
     afw_object_t pub;
+    afw_value_object_t value;
     const afw_object_t *properties;
     afw_boolean_t all_variables_loaded;
 } impl_self_t;
@@ -88,6 +89,9 @@ afw_environment_create_environment_variables_object(
     self = afw_pool_calloc_type(p, impl_self_t, xctx);
     self->pub.inf = &impl_afw_object_inf;
     self->pub.p = p;
+    self->value.inf = &afw_value_managed_object_inf;
+    self->value.internal = (const afw_object_t *)self;
+    self->pub.value = (const afw_value_t *)&self->value;
     self->pub.meta.id = afw_s_current;
     self->pub.meta.object_type_uri = afw_s__AdaptiveEnvironmentVariables_;
     self->pub.meta.object_uri = &impl_path;

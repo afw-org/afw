@@ -23,6 +23,7 @@
 
 typedef struct impl_self_s {
     afw_object_t pub;
+    afw_value_object_t value;
     afw_server_fcgi_internal_request_t *request;
     const afw_object_t *properties;
 } impl_self_t;
@@ -45,6 +46,9 @@ afw_server_fcgi_internal_create_properties_object(
     self->pub.meta.object_type_uri = afw_s__AdaptiveRequestProperties_;
     self->pub.meta.object_uri = &impl_path;
     self->pub.p = xctx->p;
+    self->value.inf = &afw_value_managed_object_inf;
+    self->value.internal = (const afw_object_t *)self;
+    self->pub.value = (const afw_value_t *)&self->value;
     self->request = request;
 
     /* Create request properties object. */

@@ -88,7 +88,8 @@ struct afw_object_view_internal_object_self_s {
 
     /* Public part of object. */
     afw_object_t pub;
-
+    afw_value_object_t value;
+    
     /* View common info. */
     afw_object_view_internal_view_t *view;
 

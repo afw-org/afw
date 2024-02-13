@@ -200,7 +200,11 @@ afw_data_type_xpathExpression_direct = {
 /* Value for empty array of xpathExpression. */
 AFW_DEFINE_INTERNAL_CONST_DATA(afw_array_wrapper_for_array_self_t)
 impl_empty_array_of_xpathExpression = {
-    &afw_array_wrapper_for_array_inf,
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_value_empty_array_of_xpathExpression
+    },
     &afw_data_type_xpathExpression_direct,
     0
 };

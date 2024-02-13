@@ -29,6 +29,7 @@ AFW_BEGIN_DECLARES
 /* Struct for meta object self. */
 struct afw_object_meta_object_s {
     afw_object_t pub;
+    afw_value_object_t value;
     afw_object_setter_t setter;
 
     /* Object type or NULL if not available. */

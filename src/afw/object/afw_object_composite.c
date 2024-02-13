@@ -53,6 +53,9 @@ afw_object_create_composite(
         afw_object_internal_composite_self_t, xctx);
     self->pub.inf = &impl_afw_object_inf;
     self->pub.p = p;
+    self->value.inf = &afw_value_managed_object_inf;
+    self->value.internal = (const afw_object_t *)self;
+    self->pub.value = (const afw_value_t *)&self->value;
     self->immutable = !mutable;
     if (mutable) {
         self->mutable = afw_object_create_unmanaged(p, xctx);

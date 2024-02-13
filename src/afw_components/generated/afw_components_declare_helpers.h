@@ -40,6 +40,9 @@
 #define AFW_COMPONENTS_BEGIN_DECLARES
 #define AFW_COMPONENTS_END_DECLARES
 #endif
+#if defined(WIN32)
+#error afw is not currently supported on Windows
+#endif
 
 
 /* #defines for declspec and calling convention. */

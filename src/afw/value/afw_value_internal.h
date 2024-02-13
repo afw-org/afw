@@ -633,9 +633,10 @@ struct afw_value_symbol_reference_s {
 
 typedef struct afw_value_meta_object_self_s {
     afw_object_t pub;
+    afw_value_object_t value;
     afw_object_setter_t setter;
     afw_value_object_t meta_object_value;
-    const afw_value_t *value;
+    const afw_value_t *associated_value;
     const afw_value_t *evaluated_value;
     const afw_utf8_t *key;
     const afw_object_t *additional;
@@ -646,16 +647,16 @@ typedef struct afw_value_meta_object_self_s {
 
 typedef struct afw_value_meta_values_object_list_self_s {
     afw_array_t pub;
-    const afw_pool_t *p;
-    const afw_value_object_t *value;
+    afw_value_array_t value;
+    const afw_value_object_t *associated_value;
 } afw_value_meta_values_object_list_self_t;
 
 
 
 typedef struct afw_value_meta_values_list_list_self_s {
     afw_array_t pub;
-    const afw_pool_t *p;
-    const afw_value_array_t *value;
+    afw_value_array_t value;
+    const afw_value_array_t *associated_value;
 } afw_value_meta_values_list_list_self_t;
 
 
@@ -698,7 +699,7 @@ afw_value_call_script_function(
 
 AFW_DECLARE_INTERNAL(afw_value_meta_object_self_t *)
 afw_value_internal_create_meta_object_self(
-    const afw_value_t *value,
+    const afw_value_t *associated_value,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
