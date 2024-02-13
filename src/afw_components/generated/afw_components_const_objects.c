@@ -6390,7 +6390,7 @@ impl_53_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_53_list_collectionURIs__value
+        &impl_53_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_53_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -7577,7 +7577,7 @@ impl_59_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_59_list_collectionURIs__value
+        &impl_59_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_59_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -8037,7 +8037,7 @@ impl_69_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_69_list_collectionURIs__value
+        &impl_69_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_69_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -8205,7 +8205,7 @@ impl_75_list_allowedValues = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_75_list_allowedValues__value
+        &impl_75_list_allowedValues__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_75_array_allowedValues) / sizeof(afw_utf8_t),
@@ -8357,7 +8357,7 @@ impl_76_list_allowedValues = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_76_list_allowedValues__value
+        &impl_76_list_allowedValues__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_76_array_allowedValues) / sizeof(afw_utf8_t),
@@ -8619,7 +8619,7 @@ impl_78_list_allowedValues = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_78_list_allowedValues__value
+        &impl_78_list_allowedValues__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_78_array_allowedValues) / sizeof(afw_utf8_t),
@@ -8777,7 +8777,7 @@ impl_79_list_allowedValues = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_79_list_allowedValues__value
+        &impl_79_list_allowedValues__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_79_array_allowedValues) / sizeof(afw_utf8_t),
@@ -8928,7 +8928,7 @@ impl_80_list_allowedValues = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_80_list_allowedValues__value
+        &impl_80_list_allowedValues__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_80_array_allowedValues) / sizeof(afw_utf8_t),
@@ -9266,7 +9266,7 @@ impl_73_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_73_list_collectionURIs__value
+        &impl_73_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_73_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -10016,7 +10016,7 @@ impl_81_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_81_list_collectionURIs__value
+        &impl_81_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_81_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -10413,7 +10413,7 @@ impl_87_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_87_list_collectionURIs__value
+        &impl_87_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_87_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -10932,7 +10932,7 @@ impl_90_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_90_list_collectionURIs__value
+        &impl_90_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_90_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -11103,7 +11103,7 @@ impl_96_list_possibleValues = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_96_list_possibleValues__value
+        &impl_96_list_possibleValues__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_96_array_possibleValues) / sizeof(afw_utf8_t),
@@ -11727,7 +11727,7 @@ impl_102_list_possibleValues = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_102_list_possibleValues__value
+        &impl_102_list_possibleValues__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_102_array_possibleValues) / sizeof(afw_utf8_t),
@@ -11865,7 +11865,7 @@ impl_103_list_possibleValues = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_103_list_possibleValues__value
+        &impl_103_list_possibleValues__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_103_array_possibleValues) / sizeof(afw_utf8_t),
@@ -12197,7 +12197,7 @@ impl_94_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_94_list_collectionURIs__value
+        &impl_94_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_94_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -12921,7 +12921,7 @@ impl_104_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_104_list_collectionURIs__value
+        &impl_104_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_104_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -13625,7 +13625,7 @@ impl_110_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_110_list_collectionURIs__value
+        &impl_110_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_110_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -14092,7 +14092,7 @@ impl_116_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_116_list_collectionURIs__value
+        &impl_116_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_116_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -14919,7 +14919,7 @@ impl_120_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_120_list_collectionURIs__value
+        &impl_120_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_120_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -15307,7 +15307,7 @@ impl_131_list_possibleValues = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_131_list_possibleValues__value
+        &impl_131_list_possibleValues__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_131_array_possibleValues) / sizeof(afw_utf8_t),
@@ -15792,7 +15792,7 @@ impl_127_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_127_list_collectionURIs__value
+        &impl_127_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_127_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -16443,7 +16443,7 @@ impl_134_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_134_list_collectionURIs__value
+        &impl_134_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_134_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -17276,7 +17276,7 @@ impl_140_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_140_list_collectionURIs__value
+        &impl_140_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_140_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -18020,7 +18020,7 @@ impl_147_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_147_list_collectionURIs__value
+        &impl_147_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_147_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -18747,7 +18747,7 @@ impl_161_list_possibleValues = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_161_list_possibleValues__value
+        &impl_161_list_possibleValues__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_161_array_possibleValues) / sizeof(afw_utf8_t),
@@ -19259,7 +19259,7 @@ impl_153_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_153_list_collectionURIs__value
+        &impl_153_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_153_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -20092,7 +20092,7 @@ impl_164_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_164_list_collectionURIs__value
+        &impl_164_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_164_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -20919,7 +20919,7 @@ impl_171_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_171_list_collectionURIs__value
+        &impl_171_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_171_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -21508,7 +21508,7 @@ impl_184_list_possibleValues = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_184_list_possibleValues__value
+        &impl_184_list_possibleValues__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_184_array_possibleValues) / sizeof(afw_utf8_t),
@@ -22250,7 +22250,7 @@ impl_178_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_178_list_collectionURIs__value
+        &impl_178_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_178_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -22852,7 +22852,7 @@ impl_189_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_189_list_collectionURIs__value
+        &impl_189_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_189_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -23120,7 +23120,7 @@ impl_194_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_194_list_collectionURIs__value
+        &impl_194_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_194_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -23280,7 +23280,7 @@ impl_198_list_allowedValues = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_198_list_allowedValues__value
+        &impl_198_list_allowedValues__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_198_array_allowedValues) / sizeof(afw_utf8_t),
@@ -23650,7 +23650,7 @@ impl_201_list_allowedValues = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_201_list_allowedValues__value
+        &impl_201_list_allowedValues__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_201_array_allowedValues) / sizeof(afw_utf8_t),
@@ -23962,7 +23962,7 @@ impl_196_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_196_list_collectionURIs__value
+        &impl_196_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_196_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -24905,7 +24905,7 @@ impl_202_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_202_list_collectionURIs__value
+        &impl_202_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_202_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -25841,7 +25841,7 @@ impl_210_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_210_list_collectionURIs__value
+        &impl_210_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_210_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -26383,7 +26383,7 @@ impl_218_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_218_list_collectionURIs__value
+        &impl_218_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_218_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -27222,7 +27222,7 @@ impl_223_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_223_list_collectionURIs__value
+        &impl_223_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_223_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -27831,7 +27831,7 @@ impl_230_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_230_list_collectionURIs__value
+        &impl_230_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_230_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -28876,7 +28876,7 @@ impl_235_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_235_list_collectionURIs__value
+        &impl_235_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_235_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -29253,7 +29253,7 @@ impl_244_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_244_list_collectionURIs__value
+        &impl_244_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_244_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -29630,7 +29630,7 @@ impl_247_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_247_list_collectionURIs__value
+        &impl_247_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_247_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -30232,7 +30232,7 @@ impl_250_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_250_list_collectionURIs__value
+        &impl_250_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_250_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -30841,7 +30841,7 @@ impl_255_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_255_list_collectionURIs__value
+        &impl_255_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_255_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -31334,7 +31334,7 @@ impl_260_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_260_list_collectionURIs__value
+        &impl_260_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_260_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -31827,7 +31827,7 @@ impl_264_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_264_list_collectionURIs__value
+        &impl_264_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_264_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -32294,7 +32294,7 @@ impl_268_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_268_list_collectionURIs__value
+        &impl_268_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_268_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -32787,7 +32787,7 @@ impl_272_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_272_list_collectionURIs__value
+        &impl_272_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_272_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -33683,7 +33683,7 @@ impl_276_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_276_list_collectionURIs__value
+        &impl_276_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_276_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -34258,7 +34258,7 @@ impl_290_list_possibleValues = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_290_list_possibleValues__value
+        &impl_290_list_possibleValues__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_290_array_possibleValues) / sizeof(afw_utf8_t),
@@ -34551,7 +34551,7 @@ impl_284_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_284_list_collectionURIs__value
+        &impl_284_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_284_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -35159,7 +35159,7 @@ impl_291_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_291_list_collectionURIs__value
+        &impl_291_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_291_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -35529,7 +35529,7 @@ impl_296_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_296_list_collectionURIs__value
+        &impl_296_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_296_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -35906,7 +35906,7 @@ impl_299_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_299_list_collectionURIs__value
+        &impl_299_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_299_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -36693,7 +36693,7 @@ impl_302_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_302_list_collectionURIs__value
+        &impl_302_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_302_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -37308,7 +37308,7 @@ impl_309_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_309_list_collectionURIs__value
+        &impl_309_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_309_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -37917,7 +37917,7 @@ impl_314_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_314_list_collectionURIs__value
+        &impl_314_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_314_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -38377,7 +38377,7 @@ impl_319_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_319_list_collectionURIs__value
+        &impl_319_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_319_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -38557,7 +38557,7 @@ impl_325_list_possibleValues = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_325_list_possibleValues__value
+        &impl_325_list_possibleValues__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_325_array_possibleValues) / sizeof(afw_utf8_t),
@@ -38696,7 +38696,7 @@ impl_326_list_possibleValues = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_326_list_possibleValues__value
+        &impl_326_list_possibleValues__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_326_array_possibleValues) / sizeof(afw_utf8_t),
@@ -38835,7 +38835,7 @@ impl_327_list_possibleValues = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_327_list_possibleValues__value
+        &impl_327_list_possibleValues__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_327_array_possibleValues) / sizeof(afw_utf8_t),
@@ -39090,7 +39090,7 @@ impl_329_list_possibleValues = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_329_list_possibleValues__value
+        &impl_329_list_possibleValues__value
     },
     &afw_data_type_integer_direct,
     sizeof(impl_329_array_possibleValues) / sizeof(afw_integer_t),
@@ -39383,7 +39383,7 @@ impl_323_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_323_list_collectionURIs__value
+        &impl_323_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_323_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -39864,7 +39864,7 @@ impl_330_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_330_list_collectionURIs__value
+        &impl_330_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_330_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -40242,7 +40242,7 @@ impl_334_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_334_list_collectionURIs__value
+        &impl_334_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_334_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -40428,7 +40428,7 @@ impl_339_list_possibleValues = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_339_list_possibleValues__value
+        &impl_339_list_possibleValues__value
     },
     &afw_data_type_integer_direct,
     sizeof(impl_339_array_possibleValues) / sizeof(afw_integer_t),
@@ -40574,7 +40574,7 @@ impl_340_list_possibleValues = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_340_list_possibleValues__value
+        &impl_340_list_possibleValues__value
     },
     &afw_data_type_integer_direct,
     sizeof(impl_340_array_possibleValues) / sizeof(afw_integer_t),
@@ -40720,7 +40720,7 @@ impl_341_list_possibleValues = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_341_list_possibleValues__value
+        &impl_341_list_possibleValues__value
     },
     &afw_data_type_integer_direct,
     sizeof(impl_341_array_possibleValues) / sizeof(afw_integer_t),
@@ -40866,7 +40866,7 @@ impl_342_list_possibleValues = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_342_list_possibleValues__value
+        &impl_342_list_possibleValues__value
     },
     &afw_data_type_integer_direct,
     sizeof(impl_342_array_possibleValues) / sizeof(afw_integer_t),
@@ -41012,7 +41012,7 @@ impl_343_list_possibleValues = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_343_list_possibleValues__value
+        &impl_343_list_possibleValues__value
     },
     &afw_data_type_integer_direct,
     sizeof(impl_343_array_possibleValues) / sizeof(afw_integer_t),
@@ -41158,7 +41158,7 @@ impl_344_list_possibleValues = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_344_list_possibleValues__value
+        &impl_344_list_possibleValues__value
     },
     &afw_data_type_integer_direct,
     sizeof(impl_344_array_possibleValues) / sizeof(afw_integer_t),
@@ -41445,7 +41445,7 @@ impl_337_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_337_list_collectionURIs__value
+        &impl_337_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_337_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -42026,7 +42026,7 @@ impl_345_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_345_list_collectionURIs__value
+        &impl_345_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_345_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -43194,7 +43194,7 @@ impl_350_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_350_list_collectionURIs__value
+        &impl_350_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_350_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -43660,7 +43660,7 @@ impl_365_list_possibleValues = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_365_list_possibleValues__value
+        &impl_365_list_possibleValues__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_365_array_possibleValues) / sizeof(afw_utf8_t),
@@ -43940,7 +43940,7 @@ impl_360_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_360_list_collectionURIs__value
+        &impl_360_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_360_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -44890,7 +44890,7 @@ impl_366_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_366_list_collectionURIs__value
+        &impl_366_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_366_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -45376,7 +45376,7 @@ impl_374_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_374_list_collectionURIs__value
+        &impl_374_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_374_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -45862,7 +45862,7 @@ impl_378_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_378_list_collectionURIs__value
+        &impl_378_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_378_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -65036,7 +65036,7 @@ impl_382_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_382_list_collectionURIs__value
+        &impl_382_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_382_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -65888,7 +65888,7 @@ impl_570_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_570_list_collectionURIs__value
+        &impl_570_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_570_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -66926,7 +66926,7 @@ impl_577_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_577_list_collectionURIs__value
+        &impl_577_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_577_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -67182,7 +67182,7 @@ impl_586_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_586_list_collectionURIs__value
+        &impl_586_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_586_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -67675,7 +67675,7 @@ impl_588_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_588_list_collectionURIs__value
+        &impl_588_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_588_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -68258,7 +68258,7 @@ impl_592_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_592_list_collectionURIs__value
+        &impl_592_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_592_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -69426,7 +69426,7 @@ impl_597_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_597_list_collectionURIs__value
+        &impl_597_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_597_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -70362,7 +70362,7 @@ impl_607_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_607_list_collectionURIs__value
+        &impl_607_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_607_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -70848,7 +70848,7 @@ impl_615_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_615_list_collectionURIs__value
+        &impl_615_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_615_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -71341,7 +71341,7 @@ impl_619_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_619_list_collectionURIs__value
+        &impl_619_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_619_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -72154,7 +72154,7 @@ impl_623_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_623_list_collectionURIs__value
+        &impl_623_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_623_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -72884,7 +72884,7 @@ impl_630_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_630_list_collectionURIs__value
+        &impl_630_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_630_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -73064,7 +73064,7 @@ impl_638_list_possibleValues = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_638_list_possibleValues__value
+        &impl_638_list_possibleValues__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_638_array_possibleValues) / sizeof(afw_utf8_t),
@@ -73203,7 +73203,7 @@ impl_639_list_possibleValues = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_639_list_possibleValues__value
+        &impl_639_list_possibleValues__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_639_array_possibleValues) / sizeof(afw_utf8_t),
@@ -73555,7 +73555,7 @@ impl_642_list_possibleValues = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_642_list_possibleValues__value
+        &impl_642_list_possibleValues__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_642_array_possibleValues) / sizeof(afw_utf8_t),
@@ -73695,7 +73695,7 @@ impl_643_list_possibleValues = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_643_list_possibleValues__value
+        &impl_643_list_possibleValues__value
     },
     &afw_data_type_integer_direct,
     sizeof(impl_643_array_possibleValues) / sizeof(afw_integer_t),
@@ -74001,7 +74001,7 @@ impl_636_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_636_list_collectionURIs__value
+        &impl_636_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_636_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -74712,7 +74712,7 @@ impl_644_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_644_list_collectionURIs__value
+        &impl_644_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_644_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -75443,7 +75443,7 @@ impl_650_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_650_list_collectionURIs__value
+        &impl_650_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_650_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -76264,7 +76264,7 @@ impl_656_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_656_list_collectionURIs__value
+        &impl_656_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_656_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -76451,7 +76451,7 @@ impl_665_list_possibleValues = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_665_list_possibleValues__value
+        &impl_665_list_possibleValues__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_665_array_possibleValues) / sizeof(afw_utf8_t),
@@ -76603,7 +76603,7 @@ impl_666_list_possibleValues = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_666_list_possibleValues__value
+        &impl_666_list_possibleValues__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_666_array_possibleValues) / sizeof(afw_utf8_t),
@@ -76753,7 +76753,7 @@ impl_667_list_possibleValues = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_667_list_possibleValues__value
+        &impl_667_list_possibleValues__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_667_array_possibleValues) / sizeof(afw_utf8_t),
@@ -77157,7 +77157,7 @@ impl_663_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_663_list_collectionURIs__value
+        &impl_663_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_663_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -77752,7 +77752,7 @@ impl_675_list_possibleValues = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_675_list_possibleValues__value
+        &impl_675_list_possibleValues__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_675_array_possibleValues) / sizeof(afw_utf8_t),
@@ -78288,7 +78288,7 @@ impl_680_list_allowedValues = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_680_list_allowedValues__value
+        &impl_680_list_allowedValues__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_680_array_allowedValues) / sizeof(afw_utf8_t),
@@ -79249,7 +79249,7 @@ impl_669_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_669_list_collectionURIs__value
+        &impl_669_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_669_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -79421,7 +79421,7 @@ impl_688_list_possibleValues = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_688_list_possibleValues__value
+        &impl_688_list_possibleValues__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_688_array_possibleValues) / sizeof(afw_utf8_t),
@@ -79643,7 +79643,7 @@ impl_686_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_686_list_collectionURIs__value
+        &impl_686_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_686_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -80798,7 +80798,7 @@ impl_689_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_689_list_collectionURIs__value
+        &impl_689_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_689_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -81476,7 +81476,7 @@ impl_699_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_699_list_collectionURIs__value
+        &impl_699_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_699_array_collectionURIs) / sizeof(afw_utf8_t),
@@ -82180,7 +82180,7 @@ impl_705_list_collectionURIs = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_705_list_collectionURIs__value
+        &impl_705_list_collectionURIs__value
     },
     &afw_data_type_string_direct,
     sizeof(impl_705_array_collectionURIs) / sizeof(afw_utf8_t),

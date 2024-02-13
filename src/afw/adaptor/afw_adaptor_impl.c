@@ -536,7 +536,7 @@ afw_adaptor_impl_set_supported_core_object_type(
     apr_hash_t *ht;
     afw_adaptor_impl_core_object_type_t *e;
     const afw_utf8_t *path;
-    afw_value_array_t *parent_paths;
+    const afw_value_array_t *parent_paths;
 
     /* Ignore call for afw adaptor.  Will cause parentPaths loops. */
     if (afw_utf8_equal(&adaptor->adaptor_id, afw_s_afw)) {
@@ -565,9 +565,9 @@ afw_adaptor_impl_set_supported_core_object_type(
         path = afw_object_meta_get_path(e->object, xctx);
         afw_object_meta_set_ids(e->object, &adaptor->adaptor_id,
             afw_s__AdaptiveObjectType_, object_type_id, xctx);
-        parent_paths = afw_value_allocate_unmanaged_array(p, xctx);
-        parent_paths->internal = afw_array_create_wrapper_for_array(
-            (const void *)path, false, afw_data_type_anyURI, 1, p, xctx);
+        parent_paths = afw_array_create_wrapper_for_array(
+            (const void *)path, false, afw_data_type_anyURI, 1, p, xctx)
+            ->value;
         afw_object_meta_set_parent_paths(e->object, parent_paths, xctx);
 
         impl_update_allow(e->object, allow_entity, allow_write, xctx);

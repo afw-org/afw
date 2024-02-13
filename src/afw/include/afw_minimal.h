@@ -29,7 +29,6 @@
 #include "afw_version.h"
 #include "afw_interface.h"
 #include "afw_os.h"
-#include "afw_data_type_typedefs.h"
 #include "afw_error.h"
 #include "afw_array.h"
 #include "afw_object.h"

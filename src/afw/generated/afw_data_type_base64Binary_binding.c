@@ -203,7 +203,7 @@ impl_empty_array_of_base64Binary = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_value_empty_array_of_base64Binary
+        &impl_value_empty_array_of_base64Binary
     },
     &afw_data_type_base64Binary_direct,
     0
@@ -264,24 +264,6 @@ afw_value_as_base64Binary(const afw_value_t *value, afw_xctx_t *xctx)
             AFW_UTF8_FMT_OPTIONAL_UNDEFINED_ARG(data_type_id));
     }
     return &(((const afw_value_base64Binary_t *)value)->internal);
-}
-
-/* Allocate function for managed data type base64Binary value. */
-AFW_DEFINE(const afw_value_t *)
-afw_value_allocate_managed_base64Binary(
-    const afw_byte_t **ptr,
-    afw_size_t size,
-    afw_xctx_t *xctx)
-{
-    afw_value_base64Binary_managed_t *result;
-
-    result = afw_xctx_malloc(sizeof(afw_value_base64Binary_managed_t) + size, xctx);
-    result->inf = &afw_value_managed_base64Binary_inf;
-    result->internal.size = size;
-    result->internal.ptr = (const afw_byte_t *)result + sizeof(afw_value_base64Binary_managed_t);
-    *ptr = (afw_byte_t *)result->internal.ptr;
-    result->reference_count = 0;
-    return &result->pub;
 }
 
 /* Allocate function for data type base64Binary values. */

@@ -710,7 +710,7 @@ impl_a_property_to_object_type(
 {
     const afw_object_t *prop;
     const afw_object_t *parent;
-    afw_value_array_t *parent_paths;
+    const afw_value_array_t *parent_paths;
     const afw_utf8_t *s;
     afw_ldap_metadata_attribute_type_t *attribute_type;
 
@@ -730,9 +730,9 @@ impl_a_property_to_object_type(
         name->s, name->len);
     if (parent) {
         s = afw_object_meta_get_path(parent, xctx);
-        parent_paths = afw_value_allocate_unmanaged_array(prop->p, xctx);
-        parent_paths->internal = afw_array_create_wrapper_for_array(
-            (const void *)s, false, afw_data_type_anyURI, 1, prop->p, xctx);
+        parent_paths = afw_array_create_wrapper_for_array(
+            (const void *)s, false, afw_data_type_anyURI, 1, prop->p, xctx)
+            ->value;
         afw_object_meta_set_parent_paths(prop, parent_paths, xctx);
     }
 
@@ -847,7 +847,7 @@ impl_add_parents_and_property_types(
     afw_ldap_object_type_attribute_t *object_type_attribute;
     afw_ldap_object_type_attribute_t *parent_object_type_attribute;
     afw_ldap_metadata_attribute_type_t *attribute_type;
-    afw_value_array_t *parent_paths;
+    const afw_value_array_t *parent_paths;
     const afw_utf8_t *property_name;
     const afw_utf8_t *object_type_id;
     const afw_utf8_t *s;
@@ -957,9 +957,9 @@ impl_add_parents_and_property_types(
 
     /* If there are parents, add parent paths and add attributes to list. */
     if (count2 > 0) {
-        parent_paths = afw_value_allocate_unmanaged_array(p, xctx);
-        parent_paths->internal = afw_array_of_create(
-            afw_data_type_anyURI, p, xctx);
+        parent_paths = afw_array_of_create(
+            afw_data_type_anyURI, p, xctx)
+            ->value;
         for (i = 0; i < count; i++, parent_id++) {
             parent = impl_get(metadata->object_type_objects,
                 parent_id);

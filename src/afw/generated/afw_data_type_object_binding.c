@@ -203,7 +203,7 @@ impl_empty_array_of_object = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_value_empty_array_of_object
+        &impl_value_empty_array_of_object
     },
     &afw_data_type_object_direct,
     0
@@ -264,22 +264,6 @@ afw_value_as_object(const afw_value_t *value, afw_xctx_t *xctx)
             AFW_UTF8_FMT_OPTIONAL_UNDEFINED_ARG(data_type_id));
     }
     return (((const afw_value_object_t *)value)->internal);
-}
-
-/* Allocate function for managed data type object value. */
-AFW_DEFINE(const afw_value_t *)
-afw_value_allocate_managed_object(
-    const afw_object_t * **internal,
-    afw_xctx_t *xctx)
-{
-    afw_value_object_managed_t *result;
-
-    result = afw_xctx_malloc(sizeof(afw_value_object_managed_t), xctx);
-    result->inf = &afw_value_managed_object_inf;
-    afw_memory_clear(&result->internal);
-    *internal = &result->internal;
-    result->reference_count = 0;
-    return &result->pub;
 }
 
 /* Allocate function for data type object values. */

@@ -396,7 +396,7 @@ impl_harvest_object_type(
     const afw_utf8_t *property_name;
     const afw_iterator_t *iterator;
     const afw_value_array_t *from_parent_paths;
-    afw_value_array_t *to_parent_paths;
+    const afw_value_array_t *to_parent_paths;
     const afw_utf8_t *path;
     afw_boolean_t flag;
     afw_boolean_t found;
@@ -420,9 +420,9 @@ impl_harvest_object_type(
     if (value) {
         AFW_VALUE_ASSERT_IS_DATA_TYPE(value, array, xctx);
         from_parent_paths = (const afw_value_array_t *)value;
-        to_parent_paths = afw_value_allocate_unmanaged_array(p, xctx);
-        to_parent_paths->internal =  
-            afw_array_of_create(afw_data_type_anyURI, p, xctx);
+        to_parent_paths =  
+            afw_array_of_create(afw_data_type_anyURI, p, xctx)
+            ->value;
         for (iterator = NULL;;) {
             path = afw_array_of_utf8_get_next(
                 from_parent_paths->internal, &iterator, xctx);

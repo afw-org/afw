@@ -75,7 +75,7 @@ afw_array_create_with_options(
     self->pub.p = p;
     self->value.inf = &afw_value_managed_array_inf;
     self->value.internal = (const afw_array_t *)self;
-    self->pub.value = (const afw_value_t *)&self->value;
+    self->pub.value = &self->value;
     self->data_type = data_type;
     self->generic = data_type == NULL;
     APR_RING_INIT(ring, afw_memory_internal_array_entry_s, link);

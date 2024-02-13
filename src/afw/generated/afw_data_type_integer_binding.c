@@ -203,7 +203,7 @@ impl_empty_array_of_integer = {
     {
         &afw_array_wrapper_for_array_inf,
         NULL,
-        (const afw_value_t *)&impl_value_empty_array_of_integer
+        &impl_value_empty_array_of_integer
     },
     &afw_data_type_integer_direct,
     0
@@ -264,22 +264,6 @@ afw_value_as_integer(const afw_value_t *value, afw_xctx_t *xctx)
             AFW_UTF8_FMT_OPTIONAL_UNDEFINED_ARG(data_type_id));
     }
     return (((const afw_value_integer_t *)value)->internal);
-}
-
-/* Allocate function for managed data type integer value. */
-AFW_DEFINE(const afw_value_t *)
-afw_value_allocate_managed_integer(
-    afw_integer_t **internal,
-    afw_xctx_t *xctx)
-{
-    afw_value_integer_managed_t *result;
-
-    result = afw_xctx_malloc(sizeof(afw_value_integer_managed_t), xctx);
-    result->inf = &afw_value_managed_integer_inf;
-    afw_memory_clear(&result->internal);
-    *internal = &result->internal;
-    result->reference_count = 0;
-    return &result->pub;
 }
 
 /* Allocate function for data type integer values. */

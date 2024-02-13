@@ -122,7 +122,7 @@ def write_const_c(options, fd, prefix, obj, path=None, embedder=None, pt=None):
             fd.write('    {\n')
             fd.write('        &afw_array_wrapper_for_array_inf,\n')
             fd.write('        NULL,\n')
-            fd.write('        (const afw_value_t *)&' + value_label +'\n')
+            fd.write('        &' + value_label +'\n')
             fd.write('    },\n')
             fd.write('    &afw_data_type_' + elementType + '_direct,\n')
             if len(prop) != 0:

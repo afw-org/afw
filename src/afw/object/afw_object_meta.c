@@ -145,20 +145,21 @@ afw_object_meta_add_parent_path(
     afw_xctx_t *xctx)
 {
     const afw_value_array_t *existing_parent_paths;
-    afw_value_array_t *parent_paths;
+    const afw_value_array_t *parent_paths;
     const afw_object_t *meta;
 
     existing_parent_paths = afw_object_meta_get_parent_paths_value(instance, xctx);
-    parent_paths = afw_value_allocate_unmanaged_array(instance->p, xctx);
 
     if (existing_parent_paths) {
-        parent_paths->internal = afw_array_create_or_clone(
+        parent_paths = afw_array_create_or_clone(
             existing_parent_paths->internal, afw_data_type_anyURI, false,
-            instance->p, xctx);
+            instance->p, xctx)
+            ->value;
     }
     else {
-        parent_paths->internal = afw_array_of_create(
-            afw_data_type_anyURI, instance->p, xctx);
+        parent_paths = afw_array_of_create(
+            afw_data_type_anyURI, instance->p, xctx)
+            ->value;
     }
     
     afw_array_of_anyURI_add(parent_paths->internal, parent_path, xctx);

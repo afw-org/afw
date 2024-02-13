@@ -1981,6 +1981,10 @@ struct afw_xctx_s {
 
 };
 
+/*
+ * Adaptive Framework generated data type typedefs.
+ */
+#include "afw_data_type_typedefs.h"
 
 AFW_END_DECLARES
 

@@ -603,7 +603,7 @@ impl_additional_object_option_processing(
     const afw_utf8_t *path;
     afw_object_view_property_t *prop;
     const afw_value_array_t *parent_paths;
-    afw_value_array_t *resolved_parent_paths;
+    const afw_value_array_t *resolved_parent_paths;
     const afw_iterator_t *iterator;
 
     /*NOTE
@@ -665,10 +665,9 @@ impl_additional_object_option_processing(
     parent_paths = afw_object_meta_get_parent_paths_value(
         (const afw_object_t *)self, xctx);
     if (parent_paths) {
-
-        resolved_parent_paths = afw_value_allocate_unmanaged_array(p, xctx);
-        resolved_parent_paths->internal = afw_array_of_create(
-            afw_data_type_anyURI, p, xctx);
+        resolved_parent_paths = afw_array_of_create(
+            afw_data_type_anyURI, p, xctx)
+            ->value;
         for (iterator = NULL;;) {
             path = afw_array_of_utf8_get_next(parent_paths->internal,
                 &iterator, xctx);

@@ -50,7 +50,7 @@ AFW_DEFINE(const afw_array_t *) myimplname_create(
     self->pub.p = xctx->p;
     self->value.inf = &afw_value_managed_array_inf;
     self->value.internal = (const afw_array_t *)self;
-    self->pub.value = (const afw_value_t *)&self->value;
+    self->pub.value = (const afw_value_array_t *)&self->value;
 
     /* Finish processing parameters and initializing new instance. */
 
@@ -187,7 +187,7 @@ afw_value_meta_values_list_for_list_create(
     self->pub.p = p;
     self->value.inf = &afw_value_managed_array_inf;
     self->value.internal = (const afw_array_t *)self;
-    self->pub.value = (const afw_value_t *)&self->value;
+    self->pub.value = (const afw_value_array_t *)&self->value;
     AFW_VALUE_ASSERT_IS_DATA_TYPE(associated_value, array, xctx);
     self->associated_value = (const afw_value_array_t *)associated_value;
 

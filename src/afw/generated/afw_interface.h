@@ -2996,7 +2996,7 @@ struct afw_array_s {
      * The adaptive value associated with this array instance. The lifetime
      * of this value is the same as the lifetime of the array.
      */
-    const afw_value_t * value;
+    const afw_value_array_t * value;
 };
 
 /** @brief define for interface afw_array name. */
