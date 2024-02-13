@@ -38,11 +38,20 @@ afw_array_create_wrapper_for_array(
     afw_xctx_t *xctx)
 {
     afw_array_wrapper_for_array_self_t *self;
+    afw_value_array_t *value;
     const afw_octet_t *ptr;
 
-    self = afw_pool_calloc_type(p, afw_array_wrapper_for_array_self_t, xctx);
+    self = afw_pool_calloc(p,
+        sizeof(afw_array_wrapper_for_array_self_t) +
+        sizeof(afw_value_array_t),
+        xctx);
     self->pub.inf = &afw_array_wrapper_for_array_inf;
     self->pub.p = p;
+    value = (afw_value_array_t *)
+        ((char *)self + sizeof(afw_array_wrapper_for_array_self_t));
+    self->pub.value = (const afw_value_t *)value;
+    value->inf = &afw_value_managed_array_inf;
+    value->internal = (const afw_array_t *)self;
     self->internal = internal;
     self->data_type = data_type;
     self->count = count;

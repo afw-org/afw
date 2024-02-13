@@ -44,7 +44,7 @@ APR_RING_HEAD(afw_memory_internal_array_ring_s,
 
 struct afw_memory_internal_array_s {
     afw_array_t pub;
-    const afw_pool_t *p;
+    afw_value_array_t value;
     const afw_data_type_t *data_type;
     afw_array_setter_t setter;
     afw_memory_internal_array_ring_t *ring;
@@ -72,7 +72,10 @@ afw_array_create_with_options(
 
     /* Initialize self. */
     self->pub.inf = &impl_afw_array_inf;
-    self->p = p;
+    self->pub.p = p;
+    self->value.inf = &afw_value_managed_array_inf;
+    self->value.internal = (const afw_array_t *)self;
+    self->pub.value = (const afw_value_t *)&self->value;
     self->data_type = data_type;
     self->generic = data_type == NULL;
     APR_RING_INIT(ring, afw_memory_internal_array_entry_s, link);
@@ -395,7 +398,7 @@ impl_afw_array_setter_add_internal(
         (afw_memory_internal_array_t *)((afw_array_setter_t *)instance)->array;
     const afw_value_t *value;
 
-    value = afw_value_common_create(internal, data_type, self->p, xctx);
+    value = afw_value_common_create(internal, data_type, self->pub.p, xctx);
     impl_afw_array_setter_add_value(instance, value, xctx);
 }
 
@@ -442,7 +445,8 @@ impl_afw_array_setter_add_value(
     }
 
     /* Add value. */
-    ep = afw_pool_calloc_type(self->p, afw_memory_internal_array_entry_t, xctx);
+    ep = afw_pool_calloc_type(
+        self->pub.p, afw_memory_internal_array_entry_t, xctx);
     ep->value = value;
     APR_RING_INSERT_TAIL(self->ring, ep, afw_memory_internal_array_entry_s, link);
 }
@@ -464,7 +468,8 @@ impl_afw_array_setter_insert_internal(
         (afw_memory_internal_array_t *)((afw_array_setter_t *)instance)->array;
     const afw_value_t *value;
 
-    value = afw_value_common_create(internal, data_type, self->p, xctx);
+    value = afw_value_common_create(
+        internal, data_type, self->pub.p, xctx);
     impl_afw_array_setter_insert_value(instance, value, index, xctx);
 }
 
@@ -487,7 +492,8 @@ impl_afw_array_setter_insert_value(
     afw_size_t count;
 
     /* Add value. */
-    nep = afw_pool_calloc_type(self->p, afw_memory_internal_array_entry_t, xctx);
+    nep = afw_pool_calloc_type(
+        self->pub.p, afw_memory_internal_array_entry_t, xctx);
     nep->value = value;
     
     /*
