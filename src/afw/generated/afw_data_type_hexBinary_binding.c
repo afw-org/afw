@@ -278,33 +278,9 @@ afw_value_allocate_unmanaged_hexBinary(const afw_pool_t *p, afw_xctx_t *xctx)
     return result;
 }
 
-/* Create function for managed data type hexBinary value. */
-AFW_DEFINE(const afw_value_t *)
-afw_value_create_managed_hexBinary(
-    const afw_memory_t * internal,
-    afw_xctx_t *xctx)
-{
-    afw_value_hexBinary_managed_t *v;
-
-    afw_size_t size;
-
-    size = (internal) ? internal->size : 0;
-    v = afw_xctx_calloc(
-        sizeof(afw_value_hexBinary_managed_t) + size, xctx);
-    v->inf = &afw_value_managed_hexBinary_inf;
-    v->internal.size = (internal) ? internal->size : 0;
-    v->internal.ptr = (const afw_byte_t *)v +
-        sizeof(afw_value_hexBinary_managed_t);
-    if (internal && internal->ptr) {
-       memcpy((void *)v->internal.ptr, internal->ptr, size);
-    }
-
-    return &v->pub;
-}
-
 /* Create function for managed data type hexBinary slice value. */
 AFW_DEFINE(const afw_value_t *)
-afw_value_create_managed_hexBinary_slice(
+afw_value_create_hexBinary_slice(
     const afw_value_t *containing_value,
     afw_size_t offset,
     afw_size_t size,

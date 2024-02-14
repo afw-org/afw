@@ -278,23 +278,6 @@ afw_value_allocate_unmanaged_double(const afw_pool_t *p, afw_xctx_t *xctx)
     return result;
 }
 
-/* Create function for managed data type double value. */
-AFW_DEFINE(const afw_value_t *)
-afw_value_create_managed_double(
-    double internal,
-    afw_xctx_t *xctx)
-{
-    afw_value_double_managed_t *v;
-
-    v = afw_xctx_malloc(
-        sizeof(afw_value_double_managed_t), xctx);
-    v->inf = &afw_value_managed_double_inf;
-    v->internal = internal;
-    v->reference_count = 0;
-
-    return &v->pub;
-}
-
 /* Create function for data type double value. */
 AFW_DEFINE(const afw_value_t *)
 afw_value_create_unmanaged_double(double internal,

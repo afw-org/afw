@@ -203,19 +203,6 @@ afw_value_allocate_unmanaged_base64Binary(
     afw_xctx_t *xctx);
 
 /**
- * @brief Create function for managed data type base64Binary value.
- * @param internal.
- * @param xctx of caller.
- * @return Created const afw_value_t *.
- *
- * The value's lifetime is managed by reference count.
- */
-AFW_DECLARE(const afw_value_t *)
-afw_value_create_managed_base64Binary(
-    const afw_memory_t * internal,
-    afw_xctx_t *xctx);
-
-/**
  * @brief Create function for managed data type base64Binary slice value.
  * @param containing_value with a cType of 'afw_memory_t'.
  * @param offset in contain value's internal.
@@ -227,7 +214,7 @@ afw_value_create_managed_base64Binary(
  * Set *ptr for the specified size to the bytes of the value.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_create_managed_base64Binary_slice(
+afw_value_create_base64Binary_slice(
     const afw_value_t *containing_value,
     afw_size_t offset,
     afw_size_t size,

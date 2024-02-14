@@ -278,32 +278,9 @@ afw_value_allocate_unmanaged_dnsName(const afw_pool_t *p, afw_xctx_t *xctx)
     return result;
 }
 
-/* Create function for managed data type dnsName value. */
-AFW_DEFINE(const afw_value_t *)
-afw_value_create_managed_dnsName(
-    const afw_utf8_t * internal,
-    afw_xctx_t *xctx)
-{
-    afw_value_dnsName_managed_t *v;
-    afw_size_t len;
-
-    len = (internal) ? internal->len : 0;
-    v = afw_xctx_calloc(
-        sizeof(afw_value_dnsName_managed_t) + len, xctx);
-    v->inf = &afw_value_managed_dnsName_inf;
-    v->internal.len = len;
-    v->internal.s = (const afw_utf8_octet_t *)v +
-        sizeof(afw_value_dnsName_managed_t);
-    if (internal && internal->s) {
-        memcpy((void *)v->internal.s, internal->s, len);
-    }
-
-    return &v->pub;
-}
-
 /* Create function for managed data type dnsName slice value. */
 AFW_DEFINE(const afw_value_t *)
-afw_value_create_managed_dnsName_slice(
+afw_value_create_dnsName_slice(
     const afw_value_t *containing_value,
     afw_size_t offset,
     afw_size_t len,

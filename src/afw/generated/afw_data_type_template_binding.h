@@ -203,19 +203,6 @@ afw_value_allocate_unmanaged_template(
     afw_xctx_t *xctx);
 
 /**
- * @brief Create function for managed data type template value.
- * @param internal.
- * @param xctx of caller.
- * @return Created const afw_value_t *.
- *
- * The value's lifetime is managed by reference count.
- */
-AFW_DECLARE(const afw_value_t *)
-afw_value_create_managed_template(
-    const afw_utf8_t * internal,
-    afw_xctx_t *xctx);
-
-/**
  * @brief Create function for managed data type template slice value.
  * @param containing_value with a cType of 'afw_utf8_t'.
  * @param offset in contain value's internal.
@@ -227,7 +214,7 @@ afw_value_create_managed_template(
  * Set *s for the specified len to a valid utf-8 string.
  */
 AFW_DECLARE(const afw_value_t *)
-afw_value_create_managed_template_slice(
+afw_value_create_template_slice(
     const afw_value_t *containing_value,
     afw_size_t offset,
     afw_size_t len,

@@ -190,19 +190,6 @@ afw_value_as_array(
 /* FIXME: The allocates for managed will probably go away. */
 
 /**
- * @brief Create function for managed data type array value.
- * @param internal.
- * @param xctx of caller.
- * @return Created const afw_value_t *.
- *
- * The value's lifetime is managed by reference count.
- */
-AFW_DECLARE(const afw_value_t *)
-afw_value_create_managed_array(
-    const afw_array_t * internal,
-    afw_xctx_t *xctx);
-
-/**
  * @brief Create function for unmanaged data type array value.
  * @param internal.
  * @param p to use for returned value.

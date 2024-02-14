@@ -266,23 +266,6 @@ afw_value_as_object(const afw_value_t *value, afw_xctx_t *xctx)
     return (((const afw_value_object_t *)value)->internal);
 }
 
-/* Create function for managed data type object value. */
-AFW_DEFINE(const afw_value_t *)
-afw_value_create_managed_object(
-    const afw_object_t * internal,
-    afw_xctx_t *xctx)
-{
-    afw_value_object_managed_t *v;
-
-    v = afw_xctx_malloc(
-        sizeof(afw_value_object_managed_t), xctx);
-    v->inf = &afw_value_managed_object_inf;
-    v->internal = internal;
-    v->reference_count = 0;
-
-    return &v->pub;
-}
-
 /* Create function for data type object value. */
 AFW_DEFINE(const afw_value_t *)
 afw_value_create_unmanaged_object(const afw_object_t * internal,

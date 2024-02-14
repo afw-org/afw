@@ -203,19 +203,6 @@ afw_value_allocate_unmanaged_unevaluated(
     afw_xctx_t *xctx);
 
 /**
- * @brief Create function for managed data type unevaluated value.
- * @param internal.
- * @param xctx of caller.
- * @return Created const afw_value_t *.
- *
- * The value's lifetime is managed by reference count.
- */
-AFW_DECLARE(const afw_value_t *)
-afw_value_create_managed_unevaluated(
-    const afw_value_t * internal,
-    afw_xctx_t *xctx);
-
-/**
  * @brief Create function for unmanaged data type unevaluated value.
  * @param internal.
  * @param p to use for returned value.

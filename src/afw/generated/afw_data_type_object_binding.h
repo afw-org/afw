@@ -190,19 +190,6 @@ afw_value_as_object(
 /* FIXME: The allocates for managed will probably go away. */
 
 /**
- * @brief Create function for managed data type object value.
- * @param internal.
- * @param xctx of caller.
- * @return Created const afw_value_t *.
- *
- * The value's lifetime is managed by reference count.
- */
-AFW_DECLARE(const afw_value_t *)
-afw_value_create_managed_object(
-    const afw_object_t * internal,
-    afw_xctx_t *xctx);
-
-/**
  * @brief Create function for unmanaged data type object value.
  * @param internal.
  * @param p to use for returned value.
