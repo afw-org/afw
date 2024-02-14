@@ -384,7 +384,7 @@ def write_h_section(fd, prefix, obj):
         #     fd.write('    ' + ctype + ' **internal,\n')
         #     fd.write('    afw_xctx_t *xctx);\n')
 
-        if ctype != 'const afw_array_t *' and ctype != 'fixmeconst afw_object_t *':
+        if ctype != 'const afw_array_t *' and ctype != 'const afw_object_t *':
             fd.write('\n/**\n')
             fd.write(' * @brief Allocate function for data type ' + id + ' value.\n')
             fd.write(' * @param p to use for returned value.\n')
@@ -1164,7 +1164,7 @@ def write_c_section(fd, prefix, obj):
         #     fd.write('    return &result->pub;\n')
         #     fd.write('}\n')
 
-        if ctype != 'const afw_array_t *' and ctype != 'fixmeconst afw_object_t *':
+        if ctype != 'const afw_array_t *' and ctype != 'const afw_object_t *':
             fd.write('\n/* Allocate function for data type ' + id + ' values. */\n')
             fd.write(define + '(afw_value_' + id + '_t *)\n')
             fd.write('afw_value_allocate_unmanaged_' + id + '(const afw_pool_t *p, afw_xctx_t *xctx)\n')

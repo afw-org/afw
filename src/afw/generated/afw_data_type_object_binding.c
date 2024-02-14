@@ -266,18 +266,6 @@ afw_value_as_object(const afw_value_t *value, afw_xctx_t *xctx)
     return (((const afw_value_object_t *)value)->internal);
 }
 
-/* Allocate function for data type object values. */
-AFW_DEFINE(afw_value_object_t *)
-afw_value_allocate_unmanaged_object(const afw_pool_t *p, afw_xctx_t *xctx)
-{
-    afw_value_object_t *result;
-
-    result = afw_pool_calloc(p, sizeof(afw_value_object_t),
-        xctx);
-    result->inf = &afw_value_unmanaged_object_inf;
-    return result;
-}
-
 /* Create function for managed data type object value. */
 AFW_DEFINE(const afw_value_t *)
 afw_value_create_managed_object(
