@@ -144,7 +144,7 @@ impl_data_type_object_regexp = {
     {
         &afw_runtime_inf__AdaptiveDataType_,
         NULL,
-        (const afw_value_t *)&impl_data_type_object_regexp__value,
+        &impl_data_type_object_regexp__value,
         {
             NULL,
             NULL,

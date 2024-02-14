@@ -43,7 +43,7 @@ impl_object__adaptor_objectCallback_signature = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__adaptor_objectCallback_signature__value,
+        &impl_object__adaptor_objectCallback_signature__value,
         {
             NULL,
             NULL,
@@ -63,7 +63,7 @@ impl_adaptor_objectCallback_signature_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_adaptor_objectCallback_signature_returns__value,
+        &impl_adaptor_objectCallback_signature_returns__value,
         {
             NULL,
             NULL,
@@ -99,7 +99,7 @@ impl_adaptor_objectCallback_signature_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_adaptor_objectCallback_signature_parameter_1__value,
+        &impl_adaptor_objectCallback_signature_parameter_1__value,
         {
             NULL,
             NULL,
@@ -135,7 +135,7 @@ impl_adaptor_objectCallback_signature_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_adaptor_objectCallback_signature_parameter_2__value,
+        &impl_adaptor_objectCallback_signature_parameter_2__value,
         {
             NULL,
             NULL,
@@ -225,7 +225,7 @@ impl_object__add_object = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__add_object__value,
+        &impl_object__add_object__value,
         {
             NULL,
             NULL,
@@ -245,7 +245,7 @@ impl_add_object_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_add_object_returns__value,
+        &impl_add_object_returns__value,
         {
             NULL,
             NULL,
@@ -281,7 +281,7 @@ impl_add_object_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_add_object_parameter_1__value,
+        &impl_add_object_parameter_1__value,
         {
             NULL,
             NULL,
@@ -317,7 +317,7 @@ impl_add_object_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_add_object_parameter_2__value,
+        &impl_add_object_parameter_2__value,
         {
             NULL,
             NULL,
@@ -353,7 +353,7 @@ impl_add_object_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_add_object_parameter_3__value,
+        &impl_add_object_parameter_3__value,
         {
             NULL,
             NULL,
@@ -389,7 +389,7 @@ impl_add_object_parameter_4 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_add_object_parameter_4__value,
+        &impl_add_object_parameter_4__value,
         {
             NULL,
             NULL,
@@ -425,7 +425,7 @@ impl_add_object_parameter_5 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_add_object_parameter_5__value,
+        &impl_add_object_parameter_5__value,
         {
             NULL,
             NULL,
@@ -461,7 +461,7 @@ impl_add_object_parameter_6 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_add_object_parameter_6__value,
+        &impl_add_object_parameter_6__value,
         {
             NULL,
             NULL,
@@ -561,7 +561,7 @@ impl_object__add_object_with_uri = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__add_object_with_uri__value,
+        &impl_object__add_object_with_uri__value,
         {
             NULL,
             NULL,
@@ -581,7 +581,7 @@ impl_add_object_with_uri_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_add_object_with_uri_returns__value,
+        &impl_add_object_with_uri_returns__value,
         {
             NULL,
             NULL,
@@ -617,7 +617,7 @@ impl_add_object_with_uri_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_add_object_with_uri_parameter_1__value,
+        &impl_add_object_with_uri_parameter_1__value,
         {
             NULL,
             NULL,
@@ -653,7 +653,7 @@ impl_add_object_with_uri_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_add_object_with_uri_parameter_2__value,
+        &impl_add_object_with_uri_parameter_2__value,
         {
             NULL,
             NULL,
@@ -689,7 +689,7 @@ impl_add_object_with_uri_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_add_object_with_uri_parameter_3__value,
+        &impl_add_object_with_uri_parameter_3__value,
         {
             NULL,
             NULL,
@@ -725,7 +725,7 @@ impl_add_object_with_uri_parameter_4 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_add_object_with_uri_parameter_4__value,
+        &impl_add_object_with_uri_parameter_4__value,
         {
             NULL,
             NULL,
@@ -823,7 +823,7 @@ impl_object__convert_AdaptiveQueryCriteria_to_query_string = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__convert_AdaptiveQueryCriteria_to_query_string__value,
+        &impl_object__convert_AdaptiveQueryCriteria_to_query_string__value,
         {
             NULL,
             NULL,
@@ -843,7 +843,7 @@ impl_convert_AdaptiveQueryCriteria_to_query_string_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_convert_AdaptiveQueryCriteria_to_query_string_returns__value,
+        &impl_convert_AdaptiveQueryCriteria_to_query_string_returns__value,
         {
             NULL,
             NULL,
@@ -879,7 +879,7 @@ impl_convert_AdaptiveQueryCriteria_to_query_string_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_convert_AdaptiveQueryCriteria_to_query_string_parameter_1__value,
+        &impl_convert_AdaptiveQueryCriteria_to_query_string_parameter_1__value,
         {
             NULL,
             NULL,
@@ -915,7 +915,7 @@ impl_convert_AdaptiveQueryCriteria_to_query_string_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_convert_AdaptiveQueryCriteria_to_query_string_parameter_2__value,
+        &impl_convert_AdaptiveQueryCriteria_to_query_string_parameter_2__value,
         {
             NULL,
             NULL,
@@ -951,7 +951,7 @@ impl_convert_AdaptiveQueryCriteria_to_query_string_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_convert_AdaptiveQueryCriteria_to_query_string_parameter_3__value,
+        &impl_convert_AdaptiveQueryCriteria_to_query_string_parameter_3__value,
         {
             NULL,
             NULL,
@@ -987,7 +987,7 @@ impl_convert_AdaptiveQueryCriteria_to_query_string_parameter_4 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_convert_AdaptiveQueryCriteria_to_query_string_parameter_4__value,
+        &impl_convert_AdaptiveQueryCriteria_to_query_string_parameter_4__value,
         {
             NULL,
             NULL,
@@ -1079,7 +1079,7 @@ impl_object__convert_query_string_to_AdaptiveQueryCriteria = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__convert_query_string_to_AdaptiveQueryCriteria__value,
+        &impl_object__convert_query_string_to_AdaptiveQueryCriteria__value,
         {
             NULL,
             NULL,
@@ -1099,7 +1099,7 @@ impl_convert_query_string_to_AdaptiveQueryCriteria_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_convert_query_string_to_AdaptiveQueryCriteria_returns__value,
+        &impl_convert_query_string_to_AdaptiveQueryCriteria_returns__value,
         {
             NULL,
             NULL,
@@ -1135,7 +1135,7 @@ impl_convert_query_string_to_AdaptiveQueryCriteria_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_convert_query_string_to_AdaptiveQueryCriteria_parameter_1__value,
+        &impl_convert_query_string_to_AdaptiveQueryCriteria_parameter_1__value,
         {
             NULL,
             NULL,
@@ -1171,7 +1171,7 @@ impl_convert_query_string_to_AdaptiveQueryCriteria_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_convert_query_string_to_AdaptiveQueryCriteria_parameter_2__value,
+        &impl_convert_query_string_to_AdaptiveQueryCriteria_parameter_2__value,
         {
             NULL,
             NULL,
@@ -1207,7 +1207,7 @@ impl_convert_query_string_to_AdaptiveQueryCriteria_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_convert_query_string_to_AdaptiveQueryCriteria_parameter_3__value,
+        &impl_convert_query_string_to_AdaptiveQueryCriteria_parameter_3__value,
         {
             NULL,
             NULL,
@@ -1298,7 +1298,7 @@ impl_object__delete_object = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__delete_object__value,
+        &impl_object__delete_object__value,
         {
             NULL,
             NULL,
@@ -1318,7 +1318,7 @@ impl_delete_object_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_delete_object_returns__value,
+        &impl_delete_object_returns__value,
         {
             NULL,
             NULL,
@@ -1354,7 +1354,7 @@ impl_delete_object_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_delete_object_parameter_1__value,
+        &impl_delete_object_parameter_1__value,
         {
             NULL,
             NULL,
@@ -1390,7 +1390,7 @@ impl_delete_object_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_delete_object_parameter_2__value,
+        &impl_delete_object_parameter_2__value,
         {
             NULL,
             NULL,
@@ -1426,7 +1426,7 @@ impl_delete_object_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_delete_object_parameter_3__value,
+        &impl_delete_object_parameter_3__value,
         {
             NULL,
             NULL,
@@ -1462,7 +1462,7 @@ impl_delete_object_parameter_4 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_delete_object_parameter_4__value,
+        &impl_delete_object_parameter_4__value,
         {
             NULL,
             NULL,
@@ -1498,7 +1498,7 @@ impl_delete_object_parameter_5 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_delete_object_parameter_5__value,
+        &impl_delete_object_parameter_5__value,
         {
             NULL,
             NULL,
@@ -1597,7 +1597,7 @@ impl_object__delete_object_with_uri = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__delete_object_with_uri__value,
+        &impl_object__delete_object_with_uri__value,
         {
             NULL,
             NULL,
@@ -1617,7 +1617,7 @@ impl_delete_object_with_uri_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_delete_object_with_uri_returns__value,
+        &impl_delete_object_with_uri_returns__value,
         {
             NULL,
             NULL,
@@ -1653,7 +1653,7 @@ impl_delete_object_with_uri_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_delete_object_with_uri_parameter_1__value,
+        &impl_delete_object_with_uri_parameter_1__value,
         {
             NULL,
             NULL,
@@ -1689,7 +1689,7 @@ impl_delete_object_with_uri_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_delete_object_with_uri_parameter_2__value,
+        &impl_delete_object_with_uri_parameter_2__value,
         {
             NULL,
             NULL,
@@ -1725,7 +1725,7 @@ impl_delete_object_with_uri_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_delete_object_with_uri_parameter_3__value,
+        &impl_delete_object_with_uri_parameter_3__value,
         {
             NULL,
             NULL,
@@ -1822,7 +1822,7 @@ impl_object__get_object = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__get_object__value,
+        &impl_object__get_object__value,
         {
             NULL,
             NULL,
@@ -1842,7 +1842,7 @@ impl_get_object_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_get_object_returns__value,
+        &impl_get_object_returns__value,
         {
             NULL,
             NULL,
@@ -1878,7 +1878,7 @@ impl_get_object_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_get_object_parameter_1__value,
+        &impl_get_object_parameter_1__value,
         {
             NULL,
             NULL,
@@ -1914,7 +1914,7 @@ impl_get_object_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_get_object_parameter_2__value,
+        &impl_get_object_parameter_2__value,
         {
             NULL,
             NULL,
@@ -1950,7 +1950,7 @@ impl_get_object_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_get_object_parameter_3__value,
+        &impl_get_object_parameter_3__value,
         {
             NULL,
             NULL,
@@ -1986,7 +1986,7 @@ impl_get_object_parameter_4 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_get_object_parameter_4__value,
+        &impl_get_object_parameter_4__value,
         {
             NULL,
             NULL,
@@ -2022,7 +2022,7 @@ impl_get_object_parameter_5 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_get_object_parameter_5__value,
+        &impl_get_object_parameter_5__value,
         {
             NULL,
             NULL,
@@ -2115,7 +2115,7 @@ impl_object__get_object_with_uri = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__get_object_with_uri__value,
+        &impl_object__get_object_with_uri__value,
         {
             NULL,
             NULL,
@@ -2135,7 +2135,7 @@ impl_get_object_with_uri_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_get_object_with_uri_returns__value,
+        &impl_get_object_with_uri_returns__value,
         {
             NULL,
             NULL,
@@ -2171,7 +2171,7 @@ impl_get_object_with_uri_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_get_object_with_uri_parameter_1__value,
+        &impl_get_object_with_uri_parameter_1__value,
         {
             NULL,
             NULL,
@@ -2207,7 +2207,7 @@ impl_get_object_with_uri_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_get_object_with_uri_parameter_2__value,
+        &impl_get_object_with_uri_parameter_2__value,
         {
             NULL,
             NULL,
@@ -2243,7 +2243,7 @@ impl_get_object_with_uri_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_get_object_with_uri_parameter_3__value,
+        &impl_get_object_with_uri_parameter_3__value,
         {
             NULL,
             NULL,
@@ -2334,7 +2334,7 @@ impl_object__modify_object = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__modify_object__value,
+        &impl_object__modify_object__value,
         {
             NULL,
             NULL,
@@ -2354,7 +2354,7 @@ impl_modify_object_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_modify_object_returns__value,
+        &impl_modify_object_returns__value,
         {
             NULL,
             NULL,
@@ -2390,7 +2390,7 @@ impl_modify_object_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_modify_object_parameter_1__value,
+        &impl_modify_object_parameter_1__value,
         {
             NULL,
             NULL,
@@ -2426,7 +2426,7 @@ impl_modify_object_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_modify_object_parameter_2__value,
+        &impl_modify_object_parameter_2__value,
         {
             NULL,
             NULL,
@@ -2462,7 +2462,7 @@ impl_modify_object_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_modify_object_parameter_3__value,
+        &impl_modify_object_parameter_3__value,
         {
             NULL,
             NULL,
@@ -2498,7 +2498,7 @@ impl_modify_object_parameter_4 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_modify_object_parameter_4__value,
+        &impl_modify_object_parameter_4__value,
         {
             NULL,
             NULL,
@@ -2534,7 +2534,7 @@ impl_modify_object_parameter_5 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_modify_object_parameter_5__value,
+        &impl_modify_object_parameter_5__value,
         {
             NULL,
             NULL,
@@ -2570,7 +2570,7 @@ impl_modify_object_parameter_6 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_modify_object_parameter_6__value,
+        &impl_modify_object_parameter_6__value,
         {
             NULL,
             NULL,
@@ -2670,7 +2670,7 @@ impl_object__modify_object_with_uri = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__modify_object_with_uri__value,
+        &impl_object__modify_object_with_uri__value,
         {
             NULL,
             NULL,
@@ -2690,7 +2690,7 @@ impl_modify_object_with_uri_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_modify_object_with_uri_returns__value,
+        &impl_modify_object_with_uri_returns__value,
         {
             NULL,
             NULL,
@@ -2726,7 +2726,7 @@ impl_modify_object_with_uri_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_modify_object_with_uri_parameter_1__value,
+        &impl_modify_object_with_uri_parameter_1__value,
         {
             NULL,
             NULL,
@@ -2762,7 +2762,7 @@ impl_modify_object_with_uri_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_modify_object_with_uri_parameter_2__value,
+        &impl_modify_object_with_uri_parameter_2__value,
         {
             NULL,
             NULL,
@@ -2798,7 +2798,7 @@ impl_modify_object_with_uri_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_modify_object_with_uri_parameter_3__value,
+        &impl_modify_object_with_uri_parameter_3__value,
         {
             NULL,
             NULL,
@@ -2834,7 +2834,7 @@ impl_modify_object_with_uri_parameter_4 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_modify_object_with_uri_parameter_4__value,
+        &impl_modify_object_with_uri_parameter_4__value,
         {
             NULL,
             NULL,
@@ -2932,7 +2932,7 @@ impl_object__reconcile_object = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__reconcile_object__value,
+        &impl_object__reconcile_object__value,
         {
             NULL,
             NULL,
@@ -2952,7 +2952,7 @@ impl_reconcile_object_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_reconcile_object_returns__value,
+        &impl_reconcile_object_returns__value,
         {
             NULL,
             NULL,
@@ -2988,7 +2988,7 @@ impl_reconcile_object_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_reconcile_object_parameter_1__value,
+        &impl_reconcile_object_parameter_1__value,
         {
             NULL,
             NULL,
@@ -3024,7 +3024,7 @@ impl_reconcile_object_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_reconcile_object_parameter_2__value,
+        &impl_reconcile_object_parameter_2__value,
         {
             NULL,
             NULL,
@@ -3120,7 +3120,7 @@ impl_object__replace_object = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__replace_object__value,
+        &impl_object__replace_object__value,
         {
             NULL,
             NULL,
@@ -3140,7 +3140,7 @@ impl_replace_object_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_replace_object_returns__value,
+        &impl_replace_object_returns__value,
         {
             NULL,
             NULL,
@@ -3176,7 +3176,7 @@ impl_replace_object_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_replace_object_parameter_1__value,
+        &impl_replace_object_parameter_1__value,
         {
             NULL,
             NULL,
@@ -3212,7 +3212,7 @@ impl_replace_object_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_replace_object_parameter_2__value,
+        &impl_replace_object_parameter_2__value,
         {
             NULL,
             NULL,
@@ -3248,7 +3248,7 @@ impl_replace_object_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_replace_object_parameter_3__value,
+        &impl_replace_object_parameter_3__value,
         {
             NULL,
             NULL,
@@ -3284,7 +3284,7 @@ impl_replace_object_parameter_4 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_replace_object_parameter_4__value,
+        &impl_replace_object_parameter_4__value,
         {
             NULL,
             NULL,
@@ -3320,7 +3320,7 @@ impl_replace_object_parameter_5 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_replace_object_parameter_5__value,
+        &impl_replace_object_parameter_5__value,
         {
             NULL,
             NULL,
@@ -3356,7 +3356,7 @@ impl_replace_object_parameter_6 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_replace_object_parameter_6__value,
+        &impl_replace_object_parameter_6__value,
         {
             NULL,
             NULL,
@@ -3456,7 +3456,7 @@ impl_object__replace_object_with_uri = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__replace_object_with_uri__value,
+        &impl_object__replace_object_with_uri__value,
         {
             NULL,
             NULL,
@@ -3476,7 +3476,7 @@ impl_replace_object_with_uri_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_replace_object_with_uri_returns__value,
+        &impl_replace_object_with_uri_returns__value,
         {
             NULL,
             NULL,
@@ -3512,7 +3512,7 @@ impl_replace_object_with_uri_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_replace_object_with_uri_parameter_1__value,
+        &impl_replace_object_with_uri_parameter_1__value,
         {
             NULL,
             NULL,
@@ -3548,7 +3548,7 @@ impl_replace_object_with_uri_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_replace_object_with_uri_parameter_2__value,
+        &impl_replace_object_with_uri_parameter_2__value,
         {
             NULL,
             NULL,
@@ -3584,7 +3584,7 @@ impl_replace_object_with_uri_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_replace_object_with_uri_parameter_3__value,
+        &impl_replace_object_with_uri_parameter_3__value,
         {
             NULL,
             NULL,
@@ -3620,7 +3620,7 @@ impl_replace_object_with_uri_parameter_4 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_replace_object_with_uri_parameter_4__value,
+        &impl_replace_object_with_uri_parameter_4__value,
         {
             NULL,
             NULL,
@@ -3718,7 +3718,7 @@ impl_object__retrieve_objects = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__retrieve_objects__value,
+        &impl_object__retrieve_objects__value,
         {
             NULL,
             NULL,
@@ -3738,7 +3738,7 @@ impl_retrieve_objects_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_retrieve_objects_returns__value,
+        &impl_retrieve_objects_returns__value,
         {
             NULL,
             NULL,
@@ -3774,7 +3774,7 @@ impl_retrieve_objects_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_retrieve_objects_parameter_1__value,
+        &impl_retrieve_objects_parameter_1__value,
         {
             NULL,
             NULL,
@@ -3810,7 +3810,7 @@ impl_retrieve_objects_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_retrieve_objects_parameter_2__value,
+        &impl_retrieve_objects_parameter_2__value,
         {
             NULL,
             NULL,
@@ -3846,7 +3846,7 @@ impl_retrieve_objects_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_retrieve_objects_parameter_3__value,
+        &impl_retrieve_objects_parameter_3__value,
         {
             NULL,
             NULL,
@@ -3882,7 +3882,7 @@ impl_retrieve_objects_parameter_4 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_retrieve_objects_parameter_4__value,
+        &impl_retrieve_objects_parameter_4__value,
         {
             NULL,
             NULL,
@@ -3918,7 +3918,7 @@ impl_retrieve_objects_parameter_5 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_retrieve_objects_parameter_5__value,
+        &impl_retrieve_objects_parameter_5__value,
         {
             NULL,
             NULL,
@@ -4011,7 +4011,7 @@ impl_object__retrieve_objects_to_callback = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__retrieve_objects_to_callback__value,
+        &impl_object__retrieve_objects_to_callback__value,
         {
             NULL,
             NULL,
@@ -4031,7 +4031,7 @@ impl_retrieve_objects_to_callback_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_retrieve_objects_to_callback_returns__value,
+        &impl_retrieve_objects_to_callback_returns__value,
         {
             NULL,
             NULL,
@@ -4067,7 +4067,7 @@ impl_retrieve_objects_to_callback_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_retrieve_objects_to_callback_parameter_1__value,
+        &impl_retrieve_objects_to_callback_parameter_1__value,
         {
             NULL,
             NULL,
@@ -4103,7 +4103,7 @@ impl_retrieve_objects_to_callback_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_retrieve_objects_to_callback_parameter_2__value,
+        &impl_retrieve_objects_to_callback_parameter_2__value,
         {
             NULL,
             NULL,
@@ -4139,7 +4139,7 @@ impl_retrieve_objects_to_callback_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_retrieve_objects_to_callback_parameter_3__value,
+        &impl_retrieve_objects_to_callback_parameter_3__value,
         {
             NULL,
             NULL,
@@ -4175,7 +4175,7 @@ impl_retrieve_objects_to_callback_parameter_4 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_retrieve_objects_to_callback_parameter_4__value,
+        &impl_retrieve_objects_to_callback_parameter_4__value,
         {
             NULL,
             NULL,
@@ -4211,7 +4211,7 @@ impl_retrieve_objects_to_callback_parameter_5 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_retrieve_objects_to_callback_parameter_5__value,
+        &impl_retrieve_objects_to_callback_parameter_5__value,
         {
             NULL,
             NULL,
@@ -4247,7 +4247,7 @@ impl_retrieve_objects_to_callback_parameter_6 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_retrieve_objects_to_callback_parameter_6__value,
+        &impl_retrieve_objects_to_callback_parameter_6__value,
         {
             NULL,
             NULL,
@@ -4283,7 +4283,7 @@ impl_retrieve_objects_to_callback_parameter_7 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_retrieve_objects_to_callback_parameter_7__value,
+        &impl_retrieve_objects_to_callback_parameter_7__value,
         {
             NULL,
             NULL,
@@ -4378,7 +4378,7 @@ impl_object__retrieve_objects_to_response = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__retrieve_objects_to_response__value,
+        &impl_object__retrieve_objects_to_response__value,
         {
             NULL,
             NULL,
@@ -4398,7 +4398,7 @@ impl_retrieve_objects_to_response_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_retrieve_objects_to_response_returns__value,
+        &impl_retrieve_objects_to_response_returns__value,
         {
             NULL,
             NULL,
@@ -4434,7 +4434,7 @@ impl_retrieve_objects_to_response_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_retrieve_objects_to_response_parameter_1__value,
+        &impl_retrieve_objects_to_response_parameter_1__value,
         {
             NULL,
             NULL,
@@ -4470,7 +4470,7 @@ impl_retrieve_objects_to_response_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_retrieve_objects_to_response_parameter_2__value,
+        &impl_retrieve_objects_to_response_parameter_2__value,
         {
             NULL,
             NULL,
@@ -4506,7 +4506,7 @@ impl_retrieve_objects_to_response_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_retrieve_objects_to_response_parameter_3__value,
+        &impl_retrieve_objects_to_response_parameter_3__value,
         {
             NULL,
             NULL,
@@ -4542,7 +4542,7 @@ impl_retrieve_objects_to_response_parameter_4 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_retrieve_objects_to_response_parameter_4__value,
+        &impl_retrieve_objects_to_response_parameter_4__value,
         {
             NULL,
             NULL,
@@ -4578,7 +4578,7 @@ impl_retrieve_objects_to_response_parameter_5 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_retrieve_objects_to_response_parameter_5__value,
+        &impl_retrieve_objects_to_response_parameter_5__value,
         {
             NULL,
             NULL,
@@ -4671,7 +4671,7 @@ impl_object__retrieve_objects_to_stream = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__retrieve_objects_to_stream__value,
+        &impl_object__retrieve_objects_to_stream__value,
         {
             NULL,
             NULL,
@@ -4691,7 +4691,7 @@ impl_retrieve_objects_to_stream_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_retrieve_objects_to_stream_returns__value,
+        &impl_retrieve_objects_to_stream_returns__value,
         {
             NULL,
             NULL,
@@ -4727,7 +4727,7 @@ impl_retrieve_objects_to_stream_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_retrieve_objects_to_stream_parameter_1__value,
+        &impl_retrieve_objects_to_stream_parameter_1__value,
         {
             NULL,
             NULL,
@@ -4763,7 +4763,7 @@ impl_retrieve_objects_to_stream_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_retrieve_objects_to_stream_parameter_2__value,
+        &impl_retrieve_objects_to_stream_parameter_2__value,
         {
             NULL,
             NULL,
@@ -4799,7 +4799,7 @@ impl_retrieve_objects_to_stream_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_retrieve_objects_to_stream_parameter_3__value,
+        &impl_retrieve_objects_to_stream_parameter_3__value,
         {
             NULL,
             NULL,
@@ -4835,7 +4835,7 @@ impl_retrieve_objects_to_stream_parameter_4 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_retrieve_objects_to_stream_parameter_4__value,
+        &impl_retrieve_objects_to_stream_parameter_4__value,
         {
             NULL,
             NULL,
@@ -4871,7 +4871,7 @@ impl_retrieve_objects_to_stream_parameter_5 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_retrieve_objects_to_stream_parameter_5__value,
+        &impl_retrieve_objects_to_stream_parameter_5__value,
         {
             NULL,
             NULL,
@@ -4907,7 +4907,7 @@ impl_retrieve_objects_to_stream_parameter_6 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_retrieve_objects_to_stream_parameter_6__value,
+        &impl_retrieve_objects_to_stream_parameter_6__value,
         {
             NULL,
             NULL,
@@ -5001,7 +5001,7 @@ impl_object__retrieve_objects_with_uri = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__retrieve_objects_with_uri__value,
+        &impl_object__retrieve_objects_with_uri__value,
         {
             NULL,
             NULL,
@@ -5021,7 +5021,7 @@ impl_retrieve_objects_with_uri_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_retrieve_objects_with_uri_returns__value,
+        &impl_retrieve_objects_with_uri_returns__value,
         {
             NULL,
             NULL,
@@ -5057,7 +5057,7 @@ impl_retrieve_objects_with_uri_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_retrieve_objects_with_uri_parameter_1__value,
+        &impl_retrieve_objects_with_uri_parameter_1__value,
         {
             NULL,
             NULL,
@@ -5093,7 +5093,7 @@ impl_retrieve_objects_with_uri_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_retrieve_objects_with_uri_parameter_2__value,
+        &impl_retrieve_objects_with_uri_parameter_2__value,
         {
             NULL,
             NULL,
@@ -5129,7 +5129,7 @@ impl_retrieve_objects_with_uri_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_retrieve_objects_with_uri_parameter_3__value,
+        &impl_retrieve_objects_with_uri_parameter_3__value,
         {
             NULL,
             NULL,
@@ -5220,7 +5220,7 @@ impl_object__retrieve_objects_with_uri_to_callback = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__retrieve_objects_with_uri_to_callback__value,
+        &impl_object__retrieve_objects_with_uri_to_callback__value,
         {
             NULL,
             NULL,
@@ -5240,7 +5240,7 @@ impl_retrieve_objects_with_uri_to_callback_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_retrieve_objects_with_uri_to_callback_returns__value,
+        &impl_retrieve_objects_with_uri_to_callback_returns__value,
         {
             NULL,
             NULL,
@@ -5276,7 +5276,7 @@ impl_retrieve_objects_with_uri_to_callback_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_retrieve_objects_with_uri_to_callback_parameter_1__value,
+        &impl_retrieve_objects_with_uri_to_callback_parameter_1__value,
         {
             NULL,
             NULL,
@@ -5312,7 +5312,7 @@ impl_retrieve_objects_with_uri_to_callback_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_retrieve_objects_with_uri_to_callback_parameter_2__value,
+        &impl_retrieve_objects_with_uri_to_callback_parameter_2__value,
         {
             NULL,
             NULL,
@@ -5348,7 +5348,7 @@ impl_retrieve_objects_with_uri_to_callback_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_retrieve_objects_with_uri_to_callback_parameter_3__value,
+        &impl_retrieve_objects_with_uri_to_callback_parameter_3__value,
         {
             NULL,
             NULL,
@@ -5384,7 +5384,7 @@ impl_retrieve_objects_with_uri_to_callback_parameter_4 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_retrieve_objects_with_uri_to_callback_parameter_4__value,
+        &impl_retrieve_objects_with_uri_to_callback_parameter_4__value,
         {
             NULL,
             NULL,
@@ -5420,7 +5420,7 @@ impl_retrieve_objects_with_uri_to_callback_parameter_5 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_retrieve_objects_with_uri_to_callback_parameter_5__value,
+        &impl_retrieve_objects_with_uri_to_callback_parameter_5__value,
         {
             NULL,
             NULL,
@@ -5513,7 +5513,7 @@ impl_object__retrieve_objects_with_uri_to_response = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__retrieve_objects_with_uri_to_response__value,
+        &impl_object__retrieve_objects_with_uri_to_response__value,
         {
             NULL,
             NULL,
@@ -5533,7 +5533,7 @@ impl_retrieve_objects_with_uri_to_response_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_retrieve_objects_with_uri_to_response_returns__value,
+        &impl_retrieve_objects_with_uri_to_response_returns__value,
         {
             NULL,
             NULL,
@@ -5569,7 +5569,7 @@ impl_retrieve_objects_with_uri_to_response_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_retrieve_objects_with_uri_to_response_parameter_1__value,
+        &impl_retrieve_objects_with_uri_to_response_parameter_1__value,
         {
             NULL,
             NULL,
@@ -5605,7 +5605,7 @@ impl_retrieve_objects_with_uri_to_response_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_retrieve_objects_with_uri_to_response_parameter_2__value,
+        &impl_retrieve_objects_with_uri_to_response_parameter_2__value,
         {
             NULL,
             NULL,
@@ -5641,7 +5641,7 @@ impl_retrieve_objects_with_uri_to_response_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_retrieve_objects_with_uri_to_response_parameter_3__value,
+        &impl_retrieve_objects_with_uri_to_response_parameter_3__value,
         {
             NULL,
             NULL,
@@ -5732,7 +5732,7 @@ impl_object__retrieve_objects_with_uri_to_stream = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__retrieve_objects_with_uri_to_stream__value,
+        &impl_object__retrieve_objects_with_uri_to_stream__value,
         {
             NULL,
             NULL,
@@ -5752,7 +5752,7 @@ impl_retrieve_objects_with_uri_to_stream_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_retrieve_objects_with_uri_to_stream_returns__value,
+        &impl_retrieve_objects_with_uri_to_stream_returns__value,
         {
             NULL,
             NULL,
@@ -5788,7 +5788,7 @@ impl_retrieve_objects_with_uri_to_stream_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_retrieve_objects_with_uri_to_stream_parameter_1__value,
+        &impl_retrieve_objects_with_uri_to_stream_parameter_1__value,
         {
             NULL,
             NULL,
@@ -5824,7 +5824,7 @@ impl_retrieve_objects_with_uri_to_stream_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_retrieve_objects_with_uri_to_stream_parameter_2__value,
+        &impl_retrieve_objects_with_uri_to_stream_parameter_2__value,
         {
             NULL,
             NULL,
@@ -5860,7 +5860,7 @@ impl_retrieve_objects_with_uri_to_stream_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_retrieve_objects_with_uri_to_stream_parameter_3__value,
+        &impl_retrieve_objects_with_uri_to_stream_parameter_3__value,
         {
             NULL,
             NULL,
@@ -5896,7 +5896,7 @@ impl_retrieve_objects_with_uri_to_stream_parameter_4 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_retrieve_objects_with_uri_to_stream_parameter_4__value,
+        &impl_retrieve_objects_with_uri_to_stream_parameter_4__value,
         {
             NULL,
             NULL,
@@ -5988,7 +5988,7 @@ impl_object__update_object = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__update_object__value,
+        &impl_object__update_object__value,
         {
             NULL,
             NULL,
@@ -6008,7 +6008,7 @@ impl_update_object_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_update_object_returns__value,
+        &impl_update_object_returns__value,
         {
             NULL,
             NULL,
@@ -6044,7 +6044,7 @@ impl_update_object_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_update_object_parameter_1__value,
+        &impl_update_object_parameter_1__value,
         {
             NULL,
             NULL,
@@ -6080,7 +6080,7 @@ impl_update_object_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_update_object_parameter_2__value,
+        &impl_update_object_parameter_2__value,
         {
             NULL,
             NULL,
@@ -6116,7 +6116,7 @@ impl_update_object_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_update_object_parameter_3__value,
+        &impl_update_object_parameter_3__value,
         {
             NULL,
             NULL,
@@ -6152,7 +6152,7 @@ impl_update_object_parameter_4 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_update_object_parameter_4__value,
+        &impl_update_object_parameter_4__value,
         {
             NULL,
             NULL,
@@ -6188,7 +6188,7 @@ impl_update_object_parameter_5 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_update_object_parameter_5__value,
+        &impl_update_object_parameter_5__value,
         {
             NULL,
             NULL,
@@ -6224,7 +6224,7 @@ impl_update_object_parameter_6 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_update_object_parameter_6__value,
+        &impl_update_object_parameter_6__value,
         {
             NULL,
             NULL,
@@ -6324,7 +6324,7 @@ impl_object__update_object_with_uri = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__update_object_with_uri__value,
+        &impl_object__update_object_with_uri__value,
         {
             NULL,
             NULL,
@@ -6344,7 +6344,7 @@ impl_update_object_with_uri_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_update_object_with_uri_returns__value,
+        &impl_update_object_with_uri_returns__value,
         {
             NULL,
             NULL,
@@ -6380,7 +6380,7 @@ impl_update_object_with_uri_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_update_object_with_uri_parameter_1__value,
+        &impl_update_object_with_uri_parameter_1__value,
         {
             NULL,
             NULL,
@@ -6416,7 +6416,7 @@ impl_update_object_with_uri_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_update_object_with_uri_parameter_2__value,
+        &impl_update_object_with_uri_parameter_2__value,
         {
             NULL,
             NULL,
@@ -6452,7 +6452,7 @@ impl_update_object_with_uri_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_update_object_with_uri_parameter_3__value,
+        &impl_update_object_with_uri_parameter_3__value,
         {
             NULL,
             NULL,
@@ -6488,7 +6488,7 @@ impl_update_object_with_uri_parameter_4 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_update_object_with_uri_parameter_4__value,
+        &impl_update_object_with_uri_parameter_4__value,
         {
             NULL,
             NULL,
@@ -6586,7 +6586,7 @@ impl_object__extension_load = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__extension_load__value,
+        &impl_object__extension_load__value,
         {
             NULL,
             NULL,
@@ -6606,7 +6606,7 @@ impl_extension_load_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_extension_load_returns__value,
+        &impl_extension_load_returns__value,
         {
             NULL,
             NULL,
@@ -6642,7 +6642,7 @@ impl_extension_load_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_extension_load_parameter_1__value,
+        &impl_extension_load_parameter_1__value,
         {
             NULL,
             NULL,
@@ -6737,7 +6737,7 @@ impl_object__extension_load_by_module_path = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__extension_load_by_module_path__value,
+        &impl_object__extension_load_by_module_path__value,
         {
             NULL,
             NULL,
@@ -6757,7 +6757,7 @@ impl_extension_load_by_module_path_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_extension_load_by_module_path_returns__value,
+        &impl_extension_load_by_module_path_returns__value,
         {
             NULL,
             NULL,
@@ -6793,7 +6793,7 @@ impl_extension_load_by_module_path_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_extension_load_by_module_path_parameter_1__value,
+        &impl_extension_load_by_module_path_parameter_1__value,
         {
             NULL,
             NULL,
@@ -6888,7 +6888,7 @@ impl_object__flag_get_active = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__flag_get_active__value,
+        &impl_object__flag_get_active__value,
         {
             NULL,
             NULL,
@@ -6908,7 +6908,7 @@ impl_flag_get_active_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_flag_get_active_returns__value,
+        &impl_flag_get_active_returns__value,
         {
             NULL,
             NULL,
@@ -6996,7 +6996,7 @@ impl_object__flag_get_active_defaults = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__flag_get_active_defaults__value,
+        &impl_object__flag_get_active_defaults__value,
         {
             NULL,
             NULL,
@@ -7016,7 +7016,7 @@ impl_flag_get_active_defaults_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_flag_get_active_defaults_returns__value,
+        &impl_flag_get_active_defaults_returns__value,
         {
             NULL,
             NULL,
@@ -7104,7 +7104,7 @@ impl_object__flag_get_defaults = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__flag_get_defaults__value,
+        &impl_object__flag_get_defaults__value,
         {
             NULL,
             NULL,
@@ -7124,7 +7124,7 @@ impl_flag_get_defaults_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_flag_get_defaults_returns__value,
+        &impl_flag_get_defaults_returns__value,
         {
             NULL,
             NULL,
@@ -7212,7 +7212,7 @@ impl_object__flag_modify_defaults = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__flag_modify_defaults__value,
+        &impl_object__flag_modify_defaults__value,
         {
             NULL,
             NULL,
@@ -7232,7 +7232,7 @@ impl_flag_modify_defaults_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_flag_modify_defaults_returns__value,
+        &impl_flag_modify_defaults_returns__value,
         {
             NULL,
             NULL,
@@ -7268,7 +7268,7 @@ impl_flag_modify_defaults_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_flag_modify_defaults_parameter_1__value,
+        &impl_flag_modify_defaults_parameter_1__value,
         {
             NULL,
             NULL,
@@ -7304,7 +7304,7 @@ impl_flag_modify_defaults_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_flag_modify_defaults_parameter_2__value,
+        &impl_flag_modify_defaults_parameter_2__value,
         {
             NULL,
             NULL,
@@ -7394,7 +7394,7 @@ impl_object__flag_replace_defaults = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__flag_replace_defaults__value,
+        &impl_object__flag_replace_defaults__value,
         {
             NULL,
             NULL,
@@ -7414,7 +7414,7 @@ impl_flag_replace_defaults_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_flag_replace_defaults_returns__value,
+        &impl_flag_replace_defaults_returns__value,
         {
             NULL,
             NULL,
@@ -7450,7 +7450,7 @@ impl_flag_replace_defaults_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_flag_replace_defaults_parameter_1__value,
+        &impl_flag_replace_defaults_parameter_1__value,
         {
             NULL,
             NULL,
@@ -7539,7 +7539,7 @@ impl_object__flag_set = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__flag_set__value,
+        &impl_object__flag_set__value,
         {
             NULL,
             NULL,
@@ -7559,7 +7559,7 @@ impl_flag_set_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_flag_set_returns__value,
+        &impl_flag_set_returns__value,
         {
             NULL,
             NULL,
@@ -7595,7 +7595,7 @@ impl_flag_set_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_flag_set_parameter_1__value,
+        &impl_flag_set_parameter_1__value,
         {
             NULL,
             NULL,
@@ -7631,7 +7631,7 @@ impl_flag_set_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_flag_set_parameter_2__value,
+        &impl_flag_set_parameter_2__value,
         {
             NULL,
             NULL,
@@ -7721,7 +7721,7 @@ impl_object__registry_key_check = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__registry_key_check__value,
+        &impl_object__registry_key_check__value,
         {
             NULL,
             NULL,
@@ -7741,7 +7741,7 @@ impl_registry_key_check_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_registry_key_check_returns__value,
+        &impl_registry_key_check_returns__value,
         {
             NULL,
             NULL,
@@ -7777,7 +7777,7 @@ impl_registry_key_check_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_registry_key_check_parameter_1__value,
+        &impl_registry_key_check_parameter_1__value,
         {
             NULL,
             NULL,
@@ -7813,7 +7813,7 @@ impl_registry_key_check_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_registry_key_check_parameter_2__value,
+        &impl_registry_key_check_parameter_2__value,
         {
             NULL,
             NULL,
@@ -7849,7 +7849,7 @@ impl_registry_key_check_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_registry_key_check_parameter_3__value,
+        &impl_registry_key_check_parameter_3__value,
         {
             NULL,
             NULL,
@@ -7946,7 +7946,7 @@ impl_object__service_get = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__service_get__value,
+        &impl_object__service_get__value,
         {
             NULL,
             NULL,
@@ -7966,7 +7966,7 @@ impl_service_get_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_service_get_returns__value,
+        &impl_service_get_returns__value,
         {
             NULL,
             NULL,
@@ -8002,7 +8002,7 @@ impl_service_get_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_service_get_parameter_1__value,
+        &impl_service_get_parameter_1__value,
         {
             NULL,
             NULL,
@@ -8091,7 +8091,7 @@ impl_object__service_restart = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__service_restart__value,
+        &impl_object__service_restart__value,
         {
             NULL,
             NULL,
@@ -8111,7 +8111,7 @@ impl_service_restart_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_service_restart_returns__value,
+        &impl_service_restart_returns__value,
         {
             NULL,
             NULL,
@@ -8147,7 +8147,7 @@ impl_service_restart_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_service_restart_parameter_1__value,
+        &impl_service_restart_parameter_1__value,
         {
             NULL,
             NULL,
@@ -8242,7 +8242,7 @@ impl_object__service_start = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__service_start__value,
+        &impl_object__service_start__value,
         {
             NULL,
             NULL,
@@ -8262,7 +8262,7 @@ impl_service_start_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_service_start_returns__value,
+        &impl_service_start_returns__value,
         {
             NULL,
             NULL,
@@ -8298,7 +8298,7 @@ impl_service_start_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_service_start_parameter_1__value,
+        &impl_service_start_parameter_1__value,
         {
             NULL,
             NULL,
@@ -8393,7 +8393,7 @@ impl_object__service_stop = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__service_stop__value,
+        &impl_object__service_stop__value,
         {
             NULL,
             NULL,
@@ -8413,7 +8413,7 @@ impl_service_stop_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_service_stop_returns__value,
+        &impl_service_stop_returns__value,
         {
             NULL,
             NULL,
@@ -8449,7 +8449,7 @@ impl_service_stop_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_service_stop_parameter_1__value,
+        &impl_service_stop_parameter_1__value,
         {
             NULL,
             NULL,
@@ -8544,7 +8544,7 @@ impl_object__anyURI = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__anyURI__value,
+        &impl_object__anyURI__value,
         {
             NULL,
             NULL,
@@ -8564,7 +8564,7 @@ impl_anyURI_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_anyURI_returns__value,
+        &impl_anyURI_returns__value,
         {
             NULL,
             NULL,
@@ -8600,7 +8600,7 @@ impl_anyURI_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_anyURI_parameter_1__value,
+        &impl_anyURI_parameter_1__value,
         {
             NULL,
             NULL,
@@ -8697,7 +8697,7 @@ impl_object__at_least_one_member_of_anyURI = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__at_least_one_member_of_anyURI__value,
+        &impl_object__at_least_one_member_of_anyURI__value,
         {
             NULL,
             NULL,
@@ -8717,7 +8717,7 @@ impl_at_least_one_member_of_anyURI_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_at_least_one_member_of_anyURI_returns__value,
+        &impl_at_least_one_member_of_anyURI_returns__value,
         {
             NULL,
             NULL,
@@ -8753,7 +8753,7 @@ impl_at_least_one_member_of_anyURI_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_at_least_one_member_of_anyURI_parameter_1__value,
+        &impl_at_least_one_member_of_anyURI_parameter_1__value,
         {
             NULL,
             NULL,
@@ -8789,7 +8789,7 @@ impl_at_least_one_member_of_anyURI_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_at_least_one_member_of_anyURI_parameter_2__value,
+        &impl_at_least_one_member_of_anyURI_parameter_2__value,
         {
             NULL,
             NULL,
@@ -8879,7 +8879,7 @@ impl_object__bag_anyURI = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__bag_anyURI__value,
+        &impl_object__bag_anyURI__value,
         {
             NULL,
             NULL,
@@ -8899,7 +8899,7 @@ impl_bag_anyURI_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_anyURI_returns__value,
+        &impl_bag_anyURI_returns__value,
         {
             NULL,
             NULL,
@@ -8935,7 +8935,7 @@ impl_bag_anyURI_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_anyURI_parameter_1__value,
+        &impl_bag_anyURI_parameter_1__value,
         {
             NULL,
             NULL,
@@ -9024,7 +9024,7 @@ impl_object__bag_size_anyURI = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__bag_size_anyURI__value,
+        &impl_object__bag_size_anyURI__value,
         {
             NULL,
             NULL,
@@ -9044,7 +9044,7 @@ impl_bag_size_anyURI_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_size_anyURI_returns__value,
+        &impl_bag_size_anyURI_returns__value,
         {
             NULL,
             NULL,
@@ -9080,7 +9080,7 @@ impl_bag_size_anyURI_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_size_anyURI_parameter_1__value,
+        &impl_bag_size_anyURI_parameter_1__value,
         {
             NULL,
             NULL,
@@ -9169,7 +9169,7 @@ impl_object__ends_with_anyURI = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ends_with_anyURI__value,
+        &impl_object__ends_with_anyURI__value,
         {
             NULL,
             NULL,
@@ -9189,7 +9189,7 @@ impl_ends_with_anyURI_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ends_with_anyURI_returns__value,
+        &impl_ends_with_anyURI_returns__value,
         {
             NULL,
             NULL,
@@ -9225,7 +9225,7 @@ impl_ends_with_anyURI_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ends_with_anyURI_parameter_1__value,
+        &impl_ends_with_anyURI_parameter_1__value,
         {
             NULL,
             NULL,
@@ -9261,7 +9261,7 @@ impl_ends_with_anyURI_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ends_with_anyURI_parameter_2__value,
+        &impl_ends_with_anyURI_parameter_2__value,
         {
             NULL,
             NULL,
@@ -9351,7 +9351,7 @@ impl_object__eq_anyURI = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__eq_anyURI__value,
+        &impl_object__eq_anyURI__value,
         {
             NULL,
             NULL,
@@ -9371,7 +9371,7 @@ impl_eq_anyURI_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_anyURI_returns__value,
+        &impl_eq_anyURI_returns__value,
         {
             NULL,
             NULL,
@@ -9407,7 +9407,7 @@ impl_eq_anyURI_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_anyURI_parameter_1__value,
+        &impl_eq_anyURI_parameter_1__value,
         {
             NULL,
             NULL,
@@ -9443,7 +9443,7 @@ impl_eq_anyURI_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_anyURI_parameter_2__value,
+        &impl_eq_anyURI_parameter_2__value,
         {
             NULL,
             NULL,
@@ -9541,7 +9541,7 @@ impl_object__eqx_anyURI = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__eqx_anyURI__value,
+        &impl_object__eqx_anyURI__value,
         {
             NULL,
             NULL,
@@ -9561,7 +9561,7 @@ impl_eqx_anyURI_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_anyURI_returns__value,
+        &impl_eqx_anyURI_returns__value,
         {
             NULL,
             NULL,
@@ -9597,7 +9597,7 @@ impl_eqx_anyURI_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_anyURI_parameter_1__value,
+        &impl_eqx_anyURI_parameter_1__value,
         {
             NULL,
             NULL,
@@ -9633,7 +9633,7 @@ impl_eqx_anyURI_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_anyURI_parameter_2__value,
+        &impl_eqx_anyURI_parameter_2__value,
         {
             NULL,
             NULL,
@@ -9723,7 +9723,7 @@ impl_object__ge_anyURI = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ge_anyURI__value,
+        &impl_object__ge_anyURI__value,
         {
             NULL,
             NULL,
@@ -9743,7 +9743,7 @@ impl_ge_anyURI_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_anyURI_returns__value,
+        &impl_ge_anyURI_returns__value,
         {
             NULL,
             NULL,
@@ -9779,7 +9779,7 @@ impl_ge_anyURI_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_anyURI_parameter_1__value,
+        &impl_ge_anyURI_parameter_1__value,
         {
             NULL,
             NULL,
@@ -9815,7 +9815,7 @@ impl_ge_anyURI_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_anyURI_parameter_2__value,
+        &impl_ge_anyURI_parameter_2__value,
         {
             NULL,
             NULL,
@@ -9905,7 +9905,7 @@ impl_object__gt_anyURI = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__gt_anyURI__value,
+        &impl_object__gt_anyURI__value,
         {
             NULL,
             NULL,
@@ -9925,7 +9925,7 @@ impl_gt_anyURI_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_anyURI_returns__value,
+        &impl_gt_anyURI_returns__value,
         {
             NULL,
             NULL,
@@ -9961,7 +9961,7 @@ impl_gt_anyURI_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_anyURI_parameter_1__value,
+        &impl_gt_anyURI_parameter_1__value,
         {
             NULL,
             NULL,
@@ -9997,7 +9997,7 @@ impl_gt_anyURI_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_anyURI_parameter_2__value,
+        &impl_gt_anyURI_parameter_2__value,
         {
             NULL,
             NULL,
@@ -10087,7 +10087,7 @@ impl_object__includes_anyURI = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__includes_anyURI__value,
+        &impl_object__includes_anyURI__value,
         {
             NULL,
             NULL,
@@ -10107,7 +10107,7 @@ impl_includes_anyURI_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_includes_anyURI_returns__value,
+        &impl_includes_anyURI_returns__value,
         {
             NULL,
             NULL,
@@ -10143,7 +10143,7 @@ impl_includes_anyURI_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_includes_anyURI_parameter_1__value,
+        &impl_includes_anyURI_parameter_1__value,
         {
             NULL,
             NULL,
@@ -10179,7 +10179,7 @@ impl_includes_anyURI_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_includes_anyURI_parameter_2__value,
+        &impl_includes_anyURI_parameter_2__value,
         {
             NULL,
             NULL,
@@ -10215,7 +10215,7 @@ impl_includes_anyURI_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_includes_anyURI_parameter_3__value,
+        &impl_includes_anyURI_parameter_3__value,
         {
             NULL,
             NULL,
@@ -10306,7 +10306,7 @@ impl_object__index_of_anyURI = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__index_of_anyURI__value,
+        &impl_object__index_of_anyURI__value,
         {
             NULL,
             NULL,
@@ -10326,7 +10326,7 @@ impl_index_of_anyURI_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_index_of_anyURI_returns__value,
+        &impl_index_of_anyURI_returns__value,
         {
             NULL,
             NULL,
@@ -10362,7 +10362,7 @@ impl_index_of_anyURI_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_index_of_anyURI_parameter_1__value,
+        &impl_index_of_anyURI_parameter_1__value,
         {
             NULL,
             NULL,
@@ -10398,7 +10398,7 @@ impl_index_of_anyURI_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_index_of_anyURI_parameter_2__value,
+        &impl_index_of_anyURI_parameter_2__value,
         {
             NULL,
             NULL,
@@ -10434,7 +10434,7 @@ impl_index_of_anyURI_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_index_of_anyURI_parameter_3__value,
+        &impl_index_of_anyURI_parameter_3__value,
         {
             NULL,
             NULL,
@@ -10525,7 +10525,7 @@ impl_object__intersection_anyURI = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__intersection_anyURI__value,
+        &impl_object__intersection_anyURI__value,
         {
             NULL,
             NULL,
@@ -10545,7 +10545,7 @@ impl_intersection_anyURI_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_intersection_anyURI_returns__value,
+        &impl_intersection_anyURI_returns__value,
         {
             NULL,
             NULL,
@@ -10581,7 +10581,7 @@ impl_intersection_anyURI_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_intersection_anyURI_parameter_1__value,
+        &impl_intersection_anyURI_parameter_1__value,
         {
             NULL,
             NULL,
@@ -10617,7 +10617,7 @@ impl_intersection_anyURI_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_intersection_anyURI_parameter_2__value,
+        &impl_intersection_anyURI_parameter_2__value,
         {
             NULL,
             NULL,
@@ -10707,7 +10707,7 @@ impl_object__is_anyURI = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__is_anyURI__value,
+        &impl_object__is_anyURI__value,
         {
             NULL,
             NULL,
@@ -10727,7 +10727,7 @@ impl_is_anyURI_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_anyURI_returns__value,
+        &impl_is_anyURI_returns__value,
         {
             NULL,
             NULL,
@@ -10763,7 +10763,7 @@ impl_is_anyURI_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_anyURI_parameter_1__value,
+        &impl_is_anyURI_parameter_1__value,
         {
             NULL,
             NULL,
@@ -10852,7 +10852,7 @@ impl_object__is_in_anyURI = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__is_in_anyURI__value,
+        &impl_object__is_in_anyURI__value,
         {
             NULL,
             NULL,
@@ -10872,7 +10872,7 @@ impl_is_in_anyURI_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_in_anyURI_returns__value,
+        &impl_is_in_anyURI_returns__value,
         {
             NULL,
             NULL,
@@ -10908,7 +10908,7 @@ impl_is_in_anyURI_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_in_anyURI_parameter_1__value,
+        &impl_is_in_anyURI_parameter_1__value,
         {
             NULL,
             NULL,
@@ -10944,7 +10944,7 @@ impl_is_in_anyURI_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_in_anyURI_parameter_2__value,
+        &impl_is_in_anyURI_parameter_2__value,
         {
             NULL,
             NULL,
@@ -11034,7 +11034,7 @@ impl_object__last_index_of_anyURI = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__last_index_of_anyURI__value,
+        &impl_object__last_index_of_anyURI__value,
         {
             NULL,
             NULL,
@@ -11054,7 +11054,7 @@ impl_last_index_of_anyURI_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_last_index_of_anyURI_returns__value,
+        &impl_last_index_of_anyURI_returns__value,
         {
             NULL,
             NULL,
@@ -11090,7 +11090,7 @@ impl_last_index_of_anyURI_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_last_index_of_anyURI_parameter_1__value,
+        &impl_last_index_of_anyURI_parameter_1__value,
         {
             NULL,
             NULL,
@@ -11126,7 +11126,7 @@ impl_last_index_of_anyURI_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_last_index_of_anyURI_parameter_2__value,
+        &impl_last_index_of_anyURI_parameter_2__value,
         {
             NULL,
             NULL,
@@ -11162,7 +11162,7 @@ impl_last_index_of_anyURI_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_last_index_of_anyURI_parameter_3__value,
+        &impl_last_index_of_anyURI_parameter_3__value,
         {
             NULL,
             NULL,
@@ -11253,7 +11253,7 @@ impl_object__le_anyURI = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__le_anyURI__value,
+        &impl_object__le_anyURI__value,
         {
             NULL,
             NULL,
@@ -11273,7 +11273,7 @@ impl_le_anyURI_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_anyURI_returns__value,
+        &impl_le_anyURI_returns__value,
         {
             NULL,
             NULL,
@@ -11309,7 +11309,7 @@ impl_le_anyURI_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_anyURI_parameter_1__value,
+        &impl_le_anyURI_parameter_1__value,
         {
             NULL,
             NULL,
@@ -11345,7 +11345,7 @@ impl_le_anyURI_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_anyURI_parameter_2__value,
+        &impl_le_anyURI_parameter_2__value,
         {
             NULL,
             NULL,
@@ -11435,7 +11435,7 @@ impl_object__length_anyURI = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__length_anyURI__value,
+        &impl_object__length_anyURI__value,
         {
             NULL,
             NULL,
@@ -11455,7 +11455,7 @@ impl_length_anyURI_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_length_anyURI_returns__value,
+        &impl_length_anyURI_returns__value,
         {
             NULL,
             NULL,
@@ -11491,7 +11491,7 @@ impl_length_anyURI_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_length_anyURI_parameter_1__value,
+        &impl_length_anyURI_parameter_1__value,
         {
             NULL,
             NULL,
@@ -11580,7 +11580,7 @@ impl_object__lt_anyURI = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__lt_anyURI__value,
+        &impl_object__lt_anyURI__value,
         {
             NULL,
             NULL,
@@ -11600,7 +11600,7 @@ impl_lt_anyURI_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_anyURI_returns__value,
+        &impl_lt_anyURI_returns__value,
         {
             NULL,
             NULL,
@@ -11636,7 +11636,7 @@ impl_lt_anyURI_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_anyURI_parameter_1__value,
+        &impl_lt_anyURI_parameter_1__value,
         {
             NULL,
             NULL,
@@ -11672,7 +11672,7 @@ impl_lt_anyURI_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_anyURI_parameter_2__value,
+        &impl_lt_anyURI_parameter_2__value,
         {
             NULL,
             NULL,
@@ -11762,7 +11762,7 @@ impl_object__ne_anyURI = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ne_anyURI__value,
+        &impl_object__ne_anyURI__value,
         {
             NULL,
             NULL,
@@ -11782,7 +11782,7 @@ impl_ne_anyURI_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_anyURI_returns__value,
+        &impl_ne_anyURI_returns__value,
         {
             NULL,
             NULL,
@@ -11818,7 +11818,7 @@ impl_ne_anyURI_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_anyURI_parameter_1__value,
+        &impl_ne_anyURI_parameter_1__value,
         {
             NULL,
             NULL,
@@ -11854,7 +11854,7 @@ impl_ne_anyURI_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_anyURI_parameter_2__value,
+        &impl_ne_anyURI_parameter_2__value,
         {
             NULL,
             NULL,
@@ -11952,7 +11952,7 @@ impl_object__nex_anyURI = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__nex_anyURI__value,
+        &impl_object__nex_anyURI__value,
         {
             NULL,
             NULL,
@@ -11972,7 +11972,7 @@ impl_nex_anyURI_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_anyURI_returns__value,
+        &impl_nex_anyURI_returns__value,
         {
             NULL,
             NULL,
@@ -12008,7 +12008,7 @@ impl_nex_anyURI_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_anyURI_parameter_1__value,
+        &impl_nex_anyURI_parameter_1__value,
         {
             NULL,
             NULL,
@@ -12044,7 +12044,7 @@ impl_nex_anyURI_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_anyURI_parameter_2__value,
+        &impl_nex_anyURI_parameter_2__value,
         {
             NULL,
             NULL,
@@ -12134,7 +12134,7 @@ impl_object__one_and_only_anyURI = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__one_and_only_anyURI__value,
+        &impl_object__one_and_only_anyURI__value,
         {
             NULL,
             NULL,
@@ -12154,7 +12154,7 @@ impl_one_and_only_anyURI_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_one_and_only_anyURI_returns__value,
+        &impl_one_and_only_anyURI_returns__value,
         {
             NULL,
             NULL,
@@ -12190,7 +12190,7 @@ impl_one_and_only_anyURI_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_one_and_only_anyURI_parameter_1__value,
+        &impl_one_and_only_anyURI_parameter_1__value,
         {
             NULL,
             NULL,
@@ -12287,7 +12287,7 @@ impl_object__regexp_index_of_anyURI = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__regexp_index_of_anyURI__value,
+        &impl_object__regexp_index_of_anyURI__value,
         {
             NULL,
             NULL,
@@ -12307,7 +12307,7 @@ impl_regexp_index_of_anyURI_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_regexp_index_of_anyURI_returns__value,
+        &impl_regexp_index_of_anyURI_returns__value,
         {
             NULL,
             NULL,
@@ -12343,7 +12343,7 @@ impl_regexp_index_of_anyURI_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_regexp_index_of_anyURI_parameter_1__value,
+        &impl_regexp_index_of_anyURI_parameter_1__value,
         {
             NULL,
             NULL,
@@ -12379,7 +12379,7 @@ impl_regexp_index_of_anyURI_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_regexp_index_of_anyURI_parameter_2__value,
+        &impl_regexp_index_of_anyURI_parameter_2__value,
         {
             NULL,
             NULL,
@@ -12469,7 +12469,7 @@ impl_object__regexp_match_anyURI = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__regexp_match_anyURI__value,
+        &impl_object__regexp_match_anyURI__value,
         {
             NULL,
             NULL,
@@ -12489,7 +12489,7 @@ impl_regexp_match_anyURI_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_regexp_match_anyURI_returns__value,
+        &impl_regexp_match_anyURI_returns__value,
         {
             NULL,
             NULL,
@@ -12525,7 +12525,7 @@ impl_regexp_match_anyURI_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_regexp_match_anyURI_parameter_1__value,
+        &impl_regexp_match_anyURI_parameter_1__value,
         {
             NULL,
             NULL,
@@ -12561,7 +12561,7 @@ impl_regexp_match_anyURI_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_regexp_match_anyURI_parameter_2__value,
+        &impl_regexp_match_anyURI_parameter_2__value,
         {
             NULL,
             NULL,
@@ -12651,7 +12651,7 @@ impl_object__regexp_replace_anyURI = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__regexp_replace_anyURI__value,
+        &impl_object__regexp_replace_anyURI__value,
         {
             NULL,
             NULL,
@@ -12671,7 +12671,7 @@ impl_regexp_replace_anyURI_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_regexp_replace_anyURI_returns__value,
+        &impl_regexp_replace_anyURI_returns__value,
         {
             NULL,
             NULL,
@@ -12707,7 +12707,7 @@ impl_regexp_replace_anyURI_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_regexp_replace_anyURI_parameter_1__value,
+        &impl_regexp_replace_anyURI_parameter_1__value,
         {
             NULL,
             NULL,
@@ -12743,7 +12743,7 @@ impl_regexp_replace_anyURI_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_regexp_replace_anyURI_parameter_2__value,
+        &impl_regexp_replace_anyURI_parameter_2__value,
         {
             NULL,
             NULL,
@@ -12779,7 +12779,7 @@ impl_regexp_replace_anyURI_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_regexp_replace_anyURI_parameter_3__value,
+        &impl_regexp_replace_anyURI_parameter_3__value,
         {
             NULL,
             NULL,
@@ -12815,7 +12815,7 @@ impl_regexp_replace_anyURI_parameter_4 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_regexp_replace_anyURI_parameter_4__value,
+        &impl_regexp_replace_anyURI_parameter_4__value,
         {
             NULL,
             NULL,
@@ -12907,7 +12907,7 @@ impl_object__repeat_anyURI = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__repeat_anyURI__value,
+        &impl_object__repeat_anyURI__value,
         {
             NULL,
             NULL,
@@ -12927,7 +12927,7 @@ impl_repeat_anyURI_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_repeat_anyURI_returns__value,
+        &impl_repeat_anyURI_returns__value,
         {
             NULL,
             NULL,
@@ -12963,7 +12963,7 @@ impl_repeat_anyURI_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_repeat_anyURI_parameter_1__value,
+        &impl_repeat_anyURI_parameter_1__value,
         {
             NULL,
             NULL,
@@ -12999,7 +12999,7 @@ impl_repeat_anyURI_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_repeat_anyURI_parameter_2__value,
+        &impl_repeat_anyURI_parameter_2__value,
         {
             NULL,
             NULL,
@@ -13089,7 +13089,7 @@ impl_object__replace_anyURI = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__replace_anyURI__value,
+        &impl_object__replace_anyURI__value,
         {
             NULL,
             NULL,
@@ -13109,7 +13109,7 @@ impl_replace_anyURI_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_replace_anyURI_returns__value,
+        &impl_replace_anyURI_returns__value,
         {
             NULL,
             NULL,
@@ -13145,7 +13145,7 @@ impl_replace_anyURI_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_replace_anyURI_parameter_1__value,
+        &impl_replace_anyURI_parameter_1__value,
         {
             NULL,
             NULL,
@@ -13181,7 +13181,7 @@ impl_replace_anyURI_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_replace_anyURI_parameter_2__value,
+        &impl_replace_anyURI_parameter_2__value,
         {
             NULL,
             NULL,
@@ -13217,7 +13217,7 @@ impl_replace_anyURI_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_replace_anyURI_parameter_3__value,
+        &impl_replace_anyURI_parameter_3__value,
         {
             NULL,
             NULL,
@@ -13253,7 +13253,7 @@ impl_replace_anyURI_parameter_4 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_replace_anyURI_parameter_4__value,
+        &impl_replace_anyURI_parameter_4__value,
         {
             NULL,
             NULL,
@@ -13345,7 +13345,7 @@ impl_object__set_equals_anyURI = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__set_equals_anyURI__value,
+        &impl_object__set_equals_anyURI__value,
         {
             NULL,
             NULL,
@@ -13365,7 +13365,7 @@ impl_set_equals_anyURI_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_set_equals_anyURI_returns__value,
+        &impl_set_equals_anyURI_returns__value,
         {
             NULL,
             NULL,
@@ -13401,7 +13401,7 @@ impl_set_equals_anyURI_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_set_equals_anyURI_parameter_1__value,
+        &impl_set_equals_anyURI_parameter_1__value,
         {
             NULL,
             NULL,
@@ -13437,7 +13437,7 @@ impl_set_equals_anyURI_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_set_equals_anyURI_parameter_2__value,
+        &impl_set_equals_anyURI_parameter_2__value,
         {
             NULL,
             NULL,
@@ -13527,7 +13527,7 @@ impl_object__split_anyURI = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__split_anyURI__value,
+        &impl_object__split_anyURI__value,
         {
             NULL,
             NULL,
@@ -13547,7 +13547,7 @@ impl_split_anyURI_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_split_anyURI_returns__value,
+        &impl_split_anyURI_returns__value,
         {
             NULL,
             NULL,
@@ -13583,7 +13583,7 @@ impl_split_anyURI_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_split_anyURI_parameter_1__value,
+        &impl_split_anyURI_parameter_1__value,
         {
             NULL,
             NULL,
@@ -13619,7 +13619,7 @@ impl_split_anyURI_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_split_anyURI_parameter_2__value,
+        &impl_split_anyURI_parameter_2__value,
         {
             NULL,
             NULL,
@@ -13655,7 +13655,7 @@ impl_split_anyURI_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_split_anyURI_parameter_3__value,
+        &impl_split_anyURI_parameter_3__value,
         {
             NULL,
             NULL,
@@ -13746,7 +13746,7 @@ impl_object__starts_with_anyURI = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__starts_with_anyURI__value,
+        &impl_object__starts_with_anyURI__value,
         {
             NULL,
             NULL,
@@ -13766,7 +13766,7 @@ impl_starts_with_anyURI_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_starts_with_anyURI_returns__value,
+        &impl_starts_with_anyURI_returns__value,
         {
             NULL,
             NULL,
@@ -13802,7 +13802,7 @@ impl_starts_with_anyURI_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_starts_with_anyURI_parameter_1__value,
+        &impl_starts_with_anyURI_parameter_1__value,
         {
             NULL,
             NULL,
@@ -13838,7 +13838,7 @@ impl_starts_with_anyURI_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_starts_with_anyURI_parameter_2__value,
+        &impl_starts_with_anyURI_parameter_2__value,
         {
             NULL,
             NULL,
@@ -13928,7 +13928,7 @@ impl_object__subset_anyURI = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__subset_anyURI__value,
+        &impl_object__subset_anyURI__value,
         {
             NULL,
             NULL,
@@ -13948,7 +13948,7 @@ impl_subset_anyURI_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subset_anyURI_returns__value,
+        &impl_subset_anyURI_returns__value,
         {
             NULL,
             NULL,
@@ -13984,7 +13984,7 @@ impl_subset_anyURI_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subset_anyURI_parameter_1__value,
+        &impl_subset_anyURI_parameter_1__value,
         {
             NULL,
             NULL,
@@ -14020,7 +14020,7 @@ impl_subset_anyURI_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subset_anyURI_parameter_2__value,
+        &impl_subset_anyURI_parameter_2__value,
         {
             NULL,
             NULL,
@@ -14110,7 +14110,7 @@ impl_object__substring_anyURI = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__substring_anyURI__value,
+        &impl_object__substring_anyURI__value,
         {
             NULL,
             NULL,
@@ -14130,7 +14130,7 @@ impl_substring_anyURI_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_substring_anyURI_returns__value,
+        &impl_substring_anyURI_returns__value,
         {
             NULL,
             NULL,
@@ -14166,7 +14166,7 @@ impl_substring_anyURI_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_substring_anyURI_parameter_1__value,
+        &impl_substring_anyURI_parameter_1__value,
         {
             NULL,
             NULL,
@@ -14202,7 +14202,7 @@ impl_substring_anyURI_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_substring_anyURI_parameter_2__value,
+        &impl_substring_anyURI_parameter_2__value,
         {
             NULL,
             NULL,
@@ -14238,7 +14238,7 @@ impl_substring_anyURI_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_substring_anyURI_parameter_3__value,
+        &impl_substring_anyURI_parameter_3__value,
         {
             NULL,
             NULL,
@@ -14337,7 +14337,7 @@ impl_object__to_string_anyURI = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__to_string_anyURI__value,
+        &impl_object__to_string_anyURI__value,
         {
             NULL,
             NULL,
@@ -14357,7 +14357,7 @@ impl_to_string_anyURI_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_string_anyURI_returns__value,
+        &impl_to_string_anyURI_returns__value,
         {
             NULL,
             NULL,
@@ -14393,7 +14393,7 @@ impl_to_string_anyURI_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_string_anyURI_parameter_1__value,
+        &impl_to_string_anyURI_parameter_1__value,
         {
             NULL,
             NULL,
@@ -14482,7 +14482,7 @@ impl_object__union_anyURI = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__union_anyURI__value,
+        &impl_object__union_anyURI__value,
         {
             NULL,
             NULL,
@@ -14502,7 +14502,7 @@ impl_union_anyURI_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_union_anyURI_returns__value,
+        &impl_union_anyURI_returns__value,
         {
             NULL,
             NULL,
@@ -14538,7 +14538,7 @@ impl_union_anyURI_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_union_anyURI_parameter_1__value,
+        &impl_union_anyURI_parameter_1__value,
         {
             NULL,
             NULL,
@@ -14627,7 +14627,7 @@ impl_object__url_encode_anyURI = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__url_encode_anyURI__value,
+        &impl_object__url_encode_anyURI__value,
         {
             NULL,
             NULL,
@@ -14647,7 +14647,7 @@ impl_url_encode_anyURI_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_url_encode_anyURI_returns__value,
+        &impl_url_encode_anyURI_returns__value,
         {
             NULL,
             NULL,
@@ -14683,7 +14683,7 @@ impl_url_encode_anyURI_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_url_encode_anyURI_parameter_1__value,
+        &impl_url_encode_anyURI_parameter_1__value,
         {
             NULL,
             NULL,
@@ -14772,7 +14772,7 @@ impl_object__add_entries = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__add_entries__value,
+        &impl_object__add_entries__value,
         {
             NULL,
             NULL,
@@ -14792,7 +14792,7 @@ impl_add_entries_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_add_entries_returns__value,
+        &impl_add_entries_returns__value,
         {
             NULL,
             NULL,
@@ -14828,7 +14828,7 @@ impl_add_entries_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_add_entries_parameter_1__value,
+        &impl_add_entries_parameter_1__value,
         {
             NULL,
             NULL,
@@ -14864,7 +14864,7 @@ impl_add_entries_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_add_entries_parameter_2__value,
+        &impl_add_entries_parameter_2__value,
         {
             NULL,
             NULL,
@@ -14960,7 +14960,7 @@ impl_object__array = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__array__value,
+        &impl_object__array__value,
         {
             NULL,
             NULL,
@@ -14980,7 +14980,7 @@ impl_array_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_array_returns__value,
+        &impl_array_returns__value,
         {
             NULL,
             NULL,
@@ -15016,7 +15016,7 @@ impl_array_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_array_parameter_1__value,
+        &impl_array_parameter_1__value,
         {
             NULL,
             NULL,
@@ -15113,7 +15113,7 @@ impl_object__bag_array = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__bag_array__value,
+        &impl_object__bag_array__value,
         {
             NULL,
             NULL,
@@ -15133,7 +15133,7 @@ impl_bag_array_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_array_returns__value,
+        &impl_bag_array_returns__value,
         {
             NULL,
             NULL,
@@ -15169,7 +15169,7 @@ impl_bag_array_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_array_parameter_1__value,
+        &impl_bag_array_parameter_1__value,
         {
             NULL,
             NULL,
@@ -15258,7 +15258,7 @@ impl_object__bag_size_array = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__bag_size_array__value,
+        &impl_object__bag_size_array__value,
         {
             NULL,
             NULL,
@@ -15278,7 +15278,7 @@ impl_bag_size_array_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_size_array_returns__value,
+        &impl_bag_size_array_returns__value,
         {
             NULL,
             NULL,
@@ -15314,7 +15314,7 @@ impl_bag_size_array_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_size_array_parameter_1__value,
+        &impl_bag_size_array_parameter_1__value,
         {
             NULL,
             NULL,
@@ -15403,7 +15403,7 @@ impl_object__clone_array = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__clone_array__value,
+        &impl_object__clone_array__value,
         {
             NULL,
             NULL,
@@ -15423,7 +15423,7 @@ impl_clone_array_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_clone_array_returns__value,
+        &impl_clone_array_returns__value,
         {
             NULL,
             NULL,
@@ -15459,7 +15459,7 @@ impl_clone_array_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_clone_array_parameter_1__value,
+        &impl_clone_array_parameter_1__value,
         {
             NULL,
             NULL,
@@ -15548,7 +15548,7 @@ impl_object__eq_array = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__eq_array__value,
+        &impl_object__eq_array__value,
         {
             NULL,
             NULL,
@@ -15568,7 +15568,7 @@ impl_eq_array_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_array_returns__value,
+        &impl_eq_array_returns__value,
         {
             NULL,
             NULL,
@@ -15604,7 +15604,7 @@ impl_eq_array_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_array_parameter_1__value,
+        &impl_eq_array_parameter_1__value,
         {
             NULL,
             NULL,
@@ -15640,7 +15640,7 @@ impl_eq_array_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_array_parameter_2__value,
+        &impl_eq_array_parameter_2__value,
         {
             NULL,
             NULL,
@@ -15738,7 +15738,7 @@ impl_object__eqx_array = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__eqx_array__value,
+        &impl_object__eqx_array__value,
         {
             NULL,
             NULL,
@@ -15758,7 +15758,7 @@ impl_eqx_array_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_array_returns__value,
+        &impl_eqx_array_returns__value,
         {
             NULL,
             NULL,
@@ -15794,7 +15794,7 @@ impl_eqx_array_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_array_parameter_1__value,
+        &impl_eqx_array_parameter_1__value,
         {
             NULL,
             NULL,
@@ -15830,7 +15830,7 @@ impl_eqx_array_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_array_parameter_2__value,
+        &impl_eqx_array_parameter_2__value,
         {
             NULL,
             NULL,
@@ -15920,7 +15920,7 @@ impl_object__ge_array = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ge_array__value,
+        &impl_object__ge_array__value,
         {
             NULL,
             NULL,
@@ -15940,7 +15940,7 @@ impl_ge_array_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_array_returns__value,
+        &impl_ge_array_returns__value,
         {
             NULL,
             NULL,
@@ -15976,7 +15976,7 @@ impl_ge_array_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_array_parameter_1__value,
+        &impl_ge_array_parameter_1__value,
         {
             NULL,
             NULL,
@@ -16012,7 +16012,7 @@ impl_ge_array_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_array_parameter_2__value,
+        &impl_ge_array_parameter_2__value,
         {
             NULL,
             NULL,
@@ -16102,7 +16102,7 @@ impl_object__gt_array = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__gt_array__value,
+        &impl_object__gt_array__value,
         {
             NULL,
             NULL,
@@ -16122,7 +16122,7 @@ impl_gt_array_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_array_returns__value,
+        &impl_gt_array_returns__value,
         {
             NULL,
             NULL,
@@ -16158,7 +16158,7 @@ impl_gt_array_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_array_parameter_1__value,
+        &impl_gt_array_parameter_1__value,
         {
             NULL,
             NULL,
@@ -16194,7 +16194,7 @@ impl_gt_array_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_array_parameter_2__value,
+        &impl_gt_array_parameter_2__value,
         {
             NULL,
             NULL,
@@ -16284,7 +16284,7 @@ impl_object__includes_array = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__includes_array__value,
+        &impl_object__includes_array__value,
         {
             NULL,
             NULL,
@@ -16304,7 +16304,7 @@ impl_includes_array_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_includes_array_returns__value,
+        &impl_includes_array_returns__value,
         {
             NULL,
             NULL,
@@ -16340,7 +16340,7 @@ impl_includes_array_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_includes_array_parameter_1__value,
+        &impl_includes_array_parameter_1__value,
         {
             NULL,
             NULL,
@@ -16376,7 +16376,7 @@ impl_includes_array_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_includes_array_parameter_2__value,
+        &impl_includes_array_parameter_2__value,
         {
             NULL,
             NULL,
@@ -16412,7 +16412,7 @@ impl_includes_array_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_includes_array_parameter_3__value,
+        &impl_includes_array_parameter_3__value,
         {
             NULL,
             NULL,
@@ -16503,7 +16503,7 @@ impl_object__is_array = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__is_array__value,
+        &impl_object__is_array__value,
         {
             NULL,
             NULL,
@@ -16523,7 +16523,7 @@ impl_is_array_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_array_returns__value,
+        &impl_is_array_returns__value,
         {
             NULL,
             NULL,
@@ -16559,7 +16559,7 @@ impl_is_array_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_array_parameter_1__value,
+        &impl_is_array_parameter_1__value,
         {
             NULL,
             NULL,
@@ -16648,7 +16648,7 @@ impl_object__join = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__join__value,
+        &impl_object__join__value,
         {
             NULL,
             NULL,
@@ -16668,7 +16668,7 @@ impl_join_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_join_returns__value,
+        &impl_join_returns__value,
         {
             NULL,
             NULL,
@@ -16704,7 +16704,7 @@ impl_join_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_join_parameter_1__value,
+        &impl_join_parameter_1__value,
         {
             NULL,
             NULL,
@@ -16740,7 +16740,7 @@ impl_join_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_join_parameter_2__value,
+        &impl_join_parameter_2__value,
         {
             NULL,
             NULL,
@@ -16830,7 +16830,7 @@ impl_object__le_array = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__le_array__value,
+        &impl_object__le_array__value,
         {
             NULL,
             NULL,
@@ -16850,7 +16850,7 @@ impl_le_array_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_array_returns__value,
+        &impl_le_array_returns__value,
         {
             NULL,
             NULL,
@@ -16886,7 +16886,7 @@ impl_le_array_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_array_parameter_1__value,
+        &impl_le_array_parameter_1__value,
         {
             NULL,
             NULL,
@@ -16922,7 +16922,7 @@ impl_le_array_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_array_parameter_2__value,
+        &impl_le_array_parameter_2__value,
         {
             NULL,
             NULL,
@@ -17012,7 +17012,7 @@ impl_object__length_array = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__length_array__value,
+        &impl_object__length_array__value,
         {
             NULL,
             NULL,
@@ -17032,7 +17032,7 @@ impl_length_array_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_length_array_returns__value,
+        &impl_length_array_returns__value,
         {
             NULL,
             NULL,
@@ -17068,7 +17068,7 @@ impl_length_array_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_length_array_parameter_1__value,
+        &impl_length_array_parameter_1__value,
         {
             NULL,
             NULL,
@@ -17157,7 +17157,7 @@ impl_object__lt_array = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__lt_array__value,
+        &impl_object__lt_array__value,
         {
             NULL,
             NULL,
@@ -17177,7 +17177,7 @@ impl_lt_array_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_array_returns__value,
+        &impl_lt_array_returns__value,
         {
             NULL,
             NULL,
@@ -17213,7 +17213,7 @@ impl_lt_array_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_array_parameter_1__value,
+        &impl_lt_array_parameter_1__value,
         {
             NULL,
             NULL,
@@ -17249,7 +17249,7 @@ impl_lt_array_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_array_parameter_2__value,
+        &impl_lt_array_parameter_2__value,
         {
             NULL,
             NULL,
@@ -17339,7 +17339,7 @@ impl_object__ne_array = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ne_array__value,
+        &impl_object__ne_array__value,
         {
             NULL,
             NULL,
@@ -17359,7 +17359,7 @@ impl_ne_array_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_array_returns__value,
+        &impl_ne_array_returns__value,
         {
             NULL,
             NULL,
@@ -17395,7 +17395,7 @@ impl_ne_array_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_array_parameter_1__value,
+        &impl_ne_array_parameter_1__value,
         {
             NULL,
             NULL,
@@ -17431,7 +17431,7 @@ impl_ne_array_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_array_parameter_2__value,
+        &impl_ne_array_parameter_2__value,
         {
             NULL,
             NULL,
@@ -17529,7 +17529,7 @@ impl_object__nex_array = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__nex_array__value,
+        &impl_object__nex_array__value,
         {
             NULL,
             NULL,
@@ -17549,7 +17549,7 @@ impl_nex_array_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_array_returns__value,
+        &impl_nex_array_returns__value,
         {
             NULL,
             NULL,
@@ -17585,7 +17585,7 @@ impl_nex_array_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_array_parameter_1__value,
+        &impl_nex_array_parameter_1__value,
         {
             NULL,
             NULL,
@@ -17621,7 +17621,7 @@ impl_nex_array_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_array_parameter_2__value,
+        &impl_nex_array_parameter_2__value,
         {
             NULL,
             NULL,
@@ -17711,7 +17711,7 @@ impl_object__reverse = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__reverse__value,
+        &impl_object__reverse__value,
         {
             NULL,
             NULL,
@@ -17731,7 +17731,7 @@ impl_reverse_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_reverse_returns__value,
+        &impl_reverse_returns__value,
         {
             NULL,
             NULL,
@@ -17767,7 +17767,7 @@ impl_reverse_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_reverse_parameter_1__value,
+        &impl_reverse_parameter_1__value,
         {
             NULL,
             NULL,
@@ -17856,7 +17856,7 @@ impl_object__slice = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__slice__value,
+        &impl_object__slice__value,
         {
             NULL,
             NULL,
@@ -17876,7 +17876,7 @@ impl_slice_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_slice_returns__value,
+        &impl_slice_returns__value,
         {
             NULL,
             NULL,
@@ -17912,7 +17912,7 @@ impl_slice_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_slice_parameter_1__value,
+        &impl_slice_parameter_1__value,
         {
             NULL,
             NULL,
@@ -17948,7 +17948,7 @@ impl_slice_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_slice_parameter_2__value,
+        &impl_slice_parameter_2__value,
         {
             NULL,
             NULL,
@@ -17984,7 +17984,7 @@ impl_slice_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_slice_parameter_3__value,
+        &impl_slice_parameter_3__value,
         {
             NULL,
             NULL,
@@ -18075,7 +18075,7 @@ impl_object__to_string_array = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__to_string_array__value,
+        &impl_object__to_string_array__value,
         {
             NULL,
             NULL,
@@ -18095,7 +18095,7 @@ impl_to_string_array_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_string_array_returns__value,
+        &impl_to_string_array_returns__value,
         {
             NULL,
             NULL,
@@ -18131,7 +18131,7 @@ impl_to_string_array_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_string_array_parameter_1__value,
+        &impl_to_string_array_parameter_1__value,
         {
             NULL,
             NULL,
@@ -18220,7 +18220,7 @@ impl_object__authorization_check = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__authorization_check__value,
+        &impl_object__authorization_check__value,
         {
             NULL,
             NULL,
@@ -18240,7 +18240,7 @@ impl_authorization_check_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_authorization_check_returns__value,
+        &impl_authorization_check_returns__value,
         {
             NULL,
             NULL,
@@ -18276,7 +18276,7 @@ impl_authorization_check_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_authorization_check_parameter_1__value,
+        &impl_authorization_check_parameter_1__value,
         {
             NULL,
             NULL,
@@ -18312,7 +18312,7 @@ impl_authorization_check_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_authorization_check_parameter_2__value,
+        &impl_authorization_check_parameter_2__value,
         {
             NULL,
             NULL,
@@ -18348,7 +18348,7 @@ impl_authorization_check_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_authorization_check_parameter_3__value,
+        &impl_authorization_check_parameter_3__value,
         {
             NULL,
             NULL,
@@ -18384,7 +18384,7 @@ impl_authorization_check_parameter_4 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_authorization_check_parameter_4__value,
+        &impl_authorization_check_parameter_4__value,
         {
             NULL,
             NULL,
@@ -18420,7 +18420,7 @@ impl_authorization_check_parameter_5 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_authorization_check_parameter_5__value,
+        &impl_authorization_check_parameter_5__value,
         {
             NULL,
             NULL,
@@ -18513,7 +18513,7 @@ impl_object__at_least_one_member_of_base64Binary = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__at_least_one_member_of_base64Binary__value,
+        &impl_object__at_least_one_member_of_base64Binary__value,
         {
             NULL,
             NULL,
@@ -18533,7 +18533,7 @@ impl_at_least_one_member_of_base64Binary_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_at_least_one_member_of_base64Binary_returns__value,
+        &impl_at_least_one_member_of_base64Binary_returns__value,
         {
             NULL,
             NULL,
@@ -18569,7 +18569,7 @@ impl_at_least_one_member_of_base64Binary_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_at_least_one_member_of_base64Binary_parameter_1__value,
+        &impl_at_least_one_member_of_base64Binary_parameter_1__value,
         {
             NULL,
             NULL,
@@ -18605,7 +18605,7 @@ impl_at_least_one_member_of_base64Binary_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_at_least_one_member_of_base64Binary_parameter_2__value,
+        &impl_at_least_one_member_of_base64Binary_parameter_2__value,
         {
             NULL,
             NULL,
@@ -18695,7 +18695,7 @@ impl_object__bag_base64Binary = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__bag_base64Binary__value,
+        &impl_object__bag_base64Binary__value,
         {
             NULL,
             NULL,
@@ -18715,7 +18715,7 @@ impl_bag_base64Binary_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_base64Binary_returns__value,
+        &impl_bag_base64Binary_returns__value,
         {
             NULL,
             NULL,
@@ -18751,7 +18751,7 @@ impl_bag_base64Binary_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_base64Binary_parameter_1__value,
+        &impl_bag_base64Binary_parameter_1__value,
         {
             NULL,
             NULL,
@@ -18840,7 +18840,7 @@ impl_object__bag_size_base64Binary = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__bag_size_base64Binary__value,
+        &impl_object__bag_size_base64Binary__value,
         {
             NULL,
             NULL,
@@ -18860,7 +18860,7 @@ impl_bag_size_base64Binary_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_size_base64Binary_returns__value,
+        &impl_bag_size_base64Binary_returns__value,
         {
             NULL,
             NULL,
@@ -18896,7 +18896,7 @@ impl_bag_size_base64Binary_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_size_base64Binary_parameter_1__value,
+        &impl_bag_size_base64Binary_parameter_1__value,
         {
             NULL,
             NULL,
@@ -18985,7 +18985,7 @@ impl_object__base64Binary = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__base64Binary__value,
+        &impl_object__base64Binary__value,
         {
             NULL,
             NULL,
@@ -19005,7 +19005,7 @@ impl_base64Binary_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_base64Binary_returns__value,
+        &impl_base64Binary_returns__value,
         {
             NULL,
             NULL,
@@ -19041,7 +19041,7 @@ impl_base64Binary_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_base64Binary_parameter_1__value,
+        &impl_base64Binary_parameter_1__value,
         {
             NULL,
             NULL,
@@ -19138,7 +19138,7 @@ impl_object__decode_to_string_base64Binary = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__decode_to_string_base64Binary__value,
+        &impl_object__decode_to_string_base64Binary__value,
         {
             NULL,
             NULL,
@@ -19158,7 +19158,7 @@ impl_decode_to_string_base64Binary_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_decode_to_string_base64Binary_returns__value,
+        &impl_decode_to_string_base64Binary_returns__value,
         {
             NULL,
             NULL,
@@ -19194,7 +19194,7 @@ impl_decode_to_string_base64Binary_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_decode_to_string_base64Binary_parameter_1__value,
+        &impl_decode_to_string_base64Binary_parameter_1__value,
         {
             NULL,
             NULL,
@@ -19283,7 +19283,7 @@ impl_object__eq_base64Binary = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__eq_base64Binary__value,
+        &impl_object__eq_base64Binary__value,
         {
             NULL,
             NULL,
@@ -19303,7 +19303,7 @@ impl_eq_base64Binary_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_base64Binary_returns__value,
+        &impl_eq_base64Binary_returns__value,
         {
             NULL,
             NULL,
@@ -19339,7 +19339,7 @@ impl_eq_base64Binary_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_base64Binary_parameter_1__value,
+        &impl_eq_base64Binary_parameter_1__value,
         {
             NULL,
             NULL,
@@ -19375,7 +19375,7 @@ impl_eq_base64Binary_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_base64Binary_parameter_2__value,
+        &impl_eq_base64Binary_parameter_2__value,
         {
             NULL,
             NULL,
@@ -19473,7 +19473,7 @@ impl_object__eqx_base64Binary = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__eqx_base64Binary__value,
+        &impl_object__eqx_base64Binary__value,
         {
             NULL,
             NULL,
@@ -19493,7 +19493,7 @@ impl_eqx_base64Binary_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_base64Binary_returns__value,
+        &impl_eqx_base64Binary_returns__value,
         {
             NULL,
             NULL,
@@ -19529,7 +19529,7 @@ impl_eqx_base64Binary_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_base64Binary_parameter_1__value,
+        &impl_eqx_base64Binary_parameter_1__value,
         {
             NULL,
             NULL,
@@ -19565,7 +19565,7 @@ impl_eqx_base64Binary_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_base64Binary_parameter_2__value,
+        &impl_eqx_base64Binary_parameter_2__value,
         {
             NULL,
             NULL,
@@ -19655,7 +19655,7 @@ impl_object__ge_base64Binary = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ge_base64Binary__value,
+        &impl_object__ge_base64Binary__value,
         {
             NULL,
             NULL,
@@ -19675,7 +19675,7 @@ impl_ge_base64Binary_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_base64Binary_returns__value,
+        &impl_ge_base64Binary_returns__value,
         {
             NULL,
             NULL,
@@ -19711,7 +19711,7 @@ impl_ge_base64Binary_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_base64Binary_parameter_1__value,
+        &impl_ge_base64Binary_parameter_1__value,
         {
             NULL,
             NULL,
@@ -19747,7 +19747,7 @@ impl_ge_base64Binary_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_base64Binary_parameter_2__value,
+        &impl_ge_base64Binary_parameter_2__value,
         {
             NULL,
             NULL,
@@ -19837,7 +19837,7 @@ impl_object__gt_base64Binary = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__gt_base64Binary__value,
+        &impl_object__gt_base64Binary__value,
         {
             NULL,
             NULL,
@@ -19857,7 +19857,7 @@ impl_gt_base64Binary_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_base64Binary_returns__value,
+        &impl_gt_base64Binary_returns__value,
         {
             NULL,
             NULL,
@@ -19893,7 +19893,7 @@ impl_gt_base64Binary_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_base64Binary_parameter_1__value,
+        &impl_gt_base64Binary_parameter_1__value,
         {
             NULL,
             NULL,
@@ -19929,7 +19929,7 @@ impl_gt_base64Binary_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_base64Binary_parameter_2__value,
+        &impl_gt_base64Binary_parameter_2__value,
         {
             NULL,
             NULL,
@@ -20019,7 +20019,7 @@ impl_object__intersection_base64Binary = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__intersection_base64Binary__value,
+        &impl_object__intersection_base64Binary__value,
         {
             NULL,
             NULL,
@@ -20039,7 +20039,7 @@ impl_intersection_base64Binary_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_intersection_base64Binary_returns__value,
+        &impl_intersection_base64Binary_returns__value,
         {
             NULL,
             NULL,
@@ -20075,7 +20075,7 @@ impl_intersection_base64Binary_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_intersection_base64Binary_parameter_1__value,
+        &impl_intersection_base64Binary_parameter_1__value,
         {
             NULL,
             NULL,
@@ -20111,7 +20111,7 @@ impl_intersection_base64Binary_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_intersection_base64Binary_parameter_2__value,
+        &impl_intersection_base64Binary_parameter_2__value,
         {
             NULL,
             NULL,
@@ -20201,7 +20201,7 @@ impl_object__is_base64Binary = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__is_base64Binary__value,
+        &impl_object__is_base64Binary__value,
         {
             NULL,
             NULL,
@@ -20221,7 +20221,7 @@ impl_is_base64Binary_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_base64Binary_returns__value,
+        &impl_is_base64Binary_returns__value,
         {
             NULL,
             NULL,
@@ -20257,7 +20257,7 @@ impl_is_base64Binary_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_base64Binary_parameter_1__value,
+        &impl_is_base64Binary_parameter_1__value,
         {
             NULL,
             NULL,
@@ -20346,7 +20346,7 @@ impl_object__is_in_base64Binary = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__is_in_base64Binary__value,
+        &impl_object__is_in_base64Binary__value,
         {
             NULL,
             NULL,
@@ -20366,7 +20366,7 @@ impl_is_in_base64Binary_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_in_base64Binary_returns__value,
+        &impl_is_in_base64Binary_returns__value,
         {
             NULL,
             NULL,
@@ -20402,7 +20402,7 @@ impl_is_in_base64Binary_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_in_base64Binary_parameter_1__value,
+        &impl_is_in_base64Binary_parameter_1__value,
         {
             NULL,
             NULL,
@@ -20438,7 +20438,7 @@ impl_is_in_base64Binary_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_in_base64Binary_parameter_2__value,
+        &impl_is_in_base64Binary_parameter_2__value,
         {
             NULL,
             NULL,
@@ -20528,7 +20528,7 @@ impl_object__le_base64Binary = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__le_base64Binary__value,
+        &impl_object__le_base64Binary__value,
         {
             NULL,
             NULL,
@@ -20548,7 +20548,7 @@ impl_le_base64Binary_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_base64Binary_returns__value,
+        &impl_le_base64Binary_returns__value,
         {
             NULL,
             NULL,
@@ -20584,7 +20584,7 @@ impl_le_base64Binary_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_base64Binary_parameter_1__value,
+        &impl_le_base64Binary_parameter_1__value,
         {
             NULL,
             NULL,
@@ -20620,7 +20620,7 @@ impl_le_base64Binary_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_base64Binary_parameter_2__value,
+        &impl_le_base64Binary_parameter_2__value,
         {
             NULL,
             NULL,
@@ -20710,7 +20710,7 @@ impl_object__lt_base64Binary = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__lt_base64Binary__value,
+        &impl_object__lt_base64Binary__value,
         {
             NULL,
             NULL,
@@ -20730,7 +20730,7 @@ impl_lt_base64Binary_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_base64Binary_returns__value,
+        &impl_lt_base64Binary_returns__value,
         {
             NULL,
             NULL,
@@ -20766,7 +20766,7 @@ impl_lt_base64Binary_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_base64Binary_parameter_1__value,
+        &impl_lt_base64Binary_parameter_1__value,
         {
             NULL,
             NULL,
@@ -20802,7 +20802,7 @@ impl_lt_base64Binary_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_base64Binary_parameter_2__value,
+        &impl_lt_base64Binary_parameter_2__value,
         {
             NULL,
             NULL,
@@ -20892,7 +20892,7 @@ impl_object__ne_base64Binary = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ne_base64Binary__value,
+        &impl_object__ne_base64Binary__value,
         {
             NULL,
             NULL,
@@ -20912,7 +20912,7 @@ impl_ne_base64Binary_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_base64Binary_returns__value,
+        &impl_ne_base64Binary_returns__value,
         {
             NULL,
             NULL,
@@ -20948,7 +20948,7 @@ impl_ne_base64Binary_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_base64Binary_parameter_1__value,
+        &impl_ne_base64Binary_parameter_1__value,
         {
             NULL,
             NULL,
@@ -20984,7 +20984,7 @@ impl_ne_base64Binary_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_base64Binary_parameter_2__value,
+        &impl_ne_base64Binary_parameter_2__value,
         {
             NULL,
             NULL,
@@ -21082,7 +21082,7 @@ impl_object__nex_base64Binary = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__nex_base64Binary__value,
+        &impl_object__nex_base64Binary__value,
         {
             NULL,
             NULL,
@@ -21102,7 +21102,7 @@ impl_nex_base64Binary_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_base64Binary_returns__value,
+        &impl_nex_base64Binary_returns__value,
         {
             NULL,
             NULL,
@@ -21138,7 +21138,7 @@ impl_nex_base64Binary_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_base64Binary_parameter_1__value,
+        &impl_nex_base64Binary_parameter_1__value,
         {
             NULL,
             NULL,
@@ -21174,7 +21174,7 @@ impl_nex_base64Binary_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_base64Binary_parameter_2__value,
+        &impl_nex_base64Binary_parameter_2__value,
         {
             NULL,
             NULL,
@@ -21264,7 +21264,7 @@ impl_object__one_and_only_base64Binary = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__one_and_only_base64Binary__value,
+        &impl_object__one_and_only_base64Binary__value,
         {
             NULL,
             NULL,
@@ -21284,7 +21284,7 @@ impl_one_and_only_base64Binary_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_one_and_only_base64Binary_returns__value,
+        &impl_one_and_only_base64Binary_returns__value,
         {
             NULL,
             NULL,
@@ -21320,7 +21320,7 @@ impl_one_and_only_base64Binary_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_one_and_only_base64Binary_parameter_1__value,
+        &impl_one_and_only_base64Binary_parameter_1__value,
         {
             NULL,
             NULL,
@@ -21417,7 +21417,7 @@ impl_object__set_equals_base64Binary = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__set_equals_base64Binary__value,
+        &impl_object__set_equals_base64Binary__value,
         {
             NULL,
             NULL,
@@ -21437,7 +21437,7 @@ impl_set_equals_base64Binary_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_set_equals_base64Binary_returns__value,
+        &impl_set_equals_base64Binary_returns__value,
         {
             NULL,
             NULL,
@@ -21473,7 +21473,7 @@ impl_set_equals_base64Binary_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_set_equals_base64Binary_parameter_1__value,
+        &impl_set_equals_base64Binary_parameter_1__value,
         {
             NULL,
             NULL,
@@ -21509,7 +21509,7 @@ impl_set_equals_base64Binary_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_set_equals_base64Binary_parameter_2__value,
+        &impl_set_equals_base64Binary_parameter_2__value,
         {
             NULL,
             NULL,
@@ -21599,7 +21599,7 @@ impl_object__subset_base64Binary = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__subset_base64Binary__value,
+        &impl_object__subset_base64Binary__value,
         {
             NULL,
             NULL,
@@ -21619,7 +21619,7 @@ impl_subset_base64Binary_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subset_base64Binary_returns__value,
+        &impl_subset_base64Binary_returns__value,
         {
             NULL,
             NULL,
@@ -21655,7 +21655,7 @@ impl_subset_base64Binary_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subset_base64Binary_parameter_1__value,
+        &impl_subset_base64Binary_parameter_1__value,
         {
             NULL,
             NULL,
@@ -21691,7 +21691,7 @@ impl_subset_base64Binary_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subset_base64Binary_parameter_2__value,
+        &impl_subset_base64Binary_parameter_2__value,
         {
             NULL,
             NULL,
@@ -21781,7 +21781,7 @@ impl_object__to_string_base64Binary = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__to_string_base64Binary__value,
+        &impl_object__to_string_base64Binary__value,
         {
             NULL,
             NULL,
@@ -21801,7 +21801,7 @@ impl_to_string_base64Binary_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_string_base64Binary_returns__value,
+        &impl_to_string_base64Binary_returns__value,
         {
             NULL,
             NULL,
@@ -21837,7 +21837,7 @@ impl_to_string_base64Binary_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_string_base64Binary_parameter_1__value,
+        &impl_to_string_base64Binary_parameter_1__value,
         {
             NULL,
             NULL,
@@ -21926,7 +21926,7 @@ impl_object__union_base64Binary = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__union_base64Binary__value,
+        &impl_object__union_base64Binary__value,
         {
             NULL,
             NULL,
@@ -21946,7 +21946,7 @@ impl_union_base64Binary_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_union_base64Binary_returns__value,
+        &impl_union_base64Binary_returns__value,
         {
             NULL,
             NULL,
@@ -21982,7 +21982,7 @@ impl_union_base64Binary_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_union_base64Binary_parameter_1__value,
+        &impl_union_base64Binary_parameter_1__value,
         {
             NULL,
             NULL,
@@ -22071,7 +22071,7 @@ impl_object__at_least_one_member_of_boolean = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__at_least_one_member_of_boolean__value,
+        &impl_object__at_least_one_member_of_boolean__value,
         {
             NULL,
             NULL,
@@ -22091,7 +22091,7 @@ impl_at_least_one_member_of_boolean_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_at_least_one_member_of_boolean_returns__value,
+        &impl_at_least_one_member_of_boolean_returns__value,
         {
             NULL,
             NULL,
@@ -22127,7 +22127,7 @@ impl_at_least_one_member_of_boolean_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_at_least_one_member_of_boolean_parameter_1__value,
+        &impl_at_least_one_member_of_boolean_parameter_1__value,
         {
             NULL,
             NULL,
@@ -22163,7 +22163,7 @@ impl_at_least_one_member_of_boolean_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_at_least_one_member_of_boolean_parameter_2__value,
+        &impl_at_least_one_member_of_boolean_parameter_2__value,
         {
             NULL,
             NULL,
@@ -22253,7 +22253,7 @@ impl_object__bag_boolean = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__bag_boolean__value,
+        &impl_object__bag_boolean__value,
         {
             NULL,
             NULL,
@@ -22273,7 +22273,7 @@ impl_bag_boolean_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_boolean_returns__value,
+        &impl_bag_boolean_returns__value,
         {
             NULL,
             NULL,
@@ -22309,7 +22309,7 @@ impl_bag_boolean_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_boolean_parameter_1__value,
+        &impl_bag_boolean_parameter_1__value,
         {
             NULL,
             NULL,
@@ -22398,7 +22398,7 @@ impl_object__bag_size_boolean = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__bag_size_boolean__value,
+        &impl_object__bag_size_boolean__value,
         {
             NULL,
             NULL,
@@ -22418,7 +22418,7 @@ impl_bag_size_boolean_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_size_boolean_returns__value,
+        &impl_bag_size_boolean_returns__value,
         {
             NULL,
             NULL,
@@ -22454,7 +22454,7 @@ impl_bag_size_boolean_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_size_boolean_parameter_1__value,
+        &impl_bag_size_boolean_parameter_1__value,
         {
             NULL,
             NULL,
@@ -22543,7 +22543,7 @@ impl_object__boolean = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__boolean__value,
+        &impl_object__boolean__value,
         {
             NULL,
             NULL,
@@ -22563,7 +22563,7 @@ impl_boolean_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_boolean_returns__value,
+        &impl_boolean_returns__value,
         {
             NULL,
             NULL,
@@ -22599,7 +22599,7 @@ impl_boolean_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_boolean_parameter_1__value,
+        &impl_boolean_parameter_1__value,
         {
             NULL,
             NULL,
@@ -22696,7 +22696,7 @@ impl_object__eq_boolean = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__eq_boolean__value,
+        &impl_object__eq_boolean__value,
         {
             NULL,
             NULL,
@@ -22716,7 +22716,7 @@ impl_eq_boolean_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_boolean_returns__value,
+        &impl_eq_boolean_returns__value,
         {
             NULL,
             NULL,
@@ -22752,7 +22752,7 @@ impl_eq_boolean_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_boolean_parameter_1__value,
+        &impl_eq_boolean_parameter_1__value,
         {
             NULL,
             NULL,
@@ -22788,7 +22788,7 @@ impl_eq_boolean_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_boolean_parameter_2__value,
+        &impl_eq_boolean_parameter_2__value,
         {
             NULL,
             NULL,
@@ -22886,7 +22886,7 @@ impl_object__eqx_boolean = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__eqx_boolean__value,
+        &impl_object__eqx_boolean__value,
         {
             NULL,
             NULL,
@@ -22906,7 +22906,7 @@ impl_eqx_boolean_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_boolean_returns__value,
+        &impl_eqx_boolean_returns__value,
         {
             NULL,
             NULL,
@@ -22942,7 +22942,7 @@ impl_eqx_boolean_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_boolean_parameter_1__value,
+        &impl_eqx_boolean_parameter_1__value,
         {
             NULL,
             NULL,
@@ -22978,7 +22978,7 @@ impl_eqx_boolean_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_boolean_parameter_2__value,
+        &impl_eqx_boolean_parameter_2__value,
         {
             NULL,
             NULL,
@@ -23068,7 +23068,7 @@ impl_object__ge_boolean = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ge_boolean__value,
+        &impl_object__ge_boolean__value,
         {
             NULL,
             NULL,
@@ -23088,7 +23088,7 @@ impl_ge_boolean_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_boolean_returns__value,
+        &impl_ge_boolean_returns__value,
         {
             NULL,
             NULL,
@@ -23124,7 +23124,7 @@ impl_ge_boolean_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_boolean_parameter_1__value,
+        &impl_ge_boolean_parameter_1__value,
         {
             NULL,
             NULL,
@@ -23160,7 +23160,7 @@ impl_ge_boolean_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_boolean_parameter_2__value,
+        &impl_ge_boolean_parameter_2__value,
         {
             NULL,
             NULL,
@@ -23250,7 +23250,7 @@ impl_object__gt_boolean = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__gt_boolean__value,
+        &impl_object__gt_boolean__value,
         {
             NULL,
             NULL,
@@ -23270,7 +23270,7 @@ impl_gt_boolean_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_boolean_returns__value,
+        &impl_gt_boolean_returns__value,
         {
             NULL,
             NULL,
@@ -23306,7 +23306,7 @@ impl_gt_boolean_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_boolean_parameter_1__value,
+        &impl_gt_boolean_parameter_1__value,
         {
             NULL,
             NULL,
@@ -23342,7 +23342,7 @@ impl_gt_boolean_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_boolean_parameter_2__value,
+        &impl_gt_boolean_parameter_2__value,
         {
             NULL,
             NULL,
@@ -23432,7 +23432,7 @@ impl_object__intersection_boolean = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__intersection_boolean__value,
+        &impl_object__intersection_boolean__value,
         {
             NULL,
             NULL,
@@ -23452,7 +23452,7 @@ impl_intersection_boolean_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_intersection_boolean_returns__value,
+        &impl_intersection_boolean_returns__value,
         {
             NULL,
             NULL,
@@ -23488,7 +23488,7 @@ impl_intersection_boolean_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_intersection_boolean_parameter_1__value,
+        &impl_intersection_boolean_parameter_1__value,
         {
             NULL,
             NULL,
@@ -23524,7 +23524,7 @@ impl_intersection_boolean_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_intersection_boolean_parameter_2__value,
+        &impl_intersection_boolean_parameter_2__value,
         {
             NULL,
             NULL,
@@ -23614,7 +23614,7 @@ impl_object__is_boolean = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__is_boolean__value,
+        &impl_object__is_boolean__value,
         {
             NULL,
             NULL,
@@ -23634,7 +23634,7 @@ impl_is_boolean_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_boolean_returns__value,
+        &impl_is_boolean_returns__value,
         {
             NULL,
             NULL,
@@ -23670,7 +23670,7 @@ impl_is_boolean_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_boolean_parameter_1__value,
+        &impl_is_boolean_parameter_1__value,
         {
             NULL,
             NULL,
@@ -23759,7 +23759,7 @@ impl_object__is_in_boolean = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__is_in_boolean__value,
+        &impl_object__is_in_boolean__value,
         {
             NULL,
             NULL,
@@ -23779,7 +23779,7 @@ impl_is_in_boolean_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_in_boolean_returns__value,
+        &impl_is_in_boolean_returns__value,
         {
             NULL,
             NULL,
@@ -23815,7 +23815,7 @@ impl_is_in_boolean_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_in_boolean_parameter_1__value,
+        &impl_is_in_boolean_parameter_1__value,
         {
             NULL,
             NULL,
@@ -23851,7 +23851,7 @@ impl_is_in_boolean_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_in_boolean_parameter_2__value,
+        &impl_is_in_boolean_parameter_2__value,
         {
             NULL,
             NULL,
@@ -23941,7 +23941,7 @@ impl_object__le_boolean = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__le_boolean__value,
+        &impl_object__le_boolean__value,
         {
             NULL,
             NULL,
@@ -23961,7 +23961,7 @@ impl_le_boolean_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_boolean_returns__value,
+        &impl_le_boolean_returns__value,
         {
             NULL,
             NULL,
@@ -23997,7 +23997,7 @@ impl_le_boolean_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_boolean_parameter_1__value,
+        &impl_le_boolean_parameter_1__value,
         {
             NULL,
             NULL,
@@ -24033,7 +24033,7 @@ impl_le_boolean_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_boolean_parameter_2__value,
+        &impl_le_boolean_parameter_2__value,
         {
             NULL,
             NULL,
@@ -24123,7 +24123,7 @@ impl_object__lt_boolean = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__lt_boolean__value,
+        &impl_object__lt_boolean__value,
         {
             NULL,
             NULL,
@@ -24143,7 +24143,7 @@ impl_lt_boolean_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_boolean_returns__value,
+        &impl_lt_boolean_returns__value,
         {
             NULL,
             NULL,
@@ -24179,7 +24179,7 @@ impl_lt_boolean_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_boolean_parameter_1__value,
+        &impl_lt_boolean_parameter_1__value,
         {
             NULL,
             NULL,
@@ -24215,7 +24215,7 @@ impl_lt_boolean_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_boolean_parameter_2__value,
+        &impl_lt_boolean_parameter_2__value,
         {
             NULL,
             NULL,
@@ -24305,7 +24305,7 @@ impl_object__ne_boolean = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ne_boolean__value,
+        &impl_object__ne_boolean__value,
         {
             NULL,
             NULL,
@@ -24325,7 +24325,7 @@ impl_ne_boolean_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_boolean_returns__value,
+        &impl_ne_boolean_returns__value,
         {
             NULL,
             NULL,
@@ -24361,7 +24361,7 @@ impl_ne_boolean_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_boolean_parameter_1__value,
+        &impl_ne_boolean_parameter_1__value,
         {
             NULL,
             NULL,
@@ -24397,7 +24397,7 @@ impl_ne_boolean_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_boolean_parameter_2__value,
+        &impl_ne_boolean_parameter_2__value,
         {
             NULL,
             NULL,
@@ -24495,7 +24495,7 @@ impl_object__nex_boolean = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__nex_boolean__value,
+        &impl_object__nex_boolean__value,
         {
             NULL,
             NULL,
@@ -24515,7 +24515,7 @@ impl_nex_boolean_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_boolean_returns__value,
+        &impl_nex_boolean_returns__value,
         {
             NULL,
             NULL,
@@ -24551,7 +24551,7 @@ impl_nex_boolean_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_boolean_parameter_1__value,
+        &impl_nex_boolean_parameter_1__value,
         {
             NULL,
             NULL,
@@ -24587,7 +24587,7 @@ impl_nex_boolean_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_boolean_parameter_2__value,
+        &impl_nex_boolean_parameter_2__value,
         {
             NULL,
             NULL,
@@ -24677,7 +24677,7 @@ impl_object__one_and_only_boolean = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__one_and_only_boolean__value,
+        &impl_object__one_and_only_boolean__value,
         {
             NULL,
             NULL,
@@ -24697,7 +24697,7 @@ impl_one_and_only_boolean_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_one_and_only_boolean_returns__value,
+        &impl_one_and_only_boolean_returns__value,
         {
             NULL,
             NULL,
@@ -24733,7 +24733,7 @@ impl_one_and_only_boolean_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_one_and_only_boolean_parameter_1__value,
+        &impl_one_and_only_boolean_parameter_1__value,
         {
             NULL,
             NULL,
@@ -24830,7 +24830,7 @@ impl_object__set_equals_boolean = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__set_equals_boolean__value,
+        &impl_object__set_equals_boolean__value,
         {
             NULL,
             NULL,
@@ -24850,7 +24850,7 @@ impl_set_equals_boolean_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_set_equals_boolean_returns__value,
+        &impl_set_equals_boolean_returns__value,
         {
             NULL,
             NULL,
@@ -24886,7 +24886,7 @@ impl_set_equals_boolean_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_set_equals_boolean_parameter_1__value,
+        &impl_set_equals_boolean_parameter_1__value,
         {
             NULL,
             NULL,
@@ -24922,7 +24922,7 @@ impl_set_equals_boolean_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_set_equals_boolean_parameter_2__value,
+        &impl_set_equals_boolean_parameter_2__value,
         {
             NULL,
             NULL,
@@ -25012,7 +25012,7 @@ impl_object__subset_boolean = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__subset_boolean__value,
+        &impl_object__subset_boolean__value,
         {
             NULL,
             NULL,
@@ -25032,7 +25032,7 @@ impl_subset_boolean_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subset_boolean_returns__value,
+        &impl_subset_boolean_returns__value,
         {
             NULL,
             NULL,
@@ -25068,7 +25068,7 @@ impl_subset_boolean_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subset_boolean_parameter_1__value,
+        &impl_subset_boolean_parameter_1__value,
         {
             NULL,
             NULL,
@@ -25104,7 +25104,7 @@ impl_subset_boolean_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subset_boolean_parameter_2__value,
+        &impl_subset_boolean_parameter_2__value,
         {
             NULL,
             NULL,
@@ -25194,7 +25194,7 @@ impl_object__to_string_boolean = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__to_string_boolean__value,
+        &impl_object__to_string_boolean__value,
         {
             NULL,
             NULL,
@@ -25214,7 +25214,7 @@ impl_to_string_boolean_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_string_boolean_returns__value,
+        &impl_to_string_boolean_returns__value,
         {
             NULL,
             NULL,
@@ -25250,7 +25250,7 @@ impl_to_string_boolean_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_string_boolean_parameter_1__value,
+        &impl_to_string_boolean_parameter_1__value,
         {
             NULL,
             NULL,
@@ -25339,7 +25339,7 @@ impl_object__union_boolean = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__union_boolean__value,
+        &impl_object__union_boolean__value,
         {
             NULL,
             NULL,
@@ -25359,7 +25359,7 @@ impl_union_boolean_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_union_boolean_returns__value,
+        &impl_union_boolean_returns__value,
         {
             NULL,
             NULL,
@@ -25395,7 +25395,7 @@ impl_union_boolean_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_union_boolean_parameter_1__value,
+        &impl_union_boolean_parameter_1__value,
         {
             NULL,
             NULL,
@@ -25484,7 +25484,7 @@ impl_object__nullish_coalescing = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__nullish_coalescing__value,
+        &impl_object__nullish_coalescing__value,
         {
             NULL,
             NULL,
@@ -25504,7 +25504,7 @@ impl_nullish_coalescing_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nullish_coalescing_returns__value,
+        &impl_nullish_coalescing_returns__value,
         {
             NULL,
             NULL,
@@ -25540,7 +25540,7 @@ impl_nullish_coalescing_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nullish_coalescing_parameter_1__value,
+        &impl_nullish_coalescing_parameter_1__value,
         {
             NULL,
             NULL,
@@ -25629,7 +25629,7 @@ impl_object__optional_chaining = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__optional_chaining__value,
+        &impl_object__optional_chaining__value,
         {
             NULL,
             NULL,
@@ -25649,7 +25649,7 @@ impl_optional_chaining_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_optional_chaining_returns__value,
+        &impl_optional_chaining_returns__value,
         {
             NULL,
             NULL,
@@ -25685,7 +25685,7 @@ impl_optional_chaining_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_optional_chaining_parameter_1__value,
+        &impl_optional_chaining_parameter_1__value,
         {
             NULL,
             NULL,
@@ -25721,7 +25721,7 @@ impl_optional_chaining_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_optional_chaining_parameter_2__value,
+        &impl_optional_chaining_parameter_2__value,
         {
             NULL,
             NULL,
@@ -25811,7 +25811,7 @@ impl_object__void_operator = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__void_operator__value,
+        &impl_object__void_operator__value,
         {
             NULL,
             NULL,
@@ -25831,7 +25831,7 @@ impl_void_operator_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_void_operator_returns__value,
+        &impl_void_operator_returns__value,
         {
             NULL,
             NULL,
@@ -25867,7 +25867,7 @@ impl_void_operator_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_void_operator_parameter_1__value,
+        &impl_void_operator_parameter_1__value,
         {
             NULL,
             NULL,
@@ -25956,7 +25956,7 @@ impl_object__assign = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__assign__value,
+        &impl_object__assign__value,
         {
             NULL,
             NULL,
@@ -25976,7 +25976,7 @@ impl_assign_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_assign_returns__value,
+        &impl_assign_returns__value,
         {
             NULL,
             NULL,
@@ -26012,7 +26012,7 @@ impl_assign_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_assign_parameter_1__value,
+        &impl_assign_parameter_1__value,
         {
             NULL,
             NULL,
@@ -26048,7 +26048,7 @@ impl_assign_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_assign_parameter_2__value,
+        &impl_assign_parameter_2__value,
         {
             NULL,
             NULL,
@@ -26144,7 +26144,7 @@ impl_object__break = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__break__value,
+        &impl_object__break__value,
         {
             NULL,
             NULL,
@@ -26164,7 +26164,7 @@ impl_break_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_break_returns__value,
+        &impl_break_returns__value,
         {
             NULL,
             NULL,
@@ -26200,7 +26200,7 @@ impl_break_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_break_parameter_1__value,
+        &impl_break_parameter_1__value,
         {
             NULL,
             NULL,
@@ -26289,7 +26289,7 @@ impl_object__const = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__const__value,
+        &impl_object__const__value,
         {
             NULL,
             NULL,
@@ -26309,7 +26309,7 @@ impl_const_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_const_returns__value,
+        &impl_const_returns__value,
         {
             NULL,
             NULL,
@@ -26345,7 +26345,7 @@ impl_const_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_const_parameter_1__value,
+        &impl_const_parameter_1__value,
         {
             NULL,
             NULL,
@@ -26381,7 +26381,7 @@ impl_const_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_const_parameter_2__value,
+        &impl_const_parameter_2__value,
         {
             NULL,
             NULL,
@@ -26417,7 +26417,7 @@ impl_const_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_const_parameter_3__value,
+        &impl_const_parameter_3__value,
         {
             NULL,
             NULL,
@@ -26508,7 +26508,7 @@ impl_object__continue = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__continue__value,
+        &impl_object__continue__value,
         {
             NULL,
             NULL,
@@ -26528,7 +26528,7 @@ impl_continue_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_continue_returns__value,
+        &impl_continue_returns__value,
         {
             NULL,
             NULL,
@@ -26616,7 +26616,7 @@ impl_object__do_while = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__do_while__value,
+        &impl_object__do_while__value,
         {
             NULL,
             NULL,
@@ -26636,7 +26636,7 @@ impl_do_while_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_do_while_returns__value,
+        &impl_do_while_returns__value,
         {
             NULL,
             NULL,
@@ -26672,7 +26672,7 @@ impl_do_while_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_do_while_parameter_1__value,
+        &impl_do_while_parameter_1__value,
         {
             NULL,
             NULL,
@@ -26708,7 +26708,7 @@ impl_do_while_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_do_while_parameter_2__value,
+        &impl_do_while_parameter_2__value,
         {
             NULL,
             NULL,
@@ -26798,7 +26798,7 @@ impl_object__for = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__for__value,
+        &impl_object__for__value,
         {
             NULL,
             NULL,
@@ -26818,7 +26818,7 @@ impl_for_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_for_returns__value,
+        &impl_for_returns__value,
         {
             NULL,
             NULL,
@@ -26854,7 +26854,7 @@ impl_for_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_for_parameter_1__value,
+        &impl_for_parameter_1__value,
         {
             NULL,
             NULL,
@@ -26890,7 +26890,7 @@ impl_for_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_for_parameter_2__value,
+        &impl_for_parameter_2__value,
         {
             NULL,
             NULL,
@@ -26926,7 +26926,7 @@ impl_for_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_for_parameter_3__value,
+        &impl_for_parameter_3__value,
         {
             NULL,
             NULL,
@@ -26962,7 +26962,7 @@ impl_for_parameter_4 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_for_parameter_4__value,
+        &impl_for_parameter_4__value,
         {
             NULL,
             NULL,
@@ -27054,7 +27054,7 @@ impl_object__for_of = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__for_of__value,
+        &impl_object__for_of__value,
         {
             NULL,
             NULL,
@@ -27074,7 +27074,7 @@ impl_for_of_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_for_of_returns__value,
+        &impl_for_of_returns__value,
         {
             NULL,
             NULL,
@@ -27110,7 +27110,7 @@ impl_for_of_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_for_of_parameter_1__value,
+        &impl_for_of_parameter_1__value,
         {
             NULL,
             NULL,
@@ -27146,7 +27146,7 @@ impl_for_of_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_for_of_parameter_2__value,
+        &impl_for_of_parameter_2__value,
         {
             NULL,
             NULL,
@@ -27182,7 +27182,7 @@ impl_for_of_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_for_of_parameter_3__value,
+        &impl_for_of_parameter_3__value,
         {
             NULL,
             NULL,
@@ -27273,7 +27273,7 @@ impl_object__if = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__if__value,
+        &impl_object__if__value,
         {
             NULL,
             NULL,
@@ -27293,7 +27293,7 @@ impl_if_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_if_returns__value,
+        &impl_if_returns__value,
         {
             NULL,
             NULL,
@@ -27329,7 +27329,7 @@ impl_if_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_if_parameter_1__value,
+        &impl_if_parameter_1__value,
         {
             NULL,
             NULL,
@@ -27365,7 +27365,7 @@ impl_if_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_if_parameter_2__value,
+        &impl_if_parameter_2__value,
         {
             NULL,
             NULL,
@@ -27401,7 +27401,7 @@ impl_if_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_if_parameter_3__value,
+        &impl_if_parameter_3__value,
         {
             NULL,
             NULL,
@@ -27492,7 +27492,7 @@ impl_object__let = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__let__value,
+        &impl_object__let__value,
         {
             NULL,
             NULL,
@@ -27512,7 +27512,7 @@ impl_let_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_let_returns__value,
+        &impl_let_returns__value,
         {
             NULL,
             NULL,
@@ -27548,7 +27548,7 @@ impl_let_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_let_parameter_1__value,
+        &impl_let_parameter_1__value,
         {
             NULL,
             NULL,
@@ -27584,7 +27584,7 @@ impl_let_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_let_parameter_2__value,
+        &impl_let_parameter_2__value,
         {
             NULL,
             NULL,
@@ -27620,7 +27620,7 @@ impl_let_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_let_parameter_3__value,
+        &impl_let_parameter_3__value,
         {
             NULL,
             NULL,
@@ -27711,7 +27711,7 @@ impl_object__rethrow = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__rethrow__value,
+        &impl_object__rethrow__value,
         {
             NULL,
             NULL,
@@ -27731,7 +27731,7 @@ impl_rethrow_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_rethrow_returns__value,
+        &impl_rethrow_returns__value,
         {
             NULL,
             NULL,
@@ -27819,7 +27819,7 @@ impl_object__return = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__return__value,
+        &impl_object__return__value,
         {
             NULL,
             NULL,
@@ -27839,7 +27839,7 @@ impl_return_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_return_returns__value,
+        &impl_return_returns__value,
         {
             NULL,
             NULL,
@@ -27875,7 +27875,7 @@ impl_return_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_return_parameter_1__value,
+        &impl_return_parameter_1__value,
         {
             NULL,
             NULL,
@@ -27964,7 +27964,7 @@ impl_object__switch = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__switch__value,
+        &impl_object__switch__value,
         {
             NULL,
             NULL,
@@ -27984,7 +27984,7 @@ impl_switch_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_switch_returns__value,
+        &impl_switch_returns__value,
         {
             NULL,
             NULL,
@@ -28020,7 +28020,7 @@ impl_switch_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_switch_parameter_1__value,
+        &impl_switch_parameter_1__value,
         {
             NULL,
             NULL,
@@ -28056,7 +28056,7 @@ impl_switch_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_switch_parameter_2__value,
+        &impl_switch_parameter_2__value,
         {
             NULL,
             NULL,
@@ -28092,7 +28092,7 @@ impl_switch_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_switch_parameter_3__value,
+        &impl_switch_parameter_3__value,
         {
             NULL,
             NULL,
@@ -28183,7 +28183,7 @@ impl_object__throw = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__throw__value,
+        &impl_object__throw__value,
         {
             NULL,
             NULL,
@@ -28203,7 +28203,7 @@ impl_throw_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_throw_returns__value,
+        &impl_throw_returns__value,
         {
             NULL,
             NULL,
@@ -28239,7 +28239,7 @@ impl_throw_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_throw_parameter_1__value,
+        &impl_throw_parameter_1__value,
         {
             NULL,
             NULL,
@@ -28275,7 +28275,7 @@ impl_throw_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_throw_parameter_2__value,
+        &impl_throw_parameter_2__value,
         {
             NULL,
             NULL,
@@ -28365,7 +28365,7 @@ impl_object__try = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__try__value,
+        &impl_object__try__value,
         {
             NULL,
             NULL,
@@ -28385,7 +28385,7 @@ impl_try_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_try_returns__value,
+        &impl_try_returns__value,
         {
             NULL,
             NULL,
@@ -28421,7 +28421,7 @@ impl_try_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_try_parameter_1__value,
+        &impl_try_parameter_1__value,
         {
             NULL,
             NULL,
@@ -28457,7 +28457,7 @@ impl_try_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_try_parameter_2__value,
+        &impl_try_parameter_2__value,
         {
             NULL,
             NULL,
@@ -28493,7 +28493,7 @@ impl_try_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_try_parameter_3__value,
+        &impl_try_parameter_3__value,
         {
             NULL,
             NULL,
@@ -28529,7 +28529,7 @@ impl_try_parameter_4 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_try_parameter_4__value,
+        &impl_try_parameter_4__value,
         {
             NULL,
             NULL,
@@ -28621,7 +28621,7 @@ impl_object__while = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__while__value,
+        &impl_object__while__value,
         {
             NULL,
             NULL,
@@ -28641,7 +28641,7 @@ impl_while_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_while_returns__value,
+        &impl_while_returns__value,
         {
             NULL,
             NULL,
@@ -28677,7 +28677,7 @@ impl_while_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_while_parameter_1__value,
+        &impl_while_parameter_1__value,
         {
             NULL,
             NULL,
@@ -28713,7 +28713,7 @@ impl_while_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_while_parameter_2__value,
+        &impl_while_parameter_2__value,
         {
             NULL,
             NULL,
@@ -28803,7 +28803,7 @@ impl_object__assert = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__assert__value,
+        &impl_object__assert__value,
         {
             NULL,
             NULL,
@@ -28823,7 +28823,7 @@ impl_assert_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_assert_returns__value,
+        &impl_assert_returns__value,
         {
             NULL,
             NULL,
@@ -28859,7 +28859,7 @@ impl_assert_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_assert_parameter_1__value,
+        &impl_assert_parameter_1__value,
         {
             NULL,
             NULL,
@@ -28895,7 +28895,7 @@ impl_assert_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_assert_parameter_2__value,
+        &impl_assert_parameter_2__value,
         {
             NULL,
             NULL,
@@ -28985,7 +28985,7 @@ impl_object__decompile = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__decompile__value,
+        &impl_object__decompile__value,
         {
             NULL,
             NULL,
@@ -29005,7 +29005,7 @@ impl_decompile_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_decompile_returns__value,
+        &impl_decompile_returns__value,
         {
             NULL,
             NULL,
@@ -29041,7 +29041,7 @@ impl_decompile_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_decompile_parameter_1__value,
+        &impl_decompile_parameter_1__value,
         {
             NULL,
             NULL,
@@ -29077,7 +29077,7 @@ impl_decompile_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_decompile_parameter_2__value,
+        &impl_decompile_parameter_2__value,
         {
             NULL,
             NULL,
@@ -29167,7 +29167,7 @@ impl_object__evaluate_value = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__evaluate_value__value,
+        &impl_object__evaluate_value__value,
         {
             NULL,
             NULL,
@@ -29187,7 +29187,7 @@ impl_evaluate_value_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_evaluate_value_returns__value,
+        &impl_evaluate_value_returns__value,
         {
             NULL,
             NULL,
@@ -29223,7 +29223,7 @@ impl_evaluate_value_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_evaluate_value_parameter_1__value,
+        &impl_evaluate_value_parameter_1__value,
         {
             NULL,
             NULL,
@@ -29259,7 +29259,7 @@ impl_evaluate_value_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_evaluate_value_parameter_2__value,
+        &impl_evaluate_value_parameter_2__value,
         {
             NULL,
             NULL,
@@ -29349,7 +29349,7 @@ impl_object__evaluate_with_retry = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__evaluate_with_retry__value,
+        &impl_object__evaluate_with_retry__value,
         {
             NULL,
             NULL,
@@ -29369,7 +29369,7 @@ impl_evaluate_with_retry_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_evaluate_with_retry_returns__value,
+        &impl_evaluate_with_retry_returns__value,
         {
             NULL,
             NULL,
@@ -29405,7 +29405,7 @@ impl_evaluate_with_retry_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_evaluate_with_retry_parameter_1__value,
+        &impl_evaluate_with_retry_parameter_1__value,
         {
             NULL,
             NULL,
@@ -29441,7 +29441,7 @@ impl_evaluate_with_retry_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_evaluate_with_retry_parameter_2__value,
+        &impl_evaluate_with_retry_parameter_2__value,
         {
             NULL,
             NULL,
@@ -29531,7 +29531,7 @@ impl_object__qualifier = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__qualifier__value,
+        &impl_object__qualifier__value,
         {
             NULL,
             NULL,
@@ -29551,7 +29551,7 @@ impl_qualifier_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_qualifier_returns__value,
+        &impl_qualifier_returns__value,
         {
             NULL,
             NULL,
@@ -29587,7 +29587,7 @@ impl_qualifier_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_qualifier_parameter_1__value,
+        &impl_qualifier_parameter_1__value,
         {
             NULL,
             NULL,
@@ -29623,7 +29623,7 @@ impl_qualifier_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_qualifier_parameter_2__value,
+        &impl_qualifier_parameter_2__value,
         {
             NULL,
             NULL,
@@ -29713,7 +29713,7 @@ impl_object__qualifiers = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__qualifiers__value,
+        &impl_object__qualifiers__value,
         {
             NULL,
             NULL,
@@ -29733,7 +29733,7 @@ impl_qualifiers_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_qualifiers_returns__value,
+        &impl_qualifiers_returns__value,
         {
             NULL,
             NULL,
@@ -29769,7 +29769,7 @@ impl_qualifiers_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_qualifiers_parameter_1__value,
+        &impl_qualifiers_parameter_1__value,
         {
             NULL,
             NULL,
@@ -29858,7 +29858,7 @@ impl_object__safe_evaluate = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__safe_evaluate__value,
+        &impl_object__safe_evaluate__value,
         {
             NULL,
             NULL,
@@ -29878,7 +29878,7 @@ impl_safe_evaluate_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_safe_evaluate_returns__value,
+        &impl_safe_evaluate_returns__value,
         {
             NULL,
             NULL,
@@ -29914,7 +29914,7 @@ impl_safe_evaluate_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_safe_evaluate_parameter_1__value,
+        &impl_safe_evaluate_parameter_1__value,
         {
             NULL,
             NULL,
@@ -29950,7 +29950,7 @@ impl_safe_evaluate_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_safe_evaluate_parameter_2__value,
+        &impl_safe_evaluate_parameter_2__value,
         {
             NULL,
             NULL,
@@ -30040,7 +30040,7 @@ impl_object__stringify = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__stringify__value,
+        &impl_object__stringify__value,
         {
             NULL,
             NULL,
@@ -30060,7 +30060,7 @@ impl_stringify_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_stringify_returns__value,
+        &impl_stringify_returns__value,
         {
             NULL,
             NULL,
@@ -30096,7 +30096,7 @@ impl_stringify_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_stringify_parameter_1__value,
+        &impl_stringify_parameter_1__value,
         {
             NULL,
             NULL,
@@ -30132,7 +30132,7 @@ impl_stringify_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_stringify_parameter_2__value,
+        &impl_stringify_parameter_2__value,
         {
             NULL,
             NULL,
@@ -30168,7 +30168,7 @@ impl_stringify_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_stringify_parameter_3__value,
+        &impl_stringify_parameter_3__value,
         {
             NULL,
             NULL,
@@ -30259,7 +30259,7 @@ impl_object__test_script = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__test_script__value,
+        &impl_object__test_script__value,
         {
             NULL,
             NULL,
@@ -30279,7 +30279,7 @@ impl_test_script_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_test_script_returns__value,
+        &impl_test_script_returns__value,
         {
             NULL,
             NULL,
@@ -30315,7 +30315,7 @@ impl_test_script_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_test_script_parameter_1__value,
+        &impl_test_script_parameter_1__value,
         {
             NULL,
             NULL,
@@ -30351,7 +30351,7 @@ impl_test_script_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_test_script_parameter_2__value,
+        &impl_test_script_parameter_2__value,
         {
             NULL,
             NULL,
@@ -30387,7 +30387,7 @@ impl_test_script_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_test_script_parameter_3__value,
+        &impl_test_script_parameter_3__value,
         {
             NULL,
             NULL,
@@ -30423,7 +30423,7 @@ impl_test_script_parameter_4 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_test_script_parameter_4__value,
+        &impl_test_script_parameter_4__value,
         {
             NULL,
             NULL,
@@ -30459,7 +30459,7 @@ impl_test_script_parameter_5 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_test_script_parameter_5__value,
+        &impl_test_script_parameter_5__value,
         {
             NULL,
             NULL,
@@ -30552,7 +30552,7 @@ impl_object__test_template = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__test_template__value,
+        &impl_object__test_template__value,
         {
             NULL,
             NULL,
@@ -30572,7 +30572,7 @@ impl_test_template_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_test_template_returns__value,
+        &impl_test_template_returns__value,
         {
             NULL,
             NULL,
@@ -30608,7 +30608,7 @@ impl_test_template_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_test_template_parameter_1__value,
+        &impl_test_template_parameter_1__value,
         {
             NULL,
             NULL,
@@ -30644,7 +30644,7 @@ impl_test_template_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_test_template_parameter_2__value,
+        &impl_test_template_parameter_2__value,
         {
             NULL,
             NULL,
@@ -30680,7 +30680,7 @@ impl_test_template_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_test_template_parameter_3__value,
+        &impl_test_template_parameter_3__value,
         {
             NULL,
             NULL,
@@ -30716,7 +30716,7 @@ impl_test_template_parameter_4 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_test_template_parameter_4__value,
+        &impl_test_template_parameter_4__value,
         {
             NULL,
             NULL,
@@ -30752,7 +30752,7 @@ impl_test_template_parameter_5 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_test_template_parameter_5__value,
+        &impl_test_template_parameter_5__value,
         {
             NULL,
             NULL,
@@ -30845,7 +30845,7 @@ impl_object__test_value = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__test_value__value,
+        &impl_object__test_value__value,
         {
             NULL,
             NULL,
@@ -30865,7 +30865,7 @@ impl_test_value_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_test_value_returns__value,
+        &impl_test_value_returns__value,
         {
             NULL,
             NULL,
@@ -30901,7 +30901,7 @@ impl_test_value_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_test_value_parameter_1__value,
+        &impl_test_value_parameter_1__value,
         {
             NULL,
             NULL,
@@ -30937,7 +30937,7 @@ impl_test_value_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_test_value_parameter_2__value,
+        &impl_test_value_parameter_2__value,
         {
             NULL,
             NULL,
@@ -30973,7 +30973,7 @@ impl_test_value_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_test_value_parameter_3__value,
+        &impl_test_value_parameter_3__value,
         {
             NULL,
             NULL,
@@ -31009,7 +31009,7 @@ impl_test_value_parameter_4 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_test_value_parameter_4__value,
+        &impl_test_value_parameter_4__value,
         {
             NULL,
             NULL,
@@ -31045,7 +31045,7 @@ impl_test_value_parameter_5 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_test_value_parameter_5__value,
+        &impl_test_value_parameter_5__value,
         {
             NULL,
             NULL,
@@ -31138,7 +31138,7 @@ impl_object__add_dayTimeDuration_dateTime = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__add_dayTimeDuration_dateTime__value,
+        &impl_object__add_dayTimeDuration_dateTime__value,
         {
             NULL,
             NULL,
@@ -31158,7 +31158,7 @@ impl_add_dayTimeDuration_dateTime_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_add_dayTimeDuration_dateTime_returns__value,
+        &impl_add_dayTimeDuration_dateTime_returns__value,
         {
             NULL,
             NULL,
@@ -31194,7 +31194,7 @@ impl_add_dayTimeDuration_dateTime_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_add_dayTimeDuration_dateTime_parameter_1__value,
+        &impl_add_dayTimeDuration_dateTime_parameter_1__value,
         {
             NULL,
             NULL,
@@ -31230,7 +31230,7 @@ impl_add_dayTimeDuration_dateTime_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_add_dayTimeDuration_dateTime_parameter_2__value,
+        &impl_add_dayTimeDuration_dateTime_parameter_2__value,
         {
             NULL,
             NULL,
@@ -31320,7 +31320,7 @@ impl_object__add_yearMonthDuration_dateTime = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__add_yearMonthDuration_dateTime__value,
+        &impl_object__add_yearMonthDuration_dateTime__value,
         {
             NULL,
             NULL,
@@ -31340,7 +31340,7 @@ impl_add_yearMonthDuration_dateTime_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_add_yearMonthDuration_dateTime_returns__value,
+        &impl_add_yearMonthDuration_dateTime_returns__value,
         {
             NULL,
             NULL,
@@ -31376,7 +31376,7 @@ impl_add_yearMonthDuration_dateTime_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_add_yearMonthDuration_dateTime_parameter_1__value,
+        &impl_add_yearMonthDuration_dateTime_parameter_1__value,
         {
             NULL,
             NULL,
@@ -31412,7 +31412,7 @@ impl_add_yearMonthDuration_dateTime_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_add_yearMonthDuration_dateTime_parameter_2__value,
+        &impl_add_yearMonthDuration_dateTime_parameter_2__value,
         {
             NULL,
             NULL,
@@ -31502,7 +31502,7 @@ impl_object__at_least_one_member_of_dateTime = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__at_least_one_member_of_dateTime__value,
+        &impl_object__at_least_one_member_of_dateTime__value,
         {
             NULL,
             NULL,
@@ -31522,7 +31522,7 @@ impl_at_least_one_member_of_dateTime_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_at_least_one_member_of_dateTime_returns__value,
+        &impl_at_least_one_member_of_dateTime_returns__value,
         {
             NULL,
             NULL,
@@ -31558,7 +31558,7 @@ impl_at_least_one_member_of_dateTime_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_at_least_one_member_of_dateTime_parameter_1__value,
+        &impl_at_least_one_member_of_dateTime_parameter_1__value,
         {
             NULL,
             NULL,
@@ -31594,7 +31594,7 @@ impl_at_least_one_member_of_dateTime_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_at_least_one_member_of_dateTime_parameter_2__value,
+        &impl_at_least_one_member_of_dateTime_parameter_2__value,
         {
             NULL,
             NULL,
@@ -31684,7 +31684,7 @@ impl_object__bag_dateTime = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__bag_dateTime__value,
+        &impl_object__bag_dateTime__value,
         {
             NULL,
             NULL,
@@ -31704,7 +31704,7 @@ impl_bag_dateTime_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_dateTime_returns__value,
+        &impl_bag_dateTime_returns__value,
         {
             NULL,
             NULL,
@@ -31740,7 +31740,7 @@ impl_bag_dateTime_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_dateTime_parameter_1__value,
+        &impl_bag_dateTime_parameter_1__value,
         {
             NULL,
             NULL,
@@ -31829,7 +31829,7 @@ impl_object__bag_size_dateTime = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__bag_size_dateTime__value,
+        &impl_object__bag_size_dateTime__value,
         {
             NULL,
             NULL,
@@ -31849,7 +31849,7 @@ impl_bag_size_dateTime_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_size_dateTime_returns__value,
+        &impl_bag_size_dateTime_returns__value,
         {
             NULL,
             NULL,
@@ -31885,7 +31885,7 @@ impl_bag_size_dateTime_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_size_dateTime_parameter_1__value,
+        &impl_bag_size_dateTime_parameter_1__value,
         {
             NULL,
             NULL,
@@ -31974,7 +31974,7 @@ impl_object__dateTime = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__dateTime__value,
+        &impl_object__dateTime__value,
         {
             NULL,
             NULL,
@@ -31994,7 +31994,7 @@ impl_dateTime_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_dateTime_returns__value,
+        &impl_dateTime_returns__value,
         {
             NULL,
             NULL,
@@ -32030,7 +32030,7 @@ impl_dateTime_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_dateTime_parameter_1__value,
+        &impl_dateTime_parameter_1__value,
         {
             NULL,
             NULL,
@@ -32127,7 +32127,7 @@ impl_object__eq_dateTime = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__eq_dateTime__value,
+        &impl_object__eq_dateTime__value,
         {
             NULL,
             NULL,
@@ -32147,7 +32147,7 @@ impl_eq_dateTime_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_dateTime_returns__value,
+        &impl_eq_dateTime_returns__value,
         {
             NULL,
             NULL,
@@ -32183,7 +32183,7 @@ impl_eq_dateTime_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_dateTime_parameter_1__value,
+        &impl_eq_dateTime_parameter_1__value,
         {
             NULL,
             NULL,
@@ -32219,7 +32219,7 @@ impl_eq_dateTime_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_dateTime_parameter_2__value,
+        &impl_eq_dateTime_parameter_2__value,
         {
             NULL,
             NULL,
@@ -32317,7 +32317,7 @@ impl_object__eqx_dateTime = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__eqx_dateTime__value,
+        &impl_object__eqx_dateTime__value,
         {
             NULL,
             NULL,
@@ -32337,7 +32337,7 @@ impl_eqx_dateTime_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_dateTime_returns__value,
+        &impl_eqx_dateTime_returns__value,
         {
             NULL,
             NULL,
@@ -32373,7 +32373,7 @@ impl_eqx_dateTime_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_dateTime_parameter_1__value,
+        &impl_eqx_dateTime_parameter_1__value,
         {
             NULL,
             NULL,
@@ -32409,7 +32409,7 @@ impl_eqx_dateTime_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_dateTime_parameter_2__value,
+        &impl_eqx_dateTime_parameter_2__value,
         {
             NULL,
             NULL,
@@ -32499,7 +32499,7 @@ impl_object__ge_dateTime = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ge_dateTime__value,
+        &impl_object__ge_dateTime__value,
         {
             NULL,
             NULL,
@@ -32519,7 +32519,7 @@ impl_ge_dateTime_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_dateTime_returns__value,
+        &impl_ge_dateTime_returns__value,
         {
             NULL,
             NULL,
@@ -32555,7 +32555,7 @@ impl_ge_dateTime_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_dateTime_parameter_1__value,
+        &impl_ge_dateTime_parameter_1__value,
         {
             NULL,
             NULL,
@@ -32591,7 +32591,7 @@ impl_ge_dateTime_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_dateTime_parameter_2__value,
+        &impl_ge_dateTime_parameter_2__value,
         {
             NULL,
             NULL,
@@ -32681,7 +32681,7 @@ impl_object__gt_dateTime = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__gt_dateTime__value,
+        &impl_object__gt_dateTime__value,
         {
             NULL,
             NULL,
@@ -32701,7 +32701,7 @@ impl_gt_dateTime_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_dateTime_returns__value,
+        &impl_gt_dateTime_returns__value,
         {
             NULL,
             NULL,
@@ -32737,7 +32737,7 @@ impl_gt_dateTime_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_dateTime_parameter_1__value,
+        &impl_gt_dateTime_parameter_1__value,
         {
             NULL,
             NULL,
@@ -32773,7 +32773,7 @@ impl_gt_dateTime_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_dateTime_parameter_2__value,
+        &impl_gt_dateTime_parameter_2__value,
         {
             NULL,
             NULL,
@@ -32863,7 +32863,7 @@ impl_object__intersection_dateTime = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__intersection_dateTime__value,
+        &impl_object__intersection_dateTime__value,
         {
             NULL,
             NULL,
@@ -32883,7 +32883,7 @@ impl_intersection_dateTime_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_intersection_dateTime_returns__value,
+        &impl_intersection_dateTime_returns__value,
         {
             NULL,
             NULL,
@@ -32919,7 +32919,7 @@ impl_intersection_dateTime_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_intersection_dateTime_parameter_1__value,
+        &impl_intersection_dateTime_parameter_1__value,
         {
             NULL,
             NULL,
@@ -32955,7 +32955,7 @@ impl_intersection_dateTime_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_intersection_dateTime_parameter_2__value,
+        &impl_intersection_dateTime_parameter_2__value,
         {
             NULL,
             NULL,
@@ -33045,7 +33045,7 @@ impl_object__is_dateTime = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__is_dateTime__value,
+        &impl_object__is_dateTime__value,
         {
             NULL,
             NULL,
@@ -33065,7 +33065,7 @@ impl_is_dateTime_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_dateTime_returns__value,
+        &impl_is_dateTime_returns__value,
         {
             NULL,
             NULL,
@@ -33101,7 +33101,7 @@ impl_is_dateTime_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_dateTime_parameter_1__value,
+        &impl_is_dateTime_parameter_1__value,
         {
             NULL,
             NULL,
@@ -33190,7 +33190,7 @@ impl_object__is_in_dateTime = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__is_in_dateTime__value,
+        &impl_object__is_in_dateTime__value,
         {
             NULL,
             NULL,
@@ -33210,7 +33210,7 @@ impl_is_in_dateTime_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_in_dateTime_returns__value,
+        &impl_is_in_dateTime_returns__value,
         {
             NULL,
             NULL,
@@ -33246,7 +33246,7 @@ impl_is_in_dateTime_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_in_dateTime_parameter_1__value,
+        &impl_is_in_dateTime_parameter_1__value,
         {
             NULL,
             NULL,
@@ -33282,7 +33282,7 @@ impl_is_in_dateTime_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_in_dateTime_parameter_2__value,
+        &impl_is_in_dateTime_parameter_2__value,
         {
             NULL,
             NULL,
@@ -33372,7 +33372,7 @@ impl_object__le_dateTime = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__le_dateTime__value,
+        &impl_object__le_dateTime__value,
         {
             NULL,
             NULL,
@@ -33392,7 +33392,7 @@ impl_le_dateTime_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_dateTime_returns__value,
+        &impl_le_dateTime_returns__value,
         {
             NULL,
             NULL,
@@ -33428,7 +33428,7 @@ impl_le_dateTime_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_dateTime_parameter_1__value,
+        &impl_le_dateTime_parameter_1__value,
         {
             NULL,
             NULL,
@@ -33464,7 +33464,7 @@ impl_le_dateTime_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_dateTime_parameter_2__value,
+        &impl_le_dateTime_parameter_2__value,
         {
             NULL,
             NULL,
@@ -33554,7 +33554,7 @@ impl_object__lt_dateTime = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__lt_dateTime__value,
+        &impl_object__lt_dateTime__value,
         {
             NULL,
             NULL,
@@ -33574,7 +33574,7 @@ impl_lt_dateTime_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_dateTime_returns__value,
+        &impl_lt_dateTime_returns__value,
         {
             NULL,
             NULL,
@@ -33610,7 +33610,7 @@ impl_lt_dateTime_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_dateTime_parameter_1__value,
+        &impl_lt_dateTime_parameter_1__value,
         {
             NULL,
             NULL,
@@ -33646,7 +33646,7 @@ impl_lt_dateTime_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_dateTime_parameter_2__value,
+        &impl_lt_dateTime_parameter_2__value,
         {
             NULL,
             NULL,
@@ -33736,7 +33736,7 @@ impl_object__max_dateTime = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__max_dateTime__value,
+        &impl_object__max_dateTime__value,
         {
             NULL,
             NULL,
@@ -33756,7 +33756,7 @@ impl_max_dateTime_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_max_dateTime_returns__value,
+        &impl_max_dateTime_returns__value,
         {
             NULL,
             NULL,
@@ -33792,7 +33792,7 @@ impl_max_dateTime_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_max_dateTime_parameter_1__value,
+        &impl_max_dateTime_parameter_1__value,
         {
             NULL,
             NULL,
@@ -33881,7 +33881,7 @@ impl_object__min_dateTime = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__min_dateTime__value,
+        &impl_object__min_dateTime__value,
         {
             NULL,
             NULL,
@@ -33901,7 +33901,7 @@ impl_min_dateTime_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_min_dateTime_returns__value,
+        &impl_min_dateTime_returns__value,
         {
             NULL,
             NULL,
@@ -33937,7 +33937,7 @@ impl_min_dateTime_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_min_dateTime_parameter_1__value,
+        &impl_min_dateTime_parameter_1__value,
         {
             NULL,
             NULL,
@@ -34026,7 +34026,7 @@ impl_object__ne_dateTime = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ne_dateTime__value,
+        &impl_object__ne_dateTime__value,
         {
             NULL,
             NULL,
@@ -34046,7 +34046,7 @@ impl_ne_dateTime_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_dateTime_returns__value,
+        &impl_ne_dateTime_returns__value,
         {
             NULL,
             NULL,
@@ -34082,7 +34082,7 @@ impl_ne_dateTime_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_dateTime_parameter_1__value,
+        &impl_ne_dateTime_parameter_1__value,
         {
             NULL,
             NULL,
@@ -34118,7 +34118,7 @@ impl_ne_dateTime_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_dateTime_parameter_2__value,
+        &impl_ne_dateTime_parameter_2__value,
         {
             NULL,
             NULL,
@@ -34216,7 +34216,7 @@ impl_object__nex_dateTime = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__nex_dateTime__value,
+        &impl_object__nex_dateTime__value,
         {
             NULL,
             NULL,
@@ -34236,7 +34236,7 @@ impl_nex_dateTime_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_dateTime_returns__value,
+        &impl_nex_dateTime_returns__value,
         {
             NULL,
             NULL,
@@ -34272,7 +34272,7 @@ impl_nex_dateTime_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_dateTime_parameter_1__value,
+        &impl_nex_dateTime_parameter_1__value,
         {
             NULL,
             NULL,
@@ -34308,7 +34308,7 @@ impl_nex_dateTime_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_dateTime_parameter_2__value,
+        &impl_nex_dateTime_parameter_2__value,
         {
             NULL,
             NULL,
@@ -34398,7 +34398,7 @@ impl_object__one_and_only_dateTime = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__one_and_only_dateTime__value,
+        &impl_object__one_and_only_dateTime__value,
         {
             NULL,
             NULL,
@@ -34418,7 +34418,7 @@ impl_one_and_only_dateTime_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_one_and_only_dateTime_returns__value,
+        &impl_one_and_only_dateTime_returns__value,
         {
             NULL,
             NULL,
@@ -34454,7 +34454,7 @@ impl_one_and_only_dateTime_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_one_and_only_dateTime_parameter_1__value,
+        &impl_one_and_only_dateTime_parameter_1__value,
         {
             NULL,
             NULL,
@@ -34551,7 +34551,7 @@ impl_object__set_equals_dateTime = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__set_equals_dateTime__value,
+        &impl_object__set_equals_dateTime__value,
         {
             NULL,
             NULL,
@@ -34571,7 +34571,7 @@ impl_set_equals_dateTime_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_set_equals_dateTime_returns__value,
+        &impl_set_equals_dateTime_returns__value,
         {
             NULL,
             NULL,
@@ -34607,7 +34607,7 @@ impl_set_equals_dateTime_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_set_equals_dateTime_parameter_1__value,
+        &impl_set_equals_dateTime_parameter_1__value,
         {
             NULL,
             NULL,
@@ -34643,7 +34643,7 @@ impl_set_equals_dateTime_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_set_equals_dateTime_parameter_2__value,
+        &impl_set_equals_dateTime_parameter_2__value,
         {
             NULL,
             NULL,
@@ -34733,7 +34733,7 @@ impl_object__subset_dateTime = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__subset_dateTime__value,
+        &impl_object__subset_dateTime__value,
         {
             NULL,
             NULL,
@@ -34753,7 +34753,7 @@ impl_subset_dateTime_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subset_dateTime_returns__value,
+        &impl_subset_dateTime_returns__value,
         {
             NULL,
             NULL,
@@ -34789,7 +34789,7 @@ impl_subset_dateTime_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subset_dateTime_parameter_1__value,
+        &impl_subset_dateTime_parameter_1__value,
         {
             NULL,
             NULL,
@@ -34825,7 +34825,7 @@ impl_subset_dateTime_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subset_dateTime_parameter_2__value,
+        &impl_subset_dateTime_parameter_2__value,
         {
             NULL,
             NULL,
@@ -34915,7 +34915,7 @@ impl_object__subtract_dayTimeDuration_dateTime = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__subtract_dayTimeDuration_dateTime__value,
+        &impl_object__subtract_dayTimeDuration_dateTime__value,
         {
             NULL,
             NULL,
@@ -34935,7 +34935,7 @@ impl_subtract_dayTimeDuration_dateTime_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subtract_dayTimeDuration_dateTime_returns__value,
+        &impl_subtract_dayTimeDuration_dateTime_returns__value,
         {
             NULL,
             NULL,
@@ -34971,7 +34971,7 @@ impl_subtract_dayTimeDuration_dateTime_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subtract_dayTimeDuration_dateTime_parameter_1__value,
+        &impl_subtract_dayTimeDuration_dateTime_parameter_1__value,
         {
             NULL,
             NULL,
@@ -35007,7 +35007,7 @@ impl_subtract_dayTimeDuration_dateTime_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subtract_dayTimeDuration_dateTime_parameter_2__value,
+        &impl_subtract_dayTimeDuration_dateTime_parameter_2__value,
         {
             NULL,
             NULL,
@@ -35097,7 +35097,7 @@ impl_object__subtract_yearMonthDuration_dateTime = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__subtract_yearMonthDuration_dateTime__value,
+        &impl_object__subtract_yearMonthDuration_dateTime__value,
         {
             NULL,
             NULL,
@@ -35117,7 +35117,7 @@ impl_subtract_yearMonthDuration_dateTime_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subtract_yearMonthDuration_dateTime_returns__value,
+        &impl_subtract_yearMonthDuration_dateTime_returns__value,
         {
             NULL,
             NULL,
@@ -35153,7 +35153,7 @@ impl_subtract_yearMonthDuration_dateTime_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subtract_yearMonthDuration_dateTime_parameter_1__value,
+        &impl_subtract_yearMonthDuration_dateTime_parameter_1__value,
         {
             NULL,
             NULL,
@@ -35189,7 +35189,7 @@ impl_subtract_yearMonthDuration_dateTime_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subtract_yearMonthDuration_dateTime_parameter_2__value,
+        &impl_subtract_yearMonthDuration_dateTime_parameter_2__value,
         {
             NULL,
             NULL,
@@ -35279,7 +35279,7 @@ impl_object__to_string_dateTime = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__to_string_dateTime__value,
+        &impl_object__to_string_dateTime__value,
         {
             NULL,
             NULL,
@@ -35299,7 +35299,7 @@ impl_to_string_dateTime_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_string_dateTime_returns__value,
+        &impl_to_string_dateTime_returns__value,
         {
             NULL,
             NULL,
@@ -35335,7 +35335,7 @@ impl_to_string_dateTime_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_string_dateTime_parameter_1__value,
+        &impl_to_string_dateTime_parameter_1__value,
         {
             NULL,
             NULL,
@@ -35424,7 +35424,7 @@ impl_object__union_dateTime = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__union_dateTime__value,
+        &impl_object__union_dateTime__value,
         {
             NULL,
             NULL,
@@ -35444,7 +35444,7 @@ impl_union_dateTime_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_union_dateTime_returns__value,
+        &impl_union_dateTime_returns__value,
         {
             NULL,
             NULL,
@@ -35480,7 +35480,7 @@ impl_union_dateTime_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_union_dateTime_parameter_1__value,
+        &impl_union_dateTime_parameter_1__value,
         {
             NULL,
             NULL,
@@ -35569,7 +35569,7 @@ impl_object__add_yearMonthDuration_date = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__add_yearMonthDuration_date__value,
+        &impl_object__add_yearMonthDuration_date__value,
         {
             NULL,
             NULL,
@@ -35589,7 +35589,7 @@ impl_add_yearMonthDuration_date_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_add_yearMonthDuration_date_returns__value,
+        &impl_add_yearMonthDuration_date_returns__value,
         {
             NULL,
             NULL,
@@ -35625,7 +35625,7 @@ impl_add_yearMonthDuration_date_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_add_yearMonthDuration_date_parameter_1__value,
+        &impl_add_yearMonthDuration_date_parameter_1__value,
         {
             NULL,
             NULL,
@@ -35661,7 +35661,7 @@ impl_add_yearMonthDuration_date_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_add_yearMonthDuration_date_parameter_2__value,
+        &impl_add_yearMonthDuration_date_parameter_2__value,
         {
             NULL,
             NULL,
@@ -35751,7 +35751,7 @@ impl_object__at_least_one_member_of_date = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__at_least_one_member_of_date__value,
+        &impl_object__at_least_one_member_of_date__value,
         {
             NULL,
             NULL,
@@ -35771,7 +35771,7 @@ impl_at_least_one_member_of_date_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_at_least_one_member_of_date_returns__value,
+        &impl_at_least_one_member_of_date_returns__value,
         {
             NULL,
             NULL,
@@ -35807,7 +35807,7 @@ impl_at_least_one_member_of_date_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_at_least_one_member_of_date_parameter_1__value,
+        &impl_at_least_one_member_of_date_parameter_1__value,
         {
             NULL,
             NULL,
@@ -35843,7 +35843,7 @@ impl_at_least_one_member_of_date_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_at_least_one_member_of_date_parameter_2__value,
+        &impl_at_least_one_member_of_date_parameter_2__value,
         {
             NULL,
             NULL,
@@ -35933,7 +35933,7 @@ impl_object__bag_date = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__bag_date__value,
+        &impl_object__bag_date__value,
         {
             NULL,
             NULL,
@@ -35953,7 +35953,7 @@ impl_bag_date_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_date_returns__value,
+        &impl_bag_date_returns__value,
         {
             NULL,
             NULL,
@@ -35989,7 +35989,7 @@ impl_bag_date_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_date_parameter_1__value,
+        &impl_bag_date_parameter_1__value,
         {
             NULL,
             NULL,
@@ -36078,7 +36078,7 @@ impl_object__bag_size_date = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__bag_size_date__value,
+        &impl_object__bag_size_date__value,
         {
             NULL,
             NULL,
@@ -36098,7 +36098,7 @@ impl_bag_size_date_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_size_date_returns__value,
+        &impl_bag_size_date_returns__value,
         {
             NULL,
             NULL,
@@ -36134,7 +36134,7 @@ impl_bag_size_date_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_size_date_parameter_1__value,
+        &impl_bag_size_date_parameter_1__value,
         {
             NULL,
             NULL,
@@ -36223,7 +36223,7 @@ impl_object__date = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__date__value,
+        &impl_object__date__value,
         {
             NULL,
             NULL,
@@ -36243,7 +36243,7 @@ impl_date_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_date_returns__value,
+        &impl_date_returns__value,
         {
             NULL,
             NULL,
@@ -36279,7 +36279,7 @@ impl_date_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_date_parameter_1__value,
+        &impl_date_parameter_1__value,
         {
             NULL,
             NULL,
@@ -36376,7 +36376,7 @@ impl_object__eq_date = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__eq_date__value,
+        &impl_object__eq_date__value,
         {
             NULL,
             NULL,
@@ -36396,7 +36396,7 @@ impl_eq_date_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_date_returns__value,
+        &impl_eq_date_returns__value,
         {
             NULL,
             NULL,
@@ -36432,7 +36432,7 @@ impl_eq_date_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_date_parameter_1__value,
+        &impl_eq_date_parameter_1__value,
         {
             NULL,
             NULL,
@@ -36468,7 +36468,7 @@ impl_eq_date_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_date_parameter_2__value,
+        &impl_eq_date_parameter_2__value,
         {
             NULL,
             NULL,
@@ -36566,7 +36566,7 @@ impl_object__eqx_date = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__eqx_date__value,
+        &impl_object__eqx_date__value,
         {
             NULL,
             NULL,
@@ -36586,7 +36586,7 @@ impl_eqx_date_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_date_returns__value,
+        &impl_eqx_date_returns__value,
         {
             NULL,
             NULL,
@@ -36622,7 +36622,7 @@ impl_eqx_date_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_date_parameter_1__value,
+        &impl_eqx_date_parameter_1__value,
         {
             NULL,
             NULL,
@@ -36658,7 +36658,7 @@ impl_eqx_date_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_date_parameter_2__value,
+        &impl_eqx_date_parameter_2__value,
         {
             NULL,
             NULL,
@@ -36748,7 +36748,7 @@ impl_object__ge_date = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ge_date__value,
+        &impl_object__ge_date__value,
         {
             NULL,
             NULL,
@@ -36768,7 +36768,7 @@ impl_ge_date_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_date_returns__value,
+        &impl_ge_date_returns__value,
         {
             NULL,
             NULL,
@@ -36804,7 +36804,7 @@ impl_ge_date_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_date_parameter_1__value,
+        &impl_ge_date_parameter_1__value,
         {
             NULL,
             NULL,
@@ -36840,7 +36840,7 @@ impl_ge_date_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_date_parameter_2__value,
+        &impl_ge_date_parameter_2__value,
         {
             NULL,
             NULL,
@@ -36930,7 +36930,7 @@ impl_object__gt_date = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__gt_date__value,
+        &impl_object__gt_date__value,
         {
             NULL,
             NULL,
@@ -36950,7 +36950,7 @@ impl_gt_date_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_date_returns__value,
+        &impl_gt_date_returns__value,
         {
             NULL,
             NULL,
@@ -36986,7 +36986,7 @@ impl_gt_date_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_date_parameter_1__value,
+        &impl_gt_date_parameter_1__value,
         {
             NULL,
             NULL,
@@ -37022,7 +37022,7 @@ impl_gt_date_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_date_parameter_2__value,
+        &impl_gt_date_parameter_2__value,
         {
             NULL,
             NULL,
@@ -37112,7 +37112,7 @@ impl_object__intersection_date = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__intersection_date__value,
+        &impl_object__intersection_date__value,
         {
             NULL,
             NULL,
@@ -37132,7 +37132,7 @@ impl_intersection_date_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_intersection_date_returns__value,
+        &impl_intersection_date_returns__value,
         {
             NULL,
             NULL,
@@ -37168,7 +37168,7 @@ impl_intersection_date_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_intersection_date_parameter_1__value,
+        &impl_intersection_date_parameter_1__value,
         {
             NULL,
             NULL,
@@ -37204,7 +37204,7 @@ impl_intersection_date_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_intersection_date_parameter_2__value,
+        &impl_intersection_date_parameter_2__value,
         {
             NULL,
             NULL,
@@ -37294,7 +37294,7 @@ impl_object__is_date = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__is_date__value,
+        &impl_object__is_date__value,
         {
             NULL,
             NULL,
@@ -37314,7 +37314,7 @@ impl_is_date_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_date_returns__value,
+        &impl_is_date_returns__value,
         {
             NULL,
             NULL,
@@ -37350,7 +37350,7 @@ impl_is_date_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_date_parameter_1__value,
+        &impl_is_date_parameter_1__value,
         {
             NULL,
             NULL,
@@ -37439,7 +37439,7 @@ impl_object__is_in_date = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__is_in_date__value,
+        &impl_object__is_in_date__value,
         {
             NULL,
             NULL,
@@ -37459,7 +37459,7 @@ impl_is_in_date_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_in_date_returns__value,
+        &impl_is_in_date_returns__value,
         {
             NULL,
             NULL,
@@ -37495,7 +37495,7 @@ impl_is_in_date_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_in_date_parameter_1__value,
+        &impl_is_in_date_parameter_1__value,
         {
             NULL,
             NULL,
@@ -37531,7 +37531,7 @@ impl_is_in_date_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_in_date_parameter_2__value,
+        &impl_is_in_date_parameter_2__value,
         {
             NULL,
             NULL,
@@ -37621,7 +37621,7 @@ impl_object__le_date = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__le_date__value,
+        &impl_object__le_date__value,
         {
             NULL,
             NULL,
@@ -37641,7 +37641,7 @@ impl_le_date_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_date_returns__value,
+        &impl_le_date_returns__value,
         {
             NULL,
             NULL,
@@ -37677,7 +37677,7 @@ impl_le_date_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_date_parameter_1__value,
+        &impl_le_date_parameter_1__value,
         {
             NULL,
             NULL,
@@ -37713,7 +37713,7 @@ impl_le_date_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_date_parameter_2__value,
+        &impl_le_date_parameter_2__value,
         {
             NULL,
             NULL,
@@ -37803,7 +37803,7 @@ impl_object__lt_date = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__lt_date__value,
+        &impl_object__lt_date__value,
         {
             NULL,
             NULL,
@@ -37823,7 +37823,7 @@ impl_lt_date_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_date_returns__value,
+        &impl_lt_date_returns__value,
         {
             NULL,
             NULL,
@@ -37859,7 +37859,7 @@ impl_lt_date_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_date_parameter_1__value,
+        &impl_lt_date_parameter_1__value,
         {
             NULL,
             NULL,
@@ -37895,7 +37895,7 @@ impl_lt_date_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_date_parameter_2__value,
+        &impl_lt_date_parameter_2__value,
         {
             NULL,
             NULL,
@@ -37985,7 +37985,7 @@ impl_object__max_date = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__max_date__value,
+        &impl_object__max_date__value,
         {
             NULL,
             NULL,
@@ -38005,7 +38005,7 @@ impl_max_date_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_max_date_returns__value,
+        &impl_max_date_returns__value,
         {
             NULL,
             NULL,
@@ -38041,7 +38041,7 @@ impl_max_date_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_max_date_parameter_1__value,
+        &impl_max_date_parameter_1__value,
         {
             NULL,
             NULL,
@@ -38130,7 +38130,7 @@ impl_object__min_date = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__min_date__value,
+        &impl_object__min_date__value,
         {
             NULL,
             NULL,
@@ -38150,7 +38150,7 @@ impl_min_date_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_min_date_returns__value,
+        &impl_min_date_returns__value,
         {
             NULL,
             NULL,
@@ -38186,7 +38186,7 @@ impl_min_date_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_min_date_parameter_1__value,
+        &impl_min_date_parameter_1__value,
         {
             NULL,
             NULL,
@@ -38275,7 +38275,7 @@ impl_object__ne_date = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ne_date__value,
+        &impl_object__ne_date__value,
         {
             NULL,
             NULL,
@@ -38295,7 +38295,7 @@ impl_ne_date_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_date_returns__value,
+        &impl_ne_date_returns__value,
         {
             NULL,
             NULL,
@@ -38331,7 +38331,7 @@ impl_ne_date_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_date_parameter_1__value,
+        &impl_ne_date_parameter_1__value,
         {
             NULL,
             NULL,
@@ -38367,7 +38367,7 @@ impl_ne_date_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_date_parameter_2__value,
+        &impl_ne_date_parameter_2__value,
         {
             NULL,
             NULL,
@@ -38465,7 +38465,7 @@ impl_object__nex_date = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__nex_date__value,
+        &impl_object__nex_date__value,
         {
             NULL,
             NULL,
@@ -38485,7 +38485,7 @@ impl_nex_date_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_date_returns__value,
+        &impl_nex_date_returns__value,
         {
             NULL,
             NULL,
@@ -38521,7 +38521,7 @@ impl_nex_date_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_date_parameter_1__value,
+        &impl_nex_date_parameter_1__value,
         {
             NULL,
             NULL,
@@ -38557,7 +38557,7 @@ impl_nex_date_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_date_parameter_2__value,
+        &impl_nex_date_parameter_2__value,
         {
             NULL,
             NULL,
@@ -38647,7 +38647,7 @@ impl_object__one_and_only_date = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__one_and_only_date__value,
+        &impl_object__one_and_only_date__value,
         {
             NULL,
             NULL,
@@ -38667,7 +38667,7 @@ impl_one_and_only_date_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_one_and_only_date_returns__value,
+        &impl_one_and_only_date_returns__value,
         {
             NULL,
             NULL,
@@ -38703,7 +38703,7 @@ impl_one_and_only_date_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_one_and_only_date_parameter_1__value,
+        &impl_one_and_only_date_parameter_1__value,
         {
             NULL,
             NULL,
@@ -38800,7 +38800,7 @@ impl_object__set_equals_date = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__set_equals_date__value,
+        &impl_object__set_equals_date__value,
         {
             NULL,
             NULL,
@@ -38820,7 +38820,7 @@ impl_set_equals_date_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_set_equals_date_returns__value,
+        &impl_set_equals_date_returns__value,
         {
             NULL,
             NULL,
@@ -38856,7 +38856,7 @@ impl_set_equals_date_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_set_equals_date_parameter_1__value,
+        &impl_set_equals_date_parameter_1__value,
         {
             NULL,
             NULL,
@@ -38892,7 +38892,7 @@ impl_set_equals_date_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_set_equals_date_parameter_2__value,
+        &impl_set_equals_date_parameter_2__value,
         {
             NULL,
             NULL,
@@ -38982,7 +38982,7 @@ impl_object__subset_date = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__subset_date__value,
+        &impl_object__subset_date__value,
         {
             NULL,
             NULL,
@@ -39002,7 +39002,7 @@ impl_subset_date_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subset_date_returns__value,
+        &impl_subset_date_returns__value,
         {
             NULL,
             NULL,
@@ -39038,7 +39038,7 @@ impl_subset_date_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subset_date_parameter_1__value,
+        &impl_subset_date_parameter_1__value,
         {
             NULL,
             NULL,
@@ -39074,7 +39074,7 @@ impl_subset_date_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subset_date_parameter_2__value,
+        &impl_subset_date_parameter_2__value,
         {
             NULL,
             NULL,
@@ -39164,7 +39164,7 @@ impl_object__subtract_yearMonthDuration_date = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__subtract_yearMonthDuration_date__value,
+        &impl_object__subtract_yearMonthDuration_date__value,
         {
             NULL,
             NULL,
@@ -39184,7 +39184,7 @@ impl_subtract_yearMonthDuration_date_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subtract_yearMonthDuration_date_returns__value,
+        &impl_subtract_yearMonthDuration_date_returns__value,
         {
             NULL,
             NULL,
@@ -39220,7 +39220,7 @@ impl_subtract_yearMonthDuration_date_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subtract_yearMonthDuration_date_parameter_1__value,
+        &impl_subtract_yearMonthDuration_date_parameter_1__value,
         {
             NULL,
             NULL,
@@ -39256,7 +39256,7 @@ impl_subtract_yearMonthDuration_date_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subtract_yearMonthDuration_date_parameter_2__value,
+        &impl_subtract_yearMonthDuration_date_parameter_2__value,
         {
             NULL,
             NULL,
@@ -39346,7 +39346,7 @@ impl_object__to_string_date = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__to_string_date__value,
+        &impl_object__to_string_date__value,
         {
             NULL,
             NULL,
@@ -39366,7 +39366,7 @@ impl_to_string_date_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_string_date_returns__value,
+        &impl_to_string_date_returns__value,
         {
             NULL,
             NULL,
@@ -39402,7 +39402,7 @@ impl_to_string_date_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_string_date_parameter_1__value,
+        &impl_to_string_date_parameter_1__value,
         {
             NULL,
             NULL,
@@ -39491,7 +39491,7 @@ impl_object__union_date = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__union_date__value,
+        &impl_object__union_date__value,
         {
             NULL,
             NULL,
@@ -39511,7 +39511,7 @@ impl_union_date_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_union_date_returns__value,
+        &impl_union_date_returns__value,
         {
             NULL,
             NULL,
@@ -39547,7 +39547,7 @@ impl_union_date_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_union_date_parameter_1__value,
+        &impl_union_date_parameter_1__value,
         {
             NULL,
             NULL,
@@ -39636,7 +39636,7 @@ impl_object__at_least_one_member_of_dayTimeDuration = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__at_least_one_member_of_dayTimeDuration__value,
+        &impl_object__at_least_one_member_of_dayTimeDuration__value,
         {
             NULL,
             NULL,
@@ -39656,7 +39656,7 @@ impl_at_least_one_member_of_dayTimeDuration_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_at_least_one_member_of_dayTimeDuration_returns__value,
+        &impl_at_least_one_member_of_dayTimeDuration_returns__value,
         {
             NULL,
             NULL,
@@ -39692,7 +39692,7 @@ impl_at_least_one_member_of_dayTimeDuration_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_at_least_one_member_of_dayTimeDuration_parameter_1__value,
+        &impl_at_least_one_member_of_dayTimeDuration_parameter_1__value,
         {
             NULL,
             NULL,
@@ -39728,7 +39728,7 @@ impl_at_least_one_member_of_dayTimeDuration_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_at_least_one_member_of_dayTimeDuration_parameter_2__value,
+        &impl_at_least_one_member_of_dayTimeDuration_parameter_2__value,
         {
             NULL,
             NULL,
@@ -39818,7 +39818,7 @@ impl_object__bag_dayTimeDuration = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__bag_dayTimeDuration__value,
+        &impl_object__bag_dayTimeDuration__value,
         {
             NULL,
             NULL,
@@ -39838,7 +39838,7 @@ impl_bag_dayTimeDuration_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_dayTimeDuration_returns__value,
+        &impl_bag_dayTimeDuration_returns__value,
         {
             NULL,
             NULL,
@@ -39874,7 +39874,7 @@ impl_bag_dayTimeDuration_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_dayTimeDuration_parameter_1__value,
+        &impl_bag_dayTimeDuration_parameter_1__value,
         {
             NULL,
             NULL,
@@ -39963,7 +39963,7 @@ impl_object__bag_size_dayTimeDuration = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__bag_size_dayTimeDuration__value,
+        &impl_object__bag_size_dayTimeDuration__value,
         {
             NULL,
             NULL,
@@ -39983,7 +39983,7 @@ impl_bag_size_dayTimeDuration_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_size_dayTimeDuration_returns__value,
+        &impl_bag_size_dayTimeDuration_returns__value,
         {
             NULL,
             NULL,
@@ -40019,7 +40019,7 @@ impl_bag_size_dayTimeDuration_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_size_dayTimeDuration_parameter_1__value,
+        &impl_bag_size_dayTimeDuration_parameter_1__value,
         {
             NULL,
             NULL,
@@ -40108,7 +40108,7 @@ impl_object__dayTimeDuration = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__dayTimeDuration__value,
+        &impl_object__dayTimeDuration__value,
         {
             NULL,
             NULL,
@@ -40128,7 +40128,7 @@ impl_dayTimeDuration_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_dayTimeDuration_returns__value,
+        &impl_dayTimeDuration_returns__value,
         {
             NULL,
             NULL,
@@ -40164,7 +40164,7 @@ impl_dayTimeDuration_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_dayTimeDuration_parameter_1__value,
+        &impl_dayTimeDuration_parameter_1__value,
         {
             NULL,
             NULL,
@@ -40261,7 +40261,7 @@ impl_object__eq_dayTimeDuration = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__eq_dayTimeDuration__value,
+        &impl_object__eq_dayTimeDuration__value,
         {
             NULL,
             NULL,
@@ -40281,7 +40281,7 @@ impl_eq_dayTimeDuration_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_dayTimeDuration_returns__value,
+        &impl_eq_dayTimeDuration_returns__value,
         {
             NULL,
             NULL,
@@ -40317,7 +40317,7 @@ impl_eq_dayTimeDuration_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_dayTimeDuration_parameter_1__value,
+        &impl_eq_dayTimeDuration_parameter_1__value,
         {
             NULL,
             NULL,
@@ -40353,7 +40353,7 @@ impl_eq_dayTimeDuration_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_dayTimeDuration_parameter_2__value,
+        &impl_eq_dayTimeDuration_parameter_2__value,
         {
             NULL,
             NULL,
@@ -40451,7 +40451,7 @@ impl_object__eqx_dayTimeDuration = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__eqx_dayTimeDuration__value,
+        &impl_object__eqx_dayTimeDuration__value,
         {
             NULL,
             NULL,
@@ -40471,7 +40471,7 @@ impl_eqx_dayTimeDuration_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_dayTimeDuration_returns__value,
+        &impl_eqx_dayTimeDuration_returns__value,
         {
             NULL,
             NULL,
@@ -40507,7 +40507,7 @@ impl_eqx_dayTimeDuration_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_dayTimeDuration_parameter_1__value,
+        &impl_eqx_dayTimeDuration_parameter_1__value,
         {
             NULL,
             NULL,
@@ -40543,7 +40543,7 @@ impl_eqx_dayTimeDuration_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_dayTimeDuration_parameter_2__value,
+        &impl_eqx_dayTimeDuration_parameter_2__value,
         {
             NULL,
             NULL,
@@ -40633,7 +40633,7 @@ impl_object__ge_dayTimeDuration = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ge_dayTimeDuration__value,
+        &impl_object__ge_dayTimeDuration__value,
         {
             NULL,
             NULL,
@@ -40653,7 +40653,7 @@ impl_ge_dayTimeDuration_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_dayTimeDuration_returns__value,
+        &impl_ge_dayTimeDuration_returns__value,
         {
             NULL,
             NULL,
@@ -40689,7 +40689,7 @@ impl_ge_dayTimeDuration_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_dayTimeDuration_parameter_1__value,
+        &impl_ge_dayTimeDuration_parameter_1__value,
         {
             NULL,
             NULL,
@@ -40725,7 +40725,7 @@ impl_ge_dayTimeDuration_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_dayTimeDuration_parameter_2__value,
+        &impl_ge_dayTimeDuration_parameter_2__value,
         {
             NULL,
             NULL,
@@ -40815,7 +40815,7 @@ impl_object__gt_dayTimeDuration = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__gt_dayTimeDuration__value,
+        &impl_object__gt_dayTimeDuration__value,
         {
             NULL,
             NULL,
@@ -40835,7 +40835,7 @@ impl_gt_dayTimeDuration_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_dayTimeDuration_returns__value,
+        &impl_gt_dayTimeDuration_returns__value,
         {
             NULL,
             NULL,
@@ -40871,7 +40871,7 @@ impl_gt_dayTimeDuration_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_dayTimeDuration_parameter_1__value,
+        &impl_gt_dayTimeDuration_parameter_1__value,
         {
             NULL,
             NULL,
@@ -40907,7 +40907,7 @@ impl_gt_dayTimeDuration_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_dayTimeDuration_parameter_2__value,
+        &impl_gt_dayTimeDuration_parameter_2__value,
         {
             NULL,
             NULL,
@@ -40997,7 +40997,7 @@ impl_object__intersection_dayTimeDuration = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__intersection_dayTimeDuration__value,
+        &impl_object__intersection_dayTimeDuration__value,
         {
             NULL,
             NULL,
@@ -41017,7 +41017,7 @@ impl_intersection_dayTimeDuration_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_intersection_dayTimeDuration_returns__value,
+        &impl_intersection_dayTimeDuration_returns__value,
         {
             NULL,
             NULL,
@@ -41053,7 +41053,7 @@ impl_intersection_dayTimeDuration_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_intersection_dayTimeDuration_parameter_1__value,
+        &impl_intersection_dayTimeDuration_parameter_1__value,
         {
             NULL,
             NULL,
@@ -41089,7 +41089,7 @@ impl_intersection_dayTimeDuration_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_intersection_dayTimeDuration_parameter_2__value,
+        &impl_intersection_dayTimeDuration_parameter_2__value,
         {
             NULL,
             NULL,
@@ -41179,7 +41179,7 @@ impl_object__is_dayTimeDuration = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__is_dayTimeDuration__value,
+        &impl_object__is_dayTimeDuration__value,
         {
             NULL,
             NULL,
@@ -41199,7 +41199,7 @@ impl_is_dayTimeDuration_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_dayTimeDuration_returns__value,
+        &impl_is_dayTimeDuration_returns__value,
         {
             NULL,
             NULL,
@@ -41235,7 +41235,7 @@ impl_is_dayTimeDuration_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_dayTimeDuration_parameter_1__value,
+        &impl_is_dayTimeDuration_parameter_1__value,
         {
             NULL,
             NULL,
@@ -41324,7 +41324,7 @@ impl_object__is_in_dayTimeDuration = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__is_in_dayTimeDuration__value,
+        &impl_object__is_in_dayTimeDuration__value,
         {
             NULL,
             NULL,
@@ -41344,7 +41344,7 @@ impl_is_in_dayTimeDuration_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_in_dayTimeDuration_returns__value,
+        &impl_is_in_dayTimeDuration_returns__value,
         {
             NULL,
             NULL,
@@ -41380,7 +41380,7 @@ impl_is_in_dayTimeDuration_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_in_dayTimeDuration_parameter_1__value,
+        &impl_is_in_dayTimeDuration_parameter_1__value,
         {
             NULL,
             NULL,
@@ -41416,7 +41416,7 @@ impl_is_in_dayTimeDuration_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_in_dayTimeDuration_parameter_2__value,
+        &impl_is_in_dayTimeDuration_parameter_2__value,
         {
             NULL,
             NULL,
@@ -41506,7 +41506,7 @@ impl_object__le_dayTimeDuration = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__le_dayTimeDuration__value,
+        &impl_object__le_dayTimeDuration__value,
         {
             NULL,
             NULL,
@@ -41526,7 +41526,7 @@ impl_le_dayTimeDuration_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_dayTimeDuration_returns__value,
+        &impl_le_dayTimeDuration_returns__value,
         {
             NULL,
             NULL,
@@ -41562,7 +41562,7 @@ impl_le_dayTimeDuration_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_dayTimeDuration_parameter_1__value,
+        &impl_le_dayTimeDuration_parameter_1__value,
         {
             NULL,
             NULL,
@@ -41598,7 +41598,7 @@ impl_le_dayTimeDuration_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_dayTimeDuration_parameter_2__value,
+        &impl_le_dayTimeDuration_parameter_2__value,
         {
             NULL,
             NULL,
@@ -41688,7 +41688,7 @@ impl_object__lt_dayTimeDuration = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__lt_dayTimeDuration__value,
+        &impl_object__lt_dayTimeDuration__value,
         {
             NULL,
             NULL,
@@ -41708,7 +41708,7 @@ impl_lt_dayTimeDuration_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_dayTimeDuration_returns__value,
+        &impl_lt_dayTimeDuration_returns__value,
         {
             NULL,
             NULL,
@@ -41744,7 +41744,7 @@ impl_lt_dayTimeDuration_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_dayTimeDuration_parameter_1__value,
+        &impl_lt_dayTimeDuration_parameter_1__value,
         {
             NULL,
             NULL,
@@ -41780,7 +41780,7 @@ impl_lt_dayTimeDuration_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_dayTimeDuration_parameter_2__value,
+        &impl_lt_dayTimeDuration_parameter_2__value,
         {
             NULL,
             NULL,
@@ -41870,7 +41870,7 @@ impl_object__ne_dayTimeDuration = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ne_dayTimeDuration__value,
+        &impl_object__ne_dayTimeDuration__value,
         {
             NULL,
             NULL,
@@ -41890,7 +41890,7 @@ impl_ne_dayTimeDuration_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_dayTimeDuration_returns__value,
+        &impl_ne_dayTimeDuration_returns__value,
         {
             NULL,
             NULL,
@@ -41926,7 +41926,7 @@ impl_ne_dayTimeDuration_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_dayTimeDuration_parameter_1__value,
+        &impl_ne_dayTimeDuration_parameter_1__value,
         {
             NULL,
             NULL,
@@ -41962,7 +41962,7 @@ impl_ne_dayTimeDuration_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_dayTimeDuration_parameter_2__value,
+        &impl_ne_dayTimeDuration_parameter_2__value,
         {
             NULL,
             NULL,
@@ -42060,7 +42060,7 @@ impl_object__nex_dayTimeDuration = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__nex_dayTimeDuration__value,
+        &impl_object__nex_dayTimeDuration__value,
         {
             NULL,
             NULL,
@@ -42080,7 +42080,7 @@ impl_nex_dayTimeDuration_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_dayTimeDuration_returns__value,
+        &impl_nex_dayTimeDuration_returns__value,
         {
             NULL,
             NULL,
@@ -42116,7 +42116,7 @@ impl_nex_dayTimeDuration_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_dayTimeDuration_parameter_1__value,
+        &impl_nex_dayTimeDuration_parameter_1__value,
         {
             NULL,
             NULL,
@@ -42152,7 +42152,7 @@ impl_nex_dayTimeDuration_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_dayTimeDuration_parameter_2__value,
+        &impl_nex_dayTimeDuration_parameter_2__value,
         {
             NULL,
             NULL,
@@ -42242,7 +42242,7 @@ impl_object__one_and_only_dayTimeDuration = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__one_and_only_dayTimeDuration__value,
+        &impl_object__one_and_only_dayTimeDuration__value,
         {
             NULL,
             NULL,
@@ -42262,7 +42262,7 @@ impl_one_and_only_dayTimeDuration_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_one_and_only_dayTimeDuration_returns__value,
+        &impl_one_and_only_dayTimeDuration_returns__value,
         {
             NULL,
             NULL,
@@ -42298,7 +42298,7 @@ impl_one_and_only_dayTimeDuration_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_one_and_only_dayTimeDuration_parameter_1__value,
+        &impl_one_and_only_dayTimeDuration_parameter_1__value,
         {
             NULL,
             NULL,
@@ -42395,7 +42395,7 @@ impl_object__set_equals_dayTimeDuration = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__set_equals_dayTimeDuration__value,
+        &impl_object__set_equals_dayTimeDuration__value,
         {
             NULL,
             NULL,
@@ -42415,7 +42415,7 @@ impl_set_equals_dayTimeDuration_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_set_equals_dayTimeDuration_returns__value,
+        &impl_set_equals_dayTimeDuration_returns__value,
         {
             NULL,
             NULL,
@@ -42451,7 +42451,7 @@ impl_set_equals_dayTimeDuration_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_set_equals_dayTimeDuration_parameter_1__value,
+        &impl_set_equals_dayTimeDuration_parameter_1__value,
         {
             NULL,
             NULL,
@@ -42487,7 +42487,7 @@ impl_set_equals_dayTimeDuration_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_set_equals_dayTimeDuration_parameter_2__value,
+        &impl_set_equals_dayTimeDuration_parameter_2__value,
         {
             NULL,
             NULL,
@@ -42577,7 +42577,7 @@ impl_object__subset_dayTimeDuration = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__subset_dayTimeDuration__value,
+        &impl_object__subset_dayTimeDuration__value,
         {
             NULL,
             NULL,
@@ -42597,7 +42597,7 @@ impl_subset_dayTimeDuration_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subset_dayTimeDuration_returns__value,
+        &impl_subset_dayTimeDuration_returns__value,
         {
             NULL,
             NULL,
@@ -42633,7 +42633,7 @@ impl_subset_dayTimeDuration_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subset_dayTimeDuration_parameter_1__value,
+        &impl_subset_dayTimeDuration_parameter_1__value,
         {
             NULL,
             NULL,
@@ -42669,7 +42669,7 @@ impl_subset_dayTimeDuration_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subset_dayTimeDuration_parameter_2__value,
+        &impl_subset_dayTimeDuration_parameter_2__value,
         {
             NULL,
             NULL,
@@ -42759,7 +42759,7 @@ impl_object__to_string_dayTimeDuration = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__to_string_dayTimeDuration__value,
+        &impl_object__to_string_dayTimeDuration__value,
         {
             NULL,
             NULL,
@@ -42779,7 +42779,7 @@ impl_to_string_dayTimeDuration_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_string_dayTimeDuration_returns__value,
+        &impl_to_string_dayTimeDuration_returns__value,
         {
             NULL,
             NULL,
@@ -42815,7 +42815,7 @@ impl_to_string_dayTimeDuration_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_string_dayTimeDuration_parameter_1__value,
+        &impl_to_string_dayTimeDuration_parameter_1__value,
         {
             NULL,
             NULL,
@@ -42904,7 +42904,7 @@ impl_object__union_dayTimeDuration = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__union_dayTimeDuration__value,
+        &impl_object__union_dayTimeDuration__value,
         {
             NULL,
             NULL,
@@ -42924,7 +42924,7 @@ impl_union_dayTimeDuration_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_union_dayTimeDuration_returns__value,
+        &impl_union_dayTimeDuration_returns__value,
         {
             NULL,
             NULL,
@@ -42960,7 +42960,7 @@ impl_union_dayTimeDuration_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_union_dayTimeDuration_parameter_1__value,
+        &impl_union_dayTimeDuration_parameter_1__value,
         {
             NULL,
             NULL,
@@ -43049,7 +43049,7 @@ impl_object__bag_dnsName = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__bag_dnsName__value,
+        &impl_object__bag_dnsName__value,
         {
             NULL,
             NULL,
@@ -43069,7 +43069,7 @@ impl_bag_dnsName_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_dnsName_returns__value,
+        &impl_bag_dnsName_returns__value,
         {
             NULL,
             NULL,
@@ -43105,7 +43105,7 @@ impl_bag_dnsName_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_dnsName_parameter_1__value,
+        &impl_bag_dnsName_parameter_1__value,
         {
             NULL,
             NULL,
@@ -43194,7 +43194,7 @@ impl_object__bag_size_dnsName = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__bag_size_dnsName__value,
+        &impl_object__bag_size_dnsName__value,
         {
             NULL,
             NULL,
@@ -43214,7 +43214,7 @@ impl_bag_size_dnsName_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_size_dnsName_returns__value,
+        &impl_bag_size_dnsName_returns__value,
         {
             NULL,
             NULL,
@@ -43250,7 +43250,7 @@ impl_bag_size_dnsName_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_size_dnsName_parameter_1__value,
+        &impl_bag_size_dnsName_parameter_1__value,
         {
             NULL,
             NULL,
@@ -43339,7 +43339,7 @@ impl_object__dnsName = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__dnsName__value,
+        &impl_object__dnsName__value,
         {
             NULL,
             NULL,
@@ -43359,7 +43359,7 @@ impl_dnsName_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_dnsName_returns__value,
+        &impl_dnsName_returns__value,
         {
             NULL,
             NULL,
@@ -43395,7 +43395,7 @@ impl_dnsName_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_dnsName_parameter_1__value,
+        &impl_dnsName_parameter_1__value,
         {
             NULL,
             NULL,
@@ -43492,7 +43492,7 @@ impl_object__eq_dnsName = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__eq_dnsName__value,
+        &impl_object__eq_dnsName__value,
         {
             NULL,
             NULL,
@@ -43512,7 +43512,7 @@ impl_eq_dnsName_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_dnsName_returns__value,
+        &impl_eq_dnsName_returns__value,
         {
             NULL,
             NULL,
@@ -43548,7 +43548,7 @@ impl_eq_dnsName_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_dnsName_parameter_1__value,
+        &impl_eq_dnsName_parameter_1__value,
         {
             NULL,
             NULL,
@@ -43584,7 +43584,7 @@ impl_eq_dnsName_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_dnsName_parameter_2__value,
+        &impl_eq_dnsName_parameter_2__value,
         {
             NULL,
             NULL,
@@ -43682,7 +43682,7 @@ impl_object__eqx_dnsName = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__eqx_dnsName__value,
+        &impl_object__eqx_dnsName__value,
         {
             NULL,
             NULL,
@@ -43702,7 +43702,7 @@ impl_eqx_dnsName_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_dnsName_returns__value,
+        &impl_eqx_dnsName_returns__value,
         {
             NULL,
             NULL,
@@ -43738,7 +43738,7 @@ impl_eqx_dnsName_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_dnsName_parameter_1__value,
+        &impl_eqx_dnsName_parameter_1__value,
         {
             NULL,
             NULL,
@@ -43774,7 +43774,7 @@ impl_eqx_dnsName_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_dnsName_parameter_2__value,
+        &impl_eqx_dnsName_parameter_2__value,
         {
             NULL,
             NULL,
@@ -43864,7 +43864,7 @@ impl_object__ge_dnsName = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ge_dnsName__value,
+        &impl_object__ge_dnsName__value,
         {
             NULL,
             NULL,
@@ -43884,7 +43884,7 @@ impl_ge_dnsName_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_dnsName_returns__value,
+        &impl_ge_dnsName_returns__value,
         {
             NULL,
             NULL,
@@ -43920,7 +43920,7 @@ impl_ge_dnsName_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_dnsName_parameter_1__value,
+        &impl_ge_dnsName_parameter_1__value,
         {
             NULL,
             NULL,
@@ -43956,7 +43956,7 @@ impl_ge_dnsName_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_dnsName_parameter_2__value,
+        &impl_ge_dnsName_parameter_2__value,
         {
             NULL,
             NULL,
@@ -44046,7 +44046,7 @@ impl_object__gt_dnsName = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__gt_dnsName__value,
+        &impl_object__gt_dnsName__value,
         {
             NULL,
             NULL,
@@ -44066,7 +44066,7 @@ impl_gt_dnsName_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_dnsName_returns__value,
+        &impl_gt_dnsName_returns__value,
         {
             NULL,
             NULL,
@@ -44102,7 +44102,7 @@ impl_gt_dnsName_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_dnsName_parameter_1__value,
+        &impl_gt_dnsName_parameter_1__value,
         {
             NULL,
             NULL,
@@ -44138,7 +44138,7 @@ impl_gt_dnsName_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_dnsName_parameter_2__value,
+        &impl_gt_dnsName_parameter_2__value,
         {
             NULL,
             NULL,
@@ -44228,7 +44228,7 @@ impl_object__is_dnsName = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__is_dnsName__value,
+        &impl_object__is_dnsName__value,
         {
             NULL,
             NULL,
@@ -44248,7 +44248,7 @@ impl_is_dnsName_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_dnsName_returns__value,
+        &impl_is_dnsName_returns__value,
         {
             NULL,
             NULL,
@@ -44284,7 +44284,7 @@ impl_is_dnsName_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_dnsName_parameter_1__value,
+        &impl_is_dnsName_parameter_1__value,
         {
             NULL,
             NULL,
@@ -44373,7 +44373,7 @@ impl_object__is_in_dnsName = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__is_in_dnsName__value,
+        &impl_object__is_in_dnsName__value,
         {
             NULL,
             NULL,
@@ -44393,7 +44393,7 @@ impl_is_in_dnsName_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_in_dnsName_returns__value,
+        &impl_is_in_dnsName_returns__value,
         {
             NULL,
             NULL,
@@ -44429,7 +44429,7 @@ impl_is_in_dnsName_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_in_dnsName_parameter_1__value,
+        &impl_is_in_dnsName_parameter_1__value,
         {
             NULL,
             NULL,
@@ -44465,7 +44465,7 @@ impl_is_in_dnsName_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_in_dnsName_parameter_2__value,
+        &impl_is_in_dnsName_parameter_2__value,
         {
             NULL,
             NULL,
@@ -44555,7 +44555,7 @@ impl_object__le_dnsName = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__le_dnsName__value,
+        &impl_object__le_dnsName__value,
         {
             NULL,
             NULL,
@@ -44575,7 +44575,7 @@ impl_le_dnsName_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_dnsName_returns__value,
+        &impl_le_dnsName_returns__value,
         {
             NULL,
             NULL,
@@ -44611,7 +44611,7 @@ impl_le_dnsName_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_dnsName_parameter_1__value,
+        &impl_le_dnsName_parameter_1__value,
         {
             NULL,
             NULL,
@@ -44647,7 +44647,7 @@ impl_le_dnsName_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_dnsName_parameter_2__value,
+        &impl_le_dnsName_parameter_2__value,
         {
             NULL,
             NULL,
@@ -44737,7 +44737,7 @@ impl_object__lt_dnsName = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__lt_dnsName__value,
+        &impl_object__lt_dnsName__value,
         {
             NULL,
             NULL,
@@ -44757,7 +44757,7 @@ impl_lt_dnsName_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_dnsName_returns__value,
+        &impl_lt_dnsName_returns__value,
         {
             NULL,
             NULL,
@@ -44793,7 +44793,7 @@ impl_lt_dnsName_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_dnsName_parameter_1__value,
+        &impl_lt_dnsName_parameter_1__value,
         {
             NULL,
             NULL,
@@ -44829,7 +44829,7 @@ impl_lt_dnsName_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_dnsName_parameter_2__value,
+        &impl_lt_dnsName_parameter_2__value,
         {
             NULL,
             NULL,
@@ -44919,7 +44919,7 @@ impl_object__ne_dnsName = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ne_dnsName__value,
+        &impl_object__ne_dnsName__value,
         {
             NULL,
             NULL,
@@ -44939,7 +44939,7 @@ impl_ne_dnsName_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_dnsName_returns__value,
+        &impl_ne_dnsName_returns__value,
         {
             NULL,
             NULL,
@@ -44975,7 +44975,7 @@ impl_ne_dnsName_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_dnsName_parameter_1__value,
+        &impl_ne_dnsName_parameter_1__value,
         {
             NULL,
             NULL,
@@ -45011,7 +45011,7 @@ impl_ne_dnsName_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_dnsName_parameter_2__value,
+        &impl_ne_dnsName_parameter_2__value,
         {
             NULL,
             NULL,
@@ -45109,7 +45109,7 @@ impl_object__nex_dnsName = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__nex_dnsName__value,
+        &impl_object__nex_dnsName__value,
         {
             NULL,
             NULL,
@@ -45129,7 +45129,7 @@ impl_nex_dnsName_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_dnsName_returns__value,
+        &impl_nex_dnsName_returns__value,
         {
             NULL,
             NULL,
@@ -45165,7 +45165,7 @@ impl_nex_dnsName_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_dnsName_parameter_1__value,
+        &impl_nex_dnsName_parameter_1__value,
         {
             NULL,
             NULL,
@@ -45201,7 +45201,7 @@ impl_nex_dnsName_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_dnsName_parameter_2__value,
+        &impl_nex_dnsName_parameter_2__value,
         {
             NULL,
             NULL,
@@ -45291,7 +45291,7 @@ impl_object__one_and_only_dnsName = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__one_and_only_dnsName__value,
+        &impl_object__one_and_only_dnsName__value,
         {
             NULL,
             NULL,
@@ -45311,7 +45311,7 @@ impl_one_and_only_dnsName_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_one_and_only_dnsName_returns__value,
+        &impl_one_and_only_dnsName_returns__value,
         {
             NULL,
             NULL,
@@ -45347,7 +45347,7 @@ impl_one_and_only_dnsName_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_one_and_only_dnsName_parameter_1__value,
+        &impl_one_and_only_dnsName_parameter_1__value,
         {
             NULL,
             NULL,
@@ -45444,7 +45444,7 @@ impl_object__regexp_match_dnsName = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__regexp_match_dnsName__value,
+        &impl_object__regexp_match_dnsName__value,
         {
             NULL,
             NULL,
@@ -45464,7 +45464,7 @@ impl_regexp_match_dnsName_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_regexp_match_dnsName_returns__value,
+        &impl_regexp_match_dnsName_returns__value,
         {
             NULL,
             NULL,
@@ -45500,7 +45500,7 @@ impl_regexp_match_dnsName_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_regexp_match_dnsName_parameter_1__value,
+        &impl_regexp_match_dnsName_parameter_1__value,
         {
             NULL,
             NULL,
@@ -45536,7 +45536,7 @@ impl_regexp_match_dnsName_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_regexp_match_dnsName_parameter_2__value,
+        &impl_regexp_match_dnsName_parameter_2__value,
         {
             NULL,
             NULL,
@@ -45626,7 +45626,7 @@ impl_object__to_string_dnsName = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__to_string_dnsName__value,
+        &impl_object__to_string_dnsName__value,
         {
             NULL,
             NULL,
@@ -45646,7 +45646,7 @@ impl_to_string_dnsName_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_string_dnsName_returns__value,
+        &impl_to_string_dnsName_returns__value,
         {
             NULL,
             NULL,
@@ -45682,7 +45682,7 @@ impl_to_string_dnsName_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_string_dnsName_parameter_1__value,
+        &impl_to_string_dnsName_parameter_1__value,
         {
             NULL,
             NULL,
@@ -45771,7 +45771,7 @@ impl_object__abs_double = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__abs_double__value,
+        &impl_object__abs_double__value,
         {
             NULL,
             NULL,
@@ -45791,7 +45791,7 @@ impl_abs_double_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_abs_double_returns__value,
+        &impl_abs_double_returns__value,
         {
             NULL,
             NULL,
@@ -45827,7 +45827,7 @@ impl_abs_double_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_abs_double_parameter_1__value,
+        &impl_abs_double_parameter_1__value,
         {
             NULL,
             NULL,
@@ -45916,7 +45916,7 @@ impl_object__add_double = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__add_double__value,
+        &impl_object__add_double__value,
         {
             NULL,
             NULL,
@@ -45936,7 +45936,7 @@ impl_add_double_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_add_double_returns__value,
+        &impl_add_double_returns__value,
         {
             NULL,
             NULL,
@@ -45972,7 +45972,7 @@ impl_add_double_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_add_double_parameter_1__value,
+        &impl_add_double_parameter_1__value,
         {
             NULL,
             NULL,
@@ -46061,7 +46061,7 @@ impl_object__at_least_one_member_of_double = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__at_least_one_member_of_double__value,
+        &impl_object__at_least_one_member_of_double__value,
         {
             NULL,
             NULL,
@@ -46081,7 +46081,7 @@ impl_at_least_one_member_of_double_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_at_least_one_member_of_double_returns__value,
+        &impl_at_least_one_member_of_double_returns__value,
         {
             NULL,
             NULL,
@@ -46117,7 +46117,7 @@ impl_at_least_one_member_of_double_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_at_least_one_member_of_double_parameter_1__value,
+        &impl_at_least_one_member_of_double_parameter_1__value,
         {
             NULL,
             NULL,
@@ -46153,7 +46153,7 @@ impl_at_least_one_member_of_double_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_at_least_one_member_of_double_parameter_2__value,
+        &impl_at_least_one_member_of_double_parameter_2__value,
         {
             NULL,
             NULL,
@@ -46243,7 +46243,7 @@ impl_object__bag_double = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__bag_double__value,
+        &impl_object__bag_double__value,
         {
             NULL,
             NULL,
@@ -46263,7 +46263,7 @@ impl_bag_double_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_double_returns__value,
+        &impl_bag_double_returns__value,
         {
             NULL,
             NULL,
@@ -46299,7 +46299,7 @@ impl_bag_double_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_double_parameter_1__value,
+        &impl_bag_double_parameter_1__value,
         {
             NULL,
             NULL,
@@ -46388,7 +46388,7 @@ impl_object__bag_size_double = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__bag_size_double__value,
+        &impl_object__bag_size_double__value,
         {
             NULL,
             NULL,
@@ -46408,7 +46408,7 @@ impl_bag_size_double_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_size_double_returns__value,
+        &impl_bag_size_double_returns__value,
         {
             NULL,
             NULL,
@@ -46444,7 +46444,7 @@ impl_bag_size_double_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_size_double_parameter_1__value,
+        &impl_bag_size_double_parameter_1__value,
         {
             NULL,
             NULL,
@@ -46533,7 +46533,7 @@ impl_object__ceil_double = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ceil_double__value,
+        &impl_object__ceil_double__value,
         {
             NULL,
             NULL,
@@ -46553,7 +46553,7 @@ impl_ceil_double_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ceil_double_returns__value,
+        &impl_ceil_double_returns__value,
         {
             NULL,
             NULL,
@@ -46589,7 +46589,7 @@ impl_ceil_double_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ceil_double_parameter_1__value,
+        &impl_ceil_double_parameter_1__value,
         {
             NULL,
             NULL,
@@ -46678,7 +46678,7 @@ impl_object__divide_double = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__divide_double__value,
+        &impl_object__divide_double__value,
         {
             NULL,
             NULL,
@@ -46698,7 +46698,7 @@ impl_divide_double_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_divide_double_returns__value,
+        &impl_divide_double_returns__value,
         {
             NULL,
             NULL,
@@ -46734,7 +46734,7 @@ impl_divide_double_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_divide_double_parameter_1__value,
+        &impl_divide_double_parameter_1__value,
         {
             NULL,
             NULL,
@@ -46770,7 +46770,7 @@ impl_divide_double_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_divide_double_parameter_2__value,
+        &impl_divide_double_parameter_2__value,
         {
             NULL,
             NULL,
@@ -46860,7 +46860,7 @@ impl_object__double = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__double__value,
+        &impl_object__double__value,
         {
             NULL,
             NULL,
@@ -46880,7 +46880,7 @@ impl_double_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_double_returns__value,
+        &impl_double_returns__value,
         {
             NULL,
             NULL,
@@ -46916,7 +46916,7 @@ impl_double_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_double_parameter_1__value,
+        &impl_double_parameter_1__value,
         {
             NULL,
             NULL,
@@ -47013,7 +47013,7 @@ impl_object__eq_double = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__eq_double__value,
+        &impl_object__eq_double__value,
         {
             NULL,
             NULL,
@@ -47033,7 +47033,7 @@ impl_eq_double_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_double_returns__value,
+        &impl_eq_double_returns__value,
         {
             NULL,
             NULL,
@@ -47069,7 +47069,7 @@ impl_eq_double_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_double_parameter_1__value,
+        &impl_eq_double_parameter_1__value,
         {
             NULL,
             NULL,
@@ -47105,7 +47105,7 @@ impl_eq_double_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_double_parameter_2__value,
+        &impl_eq_double_parameter_2__value,
         {
             NULL,
             NULL,
@@ -47203,7 +47203,7 @@ impl_object__eqx_double = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__eqx_double__value,
+        &impl_object__eqx_double__value,
         {
             NULL,
             NULL,
@@ -47223,7 +47223,7 @@ impl_eqx_double_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_double_returns__value,
+        &impl_eqx_double_returns__value,
         {
             NULL,
             NULL,
@@ -47259,7 +47259,7 @@ impl_eqx_double_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_double_parameter_1__value,
+        &impl_eqx_double_parameter_1__value,
         {
             NULL,
             NULL,
@@ -47295,7 +47295,7 @@ impl_eqx_double_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_double_parameter_2__value,
+        &impl_eqx_double_parameter_2__value,
         {
             NULL,
             NULL,
@@ -47385,7 +47385,7 @@ impl_object__floor_double = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__floor_double__value,
+        &impl_object__floor_double__value,
         {
             NULL,
             NULL,
@@ -47405,7 +47405,7 @@ impl_floor_double_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_floor_double_returns__value,
+        &impl_floor_double_returns__value,
         {
             NULL,
             NULL,
@@ -47441,7 +47441,7 @@ impl_floor_double_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_floor_double_parameter_1__value,
+        &impl_floor_double_parameter_1__value,
         {
             NULL,
             NULL,
@@ -47530,7 +47530,7 @@ impl_object__ge_double = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ge_double__value,
+        &impl_object__ge_double__value,
         {
             NULL,
             NULL,
@@ -47550,7 +47550,7 @@ impl_ge_double_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_double_returns__value,
+        &impl_ge_double_returns__value,
         {
             NULL,
             NULL,
@@ -47586,7 +47586,7 @@ impl_ge_double_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_double_parameter_1__value,
+        &impl_ge_double_parameter_1__value,
         {
             NULL,
             NULL,
@@ -47622,7 +47622,7 @@ impl_ge_double_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_double_parameter_2__value,
+        &impl_ge_double_parameter_2__value,
         {
             NULL,
             NULL,
@@ -47712,7 +47712,7 @@ impl_object__gt_double = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__gt_double__value,
+        &impl_object__gt_double__value,
         {
             NULL,
             NULL,
@@ -47732,7 +47732,7 @@ impl_gt_double_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_double_returns__value,
+        &impl_gt_double_returns__value,
         {
             NULL,
             NULL,
@@ -47768,7 +47768,7 @@ impl_gt_double_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_double_parameter_1__value,
+        &impl_gt_double_parameter_1__value,
         {
             NULL,
             NULL,
@@ -47804,7 +47804,7 @@ impl_gt_double_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_double_parameter_2__value,
+        &impl_gt_double_parameter_2__value,
         {
             NULL,
             NULL,
@@ -47894,7 +47894,7 @@ impl_object__intersection_double = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__intersection_double__value,
+        &impl_object__intersection_double__value,
         {
             NULL,
             NULL,
@@ -47914,7 +47914,7 @@ impl_intersection_double_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_intersection_double_returns__value,
+        &impl_intersection_double_returns__value,
         {
             NULL,
             NULL,
@@ -47950,7 +47950,7 @@ impl_intersection_double_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_intersection_double_parameter_1__value,
+        &impl_intersection_double_parameter_1__value,
         {
             NULL,
             NULL,
@@ -47986,7 +47986,7 @@ impl_intersection_double_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_intersection_double_parameter_2__value,
+        &impl_intersection_double_parameter_2__value,
         {
             NULL,
             NULL,
@@ -48076,7 +48076,7 @@ impl_object__is_NaN = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__is_NaN__value,
+        &impl_object__is_NaN__value,
         {
             NULL,
             NULL,
@@ -48096,7 +48096,7 @@ impl_is_NaN_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_NaN_returns__value,
+        &impl_is_NaN_returns__value,
         {
             NULL,
             NULL,
@@ -48132,7 +48132,7 @@ impl_is_NaN_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_NaN_parameter_1__value,
+        &impl_is_NaN_parameter_1__value,
         {
             NULL,
             NULL,
@@ -48221,7 +48221,7 @@ impl_object__is_double = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__is_double__value,
+        &impl_object__is_double__value,
         {
             NULL,
             NULL,
@@ -48241,7 +48241,7 @@ impl_is_double_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_double_returns__value,
+        &impl_is_double_returns__value,
         {
             NULL,
             NULL,
@@ -48277,7 +48277,7 @@ impl_is_double_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_double_parameter_1__value,
+        &impl_is_double_parameter_1__value,
         {
             NULL,
             NULL,
@@ -48366,7 +48366,7 @@ impl_object__is_finite = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__is_finite__value,
+        &impl_object__is_finite__value,
         {
             NULL,
             NULL,
@@ -48386,7 +48386,7 @@ impl_is_finite_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_finite_returns__value,
+        &impl_is_finite_returns__value,
         {
             NULL,
             NULL,
@@ -48422,7 +48422,7 @@ impl_is_finite_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_finite_parameter_1__value,
+        &impl_is_finite_parameter_1__value,
         {
             NULL,
             NULL,
@@ -48511,7 +48511,7 @@ impl_object__is_in_double = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__is_in_double__value,
+        &impl_object__is_in_double__value,
         {
             NULL,
             NULL,
@@ -48531,7 +48531,7 @@ impl_is_in_double_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_in_double_returns__value,
+        &impl_is_in_double_returns__value,
         {
             NULL,
             NULL,
@@ -48567,7 +48567,7 @@ impl_is_in_double_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_in_double_parameter_1__value,
+        &impl_is_in_double_parameter_1__value,
         {
             NULL,
             NULL,
@@ -48603,7 +48603,7 @@ impl_is_in_double_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_in_double_parameter_2__value,
+        &impl_is_in_double_parameter_2__value,
         {
             NULL,
             NULL,
@@ -48693,7 +48693,7 @@ impl_object__le_double = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__le_double__value,
+        &impl_object__le_double__value,
         {
             NULL,
             NULL,
@@ -48713,7 +48713,7 @@ impl_le_double_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_double_returns__value,
+        &impl_le_double_returns__value,
         {
             NULL,
             NULL,
@@ -48749,7 +48749,7 @@ impl_le_double_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_double_parameter_1__value,
+        &impl_le_double_parameter_1__value,
         {
             NULL,
             NULL,
@@ -48785,7 +48785,7 @@ impl_le_double_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_double_parameter_2__value,
+        &impl_le_double_parameter_2__value,
         {
             NULL,
             NULL,
@@ -48875,7 +48875,7 @@ impl_object__lt_double = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__lt_double__value,
+        &impl_object__lt_double__value,
         {
             NULL,
             NULL,
@@ -48895,7 +48895,7 @@ impl_lt_double_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_double_returns__value,
+        &impl_lt_double_returns__value,
         {
             NULL,
             NULL,
@@ -48931,7 +48931,7 @@ impl_lt_double_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_double_parameter_1__value,
+        &impl_lt_double_parameter_1__value,
         {
             NULL,
             NULL,
@@ -48967,7 +48967,7 @@ impl_lt_double_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_double_parameter_2__value,
+        &impl_lt_double_parameter_2__value,
         {
             NULL,
             NULL,
@@ -49057,7 +49057,7 @@ impl_object__max_double = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__max_double__value,
+        &impl_object__max_double__value,
         {
             NULL,
             NULL,
@@ -49077,7 +49077,7 @@ impl_max_double_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_max_double_returns__value,
+        &impl_max_double_returns__value,
         {
             NULL,
             NULL,
@@ -49113,7 +49113,7 @@ impl_max_double_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_max_double_parameter_1__value,
+        &impl_max_double_parameter_1__value,
         {
             NULL,
             NULL,
@@ -49202,7 +49202,7 @@ impl_object__min_double = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__min_double__value,
+        &impl_object__min_double__value,
         {
             NULL,
             NULL,
@@ -49222,7 +49222,7 @@ impl_min_double_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_min_double_returns__value,
+        &impl_min_double_returns__value,
         {
             NULL,
             NULL,
@@ -49258,7 +49258,7 @@ impl_min_double_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_min_double_parameter_1__value,
+        &impl_min_double_parameter_1__value,
         {
             NULL,
             NULL,
@@ -49347,7 +49347,7 @@ impl_object__multiply_double = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__multiply_double__value,
+        &impl_object__multiply_double__value,
         {
             NULL,
             NULL,
@@ -49367,7 +49367,7 @@ impl_multiply_double_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_multiply_double_returns__value,
+        &impl_multiply_double_returns__value,
         {
             NULL,
             NULL,
@@ -49403,7 +49403,7 @@ impl_multiply_double_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_multiply_double_parameter_1__value,
+        &impl_multiply_double_parameter_1__value,
         {
             NULL,
             NULL,
@@ -49492,7 +49492,7 @@ impl_object__ne_double = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ne_double__value,
+        &impl_object__ne_double__value,
         {
             NULL,
             NULL,
@@ -49512,7 +49512,7 @@ impl_ne_double_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_double_returns__value,
+        &impl_ne_double_returns__value,
         {
             NULL,
             NULL,
@@ -49548,7 +49548,7 @@ impl_ne_double_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_double_parameter_1__value,
+        &impl_ne_double_parameter_1__value,
         {
             NULL,
             NULL,
@@ -49584,7 +49584,7 @@ impl_ne_double_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_double_parameter_2__value,
+        &impl_ne_double_parameter_2__value,
         {
             NULL,
             NULL,
@@ -49682,7 +49682,7 @@ impl_object__negative_double = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__negative_double__value,
+        &impl_object__negative_double__value,
         {
             NULL,
             NULL,
@@ -49702,7 +49702,7 @@ impl_negative_double_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_negative_double_returns__value,
+        &impl_negative_double_returns__value,
         {
             NULL,
             NULL,
@@ -49738,7 +49738,7 @@ impl_negative_double_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_negative_double_parameter_1__value,
+        &impl_negative_double_parameter_1__value,
         {
             NULL,
             NULL,
@@ -49827,7 +49827,7 @@ impl_object__nex_double = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__nex_double__value,
+        &impl_object__nex_double__value,
         {
             NULL,
             NULL,
@@ -49847,7 +49847,7 @@ impl_nex_double_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_double_returns__value,
+        &impl_nex_double_returns__value,
         {
             NULL,
             NULL,
@@ -49883,7 +49883,7 @@ impl_nex_double_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_double_parameter_1__value,
+        &impl_nex_double_parameter_1__value,
         {
             NULL,
             NULL,
@@ -49919,7 +49919,7 @@ impl_nex_double_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_double_parameter_2__value,
+        &impl_nex_double_parameter_2__value,
         {
             NULL,
             NULL,
@@ -50009,7 +50009,7 @@ impl_object__one_and_only_double = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__one_and_only_double__value,
+        &impl_object__one_and_only_double__value,
         {
             NULL,
             NULL,
@@ -50029,7 +50029,7 @@ impl_one_and_only_double_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_one_and_only_double_returns__value,
+        &impl_one_and_only_double_returns__value,
         {
             NULL,
             NULL,
@@ -50065,7 +50065,7 @@ impl_one_and_only_double_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_one_and_only_double_parameter_1__value,
+        &impl_one_and_only_double_parameter_1__value,
         {
             NULL,
             NULL,
@@ -50162,7 +50162,7 @@ impl_object__pow_double = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__pow_double__value,
+        &impl_object__pow_double__value,
         {
             NULL,
             NULL,
@@ -50182,7 +50182,7 @@ impl_pow_double_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_pow_double_returns__value,
+        &impl_pow_double_returns__value,
         {
             NULL,
             NULL,
@@ -50218,7 +50218,7 @@ impl_pow_double_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_pow_double_parameter_1__value,
+        &impl_pow_double_parameter_1__value,
         {
             NULL,
             NULL,
@@ -50254,7 +50254,7 @@ impl_pow_double_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_pow_double_parameter_2__value,
+        &impl_pow_double_parameter_2__value,
         {
             NULL,
             NULL,
@@ -50344,7 +50344,7 @@ impl_object__round_double = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__round_double__value,
+        &impl_object__round_double__value,
         {
             NULL,
             NULL,
@@ -50364,7 +50364,7 @@ impl_round_double_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_round_double_returns__value,
+        &impl_round_double_returns__value,
         {
             NULL,
             NULL,
@@ -50400,7 +50400,7 @@ impl_round_double_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_round_double_parameter_1__value,
+        &impl_round_double_parameter_1__value,
         {
             NULL,
             NULL,
@@ -50489,7 +50489,7 @@ impl_object__set_equals_double = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__set_equals_double__value,
+        &impl_object__set_equals_double__value,
         {
             NULL,
             NULL,
@@ -50509,7 +50509,7 @@ impl_set_equals_double_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_set_equals_double_returns__value,
+        &impl_set_equals_double_returns__value,
         {
             NULL,
             NULL,
@@ -50545,7 +50545,7 @@ impl_set_equals_double_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_set_equals_double_parameter_1__value,
+        &impl_set_equals_double_parameter_1__value,
         {
             NULL,
             NULL,
@@ -50581,7 +50581,7 @@ impl_set_equals_double_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_set_equals_double_parameter_2__value,
+        &impl_set_equals_double_parameter_2__value,
         {
             NULL,
             NULL,
@@ -50671,7 +50671,7 @@ impl_object__subset_double = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__subset_double__value,
+        &impl_object__subset_double__value,
         {
             NULL,
             NULL,
@@ -50691,7 +50691,7 @@ impl_subset_double_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subset_double_returns__value,
+        &impl_subset_double_returns__value,
         {
             NULL,
             NULL,
@@ -50727,7 +50727,7 @@ impl_subset_double_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subset_double_parameter_1__value,
+        &impl_subset_double_parameter_1__value,
         {
             NULL,
             NULL,
@@ -50763,7 +50763,7 @@ impl_subset_double_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subset_double_parameter_2__value,
+        &impl_subset_double_parameter_2__value,
         {
             NULL,
             NULL,
@@ -50853,7 +50853,7 @@ impl_object__subtract_double = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__subtract_double__value,
+        &impl_object__subtract_double__value,
         {
             NULL,
             NULL,
@@ -50873,7 +50873,7 @@ impl_subtract_double_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subtract_double_returns__value,
+        &impl_subtract_double_returns__value,
         {
             NULL,
             NULL,
@@ -50909,7 +50909,7 @@ impl_subtract_double_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subtract_double_parameter_1__value,
+        &impl_subtract_double_parameter_1__value,
         {
             NULL,
             NULL,
@@ -50945,7 +50945,7 @@ impl_subtract_double_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subtract_double_parameter_2__value,
+        &impl_subtract_double_parameter_2__value,
         {
             NULL,
             NULL,
@@ -51035,7 +51035,7 @@ impl_object__to_integer_double = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__to_integer_double__value,
+        &impl_object__to_integer_double__value,
         {
             NULL,
             NULL,
@@ -51055,7 +51055,7 @@ impl_to_integer_double_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_integer_double_returns__value,
+        &impl_to_integer_double_returns__value,
         {
             NULL,
             NULL,
@@ -51091,7 +51091,7 @@ impl_to_integer_double_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_integer_double_parameter_1__value,
+        &impl_to_integer_double_parameter_1__value,
         {
             NULL,
             NULL,
@@ -51180,7 +51180,7 @@ impl_object__to_string_double = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__to_string_double__value,
+        &impl_object__to_string_double__value,
         {
             NULL,
             NULL,
@@ -51200,7 +51200,7 @@ impl_to_string_double_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_string_double_returns__value,
+        &impl_to_string_double_returns__value,
         {
             NULL,
             NULL,
@@ -51236,7 +51236,7 @@ impl_to_string_double_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_string_double_parameter_1__value,
+        &impl_to_string_double_parameter_1__value,
         {
             NULL,
             NULL,
@@ -51325,7 +51325,7 @@ impl_object__union_double = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__union_double__value,
+        &impl_object__union_double__value,
         {
             NULL,
             NULL,
@@ -51345,7 +51345,7 @@ impl_union_double_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_union_double_returns__value,
+        &impl_union_double_returns__value,
         {
             NULL,
             NULL,
@@ -51381,7 +51381,7 @@ impl_union_double_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_union_double_parameter_1__value,
+        &impl_union_double_parameter_1__value,
         {
             NULL,
             NULL,
@@ -51470,7 +51470,7 @@ impl_object__bag_function = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__bag_function__value,
+        &impl_object__bag_function__value,
         {
             NULL,
             NULL,
@@ -51490,7 +51490,7 @@ impl_bag_function_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_function_returns__value,
+        &impl_bag_function_returns__value,
         {
             NULL,
             NULL,
@@ -51526,7 +51526,7 @@ impl_bag_function_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_function_parameter_1__value,
+        &impl_bag_function_parameter_1__value,
         {
             NULL,
             NULL,
@@ -51615,7 +51615,7 @@ impl_object__bag_size_function = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__bag_size_function__value,
+        &impl_object__bag_size_function__value,
         {
             NULL,
             NULL,
@@ -51635,7 +51635,7 @@ impl_bag_size_function_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_size_function_returns__value,
+        &impl_bag_size_function_returns__value,
         {
             NULL,
             NULL,
@@ -51671,7 +51671,7 @@ impl_bag_size_function_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_size_function_parameter_1__value,
+        &impl_bag_size_function_parameter_1__value,
         {
             NULL,
             NULL,
@@ -51760,7 +51760,7 @@ impl_object__eq_function = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__eq_function__value,
+        &impl_object__eq_function__value,
         {
             NULL,
             NULL,
@@ -51780,7 +51780,7 @@ impl_eq_function_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_function_returns__value,
+        &impl_eq_function_returns__value,
         {
             NULL,
             NULL,
@@ -51816,7 +51816,7 @@ impl_eq_function_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_function_parameter_1__value,
+        &impl_eq_function_parameter_1__value,
         {
             NULL,
             NULL,
@@ -51852,7 +51852,7 @@ impl_eq_function_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_function_parameter_2__value,
+        &impl_eq_function_parameter_2__value,
         {
             NULL,
             NULL,
@@ -51950,7 +51950,7 @@ impl_object__eqx_function = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__eqx_function__value,
+        &impl_object__eqx_function__value,
         {
             NULL,
             NULL,
@@ -51970,7 +51970,7 @@ impl_eqx_function_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_function_returns__value,
+        &impl_eqx_function_returns__value,
         {
             NULL,
             NULL,
@@ -52006,7 +52006,7 @@ impl_eqx_function_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_function_parameter_1__value,
+        &impl_eqx_function_parameter_1__value,
         {
             NULL,
             NULL,
@@ -52042,7 +52042,7 @@ impl_eqx_function_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_function_parameter_2__value,
+        &impl_eqx_function_parameter_2__value,
         {
             NULL,
             NULL,
@@ -52132,7 +52132,7 @@ impl_object__function = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__function__value,
+        &impl_object__function__value,
         {
             NULL,
             NULL,
@@ -52152,7 +52152,7 @@ impl_function_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_function_returns__value,
+        &impl_function_returns__value,
         {
             NULL,
             NULL,
@@ -52188,7 +52188,7 @@ impl_function_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_function_parameter_1__value,
+        &impl_function_parameter_1__value,
         {
             NULL,
             NULL,
@@ -52285,7 +52285,7 @@ impl_object__ge_function = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ge_function__value,
+        &impl_object__ge_function__value,
         {
             NULL,
             NULL,
@@ -52305,7 +52305,7 @@ impl_ge_function_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_function_returns__value,
+        &impl_ge_function_returns__value,
         {
             NULL,
             NULL,
@@ -52341,7 +52341,7 @@ impl_ge_function_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_function_parameter_1__value,
+        &impl_ge_function_parameter_1__value,
         {
             NULL,
             NULL,
@@ -52377,7 +52377,7 @@ impl_ge_function_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_function_parameter_2__value,
+        &impl_ge_function_parameter_2__value,
         {
             NULL,
             NULL,
@@ -52467,7 +52467,7 @@ impl_object__gt_function = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__gt_function__value,
+        &impl_object__gt_function__value,
         {
             NULL,
             NULL,
@@ -52487,7 +52487,7 @@ impl_gt_function_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_function_returns__value,
+        &impl_gt_function_returns__value,
         {
             NULL,
             NULL,
@@ -52523,7 +52523,7 @@ impl_gt_function_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_function_parameter_1__value,
+        &impl_gt_function_parameter_1__value,
         {
             NULL,
             NULL,
@@ -52559,7 +52559,7 @@ impl_gt_function_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_function_parameter_2__value,
+        &impl_gt_function_parameter_2__value,
         {
             NULL,
             NULL,
@@ -52649,7 +52649,7 @@ impl_object__is_function = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__is_function__value,
+        &impl_object__is_function__value,
         {
             NULL,
             NULL,
@@ -52669,7 +52669,7 @@ impl_is_function_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_function_returns__value,
+        &impl_is_function_returns__value,
         {
             NULL,
             NULL,
@@ -52705,7 +52705,7 @@ impl_is_function_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_function_parameter_1__value,
+        &impl_is_function_parameter_1__value,
         {
             NULL,
             NULL,
@@ -52794,7 +52794,7 @@ impl_object__le_function = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__le_function__value,
+        &impl_object__le_function__value,
         {
             NULL,
             NULL,
@@ -52814,7 +52814,7 @@ impl_le_function_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_function_returns__value,
+        &impl_le_function_returns__value,
         {
             NULL,
             NULL,
@@ -52850,7 +52850,7 @@ impl_le_function_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_function_parameter_1__value,
+        &impl_le_function_parameter_1__value,
         {
             NULL,
             NULL,
@@ -52886,7 +52886,7 @@ impl_le_function_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_function_parameter_2__value,
+        &impl_le_function_parameter_2__value,
         {
             NULL,
             NULL,
@@ -52976,7 +52976,7 @@ impl_object__lt_function = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__lt_function__value,
+        &impl_object__lt_function__value,
         {
             NULL,
             NULL,
@@ -52996,7 +52996,7 @@ impl_lt_function_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_function_returns__value,
+        &impl_lt_function_returns__value,
         {
             NULL,
             NULL,
@@ -53032,7 +53032,7 @@ impl_lt_function_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_function_parameter_1__value,
+        &impl_lt_function_parameter_1__value,
         {
             NULL,
             NULL,
@@ -53068,7 +53068,7 @@ impl_lt_function_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_function_parameter_2__value,
+        &impl_lt_function_parameter_2__value,
         {
             NULL,
             NULL,
@@ -53158,7 +53158,7 @@ impl_object__ne_function = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ne_function__value,
+        &impl_object__ne_function__value,
         {
             NULL,
             NULL,
@@ -53178,7 +53178,7 @@ impl_ne_function_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_function_returns__value,
+        &impl_ne_function_returns__value,
         {
             NULL,
             NULL,
@@ -53214,7 +53214,7 @@ impl_ne_function_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_function_parameter_1__value,
+        &impl_ne_function_parameter_1__value,
         {
             NULL,
             NULL,
@@ -53250,7 +53250,7 @@ impl_ne_function_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_function_parameter_2__value,
+        &impl_ne_function_parameter_2__value,
         {
             NULL,
             NULL,
@@ -53348,7 +53348,7 @@ impl_object__nex_function = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__nex_function__value,
+        &impl_object__nex_function__value,
         {
             NULL,
             NULL,
@@ -53368,7 +53368,7 @@ impl_nex_function_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_function_returns__value,
+        &impl_nex_function_returns__value,
         {
             NULL,
             NULL,
@@ -53404,7 +53404,7 @@ impl_nex_function_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_function_parameter_1__value,
+        &impl_nex_function_parameter_1__value,
         {
             NULL,
             NULL,
@@ -53440,7 +53440,7 @@ impl_nex_function_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_function_parameter_2__value,
+        &impl_nex_function_parameter_2__value,
         {
             NULL,
             NULL,
@@ -53530,7 +53530,7 @@ impl_object__at_least_one_member_of_hexBinary = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__at_least_one_member_of_hexBinary__value,
+        &impl_object__at_least_one_member_of_hexBinary__value,
         {
             NULL,
             NULL,
@@ -53550,7 +53550,7 @@ impl_at_least_one_member_of_hexBinary_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_at_least_one_member_of_hexBinary_returns__value,
+        &impl_at_least_one_member_of_hexBinary_returns__value,
         {
             NULL,
             NULL,
@@ -53586,7 +53586,7 @@ impl_at_least_one_member_of_hexBinary_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_at_least_one_member_of_hexBinary_parameter_1__value,
+        &impl_at_least_one_member_of_hexBinary_parameter_1__value,
         {
             NULL,
             NULL,
@@ -53622,7 +53622,7 @@ impl_at_least_one_member_of_hexBinary_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_at_least_one_member_of_hexBinary_parameter_2__value,
+        &impl_at_least_one_member_of_hexBinary_parameter_2__value,
         {
             NULL,
             NULL,
@@ -53712,7 +53712,7 @@ impl_object__bag_hexBinary = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__bag_hexBinary__value,
+        &impl_object__bag_hexBinary__value,
         {
             NULL,
             NULL,
@@ -53732,7 +53732,7 @@ impl_bag_hexBinary_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_hexBinary_returns__value,
+        &impl_bag_hexBinary_returns__value,
         {
             NULL,
             NULL,
@@ -53768,7 +53768,7 @@ impl_bag_hexBinary_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_hexBinary_parameter_1__value,
+        &impl_bag_hexBinary_parameter_1__value,
         {
             NULL,
             NULL,
@@ -53857,7 +53857,7 @@ impl_object__bag_size_hexBinary = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__bag_size_hexBinary__value,
+        &impl_object__bag_size_hexBinary__value,
         {
             NULL,
             NULL,
@@ -53877,7 +53877,7 @@ impl_bag_size_hexBinary_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_size_hexBinary_returns__value,
+        &impl_bag_size_hexBinary_returns__value,
         {
             NULL,
             NULL,
@@ -53913,7 +53913,7 @@ impl_bag_size_hexBinary_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_size_hexBinary_parameter_1__value,
+        &impl_bag_size_hexBinary_parameter_1__value,
         {
             NULL,
             NULL,
@@ -54002,7 +54002,7 @@ impl_object__decode_to_string_hexBinary = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__decode_to_string_hexBinary__value,
+        &impl_object__decode_to_string_hexBinary__value,
         {
             NULL,
             NULL,
@@ -54022,7 +54022,7 @@ impl_decode_to_string_hexBinary_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_decode_to_string_hexBinary_returns__value,
+        &impl_decode_to_string_hexBinary_returns__value,
         {
             NULL,
             NULL,
@@ -54058,7 +54058,7 @@ impl_decode_to_string_hexBinary_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_decode_to_string_hexBinary_parameter_1__value,
+        &impl_decode_to_string_hexBinary_parameter_1__value,
         {
             NULL,
             NULL,
@@ -54147,7 +54147,7 @@ impl_object__eq_hexBinary = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__eq_hexBinary__value,
+        &impl_object__eq_hexBinary__value,
         {
             NULL,
             NULL,
@@ -54167,7 +54167,7 @@ impl_eq_hexBinary_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_hexBinary_returns__value,
+        &impl_eq_hexBinary_returns__value,
         {
             NULL,
             NULL,
@@ -54203,7 +54203,7 @@ impl_eq_hexBinary_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_hexBinary_parameter_1__value,
+        &impl_eq_hexBinary_parameter_1__value,
         {
             NULL,
             NULL,
@@ -54239,7 +54239,7 @@ impl_eq_hexBinary_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_hexBinary_parameter_2__value,
+        &impl_eq_hexBinary_parameter_2__value,
         {
             NULL,
             NULL,
@@ -54337,7 +54337,7 @@ impl_object__eqx_hexBinary = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__eqx_hexBinary__value,
+        &impl_object__eqx_hexBinary__value,
         {
             NULL,
             NULL,
@@ -54357,7 +54357,7 @@ impl_eqx_hexBinary_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_hexBinary_returns__value,
+        &impl_eqx_hexBinary_returns__value,
         {
             NULL,
             NULL,
@@ -54393,7 +54393,7 @@ impl_eqx_hexBinary_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_hexBinary_parameter_1__value,
+        &impl_eqx_hexBinary_parameter_1__value,
         {
             NULL,
             NULL,
@@ -54429,7 +54429,7 @@ impl_eqx_hexBinary_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_hexBinary_parameter_2__value,
+        &impl_eqx_hexBinary_parameter_2__value,
         {
             NULL,
             NULL,
@@ -54519,7 +54519,7 @@ impl_object__ge_hexBinary = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ge_hexBinary__value,
+        &impl_object__ge_hexBinary__value,
         {
             NULL,
             NULL,
@@ -54539,7 +54539,7 @@ impl_ge_hexBinary_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_hexBinary_returns__value,
+        &impl_ge_hexBinary_returns__value,
         {
             NULL,
             NULL,
@@ -54575,7 +54575,7 @@ impl_ge_hexBinary_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_hexBinary_parameter_1__value,
+        &impl_ge_hexBinary_parameter_1__value,
         {
             NULL,
             NULL,
@@ -54611,7 +54611,7 @@ impl_ge_hexBinary_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_hexBinary_parameter_2__value,
+        &impl_ge_hexBinary_parameter_2__value,
         {
             NULL,
             NULL,
@@ -54701,7 +54701,7 @@ impl_object__gt_hexBinary = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__gt_hexBinary__value,
+        &impl_object__gt_hexBinary__value,
         {
             NULL,
             NULL,
@@ -54721,7 +54721,7 @@ impl_gt_hexBinary_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_hexBinary_returns__value,
+        &impl_gt_hexBinary_returns__value,
         {
             NULL,
             NULL,
@@ -54757,7 +54757,7 @@ impl_gt_hexBinary_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_hexBinary_parameter_1__value,
+        &impl_gt_hexBinary_parameter_1__value,
         {
             NULL,
             NULL,
@@ -54793,7 +54793,7 @@ impl_gt_hexBinary_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_hexBinary_parameter_2__value,
+        &impl_gt_hexBinary_parameter_2__value,
         {
             NULL,
             NULL,
@@ -54883,7 +54883,7 @@ impl_object__hexBinary = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__hexBinary__value,
+        &impl_object__hexBinary__value,
         {
             NULL,
             NULL,
@@ -54903,7 +54903,7 @@ impl_hexBinary_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_hexBinary_returns__value,
+        &impl_hexBinary_returns__value,
         {
             NULL,
             NULL,
@@ -54939,7 +54939,7 @@ impl_hexBinary_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_hexBinary_parameter_1__value,
+        &impl_hexBinary_parameter_1__value,
         {
             NULL,
             NULL,
@@ -55036,7 +55036,7 @@ impl_object__intersection_hexBinary = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__intersection_hexBinary__value,
+        &impl_object__intersection_hexBinary__value,
         {
             NULL,
             NULL,
@@ -55056,7 +55056,7 @@ impl_intersection_hexBinary_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_intersection_hexBinary_returns__value,
+        &impl_intersection_hexBinary_returns__value,
         {
             NULL,
             NULL,
@@ -55092,7 +55092,7 @@ impl_intersection_hexBinary_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_intersection_hexBinary_parameter_1__value,
+        &impl_intersection_hexBinary_parameter_1__value,
         {
             NULL,
             NULL,
@@ -55128,7 +55128,7 @@ impl_intersection_hexBinary_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_intersection_hexBinary_parameter_2__value,
+        &impl_intersection_hexBinary_parameter_2__value,
         {
             NULL,
             NULL,
@@ -55218,7 +55218,7 @@ impl_object__is_hexBinary = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__is_hexBinary__value,
+        &impl_object__is_hexBinary__value,
         {
             NULL,
             NULL,
@@ -55238,7 +55238,7 @@ impl_is_hexBinary_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_hexBinary_returns__value,
+        &impl_is_hexBinary_returns__value,
         {
             NULL,
             NULL,
@@ -55274,7 +55274,7 @@ impl_is_hexBinary_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_hexBinary_parameter_1__value,
+        &impl_is_hexBinary_parameter_1__value,
         {
             NULL,
             NULL,
@@ -55363,7 +55363,7 @@ impl_object__is_in_hexBinary = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__is_in_hexBinary__value,
+        &impl_object__is_in_hexBinary__value,
         {
             NULL,
             NULL,
@@ -55383,7 +55383,7 @@ impl_is_in_hexBinary_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_in_hexBinary_returns__value,
+        &impl_is_in_hexBinary_returns__value,
         {
             NULL,
             NULL,
@@ -55419,7 +55419,7 @@ impl_is_in_hexBinary_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_in_hexBinary_parameter_1__value,
+        &impl_is_in_hexBinary_parameter_1__value,
         {
             NULL,
             NULL,
@@ -55455,7 +55455,7 @@ impl_is_in_hexBinary_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_in_hexBinary_parameter_2__value,
+        &impl_is_in_hexBinary_parameter_2__value,
         {
             NULL,
             NULL,
@@ -55545,7 +55545,7 @@ impl_object__le_hexBinary = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__le_hexBinary__value,
+        &impl_object__le_hexBinary__value,
         {
             NULL,
             NULL,
@@ -55565,7 +55565,7 @@ impl_le_hexBinary_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_hexBinary_returns__value,
+        &impl_le_hexBinary_returns__value,
         {
             NULL,
             NULL,
@@ -55601,7 +55601,7 @@ impl_le_hexBinary_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_hexBinary_parameter_1__value,
+        &impl_le_hexBinary_parameter_1__value,
         {
             NULL,
             NULL,
@@ -55637,7 +55637,7 @@ impl_le_hexBinary_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_hexBinary_parameter_2__value,
+        &impl_le_hexBinary_parameter_2__value,
         {
             NULL,
             NULL,
@@ -55727,7 +55727,7 @@ impl_object__lt_hexBinary = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__lt_hexBinary__value,
+        &impl_object__lt_hexBinary__value,
         {
             NULL,
             NULL,
@@ -55747,7 +55747,7 @@ impl_lt_hexBinary_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_hexBinary_returns__value,
+        &impl_lt_hexBinary_returns__value,
         {
             NULL,
             NULL,
@@ -55783,7 +55783,7 @@ impl_lt_hexBinary_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_hexBinary_parameter_1__value,
+        &impl_lt_hexBinary_parameter_1__value,
         {
             NULL,
             NULL,
@@ -55819,7 +55819,7 @@ impl_lt_hexBinary_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_hexBinary_parameter_2__value,
+        &impl_lt_hexBinary_parameter_2__value,
         {
             NULL,
             NULL,
@@ -55909,7 +55909,7 @@ impl_object__ne_hexBinary = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ne_hexBinary__value,
+        &impl_object__ne_hexBinary__value,
         {
             NULL,
             NULL,
@@ -55929,7 +55929,7 @@ impl_ne_hexBinary_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_hexBinary_returns__value,
+        &impl_ne_hexBinary_returns__value,
         {
             NULL,
             NULL,
@@ -55965,7 +55965,7 @@ impl_ne_hexBinary_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_hexBinary_parameter_1__value,
+        &impl_ne_hexBinary_parameter_1__value,
         {
             NULL,
             NULL,
@@ -56001,7 +56001,7 @@ impl_ne_hexBinary_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_hexBinary_parameter_2__value,
+        &impl_ne_hexBinary_parameter_2__value,
         {
             NULL,
             NULL,
@@ -56099,7 +56099,7 @@ impl_object__nex_hexBinary = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__nex_hexBinary__value,
+        &impl_object__nex_hexBinary__value,
         {
             NULL,
             NULL,
@@ -56119,7 +56119,7 @@ impl_nex_hexBinary_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_hexBinary_returns__value,
+        &impl_nex_hexBinary_returns__value,
         {
             NULL,
             NULL,
@@ -56155,7 +56155,7 @@ impl_nex_hexBinary_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_hexBinary_parameter_1__value,
+        &impl_nex_hexBinary_parameter_1__value,
         {
             NULL,
             NULL,
@@ -56191,7 +56191,7 @@ impl_nex_hexBinary_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_hexBinary_parameter_2__value,
+        &impl_nex_hexBinary_parameter_2__value,
         {
             NULL,
             NULL,
@@ -56281,7 +56281,7 @@ impl_object__one_and_only_hexBinary = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__one_and_only_hexBinary__value,
+        &impl_object__one_and_only_hexBinary__value,
         {
             NULL,
             NULL,
@@ -56301,7 +56301,7 @@ impl_one_and_only_hexBinary_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_one_and_only_hexBinary_returns__value,
+        &impl_one_and_only_hexBinary_returns__value,
         {
             NULL,
             NULL,
@@ -56337,7 +56337,7 @@ impl_one_and_only_hexBinary_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_one_and_only_hexBinary_parameter_1__value,
+        &impl_one_and_only_hexBinary_parameter_1__value,
         {
             NULL,
             NULL,
@@ -56434,7 +56434,7 @@ impl_object__set_equals_hexBinary = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__set_equals_hexBinary__value,
+        &impl_object__set_equals_hexBinary__value,
         {
             NULL,
             NULL,
@@ -56454,7 +56454,7 @@ impl_set_equals_hexBinary_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_set_equals_hexBinary_returns__value,
+        &impl_set_equals_hexBinary_returns__value,
         {
             NULL,
             NULL,
@@ -56490,7 +56490,7 @@ impl_set_equals_hexBinary_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_set_equals_hexBinary_parameter_1__value,
+        &impl_set_equals_hexBinary_parameter_1__value,
         {
             NULL,
             NULL,
@@ -56526,7 +56526,7 @@ impl_set_equals_hexBinary_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_set_equals_hexBinary_parameter_2__value,
+        &impl_set_equals_hexBinary_parameter_2__value,
         {
             NULL,
             NULL,
@@ -56616,7 +56616,7 @@ impl_object__subset_hexBinary = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__subset_hexBinary__value,
+        &impl_object__subset_hexBinary__value,
         {
             NULL,
             NULL,
@@ -56636,7 +56636,7 @@ impl_subset_hexBinary_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subset_hexBinary_returns__value,
+        &impl_subset_hexBinary_returns__value,
         {
             NULL,
             NULL,
@@ -56672,7 +56672,7 @@ impl_subset_hexBinary_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subset_hexBinary_parameter_1__value,
+        &impl_subset_hexBinary_parameter_1__value,
         {
             NULL,
             NULL,
@@ -56708,7 +56708,7 @@ impl_subset_hexBinary_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subset_hexBinary_parameter_2__value,
+        &impl_subset_hexBinary_parameter_2__value,
         {
             NULL,
             NULL,
@@ -56798,7 +56798,7 @@ impl_object__to_string_hexBinary = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__to_string_hexBinary__value,
+        &impl_object__to_string_hexBinary__value,
         {
             NULL,
             NULL,
@@ -56818,7 +56818,7 @@ impl_to_string_hexBinary_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_string_hexBinary_returns__value,
+        &impl_to_string_hexBinary_returns__value,
         {
             NULL,
             NULL,
@@ -56854,7 +56854,7 @@ impl_to_string_hexBinary_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_string_hexBinary_parameter_1__value,
+        &impl_to_string_hexBinary_parameter_1__value,
         {
             NULL,
             NULL,
@@ -56943,7 +56943,7 @@ impl_object__union_hexBinary = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__union_hexBinary__value,
+        &impl_object__union_hexBinary__value,
         {
             NULL,
             NULL,
@@ -56963,7 +56963,7 @@ impl_union_hexBinary_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_union_hexBinary_returns__value,
+        &impl_union_hexBinary_returns__value,
         {
             NULL,
             NULL,
@@ -56999,7 +56999,7 @@ impl_union_hexBinary_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_union_hexBinary_parameter_1__value,
+        &impl_union_hexBinary_parameter_1__value,
         {
             NULL,
             NULL,
@@ -57088,7 +57088,7 @@ impl_object__all_of = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__all_of__value,
+        &impl_object__all_of__value,
         {
             NULL,
             NULL,
@@ -57108,7 +57108,7 @@ impl_all_of_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_all_of_returns__value,
+        &impl_all_of_returns__value,
         {
             NULL,
             NULL,
@@ -57144,7 +57144,7 @@ impl_all_of_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_all_of_parameter_1__value,
+        &impl_all_of_parameter_1__value,
         {
             NULL,
             NULL,
@@ -57180,7 +57180,7 @@ impl_all_of_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_all_of_parameter_2__value,
+        &impl_all_of_parameter_2__value,
         {
             NULL,
             NULL,
@@ -57270,7 +57270,7 @@ impl_object__all_of_all = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__all_of_all__value,
+        &impl_object__all_of_all__value,
         {
             NULL,
             NULL,
@@ -57290,7 +57290,7 @@ impl_all_of_all_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_all_of_all_returns__value,
+        &impl_all_of_all_returns__value,
         {
             NULL,
             NULL,
@@ -57326,7 +57326,7 @@ impl_all_of_all_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_all_of_all_parameter_1__value,
+        &impl_all_of_all_parameter_1__value,
         {
             NULL,
             NULL,
@@ -57362,7 +57362,7 @@ impl_all_of_all_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_all_of_all_parameter_2__value,
+        &impl_all_of_all_parameter_2__value,
         {
             NULL,
             NULL,
@@ -57398,7 +57398,7 @@ impl_all_of_all_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_all_of_all_parameter_3__value,
+        &impl_all_of_all_parameter_3__value,
         {
             NULL,
             NULL,
@@ -57489,7 +57489,7 @@ impl_object__all_of_any = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__all_of_any__value,
+        &impl_object__all_of_any__value,
         {
             NULL,
             NULL,
@@ -57509,7 +57509,7 @@ impl_all_of_any_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_all_of_any_returns__value,
+        &impl_all_of_any_returns__value,
         {
             NULL,
             NULL,
@@ -57545,7 +57545,7 @@ impl_all_of_any_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_all_of_any_parameter_1__value,
+        &impl_all_of_any_parameter_1__value,
         {
             NULL,
             NULL,
@@ -57581,7 +57581,7 @@ impl_all_of_any_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_all_of_any_parameter_2__value,
+        &impl_all_of_any_parameter_2__value,
         {
             NULL,
             NULL,
@@ -57617,7 +57617,7 @@ impl_all_of_any_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_all_of_any_parameter_3__value,
+        &impl_all_of_any_parameter_3__value,
         {
             NULL,
             NULL,
@@ -57708,7 +57708,7 @@ impl_object__any_of = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__any_of__value,
+        &impl_object__any_of__value,
         {
             NULL,
             NULL,
@@ -57728,7 +57728,7 @@ impl_any_of_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_any_of_returns__value,
+        &impl_any_of_returns__value,
         {
             NULL,
             NULL,
@@ -57764,7 +57764,7 @@ impl_any_of_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_any_of_parameter_1__value,
+        &impl_any_of_parameter_1__value,
         {
             NULL,
             NULL,
@@ -57800,7 +57800,7 @@ impl_any_of_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_any_of_parameter_2__value,
+        &impl_any_of_parameter_2__value,
         {
             NULL,
             NULL,
@@ -57890,7 +57890,7 @@ impl_object__any_of_all = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__any_of_all__value,
+        &impl_object__any_of_all__value,
         {
             NULL,
             NULL,
@@ -57910,7 +57910,7 @@ impl_any_of_all_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_any_of_all_returns__value,
+        &impl_any_of_all_returns__value,
         {
             NULL,
             NULL,
@@ -57946,7 +57946,7 @@ impl_any_of_all_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_any_of_all_parameter_1__value,
+        &impl_any_of_all_parameter_1__value,
         {
             NULL,
             NULL,
@@ -57982,7 +57982,7 @@ impl_any_of_all_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_any_of_all_parameter_2__value,
+        &impl_any_of_all_parameter_2__value,
         {
             NULL,
             NULL,
@@ -58018,7 +58018,7 @@ impl_any_of_all_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_any_of_all_parameter_3__value,
+        &impl_any_of_all_parameter_3__value,
         {
             NULL,
             NULL,
@@ -58109,7 +58109,7 @@ impl_object__any_of_any = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__any_of_any__value,
+        &impl_object__any_of_any__value,
         {
             NULL,
             NULL,
@@ -58129,7 +58129,7 @@ impl_any_of_any_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_any_of_any_returns__value,
+        &impl_any_of_any_returns__value,
         {
             NULL,
             NULL,
@@ -58165,7 +58165,7 @@ impl_any_of_any_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_any_of_any_parameter_1__value,
+        &impl_any_of_any_parameter_1__value,
         {
             NULL,
             NULL,
@@ -58201,7 +58201,7 @@ impl_any_of_any_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_any_of_any_parameter_2__value,
+        &impl_any_of_any_parameter_2__value,
         {
             NULL,
             NULL,
@@ -58237,7 +58237,7 @@ impl_any_of_any_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_any_of_any_parameter_3__value,
+        &impl_any_of_any_parameter_3__value,
         {
             NULL,
             NULL,
@@ -58328,7 +58328,7 @@ impl_object__filter = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__filter__value,
+        &impl_object__filter__value,
         {
             NULL,
             NULL,
@@ -58348,7 +58348,7 @@ impl_filter_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_filter_returns__value,
+        &impl_filter_returns__value,
         {
             NULL,
             NULL,
@@ -58384,7 +58384,7 @@ impl_filter_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_filter_parameter_1__value,
+        &impl_filter_parameter_1__value,
         {
             NULL,
             NULL,
@@ -58420,7 +58420,7 @@ impl_filter_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_filter_parameter_2__value,
+        &impl_filter_parameter_2__value,
         {
             NULL,
             NULL,
@@ -58510,7 +58510,7 @@ impl_object__find = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__find__value,
+        &impl_object__find__value,
         {
             NULL,
             NULL,
@@ -58530,7 +58530,7 @@ impl_find_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_find_returns__value,
+        &impl_find_returns__value,
         {
             NULL,
             NULL,
@@ -58566,7 +58566,7 @@ impl_find_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_find_parameter_1__value,
+        &impl_find_parameter_1__value,
         {
             NULL,
             NULL,
@@ -58602,7 +58602,7 @@ impl_find_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_find_parameter_2__value,
+        &impl_find_parameter_2__value,
         {
             NULL,
             NULL,
@@ -58692,7 +58692,7 @@ impl_object__map = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__map__value,
+        &impl_object__map__value,
         {
             NULL,
             NULL,
@@ -58712,7 +58712,7 @@ impl_map_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_map_returns__value,
+        &impl_map_returns__value,
         {
             NULL,
             NULL,
@@ -58748,7 +58748,7 @@ impl_map_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_map_parameter_1__value,
+        &impl_map_parameter_1__value,
         {
             NULL,
             NULL,
@@ -58784,7 +58784,7 @@ impl_map_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_map_parameter_2__value,
+        &impl_map_parameter_2__value,
         {
             NULL,
             NULL,
@@ -58874,7 +58874,7 @@ impl_object__reduce = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__reduce__value,
+        &impl_object__reduce__value,
         {
             NULL,
             NULL,
@@ -58894,7 +58894,7 @@ impl_reduce_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_reduce_returns__value,
+        &impl_reduce_returns__value,
         {
             NULL,
             NULL,
@@ -58930,7 +58930,7 @@ impl_reduce_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_reduce_parameter_1__value,
+        &impl_reduce_parameter_1__value,
         {
             NULL,
             NULL,
@@ -58966,7 +58966,7 @@ impl_reduce_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_reduce_parameter_2__value,
+        &impl_reduce_parameter_2__value,
         {
             NULL,
             NULL,
@@ -59002,7 +59002,7 @@ impl_reduce_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_reduce_parameter_3__value,
+        &impl_reduce_parameter_3__value,
         {
             NULL,
             NULL,
@@ -59093,7 +59093,7 @@ impl_object__sort = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__sort__value,
+        &impl_object__sort__value,
         {
             NULL,
             NULL,
@@ -59113,7 +59113,7 @@ impl_sort_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_sort_returns__value,
+        &impl_sort_returns__value,
         {
             NULL,
             NULL,
@@ -59149,7 +59149,7 @@ impl_sort_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_sort_parameter_1__value,
+        &impl_sort_parameter_1__value,
         {
             NULL,
             NULL,
@@ -59185,7 +59185,7 @@ impl_sort_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_sort_parameter_2__value,
+        &impl_sort_parameter_2__value,
         {
             NULL,
             NULL,
@@ -59275,7 +59275,7 @@ impl_object__bag_ia5String = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__bag_ia5String__value,
+        &impl_object__bag_ia5String__value,
         {
             NULL,
             NULL,
@@ -59295,7 +59295,7 @@ impl_bag_ia5String_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_ia5String_returns__value,
+        &impl_bag_ia5String_returns__value,
         {
             NULL,
             NULL,
@@ -59331,7 +59331,7 @@ impl_bag_ia5String_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_ia5String_parameter_1__value,
+        &impl_bag_ia5String_parameter_1__value,
         {
             NULL,
             NULL,
@@ -59420,7 +59420,7 @@ impl_object__bag_size_ia5String = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__bag_size_ia5String__value,
+        &impl_object__bag_size_ia5String__value,
         {
             NULL,
             NULL,
@@ -59440,7 +59440,7 @@ impl_bag_size_ia5String_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_size_ia5String_returns__value,
+        &impl_bag_size_ia5String_returns__value,
         {
             NULL,
             NULL,
@@ -59476,7 +59476,7 @@ impl_bag_size_ia5String_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_size_ia5String_parameter_1__value,
+        &impl_bag_size_ia5String_parameter_1__value,
         {
             NULL,
             NULL,
@@ -59565,7 +59565,7 @@ impl_object__eq_ia5String = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__eq_ia5String__value,
+        &impl_object__eq_ia5String__value,
         {
             NULL,
             NULL,
@@ -59585,7 +59585,7 @@ impl_eq_ia5String_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_ia5String_returns__value,
+        &impl_eq_ia5String_returns__value,
         {
             NULL,
             NULL,
@@ -59621,7 +59621,7 @@ impl_eq_ia5String_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_ia5String_parameter_1__value,
+        &impl_eq_ia5String_parameter_1__value,
         {
             NULL,
             NULL,
@@ -59657,7 +59657,7 @@ impl_eq_ia5String_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_ia5String_parameter_2__value,
+        &impl_eq_ia5String_parameter_2__value,
         {
             NULL,
             NULL,
@@ -59755,7 +59755,7 @@ impl_object__eqx_ia5String = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__eqx_ia5String__value,
+        &impl_object__eqx_ia5String__value,
         {
             NULL,
             NULL,
@@ -59775,7 +59775,7 @@ impl_eqx_ia5String_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_ia5String_returns__value,
+        &impl_eqx_ia5String_returns__value,
         {
             NULL,
             NULL,
@@ -59811,7 +59811,7 @@ impl_eqx_ia5String_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_ia5String_parameter_1__value,
+        &impl_eqx_ia5String_parameter_1__value,
         {
             NULL,
             NULL,
@@ -59847,7 +59847,7 @@ impl_eqx_ia5String_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_ia5String_parameter_2__value,
+        &impl_eqx_ia5String_parameter_2__value,
         {
             NULL,
             NULL,
@@ -59937,7 +59937,7 @@ impl_object__ge_ia5String = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ge_ia5String__value,
+        &impl_object__ge_ia5String__value,
         {
             NULL,
             NULL,
@@ -59957,7 +59957,7 @@ impl_ge_ia5String_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_ia5String_returns__value,
+        &impl_ge_ia5String_returns__value,
         {
             NULL,
             NULL,
@@ -59993,7 +59993,7 @@ impl_ge_ia5String_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_ia5String_parameter_1__value,
+        &impl_ge_ia5String_parameter_1__value,
         {
             NULL,
             NULL,
@@ -60029,7 +60029,7 @@ impl_ge_ia5String_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_ia5String_parameter_2__value,
+        &impl_ge_ia5String_parameter_2__value,
         {
             NULL,
             NULL,
@@ -60119,7 +60119,7 @@ impl_object__gt_ia5String = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__gt_ia5String__value,
+        &impl_object__gt_ia5String__value,
         {
             NULL,
             NULL,
@@ -60139,7 +60139,7 @@ impl_gt_ia5String_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_ia5String_returns__value,
+        &impl_gt_ia5String_returns__value,
         {
             NULL,
             NULL,
@@ -60175,7 +60175,7 @@ impl_gt_ia5String_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_ia5String_parameter_1__value,
+        &impl_gt_ia5String_parameter_1__value,
         {
             NULL,
             NULL,
@@ -60211,7 +60211,7 @@ impl_gt_ia5String_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_ia5String_parameter_2__value,
+        &impl_gt_ia5String_parameter_2__value,
         {
             NULL,
             NULL,
@@ -60301,7 +60301,7 @@ impl_object__ia5String = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ia5String__value,
+        &impl_object__ia5String__value,
         {
             NULL,
             NULL,
@@ -60321,7 +60321,7 @@ impl_ia5String_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ia5String_returns__value,
+        &impl_ia5String_returns__value,
         {
             NULL,
             NULL,
@@ -60357,7 +60357,7 @@ impl_ia5String_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ia5String_parameter_1__value,
+        &impl_ia5String_parameter_1__value,
         {
             NULL,
             NULL,
@@ -60454,7 +60454,7 @@ impl_object__is_ia5String = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__is_ia5String__value,
+        &impl_object__is_ia5String__value,
         {
             NULL,
             NULL,
@@ -60474,7 +60474,7 @@ impl_is_ia5String_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_ia5String_returns__value,
+        &impl_is_ia5String_returns__value,
         {
             NULL,
             NULL,
@@ -60510,7 +60510,7 @@ impl_is_ia5String_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_ia5String_parameter_1__value,
+        &impl_is_ia5String_parameter_1__value,
         {
             NULL,
             NULL,
@@ -60599,7 +60599,7 @@ impl_object__le_ia5String = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__le_ia5String__value,
+        &impl_object__le_ia5String__value,
         {
             NULL,
             NULL,
@@ -60619,7 +60619,7 @@ impl_le_ia5String_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_ia5String_returns__value,
+        &impl_le_ia5String_returns__value,
         {
             NULL,
             NULL,
@@ -60655,7 +60655,7 @@ impl_le_ia5String_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_ia5String_parameter_1__value,
+        &impl_le_ia5String_parameter_1__value,
         {
             NULL,
             NULL,
@@ -60691,7 +60691,7 @@ impl_le_ia5String_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_ia5String_parameter_2__value,
+        &impl_le_ia5String_parameter_2__value,
         {
             NULL,
             NULL,
@@ -60781,7 +60781,7 @@ impl_object__lt_ia5String = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__lt_ia5String__value,
+        &impl_object__lt_ia5String__value,
         {
             NULL,
             NULL,
@@ -60801,7 +60801,7 @@ impl_lt_ia5String_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_ia5String_returns__value,
+        &impl_lt_ia5String_returns__value,
         {
             NULL,
             NULL,
@@ -60837,7 +60837,7 @@ impl_lt_ia5String_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_ia5String_parameter_1__value,
+        &impl_lt_ia5String_parameter_1__value,
         {
             NULL,
             NULL,
@@ -60873,7 +60873,7 @@ impl_lt_ia5String_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_ia5String_parameter_2__value,
+        &impl_lt_ia5String_parameter_2__value,
         {
             NULL,
             NULL,
@@ -60963,7 +60963,7 @@ impl_object__ne_ia5String = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ne_ia5String__value,
+        &impl_object__ne_ia5String__value,
         {
             NULL,
             NULL,
@@ -60983,7 +60983,7 @@ impl_ne_ia5String_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_ia5String_returns__value,
+        &impl_ne_ia5String_returns__value,
         {
             NULL,
             NULL,
@@ -61019,7 +61019,7 @@ impl_ne_ia5String_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_ia5String_parameter_1__value,
+        &impl_ne_ia5String_parameter_1__value,
         {
             NULL,
             NULL,
@@ -61055,7 +61055,7 @@ impl_ne_ia5String_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_ia5String_parameter_2__value,
+        &impl_ne_ia5String_parameter_2__value,
         {
             NULL,
             NULL,
@@ -61153,7 +61153,7 @@ impl_object__nex_ia5String = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__nex_ia5String__value,
+        &impl_object__nex_ia5String__value,
         {
             NULL,
             NULL,
@@ -61173,7 +61173,7 @@ impl_nex_ia5String_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_ia5String_returns__value,
+        &impl_nex_ia5String_returns__value,
         {
             NULL,
             NULL,
@@ -61209,7 +61209,7 @@ impl_nex_ia5String_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_ia5String_parameter_1__value,
+        &impl_nex_ia5String_parameter_1__value,
         {
             NULL,
             NULL,
@@ -61245,7 +61245,7 @@ impl_nex_ia5String_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_ia5String_parameter_2__value,
+        &impl_nex_ia5String_parameter_2__value,
         {
             NULL,
             NULL,
@@ -61335,7 +61335,7 @@ impl_object__to_string_ia5String = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__to_string_ia5String__value,
+        &impl_object__to_string_ia5String__value,
         {
             NULL,
             NULL,
@@ -61355,7 +61355,7 @@ impl_to_string_ia5String_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_string_ia5String_returns__value,
+        &impl_to_string_ia5String_returns__value,
         {
             NULL,
             NULL,
@@ -61391,7 +61391,7 @@ impl_to_string_ia5String_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_string_ia5String_parameter_1__value,
+        &impl_to_string_ia5String_parameter_1__value,
         {
             NULL,
             NULL,
@@ -61480,7 +61480,7 @@ impl_object__index_create = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__index_create__value,
+        &impl_object__index_create__value,
         {
             NULL,
             NULL,
@@ -61500,7 +61500,7 @@ impl_index_create_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_index_create_returns__value,
+        &impl_index_create_returns__value,
         {
             NULL,
             NULL,
@@ -61536,7 +61536,7 @@ impl_index_create_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_index_create_parameter_1__value,
+        &impl_index_create_parameter_1__value,
         {
             NULL,
             NULL,
@@ -61572,7 +61572,7 @@ impl_index_create_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_index_create_parameter_2__value,
+        &impl_index_create_parameter_2__value,
         {
             NULL,
             NULL,
@@ -61608,7 +61608,7 @@ impl_index_create_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_index_create_parameter_3__value,
+        &impl_index_create_parameter_3__value,
         {
             NULL,
             NULL,
@@ -61644,7 +61644,7 @@ impl_index_create_parameter_4 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_index_create_parameter_4__value,
+        &impl_index_create_parameter_4__value,
         {
             NULL,
             NULL,
@@ -61680,7 +61680,7 @@ impl_index_create_parameter_5 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_index_create_parameter_5__value,
+        &impl_index_create_parameter_5__value,
         {
             NULL,
             NULL,
@@ -61716,7 +61716,7 @@ impl_index_create_parameter_6 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_index_create_parameter_6__value,
+        &impl_index_create_parameter_6__value,
         {
             NULL,
             NULL,
@@ -61752,7 +61752,7 @@ impl_index_create_parameter_7 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_index_create_parameter_7__value,
+        &impl_index_create_parameter_7__value,
         {
             NULL,
             NULL,
@@ -61788,7 +61788,7 @@ impl_index_create_parameter_8 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_index_create_parameter_8__value,
+        &impl_index_create_parameter_8__value,
         {
             NULL,
             NULL,
@@ -61890,7 +61890,7 @@ impl_object__index_list = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__index_list__value,
+        &impl_object__index_list__value,
         {
             NULL,
             NULL,
@@ -61910,7 +61910,7 @@ impl_index_list_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_index_list_returns__value,
+        &impl_index_list_returns__value,
         {
             NULL,
             NULL,
@@ -61946,7 +61946,7 @@ impl_index_list_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_index_list_parameter_1__value,
+        &impl_index_list_parameter_1__value,
         {
             NULL,
             NULL,
@@ -61982,7 +61982,7 @@ impl_index_list_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_index_list_parameter_2__value,
+        &impl_index_list_parameter_2__value,
         {
             NULL,
             NULL,
@@ -62072,7 +62072,7 @@ impl_object__index_remove = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__index_remove__value,
+        &impl_object__index_remove__value,
         {
             NULL,
             NULL,
@@ -62092,7 +62092,7 @@ impl_index_remove_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_index_remove_returns__value,
+        &impl_index_remove_returns__value,
         {
             NULL,
             NULL,
@@ -62128,7 +62128,7 @@ impl_index_remove_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_index_remove_parameter_1__value,
+        &impl_index_remove_parameter_1__value,
         {
             NULL,
             NULL,
@@ -62164,7 +62164,7 @@ impl_index_remove_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_index_remove_parameter_2__value,
+        &impl_index_remove_parameter_2__value,
         {
             NULL,
             NULL,
@@ -62260,7 +62260,7 @@ impl_object__abs_integer = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__abs_integer__value,
+        &impl_object__abs_integer__value,
         {
             NULL,
             NULL,
@@ -62280,7 +62280,7 @@ impl_abs_integer_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_abs_integer_returns__value,
+        &impl_abs_integer_returns__value,
         {
             NULL,
             NULL,
@@ -62316,7 +62316,7 @@ impl_abs_integer_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_abs_integer_parameter_1__value,
+        &impl_abs_integer_parameter_1__value,
         {
             NULL,
             NULL,
@@ -62405,7 +62405,7 @@ impl_object__add_integer = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__add_integer__value,
+        &impl_object__add_integer__value,
         {
             NULL,
             NULL,
@@ -62425,7 +62425,7 @@ impl_add_integer_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_add_integer_returns__value,
+        &impl_add_integer_returns__value,
         {
             NULL,
             NULL,
@@ -62461,7 +62461,7 @@ impl_add_integer_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_add_integer_parameter_1__value,
+        &impl_add_integer_parameter_1__value,
         {
             NULL,
             NULL,
@@ -62550,7 +62550,7 @@ impl_object__at_least_one_member_of_integer = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__at_least_one_member_of_integer__value,
+        &impl_object__at_least_one_member_of_integer__value,
         {
             NULL,
             NULL,
@@ -62570,7 +62570,7 @@ impl_at_least_one_member_of_integer_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_at_least_one_member_of_integer_returns__value,
+        &impl_at_least_one_member_of_integer_returns__value,
         {
             NULL,
             NULL,
@@ -62606,7 +62606,7 @@ impl_at_least_one_member_of_integer_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_at_least_one_member_of_integer_parameter_1__value,
+        &impl_at_least_one_member_of_integer_parameter_1__value,
         {
             NULL,
             NULL,
@@ -62642,7 +62642,7 @@ impl_at_least_one_member_of_integer_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_at_least_one_member_of_integer_parameter_2__value,
+        &impl_at_least_one_member_of_integer_parameter_2__value,
         {
             NULL,
             NULL,
@@ -62732,7 +62732,7 @@ impl_object__bag_integer = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__bag_integer__value,
+        &impl_object__bag_integer__value,
         {
             NULL,
             NULL,
@@ -62752,7 +62752,7 @@ impl_bag_integer_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_integer_returns__value,
+        &impl_bag_integer_returns__value,
         {
             NULL,
             NULL,
@@ -62788,7 +62788,7 @@ impl_bag_integer_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_integer_parameter_1__value,
+        &impl_bag_integer_parameter_1__value,
         {
             NULL,
             NULL,
@@ -62877,7 +62877,7 @@ impl_object__bag_size_integer = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__bag_size_integer__value,
+        &impl_object__bag_size_integer__value,
         {
             NULL,
             NULL,
@@ -62897,7 +62897,7 @@ impl_bag_size_integer_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_size_integer_returns__value,
+        &impl_bag_size_integer_returns__value,
         {
             NULL,
             NULL,
@@ -62933,7 +62933,7 @@ impl_bag_size_integer_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_size_integer_parameter_1__value,
+        &impl_bag_size_integer_parameter_1__value,
         {
             NULL,
             NULL,
@@ -63022,7 +63022,7 @@ impl_object__divide_integer = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__divide_integer__value,
+        &impl_object__divide_integer__value,
         {
             NULL,
             NULL,
@@ -63042,7 +63042,7 @@ impl_divide_integer_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_divide_integer_returns__value,
+        &impl_divide_integer_returns__value,
         {
             NULL,
             NULL,
@@ -63078,7 +63078,7 @@ impl_divide_integer_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_divide_integer_parameter_1__value,
+        &impl_divide_integer_parameter_1__value,
         {
             NULL,
             NULL,
@@ -63114,7 +63114,7 @@ impl_divide_integer_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_divide_integer_parameter_2__value,
+        &impl_divide_integer_parameter_2__value,
         {
             NULL,
             NULL,
@@ -63204,7 +63204,7 @@ impl_object__eq_integer = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__eq_integer__value,
+        &impl_object__eq_integer__value,
         {
             NULL,
             NULL,
@@ -63224,7 +63224,7 @@ impl_eq_integer_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_integer_returns__value,
+        &impl_eq_integer_returns__value,
         {
             NULL,
             NULL,
@@ -63260,7 +63260,7 @@ impl_eq_integer_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_integer_parameter_1__value,
+        &impl_eq_integer_parameter_1__value,
         {
             NULL,
             NULL,
@@ -63296,7 +63296,7 @@ impl_eq_integer_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_integer_parameter_2__value,
+        &impl_eq_integer_parameter_2__value,
         {
             NULL,
             NULL,
@@ -63394,7 +63394,7 @@ impl_object__eqx_integer = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__eqx_integer__value,
+        &impl_object__eqx_integer__value,
         {
             NULL,
             NULL,
@@ -63414,7 +63414,7 @@ impl_eqx_integer_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_integer_returns__value,
+        &impl_eqx_integer_returns__value,
         {
             NULL,
             NULL,
@@ -63450,7 +63450,7 @@ impl_eqx_integer_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_integer_parameter_1__value,
+        &impl_eqx_integer_parameter_1__value,
         {
             NULL,
             NULL,
@@ -63486,7 +63486,7 @@ impl_eqx_integer_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_integer_parameter_2__value,
+        &impl_eqx_integer_parameter_2__value,
         {
             NULL,
             NULL,
@@ -63576,7 +63576,7 @@ impl_object__ge_integer = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ge_integer__value,
+        &impl_object__ge_integer__value,
         {
             NULL,
             NULL,
@@ -63596,7 +63596,7 @@ impl_ge_integer_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_integer_returns__value,
+        &impl_ge_integer_returns__value,
         {
             NULL,
             NULL,
@@ -63632,7 +63632,7 @@ impl_ge_integer_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_integer_parameter_1__value,
+        &impl_ge_integer_parameter_1__value,
         {
             NULL,
             NULL,
@@ -63668,7 +63668,7 @@ impl_ge_integer_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_integer_parameter_2__value,
+        &impl_ge_integer_parameter_2__value,
         {
             NULL,
             NULL,
@@ -63758,7 +63758,7 @@ impl_object__gt_integer = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__gt_integer__value,
+        &impl_object__gt_integer__value,
         {
             NULL,
             NULL,
@@ -63778,7 +63778,7 @@ impl_gt_integer_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_integer_returns__value,
+        &impl_gt_integer_returns__value,
         {
             NULL,
             NULL,
@@ -63814,7 +63814,7 @@ impl_gt_integer_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_integer_parameter_1__value,
+        &impl_gt_integer_parameter_1__value,
         {
             NULL,
             NULL,
@@ -63850,7 +63850,7 @@ impl_gt_integer_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_integer_parameter_2__value,
+        &impl_gt_integer_parameter_2__value,
         {
             NULL,
             NULL,
@@ -63940,7 +63940,7 @@ impl_object__integer = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__integer__value,
+        &impl_object__integer__value,
         {
             NULL,
             NULL,
@@ -63960,7 +63960,7 @@ impl_integer_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_integer_returns__value,
+        &impl_integer_returns__value,
         {
             NULL,
             NULL,
@@ -63996,7 +63996,7 @@ impl_integer_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_integer_parameter_1__value,
+        &impl_integer_parameter_1__value,
         {
             NULL,
             NULL,
@@ -64093,7 +64093,7 @@ impl_object__intersection_integer = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__intersection_integer__value,
+        &impl_object__intersection_integer__value,
         {
             NULL,
             NULL,
@@ -64113,7 +64113,7 @@ impl_intersection_integer_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_intersection_integer_returns__value,
+        &impl_intersection_integer_returns__value,
         {
             NULL,
             NULL,
@@ -64149,7 +64149,7 @@ impl_intersection_integer_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_intersection_integer_parameter_1__value,
+        &impl_intersection_integer_parameter_1__value,
         {
             NULL,
             NULL,
@@ -64185,7 +64185,7 @@ impl_intersection_integer_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_intersection_integer_parameter_2__value,
+        &impl_intersection_integer_parameter_2__value,
         {
             NULL,
             NULL,
@@ -64275,7 +64275,7 @@ impl_object__is_in_integer = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__is_in_integer__value,
+        &impl_object__is_in_integer__value,
         {
             NULL,
             NULL,
@@ -64295,7 +64295,7 @@ impl_is_in_integer_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_in_integer_returns__value,
+        &impl_is_in_integer_returns__value,
         {
             NULL,
             NULL,
@@ -64331,7 +64331,7 @@ impl_is_in_integer_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_in_integer_parameter_1__value,
+        &impl_is_in_integer_parameter_1__value,
         {
             NULL,
             NULL,
@@ -64367,7 +64367,7 @@ impl_is_in_integer_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_in_integer_parameter_2__value,
+        &impl_is_in_integer_parameter_2__value,
         {
             NULL,
             NULL,
@@ -64457,7 +64457,7 @@ impl_object__is_integer = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__is_integer__value,
+        &impl_object__is_integer__value,
         {
             NULL,
             NULL,
@@ -64477,7 +64477,7 @@ impl_is_integer_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_integer_returns__value,
+        &impl_is_integer_returns__value,
         {
             NULL,
             NULL,
@@ -64513,7 +64513,7 @@ impl_is_integer_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_integer_parameter_1__value,
+        &impl_is_integer_parameter_1__value,
         {
             NULL,
             NULL,
@@ -64602,7 +64602,7 @@ impl_object__le_integer = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__le_integer__value,
+        &impl_object__le_integer__value,
         {
             NULL,
             NULL,
@@ -64622,7 +64622,7 @@ impl_le_integer_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_integer_returns__value,
+        &impl_le_integer_returns__value,
         {
             NULL,
             NULL,
@@ -64658,7 +64658,7 @@ impl_le_integer_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_integer_parameter_1__value,
+        &impl_le_integer_parameter_1__value,
         {
             NULL,
             NULL,
@@ -64694,7 +64694,7 @@ impl_le_integer_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_integer_parameter_2__value,
+        &impl_le_integer_parameter_2__value,
         {
             NULL,
             NULL,
@@ -64784,7 +64784,7 @@ impl_object__lt_integer = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__lt_integer__value,
+        &impl_object__lt_integer__value,
         {
             NULL,
             NULL,
@@ -64804,7 +64804,7 @@ impl_lt_integer_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_integer_returns__value,
+        &impl_lt_integer_returns__value,
         {
             NULL,
             NULL,
@@ -64840,7 +64840,7 @@ impl_lt_integer_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_integer_parameter_1__value,
+        &impl_lt_integer_parameter_1__value,
         {
             NULL,
             NULL,
@@ -64876,7 +64876,7 @@ impl_lt_integer_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_integer_parameter_2__value,
+        &impl_lt_integer_parameter_2__value,
         {
             NULL,
             NULL,
@@ -64966,7 +64966,7 @@ impl_object__max_integer = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__max_integer__value,
+        &impl_object__max_integer__value,
         {
             NULL,
             NULL,
@@ -64986,7 +64986,7 @@ impl_max_integer_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_max_integer_returns__value,
+        &impl_max_integer_returns__value,
         {
             NULL,
             NULL,
@@ -65022,7 +65022,7 @@ impl_max_integer_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_max_integer_parameter_1__value,
+        &impl_max_integer_parameter_1__value,
         {
             NULL,
             NULL,
@@ -65111,7 +65111,7 @@ impl_object__min_integer = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__min_integer__value,
+        &impl_object__min_integer__value,
         {
             NULL,
             NULL,
@@ -65131,7 +65131,7 @@ impl_min_integer_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_min_integer_returns__value,
+        &impl_min_integer_returns__value,
         {
             NULL,
             NULL,
@@ -65167,7 +65167,7 @@ impl_min_integer_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_min_integer_parameter_1__value,
+        &impl_min_integer_parameter_1__value,
         {
             NULL,
             NULL,
@@ -65256,7 +65256,7 @@ impl_object__mod_integer = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__mod_integer__value,
+        &impl_object__mod_integer__value,
         {
             NULL,
             NULL,
@@ -65276,7 +65276,7 @@ impl_mod_integer_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_mod_integer_returns__value,
+        &impl_mod_integer_returns__value,
         {
             NULL,
             NULL,
@@ -65312,7 +65312,7 @@ impl_mod_integer_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_mod_integer_parameter_1__value,
+        &impl_mod_integer_parameter_1__value,
         {
             NULL,
             NULL,
@@ -65348,7 +65348,7 @@ impl_mod_integer_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_mod_integer_parameter_2__value,
+        &impl_mod_integer_parameter_2__value,
         {
             NULL,
             NULL,
@@ -65438,7 +65438,7 @@ impl_object__multiply_integer = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__multiply_integer__value,
+        &impl_object__multiply_integer__value,
         {
             NULL,
             NULL,
@@ -65458,7 +65458,7 @@ impl_multiply_integer_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_multiply_integer_returns__value,
+        &impl_multiply_integer_returns__value,
         {
             NULL,
             NULL,
@@ -65494,7 +65494,7 @@ impl_multiply_integer_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_multiply_integer_parameter_1__value,
+        &impl_multiply_integer_parameter_1__value,
         {
             NULL,
             NULL,
@@ -65583,7 +65583,7 @@ impl_object__ne_integer = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ne_integer__value,
+        &impl_object__ne_integer__value,
         {
             NULL,
             NULL,
@@ -65603,7 +65603,7 @@ impl_ne_integer_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_integer_returns__value,
+        &impl_ne_integer_returns__value,
         {
             NULL,
             NULL,
@@ -65639,7 +65639,7 @@ impl_ne_integer_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_integer_parameter_1__value,
+        &impl_ne_integer_parameter_1__value,
         {
             NULL,
             NULL,
@@ -65675,7 +65675,7 @@ impl_ne_integer_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_integer_parameter_2__value,
+        &impl_ne_integer_parameter_2__value,
         {
             NULL,
             NULL,
@@ -65773,7 +65773,7 @@ impl_object__negative_integer = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__negative_integer__value,
+        &impl_object__negative_integer__value,
         {
             NULL,
             NULL,
@@ -65793,7 +65793,7 @@ impl_negative_integer_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_negative_integer_returns__value,
+        &impl_negative_integer_returns__value,
         {
             NULL,
             NULL,
@@ -65829,7 +65829,7 @@ impl_negative_integer_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_negative_integer_parameter_1__value,
+        &impl_negative_integer_parameter_1__value,
         {
             NULL,
             NULL,
@@ -65918,7 +65918,7 @@ impl_object__nex_integer = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__nex_integer__value,
+        &impl_object__nex_integer__value,
         {
             NULL,
             NULL,
@@ -65938,7 +65938,7 @@ impl_nex_integer_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_integer_returns__value,
+        &impl_nex_integer_returns__value,
         {
             NULL,
             NULL,
@@ -65974,7 +65974,7 @@ impl_nex_integer_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_integer_parameter_1__value,
+        &impl_nex_integer_parameter_1__value,
         {
             NULL,
             NULL,
@@ -66010,7 +66010,7 @@ impl_nex_integer_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_integer_parameter_2__value,
+        &impl_nex_integer_parameter_2__value,
         {
             NULL,
             NULL,
@@ -66100,7 +66100,7 @@ impl_object__one_and_only_integer = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__one_and_only_integer__value,
+        &impl_object__one_and_only_integer__value,
         {
             NULL,
             NULL,
@@ -66120,7 +66120,7 @@ impl_one_and_only_integer_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_one_and_only_integer_returns__value,
+        &impl_one_and_only_integer_returns__value,
         {
             NULL,
             NULL,
@@ -66156,7 +66156,7 @@ impl_one_and_only_integer_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_one_and_only_integer_parameter_1__value,
+        &impl_one_and_only_integer_parameter_1__value,
         {
             NULL,
             NULL,
@@ -66253,7 +66253,7 @@ impl_object__set_equals_integer = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__set_equals_integer__value,
+        &impl_object__set_equals_integer__value,
         {
             NULL,
             NULL,
@@ -66273,7 +66273,7 @@ impl_set_equals_integer_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_set_equals_integer_returns__value,
+        &impl_set_equals_integer_returns__value,
         {
             NULL,
             NULL,
@@ -66309,7 +66309,7 @@ impl_set_equals_integer_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_set_equals_integer_parameter_1__value,
+        &impl_set_equals_integer_parameter_1__value,
         {
             NULL,
             NULL,
@@ -66345,7 +66345,7 @@ impl_set_equals_integer_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_set_equals_integer_parameter_2__value,
+        &impl_set_equals_integer_parameter_2__value,
         {
             NULL,
             NULL,
@@ -66435,7 +66435,7 @@ impl_object__subset_integer = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__subset_integer__value,
+        &impl_object__subset_integer__value,
         {
             NULL,
             NULL,
@@ -66455,7 +66455,7 @@ impl_subset_integer_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subset_integer_returns__value,
+        &impl_subset_integer_returns__value,
         {
             NULL,
             NULL,
@@ -66491,7 +66491,7 @@ impl_subset_integer_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subset_integer_parameter_1__value,
+        &impl_subset_integer_parameter_1__value,
         {
             NULL,
             NULL,
@@ -66527,7 +66527,7 @@ impl_subset_integer_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subset_integer_parameter_2__value,
+        &impl_subset_integer_parameter_2__value,
         {
             NULL,
             NULL,
@@ -66617,7 +66617,7 @@ impl_object__subtract_integer = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__subtract_integer__value,
+        &impl_object__subtract_integer__value,
         {
             NULL,
             NULL,
@@ -66637,7 +66637,7 @@ impl_subtract_integer_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subtract_integer_returns__value,
+        &impl_subtract_integer_returns__value,
         {
             NULL,
             NULL,
@@ -66673,7 +66673,7 @@ impl_subtract_integer_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subtract_integer_parameter_1__value,
+        &impl_subtract_integer_parameter_1__value,
         {
             NULL,
             NULL,
@@ -66709,7 +66709,7 @@ impl_subtract_integer_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subtract_integer_parameter_2__value,
+        &impl_subtract_integer_parameter_2__value,
         {
             NULL,
             NULL,
@@ -66799,7 +66799,7 @@ impl_object__to_double_integer = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__to_double_integer__value,
+        &impl_object__to_double_integer__value,
         {
             NULL,
             NULL,
@@ -66819,7 +66819,7 @@ impl_to_double_integer_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_double_integer_returns__value,
+        &impl_to_double_integer_returns__value,
         {
             NULL,
             NULL,
@@ -66855,7 +66855,7 @@ impl_to_double_integer_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_double_integer_parameter_1__value,
+        &impl_to_double_integer_parameter_1__value,
         {
             NULL,
             NULL,
@@ -66952,7 +66952,7 @@ impl_object__to_string_integer = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__to_string_integer__value,
+        &impl_object__to_string_integer__value,
         {
             NULL,
             NULL,
@@ -66972,7 +66972,7 @@ impl_to_string_integer_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_string_integer_returns__value,
+        &impl_to_string_integer_returns__value,
         {
             NULL,
             NULL,
@@ -67008,7 +67008,7 @@ impl_to_string_integer_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_string_integer_parameter_1__value,
+        &impl_to_string_integer_parameter_1__value,
         {
             NULL,
             NULL,
@@ -67097,7 +67097,7 @@ impl_object__union_integer = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__union_integer__value,
+        &impl_object__union_integer__value,
         {
             NULL,
             NULL,
@@ -67117,7 +67117,7 @@ impl_union_integer_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_union_integer_returns__value,
+        &impl_union_integer_returns__value,
         {
             NULL,
             NULL,
@@ -67153,7 +67153,7 @@ impl_union_integer_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_union_integer_parameter_1__value,
+        &impl_union_integer_parameter_1__value,
         {
             NULL,
             NULL,
@@ -67242,7 +67242,7 @@ impl_object__bag_ipAddress = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__bag_ipAddress__value,
+        &impl_object__bag_ipAddress__value,
         {
             NULL,
             NULL,
@@ -67262,7 +67262,7 @@ impl_bag_ipAddress_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_ipAddress_returns__value,
+        &impl_bag_ipAddress_returns__value,
         {
             NULL,
             NULL,
@@ -67298,7 +67298,7 @@ impl_bag_ipAddress_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_ipAddress_parameter_1__value,
+        &impl_bag_ipAddress_parameter_1__value,
         {
             NULL,
             NULL,
@@ -67387,7 +67387,7 @@ impl_object__bag_size_ipAddress = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__bag_size_ipAddress__value,
+        &impl_object__bag_size_ipAddress__value,
         {
             NULL,
             NULL,
@@ -67407,7 +67407,7 @@ impl_bag_size_ipAddress_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_size_ipAddress_returns__value,
+        &impl_bag_size_ipAddress_returns__value,
         {
             NULL,
             NULL,
@@ -67443,7 +67443,7 @@ impl_bag_size_ipAddress_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_size_ipAddress_parameter_1__value,
+        &impl_bag_size_ipAddress_parameter_1__value,
         {
             NULL,
             NULL,
@@ -67532,7 +67532,7 @@ impl_object__eq_ipAddress = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__eq_ipAddress__value,
+        &impl_object__eq_ipAddress__value,
         {
             NULL,
             NULL,
@@ -67552,7 +67552,7 @@ impl_eq_ipAddress_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_ipAddress_returns__value,
+        &impl_eq_ipAddress_returns__value,
         {
             NULL,
             NULL,
@@ -67588,7 +67588,7 @@ impl_eq_ipAddress_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_ipAddress_parameter_1__value,
+        &impl_eq_ipAddress_parameter_1__value,
         {
             NULL,
             NULL,
@@ -67624,7 +67624,7 @@ impl_eq_ipAddress_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_ipAddress_parameter_2__value,
+        &impl_eq_ipAddress_parameter_2__value,
         {
             NULL,
             NULL,
@@ -67722,7 +67722,7 @@ impl_object__eqx_ipAddress = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__eqx_ipAddress__value,
+        &impl_object__eqx_ipAddress__value,
         {
             NULL,
             NULL,
@@ -67742,7 +67742,7 @@ impl_eqx_ipAddress_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_ipAddress_returns__value,
+        &impl_eqx_ipAddress_returns__value,
         {
             NULL,
             NULL,
@@ -67778,7 +67778,7 @@ impl_eqx_ipAddress_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_ipAddress_parameter_1__value,
+        &impl_eqx_ipAddress_parameter_1__value,
         {
             NULL,
             NULL,
@@ -67814,7 +67814,7 @@ impl_eqx_ipAddress_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_ipAddress_parameter_2__value,
+        &impl_eqx_ipAddress_parameter_2__value,
         {
             NULL,
             NULL,
@@ -67904,7 +67904,7 @@ impl_object__ge_ipAddress = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ge_ipAddress__value,
+        &impl_object__ge_ipAddress__value,
         {
             NULL,
             NULL,
@@ -67924,7 +67924,7 @@ impl_ge_ipAddress_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_ipAddress_returns__value,
+        &impl_ge_ipAddress_returns__value,
         {
             NULL,
             NULL,
@@ -67960,7 +67960,7 @@ impl_ge_ipAddress_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_ipAddress_parameter_1__value,
+        &impl_ge_ipAddress_parameter_1__value,
         {
             NULL,
             NULL,
@@ -67996,7 +67996,7 @@ impl_ge_ipAddress_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_ipAddress_parameter_2__value,
+        &impl_ge_ipAddress_parameter_2__value,
         {
             NULL,
             NULL,
@@ -68086,7 +68086,7 @@ impl_object__gt_ipAddress = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__gt_ipAddress__value,
+        &impl_object__gt_ipAddress__value,
         {
             NULL,
             NULL,
@@ -68106,7 +68106,7 @@ impl_gt_ipAddress_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_ipAddress_returns__value,
+        &impl_gt_ipAddress_returns__value,
         {
             NULL,
             NULL,
@@ -68142,7 +68142,7 @@ impl_gt_ipAddress_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_ipAddress_parameter_1__value,
+        &impl_gt_ipAddress_parameter_1__value,
         {
             NULL,
             NULL,
@@ -68178,7 +68178,7 @@ impl_gt_ipAddress_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_ipAddress_parameter_2__value,
+        &impl_gt_ipAddress_parameter_2__value,
         {
             NULL,
             NULL,
@@ -68268,7 +68268,7 @@ impl_object__ipAddress = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ipAddress__value,
+        &impl_object__ipAddress__value,
         {
             NULL,
             NULL,
@@ -68288,7 +68288,7 @@ impl_ipAddress_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ipAddress_returns__value,
+        &impl_ipAddress_returns__value,
         {
             NULL,
             NULL,
@@ -68324,7 +68324,7 @@ impl_ipAddress_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ipAddress_parameter_1__value,
+        &impl_ipAddress_parameter_1__value,
         {
             NULL,
             NULL,
@@ -68421,7 +68421,7 @@ impl_object__is_in_ipAddress = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__is_in_ipAddress__value,
+        &impl_object__is_in_ipAddress__value,
         {
             NULL,
             NULL,
@@ -68441,7 +68441,7 @@ impl_is_in_ipAddress_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_in_ipAddress_returns__value,
+        &impl_is_in_ipAddress_returns__value,
         {
             NULL,
             NULL,
@@ -68477,7 +68477,7 @@ impl_is_in_ipAddress_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_in_ipAddress_parameter_1__value,
+        &impl_is_in_ipAddress_parameter_1__value,
         {
             NULL,
             NULL,
@@ -68513,7 +68513,7 @@ impl_is_in_ipAddress_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_in_ipAddress_parameter_2__value,
+        &impl_is_in_ipAddress_parameter_2__value,
         {
             NULL,
             NULL,
@@ -68603,7 +68603,7 @@ impl_object__is_ipAddress = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__is_ipAddress__value,
+        &impl_object__is_ipAddress__value,
         {
             NULL,
             NULL,
@@ -68623,7 +68623,7 @@ impl_is_ipAddress_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_ipAddress_returns__value,
+        &impl_is_ipAddress_returns__value,
         {
             NULL,
             NULL,
@@ -68659,7 +68659,7 @@ impl_is_ipAddress_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_ipAddress_parameter_1__value,
+        &impl_is_ipAddress_parameter_1__value,
         {
             NULL,
             NULL,
@@ -68748,7 +68748,7 @@ impl_object__le_ipAddress = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__le_ipAddress__value,
+        &impl_object__le_ipAddress__value,
         {
             NULL,
             NULL,
@@ -68768,7 +68768,7 @@ impl_le_ipAddress_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_ipAddress_returns__value,
+        &impl_le_ipAddress_returns__value,
         {
             NULL,
             NULL,
@@ -68804,7 +68804,7 @@ impl_le_ipAddress_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_ipAddress_parameter_1__value,
+        &impl_le_ipAddress_parameter_1__value,
         {
             NULL,
             NULL,
@@ -68840,7 +68840,7 @@ impl_le_ipAddress_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_ipAddress_parameter_2__value,
+        &impl_le_ipAddress_parameter_2__value,
         {
             NULL,
             NULL,
@@ -68930,7 +68930,7 @@ impl_object__lt_ipAddress = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__lt_ipAddress__value,
+        &impl_object__lt_ipAddress__value,
         {
             NULL,
             NULL,
@@ -68950,7 +68950,7 @@ impl_lt_ipAddress_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_ipAddress_returns__value,
+        &impl_lt_ipAddress_returns__value,
         {
             NULL,
             NULL,
@@ -68986,7 +68986,7 @@ impl_lt_ipAddress_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_ipAddress_parameter_1__value,
+        &impl_lt_ipAddress_parameter_1__value,
         {
             NULL,
             NULL,
@@ -69022,7 +69022,7 @@ impl_lt_ipAddress_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_ipAddress_parameter_2__value,
+        &impl_lt_ipAddress_parameter_2__value,
         {
             NULL,
             NULL,
@@ -69112,7 +69112,7 @@ impl_object__ne_ipAddress = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ne_ipAddress__value,
+        &impl_object__ne_ipAddress__value,
         {
             NULL,
             NULL,
@@ -69132,7 +69132,7 @@ impl_ne_ipAddress_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_ipAddress_returns__value,
+        &impl_ne_ipAddress_returns__value,
         {
             NULL,
             NULL,
@@ -69168,7 +69168,7 @@ impl_ne_ipAddress_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_ipAddress_parameter_1__value,
+        &impl_ne_ipAddress_parameter_1__value,
         {
             NULL,
             NULL,
@@ -69204,7 +69204,7 @@ impl_ne_ipAddress_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_ipAddress_parameter_2__value,
+        &impl_ne_ipAddress_parameter_2__value,
         {
             NULL,
             NULL,
@@ -69302,7 +69302,7 @@ impl_object__nex_ipAddress = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__nex_ipAddress__value,
+        &impl_object__nex_ipAddress__value,
         {
             NULL,
             NULL,
@@ -69322,7 +69322,7 @@ impl_nex_ipAddress_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_ipAddress_returns__value,
+        &impl_nex_ipAddress_returns__value,
         {
             NULL,
             NULL,
@@ -69358,7 +69358,7 @@ impl_nex_ipAddress_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_ipAddress_parameter_1__value,
+        &impl_nex_ipAddress_parameter_1__value,
         {
             NULL,
             NULL,
@@ -69394,7 +69394,7 @@ impl_nex_ipAddress_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_ipAddress_parameter_2__value,
+        &impl_nex_ipAddress_parameter_2__value,
         {
             NULL,
             NULL,
@@ -69484,7 +69484,7 @@ impl_object__one_and_only_ipAddress = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__one_and_only_ipAddress__value,
+        &impl_object__one_and_only_ipAddress__value,
         {
             NULL,
             NULL,
@@ -69504,7 +69504,7 @@ impl_one_and_only_ipAddress_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_one_and_only_ipAddress_returns__value,
+        &impl_one_and_only_ipAddress_returns__value,
         {
             NULL,
             NULL,
@@ -69540,7 +69540,7 @@ impl_one_and_only_ipAddress_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_one_and_only_ipAddress_parameter_1__value,
+        &impl_one_and_only_ipAddress_parameter_1__value,
         {
             NULL,
             NULL,
@@ -69637,7 +69637,7 @@ impl_object__regexp_match_ipAddress = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__regexp_match_ipAddress__value,
+        &impl_object__regexp_match_ipAddress__value,
         {
             NULL,
             NULL,
@@ -69657,7 +69657,7 @@ impl_regexp_match_ipAddress_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_regexp_match_ipAddress_returns__value,
+        &impl_regexp_match_ipAddress_returns__value,
         {
             NULL,
             NULL,
@@ -69693,7 +69693,7 @@ impl_regexp_match_ipAddress_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_regexp_match_ipAddress_parameter_1__value,
+        &impl_regexp_match_ipAddress_parameter_1__value,
         {
             NULL,
             NULL,
@@ -69729,7 +69729,7 @@ impl_regexp_match_ipAddress_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_regexp_match_ipAddress_parameter_2__value,
+        &impl_regexp_match_ipAddress_parameter_2__value,
         {
             NULL,
             NULL,
@@ -69819,7 +69819,7 @@ impl_object__to_string_ipAddress = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__to_string_ipAddress__value,
+        &impl_object__to_string_ipAddress__value,
         {
             NULL,
             NULL,
@@ -69839,7 +69839,7 @@ impl_to_string_ipAddress_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_string_ipAddress_returns__value,
+        &impl_to_string_ipAddress_returns__value,
         {
             NULL,
             NULL,
@@ -69875,7 +69875,7 @@ impl_to_string_ipAddress_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_string_ipAddress_parameter_1__value,
+        &impl_to_string_ipAddress_parameter_1__value,
         {
             NULL,
             NULL,
@@ -69964,7 +69964,7 @@ impl_object__journal_advance_cursor_for_consumer = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__journal_advance_cursor_for_consumer__value,
+        &impl_object__journal_advance_cursor_for_consumer__value,
         {
             NULL,
             NULL,
@@ -69984,7 +69984,7 @@ impl_journal_advance_cursor_for_consumer_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_journal_advance_cursor_for_consumer_returns__value,
+        &impl_journal_advance_cursor_for_consumer_returns__value,
         {
             NULL,
             NULL,
@@ -70020,7 +70020,7 @@ impl_journal_advance_cursor_for_consumer_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_journal_advance_cursor_for_consumer_parameter_1__value,
+        &impl_journal_advance_cursor_for_consumer_parameter_1__value,
         {
             NULL,
             NULL,
@@ -70056,7 +70056,7 @@ impl_journal_advance_cursor_for_consumer_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_journal_advance_cursor_for_consumer_parameter_2__value,
+        &impl_journal_advance_cursor_for_consumer_parameter_2__value,
         {
             NULL,
             NULL,
@@ -70092,7 +70092,7 @@ impl_journal_advance_cursor_for_consumer_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_journal_advance_cursor_for_consumer_parameter_3__value,
+        &impl_journal_advance_cursor_for_consumer_parameter_3__value,
         {
             NULL,
             NULL,
@@ -70189,7 +70189,7 @@ impl_object__journal_get_by_cursor = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__journal_get_by_cursor__value,
+        &impl_object__journal_get_by_cursor__value,
         {
             NULL,
             NULL,
@@ -70209,7 +70209,7 @@ impl_journal_get_by_cursor_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_journal_get_by_cursor_returns__value,
+        &impl_journal_get_by_cursor_returns__value,
         {
             NULL,
             NULL,
@@ -70245,7 +70245,7 @@ impl_journal_get_by_cursor_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_journal_get_by_cursor_parameter_1__value,
+        &impl_journal_get_by_cursor_parameter_1__value,
         {
             NULL,
             NULL,
@@ -70281,7 +70281,7 @@ impl_journal_get_by_cursor_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_journal_get_by_cursor_parameter_2__value,
+        &impl_journal_get_by_cursor_parameter_2__value,
         {
             NULL,
             NULL,
@@ -70371,7 +70371,7 @@ impl_object__journal_get_first = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__journal_get_first__value,
+        &impl_object__journal_get_first__value,
         {
             NULL,
             NULL,
@@ -70391,7 +70391,7 @@ impl_journal_get_first_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_journal_get_first_returns__value,
+        &impl_journal_get_first_returns__value,
         {
             NULL,
             NULL,
@@ -70427,7 +70427,7 @@ impl_journal_get_first_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_journal_get_first_parameter_1__value,
+        &impl_journal_get_first_parameter_1__value,
         {
             NULL,
             NULL,
@@ -70516,7 +70516,7 @@ impl_object__journal_get_next_after_cursor = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__journal_get_next_after_cursor__value,
+        &impl_object__journal_get_next_after_cursor__value,
         {
             NULL,
             NULL,
@@ -70536,7 +70536,7 @@ impl_journal_get_next_after_cursor_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_journal_get_next_after_cursor_returns__value,
+        &impl_journal_get_next_after_cursor_returns__value,
         {
             NULL,
             NULL,
@@ -70572,7 +70572,7 @@ impl_journal_get_next_after_cursor_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_journal_get_next_after_cursor_parameter_1__value,
+        &impl_journal_get_next_after_cursor_parameter_1__value,
         {
             NULL,
             NULL,
@@ -70608,7 +70608,7 @@ impl_journal_get_next_after_cursor_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_journal_get_next_after_cursor_parameter_2__value,
+        &impl_journal_get_next_after_cursor_parameter_2__value,
         {
             NULL,
             NULL,
@@ -70698,7 +70698,7 @@ impl_object__journal_get_next_for_consumer = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__journal_get_next_for_consumer__value,
+        &impl_object__journal_get_next_for_consumer__value,
         {
             NULL,
             NULL,
@@ -70718,7 +70718,7 @@ impl_journal_get_next_for_consumer_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_journal_get_next_for_consumer_returns__value,
+        &impl_journal_get_next_for_consumer_returns__value,
         {
             NULL,
             NULL,
@@ -70754,7 +70754,7 @@ impl_journal_get_next_for_consumer_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_journal_get_next_for_consumer_parameter_1__value,
+        &impl_journal_get_next_for_consumer_parameter_1__value,
         {
             NULL,
             NULL,
@@ -70790,7 +70790,7 @@ impl_journal_get_next_for_consumer_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_journal_get_next_for_consumer_parameter_2__value,
+        &impl_journal_get_next_for_consumer_parameter_2__value,
         {
             NULL,
             NULL,
@@ -70826,7 +70826,7 @@ impl_journal_get_next_for_consumer_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_journal_get_next_for_consumer_parameter_3__value,
+        &impl_journal_get_next_for_consumer_parameter_3__value,
         {
             NULL,
             NULL,
@@ -70917,7 +70917,7 @@ impl_object__journal_get_next_for_consumer_after_cursor = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__journal_get_next_for_consumer_after_cursor__value,
+        &impl_object__journal_get_next_for_consumer_after_cursor__value,
         {
             NULL,
             NULL,
@@ -70937,7 +70937,7 @@ impl_journal_get_next_for_consumer_after_cursor_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_journal_get_next_for_consumer_after_cursor_returns__value,
+        &impl_journal_get_next_for_consumer_after_cursor_returns__value,
         {
             NULL,
             NULL,
@@ -70973,7 +70973,7 @@ impl_journal_get_next_for_consumer_after_cursor_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_journal_get_next_for_consumer_after_cursor_parameter_1__value,
+        &impl_journal_get_next_for_consumer_after_cursor_parameter_1__value,
         {
             NULL,
             NULL,
@@ -71009,7 +71009,7 @@ impl_journal_get_next_for_consumer_after_cursor_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_journal_get_next_for_consumer_after_cursor_parameter_2__value,
+        &impl_journal_get_next_for_consumer_after_cursor_parameter_2__value,
         {
             NULL,
             NULL,
@@ -71045,7 +71045,7 @@ impl_journal_get_next_for_consumer_after_cursor_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_journal_get_next_for_consumer_after_cursor_parameter_3__value,
+        &impl_journal_get_next_for_consumer_after_cursor_parameter_3__value,
         {
             NULL,
             NULL,
@@ -71081,7 +71081,7 @@ impl_journal_get_next_for_consumer_after_cursor_parameter_4 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_journal_get_next_for_consumer_after_cursor_parameter_4__value,
+        &impl_journal_get_next_for_consumer_after_cursor_parameter_4__value,
         {
             NULL,
             NULL,
@@ -71173,7 +71173,7 @@ impl_object__journal_mark_consumed = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__journal_mark_consumed__value,
+        &impl_object__journal_mark_consumed__value,
         {
             NULL,
             NULL,
@@ -71193,7 +71193,7 @@ impl_journal_mark_consumed_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_journal_mark_consumed_returns__value,
+        &impl_journal_mark_consumed_returns__value,
         {
             NULL,
             NULL,
@@ -71229,7 +71229,7 @@ impl_journal_mark_consumed_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_journal_mark_consumed_parameter_1__value,
+        &impl_journal_mark_consumed_parameter_1__value,
         {
             NULL,
             NULL,
@@ -71265,7 +71265,7 @@ impl_journal_mark_consumed_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_journal_mark_consumed_parameter_2__value,
+        &impl_journal_mark_consumed_parameter_2__value,
         {
             NULL,
             NULL,
@@ -71301,7 +71301,7 @@ impl_journal_mark_consumed_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_journal_mark_consumed_parameter_3__value,
+        &impl_journal_mark_consumed_parameter_3__value,
         {
             NULL,
             NULL,
@@ -71398,7 +71398,7 @@ impl_object__compile_json = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__compile_json__value,
+        &impl_object__compile_json__value,
         {
             NULL,
             NULL,
@@ -71418,7 +71418,7 @@ impl_compile_json_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_compile_json_returns__value,
+        &impl_compile_json_returns__value,
         {
             NULL,
             NULL,
@@ -71454,7 +71454,7 @@ impl_compile_json_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_compile_json_parameter_1__value,
+        &impl_compile_json_parameter_1__value,
         {
             NULL,
             NULL,
@@ -71490,7 +71490,7 @@ impl_compile_json_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_compile_json_parameter_2__value,
+        &impl_compile_json_parameter_2__value,
         {
             NULL,
             NULL,
@@ -71580,7 +71580,7 @@ impl_object__json = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__json__value,
+        &impl_object__json__value,
         {
             NULL,
             NULL,
@@ -71600,7 +71600,7 @@ impl_json_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_json_returns__value,
+        &impl_json_returns__value,
         {
             NULL,
             NULL,
@@ -71636,7 +71636,7 @@ impl_json_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_json_parameter_1__value,
+        &impl_json_parameter_1__value,
         {
             NULL,
             NULL,
@@ -71733,7 +71733,7 @@ impl_object__and = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__and__value,
+        &impl_object__and__value,
         {
             NULL,
             NULL,
@@ -71753,7 +71753,7 @@ impl_and_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_and_returns__value,
+        &impl_and_returns__value,
         {
             NULL,
             NULL,
@@ -71789,7 +71789,7 @@ impl_and_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_and_parameter_1__value,
+        &impl_and_parameter_1__value,
         {
             NULL,
             NULL,
@@ -71878,7 +71878,7 @@ impl_object__n_of = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__n_of__value,
+        &impl_object__n_of__value,
         {
             NULL,
             NULL,
@@ -71898,7 +71898,7 @@ impl_n_of_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_n_of_returns__value,
+        &impl_n_of_returns__value,
         {
             NULL,
             NULL,
@@ -71934,7 +71934,7 @@ impl_n_of_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_n_of_parameter_1__value,
+        &impl_n_of_parameter_1__value,
         {
             NULL,
             NULL,
@@ -71970,7 +71970,7 @@ impl_n_of_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_n_of_parameter_2__value,
+        &impl_n_of_parameter_2__value,
         {
             NULL,
             NULL,
@@ -72068,7 +72068,7 @@ impl_object__not = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__not__value,
+        &impl_object__not__value,
         {
             NULL,
             NULL,
@@ -72088,7 +72088,7 @@ impl_not_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_not_returns__value,
+        &impl_not_returns__value,
         {
             NULL,
             NULL,
@@ -72124,7 +72124,7 @@ impl_not_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_not_parameter_1__value,
+        &impl_not_parameter_1__value,
         {
             NULL,
             NULL,
@@ -72213,7 +72213,7 @@ impl_object__or = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__or__value,
+        &impl_object__or__value,
         {
             NULL,
             NULL,
@@ -72233,7 +72233,7 @@ impl_or_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_or_returns__value,
+        &impl_or_returns__value,
         {
             NULL,
             NULL,
@@ -72269,7 +72269,7 @@ impl_or_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_or_parameter_1__value,
+        &impl_or_parameter_1__value,
         {
             NULL,
             NULL,
@@ -72358,7 +72358,7 @@ impl_object__compare_uri = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__compare_uri__value,
+        &impl_object__compare_uri__value,
         {
             NULL,
             NULL,
@@ -72378,7 +72378,7 @@ impl_compare_uri_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_compare_uri_returns__value,
+        &impl_compare_uri_returns__value,
         {
             NULL,
             NULL,
@@ -72414,7 +72414,7 @@ impl_compare_uri_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_compare_uri_parameter_1__value,
+        &impl_compare_uri_parameter_1__value,
         {
             NULL,
             NULL,
@@ -72450,7 +72450,7 @@ impl_compare_uri_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_compare_uri_parameter_2__value,
+        &impl_compare_uri_parameter_2__value,
         {
             NULL,
             NULL,
@@ -72486,7 +72486,7 @@ impl_compare_uri_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_compare_uri_parameter_3__value,
+        &impl_compare_uri_parameter_3__value,
         {
             NULL,
             NULL,
@@ -72522,7 +72522,7 @@ impl_compare_uri_parameter_4 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_compare_uri_parameter_4__value,
+        &impl_compare_uri_parameter_4__value,
         {
             NULL,
             NULL,
@@ -72614,7 +72614,7 @@ impl_object__debug = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__debug__value,
+        &impl_object__debug__value,
         {
             NULL,
             NULL,
@@ -72634,7 +72634,7 @@ impl_debug_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_debug_returns__value,
+        &impl_debug_returns__value,
         {
             NULL,
             NULL,
@@ -72670,7 +72670,7 @@ impl_debug_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_debug_parameter_1__value,
+        &impl_debug_parameter_1__value,
         {
             NULL,
             NULL,
@@ -72706,7 +72706,7 @@ impl_debug_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_debug_parameter_2__value,
+        &impl_debug_parameter_2__value,
         {
             NULL,
             NULL,
@@ -72802,7 +72802,7 @@ impl_object__execution_start_time_local = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__execution_start_time_local__value,
+        &impl_object__execution_start_time_local__value,
         {
             NULL,
             NULL,
@@ -72822,7 +72822,7 @@ impl_execution_start_time_local_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_execution_start_time_local_returns__value,
+        &impl_execution_start_time_local_returns__value,
         {
             NULL,
             NULL,
@@ -72910,7 +72910,7 @@ impl_object__execution_start_time_utc = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__execution_start_time_utc__value,
+        &impl_object__execution_start_time_utc__value,
         {
             NULL,
             NULL,
@@ -72930,7 +72930,7 @@ impl_execution_start_time_utc_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_execution_start_time_utc_returns__value,
+        &impl_execution_start_time_utc_returns__value,
         {
             NULL,
             NULL,
@@ -73018,7 +73018,7 @@ impl_object__generate_uuid = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__generate_uuid__value,
+        &impl_object__generate_uuid__value,
         {
             NULL,
             NULL,
@@ -73038,7 +73038,7 @@ impl_generate_uuid_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_generate_uuid_returns__value,
+        &impl_generate_uuid_returns__value,
         {
             NULL,
             NULL,
@@ -73126,7 +73126,7 @@ impl_object__is_defined = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__is_defined__value,
+        &impl_object__is_defined__value,
         {
             NULL,
             NULL,
@@ -73146,7 +73146,7 @@ impl_is_defined_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_defined_returns__value,
+        &impl_is_defined_returns__value,
         {
             NULL,
             NULL,
@@ -73182,7 +73182,7 @@ impl_is_defined_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_defined_parameter_1__value,
+        &impl_is_defined_parameter_1__value,
         {
             NULL,
             NULL,
@@ -73271,7 +73271,7 @@ impl_object__is_nullish = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__is_nullish__value,
+        &impl_object__is_nullish__value,
         {
             NULL,
             NULL,
@@ -73291,7 +73291,7 @@ impl_is_nullish_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_nullish_returns__value,
+        &impl_is_nullish_returns__value,
         {
             NULL,
             NULL,
@@ -73327,7 +73327,7 @@ impl_is_nullish_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_nullish_parameter_1__value,
+        &impl_is_nullish_parameter_1__value,
         {
             NULL,
             NULL,
@@ -73416,7 +73416,7 @@ impl_object__log = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__log__value,
+        &impl_object__log__value,
         {
             NULL,
             NULL,
@@ -73436,7 +73436,7 @@ impl_log_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_log_returns__value,
+        &impl_log_returns__value,
         {
             NULL,
             NULL,
@@ -73472,7 +73472,7 @@ impl_log_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_log_parameter_1__value,
+        &impl_log_parameter_1__value,
         {
             NULL,
             NULL,
@@ -73567,7 +73567,7 @@ impl_object__now_local = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__now_local__value,
+        &impl_object__now_local__value,
         {
             NULL,
             NULL,
@@ -73587,7 +73587,7 @@ impl_now_local_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_now_local_returns__value,
+        &impl_now_local_returns__value,
         {
             NULL,
             NULL,
@@ -73675,7 +73675,7 @@ impl_object__now_utc = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__now_utc__value,
+        &impl_object__now_utc__value,
         {
             NULL,
             NULL,
@@ -73695,7 +73695,7 @@ impl_now_utc_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_now_utc_returns__value,
+        &impl_now_utc_returns__value,
         {
             NULL,
             NULL,
@@ -73783,7 +73783,7 @@ impl_object__parse_uri = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__parse_uri__value,
+        &impl_object__parse_uri__value,
         {
             NULL,
             NULL,
@@ -73803,7 +73803,7 @@ impl_parse_uri_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_parse_uri_returns__value,
+        &impl_parse_uri_returns__value,
         {
             NULL,
             NULL,
@@ -73839,7 +73839,7 @@ impl_parse_uri_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_parse_uri_parameter_1__value,
+        &impl_parse_uri_parameter_1__value,
         {
             NULL,
             NULL,
@@ -73875,7 +73875,7 @@ impl_parse_uri_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_parse_uri_parameter_2__value,
+        &impl_parse_uri_parameter_2__value,
         {
             NULL,
             NULL,
@@ -73911,7 +73911,7 @@ impl_parse_uri_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_parse_uri_parameter_3__value,
+        &impl_parse_uri_parameter_3__value,
         {
             NULL,
             NULL,
@@ -74002,7 +74002,7 @@ impl_object__perform = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__perform__value,
+        &impl_object__perform__value,
         {
             NULL,
             NULL,
@@ -74022,7 +74022,7 @@ impl_perform_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_perform_returns__value,
+        &impl_perform_returns__value,
         {
             NULL,
             NULL,
@@ -74058,7 +74058,7 @@ impl_perform_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_perform_parameter_1__value,
+        &impl_perform_parameter_1__value,
         {
             NULL,
             NULL,
@@ -74147,7 +74147,7 @@ impl_object__trace = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__trace__value,
+        &impl_object__trace__value,
         {
             NULL,
             NULL,
@@ -74167,7 +74167,7 @@ impl_trace_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_trace_returns__value,
+        &impl_trace_returns__value,
         {
             NULL,
             NULL,
@@ -74203,7 +74203,7 @@ impl_trace_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_trace_parameter_1__value,
+        &impl_trace_parameter_1__value,
         {
             NULL,
             NULL,
@@ -74239,7 +74239,7 @@ impl_trace_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_trace_parameter_2__value,
+        &impl_trace_parameter_2__value,
         {
             NULL,
             NULL,
@@ -74275,7 +74275,7 @@ impl_trace_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_trace_parameter_3__value,
+        &impl_trace_parameter_3__value,
         {
             NULL,
             NULL,
@@ -74372,7 +74372,7 @@ impl_object__variable_exists = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__variable_exists__value,
+        &impl_object__variable_exists__value,
         {
             NULL,
             NULL,
@@ -74392,7 +74392,7 @@ impl_variable_exists_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_variable_exists_returns__value,
+        &impl_variable_exists_returns__value,
         {
             NULL,
             NULL,
@@ -74428,7 +74428,7 @@ impl_variable_exists_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_variable_exists_parameter_1__value,
+        &impl_variable_exists_parameter_1__value,
         {
             NULL,
             NULL,
@@ -74517,7 +74517,7 @@ impl_object__variable_get = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__variable_get__value,
+        &impl_object__variable_get__value,
         {
             NULL,
             NULL,
@@ -74537,7 +74537,7 @@ impl_variable_get_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_variable_get_returns__value,
+        &impl_variable_get_returns__value,
         {
             NULL,
             NULL,
@@ -74573,7 +74573,7 @@ impl_variable_get_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_variable_get_parameter_1__value,
+        &impl_variable_get_parameter_1__value,
         {
             NULL,
             NULL,
@@ -74609,7 +74609,7 @@ impl_variable_get_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_variable_get_parameter_2__value,
+        &impl_variable_get_parameter_2__value,
         {
             NULL,
             NULL,
@@ -74699,7 +74699,7 @@ impl_object__variable_is_not_null = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__variable_is_not_null__value,
+        &impl_object__variable_is_not_null__value,
         {
             NULL,
             NULL,
@@ -74719,7 +74719,7 @@ impl_variable_is_not_null_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_variable_is_not_null_returns__value,
+        &impl_variable_is_not_null_returns__value,
         {
             NULL,
             NULL,
@@ -74755,7 +74755,7 @@ impl_variable_is_not_null_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_variable_is_not_null_parameter_1__value,
+        &impl_variable_is_not_null_parameter_1__value,
         {
             NULL,
             NULL,
@@ -74844,7 +74844,7 @@ impl_object__model_default_add_object_action = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__model_default_add_object_action__value,
+        &impl_object__model_default_add_object_action__value,
         {
             NULL,
             NULL,
@@ -74864,7 +74864,7 @@ impl_model_default_add_object_action_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_model_default_add_object_action_returns__value,
+        &impl_model_default_add_object_action_returns__value,
         {
             NULL,
             NULL,
@@ -74900,7 +74900,7 @@ impl_model_default_add_object_action_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_model_default_add_object_action_parameter_1__value,
+        &impl_model_default_add_object_action_parameter_1__value,
         {
             NULL,
             NULL,
@@ -74936,7 +74936,7 @@ impl_model_default_add_object_action_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_model_default_add_object_action_parameter_2__value,
+        &impl_model_default_add_object_action_parameter_2__value,
         {
             NULL,
             NULL,
@@ -74972,7 +74972,7 @@ impl_model_default_add_object_action_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_model_default_add_object_action_parameter_3__value,
+        &impl_model_default_add_object_action_parameter_3__value,
         {
             NULL,
             NULL,
@@ -75008,7 +75008,7 @@ impl_model_default_add_object_action_parameter_4 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_model_default_add_object_action_parameter_4__value,
+        &impl_model_default_add_object_action_parameter_4__value,
         {
             NULL,
             NULL,
@@ -75044,7 +75044,7 @@ impl_model_default_add_object_action_parameter_5 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_model_default_add_object_action_parameter_5__value,
+        &impl_model_default_add_object_action_parameter_5__value,
         {
             NULL,
             NULL,
@@ -75080,7 +75080,7 @@ impl_model_default_add_object_action_parameter_6 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_model_default_add_object_action_parameter_6__value,
+        &impl_model_default_add_object_action_parameter_6__value,
         {
             NULL,
             NULL,
@@ -75174,7 +75174,7 @@ impl_object__model_default_delete_object_action = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__model_default_delete_object_action__value,
+        &impl_object__model_default_delete_object_action__value,
         {
             NULL,
             NULL,
@@ -75194,7 +75194,7 @@ impl_model_default_delete_object_action_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_model_default_delete_object_action_returns__value,
+        &impl_model_default_delete_object_action_returns__value,
         {
             NULL,
             NULL,
@@ -75230,7 +75230,7 @@ impl_model_default_delete_object_action_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_model_default_delete_object_action_parameter_1__value,
+        &impl_model_default_delete_object_action_parameter_1__value,
         {
             NULL,
             NULL,
@@ -75266,7 +75266,7 @@ impl_model_default_delete_object_action_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_model_default_delete_object_action_parameter_2__value,
+        &impl_model_default_delete_object_action_parameter_2__value,
         {
             NULL,
             NULL,
@@ -75302,7 +75302,7 @@ impl_model_default_delete_object_action_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_model_default_delete_object_action_parameter_3__value,
+        &impl_model_default_delete_object_action_parameter_3__value,
         {
             NULL,
             NULL,
@@ -75338,7 +75338,7 @@ impl_model_default_delete_object_action_parameter_4 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_model_default_delete_object_action_parameter_4__value,
+        &impl_model_default_delete_object_action_parameter_4__value,
         {
             NULL,
             NULL,
@@ -75374,7 +75374,7 @@ impl_model_default_delete_object_action_parameter_5 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_model_default_delete_object_action_parameter_5__value,
+        &impl_model_default_delete_object_action_parameter_5__value,
         {
             NULL,
             NULL,
@@ -75467,7 +75467,7 @@ impl_object__model_default_modify_object_action = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__model_default_modify_object_action__value,
+        &impl_object__model_default_modify_object_action__value,
         {
             NULL,
             NULL,
@@ -75487,7 +75487,7 @@ impl_model_default_modify_object_action_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_model_default_modify_object_action_returns__value,
+        &impl_model_default_modify_object_action_returns__value,
         {
             NULL,
             NULL,
@@ -75523,7 +75523,7 @@ impl_model_default_modify_object_action_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_model_default_modify_object_action_parameter_1__value,
+        &impl_model_default_modify_object_action_parameter_1__value,
         {
             NULL,
             NULL,
@@ -75559,7 +75559,7 @@ impl_model_default_modify_object_action_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_model_default_modify_object_action_parameter_2__value,
+        &impl_model_default_modify_object_action_parameter_2__value,
         {
             NULL,
             NULL,
@@ -75595,7 +75595,7 @@ impl_model_default_modify_object_action_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_model_default_modify_object_action_parameter_3__value,
+        &impl_model_default_modify_object_action_parameter_3__value,
         {
             NULL,
             NULL,
@@ -75631,7 +75631,7 @@ impl_model_default_modify_object_action_parameter_4 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_model_default_modify_object_action_parameter_4__value,
+        &impl_model_default_modify_object_action_parameter_4__value,
         {
             NULL,
             NULL,
@@ -75667,7 +75667,7 @@ impl_model_default_modify_object_action_parameter_5 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_model_default_modify_object_action_parameter_5__value,
+        &impl_model_default_modify_object_action_parameter_5__value,
         {
             NULL,
             NULL,
@@ -75703,7 +75703,7 @@ impl_model_default_modify_object_action_parameter_6 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_model_default_modify_object_action_parameter_6__value,
+        &impl_model_default_modify_object_action_parameter_6__value,
         {
             NULL,
             NULL,
@@ -75797,7 +75797,7 @@ impl_object__model_default_replace_object_action = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__model_default_replace_object_action__value,
+        &impl_object__model_default_replace_object_action__value,
         {
             NULL,
             NULL,
@@ -75817,7 +75817,7 @@ impl_model_default_replace_object_action_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_model_default_replace_object_action_returns__value,
+        &impl_model_default_replace_object_action_returns__value,
         {
             NULL,
             NULL,
@@ -75853,7 +75853,7 @@ impl_model_default_replace_object_action_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_model_default_replace_object_action_parameter_1__value,
+        &impl_model_default_replace_object_action_parameter_1__value,
         {
             NULL,
             NULL,
@@ -75889,7 +75889,7 @@ impl_model_default_replace_object_action_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_model_default_replace_object_action_parameter_2__value,
+        &impl_model_default_replace_object_action_parameter_2__value,
         {
             NULL,
             NULL,
@@ -75925,7 +75925,7 @@ impl_model_default_replace_object_action_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_model_default_replace_object_action_parameter_3__value,
+        &impl_model_default_replace_object_action_parameter_3__value,
         {
             NULL,
             NULL,
@@ -75961,7 +75961,7 @@ impl_model_default_replace_object_action_parameter_4 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_model_default_replace_object_action_parameter_4__value,
+        &impl_model_default_replace_object_action_parameter_4__value,
         {
             NULL,
             NULL,
@@ -75997,7 +75997,7 @@ impl_model_default_replace_object_action_parameter_5 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_model_default_replace_object_action_parameter_5__value,
+        &impl_model_default_replace_object_action_parameter_5__value,
         {
             NULL,
             NULL,
@@ -76033,7 +76033,7 @@ impl_model_default_replace_object_action_parameter_6 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_model_default_replace_object_action_parameter_6__value,
+        &impl_model_default_replace_object_action_parameter_6__value,
         {
             NULL,
             NULL,
@@ -76127,7 +76127,7 @@ impl_object__model_mapBackObject_signature = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__model_mapBackObject_signature__value,
+        &impl_object__model_mapBackObject_signature__value,
         {
             NULL,
             NULL,
@@ -76147,7 +76147,7 @@ impl_model_mapBackObject_signature_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_model_mapBackObject_signature_returns__value,
+        &impl_model_mapBackObject_signature_returns__value,
         {
             NULL,
             NULL,
@@ -76183,7 +76183,7 @@ impl_model_mapBackObject_signature_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_model_mapBackObject_signature_parameter_1__value,
+        &impl_model_mapBackObject_signature_parameter_1__value,
         {
             NULL,
             NULL,
@@ -76272,7 +76272,7 @@ impl_object__model_mapObject_signature = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__model_mapObject_signature__value,
+        &impl_object__model_mapObject_signature__value,
         {
             NULL,
             NULL,
@@ -76292,7 +76292,7 @@ impl_model_mapObject_signature_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_model_mapObject_signature_returns__value,
+        &impl_model_mapObject_signature_returns__value,
         {
             NULL,
             NULL,
@@ -76328,7 +76328,7 @@ impl_model_mapObject_signature_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_model_mapObject_signature_parameter_1__value,
+        &impl_model_mapObject_signature_parameter_1__value,
         {
             NULL,
             NULL,
@@ -76417,7 +76417,7 @@ impl_object__model_returnObject_signature = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__model_returnObject_signature__value,
+        &impl_object__model_returnObject_signature__value,
         {
             NULL,
             NULL,
@@ -76437,7 +76437,7 @@ impl_model_returnObject_signature_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_model_returnObject_signature_returns__value,
+        &impl_model_returnObject_signature_returns__value,
         {
             NULL,
             NULL,
@@ -76473,7 +76473,7 @@ impl_model_returnObject_signature_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_model_returnObject_signature_parameter_1__value,
+        &impl_model_returnObject_signature_parameter_1__value,
         {
             NULL,
             NULL,
@@ -76509,7 +76509,7 @@ impl_model_returnObject_signature_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_model_returnObject_signature_parameter_2__value,
+        &impl_model_returnObject_signature_parameter_2__value,
         {
             NULL,
             NULL,
@@ -76599,7 +76599,7 @@ impl_object__bag_null = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__bag_null__value,
+        &impl_object__bag_null__value,
         {
             NULL,
             NULL,
@@ -76619,7 +76619,7 @@ impl_bag_null_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_null_returns__value,
+        &impl_bag_null_returns__value,
         {
             NULL,
             NULL,
@@ -76655,7 +76655,7 @@ impl_bag_null_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_null_parameter_1__value,
+        &impl_bag_null_parameter_1__value,
         {
             NULL,
             NULL,
@@ -76744,7 +76744,7 @@ impl_object__bag_size_null = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__bag_size_null__value,
+        &impl_object__bag_size_null__value,
         {
             NULL,
             NULL,
@@ -76764,7 +76764,7 @@ impl_bag_size_null_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_size_null_returns__value,
+        &impl_bag_size_null_returns__value,
         {
             NULL,
             NULL,
@@ -76800,7 +76800,7 @@ impl_bag_size_null_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_size_null_parameter_1__value,
+        &impl_bag_size_null_parameter_1__value,
         {
             NULL,
             NULL,
@@ -76889,7 +76889,7 @@ impl_object__is_null = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__is_null__value,
+        &impl_object__is_null__value,
         {
             NULL,
             NULL,
@@ -76909,7 +76909,7 @@ impl_is_null_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_null_returns__value,
+        &impl_is_null_returns__value,
         {
             NULL,
             NULL,
@@ -76945,7 +76945,7 @@ impl_is_null_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_null_parameter_1__value,
+        &impl_is_null_parameter_1__value,
         {
             NULL,
             NULL,
@@ -77034,7 +77034,7 @@ impl_object__null = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__null__value,
+        &impl_object__null__value,
         {
             NULL,
             NULL,
@@ -77054,7 +77054,7 @@ impl_null_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_null_returns__value,
+        &impl_null_returns__value,
         {
             NULL,
             NULL,
@@ -77090,7 +77090,7 @@ impl_null_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_null_parameter_1__value,
+        &impl_null_parameter_1__value,
         {
             NULL,
             NULL,
@@ -77187,7 +77187,7 @@ impl_object__to_string_null = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__to_string_null__value,
+        &impl_object__to_string_null__value,
         {
             NULL,
             NULL,
@@ -77207,7 +77207,7 @@ impl_to_string_null_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_string_null_returns__value,
+        &impl_to_string_null_returns__value,
         {
             NULL,
             NULL,
@@ -77243,7 +77243,7 @@ impl_to_string_null_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_string_null_parameter_1__value,
+        &impl_to_string_null_parameter_1__value,
         {
             NULL,
             NULL,
@@ -77332,7 +77332,7 @@ impl_object__bag_objectId = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__bag_objectId__value,
+        &impl_object__bag_objectId__value,
         {
             NULL,
             NULL,
@@ -77352,7 +77352,7 @@ impl_bag_objectId_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_objectId_returns__value,
+        &impl_bag_objectId_returns__value,
         {
             NULL,
             NULL,
@@ -77388,7 +77388,7 @@ impl_bag_objectId_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_objectId_parameter_1__value,
+        &impl_bag_objectId_parameter_1__value,
         {
             NULL,
             NULL,
@@ -77477,7 +77477,7 @@ impl_object__bag_size_objectId = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__bag_size_objectId__value,
+        &impl_object__bag_size_objectId__value,
         {
             NULL,
             NULL,
@@ -77497,7 +77497,7 @@ impl_bag_size_objectId_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_size_objectId_returns__value,
+        &impl_bag_size_objectId_returns__value,
         {
             NULL,
             NULL,
@@ -77533,7 +77533,7 @@ impl_bag_size_objectId_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_size_objectId_parameter_1__value,
+        &impl_bag_size_objectId_parameter_1__value,
         {
             NULL,
             NULL,
@@ -77622,7 +77622,7 @@ impl_object__eq_objectId = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__eq_objectId__value,
+        &impl_object__eq_objectId__value,
         {
             NULL,
             NULL,
@@ -77642,7 +77642,7 @@ impl_eq_objectId_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_objectId_returns__value,
+        &impl_eq_objectId_returns__value,
         {
             NULL,
             NULL,
@@ -77678,7 +77678,7 @@ impl_eq_objectId_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_objectId_parameter_1__value,
+        &impl_eq_objectId_parameter_1__value,
         {
             NULL,
             NULL,
@@ -77714,7 +77714,7 @@ impl_eq_objectId_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_objectId_parameter_2__value,
+        &impl_eq_objectId_parameter_2__value,
         {
             NULL,
             NULL,
@@ -77812,7 +77812,7 @@ impl_object__eqx_objectId = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__eqx_objectId__value,
+        &impl_object__eqx_objectId__value,
         {
             NULL,
             NULL,
@@ -77832,7 +77832,7 @@ impl_eqx_objectId_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_objectId_returns__value,
+        &impl_eqx_objectId_returns__value,
         {
             NULL,
             NULL,
@@ -77868,7 +77868,7 @@ impl_eqx_objectId_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_objectId_parameter_1__value,
+        &impl_eqx_objectId_parameter_1__value,
         {
             NULL,
             NULL,
@@ -77904,7 +77904,7 @@ impl_eqx_objectId_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_objectId_parameter_2__value,
+        &impl_eqx_objectId_parameter_2__value,
         {
             NULL,
             NULL,
@@ -77994,7 +77994,7 @@ impl_object__ge_objectId = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ge_objectId__value,
+        &impl_object__ge_objectId__value,
         {
             NULL,
             NULL,
@@ -78014,7 +78014,7 @@ impl_ge_objectId_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_objectId_returns__value,
+        &impl_ge_objectId_returns__value,
         {
             NULL,
             NULL,
@@ -78050,7 +78050,7 @@ impl_ge_objectId_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_objectId_parameter_1__value,
+        &impl_ge_objectId_parameter_1__value,
         {
             NULL,
             NULL,
@@ -78086,7 +78086,7 @@ impl_ge_objectId_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_objectId_parameter_2__value,
+        &impl_ge_objectId_parameter_2__value,
         {
             NULL,
             NULL,
@@ -78176,7 +78176,7 @@ impl_object__gt_objectId = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__gt_objectId__value,
+        &impl_object__gt_objectId__value,
         {
             NULL,
             NULL,
@@ -78196,7 +78196,7 @@ impl_gt_objectId_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_objectId_returns__value,
+        &impl_gt_objectId_returns__value,
         {
             NULL,
             NULL,
@@ -78232,7 +78232,7 @@ impl_gt_objectId_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_objectId_parameter_1__value,
+        &impl_gt_objectId_parameter_1__value,
         {
             NULL,
             NULL,
@@ -78268,7 +78268,7 @@ impl_gt_objectId_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_objectId_parameter_2__value,
+        &impl_gt_objectId_parameter_2__value,
         {
             NULL,
             NULL,
@@ -78358,7 +78358,7 @@ impl_object__is_objectId = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__is_objectId__value,
+        &impl_object__is_objectId__value,
         {
             NULL,
             NULL,
@@ -78378,7 +78378,7 @@ impl_is_objectId_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_objectId_returns__value,
+        &impl_is_objectId_returns__value,
         {
             NULL,
             NULL,
@@ -78414,7 +78414,7 @@ impl_is_objectId_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_objectId_parameter_1__value,
+        &impl_is_objectId_parameter_1__value,
         {
             NULL,
             NULL,
@@ -78503,7 +78503,7 @@ impl_object__le_objectId = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__le_objectId__value,
+        &impl_object__le_objectId__value,
         {
             NULL,
             NULL,
@@ -78523,7 +78523,7 @@ impl_le_objectId_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_objectId_returns__value,
+        &impl_le_objectId_returns__value,
         {
             NULL,
             NULL,
@@ -78559,7 +78559,7 @@ impl_le_objectId_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_objectId_parameter_1__value,
+        &impl_le_objectId_parameter_1__value,
         {
             NULL,
             NULL,
@@ -78595,7 +78595,7 @@ impl_le_objectId_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_objectId_parameter_2__value,
+        &impl_le_objectId_parameter_2__value,
         {
             NULL,
             NULL,
@@ -78685,7 +78685,7 @@ impl_object__lt_objectId = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__lt_objectId__value,
+        &impl_object__lt_objectId__value,
         {
             NULL,
             NULL,
@@ -78705,7 +78705,7 @@ impl_lt_objectId_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_objectId_returns__value,
+        &impl_lt_objectId_returns__value,
         {
             NULL,
             NULL,
@@ -78741,7 +78741,7 @@ impl_lt_objectId_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_objectId_parameter_1__value,
+        &impl_lt_objectId_parameter_1__value,
         {
             NULL,
             NULL,
@@ -78777,7 +78777,7 @@ impl_lt_objectId_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_objectId_parameter_2__value,
+        &impl_lt_objectId_parameter_2__value,
         {
             NULL,
             NULL,
@@ -78867,7 +78867,7 @@ impl_object__ne_objectId = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ne_objectId__value,
+        &impl_object__ne_objectId__value,
         {
             NULL,
             NULL,
@@ -78887,7 +78887,7 @@ impl_ne_objectId_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_objectId_returns__value,
+        &impl_ne_objectId_returns__value,
         {
             NULL,
             NULL,
@@ -78923,7 +78923,7 @@ impl_ne_objectId_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_objectId_parameter_1__value,
+        &impl_ne_objectId_parameter_1__value,
         {
             NULL,
             NULL,
@@ -78959,7 +78959,7 @@ impl_ne_objectId_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_objectId_parameter_2__value,
+        &impl_ne_objectId_parameter_2__value,
         {
             NULL,
             NULL,
@@ -79057,7 +79057,7 @@ impl_object__nex_objectId = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__nex_objectId__value,
+        &impl_object__nex_objectId__value,
         {
             NULL,
             NULL,
@@ -79077,7 +79077,7 @@ impl_nex_objectId_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_objectId_returns__value,
+        &impl_nex_objectId_returns__value,
         {
             NULL,
             NULL,
@@ -79113,7 +79113,7 @@ impl_nex_objectId_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_objectId_parameter_1__value,
+        &impl_nex_objectId_parameter_1__value,
         {
             NULL,
             NULL,
@@ -79149,7 +79149,7 @@ impl_nex_objectId_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_objectId_parameter_2__value,
+        &impl_nex_objectId_parameter_2__value,
         {
             NULL,
             NULL,
@@ -79239,7 +79239,7 @@ impl_object__objectId = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__objectId__value,
+        &impl_object__objectId__value,
         {
             NULL,
             NULL,
@@ -79259,7 +79259,7 @@ impl_objectId_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_objectId_returns__value,
+        &impl_objectId_returns__value,
         {
             NULL,
             NULL,
@@ -79295,7 +79295,7 @@ impl_objectId_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_objectId_parameter_1__value,
+        &impl_objectId_parameter_1__value,
         {
             NULL,
             NULL,
@@ -79392,7 +79392,7 @@ impl_object__to_string_objectId = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__to_string_objectId__value,
+        &impl_object__to_string_objectId__value,
         {
             NULL,
             NULL,
@@ -79412,7 +79412,7 @@ impl_to_string_objectId_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_string_objectId_returns__value,
+        &impl_to_string_objectId_returns__value,
         {
             NULL,
             NULL,
@@ -79448,7 +79448,7 @@ impl_to_string_objectId_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_string_objectId_parameter_1__value,
+        &impl_to_string_objectId_parameter_1__value,
         {
             NULL,
             NULL,
@@ -79537,7 +79537,7 @@ impl_object__bag_objectPath = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__bag_objectPath__value,
+        &impl_object__bag_objectPath__value,
         {
             NULL,
             NULL,
@@ -79557,7 +79557,7 @@ impl_bag_objectPath_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_objectPath_returns__value,
+        &impl_bag_objectPath_returns__value,
         {
             NULL,
             NULL,
@@ -79593,7 +79593,7 @@ impl_bag_objectPath_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_objectPath_parameter_1__value,
+        &impl_bag_objectPath_parameter_1__value,
         {
             NULL,
             NULL,
@@ -79682,7 +79682,7 @@ impl_object__bag_size_objectPath = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__bag_size_objectPath__value,
+        &impl_object__bag_size_objectPath__value,
         {
             NULL,
             NULL,
@@ -79702,7 +79702,7 @@ impl_bag_size_objectPath_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_size_objectPath_returns__value,
+        &impl_bag_size_objectPath_returns__value,
         {
             NULL,
             NULL,
@@ -79738,7 +79738,7 @@ impl_bag_size_objectPath_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_size_objectPath_parameter_1__value,
+        &impl_bag_size_objectPath_parameter_1__value,
         {
             NULL,
             NULL,
@@ -79827,7 +79827,7 @@ impl_object__eq_objectPath = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__eq_objectPath__value,
+        &impl_object__eq_objectPath__value,
         {
             NULL,
             NULL,
@@ -79847,7 +79847,7 @@ impl_eq_objectPath_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_objectPath_returns__value,
+        &impl_eq_objectPath_returns__value,
         {
             NULL,
             NULL,
@@ -79883,7 +79883,7 @@ impl_eq_objectPath_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_objectPath_parameter_1__value,
+        &impl_eq_objectPath_parameter_1__value,
         {
             NULL,
             NULL,
@@ -79919,7 +79919,7 @@ impl_eq_objectPath_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_objectPath_parameter_2__value,
+        &impl_eq_objectPath_parameter_2__value,
         {
             NULL,
             NULL,
@@ -80017,7 +80017,7 @@ impl_object__eqx_objectPath = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__eqx_objectPath__value,
+        &impl_object__eqx_objectPath__value,
         {
             NULL,
             NULL,
@@ -80037,7 +80037,7 @@ impl_eqx_objectPath_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_objectPath_returns__value,
+        &impl_eqx_objectPath_returns__value,
         {
             NULL,
             NULL,
@@ -80073,7 +80073,7 @@ impl_eqx_objectPath_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_objectPath_parameter_1__value,
+        &impl_eqx_objectPath_parameter_1__value,
         {
             NULL,
             NULL,
@@ -80109,7 +80109,7 @@ impl_eqx_objectPath_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_objectPath_parameter_2__value,
+        &impl_eqx_objectPath_parameter_2__value,
         {
             NULL,
             NULL,
@@ -80199,7 +80199,7 @@ impl_object__ge_objectPath = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ge_objectPath__value,
+        &impl_object__ge_objectPath__value,
         {
             NULL,
             NULL,
@@ -80219,7 +80219,7 @@ impl_ge_objectPath_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_objectPath_returns__value,
+        &impl_ge_objectPath_returns__value,
         {
             NULL,
             NULL,
@@ -80255,7 +80255,7 @@ impl_ge_objectPath_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_objectPath_parameter_1__value,
+        &impl_ge_objectPath_parameter_1__value,
         {
             NULL,
             NULL,
@@ -80291,7 +80291,7 @@ impl_ge_objectPath_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_objectPath_parameter_2__value,
+        &impl_ge_objectPath_parameter_2__value,
         {
             NULL,
             NULL,
@@ -80381,7 +80381,7 @@ impl_object__gt_objectPath = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__gt_objectPath__value,
+        &impl_object__gt_objectPath__value,
         {
             NULL,
             NULL,
@@ -80401,7 +80401,7 @@ impl_gt_objectPath_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_objectPath_returns__value,
+        &impl_gt_objectPath_returns__value,
         {
             NULL,
             NULL,
@@ -80437,7 +80437,7 @@ impl_gt_objectPath_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_objectPath_parameter_1__value,
+        &impl_gt_objectPath_parameter_1__value,
         {
             NULL,
             NULL,
@@ -80473,7 +80473,7 @@ impl_gt_objectPath_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_objectPath_parameter_2__value,
+        &impl_gt_objectPath_parameter_2__value,
         {
             NULL,
             NULL,
@@ -80563,7 +80563,7 @@ impl_object__is_objectPath = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__is_objectPath__value,
+        &impl_object__is_objectPath__value,
         {
             NULL,
             NULL,
@@ -80583,7 +80583,7 @@ impl_is_objectPath_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_objectPath_returns__value,
+        &impl_is_objectPath_returns__value,
         {
             NULL,
             NULL,
@@ -80619,7 +80619,7 @@ impl_is_objectPath_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_objectPath_parameter_1__value,
+        &impl_is_objectPath_parameter_1__value,
         {
             NULL,
             NULL,
@@ -80708,7 +80708,7 @@ impl_object__le_objectPath = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__le_objectPath__value,
+        &impl_object__le_objectPath__value,
         {
             NULL,
             NULL,
@@ -80728,7 +80728,7 @@ impl_le_objectPath_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_objectPath_returns__value,
+        &impl_le_objectPath_returns__value,
         {
             NULL,
             NULL,
@@ -80764,7 +80764,7 @@ impl_le_objectPath_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_objectPath_parameter_1__value,
+        &impl_le_objectPath_parameter_1__value,
         {
             NULL,
             NULL,
@@ -80800,7 +80800,7 @@ impl_le_objectPath_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_objectPath_parameter_2__value,
+        &impl_le_objectPath_parameter_2__value,
         {
             NULL,
             NULL,
@@ -80890,7 +80890,7 @@ impl_object__lt_objectPath = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__lt_objectPath__value,
+        &impl_object__lt_objectPath__value,
         {
             NULL,
             NULL,
@@ -80910,7 +80910,7 @@ impl_lt_objectPath_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_objectPath_returns__value,
+        &impl_lt_objectPath_returns__value,
         {
             NULL,
             NULL,
@@ -80946,7 +80946,7 @@ impl_lt_objectPath_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_objectPath_parameter_1__value,
+        &impl_lt_objectPath_parameter_1__value,
         {
             NULL,
             NULL,
@@ -80982,7 +80982,7 @@ impl_lt_objectPath_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_objectPath_parameter_2__value,
+        &impl_lt_objectPath_parameter_2__value,
         {
             NULL,
             NULL,
@@ -81072,7 +81072,7 @@ impl_object__ne_objectPath = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ne_objectPath__value,
+        &impl_object__ne_objectPath__value,
         {
             NULL,
             NULL,
@@ -81092,7 +81092,7 @@ impl_ne_objectPath_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_objectPath_returns__value,
+        &impl_ne_objectPath_returns__value,
         {
             NULL,
             NULL,
@@ -81128,7 +81128,7 @@ impl_ne_objectPath_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_objectPath_parameter_1__value,
+        &impl_ne_objectPath_parameter_1__value,
         {
             NULL,
             NULL,
@@ -81164,7 +81164,7 @@ impl_ne_objectPath_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_objectPath_parameter_2__value,
+        &impl_ne_objectPath_parameter_2__value,
         {
             NULL,
             NULL,
@@ -81262,7 +81262,7 @@ impl_object__nex_objectPath = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__nex_objectPath__value,
+        &impl_object__nex_objectPath__value,
         {
             NULL,
             NULL,
@@ -81282,7 +81282,7 @@ impl_nex_objectPath_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_objectPath_returns__value,
+        &impl_nex_objectPath_returns__value,
         {
             NULL,
             NULL,
@@ -81318,7 +81318,7 @@ impl_nex_objectPath_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_objectPath_parameter_1__value,
+        &impl_nex_objectPath_parameter_1__value,
         {
             NULL,
             NULL,
@@ -81354,7 +81354,7 @@ impl_nex_objectPath_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_objectPath_parameter_2__value,
+        &impl_nex_objectPath_parameter_2__value,
         {
             NULL,
             NULL,
@@ -81444,7 +81444,7 @@ impl_object__objectPath = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__objectPath__value,
+        &impl_object__objectPath__value,
         {
             NULL,
             NULL,
@@ -81464,7 +81464,7 @@ impl_objectPath_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_objectPath_returns__value,
+        &impl_objectPath_returns__value,
         {
             NULL,
             NULL,
@@ -81500,7 +81500,7 @@ impl_objectPath_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_objectPath_parameter_1__value,
+        &impl_objectPath_parameter_1__value,
         {
             NULL,
             NULL,
@@ -81597,7 +81597,7 @@ impl_object__to_string_objectPath = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__to_string_objectPath__value,
+        &impl_object__to_string_objectPath__value,
         {
             NULL,
             NULL,
@@ -81617,7 +81617,7 @@ impl_to_string_objectPath_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_string_objectPath_returns__value,
+        &impl_to_string_objectPath_returns__value,
         {
             NULL,
             NULL,
@@ -81653,7 +81653,7 @@ impl_to_string_objectPath_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_string_objectPath_parameter_1__value,
+        &impl_to_string_objectPath_parameter_1__value,
         {
             NULL,
             NULL,
@@ -81742,7 +81742,7 @@ impl_object__add_properties = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__add_properties__value,
+        &impl_object__add_properties__value,
         {
             NULL,
             NULL,
@@ -81762,7 +81762,7 @@ impl_add_properties_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_add_properties_returns__value,
+        &impl_add_properties_returns__value,
         {
             NULL,
             NULL,
@@ -81798,7 +81798,7 @@ impl_add_properties_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_add_properties_parameter_1__value,
+        &impl_add_properties_parameter_1__value,
         {
             NULL,
             NULL,
@@ -81834,7 +81834,7 @@ impl_add_properties_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_add_properties_parameter_2__value,
+        &impl_add_properties_parameter_2__value,
         {
             NULL,
             NULL,
@@ -81930,7 +81930,7 @@ impl_object__apply_object_options = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__apply_object_options__value,
+        &impl_object__apply_object_options__value,
         {
             NULL,
             NULL,
@@ -81950,7 +81950,7 @@ impl_apply_object_options_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_apply_object_options_returns__value,
+        &impl_apply_object_options_returns__value,
         {
             NULL,
             NULL,
@@ -81986,7 +81986,7 @@ impl_apply_object_options_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_apply_object_options_parameter_1__value,
+        &impl_apply_object_options_parameter_1__value,
         {
             NULL,
             NULL,
@@ -82022,7 +82022,7 @@ impl_apply_object_options_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_apply_object_options_parameter_2__value,
+        &impl_apply_object_options_parameter_2__value,
         {
             NULL,
             NULL,
@@ -82112,7 +82112,7 @@ impl_object__bag_object = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__bag_object__value,
+        &impl_object__bag_object__value,
         {
             NULL,
             NULL,
@@ -82132,7 +82132,7 @@ impl_bag_object_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_object_returns__value,
+        &impl_bag_object_returns__value,
         {
             NULL,
             NULL,
@@ -82168,7 +82168,7 @@ impl_bag_object_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_object_parameter_1__value,
+        &impl_bag_object_parameter_1__value,
         {
             NULL,
             NULL,
@@ -82257,7 +82257,7 @@ impl_object__bag_size_object = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__bag_size_object__value,
+        &impl_object__bag_size_object__value,
         {
             NULL,
             NULL,
@@ -82277,7 +82277,7 @@ impl_bag_size_object_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_size_object_returns__value,
+        &impl_bag_size_object_returns__value,
         {
             NULL,
             NULL,
@@ -82313,7 +82313,7 @@ impl_bag_size_object_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_size_object_parameter_1__value,
+        &impl_bag_size_object_parameter_1__value,
         {
             NULL,
             NULL,
@@ -82402,7 +82402,7 @@ impl_object__clone_object = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__clone_object__value,
+        &impl_object__clone_object__value,
         {
             NULL,
             NULL,
@@ -82422,7 +82422,7 @@ impl_clone_object_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_clone_object_returns__value,
+        &impl_clone_object_returns__value,
         {
             NULL,
             NULL,
@@ -82458,7 +82458,7 @@ impl_clone_object_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_clone_object_parameter_1__value,
+        &impl_clone_object_parameter_1__value,
         {
             NULL,
             NULL,
@@ -82547,7 +82547,7 @@ impl_object__eq_object = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__eq_object__value,
+        &impl_object__eq_object__value,
         {
             NULL,
             NULL,
@@ -82567,7 +82567,7 @@ impl_eq_object_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_object_returns__value,
+        &impl_eq_object_returns__value,
         {
             NULL,
             NULL,
@@ -82603,7 +82603,7 @@ impl_eq_object_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_object_parameter_1__value,
+        &impl_eq_object_parameter_1__value,
         {
             NULL,
             NULL,
@@ -82639,7 +82639,7 @@ impl_eq_object_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_object_parameter_2__value,
+        &impl_eq_object_parameter_2__value,
         {
             NULL,
             NULL,
@@ -82737,7 +82737,7 @@ impl_object__eqx_object = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__eqx_object__value,
+        &impl_object__eqx_object__value,
         {
             NULL,
             NULL,
@@ -82757,7 +82757,7 @@ impl_eqx_object_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_object_returns__value,
+        &impl_eqx_object_returns__value,
         {
             NULL,
             NULL,
@@ -82793,7 +82793,7 @@ impl_eqx_object_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_object_parameter_1__value,
+        &impl_eqx_object_parameter_1__value,
         {
             NULL,
             NULL,
@@ -82829,7 +82829,7 @@ impl_eqx_object_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_object_parameter_2__value,
+        &impl_eqx_object_parameter_2__value,
         {
             NULL,
             NULL,
@@ -82919,7 +82919,7 @@ impl_object__ge_object = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ge_object__value,
+        &impl_object__ge_object__value,
         {
             NULL,
             NULL,
@@ -82939,7 +82939,7 @@ impl_ge_object_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_object_returns__value,
+        &impl_ge_object_returns__value,
         {
             NULL,
             NULL,
@@ -82975,7 +82975,7 @@ impl_ge_object_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_object_parameter_1__value,
+        &impl_ge_object_parameter_1__value,
         {
             NULL,
             NULL,
@@ -83011,7 +83011,7 @@ impl_ge_object_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_object_parameter_2__value,
+        &impl_ge_object_parameter_2__value,
         {
             NULL,
             NULL,
@@ -83101,7 +83101,7 @@ impl_object__gt_object = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__gt_object__value,
+        &impl_object__gt_object__value,
         {
             NULL,
             NULL,
@@ -83121,7 +83121,7 @@ impl_gt_object_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_object_returns__value,
+        &impl_gt_object_returns__value,
         {
             NULL,
             NULL,
@@ -83157,7 +83157,7 @@ impl_gt_object_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_object_parameter_1__value,
+        &impl_gt_object_parameter_1__value,
         {
             NULL,
             NULL,
@@ -83193,7 +83193,7 @@ impl_gt_object_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_object_parameter_2__value,
+        &impl_gt_object_parameter_2__value,
         {
             NULL,
             NULL,
@@ -83283,7 +83283,7 @@ impl_object__is_object = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__is_object__value,
+        &impl_object__is_object__value,
         {
             NULL,
             NULL,
@@ -83303,7 +83303,7 @@ impl_is_object_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_object_returns__value,
+        &impl_is_object_returns__value,
         {
             NULL,
             NULL,
@@ -83339,7 +83339,7 @@ impl_is_object_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_object_parameter_1__value,
+        &impl_is_object_parameter_1__value,
         {
             NULL,
             NULL,
@@ -83428,7 +83428,7 @@ impl_object__le_object = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__le_object__value,
+        &impl_object__le_object__value,
         {
             NULL,
             NULL,
@@ -83448,7 +83448,7 @@ impl_le_object_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_object_returns__value,
+        &impl_le_object_returns__value,
         {
             NULL,
             NULL,
@@ -83484,7 +83484,7 @@ impl_le_object_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_object_parameter_1__value,
+        &impl_le_object_parameter_1__value,
         {
             NULL,
             NULL,
@@ -83520,7 +83520,7 @@ impl_le_object_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_object_parameter_2__value,
+        &impl_le_object_parameter_2__value,
         {
             NULL,
             NULL,
@@ -83610,7 +83610,7 @@ impl_object__local_object_meta_set_ids = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__local_object_meta_set_ids__value,
+        &impl_object__local_object_meta_set_ids__value,
         {
             NULL,
             NULL,
@@ -83630,7 +83630,7 @@ impl_local_object_meta_set_ids_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_local_object_meta_set_ids_returns__value,
+        &impl_local_object_meta_set_ids_returns__value,
         {
             NULL,
             NULL,
@@ -83666,7 +83666,7 @@ impl_local_object_meta_set_ids_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_local_object_meta_set_ids_parameter_1__value,
+        &impl_local_object_meta_set_ids_parameter_1__value,
         {
             NULL,
             NULL,
@@ -83702,7 +83702,7 @@ impl_local_object_meta_set_ids_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_local_object_meta_set_ids_parameter_2__value,
+        &impl_local_object_meta_set_ids_parameter_2__value,
         {
             NULL,
             NULL,
@@ -83738,7 +83738,7 @@ impl_local_object_meta_set_ids_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_local_object_meta_set_ids_parameter_3__value,
+        &impl_local_object_meta_set_ids_parameter_3__value,
         {
             NULL,
             NULL,
@@ -83774,7 +83774,7 @@ impl_local_object_meta_set_ids_parameter_4 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_local_object_meta_set_ids_parameter_4__value,
+        &impl_local_object_meta_set_ids_parameter_4__value,
         {
             NULL,
             NULL,
@@ -83872,7 +83872,7 @@ impl_object__lt_object = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__lt_object__value,
+        &impl_object__lt_object__value,
         {
             NULL,
             NULL,
@@ -83892,7 +83892,7 @@ impl_lt_object_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_object_returns__value,
+        &impl_lt_object_returns__value,
         {
             NULL,
             NULL,
@@ -83928,7 +83928,7 @@ impl_lt_object_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_object_parameter_1__value,
+        &impl_lt_object_parameter_1__value,
         {
             NULL,
             NULL,
@@ -83964,7 +83964,7 @@ impl_lt_object_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_object_parameter_2__value,
+        &impl_lt_object_parameter_2__value,
         {
             NULL,
             NULL,
@@ -84054,7 +84054,7 @@ impl_object__ne_object = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ne_object__value,
+        &impl_object__ne_object__value,
         {
             NULL,
             NULL,
@@ -84074,7 +84074,7 @@ impl_ne_object_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_object_returns__value,
+        &impl_ne_object_returns__value,
         {
             NULL,
             NULL,
@@ -84110,7 +84110,7 @@ impl_ne_object_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_object_parameter_1__value,
+        &impl_ne_object_parameter_1__value,
         {
             NULL,
             NULL,
@@ -84146,7 +84146,7 @@ impl_ne_object_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_object_parameter_2__value,
+        &impl_ne_object_parameter_2__value,
         {
             NULL,
             NULL,
@@ -84244,7 +84244,7 @@ impl_object__nex_object = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__nex_object__value,
+        &impl_object__nex_object__value,
         {
             NULL,
             NULL,
@@ -84264,7 +84264,7 @@ impl_nex_object_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_object_returns__value,
+        &impl_nex_object_returns__value,
         {
             NULL,
             NULL,
@@ -84300,7 +84300,7 @@ impl_nex_object_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_object_parameter_1__value,
+        &impl_nex_object_parameter_1__value,
         {
             NULL,
             NULL,
@@ -84336,7 +84336,7 @@ impl_nex_object_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_object_parameter_2__value,
+        &impl_nex_object_parameter_2__value,
         {
             NULL,
             NULL,
@@ -84426,7 +84426,7 @@ impl_object__object = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__object__value,
+        &impl_object__object__value,
         {
             NULL,
             NULL,
@@ -84446,7 +84446,7 @@ impl_object_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_object_returns__value,
+        &impl_object_returns__value,
         {
             NULL,
             NULL,
@@ -84482,7 +84482,7 @@ impl_object_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_object_parameter_1__value,
+        &impl_object_parameter_1__value,
         {
             NULL,
             NULL,
@@ -84579,7 +84579,7 @@ impl_object__property_delete = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__property_delete__value,
+        &impl_object__property_delete__value,
         {
             NULL,
             NULL,
@@ -84599,7 +84599,7 @@ impl_property_delete_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_property_delete_returns__value,
+        &impl_property_delete_returns__value,
         {
             NULL,
             NULL,
@@ -84635,7 +84635,7 @@ impl_property_delete_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_property_delete_parameter_1__value,
+        &impl_property_delete_parameter_1__value,
         {
             NULL,
             NULL,
@@ -84671,7 +84671,7 @@ impl_property_delete_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_property_delete_parameter_2__value,
+        &impl_property_delete_parameter_2__value,
         {
             NULL,
             NULL,
@@ -84761,7 +84761,7 @@ impl_object__property_delete_by_reference = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__property_delete_by_reference__value,
+        &impl_object__property_delete_by_reference__value,
         {
             NULL,
             NULL,
@@ -84781,7 +84781,7 @@ impl_property_delete_by_reference_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_property_delete_by_reference_returns__value,
+        &impl_property_delete_by_reference_returns__value,
         {
             NULL,
             NULL,
@@ -84817,7 +84817,7 @@ impl_property_delete_by_reference_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_property_delete_by_reference_parameter_1__value,
+        &impl_property_delete_by_reference_parameter_1__value,
         {
             NULL,
             NULL,
@@ -84906,7 +84906,7 @@ impl_object__property_exists = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__property_exists__value,
+        &impl_object__property_exists__value,
         {
             NULL,
             NULL,
@@ -84926,7 +84926,7 @@ impl_property_exists_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_property_exists_returns__value,
+        &impl_property_exists_returns__value,
         {
             NULL,
             NULL,
@@ -84962,7 +84962,7 @@ impl_property_exists_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_property_exists_parameter_1__value,
+        &impl_property_exists_parameter_1__value,
         {
             NULL,
             NULL,
@@ -84998,7 +84998,7 @@ impl_property_exists_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_property_exists_parameter_2__value,
+        &impl_property_exists_parameter_2__value,
         {
             NULL,
             NULL,
@@ -85088,7 +85088,7 @@ impl_object__property_get = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__property_get__value,
+        &impl_object__property_get__value,
         {
             NULL,
             NULL,
@@ -85108,7 +85108,7 @@ impl_property_get_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_property_get_returns__value,
+        &impl_property_get_returns__value,
         {
             NULL,
             NULL,
@@ -85144,7 +85144,7 @@ impl_property_get_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_property_get_parameter_1__value,
+        &impl_property_get_parameter_1__value,
         {
             NULL,
             NULL,
@@ -85180,7 +85180,7 @@ impl_property_get_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_property_get_parameter_2__value,
+        &impl_property_get_parameter_2__value,
         {
             NULL,
             NULL,
@@ -85216,7 +85216,7 @@ impl_property_get_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_property_get_parameter_3__value,
+        &impl_property_get_parameter_3__value,
         {
             NULL,
             NULL,
@@ -85307,7 +85307,7 @@ impl_object__property_is_not_null = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__property_is_not_null__value,
+        &impl_object__property_is_not_null__value,
         {
             NULL,
             NULL,
@@ -85327,7 +85327,7 @@ impl_property_is_not_null_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_property_is_not_null_returns__value,
+        &impl_property_is_not_null_returns__value,
         {
             NULL,
             NULL,
@@ -85363,7 +85363,7 @@ impl_property_is_not_null_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_property_is_not_null_parameter_1__value,
+        &impl_property_is_not_null_parameter_1__value,
         {
             NULL,
             NULL,
@@ -85399,7 +85399,7 @@ impl_property_is_not_null_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_property_is_not_null_parameter_2__value,
+        &impl_property_is_not_null_parameter_2__value,
         {
             NULL,
             NULL,
@@ -85489,7 +85489,7 @@ impl_object__to_string_object = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__to_string_object__value,
+        &impl_object__to_string_object__value,
         {
             NULL,
             NULL,
@@ -85509,7 +85509,7 @@ impl_to_string_object_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_string_object_returns__value,
+        &impl_to_string_object_returns__value,
         {
             NULL,
             NULL,
@@ -85545,7 +85545,7 @@ impl_to_string_object_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_string_object_parameter_1__value,
+        &impl_to_string_object_parameter_1__value,
         {
             NULL,
             NULL,
@@ -85634,7 +85634,7 @@ impl_object__bag_password = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__bag_password__value,
+        &impl_object__bag_password__value,
         {
             NULL,
             NULL,
@@ -85654,7 +85654,7 @@ impl_bag_password_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_password_returns__value,
+        &impl_bag_password_returns__value,
         {
             NULL,
             NULL,
@@ -85690,7 +85690,7 @@ impl_bag_password_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_password_parameter_1__value,
+        &impl_bag_password_parameter_1__value,
         {
             NULL,
             NULL,
@@ -85779,7 +85779,7 @@ impl_object__bag_size_password = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__bag_size_password__value,
+        &impl_object__bag_size_password__value,
         {
             NULL,
             NULL,
@@ -85799,7 +85799,7 @@ impl_bag_size_password_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_size_password_returns__value,
+        &impl_bag_size_password_returns__value,
         {
             NULL,
             NULL,
@@ -85835,7 +85835,7 @@ impl_bag_size_password_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_size_password_parameter_1__value,
+        &impl_bag_size_password_parameter_1__value,
         {
             NULL,
             NULL,
@@ -85924,7 +85924,7 @@ impl_object__eq_password = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__eq_password__value,
+        &impl_object__eq_password__value,
         {
             NULL,
             NULL,
@@ -85944,7 +85944,7 @@ impl_eq_password_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_password_returns__value,
+        &impl_eq_password_returns__value,
         {
             NULL,
             NULL,
@@ -85980,7 +85980,7 @@ impl_eq_password_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_password_parameter_1__value,
+        &impl_eq_password_parameter_1__value,
         {
             NULL,
             NULL,
@@ -86016,7 +86016,7 @@ impl_eq_password_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_password_parameter_2__value,
+        &impl_eq_password_parameter_2__value,
         {
             NULL,
             NULL,
@@ -86114,7 +86114,7 @@ impl_object__eqx_password = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__eqx_password__value,
+        &impl_object__eqx_password__value,
         {
             NULL,
             NULL,
@@ -86134,7 +86134,7 @@ impl_eqx_password_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_password_returns__value,
+        &impl_eqx_password_returns__value,
         {
             NULL,
             NULL,
@@ -86170,7 +86170,7 @@ impl_eqx_password_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_password_parameter_1__value,
+        &impl_eqx_password_parameter_1__value,
         {
             NULL,
             NULL,
@@ -86206,7 +86206,7 @@ impl_eqx_password_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_password_parameter_2__value,
+        &impl_eqx_password_parameter_2__value,
         {
             NULL,
             NULL,
@@ -86296,7 +86296,7 @@ impl_object__ge_password = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ge_password__value,
+        &impl_object__ge_password__value,
         {
             NULL,
             NULL,
@@ -86316,7 +86316,7 @@ impl_ge_password_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_password_returns__value,
+        &impl_ge_password_returns__value,
         {
             NULL,
             NULL,
@@ -86352,7 +86352,7 @@ impl_ge_password_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_password_parameter_1__value,
+        &impl_ge_password_parameter_1__value,
         {
             NULL,
             NULL,
@@ -86388,7 +86388,7 @@ impl_ge_password_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_password_parameter_2__value,
+        &impl_ge_password_parameter_2__value,
         {
             NULL,
             NULL,
@@ -86478,7 +86478,7 @@ impl_object__gt_password = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__gt_password__value,
+        &impl_object__gt_password__value,
         {
             NULL,
             NULL,
@@ -86498,7 +86498,7 @@ impl_gt_password_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_password_returns__value,
+        &impl_gt_password_returns__value,
         {
             NULL,
             NULL,
@@ -86534,7 +86534,7 @@ impl_gt_password_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_password_parameter_1__value,
+        &impl_gt_password_parameter_1__value,
         {
             NULL,
             NULL,
@@ -86570,7 +86570,7 @@ impl_gt_password_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_password_parameter_2__value,
+        &impl_gt_password_parameter_2__value,
         {
             NULL,
             NULL,
@@ -86660,7 +86660,7 @@ impl_object__is_password = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__is_password__value,
+        &impl_object__is_password__value,
         {
             NULL,
             NULL,
@@ -86680,7 +86680,7 @@ impl_is_password_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_password_returns__value,
+        &impl_is_password_returns__value,
         {
             NULL,
             NULL,
@@ -86716,7 +86716,7 @@ impl_is_password_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_password_parameter_1__value,
+        &impl_is_password_parameter_1__value,
         {
             NULL,
             NULL,
@@ -86805,7 +86805,7 @@ impl_object__le_password = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__le_password__value,
+        &impl_object__le_password__value,
         {
             NULL,
             NULL,
@@ -86825,7 +86825,7 @@ impl_le_password_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_password_returns__value,
+        &impl_le_password_returns__value,
         {
             NULL,
             NULL,
@@ -86861,7 +86861,7 @@ impl_le_password_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_password_parameter_1__value,
+        &impl_le_password_parameter_1__value,
         {
             NULL,
             NULL,
@@ -86897,7 +86897,7 @@ impl_le_password_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_password_parameter_2__value,
+        &impl_le_password_parameter_2__value,
         {
             NULL,
             NULL,
@@ -86987,7 +86987,7 @@ impl_object__lt_password = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__lt_password__value,
+        &impl_object__lt_password__value,
         {
             NULL,
             NULL,
@@ -87007,7 +87007,7 @@ impl_lt_password_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_password_returns__value,
+        &impl_lt_password_returns__value,
         {
             NULL,
             NULL,
@@ -87043,7 +87043,7 @@ impl_lt_password_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_password_parameter_1__value,
+        &impl_lt_password_parameter_1__value,
         {
             NULL,
             NULL,
@@ -87079,7 +87079,7 @@ impl_lt_password_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_password_parameter_2__value,
+        &impl_lt_password_parameter_2__value,
         {
             NULL,
             NULL,
@@ -87169,7 +87169,7 @@ impl_object__ne_password = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ne_password__value,
+        &impl_object__ne_password__value,
         {
             NULL,
             NULL,
@@ -87189,7 +87189,7 @@ impl_ne_password_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_password_returns__value,
+        &impl_ne_password_returns__value,
         {
             NULL,
             NULL,
@@ -87225,7 +87225,7 @@ impl_ne_password_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_password_parameter_1__value,
+        &impl_ne_password_parameter_1__value,
         {
             NULL,
             NULL,
@@ -87261,7 +87261,7 @@ impl_ne_password_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_password_parameter_2__value,
+        &impl_ne_password_parameter_2__value,
         {
             NULL,
             NULL,
@@ -87359,7 +87359,7 @@ impl_object__nex_password = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__nex_password__value,
+        &impl_object__nex_password__value,
         {
             NULL,
             NULL,
@@ -87379,7 +87379,7 @@ impl_nex_password_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_password_returns__value,
+        &impl_nex_password_returns__value,
         {
             NULL,
             NULL,
@@ -87415,7 +87415,7 @@ impl_nex_password_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_password_parameter_1__value,
+        &impl_nex_password_parameter_1__value,
         {
             NULL,
             NULL,
@@ -87451,7 +87451,7 @@ impl_nex_password_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_password_parameter_2__value,
+        &impl_nex_password_parameter_2__value,
         {
             NULL,
             NULL,
@@ -87541,7 +87541,7 @@ impl_object__password = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__password__value,
+        &impl_object__password__value,
         {
             NULL,
             NULL,
@@ -87561,7 +87561,7 @@ impl_password_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_password_returns__value,
+        &impl_password_returns__value,
         {
             NULL,
             NULL,
@@ -87597,7 +87597,7 @@ impl_password_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_password_parameter_1__value,
+        &impl_password_parameter_1__value,
         {
             NULL,
             NULL,
@@ -87694,7 +87694,7 @@ impl_object__to_string_password = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__to_string_password__value,
+        &impl_object__to_string_password__value,
         {
             NULL,
             NULL,
@@ -87714,7 +87714,7 @@ impl_to_string_password_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_string_password_returns__value,
+        &impl_to_string_password_returns__value,
         {
             NULL,
             NULL,
@@ -87750,7 +87750,7 @@ impl_to_string_password_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_string_password_parameter_1__value,
+        &impl_to_string_password_parameter_1__value,
         {
             NULL,
             NULL,
@@ -87839,7 +87839,7 @@ impl_object__abs = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__abs__value,
+        &impl_object__abs__value,
         {
             NULL,
             NULL,
@@ -87859,7 +87859,7 @@ impl_abs_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_abs_returns__value,
+        &impl_abs_returns__value,
         {
             NULL,
             NULL,
@@ -87895,7 +87895,7 @@ impl_abs_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_abs_parameter_1__value,
+        &impl_abs_parameter_1__value,
         {
             NULL,
             NULL,
@@ -87991,7 +87991,7 @@ impl_object__add = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__add__value,
+        &impl_object__add__value,
         {
             NULL,
             NULL,
@@ -88011,7 +88011,7 @@ impl_add_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_add_returns__value,
+        &impl_add_returns__value,
         {
             NULL,
             NULL,
@@ -88047,7 +88047,7 @@ impl_add_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_add_parameter_1__value,
+        &impl_add_parameter_1__value,
         {
             NULL,
             NULL,
@@ -88144,7 +88144,7 @@ impl_object__add_dayTimeDuration = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__add_dayTimeDuration__value,
+        &impl_object__add_dayTimeDuration__value,
         {
             NULL,
             NULL,
@@ -88164,7 +88164,7 @@ impl_add_dayTimeDuration_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_add_dayTimeDuration_returns__value,
+        &impl_add_dayTimeDuration_returns__value,
         {
             NULL,
             NULL,
@@ -88200,7 +88200,7 @@ impl_add_dayTimeDuration_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_add_dayTimeDuration_parameter_1__value,
+        &impl_add_dayTimeDuration_parameter_1__value,
         {
             NULL,
             NULL,
@@ -88236,7 +88236,7 @@ impl_add_dayTimeDuration_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_add_dayTimeDuration_parameter_2__value,
+        &impl_add_dayTimeDuration_parameter_2__value,
         {
             NULL,
             NULL,
@@ -88332,7 +88332,7 @@ impl_object__add_yearMonthDuration = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__add_yearMonthDuration__value,
+        &impl_object__add_yearMonthDuration__value,
         {
             NULL,
             NULL,
@@ -88352,7 +88352,7 @@ impl_add_yearMonthDuration_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_add_yearMonthDuration_returns__value,
+        &impl_add_yearMonthDuration_returns__value,
         {
             NULL,
             NULL,
@@ -88388,7 +88388,7 @@ impl_add_yearMonthDuration_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_add_yearMonthDuration_parameter_1__value,
+        &impl_add_yearMonthDuration_parameter_1__value,
         {
             NULL,
             NULL,
@@ -88424,7 +88424,7 @@ impl_add_yearMonthDuration_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_add_yearMonthDuration_parameter_2__value,
+        &impl_add_yearMonthDuration_parameter_2__value,
         {
             NULL,
             NULL,
@@ -88521,7 +88521,7 @@ impl_object__at_least_one_member_of = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__at_least_one_member_of__value,
+        &impl_object__at_least_one_member_of__value,
         {
             NULL,
             NULL,
@@ -88541,7 +88541,7 @@ impl_at_least_one_member_of_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_at_least_one_member_of_returns__value,
+        &impl_at_least_one_member_of_returns__value,
         {
             NULL,
             NULL,
@@ -88577,7 +88577,7 @@ impl_at_least_one_member_of_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_at_least_one_member_of_parameter_1__value,
+        &impl_at_least_one_member_of_parameter_1__value,
         {
             NULL,
             NULL,
@@ -88613,7 +88613,7 @@ impl_at_least_one_member_of_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_at_least_one_member_of_parameter_2__value,
+        &impl_at_least_one_member_of_parameter_2__value,
         {
             NULL,
             NULL,
@@ -88722,7 +88722,7 @@ impl_object__bag = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__bag__value,
+        &impl_object__bag__value,
         {
             NULL,
             NULL,
@@ -88742,7 +88742,7 @@ impl_bag_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_returns__value,
+        &impl_bag_returns__value,
         {
             NULL,
             NULL,
@@ -88778,7 +88778,7 @@ impl_bag_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_parameter_1__value,
+        &impl_bag_parameter_1__value,
         {
             NULL,
             NULL,
@@ -88899,7 +88899,7 @@ impl_object__bag_size = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__bag_size__value,
+        &impl_object__bag_size__value,
         {
             NULL,
             NULL,
@@ -88919,7 +88919,7 @@ impl_bag_size_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_size_returns__value,
+        &impl_bag_size_returns__value,
         {
             NULL,
             NULL,
@@ -88955,7 +88955,7 @@ impl_bag_size_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_size_parameter_1__value,
+        &impl_bag_size_parameter_1__value,
         {
             NULL,
             NULL,
@@ -89076,7 +89076,7 @@ impl_object__ceil = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ceil__value,
+        &impl_object__ceil__value,
         {
             NULL,
             NULL,
@@ -89096,7 +89096,7 @@ impl_ceil_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ceil_returns__value,
+        &impl_ceil_returns__value,
         {
             NULL,
             NULL,
@@ -89132,7 +89132,7 @@ impl_ceil_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ceil_parameter_1__value,
+        &impl_ceil_parameter_1__value,
         {
             NULL,
             NULL,
@@ -89227,7 +89227,7 @@ impl_object__clone = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__clone__value,
+        &impl_object__clone__value,
         {
             NULL,
             NULL,
@@ -89247,7 +89247,7 @@ impl_clone_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_clone_returns__value,
+        &impl_clone_returns__value,
         {
             NULL,
             NULL,
@@ -89283,7 +89283,7 @@ impl_clone_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_clone_parameter_1__value,
+        &impl_clone_parameter_1__value,
         {
             NULL,
             NULL,
@@ -89379,7 +89379,7 @@ impl_object__compile = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__compile__value,
+        &impl_object__compile__value,
         {
             NULL,
             NULL,
@@ -89399,7 +89399,7 @@ impl_compile_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_compile_returns__value,
+        &impl_compile_returns__value,
         {
             NULL,
             NULL,
@@ -89435,7 +89435,7 @@ impl_compile_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_compile_parameter_1__value,
+        &impl_compile_parameter_1__value,
         {
             NULL,
             NULL,
@@ -89471,7 +89471,7 @@ impl_compile_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_compile_parameter_2__value,
+        &impl_compile_parameter_2__value,
         {
             NULL,
             NULL,
@@ -89572,7 +89572,7 @@ impl_object__decode_to_string = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__decode_to_string__value,
+        &impl_object__decode_to_string__value,
         {
             NULL,
             NULL,
@@ -89592,7 +89592,7 @@ impl_decode_to_string_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_decode_to_string_returns__value,
+        &impl_decode_to_string_returns__value,
         {
             NULL,
             NULL,
@@ -89628,7 +89628,7 @@ impl_decode_to_string_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_decode_to_string_parameter_1__value,
+        &impl_decode_to_string_parameter_1__value,
         {
             NULL,
             NULL,
@@ -89724,7 +89724,7 @@ impl_object__divide = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__divide__value,
+        &impl_object__divide__value,
         {
             NULL,
             NULL,
@@ -89744,7 +89744,7 @@ impl_divide_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_divide_returns__value,
+        &impl_divide_returns__value,
         {
             NULL,
             NULL,
@@ -89780,7 +89780,7 @@ impl_divide_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_divide_parameter_1__value,
+        &impl_divide_parameter_1__value,
         {
             NULL,
             NULL,
@@ -89816,7 +89816,7 @@ impl_divide_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_divide_parameter_2__value,
+        &impl_divide_parameter_2__value,
         {
             NULL,
             NULL,
@@ -89913,7 +89913,7 @@ impl_object__encode_as_base64Binary = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__encode_as_base64Binary__value,
+        &impl_object__encode_as_base64Binary__value,
         {
             NULL,
             NULL,
@@ -89933,7 +89933,7 @@ impl_encode_as_base64Binary_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_encode_as_base64Binary_returns__value,
+        &impl_encode_as_base64Binary_returns__value,
         {
             NULL,
             NULL,
@@ -89969,7 +89969,7 @@ impl_encode_as_base64Binary_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_encode_as_base64Binary_parameter_1__value,
+        &impl_encode_as_base64Binary_parameter_1__value,
         {
             NULL,
             NULL,
@@ -90064,7 +90064,7 @@ impl_object__encode_as_hexBinary = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__encode_as_hexBinary__value,
+        &impl_object__encode_as_hexBinary__value,
         {
             NULL,
             NULL,
@@ -90084,7 +90084,7 @@ impl_encode_as_hexBinary_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_encode_as_hexBinary_returns__value,
+        &impl_encode_as_hexBinary_returns__value,
         {
             NULL,
             NULL,
@@ -90120,7 +90120,7 @@ impl_encode_as_hexBinary_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_encode_as_hexBinary_parameter_1__value,
+        &impl_encode_as_hexBinary_parameter_1__value,
         {
             NULL,
             NULL,
@@ -90215,7 +90215,7 @@ impl_object__ends_with = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ends_with__value,
+        &impl_object__ends_with__value,
         {
             NULL,
             NULL,
@@ -90235,7 +90235,7 @@ impl_ends_with_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ends_with_returns__value,
+        &impl_ends_with_returns__value,
         {
             NULL,
             NULL,
@@ -90271,7 +90271,7 @@ impl_ends_with_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ends_with_parameter_1__value,
+        &impl_ends_with_parameter_1__value,
         {
             NULL,
             NULL,
@@ -90307,7 +90307,7 @@ impl_ends_with_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ends_with_parameter_2__value,
+        &impl_ends_with_parameter_2__value,
         {
             NULL,
             NULL,
@@ -90404,7 +90404,7 @@ impl_object__eq = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__eq__value,
+        &impl_object__eq__value,
         {
             NULL,
             NULL,
@@ -90424,7 +90424,7 @@ impl_eq_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_returns__value,
+        &impl_eq_returns__value,
         {
             NULL,
             NULL,
@@ -90460,7 +90460,7 @@ impl_eq_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_parameter_1__value,
+        &impl_eq_parameter_1__value,
         {
             NULL,
             NULL,
@@ -90496,7 +90496,7 @@ impl_eq_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_parameter_2__value,
+        &impl_eq_parameter_2__value,
         {
             NULL,
             NULL,
@@ -90626,7 +90626,7 @@ impl_object__eq_ignore_case = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__eq_ignore_case__value,
+        &impl_object__eq_ignore_case__value,
         {
             NULL,
             NULL,
@@ -90646,7 +90646,7 @@ impl_eq_ignore_case_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_ignore_case_returns__value,
+        &impl_eq_ignore_case_returns__value,
         {
             NULL,
             NULL,
@@ -90682,7 +90682,7 @@ impl_eq_ignore_case_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_ignore_case_parameter_1__value,
+        &impl_eq_ignore_case_parameter_1__value,
         {
             NULL,
             NULL,
@@ -90718,7 +90718,7 @@ impl_eq_ignore_case_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_ignore_case_parameter_2__value,
+        &impl_eq_ignore_case_parameter_2__value,
         {
             NULL,
             NULL,
@@ -90814,7 +90814,7 @@ impl_object__eqx = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__eqx__value,
+        &impl_object__eqx__value,
         {
             NULL,
             NULL,
@@ -90834,7 +90834,7 @@ impl_eqx_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_returns__value,
+        &impl_eqx_returns__value,
         {
             NULL,
             NULL,
@@ -90870,7 +90870,7 @@ impl_eqx_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_parameter_1__value,
+        &impl_eqx_parameter_1__value,
         {
             NULL,
             NULL,
@@ -90906,7 +90906,7 @@ impl_eqx_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_parameter_2__value,
+        &impl_eqx_parameter_2__value,
         {
             NULL,
             NULL,
@@ -91028,7 +91028,7 @@ impl_object__evaluate = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__evaluate__value,
+        &impl_object__evaluate__value,
         {
             NULL,
             NULL,
@@ -91048,7 +91048,7 @@ impl_evaluate_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_evaluate_returns__value,
+        &impl_evaluate_returns__value,
         {
             NULL,
             NULL,
@@ -91084,7 +91084,7 @@ impl_evaluate_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_evaluate_parameter_1__value,
+        &impl_evaluate_parameter_1__value,
         {
             NULL,
             NULL,
@@ -91120,7 +91120,7 @@ impl_evaluate_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_evaluate_parameter_2__value,
+        &impl_evaluate_parameter_2__value,
         {
             NULL,
             NULL,
@@ -91218,7 +91218,7 @@ impl_object__floor = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__floor__value,
+        &impl_object__floor__value,
         {
             NULL,
             NULL,
@@ -91238,7 +91238,7 @@ impl_floor_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_floor_returns__value,
+        &impl_floor_returns__value,
         {
             NULL,
             NULL,
@@ -91274,7 +91274,7 @@ impl_floor_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_floor_parameter_1__value,
+        &impl_floor_parameter_1__value,
         {
             NULL,
             NULL,
@@ -91369,7 +91369,7 @@ impl_object__ge = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ge__value,
+        &impl_object__ge__value,
         {
             NULL,
             NULL,
@@ -91389,7 +91389,7 @@ impl_ge_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_returns__value,
+        &impl_ge_returns__value,
         {
             NULL,
             NULL,
@@ -91425,7 +91425,7 @@ impl_ge_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_parameter_1__value,
+        &impl_ge_parameter_1__value,
         {
             NULL,
             NULL,
@@ -91461,7 +91461,7 @@ impl_ge_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_parameter_2__value,
+        &impl_ge_parameter_2__value,
         {
             NULL,
             NULL,
@@ -91583,7 +91583,7 @@ impl_object__gt = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__gt__value,
+        &impl_object__gt__value,
         {
             NULL,
             NULL,
@@ -91603,7 +91603,7 @@ impl_gt_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_returns__value,
+        &impl_gt_returns__value,
         {
             NULL,
             NULL,
@@ -91639,7 +91639,7 @@ impl_gt_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_parameter_1__value,
+        &impl_gt_parameter_1__value,
         {
             NULL,
             NULL,
@@ -91675,7 +91675,7 @@ impl_gt_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_parameter_2__value,
+        &impl_gt_parameter_2__value,
         {
             NULL,
             NULL,
@@ -91797,7 +91797,7 @@ impl_object__in_range = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__in_range__value,
+        &impl_object__in_range__value,
         {
             NULL,
             NULL,
@@ -91817,7 +91817,7 @@ impl_in_range_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_in_range_returns__value,
+        &impl_in_range_returns__value,
         {
             NULL,
             NULL,
@@ -91853,7 +91853,7 @@ impl_in_range_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_in_range_parameter_1__value,
+        &impl_in_range_parameter_1__value,
         {
             NULL,
             NULL,
@@ -91889,7 +91889,7 @@ impl_in_range_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_in_range_parameter_2__value,
+        &impl_in_range_parameter_2__value,
         {
             NULL,
             NULL,
@@ -91925,7 +91925,7 @@ impl_in_range_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_in_range_parameter_3__value,
+        &impl_in_range_parameter_3__value,
         {
             NULL,
             NULL,
@@ -92022,7 +92022,7 @@ impl_object__includes = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__includes__value,
+        &impl_object__includes__value,
         {
             NULL,
             NULL,
@@ -92042,7 +92042,7 @@ impl_includes_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_includes_returns__value,
+        &impl_includes_returns__value,
         {
             NULL,
             NULL,
@@ -92078,7 +92078,7 @@ impl_includes_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_includes_parameter_1__value,
+        &impl_includes_parameter_1__value,
         {
             NULL,
             NULL,
@@ -92114,7 +92114,7 @@ impl_includes_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_includes_parameter_2__value,
+        &impl_includes_parameter_2__value,
         {
             NULL,
             NULL,
@@ -92150,7 +92150,7 @@ impl_includes_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_includes_parameter_3__value,
+        &impl_includes_parameter_3__value,
         {
             NULL,
             NULL,
@@ -92249,7 +92249,7 @@ impl_object__index_of = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__index_of__value,
+        &impl_object__index_of__value,
         {
             NULL,
             NULL,
@@ -92269,7 +92269,7 @@ impl_index_of_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_index_of_returns__value,
+        &impl_index_of_returns__value,
         {
             NULL,
             NULL,
@@ -92305,7 +92305,7 @@ impl_index_of_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_index_of_parameter_1__value,
+        &impl_index_of_parameter_1__value,
         {
             NULL,
             NULL,
@@ -92341,7 +92341,7 @@ impl_index_of_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_index_of_parameter_2__value,
+        &impl_index_of_parameter_2__value,
         {
             NULL,
             NULL,
@@ -92377,7 +92377,7 @@ impl_index_of_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_index_of_parameter_3__value,
+        &impl_index_of_parameter_3__value,
         {
             NULL,
             NULL,
@@ -92475,7 +92475,7 @@ impl_object__intersection = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__intersection__value,
+        &impl_object__intersection__value,
         {
             NULL,
             NULL,
@@ -92495,7 +92495,7 @@ impl_intersection_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_intersection_returns__value,
+        &impl_intersection_returns__value,
         {
             NULL,
             NULL,
@@ -92531,7 +92531,7 @@ impl_intersection_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_intersection_parameter_1__value,
+        &impl_intersection_parameter_1__value,
         {
             NULL,
             NULL,
@@ -92567,7 +92567,7 @@ impl_intersection_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_intersection_parameter_2__value,
+        &impl_intersection_parameter_2__value,
         {
             NULL,
             NULL,
@@ -92676,7 +92676,7 @@ impl_object__is = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__is__value,
+        &impl_object__is__value,
         {
             NULL,
             NULL,
@@ -92696,7 +92696,7 @@ impl_is_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_returns__value,
+        &impl_is_returns__value,
         {
             NULL,
             NULL,
@@ -92732,7 +92732,7 @@ impl_is_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_parameter_1__value,
+        &impl_is_parameter_1__value,
         {
             NULL,
             NULL,
@@ -92854,7 +92854,7 @@ impl_object__is_in = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__is_in__value,
+        &impl_object__is_in__value,
         {
             NULL,
             NULL,
@@ -92874,7 +92874,7 @@ impl_is_in_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_in_returns__value,
+        &impl_is_in_returns__value,
         {
             NULL,
             NULL,
@@ -92910,7 +92910,7 @@ impl_is_in_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_in_parameter_1__value,
+        &impl_is_in_parameter_1__value,
         {
             NULL,
             NULL,
@@ -92946,7 +92946,7 @@ impl_is_in_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_in_parameter_2__value,
+        &impl_is_in_parameter_2__value,
         {
             NULL,
             NULL,
@@ -93057,7 +93057,7 @@ impl_object__last_index_of = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__last_index_of__value,
+        &impl_object__last_index_of__value,
         {
             NULL,
             NULL,
@@ -93077,7 +93077,7 @@ impl_last_index_of_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_last_index_of_returns__value,
+        &impl_last_index_of_returns__value,
         {
             NULL,
             NULL,
@@ -93113,7 +93113,7 @@ impl_last_index_of_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_last_index_of_parameter_1__value,
+        &impl_last_index_of_parameter_1__value,
         {
             NULL,
             NULL,
@@ -93149,7 +93149,7 @@ impl_last_index_of_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_last_index_of_parameter_2__value,
+        &impl_last_index_of_parameter_2__value,
         {
             NULL,
             NULL,
@@ -93185,7 +93185,7 @@ impl_last_index_of_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_last_index_of_parameter_3__value,
+        &impl_last_index_of_parameter_3__value,
         {
             NULL,
             NULL,
@@ -93283,7 +93283,7 @@ impl_object__le = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__le__value,
+        &impl_object__le__value,
         {
             NULL,
             NULL,
@@ -93303,7 +93303,7 @@ impl_le_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_returns__value,
+        &impl_le_returns__value,
         {
             NULL,
             NULL,
@@ -93339,7 +93339,7 @@ impl_le_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_parameter_1__value,
+        &impl_le_parameter_1__value,
         {
             NULL,
             NULL,
@@ -93375,7 +93375,7 @@ impl_le_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_parameter_2__value,
+        &impl_le_parameter_2__value,
         {
             NULL,
             NULL,
@@ -93497,7 +93497,7 @@ impl_object__length = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__length__value,
+        &impl_object__length__value,
         {
             NULL,
             NULL,
@@ -93517,7 +93517,7 @@ impl_length_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_length_returns__value,
+        &impl_length_returns__value,
         {
             NULL,
             NULL,
@@ -93553,7 +93553,7 @@ impl_length_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_length_parameter_1__value,
+        &impl_length_parameter_1__value,
         {
             NULL,
             NULL,
@@ -93650,7 +93650,7 @@ impl_object__lt = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__lt__value,
+        &impl_object__lt__value,
         {
             NULL,
             NULL,
@@ -93670,7 +93670,7 @@ impl_lt_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_returns__value,
+        &impl_lt_returns__value,
         {
             NULL,
             NULL,
@@ -93706,7 +93706,7 @@ impl_lt_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_parameter_1__value,
+        &impl_lt_parameter_1__value,
         {
             NULL,
             NULL,
@@ -93742,7 +93742,7 @@ impl_lt_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_parameter_2__value,
+        &impl_lt_parameter_2__value,
         {
             NULL,
             NULL,
@@ -93864,7 +93864,7 @@ impl_object__match = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__match__value,
+        &impl_object__match__value,
         {
             NULL,
             NULL,
@@ -93884,7 +93884,7 @@ impl_match_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_match_returns__value,
+        &impl_match_returns__value,
         {
             NULL,
             NULL,
@@ -93920,7 +93920,7 @@ impl_match_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_match_parameter_1__value,
+        &impl_match_parameter_1__value,
         {
             NULL,
             NULL,
@@ -93956,7 +93956,7 @@ impl_match_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_match_parameter_2__value,
+        &impl_match_parameter_2__value,
         {
             NULL,
             NULL,
@@ -94053,7 +94053,7 @@ impl_object__max = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__max__value,
+        &impl_object__max__value,
         {
             NULL,
             NULL,
@@ -94073,7 +94073,7 @@ impl_max_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_max_returns__value,
+        &impl_max_returns__value,
         {
             NULL,
             NULL,
@@ -94109,7 +94109,7 @@ impl_max_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_max_parameter_1__value,
+        &impl_max_parameter_1__value,
         {
             NULL,
             NULL,
@@ -94209,7 +94209,7 @@ impl_object__min = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__min__value,
+        &impl_object__min__value,
         {
             NULL,
             NULL,
@@ -94229,7 +94229,7 @@ impl_min_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_min_returns__value,
+        &impl_min_returns__value,
         {
             NULL,
             NULL,
@@ -94265,7 +94265,7 @@ impl_min_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_min_parameter_1__value,
+        &impl_min_parameter_1__value,
         {
             NULL,
             NULL,
@@ -94365,7 +94365,7 @@ impl_object__mod = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__mod__value,
+        &impl_object__mod__value,
         {
             NULL,
             NULL,
@@ -94385,7 +94385,7 @@ impl_mod_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_mod_returns__value,
+        &impl_mod_returns__value,
         {
             NULL,
             NULL,
@@ -94421,7 +94421,7 @@ impl_mod_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_mod_parameter_1__value,
+        &impl_mod_parameter_1__value,
         {
             NULL,
             NULL,
@@ -94457,7 +94457,7 @@ impl_mod_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_mod_parameter_2__value,
+        &impl_mod_parameter_2__value,
         {
             NULL,
             NULL,
@@ -94553,7 +94553,7 @@ impl_object__multiply = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__multiply__value,
+        &impl_object__multiply__value,
         {
             NULL,
             NULL,
@@ -94573,7 +94573,7 @@ impl_multiply_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_multiply_returns__value,
+        &impl_multiply_returns__value,
         {
             NULL,
             NULL,
@@ -94609,7 +94609,7 @@ impl_multiply_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_multiply_parameter_1__value,
+        &impl_multiply_parameter_1__value,
         {
             NULL,
             NULL,
@@ -94705,7 +94705,7 @@ impl_object__ne = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ne__value,
+        &impl_object__ne__value,
         {
             NULL,
             NULL,
@@ -94725,7 +94725,7 @@ impl_ne_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_returns__value,
+        &impl_ne_returns__value,
         {
             NULL,
             NULL,
@@ -94761,7 +94761,7 @@ impl_ne_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_parameter_1__value,
+        &impl_ne_parameter_1__value,
         {
             NULL,
             NULL,
@@ -94797,7 +94797,7 @@ impl_ne_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_parameter_2__value,
+        &impl_ne_parameter_2__value,
         {
             NULL,
             NULL,
@@ -94927,7 +94927,7 @@ impl_object__negative = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__negative__value,
+        &impl_object__negative__value,
         {
             NULL,
             NULL,
@@ -94947,7 +94947,7 @@ impl_negative_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_negative_returns__value,
+        &impl_negative_returns__value,
         {
             NULL,
             NULL,
@@ -94983,7 +94983,7 @@ impl_negative_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_negative_parameter_1__value,
+        &impl_negative_parameter_1__value,
         {
             NULL,
             NULL,
@@ -95079,7 +95079,7 @@ impl_object__nex = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__nex__value,
+        &impl_object__nex__value,
         {
             NULL,
             NULL,
@@ -95099,7 +95099,7 @@ impl_nex_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_returns__value,
+        &impl_nex_returns__value,
         {
             NULL,
             NULL,
@@ -95135,7 +95135,7 @@ impl_nex_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_parameter_1__value,
+        &impl_nex_parameter_1__value,
         {
             NULL,
             NULL,
@@ -95171,7 +95171,7 @@ impl_nex_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_parameter_2__value,
+        &impl_nex_parameter_2__value,
         {
             NULL,
             NULL,
@@ -95293,7 +95293,7 @@ impl_object__normalize_space = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__normalize_space__value,
+        &impl_object__normalize_space__value,
         {
             NULL,
             NULL,
@@ -95313,7 +95313,7 @@ impl_normalize_space_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_normalize_space_returns__value,
+        &impl_normalize_space_returns__value,
         {
             NULL,
             NULL,
@@ -95349,7 +95349,7 @@ impl_normalize_space_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_normalize_space_parameter_1__value,
+        &impl_normalize_space_parameter_1__value,
         {
             NULL,
             NULL,
@@ -95444,7 +95444,7 @@ impl_object__normalize_to_lower_case = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__normalize_to_lower_case__value,
+        &impl_object__normalize_to_lower_case__value,
         {
             NULL,
             NULL,
@@ -95464,7 +95464,7 @@ impl_normalize_to_lower_case_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_normalize_to_lower_case_returns__value,
+        &impl_normalize_to_lower_case_returns__value,
         {
             NULL,
             NULL,
@@ -95500,7 +95500,7 @@ impl_normalize_to_lower_case_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_normalize_to_lower_case_parameter_1__value,
+        &impl_normalize_to_lower_case_parameter_1__value,
         {
             NULL,
             NULL,
@@ -95595,7 +95595,7 @@ impl_object__one_and_only = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__one_and_only__value,
+        &impl_object__one_and_only__value,
         {
             NULL,
             NULL,
@@ -95615,7 +95615,7 @@ impl_one_and_only_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_one_and_only_returns__value,
+        &impl_one_and_only_returns__value,
         {
             NULL,
             NULL,
@@ -95651,7 +95651,7 @@ impl_one_and_only_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_one_and_only_parameter_1__value,
+        &impl_one_and_only_parameter_1__value,
         {
             NULL,
             NULL,
@@ -95769,7 +95769,7 @@ impl_object__pow = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__pow__value,
+        &impl_object__pow__value,
         {
             NULL,
             NULL,
@@ -95789,7 +95789,7 @@ impl_pow_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_pow_returns__value,
+        &impl_pow_returns__value,
         {
             NULL,
             NULL,
@@ -95825,7 +95825,7 @@ impl_pow_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_pow_parameter_1__value,
+        &impl_pow_parameter_1__value,
         {
             NULL,
             NULL,
@@ -95861,7 +95861,7 @@ impl_pow_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_pow_parameter_2__value,
+        &impl_pow_parameter_2__value,
         {
             NULL,
             NULL,
@@ -95957,7 +95957,7 @@ impl_object__regexp_index_of = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__regexp_index_of__value,
+        &impl_object__regexp_index_of__value,
         {
             NULL,
             NULL,
@@ -95977,7 +95977,7 @@ impl_regexp_index_of_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_regexp_index_of_returns__value,
+        &impl_regexp_index_of_returns__value,
         {
             NULL,
             NULL,
@@ -96013,7 +96013,7 @@ impl_regexp_index_of_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_regexp_index_of_parameter_1__value,
+        &impl_regexp_index_of_parameter_1__value,
         {
             NULL,
             NULL,
@@ -96049,7 +96049,7 @@ impl_regexp_index_of_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_regexp_index_of_parameter_2__value,
+        &impl_regexp_index_of_parameter_2__value,
         {
             NULL,
             NULL,
@@ -96146,7 +96146,7 @@ impl_object__regexp_match = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__regexp_match__value,
+        &impl_object__regexp_match__value,
         {
             NULL,
             NULL,
@@ -96166,7 +96166,7 @@ impl_regexp_match_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_regexp_match_returns__value,
+        &impl_regexp_match_returns__value,
         {
             NULL,
             NULL,
@@ -96202,7 +96202,7 @@ impl_regexp_match_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_regexp_match_parameter_1__value,
+        &impl_regexp_match_parameter_1__value,
         {
             NULL,
             NULL,
@@ -96238,7 +96238,7 @@ impl_regexp_match_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_regexp_match_parameter_2__value,
+        &impl_regexp_match_parameter_2__value,
         {
             NULL,
             NULL,
@@ -96339,7 +96339,7 @@ impl_object__regexp_replace = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__regexp_replace__value,
+        &impl_object__regexp_replace__value,
         {
             NULL,
             NULL,
@@ -96359,7 +96359,7 @@ impl_regexp_replace_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_regexp_replace_returns__value,
+        &impl_regexp_replace_returns__value,
         {
             NULL,
             NULL,
@@ -96395,7 +96395,7 @@ impl_regexp_replace_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_regexp_replace_parameter_1__value,
+        &impl_regexp_replace_parameter_1__value,
         {
             NULL,
             NULL,
@@ -96431,7 +96431,7 @@ impl_regexp_replace_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_regexp_replace_parameter_2__value,
+        &impl_regexp_replace_parameter_2__value,
         {
             NULL,
             NULL,
@@ -96467,7 +96467,7 @@ impl_regexp_replace_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_regexp_replace_parameter_3__value,
+        &impl_regexp_replace_parameter_3__value,
         {
             NULL,
             NULL,
@@ -96503,7 +96503,7 @@ impl_regexp_replace_parameter_4 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_regexp_replace_parameter_4__value,
+        &impl_regexp_replace_parameter_4__value,
         {
             NULL,
             NULL,
@@ -96602,7 +96602,7 @@ impl_object__repeat = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__repeat__value,
+        &impl_object__repeat__value,
         {
             NULL,
             NULL,
@@ -96622,7 +96622,7 @@ impl_repeat_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_repeat_returns__value,
+        &impl_repeat_returns__value,
         {
             NULL,
             NULL,
@@ -96658,7 +96658,7 @@ impl_repeat_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_repeat_parameter_1__value,
+        &impl_repeat_parameter_1__value,
         {
             NULL,
             NULL,
@@ -96694,7 +96694,7 @@ impl_repeat_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_repeat_parameter_2__value,
+        &impl_repeat_parameter_2__value,
         {
             NULL,
             NULL,
@@ -96791,7 +96791,7 @@ impl_object__replace = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__replace__value,
+        &impl_object__replace__value,
         {
             NULL,
             NULL,
@@ -96811,7 +96811,7 @@ impl_replace_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_replace_returns__value,
+        &impl_replace_returns__value,
         {
             NULL,
             NULL,
@@ -96847,7 +96847,7 @@ impl_replace_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_replace_parameter_1__value,
+        &impl_replace_parameter_1__value,
         {
             NULL,
             NULL,
@@ -96883,7 +96883,7 @@ impl_replace_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_replace_parameter_2__value,
+        &impl_replace_parameter_2__value,
         {
             NULL,
             NULL,
@@ -96919,7 +96919,7 @@ impl_replace_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_replace_parameter_3__value,
+        &impl_replace_parameter_3__value,
         {
             NULL,
             NULL,
@@ -96955,7 +96955,7 @@ impl_replace_parameter_4 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_replace_parameter_4__value,
+        &impl_replace_parameter_4__value,
         {
             NULL,
             NULL,
@@ -97054,7 +97054,7 @@ impl_object__round = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__round__value,
+        &impl_object__round__value,
         {
             NULL,
             NULL,
@@ -97074,7 +97074,7 @@ impl_round_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_round_returns__value,
+        &impl_round_returns__value,
         {
             NULL,
             NULL,
@@ -97110,7 +97110,7 @@ impl_round_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_round_parameter_1__value,
+        &impl_round_parameter_1__value,
         {
             NULL,
             NULL,
@@ -97205,7 +97205,7 @@ impl_object__set_equals = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__set_equals__value,
+        &impl_object__set_equals__value,
         {
             NULL,
             NULL,
@@ -97225,7 +97225,7 @@ impl_set_equals_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_set_equals_returns__value,
+        &impl_set_equals_returns__value,
         {
             NULL,
             NULL,
@@ -97261,7 +97261,7 @@ impl_set_equals_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_set_equals_parameter_1__value,
+        &impl_set_equals_parameter_1__value,
         {
             NULL,
             NULL,
@@ -97297,7 +97297,7 @@ impl_set_equals_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_set_equals_parameter_2__value,
+        &impl_set_equals_parameter_2__value,
         {
             NULL,
             NULL,
@@ -97406,7 +97406,7 @@ impl_object__split = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__split__value,
+        &impl_object__split__value,
         {
             NULL,
             NULL,
@@ -97426,7 +97426,7 @@ impl_split_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_split_returns__value,
+        &impl_split_returns__value,
         {
             NULL,
             NULL,
@@ -97462,7 +97462,7 @@ impl_split_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_split_parameter_1__value,
+        &impl_split_parameter_1__value,
         {
             NULL,
             NULL,
@@ -97498,7 +97498,7 @@ impl_split_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_split_parameter_2__value,
+        &impl_split_parameter_2__value,
         {
             NULL,
             NULL,
@@ -97534,7 +97534,7 @@ impl_split_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_split_parameter_3__value,
+        &impl_split_parameter_3__value,
         {
             NULL,
             NULL,
@@ -97632,7 +97632,7 @@ impl_object__starts_with = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__starts_with__value,
+        &impl_object__starts_with__value,
         {
             NULL,
             NULL,
@@ -97652,7 +97652,7 @@ impl_starts_with_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_starts_with_returns__value,
+        &impl_starts_with_returns__value,
         {
             NULL,
             NULL,
@@ -97688,7 +97688,7 @@ impl_starts_with_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_starts_with_parameter_1__value,
+        &impl_starts_with_parameter_1__value,
         {
             NULL,
             NULL,
@@ -97724,7 +97724,7 @@ impl_starts_with_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_starts_with_parameter_2__value,
+        &impl_starts_with_parameter_2__value,
         {
             NULL,
             NULL,
@@ -97821,7 +97821,7 @@ impl_object__subset = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__subset__value,
+        &impl_object__subset__value,
         {
             NULL,
             NULL,
@@ -97841,7 +97841,7 @@ impl_subset_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subset_returns__value,
+        &impl_subset_returns__value,
         {
             NULL,
             NULL,
@@ -97877,7 +97877,7 @@ impl_subset_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subset_parameter_1__value,
+        &impl_subset_parameter_1__value,
         {
             NULL,
             NULL,
@@ -97913,7 +97913,7 @@ impl_subset_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subset_parameter_2__value,
+        &impl_subset_parameter_2__value,
         {
             NULL,
             NULL,
@@ -98022,7 +98022,7 @@ impl_object__substring = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__substring__value,
+        &impl_object__substring__value,
         {
             NULL,
             NULL,
@@ -98042,7 +98042,7 @@ impl_substring_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_substring_returns__value,
+        &impl_substring_returns__value,
         {
             NULL,
             NULL,
@@ -98078,7 +98078,7 @@ impl_substring_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_substring_parameter_1__value,
+        &impl_substring_parameter_1__value,
         {
             NULL,
             NULL,
@@ -98114,7 +98114,7 @@ impl_substring_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_substring_parameter_2__value,
+        &impl_substring_parameter_2__value,
         {
             NULL,
             NULL,
@@ -98150,7 +98150,7 @@ impl_substring_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_substring_parameter_3__value,
+        &impl_substring_parameter_3__value,
         {
             NULL,
             NULL,
@@ -98256,7 +98256,7 @@ impl_object__subtract = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__subtract__value,
+        &impl_object__subtract__value,
         {
             NULL,
             NULL,
@@ -98276,7 +98276,7 @@ impl_subtract_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subtract_returns__value,
+        &impl_subtract_returns__value,
         {
             NULL,
             NULL,
@@ -98312,7 +98312,7 @@ impl_subtract_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subtract_parameter_1__value,
+        &impl_subtract_parameter_1__value,
         {
             NULL,
             NULL,
@@ -98348,7 +98348,7 @@ impl_subtract_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subtract_parameter_2__value,
+        &impl_subtract_parameter_2__value,
         {
             NULL,
             NULL,
@@ -98445,7 +98445,7 @@ impl_object__subtract_dayTimeDuration = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__subtract_dayTimeDuration__value,
+        &impl_object__subtract_dayTimeDuration__value,
         {
             NULL,
             NULL,
@@ -98465,7 +98465,7 @@ impl_subtract_dayTimeDuration_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subtract_dayTimeDuration_returns__value,
+        &impl_subtract_dayTimeDuration_returns__value,
         {
             NULL,
             NULL,
@@ -98501,7 +98501,7 @@ impl_subtract_dayTimeDuration_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subtract_dayTimeDuration_parameter_1__value,
+        &impl_subtract_dayTimeDuration_parameter_1__value,
         {
             NULL,
             NULL,
@@ -98537,7 +98537,7 @@ impl_subtract_dayTimeDuration_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subtract_dayTimeDuration_parameter_2__value,
+        &impl_subtract_dayTimeDuration_parameter_2__value,
         {
             NULL,
             NULL,
@@ -98633,7 +98633,7 @@ impl_object__subtract_yearMonthDuration = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__subtract_yearMonthDuration__value,
+        &impl_object__subtract_yearMonthDuration__value,
         {
             NULL,
             NULL,
@@ -98653,7 +98653,7 @@ impl_subtract_yearMonthDuration_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subtract_yearMonthDuration_returns__value,
+        &impl_subtract_yearMonthDuration_returns__value,
         {
             NULL,
             NULL,
@@ -98689,7 +98689,7 @@ impl_subtract_yearMonthDuration_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subtract_yearMonthDuration_parameter_1__value,
+        &impl_subtract_yearMonthDuration_parameter_1__value,
         {
             NULL,
             NULL,
@@ -98725,7 +98725,7 @@ impl_subtract_yearMonthDuration_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subtract_yearMonthDuration_parameter_2__value,
+        &impl_subtract_yearMonthDuration_parameter_2__value,
         {
             NULL,
             NULL,
@@ -98822,7 +98822,7 @@ impl_object__to_anyURI = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__to_anyURI__value,
+        &impl_object__to_anyURI__value,
         {
             NULL,
             NULL,
@@ -98842,7 +98842,7 @@ impl_to_anyURI_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_anyURI_returns__value,
+        &impl_to_anyURI_returns__value,
         {
             NULL,
             NULL,
@@ -98878,7 +98878,7 @@ impl_to_anyURI_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_anyURI_parameter_1__value,
+        &impl_to_anyURI_parameter_1__value,
         {
             NULL,
             NULL,
@@ -98981,7 +98981,7 @@ impl_object__to_boolean = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__to_boolean__value,
+        &impl_object__to_boolean__value,
         {
             NULL,
             NULL,
@@ -99001,7 +99001,7 @@ impl_to_boolean_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_boolean_returns__value,
+        &impl_to_boolean_returns__value,
         {
             NULL,
             NULL,
@@ -99037,7 +99037,7 @@ impl_to_boolean_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_boolean_parameter_1__value,
+        &impl_to_boolean_parameter_1__value,
         {
             NULL,
             NULL,
@@ -99140,7 +99140,7 @@ impl_object__to_date = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__to_date__value,
+        &impl_object__to_date__value,
         {
             NULL,
             NULL,
@@ -99160,7 +99160,7 @@ impl_to_date_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_date_returns__value,
+        &impl_to_date_returns__value,
         {
             NULL,
             NULL,
@@ -99196,7 +99196,7 @@ impl_to_date_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_date_parameter_1__value,
+        &impl_to_date_parameter_1__value,
         {
             NULL,
             NULL,
@@ -99299,7 +99299,7 @@ impl_object__to_dateTime = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__to_dateTime__value,
+        &impl_object__to_dateTime__value,
         {
             NULL,
             NULL,
@@ -99319,7 +99319,7 @@ impl_to_dateTime_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_dateTime_returns__value,
+        &impl_to_dateTime_returns__value,
         {
             NULL,
             NULL,
@@ -99355,7 +99355,7 @@ impl_to_dateTime_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_dateTime_parameter_1__value,
+        &impl_to_dateTime_parameter_1__value,
         {
             NULL,
             NULL,
@@ -99458,7 +99458,7 @@ impl_object__to_dayTimeDuration = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__to_dayTimeDuration__value,
+        &impl_object__to_dayTimeDuration__value,
         {
             NULL,
             NULL,
@@ -99478,7 +99478,7 @@ impl_to_dayTimeDuration_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_dayTimeDuration_returns__value,
+        &impl_to_dayTimeDuration_returns__value,
         {
             NULL,
             NULL,
@@ -99514,7 +99514,7 @@ impl_to_dayTimeDuration_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_dayTimeDuration_parameter_1__value,
+        &impl_to_dayTimeDuration_parameter_1__value,
         {
             NULL,
             NULL,
@@ -99617,7 +99617,7 @@ impl_object__to_dnsName = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__to_dnsName__value,
+        &impl_object__to_dnsName__value,
         {
             NULL,
             NULL,
@@ -99637,7 +99637,7 @@ impl_to_dnsName_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_dnsName_returns__value,
+        &impl_to_dnsName_returns__value,
         {
             NULL,
             NULL,
@@ -99673,7 +99673,7 @@ impl_to_dnsName_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_dnsName_parameter_1__value,
+        &impl_to_dnsName_parameter_1__value,
         {
             NULL,
             NULL,
@@ -99776,7 +99776,7 @@ impl_object__to_double = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__to_double__value,
+        &impl_object__to_double__value,
         {
             NULL,
             NULL,
@@ -99796,7 +99796,7 @@ impl_to_double_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_double_returns__value,
+        &impl_to_double_returns__value,
         {
             NULL,
             NULL,
@@ -99832,7 +99832,7 @@ impl_to_double_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_double_parameter_1__value,
+        &impl_to_double_parameter_1__value,
         {
             NULL,
             NULL,
@@ -99936,7 +99936,7 @@ impl_object__to_integer = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__to_integer__value,
+        &impl_object__to_integer__value,
         {
             NULL,
             NULL,
@@ -99956,7 +99956,7 @@ impl_to_integer_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_integer_returns__value,
+        &impl_to_integer_returns__value,
         {
             NULL,
             NULL,
@@ -99992,7 +99992,7 @@ impl_to_integer_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_integer_parameter_1__value,
+        &impl_to_integer_parameter_1__value,
         {
             NULL,
             NULL,
@@ -100088,7 +100088,7 @@ impl_object__to_ipAddress = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__to_ipAddress__value,
+        &impl_object__to_ipAddress__value,
         {
             NULL,
             NULL,
@@ -100108,7 +100108,7 @@ impl_to_ipAddress_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_ipAddress_returns__value,
+        &impl_to_ipAddress_returns__value,
         {
             NULL,
             NULL,
@@ -100144,7 +100144,7 @@ impl_to_ipAddress_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_ipAddress_parameter_1__value,
+        &impl_to_ipAddress_parameter_1__value,
         {
             NULL,
             NULL,
@@ -100247,7 +100247,7 @@ impl_object__to_rfc822Name = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__to_rfc822Name__value,
+        &impl_object__to_rfc822Name__value,
         {
             NULL,
             NULL,
@@ -100267,7 +100267,7 @@ impl_to_rfc822Name_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_rfc822Name_returns__value,
+        &impl_to_rfc822Name_returns__value,
         {
             NULL,
             NULL,
@@ -100303,7 +100303,7 @@ impl_to_rfc822Name_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_rfc822Name_parameter_1__value,
+        &impl_to_rfc822Name_parameter_1__value,
         {
             NULL,
             NULL,
@@ -100406,7 +100406,7 @@ impl_object__to_string = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__to_string__value,
+        &impl_object__to_string__value,
         {
             NULL,
             NULL,
@@ -100426,7 +100426,7 @@ impl_to_string_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_string_returns__value,
+        &impl_to_string_returns__value,
         {
             NULL,
             NULL,
@@ -100462,7 +100462,7 @@ impl_to_string_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_string_parameter_1__value,
+        &impl_to_string_parameter_1__value,
         {
             NULL,
             NULL,
@@ -100581,7 +100581,7 @@ impl_object__to_time = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__to_time__value,
+        &impl_object__to_time__value,
         {
             NULL,
             NULL,
@@ -100601,7 +100601,7 @@ impl_to_time_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_time_returns__value,
+        &impl_to_time_returns__value,
         {
             NULL,
             NULL,
@@ -100637,7 +100637,7 @@ impl_to_time_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_time_parameter_1__value,
+        &impl_to_time_parameter_1__value,
         {
             NULL,
             NULL,
@@ -100740,7 +100740,7 @@ impl_object__to_x500Name = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__to_x500Name__value,
+        &impl_object__to_x500Name__value,
         {
             NULL,
             NULL,
@@ -100760,7 +100760,7 @@ impl_to_x500Name_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_x500Name_returns__value,
+        &impl_to_x500Name_returns__value,
         {
             NULL,
             NULL,
@@ -100796,7 +100796,7 @@ impl_to_x500Name_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_x500Name_parameter_1__value,
+        &impl_to_x500Name_parameter_1__value,
         {
             NULL,
             NULL,
@@ -100899,7 +100899,7 @@ impl_object__to_yearMonthDuration = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__to_yearMonthDuration__value,
+        &impl_object__to_yearMonthDuration__value,
         {
             NULL,
             NULL,
@@ -100919,7 +100919,7 @@ impl_to_yearMonthDuration_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_yearMonthDuration_returns__value,
+        &impl_to_yearMonthDuration_returns__value,
         {
             NULL,
             NULL,
@@ -100955,7 +100955,7 @@ impl_to_yearMonthDuration_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_yearMonthDuration_parameter_1__value,
+        &impl_to_yearMonthDuration_parameter_1__value,
         {
             NULL,
             NULL,
@@ -101058,7 +101058,7 @@ impl_object__union = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__union__value,
+        &impl_object__union__value,
         {
             NULL,
             NULL,
@@ -101078,7 +101078,7 @@ impl_union_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_union_returns__value,
+        &impl_union_returns__value,
         {
             NULL,
             NULL,
@@ -101114,7 +101114,7 @@ impl_union_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_union_parameter_1__value,
+        &impl_union_parameter_1__value,
         {
             NULL,
             NULL,
@@ -101222,7 +101222,7 @@ impl_object__url_encode = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__url_encode__value,
+        &impl_object__url_encode__value,
         {
             NULL,
             NULL,
@@ -101242,7 +101242,7 @@ impl_url_encode_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_url_encode_returns__value,
+        &impl_url_encode_returns__value,
         {
             NULL,
             NULL,
@@ -101278,7 +101278,7 @@ impl_url_encode_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_url_encode_parameter_1__value,
+        &impl_url_encode_parameter_1__value,
         {
             NULL,
             NULL,
@@ -101374,7 +101374,7 @@ impl_object__random_base64Binary = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__random_base64Binary__value,
+        &impl_object__random_base64Binary__value,
         {
             NULL,
             NULL,
@@ -101394,7 +101394,7 @@ impl_random_base64Binary_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_random_base64Binary_returns__value,
+        &impl_random_base64Binary_returns__value,
         {
             NULL,
             NULL,
@@ -101430,7 +101430,7 @@ impl_random_base64Binary_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_random_base64Binary_parameter_1__value,
+        &impl_random_base64Binary_parameter_1__value,
         {
             NULL,
             NULL,
@@ -101519,7 +101519,7 @@ impl_object__random_digits = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__random_digits__value,
+        &impl_object__random_digits__value,
         {
             NULL,
             NULL,
@@ -101539,7 +101539,7 @@ impl_random_digits_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_random_digits_returns__value,
+        &impl_random_digits_returns__value,
         {
             NULL,
             NULL,
@@ -101575,7 +101575,7 @@ impl_random_digits_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_random_digits_parameter_1__value,
+        &impl_random_digits_parameter_1__value,
         {
             NULL,
             NULL,
@@ -101664,7 +101664,7 @@ impl_object__random_hexBinary = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__random_hexBinary__value,
+        &impl_object__random_hexBinary__value,
         {
             NULL,
             NULL,
@@ -101684,7 +101684,7 @@ impl_random_hexBinary_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_random_hexBinary_returns__value,
+        &impl_random_hexBinary_returns__value,
         {
             NULL,
             NULL,
@@ -101720,7 +101720,7 @@ impl_random_hexBinary_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_random_hexBinary_parameter_1__value,
+        &impl_random_hexBinary_parameter_1__value,
         {
             NULL,
             NULL,
@@ -101809,7 +101809,7 @@ impl_object__random_integer = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__random_integer__value,
+        &impl_object__random_integer__value,
         {
             NULL,
             NULL,
@@ -101829,7 +101829,7 @@ impl_random_integer_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_random_integer_returns__value,
+        &impl_random_integer_returns__value,
         {
             NULL,
             NULL,
@@ -101865,7 +101865,7 @@ impl_random_integer_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_random_integer_parameter_1__value,
+        &impl_random_integer_parameter_1__value,
         {
             NULL,
             NULL,
@@ -101901,7 +101901,7 @@ impl_random_integer_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_random_integer_parameter_2__value,
+        &impl_random_integer_parameter_2__value,
         {
             NULL,
             NULL,
@@ -101991,7 +101991,7 @@ impl_object__random_number = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__random_number__value,
+        &impl_object__random_number__value,
         {
             NULL,
             NULL,
@@ -102011,7 +102011,7 @@ impl_random_number_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_random_number_returns__value,
+        &impl_random_number_returns__value,
         {
             NULL,
             NULL,
@@ -102047,7 +102047,7 @@ impl_random_number_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_random_number_parameter_1__value,
+        &impl_random_number_parameter_1__value,
         {
             NULL,
             NULL,
@@ -102083,7 +102083,7 @@ impl_random_number_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_random_number_parameter_2__value,
+        &impl_random_number_parameter_2__value,
         {
             NULL,
             NULL,
@@ -102173,7 +102173,7 @@ impl_object__compile_regexp = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__compile_regexp__value,
+        &impl_object__compile_regexp__value,
         {
             NULL,
             NULL,
@@ -102193,7 +102193,7 @@ impl_compile_regexp_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_compile_regexp_returns__value,
+        &impl_compile_regexp_returns__value,
         {
             NULL,
             NULL,
@@ -102229,7 +102229,7 @@ impl_compile_regexp_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_compile_regexp_parameter_1__value,
+        &impl_compile_regexp_parameter_1__value,
         {
             NULL,
             NULL,
@@ -102265,7 +102265,7 @@ impl_compile_regexp_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_compile_regexp_parameter_2__value,
+        &impl_compile_regexp_parameter_2__value,
         {
             NULL,
             NULL,
@@ -102355,7 +102355,7 @@ impl_object__eq_regexp = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__eq_regexp__value,
+        &impl_object__eq_regexp__value,
         {
             NULL,
             NULL,
@@ -102375,7 +102375,7 @@ impl_eq_regexp_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_regexp_returns__value,
+        &impl_eq_regexp_returns__value,
         {
             NULL,
             NULL,
@@ -102411,7 +102411,7 @@ impl_eq_regexp_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_regexp_parameter_1__value,
+        &impl_eq_regexp_parameter_1__value,
         {
             NULL,
             NULL,
@@ -102447,7 +102447,7 @@ impl_eq_regexp_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_regexp_parameter_2__value,
+        &impl_eq_regexp_parameter_2__value,
         {
             NULL,
             NULL,
@@ -102545,7 +102545,7 @@ impl_object__eqx_regexp = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__eqx_regexp__value,
+        &impl_object__eqx_regexp__value,
         {
             NULL,
             NULL,
@@ -102565,7 +102565,7 @@ impl_eqx_regexp_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_regexp_returns__value,
+        &impl_eqx_regexp_returns__value,
         {
             NULL,
             NULL,
@@ -102601,7 +102601,7 @@ impl_eqx_regexp_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_regexp_parameter_1__value,
+        &impl_eqx_regexp_parameter_1__value,
         {
             NULL,
             NULL,
@@ -102637,7 +102637,7 @@ impl_eqx_regexp_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_regexp_parameter_2__value,
+        &impl_eqx_regexp_parameter_2__value,
         {
             NULL,
             NULL,
@@ -102727,7 +102727,7 @@ impl_object__ge_regexp = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ge_regexp__value,
+        &impl_object__ge_regexp__value,
         {
             NULL,
             NULL,
@@ -102747,7 +102747,7 @@ impl_ge_regexp_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_regexp_returns__value,
+        &impl_ge_regexp_returns__value,
         {
             NULL,
             NULL,
@@ -102783,7 +102783,7 @@ impl_ge_regexp_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_regexp_parameter_1__value,
+        &impl_ge_regexp_parameter_1__value,
         {
             NULL,
             NULL,
@@ -102819,7 +102819,7 @@ impl_ge_regexp_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_regexp_parameter_2__value,
+        &impl_ge_regexp_parameter_2__value,
         {
             NULL,
             NULL,
@@ -102909,7 +102909,7 @@ impl_object__gt_regexp = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__gt_regexp__value,
+        &impl_object__gt_regexp__value,
         {
             NULL,
             NULL,
@@ -102929,7 +102929,7 @@ impl_gt_regexp_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_regexp_returns__value,
+        &impl_gt_regexp_returns__value,
         {
             NULL,
             NULL,
@@ -102965,7 +102965,7 @@ impl_gt_regexp_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_regexp_parameter_1__value,
+        &impl_gt_regexp_parameter_1__value,
         {
             NULL,
             NULL,
@@ -103001,7 +103001,7 @@ impl_gt_regexp_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_regexp_parameter_2__value,
+        &impl_gt_regexp_parameter_2__value,
         {
             NULL,
             NULL,
@@ -103091,7 +103091,7 @@ impl_object__le_regexp = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__le_regexp__value,
+        &impl_object__le_regexp__value,
         {
             NULL,
             NULL,
@@ -103111,7 +103111,7 @@ impl_le_regexp_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_regexp_returns__value,
+        &impl_le_regexp_returns__value,
         {
             NULL,
             NULL,
@@ -103147,7 +103147,7 @@ impl_le_regexp_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_regexp_parameter_1__value,
+        &impl_le_regexp_parameter_1__value,
         {
             NULL,
             NULL,
@@ -103183,7 +103183,7 @@ impl_le_regexp_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_regexp_parameter_2__value,
+        &impl_le_regexp_parameter_2__value,
         {
             NULL,
             NULL,
@@ -103273,7 +103273,7 @@ impl_object__lt_regexp = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__lt_regexp__value,
+        &impl_object__lt_regexp__value,
         {
             NULL,
             NULL,
@@ -103293,7 +103293,7 @@ impl_lt_regexp_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_regexp_returns__value,
+        &impl_lt_regexp_returns__value,
         {
             NULL,
             NULL,
@@ -103329,7 +103329,7 @@ impl_lt_regexp_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_regexp_parameter_1__value,
+        &impl_lt_regexp_parameter_1__value,
         {
             NULL,
             NULL,
@@ -103365,7 +103365,7 @@ impl_lt_regexp_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_regexp_parameter_2__value,
+        &impl_lt_regexp_parameter_2__value,
         {
             NULL,
             NULL,
@@ -103455,7 +103455,7 @@ impl_object__ne_regexp = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ne_regexp__value,
+        &impl_object__ne_regexp__value,
         {
             NULL,
             NULL,
@@ -103475,7 +103475,7 @@ impl_ne_regexp_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_regexp_returns__value,
+        &impl_ne_regexp_returns__value,
         {
             NULL,
             NULL,
@@ -103511,7 +103511,7 @@ impl_ne_regexp_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_regexp_parameter_1__value,
+        &impl_ne_regexp_parameter_1__value,
         {
             NULL,
             NULL,
@@ -103547,7 +103547,7 @@ impl_ne_regexp_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_regexp_parameter_2__value,
+        &impl_ne_regexp_parameter_2__value,
         {
             NULL,
             NULL,
@@ -103645,7 +103645,7 @@ impl_object__nex_regexp = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__nex_regexp__value,
+        &impl_object__nex_regexp__value,
         {
             NULL,
             NULL,
@@ -103665,7 +103665,7 @@ impl_nex_regexp_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_regexp_returns__value,
+        &impl_nex_regexp_returns__value,
         {
             NULL,
             NULL,
@@ -103701,7 +103701,7 @@ impl_nex_regexp_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_regexp_parameter_1__value,
+        &impl_nex_regexp_parameter_1__value,
         {
             NULL,
             NULL,
@@ -103737,7 +103737,7 @@ impl_nex_regexp_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_regexp_parameter_2__value,
+        &impl_nex_regexp_parameter_2__value,
         {
             NULL,
             NULL,
@@ -103827,7 +103827,7 @@ impl_object__regexp = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__regexp__value,
+        &impl_object__regexp__value,
         {
             NULL,
             NULL,
@@ -103847,7 +103847,7 @@ impl_regexp_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_regexp_returns__value,
+        &impl_regexp_returns__value,
         {
             NULL,
             NULL,
@@ -103883,7 +103883,7 @@ impl_regexp_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_regexp_parameter_1__value,
+        &impl_regexp_parameter_1__value,
         {
             NULL,
             NULL,
@@ -103980,7 +103980,7 @@ impl_object__compile_relaxed_json = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__compile_relaxed_json__value,
+        &impl_object__compile_relaxed_json__value,
         {
             NULL,
             NULL,
@@ -104000,7 +104000,7 @@ impl_compile_relaxed_json_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_compile_relaxed_json_returns__value,
+        &impl_compile_relaxed_json_returns__value,
         {
             NULL,
             NULL,
@@ -104036,7 +104036,7 @@ impl_compile_relaxed_json_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_compile_relaxed_json_parameter_1__value,
+        &impl_compile_relaxed_json_parameter_1__value,
         {
             NULL,
             NULL,
@@ -104072,7 +104072,7 @@ impl_compile_relaxed_json_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_compile_relaxed_json_parameter_2__value,
+        &impl_compile_relaxed_json_parameter_2__value,
         {
             NULL,
             NULL,
@@ -104162,7 +104162,7 @@ impl_object__relaxed_json = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__relaxed_json__value,
+        &impl_object__relaxed_json__value,
         {
             NULL,
             NULL,
@@ -104182,7 +104182,7 @@ impl_relaxed_json_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_relaxed_json_returns__value,
+        &impl_relaxed_json_returns__value,
         {
             NULL,
             NULL,
@@ -104218,7 +104218,7 @@ impl_relaxed_json_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_relaxed_json_parameter_1__value,
+        &impl_relaxed_json_parameter_1__value,
         {
             NULL,
             NULL,
@@ -104315,7 +104315,7 @@ impl_object__at_least_one_member_of_rfc822Name = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__at_least_one_member_of_rfc822Name__value,
+        &impl_object__at_least_one_member_of_rfc822Name__value,
         {
             NULL,
             NULL,
@@ -104335,7 +104335,7 @@ impl_at_least_one_member_of_rfc822Name_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_at_least_one_member_of_rfc822Name_returns__value,
+        &impl_at_least_one_member_of_rfc822Name_returns__value,
         {
             NULL,
             NULL,
@@ -104371,7 +104371,7 @@ impl_at_least_one_member_of_rfc822Name_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_at_least_one_member_of_rfc822Name_parameter_1__value,
+        &impl_at_least_one_member_of_rfc822Name_parameter_1__value,
         {
             NULL,
             NULL,
@@ -104407,7 +104407,7 @@ impl_at_least_one_member_of_rfc822Name_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_at_least_one_member_of_rfc822Name_parameter_2__value,
+        &impl_at_least_one_member_of_rfc822Name_parameter_2__value,
         {
             NULL,
             NULL,
@@ -104497,7 +104497,7 @@ impl_object__bag_rfc822Name = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__bag_rfc822Name__value,
+        &impl_object__bag_rfc822Name__value,
         {
             NULL,
             NULL,
@@ -104517,7 +104517,7 @@ impl_bag_rfc822Name_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_rfc822Name_returns__value,
+        &impl_bag_rfc822Name_returns__value,
         {
             NULL,
             NULL,
@@ -104553,7 +104553,7 @@ impl_bag_rfc822Name_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_rfc822Name_parameter_1__value,
+        &impl_bag_rfc822Name_parameter_1__value,
         {
             NULL,
             NULL,
@@ -104642,7 +104642,7 @@ impl_object__bag_size_rfc822Name = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__bag_size_rfc822Name__value,
+        &impl_object__bag_size_rfc822Name__value,
         {
             NULL,
             NULL,
@@ -104662,7 +104662,7 @@ impl_bag_size_rfc822Name_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_size_rfc822Name_returns__value,
+        &impl_bag_size_rfc822Name_returns__value,
         {
             NULL,
             NULL,
@@ -104698,7 +104698,7 @@ impl_bag_size_rfc822Name_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_size_rfc822Name_parameter_1__value,
+        &impl_bag_size_rfc822Name_parameter_1__value,
         {
             NULL,
             NULL,
@@ -104787,7 +104787,7 @@ impl_object__eq_rfc822Name = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__eq_rfc822Name__value,
+        &impl_object__eq_rfc822Name__value,
         {
             NULL,
             NULL,
@@ -104807,7 +104807,7 @@ impl_eq_rfc822Name_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_rfc822Name_returns__value,
+        &impl_eq_rfc822Name_returns__value,
         {
             NULL,
             NULL,
@@ -104843,7 +104843,7 @@ impl_eq_rfc822Name_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_rfc822Name_parameter_1__value,
+        &impl_eq_rfc822Name_parameter_1__value,
         {
             NULL,
             NULL,
@@ -104879,7 +104879,7 @@ impl_eq_rfc822Name_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_rfc822Name_parameter_2__value,
+        &impl_eq_rfc822Name_parameter_2__value,
         {
             NULL,
             NULL,
@@ -104977,7 +104977,7 @@ impl_object__eqx_rfc822Name = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__eqx_rfc822Name__value,
+        &impl_object__eqx_rfc822Name__value,
         {
             NULL,
             NULL,
@@ -104997,7 +104997,7 @@ impl_eqx_rfc822Name_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_rfc822Name_returns__value,
+        &impl_eqx_rfc822Name_returns__value,
         {
             NULL,
             NULL,
@@ -105033,7 +105033,7 @@ impl_eqx_rfc822Name_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_rfc822Name_parameter_1__value,
+        &impl_eqx_rfc822Name_parameter_1__value,
         {
             NULL,
             NULL,
@@ -105069,7 +105069,7 @@ impl_eqx_rfc822Name_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_rfc822Name_parameter_2__value,
+        &impl_eqx_rfc822Name_parameter_2__value,
         {
             NULL,
             NULL,
@@ -105159,7 +105159,7 @@ impl_object__ge_rfc822Name = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ge_rfc822Name__value,
+        &impl_object__ge_rfc822Name__value,
         {
             NULL,
             NULL,
@@ -105179,7 +105179,7 @@ impl_ge_rfc822Name_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_rfc822Name_returns__value,
+        &impl_ge_rfc822Name_returns__value,
         {
             NULL,
             NULL,
@@ -105215,7 +105215,7 @@ impl_ge_rfc822Name_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_rfc822Name_parameter_1__value,
+        &impl_ge_rfc822Name_parameter_1__value,
         {
             NULL,
             NULL,
@@ -105251,7 +105251,7 @@ impl_ge_rfc822Name_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_rfc822Name_parameter_2__value,
+        &impl_ge_rfc822Name_parameter_2__value,
         {
             NULL,
             NULL,
@@ -105341,7 +105341,7 @@ impl_object__gt_rfc822Name = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__gt_rfc822Name__value,
+        &impl_object__gt_rfc822Name__value,
         {
             NULL,
             NULL,
@@ -105361,7 +105361,7 @@ impl_gt_rfc822Name_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_rfc822Name_returns__value,
+        &impl_gt_rfc822Name_returns__value,
         {
             NULL,
             NULL,
@@ -105397,7 +105397,7 @@ impl_gt_rfc822Name_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_rfc822Name_parameter_1__value,
+        &impl_gt_rfc822Name_parameter_1__value,
         {
             NULL,
             NULL,
@@ -105433,7 +105433,7 @@ impl_gt_rfc822Name_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_rfc822Name_parameter_2__value,
+        &impl_gt_rfc822Name_parameter_2__value,
         {
             NULL,
             NULL,
@@ -105523,7 +105523,7 @@ impl_object__intersection_rfc822Name = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__intersection_rfc822Name__value,
+        &impl_object__intersection_rfc822Name__value,
         {
             NULL,
             NULL,
@@ -105543,7 +105543,7 @@ impl_intersection_rfc822Name_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_intersection_rfc822Name_returns__value,
+        &impl_intersection_rfc822Name_returns__value,
         {
             NULL,
             NULL,
@@ -105579,7 +105579,7 @@ impl_intersection_rfc822Name_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_intersection_rfc822Name_parameter_1__value,
+        &impl_intersection_rfc822Name_parameter_1__value,
         {
             NULL,
             NULL,
@@ -105615,7 +105615,7 @@ impl_intersection_rfc822Name_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_intersection_rfc822Name_parameter_2__value,
+        &impl_intersection_rfc822Name_parameter_2__value,
         {
             NULL,
             NULL,
@@ -105705,7 +105705,7 @@ impl_object__is_in_rfc822Name = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__is_in_rfc822Name__value,
+        &impl_object__is_in_rfc822Name__value,
         {
             NULL,
             NULL,
@@ -105725,7 +105725,7 @@ impl_is_in_rfc822Name_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_in_rfc822Name_returns__value,
+        &impl_is_in_rfc822Name_returns__value,
         {
             NULL,
             NULL,
@@ -105761,7 +105761,7 @@ impl_is_in_rfc822Name_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_in_rfc822Name_parameter_1__value,
+        &impl_is_in_rfc822Name_parameter_1__value,
         {
             NULL,
             NULL,
@@ -105797,7 +105797,7 @@ impl_is_in_rfc822Name_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_in_rfc822Name_parameter_2__value,
+        &impl_is_in_rfc822Name_parameter_2__value,
         {
             NULL,
             NULL,
@@ -105887,7 +105887,7 @@ impl_object__is_rfc822Name = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__is_rfc822Name__value,
+        &impl_object__is_rfc822Name__value,
         {
             NULL,
             NULL,
@@ -105907,7 +105907,7 @@ impl_is_rfc822Name_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_rfc822Name_returns__value,
+        &impl_is_rfc822Name_returns__value,
         {
             NULL,
             NULL,
@@ -105943,7 +105943,7 @@ impl_is_rfc822Name_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_rfc822Name_parameter_1__value,
+        &impl_is_rfc822Name_parameter_1__value,
         {
             NULL,
             NULL,
@@ -106032,7 +106032,7 @@ impl_object__le_rfc822Name = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__le_rfc822Name__value,
+        &impl_object__le_rfc822Name__value,
         {
             NULL,
             NULL,
@@ -106052,7 +106052,7 @@ impl_le_rfc822Name_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_rfc822Name_returns__value,
+        &impl_le_rfc822Name_returns__value,
         {
             NULL,
             NULL,
@@ -106088,7 +106088,7 @@ impl_le_rfc822Name_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_rfc822Name_parameter_1__value,
+        &impl_le_rfc822Name_parameter_1__value,
         {
             NULL,
             NULL,
@@ -106124,7 +106124,7 @@ impl_le_rfc822Name_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_rfc822Name_parameter_2__value,
+        &impl_le_rfc822Name_parameter_2__value,
         {
             NULL,
             NULL,
@@ -106214,7 +106214,7 @@ impl_object__lt_rfc822Name = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__lt_rfc822Name__value,
+        &impl_object__lt_rfc822Name__value,
         {
             NULL,
             NULL,
@@ -106234,7 +106234,7 @@ impl_lt_rfc822Name_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_rfc822Name_returns__value,
+        &impl_lt_rfc822Name_returns__value,
         {
             NULL,
             NULL,
@@ -106270,7 +106270,7 @@ impl_lt_rfc822Name_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_rfc822Name_parameter_1__value,
+        &impl_lt_rfc822Name_parameter_1__value,
         {
             NULL,
             NULL,
@@ -106306,7 +106306,7 @@ impl_lt_rfc822Name_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_rfc822Name_parameter_2__value,
+        &impl_lt_rfc822Name_parameter_2__value,
         {
             NULL,
             NULL,
@@ -106396,7 +106396,7 @@ impl_object__match_rfc822Name = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__match_rfc822Name__value,
+        &impl_object__match_rfc822Name__value,
         {
             NULL,
             NULL,
@@ -106416,7 +106416,7 @@ impl_match_rfc822Name_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_match_rfc822Name_returns__value,
+        &impl_match_rfc822Name_returns__value,
         {
             NULL,
             NULL,
@@ -106452,7 +106452,7 @@ impl_match_rfc822Name_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_match_rfc822Name_parameter_1__value,
+        &impl_match_rfc822Name_parameter_1__value,
         {
             NULL,
             NULL,
@@ -106488,7 +106488,7 @@ impl_match_rfc822Name_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_match_rfc822Name_parameter_2__value,
+        &impl_match_rfc822Name_parameter_2__value,
         {
             NULL,
             NULL,
@@ -106578,7 +106578,7 @@ impl_object__ne_rfc822Name = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ne_rfc822Name__value,
+        &impl_object__ne_rfc822Name__value,
         {
             NULL,
             NULL,
@@ -106598,7 +106598,7 @@ impl_ne_rfc822Name_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_rfc822Name_returns__value,
+        &impl_ne_rfc822Name_returns__value,
         {
             NULL,
             NULL,
@@ -106634,7 +106634,7 @@ impl_ne_rfc822Name_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_rfc822Name_parameter_1__value,
+        &impl_ne_rfc822Name_parameter_1__value,
         {
             NULL,
             NULL,
@@ -106670,7 +106670,7 @@ impl_ne_rfc822Name_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_rfc822Name_parameter_2__value,
+        &impl_ne_rfc822Name_parameter_2__value,
         {
             NULL,
             NULL,
@@ -106768,7 +106768,7 @@ impl_object__nex_rfc822Name = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__nex_rfc822Name__value,
+        &impl_object__nex_rfc822Name__value,
         {
             NULL,
             NULL,
@@ -106788,7 +106788,7 @@ impl_nex_rfc822Name_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_rfc822Name_returns__value,
+        &impl_nex_rfc822Name_returns__value,
         {
             NULL,
             NULL,
@@ -106824,7 +106824,7 @@ impl_nex_rfc822Name_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_rfc822Name_parameter_1__value,
+        &impl_nex_rfc822Name_parameter_1__value,
         {
             NULL,
             NULL,
@@ -106860,7 +106860,7 @@ impl_nex_rfc822Name_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_rfc822Name_parameter_2__value,
+        &impl_nex_rfc822Name_parameter_2__value,
         {
             NULL,
             NULL,
@@ -106950,7 +106950,7 @@ impl_object__one_and_only_rfc822Name = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__one_and_only_rfc822Name__value,
+        &impl_object__one_and_only_rfc822Name__value,
         {
             NULL,
             NULL,
@@ -106970,7 +106970,7 @@ impl_one_and_only_rfc822Name_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_one_and_only_rfc822Name_returns__value,
+        &impl_one_and_only_rfc822Name_returns__value,
         {
             NULL,
             NULL,
@@ -107006,7 +107006,7 @@ impl_one_and_only_rfc822Name_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_one_and_only_rfc822Name_parameter_1__value,
+        &impl_one_and_only_rfc822Name_parameter_1__value,
         {
             NULL,
             NULL,
@@ -107103,7 +107103,7 @@ impl_object__regexp_match_rfc822Name = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__regexp_match_rfc822Name__value,
+        &impl_object__regexp_match_rfc822Name__value,
         {
             NULL,
             NULL,
@@ -107123,7 +107123,7 @@ impl_regexp_match_rfc822Name_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_regexp_match_rfc822Name_returns__value,
+        &impl_regexp_match_rfc822Name_returns__value,
         {
             NULL,
             NULL,
@@ -107159,7 +107159,7 @@ impl_regexp_match_rfc822Name_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_regexp_match_rfc822Name_parameter_1__value,
+        &impl_regexp_match_rfc822Name_parameter_1__value,
         {
             NULL,
             NULL,
@@ -107195,7 +107195,7 @@ impl_regexp_match_rfc822Name_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_regexp_match_rfc822Name_parameter_2__value,
+        &impl_regexp_match_rfc822Name_parameter_2__value,
         {
             NULL,
             NULL,
@@ -107285,7 +107285,7 @@ impl_object__rfc822Name = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__rfc822Name__value,
+        &impl_object__rfc822Name__value,
         {
             NULL,
             NULL,
@@ -107305,7 +107305,7 @@ impl_rfc822Name_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_rfc822Name_returns__value,
+        &impl_rfc822Name_returns__value,
         {
             NULL,
             NULL,
@@ -107341,7 +107341,7 @@ impl_rfc822Name_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_rfc822Name_parameter_1__value,
+        &impl_rfc822Name_parameter_1__value,
         {
             NULL,
             NULL,
@@ -107438,7 +107438,7 @@ impl_object__set_equals_rfc822Name = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__set_equals_rfc822Name__value,
+        &impl_object__set_equals_rfc822Name__value,
         {
             NULL,
             NULL,
@@ -107458,7 +107458,7 @@ impl_set_equals_rfc822Name_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_set_equals_rfc822Name_returns__value,
+        &impl_set_equals_rfc822Name_returns__value,
         {
             NULL,
             NULL,
@@ -107494,7 +107494,7 @@ impl_set_equals_rfc822Name_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_set_equals_rfc822Name_parameter_1__value,
+        &impl_set_equals_rfc822Name_parameter_1__value,
         {
             NULL,
             NULL,
@@ -107530,7 +107530,7 @@ impl_set_equals_rfc822Name_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_set_equals_rfc822Name_parameter_2__value,
+        &impl_set_equals_rfc822Name_parameter_2__value,
         {
             NULL,
             NULL,
@@ -107620,7 +107620,7 @@ impl_object__subset_rfc822Name = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__subset_rfc822Name__value,
+        &impl_object__subset_rfc822Name__value,
         {
             NULL,
             NULL,
@@ -107640,7 +107640,7 @@ impl_subset_rfc822Name_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subset_rfc822Name_returns__value,
+        &impl_subset_rfc822Name_returns__value,
         {
             NULL,
             NULL,
@@ -107676,7 +107676,7 @@ impl_subset_rfc822Name_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subset_rfc822Name_parameter_1__value,
+        &impl_subset_rfc822Name_parameter_1__value,
         {
             NULL,
             NULL,
@@ -107712,7 +107712,7 @@ impl_subset_rfc822Name_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subset_rfc822Name_parameter_2__value,
+        &impl_subset_rfc822Name_parameter_2__value,
         {
             NULL,
             NULL,
@@ -107802,7 +107802,7 @@ impl_object__to_string_rfc822Name = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__to_string_rfc822Name__value,
+        &impl_object__to_string_rfc822Name__value,
         {
             NULL,
             NULL,
@@ -107822,7 +107822,7 @@ impl_to_string_rfc822Name_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_string_rfc822Name_returns__value,
+        &impl_to_string_rfc822Name_returns__value,
         {
             NULL,
             NULL,
@@ -107858,7 +107858,7 @@ impl_to_string_rfc822Name_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_string_rfc822Name_parameter_1__value,
+        &impl_to_string_rfc822Name_parameter_1__value,
         {
             NULL,
             NULL,
@@ -107947,7 +107947,7 @@ impl_object__union_rfc822Name = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__union_rfc822Name__value,
+        &impl_object__union_rfc822Name__value,
         {
             NULL,
             NULL,
@@ -107967,7 +107967,7 @@ impl_union_rfc822Name_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_union_rfc822Name_returns__value,
+        &impl_union_rfc822Name_returns__value,
         {
             NULL,
             NULL,
@@ -108003,7 +108003,7 @@ impl_union_rfc822Name_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_union_rfc822Name_parameter_1__value,
+        &impl_union_rfc822Name_parameter_1__value,
         {
             NULL,
             NULL,
@@ -108092,7 +108092,7 @@ impl_object__bag_script = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__bag_script__value,
+        &impl_object__bag_script__value,
         {
             NULL,
             NULL,
@@ -108112,7 +108112,7 @@ impl_bag_script_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_script_returns__value,
+        &impl_bag_script_returns__value,
         {
             NULL,
             NULL,
@@ -108148,7 +108148,7 @@ impl_bag_script_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_script_parameter_1__value,
+        &impl_bag_script_parameter_1__value,
         {
             NULL,
             NULL,
@@ -108237,7 +108237,7 @@ impl_object__bag_size_script = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__bag_size_script__value,
+        &impl_object__bag_size_script__value,
         {
             NULL,
             NULL,
@@ -108257,7 +108257,7 @@ impl_bag_size_script_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_size_script_returns__value,
+        &impl_bag_size_script_returns__value,
         {
             NULL,
             NULL,
@@ -108293,7 +108293,7 @@ impl_bag_size_script_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_size_script_parameter_1__value,
+        &impl_bag_size_script_parameter_1__value,
         {
             NULL,
             NULL,
@@ -108382,7 +108382,7 @@ impl_object__compile_script = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__compile_script__value,
+        &impl_object__compile_script__value,
         {
             NULL,
             NULL,
@@ -108402,7 +108402,7 @@ impl_compile_script_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_compile_script_returns__value,
+        &impl_compile_script_returns__value,
         {
             NULL,
             NULL,
@@ -108438,7 +108438,7 @@ impl_compile_script_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_compile_script_parameter_1__value,
+        &impl_compile_script_parameter_1__value,
         {
             NULL,
             NULL,
@@ -108474,7 +108474,7 @@ impl_compile_script_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_compile_script_parameter_2__value,
+        &impl_compile_script_parameter_2__value,
         {
             NULL,
             NULL,
@@ -108564,7 +108564,7 @@ impl_object__eq_script = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__eq_script__value,
+        &impl_object__eq_script__value,
         {
             NULL,
             NULL,
@@ -108584,7 +108584,7 @@ impl_eq_script_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_script_returns__value,
+        &impl_eq_script_returns__value,
         {
             NULL,
             NULL,
@@ -108620,7 +108620,7 @@ impl_eq_script_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_script_parameter_1__value,
+        &impl_eq_script_parameter_1__value,
         {
             NULL,
             NULL,
@@ -108656,7 +108656,7 @@ impl_eq_script_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_script_parameter_2__value,
+        &impl_eq_script_parameter_2__value,
         {
             NULL,
             NULL,
@@ -108754,7 +108754,7 @@ impl_object__eqx_script = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__eqx_script__value,
+        &impl_object__eqx_script__value,
         {
             NULL,
             NULL,
@@ -108774,7 +108774,7 @@ impl_eqx_script_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_script_returns__value,
+        &impl_eqx_script_returns__value,
         {
             NULL,
             NULL,
@@ -108810,7 +108810,7 @@ impl_eqx_script_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_script_parameter_1__value,
+        &impl_eqx_script_parameter_1__value,
         {
             NULL,
             NULL,
@@ -108846,7 +108846,7 @@ impl_eqx_script_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_script_parameter_2__value,
+        &impl_eqx_script_parameter_2__value,
         {
             NULL,
             NULL,
@@ -108936,7 +108936,7 @@ impl_object__evaluate_script = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__evaluate_script__value,
+        &impl_object__evaluate_script__value,
         {
             NULL,
             NULL,
@@ -108956,7 +108956,7 @@ impl_evaluate_script_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_evaluate_script_returns__value,
+        &impl_evaluate_script_returns__value,
         {
             NULL,
             NULL,
@@ -108992,7 +108992,7 @@ impl_evaluate_script_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_evaluate_script_parameter_1__value,
+        &impl_evaluate_script_parameter_1__value,
         {
             NULL,
             NULL,
@@ -109028,7 +109028,7 @@ impl_evaluate_script_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_evaluate_script_parameter_2__value,
+        &impl_evaluate_script_parameter_2__value,
         {
             NULL,
             NULL,
@@ -109118,7 +109118,7 @@ impl_object__ge_script = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ge_script__value,
+        &impl_object__ge_script__value,
         {
             NULL,
             NULL,
@@ -109138,7 +109138,7 @@ impl_ge_script_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_script_returns__value,
+        &impl_ge_script_returns__value,
         {
             NULL,
             NULL,
@@ -109174,7 +109174,7 @@ impl_ge_script_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_script_parameter_1__value,
+        &impl_ge_script_parameter_1__value,
         {
             NULL,
             NULL,
@@ -109210,7 +109210,7 @@ impl_ge_script_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_script_parameter_2__value,
+        &impl_ge_script_parameter_2__value,
         {
             NULL,
             NULL,
@@ -109300,7 +109300,7 @@ impl_object__gt_script = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__gt_script__value,
+        &impl_object__gt_script__value,
         {
             NULL,
             NULL,
@@ -109320,7 +109320,7 @@ impl_gt_script_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_script_returns__value,
+        &impl_gt_script_returns__value,
         {
             NULL,
             NULL,
@@ -109356,7 +109356,7 @@ impl_gt_script_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_script_parameter_1__value,
+        &impl_gt_script_parameter_1__value,
         {
             NULL,
             NULL,
@@ -109392,7 +109392,7 @@ impl_gt_script_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_script_parameter_2__value,
+        &impl_gt_script_parameter_2__value,
         {
             NULL,
             NULL,
@@ -109482,7 +109482,7 @@ impl_object__is_script = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__is_script__value,
+        &impl_object__is_script__value,
         {
             NULL,
             NULL,
@@ -109502,7 +109502,7 @@ impl_is_script_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_script_returns__value,
+        &impl_is_script_returns__value,
         {
             NULL,
             NULL,
@@ -109538,7 +109538,7 @@ impl_is_script_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_script_parameter_1__value,
+        &impl_is_script_parameter_1__value,
         {
             NULL,
             NULL,
@@ -109627,7 +109627,7 @@ impl_object__le_script = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__le_script__value,
+        &impl_object__le_script__value,
         {
             NULL,
             NULL,
@@ -109647,7 +109647,7 @@ impl_le_script_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_script_returns__value,
+        &impl_le_script_returns__value,
         {
             NULL,
             NULL,
@@ -109683,7 +109683,7 @@ impl_le_script_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_script_parameter_1__value,
+        &impl_le_script_parameter_1__value,
         {
             NULL,
             NULL,
@@ -109719,7 +109719,7 @@ impl_le_script_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_script_parameter_2__value,
+        &impl_le_script_parameter_2__value,
         {
             NULL,
             NULL,
@@ -109809,7 +109809,7 @@ impl_object__lt_script = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__lt_script__value,
+        &impl_object__lt_script__value,
         {
             NULL,
             NULL,
@@ -109829,7 +109829,7 @@ impl_lt_script_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_script_returns__value,
+        &impl_lt_script_returns__value,
         {
             NULL,
             NULL,
@@ -109865,7 +109865,7 @@ impl_lt_script_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_script_parameter_1__value,
+        &impl_lt_script_parameter_1__value,
         {
             NULL,
             NULL,
@@ -109901,7 +109901,7 @@ impl_lt_script_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_script_parameter_2__value,
+        &impl_lt_script_parameter_2__value,
         {
             NULL,
             NULL,
@@ -109991,7 +109991,7 @@ impl_object__ne_script = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ne_script__value,
+        &impl_object__ne_script__value,
         {
             NULL,
             NULL,
@@ -110011,7 +110011,7 @@ impl_ne_script_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_script_returns__value,
+        &impl_ne_script_returns__value,
         {
             NULL,
             NULL,
@@ -110047,7 +110047,7 @@ impl_ne_script_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_script_parameter_1__value,
+        &impl_ne_script_parameter_1__value,
         {
             NULL,
             NULL,
@@ -110083,7 +110083,7 @@ impl_ne_script_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_script_parameter_2__value,
+        &impl_ne_script_parameter_2__value,
         {
             NULL,
             NULL,
@@ -110181,7 +110181,7 @@ impl_object__nex_script = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__nex_script__value,
+        &impl_object__nex_script__value,
         {
             NULL,
             NULL,
@@ -110201,7 +110201,7 @@ impl_nex_script_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_script_returns__value,
+        &impl_nex_script_returns__value,
         {
             NULL,
             NULL,
@@ -110237,7 +110237,7 @@ impl_nex_script_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_script_parameter_1__value,
+        &impl_nex_script_parameter_1__value,
         {
             NULL,
             NULL,
@@ -110273,7 +110273,7 @@ impl_nex_script_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_script_parameter_2__value,
+        &impl_nex_script_parameter_2__value,
         {
             NULL,
             NULL,
@@ -110363,7 +110363,7 @@ impl_object__script = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__script__value,
+        &impl_object__script__value,
         {
             NULL,
             NULL,
@@ -110383,7 +110383,7 @@ impl_script_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_script_returns__value,
+        &impl_script_returns__value,
         {
             NULL,
             NULL,
@@ -110419,7 +110419,7 @@ impl_script_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_script_parameter_1__value,
+        &impl_script_parameter_1__value,
         {
             NULL,
             NULL,
@@ -110516,7 +110516,7 @@ impl_object__close = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__close__value,
+        &impl_object__close__value,
         {
             NULL,
             NULL,
@@ -110536,7 +110536,7 @@ impl_close_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_close_returns__value,
+        &impl_close_returns__value,
         {
             NULL,
             NULL,
@@ -110572,7 +110572,7 @@ impl_close_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_close_parameter_1__value,
+        &impl_close_parameter_1__value,
         {
             NULL,
             NULL,
@@ -110667,7 +110667,7 @@ impl_object__flush = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__flush__value,
+        &impl_object__flush__value,
         {
             NULL,
             NULL,
@@ -110687,7 +110687,7 @@ impl_flush_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_flush_returns__value,
+        &impl_flush_returns__value,
         {
             NULL,
             NULL,
@@ -110723,7 +110723,7 @@ impl_flush_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_flush_parameter_1__value,
+        &impl_flush_parameter_1__value,
         {
             NULL,
             NULL,
@@ -110818,7 +110818,7 @@ impl_object__get_stream_error = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__get_stream_error__value,
+        &impl_object__get_stream_error__value,
         {
             NULL,
             NULL,
@@ -110838,7 +110838,7 @@ impl_get_stream_error_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_get_stream_error_returns__value,
+        &impl_get_stream_error_returns__value,
         {
             NULL,
             NULL,
@@ -110926,7 +110926,7 @@ impl_object__open_file = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__open_file__value,
+        &impl_object__open_file__value,
         {
             NULL,
             NULL,
@@ -110946,7 +110946,7 @@ impl_open_file_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_open_file_returns__value,
+        &impl_open_file_returns__value,
         {
             NULL,
             NULL,
@@ -110982,7 +110982,7 @@ impl_open_file_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_open_file_parameter_1__value,
+        &impl_open_file_parameter_1__value,
         {
             NULL,
             NULL,
@@ -111018,7 +111018,7 @@ impl_open_file_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_open_file_parameter_2__value,
+        &impl_open_file_parameter_2__value,
         {
             NULL,
             NULL,
@@ -111054,7 +111054,7 @@ impl_open_file_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_open_file_parameter_3__value,
+        &impl_open_file_parameter_3__value,
         {
             NULL,
             NULL,
@@ -111090,7 +111090,7 @@ impl_open_file_parameter_4 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_open_file_parameter_4__value,
+        &impl_open_file_parameter_4__value,
         {
             NULL,
             NULL,
@@ -111188,7 +111188,7 @@ impl_object__open_response = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__open_response__value,
+        &impl_object__open_response__value,
         {
             NULL,
             NULL,
@@ -111208,7 +111208,7 @@ impl_open_response_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_open_response_returns__value,
+        &impl_open_response_returns__value,
         {
             NULL,
             NULL,
@@ -111244,7 +111244,7 @@ impl_open_response_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_open_response_parameter_1__value,
+        &impl_open_response_parameter_1__value,
         {
             NULL,
             NULL,
@@ -111280,7 +111280,7 @@ impl_open_response_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_open_response_parameter_2__value,
+        &impl_open_response_parameter_2__value,
         {
             NULL,
             NULL,
@@ -111376,7 +111376,7 @@ impl_object__open_uri = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__open_uri__value,
+        &impl_object__open_uri__value,
         {
             NULL,
             NULL,
@@ -111396,7 +111396,7 @@ impl_open_uri_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_open_uri_returns__value,
+        &impl_open_uri_returns__value,
         {
             NULL,
             NULL,
@@ -111432,7 +111432,7 @@ impl_open_uri_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_open_uri_parameter_1__value,
+        &impl_open_uri_parameter_1__value,
         {
             NULL,
             NULL,
@@ -111468,7 +111468,7 @@ impl_open_uri_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_open_uri_parameter_2__value,
+        &impl_open_uri_parameter_2__value,
         {
             NULL,
             NULL,
@@ -111504,7 +111504,7 @@ impl_open_uri_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_open_uri_parameter_3__value,
+        &impl_open_uri_parameter_3__value,
         {
             NULL,
             NULL,
@@ -111540,7 +111540,7 @@ impl_open_uri_parameter_4 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_open_uri_parameter_4__value,
+        &impl_open_uri_parameter_4__value,
         {
             NULL,
             NULL,
@@ -111638,7 +111638,7 @@ impl_object__print = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__print__value,
+        &impl_object__print__value,
         {
             NULL,
             NULL,
@@ -111658,7 +111658,7 @@ impl_print_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_print_returns__value,
+        &impl_print_returns__value,
         {
             NULL,
             NULL,
@@ -111694,7 +111694,7 @@ impl_print_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_print_parameter_1__value,
+        &impl_print_parameter_1__value,
         {
             NULL,
             NULL,
@@ -111789,7 +111789,7 @@ impl_object__println = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__println__value,
+        &impl_object__println__value,
         {
             NULL,
             NULL,
@@ -111809,7 +111809,7 @@ impl_println_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_println_returns__value,
+        &impl_println_returns__value,
         {
             NULL,
             NULL,
@@ -111845,7 +111845,7 @@ impl_println_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_println_parameter_1__value,
+        &impl_println_parameter_1__value,
         {
             NULL,
             NULL,
@@ -111940,7 +111940,7 @@ impl_object__read = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__read__value,
+        &impl_object__read__value,
         {
             NULL,
             NULL,
@@ -111960,7 +111960,7 @@ impl_read_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_read_returns__value,
+        &impl_read_returns__value,
         {
             NULL,
             NULL,
@@ -111996,7 +111996,7 @@ impl_read_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_read_parameter_1__value,
+        &impl_read_parameter_1__value,
         {
             NULL,
             NULL,
@@ -112032,7 +112032,7 @@ impl_read_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_read_parameter_2__value,
+        &impl_read_parameter_2__value,
         {
             NULL,
             NULL,
@@ -112128,7 +112128,7 @@ impl_object__read_to_base64Binary = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__read_to_base64Binary__value,
+        &impl_object__read_to_base64Binary__value,
         {
             NULL,
             NULL,
@@ -112148,7 +112148,7 @@ impl_read_to_base64Binary_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_read_to_base64Binary_returns__value,
+        &impl_read_to_base64Binary_returns__value,
         {
             NULL,
             NULL,
@@ -112184,7 +112184,7 @@ impl_read_to_base64Binary_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_read_to_base64Binary_parameter_1__value,
+        &impl_read_to_base64Binary_parameter_1__value,
         {
             NULL,
             NULL,
@@ -112220,7 +112220,7 @@ impl_read_to_base64Binary_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_read_to_base64Binary_parameter_2__value,
+        &impl_read_to_base64Binary_parameter_2__value,
         {
             NULL,
             NULL,
@@ -112316,7 +112316,7 @@ impl_object__read_to_hexBinary = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__read_to_hexBinary__value,
+        &impl_object__read_to_hexBinary__value,
         {
             NULL,
             NULL,
@@ -112336,7 +112336,7 @@ impl_read_to_hexBinary_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_read_to_hexBinary_returns__value,
+        &impl_read_to_hexBinary_returns__value,
         {
             NULL,
             NULL,
@@ -112372,7 +112372,7 @@ impl_read_to_hexBinary_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_read_to_hexBinary_parameter_1__value,
+        &impl_read_to_hexBinary_parameter_1__value,
         {
             NULL,
             NULL,
@@ -112408,7 +112408,7 @@ impl_read_to_hexBinary_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_read_to_hexBinary_parameter_2__value,
+        &impl_read_to_hexBinary_parameter_2__value,
         {
             NULL,
             NULL,
@@ -112504,7 +112504,7 @@ impl_object__readln = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__readln__value,
+        &impl_object__readln__value,
         {
             NULL,
             NULL,
@@ -112524,7 +112524,7 @@ impl_readln_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_readln_returns__value,
+        &impl_readln_returns__value,
         {
             NULL,
             NULL,
@@ -112560,7 +112560,7 @@ impl_readln_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_readln_parameter_1__value,
+        &impl_readln_parameter_1__value,
         {
             NULL,
             NULL,
@@ -112655,7 +112655,7 @@ impl_object__stream = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__stream__value,
+        &impl_object__stream__value,
         {
             NULL,
             NULL,
@@ -112675,7 +112675,7 @@ impl_stream_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_stream_returns__value,
+        &impl_stream_returns__value,
         {
             NULL,
             NULL,
@@ -112711,7 +112711,7 @@ impl_stream_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_stream_parameter_1__value,
+        &impl_stream_parameter_1__value,
         {
             NULL,
             NULL,
@@ -112800,7 +112800,7 @@ impl_object__write = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__write__value,
+        &impl_object__write__value,
         {
             NULL,
             NULL,
@@ -112820,7 +112820,7 @@ impl_write_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_write_returns__value,
+        &impl_write_returns__value,
         {
             NULL,
             NULL,
@@ -112856,7 +112856,7 @@ impl_write_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_write_parameter_1__value,
+        &impl_write_parameter_1__value,
         {
             NULL,
             NULL,
@@ -112892,7 +112892,7 @@ impl_write_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_write_parameter_2__value,
+        &impl_write_parameter_2__value,
         {
             NULL,
             NULL,
@@ -112988,7 +112988,7 @@ impl_object__write_internal = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__write_internal__value,
+        &impl_object__write_internal__value,
         {
             NULL,
             NULL,
@@ -113008,7 +113008,7 @@ impl_write_internal_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_write_internal_returns__value,
+        &impl_write_internal_returns__value,
         {
             NULL,
             NULL,
@@ -113044,7 +113044,7 @@ impl_write_internal_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_write_internal_parameter_1__value,
+        &impl_write_internal_parameter_1__value,
         {
             NULL,
             NULL,
@@ -113080,7 +113080,7 @@ impl_write_internal_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_write_internal_parameter_2__value,
+        &impl_write_internal_parameter_2__value,
         {
             NULL,
             NULL,
@@ -113176,7 +113176,7 @@ impl_object__writeln = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__writeln__value,
+        &impl_object__writeln__value,
         {
             NULL,
             NULL,
@@ -113196,7 +113196,7 @@ impl_writeln_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_writeln_returns__value,
+        &impl_writeln_returns__value,
         {
             NULL,
             NULL,
@@ -113232,7 +113232,7 @@ impl_writeln_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_writeln_parameter_1__value,
+        &impl_writeln_parameter_1__value,
         {
             NULL,
             NULL,
@@ -113268,7 +113268,7 @@ impl_writeln_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_writeln_parameter_2__value,
+        &impl_writeln_parameter_2__value,
         {
             NULL,
             NULL,
@@ -113364,7 +113364,7 @@ impl_object__add_string = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__add_string__value,
+        &impl_object__add_string__value,
         {
             NULL,
             NULL,
@@ -113384,7 +113384,7 @@ impl_add_string_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_add_string_returns__value,
+        &impl_add_string_returns__value,
         {
             NULL,
             NULL,
@@ -113420,7 +113420,7 @@ impl_add_string_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_add_string_parameter_1__value,
+        &impl_add_string_parameter_1__value,
         {
             NULL,
             NULL,
@@ -113456,7 +113456,7 @@ impl_add_string_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_add_string_parameter_2__value,
+        &impl_add_string_parameter_2__value,
         {
             NULL,
             NULL,
@@ -113546,7 +113546,7 @@ impl_object__at_least_one_member_of_string = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__at_least_one_member_of_string__value,
+        &impl_object__at_least_one_member_of_string__value,
         {
             NULL,
             NULL,
@@ -113566,7 +113566,7 @@ impl_at_least_one_member_of_string_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_at_least_one_member_of_string_returns__value,
+        &impl_at_least_one_member_of_string_returns__value,
         {
             NULL,
             NULL,
@@ -113602,7 +113602,7 @@ impl_at_least_one_member_of_string_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_at_least_one_member_of_string_parameter_1__value,
+        &impl_at_least_one_member_of_string_parameter_1__value,
         {
             NULL,
             NULL,
@@ -113638,7 +113638,7 @@ impl_at_least_one_member_of_string_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_at_least_one_member_of_string_parameter_2__value,
+        &impl_at_least_one_member_of_string_parameter_2__value,
         {
             NULL,
             NULL,
@@ -113728,7 +113728,7 @@ impl_object__bag_size_string = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__bag_size_string__value,
+        &impl_object__bag_size_string__value,
         {
             NULL,
             NULL,
@@ -113748,7 +113748,7 @@ impl_bag_size_string_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_size_string_returns__value,
+        &impl_bag_size_string_returns__value,
         {
             NULL,
             NULL,
@@ -113784,7 +113784,7 @@ impl_bag_size_string_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_size_string_parameter_1__value,
+        &impl_bag_size_string_parameter_1__value,
         {
             NULL,
             NULL,
@@ -113873,7 +113873,7 @@ impl_object__bag_string = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__bag_string__value,
+        &impl_object__bag_string__value,
         {
             NULL,
             NULL,
@@ -113893,7 +113893,7 @@ impl_bag_string_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_string_returns__value,
+        &impl_bag_string_returns__value,
         {
             NULL,
             NULL,
@@ -113929,7 +113929,7 @@ impl_bag_string_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_string_parameter_1__value,
+        &impl_bag_string_parameter_1__value,
         {
             NULL,
             NULL,
@@ -114018,7 +114018,7 @@ impl_object__concat = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__concat__value,
+        &impl_object__concat__value,
         {
             NULL,
             NULL,
@@ -114038,7 +114038,7 @@ impl_concat_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_concat_returns__value,
+        &impl_concat_returns__value,
         {
             NULL,
             NULL,
@@ -114074,7 +114074,7 @@ impl_concat_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_concat_parameter_1__value,
+        &impl_concat_parameter_1__value,
         {
             NULL,
             NULL,
@@ -114171,7 +114171,7 @@ impl_object__encode_as_base64Binary_string = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__encode_as_base64Binary_string__value,
+        &impl_object__encode_as_base64Binary_string__value,
         {
             NULL,
             NULL,
@@ -114191,7 +114191,7 @@ impl_encode_as_base64Binary_string_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_encode_as_base64Binary_string_returns__value,
+        &impl_encode_as_base64Binary_string_returns__value,
         {
             NULL,
             NULL,
@@ -114227,7 +114227,7 @@ impl_encode_as_base64Binary_string_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_encode_as_base64Binary_string_parameter_1__value,
+        &impl_encode_as_base64Binary_string_parameter_1__value,
         {
             NULL,
             NULL,
@@ -114316,7 +114316,7 @@ impl_object__encode_as_hexBinary_string = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__encode_as_hexBinary_string__value,
+        &impl_object__encode_as_hexBinary_string__value,
         {
             NULL,
             NULL,
@@ -114336,7 +114336,7 @@ impl_encode_as_hexBinary_string_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_encode_as_hexBinary_string_returns__value,
+        &impl_encode_as_hexBinary_string_returns__value,
         {
             NULL,
             NULL,
@@ -114372,7 +114372,7 @@ impl_encode_as_hexBinary_string_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_encode_as_hexBinary_string_parameter_1__value,
+        &impl_encode_as_hexBinary_string_parameter_1__value,
         {
             NULL,
             NULL,
@@ -114461,7 +114461,7 @@ impl_object__ends_with_string = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ends_with_string__value,
+        &impl_object__ends_with_string__value,
         {
             NULL,
             NULL,
@@ -114481,7 +114481,7 @@ impl_ends_with_string_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ends_with_string_returns__value,
+        &impl_ends_with_string_returns__value,
         {
             NULL,
             NULL,
@@ -114517,7 +114517,7 @@ impl_ends_with_string_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ends_with_string_parameter_1__value,
+        &impl_ends_with_string_parameter_1__value,
         {
             NULL,
             NULL,
@@ -114553,7 +114553,7 @@ impl_ends_with_string_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ends_with_string_parameter_2__value,
+        &impl_ends_with_string_parameter_2__value,
         {
             NULL,
             NULL,
@@ -114643,7 +114643,7 @@ impl_object__eq_ignore_case_string = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__eq_ignore_case_string__value,
+        &impl_object__eq_ignore_case_string__value,
         {
             NULL,
             NULL,
@@ -114663,7 +114663,7 @@ impl_eq_ignore_case_string_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_ignore_case_string_returns__value,
+        &impl_eq_ignore_case_string_returns__value,
         {
             NULL,
             NULL,
@@ -114699,7 +114699,7 @@ impl_eq_ignore_case_string_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_ignore_case_string_parameter_1__value,
+        &impl_eq_ignore_case_string_parameter_1__value,
         {
             NULL,
             NULL,
@@ -114735,7 +114735,7 @@ impl_eq_ignore_case_string_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_ignore_case_string_parameter_2__value,
+        &impl_eq_ignore_case_string_parameter_2__value,
         {
             NULL,
             NULL,
@@ -114825,7 +114825,7 @@ impl_object__eq_string = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__eq_string__value,
+        &impl_object__eq_string__value,
         {
             NULL,
             NULL,
@@ -114845,7 +114845,7 @@ impl_eq_string_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_string_returns__value,
+        &impl_eq_string_returns__value,
         {
             NULL,
             NULL,
@@ -114881,7 +114881,7 @@ impl_eq_string_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_string_parameter_1__value,
+        &impl_eq_string_parameter_1__value,
         {
             NULL,
             NULL,
@@ -114917,7 +114917,7 @@ impl_eq_string_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_string_parameter_2__value,
+        &impl_eq_string_parameter_2__value,
         {
             NULL,
             NULL,
@@ -115015,7 +115015,7 @@ impl_object__eqx_string = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__eqx_string__value,
+        &impl_object__eqx_string__value,
         {
             NULL,
             NULL,
@@ -115035,7 +115035,7 @@ impl_eqx_string_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_string_returns__value,
+        &impl_eqx_string_returns__value,
         {
             NULL,
             NULL,
@@ -115071,7 +115071,7 @@ impl_eqx_string_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_string_parameter_1__value,
+        &impl_eqx_string_parameter_1__value,
         {
             NULL,
             NULL,
@@ -115107,7 +115107,7 @@ impl_eqx_string_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_string_parameter_2__value,
+        &impl_eqx_string_parameter_2__value,
         {
             NULL,
             NULL,
@@ -115197,7 +115197,7 @@ impl_object__ge_string = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ge_string__value,
+        &impl_object__ge_string__value,
         {
             NULL,
             NULL,
@@ -115217,7 +115217,7 @@ impl_ge_string_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_string_returns__value,
+        &impl_ge_string_returns__value,
         {
             NULL,
             NULL,
@@ -115253,7 +115253,7 @@ impl_ge_string_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_string_parameter_1__value,
+        &impl_ge_string_parameter_1__value,
         {
             NULL,
             NULL,
@@ -115289,7 +115289,7 @@ impl_ge_string_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_string_parameter_2__value,
+        &impl_ge_string_parameter_2__value,
         {
             NULL,
             NULL,
@@ -115379,7 +115379,7 @@ impl_object__gt_string = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__gt_string__value,
+        &impl_object__gt_string__value,
         {
             NULL,
             NULL,
@@ -115399,7 +115399,7 @@ impl_gt_string_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_string_returns__value,
+        &impl_gt_string_returns__value,
         {
             NULL,
             NULL,
@@ -115435,7 +115435,7 @@ impl_gt_string_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_string_parameter_1__value,
+        &impl_gt_string_parameter_1__value,
         {
             NULL,
             NULL,
@@ -115471,7 +115471,7 @@ impl_gt_string_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_string_parameter_2__value,
+        &impl_gt_string_parameter_2__value,
         {
             NULL,
             NULL,
@@ -115561,7 +115561,7 @@ impl_object__includes_string = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__includes_string__value,
+        &impl_object__includes_string__value,
         {
             NULL,
             NULL,
@@ -115581,7 +115581,7 @@ impl_includes_string_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_includes_string_returns__value,
+        &impl_includes_string_returns__value,
         {
             NULL,
             NULL,
@@ -115617,7 +115617,7 @@ impl_includes_string_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_includes_string_parameter_1__value,
+        &impl_includes_string_parameter_1__value,
         {
             NULL,
             NULL,
@@ -115653,7 +115653,7 @@ impl_includes_string_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_includes_string_parameter_2__value,
+        &impl_includes_string_parameter_2__value,
         {
             NULL,
             NULL,
@@ -115689,7 +115689,7 @@ impl_includes_string_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_includes_string_parameter_3__value,
+        &impl_includes_string_parameter_3__value,
         {
             NULL,
             NULL,
@@ -115780,7 +115780,7 @@ impl_object__index_of_string = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__index_of_string__value,
+        &impl_object__index_of_string__value,
         {
             NULL,
             NULL,
@@ -115800,7 +115800,7 @@ impl_index_of_string_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_index_of_string_returns__value,
+        &impl_index_of_string_returns__value,
         {
             NULL,
             NULL,
@@ -115836,7 +115836,7 @@ impl_index_of_string_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_index_of_string_parameter_1__value,
+        &impl_index_of_string_parameter_1__value,
         {
             NULL,
             NULL,
@@ -115872,7 +115872,7 @@ impl_index_of_string_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_index_of_string_parameter_2__value,
+        &impl_index_of_string_parameter_2__value,
         {
             NULL,
             NULL,
@@ -115908,7 +115908,7 @@ impl_index_of_string_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_index_of_string_parameter_3__value,
+        &impl_index_of_string_parameter_3__value,
         {
             NULL,
             NULL,
@@ -115999,7 +115999,7 @@ impl_object__intersection_string = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__intersection_string__value,
+        &impl_object__intersection_string__value,
         {
             NULL,
             NULL,
@@ -116019,7 +116019,7 @@ impl_intersection_string_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_intersection_string_returns__value,
+        &impl_intersection_string_returns__value,
         {
             NULL,
             NULL,
@@ -116055,7 +116055,7 @@ impl_intersection_string_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_intersection_string_parameter_1__value,
+        &impl_intersection_string_parameter_1__value,
         {
             NULL,
             NULL,
@@ -116091,7 +116091,7 @@ impl_intersection_string_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_intersection_string_parameter_2__value,
+        &impl_intersection_string_parameter_2__value,
         {
             NULL,
             NULL,
@@ -116181,7 +116181,7 @@ impl_object__is_in_string = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__is_in_string__value,
+        &impl_object__is_in_string__value,
         {
             NULL,
             NULL,
@@ -116201,7 +116201,7 @@ impl_is_in_string_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_in_string_returns__value,
+        &impl_is_in_string_returns__value,
         {
             NULL,
             NULL,
@@ -116237,7 +116237,7 @@ impl_is_in_string_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_in_string_parameter_1__value,
+        &impl_is_in_string_parameter_1__value,
         {
             NULL,
             NULL,
@@ -116273,7 +116273,7 @@ impl_is_in_string_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_in_string_parameter_2__value,
+        &impl_is_in_string_parameter_2__value,
         {
             NULL,
             NULL,
@@ -116363,7 +116363,7 @@ impl_object__is_string = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__is_string__value,
+        &impl_object__is_string__value,
         {
             NULL,
             NULL,
@@ -116383,7 +116383,7 @@ impl_is_string_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_string_returns__value,
+        &impl_is_string_returns__value,
         {
             NULL,
             NULL,
@@ -116419,7 +116419,7 @@ impl_is_string_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_string_parameter_1__value,
+        &impl_is_string_parameter_1__value,
         {
             NULL,
             NULL,
@@ -116508,7 +116508,7 @@ impl_object__last_index_of_string = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__last_index_of_string__value,
+        &impl_object__last_index_of_string__value,
         {
             NULL,
             NULL,
@@ -116528,7 +116528,7 @@ impl_last_index_of_string_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_last_index_of_string_returns__value,
+        &impl_last_index_of_string_returns__value,
         {
             NULL,
             NULL,
@@ -116564,7 +116564,7 @@ impl_last_index_of_string_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_last_index_of_string_parameter_1__value,
+        &impl_last_index_of_string_parameter_1__value,
         {
             NULL,
             NULL,
@@ -116600,7 +116600,7 @@ impl_last_index_of_string_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_last_index_of_string_parameter_2__value,
+        &impl_last_index_of_string_parameter_2__value,
         {
             NULL,
             NULL,
@@ -116636,7 +116636,7 @@ impl_last_index_of_string_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_last_index_of_string_parameter_3__value,
+        &impl_last_index_of_string_parameter_3__value,
         {
             NULL,
             NULL,
@@ -116727,7 +116727,7 @@ impl_object__le_string = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__le_string__value,
+        &impl_object__le_string__value,
         {
             NULL,
             NULL,
@@ -116747,7 +116747,7 @@ impl_le_string_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_string_returns__value,
+        &impl_le_string_returns__value,
         {
             NULL,
             NULL,
@@ -116783,7 +116783,7 @@ impl_le_string_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_string_parameter_1__value,
+        &impl_le_string_parameter_1__value,
         {
             NULL,
             NULL,
@@ -116819,7 +116819,7 @@ impl_le_string_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_string_parameter_2__value,
+        &impl_le_string_parameter_2__value,
         {
             NULL,
             NULL,
@@ -116909,7 +116909,7 @@ impl_object__length_string = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__length_string__value,
+        &impl_object__length_string__value,
         {
             NULL,
             NULL,
@@ -116929,7 +116929,7 @@ impl_length_string_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_length_string_returns__value,
+        &impl_length_string_returns__value,
         {
             NULL,
             NULL,
@@ -116965,7 +116965,7 @@ impl_length_string_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_length_string_parameter_1__value,
+        &impl_length_string_parameter_1__value,
         {
             NULL,
             NULL,
@@ -117054,7 +117054,7 @@ impl_object__lt_string = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__lt_string__value,
+        &impl_object__lt_string__value,
         {
             NULL,
             NULL,
@@ -117074,7 +117074,7 @@ impl_lt_string_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_string_returns__value,
+        &impl_lt_string_returns__value,
         {
             NULL,
             NULL,
@@ -117110,7 +117110,7 @@ impl_lt_string_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_string_parameter_1__value,
+        &impl_lt_string_parameter_1__value,
         {
             NULL,
             NULL,
@@ -117146,7 +117146,7 @@ impl_lt_string_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_string_parameter_2__value,
+        &impl_lt_string_parameter_2__value,
         {
             NULL,
             NULL,
@@ -117236,7 +117236,7 @@ impl_object__max_string = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__max_string__value,
+        &impl_object__max_string__value,
         {
             NULL,
             NULL,
@@ -117256,7 +117256,7 @@ impl_max_string_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_max_string_returns__value,
+        &impl_max_string_returns__value,
         {
             NULL,
             NULL,
@@ -117292,7 +117292,7 @@ impl_max_string_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_max_string_parameter_1__value,
+        &impl_max_string_parameter_1__value,
         {
             NULL,
             NULL,
@@ -117381,7 +117381,7 @@ impl_object__min_string = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__min_string__value,
+        &impl_object__min_string__value,
         {
             NULL,
             NULL,
@@ -117401,7 +117401,7 @@ impl_min_string_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_min_string_returns__value,
+        &impl_min_string_returns__value,
         {
             NULL,
             NULL,
@@ -117437,7 +117437,7 @@ impl_min_string_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_min_string_parameter_1__value,
+        &impl_min_string_parameter_1__value,
         {
             NULL,
             NULL,
@@ -117526,7 +117526,7 @@ impl_object__ne_string = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ne_string__value,
+        &impl_object__ne_string__value,
         {
             NULL,
             NULL,
@@ -117546,7 +117546,7 @@ impl_ne_string_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_string_returns__value,
+        &impl_ne_string_returns__value,
         {
             NULL,
             NULL,
@@ -117582,7 +117582,7 @@ impl_ne_string_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_string_parameter_1__value,
+        &impl_ne_string_parameter_1__value,
         {
             NULL,
             NULL,
@@ -117618,7 +117618,7 @@ impl_ne_string_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_string_parameter_2__value,
+        &impl_ne_string_parameter_2__value,
         {
             NULL,
             NULL,
@@ -117716,7 +117716,7 @@ impl_object__nex_string = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__nex_string__value,
+        &impl_object__nex_string__value,
         {
             NULL,
             NULL,
@@ -117736,7 +117736,7 @@ impl_nex_string_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_string_returns__value,
+        &impl_nex_string_returns__value,
         {
             NULL,
             NULL,
@@ -117772,7 +117772,7 @@ impl_nex_string_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_string_parameter_1__value,
+        &impl_nex_string_parameter_1__value,
         {
             NULL,
             NULL,
@@ -117808,7 +117808,7 @@ impl_nex_string_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_string_parameter_2__value,
+        &impl_nex_string_parameter_2__value,
         {
             NULL,
             NULL,
@@ -117898,7 +117898,7 @@ impl_object__normalize_space_string = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__normalize_space_string__value,
+        &impl_object__normalize_space_string__value,
         {
             NULL,
             NULL,
@@ -117918,7 +117918,7 @@ impl_normalize_space_string_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_normalize_space_string_returns__value,
+        &impl_normalize_space_string_returns__value,
         {
             NULL,
             NULL,
@@ -117954,7 +117954,7 @@ impl_normalize_space_string_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_normalize_space_string_parameter_1__value,
+        &impl_normalize_space_string_parameter_1__value,
         {
             NULL,
             NULL,
@@ -118043,7 +118043,7 @@ impl_object__normalize_to_lower_case_string = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__normalize_to_lower_case_string__value,
+        &impl_object__normalize_to_lower_case_string__value,
         {
             NULL,
             NULL,
@@ -118063,7 +118063,7 @@ impl_normalize_to_lower_case_string_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_normalize_to_lower_case_string_returns__value,
+        &impl_normalize_to_lower_case_string_returns__value,
         {
             NULL,
             NULL,
@@ -118099,7 +118099,7 @@ impl_normalize_to_lower_case_string_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_normalize_to_lower_case_string_parameter_1__value,
+        &impl_normalize_to_lower_case_string_parameter_1__value,
         {
             NULL,
             NULL,
@@ -118188,7 +118188,7 @@ impl_object__one_and_only_string = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__one_and_only_string__value,
+        &impl_object__one_and_only_string__value,
         {
             NULL,
             NULL,
@@ -118208,7 +118208,7 @@ impl_one_and_only_string_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_one_and_only_string_returns__value,
+        &impl_one_and_only_string_returns__value,
         {
             NULL,
             NULL,
@@ -118244,7 +118244,7 @@ impl_one_and_only_string_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_one_and_only_string_parameter_1__value,
+        &impl_one_and_only_string_parameter_1__value,
         {
             NULL,
             NULL,
@@ -118341,7 +118341,7 @@ impl_object__regexp_index_of_string = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__regexp_index_of_string__value,
+        &impl_object__regexp_index_of_string__value,
         {
             NULL,
             NULL,
@@ -118361,7 +118361,7 @@ impl_regexp_index_of_string_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_regexp_index_of_string_returns__value,
+        &impl_regexp_index_of_string_returns__value,
         {
             NULL,
             NULL,
@@ -118397,7 +118397,7 @@ impl_regexp_index_of_string_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_regexp_index_of_string_parameter_1__value,
+        &impl_regexp_index_of_string_parameter_1__value,
         {
             NULL,
             NULL,
@@ -118433,7 +118433,7 @@ impl_regexp_index_of_string_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_regexp_index_of_string_parameter_2__value,
+        &impl_regexp_index_of_string_parameter_2__value,
         {
             NULL,
             NULL,
@@ -118523,7 +118523,7 @@ impl_object__regexp_match_string = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__regexp_match_string__value,
+        &impl_object__regexp_match_string__value,
         {
             NULL,
             NULL,
@@ -118543,7 +118543,7 @@ impl_regexp_match_string_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_regexp_match_string_returns__value,
+        &impl_regexp_match_string_returns__value,
         {
             NULL,
             NULL,
@@ -118579,7 +118579,7 @@ impl_regexp_match_string_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_regexp_match_string_parameter_1__value,
+        &impl_regexp_match_string_parameter_1__value,
         {
             NULL,
             NULL,
@@ -118615,7 +118615,7 @@ impl_regexp_match_string_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_regexp_match_string_parameter_2__value,
+        &impl_regexp_match_string_parameter_2__value,
         {
             NULL,
             NULL,
@@ -118705,7 +118705,7 @@ impl_object__regexp_replace_string = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__regexp_replace_string__value,
+        &impl_object__regexp_replace_string__value,
         {
             NULL,
             NULL,
@@ -118725,7 +118725,7 @@ impl_regexp_replace_string_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_regexp_replace_string_returns__value,
+        &impl_regexp_replace_string_returns__value,
         {
             NULL,
             NULL,
@@ -118761,7 +118761,7 @@ impl_regexp_replace_string_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_regexp_replace_string_parameter_1__value,
+        &impl_regexp_replace_string_parameter_1__value,
         {
             NULL,
             NULL,
@@ -118797,7 +118797,7 @@ impl_regexp_replace_string_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_regexp_replace_string_parameter_2__value,
+        &impl_regexp_replace_string_parameter_2__value,
         {
             NULL,
             NULL,
@@ -118833,7 +118833,7 @@ impl_regexp_replace_string_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_regexp_replace_string_parameter_3__value,
+        &impl_regexp_replace_string_parameter_3__value,
         {
             NULL,
             NULL,
@@ -118869,7 +118869,7 @@ impl_regexp_replace_string_parameter_4 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_regexp_replace_string_parameter_4__value,
+        &impl_regexp_replace_string_parameter_4__value,
         {
             NULL,
             NULL,
@@ -118961,7 +118961,7 @@ impl_object__repeat_string = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__repeat_string__value,
+        &impl_object__repeat_string__value,
         {
             NULL,
             NULL,
@@ -118981,7 +118981,7 @@ impl_repeat_string_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_repeat_string_returns__value,
+        &impl_repeat_string_returns__value,
         {
             NULL,
             NULL,
@@ -119017,7 +119017,7 @@ impl_repeat_string_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_repeat_string_parameter_1__value,
+        &impl_repeat_string_parameter_1__value,
         {
             NULL,
             NULL,
@@ -119053,7 +119053,7 @@ impl_repeat_string_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_repeat_string_parameter_2__value,
+        &impl_repeat_string_parameter_2__value,
         {
             NULL,
             NULL,
@@ -119143,7 +119143,7 @@ impl_object__replace_string = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__replace_string__value,
+        &impl_object__replace_string__value,
         {
             NULL,
             NULL,
@@ -119163,7 +119163,7 @@ impl_replace_string_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_replace_string_returns__value,
+        &impl_replace_string_returns__value,
         {
             NULL,
             NULL,
@@ -119199,7 +119199,7 @@ impl_replace_string_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_replace_string_parameter_1__value,
+        &impl_replace_string_parameter_1__value,
         {
             NULL,
             NULL,
@@ -119235,7 +119235,7 @@ impl_replace_string_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_replace_string_parameter_2__value,
+        &impl_replace_string_parameter_2__value,
         {
             NULL,
             NULL,
@@ -119271,7 +119271,7 @@ impl_replace_string_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_replace_string_parameter_3__value,
+        &impl_replace_string_parameter_3__value,
         {
             NULL,
             NULL,
@@ -119307,7 +119307,7 @@ impl_replace_string_parameter_4 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_replace_string_parameter_4__value,
+        &impl_replace_string_parameter_4__value,
         {
             NULL,
             NULL,
@@ -119399,7 +119399,7 @@ impl_object__set_equals_string = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__set_equals_string__value,
+        &impl_object__set_equals_string__value,
         {
             NULL,
             NULL,
@@ -119419,7 +119419,7 @@ impl_set_equals_string_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_set_equals_string_returns__value,
+        &impl_set_equals_string_returns__value,
         {
             NULL,
             NULL,
@@ -119455,7 +119455,7 @@ impl_set_equals_string_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_set_equals_string_parameter_1__value,
+        &impl_set_equals_string_parameter_1__value,
         {
             NULL,
             NULL,
@@ -119491,7 +119491,7 @@ impl_set_equals_string_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_set_equals_string_parameter_2__value,
+        &impl_set_equals_string_parameter_2__value,
         {
             NULL,
             NULL,
@@ -119581,7 +119581,7 @@ impl_object__split_string = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__split_string__value,
+        &impl_object__split_string__value,
         {
             NULL,
             NULL,
@@ -119601,7 +119601,7 @@ impl_split_string_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_split_string_returns__value,
+        &impl_split_string_returns__value,
         {
             NULL,
             NULL,
@@ -119637,7 +119637,7 @@ impl_split_string_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_split_string_parameter_1__value,
+        &impl_split_string_parameter_1__value,
         {
             NULL,
             NULL,
@@ -119673,7 +119673,7 @@ impl_split_string_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_split_string_parameter_2__value,
+        &impl_split_string_parameter_2__value,
         {
             NULL,
             NULL,
@@ -119709,7 +119709,7 @@ impl_split_string_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_split_string_parameter_3__value,
+        &impl_split_string_parameter_3__value,
         {
             NULL,
             NULL,
@@ -119800,7 +119800,7 @@ impl_object__starts_with_string = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__starts_with_string__value,
+        &impl_object__starts_with_string__value,
         {
             NULL,
             NULL,
@@ -119820,7 +119820,7 @@ impl_starts_with_string_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_starts_with_string_returns__value,
+        &impl_starts_with_string_returns__value,
         {
             NULL,
             NULL,
@@ -119856,7 +119856,7 @@ impl_starts_with_string_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_starts_with_string_parameter_1__value,
+        &impl_starts_with_string_parameter_1__value,
         {
             NULL,
             NULL,
@@ -119892,7 +119892,7 @@ impl_starts_with_string_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_starts_with_string_parameter_2__value,
+        &impl_starts_with_string_parameter_2__value,
         {
             NULL,
             NULL,
@@ -119982,7 +119982,7 @@ impl_object__string = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__string__value,
+        &impl_object__string__value,
         {
             NULL,
             NULL,
@@ -120002,7 +120002,7 @@ impl_string_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_string_returns__value,
+        &impl_string_returns__value,
         {
             NULL,
             NULL,
@@ -120038,7 +120038,7 @@ impl_string_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_string_parameter_1__value,
+        &impl_string_parameter_1__value,
         {
             NULL,
             NULL,
@@ -120135,7 +120135,7 @@ impl_object__subset_string = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__subset_string__value,
+        &impl_object__subset_string__value,
         {
             NULL,
             NULL,
@@ -120155,7 +120155,7 @@ impl_subset_string_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subset_string_returns__value,
+        &impl_subset_string_returns__value,
         {
             NULL,
             NULL,
@@ -120191,7 +120191,7 @@ impl_subset_string_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subset_string_parameter_1__value,
+        &impl_subset_string_parameter_1__value,
         {
             NULL,
             NULL,
@@ -120227,7 +120227,7 @@ impl_subset_string_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subset_string_parameter_2__value,
+        &impl_subset_string_parameter_2__value,
         {
             NULL,
             NULL,
@@ -120317,7 +120317,7 @@ impl_object__substring_string = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__substring_string__value,
+        &impl_object__substring_string__value,
         {
             NULL,
             NULL,
@@ -120337,7 +120337,7 @@ impl_substring_string_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_substring_string_returns__value,
+        &impl_substring_string_returns__value,
         {
             NULL,
             NULL,
@@ -120373,7 +120373,7 @@ impl_substring_string_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_substring_string_parameter_1__value,
+        &impl_substring_string_parameter_1__value,
         {
             NULL,
             NULL,
@@ -120409,7 +120409,7 @@ impl_substring_string_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_substring_string_parameter_2__value,
+        &impl_substring_string_parameter_2__value,
         {
             NULL,
             NULL,
@@ -120445,7 +120445,7 @@ impl_substring_string_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_substring_string_parameter_3__value,
+        &impl_substring_string_parameter_3__value,
         {
             NULL,
             NULL,
@@ -120544,7 +120544,7 @@ impl_object__to_anyURI_string = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__to_anyURI_string__value,
+        &impl_object__to_anyURI_string__value,
         {
             NULL,
             NULL,
@@ -120564,7 +120564,7 @@ impl_to_anyURI_string_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_anyURI_string_returns__value,
+        &impl_to_anyURI_string_returns__value,
         {
             NULL,
             NULL,
@@ -120600,7 +120600,7 @@ impl_to_anyURI_string_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_anyURI_string_parameter_1__value,
+        &impl_to_anyURI_string_parameter_1__value,
         {
             NULL,
             NULL,
@@ -120697,7 +120697,7 @@ impl_object__to_boolean_string = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__to_boolean_string__value,
+        &impl_object__to_boolean_string__value,
         {
             NULL,
             NULL,
@@ -120717,7 +120717,7 @@ impl_to_boolean_string_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_boolean_string_returns__value,
+        &impl_to_boolean_string_returns__value,
         {
             NULL,
             NULL,
@@ -120753,7 +120753,7 @@ impl_to_boolean_string_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_boolean_string_parameter_1__value,
+        &impl_to_boolean_string_parameter_1__value,
         {
             NULL,
             NULL,
@@ -120850,7 +120850,7 @@ impl_object__to_dateTime_string = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__to_dateTime_string__value,
+        &impl_object__to_dateTime_string__value,
         {
             NULL,
             NULL,
@@ -120870,7 +120870,7 @@ impl_to_dateTime_string_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_dateTime_string_returns__value,
+        &impl_to_dateTime_string_returns__value,
         {
             NULL,
             NULL,
@@ -120906,7 +120906,7 @@ impl_to_dateTime_string_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_dateTime_string_parameter_1__value,
+        &impl_to_dateTime_string_parameter_1__value,
         {
             NULL,
             NULL,
@@ -121003,7 +121003,7 @@ impl_object__to_date_string = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__to_date_string__value,
+        &impl_object__to_date_string__value,
         {
             NULL,
             NULL,
@@ -121023,7 +121023,7 @@ impl_to_date_string_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_date_string_returns__value,
+        &impl_to_date_string_returns__value,
         {
             NULL,
             NULL,
@@ -121059,7 +121059,7 @@ impl_to_date_string_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_date_string_parameter_1__value,
+        &impl_to_date_string_parameter_1__value,
         {
             NULL,
             NULL,
@@ -121156,7 +121156,7 @@ impl_object__to_dayTimeDuration_string = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__to_dayTimeDuration_string__value,
+        &impl_object__to_dayTimeDuration_string__value,
         {
             NULL,
             NULL,
@@ -121176,7 +121176,7 @@ impl_to_dayTimeDuration_string_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_dayTimeDuration_string_returns__value,
+        &impl_to_dayTimeDuration_string_returns__value,
         {
             NULL,
             NULL,
@@ -121212,7 +121212,7 @@ impl_to_dayTimeDuration_string_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_dayTimeDuration_string_parameter_1__value,
+        &impl_to_dayTimeDuration_string_parameter_1__value,
         {
             NULL,
             NULL,
@@ -121309,7 +121309,7 @@ impl_object__to_dnsName_string = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__to_dnsName_string__value,
+        &impl_object__to_dnsName_string__value,
         {
             NULL,
             NULL,
@@ -121329,7 +121329,7 @@ impl_to_dnsName_string_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_dnsName_string_returns__value,
+        &impl_to_dnsName_string_returns__value,
         {
             NULL,
             NULL,
@@ -121365,7 +121365,7 @@ impl_to_dnsName_string_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_dnsName_string_parameter_1__value,
+        &impl_to_dnsName_string_parameter_1__value,
         {
             NULL,
             NULL,
@@ -121462,7 +121462,7 @@ impl_object__to_double_string = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__to_double_string__value,
+        &impl_object__to_double_string__value,
         {
             NULL,
             NULL,
@@ -121482,7 +121482,7 @@ impl_to_double_string_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_double_string_returns__value,
+        &impl_to_double_string_returns__value,
         {
             NULL,
             NULL,
@@ -121518,7 +121518,7 @@ impl_to_double_string_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_double_string_parameter_1__value,
+        &impl_to_double_string_parameter_1__value,
         {
             NULL,
             NULL,
@@ -121615,7 +121615,7 @@ impl_object__to_integer_string = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__to_integer_string__value,
+        &impl_object__to_integer_string__value,
         {
             NULL,
             NULL,
@@ -121635,7 +121635,7 @@ impl_to_integer_string_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_integer_string_returns__value,
+        &impl_to_integer_string_returns__value,
         {
             NULL,
             NULL,
@@ -121671,7 +121671,7 @@ impl_to_integer_string_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_integer_string_parameter_1__value,
+        &impl_to_integer_string_parameter_1__value,
         {
             NULL,
             NULL,
@@ -121760,7 +121760,7 @@ impl_object__to_ipAddress_string = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__to_ipAddress_string__value,
+        &impl_object__to_ipAddress_string__value,
         {
             NULL,
             NULL,
@@ -121780,7 +121780,7 @@ impl_to_ipAddress_string_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_ipAddress_string_returns__value,
+        &impl_to_ipAddress_string_returns__value,
         {
             NULL,
             NULL,
@@ -121816,7 +121816,7 @@ impl_to_ipAddress_string_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_ipAddress_string_parameter_1__value,
+        &impl_to_ipAddress_string_parameter_1__value,
         {
             NULL,
             NULL,
@@ -121913,7 +121913,7 @@ impl_object__to_rfc822Name_string = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__to_rfc822Name_string__value,
+        &impl_object__to_rfc822Name_string__value,
         {
             NULL,
             NULL,
@@ -121933,7 +121933,7 @@ impl_to_rfc822Name_string_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_rfc822Name_string_returns__value,
+        &impl_to_rfc822Name_string_returns__value,
         {
             NULL,
             NULL,
@@ -121969,7 +121969,7 @@ impl_to_rfc822Name_string_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_rfc822Name_string_parameter_1__value,
+        &impl_to_rfc822Name_string_parameter_1__value,
         {
             NULL,
             NULL,
@@ -122066,7 +122066,7 @@ impl_object__to_string_string = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__to_string_string__value,
+        &impl_object__to_string_string__value,
         {
             NULL,
             NULL,
@@ -122086,7 +122086,7 @@ impl_to_string_string_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_string_string_returns__value,
+        &impl_to_string_string_returns__value,
         {
             NULL,
             NULL,
@@ -122122,7 +122122,7 @@ impl_to_string_string_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_string_string_parameter_1__value,
+        &impl_to_string_string_parameter_1__value,
         {
             NULL,
             NULL,
@@ -122211,7 +122211,7 @@ impl_object__to_time_string = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__to_time_string__value,
+        &impl_object__to_time_string__value,
         {
             NULL,
             NULL,
@@ -122231,7 +122231,7 @@ impl_to_time_string_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_time_string_returns__value,
+        &impl_to_time_string_returns__value,
         {
             NULL,
             NULL,
@@ -122267,7 +122267,7 @@ impl_to_time_string_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_time_string_parameter_1__value,
+        &impl_to_time_string_parameter_1__value,
         {
             NULL,
             NULL,
@@ -122364,7 +122364,7 @@ impl_object__to_x500Name_string = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__to_x500Name_string__value,
+        &impl_object__to_x500Name_string__value,
         {
             NULL,
             NULL,
@@ -122384,7 +122384,7 @@ impl_to_x500Name_string_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_x500Name_string_returns__value,
+        &impl_to_x500Name_string_returns__value,
         {
             NULL,
             NULL,
@@ -122420,7 +122420,7 @@ impl_to_x500Name_string_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_x500Name_string_parameter_1__value,
+        &impl_to_x500Name_string_parameter_1__value,
         {
             NULL,
             NULL,
@@ -122517,7 +122517,7 @@ impl_object__to_yearMonthDuration_string = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__to_yearMonthDuration_string__value,
+        &impl_object__to_yearMonthDuration_string__value,
         {
             NULL,
             NULL,
@@ -122537,7 +122537,7 @@ impl_to_yearMonthDuration_string_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_yearMonthDuration_string_returns__value,
+        &impl_to_yearMonthDuration_string_returns__value,
         {
             NULL,
             NULL,
@@ -122573,7 +122573,7 @@ impl_to_yearMonthDuration_string_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_yearMonthDuration_string_parameter_1__value,
+        &impl_to_yearMonthDuration_string_parameter_1__value,
         {
             NULL,
             NULL,
@@ -122670,7 +122670,7 @@ impl_object__union_string = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__union_string__value,
+        &impl_object__union_string__value,
         {
             NULL,
             NULL,
@@ -122690,7 +122690,7 @@ impl_union_string_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_union_string_returns__value,
+        &impl_union_string_returns__value,
         {
             NULL,
             NULL,
@@ -122726,7 +122726,7 @@ impl_union_string_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_union_string_parameter_1__value,
+        &impl_union_string_parameter_1__value,
         {
             NULL,
             NULL,
@@ -122815,7 +122815,7 @@ impl_object__url_decode = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__url_decode__value,
+        &impl_object__url_decode__value,
         {
             NULL,
             NULL,
@@ -122835,7 +122835,7 @@ impl_url_decode_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_url_decode_returns__value,
+        &impl_url_decode_returns__value,
         {
             NULL,
             NULL,
@@ -122871,7 +122871,7 @@ impl_url_decode_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_url_decode_parameter_1__value,
+        &impl_url_decode_parameter_1__value,
         {
             NULL,
             NULL,
@@ -122960,7 +122960,7 @@ impl_object__url_encode_string = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__url_encode_string__value,
+        &impl_object__url_encode_string__value,
         {
             NULL,
             NULL,
@@ -122980,7 +122980,7 @@ impl_url_encode_string_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_url_encode_string_returns__value,
+        &impl_url_encode_string_returns__value,
         {
             NULL,
             NULL,
@@ -123016,7 +123016,7 @@ impl_url_encode_string_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_url_encode_string_parameter_1__value,
+        &impl_url_encode_string_parameter_1__value,
         {
             NULL,
             NULL,
@@ -123105,7 +123105,7 @@ impl_object__bag_size_template = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__bag_size_template__value,
+        &impl_object__bag_size_template__value,
         {
             NULL,
             NULL,
@@ -123125,7 +123125,7 @@ impl_bag_size_template_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_size_template_returns__value,
+        &impl_bag_size_template_returns__value,
         {
             NULL,
             NULL,
@@ -123161,7 +123161,7 @@ impl_bag_size_template_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_size_template_parameter_1__value,
+        &impl_bag_size_template_parameter_1__value,
         {
             NULL,
             NULL,
@@ -123250,7 +123250,7 @@ impl_object__bag_template = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__bag_template__value,
+        &impl_object__bag_template__value,
         {
             NULL,
             NULL,
@@ -123270,7 +123270,7 @@ impl_bag_template_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_template_returns__value,
+        &impl_bag_template_returns__value,
         {
             NULL,
             NULL,
@@ -123306,7 +123306,7 @@ impl_bag_template_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_template_parameter_1__value,
+        &impl_bag_template_parameter_1__value,
         {
             NULL,
             NULL,
@@ -123395,7 +123395,7 @@ impl_object__compile_template = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__compile_template__value,
+        &impl_object__compile_template__value,
         {
             NULL,
             NULL,
@@ -123415,7 +123415,7 @@ impl_compile_template_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_compile_template_returns__value,
+        &impl_compile_template_returns__value,
         {
             NULL,
             NULL,
@@ -123451,7 +123451,7 @@ impl_compile_template_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_compile_template_parameter_1__value,
+        &impl_compile_template_parameter_1__value,
         {
             NULL,
             NULL,
@@ -123487,7 +123487,7 @@ impl_compile_template_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_compile_template_parameter_2__value,
+        &impl_compile_template_parameter_2__value,
         {
             NULL,
             NULL,
@@ -123577,7 +123577,7 @@ impl_object__eq_template = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__eq_template__value,
+        &impl_object__eq_template__value,
         {
             NULL,
             NULL,
@@ -123597,7 +123597,7 @@ impl_eq_template_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_template_returns__value,
+        &impl_eq_template_returns__value,
         {
             NULL,
             NULL,
@@ -123633,7 +123633,7 @@ impl_eq_template_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_template_parameter_1__value,
+        &impl_eq_template_parameter_1__value,
         {
             NULL,
             NULL,
@@ -123669,7 +123669,7 @@ impl_eq_template_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_template_parameter_2__value,
+        &impl_eq_template_parameter_2__value,
         {
             NULL,
             NULL,
@@ -123767,7 +123767,7 @@ impl_object__eqx_template = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__eqx_template__value,
+        &impl_object__eqx_template__value,
         {
             NULL,
             NULL,
@@ -123787,7 +123787,7 @@ impl_eqx_template_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_template_returns__value,
+        &impl_eqx_template_returns__value,
         {
             NULL,
             NULL,
@@ -123823,7 +123823,7 @@ impl_eqx_template_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_template_parameter_1__value,
+        &impl_eqx_template_parameter_1__value,
         {
             NULL,
             NULL,
@@ -123859,7 +123859,7 @@ impl_eqx_template_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_template_parameter_2__value,
+        &impl_eqx_template_parameter_2__value,
         {
             NULL,
             NULL,
@@ -123949,7 +123949,7 @@ impl_object__evaluate_template = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__evaluate_template__value,
+        &impl_object__evaluate_template__value,
         {
             NULL,
             NULL,
@@ -123969,7 +123969,7 @@ impl_evaluate_template_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_evaluate_template_returns__value,
+        &impl_evaluate_template_returns__value,
         {
             NULL,
             NULL,
@@ -124005,7 +124005,7 @@ impl_evaluate_template_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_evaluate_template_parameter_1__value,
+        &impl_evaluate_template_parameter_1__value,
         {
             NULL,
             NULL,
@@ -124041,7 +124041,7 @@ impl_evaluate_template_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_evaluate_template_parameter_2__value,
+        &impl_evaluate_template_parameter_2__value,
         {
             NULL,
             NULL,
@@ -124131,7 +124131,7 @@ impl_object__ge_template = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ge_template__value,
+        &impl_object__ge_template__value,
         {
             NULL,
             NULL,
@@ -124151,7 +124151,7 @@ impl_ge_template_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_template_returns__value,
+        &impl_ge_template_returns__value,
         {
             NULL,
             NULL,
@@ -124187,7 +124187,7 @@ impl_ge_template_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_template_parameter_1__value,
+        &impl_ge_template_parameter_1__value,
         {
             NULL,
             NULL,
@@ -124223,7 +124223,7 @@ impl_ge_template_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_template_parameter_2__value,
+        &impl_ge_template_parameter_2__value,
         {
             NULL,
             NULL,
@@ -124313,7 +124313,7 @@ impl_object__gt_template = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__gt_template__value,
+        &impl_object__gt_template__value,
         {
             NULL,
             NULL,
@@ -124333,7 +124333,7 @@ impl_gt_template_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_template_returns__value,
+        &impl_gt_template_returns__value,
         {
             NULL,
             NULL,
@@ -124369,7 +124369,7 @@ impl_gt_template_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_template_parameter_1__value,
+        &impl_gt_template_parameter_1__value,
         {
             NULL,
             NULL,
@@ -124405,7 +124405,7 @@ impl_gt_template_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_template_parameter_2__value,
+        &impl_gt_template_parameter_2__value,
         {
             NULL,
             NULL,
@@ -124495,7 +124495,7 @@ impl_object__is_template = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__is_template__value,
+        &impl_object__is_template__value,
         {
             NULL,
             NULL,
@@ -124515,7 +124515,7 @@ impl_is_template_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_template_returns__value,
+        &impl_is_template_returns__value,
         {
             NULL,
             NULL,
@@ -124551,7 +124551,7 @@ impl_is_template_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_template_parameter_1__value,
+        &impl_is_template_parameter_1__value,
         {
             NULL,
             NULL,
@@ -124640,7 +124640,7 @@ impl_object__le_template = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__le_template__value,
+        &impl_object__le_template__value,
         {
             NULL,
             NULL,
@@ -124660,7 +124660,7 @@ impl_le_template_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_template_returns__value,
+        &impl_le_template_returns__value,
         {
             NULL,
             NULL,
@@ -124696,7 +124696,7 @@ impl_le_template_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_template_parameter_1__value,
+        &impl_le_template_parameter_1__value,
         {
             NULL,
             NULL,
@@ -124732,7 +124732,7 @@ impl_le_template_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_template_parameter_2__value,
+        &impl_le_template_parameter_2__value,
         {
             NULL,
             NULL,
@@ -124822,7 +124822,7 @@ impl_object__lt_template = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__lt_template__value,
+        &impl_object__lt_template__value,
         {
             NULL,
             NULL,
@@ -124842,7 +124842,7 @@ impl_lt_template_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_template_returns__value,
+        &impl_lt_template_returns__value,
         {
             NULL,
             NULL,
@@ -124878,7 +124878,7 @@ impl_lt_template_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_template_parameter_1__value,
+        &impl_lt_template_parameter_1__value,
         {
             NULL,
             NULL,
@@ -124914,7 +124914,7 @@ impl_lt_template_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_template_parameter_2__value,
+        &impl_lt_template_parameter_2__value,
         {
             NULL,
             NULL,
@@ -125004,7 +125004,7 @@ impl_object__ne_template = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ne_template__value,
+        &impl_object__ne_template__value,
         {
             NULL,
             NULL,
@@ -125024,7 +125024,7 @@ impl_ne_template_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_template_returns__value,
+        &impl_ne_template_returns__value,
         {
             NULL,
             NULL,
@@ -125060,7 +125060,7 @@ impl_ne_template_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_template_parameter_1__value,
+        &impl_ne_template_parameter_1__value,
         {
             NULL,
             NULL,
@@ -125096,7 +125096,7 @@ impl_ne_template_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_template_parameter_2__value,
+        &impl_ne_template_parameter_2__value,
         {
             NULL,
             NULL,
@@ -125194,7 +125194,7 @@ impl_object__nex_template = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__nex_template__value,
+        &impl_object__nex_template__value,
         {
             NULL,
             NULL,
@@ -125214,7 +125214,7 @@ impl_nex_template_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_template_returns__value,
+        &impl_nex_template_returns__value,
         {
             NULL,
             NULL,
@@ -125250,7 +125250,7 @@ impl_nex_template_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_template_parameter_1__value,
+        &impl_nex_template_parameter_1__value,
         {
             NULL,
             NULL,
@@ -125286,7 +125286,7 @@ impl_nex_template_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_template_parameter_2__value,
+        &impl_nex_template_parameter_2__value,
         {
             NULL,
             NULL,
@@ -125376,7 +125376,7 @@ impl_object__template = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__template__value,
+        &impl_object__template__value,
         {
             NULL,
             NULL,
@@ -125396,7 +125396,7 @@ impl_template_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_template_returns__value,
+        &impl_template_returns__value,
         {
             NULL,
             NULL,
@@ -125432,7 +125432,7 @@ impl_template_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_template_parameter_1__value,
+        &impl_template_parameter_1__value,
         {
             NULL,
             NULL,
@@ -125529,7 +125529,7 @@ impl_object__to_string_template = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__to_string_template__value,
+        &impl_object__to_string_template__value,
         {
             NULL,
             NULL,
@@ -125549,7 +125549,7 @@ impl_to_string_template_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_string_template_returns__value,
+        &impl_to_string_template_returns__value,
         {
             NULL,
             NULL,
@@ -125585,7 +125585,7 @@ impl_to_string_template_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_string_template_parameter_1__value,
+        &impl_to_string_template_parameter_1__value,
         {
             NULL,
             NULL,
@@ -125674,7 +125674,7 @@ impl_object__at_least_one_member_of_time = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__at_least_one_member_of_time__value,
+        &impl_object__at_least_one_member_of_time__value,
         {
             NULL,
             NULL,
@@ -125694,7 +125694,7 @@ impl_at_least_one_member_of_time_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_at_least_one_member_of_time_returns__value,
+        &impl_at_least_one_member_of_time_returns__value,
         {
             NULL,
             NULL,
@@ -125730,7 +125730,7 @@ impl_at_least_one_member_of_time_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_at_least_one_member_of_time_parameter_1__value,
+        &impl_at_least_one_member_of_time_parameter_1__value,
         {
             NULL,
             NULL,
@@ -125766,7 +125766,7 @@ impl_at_least_one_member_of_time_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_at_least_one_member_of_time_parameter_2__value,
+        &impl_at_least_one_member_of_time_parameter_2__value,
         {
             NULL,
             NULL,
@@ -125856,7 +125856,7 @@ impl_object__bag_size_time = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__bag_size_time__value,
+        &impl_object__bag_size_time__value,
         {
             NULL,
             NULL,
@@ -125876,7 +125876,7 @@ impl_bag_size_time_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_size_time_returns__value,
+        &impl_bag_size_time_returns__value,
         {
             NULL,
             NULL,
@@ -125912,7 +125912,7 @@ impl_bag_size_time_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_size_time_parameter_1__value,
+        &impl_bag_size_time_parameter_1__value,
         {
             NULL,
             NULL,
@@ -126001,7 +126001,7 @@ impl_object__bag_time = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__bag_time__value,
+        &impl_object__bag_time__value,
         {
             NULL,
             NULL,
@@ -126021,7 +126021,7 @@ impl_bag_time_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_time_returns__value,
+        &impl_bag_time_returns__value,
         {
             NULL,
             NULL,
@@ -126057,7 +126057,7 @@ impl_bag_time_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_time_parameter_1__value,
+        &impl_bag_time_parameter_1__value,
         {
             NULL,
             NULL,
@@ -126146,7 +126146,7 @@ impl_object__eq_time = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__eq_time__value,
+        &impl_object__eq_time__value,
         {
             NULL,
             NULL,
@@ -126166,7 +126166,7 @@ impl_eq_time_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_time_returns__value,
+        &impl_eq_time_returns__value,
         {
             NULL,
             NULL,
@@ -126202,7 +126202,7 @@ impl_eq_time_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_time_parameter_1__value,
+        &impl_eq_time_parameter_1__value,
         {
             NULL,
             NULL,
@@ -126238,7 +126238,7 @@ impl_eq_time_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_time_parameter_2__value,
+        &impl_eq_time_parameter_2__value,
         {
             NULL,
             NULL,
@@ -126336,7 +126336,7 @@ impl_object__eqx_time = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__eqx_time__value,
+        &impl_object__eqx_time__value,
         {
             NULL,
             NULL,
@@ -126356,7 +126356,7 @@ impl_eqx_time_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_time_returns__value,
+        &impl_eqx_time_returns__value,
         {
             NULL,
             NULL,
@@ -126392,7 +126392,7 @@ impl_eqx_time_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_time_parameter_1__value,
+        &impl_eqx_time_parameter_1__value,
         {
             NULL,
             NULL,
@@ -126428,7 +126428,7 @@ impl_eqx_time_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_time_parameter_2__value,
+        &impl_eqx_time_parameter_2__value,
         {
             NULL,
             NULL,
@@ -126518,7 +126518,7 @@ impl_object__ge_time = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ge_time__value,
+        &impl_object__ge_time__value,
         {
             NULL,
             NULL,
@@ -126538,7 +126538,7 @@ impl_ge_time_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_time_returns__value,
+        &impl_ge_time_returns__value,
         {
             NULL,
             NULL,
@@ -126574,7 +126574,7 @@ impl_ge_time_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_time_parameter_1__value,
+        &impl_ge_time_parameter_1__value,
         {
             NULL,
             NULL,
@@ -126610,7 +126610,7 @@ impl_ge_time_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_time_parameter_2__value,
+        &impl_ge_time_parameter_2__value,
         {
             NULL,
             NULL,
@@ -126700,7 +126700,7 @@ impl_object__gt_time = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__gt_time__value,
+        &impl_object__gt_time__value,
         {
             NULL,
             NULL,
@@ -126720,7 +126720,7 @@ impl_gt_time_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_time_returns__value,
+        &impl_gt_time_returns__value,
         {
             NULL,
             NULL,
@@ -126756,7 +126756,7 @@ impl_gt_time_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_time_parameter_1__value,
+        &impl_gt_time_parameter_1__value,
         {
             NULL,
             NULL,
@@ -126792,7 +126792,7 @@ impl_gt_time_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_time_parameter_2__value,
+        &impl_gt_time_parameter_2__value,
         {
             NULL,
             NULL,
@@ -126882,7 +126882,7 @@ impl_object__in_range_time = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__in_range_time__value,
+        &impl_object__in_range_time__value,
         {
             NULL,
             NULL,
@@ -126902,7 +126902,7 @@ impl_in_range_time_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_in_range_time_returns__value,
+        &impl_in_range_time_returns__value,
         {
             NULL,
             NULL,
@@ -126938,7 +126938,7 @@ impl_in_range_time_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_in_range_time_parameter_1__value,
+        &impl_in_range_time_parameter_1__value,
         {
             NULL,
             NULL,
@@ -126974,7 +126974,7 @@ impl_in_range_time_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_in_range_time_parameter_2__value,
+        &impl_in_range_time_parameter_2__value,
         {
             NULL,
             NULL,
@@ -127010,7 +127010,7 @@ impl_in_range_time_parameter_3 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_in_range_time_parameter_3__value,
+        &impl_in_range_time_parameter_3__value,
         {
             NULL,
             NULL,
@@ -127101,7 +127101,7 @@ impl_object__intersection_time = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__intersection_time__value,
+        &impl_object__intersection_time__value,
         {
             NULL,
             NULL,
@@ -127121,7 +127121,7 @@ impl_intersection_time_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_intersection_time_returns__value,
+        &impl_intersection_time_returns__value,
         {
             NULL,
             NULL,
@@ -127157,7 +127157,7 @@ impl_intersection_time_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_intersection_time_parameter_1__value,
+        &impl_intersection_time_parameter_1__value,
         {
             NULL,
             NULL,
@@ -127193,7 +127193,7 @@ impl_intersection_time_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_intersection_time_parameter_2__value,
+        &impl_intersection_time_parameter_2__value,
         {
             NULL,
             NULL,
@@ -127283,7 +127283,7 @@ impl_object__is_in_time = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__is_in_time__value,
+        &impl_object__is_in_time__value,
         {
             NULL,
             NULL,
@@ -127303,7 +127303,7 @@ impl_is_in_time_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_in_time_returns__value,
+        &impl_is_in_time_returns__value,
         {
             NULL,
             NULL,
@@ -127339,7 +127339,7 @@ impl_is_in_time_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_in_time_parameter_1__value,
+        &impl_is_in_time_parameter_1__value,
         {
             NULL,
             NULL,
@@ -127375,7 +127375,7 @@ impl_is_in_time_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_in_time_parameter_2__value,
+        &impl_is_in_time_parameter_2__value,
         {
             NULL,
             NULL,
@@ -127465,7 +127465,7 @@ impl_object__is_time = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__is_time__value,
+        &impl_object__is_time__value,
         {
             NULL,
             NULL,
@@ -127485,7 +127485,7 @@ impl_is_time_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_time_returns__value,
+        &impl_is_time_returns__value,
         {
             NULL,
             NULL,
@@ -127521,7 +127521,7 @@ impl_is_time_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_time_parameter_1__value,
+        &impl_is_time_parameter_1__value,
         {
             NULL,
             NULL,
@@ -127610,7 +127610,7 @@ impl_object__le_time = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__le_time__value,
+        &impl_object__le_time__value,
         {
             NULL,
             NULL,
@@ -127630,7 +127630,7 @@ impl_le_time_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_time_returns__value,
+        &impl_le_time_returns__value,
         {
             NULL,
             NULL,
@@ -127666,7 +127666,7 @@ impl_le_time_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_time_parameter_1__value,
+        &impl_le_time_parameter_1__value,
         {
             NULL,
             NULL,
@@ -127702,7 +127702,7 @@ impl_le_time_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_time_parameter_2__value,
+        &impl_le_time_parameter_2__value,
         {
             NULL,
             NULL,
@@ -127792,7 +127792,7 @@ impl_object__lt_time = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__lt_time__value,
+        &impl_object__lt_time__value,
         {
             NULL,
             NULL,
@@ -127812,7 +127812,7 @@ impl_lt_time_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_time_returns__value,
+        &impl_lt_time_returns__value,
         {
             NULL,
             NULL,
@@ -127848,7 +127848,7 @@ impl_lt_time_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_time_parameter_1__value,
+        &impl_lt_time_parameter_1__value,
         {
             NULL,
             NULL,
@@ -127884,7 +127884,7 @@ impl_lt_time_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_time_parameter_2__value,
+        &impl_lt_time_parameter_2__value,
         {
             NULL,
             NULL,
@@ -127974,7 +127974,7 @@ impl_object__max_time = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__max_time__value,
+        &impl_object__max_time__value,
         {
             NULL,
             NULL,
@@ -127994,7 +127994,7 @@ impl_max_time_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_max_time_returns__value,
+        &impl_max_time_returns__value,
         {
             NULL,
             NULL,
@@ -128030,7 +128030,7 @@ impl_max_time_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_max_time_parameter_1__value,
+        &impl_max_time_parameter_1__value,
         {
             NULL,
             NULL,
@@ -128119,7 +128119,7 @@ impl_object__min_time = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__min_time__value,
+        &impl_object__min_time__value,
         {
             NULL,
             NULL,
@@ -128139,7 +128139,7 @@ impl_min_time_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_min_time_returns__value,
+        &impl_min_time_returns__value,
         {
             NULL,
             NULL,
@@ -128175,7 +128175,7 @@ impl_min_time_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_min_time_parameter_1__value,
+        &impl_min_time_parameter_1__value,
         {
             NULL,
             NULL,
@@ -128264,7 +128264,7 @@ impl_object__ne_time = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ne_time__value,
+        &impl_object__ne_time__value,
         {
             NULL,
             NULL,
@@ -128284,7 +128284,7 @@ impl_ne_time_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_time_returns__value,
+        &impl_ne_time_returns__value,
         {
             NULL,
             NULL,
@@ -128320,7 +128320,7 @@ impl_ne_time_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_time_parameter_1__value,
+        &impl_ne_time_parameter_1__value,
         {
             NULL,
             NULL,
@@ -128356,7 +128356,7 @@ impl_ne_time_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_time_parameter_2__value,
+        &impl_ne_time_parameter_2__value,
         {
             NULL,
             NULL,
@@ -128454,7 +128454,7 @@ impl_object__nex_time = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__nex_time__value,
+        &impl_object__nex_time__value,
         {
             NULL,
             NULL,
@@ -128474,7 +128474,7 @@ impl_nex_time_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_time_returns__value,
+        &impl_nex_time_returns__value,
         {
             NULL,
             NULL,
@@ -128510,7 +128510,7 @@ impl_nex_time_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_time_parameter_1__value,
+        &impl_nex_time_parameter_1__value,
         {
             NULL,
             NULL,
@@ -128546,7 +128546,7 @@ impl_nex_time_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_time_parameter_2__value,
+        &impl_nex_time_parameter_2__value,
         {
             NULL,
             NULL,
@@ -128636,7 +128636,7 @@ impl_object__one_and_only_time = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__one_and_only_time__value,
+        &impl_object__one_and_only_time__value,
         {
             NULL,
             NULL,
@@ -128656,7 +128656,7 @@ impl_one_and_only_time_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_one_and_only_time_returns__value,
+        &impl_one_and_only_time_returns__value,
         {
             NULL,
             NULL,
@@ -128692,7 +128692,7 @@ impl_one_and_only_time_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_one_and_only_time_parameter_1__value,
+        &impl_one_and_only_time_parameter_1__value,
         {
             NULL,
             NULL,
@@ -128789,7 +128789,7 @@ impl_object__set_equals_time = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__set_equals_time__value,
+        &impl_object__set_equals_time__value,
         {
             NULL,
             NULL,
@@ -128809,7 +128809,7 @@ impl_set_equals_time_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_set_equals_time_returns__value,
+        &impl_set_equals_time_returns__value,
         {
             NULL,
             NULL,
@@ -128845,7 +128845,7 @@ impl_set_equals_time_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_set_equals_time_parameter_1__value,
+        &impl_set_equals_time_parameter_1__value,
         {
             NULL,
             NULL,
@@ -128881,7 +128881,7 @@ impl_set_equals_time_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_set_equals_time_parameter_2__value,
+        &impl_set_equals_time_parameter_2__value,
         {
             NULL,
             NULL,
@@ -128971,7 +128971,7 @@ impl_object__subset_time = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__subset_time__value,
+        &impl_object__subset_time__value,
         {
             NULL,
             NULL,
@@ -128991,7 +128991,7 @@ impl_subset_time_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subset_time_returns__value,
+        &impl_subset_time_returns__value,
         {
             NULL,
             NULL,
@@ -129027,7 +129027,7 @@ impl_subset_time_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subset_time_parameter_1__value,
+        &impl_subset_time_parameter_1__value,
         {
             NULL,
             NULL,
@@ -129063,7 +129063,7 @@ impl_subset_time_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subset_time_parameter_2__value,
+        &impl_subset_time_parameter_2__value,
         {
             NULL,
             NULL,
@@ -129153,7 +129153,7 @@ impl_object__time = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__time__value,
+        &impl_object__time__value,
         {
             NULL,
             NULL,
@@ -129173,7 +129173,7 @@ impl_time_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_time_returns__value,
+        &impl_time_returns__value,
         {
             NULL,
             NULL,
@@ -129209,7 +129209,7 @@ impl_time_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_time_parameter_1__value,
+        &impl_time_parameter_1__value,
         {
             NULL,
             NULL,
@@ -129306,7 +129306,7 @@ impl_object__to_string_time = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__to_string_time__value,
+        &impl_object__to_string_time__value,
         {
             NULL,
             NULL,
@@ -129326,7 +129326,7 @@ impl_to_string_time_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_string_time_returns__value,
+        &impl_to_string_time_returns__value,
         {
             NULL,
             NULL,
@@ -129362,7 +129362,7 @@ impl_to_string_time_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_string_time_parameter_1__value,
+        &impl_to_string_time_parameter_1__value,
         {
             NULL,
             NULL,
@@ -129451,7 +129451,7 @@ impl_object__union_time = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__union_time__value,
+        &impl_object__union_time__value,
         {
             NULL,
             NULL,
@@ -129471,7 +129471,7 @@ impl_union_time_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_union_time_returns__value,
+        &impl_union_time_returns__value,
         {
             NULL,
             NULL,
@@ -129507,7 +129507,7 @@ impl_union_time_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_union_time_parameter_1__value,
+        &impl_union_time_parameter_1__value,
         {
             NULL,
             NULL,
@@ -129596,7 +129596,7 @@ impl_object__is_unevaluated = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__is_unevaluated__value,
+        &impl_object__is_unevaluated__value,
         {
             NULL,
             NULL,
@@ -129616,7 +129616,7 @@ impl_is_unevaluated_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_unevaluated_returns__value,
+        &impl_is_unevaluated_returns__value,
         {
             NULL,
             NULL,
@@ -129652,7 +129652,7 @@ impl_is_unevaluated_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_unevaluated_parameter_1__value,
+        &impl_is_unevaluated_parameter_1__value,
         {
             NULL,
             NULL,
@@ -129741,7 +129741,7 @@ impl_object__meta = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__meta__value,
+        &impl_object__meta__value,
         {
             NULL,
             NULL,
@@ -129761,7 +129761,7 @@ impl_meta_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_meta_returns__value,
+        &impl_meta_returns__value,
         {
             NULL,
             NULL,
@@ -129797,7 +129797,7 @@ impl_meta_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_meta_parameter_1__value,
+        &impl_meta_parameter_1__value,
         {
             NULL,
             NULL,
@@ -129886,7 +129886,7 @@ impl_object__metas = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__metas__value,
+        &impl_object__metas__value,
         {
             NULL,
             NULL,
@@ -129906,7 +129906,7 @@ impl_metas_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_metas_returns__value,
+        &impl_metas_returns__value,
         {
             NULL,
             NULL,
@@ -129942,7 +129942,7 @@ impl_metas_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_metas_parameter_1__value,
+        &impl_metas_parameter_1__value,
         {
             NULL,
             NULL,
@@ -130031,7 +130031,7 @@ impl_object__at_least_one_member_of_x500Name = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__at_least_one_member_of_x500Name__value,
+        &impl_object__at_least_one_member_of_x500Name__value,
         {
             NULL,
             NULL,
@@ -130051,7 +130051,7 @@ impl_at_least_one_member_of_x500Name_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_at_least_one_member_of_x500Name_returns__value,
+        &impl_at_least_one_member_of_x500Name_returns__value,
         {
             NULL,
             NULL,
@@ -130087,7 +130087,7 @@ impl_at_least_one_member_of_x500Name_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_at_least_one_member_of_x500Name_parameter_1__value,
+        &impl_at_least_one_member_of_x500Name_parameter_1__value,
         {
             NULL,
             NULL,
@@ -130123,7 +130123,7 @@ impl_at_least_one_member_of_x500Name_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_at_least_one_member_of_x500Name_parameter_2__value,
+        &impl_at_least_one_member_of_x500Name_parameter_2__value,
         {
             NULL,
             NULL,
@@ -130213,7 +130213,7 @@ impl_object__bag_size_x500Name = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__bag_size_x500Name__value,
+        &impl_object__bag_size_x500Name__value,
         {
             NULL,
             NULL,
@@ -130233,7 +130233,7 @@ impl_bag_size_x500Name_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_size_x500Name_returns__value,
+        &impl_bag_size_x500Name_returns__value,
         {
             NULL,
             NULL,
@@ -130269,7 +130269,7 @@ impl_bag_size_x500Name_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_size_x500Name_parameter_1__value,
+        &impl_bag_size_x500Name_parameter_1__value,
         {
             NULL,
             NULL,
@@ -130358,7 +130358,7 @@ impl_object__bag_x500Name = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__bag_x500Name__value,
+        &impl_object__bag_x500Name__value,
         {
             NULL,
             NULL,
@@ -130378,7 +130378,7 @@ impl_bag_x500Name_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_x500Name_returns__value,
+        &impl_bag_x500Name_returns__value,
         {
             NULL,
             NULL,
@@ -130414,7 +130414,7 @@ impl_bag_x500Name_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_x500Name_parameter_1__value,
+        &impl_bag_x500Name_parameter_1__value,
         {
             NULL,
             NULL,
@@ -130503,7 +130503,7 @@ impl_object__eq_x500Name = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__eq_x500Name__value,
+        &impl_object__eq_x500Name__value,
         {
             NULL,
             NULL,
@@ -130523,7 +130523,7 @@ impl_eq_x500Name_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_x500Name_returns__value,
+        &impl_eq_x500Name_returns__value,
         {
             NULL,
             NULL,
@@ -130559,7 +130559,7 @@ impl_eq_x500Name_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_x500Name_parameter_1__value,
+        &impl_eq_x500Name_parameter_1__value,
         {
             NULL,
             NULL,
@@ -130595,7 +130595,7 @@ impl_eq_x500Name_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_x500Name_parameter_2__value,
+        &impl_eq_x500Name_parameter_2__value,
         {
             NULL,
             NULL,
@@ -130693,7 +130693,7 @@ impl_object__eqx_x500Name = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__eqx_x500Name__value,
+        &impl_object__eqx_x500Name__value,
         {
             NULL,
             NULL,
@@ -130713,7 +130713,7 @@ impl_eqx_x500Name_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_x500Name_returns__value,
+        &impl_eqx_x500Name_returns__value,
         {
             NULL,
             NULL,
@@ -130749,7 +130749,7 @@ impl_eqx_x500Name_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_x500Name_parameter_1__value,
+        &impl_eqx_x500Name_parameter_1__value,
         {
             NULL,
             NULL,
@@ -130785,7 +130785,7 @@ impl_eqx_x500Name_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_x500Name_parameter_2__value,
+        &impl_eqx_x500Name_parameter_2__value,
         {
             NULL,
             NULL,
@@ -130875,7 +130875,7 @@ impl_object__ge_x500Name = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ge_x500Name__value,
+        &impl_object__ge_x500Name__value,
         {
             NULL,
             NULL,
@@ -130895,7 +130895,7 @@ impl_ge_x500Name_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_x500Name_returns__value,
+        &impl_ge_x500Name_returns__value,
         {
             NULL,
             NULL,
@@ -130931,7 +130931,7 @@ impl_ge_x500Name_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_x500Name_parameter_1__value,
+        &impl_ge_x500Name_parameter_1__value,
         {
             NULL,
             NULL,
@@ -130967,7 +130967,7 @@ impl_ge_x500Name_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_x500Name_parameter_2__value,
+        &impl_ge_x500Name_parameter_2__value,
         {
             NULL,
             NULL,
@@ -131057,7 +131057,7 @@ impl_object__gt_x500Name = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__gt_x500Name__value,
+        &impl_object__gt_x500Name__value,
         {
             NULL,
             NULL,
@@ -131077,7 +131077,7 @@ impl_gt_x500Name_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_x500Name_returns__value,
+        &impl_gt_x500Name_returns__value,
         {
             NULL,
             NULL,
@@ -131113,7 +131113,7 @@ impl_gt_x500Name_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_x500Name_parameter_1__value,
+        &impl_gt_x500Name_parameter_1__value,
         {
             NULL,
             NULL,
@@ -131149,7 +131149,7 @@ impl_gt_x500Name_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_x500Name_parameter_2__value,
+        &impl_gt_x500Name_parameter_2__value,
         {
             NULL,
             NULL,
@@ -131239,7 +131239,7 @@ impl_object__intersection_x500Name = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__intersection_x500Name__value,
+        &impl_object__intersection_x500Name__value,
         {
             NULL,
             NULL,
@@ -131259,7 +131259,7 @@ impl_intersection_x500Name_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_intersection_x500Name_returns__value,
+        &impl_intersection_x500Name_returns__value,
         {
             NULL,
             NULL,
@@ -131295,7 +131295,7 @@ impl_intersection_x500Name_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_intersection_x500Name_parameter_1__value,
+        &impl_intersection_x500Name_parameter_1__value,
         {
             NULL,
             NULL,
@@ -131331,7 +131331,7 @@ impl_intersection_x500Name_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_intersection_x500Name_parameter_2__value,
+        &impl_intersection_x500Name_parameter_2__value,
         {
             NULL,
             NULL,
@@ -131421,7 +131421,7 @@ impl_object__is_in_x500Name = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__is_in_x500Name__value,
+        &impl_object__is_in_x500Name__value,
         {
             NULL,
             NULL,
@@ -131441,7 +131441,7 @@ impl_is_in_x500Name_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_in_x500Name_returns__value,
+        &impl_is_in_x500Name_returns__value,
         {
             NULL,
             NULL,
@@ -131477,7 +131477,7 @@ impl_is_in_x500Name_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_in_x500Name_parameter_1__value,
+        &impl_is_in_x500Name_parameter_1__value,
         {
             NULL,
             NULL,
@@ -131513,7 +131513,7 @@ impl_is_in_x500Name_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_in_x500Name_parameter_2__value,
+        &impl_is_in_x500Name_parameter_2__value,
         {
             NULL,
             NULL,
@@ -131603,7 +131603,7 @@ impl_object__is_x500Name = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__is_x500Name__value,
+        &impl_object__is_x500Name__value,
         {
             NULL,
             NULL,
@@ -131623,7 +131623,7 @@ impl_is_x500Name_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_x500Name_returns__value,
+        &impl_is_x500Name_returns__value,
         {
             NULL,
             NULL,
@@ -131659,7 +131659,7 @@ impl_is_x500Name_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_x500Name_parameter_1__value,
+        &impl_is_x500Name_parameter_1__value,
         {
             NULL,
             NULL,
@@ -131748,7 +131748,7 @@ impl_object__le_x500Name = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__le_x500Name__value,
+        &impl_object__le_x500Name__value,
         {
             NULL,
             NULL,
@@ -131768,7 +131768,7 @@ impl_le_x500Name_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_x500Name_returns__value,
+        &impl_le_x500Name_returns__value,
         {
             NULL,
             NULL,
@@ -131804,7 +131804,7 @@ impl_le_x500Name_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_x500Name_parameter_1__value,
+        &impl_le_x500Name_parameter_1__value,
         {
             NULL,
             NULL,
@@ -131840,7 +131840,7 @@ impl_le_x500Name_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_x500Name_parameter_2__value,
+        &impl_le_x500Name_parameter_2__value,
         {
             NULL,
             NULL,
@@ -131930,7 +131930,7 @@ impl_object__lt_x500Name = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__lt_x500Name__value,
+        &impl_object__lt_x500Name__value,
         {
             NULL,
             NULL,
@@ -131950,7 +131950,7 @@ impl_lt_x500Name_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_x500Name_returns__value,
+        &impl_lt_x500Name_returns__value,
         {
             NULL,
             NULL,
@@ -131986,7 +131986,7 @@ impl_lt_x500Name_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_x500Name_parameter_1__value,
+        &impl_lt_x500Name_parameter_1__value,
         {
             NULL,
             NULL,
@@ -132022,7 +132022,7 @@ impl_lt_x500Name_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_x500Name_parameter_2__value,
+        &impl_lt_x500Name_parameter_2__value,
         {
             NULL,
             NULL,
@@ -132112,7 +132112,7 @@ impl_object__match_x500Name = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__match_x500Name__value,
+        &impl_object__match_x500Name__value,
         {
             NULL,
             NULL,
@@ -132132,7 +132132,7 @@ impl_match_x500Name_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_match_x500Name_returns__value,
+        &impl_match_x500Name_returns__value,
         {
             NULL,
             NULL,
@@ -132168,7 +132168,7 @@ impl_match_x500Name_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_match_x500Name_parameter_1__value,
+        &impl_match_x500Name_parameter_1__value,
         {
             NULL,
             NULL,
@@ -132204,7 +132204,7 @@ impl_match_x500Name_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_match_x500Name_parameter_2__value,
+        &impl_match_x500Name_parameter_2__value,
         {
             NULL,
             NULL,
@@ -132294,7 +132294,7 @@ impl_object__ne_x500Name = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ne_x500Name__value,
+        &impl_object__ne_x500Name__value,
         {
             NULL,
             NULL,
@@ -132314,7 +132314,7 @@ impl_ne_x500Name_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_x500Name_returns__value,
+        &impl_ne_x500Name_returns__value,
         {
             NULL,
             NULL,
@@ -132350,7 +132350,7 @@ impl_ne_x500Name_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_x500Name_parameter_1__value,
+        &impl_ne_x500Name_parameter_1__value,
         {
             NULL,
             NULL,
@@ -132386,7 +132386,7 @@ impl_ne_x500Name_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_x500Name_parameter_2__value,
+        &impl_ne_x500Name_parameter_2__value,
         {
             NULL,
             NULL,
@@ -132484,7 +132484,7 @@ impl_object__nex_x500Name = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__nex_x500Name__value,
+        &impl_object__nex_x500Name__value,
         {
             NULL,
             NULL,
@@ -132504,7 +132504,7 @@ impl_nex_x500Name_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_x500Name_returns__value,
+        &impl_nex_x500Name_returns__value,
         {
             NULL,
             NULL,
@@ -132540,7 +132540,7 @@ impl_nex_x500Name_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_x500Name_parameter_1__value,
+        &impl_nex_x500Name_parameter_1__value,
         {
             NULL,
             NULL,
@@ -132576,7 +132576,7 @@ impl_nex_x500Name_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_x500Name_parameter_2__value,
+        &impl_nex_x500Name_parameter_2__value,
         {
             NULL,
             NULL,
@@ -132666,7 +132666,7 @@ impl_object__one_and_only_x500Name = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__one_and_only_x500Name__value,
+        &impl_object__one_and_only_x500Name__value,
         {
             NULL,
             NULL,
@@ -132686,7 +132686,7 @@ impl_one_and_only_x500Name_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_one_and_only_x500Name_returns__value,
+        &impl_one_and_only_x500Name_returns__value,
         {
             NULL,
             NULL,
@@ -132722,7 +132722,7 @@ impl_one_and_only_x500Name_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_one_and_only_x500Name_parameter_1__value,
+        &impl_one_and_only_x500Name_parameter_1__value,
         {
             NULL,
             NULL,
@@ -132819,7 +132819,7 @@ impl_object__regexp_match_x500Name = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__regexp_match_x500Name__value,
+        &impl_object__regexp_match_x500Name__value,
         {
             NULL,
             NULL,
@@ -132839,7 +132839,7 @@ impl_regexp_match_x500Name_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_regexp_match_x500Name_returns__value,
+        &impl_regexp_match_x500Name_returns__value,
         {
             NULL,
             NULL,
@@ -132875,7 +132875,7 @@ impl_regexp_match_x500Name_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_regexp_match_x500Name_parameter_1__value,
+        &impl_regexp_match_x500Name_parameter_1__value,
         {
             NULL,
             NULL,
@@ -132911,7 +132911,7 @@ impl_regexp_match_x500Name_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_regexp_match_x500Name_parameter_2__value,
+        &impl_regexp_match_x500Name_parameter_2__value,
         {
             NULL,
             NULL,
@@ -133001,7 +133001,7 @@ impl_object__set_equals_x500Name = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__set_equals_x500Name__value,
+        &impl_object__set_equals_x500Name__value,
         {
             NULL,
             NULL,
@@ -133021,7 +133021,7 @@ impl_set_equals_x500Name_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_set_equals_x500Name_returns__value,
+        &impl_set_equals_x500Name_returns__value,
         {
             NULL,
             NULL,
@@ -133057,7 +133057,7 @@ impl_set_equals_x500Name_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_set_equals_x500Name_parameter_1__value,
+        &impl_set_equals_x500Name_parameter_1__value,
         {
             NULL,
             NULL,
@@ -133093,7 +133093,7 @@ impl_set_equals_x500Name_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_set_equals_x500Name_parameter_2__value,
+        &impl_set_equals_x500Name_parameter_2__value,
         {
             NULL,
             NULL,
@@ -133183,7 +133183,7 @@ impl_object__subset_x500Name = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__subset_x500Name__value,
+        &impl_object__subset_x500Name__value,
         {
             NULL,
             NULL,
@@ -133203,7 +133203,7 @@ impl_subset_x500Name_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subset_x500Name_returns__value,
+        &impl_subset_x500Name_returns__value,
         {
             NULL,
             NULL,
@@ -133239,7 +133239,7 @@ impl_subset_x500Name_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subset_x500Name_parameter_1__value,
+        &impl_subset_x500Name_parameter_1__value,
         {
             NULL,
             NULL,
@@ -133275,7 +133275,7 @@ impl_subset_x500Name_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subset_x500Name_parameter_2__value,
+        &impl_subset_x500Name_parameter_2__value,
         {
             NULL,
             NULL,
@@ -133365,7 +133365,7 @@ impl_object__to_string_x500Name = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__to_string_x500Name__value,
+        &impl_object__to_string_x500Name__value,
         {
             NULL,
             NULL,
@@ -133385,7 +133385,7 @@ impl_to_string_x500Name_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_string_x500Name_returns__value,
+        &impl_to_string_x500Name_returns__value,
         {
             NULL,
             NULL,
@@ -133421,7 +133421,7 @@ impl_to_string_x500Name_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_string_x500Name_parameter_1__value,
+        &impl_to_string_x500Name_parameter_1__value,
         {
             NULL,
             NULL,
@@ -133510,7 +133510,7 @@ impl_object__union_x500Name = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__union_x500Name__value,
+        &impl_object__union_x500Name__value,
         {
             NULL,
             NULL,
@@ -133530,7 +133530,7 @@ impl_union_x500Name_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_union_x500Name_returns__value,
+        &impl_union_x500Name_returns__value,
         {
             NULL,
             NULL,
@@ -133566,7 +133566,7 @@ impl_union_x500Name_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_union_x500Name_parameter_1__value,
+        &impl_union_x500Name_parameter_1__value,
         {
             NULL,
             NULL,
@@ -133655,7 +133655,7 @@ impl_object__x500Name = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__x500Name__value,
+        &impl_object__x500Name__value,
         {
             NULL,
             NULL,
@@ -133675,7 +133675,7 @@ impl_x500Name_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_x500Name_returns__value,
+        &impl_x500Name_returns__value,
         {
             NULL,
             NULL,
@@ -133711,7 +133711,7 @@ impl_x500Name_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_x500Name_parameter_1__value,
+        &impl_x500Name_parameter_1__value,
         {
             NULL,
             NULL,
@@ -133808,7 +133808,7 @@ impl_object__bag_size_xpathExpression = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__bag_size_xpathExpression__value,
+        &impl_object__bag_size_xpathExpression__value,
         {
             NULL,
             NULL,
@@ -133828,7 +133828,7 @@ impl_bag_size_xpathExpression_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_size_xpathExpression_returns__value,
+        &impl_bag_size_xpathExpression_returns__value,
         {
             NULL,
             NULL,
@@ -133864,7 +133864,7 @@ impl_bag_size_xpathExpression_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_size_xpathExpression_parameter_1__value,
+        &impl_bag_size_xpathExpression_parameter_1__value,
         {
             NULL,
             NULL,
@@ -133953,7 +133953,7 @@ impl_object__bag_xpathExpression = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__bag_xpathExpression__value,
+        &impl_object__bag_xpathExpression__value,
         {
             NULL,
             NULL,
@@ -133973,7 +133973,7 @@ impl_bag_xpathExpression_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_xpathExpression_returns__value,
+        &impl_bag_xpathExpression_returns__value,
         {
             NULL,
             NULL,
@@ -134009,7 +134009,7 @@ impl_bag_xpathExpression_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_xpathExpression_parameter_1__value,
+        &impl_bag_xpathExpression_parameter_1__value,
         {
             NULL,
             NULL,
@@ -134098,7 +134098,7 @@ impl_object__compile_xpathExpression = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__compile_xpathExpression__value,
+        &impl_object__compile_xpathExpression__value,
         {
             NULL,
             NULL,
@@ -134118,7 +134118,7 @@ impl_compile_xpathExpression_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_compile_xpathExpression_returns__value,
+        &impl_compile_xpathExpression_returns__value,
         {
             NULL,
             NULL,
@@ -134154,7 +134154,7 @@ impl_compile_xpathExpression_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_compile_xpathExpression_parameter_1__value,
+        &impl_compile_xpathExpression_parameter_1__value,
         {
             NULL,
             NULL,
@@ -134190,7 +134190,7 @@ impl_compile_xpathExpression_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_compile_xpathExpression_parameter_2__value,
+        &impl_compile_xpathExpression_parameter_2__value,
         {
             NULL,
             NULL,
@@ -134280,7 +134280,7 @@ impl_object__eq_xpathExpression = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__eq_xpathExpression__value,
+        &impl_object__eq_xpathExpression__value,
         {
             NULL,
             NULL,
@@ -134300,7 +134300,7 @@ impl_eq_xpathExpression_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_xpathExpression_returns__value,
+        &impl_eq_xpathExpression_returns__value,
         {
             NULL,
             NULL,
@@ -134336,7 +134336,7 @@ impl_eq_xpathExpression_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_xpathExpression_parameter_1__value,
+        &impl_eq_xpathExpression_parameter_1__value,
         {
             NULL,
             NULL,
@@ -134372,7 +134372,7 @@ impl_eq_xpathExpression_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_xpathExpression_parameter_2__value,
+        &impl_eq_xpathExpression_parameter_2__value,
         {
             NULL,
             NULL,
@@ -134470,7 +134470,7 @@ impl_object__eqx_xpathExpression = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__eqx_xpathExpression__value,
+        &impl_object__eqx_xpathExpression__value,
         {
             NULL,
             NULL,
@@ -134490,7 +134490,7 @@ impl_eqx_xpathExpression_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_xpathExpression_returns__value,
+        &impl_eqx_xpathExpression_returns__value,
         {
             NULL,
             NULL,
@@ -134526,7 +134526,7 @@ impl_eqx_xpathExpression_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_xpathExpression_parameter_1__value,
+        &impl_eqx_xpathExpression_parameter_1__value,
         {
             NULL,
             NULL,
@@ -134562,7 +134562,7 @@ impl_eqx_xpathExpression_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_xpathExpression_parameter_2__value,
+        &impl_eqx_xpathExpression_parameter_2__value,
         {
             NULL,
             NULL,
@@ -134652,7 +134652,7 @@ impl_object__evaluate_xpathExpression = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__evaluate_xpathExpression__value,
+        &impl_object__evaluate_xpathExpression__value,
         {
             NULL,
             NULL,
@@ -134672,7 +134672,7 @@ impl_evaluate_xpathExpression_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_evaluate_xpathExpression_returns__value,
+        &impl_evaluate_xpathExpression_returns__value,
         {
             NULL,
             NULL,
@@ -134708,7 +134708,7 @@ impl_evaluate_xpathExpression_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_evaluate_xpathExpression_parameter_1__value,
+        &impl_evaluate_xpathExpression_parameter_1__value,
         {
             NULL,
             NULL,
@@ -134744,7 +134744,7 @@ impl_evaluate_xpathExpression_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_evaluate_xpathExpression_parameter_2__value,
+        &impl_evaluate_xpathExpression_parameter_2__value,
         {
             NULL,
             NULL,
@@ -134834,7 +134834,7 @@ impl_object__ge_xpathExpression = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ge_xpathExpression__value,
+        &impl_object__ge_xpathExpression__value,
         {
             NULL,
             NULL,
@@ -134854,7 +134854,7 @@ impl_ge_xpathExpression_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_xpathExpression_returns__value,
+        &impl_ge_xpathExpression_returns__value,
         {
             NULL,
             NULL,
@@ -134890,7 +134890,7 @@ impl_ge_xpathExpression_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_xpathExpression_parameter_1__value,
+        &impl_ge_xpathExpression_parameter_1__value,
         {
             NULL,
             NULL,
@@ -134926,7 +134926,7 @@ impl_ge_xpathExpression_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_xpathExpression_parameter_2__value,
+        &impl_ge_xpathExpression_parameter_2__value,
         {
             NULL,
             NULL,
@@ -135016,7 +135016,7 @@ impl_object__gt_xpathExpression = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__gt_xpathExpression__value,
+        &impl_object__gt_xpathExpression__value,
         {
             NULL,
             NULL,
@@ -135036,7 +135036,7 @@ impl_gt_xpathExpression_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_xpathExpression_returns__value,
+        &impl_gt_xpathExpression_returns__value,
         {
             NULL,
             NULL,
@@ -135072,7 +135072,7 @@ impl_gt_xpathExpression_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_xpathExpression_parameter_1__value,
+        &impl_gt_xpathExpression_parameter_1__value,
         {
             NULL,
             NULL,
@@ -135108,7 +135108,7 @@ impl_gt_xpathExpression_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_xpathExpression_parameter_2__value,
+        &impl_gt_xpathExpression_parameter_2__value,
         {
             NULL,
             NULL,
@@ -135198,7 +135198,7 @@ impl_object__is_xpathExpression = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__is_xpathExpression__value,
+        &impl_object__is_xpathExpression__value,
         {
             NULL,
             NULL,
@@ -135218,7 +135218,7 @@ impl_is_xpathExpression_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_xpathExpression_returns__value,
+        &impl_is_xpathExpression_returns__value,
         {
             NULL,
             NULL,
@@ -135254,7 +135254,7 @@ impl_is_xpathExpression_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_xpathExpression_parameter_1__value,
+        &impl_is_xpathExpression_parameter_1__value,
         {
             NULL,
             NULL,
@@ -135343,7 +135343,7 @@ impl_object__le_xpathExpression = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__le_xpathExpression__value,
+        &impl_object__le_xpathExpression__value,
         {
             NULL,
             NULL,
@@ -135363,7 +135363,7 @@ impl_le_xpathExpression_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_xpathExpression_returns__value,
+        &impl_le_xpathExpression_returns__value,
         {
             NULL,
             NULL,
@@ -135399,7 +135399,7 @@ impl_le_xpathExpression_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_xpathExpression_parameter_1__value,
+        &impl_le_xpathExpression_parameter_1__value,
         {
             NULL,
             NULL,
@@ -135435,7 +135435,7 @@ impl_le_xpathExpression_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_xpathExpression_parameter_2__value,
+        &impl_le_xpathExpression_parameter_2__value,
         {
             NULL,
             NULL,
@@ -135525,7 +135525,7 @@ impl_object__lt_xpathExpression = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__lt_xpathExpression__value,
+        &impl_object__lt_xpathExpression__value,
         {
             NULL,
             NULL,
@@ -135545,7 +135545,7 @@ impl_lt_xpathExpression_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_xpathExpression_returns__value,
+        &impl_lt_xpathExpression_returns__value,
         {
             NULL,
             NULL,
@@ -135581,7 +135581,7 @@ impl_lt_xpathExpression_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_xpathExpression_parameter_1__value,
+        &impl_lt_xpathExpression_parameter_1__value,
         {
             NULL,
             NULL,
@@ -135617,7 +135617,7 @@ impl_lt_xpathExpression_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_xpathExpression_parameter_2__value,
+        &impl_lt_xpathExpression_parameter_2__value,
         {
             NULL,
             NULL,
@@ -135707,7 +135707,7 @@ impl_object__ne_xpathExpression = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ne_xpathExpression__value,
+        &impl_object__ne_xpathExpression__value,
         {
             NULL,
             NULL,
@@ -135727,7 +135727,7 @@ impl_ne_xpathExpression_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_xpathExpression_returns__value,
+        &impl_ne_xpathExpression_returns__value,
         {
             NULL,
             NULL,
@@ -135763,7 +135763,7 @@ impl_ne_xpathExpression_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_xpathExpression_parameter_1__value,
+        &impl_ne_xpathExpression_parameter_1__value,
         {
             NULL,
             NULL,
@@ -135799,7 +135799,7 @@ impl_ne_xpathExpression_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_xpathExpression_parameter_2__value,
+        &impl_ne_xpathExpression_parameter_2__value,
         {
             NULL,
             NULL,
@@ -135897,7 +135897,7 @@ impl_object__nex_xpathExpression = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__nex_xpathExpression__value,
+        &impl_object__nex_xpathExpression__value,
         {
             NULL,
             NULL,
@@ -135917,7 +135917,7 @@ impl_nex_xpathExpression_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_xpathExpression_returns__value,
+        &impl_nex_xpathExpression_returns__value,
         {
             NULL,
             NULL,
@@ -135953,7 +135953,7 @@ impl_nex_xpathExpression_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_xpathExpression_parameter_1__value,
+        &impl_nex_xpathExpression_parameter_1__value,
         {
             NULL,
             NULL,
@@ -135989,7 +135989,7 @@ impl_nex_xpathExpression_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_xpathExpression_parameter_2__value,
+        &impl_nex_xpathExpression_parameter_2__value,
         {
             NULL,
             NULL,
@@ -136079,7 +136079,7 @@ impl_object__to_string_xpathExpression = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__to_string_xpathExpression__value,
+        &impl_object__to_string_xpathExpression__value,
         {
             NULL,
             NULL,
@@ -136099,7 +136099,7 @@ impl_to_string_xpathExpression_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_string_xpathExpression_returns__value,
+        &impl_to_string_xpathExpression_returns__value,
         {
             NULL,
             NULL,
@@ -136135,7 +136135,7 @@ impl_to_string_xpathExpression_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_string_xpathExpression_parameter_1__value,
+        &impl_to_string_xpathExpression_parameter_1__value,
         {
             NULL,
             NULL,
@@ -136224,7 +136224,7 @@ impl_object__xpathExpression = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__xpathExpression__value,
+        &impl_object__xpathExpression__value,
         {
             NULL,
             NULL,
@@ -136244,7 +136244,7 @@ impl_xpathExpression_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_xpathExpression_returns__value,
+        &impl_xpathExpression_returns__value,
         {
             NULL,
             NULL,
@@ -136280,7 +136280,7 @@ impl_xpathExpression_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_xpathExpression_parameter_1__value,
+        &impl_xpathExpression_parameter_1__value,
         {
             NULL,
             NULL,
@@ -136377,7 +136377,7 @@ impl_object__xpath_node_count = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__xpath_node_count__value,
+        &impl_object__xpath_node_count__value,
         {
             NULL,
             NULL,
@@ -136397,7 +136397,7 @@ impl_xpath_node_count_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_xpath_node_count_returns__value,
+        &impl_xpath_node_count_returns__value,
         {
             NULL,
             NULL,
@@ -136433,7 +136433,7 @@ impl_xpath_node_count_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_xpath_node_count_parameter_1__value,
+        &impl_xpath_node_count_parameter_1__value,
         {
             NULL,
             NULL,
@@ -136522,7 +136522,7 @@ impl_object__xpath_node_eq = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__xpath_node_eq__value,
+        &impl_object__xpath_node_eq__value,
         {
             NULL,
             NULL,
@@ -136542,7 +136542,7 @@ impl_xpath_node_eq_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_xpath_node_eq_returns__value,
+        &impl_xpath_node_eq_returns__value,
         {
             NULL,
             NULL,
@@ -136578,7 +136578,7 @@ impl_xpath_node_eq_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_xpath_node_eq_parameter_1__value,
+        &impl_xpath_node_eq_parameter_1__value,
         {
             NULL,
             NULL,
@@ -136614,7 +136614,7 @@ impl_xpath_node_eq_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_xpath_node_eq_parameter_2__value,
+        &impl_xpath_node_eq_parameter_2__value,
         {
             NULL,
             NULL,
@@ -136704,7 +136704,7 @@ impl_object__xpath_node_match = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__xpath_node_match__value,
+        &impl_object__xpath_node_match__value,
         {
             NULL,
             NULL,
@@ -136724,7 +136724,7 @@ impl_xpath_node_match_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_xpath_node_match_returns__value,
+        &impl_xpath_node_match_returns__value,
         {
             NULL,
             NULL,
@@ -136760,7 +136760,7 @@ impl_xpath_node_match_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_xpath_node_match_parameter_1__value,
+        &impl_xpath_node_match_parameter_1__value,
         {
             NULL,
             NULL,
@@ -136796,7 +136796,7 @@ impl_xpath_node_match_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_xpath_node_match_parameter_2__value,
+        &impl_xpath_node_match_parameter_2__value,
         {
             NULL,
             NULL,
@@ -136886,7 +136886,7 @@ impl_object__at_least_one_member_of_yearMonthDuration = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__at_least_one_member_of_yearMonthDuration__value,
+        &impl_object__at_least_one_member_of_yearMonthDuration__value,
         {
             NULL,
             NULL,
@@ -136906,7 +136906,7 @@ impl_at_least_one_member_of_yearMonthDuration_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_at_least_one_member_of_yearMonthDuration_returns__value,
+        &impl_at_least_one_member_of_yearMonthDuration_returns__value,
         {
             NULL,
             NULL,
@@ -136942,7 +136942,7 @@ impl_at_least_one_member_of_yearMonthDuration_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_at_least_one_member_of_yearMonthDuration_parameter_1__value,
+        &impl_at_least_one_member_of_yearMonthDuration_parameter_1__value,
         {
             NULL,
             NULL,
@@ -136978,7 +136978,7 @@ impl_at_least_one_member_of_yearMonthDuration_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_at_least_one_member_of_yearMonthDuration_parameter_2__value,
+        &impl_at_least_one_member_of_yearMonthDuration_parameter_2__value,
         {
             NULL,
             NULL,
@@ -137068,7 +137068,7 @@ impl_object__bag_size_yearMonthDuration = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__bag_size_yearMonthDuration__value,
+        &impl_object__bag_size_yearMonthDuration__value,
         {
             NULL,
             NULL,
@@ -137088,7 +137088,7 @@ impl_bag_size_yearMonthDuration_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_size_yearMonthDuration_returns__value,
+        &impl_bag_size_yearMonthDuration_returns__value,
         {
             NULL,
             NULL,
@@ -137124,7 +137124,7 @@ impl_bag_size_yearMonthDuration_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_size_yearMonthDuration_parameter_1__value,
+        &impl_bag_size_yearMonthDuration_parameter_1__value,
         {
             NULL,
             NULL,
@@ -137213,7 +137213,7 @@ impl_object__bag_yearMonthDuration = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__bag_yearMonthDuration__value,
+        &impl_object__bag_yearMonthDuration__value,
         {
             NULL,
             NULL,
@@ -137233,7 +137233,7 @@ impl_bag_yearMonthDuration_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_yearMonthDuration_returns__value,
+        &impl_bag_yearMonthDuration_returns__value,
         {
             NULL,
             NULL,
@@ -137269,7 +137269,7 @@ impl_bag_yearMonthDuration_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_bag_yearMonthDuration_parameter_1__value,
+        &impl_bag_yearMonthDuration_parameter_1__value,
         {
             NULL,
             NULL,
@@ -137358,7 +137358,7 @@ impl_object__eq_yearMonthDuration = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__eq_yearMonthDuration__value,
+        &impl_object__eq_yearMonthDuration__value,
         {
             NULL,
             NULL,
@@ -137378,7 +137378,7 @@ impl_eq_yearMonthDuration_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_yearMonthDuration_returns__value,
+        &impl_eq_yearMonthDuration_returns__value,
         {
             NULL,
             NULL,
@@ -137414,7 +137414,7 @@ impl_eq_yearMonthDuration_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_yearMonthDuration_parameter_1__value,
+        &impl_eq_yearMonthDuration_parameter_1__value,
         {
             NULL,
             NULL,
@@ -137450,7 +137450,7 @@ impl_eq_yearMonthDuration_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eq_yearMonthDuration_parameter_2__value,
+        &impl_eq_yearMonthDuration_parameter_2__value,
         {
             NULL,
             NULL,
@@ -137548,7 +137548,7 @@ impl_object__eqx_yearMonthDuration = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__eqx_yearMonthDuration__value,
+        &impl_object__eqx_yearMonthDuration__value,
         {
             NULL,
             NULL,
@@ -137568,7 +137568,7 @@ impl_eqx_yearMonthDuration_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_yearMonthDuration_returns__value,
+        &impl_eqx_yearMonthDuration_returns__value,
         {
             NULL,
             NULL,
@@ -137604,7 +137604,7 @@ impl_eqx_yearMonthDuration_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_yearMonthDuration_parameter_1__value,
+        &impl_eqx_yearMonthDuration_parameter_1__value,
         {
             NULL,
             NULL,
@@ -137640,7 +137640,7 @@ impl_eqx_yearMonthDuration_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_eqx_yearMonthDuration_parameter_2__value,
+        &impl_eqx_yearMonthDuration_parameter_2__value,
         {
             NULL,
             NULL,
@@ -137730,7 +137730,7 @@ impl_object__ge_yearMonthDuration = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ge_yearMonthDuration__value,
+        &impl_object__ge_yearMonthDuration__value,
         {
             NULL,
             NULL,
@@ -137750,7 +137750,7 @@ impl_ge_yearMonthDuration_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_yearMonthDuration_returns__value,
+        &impl_ge_yearMonthDuration_returns__value,
         {
             NULL,
             NULL,
@@ -137786,7 +137786,7 @@ impl_ge_yearMonthDuration_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_yearMonthDuration_parameter_1__value,
+        &impl_ge_yearMonthDuration_parameter_1__value,
         {
             NULL,
             NULL,
@@ -137822,7 +137822,7 @@ impl_ge_yearMonthDuration_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ge_yearMonthDuration_parameter_2__value,
+        &impl_ge_yearMonthDuration_parameter_2__value,
         {
             NULL,
             NULL,
@@ -137912,7 +137912,7 @@ impl_object__gt_yearMonthDuration = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__gt_yearMonthDuration__value,
+        &impl_object__gt_yearMonthDuration__value,
         {
             NULL,
             NULL,
@@ -137932,7 +137932,7 @@ impl_gt_yearMonthDuration_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_yearMonthDuration_returns__value,
+        &impl_gt_yearMonthDuration_returns__value,
         {
             NULL,
             NULL,
@@ -137968,7 +137968,7 @@ impl_gt_yearMonthDuration_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_yearMonthDuration_parameter_1__value,
+        &impl_gt_yearMonthDuration_parameter_1__value,
         {
             NULL,
             NULL,
@@ -138004,7 +138004,7 @@ impl_gt_yearMonthDuration_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_gt_yearMonthDuration_parameter_2__value,
+        &impl_gt_yearMonthDuration_parameter_2__value,
         {
             NULL,
             NULL,
@@ -138094,7 +138094,7 @@ impl_object__intersection_yearMonthDuration = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__intersection_yearMonthDuration__value,
+        &impl_object__intersection_yearMonthDuration__value,
         {
             NULL,
             NULL,
@@ -138114,7 +138114,7 @@ impl_intersection_yearMonthDuration_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_intersection_yearMonthDuration_returns__value,
+        &impl_intersection_yearMonthDuration_returns__value,
         {
             NULL,
             NULL,
@@ -138150,7 +138150,7 @@ impl_intersection_yearMonthDuration_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_intersection_yearMonthDuration_parameter_1__value,
+        &impl_intersection_yearMonthDuration_parameter_1__value,
         {
             NULL,
             NULL,
@@ -138186,7 +138186,7 @@ impl_intersection_yearMonthDuration_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_intersection_yearMonthDuration_parameter_2__value,
+        &impl_intersection_yearMonthDuration_parameter_2__value,
         {
             NULL,
             NULL,
@@ -138276,7 +138276,7 @@ impl_object__is_in_yearMonthDuration = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__is_in_yearMonthDuration__value,
+        &impl_object__is_in_yearMonthDuration__value,
         {
             NULL,
             NULL,
@@ -138296,7 +138296,7 @@ impl_is_in_yearMonthDuration_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_in_yearMonthDuration_returns__value,
+        &impl_is_in_yearMonthDuration_returns__value,
         {
             NULL,
             NULL,
@@ -138332,7 +138332,7 @@ impl_is_in_yearMonthDuration_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_in_yearMonthDuration_parameter_1__value,
+        &impl_is_in_yearMonthDuration_parameter_1__value,
         {
             NULL,
             NULL,
@@ -138368,7 +138368,7 @@ impl_is_in_yearMonthDuration_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_in_yearMonthDuration_parameter_2__value,
+        &impl_is_in_yearMonthDuration_parameter_2__value,
         {
             NULL,
             NULL,
@@ -138458,7 +138458,7 @@ impl_object__is_yearMonthDuration = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__is_yearMonthDuration__value,
+        &impl_object__is_yearMonthDuration__value,
         {
             NULL,
             NULL,
@@ -138478,7 +138478,7 @@ impl_is_yearMonthDuration_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_yearMonthDuration_returns__value,
+        &impl_is_yearMonthDuration_returns__value,
         {
             NULL,
             NULL,
@@ -138514,7 +138514,7 @@ impl_is_yearMonthDuration_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_is_yearMonthDuration_parameter_1__value,
+        &impl_is_yearMonthDuration_parameter_1__value,
         {
             NULL,
             NULL,
@@ -138603,7 +138603,7 @@ impl_object__le_yearMonthDuration = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__le_yearMonthDuration__value,
+        &impl_object__le_yearMonthDuration__value,
         {
             NULL,
             NULL,
@@ -138623,7 +138623,7 @@ impl_le_yearMonthDuration_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_yearMonthDuration_returns__value,
+        &impl_le_yearMonthDuration_returns__value,
         {
             NULL,
             NULL,
@@ -138659,7 +138659,7 @@ impl_le_yearMonthDuration_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_yearMonthDuration_parameter_1__value,
+        &impl_le_yearMonthDuration_parameter_1__value,
         {
             NULL,
             NULL,
@@ -138695,7 +138695,7 @@ impl_le_yearMonthDuration_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_le_yearMonthDuration_parameter_2__value,
+        &impl_le_yearMonthDuration_parameter_2__value,
         {
             NULL,
             NULL,
@@ -138785,7 +138785,7 @@ impl_object__lt_yearMonthDuration = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__lt_yearMonthDuration__value,
+        &impl_object__lt_yearMonthDuration__value,
         {
             NULL,
             NULL,
@@ -138805,7 +138805,7 @@ impl_lt_yearMonthDuration_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_yearMonthDuration_returns__value,
+        &impl_lt_yearMonthDuration_returns__value,
         {
             NULL,
             NULL,
@@ -138841,7 +138841,7 @@ impl_lt_yearMonthDuration_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_yearMonthDuration_parameter_1__value,
+        &impl_lt_yearMonthDuration_parameter_1__value,
         {
             NULL,
             NULL,
@@ -138877,7 +138877,7 @@ impl_lt_yearMonthDuration_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_lt_yearMonthDuration_parameter_2__value,
+        &impl_lt_yearMonthDuration_parameter_2__value,
         {
             NULL,
             NULL,
@@ -138967,7 +138967,7 @@ impl_object__ne_yearMonthDuration = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__ne_yearMonthDuration__value,
+        &impl_object__ne_yearMonthDuration__value,
         {
             NULL,
             NULL,
@@ -138987,7 +138987,7 @@ impl_ne_yearMonthDuration_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_yearMonthDuration_returns__value,
+        &impl_ne_yearMonthDuration_returns__value,
         {
             NULL,
             NULL,
@@ -139023,7 +139023,7 @@ impl_ne_yearMonthDuration_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_yearMonthDuration_parameter_1__value,
+        &impl_ne_yearMonthDuration_parameter_1__value,
         {
             NULL,
             NULL,
@@ -139059,7 +139059,7 @@ impl_ne_yearMonthDuration_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_ne_yearMonthDuration_parameter_2__value,
+        &impl_ne_yearMonthDuration_parameter_2__value,
         {
             NULL,
             NULL,
@@ -139157,7 +139157,7 @@ impl_object__nex_yearMonthDuration = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__nex_yearMonthDuration__value,
+        &impl_object__nex_yearMonthDuration__value,
         {
             NULL,
             NULL,
@@ -139177,7 +139177,7 @@ impl_nex_yearMonthDuration_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_yearMonthDuration_returns__value,
+        &impl_nex_yearMonthDuration_returns__value,
         {
             NULL,
             NULL,
@@ -139213,7 +139213,7 @@ impl_nex_yearMonthDuration_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_yearMonthDuration_parameter_1__value,
+        &impl_nex_yearMonthDuration_parameter_1__value,
         {
             NULL,
             NULL,
@@ -139249,7 +139249,7 @@ impl_nex_yearMonthDuration_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_nex_yearMonthDuration_parameter_2__value,
+        &impl_nex_yearMonthDuration_parameter_2__value,
         {
             NULL,
             NULL,
@@ -139339,7 +139339,7 @@ impl_object__one_and_only_yearMonthDuration = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__one_and_only_yearMonthDuration__value,
+        &impl_object__one_and_only_yearMonthDuration__value,
         {
             NULL,
             NULL,
@@ -139359,7 +139359,7 @@ impl_one_and_only_yearMonthDuration_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_one_and_only_yearMonthDuration_returns__value,
+        &impl_one_and_only_yearMonthDuration_returns__value,
         {
             NULL,
             NULL,
@@ -139395,7 +139395,7 @@ impl_one_and_only_yearMonthDuration_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_one_and_only_yearMonthDuration_parameter_1__value,
+        &impl_one_and_only_yearMonthDuration_parameter_1__value,
         {
             NULL,
             NULL,
@@ -139492,7 +139492,7 @@ impl_object__set_equals_yearMonthDuration = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__set_equals_yearMonthDuration__value,
+        &impl_object__set_equals_yearMonthDuration__value,
         {
             NULL,
             NULL,
@@ -139512,7 +139512,7 @@ impl_set_equals_yearMonthDuration_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_set_equals_yearMonthDuration_returns__value,
+        &impl_set_equals_yearMonthDuration_returns__value,
         {
             NULL,
             NULL,
@@ -139548,7 +139548,7 @@ impl_set_equals_yearMonthDuration_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_set_equals_yearMonthDuration_parameter_1__value,
+        &impl_set_equals_yearMonthDuration_parameter_1__value,
         {
             NULL,
             NULL,
@@ -139584,7 +139584,7 @@ impl_set_equals_yearMonthDuration_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_set_equals_yearMonthDuration_parameter_2__value,
+        &impl_set_equals_yearMonthDuration_parameter_2__value,
         {
             NULL,
             NULL,
@@ -139674,7 +139674,7 @@ impl_object__subset_yearMonthDuration = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__subset_yearMonthDuration__value,
+        &impl_object__subset_yearMonthDuration__value,
         {
             NULL,
             NULL,
@@ -139694,7 +139694,7 @@ impl_subset_yearMonthDuration_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subset_yearMonthDuration_returns__value,
+        &impl_subset_yearMonthDuration_returns__value,
         {
             NULL,
             NULL,
@@ -139730,7 +139730,7 @@ impl_subset_yearMonthDuration_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subset_yearMonthDuration_parameter_1__value,
+        &impl_subset_yearMonthDuration_parameter_1__value,
         {
             NULL,
             NULL,
@@ -139766,7 +139766,7 @@ impl_subset_yearMonthDuration_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_subset_yearMonthDuration_parameter_2__value,
+        &impl_subset_yearMonthDuration_parameter_2__value,
         {
             NULL,
             NULL,
@@ -139856,7 +139856,7 @@ impl_object__to_string_yearMonthDuration = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__to_string_yearMonthDuration__value,
+        &impl_object__to_string_yearMonthDuration__value,
         {
             NULL,
             NULL,
@@ -139876,7 +139876,7 @@ impl_to_string_yearMonthDuration_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_string_yearMonthDuration_returns__value,
+        &impl_to_string_yearMonthDuration_returns__value,
         {
             NULL,
             NULL,
@@ -139912,7 +139912,7 @@ impl_to_string_yearMonthDuration_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_to_string_yearMonthDuration_parameter_1__value,
+        &impl_to_string_yearMonthDuration_parameter_1__value,
         {
             NULL,
             NULL,
@@ -140001,7 +140001,7 @@ impl_object__union_yearMonthDuration = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__union_yearMonthDuration__value,
+        &impl_object__union_yearMonthDuration__value,
         {
             NULL,
             NULL,
@@ -140021,7 +140021,7 @@ impl_union_yearMonthDuration_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_union_yearMonthDuration_returns__value,
+        &impl_union_yearMonthDuration_returns__value,
         {
             NULL,
             NULL,
@@ -140057,7 +140057,7 @@ impl_union_yearMonthDuration_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_union_yearMonthDuration_parameter_1__value,
+        &impl_union_yearMonthDuration_parameter_1__value,
         {
             NULL,
             NULL,
@@ -140146,7 +140146,7 @@ impl_object__yearMonthDuration = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__yearMonthDuration__value,
+        &impl_object__yearMonthDuration__value,
         {
             NULL,
             NULL,
@@ -140166,7 +140166,7 @@ impl_yearMonthDuration_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_yearMonthDuration_returns__value,
+        &impl_yearMonthDuration_returns__value,
         {
             NULL,
             NULL,
@@ -140202,7 +140202,7 @@ impl_yearMonthDuration_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_yearMonthDuration_parameter_1__value,
+        &impl_yearMonthDuration_parameter_1__value,
         {
             NULL,
             NULL,

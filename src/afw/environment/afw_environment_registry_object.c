@@ -39,7 +39,7 @@ static const afw_object_t
 impl_current_object = {
     &impl_afw_object_inf,
     NULL,
-    (const afw_value_t *)&impl_current_object__value,
+    &impl_current_object__value,
     {
         NULL,
         NULL,

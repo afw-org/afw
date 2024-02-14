@@ -3574,7 +3574,7 @@ AFW_DEFINE(const afw_log_t *)
     </variable>
 
 
-    <variable name="value" type="const afw_value_t *">
+    <variable name="value" type="const afw_value_object_t *">
         <description>
           The adaptive value associated with this object instance. The lifetime
           of this value is the same as the lifetime of the object.

@@ -471,7 +471,7 @@ afw_object_impl_internal_get_property_meta(
     self->pub.p = p;
     self->value.inf = &afw_value_managed_object_inf;
     self->value.internal = (const afw_object_t *)self;
-    self->pub.value = (const afw_value_t *)&self->value;
+    self->pub.value = &self->value;
     self->owning_object = instance;
     self->setter.inf = &impl_afw_object_setter_inf;
     self->setter.object = (const afw_object_t *)self;

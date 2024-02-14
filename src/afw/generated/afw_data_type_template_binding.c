@@ -144,7 +144,7 @@ impl_data_type_object_template = {
     {
         &afw_runtime_inf__AdaptiveDataType_,
         NULL,
-        (const afw_value_t *)&impl_data_type_object_template__value,
+        &impl_data_type_object_template__value,
         {
             NULL,
             NULL,

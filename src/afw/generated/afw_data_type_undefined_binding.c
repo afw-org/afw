@@ -91,7 +91,7 @@ impl_data_type_object_undefined = {
     {
         &afw_runtime_inf__AdaptiveDataType_,
         NULL,
-        (const afw_value_t *)&impl_data_type_object_undefined__value,
+        &impl_data_type_object_undefined__value,
         {
             NULL,
             NULL,

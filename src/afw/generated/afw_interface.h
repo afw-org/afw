@@ -3591,7 +3591,7 @@ struct afw_object_s {
      * The adaptive value associated with this object instance. The lifetime
      * of this value is the same as the lifetime of the object.
      */
-    const afw_value_t * value;
+    const afw_value_object_t * value;
 
     /**
      * This is the meta associated with this object. See afw_object_meta.h

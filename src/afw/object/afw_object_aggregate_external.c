@@ -43,7 +43,7 @@ afw_object_aggregate_external_create(
     self->pub.p = p;
     self->value.inf = &afw_value_managed_object_inf;
     self->value.internal = (const afw_object_t *)self;
-    self->pub.value = (const afw_value_t *)&self->value;
+    self->pub.value = &self->value;
     self->object_list = object_list;
     return (const afw_object_t *)self;    
 }

@@ -875,7 +875,7 @@ def write_c_section(fd, prefix, obj):
     fd.write('    {\n')
     fd.write('        &afw_runtime_inf__AdaptiveDataType_,\n')
     fd.write('        NULL,\n')
-    fd.write('        (const afw_value_t *)&' + value_label + ',\n')
+    fd.write('        &' + value_label + ',\n')
     fd.write('        {\n')
     fd.write('            NULL,\n')
     fd.write('            NULL,\n')

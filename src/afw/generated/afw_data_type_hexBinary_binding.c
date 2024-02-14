@@ -144,7 +144,7 @@ impl_data_type_object_hexBinary = {
     {
         &afw_runtime_inf__AdaptiveDataType_,
         NULL,
-        (const afw_value_t *)&impl_data_type_object_hexBinary__value,
+        &impl_data_type_object_hexBinary__value,
         {
             NULL,
             NULL,

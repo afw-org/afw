@@ -55,7 +55,7 @@ afw_object_meta_create_accessor_with_options(
     self->pub.p = p;
     self->value.inf = &afw_value_managed_object_inf;
     self->value.internal = (const afw_object_t *)self;
-    self->pub.value = (const afw_value_t *)&self->value;
+    self->pub.value = &self->value;
     self->options = options;
     self->instance = instance;
     self->embedded = (instance->meta.embedding_object != NULL);

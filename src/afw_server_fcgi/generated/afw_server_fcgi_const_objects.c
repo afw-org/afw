@@ -60,7 +60,7 @@ impl_1_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1_meta_object__value
+        &impl_1_meta_object__value
     },
     &impl_1,
     NULL
@@ -84,7 +84,7 @@ impl_1 = {
     {
         &afw_runtime_inf__AdaptiveCollection_,
         NULL,
-        (const afw_value_t *)&impl_1__value,
+        &impl_1__value,
         {
             (const afw_object_t *)&impl_1_meta_object,
             NULL,

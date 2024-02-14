@@ -53,7 +53,7 @@ afw_xctx_qualifier_object_create(
     self->qualifier = qualifier;
     self->value.inf = &afw_value_managed_object_inf;
     self->value.internal = (const afw_object_t *)self;
-    self->pub.value = (const afw_value_t *)&self->value;
+    self->pub.value = &self->value;
     self->for_testing = for_testing;
     afw_pool_get_reference(p, xctx);
 

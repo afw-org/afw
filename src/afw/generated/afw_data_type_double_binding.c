@@ -144,7 +144,7 @@ impl_data_type_object_double = {
     {
         &afw_runtime_inf__AdaptiveDataType_,
         NULL,
-        (const afw_value_t *)&impl_data_type_object_double__value,
+        &impl_data_type_object_double__value,
         {
             NULL,
             NULL,

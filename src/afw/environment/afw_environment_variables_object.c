@@ -91,7 +91,7 @@ afw_environment_create_environment_variables_object(
     self->pub.p = p;
     self->value.inf = &afw_value_managed_object_inf;
     self->value.internal = (const afw_object_t *)self;
-    self->pub.value = (const afw_value_t *)&self->value;
+    self->pub.value = &self->value;
     self->pub.meta.id = afw_s_current;
     self->pub.meta.object_type_uri = afw_s__AdaptiveEnvironmentVariables_;
     self->pub.meta.object_uri = &impl_path;

@@ -44,7 +44,7 @@ def write_parameter(fd, prefix, options, label, p, embedding_object_label, prope
     if options['core']:
         fd.write('        &afw_runtime_inf__AdaptiveFunctionParameter_,\n')
         fd.write('        NULL,\n')
-        fd.write('        (const afw_value_t *)&' + value_label + ',\n')
+        fd.write('        &' + value_label + ',\n')
     else:
         fd.write('        NULL,\n')
         fd.write('        NULL,\n')
@@ -483,7 +483,7 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
                 fd.write('        NULL,\n')
             fd.write('        NULL,\n')
             if options['core']:
-                fd.write('        (const afw_value_t *)&' + value_label + ',\n')
+                fd.write('        &' + value_label + ',\n')
             else:
                 fd.write('        NULL, /* Resolved at runtime. */\n')
             fd.write('        {\n')

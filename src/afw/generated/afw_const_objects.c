@@ -56,7 +56,7 @@ impl_2_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_2_meta_object__value
+        &impl_2_meta_object__value
     },
     &impl_2,
     NULL
@@ -80,7 +80,7 @@ impl_2 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_2__value,
+        &impl_2__value,
         {
             (const afw_object_t *)&impl_2_meta_object,
             (const afw_object_t *)&impl_1,
@@ -169,7 +169,7 @@ impl_4_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_4_meta_object__value
+        &impl_4_meta_object__value
     },
     &impl_4,
     NULL
@@ -193,7 +193,7 @@ impl_4 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_4__value,
+        &impl_4__value,
         {
             (const afw_object_t *)&impl_4_meta_object,
             (const afw_object_t *)&impl_3,
@@ -265,7 +265,7 @@ impl_5_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_5_meta_object__value
+        &impl_5_meta_object__value
     },
     &impl_5,
     NULL
@@ -289,7 +289,7 @@ impl_5 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_5__value,
+        &impl_5__value,
         {
             (const afw_object_t *)&impl_5_meta_object,
             (const afw_object_t *)&impl_3,
@@ -350,7 +350,7 @@ impl_3_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_3_meta_object__value
+        &impl_3_meta_object__value
     },
     &impl_3,
     NULL
@@ -374,7 +374,7 @@ impl_3 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_3__value,
+        &impl_3__value,
         {
             (const afw_object_t *)&impl_3_meta_object,
             (const afw_object_t *)&impl_1,
@@ -533,7 +533,7 @@ impl_1_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1_meta_object__value
+        &impl_1_meta_object__value
     },
     &impl_1,
     NULL
@@ -557,7 +557,7 @@ impl_1 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_1__value,
+        &impl_1__value,
         {
             (const afw_object_t *)&impl_1_meta_object,
             NULL,
@@ -605,7 +605,7 @@ impl_7_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_7_meta_object__value
+        &impl_7_meta_object__value
     },
     &impl_7,
     NULL
@@ -629,7 +629,7 @@ impl_7 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_7__value,
+        &impl_7__value,
         {
             (const afw_object_t *)&impl_7_meta_object,
             (const afw_object_t *)&impl_6,
@@ -718,7 +718,7 @@ impl_9_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_9_meta_object__value
+        &impl_9_meta_object__value
     },
     &impl_9,
     NULL
@@ -742,7 +742,7 @@ impl_9 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_9__value,
+        &impl_9__value,
         {
             (const afw_object_t *)&impl_9_meta_object,
             (const afw_object_t *)&impl_8,
@@ -821,7 +821,7 @@ impl_10_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_10_meta_object__value
+        &impl_10_meta_object__value
     },
     &impl_10,
     NULL
@@ -845,7 +845,7 @@ impl_10 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_10__value,
+        &impl_10__value,
         {
             (const afw_object_t *)&impl_10_meta_object,
             (const afw_object_t *)&impl_8,
@@ -917,7 +917,7 @@ impl_11_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_11_meta_object__value
+        &impl_11_meta_object__value
     },
     &impl_11,
     NULL
@@ -941,7 +941,7 @@ impl_11 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_11__value,
+        &impl_11__value,
         {
             (const afw_object_t *)&impl_11_meta_object,
             (const afw_object_t *)&impl_8,
@@ -1015,7 +1015,7 @@ impl_8_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_8_meta_object__value
+        &impl_8_meta_object__value
     },
     &impl_8,
     NULL
@@ -1039,7 +1039,7 @@ impl_8 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_8__value,
+        &impl_8__value,
         {
             (const afw_object_t *)&impl_8_meta_object,
             (const afw_object_t *)&impl_6,
@@ -1198,7 +1198,7 @@ impl_6_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_6_meta_object__value
+        &impl_6_meta_object__value
     },
     &impl_6,
     NULL
@@ -1222,7 +1222,7 @@ impl_6 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_6__value,
+        &impl_6__value,
         {
             (const afw_object_t *)&impl_6_meta_object,
             NULL,
@@ -1276,7 +1276,7 @@ impl_15_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_15_meta_object__value
+        &impl_15_meta_object__value
     },
     &impl_15,
     NULL
@@ -1300,7 +1300,7 @@ impl_15 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_15__value,
+        &impl_15__value,
         {
             (const afw_object_t *)&impl_15_meta_object,
             (const afw_object_t *)&impl_14,
@@ -1408,7 +1408,7 @@ impl_14_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_14_meta_object__value
+        &impl_14_meta_object__value
     },
     &impl_14,
     NULL
@@ -1432,7 +1432,7 @@ impl_14 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_14__value,
+        &impl_14__value,
         {
             (const afw_object_t *)&impl_14_meta_object,
             (const afw_object_t *)&impl_13,
@@ -1493,7 +1493,7 @@ impl_17_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_17_meta_object__value
+        &impl_17_meta_object__value
     },
     &impl_17,
     NULL
@@ -1517,7 +1517,7 @@ impl_17 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_17__value,
+        &impl_17__value,
         {
             (const afw_object_t *)&impl_17_meta_object,
             (const afw_object_t *)&impl_16,
@@ -1625,7 +1625,7 @@ impl_16_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_16_meta_object__value
+        &impl_16_meta_object__value
     },
     &impl_16,
     NULL
@@ -1649,7 +1649,7 @@ impl_16 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_16__value,
+        &impl_16__value,
         {
             (const afw_object_t *)&impl_16_meta_object,
             (const afw_object_t *)&impl_13,
@@ -1697,7 +1697,7 @@ impl_19_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_19_meta_object__value
+        &impl_19_meta_object__value
     },
     &impl_19,
     NULL
@@ -1721,7 +1721,7 @@ impl_19 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_19__value,
+        &impl_19__value,
         {
             (const afw_object_t *)&impl_19_meta_object,
             (const afw_object_t *)&impl_18,
@@ -1829,7 +1829,7 @@ impl_18_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_18_meta_object__value
+        &impl_18_meta_object__value
     },
     &impl_18,
     NULL
@@ -1853,7 +1853,7 @@ impl_18 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_18__value,
+        &impl_18__value,
         {
             (const afw_object_t *)&impl_18_meta_object,
             (const afw_object_t *)&impl_13,
@@ -1901,7 +1901,7 @@ impl_21_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_21_meta_object__value
+        &impl_21_meta_object__value
     },
     &impl_21,
     NULL
@@ -1925,7 +1925,7 @@ impl_21 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_21__value,
+        &impl_21__value,
         {
             (const afw_object_t *)&impl_21_meta_object,
             (const afw_object_t *)&impl_20,
@@ -2033,7 +2033,7 @@ impl_20_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_20_meta_object__value
+        &impl_20_meta_object__value
     },
     &impl_20,
     NULL
@@ -2057,7 +2057,7 @@ impl_20 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_20__value,
+        &impl_20__value,
         {
             (const afw_object_t *)&impl_20_meta_object,
             (const afw_object_t *)&impl_13,
@@ -2105,7 +2105,7 @@ impl_23_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_23_meta_object__value
+        &impl_23_meta_object__value
     },
     &impl_23,
     NULL
@@ -2129,7 +2129,7 @@ impl_23 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_23__value,
+        &impl_23__value,
         {
             (const afw_object_t *)&impl_23_meta_object,
             (const afw_object_t *)&impl_22,
@@ -2237,7 +2237,7 @@ impl_22_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_22_meta_object__value
+        &impl_22_meta_object__value
     },
     &impl_22,
     NULL
@@ -2261,7 +2261,7 @@ impl_22 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_22__value,
+        &impl_22__value,
         {
             (const afw_object_t *)&impl_22_meta_object,
             (const afw_object_t *)&impl_13,
@@ -2309,7 +2309,7 @@ impl_25_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_25_meta_object__value
+        &impl_25_meta_object__value
     },
     &impl_25,
     NULL
@@ -2333,7 +2333,7 @@ impl_25 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_25__value,
+        &impl_25__value,
         {
             (const afw_object_t *)&impl_25_meta_object,
             (const afw_object_t *)&impl_24,
@@ -2441,7 +2441,7 @@ impl_24_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_24_meta_object__value
+        &impl_24_meta_object__value
     },
     &impl_24,
     NULL
@@ -2465,7 +2465,7 @@ impl_24 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_24__value,
+        &impl_24__value,
         {
             (const afw_object_t *)&impl_24_meta_object,
             (const afw_object_t *)&impl_13,
@@ -2513,7 +2513,7 @@ impl_27_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_27_meta_object__value
+        &impl_27_meta_object__value
     },
     &impl_27,
     NULL
@@ -2537,7 +2537,7 @@ impl_27 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_27__value,
+        &impl_27__value,
         {
             (const afw_object_t *)&impl_27_meta_object,
             (const afw_object_t *)&impl_26,
@@ -2645,7 +2645,7 @@ impl_26_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_26_meta_object__value
+        &impl_26_meta_object__value
     },
     &impl_26,
     NULL
@@ -2669,7 +2669,7 @@ impl_26 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_26__value,
+        &impl_26__value,
         {
             (const afw_object_t *)&impl_26_meta_object,
             (const afw_object_t *)&impl_13,
@@ -2717,7 +2717,7 @@ impl_29_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_29_meta_object__value
+        &impl_29_meta_object__value
     },
     &impl_29,
     NULL
@@ -2741,7 +2741,7 @@ impl_29 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_29__value,
+        &impl_29__value,
         {
             (const afw_object_t *)&impl_29_meta_object,
             (const afw_object_t *)&impl_28,
@@ -2849,7 +2849,7 @@ impl_28_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_28_meta_object__value
+        &impl_28_meta_object__value
     },
     &impl_28,
     NULL
@@ -2873,7 +2873,7 @@ impl_28 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_28__value,
+        &impl_28__value,
         {
             (const afw_object_t *)&impl_28_meta_object,
             (const afw_object_t *)&impl_13,
@@ -3012,7 +3012,7 @@ impl_13_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_13_meta_object__value
+        &impl_13_meta_object__value
     },
     &impl_13,
     NULL
@@ -3036,7 +3036,7 @@ impl_13 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_13__value,
+        &impl_13__value,
         {
             (const afw_object_t *)&impl_13_meta_object,
             (const afw_object_t *)&impl_12,
@@ -3097,7 +3097,7 @@ impl_31_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_31_meta_object__value
+        &impl_31_meta_object__value
     },
     &impl_31,
     NULL
@@ -3121,7 +3121,7 @@ impl_31 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_31__value,
+        &impl_31__value,
         {
             (const afw_object_t *)&impl_31_meta_object,
             (const afw_object_t *)&impl_30,
@@ -3189,7 +3189,7 @@ impl_30_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_30_meta_object__value
+        &impl_30_meta_object__value
     },
     &impl_30,
     NULL
@@ -3213,7 +3213,7 @@ impl_30 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_30__value,
+        &impl_30__value,
         {
             (const afw_object_t *)&impl_30_meta_object,
             (const afw_object_t *)&impl_12,
@@ -3379,7 +3379,7 @@ impl_12_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_12_meta_object__value
+        &impl_12_meta_object__value
     },
     &impl_12,
     NULL
@@ -3403,7 +3403,7 @@ impl_12 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_12__value,
+        &impl_12__value,
         {
             (const afw_object_t *)&impl_12_meta_object,
             NULL,
@@ -3457,7 +3457,7 @@ impl_35_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_35_meta_object__value
+        &impl_35_meta_object__value
     },
     &impl_35,
     NULL
@@ -3481,7 +3481,7 @@ impl_35 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_35__value,
+        &impl_35__value,
         {
             (const afw_object_t *)&impl_35_meta_object,
             (const afw_object_t *)&impl_34,
@@ -3570,7 +3570,7 @@ impl_34_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_34_meta_object__value
+        &impl_34_meta_object__value
     },
     &impl_34,
     NULL
@@ -3594,7 +3594,7 @@ impl_34 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_34__value,
+        &impl_34__value,
         {
             (const afw_object_t *)&impl_34_meta_object,
             (const afw_object_t *)&impl_33,
@@ -3642,7 +3642,7 @@ impl_37_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_37_meta_object__value
+        &impl_37_meta_object__value
     },
     &impl_37,
     NULL
@@ -3666,7 +3666,7 @@ impl_37 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_37__value,
+        &impl_37__value,
         {
             (const afw_object_t *)&impl_37_meta_object,
             (const afw_object_t *)&impl_36,
@@ -3762,7 +3762,7 @@ impl_36_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_36_meta_object__value
+        &impl_36_meta_object__value
     },
     &impl_36,
     NULL
@@ -3786,7 +3786,7 @@ impl_36 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_36__value,
+        &impl_36__value,
         {
             (const afw_object_t *)&impl_36_meta_object,
             (const afw_object_t *)&impl_33,
@@ -3847,7 +3847,7 @@ impl_33_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_33_meta_object__value
+        &impl_33_meta_object__value
     },
     &impl_33,
     NULL
@@ -3871,7 +3871,7 @@ impl_33 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_33__value,
+        &impl_33__value,
         {
             (const afw_object_t *)&impl_33_meta_object,
             (const afw_object_t *)&impl_32,
@@ -3919,7 +3919,7 @@ impl_39_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_39_meta_object__value
+        &impl_39_meta_object__value
     },
     &impl_39,
     NULL
@@ -3943,7 +3943,7 @@ impl_39 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_39__value,
+        &impl_39__value,
         {
             (const afw_object_t *)&impl_39_meta_object,
             (const afw_object_t *)&impl_38,
@@ -4011,7 +4011,7 @@ impl_38_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_38_meta_object__value
+        &impl_38_meta_object__value
     },
     &impl_38,
     NULL
@@ -4035,7 +4035,7 @@ impl_38 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_38__value,
+        &impl_38__value,
         {
             (const afw_object_t *)&impl_38_meta_object,
             (const afw_object_t *)&impl_32,
@@ -4201,7 +4201,7 @@ impl_32_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_32_meta_object__value
+        &impl_32_meta_object__value
     },
     &impl_32,
     NULL
@@ -4225,7 +4225,7 @@ impl_32 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_32__value,
+        &impl_32__value,
         {
             (const afw_object_t *)&impl_32_meta_object,
             NULL,
@@ -4286,7 +4286,7 @@ impl_43_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_43_meta_object__value
+        &impl_43_meta_object__value
     },
     &impl_43,
     NULL
@@ -4310,7 +4310,7 @@ impl_43 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_43__value,
+        &impl_43__value,
         {
             (const afw_object_t *)&impl_43_meta_object,
             (const afw_object_t *)&impl_42,
@@ -4399,7 +4399,7 @@ impl_42_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_42_meta_object__value
+        &impl_42_meta_object__value
     },
     &impl_42,
     NULL
@@ -4423,7 +4423,7 @@ impl_42 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_42__value,
+        &impl_42__value,
         {
             (const afw_object_t *)&impl_42_meta_object,
             (const afw_object_t *)&impl_41,
@@ -4478,7 +4478,7 @@ impl_45_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_45_meta_object__value
+        &impl_45_meta_object__value
     },
     &impl_45,
     NULL
@@ -4502,7 +4502,7 @@ impl_45 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_45__value,
+        &impl_45__value,
         {
             (const afw_object_t *)&impl_45_meta_object,
             (const afw_object_t *)&impl_44,
@@ -4598,7 +4598,7 @@ impl_44_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_44_meta_object__value
+        &impl_44_meta_object__value
     },
     &impl_44,
     NULL
@@ -4622,7 +4622,7 @@ impl_44 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_44__value,
+        &impl_44__value,
         {
             (const afw_object_t *)&impl_44_meta_object,
             (const afw_object_t *)&impl_41,
@@ -4688,7 +4688,7 @@ impl_46_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_46_meta_object__value
+        &impl_46_meta_object__value
     },
     &impl_46,
     NULL
@@ -4712,7 +4712,7 @@ impl_46 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_46__value,
+        &impl_46__value,
         {
             (const afw_object_t *)&impl_46_meta_object,
             (const afw_object_t *)&impl_41,
@@ -4760,7 +4760,7 @@ impl_48_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_48_meta_object__value
+        &impl_48_meta_object__value
     },
     &impl_48,
     NULL
@@ -4784,7 +4784,7 @@ impl_48 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_48__value,
+        &impl_48__value,
         {
             (const afw_object_t *)&impl_48_meta_object,
             (const afw_object_t *)&impl_47,
@@ -4873,7 +4873,7 @@ impl_47_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_47_meta_object__value
+        &impl_47_meta_object__value
     },
     &impl_47,
     NULL
@@ -4897,7 +4897,7 @@ impl_47 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_47__value,
+        &impl_47__value,
         {
             (const afw_object_t *)&impl_47_meta_object,
             (const afw_object_t *)&impl_41,
@@ -4952,7 +4952,7 @@ impl_50_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_50_meta_object__value
+        &impl_50_meta_object__value
     },
     &impl_50,
     NULL
@@ -4976,7 +4976,7 @@ impl_50 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_50__value,
+        &impl_50__value,
         {
             (const afw_object_t *)&impl_50_meta_object,
             (const afw_object_t *)&impl_49,
@@ -5065,7 +5065,7 @@ impl_49_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_49_meta_object__value
+        &impl_49_meta_object__value
     },
     &impl_49,
     NULL
@@ -5089,7 +5089,7 @@ impl_49 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_49__value,
+        &impl_49__value,
         {
             (const afw_object_t *)&impl_49_meta_object,
             (const afw_object_t *)&impl_41,
@@ -5144,7 +5144,7 @@ impl_52_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_52_meta_object__value
+        &impl_52_meta_object__value
     },
     &impl_52,
     NULL
@@ -5168,7 +5168,7 @@ impl_52 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_52__value,
+        &impl_52__value,
         {
             (const afw_object_t *)&impl_52_meta_object,
             (const afw_object_t *)&impl_51,
@@ -5264,7 +5264,7 @@ impl_51_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_51_meta_object__value
+        &impl_51_meta_object__value
     },
     &impl_51,
     NULL
@@ -5288,7 +5288,7 @@ impl_51 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_51__value,
+        &impl_51__value,
         {
             (const afw_object_t *)&impl_51_meta_object,
             (const afw_object_t *)&impl_41,
@@ -5401,7 +5401,7 @@ impl_41_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_41_meta_object__value
+        &impl_41_meta_object__value
     },
     &impl_41,
     NULL
@@ -5425,7 +5425,7 @@ impl_41 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_41__value,
+        &impl_41__value,
         {
             (const afw_object_t *)&impl_41_meta_object,
             (const afw_object_t *)&impl_40,
@@ -5486,7 +5486,7 @@ impl_54_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_54_meta_object__value
+        &impl_54_meta_object__value
     },
     &impl_54,
     NULL
@@ -5510,7 +5510,7 @@ impl_54 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_54__value,
+        &impl_54__value,
         {
             (const afw_object_t *)&impl_54_meta_object,
             (const afw_object_t *)&impl_53,
@@ -5578,7 +5578,7 @@ impl_53_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_53_meta_object__value
+        &impl_53_meta_object__value
     },
     &impl_53,
     NULL
@@ -5602,7 +5602,7 @@ impl_53 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_53__value,
+        &impl_53__value,
         {
             (const afw_object_t *)&impl_53_meta_object,
             (const afw_object_t *)&impl_40,
@@ -5768,7 +5768,7 @@ impl_40_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_40_meta_object__value
+        &impl_40_meta_object__value
     },
     &impl_40,
     NULL
@@ -5792,7 +5792,7 @@ impl_40 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_40__value,
+        &impl_40__value,
         {
             (const afw_object_t *)&impl_40_meta_object,
             NULL,
@@ -5853,7 +5853,7 @@ impl_58_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_58_meta_object__value
+        &impl_58_meta_object__value
     },
     &impl_58,
     NULL
@@ -5877,7 +5877,7 @@ impl_58 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_58__value,
+        &impl_58__value,
         {
             (const afw_object_t *)&impl_58_meta_object,
             (const afw_object_t *)&impl_57,
@@ -5953,7 +5953,7 @@ impl_57_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_57_meta_object__value
+        &impl_57_meta_object__value
     },
     &impl_57,
     NULL
@@ -5977,7 +5977,7 @@ impl_57 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_57__value,
+        &impl_57__value,
         {
             (const afw_object_t *)&impl_57_meta_object,
             (const afw_object_t *)&impl_56,
@@ -6025,7 +6025,7 @@ impl_56_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_56_meta_object__value
+        &impl_56_meta_object__value
     },
     &impl_56,
     NULL
@@ -6049,7 +6049,7 @@ impl_56 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_56__value,
+        &impl_56__value,
         {
             (const afw_object_t *)&impl_56_meta_object,
             (const afw_object_t *)&impl_55,
@@ -6110,7 +6110,7 @@ impl_60_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_60_meta_object__value
+        &impl_60_meta_object__value
     },
     &impl_60,
     NULL
@@ -6134,7 +6134,7 @@ impl_60 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_60__value,
+        &impl_60__value,
         {
             (const afw_object_t *)&impl_60_meta_object,
             (const afw_object_t *)&impl_59,
@@ -6202,7 +6202,7 @@ impl_59_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_59_meta_object__value
+        &impl_59_meta_object__value
     },
     &impl_59,
     NULL
@@ -6226,7 +6226,7 @@ impl_59 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_59__value,
+        &impl_59__value,
         {
             (const afw_object_t *)&impl_59_meta_object,
             (const afw_object_t *)&impl_55,
@@ -6392,7 +6392,7 @@ impl_55_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_55_meta_object__value
+        &impl_55_meta_object__value
     },
     &impl_55,
     NULL
@@ -6416,7 +6416,7 @@ impl_55 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_55__value,
+        &impl_55__value,
         {
             (const afw_object_t *)&impl_55_meta_object,
             NULL,
@@ -6457,7 +6457,7 @@ impl_62_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_62_meta_object__value
+        &impl_62_meta_object__value
     },
     &impl_62,
     NULL
@@ -6481,7 +6481,7 @@ impl_62 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_62__value,
+        &impl_62__value,
         {
             (const afw_object_t *)&impl_62_meta_object,
             (const afw_object_t *)&impl_61,
@@ -6538,7 +6538,7 @@ impl_63_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_63_meta_object__value
+        &impl_63_meta_object__value
     },
     &impl_63,
     &impl_63_parentPaths
@@ -6562,7 +6562,7 @@ impl_63 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_63__value,
+        &impl_63__value,
         {
             (const afw_object_t *)&impl_63_meta_object,
             (const afw_object_t *)&impl_61,
@@ -6728,7 +6728,7 @@ impl_61_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_61_meta_object__value
+        &impl_61_meta_object__value
     },
     &impl_61,
     NULL
@@ -6752,7 +6752,7 @@ impl_61 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_61__value,
+        &impl_61__value,
         {
             (const afw_object_t *)&impl_61_meta_object,
             NULL,
@@ -6850,7 +6850,7 @@ impl_66_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_66_meta_object__value
+        &impl_66_meta_object__value
     },
     &impl_66,
     NULL
@@ -6874,7 +6874,7 @@ impl_66 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_66__value,
+        &impl_66__value,
         {
             (const afw_object_t *)&impl_66_meta_object,
             (const afw_object_t *)&impl_65,
@@ -6967,7 +6967,7 @@ impl_67_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_67_meta_object__value
+        &impl_67_meta_object__value
     },
     &impl_67,
     NULL
@@ -6991,7 +6991,7 @@ impl_67 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_67__value,
+        &impl_67__value,
         {
             (const afw_object_t *)&impl_67_meta_object,
             (const afw_object_t *)&impl_65,
@@ -7083,7 +7083,7 @@ impl_68_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_68_meta_object__value
+        &impl_68_meta_object__value
     },
     &impl_68,
     NULL
@@ -7107,7 +7107,7 @@ impl_68 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_68__value,
+        &impl_68__value,
         {
             (const afw_object_t *)&impl_68_meta_object,
             (const afw_object_t *)&impl_65,
@@ -7200,7 +7200,7 @@ impl_69_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_69_meta_object__value
+        &impl_69_meta_object__value
     },
     &impl_69,
     NULL
@@ -7224,7 +7224,7 @@ impl_69 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_69__value,
+        &impl_69__value,
         {
             (const afw_object_t *)&impl_69_meta_object,
             (const afw_object_t *)&impl_65,
@@ -7311,7 +7311,7 @@ impl_65_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_65_meta_object__value
+        &impl_65_meta_object__value
     },
     &impl_65,
     NULL
@@ -7335,7 +7335,7 @@ impl_65 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_65__value,
+        &impl_65__value,
         {
             (const afw_object_t *)&impl_65_meta_object,
             (const afw_object_t *)&impl_64,
@@ -7488,7 +7488,7 @@ impl_64_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_64_meta_object__value
+        &impl_64_meta_object__value
     },
     &impl_64,
     NULL
@@ -7512,7 +7512,7 @@ impl_64 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_64__value,
+        &impl_64__value,
         {
             (const afw_object_t *)&impl_64_meta_object,
             NULL,
@@ -7610,7 +7610,7 @@ impl_72_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_72_meta_object__value
+        &impl_72_meta_object__value
     },
     &impl_72,
     NULL
@@ -7634,7 +7634,7 @@ impl_72 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_72__value,
+        &impl_72__value,
         {
             (const afw_object_t *)&impl_72_meta_object,
             (const afw_object_t *)&impl_71,
@@ -7713,7 +7713,7 @@ impl_73_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_73_meta_object__value
+        &impl_73_meta_object__value
     },
     &impl_73,
     NULL
@@ -7737,7 +7737,7 @@ impl_73 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_73__value,
+        &impl_73__value,
         {
             (const afw_object_t *)&impl_73_meta_object,
             (const afw_object_t *)&impl_71,
@@ -7836,7 +7836,7 @@ impl_74_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_74_meta_object__value
+        &impl_74_meta_object__value
     },
     &impl_74,
     NULL
@@ -7860,7 +7860,7 @@ impl_74 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_74__value,
+        &impl_74__value,
         {
             (const afw_object_t *)&impl_74_meta_object,
             (const afw_object_t *)&impl_71,
@@ -7952,7 +7952,7 @@ impl_75_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_75_meta_object__value
+        &impl_75_meta_object__value
     },
     &impl_75,
     NULL
@@ -7976,7 +7976,7 @@ impl_75 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_75__value,
+        &impl_75__value,
         {
             (const afw_object_t *)&impl_75_meta_object,
             (const afw_object_t *)&impl_71,
@@ -8063,7 +8063,7 @@ impl_71_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_71_meta_object__value
+        &impl_71_meta_object__value
     },
     &impl_71,
     NULL
@@ -8087,7 +8087,7 @@ impl_71 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_71__value,
+        &impl_71__value,
         {
             (const afw_object_t *)&impl_71_meta_object,
             (const afw_object_t *)&impl_70,
@@ -8247,7 +8247,7 @@ impl_70_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_70_meta_object__value
+        &impl_70_meta_object__value
     },
     &impl_70,
     NULL
@@ -8271,7 +8271,7 @@ impl_70 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_70__value,
+        &impl_70__value,
         {
             (const afw_object_t *)&impl_70_meta_object,
             NULL,
@@ -8325,7 +8325,7 @@ impl_79_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_79_meta_object__value
+        &impl_79_meta_object__value
     },
     &impl_79,
     NULL
@@ -8349,7 +8349,7 @@ impl_79 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_79__value,
+        &impl_79__value,
         {
             (const afw_object_t *)&impl_79_meta_object,
             (const afw_object_t *)&impl_78,
@@ -8438,7 +8438,7 @@ impl_78_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_78_meta_object__value
+        &impl_78_meta_object__value
     },
     &impl_78,
     NULL
@@ -8462,7 +8462,7 @@ impl_78 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_78__value,
+        &impl_78__value,
         {
             (const afw_object_t *)&impl_78_meta_object,
             (const afw_object_t *)&impl_77,
@@ -8510,7 +8510,7 @@ impl_81_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_81_meta_object__value
+        &impl_81_meta_object__value
     },
     &impl_81,
     NULL
@@ -8534,7 +8534,7 @@ impl_81 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_81__value,
+        &impl_81__value,
         {
             (const afw_object_t *)&impl_81_meta_object,
             (const afw_object_t *)&impl_80,
@@ -8630,7 +8630,7 @@ impl_80_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_80_meta_object__value
+        &impl_80_meta_object__value
     },
     &impl_80,
     NULL
@@ -8654,7 +8654,7 @@ impl_80 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_80__value,
+        &impl_80__value,
         {
             (const afw_object_t *)&impl_80_meta_object,
             (const afw_object_t *)&impl_77,
@@ -8715,7 +8715,7 @@ impl_77_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_77_meta_object__value
+        &impl_77_meta_object__value
     },
     &impl_77,
     NULL
@@ -8739,7 +8739,7 @@ impl_77 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_77__value,
+        &impl_77__value,
         {
             (const afw_object_t *)&impl_77_meta_object,
             (const afw_object_t *)&impl_76,
@@ -8787,7 +8787,7 @@ impl_83_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_83_meta_object__value
+        &impl_83_meta_object__value
     },
     &impl_83,
     NULL
@@ -8811,7 +8811,7 @@ impl_83 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_83__value,
+        &impl_83__value,
         {
             (const afw_object_t *)&impl_83_meta_object,
             (const afw_object_t *)&impl_82,
@@ -8879,7 +8879,7 @@ impl_82_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_82_meta_object__value
+        &impl_82_meta_object__value
     },
     &impl_82,
     NULL
@@ -8903,7 +8903,7 @@ impl_82 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_82__value,
+        &impl_82__value,
         {
             (const afw_object_t *)&impl_82_meta_object,
             (const afw_object_t *)&impl_76,
@@ -9030,7 +9030,7 @@ impl_76_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_76_meta_object__value
+        &impl_76_meta_object__value
     },
     &impl_76,
     NULL
@@ -9054,7 +9054,7 @@ impl_76 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_76__value,
+        &impl_76__value,
         {
             (const afw_object_t *)&impl_76_meta_object,
             NULL,
@@ -9115,7 +9115,7 @@ impl_87_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_87_meta_object__value
+        &impl_87_meta_object__value
     },
     &impl_87,
     NULL
@@ -9139,7 +9139,7 @@ impl_87 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_87__value,
+        &impl_87__value,
         {
             (const afw_object_t *)&impl_87_meta_object,
             (const afw_object_t *)&impl_86,
@@ -9228,7 +9228,7 @@ impl_86_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_86_meta_object__value
+        &impl_86_meta_object__value
     },
     &impl_86,
     NULL
@@ -9252,7 +9252,7 @@ impl_86 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_86__value,
+        &impl_86__value,
         {
             (const afw_object_t *)&impl_86_meta_object,
             (const afw_object_t *)&impl_85,
@@ -9300,7 +9300,7 @@ impl_89_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_89_meta_object__value
+        &impl_89_meta_object__value
     },
     &impl_89,
     NULL
@@ -9324,7 +9324,7 @@ impl_89 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_89__value,
+        &impl_89__value,
         {
             (const afw_object_t *)&impl_89_meta_object,
             (const afw_object_t *)&impl_88,
@@ -9413,7 +9413,7 @@ impl_88_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_88_meta_object__value
+        &impl_88_meta_object__value
     },
     &impl_88,
     NULL
@@ -9437,7 +9437,7 @@ impl_88 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_88__value,
+        &impl_88__value,
         {
             (const afw_object_t *)&impl_88_meta_object,
             (const afw_object_t *)&impl_85,
@@ -9516,7 +9516,7 @@ impl_90_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_90_meta_object__value
+        &impl_90_meta_object__value
     },
     &impl_90,
     NULL
@@ -9540,7 +9540,7 @@ impl_90 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_90__value,
+        &impl_90__value,
         {
             (const afw_object_t *)&impl_90_meta_object,
             (const afw_object_t *)&impl_85,
@@ -9588,7 +9588,7 @@ impl_92_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_92_meta_object__value
+        &impl_92_meta_object__value
     },
     &impl_92,
     NULL
@@ -9612,7 +9612,7 @@ impl_92 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_92__value,
+        &impl_92__value,
         {
             (const afw_object_t *)&impl_92_meta_object,
             (const afw_object_t *)&impl_91,
@@ -9701,7 +9701,7 @@ impl_91_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_91_meta_object__value
+        &impl_91_meta_object__value
     },
     &impl_91,
     NULL
@@ -9725,7 +9725,7 @@ impl_91 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_91__value,
+        &impl_91__value,
         {
             (const afw_object_t *)&impl_91_meta_object,
             (const afw_object_t *)&impl_85,
@@ -9780,7 +9780,7 @@ impl_94_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_94_meta_object__value
+        &impl_94_meta_object__value
     },
     &impl_94,
     NULL
@@ -9804,7 +9804,7 @@ impl_94 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_94__value,
+        &impl_94__value,
         {
             (const afw_object_t *)&impl_94_meta_object,
             (const afw_object_t *)&impl_93,
@@ -9893,7 +9893,7 @@ impl_93_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_93_meta_object__value
+        &impl_93_meta_object__value
     },
     &impl_93,
     NULL
@@ -9917,7 +9917,7 @@ impl_93 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_93__value,
+        &impl_93__value,
         {
             (const afw_object_t *)&impl_93_meta_object,
             (const afw_object_t *)&impl_85,
@@ -9972,7 +9972,7 @@ impl_96_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_96_meta_object__value
+        &impl_96_meta_object__value
     },
     &impl_96,
     NULL
@@ -9996,7 +9996,7 @@ impl_96 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_96__value,
+        &impl_96__value,
         {
             (const afw_object_t *)&impl_96_meta_object,
             (const afw_object_t *)&impl_95,
@@ -10092,7 +10092,7 @@ impl_95_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_95_meta_object__value
+        &impl_95_meta_object__value
     },
     &impl_95,
     NULL
@@ -10116,7 +10116,7 @@ impl_95 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_95__value,
+        &impl_95__value,
         {
             (const afw_object_t *)&impl_95_meta_object,
             (const afw_object_t *)&impl_85,
@@ -10229,7 +10229,7 @@ impl_85_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_85_meta_object__value
+        &impl_85_meta_object__value
     },
     &impl_85,
     NULL
@@ -10253,7 +10253,7 @@ impl_85 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_85__value,
+        &impl_85__value,
         {
             (const afw_object_t *)&impl_85_meta_object,
             (const afw_object_t *)&impl_84,
@@ -10314,7 +10314,7 @@ impl_98_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_98_meta_object__value
+        &impl_98_meta_object__value
     },
     &impl_98,
     NULL
@@ -10338,7 +10338,7 @@ impl_98 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_98__value,
+        &impl_98__value,
         {
             (const afw_object_t *)&impl_98_meta_object,
             (const afw_object_t *)&impl_97,
@@ -10406,7 +10406,7 @@ impl_97_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_97_meta_object__value
+        &impl_97_meta_object__value
     },
     &impl_97,
     NULL
@@ -10430,7 +10430,7 @@ impl_97 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_97__value,
+        &impl_97__value,
         {
             (const afw_object_t *)&impl_97_meta_object,
             (const afw_object_t *)&impl_84,
@@ -10557,7 +10557,7 @@ impl_84_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_84_meta_object__value
+        &impl_84_meta_object__value
     },
     &impl_84,
     NULL
@@ -10581,7 +10581,7 @@ impl_84 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_84__value,
+        &impl_84__value,
         {
             (const afw_object_t *)&impl_84_meta_object,
             NULL,
@@ -10679,7 +10679,7 @@ impl_101_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_101_meta_object__value
+        &impl_101_meta_object__value
     },
     &impl_101,
     NULL
@@ -10703,7 +10703,7 @@ impl_101 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_101__value,
+        &impl_101__value,
         {
             (const afw_object_t *)&impl_101_meta_object,
             (const afw_object_t *)&impl_100,
@@ -10802,7 +10802,7 @@ impl_102_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_102_meta_object__value
+        &impl_102_meta_object__value
     },
     &impl_102,
     NULL
@@ -10826,7 +10826,7 @@ impl_102 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_102__value,
+        &impl_102__value,
         {
             (const afw_object_t *)&impl_102_meta_object,
             (const afw_object_t *)&impl_100,
@@ -10905,7 +10905,7 @@ impl_103_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_103_meta_object__value
+        &impl_103_meta_object__value
     },
     &impl_103,
     NULL
@@ -10929,7 +10929,7 @@ impl_103 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_103__value,
+        &impl_103__value,
         {
             (const afw_object_t *)&impl_103_meta_object,
             (const afw_object_t *)&impl_100,
@@ -11003,7 +11003,7 @@ impl_100_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_100_meta_object__value
+        &impl_100_meta_object__value
     },
     &impl_100,
     NULL
@@ -11027,7 +11027,7 @@ impl_100 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_100__value,
+        &impl_100__value,
         {
             (const afw_object_t *)&impl_100_meta_object,
             (const afw_object_t *)&impl_99,
@@ -11187,7 +11187,7 @@ impl_99_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_99_meta_object__value
+        &impl_99_meta_object__value
     },
     &impl_99,
     NULL
@@ -11211,7 +11211,7 @@ impl_99 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_99__value,
+        &impl_99__value,
         {
             (const afw_object_t *)&impl_99_meta_object,
             NULL,
@@ -11290,7 +11290,7 @@ impl_106_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_106_meta_object__value
+        &impl_106_meta_object__value
     },
     &impl_106,
     NULL
@@ -11314,7 +11314,7 @@ impl_106 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_106__value,
+        &impl_106__value,
         {
             (const afw_object_t *)&impl_106_meta_object,
             (const afw_object_t *)&impl_105,
@@ -11387,7 +11387,7 @@ impl_107_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_107_meta_object__value
+        &impl_107_meta_object__value
     },
     &impl_107,
     NULL
@@ -11411,7 +11411,7 @@ impl_107 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_107__value,
+        &impl_107__value,
         {
             (const afw_object_t *)&impl_107_meta_object,
             (const afw_object_t *)&impl_105,
@@ -11532,7 +11532,7 @@ impl_108_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_108_meta_object__value
+        &impl_108_meta_object__value
     },
     &impl_108,
     NULL
@@ -11556,7 +11556,7 @@ impl_108 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_108__value,
+        &impl_108__value,
         {
             (const afw_object_t *)&impl_108_meta_object,
             (const afw_object_t *)&impl_105,
@@ -11642,7 +11642,7 @@ impl_109_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_109_meta_object__value
+        &impl_109_meta_object__value
     },
     &impl_109,
     NULL
@@ -11666,7 +11666,7 @@ impl_109 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_109__value,
+        &impl_109__value,
         {
             (const afw_object_t *)&impl_109_meta_object,
             (const afw_object_t *)&impl_105,
@@ -11739,7 +11739,7 @@ impl_110_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_110_meta_object__value
+        &impl_110_meta_object__value
     },
     &impl_110,
     NULL
@@ -11763,7 +11763,7 @@ impl_110 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_110__value,
+        &impl_110__value,
         {
             (const afw_object_t *)&impl_110_meta_object,
             (const afw_object_t *)&impl_105,
@@ -11829,7 +11829,7 @@ impl_111_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_111_meta_object__value
+        &impl_111_meta_object__value
     },
     &impl_111,
     NULL
@@ -11853,7 +11853,7 @@ impl_111 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_111__value,
+        &impl_111__value,
         {
             (const afw_object_t *)&impl_111_meta_object,
             (const afw_object_t *)&impl_105,
@@ -11966,7 +11966,7 @@ impl_105_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_105_meta_object__value
+        &impl_105_meta_object__value
     },
     &impl_105,
     NULL
@@ -11990,7 +11990,7 @@ impl_105 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_105__value,
+        &impl_105__value,
         {
             (const afw_object_t *)&impl_105_meta_object,
             (const afw_object_t *)&impl_104,
@@ -12143,7 +12143,7 @@ impl_104_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_104_meta_object__value
+        &impl_104_meta_object__value
     },
     &impl_104,
     NULL
@@ -12167,7 +12167,7 @@ impl_104 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_104__value,
+        &impl_104__value,
         {
             (const afw_object_t *)&impl_104_meta_object,
             NULL,
@@ -12245,7 +12245,7 @@ impl_114_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_114_meta_object__value
+        &impl_114_meta_object__value
     },
     &impl_114,
     NULL
@@ -12269,7 +12269,7 @@ impl_114 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_114__value,
+        &impl_114__value,
         {
             (const afw_object_t *)&impl_114_meta_object,
             (const afw_object_t *)&impl_113,
@@ -12348,7 +12348,7 @@ impl_115_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_115_meta_object__value
+        &impl_115_meta_object__value
     },
     &impl_115,
     NULL
@@ -12372,7 +12372,7 @@ impl_115 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_115__value,
+        &impl_115__value,
         {
             (const afw_object_t *)&impl_115_meta_object,
             (const afw_object_t *)&impl_113,
@@ -12457,7 +12457,7 @@ impl_116_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_116_meta_object__value
+        &impl_116_meta_object__value
     },
     &impl_116,
     NULL
@@ -12481,7 +12481,7 @@ impl_116 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_116__value,
+        &impl_116__value,
         {
             (const afw_object_t *)&impl_116_meta_object,
             (const afw_object_t *)&impl_113,
@@ -12553,7 +12553,7 @@ impl_117_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_117_meta_object__value
+        &impl_117_meta_object__value
     },
     &impl_117,
     NULL
@@ -12577,7 +12577,7 @@ impl_117 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_117__value,
+        &impl_117__value,
         {
             (const afw_object_t *)&impl_117_meta_object,
             (const afw_object_t *)&impl_113,
@@ -12664,7 +12664,7 @@ impl_113_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_113_meta_object__value
+        &impl_113_meta_object__value
     },
     &impl_113,
     NULL
@@ -12688,7 +12688,7 @@ impl_113 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_113__value,
+        &impl_113__value,
         {
             (const afw_object_t *)&impl_113_meta_object,
             (const afw_object_t *)&impl_112,
@@ -12802,7 +12802,7 @@ impl_112_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_112_meta_object__value
+        &impl_112_meta_object__value
     },
     &impl_112,
     NULL
@@ -12826,7 +12826,7 @@ impl_112 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_112__value,
+        &impl_112__value,
         {
             (const afw_object_t *)&impl_112_meta_object,
             NULL,
@@ -12880,7 +12880,7 @@ impl_121_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_121_meta_object__value
+        &impl_121_meta_object__value
     },
     &impl_121,
     NULL
@@ -12904,7 +12904,7 @@ impl_121 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_121__value,
+        &impl_121__value,
         {
             (const afw_object_t *)&impl_121_meta_object,
             (const afw_object_t *)&impl_120,
@@ -13000,7 +13000,7 @@ impl_120_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_120_meta_object__value
+        &impl_120_meta_object__value
     },
     &impl_120,
     NULL
@@ -13024,7 +13024,7 @@ impl_120 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_120__value,
+        &impl_120__value,
         {
             (const afw_object_t *)&impl_120_meta_object,
             (const afw_object_t *)&impl_119,
@@ -13079,7 +13079,7 @@ impl_123_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_123_meta_object__value
+        &impl_123_meta_object__value
     },
     &impl_123,
     NULL
@@ -13103,7 +13103,7 @@ impl_123 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_123__value,
+        &impl_123__value,
         {
             (const afw_object_t *)&impl_123_meta_object,
             (const afw_object_t *)&impl_122,
@@ -13192,7 +13192,7 @@ impl_122_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_122_meta_object__value
+        &impl_122_meta_object__value
     },
     &impl_122,
     NULL
@@ -13216,7 +13216,7 @@ impl_122 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_122__value,
+        &impl_122__value,
         {
             (const afw_object_t *)&impl_122_meta_object,
             (const afw_object_t *)&impl_119,
@@ -13271,7 +13271,7 @@ impl_125_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_125_meta_object__value
+        &impl_125_meta_object__value
     },
     &impl_125,
     NULL
@@ -13295,7 +13295,7 @@ impl_125 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_125__value,
+        &impl_125__value,
         {
             (const afw_object_t *)&impl_125_meta_object,
             (const afw_object_t *)&impl_124,
@@ -13384,7 +13384,7 @@ impl_124_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_124_meta_object__value
+        &impl_124_meta_object__value
     },
     &impl_124,
     NULL
@@ -13408,7 +13408,7 @@ impl_124 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_124__value,
+        &impl_124__value,
         {
             (const afw_object_t *)&impl_124_meta_object,
             (const afw_object_t *)&impl_119,
@@ -13463,7 +13463,7 @@ impl_127_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_127_meta_object__value
+        &impl_127_meta_object__value
     },
     &impl_127,
     NULL
@@ -13487,7 +13487,7 @@ impl_127 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_127__value,
+        &impl_127__value,
         {
             (const afw_object_t *)&impl_127_meta_object,
             (const afw_object_t *)&impl_126,
@@ -13576,7 +13576,7 @@ impl_126_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_126_meta_object__value
+        &impl_126_meta_object__value
     },
     &impl_126,
     NULL
@@ -13600,7 +13600,7 @@ impl_126 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_126__value,
+        &impl_126__value,
         {
             (const afw_object_t *)&impl_126_meta_object,
             (const afw_object_t *)&impl_119,
@@ -13648,7 +13648,7 @@ impl_129_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_129_meta_object__value
+        &impl_129_meta_object__value
     },
     &impl_129,
     NULL
@@ -13672,7 +13672,7 @@ impl_129 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_129__value,
+        &impl_129__value,
         {
             (const afw_object_t *)&impl_129_meta_object,
             (const afw_object_t *)&impl_128,
@@ -13761,7 +13761,7 @@ impl_128_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_128_meta_object__value
+        &impl_128_meta_object__value
     },
     &impl_128,
     NULL
@@ -13785,7 +13785,7 @@ impl_128 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_128__value,
+        &impl_128__value,
         {
             (const afw_object_t *)&impl_128_meta_object,
             (const afw_object_t *)&impl_119,
@@ -13840,7 +13840,7 @@ impl_131_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_131_meta_object__value
+        &impl_131_meta_object__value
     },
     &impl_131,
     NULL
@@ -13864,7 +13864,7 @@ impl_131 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_131__value,
+        &impl_131__value,
         {
             (const afw_object_t *)&impl_131_meta_object,
             (const afw_object_t *)&impl_130,
@@ -13953,7 +13953,7 @@ impl_130_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_130_meta_object__value
+        &impl_130_meta_object__value
     },
     &impl_130,
     NULL
@@ -13977,7 +13977,7 @@ impl_130 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_130__value,
+        &impl_130__value,
         {
             (const afw_object_t *)&impl_130_meta_object,
             (const afw_object_t *)&impl_119,
@@ -14032,7 +14032,7 @@ impl_133_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_133_meta_object__value
+        &impl_133_meta_object__value
     },
     &impl_133,
     NULL
@@ -14056,7 +14056,7 @@ impl_133 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_133__value,
+        &impl_133__value,
         {
             (const afw_object_t *)&impl_133_meta_object,
             (const afw_object_t *)&impl_132,
@@ -14145,7 +14145,7 @@ impl_132_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_132_meta_object__value
+        &impl_132_meta_object__value
     },
     &impl_132,
     NULL
@@ -14169,7 +14169,7 @@ impl_132 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_132__value,
+        &impl_132__value,
         {
             (const afw_object_t *)&impl_132_meta_object,
             (const afw_object_t *)&impl_119,
@@ -14224,7 +14224,7 @@ impl_135_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_135_meta_object__value
+        &impl_135_meta_object__value
     },
     &impl_135,
     NULL
@@ -14248,7 +14248,7 @@ impl_135 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_135__value,
+        &impl_135__value,
         {
             (const afw_object_t *)&impl_135_meta_object,
             (const afw_object_t *)&impl_134,
@@ -14337,7 +14337,7 @@ impl_134_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_134_meta_object__value
+        &impl_134_meta_object__value
     },
     &impl_134,
     NULL
@@ -14361,7 +14361,7 @@ impl_134 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_134__value,
+        &impl_134__value,
         {
             (const afw_object_t *)&impl_134_meta_object,
             (const afw_object_t *)&impl_119,
@@ -14409,7 +14409,7 @@ impl_137_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_137_meta_object__value
+        &impl_137_meta_object__value
     },
     &impl_137,
     NULL
@@ -14433,7 +14433,7 @@ impl_137 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_137__value,
+        &impl_137__value,
         {
             (const afw_object_t *)&impl_137_meta_object,
             (const afw_object_t *)&impl_136,
@@ -14522,7 +14522,7 @@ impl_136_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_136_meta_object__value
+        &impl_136_meta_object__value
     },
     &impl_136,
     NULL
@@ -14546,7 +14546,7 @@ impl_136 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_136__value,
+        &impl_136__value,
         {
             (const afw_object_t *)&impl_136_meta_object,
             (const afw_object_t *)&impl_119,
@@ -14594,7 +14594,7 @@ impl_139_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_139_meta_object__value
+        &impl_139_meta_object__value
     },
     &impl_139,
     NULL
@@ -14618,7 +14618,7 @@ impl_139 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_139__value,
+        &impl_139__value,
         {
             (const afw_object_t *)&impl_139_meta_object,
             (const afw_object_t *)&impl_138,
@@ -14707,7 +14707,7 @@ impl_138_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_138_meta_object__value
+        &impl_138_meta_object__value
     },
     &impl_138,
     NULL
@@ -14731,7 +14731,7 @@ impl_138 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_138__value,
+        &impl_138__value,
         {
             (const afw_object_t *)&impl_138_meta_object,
             (const afw_object_t *)&impl_119,
@@ -14896,7 +14896,7 @@ impl_119_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_119_meta_object__value
+        &impl_119_meta_object__value
     },
     &impl_119,
     NULL
@@ -14920,7 +14920,7 @@ impl_119 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_119__value,
+        &impl_119__value,
         {
             (const afw_object_t *)&impl_119_meta_object,
             (const afw_object_t *)&impl_118,
@@ -14968,7 +14968,7 @@ impl_141_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_141_meta_object__value
+        &impl_141_meta_object__value
     },
     &impl_141,
     NULL
@@ -14992,7 +14992,7 @@ impl_141 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_141__value,
+        &impl_141__value,
         {
             (const afw_object_t *)&impl_141_meta_object,
             (const afw_object_t *)&impl_140,
@@ -15060,7 +15060,7 @@ impl_140_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_140_meta_object__value
+        &impl_140_meta_object__value
     },
     &impl_140,
     NULL
@@ -15084,7 +15084,7 @@ impl_140 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_140__value,
+        &impl_140__value,
         {
             (const afw_object_t *)&impl_140_meta_object,
             (const afw_object_t *)&impl_118,
@@ -15250,7 +15250,7 @@ impl_118_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_118_meta_object__value
+        &impl_118_meta_object__value
     },
     &impl_118,
     NULL
@@ -15274,7 +15274,7 @@ impl_118 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_118__value,
+        &impl_118__value,
         {
             (const afw_object_t *)&impl_118_meta_object,
             NULL,
@@ -15366,7 +15366,7 @@ impl_144_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_144_meta_object__value
+        &impl_144_meta_object__value
     },
     &impl_144,
     NULL
@@ -15390,7 +15390,7 @@ impl_144 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_144__value,
+        &impl_144__value,
         {
             (const afw_object_t *)&impl_144_meta_object,
             (const afw_object_t *)&impl_143,
@@ -15469,7 +15469,7 @@ impl_145_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_145_meta_object__value
+        &impl_145_meta_object__value
     },
     &impl_145,
     NULL
@@ -15493,7 +15493,7 @@ impl_145 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_145__value,
+        &impl_145__value,
         {
             (const afw_object_t *)&impl_145_meta_object,
             (const afw_object_t *)&impl_143,
@@ -15572,7 +15572,7 @@ impl_146_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_146_meta_object__value
+        &impl_146_meta_object__value
     },
     &impl_146,
     NULL
@@ -15596,7 +15596,7 @@ impl_146 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_146__value,
+        &impl_146__value,
         {
             (const afw_object_t *)&impl_146_meta_object,
             (const afw_object_t *)&impl_143,
@@ -15688,7 +15688,7 @@ impl_147_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_147_meta_object__value
+        &impl_147_meta_object__value
     },
     &impl_147,
     NULL
@@ -15712,7 +15712,7 @@ impl_147 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_147__value,
+        &impl_147__value,
         {
             (const afw_object_t *)&impl_147_meta_object,
             (const afw_object_t *)&impl_143,
@@ -15799,7 +15799,7 @@ impl_143_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_143_meta_object__value
+        &impl_143_meta_object__value
     },
     &impl_143,
     NULL
@@ -15823,7 +15823,7 @@ impl_143 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_143__value,
+        &impl_143__value,
         {
             (const afw_object_t *)&impl_143_meta_object,
             (const afw_object_t *)&impl_142,
@@ -15937,7 +15937,7 @@ impl_142_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_142_meta_object__value
+        &impl_142_meta_object__value
     },
     &impl_142,
     NULL
@@ -15961,7 +15961,7 @@ impl_142 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_142__value,
+        &impl_142__value,
         {
             (const afw_object_t *)&impl_142_meta_object,
             NULL,
@@ -16046,7 +16046,7 @@ impl_150_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_150_meta_object__value
+        &impl_150_meta_object__value
     },
     &impl_150,
     NULL
@@ -16070,7 +16070,7 @@ impl_150 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_150__value,
+        &impl_150__value,
         {
             (const afw_object_t *)&impl_150_meta_object,
             (const afw_object_t *)&impl_149,
@@ -16162,7 +16162,7 @@ impl_151_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_151_meta_object__value
+        &impl_151_meta_object__value
     },
     &impl_151,
     NULL
@@ -16186,7 +16186,7 @@ impl_151 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_151__value,
+        &impl_151__value,
         {
             (const afw_object_t *)&impl_151_meta_object,
             (const afw_object_t *)&impl_149,
@@ -16265,7 +16265,7 @@ impl_152_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_152_meta_object__value
+        &impl_152_meta_object__value
     },
     &impl_152,
     NULL
@@ -16289,7 +16289,7 @@ impl_152 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_152__value,
+        &impl_152__value,
         {
             (const afw_object_t *)&impl_152_meta_object,
             (const afw_object_t *)&impl_149,
@@ -16368,7 +16368,7 @@ impl_153_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_153_meta_object__value
+        &impl_153_meta_object__value
     },
     &impl_153,
     NULL
@@ -16392,7 +16392,7 @@ impl_153 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_153__value,
+        &impl_153__value,
         {
             (const afw_object_t *)&impl_153_meta_object,
             (const afw_object_t *)&impl_149,
@@ -16498,7 +16498,7 @@ impl_149_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_149_meta_object__value
+        &impl_149_meta_object__value
     },
     &impl_149,
     &impl_149_parentPaths
@@ -16522,7 +16522,7 @@ impl_149 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_149__value,
+        &impl_149__value,
         {
             (const afw_object_t *)&impl_149_meta_object,
             (const afw_object_t *)&impl_148,
@@ -16636,7 +16636,7 @@ impl_148_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_148_meta_object__value
+        &impl_148_meta_object__value
     },
     &impl_148,
     NULL
@@ -16660,7 +16660,7 @@ impl_148 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_148__value,
+        &impl_148__value,
         {
             (const afw_object_t *)&impl_148_meta_object,
             NULL,
@@ -16720,7 +16720,7 @@ impl_155_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_155_meta_object__value
+        &impl_155_meta_object__value
     },
     &impl_155,
     &impl_155_parentPaths
@@ -16744,7 +16744,7 @@ impl_155 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_155__value,
+        &impl_155__value,
         {
             (const afw_object_t *)&impl_155_meta_object,
             (const afw_object_t *)&impl_154,
@@ -16897,7 +16897,7 @@ impl_154_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_154_meta_object__value
+        &impl_154_meta_object__value
     },
     &impl_154,
     NULL
@@ -16921,7 +16921,7 @@ impl_154 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_154__value,
+        &impl_154__value,
         {
             (const afw_object_t *)&impl_154_meta_object,
             NULL,
@@ -17019,7 +17019,7 @@ impl_158_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_158_meta_object__value
+        &impl_158_meta_object__value
     },
     &impl_158,
     NULL
@@ -17043,7 +17043,7 @@ impl_158 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_158__value,
+        &impl_158__value,
         {
             (const afw_object_t *)&impl_158_meta_object,
             (const afw_object_t *)&impl_157,
@@ -17122,7 +17122,7 @@ impl_159_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_159_meta_object__value
+        &impl_159_meta_object__value
     },
     &impl_159,
     NULL
@@ -17146,7 +17146,7 @@ impl_159 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_159__value,
+        &impl_159__value,
         {
             (const afw_object_t *)&impl_159_meta_object,
             (const afw_object_t *)&impl_157,
@@ -17225,7 +17225,7 @@ impl_160_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_160_meta_object__value
+        &impl_160_meta_object__value
     },
     &impl_160,
     NULL
@@ -17249,7 +17249,7 @@ impl_160 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_160__value,
+        &impl_160__value,
         {
             (const afw_object_t *)&impl_160_meta_object,
             (const afw_object_t *)&impl_157,
@@ -17328,7 +17328,7 @@ impl_161_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_161_meta_object__value
+        &impl_161_meta_object__value
     },
     &impl_161,
     NULL
@@ -17352,7 +17352,7 @@ impl_161 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_161__value,
+        &impl_161__value,
         {
             (const afw_object_t *)&impl_161_meta_object,
             (const afw_object_t *)&impl_157,
@@ -17431,7 +17431,7 @@ impl_162_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_162_meta_object__value
+        &impl_162_meta_object__value
     },
     &impl_162,
     NULL
@@ -17455,7 +17455,7 @@ impl_162 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_162__value,
+        &impl_162__value,
         {
             (const afw_object_t *)&impl_162_meta_object,
             (const afw_object_t *)&impl_157,
@@ -17547,7 +17547,7 @@ impl_163_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_163_meta_object__value
+        &impl_163_meta_object__value
     },
     &impl_163,
     NULL
@@ -17571,7 +17571,7 @@ impl_163 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_163__value,
+        &impl_163__value,
         {
             (const afw_object_t *)&impl_163_meta_object,
             (const afw_object_t *)&impl_157,
@@ -17703,7 +17703,7 @@ impl_157_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_157_meta_object__value
+        &impl_157_meta_object__value
     },
     &impl_157,
     &impl_157_parentPaths
@@ -17727,7 +17727,7 @@ impl_157 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_157__value,
+        &impl_157__value,
         {
             (const afw_object_t *)&impl_157_meta_object,
             (const afw_object_t *)&impl_156,
@@ -17841,7 +17841,7 @@ impl_156_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_156_meta_object__value
+        &impl_156_meta_object__value
     },
     &impl_156,
     NULL
@@ -17865,7 +17865,7 @@ impl_156 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_156__value,
+        &impl_156__value,
         {
             (const afw_object_t *)&impl_156_meta_object,
             NULL,
@@ -17957,7 +17957,7 @@ impl_166_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_166_meta_object__value
+        &impl_166_meta_object__value
     },
     &impl_166,
     NULL
@@ -17981,7 +17981,7 @@ impl_166 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_166__value,
+        &impl_166__value,
         {
             (const afw_object_t *)&impl_166_meta_object,
             (const afw_object_t *)&impl_165,
@@ -18073,7 +18073,7 @@ impl_167_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_167_meta_object__value
+        &impl_167_meta_object__value
     },
     &impl_167,
     NULL
@@ -18097,7 +18097,7 @@ impl_167 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_167__value,
+        &impl_167__value,
         {
             (const afw_object_t *)&impl_167_meta_object,
             (const afw_object_t *)&impl_165,
@@ -18189,7 +18189,7 @@ impl_168_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_168_meta_object__value
+        &impl_168_meta_object__value
     },
     &impl_168,
     NULL
@@ -18213,7 +18213,7 @@ impl_168 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_168__value,
+        &impl_168__value,
         {
             (const afw_object_t *)&impl_168_meta_object,
             (const afw_object_t *)&impl_165,
@@ -18305,7 +18305,7 @@ impl_169_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_169_meta_object__value
+        &impl_169_meta_object__value
     },
     &impl_169,
     NULL
@@ -18329,7 +18329,7 @@ impl_169 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_169__value,
+        &impl_169__value,
         {
             (const afw_object_t *)&impl_169_meta_object,
             (const afw_object_t *)&impl_165,
@@ -18435,7 +18435,7 @@ impl_165_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_165_meta_object__value
+        &impl_165_meta_object__value
     },
     &impl_165,
     &impl_165_parentPaths
@@ -18459,7 +18459,7 @@ impl_165 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_165__value,
+        &impl_165__value,
         {
             (const afw_object_t *)&impl_165_meta_object,
             (const afw_object_t *)&impl_164,
@@ -18573,7 +18573,7 @@ impl_164_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_164_meta_object__value
+        &impl_164_meta_object__value
     },
     &impl_164,
     NULL
@@ -18597,7 +18597,7 @@ impl_164 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_164__value,
+        &impl_164__value,
         {
             (const afw_object_t *)&impl_164_meta_object,
             NULL,
@@ -18695,7 +18695,7 @@ impl_172_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_172_meta_object__value
+        &impl_172_meta_object__value
     },
     &impl_172,
     NULL
@@ -18719,7 +18719,7 @@ impl_172 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_172__value,
+        &impl_172__value,
         {
             (const afw_object_t *)&impl_172_meta_object,
             (const afw_object_t *)&impl_171,
@@ -18805,7 +18805,7 @@ impl_173_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_173_meta_object__value
+        &impl_173_meta_object__value
     },
     &impl_173,
     NULL
@@ -18829,7 +18829,7 @@ impl_173 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_173__value,
+        &impl_173__value,
         {
             (const afw_object_t *)&impl_173_meta_object,
             (const afw_object_t *)&impl_171,
@@ -18921,7 +18921,7 @@ impl_174_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_174_meta_object__value
+        &impl_174_meta_object__value
     },
     &impl_174,
     NULL
@@ -18945,7 +18945,7 @@ impl_174 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_174__value,
+        &impl_174__value,
         {
             (const afw_object_t *)&impl_174_meta_object,
             (const afw_object_t *)&impl_171,
@@ -19037,7 +19037,7 @@ impl_175_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_175_meta_object__value
+        &impl_175_meta_object__value
     },
     &impl_175,
     NULL
@@ -19061,7 +19061,7 @@ impl_175 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_175__value,
+        &impl_175__value,
         {
             (const afw_object_t *)&impl_175_meta_object,
             (const afw_object_t *)&impl_171,
@@ -19147,7 +19147,7 @@ impl_176_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_176_meta_object__value
+        &impl_176_meta_object__value
     },
     &impl_176,
     NULL
@@ -19171,7 +19171,7 @@ impl_176 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_176__value,
+        &impl_176__value,
         {
             (const afw_object_t *)&impl_176_meta_object,
             (const afw_object_t *)&impl_171,
@@ -19263,7 +19263,7 @@ impl_177_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_177_meta_object__value
+        &impl_177_meta_object__value
     },
     &impl_177,
     NULL
@@ -19287,7 +19287,7 @@ impl_177 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_177__value,
+        &impl_177__value,
         {
             (const afw_object_t *)&impl_177_meta_object,
             (const afw_object_t *)&impl_171,
@@ -19386,7 +19386,7 @@ impl_178_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_178_meta_object__value
+        &impl_178_meta_object__value
     },
     &impl_178,
     NULL
@@ -19410,7 +19410,7 @@ impl_178 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_178__value,
+        &impl_178__value,
         {
             (const afw_object_t *)&impl_178_meta_object,
             (const afw_object_t *)&impl_171,
@@ -19496,7 +19496,7 @@ impl_179_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_179_meta_object__value
+        &impl_179_meta_object__value
     },
     &impl_179,
     NULL
@@ -19520,7 +19520,7 @@ impl_179 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_179__value,
+        &impl_179__value,
         {
             (const afw_object_t *)&impl_179_meta_object,
             (const afw_object_t *)&impl_171,
@@ -19606,7 +19606,7 @@ impl_180_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_180_meta_object__value
+        &impl_180_meta_object__value
     },
     &impl_180,
     NULL
@@ -19630,7 +19630,7 @@ impl_180 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_180__value,
+        &impl_180__value,
         {
             (const afw_object_t *)&impl_180_meta_object,
             (const afw_object_t *)&impl_171,
@@ -19722,7 +19722,7 @@ impl_181_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_181_meta_object__value
+        &impl_181_meta_object__value
     },
     &impl_181,
     NULL
@@ -19746,7 +19746,7 @@ impl_181 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_181__value,
+        &impl_181__value,
         {
             (const afw_object_t *)&impl_181_meta_object,
             (const afw_object_t *)&impl_171,
@@ -19839,7 +19839,7 @@ impl_182_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_182_meta_object__value
+        &impl_182_meta_object__value
     },
     &impl_182,
     NULL
@@ -19863,7 +19863,7 @@ impl_182 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_182__value,
+        &impl_182__value,
         {
             (const afw_object_t *)&impl_182_meta_object,
             (const afw_object_t *)&impl_171,
@@ -19936,7 +19936,7 @@ impl_183_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_183_meta_object__value
+        &impl_183_meta_object__value
     },
     &impl_183,
     NULL
@@ -19960,7 +19960,7 @@ impl_183 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_183__value,
+        &impl_183__value,
         {
             (const afw_object_t *)&impl_183_meta_object,
             (const afw_object_t *)&impl_171,
@@ -20059,7 +20059,7 @@ impl_184_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_184_meta_object__value
+        &impl_184_meta_object__value
     },
     &impl_184,
     NULL
@@ -20083,7 +20083,7 @@ impl_184 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_184__value,
+        &impl_184__value,
         {
             (const afw_object_t *)&impl_184_meta_object,
             (const afw_object_t *)&impl_171,
@@ -20175,7 +20175,7 @@ impl_185_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_185_meta_object__value
+        &impl_185_meta_object__value
     },
     &impl_185,
     NULL
@@ -20199,7 +20199,7 @@ impl_185 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_185__value,
+        &impl_185__value,
         {
             (const afw_object_t *)&impl_185_meta_object,
             (const afw_object_t *)&impl_171,
@@ -20435,7 +20435,7 @@ impl_171_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_171_meta_object__value
+        &impl_171_meta_object__value
     },
     &impl_171,
     &impl_171_parentPaths
@@ -20459,7 +20459,7 @@ impl_171 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_171__value,
+        &impl_171__value,
         {
             (const afw_object_t *)&impl_171_meta_object,
             (const afw_object_t *)&impl_170,
@@ -20573,7 +20573,7 @@ impl_170_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_170_meta_object__value
+        &impl_170_meta_object__value
     },
     &impl_170,
     NULL
@@ -20597,7 +20597,7 @@ impl_170 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_170__value,
+        &impl_170__value,
         {
             (const afw_object_t *)&impl_170_meta_object,
             NULL,
@@ -20695,7 +20695,7 @@ impl_188_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_188_meta_object__value
+        &impl_188_meta_object__value
     },
     &impl_188,
     NULL
@@ -20719,7 +20719,7 @@ impl_188 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_188__value,
+        &impl_188__value,
         {
             (const afw_object_t *)&impl_188_meta_object,
             (const afw_object_t *)&impl_187,
@@ -20811,7 +20811,7 @@ impl_189_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_189_meta_object__value
+        &impl_189_meta_object__value
     },
     &impl_189,
     NULL
@@ -20835,7 +20835,7 @@ impl_189 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_189__value,
+        &impl_189__value,
         {
             (const afw_object_t *)&impl_189_meta_object,
             (const afw_object_t *)&impl_187,
@@ -20914,7 +20914,7 @@ impl_190_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_190_meta_object__value
+        &impl_190_meta_object__value
     },
     &impl_190,
     NULL
@@ -20938,7 +20938,7 @@ impl_190 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_190__value,
+        &impl_190__value,
         {
             (const afw_object_t *)&impl_190_meta_object,
             (const afw_object_t *)&impl_187,
@@ -21030,7 +21030,7 @@ impl_191_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_191_meta_object__value
+        &impl_191_meta_object__value
     },
     &impl_191,
     NULL
@@ -21054,7 +21054,7 @@ impl_191 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_191__value,
+        &impl_191__value,
         {
             (const afw_object_t *)&impl_191_meta_object,
             (const afw_object_t *)&impl_187,
@@ -21185,7 +21185,7 @@ impl_192_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_192_meta_object__value
+        &impl_192_meta_object__value
     },
     &impl_192,
     NULL
@@ -21209,7 +21209,7 @@ impl_192 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_192__value,
+        &impl_192__value,
         {
             (const afw_object_t *)&impl_192_meta_object,
             (const afw_object_t *)&impl_187,
@@ -21301,7 +21301,7 @@ impl_193_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_193_meta_object__value
+        &impl_193_meta_object__value
     },
     &impl_193,
     NULL
@@ -21325,7 +21325,7 @@ impl_193 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_193__value,
+        &impl_193__value,
         {
             (const afw_object_t *)&impl_193_meta_object,
             (const afw_object_t *)&impl_187,
@@ -21457,7 +21457,7 @@ impl_187_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_187_meta_object__value
+        &impl_187_meta_object__value
     },
     &impl_187,
     &impl_187_parentPaths
@@ -21481,7 +21481,7 @@ impl_187 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_187__value,
+        &impl_187__value,
         {
             (const afw_object_t *)&impl_187_meta_object,
             (const afw_object_t *)&impl_186,
@@ -21595,7 +21595,7 @@ impl_186_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_186_meta_object__value
+        &impl_186_meta_object__value
     },
     &impl_186,
     NULL
@@ -21619,7 +21619,7 @@ impl_186 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_186__value,
+        &impl_186__value,
         {
             (const afw_object_t *)&impl_186_meta_object,
             NULL,
@@ -21731,7 +21731,7 @@ impl_196_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_196_meta_object__value
+        &impl_196_meta_object__value
     },
     &impl_196,
     NULL
@@ -21755,7 +21755,7 @@ impl_196 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_196__value,
+        &impl_196__value,
         {
             (const afw_object_t *)&impl_196_meta_object,
             (const afw_object_t *)&impl_195,
@@ -21828,7 +21828,7 @@ impl_197_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_197_meta_object__value
+        &impl_197_meta_object__value
     },
     &impl_197,
     NULL
@@ -21852,7 +21852,7 @@ impl_197 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_197__value,
+        &impl_197__value,
         {
             (const afw_object_t *)&impl_197_meta_object,
             (const afw_object_t *)&impl_195,
@@ -21932,7 +21932,7 @@ impl_195_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_195_meta_object__value
+        &impl_195_meta_object__value
     },
     &impl_195,
     &impl_195_parentPaths
@@ -21956,7 +21956,7 @@ impl_195 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_195__value,
+        &impl_195__value,
         {
             (const afw_object_t *)&impl_195_meta_object,
             (const afw_object_t *)&impl_194,
@@ -22070,7 +22070,7 @@ impl_194_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_194_meta_object__value
+        &impl_194_meta_object__value
     },
     &impl_194,
     NULL
@@ -22094,7 +22094,7 @@ impl_194 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_194__value,
+        &impl_194__value,
         {
             (const afw_object_t *)&impl_194_meta_object,
             NULL,
@@ -22179,7 +22179,7 @@ impl_200_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_200_meta_object__value
+        &impl_200_meta_object__value
     },
     &impl_200,
     NULL
@@ -22203,7 +22203,7 @@ impl_200 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_200__value,
+        &impl_200__value,
         {
             (const afw_object_t *)&impl_200_meta_object,
             (const afw_object_t *)&impl_199,
@@ -22282,7 +22282,7 @@ impl_201_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_201_meta_object__value
+        &impl_201_meta_object__value
     },
     &impl_201,
     NULL
@@ -22306,7 +22306,7 @@ impl_201 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_201__value,
+        &impl_201__value,
         {
             (const afw_object_t *)&impl_201_meta_object,
             (const afw_object_t *)&impl_199,
@@ -22386,7 +22386,7 @@ impl_199_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_199_meta_object__value
+        &impl_199_meta_object__value
     },
     &impl_199,
     &impl_199_parentPaths
@@ -22410,7 +22410,7 @@ impl_199 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_199__value,
+        &impl_199__value,
         {
             (const afw_object_t *)&impl_199_meta_object,
             (const afw_object_t *)&impl_198,
@@ -22524,7 +22524,7 @@ impl_198_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_198_meta_object__value
+        &impl_198_meta_object__value
     },
     &impl_198,
     NULL
@@ -22548,7 +22548,7 @@ impl_198 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_198__value,
+        &impl_198__value,
         {
             (const afw_object_t *)&impl_198_meta_object,
             NULL,
@@ -22633,7 +22633,7 @@ impl_204_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_204_meta_object__value
+        &impl_204_meta_object__value
     },
     &impl_204,
     NULL
@@ -22657,7 +22657,7 @@ impl_204 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_204__value,
+        &impl_204__value,
         {
             (const afw_object_t *)&impl_204_meta_object,
             (const afw_object_t *)&impl_203,
@@ -22736,7 +22736,7 @@ impl_205_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_205_meta_object__value
+        &impl_205_meta_object__value
     },
     &impl_205,
     NULL
@@ -22760,7 +22760,7 @@ impl_205 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_205__value,
+        &impl_205__value,
         {
             (const afw_object_t *)&impl_205_meta_object,
             (const afw_object_t *)&impl_203,
@@ -22846,7 +22846,7 @@ impl_206_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_206_meta_object__value
+        &impl_206_meta_object__value
     },
     &impl_206,
     NULL
@@ -22870,7 +22870,7 @@ impl_206 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_206__value,
+        &impl_206__value,
         {
             (const afw_object_t *)&impl_206_meta_object,
             (const afw_object_t *)&impl_203,
@@ -22949,7 +22949,7 @@ impl_207_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_207_meta_object__value
+        &impl_207_meta_object__value
     },
     &impl_207,
     NULL
@@ -22973,7 +22973,7 @@ impl_207 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_207__value,
+        &impl_207__value,
         {
             (const afw_object_t *)&impl_207_meta_object,
             (const afw_object_t *)&impl_203,
@@ -23052,7 +23052,7 @@ impl_208_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_208_meta_object__value
+        &impl_208_meta_object__value
     },
     &impl_208,
     NULL
@@ -23076,7 +23076,7 @@ impl_208 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_208__value,
+        &impl_208__value,
         {
             (const afw_object_t *)&impl_208_meta_object,
             (const afw_object_t *)&impl_203,
@@ -23155,7 +23155,7 @@ impl_209_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_209_meta_object__value
+        &impl_209_meta_object__value
     },
     &impl_209,
     NULL
@@ -23179,7 +23179,7 @@ impl_209 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_209__value,
+        &impl_209__value,
         {
             (const afw_object_t *)&impl_209_meta_object,
             (const afw_object_t *)&impl_203,
@@ -23278,7 +23278,7 @@ impl_210_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_210_meta_object__value
+        &impl_210_meta_object__value
     },
     &impl_210,
     NULL
@@ -23302,7 +23302,7 @@ impl_210 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_210__value,
+        &impl_210__value,
         {
             (const afw_object_t *)&impl_210_meta_object,
             (const afw_object_t *)&impl_203,
@@ -23388,7 +23388,7 @@ impl_211_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_211_meta_object__value
+        &impl_211_meta_object__value
     },
     &impl_211,
     NULL
@@ -23412,7 +23412,7 @@ impl_211 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_211__value,
+        &impl_211__value,
         {
             (const afw_object_t *)&impl_211_meta_object,
             (const afw_object_t *)&impl_203,
@@ -23491,7 +23491,7 @@ impl_212_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_212_meta_object__value
+        &impl_212_meta_object__value
     },
     &impl_212,
     NULL
@@ -23515,7 +23515,7 @@ impl_212 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_212__value,
+        &impl_212__value,
         {
             (const afw_object_t *)&impl_212_meta_object,
             (const afw_object_t *)&impl_203,
@@ -23607,7 +23607,7 @@ impl_213_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_213_meta_object__value
+        &impl_213_meta_object__value
     },
     &impl_213,
     NULL
@@ -23631,7 +23631,7 @@ impl_213 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_213__value,
+        &impl_213__value,
         {
             (const afw_object_t *)&impl_213_meta_object,
             (const afw_object_t *)&impl_203,
@@ -23723,7 +23723,7 @@ impl_214_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_214_meta_object__value
+        &impl_214_meta_object__value
     },
     &impl_214,
     NULL
@@ -23747,7 +23747,7 @@ impl_214 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_214__value,
+        &impl_214__value,
         {
             (const afw_object_t *)&impl_214_meta_object,
             (const afw_object_t *)&impl_203,
@@ -23826,7 +23826,7 @@ impl_215_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_215_meta_object__value
+        &impl_215_meta_object__value
     },
     &impl_215,
     NULL
@@ -23850,7 +23850,7 @@ impl_215 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_215__value,
+        &impl_215__value,
         {
             (const afw_object_t *)&impl_215_meta_object,
             (const afw_object_t *)&impl_203,
@@ -23929,7 +23929,7 @@ impl_216_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_216_meta_object__value
+        &impl_216_meta_object__value
     },
     &impl_216,
     NULL
@@ -23953,7 +23953,7 @@ impl_216 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_216__value,
+        &impl_216__value,
         {
             (const afw_object_t *)&impl_216_meta_object,
             (const afw_object_t *)&impl_203,
@@ -24032,7 +24032,7 @@ impl_217_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_217_meta_object__value
+        &impl_217_meta_object__value
     },
     &impl_217,
     NULL
@@ -24056,7 +24056,7 @@ impl_217 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_217__value,
+        &impl_217__value,
         {
             (const afw_object_t *)&impl_217_meta_object,
             (const afw_object_t *)&impl_203,
@@ -24135,7 +24135,7 @@ impl_218_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_218_meta_object__value
+        &impl_218_meta_object__value
     },
     &impl_218,
     NULL
@@ -24159,7 +24159,7 @@ impl_218 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_218__value,
+        &impl_218__value,
         {
             (const afw_object_t *)&impl_218_meta_object,
             (const afw_object_t *)&impl_203,
@@ -24238,7 +24238,7 @@ impl_219_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_219_meta_object__value
+        &impl_219_meta_object__value
     },
     &impl_219,
     NULL
@@ -24262,7 +24262,7 @@ impl_219 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_219__value,
+        &impl_219__value,
         {
             (const afw_object_t *)&impl_219_meta_object,
             (const afw_object_t *)&impl_203,
@@ -24341,7 +24341,7 @@ impl_220_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_220_meta_object__value
+        &impl_220_meta_object__value
     },
     &impl_220,
     NULL
@@ -24365,7 +24365,7 @@ impl_220 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_220__value,
+        &impl_220__value,
         {
             (const afw_object_t *)&impl_220_meta_object,
             (const afw_object_t *)&impl_203,
@@ -24444,7 +24444,7 @@ impl_221_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_221_meta_object__value
+        &impl_221_meta_object__value
     },
     &impl_221,
     NULL
@@ -24468,7 +24468,7 @@ impl_221 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_221__value,
+        &impl_221__value,
         {
             (const afw_object_t *)&impl_221_meta_object,
             (const afw_object_t *)&impl_203,
@@ -24547,7 +24547,7 @@ impl_222_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_222_meta_object__value
+        &impl_222_meta_object__value
     },
     &impl_222,
     NULL
@@ -24571,7 +24571,7 @@ impl_222 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_222__value,
+        &impl_222__value,
         {
             (const afw_object_t *)&impl_222_meta_object,
             (const afw_object_t *)&impl_203,
@@ -24650,7 +24650,7 @@ impl_223_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_223_meta_object__value
+        &impl_223_meta_object__value
     },
     &impl_223,
     NULL
@@ -24674,7 +24674,7 @@ impl_223 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_223__value,
+        &impl_223__value,
         {
             (const afw_object_t *)&impl_223_meta_object,
             (const afw_object_t *)&impl_203,
@@ -24753,7 +24753,7 @@ impl_224_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_224_meta_object__value
+        &impl_224_meta_object__value
     },
     &impl_224,
     NULL
@@ -24777,7 +24777,7 @@ impl_224 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_224__value,
+        &impl_224__value,
         {
             (const afw_object_t *)&impl_224_meta_object,
             (const afw_object_t *)&impl_203,
@@ -25104,7 +25104,7 @@ impl_203_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_203_meta_object__value
+        &impl_203_meta_object__value
     },
     &impl_203,
     &impl_203_parentPaths
@@ -25128,7 +25128,7 @@ impl_203 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_203__value,
+        &impl_203__value,
         {
             (const afw_object_t *)&impl_203_meta_object,
             (const afw_object_t *)&impl_202,
@@ -25242,7 +25242,7 @@ impl_202_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_202_meta_object__value
+        &impl_202_meta_object__value
     },
     &impl_202,
     NULL
@@ -25266,7 +25266,7 @@ impl_202 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_202__value,
+        &impl_202__value,
         {
             (const afw_object_t *)&impl_202_meta_object,
             NULL,
@@ -25326,7 +25326,7 @@ impl_226_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_226_meta_object__value
+        &impl_226_meta_object__value
     },
     &impl_226,
     &impl_226_parentPaths
@@ -25350,7 +25350,7 @@ impl_226 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_226__value,
+        &impl_226__value,
         {
             (const afw_object_t *)&impl_226_meta_object,
             (const afw_object_t *)&impl_225,
@@ -25464,7 +25464,7 @@ impl_225_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_225_meta_object__value
+        &impl_225_meta_object__value
     },
     &impl_225,
     NULL
@@ -25488,7 +25488,7 @@ impl_225 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_225__value,
+        &impl_225__value,
         {
             (const afw_object_t *)&impl_225_meta_object,
             NULL,
@@ -25548,7 +25548,7 @@ impl_228_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_228_meta_object__value
+        &impl_228_meta_object__value
     },
     &impl_228,
     &impl_228_parentPaths
@@ -25572,7 +25572,7 @@ impl_228 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_228__value,
+        &impl_228__value,
         {
             (const afw_object_t *)&impl_228_meta_object,
             (const afw_object_t *)&impl_227,
@@ -25686,7 +25686,7 @@ impl_227_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_227_meta_object__value
+        &impl_227_meta_object__value
     },
     &impl_227,
     NULL
@@ -25710,7 +25710,7 @@ impl_227 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_227__value,
+        &impl_227__value,
         {
             (const afw_object_t *)&impl_227_meta_object,
             NULL,
@@ -25795,7 +25795,7 @@ impl_231_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_231_meta_object__value
+        &impl_231_meta_object__value
     },
     &impl_231,
     NULL
@@ -25819,7 +25819,7 @@ impl_231 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_231__value,
+        &impl_231__value,
         {
             (const afw_object_t *)&impl_231_meta_object,
             (const afw_object_t *)&impl_230,
@@ -25898,7 +25898,7 @@ impl_232_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_232_meta_object__value
+        &impl_232_meta_object__value
     },
     &impl_232,
     NULL
@@ -25922,7 +25922,7 @@ impl_232 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_232__value,
+        &impl_232__value,
         {
             (const afw_object_t *)&impl_232_meta_object,
             (const afw_object_t *)&impl_230,
@@ -26001,7 +26001,7 @@ impl_233_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_233_meta_object__value
+        &impl_233_meta_object__value
     },
     &impl_233,
     NULL
@@ -26025,7 +26025,7 @@ impl_233 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_233__value,
+        &impl_233__value,
         {
             (const afw_object_t *)&impl_233_meta_object,
             (const afw_object_t *)&impl_230,
@@ -26104,7 +26104,7 @@ impl_234_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_234_meta_object__value
+        &impl_234_meta_object__value
     },
     &impl_234,
     NULL
@@ -26128,7 +26128,7 @@ impl_234 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_234__value,
+        &impl_234__value,
         {
             (const afw_object_t *)&impl_234_meta_object,
             (const afw_object_t *)&impl_230,
@@ -26207,7 +26207,7 @@ impl_235_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_235_meta_object__value
+        &impl_235_meta_object__value
     },
     &impl_235,
     NULL
@@ -26231,7 +26231,7 @@ impl_235 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_235__value,
+        &impl_235__value,
         {
             (const afw_object_t *)&impl_235_meta_object,
             (const afw_object_t *)&impl_230,
@@ -26323,7 +26323,7 @@ impl_236_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_236_meta_object__value
+        &impl_236_meta_object__value
     },
     &impl_236,
     NULL
@@ -26347,7 +26347,7 @@ impl_236 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_236__value,
+        &impl_236__value,
         {
             (const afw_object_t *)&impl_236_meta_object,
             (const afw_object_t *)&impl_230,
@@ -26426,7 +26426,7 @@ impl_237_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_237_meta_object__value
+        &impl_237_meta_object__value
     },
     &impl_237,
     NULL
@@ -26450,7 +26450,7 @@ impl_237 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_237__value,
+        &impl_237__value,
         {
             (const afw_object_t *)&impl_237_meta_object,
             (const afw_object_t *)&impl_230,
@@ -26529,7 +26529,7 @@ impl_238_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_238_meta_object__value
+        &impl_238_meta_object__value
     },
     &impl_238,
     NULL
@@ -26553,7 +26553,7 @@ impl_238 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_238__value,
+        &impl_238__value,
         {
             (const afw_object_t *)&impl_238_meta_object,
             (const afw_object_t *)&impl_230,
@@ -26711,7 +26711,7 @@ impl_230_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_230_meta_object__value
+        &impl_230_meta_object__value
     },
     &impl_230,
     &impl_230_parentPaths
@@ -26735,7 +26735,7 @@ impl_230 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_230__value,
+        &impl_230__value,
         {
             (const afw_object_t *)&impl_230_meta_object,
             (const afw_object_t *)&impl_229,
@@ -26849,7 +26849,7 @@ impl_229_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_229_meta_object__value
+        &impl_229_meta_object__value
     },
     &impl_229,
     NULL
@@ -26873,7 +26873,7 @@ impl_229 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_229__value,
+        &impl_229__value,
         {
             (const afw_object_t *)&impl_229_meta_object,
             NULL,
@@ -26958,7 +26958,7 @@ impl_241_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_241_meta_object__value
+        &impl_241_meta_object__value
     },
     &impl_241,
     NULL
@@ -26982,7 +26982,7 @@ impl_241 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_241__value,
+        &impl_241__value,
         {
             (const afw_object_t *)&impl_241_meta_object,
             (const afw_object_t *)&impl_240,
@@ -27074,7 +27074,7 @@ impl_242_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_242_meta_object__value
+        &impl_242_meta_object__value
     },
     &impl_242,
     NULL
@@ -27098,7 +27098,7 @@ impl_242 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_242__value,
+        &impl_242__value,
         {
             (const afw_object_t *)&impl_242_meta_object,
             (const afw_object_t *)&impl_240,
@@ -27178,7 +27178,7 @@ impl_240_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_240_meta_object__value
+        &impl_240_meta_object__value
     },
     &impl_240,
     &impl_240_parentPaths
@@ -27202,7 +27202,7 @@ impl_240 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_240__value,
+        &impl_240__value,
         {
             (const afw_object_t *)&impl_240_meta_object,
             (const afw_object_t *)&impl_239,
@@ -27316,7 +27316,7 @@ impl_239_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_239_meta_object__value
+        &impl_239_meta_object__value
     },
     &impl_239,
     NULL
@@ -27340,7 +27340,7 @@ impl_239 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_239__value,
+        &impl_239__value,
         {
             (const afw_object_t *)&impl_239_meta_object,
             NULL,
@@ -27425,7 +27425,7 @@ impl_245_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_245_meta_object__value
+        &impl_245_meta_object__value
     },
     &impl_245,
     NULL
@@ -27449,7 +27449,7 @@ impl_245 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_245__value,
+        &impl_245__value,
         {
             (const afw_object_t *)&impl_245_meta_object,
             (const afw_object_t *)&impl_244,
@@ -27535,7 +27535,7 @@ impl_246_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_246_meta_object__value
+        &impl_246_meta_object__value
     },
     &impl_246,
     NULL
@@ -27559,7 +27559,7 @@ impl_246 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_246__value,
+        &impl_246__value,
         {
             (const afw_object_t *)&impl_246_meta_object,
             (const afw_object_t *)&impl_244,
@@ -27638,7 +27638,7 @@ impl_247_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_247_meta_object__value
+        &impl_247_meta_object__value
     },
     &impl_247,
     NULL
@@ -27662,7 +27662,7 @@ impl_247 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_247__value,
+        &impl_247__value,
         {
             (const afw_object_t *)&impl_247_meta_object,
             (const afw_object_t *)&impl_244,
@@ -27755,7 +27755,7 @@ impl_244_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_244_meta_object__value
+        &impl_244_meta_object__value
     },
     &impl_244,
     &impl_244_parentPaths
@@ -27779,7 +27779,7 @@ impl_244 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_244__value,
+        &impl_244__value,
         {
             (const afw_object_t *)&impl_244_meta_object,
             (const afw_object_t *)&impl_243,
@@ -27893,7 +27893,7 @@ impl_243_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_243_meta_object__value
+        &impl_243_meta_object__value
     },
     &impl_243,
     NULL
@@ -27917,7 +27917,7 @@ impl_243 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_243__value,
+        &impl_243__value,
         {
             (const afw_object_t *)&impl_243_meta_object,
             NULL,
@@ -27978,7 +27978,7 @@ impl_251_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_251_meta_object__value
+        &impl_251_meta_object__value
     },
     &impl_251,
     NULL
@@ -28002,7 +28002,7 @@ impl_251 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_251__value,
+        &impl_251__value,
         {
             (const afw_object_t *)&impl_251_meta_object,
             (const afw_object_t *)&impl_250,
@@ -28078,7 +28078,7 @@ impl_250_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_250_meta_object__value
+        &impl_250_meta_object__value
     },
     &impl_250,
     NULL
@@ -28102,7 +28102,7 @@ impl_250 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_250__value,
+        &impl_250__value,
         {
             (const afw_object_t *)&impl_250_meta_object,
             (const afw_object_t *)&impl_249,
@@ -28150,7 +28150,7 @@ impl_249_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_249_meta_object__value
+        &impl_249_meta_object__value
     },
     &impl_249,
     NULL
@@ -28174,7 +28174,7 @@ impl_249 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_249__value,
+        &impl_249__value,
         {
             (const afw_object_t *)&impl_249_meta_object,
             (const afw_object_t *)&impl_248,
@@ -28235,7 +28235,7 @@ impl_253_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_253_meta_object__value
+        &impl_253_meta_object__value
     },
     &impl_253,
     NULL
@@ -28259,7 +28259,7 @@ impl_253 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_253__value,
+        &impl_253__value,
         {
             (const afw_object_t *)&impl_253_meta_object,
             (const afw_object_t *)&impl_252,
@@ -28327,7 +28327,7 @@ impl_252_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_252_meta_object__value
+        &impl_252_meta_object__value
     },
     &impl_252,
     NULL
@@ -28351,7 +28351,7 @@ impl_252 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_252__value,
+        &impl_252__value,
         {
             (const afw_object_t *)&impl_252_meta_object,
             (const afw_object_t *)&impl_248,
@@ -28517,7 +28517,7 @@ impl_248_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_248_meta_object__value
+        &impl_248_meta_object__value
     },
     &impl_248,
     NULL
@@ -28541,7 +28541,7 @@ impl_248 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_248__value,
+        &impl_248__value,
         {
             (const afw_object_t *)&impl_248_meta_object,
             NULL,
@@ -28626,7 +28626,7 @@ impl_256_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_256_meta_object__value
+        &impl_256_meta_object__value
     },
     &impl_256,
     NULL
@@ -28650,7 +28650,7 @@ impl_256 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_256__value,
+        &impl_256__value,
         {
             (const afw_object_t *)&impl_256_meta_object,
             (const afw_object_t *)&impl_255,
@@ -28736,7 +28736,7 @@ impl_257_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_257_meta_object__value
+        &impl_257_meta_object__value
     },
     &impl_257,
     NULL
@@ -28760,7 +28760,7 @@ impl_257 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_257__value,
+        &impl_257__value,
         {
             (const afw_object_t *)&impl_257_meta_object,
             (const afw_object_t *)&impl_255,
@@ -28846,7 +28846,7 @@ impl_258_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_258_meta_object__value
+        &impl_258_meta_object__value
     },
     &impl_258,
     NULL
@@ -28870,7 +28870,7 @@ impl_258 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_258__value,
+        &impl_258__value,
         {
             (const afw_object_t *)&impl_258_meta_object,
             (const afw_object_t *)&impl_255,
@@ -28949,7 +28949,7 @@ impl_259_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_259_meta_object__value
+        &impl_259_meta_object__value
     },
     &impl_259,
     NULL
@@ -28973,7 +28973,7 @@ impl_259 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_259__value,
+        &impl_259__value,
         {
             (const afw_object_t *)&impl_259_meta_object,
             (const afw_object_t *)&impl_255,
@@ -29060,7 +29060,7 @@ impl_255_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_255_meta_object__value
+        &impl_255_meta_object__value
     },
     &impl_255,
     NULL
@@ -29084,7 +29084,7 @@ impl_255 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_255__value,
+        &impl_255__value,
         {
             (const afw_object_t *)&impl_255_meta_object,
             (const afw_object_t *)&impl_254,
@@ -29244,7 +29244,7 @@ impl_254_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_254_meta_object__value
+        &impl_254_meta_object__value
     },
     &impl_254,
     NULL
@@ -29268,7 +29268,7 @@ impl_254 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_254__value,
+        &impl_254__value,
         {
             (const afw_object_t *)&impl_254_meta_object,
             NULL,
@@ -29366,7 +29366,7 @@ impl_262_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_262_meta_object__value
+        &impl_262_meta_object__value
     },
     &impl_262,
     NULL
@@ -29390,7 +29390,7 @@ impl_262 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_262__value,
+        &impl_262__value,
         {
             (const afw_object_t *)&impl_262_meta_object,
             (const afw_object_t *)&impl_261,
@@ -29482,7 +29482,7 @@ impl_263_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_263_meta_object__value
+        &impl_263_meta_object__value
     },
     &impl_263,
     NULL
@@ -29506,7 +29506,7 @@ impl_263 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_263__value,
+        &impl_263__value,
         {
             (const afw_object_t *)&impl_263_meta_object,
             (const afw_object_t *)&impl_261,
@@ -29586,7 +29586,7 @@ impl_261_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_261_meta_object__value
+        &impl_261_meta_object__value
     },
     &impl_261,
     &impl_261_parentPaths
@@ -29610,7 +29610,7 @@ impl_261 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_261__value,
+        &impl_261__value,
         {
             (const afw_object_t *)&impl_261_meta_object,
             (const afw_object_t *)&impl_260,
@@ -29763,7 +29763,7 @@ impl_260_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_260_meta_object__value
+        &impl_260_meta_object__value
     },
     &impl_260,
     NULL
@@ -29787,7 +29787,7 @@ impl_260 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_260__value,
+        &impl_260__value,
         {
             (const afw_object_t *)&impl_260_meta_object,
             NULL,
@@ -29885,7 +29885,7 @@ impl_266_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_266_meta_object__value
+        &impl_266_meta_object__value
     },
     &impl_266,
     NULL
@@ -29909,7 +29909,7 @@ impl_266 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_266__value,
+        &impl_266__value,
         {
             (const afw_object_t *)&impl_266_meta_object,
             (const afw_object_t *)&impl_265,
@@ -30001,7 +30001,7 @@ impl_267_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_267_meta_object__value
+        &impl_267_meta_object__value
     },
     &impl_267,
     NULL
@@ -30025,7 +30025,7 @@ impl_267 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_267__value,
+        &impl_267__value,
         {
             (const afw_object_t *)&impl_267_meta_object,
             (const afw_object_t *)&impl_265,
@@ -30080,7 +30080,7 @@ impl_269_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_269_meta_object__value
+        &impl_269_meta_object__value
     },
     &impl_269,
     NULL
@@ -30104,7 +30104,7 @@ impl_269 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_269__value,
+        &impl_269__value,
         {
             (const afw_object_t *)&impl_269_meta_object,
             (const afw_object_t *)&impl_268,
@@ -30206,7 +30206,7 @@ impl_268_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_268_meta_object__value
+        &impl_268_meta_object__value
     },
     &impl_268,
     NULL
@@ -30230,7 +30230,7 @@ impl_268 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_268__value,
+        &impl_268__value,
         {
             (const afw_object_t *)&impl_268_meta_object,
             (const afw_object_t *)&impl_265,
@@ -30278,7 +30278,7 @@ impl_271_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_271_meta_object__value
+        &impl_271_meta_object__value
     },
     &impl_271,
     NULL
@@ -30302,7 +30302,7 @@ impl_271 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_271__value,
+        &impl_271__value,
         {
             (const afw_object_t *)&impl_271_meta_object,
             (const afw_object_t *)&impl_270,
@@ -30404,7 +30404,7 @@ impl_270_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_270_meta_object__value
+        &impl_270_meta_object__value
     },
     &impl_270,
     NULL
@@ -30428,7 +30428,7 @@ impl_270 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_270__value,
+        &impl_270__value,
         {
             (const afw_object_t *)&impl_270_meta_object,
             (const afw_object_t *)&impl_265,
@@ -30476,7 +30476,7 @@ impl_273_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_273_meta_object__value
+        &impl_273_meta_object__value
     },
     &impl_273,
     NULL
@@ -30500,7 +30500,7 @@ impl_273 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_273__value,
+        &impl_273__value,
         {
             (const afw_object_t *)&impl_273_meta_object,
             (const afw_object_t *)&impl_272,
@@ -30646,7 +30646,7 @@ impl_272_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_272_meta_object__value
+        &impl_272_meta_object__value
     },
     &impl_272,
     NULL
@@ -30670,7 +30670,7 @@ impl_272 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_272__value,
+        &impl_272__value,
         {
             (const afw_object_t *)&impl_272_meta_object,
             (const afw_object_t *)&impl_265,
@@ -30769,7 +30769,7 @@ impl_274_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_274_meta_object__value
+        &impl_274_meta_object__value
     },
     &impl_274,
     NULL
@@ -30793,7 +30793,7 @@ impl_274 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_274__value,
+        &impl_274__value,
         {
             (const afw_object_t *)&impl_274_meta_object,
             (const afw_object_t *)&impl_265,
@@ -30872,7 +30872,7 @@ impl_275_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_275_meta_object__value
+        &impl_275_meta_object__value
     },
     &impl_275,
     NULL
@@ -30896,7 +30896,7 @@ impl_275 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_275__value,
+        &impl_275__value,
         {
             (const afw_object_t *)&impl_275_meta_object,
             (const afw_object_t *)&impl_265,
@@ -30975,7 +30975,7 @@ impl_276_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_276_meta_object__value
+        &impl_276_meta_object__value
     },
     &impl_276,
     NULL
@@ -30999,7 +30999,7 @@ impl_276 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_276__value,
+        &impl_276__value,
         {
             (const afw_object_t *)&impl_276_meta_object,
             (const afw_object_t *)&impl_265,
@@ -31047,7 +31047,7 @@ impl_278_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_278_meta_object__value
+        &impl_278_meta_object__value
     },
     &impl_278,
     NULL
@@ -31071,7 +31071,7 @@ impl_278 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_278__value,
+        &impl_278__value,
         {
             (const afw_object_t *)&impl_278_meta_object,
             (const afw_object_t *)&impl_277,
@@ -31186,7 +31186,7 @@ impl_277_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_277_meta_object__value
+        &impl_277_meta_object__value
     },
     &impl_277,
     NULL
@@ -31210,7 +31210,7 @@ impl_277 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_277__value,
+        &impl_277__value,
         {
             (const afw_object_t *)&impl_277_meta_object,
             (const afw_object_t *)&impl_265,
@@ -31302,7 +31302,7 @@ impl_279_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_279_meta_object__value
+        &impl_279_meta_object__value
     },
     &impl_279,
     NULL
@@ -31326,7 +31326,7 @@ impl_279 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_279__value,
+        &impl_279__value,
         {
             (const afw_object_t *)&impl_279_meta_object,
             (const afw_object_t *)&impl_265,
@@ -31418,7 +31418,7 @@ impl_280_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_280_meta_object__value
+        &impl_280_meta_object__value
     },
     &impl_280,
     NULL
@@ -31442,7 +31442,7 @@ impl_280 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_280__value,
+        &impl_280__value,
         {
             (const afw_object_t *)&impl_280_meta_object,
             (const afw_object_t *)&impl_265,
@@ -31534,7 +31534,7 @@ impl_281_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_281_meta_object__value
+        &impl_281_meta_object__value
     },
     &impl_281,
     NULL
@@ -31558,7 +31558,7 @@ impl_281 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_281__value,
+        &impl_281__value,
         {
             (const afw_object_t *)&impl_281_meta_object,
             (const afw_object_t *)&impl_265,
@@ -31637,7 +31637,7 @@ impl_282_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_282_meta_object__value
+        &impl_282_meta_object__value
     },
     &impl_282,
     NULL
@@ -31661,7 +31661,7 @@ impl_282 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_282__value,
+        &impl_282__value,
         {
             (const afw_object_t *)&impl_282_meta_object,
             (const afw_object_t *)&impl_265,
@@ -31740,7 +31740,7 @@ impl_283_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_283_meta_object__value
+        &impl_283_meta_object__value
     },
     &impl_283,
     NULL
@@ -31764,7 +31764,7 @@ impl_283 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_283__value,
+        &impl_283__value,
         {
             (const afw_object_t *)&impl_283_meta_object,
             (const afw_object_t *)&impl_265,
@@ -31843,7 +31843,7 @@ impl_284_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_284_meta_object__value
+        &impl_284_meta_object__value
     },
     &impl_284,
     NULL
@@ -31867,7 +31867,7 @@ impl_284 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_284__value,
+        &impl_284__value,
         {
             (const afw_object_t *)&impl_284_meta_object,
             (const afw_object_t *)&impl_265,
@@ -32097,7 +32097,7 @@ impl_265_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_265_meta_object__value
+        &impl_265_meta_object__value
     },
     &impl_265,
     NULL
@@ -32121,7 +32121,7 @@ impl_265 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_265__value,
+        &impl_265__value,
         {
             (const afw_object_t *)&impl_265_meta_object,
             (const afw_object_t *)&impl_264,
@@ -32169,7 +32169,7 @@ impl_286_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_286_meta_object__value
+        &impl_286_meta_object__value
     },
     &impl_286,
     NULL
@@ -32193,7 +32193,7 @@ impl_286 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_286__value,
+        &impl_286__value,
         {
             (const afw_object_t *)&impl_286_meta_object,
             (const afw_object_t *)&impl_285,
@@ -32261,7 +32261,7 @@ impl_285_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_285_meta_object__value
+        &impl_285_meta_object__value
     },
     &impl_285,
     NULL
@@ -32285,7 +32285,7 @@ impl_285 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_285__value,
+        &impl_285__value,
         {
             (const afw_object_t *)&impl_285_meta_object,
             (const afw_object_t *)&impl_264,
@@ -32451,7 +32451,7 @@ impl_264_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_264_meta_object__value
+        &impl_264_meta_object__value
     },
     &impl_264,
     NULL
@@ -32475,7 +32475,7 @@ impl_264 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_264__value,
+        &impl_264__value,
         {
             (const afw_object_t *)&impl_264_meta_object,
             NULL,
@@ -32529,7 +32529,7 @@ impl_290_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_290_meta_object__value
+        &impl_290_meta_object__value
     },
     &impl_290,
     NULL
@@ -32553,7 +32553,7 @@ impl_290 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_290__value,
+        &impl_290__value,
         {
             (const afw_object_t *)&impl_290_meta_object,
             (const afw_object_t *)&impl_289,
@@ -32642,7 +32642,7 @@ impl_289_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_289_meta_object__value
+        &impl_289_meta_object__value
     },
     &impl_289,
     NULL
@@ -32666,7 +32666,7 @@ impl_289 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_289__value,
+        &impl_289__value,
         {
             (const afw_object_t *)&impl_289_meta_object,
             (const afw_object_t *)&impl_288,
@@ -32714,7 +32714,7 @@ impl_292_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_292_meta_object__value
+        &impl_292_meta_object__value
     },
     &impl_292,
     NULL
@@ -32738,7 +32738,7 @@ impl_292 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_292__value,
+        &impl_292__value,
         {
             (const afw_object_t *)&impl_292_meta_object,
             (const afw_object_t *)&impl_291,
@@ -32827,7 +32827,7 @@ impl_291_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_291_meta_object__value
+        &impl_291_meta_object__value
     },
     &impl_291,
     NULL
@@ -32851,7 +32851,7 @@ impl_291 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_291__value,
+        &impl_291__value,
         {
             (const afw_object_t *)&impl_291_meta_object,
             (const afw_object_t *)&impl_288,
@@ -32899,7 +32899,7 @@ impl_294_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_294_meta_object__value
+        &impl_294_meta_object__value
     },
     &impl_294,
     NULL
@@ -32923,7 +32923,7 @@ impl_294 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_294__value,
+        &impl_294__value,
         {
             (const afw_object_t *)&impl_294_meta_object,
             (const afw_object_t *)&impl_293,
@@ -33019,7 +33019,7 @@ impl_293_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_293_meta_object__value
+        &impl_293_meta_object__value
     },
     &impl_293,
     NULL
@@ -33043,7 +33043,7 @@ impl_293 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_293__value,
+        &impl_293__value,
         {
             (const afw_object_t *)&impl_293_meta_object,
             (const afw_object_t *)&impl_288,
@@ -33098,7 +33098,7 @@ impl_296_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_296_meta_object__value
+        &impl_296_meta_object__value
     },
     &impl_296,
     NULL
@@ -33122,7 +33122,7 @@ impl_296 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_296__value,
+        &impl_296__value,
         {
             (const afw_object_t *)&impl_296_meta_object,
             (const afw_object_t *)&impl_295,
@@ -33211,7 +33211,7 @@ impl_295_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_295_meta_object__value
+        &impl_295_meta_object__value
     },
     &impl_295,
     NULL
@@ -33235,7 +33235,7 @@ impl_295 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_295__value,
+        &impl_295__value,
         {
             (const afw_object_t *)&impl_295_meta_object,
             (const afw_object_t *)&impl_288,
@@ -33290,7 +33290,7 @@ impl_298_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_298_meta_object__value
+        &impl_298_meta_object__value
     },
     &impl_298,
     NULL
@@ -33314,7 +33314,7 @@ impl_298 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_298__value,
+        &impl_298__value,
         {
             (const afw_object_t *)&impl_298_meta_object,
             (const afw_object_t *)&impl_297,
@@ -33403,7 +33403,7 @@ impl_297_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_297_meta_object__value
+        &impl_297_meta_object__value
     },
     &impl_297,
     NULL
@@ -33427,7 +33427,7 @@ impl_297 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_297__value,
+        &impl_297__value,
         {
             (const afw_object_t *)&impl_297_meta_object,
             (const afw_object_t *)&impl_288,
@@ -33527,7 +33527,7 @@ impl_288_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_288_meta_object__value
+        &impl_288_meta_object__value
     },
     &impl_288,
     NULL
@@ -33551,7 +33551,7 @@ impl_288 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_288__value,
+        &impl_288__value,
         {
             (const afw_object_t *)&impl_288_meta_object,
             (const afw_object_t *)&impl_287,
@@ -33612,7 +33612,7 @@ impl_300_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_300_meta_object__value
+        &impl_300_meta_object__value
     },
     &impl_300,
     NULL
@@ -33636,7 +33636,7 @@ impl_300 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_300__value,
+        &impl_300__value,
         {
             (const afw_object_t *)&impl_300_meta_object,
             (const afw_object_t *)&impl_299,
@@ -33704,7 +33704,7 @@ impl_299_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_299_meta_object__value
+        &impl_299_meta_object__value
     },
     &impl_299,
     NULL
@@ -33728,7 +33728,7 @@ impl_299 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_299__value,
+        &impl_299__value,
         {
             (const afw_object_t *)&impl_299_meta_object,
             (const afw_object_t *)&impl_287,
@@ -33894,7 +33894,7 @@ impl_287_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_287_meta_object__value
+        &impl_287_meta_object__value
     },
     &impl_287,
     NULL
@@ -33918,7 +33918,7 @@ impl_287 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_287__value,
+        &impl_287__value,
         {
             (const afw_object_t *)&impl_287_meta_object,
             NULL,
@@ -33966,7 +33966,7 @@ impl_302_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_302_meta_object__value
+        &impl_302_meta_object__value
     },
     &impl_302,
     NULL
@@ -33990,7 +33990,7 @@ impl_302 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_302__value,
+        &impl_302__value,
         {
             (const afw_object_t *)&impl_302_meta_object,
             (const afw_object_t *)&impl_301,
@@ -34143,7 +34143,7 @@ impl_301_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_301_meta_object__value
+        &impl_301_meta_object__value
     },
     &impl_301,
     NULL
@@ -34167,7 +34167,7 @@ impl_301 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_301__value,
+        &impl_301__value,
         {
             (const afw_object_t *)&impl_301_meta_object,
             NULL,
@@ -34215,7 +34215,7 @@ impl_304_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_304_meta_object__value
+        &impl_304_meta_object__value
     },
     &impl_304,
     NULL
@@ -34239,7 +34239,7 @@ impl_304 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_304__value,
+        &impl_304__value,
         {
             (const afw_object_t *)&impl_304_meta_object,
             (const afw_object_t *)&impl_303,
@@ -34353,7 +34353,7 @@ impl_303_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_303_meta_object__value
+        &impl_303_meta_object__value
     },
     &impl_303,
     NULL
@@ -34377,7 +34377,7 @@ impl_303 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_303__value,
+        &impl_303__value,
         {
             (const afw_object_t *)&impl_303_meta_object,
             NULL,
@@ -34431,7 +34431,7 @@ impl_308_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_308_meta_object__value
+        &impl_308_meta_object__value
     },
     &impl_308,
     NULL
@@ -34455,7 +34455,7 @@ impl_308 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_308__value,
+        &impl_308__value,
         {
             (const afw_object_t *)&impl_308_meta_object,
             (const afw_object_t *)&impl_307,
@@ -34544,7 +34544,7 @@ impl_307_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_307_meta_object__value
+        &impl_307_meta_object__value
     },
     &impl_307,
     NULL
@@ -34568,7 +34568,7 @@ impl_307 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_307__value,
+        &impl_307__value,
         {
             (const afw_object_t *)&impl_307_meta_object,
             (const afw_object_t *)&impl_306,
@@ -34616,7 +34616,7 @@ impl_306_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_306_meta_object__value
+        &impl_306_meta_object__value
     },
     &impl_306,
     NULL
@@ -34640,7 +34640,7 @@ impl_306 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_306__value,
+        &impl_306__value,
         {
             (const afw_object_t *)&impl_306_meta_object,
             (const afw_object_t *)&impl_305,
@@ -34701,7 +34701,7 @@ impl_310_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_310_meta_object__value
+        &impl_310_meta_object__value
     },
     &impl_310,
     NULL
@@ -34725,7 +34725,7 @@ impl_310 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_310__value,
+        &impl_310__value,
         {
             (const afw_object_t *)&impl_310_meta_object,
             (const afw_object_t *)&impl_309,
@@ -34793,7 +34793,7 @@ impl_309_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_309_meta_object__value
+        &impl_309_meta_object__value
     },
     &impl_309,
     NULL
@@ -34817,7 +34817,7 @@ impl_309 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_309__value,
+        &impl_309__value,
         {
             (const afw_object_t *)&impl_309_meta_object,
             (const afw_object_t *)&impl_305,
@@ -34983,7 +34983,7 @@ impl_305_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_305_meta_object__value
+        &impl_305_meta_object__value
     },
     &impl_305,
     NULL
@@ -35007,7 +35007,7 @@ impl_305 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_305__value,
+        &impl_305__value,
         {
             (const afw_object_t *)&impl_305_meta_object,
             NULL,
@@ -35048,7 +35048,7 @@ impl_312_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_312_meta_object__value
+        &impl_312_meta_object__value
     },
     &impl_312,
     NULL
@@ -35072,7 +35072,7 @@ impl_312 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_312__value,
+        &impl_312__value,
         {
             (const afw_object_t *)&impl_312_meta_object,
             (const afw_object_t *)&impl_311,
@@ -35141,7 +35141,7 @@ impl_314_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_314_meta_object__value
+        &impl_314_meta_object__value
     },
     &impl_314,
     NULL
@@ -35165,7 +35165,7 @@ impl_314 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_314__value,
+        &impl_314__value,
         {
             (const afw_object_t *)&impl_314_meta_object,
             (const afw_object_t *)&impl_313,
@@ -35238,7 +35238,7 @@ impl_315_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_315_meta_object__value
+        &impl_315_meta_object__value
     },
     &impl_315,
     NULL
@@ -35262,7 +35262,7 @@ impl_315 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_315__value,
+        &impl_315__value,
         {
             (const afw_object_t *)&impl_315_meta_object,
             (const afw_object_t *)&impl_313,
@@ -35335,7 +35335,7 @@ impl_316_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_316_meta_object__value
+        &impl_316_meta_object__value
     },
     &impl_316,
     NULL
@@ -35359,7 +35359,7 @@ impl_316 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_316__value,
+        &impl_316__value,
         {
             (const afw_object_t *)&impl_316_meta_object,
             (const afw_object_t *)&impl_313,
@@ -35425,7 +35425,7 @@ impl_317_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_317_meta_object__value
+        &impl_317_meta_object__value
     },
     &impl_317,
     NULL
@@ -35449,7 +35449,7 @@ impl_317 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_317__value,
+        &impl_317__value,
         {
             (const afw_object_t *)&impl_317_meta_object,
             (const afw_object_t *)&impl_313,
@@ -35508,7 +35508,7 @@ impl_318_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_318_meta_object__value
+        &impl_318_meta_object__value
     },
     &impl_318,
     NULL
@@ -35532,7 +35532,7 @@ impl_318 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_318__value,
+        &impl_318__value,
         {
             (const afw_object_t *)&impl_318_meta_object,
             (const afw_object_t *)&impl_313,
@@ -35598,7 +35598,7 @@ impl_319_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_319_meta_object__value
+        &impl_319_meta_object__value
     },
     &impl_319,
     NULL
@@ -35622,7 +35622,7 @@ impl_319 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_319__value,
+        &impl_319__value,
         {
             (const afw_object_t *)&impl_319_meta_object,
             (const afw_object_t *)&impl_313,
@@ -35688,7 +35688,7 @@ impl_320_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_320_meta_object__value
+        &impl_320_meta_object__value
     },
     &impl_320,
     NULL
@@ -35712,7 +35712,7 @@ impl_320 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_320__value,
+        &impl_320__value,
         {
             (const afw_object_t *)&impl_320_meta_object,
             (const afw_object_t *)&impl_313,
@@ -35778,7 +35778,7 @@ impl_321_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_321_meta_object__value
+        &impl_321_meta_object__value
     },
     &impl_321,
     NULL
@@ -35802,7 +35802,7 @@ impl_321 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_321__value,
+        &impl_321__value,
         {
             (const afw_object_t *)&impl_321_meta_object,
             (const afw_object_t *)&impl_313,
@@ -35868,7 +35868,7 @@ impl_322_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_322_meta_object__value
+        &impl_322_meta_object__value
     },
     &impl_322,
     NULL
@@ -35892,7 +35892,7 @@ impl_322 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_322__value,
+        &impl_322__value,
         {
             (const afw_object_t *)&impl_322_meta_object,
             (const afw_object_t *)&impl_313,
@@ -35958,7 +35958,7 @@ impl_323_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_323_meta_object__value
+        &impl_323_meta_object__value
     },
     &impl_323,
     NULL
@@ -35982,7 +35982,7 @@ impl_323 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_323__value,
+        &impl_323__value,
         {
             (const afw_object_t *)&impl_323_meta_object,
             (const afw_object_t *)&impl_313,
@@ -36048,7 +36048,7 @@ impl_324_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_324_meta_object__value
+        &impl_324_meta_object__value
     },
     &impl_324,
     NULL
@@ -36072,7 +36072,7 @@ impl_324 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_324__value,
+        &impl_324__value,
         {
             (const afw_object_t *)&impl_324_meta_object,
             (const afw_object_t *)&impl_313,
@@ -36138,7 +36138,7 @@ impl_325_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_325_meta_object__value
+        &impl_325_meta_object__value
     },
     &impl_325,
     NULL
@@ -36162,7 +36162,7 @@ impl_325 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_325__value,
+        &impl_325__value,
         {
             (const afw_object_t *)&impl_325_meta_object,
             (const afw_object_t *)&impl_313,
@@ -36228,7 +36228,7 @@ impl_326_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_326_meta_object__value
+        &impl_326_meta_object__value
     },
     &impl_326,
     NULL
@@ -36252,7 +36252,7 @@ impl_326 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_326__value,
+        &impl_326__value,
         {
             (const afw_object_t *)&impl_326_meta_object,
             (const afw_object_t *)&impl_313,
@@ -36318,7 +36318,7 @@ impl_327_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_327_meta_object__value
+        &impl_327_meta_object__value
     },
     &impl_327,
     NULL
@@ -36342,7 +36342,7 @@ impl_327 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_327__value,
+        &impl_327__value,
         {
             (const afw_object_t *)&impl_327_meta_object,
             (const afw_object_t *)&impl_313,
@@ -36408,7 +36408,7 @@ impl_328_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_328_meta_object__value
+        &impl_328_meta_object__value
     },
     &impl_328,
     NULL
@@ -36432,7 +36432,7 @@ impl_328 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_328__value,
+        &impl_328__value,
         {
             (const afw_object_t *)&impl_328_meta_object,
             (const afw_object_t *)&impl_313,
@@ -36498,7 +36498,7 @@ impl_329_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_329_meta_object__value
+        &impl_329_meta_object__value
     },
     &impl_329,
     NULL
@@ -36522,7 +36522,7 @@ impl_329 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_329__value,
+        &impl_329__value,
         {
             (const afw_object_t *)&impl_329_meta_object,
             (const afw_object_t *)&impl_313,
@@ -36588,7 +36588,7 @@ impl_330_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_330_meta_object__value
+        &impl_330_meta_object__value
     },
     &impl_330,
     NULL
@@ -36612,7 +36612,7 @@ impl_330 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_330__value,
+        &impl_330__value,
         {
             (const afw_object_t *)&impl_330_meta_object,
             (const afw_object_t *)&impl_313,
@@ -36678,7 +36678,7 @@ impl_331_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_331_meta_object__value
+        &impl_331_meta_object__value
     },
     &impl_331,
     NULL
@@ -36702,7 +36702,7 @@ impl_331 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_331__value,
+        &impl_331__value,
         {
             (const afw_object_t *)&impl_331_meta_object,
             (const afw_object_t *)&impl_313,
@@ -36768,7 +36768,7 @@ impl_332_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_332_meta_object__value
+        &impl_332_meta_object__value
     },
     &impl_332,
     NULL
@@ -36792,7 +36792,7 @@ impl_332 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_332__value,
+        &impl_332__value,
         {
             (const afw_object_t *)&impl_332_meta_object,
             (const afw_object_t *)&impl_313,
@@ -36858,7 +36858,7 @@ impl_333_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_333_meta_object__value
+        &impl_333_meta_object__value
     },
     &impl_333,
     NULL
@@ -36882,7 +36882,7 @@ impl_333 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_333__value,
+        &impl_333__value,
         {
             (const afw_object_t *)&impl_333_meta_object,
             (const afw_object_t *)&impl_313,
@@ -36948,7 +36948,7 @@ impl_334_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_334_meta_object__value
+        &impl_334_meta_object__value
     },
     &impl_334,
     NULL
@@ -36972,7 +36972,7 @@ impl_334 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_334__value,
+        &impl_334__value,
         {
             (const afw_object_t *)&impl_334_meta_object,
             (const afw_object_t *)&impl_313,
@@ -37280,7 +37280,7 @@ impl_313_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_313_meta_object__value
+        &impl_313_meta_object__value
     },
     &impl_313,
     NULL
@@ -37304,7 +37304,7 @@ impl_313 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_313__value,
+        &impl_313__value,
         {
             (const afw_object_t *)&impl_313_meta_object,
             (const afw_object_t *)&impl_311,
@@ -37470,7 +37470,7 @@ impl_311_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_311_meta_object__value
+        &impl_311_meta_object__value
     },
     &impl_311,
     NULL
@@ -37494,7 +37494,7 @@ impl_311 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_311__value,
+        &impl_311__value,
         {
             (const afw_object_t *)&impl_311_meta_object,
             NULL,
@@ -37548,7 +37548,7 @@ impl_338_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_338_meta_object__value
+        &impl_338_meta_object__value
     },
     &impl_338,
     NULL
@@ -37572,7 +37572,7 @@ impl_338 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_338__value,
+        &impl_338__value,
         {
             (const afw_object_t *)&impl_338_meta_object,
             (const afw_object_t *)&impl_337,
@@ -37661,7 +37661,7 @@ impl_337_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_337_meta_object__value
+        &impl_337_meta_object__value
     },
     &impl_337,
     NULL
@@ -37685,7 +37685,7 @@ impl_337 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_337__value,
+        &impl_337__value,
         {
             (const afw_object_t *)&impl_337_meta_object,
             (const afw_object_t *)&impl_336,
@@ -37733,7 +37733,7 @@ impl_340_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_340_meta_object__value
+        &impl_340_meta_object__value
     },
     &impl_340,
     NULL
@@ -37757,7 +37757,7 @@ impl_340 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_340__value,
+        &impl_340__value,
         {
             (const afw_object_t *)&impl_340_meta_object,
             (const afw_object_t *)&impl_339,
@@ -37846,7 +37846,7 @@ impl_339_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_339_meta_object__value
+        &impl_339_meta_object__value
     },
     &impl_339,
     NULL
@@ -37870,7 +37870,7 @@ impl_339 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_339__value,
+        &impl_339__value,
         {
             (const afw_object_t *)&impl_339_meta_object,
             (const afw_object_t *)&impl_336,
@@ -37918,7 +37918,7 @@ impl_342_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_342_meta_object__value
+        &impl_342_meta_object__value
     },
     &impl_342,
     NULL
@@ -37942,7 +37942,7 @@ impl_342 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_342__value,
+        &impl_342__value,
         {
             (const afw_object_t *)&impl_342_meta_object,
             (const afw_object_t *)&impl_341,
@@ -38031,7 +38031,7 @@ impl_341_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_341_meta_object__value
+        &impl_341_meta_object__value
     },
     &impl_341,
     NULL
@@ -38055,7 +38055,7 @@ impl_341 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_341__value,
+        &impl_341__value,
         {
             (const afw_object_t *)&impl_341_meta_object,
             (const afw_object_t *)&impl_336,
@@ -38129,7 +38129,7 @@ impl_336_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_336_meta_object__value
+        &impl_336_meta_object__value
     },
     &impl_336,
     NULL
@@ -38153,7 +38153,7 @@ impl_336 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_336__value,
+        &impl_336__value,
         {
             (const afw_object_t *)&impl_336_meta_object,
             (const afw_object_t *)&impl_335,
@@ -38201,7 +38201,7 @@ impl_344_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_344_meta_object__value
+        &impl_344_meta_object__value
     },
     &impl_344,
     NULL
@@ -38225,7 +38225,7 @@ impl_344 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_344__value,
+        &impl_344__value,
         {
             (const afw_object_t *)&impl_344_meta_object,
             (const afw_object_t *)&impl_343,
@@ -38293,7 +38293,7 @@ impl_343_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_343_meta_object__value
+        &impl_343_meta_object__value
     },
     &impl_343,
     NULL
@@ -38317,7 +38317,7 @@ impl_343 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_343__value,
+        &impl_343__value,
         {
             (const afw_object_t *)&impl_343_meta_object,
             (const afw_object_t *)&impl_335,
@@ -38483,7 +38483,7 @@ impl_335_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_335_meta_object__value
+        &impl_335_meta_object__value
     },
     &impl_335,
     NULL
@@ -38507,7 +38507,7 @@ impl_335 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_335__value,
+        &impl_335__value,
         {
             (const afw_object_t *)&impl_335_meta_object,
             NULL,
@@ -38568,7 +38568,7 @@ impl_348_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_348_meta_object__value
+        &impl_348_meta_object__value
     },
     &impl_348,
     NULL
@@ -38592,7 +38592,7 @@ impl_348 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_348__value,
+        &impl_348__value,
         {
             (const afw_object_t *)&impl_348_meta_object,
             (const afw_object_t *)&impl_347,
@@ -38688,7 +38688,7 @@ impl_347_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_347_meta_object__value
+        &impl_347_meta_object__value
     },
     &impl_347,
     NULL
@@ -38712,7 +38712,7 @@ impl_347 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_347__value,
+        &impl_347__value,
         {
             (const afw_object_t *)&impl_347_meta_object,
             (const afw_object_t *)&impl_346,
@@ -38760,7 +38760,7 @@ impl_350_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_350_meta_object__value
+        &impl_350_meta_object__value
     },
     &impl_350,
     NULL
@@ -38784,7 +38784,7 @@ impl_350 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_350__value,
+        &impl_350__value,
         {
             (const afw_object_t *)&impl_350_meta_object,
             (const afw_object_t *)&impl_349,
@@ -38873,7 +38873,7 @@ impl_349_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_349_meta_object__value
+        &impl_349_meta_object__value
     },
     &impl_349,
     NULL
@@ -38897,7 +38897,7 @@ impl_349 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_349__value,
+        &impl_349__value,
         {
             (const afw_object_t *)&impl_349_meta_object,
             (const afw_object_t *)&impl_346,
@@ -38945,7 +38945,7 @@ impl_352_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_352_meta_object__value
+        &impl_352_meta_object__value
     },
     &impl_352,
     NULL
@@ -38969,7 +38969,7 @@ impl_352 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_352__value,
+        &impl_352__value,
         {
             (const afw_object_t *)&impl_352_meta_object,
             (const afw_object_t *)&impl_351,
@@ -39065,7 +39065,7 @@ impl_351_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_351_meta_object__value
+        &impl_351_meta_object__value
     },
     &impl_351,
     NULL
@@ -39089,7 +39089,7 @@ impl_351 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_351__value,
+        &impl_351__value,
         {
             (const afw_object_t *)&impl_351_meta_object,
             (const afw_object_t *)&impl_346,
@@ -39144,7 +39144,7 @@ impl_354_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_354_meta_object__value
+        &impl_354_meta_object__value
     },
     &impl_354,
     NULL
@@ -39168,7 +39168,7 @@ impl_354 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_354__value,
+        &impl_354__value,
         {
             (const afw_object_t *)&impl_354_meta_object,
             (const afw_object_t *)&impl_353,
@@ -39257,7 +39257,7 @@ impl_353_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_353_meta_object__value
+        &impl_353_meta_object__value
     },
     &impl_353,
     NULL
@@ -39281,7 +39281,7 @@ impl_353 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_353__value,
+        &impl_353__value,
         {
             (const afw_object_t *)&impl_353_meta_object,
             (const afw_object_t *)&impl_346,
@@ -39336,7 +39336,7 @@ impl_356_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_356_meta_object__value
+        &impl_356_meta_object__value
     },
     &impl_356,
     NULL
@@ -39360,7 +39360,7 @@ impl_356 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_356__value,
+        &impl_356__value,
         {
             (const afw_object_t *)&impl_356_meta_object,
             (const afw_object_t *)&impl_355,
@@ -39449,7 +39449,7 @@ impl_355_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_355_meta_object__value
+        &impl_355_meta_object__value
     },
     &impl_355,
     NULL
@@ -39473,7 +39473,7 @@ impl_355 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_355__value,
+        &impl_355__value,
         {
             (const afw_object_t *)&impl_355_meta_object,
             (const afw_object_t *)&impl_346,
@@ -39528,7 +39528,7 @@ impl_358_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_358_meta_object__value
+        &impl_358_meta_object__value
     },
     &impl_358,
     NULL
@@ -39552,7 +39552,7 @@ impl_358 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_358__value,
+        &impl_358__value,
         {
             (const afw_object_t *)&impl_358_meta_object,
             (const afw_object_t *)&impl_357,
@@ -39648,7 +39648,7 @@ impl_357_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_357_meta_object__value
+        &impl_357_meta_object__value
     },
     &impl_357,
     NULL
@@ -39672,7 +39672,7 @@ impl_357 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_357__value,
+        &impl_357__value,
         {
             (const afw_object_t *)&impl_357_meta_object,
             (const afw_object_t *)&impl_346,
@@ -39727,7 +39727,7 @@ impl_360_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_360_meta_object__value
+        &impl_360_meta_object__value
     },
     &impl_360,
     NULL
@@ -39751,7 +39751,7 @@ impl_360 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_360__value,
+        &impl_360__value,
         {
             (const afw_object_t *)&impl_360_meta_object,
             (const afw_object_t *)&impl_359,
@@ -39847,7 +39847,7 @@ impl_359_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_359_meta_object__value
+        &impl_359_meta_object__value
     },
     &impl_359,
     NULL
@@ -39871,7 +39871,7 @@ impl_359 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_359__value,
+        &impl_359__value,
         {
             (const afw_object_t *)&impl_359_meta_object,
             (const afw_object_t *)&impl_346,
@@ -39997,7 +39997,7 @@ impl_346_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_346_meta_object__value
+        &impl_346_meta_object__value
     },
     &impl_346,
     NULL
@@ -40021,7 +40021,7 @@ impl_346 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_346__value,
+        &impl_346__value,
         {
             (const afw_object_t *)&impl_346_meta_object,
             (const afw_object_t *)&impl_345,
@@ -40069,7 +40069,7 @@ impl_362_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_362_meta_object__value
+        &impl_362_meta_object__value
     },
     &impl_362,
     NULL
@@ -40093,7 +40093,7 @@ impl_362 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_362__value,
+        &impl_362__value,
         {
             (const afw_object_t *)&impl_362_meta_object,
             (const afw_object_t *)&impl_361,
@@ -40161,7 +40161,7 @@ impl_361_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_361_meta_object__value
+        &impl_361_meta_object__value
     },
     &impl_361,
     NULL
@@ -40185,7 +40185,7 @@ impl_361 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_361__value,
+        &impl_361__value,
         {
             (const afw_object_t *)&impl_361_meta_object,
             (const afw_object_t *)&impl_345,
@@ -40351,7 +40351,7 @@ impl_345_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_345_meta_object__value
+        &impl_345_meta_object__value
     },
     &impl_345,
     NULL
@@ -40375,7 +40375,7 @@ impl_345 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_345__value,
+        &impl_345__value,
         {
             (const afw_object_t *)&impl_345_meta_object,
             NULL,
@@ -40473,7 +40473,7 @@ impl_365_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_365_meta_object__value
+        &impl_365_meta_object__value
     },
     &impl_365,
     NULL
@@ -40497,7 +40497,7 @@ impl_365 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_365__value,
+        &impl_365__value,
         {
             (const afw_object_t *)&impl_365_meta_object,
             (const afw_object_t *)&impl_364,
@@ -40589,7 +40589,7 @@ impl_366_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_366_meta_object__value
+        &impl_366_meta_object__value
     },
     &impl_366,
     NULL
@@ -40613,7 +40613,7 @@ impl_366 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_366__value,
+        &impl_366__value,
         {
             (const afw_object_t *)&impl_366_meta_object,
             (const afw_object_t *)&impl_364,
@@ -40705,7 +40705,7 @@ impl_367_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_367_meta_object__value
+        &impl_367_meta_object__value
     },
     &impl_367,
     NULL
@@ -40729,7 +40729,7 @@ impl_367 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_367__value,
+        &impl_367__value,
         {
             (const afw_object_t *)&impl_367_meta_object,
             (const afw_object_t *)&impl_364,
@@ -40815,7 +40815,7 @@ impl_368_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_368_meta_object__value
+        &impl_368_meta_object__value
     },
     &impl_368,
     NULL
@@ -40839,7 +40839,7 @@ impl_368 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_368__value,
+        &impl_368__value,
         {
             (const afw_object_t *)&impl_368_meta_object,
             (const afw_object_t *)&impl_364,
@@ -40926,7 +40926,7 @@ impl_364_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_364_meta_object__value
+        &impl_364_meta_object__value
     },
     &impl_364,
     NULL
@@ -40950,7 +40950,7 @@ impl_364 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_364__value,
+        &impl_364__value,
         {
             (const afw_object_t *)&impl_364_meta_object,
             (const afw_object_t *)&impl_363,
@@ -41064,7 +41064,7 @@ impl_363_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_363_meta_object__value
+        &impl_363_meta_object__value
     },
     &impl_363,
     NULL
@@ -41088,7 +41088,7 @@ impl_363 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_363__value,
+        &impl_363__value,
         {
             (const afw_object_t *)&impl_363_meta_object,
             NULL,
@@ -41179,7 +41179,7 @@ impl_371_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_371_meta_object__value
+        &impl_371_meta_object__value
     },
     &impl_371,
     NULL
@@ -41203,7 +41203,7 @@ impl_371 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_371__value,
+        &impl_371__value,
         {
             (const afw_object_t *)&impl_371_meta_object,
             (const afw_object_t *)&impl_370,
@@ -41288,7 +41288,7 @@ impl_372_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_372_meta_object__value
+        &impl_372_meta_object__value
     },
     &impl_372,
     NULL
@@ -41312,7 +41312,7 @@ impl_372 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_372__value,
+        &impl_372__value,
         {
             (const afw_object_t *)&impl_372_meta_object,
             (const afw_object_t *)&impl_370,
@@ -41404,7 +41404,7 @@ impl_373_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_373_meta_object__value
+        &impl_373_meta_object__value
     },
     &impl_373,
     NULL
@@ -41428,7 +41428,7 @@ impl_373 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_373__value,
+        &impl_373__value,
         {
             (const afw_object_t *)&impl_373_meta_object,
             (const afw_object_t *)&impl_370,
@@ -41513,7 +41513,7 @@ impl_374_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_374_meta_object__value
+        &impl_374_meta_object__value
     },
     &impl_374,
     NULL
@@ -41537,7 +41537,7 @@ impl_374 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_374__value,
+        &impl_374__value,
         {
             (const afw_object_t *)&impl_374_meta_object,
             (const afw_object_t *)&impl_370,
@@ -41603,7 +41603,7 @@ impl_375_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_375_meta_object__value
+        &impl_375_meta_object__value
     },
     &impl_375,
     NULL
@@ -41627,7 +41627,7 @@ impl_375 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_375__value,
+        &impl_375__value,
         {
             (const afw_object_t *)&impl_375_meta_object,
             (const afw_object_t *)&impl_370,
@@ -41712,7 +41712,7 @@ impl_376_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_376_meta_object__value
+        &impl_376_meta_object__value
     },
     &impl_376,
     NULL
@@ -41736,7 +41736,7 @@ impl_376 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_376__value,
+        &impl_376__value,
         {
             (const afw_object_t *)&impl_376_meta_object,
             (const afw_object_t *)&impl_370,
@@ -41828,7 +41828,7 @@ impl_377_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_377_meta_object__value
+        &impl_377_meta_object__value
     },
     &impl_377,
     NULL
@@ -41852,7 +41852,7 @@ impl_377 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_377__value,
+        &impl_377__value,
         {
             (const afw_object_t *)&impl_377_meta_object,
             (const afw_object_t *)&impl_370,
@@ -41937,7 +41937,7 @@ impl_378_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_378_meta_object__value
+        &impl_378_meta_object__value
     },
     &impl_378,
     NULL
@@ -41961,7 +41961,7 @@ impl_378 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_378__value,
+        &impl_378__value,
         {
             (const afw_object_t *)&impl_378_meta_object,
             (const afw_object_t *)&impl_370,
@@ -42053,7 +42053,7 @@ impl_379_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_379_meta_object__value
+        &impl_379_meta_object__value
     },
     &impl_379,
     NULL
@@ -42077,7 +42077,7 @@ impl_379 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_379__value,
+        &impl_379__value,
         {
             (const afw_object_t *)&impl_379_meta_object,
             (const afw_object_t *)&impl_370,
@@ -42229,7 +42229,7 @@ impl_370_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_370_meta_object__value
+        &impl_370_meta_object__value
     },
     &impl_370,
     NULL
@@ -42253,7 +42253,7 @@ impl_370 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_370__value,
+        &impl_370__value,
         {
             (const afw_object_t *)&impl_370_meta_object,
             (const afw_object_t *)&impl_369,
@@ -42374,7 +42374,7 @@ impl_369_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_369_meta_object__value
+        &impl_369_meta_object__value
     },
     &impl_369,
     NULL
@@ -42398,7 +42398,7 @@ impl_369 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_369__value,
+        &impl_369__value,
         {
             (const afw_object_t *)&impl_369_meta_object,
             NULL,
@@ -42496,7 +42496,7 @@ impl_382_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_382_meta_object__value
+        &impl_382_meta_object__value
     },
     &impl_382,
     NULL
@@ -42520,7 +42520,7 @@ impl_382 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_382__value,
+        &impl_382__value,
         {
             (const afw_object_t *)&impl_382_meta_object,
             (const afw_object_t *)&impl_381,
@@ -42612,7 +42612,7 @@ impl_383_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_383_meta_object__value
+        &impl_383_meta_object__value
     },
     &impl_383,
     NULL
@@ -42636,7 +42636,7 @@ impl_383 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_383__value,
+        &impl_383__value,
         {
             (const afw_object_t *)&impl_383_meta_object,
             (const afw_object_t *)&impl_381,
@@ -42697,7 +42697,7 @@ impl_381_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_381_meta_object__value
+        &impl_381_meta_object__value
     },
     &impl_381,
     NULL
@@ -42721,7 +42721,7 @@ impl_381 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_381__value,
+        &impl_381__value,
         {
             (const afw_object_t *)&impl_381_meta_object,
             (const afw_object_t *)&impl_380,
@@ -42835,7 +42835,7 @@ impl_380_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_380_meta_object__value
+        &impl_380_meta_object__value
     },
     &impl_380,
     NULL
@@ -42859,7 +42859,7 @@ impl_380 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_380__value,
+        &impl_380__value,
         {
             (const afw_object_t *)&impl_380_meta_object,
             NULL,
@@ -42957,7 +42957,7 @@ impl_386_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_386_meta_object__value
+        &impl_386_meta_object__value
     },
     &impl_386,
     NULL
@@ -42981,7 +42981,7 @@ impl_386 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_386__value,
+        &impl_386__value,
         {
             (const afw_object_t *)&impl_386_meta_object,
             (const afw_object_t *)&impl_385,
@@ -43073,7 +43073,7 @@ impl_387_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_387_meta_object__value
+        &impl_387_meta_object__value
     },
     &impl_387,
     NULL
@@ -43097,7 +43097,7 @@ impl_387 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_387__value,
+        &impl_387__value,
         {
             (const afw_object_t *)&impl_387_meta_object,
             (const afw_object_t *)&impl_385,
@@ -43189,7 +43189,7 @@ impl_388_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_388_meta_object__value
+        &impl_388_meta_object__value
     },
     &impl_388,
     NULL
@@ -43213,7 +43213,7 @@ impl_388 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_388__value,
+        &impl_388__value,
         {
             (const afw_object_t *)&impl_388_meta_object,
             (const afw_object_t *)&impl_385,
@@ -43305,7 +43305,7 @@ impl_389_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_389_meta_object__value
+        &impl_389_meta_object__value
     },
     &impl_389,
     NULL
@@ -43329,7 +43329,7 @@ impl_389 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_389__value,
+        &impl_389__value,
         {
             (const afw_object_t *)&impl_389_meta_object,
             (const afw_object_t *)&impl_385,
@@ -43421,7 +43421,7 @@ impl_390_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_390_meta_object__value
+        &impl_390_meta_object__value
     },
     &impl_390,
     NULL
@@ -43445,7 +43445,7 @@ impl_390 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_390__value,
+        &impl_390__value,
         {
             (const afw_object_t *)&impl_390_meta_object,
             (const afw_object_t *)&impl_385,
@@ -43537,7 +43537,7 @@ impl_391_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_391_meta_object__value
+        &impl_391_meta_object__value
     },
     &impl_391,
     NULL
@@ -43561,7 +43561,7 @@ impl_391 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_391__value,
+        &impl_391__value,
         {
             (const afw_object_t *)&impl_391_meta_object,
             (const afw_object_t *)&impl_385,
@@ -43653,7 +43653,7 @@ impl_392_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_392_meta_object__value
+        &impl_392_meta_object__value
     },
     &impl_392,
     NULL
@@ -43677,7 +43677,7 @@ impl_392 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_392__value,
+        &impl_392__value,
         {
             (const afw_object_t *)&impl_392_meta_object,
             (const afw_object_t *)&impl_385,
@@ -43769,7 +43769,7 @@ impl_393_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_393_meta_object__value
+        &impl_393_meta_object__value
     },
     &impl_393,
     NULL
@@ -43793,7 +43793,7 @@ impl_393 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_393__value,
+        &impl_393__value,
         {
             (const afw_object_t *)&impl_393_meta_object,
             (const afw_object_t *)&impl_385,
@@ -43892,7 +43892,7 @@ impl_394_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_394_meta_object__value
+        &impl_394_meta_object__value
     },
     &impl_394,
     NULL
@@ -43916,7 +43916,7 @@ impl_394 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_394__value,
+        &impl_394__value,
         {
             (const afw_object_t *)&impl_394_meta_object,
             (const afw_object_t *)&impl_385,
@@ -43995,7 +43995,7 @@ impl_395_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_395_meta_object__value
+        &impl_395_meta_object__value
     },
     &impl_395,
     NULL
@@ -44019,7 +44019,7 @@ impl_395 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_395__value,
+        &impl_395__value,
         {
             (const afw_object_t *)&impl_395_meta_object,
             (const afw_object_t *)&impl_385,
@@ -44105,7 +44105,7 @@ impl_396_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_396_meta_object__value
+        &impl_396_meta_object__value
     },
     &impl_396,
     NULL
@@ -44129,7 +44129,7 @@ impl_396 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_396__value,
+        &impl_396__value,
         {
             (const afw_object_t *)&impl_396_meta_object,
             (const afw_object_t *)&impl_385,
@@ -44221,7 +44221,7 @@ impl_397_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_397_meta_object__value
+        &impl_397_meta_object__value
     },
     &impl_397,
     NULL
@@ -44245,7 +44245,7 @@ impl_397 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_397__value,
+        &impl_397__value,
         {
             (const afw_object_t *)&impl_397_meta_object,
             (const afw_object_t *)&impl_385,
@@ -44337,7 +44337,7 @@ impl_398_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_398_meta_object__value
+        &impl_398_meta_object__value
     },
     &impl_398,
     NULL
@@ -44361,7 +44361,7 @@ impl_398 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_398__value,
+        &impl_398__value,
         {
             (const afw_object_t *)&impl_398_meta_object,
             (const afw_object_t *)&impl_385,
@@ -44453,7 +44453,7 @@ impl_399_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_399_meta_object__value
+        &impl_399_meta_object__value
     },
     &impl_399,
     NULL
@@ -44477,7 +44477,7 @@ impl_399 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_399__value,
+        &impl_399__value,
         {
             (const afw_object_t *)&impl_399_meta_object,
             (const afw_object_t *)&impl_385,
@@ -44556,7 +44556,7 @@ impl_400_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_400_meta_object__value
+        &impl_400_meta_object__value
     },
     &impl_400,
     NULL
@@ -44580,7 +44580,7 @@ impl_400 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_400__value,
+        &impl_400__value,
         {
             (const afw_object_t *)&impl_400_meta_object,
             (const afw_object_t *)&impl_385,
@@ -44653,7 +44653,7 @@ impl_401_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_401_meta_object__value
+        &impl_401_meta_object__value
     },
     &impl_401,
     NULL
@@ -44677,7 +44677,7 @@ impl_401 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_401__value,
+        &impl_401__value,
         {
             (const afw_object_t *)&impl_401_meta_object,
             (const afw_object_t *)&impl_385,
@@ -44769,7 +44769,7 @@ impl_402_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_402_meta_object__value
+        &impl_402_meta_object__value
     },
     &impl_402,
     NULL
@@ -44793,7 +44793,7 @@ impl_402 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_402__value,
+        &impl_402__value,
         {
             (const afw_object_t *)&impl_402_meta_object,
             (const afw_object_t *)&impl_385,
@@ -44892,7 +44892,7 @@ impl_403_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_403_meta_object__value
+        &impl_403_meta_object__value
     },
     &impl_403,
     NULL
@@ -44916,7 +44916,7 @@ impl_403 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_403__value,
+        &impl_403__value,
         {
             (const afw_object_t *)&impl_403_meta_object,
             (const afw_object_t *)&impl_385,
@@ -45008,7 +45008,7 @@ impl_404_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_404_meta_object__value
+        &impl_404_meta_object__value
     },
     &impl_404,
     NULL
@@ -45032,7 +45032,7 @@ impl_404 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_404__value,
+        &impl_404__value,
         {
             (const afw_object_t *)&impl_404_meta_object,
             (const afw_object_t *)&impl_385,
@@ -45124,7 +45124,7 @@ impl_405_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_405_meta_object__value
+        &impl_405_meta_object__value
     },
     &impl_405,
     NULL
@@ -45148,7 +45148,7 @@ impl_405 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_405__value,
+        &impl_405__value,
         {
             (const afw_object_t *)&impl_405_meta_object,
             (const afw_object_t *)&impl_385,
@@ -45240,7 +45240,7 @@ impl_406_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_406_meta_object__value
+        &impl_406_meta_object__value
     },
     &impl_406,
     NULL
@@ -45264,7 +45264,7 @@ impl_406 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_406__value,
+        &impl_406__value,
         {
             (const afw_object_t *)&impl_406_meta_object,
             (const afw_object_t *)&impl_385,
@@ -45356,7 +45356,7 @@ impl_407_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_407_meta_object__value
+        &impl_407_meta_object__value
     },
     &impl_407,
     NULL
@@ -45380,7 +45380,7 @@ impl_407 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_407__value,
+        &impl_407__value,
         {
             (const afw_object_t *)&impl_407_meta_object,
             (const afw_object_t *)&impl_385,
@@ -45479,7 +45479,7 @@ impl_408_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_408_meta_object__value
+        &impl_408_meta_object__value
     },
     &impl_408,
     NULL
@@ -45503,7 +45503,7 @@ impl_408 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_408__value,
+        &impl_408__value,
         {
             (const afw_object_t *)&impl_408_meta_object,
             (const afw_object_t *)&impl_385,
@@ -45582,7 +45582,7 @@ impl_409_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_409_meta_object__value
+        &impl_409_meta_object__value
     },
     &impl_409,
     NULL
@@ -45606,7 +45606,7 @@ impl_409 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_409__value,
+        &impl_409__value,
         {
             (const afw_object_t *)&impl_409_meta_object,
             (const afw_object_t *)&impl_385,
@@ -45692,7 +45692,7 @@ impl_410_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_410_meta_object__value
+        &impl_410_meta_object__value
     },
     &impl_410,
     NULL
@@ -45716,7 +45716,7 @@ impl_410 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_410__value,
+        &impl_410__value,
         {
             (const afw_object_t *)&impl_410_meta_object,
             (const afw_object_t *)&impl_385,
@@ -45795,7 +45795,7 @@ impl_411_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_411_meta_object__value
+        &impl_411_meta_object__value
     },
     &impl_411,
     NULL
@@ -45819,7 +45819,7 @@ impl_411 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_411__value,
+        &impl_411__value,
         {
             (const afw_object_t *)&impl_411_meta_object,
             (const afw_object_t *)&impl_385,
@@ -45911,7 +45911,7 @@ impl_412_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_412_meta_object__value
+        &impl_412_meta_object__value
     },
     &impl_412,
     NULL
@@ -45935,7 +45935,7 @@ impl_412 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_412__value,
+        &impl_412__value,
         {
             (const afw_object_t *)&impl_412_meta_object,
             (const afw_object_t *)&impl_385,
@@ -46321,7 +46321,7 @@ impl_385_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_385_meta_object__value
+        &impl_385_meta_object__value
     },
     &impl_385,
     NULL
@@ -46345,7 +46345,7 @@ impl_385 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_385__value,
+        &impl_385__value,
         {
             (const afw_object_t *)&impl_385_meta_object,
             (const afw_object_t *)&impl_384,
@@ -46459,7 +46459,7 @@ impl_384_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_384_meta_object__value
+        &impl_384_meta_object__value
     },
     &impl_384,
     NULL
@@ -46483,7 +46483,7 @@ impl_384 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_384__value,
+        &impl_384__value,
         {
             (const afw_object_t *)&impl_384_meta_object,
             NULL,
@@ -46537,7 +46537,7 @@ impl_416_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_416_meta_object__value
+        &impl_416_meta_object__value
     },
     &impl_416,
     NULL
@@ -46561,7 +46561,7 @@ impl_416 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_416__value,
+        &impl_416__value,
         {
             (const afw_object_t *)&impl_416_meta_object,
             (const afw_object_t *)&impl_415,
@@ -46650,7 +46650,7 @@ impl_415_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_415_meta_object__value
+        &impl_415_meta_object__value
     },
     &impl_415,
     NULL
@@ -46674,7 +46674,7 @@ impl_415 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_415__value,
+        &impl_415__value,
         {
             (const afw_object_t *)&impl_415_meta_object,
             (const afw_object_t *)&impl_414,
@@ -46722,7 +46722,7 @@ impl_418_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_418_meta_object__value
+        &impl_418_meta_object__value
     },
     &impl_418,
     NULL
@@ -46746,7 +46746,7 @@ impl_418 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_418__value,
+        &impl_418__value,
         {
             (const afw_object_t *)&impl_418_meta_object,
             (const afw_object_t *)&impl_417,
@@ -46848,7 +46848,7 @@ impl_417_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_417_meta_object__value
+        &impl_417_meta_object__value
     },
     &impl_417,
     NULL
@@ -46872,7 +46872,7 @@ impl_417 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_417__value,
+        &impl_417__value,
         {
             (const afw_object_t *)&impl_417_meta_object,
             (const afw_object_t *)&impl_414,
@@ -46920,7 +46920,7 @@ impl_420_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_420_meta_object__value
+        &impl_420_meta_object__value
     },
     &impl_420,
     NULL
@@ -46944,7 +46944,7 @@ impl_420 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_420__value,
+        &impl_420__value,
         {
             (const afw_object_t *)&impl_420_meta_object,
             (const afw_object_t *)&impl_419,
@@ -47046,7 +47046,7 @@ impl_419_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_419_meta_object__value
+        &impl_419_meta_object__value
     },
     &impl_419,
     NULL
@@ -47070,7 +47070,7 @@ impl_419 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_419__value,
+        &impl_419__value,
         {
             (const afw_object_t *)&impl_419_meta_object,
             (const afw_object_t *)&impl_414,
@@ -47118,7 +47118,7 @@ impl_422_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_422_meta_object__value
+        &impl_422_meta_object__value
     },
     &impl_422,
     NULL
@@ -47142,7 +47142,7 @@ impl_422 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_422__value,
+        &impl_422__value,
         {
             (const afw_object_t *)&impl_422_meta_object,
             (const afw_object_t *)&impl_421,
@@ -47244,7 +47244,7 @@ impl_421_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_421_meta_object__value
+        &impl_421_meta_object__value
     },
     &impl_421,
     NULL
@@ -47268,7 +47268,7 @@ impl_421 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_421__value,
+        &impl_421__value,
         {
             (const afw_object_t *)&impl_421_meta_object,
             (const afw_object_t *)&impl_414,
@@ -47316,7 +47316,7 @@ impl_424_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_424_meta_object__value
+        &impl_424_meta_object__value
     },
     &impl_424,
     NULL
@@ -47340,7 +47340,7 @@ impl_424 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_424__value,
+        &impl_424__value,
         {
             (const afw_object_t *)&impl_424_meta_object,
             (const afw_object_t *)&impl_423,
@@ -47436,7 +47436,7 @@ impl_423_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_423_meta_object__value
+        &impl_423_meta_object__value
     },
     &impl_423,
     NULL
@@ -47460,7 +47460,7 @@ impl_423 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_423__value,
+        &impl_423__value,
         {
             (const afw_object_t *)&impl_423_meta_object,
             (const afw_object_t *)&impl_414,
@@ -47508,7 +47508,7 @@ impl_426_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_426_meta_object__value
+        &impl_426_meta_object__value
     },
     &impl_426,
     NULL
@@ -47532,7 +47532,7 @@ impl_426 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_426__value,
+        &impl_426__value,
         {
             (const afw_object_t *)&impl_426_meta_object,
             (const afw_object_t *)&impl_425,
@@ -47621,7 +47621,7 @@ impl_425_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_425_meta_object__value
+        &impl_425_meta_object__value
     },
     &impl_425,
     NULL
@@ -47645,7 +47645,7 @@ impl_425 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_425__value,
+        &impl_425__value,
         {
             (const afw_object_t *)&impl_425_meta_object,
             (const afw_object_t *)&impl_414,
@@ -47693,7 +47693,7 @@ impl_428_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_428_meta_object__value
+        &impl_428_meta_object__value
     },
     &impl_428,
     NULL
@@ -47717,7 +47717,7 @@ impl_428 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_428__value,
+        &impl_428__value,
         {
             (const afw_object_t *)&impl_428_meta_object,
             (const afw_object_t *)&impl_427,
@@ -47806,7 +47806,7 @@ impl_427_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_427_meta_object__value
+        &impl_427_meta_object__value
     },
     &impl_427,
     NULL
@@ -47830,7 +47830,7 @@ impl_427 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_427__value,
+        &impl_427__value,
         {
             (const afw_object_t *)&impl_427_meta_object,
             (const afw_object_t *)&impl_414,
@@ -47878,7 +47878,7 @@ impl_430_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_430_meta_object__value
+        &impl_430_meta_object__value
     },
     &impl_430,
     NULL
@@ -47902,7 +47902,7 @@ impl_430 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_430__value,
+        &impl_430__value,
         {
             (const afw_object_t *)&impl_430_meta_object,
             (const afw_object_t *)&impl_429,
@@ -48004,7 +48004,7 @@ impl_429_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_429_meta_object__value
+        &impl_429_meta_object__value
     },
     &impl_429,
     NULL
@@ -48028,7 +48028,7 @@ impl_429 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_429__value,
+        &impl_429__value,
         {
             (const afw_object_t *)&impl_429_meta_object,
             (const afw_object_t *)&impl_414,
@@ -48076,7 +48076,7 @@ impl_432_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_432_meta_object__value
+        &impl_432_meta_object__value
     },
     &impl_432,
     NULL
@@ -48100,7 +48100,7 @@ impl_432 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_432__value,
+        &impl_432__value,
         {
             (const afw_object_t *)&impl_432_meta_object,
             (const afw_object_t *)&impl_431,
@@ -48189,7 +48189,7 @@ impl_431_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_431_meta_object__value
+        &impl_431_meta_object__value
     },
     &impl_431,
     NULL
@@ -48213,7 +48213,7 @@ impl_431 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_431__value,
+        &impl_431__value,
         {
             (const afw_object_t *)&impl_431_meta_object,
             (const afw_object_t *)&impl_414,
@@ -48261,7 +48261,7 @@ impl_434_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_434_meta_object__value
+        &impl_434_meta_object__value
     },
     &impl_434,
     NULL
@@ -48285,7 +48285,7 @@ impl_434 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_434__value,
+        &impl_434__value,
         {
             (const afw_object_t *)&impl_434_meta_object,
             (const afw_object_t *)&impl_433,
@@ -48374,7 +48374,7 @@ impl_433_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_433_meta_object__value
+        &impl_433_meta_object__value
     },
     &impl_433,
     NULL
@@ -48398,7 +48398,7 @@ impl_433 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_433__value,
+        &impl_433__value,
         {
             (const afw_object_t *)&impl_433_meta_object,
             (const afw_object_t *)&impl_414,
@@ -48563,7 +48563,7 @@ impl_414_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_414_meta_object__value
+        &impl_414_meta_object__value
     },
     &impl_414,
     NULL
@@ -48587,7 +48587,7 @@ impl_414 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_414__value,
+        &impl_414__value,
         {
             (const afw_object_t *)&impl_414_meta_object,
             (const afw_object_t *)&impl_413,
@@ -48628,7 +48628,7 @@ impl_436_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_436_meta_object__value
+        &impl_436_meta_object__value
     },
     &impl_436,
     NULL
@@ -48652,7 +48652,7 @@ impl_436 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_436__value,
+        &impl_436__value,
         {
             (const afw_object_t *)&impl_436_meta_object,
             (const afw_object_t *)&impl_435,
@@ -48720,7 +48720,7 @@ impl_435_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_435_meta_object__value
+        &impl_435_meta_object__value
     },
     &impl_435,
     NULL
@@ -48744,7 +48744,7 @@ impl_435 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_435__value,
+        &impl_435__value,
         {
             (const afw_object_t *)&impl_435_meta_object,
             (const afw_object_t *)&impl_413,
@@ -48871,7 +48871,7 @@ impl_413_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_413_meta_object__value
+        &impl_413_meta_object__value
     },
     &impl_413,
     NULL
@@ -48895,7 +48895,7 @@ impl_413 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_413__value,
+        &impl_413__value,
         {
             (const afw_object_t *)&impl_413_meta_object,
             NULL,
@@ -48949,7 +48949,7 @@ impl_440_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_440_meta_object__value
+        &impl_440_meta_object__value
     },
     &impl_440,
     NULL
@@ -48973,7 +48973,7 @@ impl_440 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_440__value,
+        &impl_440__value,
         {
             (const afw_object_t *)&impl_440_meta_object,
             (const afw_object_t *)&impl_439,
@@ -49075,7 +49075,7 @@ impl_439_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_439_meta_object__value
+        &impl_439_meta_object__value
     },
     &impl_439,
     NULL
@@ -49099,7 +49099,7 @@ impl_439 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_439__value,
+        &impl_439__value,
         {
             (const afw_object_t *)&impl_439_meta_object,
             (const afw_object_t *)&impl_438,
@@ -49147,7 +49147,7 @@ impl_442_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_442_meta_object__value
+        &impl_442_meta_object__value
     },
     &impl_442,
     NULL
@@ -49171,7 +49171,7 @@ impl_442 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_442__value,
+        &impl_442__value,
         {
             (const afw_object_t *)&impl_442_meta_object,
             (const afw_object_t *)&impl_441,
@@ -49273,7 +49273,7 @@ impl_441_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_441_meta_object__value
+        &impl_441_meta_object__value
     },
     &impl_441,
     NULL
@@ -49297,7 +49297,7 @@ impl_441 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_441__value,
+        &impl_441__value,
         {
             (const afw_object_t *)&impl_441_meta_object,
             (const afw_object_t *)&impl_438,
@@ -49345,7 +49345,7 @@ impl_444_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_444_meta_object__value
+        &impl_444_meta_object__value
     },
     &impl_444,
     NULL
@@ -49369,7 +49369,7 @@ impl_444 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_444__value,
+        &impl_444__value,
         {
             (const afw_object_t *)&impl_444_meta_object,
             (const afw_object_t *)&impl_443,
@@ -49471,7 +49471,7 @@ impl_443_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_443_meta_object__value
+        &impl_443_meta_object__value
     },
     &impl_443,
     NULL
@@ -49495,7 +49495,7 @@ impl_443 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_443__value,
+        &impl_443__value,
         {
             (const afw_object_t *)&impl_443_meta_object,
             (const afw_object_t *)&impl_438,
@@ -49543,7 +49543,7 @@ impl_446_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_446_meta_object__value
+        &impl_446_meta_object__value
     },
     &impl_446,
     NULL
@@ -49567,7 +49567,7 @@ impl_446 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_446__value,
+        &impl_446__value,
         {
             (const afw_object_t *)&impl_446_meta_object,
             (const afw_object_t *)&impl_445,
@@ -49669,7 +49669,7 @@ impl_445_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_445_meta_object__value
+        &impl_445_meta_object__value
     },
     &impl_445,
     NULL
@@ -49693,7 +49693,7 @@ impl_445 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_445__value,
+        &impl_445__value,
         {
             (const afw_object_t *)&impl_445_meta_object,
             (const afw_object_t *)&impl_438,
@@ -49741,7 +49741,7 @@ impl_448_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_448_meta_object__value
+        &impl_448_meta_object__value
     },
     &impl_448,
     NULL
@@ -49765,7 +49765,7 @@ impl_448 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_448__value,
+        &impl_448__value,
         {
             (const afw_object_t *)&impl_448_meta_object,
             (const afw_object_t *)&impl_447,
@@ -49867,7 +49867,7 @@ impl_447_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_447_meta_object__value
+        &impl_447_meta_object__value
     },
     &impl_447,
     NULL
@@ -49891,7 +49891,7 @@ impl_447 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_447__value,
+        &impl_447__value,
         {
             (const afw_object_t *)&impl_447_meta_object,
             (const afw_object_t *)&impl_438,
@@ -49983,7 +49983,7 @@ impl_449_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_449_meta_object__value
+        &impl_449_meta_object__value
     },
     &impl_449,
     NULL
@@ -50007,7 +50007,7 @@ impl_449 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_449__value,
+        &impl_449__value,
         {
             (const afw_object_t *)&impl_449_meta_object,
             (const afw_object_t *)&impl_438,
@@ -50055,7 +50055,7 @@ impl_451_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_451_meta_object__value
+        &impl_451_meta_object__value
     },
     &impl_451,
     NULL
@@ -50079,7 +50079,7 @@ impl_451 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_451__value,
+        &impl_451__value,
         {
             (const afw_object_t *)&impl_451_meta_object,
             (const afw_object_t *)&impl_450,
@@ -50181,7 +50181,7 @@ impl_450_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_450_meta_object__value
+        &impl_450_meta_object__value
     },
     &impl_450,
     NULL
@@ -50205,7 +50205,7 @@ impl_450 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_450__value,
+        &impl_450__value,
         {
             (const afw_object_t *)&impl_450_meta_object,
             (const afw_object_t *)&impl_438,
@@ -50253,7 +50253,7 @@ impl_453_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_453_meta_object__value
+        &impl_453_meta_object__value
     },
     &impl_453,
     NULL
@@ -50277,7 +50277,7 @@ impl_453 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_453__value,
+        &impl_453__value,
         {
             (const afw_object_t *)&impl_453_meta_object,
             (const afw_object_t *)&impl_452,
@@ -50386,7 +50386,7 @@ impl_452_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_452_meta_object__value
+        &impl_452_meta_object__value
     },
     &impl_452,
     NULL
@@ -50410,7 +50410,7 @@ impl_452 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_452__value,
+        &impl_452__value,
         {
             (const afw_object_t *)&impl_452_meta_object,
             (const afw_object_t *)&impl_438,
@@ -50458,7 +50458,7 @@ impl_455_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_455_meta_object__value
+        &impl_455_meta_object__value
     },
     &impl_455,
     NULL
@@ -50482,7 +50482,7 @@ impl_455 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_455__value,
+        &impl_455__value,
         {
             (const afw_object_t *)&impl_455_meta_object,
             (const afw_object_t *)&impl_454,
@@ -50578,7 +50578,7 @@ impl_454_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_454_meta_object__value
+        &impl_454_meta_object__value
     },
     &impl_454,
     NULL
@@ -50602,7 +50602,7 @@ impl_454 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_454__value,
+        &impl_454__value,
         {
             (const afw_object_t *)&impl_454_meta_object,
             (const afw_object_t *)&impl_438,
@@ -50650,7 +50650,7 @@ impl_457_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_457_meta_object__value
+        &impl_457_meta_object__value
     },
     &impl_457,
     NULL
@@ -50674,7 +50674,7 @@ impl_457 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_457__value,
+        &impl_457__value,
         {
             (const afw_object_t *)&impl_457_meta_object,
             (const afw_object_t *)&impl_456,
@@ -50783,7 +50783,7 @@ impl_456_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_456_meta_object__value
+        &impl_456_meta_object__value
     },
     &impl_456,
     NULL
@@ -50807,7 +50807,7 @@ impl_456 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_456__value,
+        &impl_456__value,
         {
             (const afw_object_t *)&impl_456_meta_object,
             (const afw_object_t *)&impl_438,
@@ -50855,7 +50855,7 @@ impl_459_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_459_meta_object__value
+        &impl_459_meta_object__value
     },
     &impl_459,
     NULL
@@ -50879,7 +50879,7 @@ impl_459 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_459__value,
+        &impl_459__value,
         {
             (const afw_object_t *)&impl_459_meta_object,
             (const afw_object_t *)&impl_458,
@@ -50981,7 +50981,7 @@ impl_458_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_458_meta_object__value
+        &impl_458_meta_object__value
     },
     &impl_458,
     NULL
@@ -51005,7 +51005,7 @@ impl_458 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_458__value,
+        &impl_458__value,
         {
             (const afw_object_t *)&impl_458_meta_object,
             (const afw_object_t *)&impl_438,
@@ -51053,7 +51053,7 @@ impl_461_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_461_meta_object__value
+        &impl_461_meta_object__value
     },
     &impl_461,
     NULL
@@ -51077,7 +51077,7 @@ impl_461 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_461__value,
+        &impl_461__value,
         {
             (const afw_object_t *)&impl_461_meta_object,
             (const afw_object_t *)&impl_460,
@@ -51179,7 +51179,7 @@ impl_460_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_460_meta_object__value
+        &impl_460_meta_object__value
     },
     &impl_460,
     NULL
@@ -51203,7 +51203,7 @@ impl_460 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_460__value,
+        &impl_460__value,
         {
             (const afw_object_t *)&impl_460_meta_object,
             (const afw_object_t *)&impl_438,
@@ -51251,7 +51251,7 @@ impl_463_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_463_meta_object__value
+        &impl_463_meta_object__value
     },
     &impl_463,
     NULL
@@ -51275,7 +51275,7 @@ impl_463 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_463__value,
+        &impl_463__value,
         {
             (const afw_object_t *)&impl_463_meta_object,
             (const afw_object_t *)&impl_462,
@@ -51377,7 +51377,7 @@ impl_462_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_462_meta_object__value
+        &impl_462_meta_object__value
     },
     &impl_462,
     NULL
@@ -51401,7 +51401,7 @@ impl_462 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_462__value,
+        &impl_462__value,
         {
             (const afw_object_t *)&impl_462_meta_object,
             (const afw_object_t *)&impl_438,
@@ -51449,7 +51449,7 @@ impl_465_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_465_meta_object__value
+        &impl_465_meta_object__value
     },
     &impl_465,
     NULL
@@ -51473,7 +51473,7 @@ impl_465 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_465__value,
+        &impl_465__value,
         {
             (const afw_object_t *)&impl_465_meta_object,
             (const afw_object_t *)&impl_464,
@@ -51575,7 +51575,7 @@ impl_464_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_464_meta_object__value
+        &impl_464_meta_object__value
     },
     &impl_464,
     NULL
@@ -51599,7 +51599,7 @@ impl_464 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_464__value,
+        &impl_464__value,
         {
             (const afw_object_t *)&impl_464_meta_object,
             (const afw_object_t *)&impl_438,
@@ -51647,7 +51647,7 @@ impl_467_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_467_meta_object__value
+        &impl_467_meta_object__value
     },
     &impl_467,
     NULL
@@ -51671,7 +51671,7 @@ impl_467 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_467__value,
+        &impl_467__value,
         {
             (const afw_object_t *)&impl_467_meta_object,
             (const afw_object_t *)&impl_466,
@@ -51773,7 +51773,7 @@ impl_466_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_466_meta_object__value
+        &impl_466_meta_object__value
     },
     &impl_466,
     NULL
@@ -51797,7 +51797,7 @@ impl_466 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_466__value,
+        &impl_466__value,
         {
             (const afw_object_t *)&impl_466_meta_object,
             (const afw_object_t *)&impl_438,
@@ -51845,7 +51845,7 @@ impl_469_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_469_meta_object__value
+        &impl_469_meta_object__value
     },
     &impl_469,
     NULL
@@ -51869,7 +51869,7 @@ impl_469 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_469__value,
+        &impl_469__value,
         {
             (const afw_object_t *)&impl_469_meta_object,
             (const afw_object_t *)&impl_468,
@@ -51958,7 +51958,7 @@ impl_468_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_468_meta_object__value
+        &impl_468_meta_object__value
     },
     &impl_468,
     NULL
@@ -51982,7 +51982,7 @@ impl_468 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_468__value,
+        &impl_468__value,
         {
             (const afw_object_t *)&impl_468_meta_object,
             (const afw_object_t *)&impl_438,
@@ -52030,7 +52030,7 @@ impl_471_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_471_meta_object__value
+        &impl_471_meta_object__value
     },
     &impl_471,
     NULL
@@ -52054,7 +52054,7 @@ impl_471 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_471__value,
+        &impl_471__value,
         {
             (const afw_object_t *)&impl_471_meta_object,
             (const afw_object_t *)&impl_470,
@@ -52137,7 +52137,7 @@ impl_470_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_470_meta_object__value
+        &impl_470_meta_object__value
     },
     &impl_470,
     NULL
@@ -52161,7 +52161,7 @@ impl_470 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_470__value,
+        &impl_470__value,
         {
             (const afw_object_t *)&impl_470_meta_object,
             (const afw_object_t *)&impl_438,
@@ -52209,7 +52209,7 @@ impl_473_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_473_meta_object__value
+        &impl_473_meta_object__value
     },
     &impl_473,
     NULL
@@ -52233,7 +52233,7 @@ impl_473 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_473__value,
+        &impl_473__value,
         {
             (const afw_object_t *)&impl_473_meta_object,
             (const afw_object_t *)&impl_472,
@@ -52335,7 +52335,7 @@ impl_472_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_472_meta_object__value
+        &impl_472_meta_object__value
     },
     &impl_472,
     NULL
@@ -52359,7 +52359,7 @@ impl_472 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_472__value,
+        &impl_472__value,
         {
             (const afw_object_t *)&impl_472_meta_object,
             (const afw_object_t *)&impl_438,
@@ -52407,7 +52407,7 @@ impl_475_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_475_meta_object__value
+        &impl_475_meta_object__value
     },
     &impl_475,
     NULL
@@ -52431,7 +52431,7 @@ impl_475 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_475__value,
+        &impl_475__value,
         {
             (const afw_object_t *)&impl_475_meta_object,
             (const afw_object_t *)&impl_474,
@@ -52540,7 +52540,7 @@ impl_474_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_474_meta_object__value
+        &impl_474_meta_object__value
     },
     &impl_474,
     NULL
@@ -52564,7 +52564,7 @@ impl_474 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_474__value,
+        &impl_474__value,
         {
             (const afw_object_t *)&impl_474_meta_object,
             (const afw_object_t *)&impl_438,
@@ -52612,7 +52612,7 @@ impl_477_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_477_meta_object__value
+        &impl_477_meta_object__value
     },
     &impl_477,
     NULL
@@ -52636,7 +52636,7 @@ impl_477 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_477__value,
+        &impl_477__value,
         {
             (const afw_object_t *)&impl_477_meta_object,
             (const afw_object_t *)&impl_476,
@@ -52738,7 +52738,7 @@ impl_476_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_476_meta_object__value
+        &impl_476_meta_object__value
     },
     &impl_476,
     NULL
@@ -52762,7 +52762,7 @@ impl_476 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_476__value,
+        &impl_476__value,
         {
             (const afw_object_t *)&impl_476_meta_object,
             (const afw_object_t *)&impl_438,
@@ -52861,7 +52861,7 @@ impl_478_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_478_meta_object__value
+        &impl_478_meta_object__value
     },
     &impl_478,
     NULL
@@ -52885,7 +52885,7 @@ impl_478 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_478__value,
+        &impl_478__value,
         {
             (const afw_object_t *)&impl_478_meta_object,
             (const afw_object_t *)&impl_438,
@@ -52933,7 +52933,7 @@ impl_480_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_480_meta_object__value
+        &impl_480_meta_object__value
     },
     &impl_480,
     NULL
@@ -52957,7 +52957,7 @@ impl_480 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_480__value,
+        &impl_480__value,
         {
             (const afw_object_t *)&impl_480_meta_object,
             (const afw_object_t *)&impl_479,
@@ -53053,7 +53053,7 @@ impl_479_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_479_meta_object__value
+        &impl_479_meta_object__value
     },
     &impl_479,
     NULL
@@ -53077,7 +53077,7 @@ impl_479 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_479__value,
+        &impl_479__value,
         {
             (const afw_object_t *)&impl_479_meta_object,
             (const afw_object_t *)&impl_438,
@@ -53125,7 +53125,7 @@ impl_482_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_482_meta_object__value
+        &impl_482_meta_object__value
     },
     &impl_482,
     NULL
@@ -53149,7 +53149,7 @@ impl_482 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_482__value,
+        &impl_482__value,
         {
             (const afw_object_t *)&impl_482_meta_object,
             (const afw_object_t *)&impl_481,
@@ -53238,7 +53238,7 @@ impl_481_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_481_meta_object__value
+        &impl_481_meta_object__value
     },
     &impl_481,
     NULL
@@ -53262,7 +53262,7 @@ impl_481 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_481__value,
+        &impl_481__value,
         {
             (const afw_object_t *)&impl_481_meta_object,
             (const afw_object_t *)&impl_438,
@@ -53310,7 +53310,7 @@ impl_484_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_484_meta_object__value
+        &impl_484_meta_object__value
     },
     &impl_484,
     NULL
@@ -53334,7 +53334,7 @@ impl_484 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_484__value,
+        &impl_484__value,
         {
             (const afw_object_t *)&impl_484_meta_object,
             (const afw_object_t *)&impl_483,
@@ -53436,7 +53436,7 @@ impl_483_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_483_meta_object__value
+        &impl_483_meta_object__value
     },
     &impl_483,
     NULL
@@ -53460,7 +53460,7 @@ impl_483 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_483__value,
+        &impl_483__value,
         {
             (const afw_object_t *)&impl_483_meta_object,
             (const afw_object_t *)&impl_438,
@@ -53807,7 +53807,7 @@ impl_438_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_438_meta_object__value
+        &impl_438_meta_object__value
     },
     &impl_438,
     NULL
@@ -53831,7 +53831,7 @@ impl_438 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_438__value,
+        &impl_438__value,
         {
             (const afw_object_t *)&impl_438_meta_object,
             (const afw_object_t *)&impl_437,
@@ -53879,7 +53879,7 @@ impl_486_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_486_meta_object__value
+        &impl_486_meta_object__value
     },
     &impl_486,
     NULL
@@ -53903,7 +53903,7 @@ impl_486 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_486__value,
+        &impl_486__value,
         {
             (const afw_object_t *)&impl_486_meta_object,
             (const afw_object_t *)&impl_485,
@@ -53971,7 +53971,7 @@ impl_485_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_485_meta_object__value
+        &impl_485_meta_object__value
     },
     &impl_485,
     NULL
@@ -53995,7 +53995,7 @@ impl_485 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_485__value,
+        &impl_485__value,
         {
             (const afw_object_t *)&impl_485_meta_object,
             (const afw_object_t *)&impl_437,
@@ -54122,7 +54122,7 @@ impl_437_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_437_meta_object__value
+        &impl_437_meta_object__value
     },
     &impl_437,
     NULL
@@ -54146,7 +54146,7 @@ impl_437 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_437__value,
+        &impl_437__value,
         {
             (const afw_object_t *)&impl_437_meta_object,
             NULL,
@@ -54251,7 +54251,7 @@ impl_489_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_489_meta_object__value
+        &impl_489_meta_object__value
     },
     &impl_489,
     NULL
@@ -54275,7 +54275,7 @@ impl_489 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_489__value,
+        &impl_489__value,
         {
             (const afw_object_t *)&impl_489_meta_object,
             (const afw_object_t *)&impl_488,
@@ -54367,7 +54367,7 @@ impl_490_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_490_meta_object__value
+        &impl_490_meta_object__value
     },
     &impl_490,
     NULL
@@ -54391,7 +54391,7 @@ impl_490 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_490__value,
+        &impl_490__value,
         {
             (const afw_object_t *)&impl_490_meta_object,
             (const afw_object_t *)&impl_488,
@@ -54452,7 +54452,7 @@ impl_488_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_488_meta_object__value
+        &impl_488_meta_object__value
     },
     &impl_488,
     NULL
@@ -54476,7 +54476,7 @@ impl_488 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_488__value,
+        &impl_488__value,
         {
             (const afw_object_t *)&impl_488_meta_object,
             (const afw_object_t *)&impl_487,
@@ -54590,7 +54590,7 @@ impl_487_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_487_meta_object__value
+        &impl_487_meta_object__value
     },
     &impl_487,
     NULL
@@ -54614,7 +54614,7 @@ impl_487 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_487__value,
+        &impl_487__value,
         {
             (const afw_object_t *)&impl_487_meta_object,
             NULL,
@@ -54655,7 +54655,7 @@ impl_492_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_492_meta_object__value
+        &impl_492_meta_object__value
     },
     &impl_492,
     NULL
@@ -54679,7 +54679,7 @@ impl_492 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_492__value,
+        &impl_492__value,
         {
             (const afw_object_t *)&impl_492_meta_object,
             (const afw_object_t *)&impl_491,
@@ -54786,7 +54786,7 @@ impl_491_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_491_meta_object__value
+        &impl_491_meta_object__value
     },
     &impl_491,
     NULL
@@ -54810,7 +54810,7 @@ impl_491 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_491__value,
+        &impl_491__value,
         {
             (const afw_object_t *)&impl_491_meta_object,
             NULL,
@@ -54851,7 +54851,7 @@ impl_494_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_494_meta_object__value
+        &impl_494_meta_object__value
     },
     &impl_494,
     NULL
@@ -54875,7 +54875,7 @@ impl_494 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_494__value,
+        &impl_494__value,
         {
             (const afw_object_t *)&impl_494_meta_object,
             (const afw_object_t *)&impl_493,
@@ -54982,7 +54982,7 @@ impl_493_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_493_meta_object__value
+        &impl_493_meta_object__value
     },
     &impl_493,
     NULL
@@ -55006,7 +55006,7 @@ impl_493 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_493__value,
+        &impl_493__value,
         {
             (const afw_object_t *)&impl_493_meta_object,
             NULL,
@@ -55047,7 +55047,7 @@ impl_496_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_496_meta_object__value
+        &impl_496_meta_object__value
     },
     &impl_496,
     NULL
@@ -55071,7 +55071,7 @@ impl_496 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_496__value,
+        &impl_496__value,
         {
             (const afw_object_t *)&impl_496_meta_object,
             (const afw_object_t *)&impl_495,
@@ -55147,7 +55147,7 @@ impl_498_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_498_meta_object__value
+        &impl_498_meta_object__value
     },
     &impl_498,
     NULL
@@ -55171,7 +55171,7 @@ impl_498 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_498__value,
+        &impl_498__value,
         {
             (const afw_object_t *)&impl_498_meta_object,
             (const afw_object_t *)&impl_497,
@@ -55244,7 +55244,7 @@ impl_499_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_499_meta_object__value
+        &impl_499_meta_object__value
     },
     &impl_499,
     NULL
@@ -55268,7 +55268,7 @@ impl_499 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_499__value,
+        &impl_499__value,
         {
             (const afw_object_t *)&impl_499_meta_object,
             (const afw_object_t *)&impl_497,
@@ -55341,7 +55341,7 @@ impl_500_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_500_meta_object__value
+        &impl_500_meta_object__value
     },
     &impl_500,
     NULL
@@ -55365,7 +55365,7 @@ impl_500 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_500__value,
+        &impl_500__value,
         {
             (const afw_object_t *)&impl_500_meta_object,
             (const afw_object_t *)&impl_497,
@@ -55439,7 +55439,7 @@ impl_497_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_497_meta_object__value
+        &impl_497_meta_object__value
     },
     &impl_497,
     NULL
@@ -55463,7 +55463,7 @@ impl_497 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_497__value,
+        &impl_497__value,
         {
             (const afw_object_t *)&impl_497_meta_object,
             (const afw_object_t *)&impl_495,
@@ -55590,7 +55590,7 @@ impl_495_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_495_meta_object__value
+        &impl_495_meta_object__value
     },
     &impl_495,
     NULL
@@ -55614,7 +55614,7 @@ impl_495 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_495__value,
+        &impl_495__value,
         {
             (const afw_object_t *)&impl_495_meta_object,
             NULL,
@@ -55712,7 +55712,7 @@ impl_503_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_503_meta_object__value
+        &impl_503_meta_object__value
     },
     &impl_503,
     NULL
@@ -55736,7 +55736,7 @@ impl_503 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_503__value,
+        &impl_503__value,
         {
             (const afw_object_t *)&impl_503_meta_object,
             (const afw_object_t *)&impl_502,
@@ -55822,7 +55822,7 @@ impl_504_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_504_meta_object__value
+        &impl_504_meta_object__value
     },
     &impl_504,
     NULL
@@ -55846,7 +55846,7 @@ impl_504 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_504__value,
+        &impl_504__value,
         {
             (const afw_object_t *)&impl_504_meta_object,
             (const afw_object_t *)&impl_502,
@@ -55925,7 +55925,7 @@ impl_505_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_505_meta_object__value
+        &impl_505_meta_object__value
     },
     &impl_505,
     NULL
@@ -55949,7 +55949,7 @@ impl_505 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_505__value,
+        &impl_505__value,
         {
             (const afw_object_t *)&impl_505_meta_object,
             (const afw_object_t *)&impl_502,
@@ -56023,7 +56023,7 @@ impl_502_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_502_meta_object__value
+        &impl_502_meta_object__value
     },
     &impl_502,
     NULL
@@ -56047,7 +56047,7 @@ impl_502 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_502__value,
+        &impl_502__value,
         {
             (const afw_object_t *)&impl_502_meta_object,
             (const afw_object_t *)&impl_501,
@@ -56161,7 +56161,7 @@ impl_501_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_501_meta_object__value
+        &impl_501_meta_object__value
     },
     &impl_501,
     NULL
@@ -56185,7 +56185,7 @@ impl_501 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_501__value,
+        &impl_501__value,
         {
             (const afw_object_t *)&impl_501_meta_object,
             NULL,
@@ -56283,7 +56283,7 @@ impl_508_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_508_meta_object__value
+        &impl_508_meta_object__value
     },
     &impl_508,
     NULL
@@ -56307,7 +56307,7 @@ impl_508 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_508__value,
+        &impl_508__value,
         {
             (const afw_object_t *)&impl_508_meta_object,
             (const afw_object_t *)&impl_507,
@@ -56399,7 +56399,7 @@ impl_509_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_509_meta_object__value
+        &impl_509_meta_object__value
     },
     &impl_509,
     NULL
@@ -56423,7 +56423,7 @@ impl_509 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_509__value,
+        &impl_509__value,
         {
             (const afw_object_t *)&impl_509_meta_object,
             (const afw_object_t *)&impl_507,
@@ -56515,7 +56515,7 @@ impl_510_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_510_meta_object__value
+        &impl_510_meta_object__value
     },
     &impl_510,
     NULL
@@ -56539,7 +56539,7 @@ impl_510 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_510__value,
+        &impl_510__value,
         {
             (const afw_object_t *)&impl_510_meta_object,
             (const afw_object_t *)&impl_507,
@@ -56638,7 +56638,7 @@ impl_511_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_511_meta_object__value
+        &impl_511_meta_object__value
     },
     &impl_511,
     NULL
@@ -56662,7 +56662,7 @@ impl_511 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_511__value,
+        &impl_511__value,
         {
             (const afw_object_t *)&impl_511_meta_object,
             (const afw_object_t *)&impl_507,
@@ -56741,7 +56741,7 @@ impl_512_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_512_meta_object__value
+        &impl_512_meta_object__value
     },
     &impl_512,
     NULL
@@ -56765,7 +56765,7 @@ impl_512 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_512__value,
+        &impl_512__value,
         {
             (const afw_object_t *)&impl_512_meta_object,
             (const afw_object_t *)&impl_507,
@@ -56857,7 +56857,7 @@ impl_513_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_513_meta_object__value
+        &impl_513_meta_object__value
     },
     &impl_513,
     NULL
@@ -56881,7 +56881,7 @@ impl_513 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_513__value,
+        &impl_513__value,
         {
             (const afw_object_t *)&impl_513_meta_object,
             (const afw_object_t *)&impl_507,
@@ -56973,7 +56973,7 @@ impl_514_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_514_meta_object__value
+        &impl_514_meta_object__value
     },
     &impl_514,
     NULL
@@ -56997,7 +56997,7 @@ impl_514 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_514__value,
+        &impl_514__value,
         {
             (const afw_object_t *)&impl_514_meta_object,
             (const afw_object_t *)&impl_507,
@@ -57089,7 +57089,7 @@ impl_515_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_515_meta_object__value
+        &impl_515_meta_object__value
     },
     &impl_515,
     NULL
@@ -57113,7 +57113,7 @@ impl_515 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_515__value,
+        &impl_515__value,
         {
             (const afw_object_t *)&impl_515_meta_object,
             (const afw_object_t *)&impl_507,
@@ -57252,7 +57252,7 @@ impl_507_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_507_meta_object__value
+        &impl_507_meta_object__value
     },
     &impl_507,
     NULL
@@ -57276,7 +57276,7 @@ impl_507 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_507__value,
+        &impl_507__value,
         {
             (const afw_object_t *)&impl_507_meta_object,
             (const afw_object_t *)&impl_506,
@@ -57397,7 +57397,7 @@ impl_506_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_506_meta_object__value
+        &impl_506_meta_object__value
     },
     &impl_506,
     NULL
@@ -57421,7 +57421,7 @@ impl_506 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_506__value,
+        &impl_506__value,
         {
             (const afw_object_t *)&impl_506_meta_object,
             NULL,
@@ -57519,7 +57519,7 @@ impl_518_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_518_meta_object__value
+        &impl_518_meta_object__value
     },
     &impl_518,
     NULL
@@ -57543,7 +57543,7 @@ impl_518 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_518__value,
+        &impl_518__value,
         {
             (const afw_object_t *)&impl_518_meta_object,
             (const afw_object_t *)&impl_517,
@@ -57635,7 +57635,7 @@ impl_519_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_519_meta_object__value
+        &impl_519_meta_object__value
     },
     &impl_519,
     NULL
@@ -57659,7 +57659,7 @@ impl_519 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_519__value,
+        &impl_519__value,
         {
             (const afw_object_t *)&impl_519_meta_object,
             (const afw_object_t *)&impl_517,
@@ -57720,7 +57720,7 @@ impl_517_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_517_meta_object__value
+        &impl_517_meta_object__value
     },
     &impl_517,
     NULL
@@ -57744,7 +57744,7 @@ impl_517 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_517__value,
+        &impl_517__value,
         {
             (const afw_object_t *)&impl_517_meta_object,
             (const afw_object_t *)&impl_516,
@@ -57865,7 +57865,7 @@ impl_516_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_516_meta_object__value
+        &impl_516_meta_object__value
     },
     &impl_516,
     NULL
@@ -57889,7 +57889,7 @@ impl_516 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_516__value,
+        &impl_516__value,
         {
             (const afw_object_t *)&impl_516_meta_object,
             NULL,
@@ -57943,7 +57943,7 @@ impl_523_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_523_meta_object__value
+        &impl_523_meta_object__value
     },
     &impl_523,
     NULL
@@ -57967,7 +57967,7 @@ impl_523 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_523__value,
+        &impl_523__value,
         {
             (const afw_object_t *)&impl_523_meta_object,
             (const afw_object_t *)&impl_522,
@@ -58056,7 +58056,7 @@ impl_522_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_522_meta_object__value
+        &impl_522_meta_object__value
     },
     &impl_522,
     NULL
@@ -58080,7 +58080,7 @@ impl_522 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_522__value,
+        &impl_522__value,
         {
             (const afw_object_t *)&impl_522_meta_object,
             (const afw_object_t *)&impl_521,
@@ -58135,7 +58135,7 @@ impl_525_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_525_meta_object__value
+        &impl_525_meta_object__value
     },
     &impl_525,
     NULL
@@ -58159,7 +58159,7 @@ impl_525 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_525__value,
+        &impl_525__value,
         {
             (const afw_object_t *)&impl_525_meta_object,
             (const afw_object_t *)&impl_524,
@@ -58248,7 +58248,7 @@ impl_524_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_524_meta_object__value
+        &impl_524_meta_object__value
     },
     &impl_524,
     NULL
@@ -58272,7 +58272,7 @@ impl_524 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_524__value,
+        &impl_524__value,
         {
             (const afw_object_t *)&impl_524_meta_object,
             (const afw_object_t *)&impl_521,
@@ -58327,7 +58327,7 @@ impl_527_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_527_meta_object__value
+        &impl_527_meta_object__value
     },
     &impl_527,
     NULL
@@ -58351,7 +58351,7 @@ impl_527 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_527__value,
+        &impl_527__value,
         {
             (const afw_object_t *)&impl_527_meta_object,
             (const afw_object_t *)&impl_526,
@@ -58440,7 +58440,7 @@ impl_526_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_526_meta_object__value
+        &impl_526_meta_object__value
     },
     &impl_526,
     NULL
@@ -58464,7 +58464,7 @@ impl_526 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_526__value,
+        &impl_526__value,
         {
             (const afw_object_t *)&impl_526_meta_object,
             (const afw_object_t *)&impl_521,
@@ -58512,7 +58512,7 @@ impl_529_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_529_meta_object__value
+        &impl_529_meta_object__value
     },
     &impl_529,
     NULL
@@ -58536,7 +58536,7 @@ impl_529 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_529__value,
+        &impl_529__value,
         {
             (const afw_object_t *)&impl_529_meta_object,
             (const afw_object_t *)&impl_528,
@@ -58632,7 +58632,7 @@ impl_528_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_528_meta_object__value
+        &impl_528_meta_object__value
     },
     &impl_528,
     NULL
@@ -58656,7 +58656,7 @@ impl_528 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_528__value,
+        &impl_528__value,
         {
             (const afw_object_t *)&impl_528_meta_object,
             (const afw_object_t *)&impl_521,
@@ -58711,7 +58711,7 @@ impl_531_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_531_meta_object__value
+        &impl_531_meta_object__value
     },
     &impl_531,
     NULL
@@ -58735,7 +58735,7 @@ impl_531 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_531__value,
+        &impl_531__value,
         {
             (const afw_object_t *)&impl_531_meta_object,
             (const afw_object_t *)&impl_530,
@@ -58824,7 +58824,7 @@ impl_530_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_530_meta_object__value
+        &impl_530_meta_object__value
     },
     &impl_530,
     NULL
@@ -58848,7 +58848,7 @@ impl_530 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_530__value,
+        &impl_530__value,
         {
             (const afw_object_t *)&impl_530_meta_object,
             (const afw_object_t *)&impl_521,
@@ -58948,7 +58948,7 @@ impl_521_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_521_meta_object__value
+        &impl_521_meta_object__value
     },
     &impl_521,
     NULL
@@ -58972,7 +58972,7 @@ impl_521 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_521__value,
+        &impl_521__value,
         {
             (const afw_object_t *)&impl_521_meta_object,
             (const afw_object_t *)&impl_520,
@@ -59020,7 +59020,7 @@ impl_533_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_533_meta_object__value
+        &impl_533_meta_object__value
     },
     &impl_533,
     NULL
@@ -59044,7 +59044,7 @@ impl_533 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_533__value,
+        &impl_533__value,
         {
             (const afw_object_t *)&impl_533_meta_object,
             (const afw_object_t *)&impl_532,
@@ -59112,7 +59112,7 @@ impl_532_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_532_meta_object__value
+        &impl_532_meta_object__value
     },
     &impl_532,
     NULL
@@ -59136,7 +59136,7 @@ impl_532 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_532__value,
+        &impl_532__value,
         {
             (const afw_object_t *)&impl_532_meta_object,
             (const afw_object_t *)&impl_520,
@@ -59302,7 +59302,7 @@ impl_520_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_520_meta_object__value
+        &impl_520_meta_object__value
     },
     &impl_520,
     NULL
@@ -59326,7 +59326,7 @@ impl_520 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_520__value,
+        &impl_520__value,
         {
             (const afw_object_t *)&impl_520_meta_object,
             NULL,
@@ -59380,7 +59380,7 @@ impl_537_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_537_meta_object__value
+        &impl_537_meta_object__value
     },
     &impl_537,
     NULL
@@ -59404,7 +59404,7 @@ impl_537 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_537__value,
+        &impl_537__value,
         {
             (const afw_object_t *)&impl_537_meta_object,
             (const afw_object_t *)&impl_536,
@@ -59500,7 +59500,7 @@ impl_536_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_536_meta_object__value
+        &impl_536_meta_object__value
     },
     &impl_536,
     NULL
@@ -59524,7 +59524,7 @@ impl_536 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_536__value,
+        &impl_536__value,
         {
             (const afw_object_t *)&impl_536_meta_object,
             (const afw_object_t *)&impl_535,
@@ -59572,7 +59572,7 @@ impl_539_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_539_meta_object__value
+        &impl_539_meta_object__value
     },
     &impl_539,
     NULL
@@ -59596,7 +59596,7 @@ impl_539 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_539__value,
+        &impl_539__value,
         {
             (const afw_object_t *)&impl_539_meta_object,
             (const afw_object_t *)&impl_538,
@@ -59685,7 +59685,7 @@ impl_538_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_538_meta_object__value
+        &impl_538_meta_object__value
     },
     &impl_538,
     NULL
@@ -59709,7 +59709,7 @@ impl_538 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_538__value,
+        &impl_538__value,
         {
             (const afw_object_t *)&impl_538_meta_object,
             (const afw_object_t *)&impl_535,
@@ -59770,7 +59770,7 @@ impl_535_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_535_meta_object__value
+        &impl_535_meta_object__value
     },
     &impl_535,
     NULL
@@ -59794,7 +59794,7 @@ impl_535 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_535__value,
+        &impl_535__value,
         {
             (const afw_object_t *)&impl_535_meta_object,
             (const afw_object_t *)&impl_534,
@@ -59842,7 +59842,7 @@ impl_541_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_541_meta_object__value
+        &impl_541_meta_object__value
     },
     &impl_541,
     NULL
@@ -59866,7 +59866,7 @@ impl_541 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_541__value,
+        &impl_541__value,
         {
             (const afw_object_t *)&impl_541_meta_object,
             (const afw_object_t *)&impl_540,
@@ -59934,7 +59934,7 @@ impl_540_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_540_meta_object__value
+        &impl_540_meta_object__value
     },
     &impl_540,
     NULL
@@ -59958,7 +59958,7 @@ impl_540 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_540__value,
+        &impl_540__value,
         {
             (const afw_object_t *)&impl_540_meta_object,
             (const afw_object_t *)&impl_534,
@@ -60124,7 +60124,7 @@ impl_534_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_534_meta_object__value
+        &impl_534_meta_object__value
     },
     &impl_534,
     NULL
@@ -60148,7 +60148,7 @@ impl_534 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_534__value,
+        &impl_534__value,
         {
             (const afw_object_t *)&impl_534_meta_object,
             NULL,
@@ -60202,7 +60202,7 @@ impl_545_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_545_meta_object__value
+        &impl_545_meta_object__value
     },
     &impl_545,
     NULL
@@ -60226,7 +60226,7 @@ impl_545 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_545__value,
+        &impl_545__value,
         {
             (const afw_object_t *)&impl_545_meta_object,
             (const afw_object_t *)&impl_544,
@@ -60315,7 +60315,7 @@ impl_544_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_544_meta_object__value
+        &impl_544_meta_object__value
     },
     &impl_544,
     NULL
@@ -60339,7 +60339,7 @@ impl_544 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_544__value,
+        &impl_544__value,
         {
             (const afw_object_t *)&impl_544_meta_object,
             (const afw_object_t *)&impl_543,
@@ -60418,7 +60418,7 @@ impl_546_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_546_meta_object__value
+        &impl_546_meta_object__value
     },
     &impl_546,
     NULL
@@ -60442,7 +60442,7 @@ impl_546 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_546__value,
+        &impl_546__value,
         {
             (const afw_object_t *)&impl_546_meta_object,
             (const afw_object_t *)&impl_543,
@@ -60497,7 +60497,7 @@ impl_548_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_548_meta_object__value
+        &impl_548_meta_object__value
     },
     &impl_548,
     NULL
@@ -60521,7 +60521,7 @@ impl_548 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_548__value,
+        &impl_548__value,
         {
             (const afw_object_t *)&impl_548_meta_object,
             (const afw_object_t *)&impl_547,
@@ -60610,7 +60610,7 @@ impl_547_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_547_meta_object__value
+        &impl_547_meta_object__value
     },
     &impl_547,
     NULL
@@ -60634,7 +60634,7 @@ impl_547 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_547__value,
+        &impl_547__value,
         {
             (const afw_object_t *)&impl_547_meta_object,
             (const afw_object_t *)&impl_543,
@@ -60689,7 +60689,7 @@ impl_550_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_550_meta_object__value
+        &impl_550_meta_object__value
     },
     &impl_550,
     NULL
@@ -60713,7 +60713,7 @@ impl_550 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_550__value,
+        &impl_550__value,
         {
             (const afw_object_t *)&impl_550_meta_object,
             (const afw_object_t *)&impl_549,
@@ -60802,7 +60802,7 @@ impl_549_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_549_meta_object__value
+        &impl_549_meta_object__value
     },
     &impl_549,
     NULL
@@ -60826,7 +60826,7 @@ impl_549 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_549__value,
+        &impl_549__value,
         {
             (const afw_object_t *)&impl_549_meta_object,
             (const afw_object_t *)&impl_543,
@@ -60913,7 +60913,7 @@ impl_543_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_543_meta_object__value
+        &impl_543_meta_object__value
     },
     &impl_543,
     NULL
@@ -60937,7 +60937,7 @@ impl_543 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_543__value,
+        &impl_543__value,
         {
             (const afw_object_t *)&impl_543_meta_object,
             (const afw_object_t *)&impl_542,
@@ -60998,7 +60998,7 @@ impl_552_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_552_meta_object__value
+        &impl_552_meta_object__value
     },
     &impl_552,
     NULL
@@ -61022,7 +61022,7 @@ impl_552 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_552__value,
+        &impl_552__value,
         {
             (const afw_object_t *)&impl_552_meta_object,
             (const afw_object_t *)&impl_551,
@@ -61090,7 +61090,7 @@ impl_551_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_551_meta_object__value
+        &impl_551_meta_object__value
     },
     &impl_551,
     NULL
@@ -61114,7 +61114,7 @@ impl_551 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_551__value,
+        &impl_551__value,
         {
             (const afw_object_t *)&impl_551_meta_object,
             (const afw_object_t *)&impl_542,
@@ -61280,7 +61280,7 @@ impl_542_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_542_meta_object__value
+        &impl_542_meta_object__value
     },
     &impl_542,
     NULL
@@ -61304,7 +61304,7 @@ impl_542 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_542__value,
+        &impl_542__value,
         {
             (const afw_object_t *)&impl_542_meta_object,
             NULL,
@@ -61389,7 +61389,7 @@ impl_555_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_555_meta_object__value
+        &impl_555_meta_object__value
     },
     &impl_555,
     NULL
@@ -61413,7 +61413,7 @@ impl_555 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_555__value,
+        &impl_555__value,
         {
             (const afw_object_t *)&impl_555_meta_object,
             (const afw_object_t *)&impl_554,
@@ -61499,7 +61499,7 @@ impl_556_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_556_meta_object__value
+        &impl_556_meta_object__value
     },
     &impl_556,
     NULL
@@ -61523,7 +61523,7 @@ impl_556 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_556__value,
+        &impl_556__value,
         {
             (const afw_object_t *)&impl_556_meta_object,
             (const afw_object_t *)&impl_554,
@@ -61615,7 +61615,7 @@ impl_557_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_557_meta_object__value
+        &impl_557_meta_object__value
     },
     &impl_557,
     NULL
@@ -61639,7 +61639,7 @@ impl_557 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_557__value,
+        &impl_557__value,
         {
             (const afw_object_t *)&impl_557_meta_object,
             (const afw_object_t *)&impl_554,
@@ -61731,7 +61731,7 @@ impl_558_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_558_meta_object__value
+        &impl_558_meta_object__value
     },
     &impl_558,
     NULL
@@ -61755,7 +61755,7 @@ impl_558 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_558__value,
+        &impl_558__value,
         {
             (const afw_object_t *)&impl_558_meta_object,
             (const afw_object_t *)&impl_554,
@@ -61828,7 +61828,7 @@ impl_559_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_559_meta_object__value
+        &impl_559_meta_object__value
     },
     &impl_559,
     NULL
@@ -61852,7 +61852,7 @@ impl_559 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_559__value,
+        &impl_559__value,
         {
             (const afw_object_t *)&impl_559_meta_object,
             (const afw_object_t *)&impl_554,
@@ -61925,7 +61925,7 @@ impl_560_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_560_meta_object__value
+        &impl_560_meta_object__value
     },
     &impl_560,
     NULL
@@ -61949,7 +61949,7 @@ impl_560 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_560__value,
+        &impl_560__value,
         {
             (const afw_object_t *)&impl_560_meta_object,
             (const afw_object_t *)&impl_554,
@@ -62062,7 +62062,7 @@ impl_554_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_554_meta_object__value
+        &impl_554_meta_object__value
     },
     &impl_554,
     NULL
@@ -62086,7 +62086,7 @@ impl_554 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_554__value,
+        &impl_554__value,
         {
             (const afw_object_t *)&impl_554_meta_object,
             (const afw_object_t *)&impl_553,
@@ -62200,7 +62200,7 @@ impl_553_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_553_meta_object__value
+        &impl_553_meta_object__value
     },
     &impl_553,
     NULL
@@ -62224,7 +62224,7 @@ impl_553 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_553__value,
+        &impl_553__value,
         {
             (const afw_object_t *)&impl_553_meta_object,
             NULL,
@@ -62309,7 +62309,7 @@ impl_563_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_563_meta_object__value
+        &impl_563_meta_object__value
     },
     &impl_563,
     NULL
@@ -62333,7 +62333,7 @@ impl_563 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_563__value,
+        &impl_563__value,
         {
             (const afw_object_t *)&impl_563_meta_object,
             (const afw_object_t *)&impl_562,
@@ -62406,7 +62406,7 @@ impl_564_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_564_meta_object__value
+        &impl_564_meta_object__value
     },
     &impl_564,
     NULL
@@ -62430,7 +62430,7 @@ impl_564 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_564__value,
+        &impl_564__value,
         {
             (const afw_object_t *)&impl_564_meta_object,
             (const afw_object_t *)&impl_562,
@@ -62522,7 +62522,7 @@ impl_565_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_565_meta_object__value
+        &impl_565_meta_object__value
     },
     &impl_565,
     NULL
@@ -62546,7 +62546,7 @@ impl_565 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_565__value,
+        &impl_565__value,
         {
             (const afw_object_t *)&impl_565_meta_object,
             (const afw_object_t *)&impl_562,
@@ -62639,7 +62639,7 @@ impl_562_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_562_meta_object__value
+        &impl_562_meta_object__value
     },
     &impl_562,
     &impl_562_parentPaths
@@ -62663,7 +62663,7 @@ impl_562 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_562__value,
+        &impl_562__value,
         {
             (const afw_object_t *)&impl_562_meta_object,
             (const afw_object_t *)&impl_561,
@@ -62777,7 +62777,7 @@ impl_561_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_561_meta_object__value
+        &impl_561_meta_object__value
     },
     &impl_561,
     NULL
@@ -62801,7 +62801,7 @@ impl_561 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_561__value,
+        &impl_561__value,
         {
             (const afw_object_t *)&impl_561_meta_object,
             NULL,
@@ -62856,7 +62856,7 @@ impl_567_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_567_meta_object__value
+        &impl_567_meta_object__value
     },
     &impl_567,
     NULL
@@ -62880,7 +62880,7 @@ impl_567 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_567__value,
+        &impl_567__value,
         {
             (const afw_object_t *)&impl_567_meta_object,
             (const afw_object_t *)&impl_566,
@@ -62994,7 +62994,7 @@ impl_566_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_566_meta_object__value
+        &impl_566_meta_object__value
     },
     &impl_566,
     NULL
@@ -63018,7 +63018,7 @@ impl_566 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_566__value,
+        &impl_566__value,
         {
             (const afw_object_t *)&impl_566_meta_object,
             NULL,
@@ -63116,7 +63116,7 @@ impl_570_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_570_meta_object__value
+        &impl_570_meta_object__value
     },
     &impl_570,
     NULL
@@ -63140,7 +63140,7 @@ impl_570 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_570__value,
+        &impl_570__value,
         {
             (const afw_object_t *)&impl_570_meta_object,
             (const afw_object_t *)&impl_569,
@@ -63232,7 +63232,7 @@ impl_571_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_571_meta_object__value
+        &impl_571_meta_object__value
     },
     &impl_571,
     NULL
@@ -63256,7 +63256,7 @@ impl_571 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_571__value,
+        &impl_571__value,
         {
             (const afw_object_t *)&impl_571_meta_object,
             (const afw_object_t *)&impl_569,
@@ -63322,7 +63322,7 @@ impl_572_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_572_meta_object__value
+        &impl_572_meta_object__value
     },
     &impl_572,
     NULL
@@ -63346,7 +63346,7 @@ impl_572 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_572__value,
+        &impl_572__value,
         {
             (const afw_object_t *)&impl_572_meta_object,
             (const afw_object_t *)&impl_569,
@@ -63419,7 +63419,7 @@ impl_573_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_573_meta_object__value
+        &impl_573_meta_object__value
     },
     &impl_573,
     NULL
@@ -63443,7 +63443,7 @@ impl_573 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_573__value,
+        &impl_573__value,
         {
             (const afw_object_t *)&impl_573_meta_object,
             (const afw_object_t *)&impl_569,
@@ -63516,7 +63516,7 @@ impl_574_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_574_meta_object__value
+        &impl_574_meta_object__value
     },
     &impl_574,
     NULL
@@ -63540,7 +63540,7 @@ impl_574 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_574__value,
+        &impl_574__value,
         {
             (const afw_object_t *)&impl_574_meta_object,
             (const afw_object_t *)&impl_569,
@@ -63606,7 +63606,7 @@ impl_575_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_575_meta_object__value
+        &impl_575_meta_object__value
     },
     &impl_575,
     NULL
@@ -63630,7 +63630,7 @@ impl_575 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_575__value,
+        &impl_575__value,
         {
             (const afw_object_t *)&impl_575_meta_object,
             (const afw_object_t *)&impl_569,
@@ -63696,7 +63696,7 @@ impl_576_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_576_meta_object__value
+        &impl_576_meta_object__value
     },
     &impl_576,
     NULL
@@ -63720,7 +63720,7 @@ impl_576 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_576__value,
+        &impl_576__value,
         {
             (const afw_object_t *)&impl_576_meta_object,
             (const afw_object_t *)&impl_569,
@@ -63786,7 +63786,7 @@ impl_577_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_577_meta_object__value
+        &impl_577_meta_object__value
     },
     &impl_577,
     NULL
@@ -63810,7 +63810,7 @@ impl_577 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_577__value,
+        &impl_577__value,
         {
             (const afw_object_t *)&impl_577_meta_object,
             (const afw_object_t *)&impl_569,
@@ -63883,7 +63883,7 @@ impl_578_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_578_meta_object__value
+        &impl_578_meta_object__value
     },
     &impl_578,
     NULL
@@ -63907,7 +63907,7 @@ impl_578 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_578__value,
+        &impl_578__value,
         {
             (const afw_object_t *)&impl_578_meta_object,
             (const afw_object_t *)&impl_569,
@@ -63980,7 +63980,7 @@ impl_579_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_579_meta_object__value
+        &impl_579_meta_object__value
     },
     &impl_579,
     NULL
@@ -64004,7 +64004,7 @@ impl_579 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_579__value,
+        &impl_579__value,
         {
             (const afw_object_t *)&impl_579_meta_object,
             (const afw_object_t *)&impl_569,
@@ -64070,7 +64070,7 @@ impl_580_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_580_meta_object__value
+        &impl_580_meta_object__value
     },
     &impl_580,
     NULL
@@ -64094,7 +64094,7 @@ impl_580 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_580__value,
+        &impl_580__value,
         {
             (const afw_object_t *)&impl_580_meta_object,
             (const afw_object_t *)&impl_569,
@@ -64167,7 +64167,7 @@ impl_581_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_581_meta_object__value
+        &impl_581_meta_object__value
     },
     &impl_581,
     NULL
@@ -64191,7 +64191,7 @@ impl_581 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_581__value,
+        &impl_581__value,
         {
             (const afw_object_t *)&impl_581_meta_object,
             (const afw_object_t *)&impl_569,
@@ -64257,7 +64257,7 @@ impl_582_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_582_meta_object__value
+        &impl_582_meta_object__value
     },
     &impl_582,
     NULL
@@ -64281,7 +64281,7 @@ impl_582 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_582__value,
+        &impl_582__value,
         {
             (const afw_object_t *)&impl_582_meta_object,
             (const afw_object_t *)&impl_569,
@@ -64354,7 +64354,7 @@ impl_583_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_583_meta_object__value
+        &impl_583_meta_object__value
     },
     &impl_583,
     NULL
@@ -64378,7 +64378,7 @@ impl_583 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_583__value,
+        &impl_583__value,
         {
             (const afw_object_t *)&impl_583_meta_object,
             (const afw_object_t *)&impl_569,
@@ -64614,7 +64614,7 @@ impl_569_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_569_meta_object__value
+        &impl_569_meta_object__value
     },
     &impl_569,
     &impl_569_parentPaths
@@ -64638,7 +64638,7 @@ impl_569 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_569__value,
+        &impl_569__value,
         {
             (const afw_object_t *)&impl_569_meta_object,
             (const afw_object_t *)&impl_568,
@@ -64752,7 +64752,7 @@ impl_568_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_568_meta_object__value
+        &impl_568_meta_object__value
     },
     &impl_568,
     NULL
@@ -64776,7 +64776,7 @@ impl_568 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_568__value,
+        &impl_568__value,
         {
             (const afw_object_t *)&impl_568_meta_object,
             NULL,
@@ -64830,7 +64830,7 @@ impl_587_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_587_meta_object__value
+        &impl_587_meta_object__value
     },
     &impl_587,
     NULL
@@ -64854,7 +64854,7 @@ impl_587 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_587__value,
+        &impl_587__value,
         {
             (const afw_object_t *)&impl_587_meta_object,
             (const afw_object_t *)&impl_586,
@@ -64930,7 +64930,7 @@ impl_586_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_586_meta_object__value
+        &impl_586_meta_object__value
     },
     &impl_586,
     NULL
@@ -64954,7 +64954,7 @@ impl_586 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_586__value,
+        &impl_586__value,
         {
             (const afw_object_t *)&impl_586_meta_object,
             (const afw_object_t *)&impl_585,
@@ -65002,7 +65002,7 @@ impl_589_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_589_meta_object__value
+        &impl_589_meta_object__value
     },
     &impl_589,
     NULL
@@ -65026,7 +65026,7 @@ impl_589 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_589__value,
+        &impl_589__value,
         {
             (const afw_object_t *)&impl_589_meta_object,
             (const afw_object_t *)&impl_588,
@@ -65102,7 +65102,7 @@ impl_588_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_588_meta_object__value
+        &impl_588_meta_object__value
     },
     &impl_588,
     NULL
@@ -65126,7 +65126,7 @@ impl_588 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_588__value,
+        &impl_588__value,
         {
             (const afw_object_t *)&impl_588_meta_object,
             (const afw_object_t *)&impl_585,
@@ -65174,7 +65174,7 @@ impl_591_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_591_meta_object__value
+        &impl_591_meta_object__value
     },
     &impl_591,
     NULL
@@ -65198,7 +65198,7 @@ impl_591 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_591__value,
+        &impl_591__value,
         {
             (const afw_object_t *)&impl_591_meta_object,
             (const afw_object_t *)&impl_590,
@@ -65274,7 +65274,7 @@ impl_590_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_590_meta_object__value
+        &impl_590_meta_object__value
     },
     &impl_590,
     NULL
@@ -65298,7 +65298,7 @@ impl_590 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_590__value,
+        &impl_590__value,
         {
             (const afw_object_t *)&impl_590_meta_object,
             (const afw_object_t *)&impl_585,
@@ -65346,7 +65346,7 @@ impl_593_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_593_meta_object__value
+        &impl_593_meta_object__value
     },
     &impl_593,
     NULL
@@ -65370,7 +65370,7 @@ impl_593 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_593__value,
+        &impl_593__value,
         {
             (const afw_object_t *)&impl_593_meta_object,
             (const afw_object_t *)&impl_592,
@@ -65446,7 +65446,7 @@ impl_592_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_592_meta_object__value
+        &impl_592_meta_object__value
     },
     &impl_592,
     NULL
@@ -65470,7 +65470,7 @@ impl_592 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_592__value,
+        &impl_592__value,
         {
             (const afw_object_t *)&impl_592_meta_object,
             (const afw_object_t *)&impl_585,
@@ -65518,7 +65518,7 @@ impl_595_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_595_meta_object__value
+        &impl_595_meta_object__value
     },
     &impl_595,
     NULL
@@ -65542,7 +65542,7 @@ impl_595 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_595__value,
+        &impl_595__value,
         {
             (const afw_object_t *)&impl_595_meta_object,
             (const afw_object_t *)&impl_594,
@@ -65618,7 +65618,7 @@ impl_594_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_594_meta_object__value
+        &impl_594_meta_object__value
     },
     &impl_594,
     NULL
@@ -65642,7 +65642,7 @@ impl_594 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_594__value,
+        &impl_594__value,
         {
             (const afw_object_t *)&impl_594_meta_object,
             (const afw_object_t *)&impl_585,
@@ -65690,7 +65690,7 @@ impl_597_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_597_meta_object__value
+        &impl_597_meta_object__value
     },
     &impl_597,
     NULL
@@ -65714,7 +65714,7 @@ impl_597 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_597__value,
+        &impl_597__value,
         {
             (const afw_object_t *)&impl_597_meta_object,
             (const afw_object_t *)&impl_596,
@@ -65790,7 +65790,7 @@ impl_596_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_596_meta_object__value
+        &impl_596_meta_object__value
     },
     &impl_596,
     NULL
@@ -65814,7 +65814,7 @@ impl_596 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_596__value,
+        &impl_596__value,
         {
             (const afw_object_t *)&impl_596_meta_object,
             (const afw_object_t *)&impl_585,
@@ -65862,7 +65862,7 @@ impl_599_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_599_meta_object__value
+        &impl_599_meta_object__value
     },
     &impl_599,
     NULL
@@ -65886,7 +65886,7 @@ impl_599 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_599__value,
+        &impl_599__value,
         {
             (const afw_object_t *)&impl_599_meta_object,
             (const afw_object_t *)&impl_598,
@@ -65962,7 +65962,7 @@ impl_598_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_598_meta_object__value
+        &impl_598_meta_object__value
     },
     &impl_598,
     NULL
@@ -65986,7 +65986,7 @@ impl_598 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_598__value,
+        &impl_598__value,
         {
             (const afw_object_t *)&impl_598_meta_object,
             (const afw_object_t *)&impl_585,
@@ -66034,7 +66034,7 @@ impl_601_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_601_meta_object__value
+        &impl_601_meta_object__value
     },
     &impl_601,
     NULL
@@ -66058,7 +66058,7 @@ impl_601 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_601__value,
+        &impl_601__value,
         {
             (const afw_object_t *)&impl_601_meta_object,
             (const afw_object_t *)&impl_600,
@@ -66127,7 +66127,7 @@ impl_600_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_600_meta_object__value
+        &impl_600_meta_object__value
     },
     &impl_600,
     NULL
@@ -66151,7 +66151,7 @@ impl_600 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_600__value,
+        &impl_600__value,
         {
             (const afw_object_t *)&impl_600_meta_object,
             (const afw_object_t *)&impl_585,
@@ -66290,7 +66290,7 @@ impl_585_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_585_meta_object__value
+        &impl_585_meta_object__value
     },
     &impl_585,
     NULL
@@ -66314,7 +66314,7 @@ impl_585 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_585__value,
+        &impl_585__value,
         {
             (const afw_object_t *)&impl_585_meta_object,
             (const afw_object_t *)&impl_584,
@@ -66352,7 +66352,7 @@ impl_602_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_602_meta_object__value
+        &impl_602_meta_object__value
     },
     &impl_602,
     NULL
@@ -66376,7 +66376,7 @@ impl_602 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_602__value,
+        &impl_602__value,
         {
             (const afw_object_t *)&impl_602_meta_object,
             (const afw_object_t *)&impl_584,
@@ -66490,7 +66490,7 @@ impl_584_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_584_meta_object__value
+        &impl_584_meta_object__value
     },
     &impl_584,
     NULL
@@ -66514,7 +66514,7 @@ impl_584 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_584__value,
+        &impl_584__value,
         {
             (const afw_object_t *)&impl_584_meta_object,
             NULL,
@@ -66568,7 +66568,7 @@ impl_606_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_606_meta_object__value
+        &impl_606_meta_object__value
     },
     &impl_606,
     NULL
@@ -66592,7 +66592,7 @@ impl_606 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_606__value,
+        &impl_606__value,
         {
             (const afw_object_t *)&impl_606_meta_object,
             (const afw_object_t *)&impl_605,
@@ -66668,7 +66668,7 @@ impl_605_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_605_meta_object__value
+        &impl_605_meta_object__value
     },
     &impl_605,
     NULL
@@ -66692,7 +66692,7 @@ impl_605 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_605__value,
+        &impl_605__value,
         {
             (const afw_object_t *)&impl_605_meta_object,
             (const afw_object_t *)&impl_604,
@@ -66740,7 +66740,7 @@ impl_608_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_608_meta_object__value
+        &impl_608_meta_object__value
     },
     &impl_608,
     NULL
@@ -66764,7 +66764,7 @@ impl_608 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_608__value,
+        &impl_608__value,
         {
             (const afw_object_t *)&impl_608_meta_object,
             (const afw_object_t *)&impl_607,
@@ -66840,7 +66840,7 @@ impl_607_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_607_meta_object__value
+        &impl_607_meta_object__value
     },
     &impl_607,
     NULL
@@ -66864,7 +66864,7 @@ impl_607 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_607__value,
+        &impl_607__value,
         {
             (const afw_object_t *)&impl_607_meta_object,
             (const afw_object_t *)&impl_604,
@@ -66912,7 +66912,7 @@ impl_610_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_610_meta_object__value
+        &impl_610_meta_object__value
     },
     &impl_610,
     NULL
@@ -66936,7 +66936,7 @@ impl_610 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_610__value,
+        &impl_610__value,
         {
             (const afw_object_t *)&impl_610_meta_object,
             (const afw_object_t *)&impl_609,
@@ -67012,7 +67012,7 @@ impl_609_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_609_meta_object__value
+        &impl_609_meta_object__value
     },
     &impl_609,
     NULL
@@ -67036,7 +67036,7 @@ impl_609 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_609__value,
+        &impl_609__value,
         {
             (const afw_object_t *)&impl_609_meta_object,
             (const afw_object_t *)&impl_604,
@@ -67084,7 +67084,7 @@ impl_612_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_612_meta_object__value
+        &impl_612_meta_object__value
     },
     &impl_612,
     NULL
@@ -67108,7 +67108,7 @@ impl_612 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_612__value,
+        &impl_612__value,
         {
             (const afw_object_t *)&impl_612_meta_object,
             (const afw_object_t *)&impl_611,
@@ -67184,7 +67184,7 @@ impl_611_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_611_meta_object__value
+        &impl_611_meta_object__value
     },
     &impl_611,
     NULL
@@ -67208,7 +67208,7 @@ impl_611 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_611__value,
+        &impl_611__value,
         {
             (const afw_object_t *)&impl_611_meta_object,
             (const afw_object_t *)&impl_604,
@@ -67256,7 +67256,7 @@ impl_614_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_614_meta_object__value
+        &impl_614_meta_object__value
     },
     &impl_614,
     NULL
@@ -67280,7 +67280,7 @@ impl_614 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_614__value,
+        &impl_614__value,
         {
             (const afw_object_t *)&impl_614_meta_object,
             (const afw_object_t *)&impl_613,
@@ -67356,7 +67356,7 @@ impl_613_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_613_meta_object__value
+        &impl_613_meta_object__value
     },
     &impl_613,
     NULL
@@ -67380,7 +67380,7 @@ impl_613 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_613__value,
+        &impl_613__value,
         {
             (const afw_object_t *)&impl_613_meta_object,
             (const afw_object_t *)&impl_604,
@@ -67428,7 +67428,7 @@ impl_616_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_616_meta_object__value
+        &impl_616_meta_object__value
     },
     &impl_616,
     NULL
@@ -67452,7 +67452,7 @@ impl_616 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_616__value,
+        &impl_616__value,
         {
             (const afw_object_t *)&impl_616_meta_object,
             (const afw_object_t *)&impl_615,
@@ -67528,7 +67528,7 @@ impl_615_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_615_meta_object__value
+        &impl_615_meta_object__value
     },
     &impl_615,
     NULL
@@ -67552,7 +67552,7 @@ impl_615 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_615__value,
+        &impl_615__value,
         {
             (const afw_object_t *)&impl_615_meta_object,
             (const afw_object_t *)&impl_604,
@@ -67600,7 +67600,7 @@ impl_618_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_618_meta_object__value
+        &impl_618_meta_object__value
     },
     &impl_618,
     NULL
@@ -67624,7 +67624,7 @@ impl_618 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_618__value,
+        &impl_618__value,
         {
             (const afw_object_t *)&impl_618_meta_object,
             (const afw_object_t *)&impl_617,
@@ -67693,7 +67693,7 @@ impl_617_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_617_meta_object__value
+        &impl_617_meta_object__value
     },
     &impl_617,
     NULL
@@ -67717,7 +67717,7 @@ impl_617 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_617__value,
+        &impl_617__value,
         {
             (const afw_object_t *)&impl_617_meta_object,
             (const afw_object_t *)&impl_604,
@@ -67843,7 +67843,7 @@ impl_604_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_604_meta_object__value
+        &impl_604_meta_object__value
     },
     &impl_604,
     NULL
@@ -67867,7 +67867,7 @@ impl_604 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_604__value,
+        &impl_604__value,
         {
             (const afw_object_t *)&impl_604_meta_object,
             (const afw_object_t *)&impl_603,
@@ -67905,7 +67905,7 @@ impl_619_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_619_meta_object__value
+        &impl_619_meta_object__value
     },
     &impl_619,
     NULL
@@ -67929,7 +67929,7 @@ impl_619 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_619__value,
+        &impl_619__value,
         {
             (const afw_object_t *)&impl_619_meta_object,
             (const afw_object_t *)&impl_603,
@@ -68043,7 +68043,7 @@ impl_603_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_603_meta_object__value
+        &impl_603_meta_object__value
     },
     &impl_603,
     NULL
@@ -68067,7 +68067,7 @@ impl_603 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_603__value,
+        &impl_603__value,
         {
             (const afw_object_t *)&impl_603_meta_object,
             NULL,
@@ -68121,7 +68121,7 @@ impl_623_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_623_meta_object__value
+        &impl_623_meta_object__value
     },
     &impl_623,
     NULL
@@ -68145,7 +68145,7 @@ impl_623 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_623__value,
+        &impl_623__value,
         {
             (const afw_object_t *)&impl_623_meta_object,
             (const afw_object_t *)&impl_622,
@@ -68221,7 +68221,7 @@ impl_622_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_622_meta_object__value
+        &impl_622_meta_object__value
     },
     &impl_622,
     NULL
@@ -68245,7 +68245,7 @@ impl_622 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_622__value,
+        &impl_622__value,
         {
             (const afw_object_t *)&impl_622_meta_object,
             (const afw_object_t *)&impl_621,
@@ -68293,7 +68293,7 @@ impl_625_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_625_meta_object__value
+        &impl_625_meta_object__value
     },
     &impl_625,
     NULL
@@ -68317,7 +68317,7 @@ impl_625 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_625__value,
+        &impl_625__value,
         {
             (const afw_object_t *)&impl_625_meta_object,
             (const afw_object_t *)&impl_624,
@@ -68393,7 +68393,7 @@ impl_624_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_624_meta_object__value
+        &impl_624_meta_object__value
     },
     &impl_624,
     NULL
@@ -68417,7 +68417,7 @@ impl_624 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_624__value,
+        &impl_624__value,
         {
             (const afw_object_t *)&impl_624_meta_object,
             (const afw_object_t *)&impl_621,
@@ -68465,7 +68465,7 @@ impl_627_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_627_meta_object__value
+        &impl_627_meta_object__value
     },
     &impl_627,
     NULL
@@ -68489,7 +68489,7 @@ impl_627 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_627__value,
+        &impl_627__value,
         {
             (const afw_object_t *)&impl_627_meta_object,
             (const afw_object_t *)&impl_626,
@@ -68565,7 +68565,7 @@ impl_626_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_626_meta_object__value
+        &impl_626_meta_object__value
     },
     &impl_626,
     NULL
@@ -68589,7 +68589,7 @@ impl_626 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_626__value,
+        &impl_626__value,
         {
             (const afw_object_t *)&impl_626_meta_object,
             (const afw_object_t *)&impl_621,
@@ -68637,7 +68637,7 @@ impl_629_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_629_meta_object__value
+        &impl_629_meta_object__value
     },
     &impl_629,
     NULL
@@ -68661,7 +68661,7 @@ impl_629 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_629__value,
+        &impl_629__value,
         {
             (const afw_object_t *)&impl_629_meta_object,
             (const afw_object_t *)&impl_628,
@@ -68737,7 +68737,7 @@ impl_628_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_628_meta_object__value
+        &impl_628_meta_object__value
     },
     &impl_628,
     NULL
@@ -68761,7 +68761,7 @@ impl_628 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_628__value,
+        &impl_628__value,
         {
             (const afw_object_t *)&impl_628_meta_object,
             (const afw_object_t *)&impl_621,
@@ -68809,7 +68809,7 @@ impl_631_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_631_meta_object__value
+        &impl_631_meta_object__value
     },
     &impl_631,
     NULL
@@ -68833,7 +68833,7 @@ impl_631 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_631__value,
+        &impl_631__value,
         {
             (const afw_object_t *)&impl_631_meta_object,
             (const afw_object_t *)&impl_630,
@@ -68909,7 +68909,7 @@ impl_630_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_630_meta_object__value
+        &impl_630_meta_object__value
     },
     &impl_630,
     NULL
@@ -68933,7 +68933,7 @@ impl_630 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_630__value,
+        &impl_630__value,
         {
             (const afw_object_t *)&impl_630_meta_object,
             (const afw_object_t *)&impl_621,
@@ -68981,7 +68981,7 @@ impl_633_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_633_meta_object__value
+        &impl_633_meta_object__value
     },
     &impl_633,
     NULL
@@ -69005,7 +69005,7 @@ impl_633 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_633__value,
+        &impl_633__value,
         {
             (const afw_object_t *)&impl_633_meta_object,
             (const afw_object_t *)&impl_632,
@@ -69081,7 +69081,7 @@ impl_632_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_632_meta_object__value
+        &impl_632_meta_object__value
     },
     &impl_632,
     NULL
@@ -69105,7 +69105,7 @@ impl_632 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_632__value,
+        &impl_632__value,
         {
             (const afw_object_t *)&impl_632_meta_object,
             (const afw_object_t *)&impl_621,
@@ -69153,7 +69153,7 @@ impl_635_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_635_meta_object__value
+        &impl_635_meta_object__value
     },
     &impl_635,
     NULL
@@ -69177,7 +69177,7 @@ impl_635 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_635__value,
+        &impl_635__value,
         {
             (const afw_object_t *)&impl_635_meta_object,
             (const afw_object_t *)&impl_634,
@@ -69253,7 +69253,7 @@ impl_634_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_634_meta_object__value
+        &impl_634_meta_object__value
     },
     &impl_634,
     NULL
@@ -69277,7 +69277,7 @@ impl_634 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_634__value,
+        &impl_634__value,
         {
             (const afw_object_t *)&impl_634_meta_object,
             (const afw_object_t *)&impl_621,
@@ -69325,7 +69325,7 @@ impl_637_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_637_meta_object__value
+        &impl_637_meta_object__value
     },
     &impl_637,
     NULL
@@ -69349,7 +69349,7 @@ impl_637 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_637__value,
+        &impl_637__value,
         {
             (const afw_object_t *)&impl_637_meta_object,
             (const afw_object_t *)&impl_636,
@@ -69418,7 +69418,7 @@ impl_636_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_636_meta_object__value
+        &impl_636_meta_object__value
     },
     &impl_636,
     NULL
@@ -69442,7 +69442,7 @@ impl_636 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_636__value,
+        &impl_636__value,
         {
             (const afw_object_t *)&impl_636_meta_object,
             (const afw_object_t *)&impl_621,
@@ -69490,7 +69490,7 @@ impl_639_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_639_meta_object__value
+        &impl_639_meta_object__value
     },
     &impl_639,
     NULL
@@ -69514,7 +69514,7 @@ impl_639 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_639__value,
+        &impl_639__value,
         {
             (const afw_object_t *)&impl_639_meta_object,
             (const afw_object_t *)&impl_638,
@@ -69590,7 +69590,7 @@ impl_638_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_638_meta_object__value
+        &impl_638_meta_object__value
     },
     &impl_638,
     NULL
@@ -69614,7 +69614,7 @@ impl_638 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_638__value,
+        &impl_638__value,
         {
             (const afw_object_t *)&impl_638_meta_object,
             (const afw_object_t *)&impl_621,
@@ -69662,7 +69662,7 @@ impl_641_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_641_meta_object__value
+        &impl_641_meta_object__value
     },
     &impl_641,
     NULL
@@ -69686,7 +69686,7 @@ impl_641 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_641__value,
+        &impl_641__value,
         {
             (const afw_object_t *)&impl_641_meta_object,
             (const afw_object_t *)&impl_640,
@@ -69762,7 +69762,7 @@ impl_640_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_640_meta_object__value
+        &impl_640_meta_object__value
     },
     &impl_640,
     NULL
@@ -69786,7 +69786,7 @@ impl_640 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_640__value,
+        &impl_640__value,
         {
             (const afw_object_t *)&impl_640_meta_object,
             (const afw_object_t *)&impl_621,
@@ -69834,7 +69834,7 @@ impl_643_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_643_meta_object__value
+        &impl_643_meta_object__value
     },
     &impl_643,
     NULL
@@ -69858,7 +69858,7 @@ impl_643 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_643__value,
+        &impl_643__value,
         {
             (const afw_object_t *)&impl_643_meta_object,
             (const afw_object_t *)&impl_642,
@@ -69934,7 +69934,7 @@ impl_642_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_642_meta_object__value
+        &impl_642_meta_object__value
     },
     &impl_642,
     NULL
@@ -69958,7 +69958,7 @@ impl_642 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_642__value,
+        &impl_642__value,
         {
             (const afw_object_t *)&impl_642_meta_object,
             (const afw_object_t *)&impl_621,
@@ -70006,7 +70006,7 @@ impl_645_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_645_meta_object__value
+        &impl_645_meta_object__value
     },
     &impl_645,
     NULL
@@ -70030,7 +70030,7 @@ impl_645 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_645__value,
+        &impl_645__value,
         {
             (const afw_object_t *)&impl_645_meta_object,
             (const afw_object_t *)&impl_644,
@@ -70106,7 +70106,7 @@ impl_644_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_644_meta_object__value
+        &impl_644_meta_object__value
     },
     &impl_644,
     NULL
@@ -70130,7 +70130,7 @@ impl_644 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_644__value,
+        &impl_644__value,
         {
             (const afw_object_t *)&impl_644_meta_object,
             (const afw_object_t *)&impl_621,
@@ -70178,7 +70178,7 @@ impl_647_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_647_meta_object__value
+        &impl_647_meta_object__value
     },
     &impl_647,
     NULL
@@ -70202,7 +70202,7 @@ impl_647 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_647__value,
+        &impl_647__value,
         {
             (const afw_object_t *)&impl_647_meta_object,
             (const afw_object_t *)&impl_646,
@@ -70271,7 +70271,7 @@ impl_646_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_646_meta_object__value
+        &impl_646_meta_object__value
     },
     &impl_646,
     NULL
@@ -70295,7 +70295,7 @@ impl_646 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_646__value,
+        &impl_646__value,
         {
             (const afw_object_t *)&impl_646_meta_object,
             (const afw_object_t *)&impl_621,
@@ -70343,7 +70343,7 @@ impl_649_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_649_meta_object__value
+        &impl_649_meta_object__value
     },
     &impl_649,
     NULL
@@ -70367,7 +70367,7 @@ impl_649 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_649__value,
+        &impl_649__value,
         {
             (const afw_object_t *)&impl_649_meta_object,
             (const afw_object_t *)&impl_648,
@@ -70436,7 +70436,7 @@ impl_648_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_648_meta_object__value
+        &impl_648_meta_object__value
     },
     &impl_648,
     NULL
@@ -70460,7 +70460,7 @@ impl_648 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_648__value,
+        &impl_648__value,
         {
             (const afw_object_t *)&impl_648_meta_object,
             (const afw_object_t *)&impl_621,
@@ -70677,7 +70677,7 @@ impl_621_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_621_meta_object__value
+        &impl_621_meta_object__value
     },
     &impl_621,
     NULL
@@ -70701,7 +70701,7 @@ impl_621 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_621__value,
+        &impl_621__value,
         {
             (const afw_object_t *)&impl_621_meta_object,
             (const afw_object_t *)&impl_620,
@@ -70739,7 +70739,7 @@ impl_650_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_650_meta_object__value
+        &impl_650_meta_object__value
     },
     &impl_650,
     NULL
@@ -70763,7 +70763,7 @@ impl_650 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_650__value,
+        &impl_650__value,
         {
             (const afw_object_t *)&impl_650_meta_object,
             (const afw_object_t *)&impl_620,
@@ -70877,7 +70877,7 @@ impl_620_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_620_meta_object__value
+        &impl_620_meta_object__value
     },
     &impl_620,
     NULL
@@ -70901,7 +70901,7 @@ impl_620 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_620__value,
+        &impl_620__value,
         {
             (const afw_object_t *)&impl_620_meta_object,
             NULL,
@@ -70955,7 +70955,7 @@ impl_654_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_654_meta_object__value
+        &impl_654_meta_object__value
     },
     &impl_654,
     NULL
@@ -70979,7 +70979,7 @@ impl_654 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_654__value,
+        &impl_654__value,
         {
             (const afw_object_t *)&impl_654_meta_object,
             (const afw_object_t *)&impl_653,
@@ -71055,7 +71055,7 @@ impl_653_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_653_meta_object__value
+        &impl_653_meta_object__value
     },
     &impl_653,
     NULL
@@ -71079,7 +71079,7 @@ impl_653 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_653__value,
+        &impl_653__value,
         {
             (const afw_object_t *)&impl_653_meta_object,
             (const afw_object_t *)&impl_652,
@@ -71127,7 +71127,7 @@ impl_656_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_656_meta_object__value
+        &impl_656_meta_object__value
     },
     &impl_656,
     NULL
@@ -71151,7 +71151,7 @@ impl_656 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_656__value,
+        &impl_656__value,
         {
             (const afw_object_t *)&impl_656_meta_object,
             (const afw_object_t *)&impl_655,
@@ -71227,7 +71227,7 @@ impl_655_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_655_meta_object__value
+        &impl_655_meta_object__value
     },
     &impl_655,
     NULL
@@ -71251,7 +71251,7 @@ impl_655 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_655__value,
+        &impl_655__value,
         {
             (const afw_object_t *)&impl_655_meta_object,
             (const afw_object_t *)&impl_652,
@@ -71299,7 +71299,7 @@ impl_658_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_658_meta_object__value
+        &impl_658_meta_object__value
     },
     &impl_658,
     NULL
@@ -71323,7 +71323,7 @@ impl_658 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_658__value,
+        &impl_658__value,
         {
             (const afw_object_t *)&impl_658_meta_object,
             (const afw_object_t *)&impl_657,
@@ -71399,7 +71399,7 @@ impl_657_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_657_meta_object__value
+        &impl_657_meta_object__value
     },
     &impl_657,
     NULL
@@ -71423,7 +71423,7 @@ impl_657 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_657__value,
+        &impl_657__value,
         {
             (const afw_object_t *)&impl_657_meta_object,
             (const afw_object_t *)&impl_652,
@@ -71471,7 +71471,7 @@ impl_660_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_660_meta_object__value
+        &impl_660_meta_object__value
     },
     &impl_660,
     NULL
@@ -71495,7 +71495,7 @@ impl_660 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_660__value,
+        &impl_660__value,
         {
             (const afw_object_t *)&impl_660_meta_object,
             (const afw_object_t *)&impl_659,
@@ -71571,7 +71571,7 @@ impl_659_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_659_meta_object__value
+        &impl_659_meta_object__value
     },
     &impl_659,
     NULL
@@ -71595,7 +71595,7 @@ impl_659 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_659__value,
+        &impl_659__value,
         {
             (const afw_object_t *)&impl_659_meta_object,
             (const afw_object_t *)&impl_652,
@@ -71643,7 +71643,7 @@ impl_662_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_662_meta_object__value
+        &impl_662_meta_object__value
     },
     &impl_662,
     NULL
@@ -71667,7 +71667,7 @@ impl_662 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_662__value,
+        &impl_662__value,
         {
             (const afw_object_t *)&impl_662_meta_object,
             (const afw_object_t *)&impl_661,
@@ -71743,7 +71743,7 @@ impl_661_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_661_meta_object__value
+        &impl_661_meta_object__value
     },
     &impl_661,
     NULL
@@ -71767,7 +71767,7 @@ impl_661 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_661__value,
+        &impl_661__value,
         {
             (const afw_object_t *)&impl_661_meta_object,
             (const afw_object_t *)&impl_652,
@@ -71815,7 +71815,7 @@ impl_664_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_664_meta_object__value
+        &impl_664_meta_object__value
     },
     &impl_664,
     NULL
@@ -71839,7 +71839,7 @@ impl_664 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_664__value,
+        &impl_664__value,
         {
             (const afw_object_t *)&impl_664_meta_object,
             (const afw_object_t *)&impl_663,
@@ -71915,7 +71915,7 @@ impl_663_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_663_meta_object__value
+        &impl_663_meta_object__value
     },
     &impl_663,
     NULL
@@ -71939,7 +71939,7 @@ impl_663 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_663__value,
+        &impl_663__value,
         {
             (const afw_object_t *)&impl_663_meta_object,
             (const afw_object_t *)&impl_652,
@@ -71987,7 +71987,7 @@ impl_666_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_666_meta_object__value
+        &impl_666_meta_object__value
     },
     &impl_666,
     NULL
@@ -72011,7 +72011,7 @@ impl_666 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_666__value,
+        &impl_666__value,
         {
             (const afw_object_t *)&impl_666_meta_object,
             (const afw_object_t *)&impl_665,
@@ -72080,7 +72080,7 @@ impl_665_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_665_meta_object__value
+        &impl_665_meta_object__value
     },
     &impl_665,
     NULL
@@ -72104,7 +72104,7 @@ impl_665 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_665__value,
+        &impl_665__value,
         {
             (const afw_object_t *)&impl_665_meta_object,
             (const afw_object_t *)&impl_652,
@@ -72152,7 +72152,7 @@ impl_668_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_668_meta_object__value
+        &impl_668_meta_object__value
     },
     &impl_668,
     NULL
@@ -72176,7 +72176,7 @@ impl_668 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_668__value,
+        &impl_668__value,
         {
             (const afw_object_t *)&impl_668_meta_object,
             (const afw_object_t *)&impl_667,
@@ -72252,7 +72252,7 @@ impl_667_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_667_meta_object__value
+        &impl_667_meta_object__value
     },
     &impl_667,
     NULL
@@ -72276,7 +72276,7 @@ impl_667 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_667__value,
+        &impl_667__value,
         {
             (const afw_object_t *)&impl_667_meta_object,
             (const afw_object_t *)&impl_652,
@@ -72324,7 +72324,7 @@ impl_670_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_670_meta_object__value
+        &impl_670_meta_object__value
     },
     &impl_670,
     NULL
@@ -72348,7 +72348,7 @@ impl_670 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_670__value,
+        &impl_670__value,
         {
             (const afw_object_t *)&impl_670_meta_object,
             (const afw_object_t *)&impl_669,
@@ -72424,7 +72424,7 @@ impl_669_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_669_meta_object__value
+        &impl_669_meta_object__value
     },
     &impl_669,
     NULL
@@ -72448,7 +72448,7 @@ impl_669 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_669__value,
+        &impl_669__value,
         {
             (const afw_object_t *)&impl_669_meta_object,
             (const afw_object_t *)&impl_652,
@@ -72496,7 +72496,7 @@ impl_672_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_672_meta_object__value
+        &impl_672_meta_object__value
     },
     &impl_672,
     NULL
@@ -72520,7 +72520,7 @@ impl_672 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_672__value,
+        &impl_672__value,
         {
             (const afw_object_t *)&impl_672_meta_object,
             (const afw_object_t *)&impl_671,
@@ -72596,7 +72596,7 @@ impl_671_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_671_meta_object__value
+        &impl_671_meta_object__value
     },
     &impl_671,
     NULL
@@ -72620,7 +72620,7 @@ impl_671 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_671__value,
+        &impl_671__value,
         {
             (const afw_object_t *)&impl_671_meta_object,
             (const afw_object_t *)&impl_652,
@@ -72668,7 +72668,7 @@ impl_674_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_674_meta_object__value
+        &impl_674_meta_object__value
     },
     &impl_674,
     NULL
@@ -72692,7 +72692,7 @@ impl_674 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_674__value,
+        &impl_674__value,
         {
             (const afw_object_t *)&impl_674_meta_object,
             (const afw_object_t *)&impl_673,
@@ -72768,7 +72768,7 @@ impl_673_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_673_meta_object__value
+        &impl_673_meta_object__value
     },
     &impl_673,
     NULL
@@ -72792,7 +72792,7 @@ impl_673 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_673__value,
+        &impl_673__value,
         {
             (const afw_object_t *)&impl_673_meta_object,
             (const afw_object_t *)&impl_652,
@@ -72840,7 +72840,7 @@ impl_676_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_676_meta_object__value
+        &impl_676_meta_object__value
     },
     &impl_676,
     NULL
@@ -72864,7 +72864,7 @@ impl_676 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_676__value,
+        &impl_676__value,
         {
             (const afw_object_t *)&impl_676_meta_object,
             (const afw_object_t *)&impl_675,
@@ -72933,7 +72933,7 @@ impl_675_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_675_meta_object__value
+        &impl_675_meta_object__value
     },
     &impl_675,
     NULL
@@ -72957,7 +72957,7 @@ impl_675 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_675__value,
+        &impl_675__value,
         {
             (const afw_object_t *)&impl_675_meta_object,
             (const afw_object_t *)&impl_652,
@@ -73005,7 +73005,7 @@ impl_678_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_678_meta_object__value
+        &impl_678_meta_object__value
     },
     &impl_678,
     NULL
@@ -73029,7 +73029,7 @@ impl_678 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_678__value,
+        &impl_678__value,
         {
             (const afw_object_t *)&impl_678_meta_object,
             (const afw_object_t *)&impl_677,
@@ -73098,7 +73098,7 @@ impl_677_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_677_meta_object__value
+        &impl_677_meta_object__value
     },
     &impl_677,
     NULL
@@ -73122,7 +73122,7 @@ impl_677 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_677__value,
+        &impl_677__value,
         {
             (const afw_object_t *)&impl_677_meta_object,
             (const afw_object_t *)&impl_652,
@@ -73326,7 +73326,7 @@ impl_652_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_652_meta_object__value
+        &impl_652_meta_object__value
     },
     &impl_652,
     NULL
@@ -73350,7 +73350,7 @@ impl_652 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_652__value,
+        &impl_652__value,
         {
             (const afw_object_t *)&impl_652_meta_object,
             (const afw_object_t *)&impl_651,
@@ -73388,7 +73388,7 @@ impl_679_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_679_meta_object__value
+        &impl_679_meta_object__value
     },
     &impl_679,
     NULL
@@ -73412,7 +73412,7 @@ impl_679 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_679__value,
+        &impl_679__value,
         {
             (const afw_object_t *)&impl_679_meta_object,
             (const afw_object_t *)&impl_651,
@@ -73526,7 +73526,7 @@ impl_651_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_651_meta_object__value
+        &impl_651_meta_object__value
     },
     &impl_651,
     NULL
@@ -73550,7 +73550,7 @@ impl_651 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_651__value,
+        &impl_651__value,
         {
             (const afw_object_t *)&impl_651_meta_object,
             NULL,
@@ -73604,7 +73604,7 @@ impl_683_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_683_meta_object__value
+        &impl_683_meta_object__value
     },
     &impl_683,
     NULL
@@ -73628,7 +73628,7 @@ impl_683 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_683__value,
+        &impl_683__value,
         {
             (const afw_object_t *)&impl_683_meta_object,
             (const afw_object_t *)&impl_682,
@@ -73704,7 +73704,7 @@ impl_682_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_682_meta_object__value
+        &impl_682_meta_object__value
     },
     &impl_682,
     NULL
@@ -73728,7 +73728,7 @@ impl_682 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_682__value,
+        &impl_682__value,
         {
             (const afw_object_t *)&impl_682_meta_object,
             (const afw_object_t *)&impl_681,
@@ -73776,7 +73776,7 @@ impl_685_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_685_meta_object__value
+        &impl_685_meta_object__value
     },
     &impl_685,
     NULL
@@ -73800,7 +73800,7 @@ impl_685 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_685__value,
+        &impl_685__value,
         {
             (const afw_object_t *)&impl_685_meta_object,
             (const afw_object_t *)&impl_684,
@@ -73876,7 +73876,7 @@ impl_684_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_684_meta_object__value
+        &impl_684_meta_object__value
     },
     &impl_684,
     NULL
@@ -73900,7 +73900,7 @@ impl_684 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_684__value,
+        &impl_684__value,
         {
             (const afw_object_t *)&impl_684_meta_object,
             (const afw_object_t *)&impl_681,
@@ -73948,7 +73948,7 @@ impl_687_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_687_meta_object__value
+        &impl_687_meta_object__value
     },
     &impl_687,
     NULL
@@ -73972,7 +73972,7 @@ impl_687 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_687__value,
+        &impl_687__value,
         {
             (const afw_object_t *)&impl_687_meta_object,
             (const afw_object_t *)&impl_686,
@@ -74055,7 +74055,7 @@ impl_686_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_686_meta_object__value
+        &impl_686_meta_object__value
     },
     &impl_686,
     NULL
@@ -74079,7 +74079,7 @@ impl_686 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_686__value,
+        &impl_686__value,
         {
             (const afw_object_t *)&impl_686_meta_object,
             (const afw_object_t *)&impl_681,
@@ -74127,7 +74127,7 @@ impl_689_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_689_meta_object__value
+        &impl_689_meta_object__value
     },
     &impl_689,
     NULL
@@ -74151,7 +74151,7 @@ impl_689 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_689__value,
+        &impl_689__value,
         {
             (const afw_object_t *)&impl_689_meta_object,
             (const afw_object_t *)&impl_688,
@@ -74227,7 +74227,7 @@ impl_688_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_688_meta_object__value
+        &impl_688_meta_object__value
     },
     &impl_688,
     NULL
@@ -74251,7 +74251,7 @@ impl_688 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_688__value,
+        &impl_688__value,
         {
             (const afw_object_t *)&impl_688_meta_object,
             (const afw_object_t *)&impl_681,
@@ -74299,7 +74299,7 @@ impl_691_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_691_meta_object__value
+        &impl_691_meta_object__value
     },
     &impl_691,
     NULL
@@ -74323,7 +74323,7 @@ impl_691 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_691__value,
+        &impl_691__value,
         {
             (const afw_object_t *)&impl_691_meta_object,
             (const afw_object_t *)&impl_690,
@@ -74399,7 +74399,7 @@ impl_690_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_690_meta_object__value
+        &impl_690_meta_object__value
     },
     &impl_690,
     NULL
@@ -74423,7 +74423,7 @@ impl_690 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_690__value,
+        &impl_690__value,
         {
             (const afw_object_t *)&impl_690_meta_object,
             (const afw_object_t *)&impl_681,
@@ -74471,7 +74471,7 @@ impl_693_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_693_meta_object__value
+        &impl_693_meta_object__value
     },
     &impl_693,
     NULL
@@ -74495,7 +74495,7 @@ impl_693 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_693__value,
+        &impl_693__value,
         {
             (const afw_object_t *)&impl_693_meta_object,
             (const afw_object_t *)&impl_692,
@@ -74571,7 +74571,7 @@ impl_692_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_692_meta_object__value
+        &impl_692_meta_object__value
     },
     &impl_692,
     NULL
@@ -74595,7 +74595,7 @@ impl_692 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_692__value,
+        &impl_692__value,
         {
             (const afw_object_t *)&impl_692_meta_object,
             (const afw_object_t *)&impl_681,
@@ -74643,7 +74643,7 @@ impl_695_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_695_meta_object__value
+        &impl_695_meta_object__value
     },
     &impl_695,
     NULL
@@ -74667,7 +74667,7 @@ impl_695 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_695__value,
+        &impl_695__value,
         {
             (const afw_object_t *)&impl_695_meta_object,
             (const afw_object_t *)&impl_694,
@@ -74743,7 +74743,7 @@ impl_694_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_694_meta_object__value
+        &impl_694_meta_object__value
     },
     &impl_694,
     NULL
@@ -74767,7 +74767,7 @@ impl_694 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_694__value,
+        &impl_694__value,
         {
             (const afw_object_t *)&impl_694_meta_object,
             (const afw_object_t *)&impl_681,
@@ -74815,7 +74815,7 @@ impl_697_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_697_meta_object__value
+        &impl_697_meta_object__value
     },
     &impl_697,
     NULL
@@ -74839,7 +74839,7 @@ impl_697 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_697__value,
+        &impl_697__value,
         {
             (const afw_object_t *)&impl_697_meta_object,
             (const afw_object_t *)&impl_696,
@@ -74908,7 +74908,7 @@ impl_696_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_696_meta_object__value
+        &impl_696_meta_object__value
     },
     &impl_696,
     NULL
@@ -74932,7 +74932,7 @@ impl_696 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_696__value,
+        &impl_696__value,
         {
             (const afw_object_t *)&impl_696_meta_object,
             (const afw_object_t *)&impl_681,
@@ -75071,7 +75071,7 @@ impl_681_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_681_meta_object__value
+        &impl_681_meta_object__value
     },
     &impl_681,
     NULL
@@ -75095,7 +75095,7 @@ impl_681 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_681__value,
+        &impl_681__value,
         {
             (const afw_object_t *)&impl_681_meta_object,
             (const afw_object_t *)&impl_680,
@@ -75133,7 +75133,7 @@ impl_698_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_698_meta_object__value
+        &impl_698_meta_object__value
     },
     &impl_698,
     NULL
@@ -75157,7 +75157,7 @@ impl_698 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_698__value,
+        &impl_698__value,
         {
             (const afw_object_t *)&impl_698_meta_object,
             (const afw_object_t *)&impl_680,
@@ -75271,7 +75271,7 @@ impl_680_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_680_meta_object__value
+        &impl_680_meta_object__value
     },
     &impl_680,
     NULL
@@ -75295,7 +75295,7 @@ impl_680 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_680__value,
+        &impl_680__value,
         {
             (const afw_object_t *)&impl_680_meta_object,
             NULL,
@@ -75349,7 +75349,7 @@ impl_702_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_702_meta_object__value
+        &impl_702_meta_object__value
     },
     &impl_702,
     NULL
@@ -75373,7 +75373,7 @@ impl_702 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_702__value,
+        &impl_702__value,
         {
             (const afw_object_t *)&impl_702_meta_object,
             (const afw_object_t *)&impl_701,
@@ -75449,7 +75449,7 @@ impl_701_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_701_meta_object__value
+        &impl_701_meta_object__value
     },
     &impl_701,
     NULL
@@ -75473,7 +75473,7 @@ impl_701 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_701__value,
+        &impl_701__value,
         {
             (const afw_object_t *)&impl_701_meta_object,
             (const afw_object_t *)&impl_700,
@@ -75521,7 +75521,7 @@ impl_704_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_704_meta_object__value
+        &impl_704_meta_object__value
     },
     &impl_704,
     NULL
@@ -75545,7 +75545,7 @@ impl_704 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_704__value,
+        &impl_704__value,
         {
             (const afw_object_t *)&impl_704_meta_object,
             (const afw_object_t *)&impl_703,
@@ -75621,7 +75621,7 @@ impl_703_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_703_meta_object__value
+        &impl_703_meta_object__value
     },
     &impl_703,
     NULL
@@ -75645,7 +75645,7 @@ impl_703 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_703__value,
+        &impl_703__value,
         {
             (const afw_object_t *)&impl_703_meta_object,
             (const afw_object_t *)&impl_700,
@@ -75693,7 +75693,7 @@ impl_706_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_706_meta_object__value
+        &impl_706_meta_object__value
     },
     &impl_706,
     NULL
@@ -75717,7 +75717,7 @@ impl_706 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_706__value,
+        &impl_706__value,
         {
             (const afw_object_t *)&impl_706_meta_object,
             (const afw_object_t *)&impl_705,
@@ -75793,7 +75793,7 @@ impl_705_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_705_meta_object__value
+        &impl_705_meta_object__value
     },
     &impl_705,
     NULL
@@ -75817,7 +75817,7 @@ impl_705 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_705__value,
+        &impl_705__value,
         {
             (const afw_object_t *)&impl_705_meta_object,
             (const afw_object_t *)&impl_700,
@@ -75865,7 +75865,7 @@ impl_708_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_708_meta_object__value
+        &impl_708_meta_object__value
     },
     &impl_708,
     NULL
@@ -75889,7 +75889,7 @@ impl_708 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_708__value,
+        &impl_708__value,
         {
             (const afw_object_t *)&impl_708_meta_object,
             (const afw_object_t *)&impl_707,
@@ -75965,7 +75965,7 @@ impl_707_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_707_meta_object__value
+        &impl_707_meta_object__value
     },
     &impl_707,
     NULL
@@ -75989,7 +75989,7 @@ impl_707 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_707__value,
+        &impl_707__value,
         {
             (const afw_object_t *)&impl_707_meta_object,
             (const afw_object_t *)&impl_700,
@@ -76037,7 +76037,7 @@ impl_710_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_710_meta_object__value
+        &impl_710_meta_object__value
     },
     &impl_710,
     NULL
@@ -76061,7 +76061,7 @@ impl_710 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_710__value,
+        &impl_710__value,
         {
             (const afw_object_t *)&impl_710_meta_object,
             (const afw_object_t *)&impl_709,
@@ -76137,7 +76137,7 @@ impl_709_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_709_meta_object__value
+        &impl_709_meta_object__value
     },
     &impl_709,
     NULL
@@ -76161,7 +76161,7 @@ impl_709 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_709__value,
+        &impl_709__value,
         {
             (const afw_object_t *)&impl_709_meta_object,
             (const afw_object_t *)&impl_700,
@@ -76209,7 +76209,7 @@ impl_712_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_712_meta_object__value
+        &impl_712_meta_object__value
     },
     &impl_712,
     NULL
@@ -76233,7 +76233,7 @@ impl_712 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_712__value,
+        &impl_712__value,
         {
             (const afw_object_t *)&impl_712_meta_object,
             (const afw_object_t *)&impl_711,
@@ -76309,7 +76309,7 @@ impl_711_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_711_meta_object__value
+        &impl_711_meta_object__value
     },
     &impl_711,
     NULL
@@ -76333,7 +76333,7 @@ impl_711 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_711__value,
+        &impl_711__value,
         {
             (const afw_object_t *)&impl_711_meta_object,
             (const afw_object_t *)&impl_700,
@@ -76381,7 +76381,7 @@ impl_714_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_714_meta_object__value
+        &impl_714_meta_object__value
     },
     &impl_714,
     NULL
@@ -76405,7 +76405,7 @@ impl_714 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_714__value,
+        &impl_714__value,
         {
             (const afw_object_t *)&impl_714_meta_object,
             (const afw_object_t *)&impl_713,
@@ -76481,7 +76481,7 @@ impl_713_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_713_meta_object__value
+        &impl_713_meta_object__value
     },
     &impl_713,
     NULL
@@ -76505,7 +76505,7 @@ impl_713 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_713__value,
+        &impl_713__value,
         {
             (const afw_object_t *)&impl_713_meta_object,
             (const afw_object_t *)&impl_700,
@@ -76553,7 +76553,7 @@ impl_716_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_716_meta_object__value
+        &impl_716_meta_object__value
     },
     &impl_716,
     NULL
@@ -76577,7 +76577,7 @@ impl_716 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_716__value,
+        &impl_716__value,
         {
             (const afw_object_t *)&impl_716_meta_object,
             (const afw_object_t *)&impl_715,
@@ -76646,7 +76646,7 @@ impl_715_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_715_meta_object__value
+        &impl_715_meta_object__value
     },
     &impl_715,
     NULL
@@ -76670,7 +76670,7 @@ impl_715 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_715__value,
+        &impl_715__value,
         {
             (const afw_object_t *)&impl_715_meta_object,
             (const afw_object_t *)&impl_700,
@@ -76718,7 +76718,7 @@ impl_718_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_718_meta_object__value
+        &impl_718_meta_object__value
     },
     &impl_718,
     NULL
@@ -76742,7 +76742,7 @@ impl_718 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_718__value,
+        &impl_718__value,
         {
             (const afw_object_t *)&impl_718_meta_object,
             (const afw_object_t *)&impl_717,
@@ -76818,7 +76818,7 @@ impl_717_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_717_meta_object__value
+        &impl_717_meta_object__value
     },
     &impl_717,
     NULL
@@ -76842,7 +76842,7 @@ impl_717 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_717__value,
+        &impl_717__value,
         {
             (const afw_object_t *)&impl_717_meta_object,
             (const afw_object_t *)&impl_700,
@@ -76890,7 +76890,7 @@ impl_720_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_720_meta_object__value
+        &impl_720_meta_object__value
     },
     &impl_720,
     NULL
@@ -76914,7 +76914,7 @@ impl_720 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_720__value,
+        &impl_720__value,
         {
             (const afw_object_t *)&impl_720_meta_object,
             (const afw_object_t *)&impl_719,
@@ -76983,7 +76983,7 @@ impl_719_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_719_meta_object__value
+        &impl_719_meta_object__value
     },
     &impl_719,
     NULL
@@ -77007,7 +77007,7 @@ impl_719 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_719__value,
+        &impl_719__value,
         {
             (const afw_object_t *)&impl_719_meta_object,
             (const afw_object_t *)&impl_700,
@@ -77172,7 +77172,7 @@ impl_700_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_700_meta_object__value
+        &impl_700_meta_object__value
     },
     &impl_700,
     NULL
@@ -77196,7 +77196,7 @@ impl_700 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_700__value,
+        &impl_700__value,
         {
             (const afw_object_t *)&impl_700_meta_object,
             (const afw_object_t *)&impl_699,
@@ -77234,7 +77234,7 @@ impl_721_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_721_meta_object__value
+        &impl_721_meta_object__value
     },
     &impl_721,
     NULL
@@ -77258,7 +77258,7 @@ impl_721 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_721__value,
+        &impl_721__value,
         {
             (const afw_object_t *)&impl_721_meta_object,
             (const afw_object_t *)&impl_699,
@@ -77372,7 +77372,7 @@ impl_699_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_699_meta_object__value
+        &impl_699_meta_object__value
     },
     &impl_699,
     NULL
@@ -77396,7 +77396,7 @@ impl_699 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_699__value,
+        &impl_699__value,
         {
             (const afw_object_t *)&impl_699_meta_object,
             NULL,
@@ -77450,7 +77450,7 @@ impl_725_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_725_meta_object__value
+        &impl_725_meta_object__value
     },
     &impl_725,
     NULL
@@ -77474,7 +77474,7 @@ impl_725 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_725__value,
+        &impl_725__value,
         {
             (const afw_object_t *)&impl_725_meta_object,
             (const afw_object_t *)&impl_724,
@@ -77550,7 +77550,7 @@ impl_724_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_724_meta_object__value
+        &impl_724_meta_object__value
     },
     &impl_724,
     NULL
@@ -77574,7 +77574,7 @@ impl_724 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_724__value,
+        &impl_724__value,
         {
             (const afw_object_t *)&impl_724_meta_object,
             (const afw_object_t *)&impl_723,
@@ -77622,7 +77622,7 @@ impl_727_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_727_meta_object__value
+        &impl_727_meta_object__value
     },
     &impl_727,
     NULL
@@ -77646,7 +77646,7 @@ impl_727 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_727__value,
+        &impl_727__value,
         {
             (const afw_object_t *)&impl_727_meta_object,
             (const afw_object_t *)&impl_726,
@@ -77722,7 +77722,7 @@ impl_726_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_726_meta_object__value
+        &impl_726_meta_object__value
     },
     &impl_726,
     NULL
@@ -77746,7 +77746,7 @@ impl_726 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_726__value,
+        &impl_726__value,
         {
             (const afw_object_t *)&impl_726_meta_object,
             (const afw_object_t *)&impl_723,
@@ -77794,7 +77794,7 @@ impl_729_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_729_meta_object__value
+        &impl_729_meta_object__value
     },
     &impl_729,
     NULL
@@ -77818,7 +77818,7 @@ impl_729 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_729__value,
+        &impl_729__value,
         {
             (const afw_object_t *)&impl_729_meta_object,
             (const afw_object_t *)&impl_728,
@@ -77894,7 +77894,7 @@ impl_728_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_728_meta_object__value
+        &impl_728_meta_object__value
     },
     &impl_728,
     NULL
@@ -77918,7 +77918,7 @@ impl_728 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_728__value,
+        &impl_728__value,
         {
             (const afw_object_t *)&impl_728_meta_object,
             (const afw_object_t *)&impl_723,
@@ -77966,7 +77966,7 @@ impl_731_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_731_meta_object__value
+        &impl_731_meta_object__value
     },
     &impl_731,
     NULL
@@ -77990,7 +77990,7 @@ impl_731 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_731__value,
+        &impl_731__value,
         {
             (const afw_object_t *)&impl_731_meta_object,
             (const afw_object_t *)&impl_730,
@@ -78066,7 +78066,7 @@ impl_730_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_730_meta_object__value
+        &impl_730_meta_object__value
     },
     &impl_730,
     NULL
@@ -78090,7 +78090,7 @@ impl_730 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_730__value,
+        &impl_730__value,
         {
             (const afw_object_t *)&impl_730_meta_object,
             (const afw_object_t *)&impl_723,
@@ -78138,7 +78138,7 @@ impl_733_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_733_meta_object__value
+        &impl_733_meta_object__value
     },
     &impl_733,
     NULL
@@ -78162,7 +78162,7 @@ impl_733 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_733__value,
+        &impl_733__value,
         {
             (const afw_object_t *)&impl_733_meta_object,
             (const afw_object_t *)&impl_732,
@@ -78238,7 +78238,7 @@ impl_732_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_732_meta_object__value
+        &impl_732_meta_object__value
     },
     &impl_732,
     NULL
@@ -78262,7 +78262,7 @@ impl_732 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_732__value,
+        &impl_732__value,
         {
             (const afw_object_t *)&impl_732_meta_object,
             (const afw_object_t *)&impl_723,
@@ -78310,7 +78310,7 @@ impl_735_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_735_meta_object__value
+        &impl_735_meta_object__value
     },
     &impl_735,
     NULL
@@ -78334,7 +78334,7 @@ impl_735 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_735__value,
+        &impl_735__value,
         {
             (const afw_object_t *)&impl_735_meta_object,
             (const afw_object_t *)&impl_734,
@@ -78410,7 +78410,7 @@ impl_734_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_734_meta_object__value
+        &impl_734_meta_object__value
     },
     &impl_734,
     NULL
@@ -78434,7 +78434,7 @@ impl_734 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_734__value,
+        &impl_734__value,
         {
             (const afw_object_t *)&impl_734_meta_object,
             (const afw_object_t *)&impl_723,
@@ -78482,7 +78482,7 @@ impl_737_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_737_meta_object__value
+        &impl_737_meta_object__value
     },
     &impl_737,
     NULL
@@ -78506,7 +78506,7 @@ impl_737 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_737__value,
+        &impl_737__value,
         {
             (const afw_object_t *)&impl_737_meta_object,
             (const afw_object_t *)&impl_736,
@@ -78582,7 +78582,7 @@ impl_736_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_736_meta_object__value
+        &impl_736_meta_object__value
     },
     &impl_736,
     NULL
@@ -78606,7 +78606,7 @@ impl_736 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_736__value,
+        &impl_736__value,
         {
             (const afw_object_t *)&impl_736_meta_object,
             (const afw_object_t *)&impl_723,
@@ -78654,7 +78654,7 @@ impl_739_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_739_meta_object__value
+        &impl_739_meta_object__value
     },
     &impl_739,
     NULL
@@ -78678,7 +78678,7 @@ impl_739 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_739__value,
+        &impl_739__value,
         {
             (const afw_object_t *)&impl_739_meta_object,
             (const afw_object_t *)&impl_738,
@@ -78747,7 +78747,7 @@ impl_738_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_738_meta_object__value
+        &impl_738_meta_object__value
     },
     &impl_738,
     NULL
@@ -78771,7 +78771,7 @@ impl_738 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_738__value,
+        &impl_738__value,
         {
             (const afw_object_t *)&impl_738_meta_object,
             (const afw_object_t *)&impl_723,
@@ -78910,7 +78910,7 @@ impl_723_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_723_meta_object__value
+        &impl_723_meta_object__value
     },
     &impl_723,
     NULL
@@ -78934,7 +78934,7 @@ impl_723 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_723__value,
+        &impl_723__value,
         {
             (const afw_object_t *)&impl_723_meta_object,
             (const afw_object_t *)&impl_722,
@@ -78972,7 +78972,7 @@ impl_740_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_740_meta_object__value
+        &impl_740_meta_object__value
     },
     &impl_740,
     NULL
@@ -78996,7 +78996,7 @@ impl_740 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_740__value,
+        &impl_740__value,
         {
             (const afw_object_t *)&impl_740_meta_object,
             (const afw_object_t *)&impl_722,
@@ -79110,7 +79110,7 @@ impl_722_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_722_meta_object__value
+        &impl_722_meta_object__value
     },
     &impl_722,
     NULL
@@ -79134,7 +79134,7 @@ impl_722 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_722__value,
+        &impl_722__value,
         {
             (const afw_object_t *)&impl_722_meta_object,
             NULL,
@@ -79188,7 +79188,7 @@ impl_744_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_744_meta_object__value
+        &impl_744_meta_object__value
     },
     &impl_744,
     NULL
@@ -79212,7 +79212,7 @@ impl_744 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_744__value,
+        &impl_744__value,
         {
             (const afw_object_t *)&impl_744_meta_object,
             (const afw_object_t *)&impl_743,
@@ -79288,7 +79288,7 @@ impl_743_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_743_meta_object__value
+        &impl_743_meta_object__value
     },
     &impl_743,
     NULL
@@ -79312,7 +79312,7 @@ impl_743 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_743__value,
+        &impl_743__value,
         {
             (const afw_object_t *)&impl_743_meta_object,
             (const afw_object_t *)&impl_742,
@@ -79360,7 +79360,7 @@ impl_746_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_746_meta_object__value
+        &impl_746_meta_object__value
     },
     &impl_746,
     NULL
@@ -79384,7 +79384,7 @@ impl_746 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_746__value,
+        &impl_746__value,
         {
             (const afw_object_t *)&impl_746_meta_object,
             (const afw_object_t *)&impl_745,
@@ -79460,7 +79460,7 @@ impl_745_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_745_meta_object__value
+        &impl_745_meta_object__value
     },
     &impl_745,
     NULL
@@ -79484,7 +79484,7 @@ impl_745 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_745__value,
+        &impl_745__value,
         {
             (const afw_object_t *)&impl_745_meta_object,
             (const afw_object_t *)&impl_742,
@@ -79532,7 +79532,7 @@ impl_748_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_748_meta_object__value
+        &impl_748_meta_object__value
     },
     &impl_748,
     NULL
@@ -79556,7 +79556,7 @@ impl_748 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_748__value,
+        &impl_748__value,
         {
             (const afw_object_t *)&impl_748_meta_object,
             (const afw_object_t *)&impl_747,
@@ -79632,7 +79632,7 @@ impl_747_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_747_meta_object__value
+        &impl_747_meta_object__value
     },
     &impl_747,
     NULL
@@ -79656,7 +79656,7 @@ impl_747 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_747__value,
+        &impl_747__value,
         {
             (const afw_object_t *)&impl_747_meta_object,
             (const afw_object_t *)&impl_742,
@@ -79704,7 +79704,7 @@ impl_750_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_750_meta_object__value
+        &impl_750_meta_object__value
     },
     &impl_750,
     NULL
@@ -79728,7 +79728,7 @@ impl_750 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_750__value,
+        &impl_750__value,
         {
             (const afw_object_t *)&impl_750_meta_object,
             (const afw_object_t *)&impl_749,
@@ -79804,7 +79804,7 @@ impl_749_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_749_meta_object__value
+        &impl_749_meta_object__value
     },
     &impl_749,
     NULL
@@ -79828,7 +79828,7 @@ impl_749 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_749__value,
+        &impl_749__value,
         {
             (const afw_object_t *)&impl_749_meta_object,
             (const afw_object_t *)&impl_742,
@@ -79876,7 +79876,7 @@ impl_752_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_752_meta_object__value
+        &impl_752_meta_object__value
     },
     &impl_752,
     NULL
@@ -79900,7 +79900,7 @@ impl_752 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_752__value,
+        &impl_752__value,
         {
             (const afw_object_t *)&impl_752_meta_object,
             (const afw_object_t *)&impl_751,
@@ -79976,7 +79976,7 @@ impl_751_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_751_meta_object__value
+        &impl_751_meta_object__value
     },
     &impl_751,
     NULL
@@ -80000,7 +80000,7 @@ impl_751 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_751__value,
+        &impl_751__value,
         {
             (const afw_object_t *)&impl_751_meta_object,
             (const afw_object_t *)&impl_742,
@@ -80048,7 +80048,7 @@ impl_754_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_754_meta_object__value
+        &impl_754_meta_object__value
     },
     &impl_754,
     NULL
@@ -80072,7 +80072,7 @@ impl_754 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_754__value,
+        &impl_754__value,
         {
             (const afw_object_t *)&impl_754_meta_object,
             (const afw_object_t *)&impl_753,
@@ -80148,7 +80148,7 @@ impl_753_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_753_meta_object__value
+        &impl_753_meta_object__value
     },
     &impl_753,
     NULL
@@ -80172,7 +80172,7 @@ impl_753 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_753__value,
+        &impl_753__value,
         {
             (const afw_object_t *)&impl_753_meta_object,
             (const afw_object_t *)&impl_742,
@@ -80220,7 +80220,7 @@ impl_756_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_756_meta_object__value
+        &impl_756_meta_object__value
     },
     &impl_756,
     NULL
@@ -80244,7 +80244,7 @@ impl_756 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_756__value,
+        &impl_756__value,
         {
             (const afw_object_t *)&impl_756_meta_object,
             (const afw_object_t *)&impl_755,
@@ -80320,7 +80320,7 @@ impl_755_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_755_meta_object__value
+        &impl_755_meta_object__value
     },
     &impl_755,
     NULL
@@ -80344,7 +80344,7 @@ impl_755 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_755__value,
+        &impl_755__value,
         {
             (const afw_object_t *)&impl_755_meta_object,
             (const afw_object_t *)&impl_742,
@@ -80392,7 +80392,7 @@ impl_758_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_758_meta_object__value
+        &impl_758_meta_object__value
     },
     &impl_758,
     NULL
@@ -80416,7 +80416,7 @@ impl_758 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_758__value,
+        &impl_758__value,
         {
             (const afw_object_t *)&impl_758_meta_object,
             (const afw_object_t *)&impl_757,
@@ -80485,7 +80485,7 @@ impl_757_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_757_meta_object__value
+        &impl_757_meta_object__value
     },
     &impl_757,
     NULL
@@ -80509,7 +80509,7 @@ impl_757 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_757__value,
+        &impl_757__value,
         {
             (const afw_object_t *)&impl_757_meta_object,
             (const afw_object_t *)&impl_742,
@@ -80648,7 +80648,7 @@ impl_742_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_742_meta_object__value
+        &impl_742_meta_object__value
     },
     &impl_742,
     NULL
@@ -80672,7 +80672,7 @@ impl_742 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_742__value,
+        &impl_742__value,
         {
             (const afw_object_t *)&impl_742_meta_object,
             (const afw_object_t *)&impl_741,
@@ -80710,7 +80710,7 @@ impl_759_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_759_meta_object__value
+        &impl_759_meta_object__value
     },
     &impl_759,
     NULL
@@ -80734,7 +80734,7 @@ impl_759 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_759__value,
+        &impl_759__value,
         {
             (const afw_object_t *)&impl_759_meta_object,
             (const afw_object_t *)&impl_741,
@@ -80848,7 +80848,7 @@ impl_741_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_741_meta_object__value
+        &impl_741_meta_object__value
     },
     &impl_741,
     NULL
@@ -80872,7 +80872,7 @@ impl_741 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_741__value,
+        &impl_741__value,
         {
             (const afw_object_t *)&impl_741_meta_object,
             NULL,
@@ -80926,7 +80926,7 @@ impl_763_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_763_meta_object__value
+        &impl_763_meta_object__value
     },
     &impl_763,
     NULL
@@ -80950,7 +80950,7 @@ impl_763 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_763__value,
+        &impl_763__value,
         {
             (const afw_object_t *)&impl_763_meta_object,
             (const afw_object_t *)&impl_762,
@@ -81026,7 +81026,7 @@ impl_762_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_762_meta_object__value
+        &impl_762_meta_object__value
     },
     &impl_762,
     NULL
@@ -81050,7 +81050,7 @@ impl_762 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_762__value,
+        &impl_762__value,
         {
             (const afw_object_t *)&impl_762_meta_object,
             (const afw_object_t *)&impl_761,
@@ -81098,7 +81098,7 @@ impl_765_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_765_meta_object__value
+        &impl_765_meta_object__value
     },
     &impl_765,
     NULL
@@ -81122,7 +81122,7 @@ impl_765 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_765__value,
+        &impl_765__value,
         {
             (const afw_object_t *)&impl_765_meta_object,
             (const afw_object_t *)&impl_764,
@@ -81198,7 +81198,7 @@ impl_764_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_764_meta_object__value
+        &impl_764_meta_object__value
     },
     &impl_764,
     NULL
@@ -81222,7 +81222,7 @@ impl_764 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_764__value,
+        &impl_764__value,
         {
             (const afw_object_t *)&impl_764_meta_object,
             (const afw_object_t *)&impl_761,
@@ -81270,7 +81270,7 @@ impl_767_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_767_meta_object__value
+        &impl_767_meta_object__value
     },
     &impl_767,
     NULL
@@ -81294,7 +81294,7 @@ impl_767 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_767__value,
+        &impl_767__value,
         {
             (const afw_object_t *)&impl_767_meta_object,
             (const afw_object_t *)&impl_766,
@@ -81377,7 +81377,7 @@ impl_766_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_766_meta_object__value
+        &impl_766_meta_object__value
     },
     &impl_766,
     NULL
@@ -81401,7 +81401,7 @@ impl_766 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_766__value,
+        &impl_766__value,
         {
             (const afw_object_t *)&impl_766_meta_object,
             (const afw_object_t *)&impl_761,
@@ -81449,7 +81449,7 @@ impl_769_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_769_meta_object__value
+        &impl_769_meta_object__value
     },
     &impl_769,
     NULL
@@ -81473,7 +81473,7 @@ impl_769 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_769__value,
+        &impl_769__value,
         {
             (const afw_object_t *)&impl_769_meta_object,
             (const afw_object_t *)&impl_768,
@@ -81549,7 +81549,7 @@ impl_768_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_768_meta_object__value
+        &impl_768_meta_object__value
     },
     &impl_768,
     NULL
@@ -81573,7 +81573,7 @@ impl_768 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_768__value,
+        &impl_768__value,
         {
             (const afw_object_t *)&impl_768_meta_object,
             (const afw_object_t *)&impl_761,
@@ -81621,7 +81621,7 @@ impl_771_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_771_meta_object__value
+        &impl_771_meta_object__value
     },
     &impl_771,
     NULL
@@ -81645,7 +81645,7 @@ impl_771 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_771__value,
+        &impl_771__value,
         {
             (const afw_object_t *)&impl_771_meta_object,
             (const afw_object_t *)&impl_770,
@@ -81721,7 +81721,7 @@ impl_770_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_770_meta_object__value
+        &impl_770_meta_object__value
     },
     &impl_770,
     NULL
@@ -81745,7 +81745,7 @@ impl_770 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_770__value,
+        &impl_770__value,
         {
             (const afw_object_t *)&impl_770_meta_object,
             (const afw_object_t *)&impl_761,
@@ -81793,7 +81793,7 @@ impl_773_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_773_meta_object__value
+        &impl_773_meta_object__value
     },
     &impl_773,
     NULL
@@ -81817,7 +81817,7 @@ impl_773 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_773__value,
+        &impl_773__value,
         {
             (const afw_object_t *)&impl_773_meta_object,
             (const afw_object_t *)&impl_772,
@@ -81893,7 +81893,7 @@ impl_772_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_772_meta_object__value
+        &impl_772_meta_object__value
     },
     &impl_772,
     NULL
@@ -81917,7 +81917,7 @@ impl_772 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_772__value,
+        &impl_772__value,
         {
             (const afw_object_t *)&impl_772_meta_object,
             (const afw_object_t *)&impl_761,
@@ -81965,7 +81965,7 @@ impl_775_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_775_meta_object__value
+        &impl_775_meta_object__value
     },
     &impl_775,
     NULL
@@ -81989,7 +81989,7 @@ impl_775 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_775__value,
+        &impl_775__value,
         {
             (const afw_object_t *)&impl_775_meta_object,
             (const afw_object_t *)&impl_774,
@@ -82072,7 +82072,7 @@ impl_774_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_774_meta_object__value
+        &impl_774_meta_object__value
     },
     &impl_774,
     NULL
@@ -82096,7 +82096,7 @@ impl_774 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_774__value,
+        &impl_774__value,
         {
             (const afw_object_t *)&impl_774_meta_object,
             (const afw_object_t *)&impl_761,
@@ -82144,7 +82144,7 @@ impl_777_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_777_meta_object__value
+        &impl_777_meta_object__value
     },
     &impl_777,
     NULL
@@ -82168,7 +82168,7 @@ impl_777 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_777__value,
+        &impl_777__value,
         {
             (const afw_object_t *)&impl_777_meta_object,
             (const afw_object_t *)&impl_776,
@@ -82251,7 +82251,7 @@ impl_776_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_776_meta_object__value
+        &impl_776_meta_object__value
     },
     &impl_776,
     NULL
@@ -82275,7 +82275,7 @@ impl_776 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_776__value,
+        &impl_776__value,
         {
             (const afw_object_t *)&impl_776_meta_object,
             (const afw_object_t *)&impl_761,
@@ -82323,7 +82323,7 @@ impl_779_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_779_meta_object__value
+        &impl_779_meta_object__value
     },
     &impl_779,
     NULL
@@ -82347,7 +82347,7 @@ impl_779 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_779__value,
+        &impl_779__value,
         {
             (const afw_object_t *)&impl_779_meta_object,
             (const afw_object_t *)&impl_778,
@@ -82416,7 +82416,7 @@ impl_778_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_778_meta_object__value
+        &impl_778_meta_object__value
     },
     &impl_778,
     NULL
@@ -82440,7 +82440,7 @@ impl_778 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_778__value,
+        &impl_778__value,
         {
             (const afw_object_t *)&impl_778_meta_object,
             (const afw_object_t *)&impl_761,
@@ -82592,7 +82592,7 @@ impl_761_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_761_meta_object__value
+        &impl_761_meta_object__value
     },
     &impl_761,
     NULL
@@ -82616,7 +82616,7 @@ impl_761 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_761__value,
+        &impl_761__value,
         {
             (const afw_object_t *)&impl_761_meta_object,
             (const afw_object_t *)&impl_760,
@@ -82654,7 +82654,7 @@ impl_780_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_780_meta_object__value
+        &impl_780_meta_object__value
     },
     &impl_780,
     NULL
@@ -82678,7 +82678,7 @@ impl_780 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_780__value,
+        &impl_780__value,
         {
             (const afw_object_t *)&impl_780_meta_object,
             (const afw_object_t *)&impl_760,
@@ -82792,7 +82792,7 @@ impl_760_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_760_meta_object__value
+        &impl_760_meta_object__value
     },
     &impl_760,
     NULL
@@ -82816,7 +82816,7 @@ impl_760 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_760__value,
+        &impl_760__value,
         {
             (const afw_object_t *)&impl_760_meta_object,
             NULL,
@@ -82870,7 +82870,7 @@ impl_784_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_784_meta_object__value
+        &impl_784_meta_object__value
     },
     &impl_784,
     NULL
@@ -82894,7 +82894,7 @@ impl_784 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_784__value,
+        &impl_784__value,
         {
             (const afw_object_t *)&impl_784_meta_object,
             (const afw_object_t *)&impl_783,
@@ -82970,7 +82970,7 @@ impl_783_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_783_meta_object__value
+        &impl_783_meta_object__value
     },
     &impl_783,
     NULL
@@ -82994,7 +82994,7 @@ impl_783 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_783__value,
+        &impl_783__value,
         {
             (const afw_object_t *)&impl_783_meta_object,
             (const afw_object_t *)&impl_782,
@@ -83042,7 +83042,7 @@ impl_786_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_786_meta_object__value
+        &impl_786_meta_object__value
     },
     &impl_786,
     NULL
@@ -83066,7 +83066,7 @@ impl_786 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_786__value,
+        &impl_786__value,
         {
             (const afw_object_t *)&impl_786_meta_object,
             (const afw_object_t *)&impl_785,
@@ -83142,7 +83142,7 @@ impl_785_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_785_meta_object__value
+        &impl_785_meta_object__value
     },
     &impl_785,
     NULL
@@ -83166,7 +83166,7 @@ impl_785 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_785__value,
+        &impl_785__value,
         {
             (const afw_object_t *)&impl_785_meta_object,
             (const afw_object_t *)&impl_782,
@@ -83214,7 +83214,7 @@ impl_788_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_788_meta_object__value
+        &impl_788_meta_object__value
     },
     &impl_788,
     NULL
@@ -83238,7 +83238,7 @@ impl_788 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_788__value,
+        &impl_788__value,
         {
             (const afw_object_t *)&impl_788_meta_object,
             (const afw_object_t *)&impl_787,
@@ -83314,7 +83314,7 @@ impl_787_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_787_meta_object__value
+        &impl_787_meta_object__value
     },
     &impl_787,
     NULL
@@ -83338,7 +83338,7 @@ impl_787 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_787__value,
+        &impl_787__value,
         {
             (const afw_object_t *)&impl_787_meta_object,
             (const afw_object_t *)&impl_782,
@@ -83386,7 +83386,7 @@ impl_790_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_790_meta_object__value
+        &impl_790_meta_object__value
     },
     &impl_790,
     NULL
@@ -83410,7 +83410,7 @@ impl_790 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_790__value,
+        &impl_790__value,
         {
             (const afw_object_t *)&impl_790_meta_object,
             (const afw_object_t *)&impl_789,
@@ -83486,7 +83486,7 @@ impl_789_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_789_meta_object__value
+        &impl_789_meta_object__value
     },
     &impl_789,
     NULL
@@ -83510,7 +83510,7 @@ impl_789 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_789__value,
+        &impl_789__value,
         {
             (const afw_object_t *)&impl_789_meta_object,
             (const afw_object_t *)&impl_782,
@@ -83558,7 +83558,7 @@ impl_792_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_792_meta_object__value
+        &impl_792_meta_object__value
     },
     &impl_792,
     NULL
@@ -83582,7 +83582,7 @@ impl_792 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_792__value,
+        &impl_792__value,
         {
             (const afw_object_t *)&impl_792_meta_object,
             (const afw_object_t *)&impl_791,
@@ -83658,7 +83658,7 @@ impl_791_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_791_meta_object__value
+        &impl_791_meta_object__value
     },
     &impl_791,
     NULL
@@ -83682,7 +83682,7 @@ impl_791 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_791__value,
+        &impl_791__value,
         {
             (const afw_object_t *)&impl_791_meta_object,
             (const afw_object_t *)&impl_782,
@@ -83730,7 +83730,7 @@ impl_794_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_794_meta_object__value
+        &impl_794_meta_object__value
     },
     &impl_794,
     NULL
@@ -83754,7 +83754,7 @@ impl_794 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_794__value,
+        &impl_794__value,
         {
             (const afw_object_t *)&impl_794_meta_object,
             (const afw_object_t *)&impl_793,
@@ -83830,7 +83830,7 @@ impl_793_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_793_meta_object__value
+        &impl_793_meta_object__value
     },
     &impl_793,
     NULL
@@ -83854,7 +83854,7 @@ impl_793 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_793__value,
+        &impl_793__value,
         {
             (const afw_object_t *)&impl_793_meta_object,
             (const afw_object_t *)&impl_782,
@@ -83902,7 +83902,7 @@ impl_796_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_796_meta_object__value
+        &impl_796_meta_object__value
     },
     &impl_796,
     NULL
@@ -83926,7 +83926,7 @@ impl_796 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_796__value,
+        &impl_796__value,
         {
             (const afw_object_t *)&impl_796_meta_object,
             (const afw_object_t *)&impl_795,
@@ -84002,7 +84002,7 @@ impl_795_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_795_meta_object__value
+        &impl_795_meta_object__value
     },
     &impl_795,
     NULL
@@ -84026,7 +84026,7 @@ impl_795 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_795__value,
+        &impl_795__value,
         {
             (const afw_object_t *)&impl_795_meta_object,
             (const afw_object_t *)&impl_782,
@@ -84074,7 +84074,7 @@ impl_798_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_798_meta_object__value
+        &impl_798_meta_object__value
     },
     &impl_798,
     NULL
@@ -84098,7 +84098,7 @@ impl_798 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_798__value,
+        &impl_798__value,
         {
             (const afw_object_t *)&impl_798_meta_object,
             (const afw_object_t *)&impl_797,
@@ -84174,7 +84174,7 @@ impl_797_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_797_meta_object__value
+        &impl_797_meta_object__value
     },
     &impl_797,
     NULL
@@ -84198,7 +84198,7 @@ impl_797 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_797__value,
+        &impl_797__value,
         {
             (const afw_object_t *)&impl_797_meta_object,
             (const afw_object_t *)&impl_782,
@@ -84246,7 +84246,7 @@ impl_800_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_800_meta_object__value
+        &impl_800_meta_object__value
     },
     &impl_800,
     NULL
@@ -84270,7 +84270,7 @@ impl_800 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_800__value,
+        &impl_800__value,
         {
             (const afw_object_t *)&impl_800_meta_object,
             (const afw_object_t *)&impl_799,
@@ -84339,7 +84339,7 @@ impl_799_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_799_meta_object__value
+        &impl_799_meta_object__value
     },
     &impl_799,
     NULL
@@ -84363,7 +84363,7 @@ impl_799 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_799__value,
+        &impl_799__value,
         {
             (const afw_object_t *)&impl_799_meta_object,
             (const afw_object_t *)&impl_782,
@@ -84411,7 +84411,7 @@ impl_802_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_802_meta_object__value
+        &impl_802_meta_object__value
     },
     &impl_802,
     NULL
@@ -84435,7 +84435,7 @@ impl_802 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_802__value,
+        &impl_802__value,
         {
             (const afw_object_t *)&impl_802_meta_object,
             (const afw_object_t *)&impl_801,
@@ -84504,7 +84504,7 @@ impl_801_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_801_meta_object__value
+        &impl_801_meta_object__value
     },
     &impl_801,
     NULL
@@ -84528,7 +84528,7 @@ impl_801 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_801__value,
+        &impl_801__value,
         {
             (const afw_object_t *)&impl_801_meta_object,
             (const afw_object_t *)&impl_782,
@@ -84693,7 +84693,7 @@ impl_782_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_782_meta_object__value
+        &impl_782_meta_object__value
     },
     &impl_782,
     NULL
@@ -84717,7 +84717,7 @@ impl_782 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_782__value,
+        &impl_782__value,
         {
             (const afw_object_t *)&impl_782_meta_object,
             (const afw_object_t *)&impl_781,
@@ -84755,7 +84755,7 @@ impl_803_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_803_meta_object__value
+        &impl_803_meta_object__value
     },
     &impl_803,
     NULL
@@ -84779,7 +84779,7 @@ impl_803 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_803__value,
+        &impl_803__value,
         {
             (const afw_object_t *)&impl_803_meta_object,
             (const afw_object_t *)&impl_781,
@@ -84893,7 +84893,7 @@ impl_781_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_781_meta_object__value
+        &impl_781_meta_object__value
     },
     &impl_781,
     NULL
@@ -84917,7 +84917,7 @@ impl_781 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_781__value,
+        &impl_781__value,
         {
             (const afw_object_t *)&impl_781_meta_object,
             NULL,
@@ -84971,7 +84971,7 @@ impl_807_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_807_meta_object__value
+        &impl_807_meta_object__value
     },
     &impl_807,
     NULL
@@ -84995,7 +84995,7 @@ impl_807 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_807__value,
+        &impl_807__value,
         {
             (const afw_object_t *)&impl_807_meta_object,
             (const afw_object_t *)&impl_806,
@@ -85071,7 +85071,7 @@ impl_806_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_806_meta_object__value
+        &impl_806_meta_object__value
     },
     &impl_806,
     NULL
@@ -85095,7 +85095,7 @@ impl_806 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_806__value,
+        &impl_806__value,
         {
             (const afw_object_t *)&impl_806_meta_object,
             (const afw_object_t *)&impl_805,
@@ -85143,7 +85143,7 @@ impl_809_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_809_meta_object__value
+        &impl_809_meta_object__value
     },
     &impl_809,
     NULL
@@ -85167,7 +85167,7 @@ impl_809 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_809__value,
+        &impl_809__value,
         {
             (const afw_object_t *)&impl_809_meta_object,
             (const afw_object_t *)&impl_808,
@@ -85243,7 +85243,7 @@ impl_808_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_808_meta_object__value
+        &impl_808_meta_object__value
     },
     &impl_808,
     NULL
@@ -85267,7 +85267,7 @@ impl_808 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_808__value,
+        &impl_808__value,
         {
             (const afw_object_t *)&impl_808_meta_object,
             (const afw_object_t *)&impl_805,
@@ -85315,7 +85315,7 @@ impl_811_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_811_meta_object__value
+        &impl_811_meta_object__value
     },
     &impl_811,
     NULL
@@ -85339,7 +85339,7 @@ impl_811 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_811__value,
+        &impl_811__value,
         {
             (const afw_object_t *)&impl_811_meta_object,
             (const afw_object_t *)&impl_810,
@@ -85415,7 +85415,7 @@ impl_810_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_810_meta_object__value
+        &impl_810_meta_object__value
     },
     &impl_810,
     NULL
@@ -85439,7 +85439,7 @@ impl_810 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_810__value,
+        &impl_810__value,
         {
             (const afw_object_t *)&impl_810_meta_object,
             (const afw_object_t *)&impl_805,
@@ -85487,7 +85487,7 @@ impl_813_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_813_meta_object__value
+        &impl_813_meta_object__value
     },
     &impl_813,
     NULL
@@ -85511,7 +85511,7 @@ impl_813 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_813__value,
+        &impl_813__value,
         {
             (const afw_object_t *)&impl_813_meta_object,
             (const afw_object_t *)&impl_812,
@@ -85587,7 +85587,7 @@ impl_812_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_812_meta_object__value
+        &impl_812_meta_object__value
     },
     &impl_812,
     NULL
@@ -85611,7 +85611,7 @@ impl_812 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_812__value,
+        &impl_812__value,
         {
             (const afw_object_t *)&impl_812_meta_object,
             (const afw_object_t *)&impl_805,
@@ -85659,7 +85659,7 @@ impl_815_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_815_meta_object__value
+        &impl_815_meta_object__value
     },
     &impl_815,
     NULL
@@ -85683,7 +85683,7 @@ impl_815 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_815__value,
+        &impl_815__value,
         {
             (const afw_object_t *)&impl_815_meta_object,
             (const afw_object_t *)&impl_814,
@@ -85759,7 +85759,7 @@ impl_814_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_814_meta_object__value
+        &impl_814_meta_object__value
     },
     &impl_814,
     NULL
@@ -85783,7 +85783,7 @@ impl_814 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_814__value,
+        &impl_814__value,
         {
             (const afw_object_t *)&impl_814_meta_object,
             (const afw_object_t *)&impl_805,
@@ -85831,7 +85831,7 @@ impl_817_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_817_meta_object__value
+        &impl_817_meta_object__value
     },
     &impl_817,
     NULL
@@ -85855,7 +85855,7 @@ impl_817 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_817__value,
+        &impl_817__value,
         {
             (const afw_object_t *)&impl_817_meta_object,
             (const afw_object_t *)&impl_816,
@@ -85924,7 +85924,7 @@ impl_816_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_816_meta_object__value
+        &impl_816_meta_object__value
     },
     &impl_816,
     NULL
@@ -85948,7 +85948,7 @@ impl_816 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_816__value,
+        &impl_816__value,
         {
             (const afw_object_t *)&impl_816_meta_object,
             (const afw_object_t *)&impl_805,
@@ -86061,7 +86061,7 @@ impl_805_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_805_meta_object__value
+        &impl_805_meta_object__value
     },
     &impl_805,
     NULL
@@ -86085,7 +86085,7 @@ impl_805 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_805__value,
+        &impl_805__value,
         {
             (const afw_object_t *)&impl_805_meta_object,
             (const afw_object_t *)&impl_804,
@@ -86123,7 +86123,7 @@ impl_818_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_818_meta_object__value
+        &impl_818_meta_object__value
     },
     &impl_818,
     NULL
@@ -86147,7 +86147,7 @@ impl_818 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_818__value,
+        &impl_818__value,
         {
             (const afw_object_t *)&impl_818_meta_object,
             (const afw_object_t *)&impl_804,
@@ -86274,7 +86274,7 @@ impl_804_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_804_meta_object__value
+        &impl_804_meta_object__value
     },
     &impl_804,
     NULL
@@ -86298,7 +86298,7 @@ impl_804 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_804__value,
+        &impl_804__value,
         {
             (const afw_object_t *)&impl_804_meta_object,
             NULL,
@@ -86377,7 +86377,7 @@ impl_821_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_821_meta_object__value
+        &impl_821_meta_object__value
     },
     &impl_821,
     NULL
@@ -86401,7 +86401,7 @@ impl_821 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_821__value,
+        &impl_821__value,
         {
             (const afw_object_t *)&impl_821_meta_object,
             (const afw_object_t *)&impl_820,
@@ -86467,7 +86467,7 @@ impl_822_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_822_meta_object__value
+        &impl_822_meta_object__value
     },
     &impl_822,
     NULL
@@ -86491,7 +86491,7 @@ impl_822 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_822__value,
+        &impl_822__value,
         {
             (const afw_object_t *)&impl_822_meta_object,
             (const afw_object_t *)&impl_820,
@@ -86578,7 +86578,7 @@ impl_823_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_823_meta_object__value
+        &impl_823_meta_object__value
     },
     &impl_823,
     NULL
@@ -86602,7 +86602,7 @@ impl_823 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_823__value,
+        &impl_823__value,
         {
             (const afw_object_t *)&impl_823_meta_object,
             (const afw_object_t *)&impl_820,
@@ -86689,7 +86689,7 @@ impl_824_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_824_meta_object__value
+        &impl_824_meta_object__value
     },
     &impl_824,
     NULL
@@ -86713,7 +86713,7 @@ impl_824 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_824__value,
+        &impl_824__value,
         {
             (const afw_object_t *)&impl_824_meta_object,
             (const afw_object_t *)&impl_820,
@@ -86793,7 +86793,7 @@ impl_825_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_825_meta_object__value
+        &impl_825_meta_object__value
     },
     &impl_825,
     NULL
@@ -86817,7 +86817,7 @@ impl_825 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_825__value,
+        &impl_825__value,
         {
             (const afw_object_t *)&impl_825_meta_object,
             (const afw_object_t *)&impl_820,
@@ -86904,7 +86904,7 @@ impl_826_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_826_meta_object__value
+        &impl_826_meta_object__value
     },
     &impl_826,
     NULL
@@ -86928,7 +86928,7 @@ impl_826 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_826__value,
+        &impl_826__value,
         {
             (const afw_object_t *)&impl_826_meta_object,
             (const afw_object_t *)&impl_820,
@@ -87015,7 +87015,7 @@ impl_827_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_827_meta_object__value
+        &impl_827_meta_object__value
     },
     &impl_827,
     NULL
@@ -87039,7 +87039,7 @@ impl_827 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_827__value,
+        &impl_827__value,
         {
             (const afw_object_t *)&impl_827_meta_object,
             (const afw_object_t *)&impl_820,
@@ -87126,7 +87126,7 @@ impl_828_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_828_meta_object__value
+        &impl_828_meta_object__value
     },
     &impl_828,
     NULL
@@ -87150,7 +87150,7 @@ impl_828 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_828__value,
+        &impl_828__value,
         {
             (const afw_object_t *)&impl_828_meta_object,
             (const afw_object_t *)&impl_820,
@@ -87237,7 +87237,7 @@ impl_829_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_829_meta_object__value
+        &impl_829_meta_object__value
     },
     &impl_829,
     NULL
@@ -87261,7 +87261,7 @@ impl_829 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_829__value,
+        &impl_829__value,
         {
             (const afw_object_t *)&impl_829_meta_object,
             (const afw_object_t *)&impl_820,
@@ -87334,7 +87334,7 @@ impl_830_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_830_meta_object__value
+        &impl_830_meta_object__value
     },
     &impl_830,
     NULL
@@ -87358,7 +87358,7 @@ impl_830 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_830__value,
+        &impl_830__value,
         {
             (const afw_object_t *)&impl_830_meta_object,
             (const afw_object_t *)&impl_820,
@@ -87542,7 +87542,7 @@ impl_820_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_820_meta_object__value
+        &impl_820_meta_object__value
     },
     &impl_820,
     &impl_820_parentPaths
@@ -87566,7 +87566,7 @@ impl_820 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_820__value,
+        &impl_820__value,
         {
             (const afw_object_t *)&impl_820_meta_object,
             (const afw_object_t *)&impl_819,
@@ -87680,7 +87680,7 @@ impl_819_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_819_meta_object__value
+        &impl_819_meta_object__value
     },
     &impl_819,
     NULL
@@ -87704,7 +87704,7 @@ impl_819 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_819__value,
+        &impl_819__value,
         {
             (const afw_object_t *)&impl_819_meta_object,
             NULL,
@@ -87773,7 +87773,7 @@ impl_832_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_832_meta_object__value
+        &impl_832_meta_object__value
     },
     &impl_832,
     NULL
@@ -87797,7 +87797,7 @@ impl_832 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_832__value,
+        &impl_832__value,
         {
             (const afw_object_t *)&impl_832_meta_object,
             (const afw_object_t *)&impl_831,
@@ -87911,7 +87911,7 @@ impl_831_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_831_meta_object__value
+        &impl_831_meta_object__value
     },
     &impl_831,
     NULL
@@ -87935,7 +87935,7 @@ impl_831 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_831__value,
+        &impl_831__value,
         {
             (const afw_object_t *)&impl_831_meta_object,
             NULL,
@@ -88020,7 +88020,7 @@ impl_835_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_835_meta_object__value
+        &impl_835_meta_object__value
     },
     &impl_835,
     NULL
@@ -88044,7 +88044,7 @@ impl_835 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_835__value,
+        &impl_835__value,
         {
             (const afw_object_t *)&impl_835_meta_object,
             (const afw_object_t *)&impl_834,
@@ -88117,7 +88117,7 @@ impl_836_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_836_meta_object__value
+        &impl_836_meta_object__value
     },
     &impl_836,
     NULL
@@ -88141,7 +88141,7 @@ impl_836 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_836__value,
+        &impl_836__value,
         {
             (const afw_object_t *)&impl_836_meta_object,
             (const afw_object_t *)&impl_834,
@@ -88207,7 +88207,7 @@ impl_837_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_837_meta_object__value
+        &impl_837_meta_object__value
     },
     &impl_837,
     NULL
@@ -88231,7 +88231,7 @@ impl_837 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_837__value,
+        &impl_837__value,
         {
             (const afw_object_t *)&impl_837_meta_object,
             (const afw_object_t *)&impl_834,
@@ -88297,7 +88297,7 @@ impl_838_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_838_meta_object__value
+        &impl_838_meta_object__value
     },
     &impl_838,
     NULL
@@ -88321,7 +88321,7 @@ impl_838 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_838__value,
+        &impl_838__value,
         {
             (const afw_object_t *)&impl_838_meta_object,
             (const afw_object_t *)&impl_834,
@@ -88394,7 +88394,7 @@ impl_839_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_839_meta_object__value
+        &impl_839_meta_object__value
     },
     &impl_839,
     NULL
@@ -88418,7 +88418,7 @@ impl_839 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_839__value,
+        &impl_839__value,
         {
             (const afw_object_t *)&impl_839_meta_object,
             (const afw_object_t *)&impl_834,
@@ -88491,7 +88491,7 @@ impl_840_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_840_meta_object__value
+        &impl_840_meta_object__value
     },
     &impl_840,
     NULL
@@ -88515,7 +88515,7 @@ impl_840 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_840__value,
+        &impl_840__value,
         {
             (const afw_object_t *)&impl_840_meta_object,
             (const afw_object_t *)&impl_834,
@@ -88588,7 +88588,7 @@ impl_841_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_841_meta_object__value
+        &impl_841_meta_object__value
     },
     &impl_841,
     NULL
@@ -88612,7 +88612,7 @@ impl_841 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_841__value,
+        &impl_841__value,
         {
             (const afw_object_t *)&impl_841_meta_object,
             (const afw_object_t *)&impl_834,
@@ -88691,7 +88691,7 @@ impl_842_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_842_meta_object__value
+        &impl_842_meta_object__value
     },
     &impl_842,
     NULL
@@ -88715,7 +88715,7 @@ impl_842 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_842__value,
+        &impl_842__value,
         {
             (const afw_object_t *)&impl_842_meta_object,
             (const afw_object_t *)&impl_834,
@@ -88873,7 +88873,7 @@ impl_834_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_834_meta_object__value
+        &impl_834_meta_object__value
     },
     &impl_834,
     &impl_834_parentPaths
@@ -88897,7 +88897,7 @@ impl_834 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_834__value,
+        &impl_834__value,
         {
             (const afw_object_t *)&impl_834_meta_object,
             (const afw_object_t *)&impl_833,
@@ -88998,7 +88998,7 @@ impl_833_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_833_meta_object__value
+        &impl_833_meta_object__value
     },
     &impl_833,
     NULL
@@ -89022,7 +89022,7 @@ impl_833 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_833__value,
+        &impl_833__value,
         {
             (const afw_object_t *)&impl_833_meta_object,
             NULL,
@@ -89091,7 +89091,7 @@ impl_844_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_844_meta_object__value
+        &impl_844_meta_object__value
     },
     &impl_844,
     NULL
@@ -89115,7 +89115,7 @@ impl_844 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_844__value,
+        &impl_844__value,
         {
             (const afw_object_t *)&impl_844_meta_object,
             (const afw_object_t *)&impl_843,
@@ -89229,7 +89229,7 @@ impl_843_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_843_meta_object__value
+        &impl_843_meta_object__value
     },
     &impl_843,
     NULL
@@ -89253,7 +89253,7 @@ impl_843 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_843__value,
+        &impl_843__value,
         {
             (const afw_object_t *)&impl_843_meta_object,
             NULL,
@@ -89345,7 +89345,7 @@ impl_847_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_847_meta_object__value
+        &impl_847_meta_object__value
     },
     &impl_847,
     NULL
@@ -89369,7 +89369,7 @@ impl_847 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_847__value,
+        &impl_847__value,
         {
             (const afw_object_t *)&impl_847_meta_object,
             (const afw_object_t *)&impl_846,
@@ -89442,7 +89442,7 @@ impl_848_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_848_meta_object__value
+        &impl_848_meta_object__value
     },
     &impl_848,
     NULL
@@ -89466,7 +89466,7 @@ impl_848 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_848__value,
+        &impl_848__value,
         {
             (const afw_object_t *)&impl_848_meta_object,
             (const afw_object_t *)&impl_846,
@@ -89552,7 +89552,7 @@ impl_849_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_849_meta_object__value
+        &impl_849_meta_object__value
     },
     &impl_849,
     NULL
@@ -89576,7 +89576,7 @@ impl_849 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_849__value,
+        &impl_849__value,
         {
             (const afw_object_t *)&impl_849_meta_object,
             (const afw_object_t *)&impl_846,
@@ -89655,7 +89655,7 @@ impl_850_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_850_meta_object__value
+        &impl_850_meta_object__value
     },
     &impl_850,
     NULL
@@ -89679,7 +89679,7 @@ impl_850 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_850__value,
+        &impl_850__value,
         {
             (const afw_object_t *)&impl_850_meta_object,
             (const afw_object_t *)&impl_846,
@@ -89804,7 +89804,7 @@ impl_851_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_851_meta_object__value
+        &impl_851_meta_object__value
     },
     &impl_851,
     NULL
@@ -89828,7 +89828,7 @@ impl_851 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_851__value,
+        &impl_851__value,
         {
             (const afw_object_t *)&impl_851_meta_object,
             (const afw_object_t *)&impl_846,
@@ -89907,7 +89907,7 @@ impl_852_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_852_meta_object__value
+        &impl_852_meta_object__value
     },
     &impl_852,
     NULL
@@ -89931,7 +89931,7 @@ impl_852 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_852__value,
+        &impl_852__value,
         {
             (const afw_object_t *)&impl_852_meta_object,
             (const afw_object_t *)&impl_846,
@@ -90017,7 +90017,7 @@ impl_853_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_853_meta_object__value
+        &impl_853_meta_object__value
     },
     &impl_853,
     NULL
@@ -90041,7 +90041,7 @@ impl_853 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_853__value,
+        &impl_853__value,
         {
             (const afw_object_t *)&impl_853_meta_object,
             (const afw_object_t *)&impl_846,
@@ -90167,7 +90167,7 @@ impl_846_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_846_meta_object__value
+        &impl_846_meta_object__value
     },
     &impl_846,
     NULL
@@ -90191,7 +90191,7 @@ impl_846 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_846__value,
+        &impl_846__value,
         {
             (const afw_object_t *)&impl_846_meta_object,
             (const afw_object_t *)&impl_845,
@@ -90312,7 +90312,7 @@ impl_845_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_845_meta_object__value
+        &impl_845_meta_object__value
     },
     &impl_845,
     NULL
@@ -90336,7 +90336,7 @@ impl_845 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_845__value,
+        &impl_845__value,
         {
             (const afw_object_t *)&impl_845_meta_object,
             NULL,
@@ -90408,7 +90408,7 @@ impl_856_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_856_meta_object__value
+        &impl_856_meta_object__value
     },
     &impl_856,
     NULL
@@ -90432,7 +90432,7 @@ impl_856 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_856__value,
+        &impl_856__value,
         {
             (const afw_object_t *)&impl_856_meta_object,
             (const afw_object_t *)&impl_855,
@@ -90511,7 +90511,7 @@ impl_857_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_857_meta_object__value
+        &impl_857_meta_object__value
     },
     &impl_857,
     NULL
@@ -90535,7 +90535,7 @@ impl_857 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_857__value,
+        &impl_857__value,
         {
             (const afw_object_t *)&impl_857_meta_object,
             (const afw_object_t *)&impl_855,
@@ -90614,7 +90614,7 @@ impl_858_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_858_meta_object__value
+        &impl_858_meta_object__value
     },
     &impl_858,
     NULL
@@ -90638,7 +90638,7 @@ impl_858 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_858__value,
+        &impl_858__value,
         {
             (const afw_object_t *)&impl_858_meta_object,
             (const afw_object_t *)&impl_855,
@@ -90717,7 +90717,7 @@ impl_859_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_859_meta_object__value
+        &impl_859_meta_object__value
     },
     &impl_859,
     NULL
@@ -90741,7 +90741,7 @@ impl_859 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_859__value,
+        &impl_859__value,
         {
             (const afw_object_t *)&impl_859_meta_object,
             (const afw_object_t *)&impl_855,
@@ -90820,7 +90820,7 @@ impl_860_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_860_meta_object__value
+        &impl_860_meta_object__value
     },
     &impl_860,
     NULL
@@ -90844,7 +90844,7 @@ impl_860 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_860__value,
+        &impl_860__value,
         {
             (const afw_object_t *)&impl_860_meta_object,
             (const afw_object_t *)&impl_855,
@@ -90923,7 +90923,7 @@ impl_861_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_861_meta_object__value
+        &impl_861_meta_object__value
     },
     &impl_861,
     NULL
@@ -90947,7 +90947,7 @@ impl_861 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_861__value,
+        &impl_861__value,
         {
             (const afw_object_t *)&impl_861_meta_object,
             (const afw_object_t *)&impl_855,
@@ -91026,7 +91026,7 @@ impl_862_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_862_meta_object__value
+        &impl_862_meta_object__value
     },
     &impl_862,
     NULL
@@ -91050,7 +91050,7 @@ impl_862 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_862__value,
+        &impl_862__value,
         {
             (const afw_object_t *)&impl_862_meta_object,
             (const afw_object_t *)&impl_855,
@@ -91129,7 +91129,7 @@ impl_863_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_863_meta_object__value
+        &impl_863_meta_object__value
     },
     &impl_863,
     NULL
@@ -91153,7 +91153,7 @@ impl_863 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_863__value,
+        &impl_863__value,
         {
             (const afw_object_t *)&impl_863_meta_object,
             (const afw_object_t *)&impl_855,
@@ -91232,7 +91232,7 @@ impl_864_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_864_meta_object__value
+        &impl_864_meta_object__value
     },
     &impl_864,
     NULL
@@ -91256,7 +91256,7 @@ impl_864 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_864__value,
+        &impl_864__value,
         {
             (const afw_object_t *)&impl_864_meta_object,
             (const afw_object_t *)&impl_855,
@@ -91335,7 +91335,7 @@ impl_865_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_865_meta_object__value
+        &impl_865_meta_object__value
     },
     &impl_865,
     NULL
@@ -91359,7 +91359,7 @@ impl_865 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_865__value,
+        &impl_865__value,
         {
             (const afw_object_t *)&impl_865_meta_object,
             (const afw_object_t *)&impl_855,
@@ -91438,7 +91438,7 @@ impl_866_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_866_meta_object__value
+        &impl_866_meta_object__value
     },
     &impl_866,
     NULL
@@ -91462,7 +91462,7 @@ impl_866 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_866__value,
+        &impl_866__value,
         {
             (const afw_object_t *)&impl_866_meta_object,
             (const afw_object_t *)&impl_855,
@@ -91541,7 +91541,7 @@ impl_867_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_867_meta_object__value
+        &impl_867_meta_object__value
     },
     &impl_867,
     NULL
@@ -91565,7 +91565,7 @@ impl_867 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_867__value,
+        &impl_867__value,
         {
             (const afw_object_t *)&impl_867_meta_object,
             (const afw_object_t *)&impl_855,
@@ -91644,7 +91644,7 @@ impl_868_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_868_meta_object__value
+        &impl_868_meta_object__value
     },
     &impl_868,
     NULL
@@ -91668,7 +91668,7 @@ impl_868 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_868__value,
+        &impl_868__value,
         {
             (const afw_object_t *)&impl_868_meta_object,
             (const afw_object_t *)&impl_855,
@@ -91747,7 +91747,7 @@ impl_869_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_869_meta_object__value
+        &impl_869_meta_object__value
     },
     &impl_869,
     NULL
@@ -91771,7 +91771,7 @@ impl_869 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_869__value,
+        &impl_869__value,
         {
             (const afw_object_t *)&impl_869_meta_object,
             (const afw_object_t *)&impl_855,
@@ -91850,7 +91850,7 @@ impl_870_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_870_meta_object__value
+        &impl_870_meta_object__value
     },
     &impl_870,
     NULL
@@ -91874,7 +91874,7 @@ impl_870 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_870__value,
+        &impl_870__value,
         {
             (const afw_object_t *)&impl_870_meta_object,
             (const afw_object_t *)&impl_855,
@@ -91953,7 +91953,7 @@ impl_871_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_871_meta_object__value
+        &impl_871_meta_object__value
     },
     &impl_871,
     NULL
@@ -91977,7 +91977,7 @@ impl_871 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_871__value,
+        &impl_871__value,
         {
             (const afw_object_t *)&impl_871_meta_object,
             (const afw_object_t *)&impl_855,
@@ -92056,7 +92056,7 @@ impl_872_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_872_meta_object__value
+        &impl_872_meta_object__value
     },
     &impl_872,
     NULL
@@ -92080,7 +92080,7 @@ impl_872 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_872__value,
+        &impl_872__value,
         {
             (const afw_object_t *)&impl_872_meta_object,
             (const afw_object_t *)&impl_855,
@@ -92159,7 +92159,7 @@ impl_873_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_873_meta_object__value
+        &impl_873_meta_object__value
     },
     &impl_873,
     NULL
@@ -92183,7 +92183,7 @@ impl_873 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_873__value,
+        &impl_873__value,
         {
             (const afw_object_t *)&impl_873_meta_object,
             (const afw_object_t *)&impl_855,
@@ -92262,7 +92262,7 @@ impl_874_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_874_meta_object__value
+        &impl_874_meta_object__value
     },
     &impl_874,
     NULL
@@ -92286,7 +92286,7 @@ impl_874 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_874__value,
+        &impl_874__value,
         {
             (const afw_object_t *)&impl_874_meta_object,
             (const afw_object_t *)&impl_855,
@@ -92365,7 +92365,7 @@ impl_875_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_875_meta_object__value
+        &impl_875_meta_object__value
     },
     &impl_875,
     NULL
@@ -92389,7 +92389,7 @@ impl_875 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_875__value,
+        &impl_875__value,
         {
             (const afw_object_t *)&impl_875_meta_object,
             (const afw_object_t *)&impl_855,
@@ -92684,7 +92684,7 @@ impl_855_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_855_meta_object__value
+        &impl_855_meta_object__value
     },
     &impl_855,
     NULL
@@ -92708,7 +92708,7 @@ impl_855 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_855__value,
+        &impl_855__value,
         {
             (const afw_object_t *)&impl_855_meta_object,
             (const afw_object_t *)&impl_854,
@@ -92822,7 +92822,7 @@ impl_854_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_854_meta_object__value
+        &impl_854_meta_object__value
     },
     &impl_854,
     NULL
@@ -92846,7 +92846,7 @@ impl_854 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_854__value,
+        &impl_854__value,
         {
             (const afw_object_t *)&impl_854_meta_object,
             NULL,
@@ -92944,7 +92944,7 @@ impl_878_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_878_meta_object__value
+        &impl_878_meta_object__value
     },
     &impl_878,
     NULL
@@ -92968,7 +92968,7 @@ impl_878 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_878__value,
+        &impl_878__value,
         {
             (const afw_object_t *)&impl_878_meta_object,
             (const afw_object_t *)&impl_877,
@@ -93060,7 +93060,7 @@ impl_879_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_879_meta_object__value
+        &impl_879_meta_object__value
     },
     &impl_879,
     NULL
@@ -93084,7 +93084,7 @@ impl_879 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_879__value,
+        &impl_879__value,
         {
             (const afw_object_t *)&impl_879_meta_object,
             (const afw_object_t *)&impl_877,
@@ -93176,7 +93176,7 @@ impl_880_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_880_meta_object__value
+        &impl_880_meta_object__value
     },
     &impl_880,
     NULL
@@ -93200,7 +93200,7 @@ impl_880 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_880__value,
+        &impl_880__value,
         {
             (const afw_object_t *)&impl_880_meta_object,
             (const afw_object_t *)&impl_877,
@@ -93292,7 +93292,7 @@ impl_881_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_881_meta_object__value
+        &impl_881_meta_object__value
     },
     &impl_881,
     NULL
@@ -93316,7 +93316,7 @@ impl_881 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_881__value,
+        &impl_881__value,
         {
             (const afw_object_t *)&impl_881_meta_object,
             (const afw_object_t *)&impl_877,
@@ -93402,7 +93402,7 @@ impl_882_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_882_meta_object__value
+        &impl_882_meta_object__value
     },
     &impl_882,
     NULL
@@ -93426,7 +93426,7 @@ impl_882 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_882__value,
+        &impl_882__value,
         {
             (const afw_object_t *)&impl_882_meta_object,
             (const afw_object_t *)&impl_877,
@@ -93512,7 +93512,7 @@ impl_883_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_883_meta_object__value
+        &impl_883_meta_object__value
     },
     &impl_883,
     NULL
@@ -93536,7 +93536,7 @@ impl_883 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_883__value,
+        &impl_883__value,
         {
             (const afw_object_t *)&impl_883_meta_object,
             (const afw_object_t *)&impl_877,
@@ -93615,7 +93615,7 @@ impl_884_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_884_meta_object__value
+        &impl_884_meta_object__value
     },
     &impl_884,
     NULL
@@ -93639,7 +93639,7 @@ impl_884 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_884__value,
+        &impl_884__value,
         {
             (const afw_object_t *)&impl_884_meta_object,
             (const afw_object_t *)&impl_877,
@@ -93718,7 +93718,7 @@ impl_885_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_885_meta_object__value
+        &impl_885_meta_object__value
     },
     &impl_885,
     NULL
@@ -93742,7 +93742,7 @@ impl_885 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_885__value,
+        &impl_885__value,
         {
             (const afw_object_t *)&impl_885_meta_object,
             (const afw_object_t *)&impl_877,
@@ -93821,7 +93821,7 @@ impl_886_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_886_meta_object__value
+        &impl_886_meta_object__value
     },
     &impl_886,
     NULL
@@ -93845,7 +93845,7 @@ impl_886 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_886__value,
+        &impl_886__value,
         {
             (const afw_object_t *)&impl_886_meta_object,
             (const afw_object_t *)&impl_877,
@@ -93924,7 +93924,7 @@ impl_887_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_887_meta_object__value
+        &impl_887_meta_object__value
     },
     &impl_887,
     NULL
@@ -93948,7 +93948,7 @@ impl_887 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_887__value,
+        &impl_887__value,
         {
             (const afw_object_t *)&impl_887_meta_object,
             (const afw_object_t *)&impl_877,
@@ -94027,7 +94027,7 @@ impl_888_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_888_meta_object__value
+        &impl_888_meta_object__value
     },
     &impl_888,
     NULL
@@ -94051,7 +94051,7 @@ impl_888 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_888__value,
+        &impl_888__value,
         {
             (const afw_object_t *)&impl_888_meta_object,
             (const afw_object_t *)&impl_877,
@@ -94137,7 +94137,7 @@ impl_889_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_889_meta_object__value
+        &impl_889_meta_object__value
     },
     &impl_889,
     NULL
@@ -94161,7 +94161,7 @@ impl_889 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_889__value,
+        &impl_889__value,
         {
             (const afw_object_t *)&impl_889_meta_object,
             (const afw_object_t *)&impl_877,
@@ -94247,7 +94247,7 @@ impl_890_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_890_meta_object__value
+        &impl_890_meta_object__value
     },
     &impl_890,
     NULL
@@ -94271,7 +94271,7 @@ impl_890 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_890__value,
+        &impl_890__value,
         {
             (const afw_object_t *)&impl_890_meta_object,
             (const afw_object_t *)&impl_877,
@@ -94350,7 +94350,7 @@ impl_891_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_891_meta_object__value
+        &impl_891_meta_object__value
     },
     &impl_891,
     NULL
@@ -94374,7 +94374,7 @@ impl_891 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_891__value,
+        &impl_891__value,
         {
             (const afw_object_t *)&impl_891_meta_object,
             (const afw_object_t *)&impl_877,
@@ -94447,7 +94447,7 @@ impl_892_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_892_meta_object__value
+        &impl_892_meta_object__value
     },
     &impl_892,
     NULL
@@ -94471,7 +94471,7 @@ impl_892 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_892__value,
+        &impl_892__value,
         {
             (const afw_object_t *)&impl_892_meta_object,
             (const afw_object_t *)&impl_877,
@@ -94544,7 +94544,7 @@ impl_893_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_893_meta_object__value
+        &impl_893_meta_object__value
     },
     &impl_893,
     NULL
@@ -94568,7 +94568,7 @@ impl_893 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_893__value,
+        &impl_893__value,
         {
             (const afw_object_t *)&impl_893_meta_object,
             (const afw_object_t *)&impl_877,
@@ -94811,7 +94811,7 @@ impl_877_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_877_meta_object__value
+        &impl_877_meta_object__value
     },
     &impl_877,
     NULL
@@ -94835,7 +94835,7 @@ impl_877 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_877__value,
+        &impl_877__value,
         {
             (const afw_object_t *)&impl_877_meta_object,
             (const afw_object_t *)&impl_876,
@@ -94963,7 +94963,7 @@ impl_876_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_876_meta_object__value
+        &impl_876_meta_object__value
     },
     &impl_876,
     NULL
@@ -94987,7 +94987,7 @@ impl_876 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_876__value,
+        &impl_876__value,
         {
             (const afw_object_t *)&impl_876_meta_object,
             NULL,
@@ -95042,7 +95042,7 @@ impl_895_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_895_meta_object__value
+        &impl_895_meta_object__value
     },
     &impl_895,
     NULL
@@ -95066,7 +95066,7 @@ impl_895 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_895__value,
+        &impl_895__value,
         {
             (const afw_object_t *)&impl_895_meta_object,
             (const afw_object_t *)&impl_894,
@@ -95180,7 +95180,7 @@ impl_894_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_894_meta_object__value
+        &impl_894_meta_object__value
     },
     &impl_894,
     NULL
@@ -95204,7 +95204,7 @@ impl_894 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_894__value,
+        &impl_894__value,
         {
             (const afw_object_t *)&impl_894_meta_object,
             NULL,
@@ -95245,7 +95245,7 @@ impl_897_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_897_meta_object__value
+        &impl_897_meta_object__value
     },
     &impl_897,
     NULL
@@ -95269,7 +95269,7 @@ impl_897 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_897__value,
+        &impl_897__value,
         {
             (const afw_object_t *)&impl_897_meta_object,
             (const afw_object_t *)&impl_896,
@@ -95376,7 +95376,7 @@ impl_896_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_896_meta_object__value
+        &impl_896_meta_object__value
     },
     &impl_896,
     NULL
@@ -95400,7 +95400,7 @@ impl_896 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_896__value,
+        &impl_896__value,
         {
             (const afw_object_t *)&impl_896_meta_object,
             NULL,
@@ -95469,7 +95469,7 @@ impl_899_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_899_meta_object__value
+        &impl_899_meta_object__value
     },
     &impl_899,
     NULL
@@ -95493,7 +95493,7 @@ impl_899 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_899__value,
+        &impl_899__value,
         {
             (const afw_object_t *)&impl_899_meta_object,
             (const afw_object_t *)&impl_898,
@@ -95607,7 +95607,7 @@ impl_898_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_898_meta_object__value
+        &impl_898_meta_object__value
     },
     &impl_898,
     NULL
@@ -95631,7 +95631,7 @@ impl_898 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_898__value,
+        &impl_898__value,
         {
             (const afw_object_t *)&impl_898_meta_object,
             NULL,
@@ -95709,7 +95709,7 @@ impl_902_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_902_meta_object__value
+        &impl_902_meta_object__value
     },
     &impl_902,
     NULL
@@ -95733,7 +95733,7 @@ impl_902 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_902__value,
+        &impl_902__value,
         {
             (const afw_object_t *)&impl_902_meta_object,
             (const afw_object_t *)&impl_901,
@@ -95805,7 +95805,7 @@ impl_903_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_903_meta_object__value
+        &impl_903_meta_object__value
     },
     &impl_903,
     NULL
@@ -95829,7 +95829,7 @@ impl_903 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_903__value,
+        &impl_903__value,
         {
             (const afw_object_t *)&impl_903_meta_object,
             (const afw_object_t *)&impl_901,
@@ -95901,7 +95901,7 @@ impl_904_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_904_meta_object__value
+        &impl_904_meta_object__value
     },
     &impl_904,
     NULL
@@ -95925,7 +95925,7 @@ impl_904 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_904__value,
+        &impl_904__value,
         {
             (const afw_object_t *)&impl_904_meta_object,
             (const afw_object_t *)&impl_901,
@@ -95997,7 +95997,7 @@ impl_905_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_905_meta_object__value
+        &impl_905_meta_object__value
     },
     &impl_905,
     NULL
@@ -96021,7 +96021,7 @@ impl_905 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_905__value,
+        &impl_905__value,
         {
             (const afw_object_t *)&impl_905_meta_object,
             (const afw_object_t *)&impl_901,
@@ -96093,7 +96093,7 @@ impl_906_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_906_meta_object__value
+        &impl_906_meta_object__value
     },
     &impl_906,
     NULL
@@ -96117,7 +96117,7 @@ impl_906 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_906__value,
+        &impl_906__value,
         {
             (const afw_object_t *)&impl_906_meta_object,
             (const afw_object_t *)&impl_901,
@@ -96189,7 +96189,7 @@ impl_907_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_907_meta_object__value
+        &impl_907_meta_object__value
     },
     &impl_907,
     NULL
@@ -96213,7 +96213,7 @@ impl_907 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_907__value,
+        &impl_907__value,
         {
             (const afw_object_t *)&impl_907_meta_object,
             (const afw_object_t *)&impl_901,
@@ -96285,7 +96285,7 @@ impl_908_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_908_meta_object__value
+        &impl_908_meta_object__value
     },
     &impl_908,
     NULL
@@ -96309,7 +96309,7 @@ impl_908 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_908__value,
+        &impl_908__value,
         {
             (const afw_object_t *)&impl_908_meta_object,
             (const afw_object_t *)&impl_901,
@@ -96381,7 +96381,7 @@ impl_909_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_909_meta_object__value
+        &impl_909_meta_object__value
     },
     &impl_909,
     NULL
@@ -96405,7 +96405,7 @@ impl_909 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_909__value,
+        &impl_909__value,
         {
             (const afw_object_t *)&impl_909_meta_object,
             (const afw_object_t *)&impl_901,
@@ -96477,7 +96477,7 @@ impl_910_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_910_meta_object__value
+        &impl_910_meta_object__value
     },
     &impl_910,
     NULL
@@ -96501,7 +96501,7 @@ impl_910 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_910__value,
+        &impl_910__value,
         {
             (const afw_object_t *)&impl_910_meta_object,
             (const afw_object_t *)&impl_901,
@@ -96560,7 +96560,7 @@ impl_911_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_911_meta_object__value
+        &impl_911_meta_object__value
     },
     &impl_911,
     NULL
@@ -96584,7 +96584,7 @@ impl_911 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_911__value,
+        &impl_911__value,
         {
             (const afw_object_t *)&impl_911_meta_object,
             (const afw_object_t *)&impl_901,
@@ -96749,7 +96749,7 @@ impl_901_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_901_meta_object__value
+        &impl_901_meta_object__value
     },
     &impl_901,
     NULL
@@ -96773,7 +96773,7 @@ impl_901 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_901__value,
+        &impl_901__value,
         {
             (const afw_object_t *)&impl_901_meta_object,
             (const afw_object_t *)&impl_900,
@@ -96926,7 +96926,7 @@ impl_900_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_900_meta_object__value
+        &impl_900_meta_object__value
     },
     &impl_900,
     NULL
@@ -96950,7 +96950,7 @@ impl_900 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_900__value,
+        &impl_900__value,
         {
             (const afw_object_t *)&impl_900_meta_object,
             NULL,
@@ -97019,7 +97019,7 @@ impl_913_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_913_meta_object__value
+        &impl_913_meta_object__value
     },
     &impl_913,
     NULL
@@ -97043,7 +97043,7 @@ impl_913 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_913__value,
+        &impl_913__value,
         {
             (const afw_object_t *)&impl_913_meta_object,
             (const afw_object_t *)&impl_912,
@@ -97196,7 +97196,7 @@ impl_912_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_912_meta_object__value
+        &impl_912_meta_object__value
     },
     &impl_912,
     NULL
@@ -97220,7 +97220,7 @@ impl_912 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_912__value,
+        &impl_912__value,
         {
             (const afw_object_t *)&impl_912_meta_object,
             NULL,
@@ -97298,7 +97298,7 @@ impl_916_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_916_meta_object__value
+        &impl_916_meta_object__value
     },
     &impl_916,
     NULL
@@ -97322,7 +97322,7 @@ impl_916 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_916__value,
+        &impl_916__value,
         {
             (const afw_object_t *)&impl_916_meta_object,
             (const afw_object_t *)&impl_915,
@@ -97394,7 +97394,7 @@ impl_917_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_917_meta_object__value
+        &impl_917_meta_object__value
     },
     &impl_917,
     NULL
@@ -97418,7 +97418,7 @@ impl_917 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_917__value,
+        &impl_917__value,
         {
             (const afw_object_t *)&impl_917_meta_object,
             (const afw_object_t *)&impl_915,
@@ -97490,7 +97490,7 @@ impl_918_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_918_meta_object__value
+        &impl_918_meta_object__value
     },
     &impl_918,
     NULL
@@ -97514,7 +97514,7 @@ impl_918 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_918__value,
+        &impl_918__value,
         {
             (const afw_object_t *)&impl_918_meta_object,
             (const afw_object_t *)&impl_915,
@@ -97586,7 +97586,7 @@ impl_919_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_919_meta_object__value
+        &impl_919_meta_object__value
     },
     &impl_919,
     NULL
@@ -97610,7 +97610,7 @@ impl_919 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_919__value,
+        &impl_919__value,
         {
             (const afw_object_t *)&impl_919_meta_object,
             (const afw_object_t *)&impl_915,
@@ -97689,7 +97689,7 @@ impl_920_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_920_meta_object__value
+        &impl_920_meta_object__value
     },
     &impl_920,
     NULL
@@ -97713,7 +97713,7 @@ impl_920 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_920__value,
+        &impl_920__value,
         {
             (const afw_object_t *)&impl_920_meta_object,
             (const afw_object_t *)&impl_915,
@@ -97785,7 +97785,7 @@ impl_921_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_921_meta_object__value
+        &impl_921_meta_object__value
     },
     &impl_921,
     NULL
@@ -97809,7 +97809,7 @@ impl_921 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_921__value,
+        &impl_921__value,
         {
             (const afw_object_t *)&impl_921_meta_object,
             (const afw_object_t *)&impl_915,
@@ -97881,7 +97881,7 @@ impl_922_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_922_meta_object__value
+        &impl_922_meta_object__value
     },
     &impl_922,
     NULL
@@ -97905,7 +97905,7 @@ impl_922 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_922__value,
+        &impl_922__value,
         {
             (const afw_object_t *)&impl_922_meta_object,
             (const afw_object_t *)&impl_915,
@@ -97977,7 +97977,7 @@ impl_923_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_923_meta_object__value
+        &impl_923_meta_object__value
     },
     &impl_923,
     NULL
@@ -98001,7 +98001,7 @@ impl_923 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_923__value,
+        &impl_923__value,
         {
             (const afw_object_t *)&impl_923_meta_object,
             (const afw_object_t *)&impl_915,
@@ -98073,7 +98073,7 @@ impl_924_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_924_meta_object__value
+        &impl_924_meta_object__value
     },
     &impl_924,
     NULL
@@ -98097,7 +98097,7 @@ impl_924 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_924__value,
+        &impl_924__value,
         {
             (const afw_object_t *)&impl_924_meta_object,
             (const afw_object_t *)&impl_915,
@@ -98169,7 +98169,7 @@ impl_925_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_925_meta_object__value
+        &impl_925_meta_object__value
     },
     &impl_925,
     NULL
@@ -98193,7 +98193,7 @@ impl_925 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_925__value,
+        &impl_925__value,
         {
             (const afw_object_t *)&impl_925_meta_object,
             (const afw_object_t *)&impl_915,
@@ -98272,7 +98272,7 @@ impl_926_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_926_meta_object__value
+        &impl_926_meta_object__value
     },
     &impl_926,
     NULL
@@ -98296,7 +98296,7 @@ impl_926 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_926__value,
+        &impl_926__value,
         {
             (const afw_object_t *)&impl_926_meta_object,
             (const afw_object_t *)&impl_915,
@@ -98368,7 +98368,7 @@ impl_927_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_927_meta_object__value
+        &impl_927_meta_object__value
     },
     &impl_927,
     NULL
@@ -98392,7 +98392,7 @@ impl_927 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_927__value,
+        &impl_927__value,
         {
             (const afw_object_t *)&impl_927_meta_object,
             (const afw_object_t *)&impl_915,
@@ -98464,7 +98464,7 @@ impl_928_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_928_meta_object__value
+        &impl_928_meta_object__value
     },
     &impl_928,
     NULL
@@ -98488,7 +98488,7 @@ impl_928 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_928__value,
+        &impl_928__value,
         {
             (const afw_object_t *)&impl_928_meta_object,
             (const afw_object_t *)&impl_915,
@@ -98692,7 +98692,7 @@ impl_915_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_915_meta_object__value
+        &impl_915_meta_object__value
     },
     &impl_915,
     NULL
@@ -98716,7 +98716,7 @@ impl_915 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_915__value,
+        &impl_915__value,
         {
             (const afw_object_t *)&impl_915_meta_object,
             (const afw_object_t *)&impl_914,
@@ -98869,7 +98869,7 @@ impl_914_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_914_meta_object__value
+        &impl_914_meta_object__value
     },
     &impl_914,
     NULL
@@ -98893,7 +98893,7 @@ impl_914 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_914__value,
+        &impl_914__value,
         {
             (const afw_object_t *)&impl_914_meta_object,
             NULL,
@@ -98965,7 +98965,7 @@ impl_931_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_931_meta_object__value
+        &impl_931_meta_object__value
     },
     &impl_931,
     NULL
@@ -98989,7 +98989,7 @@ impl_931 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_931__value,
+        &impl_931__value,
         {
             (const afw_object_t *)&impl_931_meta_object,
             (const afw_object_t *)&impl_930,
@@ -99055,7 +99055,7 @@ impl_932_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_932_meta_object__value
+        &impl_932_meta_object__value
     },
     &impl_932,
     NULL
@@ -99079,7 +99079,7 @@ impl_932 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_932__value,
+        &impl_932__value,
         {
             (const afw_object_t *)&impl_932_meta_object,
             (const afw_object_t *)&impl_930,
@@ -99145,7 +99145,7 @@ impl_933_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_933_meta_object__value
+        &impl_933_meta_object__value
     },
     &impl_933,
     NULL
@@ -99169,7 +99169,7 @@ impl_933 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_933__value,
+        &impl_933__value,
         {
             (const afw_object_t *)&impl_933_meta_object,
             (const afw_object_t *)&impl_930,
@@ -99235,7 +99235,7 @@ impl_934_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_934_meta_object__value
+        &impl_934_meta_object__value
     },
     &impl_934,
     NULL
@@ -99259,7 +99259,7 @@ impl_934 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_934__value,
+        &impl_934__value,
         {
             (const afw_object_t *)&impl_934_meta_object,
             (const afw_object_t *)&impl_930,
@@ -99325,7 +99325,7 @@ impl_935_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_935_meta_object__value
+        &impl_935_meta_object__value
     },
     &impl_935,
     NULL
@@ -99349,7 +99349,7 @@ impl_935 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_935__value,
+        &impl_935__value,
         {
             (const afw_object_t *)&impl_935_meta_object,
             (const afw_object_t *)&impl_930,
@@ -99415,7 +99415,7 @@ impl_936_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_936_meta_object__value
+        &impl_936_meta_object__value
     },
     &impl_936,
     NULL
@@ -99439,7 +99439,7 @@ impl_936 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_936__value,
+        &impl_936__value,
         {
             (const afw_object_t *)&impl_936_meta_object,
             (const afw_object_t *)&impl_930,
@@ -99505,7 +99505,7 @@ impl_937_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_937_meta_object__value
+        &impl_937_meta_object__value
     },
     &impl_937,
     NULL
@@ -99529,7 +99529,7 @@ impl_937 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_937__value,
+        &impl_937__value,
         {
             (const afw_object_t *)&impl_937_meta_object,
             (const afw_object_t *)&impl_930,
@@ -99595,7 +99595,7 @@ impl_938_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_938_meta_object__value
+        &impl_938_meta_object__value
     },
     &impl_938,
     NULL
@@ -99619,7 +99619,7 @@ impl_938 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_938__value,
+        &impl_938__value,
         {
             (const afw_object_t *)&impl_938_meta_object,
             (const afw_object_t *)&impl_930,
@@ -99685,7 +99685,7 @@ impl_939_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_939_meta_object__value
+        &impl_939_meta_object__value
     },
     &impl_939,
     NULL
@@ -99709,7 +99709,7 @@ impl_939 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_939__value,
+        &impl_939__value,
         {
             (const afw_object_t *)&impl_939_meta_object,
             (const afw_object_t *)&impl_930,
@@ -99775,7 +99775,7 @@ impl_940_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_940_meta_object__value
+        &impl_940_meta_object__value
     },
     &impl_940,
     NULL
@@ -99799,7 +99799,7 @@ impl_940 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_940__value,
+        &impl_940__value,
         {
             (const afw_object_t *)&impl_940_meta_object,
             (const afw_object_t *)&impl_930,
@@ -99865,7 +99865,7 @@ impl_941_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_941_meta_object__value
+        &impl_941_meta_object__value
     },
     &impl_941,
     NULL
@@ -99889,7 +99889,7 @@ impl_941 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_941__value,
+        &impl_941__value,
         {
             (const afw_object_t *)&impl_941_meta_object,
             (const afw_object_t *)&impl_930,
@@ -99955,7 +99955,7 @@ impl_942_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_942_meta_object__value
+        &impl_942_meta_object__value
     },
     &impl_942,
     NULL
@@ -99979,7 +99979,7 @@ impl_942 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_942__value,
+        &impl_942__value,
         {
             (const afw_object_t *)&impl_942_meta_object,
             (const afw_object_t *)&impl_930,
@@ -100045,7 +100045,7 @@ impl_943_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_943_meta_object__value
+        &impl_943_meta_object__value
     },
     &impl_943,
     NULL
@@ -100069,7 +100069,7 @@ impl_943 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_943__value,
+        &impl_943__value,
         {
             (const afw_object_t *)&impl_943_meta_object,
             (const afw_object_t *)&impl_930,
@@ -100135,7 +100135,7 @@ impl_944_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_944_meta_object__value
+        &impl_944_meta_object__value
     },
     &impl_944,
     NULL
@@ -100159,7 +100159,7 @@ impl_944 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_944__value,
+        &impl_944__value,
         {
             (const afw_object_t *)&impl_944_meta_object,
             (const afw_object_t *)&impl_930,
@@ -100225,7 +100225,7 @@ impl_945_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_945_meta_object__value
+        &impl_945_meta_object__value
     },
     &impl_945,
     NULL
@@ -100249,7 +100249,7 @@ impl_945 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_945__value,
+        &impl_945__value,
         {
             (const afw_object_t *)&impl_945_meta_object,
             (const afw_object_t *)&impl_930,
@@ -100315,7 +100315,7 @@ impl_946_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_946_meta_object__value
+        &impl_946_meta_object__value
     },
     &impl_946,
     NULL
@@ -100339,7 +100339,7 @@ impl_946 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_946__value,
+        &impl_946__value,
         {
             (const afw_object_t *)&impl_946_meta_object,
             (const afw_object_t *)&impl_930,
@@ -100405,7 +100405,7 @@ impl_947_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_947_meta_object__value
+        &impl_947_meta_object__value
     },
     &impl_947,
     NULL
@@ -100429,7 +100429,7 @@ impl_947 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_947__value,
+        &impl_947__value,
         {
             (const afw_object_t *)&impl_947_meta_object,
             (const afw_object_t *)&impl_930,
@@ -100495,7 +100495,7 @@ impl_948_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_948_meta_object__value
+        &impl_948_meta_object__value
     },
     &impl_948,
     NULL
@@ -100519,7 +100519,7 @@ impl_948 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_948__value,
+        &impl_948__value,
         {
             (const afw_object_t *)&impl_948_meta_object,
             (const afw_object_t *)&impl_930,
@@ -100585,7 +100585,7 @@ impl_949_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_949_meta_object__value
+        &impl_949_meta_object__value
     },
     &impl_949,
     NULL
@@ -100609,7 +100609,7 @@ impl_949 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_949__value,
+        &impl_949__value,
         {
             (const afw_object_t *)&impl_949_meta_object,
             (const afw_object_t *)&impl_930,
@@ -100675,7 +100675,7 @@ impl_950_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_950_meta_object__value
+        &impl_950_meta_object__value
     },
     &impl_950,
     NULL
@@ -100699,7 +100699,7 @@ impl_950 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_950__value,
+        &impl_950__value,
         {
             (const afw_object_t *)&impl_950_meta_object,
             (const afw_object_t *)&impl_930,
@@ -100772,7 +100772,7 @@ impl_951_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_951_meta_object__value
+        &impl_951_meta_object__value
     },
     &impl_951,
     NULL
@@ -100796,7 +100796,7 @@ impl_951 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_951__value,
+        &impl_951__value,
         {
             (const afw_object_t *)&impl_951_meta_object,
             (const afw_object_t *)&impl_930,
@@ -101104,7 +101104,7 @@ impl_930_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_930_meta_object__value
+        &impl_930_meta_object__value
     },
     &impl_930,
     NULL
@@ -101128,7 +101128,7 @@ impl_930 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_930__value,
+        &impl_930__value,
         {
             (const afw_object_t *)&impl_930_meta_object,
             (const afw_object_t *)&impl_929,
@@ -101281,7 +101281,7 @@ impl_929_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_929_meta_object__value
+        &impl_929_meta_object__value
     },
     &impl_929,
     NULL
@@ -101305,7 +101305,7 @@ impl_929 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_929__value,
+        &impl_929__value,
         {
             (const afw_object_t *)&impl_929_meta_object,
             NULL,
@@ -101403,7 +101403,7 @@ impl_954_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_954_meta_object__value
+        &impl_954_meta_object__value
     },
     &impl_954,
     NULL
@@ -101427,7 +101427,7 @@ impl_954 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_954__value,
+        &impl_954__value,
         {
             (const afw_object_t *)&impl_954_meta_object,
             (const afw_object_t *)&impl_953,
@@ -101513,7 +101513,7 @@ impl_955_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_955_meta_object__value
+        &impl_955_meta_object__value
     },
     &impl_955,
     NULL
@@ -101537,7 +101537,7 @@ impl_955 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_955__value,
+        &impl_955__value,
         {
             (const afw_object_t *)&impl_955_meta_object,
             (const afw_object_t *)&impl_953,
@@ -101616,7 +101616,7 @@ impl_956_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_956_meta_object__value
+        &impl_956_meta_object__value
     },
     &impl_956,
     NULL
@@ -101640,7 +101640,7 @@ impl_956 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_956__value,
+        &impl_956__value,
         {
             (const afw_object_t *)&impl_956_meta_object,
             (const afw_object_t *)&impl_953,
@@ -101732,7 +101732,7 @@ impl_957_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_957_meta_object__value
+        &impl_957_meta_object__value
     },
     &impl_957,
     NULL
@@ -101756,7 +101756,7 @@ impl_957 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_957__value,
+        &impl_957__value,
         {
             (const afw_object_t *)&impl_957_meta_object,
             (const afw_object_t *)&impl_953,
@@ -101808,7 +101808,7 @@ impl_958_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_958_meta_object__value
+        &impl_958_meta_object__value
     },
     &impl_958,
     NULL
@@ -101832,7 +101832,7 @@ impl_958 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_958__value,
+        &impl_958__value,
         {
             (const afw_object_t *)&impl_958_meta_object,
             (const afw_object_t *)&impl_953,
@@ -101951,7 +101951,7 @@ impl_953_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_953_meta_object__value
+        &impl_953_meta_object__value
     },
     &impl_953,
     &impl_953_parentPaths
@@ -101975,7 +101975,7 @@ impl_953 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_953__value,
+        &impl_953__value,
         {
             (const afw_object_t *)&impl_953_meta_object,
             (const afw_object_t *)&impl_952,
@@ -102089,7 +102089,7 @@ impl_952_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_952_meta_object__value
+        &impl_952_meta_object__value
     },
     &impl_952,
     NULL
@@ -102113,7 +102113,7 @@ impl_952 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_952__value,
+        &impl_952__value,
         {
             (const afw_object_t *)&impl_952_meta_object,
             NULL,
@@ -102168,7 +102168,7 @@ impl_960_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_960_meta_object__value
+        &impl_960_meta_object__value
     },
     &impl_960,
     NULL
@@ -102192,7 +102192,7 @@ impl_960 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_960__value,
+        &impl_960__value,
         {
             (const afw_object_t *)&impl_960_meta_object,
             (const afw_object_t *)&impl_959,
@@ -102306,7 +102306,7 @@ impl_959_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_959_meta_object__value
+        &impl_959_meta_object__value
     },
     &impl_959,
     NULL
@@ -102330,7 +102330,7 @@ impl_959 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_959__value,
+        &impl_959__value,
         {
             (const afw_object_t *)&impl_959_meta_object,
             NULL,
@@ -102415,7 +102415,7 @@ impl_963_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_963_meta_object__value
+        &impl_963_meta_object__value
     },
     &impl_963,
     NULL
@@ -102439,7 +102439,7 @@ impl_963 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_963__value,
+        &impl_963__value,
         {
             (const afw_object_t *)&impl_963_meta_object,
             (const afw_object_t *)&impl_962,
@@ -102518,7 +102518,7 @@ impl_964_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_964_meta_object__value
+        &impl_964_meta_object__value
     },
     &impl_964,
     NULL
@@ -102542,7 +102542,7 @@ impl_964 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_964__value,
+        &impl_964__value,
         {
             (const afw_object_t *)&impl_964_meta_object,
             (const afw_object_t *)&impl_962,
@@ -102628,7 +102628,7 @@ impl_965_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_965_meta_object__value
+        &impl_965_meta_object__value
     },
     &impl_965,
     NULL
@@ -102652,7 +102652,7 @@ impl_965 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_965__value,
+        &impl_965__value,
         {
             (const afw_object_t *)&impl_965_meta_object,
             (const afw_object_t *)&impl_962,
@@ -102731,7 +102731,7 @@ impl_966_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_966_meta_object__value
+        &impl_966_meta_object__value
     },
     &impl_966,
     NULL
@@ -102755,7 +102755,7 @@ impl_966 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_966__value,
+        &impl_966__value,
         {
             (const afw_object_t *)&impl_966_meta_object,
             (const afw_object_t *)&impl_962,
@@ -102834,7 +102834,7 @@ impl_967_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_967_meta_object__value
+        &impl_967_meta_object__value
     },
     &impl_967,
     NULL
@@ -102858,7 +102858,7 @@ impl_967 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_967__value,
+        &impl_967__value,
         {
             (const afw_object_t *)&impl_967_meta_object,
             (const afw_object_t *)&impl_962,
@@ -102944,7 +102944,7 @@ impl_968_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_968_meta_object__value
+        &impl_968_meta_object__value
     },
     &impl_968,
     NULL
@@ -102968,7 +102968,7 @@ impl_968 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_968__value,
+        &impl_968__value,
         {
             (const afw_object_t *)&impl_968_meta_object,
             (const afw_object_t *)&impl_962,
@@ -103047,7 +103047,7 @@ impl_969_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_969_meta_object__value
+        &impl_969_meta_object__value
     },
     &impl_969,
     NULL
@@ -103071,7 +103071,7 @@ impl_969 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_969__value,
+        &impl_969__value,
         {
             (const afw_object_t *)&impl_969_meta_object,
             (const afw_object_t *)&impl_962,
@@ -103163,7 +103163,7 @@ impl_970_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_970_meta_object__value
+        &impl_970_meta_object__value
     },
     &impl_970,
     NULL
@@ -103187,7 +103187,7 @@ impl_970 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_970__value,
+        &impl_970__value,
         {
             (const afw_object_t *)&impl_970_meta_object,
             (const afw_object_t *)&impl_962,
@@ -103326,7 +103326,7 @@ impl_962_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_962_meta_object__value
+        &impl_962_meta_object__value
     },
     &impl_962,
     NULL
@@ -103350,7 +103350,7 @@ impl_962 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_962__value,
+        &impl_962__value,
         {
             (const afw_object_t *)&impl_962_meta_object,
             (const afw_object_t *)&impl_961,
@@ -103464,7 +103464,7 @@ impl_961_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_961_meta_object__value
+        &impl_961_meta_object__value
     },
     &impl_961,
     NULL
@@ -103488,7 +103488,7 @@ impl_961 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_961__value,
+        &impl_961__value,
         {
             (const afw_object_t *)&impl_961_meta_object,
             NULL,
@@ -103543,7 +103543,7 @@ impl_972_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_972_meta_object__value
+        &impl_972_meta_object__value
     },
     &impl_972,
     NULL
@@ -103567,7 +103567,7 @@ impl_972 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_972__value,
+        &impl_972__value,
         {
             (const afw_object_t *)&impl_972_meta_object,
             (const afw_object_t *)&impl_971,
@@ -103681,7 +103681,7 @@ impl_971_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_971_meta_object__value
+        &impl_971_meta_object__value
     },
     &impl_971,
     NULL
@@ -103705,7 +103705,7 @@ impl_971 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_971__value,
+        &impl_971__value,
         {
             (const afw_object_t *)&impl_971_meta_object,
             NULL,
@@ -103784,7 +103784,7 @@ impl_975_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_975_meta_object__value
+        &impl_975_meta_object__value
     },
     &impl_975,
     NULL
@@ -103808,7 +103808,7 @@ impl_975 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_975__value,
+        &impl_975__value,
         {
             (const afw_object_t *)&impl_975_meta_object,
             (const afw_object_t *)&impl_974,
@@ -103937,7 +103937,7 @@ impl_976_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_976_meta_object__value
+        &impl_976_meta_object__value
     },
     &impl_976,
     NULL
@@ -103961,7 +103961,7 @@ impl_976 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_976__value,
+        &impl_976__value,
         {
             (const afw_object_t *)&impl_976_meta_object,
             (const afw_object_t *)&impl_974,
@@ -104027,7 +104027,7 @@ impl_977_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_977_meta_object__value
+        &impl_977_meta_object__value
     },
     &impl_977,
     NULL
@@ -104051,7 +104051,7 @@ impl_977 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_977__value,
+        &impl_977__value,
         {
             (const afw_object_t *)&impl_977_meta_object,
             (const afw_object_t *)&impl_974,
@@ -104117,7 +104117,7 @@ impl_978_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_978_meta_object__value
+        &impl_978_meta_object__value
     },
     &impl_978,
     NULL
@@ -104141,7 +104141,7 @@ impl_978 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_978__value,
+        &impl_978__value,
         {
             (const afw_object_t *)&impl_978_meta_object,
             (const afw_object_t *)&impl_974,
@@ -104228,7 +104228,7 @@ impl_974_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_974_meta_object__value
+        &impl_974_meta_object__value
     },
     &impl_974,
     NULL
@@ -104252,7 +104252,7 @@ impl_974 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_974__value,
+        &impl_974__value,
         {
             (const afw_object_t *)&impl_974_meta_object,
             (const afw_object_t *)&impl_973,
@@ -104405,7 +104405,7 @@ impl_973_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_973_meta_object__value
+        &impl_973_meta_object__value
     },
     &impl_973,
     NULL
@@ -104429,7 +104429,7 @@ impl_973 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_973__value,
+        &impl_973__value,
         {
             (const afw_object_t *)&impl_973_meta_object,
             NULL,
@@ -104521,7 +104521,7 @@ impl_981_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_981_meta_object__value
+        &impl_981_meta_object__value
     },
     &impl_981,
     NULL
@@ -104545,7 +104545,7 @@ impl_981 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_981__value,
+        &impl_981__value,
         {
             (const afw_object_t *)&impl_981_meta_object,
             (const afw_object_t *)&impl_980,
@@ -104618,7 +104618,7 @@ impl_982_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_982_meta_object__value
+        &impl_982_meta_object__value
     },
     &impl_982,
     NULL
@@ -104642,7 +104642,7 @@ impl_982 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_982__value,
+        &impl_982__value,
         {
             (const afw_object_t *)&impl_982_meta_object,
             (const afw_object_t *)&impl_980,
@@ -104715,7 +104715,7 @@ impl_983_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_983_meta_object__value
+        &impl_983_meta_object__value
     },
     &impl_983,
     NULL
@@ -104739,7 +104739,7 @@ impl_983 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_983__value,
+        &impl_983__value,
         {
             (const afw_object_t *)&impl_983_meta_object,
             (const afw_object_t *)&impl_980,
@@ -104805,7 +104805,7 @@ impl_984_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_984_meta_object__value
+        &impl_984_meta_object__value
     },
     &impl_984,
     NULL
@@ -104829,7 +104829,7 @@ impl_984 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_984__value,
+        &impl_984__value,
         {
             (const afw_object_t *)&impl_984_meta_object,
             (const afw_object_t *)&impl_980,
@@ -104916,7 +104916,7 @@ impl_980_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_980_meta_object__value
+        &impl_980_meta_object__value
     },
     &impl_980,
     NULL
@@ -104940,7 +104940,7 @@ impl_980 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_980__value,
+        &impl_980__value,
         {
             (const afw_object_t *)&impl_980_meta_object,
             (const afw_object_t *)&impl_979,
@@ -105093,7 +105093,7 @@ impl_979_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_979_meta_object__value
+        &impl_979_meta_object__value
     },
     &impl_979,
     NULL
@@ -105117,7 +105117,7 @@ impl_979 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_979__value,
+        &impl_979__value,
         {
             (const afw_object_t *)&impl_979_meta_object,
             NULL,
@@ -105158,7 +105158,7 @@ impl_986_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_986_meta_object__value
+        &impl_986_meta_object__value
     },
     &impl_986,
     NULL
@@ -105182,7 +105182,7 @@ impl_986 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_986__value,
+        &impl_986__value,
         {
             (const afw_object_t *)&impl_986_meta_object,
             (const afw_object_t *)&impl_985,
@@ -105251,7 +105251,7 @@ impl_988_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_988_meta_object__value
+        &impl_988_meta_object__value
     },
     &impl_988,
     NULL
@@ -105275,7 +105275,7 @@ impl_988 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_988__value,
+        &impl_988__value,
         {
             (const afw_object_t *)&impl_988_meta_object,
             (const afw_object_t *)&impl_987,
@@ -105323,7 +105323,7 @@ impl_987_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_987_meta_object__value
+        &impl_987_meta_object__value
     },
     &impl_987,
     NULL
@@ -105347,7 +105347,7 @@ impl_987 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_987__value,
+        &impl_987__value,
         {
             (const afw_object_t *)&impl_987_meta_object,
             (const afw_object_t *)&impl_985,
@@ -105513,7 +105513,7 @@ impl_985_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_985_meta_object__value
+        &impl_985_meta_object__value
     },
     &impl_985,
     NULL
@@ -105537,7 +105537,7 @@ impl_985 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_985__value,
+        &impl_985__value,
         {
             (const afw_object_t *)&impl_985_meta_object,
             NULL,
@@ -105591,7 +105591,7 @@ impl_992_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_992_meta_object__value
+        &impl_992_meta_object__value
     },
     &impl_992,
     NULL
@@ -105615,7 +105615,7 @@ impl_992 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_992__value,
+        &impl_992__value,
         {
             (const afw_object_t *)&impl_992_meta_object,
             (const afw_object_t *)&impl_991,
@@ -105711,7 +105711,7 @@ impl_991_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_991_meta_object__value
+        &impl_991_meta_object__value
     },
     &impl_991,
     NULL
@@ -105735,7 +105735,7 @@ impl_991 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_991__value,
+        &impl_991__value,
         {
             (const afw_object_t *)&impl_991_meta_object,
             (const afw_object_t *)&impl_990,
@@ -105783,7 +105783,7 @@ impl_994_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_994_meta_object__value
+        &impl_994_meta_object__value
     },
     &impl_994,
     NULL
@@ -105807,7 +105807,7 @@ impl_994 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_994__value,
+        &impl_994__value,
         {
             (const afw_object_t *)&impl_994_meta_object,
             (const afw_object_t *)&impl_993,
@@ -105896,7 +105896,7 @@ impl_993_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_993_meta_object__value
+        &impl_993_meta_object__value
     },
     &impl_993,
     NULL
@@ -105920,7 +105920,7 @@ impl_993 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_993__value,
+        &impl_993__value,
         {
             (const afw_object_t *)&impl_993_meta_object,
             (const afw_object_t *)&impl_990,
@@ -105981,7 +105981,7 @@ impl_990_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_990_meta_object__value
+        &impl_990_meta_object__value
     },
     &impl_990,
     NULL
@@ -106005,7 +106005,7 @@ impl_990 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_990__value,
+        &impl_990__value,
         {
             (const afw_object_t *)&impl_990_meta_object,
             (const afw_object_t *)&impl_989,
@@ -106053,7 +106053,7 @@ impl_996_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_996_meta_object__value
+        &impl_996_meta_object__value
     },
     &impl_996,
     NULL
@@ -106077,7 +106077,7 @@ impl_996 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_996__value,
+        &impl_996__value,
         {
             (const afw_object_t *)&impl_996_meta_object,
             (const afw_object_t *)&impl_995,
@@ -106145,7 +106145,7 @@ impl_995_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_995_meta_object__value
+        &impl_995_meta_object__value
     },
     &impl_995,
     NULL
@@ -106169,7 +106169,7 @@ impl_995 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_995__value,
+        &impl_995__value,
         {
             (const afw_object_t *)&impl_995_meta_object,
             (const afw_object_t *)&impl_989,
@@ -106335,7 +106335,7 @@ impl_989_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_989_meta_object__value
+        &impl_989_meta_object__value
     },
     &impl_989,
     NULL
@@ -106359,7 +106359,7 @@ impl_989 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_989__value,
+        &impl_989__value,
         {
             (const afw_object_t *)&impl_989_meta_object,
             NULL,
@@ -106400,7 +106400,7 @@ impl_998_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_998_meta_object__value
+        &impl_998_meta_object__value
     },
     &impl_998,
     NULL
@@ -106424,7 +106424,7 @@ impl_998 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_998__value,
+        &impl_998__value,
         {
             (const afw_object_t *)&impl_998_meta_object,
             (const afw_object_t *)&impl_997,
@@ -106481,7 +106481,7 @@ impl_999_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_999_meta_object__value
+        &impl_999_meta_object__value
     },
     &impl_999,
     &impl_999_parentPaths
@@ -106505,7 +106505,7 @@ impl_999 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_999__value,
+        &impl_999__value,
         {
             (const afw_object_t *)&impl_999_meta_object,
             (const afw_object_t *)&impl_997,
@@ -106671,7 +106671,7 @@ impl_997_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_997_meta_object__value
+        &impl_997_meta_object__value
     },
     &impl_997,
     NULL
@@ -106695,7 +106695,7 @@ impl_997 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_997__value,
+        &impl_997__value,
         {
             (const afw_object_t *)&impl_997_meta_object,
             NULL,
@@ -106743,7 +106743,7 @@ impl_1001_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1001_meta_object__value
+        &impl_1001_meta_object__value
     },
     &impl_1001,
     NULL
@@ -106767,7 +106767,7 @@ impl_1001 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1001__value,
+        &impl_1001__value,
         {
             (const afw_object_t *)&impl_1001_meta_object,
             (const afw_object_t *)&impl_1000,
@@ -106829,7 +106829,7 @@ impl_1003_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1003_meta_object__value
+        &impl_1003_meta_object__value
     },
     &impl_1003,
     NULL
@@ -106853,7 +106853,7 @@ impl_1003 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1003__value,
+        &impl_1003__value,
         {
             (const afw_object_t *)&impl_1003_meta_object,
             (const afw_object_t *)&impl_1002,
@@ -106912,7 +106912,7 @@ impl_1004_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1004_meta_object__value
+        &impl_1004_meta_object__value
     },
     &impl_1004,
     NULL
@@ -106936,7 +106936,7 @@ impl_1004 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1004__value,
+        &impl_1004__value,
         {
             (const afw_object_t *)&impl_1004_meta_object,
             (const afw_object_t *)&impl_1002,
@@ -106995,7 +106995,7 @@ impl_1005_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1005_meta_object__value
+        &impl_1005_meta_object__value
     },
     &impl_1005,
     NULL
@@ -107019,7 +107019,7 @@ impl_1005 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1005__value,
+        &impl_1005__value,
         {
             (const afw_object_t *)&impl_1005_meta_object,
             (const afw_object_t *)&impl_1002,
@@ -107078,7 +107078,7 @@ impl_1006_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1006_meta_object__value
+        &impl_1006_meta_object__value
     },
     &impl_1006,
     NULL
@@ -107102,7 +107102,7 @@ impl_1006 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1006__value,
+        &impl_1006__value,
         {
             (const afw_object_t *)&impl_1006_meta_object,
             (const afw_object_t *)&impl_1002,
@@ -107161,7 +107161,7 @@ impl_1007_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1007_meta_object__value
+        &impl_1007_meta_object__value
     },
     &impl_1007,
     NULL
@@ -107185,7 +107185,7 @@ impl_1007 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1007__value,
+        &impl_1007__value,
         {
             (const afw_object_t *)&impl_1007_meta_object,
             (const afw_object_t *)&impl_1002,
@@ -107244,7 +107244,7 @@ impl_1008_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1008_meta_object__value
+        &impl_1008_meta_object__value
     },
     &impl_1008,
     NULL
@@ -107268,7 +107268,7 @@ impl_1008 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1008__value,
+        &impl_1008__value,
         {
             (const afw_object_t *)&impl_1008_meta_object,
             (const afw_object_t *)&impl_1002,
@@ -107327,7 +107327,7 @@ impl_1009_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1009_meta_object__value
+        &impl_1009_meta_object__value
     },
     &impl_1009,
     NULL
@@ -107351,7 +107351,7 @@ impl_1009 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1009__value,
+        &impl_1009__value,
         {
             (const afw_object_t *)&impl_1009_meta_object,
             (const afw_object_t *)&impl_1002,
@@ -107410,7 +107410,7 @@ impl_1010_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1010_meta_object__value
+        &impl_1010_meta_object__value
     },
     &impl_1010,
     NULL
@@ -107434,7 +107434,7 @@ impl_1010 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1010__value,
+        &impl_1010__value,
         {
             (const afw_object_t *)&impl_1010_meta_object,
             (const afw_object_t *)&impl_1002,
@@ -107493,7 +107493,7 @@ impl_1011_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1011_meta_object__value
+        &impl_1011_meta_object__value
     },
     &impl_1011,
     NULL
@@ -107517,7 +107517,7 @@ impl_1011 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1011__value,
+        &impl_1011__value,
         {
             (const afw_object_t *)&impl_1011_meta_object,
             (const afw_object_t *)&impl_1002,
@@ -107576,7 +107576,7 @@ impl_1012_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1012_meta_object__value
+        &impl_1012_meta_object__value
     },
     &impl_1012,
     NULL
@@ -107600,7 +107600,7 @@ impl_1012 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1012__value,
+        &impl_1012__value,
         {
             (const afw_object_t *)&impl_1012_meta_object,
             (const afw_object_t *)&impl_1002,
@@ -107659,7 +107659,7 @@ impl_1013_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1013_meta_object__value
+        &impl_1013_meta_object__value
     },
     &impl_1013,
     NULL
@@ -107683,7 +107683,7 @@ impl_1013 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1013__value,
+        &impl_1013__value,
         {
             (const afw_object_t *)&impl_1013_meta_object,
             (const afw_object_t *)&impl_1002,
@@ -107742,7 +107742,7 @@ impl_1014_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1014_meta_object__value
+        &impl_1014_meta_object__value
     },
     &impl_1014,
     NULL
@@ -107766,7 +107766,7 @@ impl_1014 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1014__value,
+        &impl_1014__value,
         {
             (const afw_object_t *)&impl_1014_meta_object,
             (const afw_object_t *)&impl_1002,
@@ -107825,7 +107825,7 @@ impl_1015_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1015_meta_object__value
+        &impl_1015_meta_object__value
     },
     &impl_1015,
     NULL
@@ -107849,7 +107849,7 @@ impl_1015 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1015__value,
+        &impl_1015__value,
         {
             (const afw_object_t *)&impl_1015_meta_object,
             (const afw_object_t *)&impl_1002,
@@ -107908,7 +107908,7 @@ impl_1016_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1016_meta_object__value
+        &impl_1016_meta_object__value
     },
     &impl_1016,
     NULL
@@ -107932,7 +107932,7 @@ impl_1016 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1016__value,
+        &impl_1016__value,
         {
             (const afw_object_t *)&impl_1016_meta_object,
             (const afw_object_t *)&impl_1002,
@@ -107991,7 +107991,7 @@ impl_1017_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1017_meta_object__value
+        &impl_1017_meta_object__value
     },
     &impl_1017,
     NULL
@@ -108015,7 +108015,7 @@ impl_1017 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1017__value,
+        &impl_1017__value,
         {
             (const afw_object_t *)&impl_1017_meta_object,
             (const afw_object_t *)&impl_1002,
@@ -108074,7 +108074,7 @@ impl_1018_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1018_meta_object__value
+        &impl_1018_meta_object__value
     },
     &impl_1018,
     NULL
@@ -108098,7 +108098,7 @@ impl_1018 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1018__value,
+        &impl_1018__value,
         {
             (const afw_object_t *)&impl_1018_meta_object,
             (const afw_object_t *)&impl_1002,
@@ -108157,7 +108157,7 @@ impl_1019_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1019_meta_object__value
+        &impl_1019_meta_object__value
     },
     &impl_1019,
     NULL
@@ -108181,7 +108181,7 @@ impl_1019 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1019__value,
+        &impl_1019__value,
         {
             (const afw_object_t *)&impl_1019_meta_object,
             (const afw_object_t *)&impl_1002,
@@ -108240,7 +108240,7 @@ impl_1020_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1020_meta_object__value
+        &impl_1020_meta_object__value
     },
     &impl_1020,
     NULL
@@ -108264,7 +108264,7 @@ impl_1020 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1020__value,
+        &impl_1020__value,
         {
             (const afw_object_t *)&impl_1020_meta_object,
             (const afw_object_t *)&impl_1002,
@@ -108323,7 +108323,7 @@ impl_1021_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1021_meta_object__value
+        &impl_1021_meta_object__value
     },
     &impl_1021,
     NULL
@@ -108347,7 +108347,7 @@ impl_1021 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1021__value,
+        &impl_1021__value,
         {
             (const afw_object_t *)&impl_1021_meta_object,
             (const afw_object_t *)&impl_1002,
@@ -108406,7 +108406,7 @@ impl_1022_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1022_meta_object__value
+        &impl_1022_meta_object__value
     },
     &impl_1022,
     NULL
@@ -108430,7 +108430,7 @@ impl_1022 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1022__value,
+        &impl_1022__value,
         {
             (const afw_object_t *)&impl_1022_meta_object,
             (const afw_object_t *)&impl_1002,
@@ -108489,7 +108489,7 @@ impl_1023_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1023_meta_object__value
+        &impl_1023_meta_object__value
     },
     &impl_1023,
     NULL
@@ -108513,7 +108513,7 @@ impl_1023 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1023__value,
+        &impl_1023__value,
         {
             (const afw_object_t *)&impl_1023_meta_object,
             (const afw_object_t *)&impl_1002,
@@ -108572,7 +108572,7 @@ impl_1024_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1024_meta_object__value
+        &impl_1024_meta_object__value
     },
     &impl_1024,
     NULL
@@ -108596,7 +108596,7 @@ impl_1024 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1024__value,
+        &impl_1024__value,
         {
             (const afw_object_t *)&impl_1024_meta_object,
             (const afw_object_t *)&impl_1002,
@@ -108655,7 +108655,7 @@ impl_1025_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1025_meta_object__value
+        &impl_1025_meta_object__value
     },
     &impl_1025,
     NULL
@@ -108679,7 +108679,7 @@ impl_1025 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1025__value,
+        &impl_1025__value,
         {
             (const afw_object_t *)&impl_1025_meta_object,
             (const afw_object_t *)&impl_1002,
@@ -108738,7 +108738,7 @@ impl_1026_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1026_meta_object__value
+        &impl_1026_meta_object__value
     },
     &impl_1026,
     NULL
@@ -108762,7 +108762,7 @@ impl_1026 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1026__value,
+        &impl_1026__value,
         {
             (const afw_object_t *)&impl_1026_meta_object,
             (const afw_object_t *)&impl_1002,
@@ -108821,7 +108821,7 @@ impl_1027_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1027_meta_object__value
+        &impl_1027_meta_object__value
     },
     &impl_1027,
     NULL
@@ -108845,7 +108845,7 @@ impl_1027 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1027__value,
+        &impl_1027__value,
         {
             (const afw_object_t *)&impl_1027_meta_object,
             (const afw_object_t *)&impl_1002,
@@ -108904,7 +108904,7 @@ impl_1028_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1028_meta_object__value
+        &impl_1028_meta_object__value
     },
     &impl_1028,
     NULL
@@ -108928,7 +108928,7 @@ impl_1028 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1028__value,
+        &impl_1028__value,
         {
             (const afw_object_t *)&impl_1028_meta_object,
             (const afw_object_t *)&impl_1002,
@@ -108987,7 +108987,7 @@ impl_1029_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1029_meta_object__value
+        &impl_1029_meta_object__value
     },
     &impl_1029,
     NULL
@@ -109011,7 +109011,7 @@ impl_1029 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1029__value,
+        &impl_1029__value,
         {
             (const afw_object_t *)&impl_1029_meta_object,
             (const afw_object_t *)&impl_1002,
@@ -109070,7 +109070,7 @@ impl_1030_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1030_meta_object__value
+        &impl_1030_meta_object__value
     },
     &impl_1030,
     NULL
@@ -109094,7 +109094,7 @@ impl_1030 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1030__value,
+        &impl_1030__value,
         {
             (const afw_object_t *)&impl_1030_meta_object,
             (const afw_object_t *)&impl_1002,
@@ -109153,7 +109153,7 @@ impl_1031_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1031_meta_object__value
+        &impl_1031_meta_object__value
     },
     &impl_1031,
     NULL
@@ -109177,7 +109177,7 @@ impl_1031 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1031__value,
+        &impl_1031__value,
         {
             (const afw_object_t *)&impl_1031_meta_object,
             (const afw_object_t *)&impl_1002,
@@ -109236,7 +109236,7 @@ impl_1032_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1032_meta_object__value
+        &impl_1032_meta_object__value
     },
     &impl_1032,
     NULL
@@ -109260,7 +109260,7 @@ impl_1032 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1032__value,
+        &impl_1032__value,
         {
             (const afw_object_t *)&impl_1032_meta_object,
             (const afw_object_t *)&impl_1002,
@@ -109319,7 +109319,7 @@ impl_1033_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1033_meta_object__value
+        &impl_1033_meta_object__value
     },
     &impl_1033,
     NULL
@@ -109343,7 +109343,7 @@ impl_1033 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1033__value,
+        &impl_1033__value,
         {
             (const afw_object_t *)&impl_1033_meta_object,
             (const afw_object_t *)&impl_1002,
@@ -109402,7 +109402,7 @@ impl_1034_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1034_meta_object__value
+        &impl_1034_meta_object__value
     },
     &impl_1034,
     NULL
@@ -109426,7 +109426,7 @@ impl_1034 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1034__value,
+        &impl_1034__value,
         {
             (const afw_object_t *)&impl_1034_meta_object,
             (const afw_object_t *)&impl_1002,
@@ -109485,7 +109485,7 @@ impl_1035_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1035_meta_object__value
+        &impl_1035_meta_object__value
     },
     &impl_1035,
     NULL
@@ -109509,7 +109509,7 @@ impl_1035 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1035__value,
+        &impl_1035__value,
         {
             (const afw_object_t *)&impl_1035_meta_object,
             (const afw_object_t *)&impl_1002,
@@ -109568,7 +109568,7 @@ impl_1036_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1036_meta_object__value
+        &impl_1036_meta_object__value
     },
     &impl_1036,
     NULL
@@ -109592,7 +109592,7 @@ impl_1036 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1036__value,
+        &impl_1036__value,
         {
             (const afw_object_t *)&impl_1036_meta_object,
             (const afw_object_t *)&impl_1002,
@@ -109651,7 +109651,7 @@ impl_1037_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1037_meta_object__value
+        &impl_1037_meta_object__value
     },
     &impl_1037,
     NULL
@@ -109675,7 +109675,7 @@ impl_1037 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1037__value,
+        &impl_1037__value,
         {
             (const afw_object_t *)&impl_1037_meta_object,
             (const afw_object_t *)&impl_1002,
@@ -109734,7 +109734,7 @@ impl_1038_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1038_meta_object__value
+        &impl_1038_meta_object__value
     },
     &impl_1038,
     NULL
@@ -109758,7 +109758,7 @@ impl_1038 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1038__value,
+        &impl_1038__value,
         {
             (const afw_object_t *)&impl_1038_meta_object,
             (const afw_object_t *)&impl_1002,
@@ -109817,7 +109817,7 @@ impl_1039_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1039_meta_object__value
+        &impl_1039_meta_object__value
     },
     &impl_1039,
     NULL
@@ -109841,7 +109841,7 @@ impl_1039 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1039__value,
+        &impl_1039__value,
         {
             (const afw_object_t *)&impl_1039_meta_object,
             (const afw_object_t *)&impl_1002,
@@ -109900,7 +109900,7 @@ impl_1040_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1040_meta_object__value
+        &impl_1040_meta_object__value
     },
     &impl_1040,
     NULL
@@ -109924,7 +109924,7 @@ impl_1040 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1040__value,
+        &impl_1040__value,
         {
             (const afw_object_t *)&impl_1040_meta_object,
             (const afw_object_t *)&impl_1002,
@@ -109983,7 +109983,7 @@ impl_1041_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1041_meta_object__value
+        &impl_1041_meta_object__value
     },
     &impl_1041,
     NULL
@@ -110007,7 +110007,7 @@ impl_1041 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1041__value,
+        &impl_1041__value,
         {
             (const afw_object_t *)&impl_1041_meta_object,
             (const afw_object_t *)&impl_1002,
@@ -110066,7 +110066,7 @@ impl_1042_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1042_meta_object__value
+        &impl_1042_meta_object__value
     },
     &impl_1042,
     NULL
@@ -110090,7 +110090,7 @@ impl_1042 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1042__value,
+        &impl_1042__value,
         {
             (const afw_object_t *)&impl_1042_meta_object,
             (const afw_object_t *)&impl_1002,
@@ -110149,7 +110149,7 @@ impl_1043_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1043_meta_object__value
+        &impl_1043_meta_object__value
     },
     &impl_1043,
     NULL
@@ -110173,7 +110173,7 @@ impl_1043 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1043__value,
+        &impl_1043__value,
         {
             (const afw_object_t *)&impl_1043_meta_object,
             (const afw_object_t *)&impl_1002,
@@ -110232,7 +110232,7 @@ impl_1044_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1044_meta_object__value
+        &impl_1044_meta_object__value
     },
     &impl_1044,
     NULL
@@ -110256,7 +110256,7 @@ impl_1044 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1044__value,
+        &impl_1044__value,
         {
             (const afw_object_t *)&impl_1044_meta_object,
             (const afw_object_t *)&impl_1002,
@@ -110315,7 +110315,7 @@ impl_1045_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1045_meta_object__value
+        &impl_1045_meta_object__value
     },
     &impl_1045,
     NULL
@@ -110339,7 +110339,7 @@ impl_1045 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1045__value,
+        &impl_1045__value,
         {
             (const afw_object_t *)&impl_1045_meta_object,
             (const afw_object_t *)&impl_1002,
@@ -110398,7 +110398,7 @@ impl_1046_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1046_meta_object__value
+        &impl_1046_meta_object__value
     },
     &impl_1046,
     NULL
@@ -110422,7 +110422,7 @@ impl_1046 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1046__value,
+        &impl_1046__value,
         {
             (const afw_object_t *)&impl_1046_meta_object,
             (const afw_object_t *)&impl_1002,
@@ -110481,7 +110481,7 @@ impl_1047_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1047_meta_object__value
+        &impl_1047_meta_object__value
     },
     &impl_1047,
     NULL
@@ -110505,7 +110505,7 @@ impl_1047 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1047__value,
+        &impl_1047__value,
         {
             (const afw_object_t *)&impl_1047_meta_object,
             (const afw_object_t *)&impl_1002,
@@ -111125,7 +111125,7 @@ impl_1002_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1002_meta_object__value
+        &impl_1002_meta_object__value
     },
     &impl_1002,
     NULL
@@ -111149,7 +111149,7 @@ impl_1002 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1002__value,
+        &impl_1002__value,
         {
             (const afw_object_t *)&impl_1002_meta_object,
             (const afw_object_t *)&impl_1000,
@@ -111276,7 +111276,7 @@ impl_1000_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1000_meta_object__value
+        &impl_1000_meta_object__value
     },
     &impl_1000,
     NULL
@@ -111300,7 +111300,7 @@ impl_1000 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_1000__value,
+        &impl_1000__value,
         {
             (const afw_object_t *)&impl_1000_meta_object,
             NULL,
@@ -111341,7 +111341,7 @@ impl_1049_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1049_meta_object__value
+        &impl_1049_meta_object__value
     },
     &impl_1049,
     NULL
@@ -111365,7 +111365,7 @@ impl_1049 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1049__value,
+        &impl_1049__value,
         {
             (const afw_object_t *)&impl_1049_meta_object,
             (const afw_object_t *)&impl_1048,
@@ -111434,7 +111434,7 @@ impl_1051_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1051_meta_object__value
+        &impl_1051_meta_object__value
     },
     &impl_1051,
     NULL
@@ -111458,7 +111458,7 @@ impl_1051 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1051__value,
+        &impl_1051__value,
         {
             (const afw_object_t *)&impl_1051_meta_object,
             (const afw_object_t *)&impl_1050,
@@ -111517,7 +111517,7 @@ impl_1052_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1052_meta_object__value
+        &impl_1052_meta_object__value
     },
     &impl_1052,
     NULL
@@ -111541,7 +111541,7 @@ impl_1052 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1052__value,
+        &impl_1052__value,
         {
             (const afw_object_t *)&impl_1052_meta_object,
             (const afw_object_t *)&impl_1050,
@@ -111607,7 +111607,7 @@ impl_1053_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1053_meta_object__value
+        &impl_1053_meta_object__value
     },
     &impl_1053,
     NULL
@@ -111631,7 +111631,7 @@ impl_1053 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1053__value,
+        &impl_1053__value,
         {
             (const afw_object_t *)&impl_1053_meta_object,
             (const afw_object_t *)&impl_1050,
@@ -111697,7 +111697,7 @@ impl_1054_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1054_meta_object__value
+        &impl_1054_meta_object__value
     },
     &impl_1054,
     NULL
@@ -111721,7 +111721,7 @@ impl_1054 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1054__value,
+        &impl_1054__value,
         {
             (const afw_object_t *)&impl_1054_meta_object,
             (const afw_object_t *)&impl_1050,
@@ -111808,7 +111808,7 @@ impl_1050_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1050_meta_object__value
+        &impl_1050_meta_object__value
     },
     &impl_1050,
     NULL
@@ -111832,7 +111832,7 @@ impl_1050 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1050__value,
+        &impl_1050__value,
         {
             (const afw_object_t *)&impl_1050_meta_object,
             (const afw_object_t *)&impl_1048,
@@ -111998,7 +111998,7 @@ impl_1048_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1048_meta_object__value
+        &impl_1048_meta_object__value
     },
     &impl_1048,
     NULL
@@ -112022,7 +112022,7 @@ impl_1048 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_1048__value,
+        &impl_1048__value,
         {
             (const afw_object_t *)&impl_1048_meta_object,
             NULL,
@@ -112063,7 +112063,7 @@ impl_1056_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1056_meta_object__value
+        &impl_1056_meta_object__value
     },
     &impl_1056,
     NULL
@@ -112087,7 +112087,7 @@ impl_1056 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1056__value,
+        &impl_1056__value,
         {
             (const afw_object_t *)&impl_1056_meta_object,
             (const afw_object_t *)&impl_1055,
@@ -112163,7 +112163,7 @@ impl_1058_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1058_meta_object__value
+        &impl_1058_meta_object__value
     },
     &impl_1058,
     NULL
@@ -112187,7 +112187,7 @@ impl_1058 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1058__value,
+        &impl_1058__value,
         {
             (const afw_object_t *)&impl_1058_meta_object,
             (const afw_object_t *)&impl_1057,
@@ -112253,7 +112253,7 @@ impl_1059_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1059_meta_object__value
+        &impl_1059_meta_object__value
     },
     &impl_1059,
     NULL
@@ -112277,7 +112277,7 @@ impl_1059 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1059__value,
+        &impl_1059__value,
         {
             (const afw_object_t *)&impl_1059_meta_object,
             (const afw_object_t *)&impl_1057,
@@ -112350,7 +112350,7 @@ impl_1060_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1060_meta_object__value
+        &impl_1060_meta_object__value
     },
     &impl_1060,
     NULL
@@ -112374,7 +112374,7 @@ impl_1060 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1060__value,
+        &impl_1060__value,
         {
             (const afw_object_t *)&impl_1060_meta_object,
             (const afw_object_t *)&impl_1057,
@@ -112440,7 +112440,7 @@ impl_1061_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1061_meta_object__value
+        &impl_1061_meta_object__value
     },
     &impl_1061,
     NULL
@@ -112464,7 +112464,7 @@ impl_1061 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1061__value,
+        &impl_1061__value,
         {
             (const afw_object_t *)&impl_1061_meta_object,
             (const afw_object_t *)&impl_1057,
@@ -112523,7 +112523,7 @@ impl_1062_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1062_meta_object__value
+        &impl_1062_meta_object__value
     },
     &impl_1062,
     NULL
@@ -112547,7 +112547,7 @@ impl_1062 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1062__value,
+        &impl_1062__value,
         {
             (const afw_object_t *)&impl_1062_meta_object,
             (const afw_object_t *)&impl_1057,
@@ -112626,7 +112626,7 @@ impl_1063_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1063_meta_object__value
+        &impl_1063_meta_object__value
     },
     &impl_1063,
     NULL
@@ -112650,7 +112650,7 @@ impl_1063 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1063__value,
+        &impl_1063__value,
         {
             (const afw_object_t *)&impl_1063_meta_object,
             (const afw_object_t *)&impl_1057,
@@ -112757,7 +112757,7 @@ impl_1064_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1064_meta_object__value
+        &impl_1064_meta_object__value
     },
     &impl_1064,
     NULL
@@ -112781,7 +112781,7 @@ impl_1064 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1064__value,
+        &impl_1064__value,
         {
             (const afw_object_t *)&impl_1064_meta_object,
             (const afw_object_t *)&impl_1057,
@@ -112847,7 +112847,7 @@ impl_1065_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1065_meta_object__value
+        &impl_1065_meta_object__value
     },
     &impl_1065,
     NULL
@@ -112871,7 +112871,7 @@ impl_1065 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1065__value,
+        &impl_1065__value,
         {
             (const afw_object_t *)&impl_1065_meta_object,
             (const afw_object_t *)&impl_1057,
@@ -112937,7 +112937,7 @@ impl_1066_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1066_meta_object__value
+        &impl_1066_meta_object__value
     },
     &impl_1066,
     NULL
@@ -112961,7 +112961,7 @@ impl_1066 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1066__value,
+        &impl_1066__value,
         {
             (const afw_object_t *)&impl_1066_meta_object,
             (const afw_object_t *)&impl_1057,
@@ -113113,7 +113113,7 @@ impl_1057_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1057_meta_object__value
+        &impl_1057_meta_object__value
     },
     &impl_1057,
     NULL
@@ -113137,7 +113137,7 @@ impl_1057 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1057__value,
+        &impl_1057__value,
         {
             (const afw_object_t *)&impl_1057_meta_object,
             (const afw_object_t *)&impl_1055,
@@ -113296,7 +113296,7 @@ impl_1055_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1055_meta_object__value
+        &impl_1055_meta_object__value
     },
     &impl_1055,
     NULL
@@ -113320,7 +113320,7 @@ impl_1055 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_1055__value,
+        &impl_1055__value,
         {
             (const afw_object_t *)&impl_1055_meta_object,
             NULL,
@@ -113375,7 +113375,7 @@ impl_1068_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1068_meta_object__value
+        &impl_1068_meta_object__value
     },
     &impl_1068,
     NULL
@@ -113399,7 +113399,7 @@ impl_1068 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1068__value,
+        &impl_1068__value,
         {
             (const afw_object_t *)&impl_1068_meta_object,
             (const afw_object_t *)&impl_1067,
@@ -113506,7 +113506,7 @@ impl_1067_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1067_meta_object__value
+        &impl_1067_meta_object__value
     },
     &impl_1067,
     NULL
@@ -113530,7 +113530,7 @@ impl_1067 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_1067__value,
+        &impl_1067__value,
         {
             (const afw_object_t *)&impl_1067_meta_object,
             NULL,
@@ -113584,7 +113584,7 @@ impl_1072_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1072_meta_object__value
+        &impl_1072_meta_object__value
     },
     &impl_1072,
     NULL
@@ -113608,7 +113608,7 @@ impl_1072 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1072__value,
+        &impl_1072__value,
         {
             (const afw_object_t *)&impl_1072_meta_object,
             (const afw_object_t *)&impl_1071,
@@ -113697,7 +113697,7 @@ impl_1071_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1071_meta_object__value
+        &impl_1071_meta_object__value
     },
     &impl_1071,
     NULL
@@ -113721,7 +113721,7 @@ impl_1071 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1071__value,
+        &impl_1071__value,
         {
             (const afw_object_t *)&impl_1071_meta_object,
             (const afw_object_t *)&impl_1070,
@@ -113769,7 +113769,7 @@ impl_1070_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1070_meta_object__value
+        &impl_1070_meta_object__value
     },
     &impl_1070,
     NULL
@@ -113793,7 +113793,7 @@ impl_1070 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1070__value,
+        &impl_1070__value,
         {
             (const afw_object_t *)&impl_1070_meta_object,
             (const afw_object_t *)&impl_1069,
@@ -113854,7 +113854,7 @@ impl_1074_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1074_meta_object__value
+        &impl_1074_meta_object__value
     },
     &impl_1074,
     NULL
@@ -113878,7 +113878,7 @@ impl_1074 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1074__value,
+        &impl_1074__value,
         {
             (const afw_object_t *)&impl_1074_meta_object,
             (const afw_object_t *)&impl_1073,
@@ -113946,7 +113946,7 @@ impl_1073_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1073_meta_object__value
+        &impl_1073_meta_object__value
     },
     &impl_1073,
     NULL
@@ -113970,7 +113970,7 @@ impl_1073 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1073__value,
+        &impl_1073__value,
         {
             (const afw_object_t *)&impl_1073_meta_object,
             (const afw_object_t *)&impl_1069,
@@ -114097,7 +114097,7 @@ impl_1069_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1069_meta_object__value
+        &impl_1069_meta_object__value
     },
     &impl_1069,
     NULL
@@ -114121,7 +114121,7 @@ impl_1069 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_1069__value,
+        &impl_1069__value,
         {
             (const afw_object_t *)&impl_1069_meta_object,
             NULL,
@@ -114193,7 +114193,7 @@ impl_1077_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1077_meta_object__value
+        &impl_1077_meta_object__value
     },
     &impl_1077,
     NULL
@@ -114217,7 +114217,7 @@ impl_1077 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1077__value,
+        &impl_1077__value,
         {
             (const afw_object_t *)&impl_1077_meta_object,
             (const afw_object_t *)&impl_1076,
@@ -114283,7 +114283,7 @@ impl_1078_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1078_meta_object__value
+        &impl_1078_meta_object__value
     },
     &impl_1078,
     NULL
@@ -114307,7 +114307,7 @@ impl_1078 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1078__value,
+        &impl_1078__value,
         {
             (const afw_object_t *)&impl_1078_meta_object,
             (const afw_object_t *)&impl_1076,
@@ -114368,7 +114368,7 @@ impl_1076_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1076_meta_object__value
+        &impl_1076_meta_object__value
     },
     &impl_1076,
     NULL
@@ -114392,7 +114392,7 @@ impl_1076 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1076__value,
+        &impl_1076__value,
         {
             (const afw_object_t *)&impl_1076_meta_object,
             (const afw_object_t *)&impl_1075,
@@ -114506,7 +114506,7 @@ impl_1075_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1075_meta_object__value
+        &impl_1075_meta_object__value
     },
     &impl_1075,
     NULL
@@ -114530,7 +114530,7 @@ impl_1075 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_1075__value,
+        &impl_1075__value,
         {
             (const afw_object_t *)&impl_1075_meta_object,
             NULL,
@@ -114584,7 +114584,7 @@ impl_1082_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1082_meta_object__value
+        &impl_1082_meta_object__value
     },
     &impl_1082,
     NULL
@@ -114608,7 +114608,7 @@ impl_1082 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1082__value,
+        &impl_1082__value,
         {
             (const afw_object_t *)&impl_1082_meta_object,
             (const afw_object_t *)&impl_1081,
@@ -114697,7 +114697,7 @@ impl_1081_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1081_meta_object__value
+        &impl_1081_meta_object__value
     },
     &impl_1081,
     NULL
@@ -114721,7 +114721,7 @@ impl_1081 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1081__value,
+        &impl_1081__value,
         {
             (const afw_object_t *)&impl_1081_meta_object,
             (const afw_object_t *)&impl_1080,
@@ -114769,7 +114769,7 @@ impl_1080_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1080_meta_object__value
+        &impl_1080_meta_object__value
     },
     &impl_1080,
     NULL
@@ -114793,7 +114793,7 @@ impl_1080 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1080__value,
+        &impl_1080__value,
         {
             (const afw_object_t *)&impl_1080_meta_object,
             (const afw_object_t *)&impl_1079,
@@ -114854,7 +114854,7 @@ impl_1084_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1084_meta_object__value
+        &impl_1084_meta_object__value
     },
     &impl_1084,
     NULL
@@ -114878,7 +114878,7 @@ impl_1084 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1084__value,
+        &impl_1084__value,
         {
             (const afw_object_t *)&impl_1084_meta_object,
             (const afw_object_t *)&impl_1083,
@@ -114946,7 +114946,7 @@ impl_1083_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1083_meta_object__value
+        &impl_1083_meta_object__value
     },
     &impl_1083,
     NULL
@@ -114970,7 +114970,7 @@ impl_1083 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1083__value,
+        &impl_1083__value,
         {
             (const afw_object_t *)&impl_1083_meta_object,
             (const afw_object_t *)&impl_1079,
@@ -115136,7 +115136,7 @@ impl_1079_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1079_meta_object__value
+        &impl_1079_meta_object__value
     },
     &impl_1079,
     NULL
@@ -115160,7 +115160,7 @@ impl_1079 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_1079__value,
+        &impl_1079__value,
         {
             (const afw_object_t *)&impl_1079_meta_object,
             NULL,
@@ -115232,7 +115232,7 @@ impl_1087_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1087_meta_object__value
+        &impl_1087_meta_object__value
     },
     &impl_1087,
     NULL
@@ -115256,7 +115256,7 @@ impl_1087 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1087__value,
+        &impl_1087__value,
         {
             (const afw_object_t *)&impl_1087_meta_object,
             (const afw_object_t *)&impl_1086,
@@ -115329,7 +115329,7 @@ impl_1088_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1088_meta_object__value
+        &impl_1088_meta_object__value
     },
     &impl_1088,
     NULL
@@ -115353,7 +115353,7 @@ impl_1088 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1088__value,
+        &impl_1088__value,
         {
             (const afw_object_t *)&impl_1088_meta_object,
             (const afw_object_t *)&impl_1086,
@@ -115419,7 +115419,7 @@ impl_1089_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1089_meta_object__value
+        &impl_1089_meta_object__value
     },
     &impl_1089,
     NULL
@@ -115443,7 +115443,7 @@ impl_1089 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1089__value,
+        &impl_1089__value,
         {
             (const afw_object_t *)&impl_1089_meta_object,
             (const afw_object_t *)&impl_1086,
@@ -115517,7 +115517,7 @@ impl_1086_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1086_meta_object__value
+        &impl_1086_meta_object__value
     },
     &impl_1086,
     NULL
@@ -115541,7 +115541,7 @@ impl_1086 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1086__value,
+        &impl_1086__value,
         {
             (const afw_object_t *)&impl_1086_meta_object,
             (const afw_object_t *)&impl_1085,
@@ -115694,7 +115694,7 @@ impl_1085_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1085_meta_object__value
+        &impl_1085_meta_object__value
     },
     &impl_1085,
     NULL
@@ -115718,7 +115718,7 @@ impl_1085 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_1085__value,
+        &impl_1085__value,
         {
             (const afw_object_t *)&impl_1085_meta_object,
             NULL,
@@ -115790,7 +115790,7 @@ impl_1092_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1092_meta_object__value
+        &impl_1092_meta_object__value
     },
     &impl_1092,
     NULL
@@ -115814,7 +115814,7 @@ impl_1092 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1092__value,
+        &impl_1092__value,
         {
             (const afw_object_t *)&impl_1092_meta_object,
             (const afw_object_t *)&impl_1091,
@@ -115880,7 +115880,7 @@ impl_1093_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1093_meta_object__value
+        &impl_1093_meta_object__value
     },
     &impl_1093,
     NULL
@@ -115904,7 +115904,7 @@ impl_1093 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1093__value,
+        &impl_1093__value,
         {
             (const afw_object_t *)&impl_1093_meta_object,
             (const afw_object_t *)&impl_1091,
@@ -115970,7 +115970,7 @@ impl_1094_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1094_meta_object__value
+        &impl_1094_meta_object__value
     },
     &impl_1094,
     NULL
@@ -115994,7 +115994,7 @@ impl_1094 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1094__value,
+        &impl_1094__value,
         {
             (const afw_object_t *)&impl_1094_meta_object,
             (const afw_object_t *)&impl_1091,
@@ -116060,7 +116060,7 @@ impl_1095_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1095_meta_object__value
+        &impl_1095_meta_object__value
     },
     &impl_1095,
     NULL
@@ -116084,7 +116084,7 @@ impl_1095 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1095__value,
+        &impl_1095__value,
         {
             (const afw_object_t *)&impl_1095_meta_object,
             (const afw_object_t *)&impl_1091,
@@ -116171,7 +116171,7 @@ impl_1091_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1091_meta_object__value
+        &impl_1091_meta_object__value
     },
     &impl_1091,
     NULL
@@ -116195,7 +116195,7 @@ impl_1091 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1091__value,
+        &impl_1091__value,
         {
             (const afw_object_t *)&impl_1091_meta_object,
             (const afw_object_t *)&impl_1090,
@@ -116348,7 +116348,7 @@ impl_1090_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1090_meta_object__value
+        &impl_1090_meta_object__value
     },
     &impl_1090,
     NULL
@@ -116372,7 +116372,7 @@ impl_1090 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_1090__value,
+        &impl_1090__value,
         {
             (const afw_object_t *)&impl_1090_meta_object,
             NULL,
@@ -116426,7 +116426,7 @@ impl_1099_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1099_meta_object__value
+        &impl_1099_meta_object__value
     },
     &impl_1099,
     NULL
@@ -116450,7 +116450,7 @@ impl_1099 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1099__value,
+        &impl_1099__value,
         {
             (const afw_object_t *)&impl_1099_meta_object,
             (const afw_object_t *)&impl_1098,
@@ -116539,7 +116539,7 @@ impl_1098_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1098_meta_object__value
+        &impl_1098_meta_object__value
     },
     &impl_1098,
     NULL
@@ -116563,7 +116563,7 @@ impl_1098 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1098__value,
+        &impl_1098__value,
         {
             (const afw_object_t *)&impl_1098_meta_object,
             (const afw_object_t *)&impl_1097,
@@ -116611,7 +116611,7 @@ impl_1097_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1097_meta_object__value
+        &impl_1097_meta_object__value
     },
     &impl_1097,
     NULL
@@ -116635,7 +116635,7 @@ impl_1097 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1097__value,
+        &impl_1097__value,
         {
             (const afw_object_t *)&impl_1097_meta_object,
             (const afw_object_t *)&impl_1096,
@@ -116696,7 +116696,7 @@ impl_1101_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1101_meta_object__value
+        &impl_1101_meta_object__value
     },
     &impl_1101,
     NULL
@@ -116720,7 +116720,7 @@ impl_1101 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1101__value,
+        &impl_1101__value,
         {
             (const afw_object_t *)&impl_1101_meta_object,
             (const afw_object_t *)&impl_1100,
@@ -116788,7 +116788,7 @@ impl_1100_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1100_meta_object__value
+        &impl_1100_meta_object__value
     },
     &impl_1100,
     NULL
@@ -116812,7 +116812,7 @@ impl_1100 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1100__value,
+        &impl_1100__value,
         {
             (const afw_object_t *)&impl_1100_meta_object,
             (const afw_object_t *)&impl_1096,
@@ -116978,7 +116978,7 @@ impl_1096_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1096_meta_object__value
+        &impl_1096_meta_object__value
     },
     &impl_1096,
     NULL
@@ -117002,7 +117002,7 @@ impl_1096 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_1096__value,
+        &impl_1096__value,
         {
             (const afw_object_t *)&impl_1096_meta_object,
             NULL,
@@ -117063,7 +117063,7 @@ impl_1105_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1105_meta_object__value
+        &impl_1105_meta_object__value
     },
     &impl_1105,
     NULL
@@ -117087,7 +117087,7 @@ impl_1105 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1105__value,
+        &impl_1105__value,
         {
             (const afw_object_t *)&impl_1105_meta_object,
             (const afw_object_t *)&impl_1104,
@@ -117176,7 +117176,7 @@ impl_1104_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1104_meta_object__value
+        &impl_1104_meta_object__value
     },
     &impl_1104,
     NULL
@@ -117200,7 +117200,7 @@ impl_1104 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1104__value,
+        &impl_1104__value,
         {
             (const afw_object_t *)&impl_1104_meta_object,
             (const afw_object_t *)&impl_1103,
@@ -117255,7 +117255,7 @@ impl_1107_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1107_meta_object__value
+        &impl_1107_meta_object__value
     },
     &impl_1107,
     NULL
@@ -117279,7 +117279,7 @@ impl_1107 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1107__value,
+        &impl_1107__value,
         {
             (const afw_object_t *)&impl_1107_meta_object,
             (const afw_object_t *)&impl_1106,
@@ -117368,7 +117368,7 @@ impl_1106_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1106_meta_object__value
+        &impl_1106_meta_object__value
     },
     &impl_1106,
     NULL
@@ -117392,7 +117392,7 @@ impl_1106 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1106__value,
+        &impl_1106__value,
         {
             (const afw_object_t *)&impl_1106_meta_object,
             (const afw_object_t *)&impl_1103,
@@ -117497,7 +117497,7 @@ impl_1108_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1108_meta_object__value
+        &impl_1108_meta_object__value
     },
     &impl_1108,
     NULL
@@ -117521,7 +117521,7 @@ impl_1108 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1108__value,
+        &impl_1108__value,
         {
             (const afw_object_t *)&impl_1108_meta_object,
             (const afw_object_t *)&impl_1103,
@@ -117569,7 +117569,7 @@ impl_1110_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1110_meta_object__value
+        &impl_1110_meta_object__value
     },
     &impl_1110,
     NULL
@@ -117593,7 +117593,7 @@ impl_1110 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1110__value,
+        &impl_1110__value,
         {
             (const afw_object_t *)&impl_1110_meta_object,
             (const afw_object_t *)&impl_1109,
@@ -117708,7 +117708,7 @@ impl_1109_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1109_meta_object__value
+        &impl_1109_meta_object__value
     },
     &impl_1109,
     NULL
@@ -117732,7 +117732,7 @@ impl_1109 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1109__value,
+        &impl_1109__value,
         {
             (const afw_object_t *)&impl_1109_meta_object,
             (const afw_object_t *)&impl_1103,
@@ -117780,7 +117780,7 @@ impl_1112_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1112_meta_object__value
+        &impl_1112_meta_object__value
     },
     &impl_1112,
     NULL
@@ -117804,7 +117804,7 @@ impl_1112 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1112__value,
+        &impl_1112__value,
         {
             (const afw_object_t *)&impl_1112_meta_object,
             (const afw_object_t *)&impl_1111,
@@ -117919,7 +117919,7 @@ impl_1111_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1111_meta_object__value
+        &impl_1111_meta_object__value
     },
     &impl_1111,
     NULL
@@ -117943,7 +117943,7 @@ impl_1111 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1111__value,
+        &impl_1111__value,
         {
             (const afw_object_t *)&impl_1111_meta_object,
             (const afw_object_t *)&impl_1103,
@@ -117998,7 +117998,7 @@ impl_1114_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1114_meta_object__value
+        &impl_1114_meta_object__value
     },
     &impl_1114,
     NULL
@@ -118022,7 +118022,7 @@ impl_1114 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1114__value,
+        &impl_1114__value,
         {
             (const afw_object_t *)&impl_1114_meta_object,
             (const afw_object_t *)&impl_1113,
@@ -118111,7 +118111,7 @@ impl_1113_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1113_meta_object__value
+        &impl_1113_meta_object__value
     },
     &impl_1113,
     NULL
@@ -118135,7 +118135,7 @@ impl_1113 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1113__value,
+        &impl_1113__value,
         {
             (const afw_object_t *)&impl_1113_meta_object,
             (const afw_object_t *)&impl_1103,
@@ -118190,7 +118190,7 @@ impl_1116_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1116_meta_object__value
+        &impl_1116_meta_object__value
     },
     &impl_1116,
     NULL
@@ -118214,7 +118214,7 @@ impl_1116 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1116__value,
+        &impl_1116__value,
         {
             (const afw_object_t *)&impl_1116_meta_object,
             (const afw_object_t *)&impl_1115,
@@ -118303,7 +118303,7 @@ impl_1115_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1115_meta_object__value
+        &impl_1115_meta_object__value
     },
     &impl_1115,
     NULL
@@ -118327,7 +118327,7 @@ impl_1115 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1115__value,
+        &impl_1115__value,
         {
             (const afw_object_t *)&impl_1115_meta_object,
             (const afw_object_t *)&impl_1103,
@@ -118382,7 +118382,7 @@ impl_1118_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1118_meta_object__value
+        &impl_1118_meta_object__value
     },
     &impl_1118,
     NULL
@@ -118406,7 +118406,7 @@ impl_1118 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1118__value,
+        &impl_1118__value,
         {
             (const afw_object_t *)&impl_1118_meta_object,
             (const afw_object_t *)&impl_1117,
@@ -118495,7 +118495,7 @@ impl_1117_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1117_meta_object__value
+        &impl_1117_meta_object__value
     },
     &impl_1117,
     NULL
@@ -118519,7 +118519,7 @@ impl_1117 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1117__value,
+        &impl_1117__value,
         {
             (const afw_object_t *)&impl_1117_meta_object,
             (const afw_object_t *)&impl_1103,
@@ -118567,7 +118567,7 @@ impl_1120_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1120_meta_object__value
+        &impl_1120_meta_object__value
     },
     &impl_1120,
     NULL
@@ -118591,7 +118591,7 @@ impl_1120 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1120__value,
+        &impl_1120__value,
         {
             (const afw_object_t *)&impl_1120_meta_object,
             (const afw_object_t *)&impl_1119,
@@ -118706,7 +118706,7 @@ impl_1119_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1119_meta_object__value
+        &impl_1119_meta_object__value
     },
     &impl_1119,
     NULL
@@ -118730,7 +118730,7 @@ impl_1119 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1119__value,
+        &impl_1119__value,
         {
             (const afw_object_t *)&impl_1119_meta_object,
             (const afw_object_t *)&impl_1103,
@@ -118778,7 +118778,7 @@ impl_1122_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1122_meta_object__value
+        &impl_1122_meta_object__value
     },
     &impl_1122,
     NULL
@@ -118802,7 +118802,7 @@ impl_1122 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1122__value,
+        &impl_1122__value,
         {
             (const afw_object_t *)&impl_1122_meta_object,
             (const afw_object_t *)&impl_1121,
@@ -118917,7 +118917,7 @@ impl_1121_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1121_meta_object__value
+        &impl_1121_meta_object__value
     },
     &impl_1121,
     NULL
@@ -118941,7 +118941,7 @@ impl_1121 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1121__value,
+        &impl_1121__value,
         {
             (const afw_object_t *)&impl_1121_meta_object,
             (const afw_object_t *)&impl_1103,
@@ -119106,7 +119106,7 @@ impl_1103_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1103_meta_object__value
+        &impl_1103_meta_object__value
     },
     &impl_1103,
     NULL
@@ -119130,7 +119130,7 @@ impl_1103 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1103__value,
+        &impl_1103__value,
         {
             (const afw_object_t *)&impl_1103_meta_object,
             (const afw_object_t *)&impl_1102,
@@ -119178,7 +119178,7 @@ impl_1124_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1124_meta_object__value
+        &impl_1124_meta_object__value
     },
     &impl_1124,
     NULL
@@ -119202,7 +119202,7 @@ impl_1124 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1124__value,
+        &impl_1124__value,
         {
             (const afw_object_t *)&impl_1124_meta_object,
             (const afw_object_t *)&impl_1123,
@@ -119270,7 +119270,7 @@ impl_1123_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1123_meta_object__value
+        &impl_1123_meta_object__value
     },
     &impl_1123,
     NULL
@@ -119294,7 +119294,7 @@ impl_1123 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1123__value,
+        &impl_1123__value,
         {
             (const afw_object_t *)&impl_1123_meta_object,
             (const afw_object_t *)&impl_1102,
@@ -119460,7 +119460,7 @@ impl_1102_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1102_meta_object__value
+        &impl_1102_meta_object__value
     },
     &impl_1102,
     NULL
@@ -119484,7 +119484,7 @@ impl_1102 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_1102__value,
+        &impl_1102__value,
         {
             (const afw_object_t *)&impl_1102_meta_object,
             NULL,
@@ -119556,7 +119556,7 @@ impl_1127_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1127_meta_object__value
+        &impl_1127_meta_object__value
     },
     &impl_1127,
     NULL
@@ -119580,7 +119580,7 @@ impl_1127 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1127__value,
+        &impl_1127__value,
         {
             (const afw_object_t *)&impl_1127_meta_object,
             (const afw_object_t *)&impl_1126,
@@ -119659,7 +119659,7 @@ impl_1128_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1128_meta_object__value
+        &impl_1128_meta_object__value
     },
     &impl_1128,
     NULL
@@ -119683,7 +119683,7 @@ impl_1128 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1128__value,
+        &impl_1128__value,
         {
             (const afw_object_t *)&impl_1128_meta_object,
             (const afw_object_t *)&impl_1126,
@@ -119769,7 +119769,7 @@ impl_1129_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1129_meta_object__value
+        &impl_1129_meta_object__value
     },
     &impl_1129,
     NULL
@@ -119793,7 +119793,7 @@ impl_1129 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1129__value,
+        &impl_1129__value,
         {
             (const afw_object_t *)&impl_1129_meta_object,
             (const afw_object_t *)&impl_1126,
@@ -119867,7 +119867,7 @@ impl_1126_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1126_meta_object__value
+        &impl_1126_meta_object__value
     },
     &impl_1126,
     NULL
@@ -119891,7 +119891,7 @@ impl_1126 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1126__value,
+        &impl_1126__value,
         {
             (const afw_object_t *)&impl_1126_meta_object,
             (const afw_object_t *)&impl_1125,
@@ -120051,7 +120051,7 @@ impl_1125_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1125_meta_object__value
+        &impl_1125_meta_object__value
     },
     &impl_1125,
     NULL
@@ -120075,7 +120075,7 @@ impl_1125 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_1125__value,
+        &impl_1125__value,
         {
             (const afw_object_t *)&impl_1125_meta_object,
             NULL,
@@ -120129,7 +120129,7 @@ impl_1133_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1133_meta_object__value
+        &impl_1133_meta_object__value
     },
     &impl_1133,
     NULL
@@ -120153,7 +120153,7 @@ impl_1133 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1133__value,
+        &impl_1133__value,
         {
             (const afw_object_t *)&impl_1133_meta_object,
             (const afw_object_t *)&impl_1132,
@@ -120249,7 +120249,7 @@ impl_1132_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1132_meta_object__value
+        &impl_1132_meta_object__value
     },
     &impl_1132,
     NULL
@@ -120273,7 +120273,7 @@ impl_1132 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1132__value,
+        &impl_1132__value,
         {
             (const afw_object_t *)&impl_1132_meta_object,
             (const afw_object_t *)&impl_1131,
@@ -120321,7 +120321,7 @@ impl_1135_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1135_meta_object__value
+        &impl_1135_meta_object__value
     },
     &impl_1135,
     NULL
@@ -120345,7 +120345,7 @@ impl_1135 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1135__value,
+        &impl_1135__value,
         {
             (const afw_object_t *)&impl_1135_meta_object,
             (const afw_object_t *)&impl_1134,
@@ -120441,7 +120441,7 @@ impl_1134_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1134_meta_object__value
+        &impl_1134_meta_object__value
     },
     &impl_1134,
     NULL
@@ -120465,7 +120465,7 @@ impl_1134 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1134__value,
+        &impl_1134__value,
         {
             (const afw_object_t *)&impl_1134_meta_object,
             (const afw_object_t *)&impl_1131,
@@ -120513,7 +120513,7 @@ impl_1137_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1137_meta_object__value
+        &impl_1137_meta_object__value
     },
     &impl_1137,
     NULL
@@ -120537,7 +120537,7 @@ impl_1137 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1137__value,
+        &impl_1137__value,
         {
             (const afw_object_t *)&impl_1137_meta_object,
             (const afw_object_t *)&impl_1136,
@@ -120626,7 +120626,7 @@ impl_1136_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1136_meta_object__value
+        &impl_1136_meta_object__value
     },
     &impl_1136,
     NULL
@@ -120650,7 +120650,7 @@ impl_1136 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1136__value,
+        &impl_1136__value,
         {
             (const afw_object_t *)&impl_1136_meta_object,
             (const afw_object_t *)&impl_1131,
@@ -120698,7 +120698,7 @@ impl_1139_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1139_meta_object__value
+        &impl_1139_meta_object__value
     },
     &impl_1139,
     NULL
@@ -120722,7 +120722,7 @@ impl_1139 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1139__value,
+        &impl_1139__value,
         {
             (const afw_object_t *)&impl_1139_meta_object,
             (const afw_object_t *)&impl_1138,
@@ -120811,7 +120811,7 @@ impl_1138_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1138_meta_object__value
+        &impl_1138_meta_object__value
     },
     &impl_1138,
     NULL
@@ -120835,7 +120835,7 @@ impl_1138 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1138__value,
+        &impl_1138__value,
         {
             (const afw_object_t *)&impl_1138_meta_object,
             (const afw_object_t *)&impl_1131,
@@ -120922,7 +120922,7 @@ impl_1131_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1131_meta_object__value
+        &impl_1131_meta_object__value
     },
     &impl_1131,
     NULL
@@ -120946,7 +120946,7 @@ impl_1131 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1131__value,
+        &impl_1131__value,
         {
             (const afw_object_t *)&impl_1131_meta_object,
             (const afw_object_t *)&impl_1130,
@@ -120994,7 +120994,7 @@ impl_1141_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1141_meta_object__value
+        &impl_1141_meta_object__value
     },
     &impl_1141,
     NULL
@@ -121018,7 +121018,7 @@ impl_1141 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1141__value,
+        &impl_1141__value,
         {
             (const afw_object_t *)&impl_1141_meta_object,
             (const afw_object_t *)&impl_1140,
@@ -121086,7 +121086,7 @@ impl_1140_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1140_meta_object__value
+        &impl_1140_meta_object__value
     },
     &impl_1140,
     NULL
@@ -121110,7 +121110,7 @@ impl_1140 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1140__value,
+        &impl_1140__value,
         {
             (const afw_object_t *)&impl_1140_meta_object,
             (const afw_object_t *)&impl_1130,
@@ -121276,7 +121276,7 @@ impl_1130_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1130_meta_object__value
+        &impl_1130_meta_object__value
     },
     &impl_1130,
     NULL
@@ -121300,7 +121300,7 @@ impl_1130 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_1130__value,
+        &impl_1130__value,
         {
             (const afw_object_t *)&impl_1130_meta_object,
             NULL,
@@ -121378,7 +121378,7 @@ impl_1144_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1144_meta_object__value
+        &impl_1144_meta_object__value
     },
     &impl_1144,
     NULL
@@ -121402,7 +121402,7 @@ impl_1144 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1144__value,
+        &impl_1144__value,
         {
             (const afw_object_t *)&impl_1144_meta_object,
             (const afw_object_t *)&impl_1143,
@@ -121474,7 +121474,7 @@ impl_1145_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1145_meta_object__value
+        &impl_1145_meta_object__value
     },
     &impl_1145,
     NULL
@@ -121498,7 +121498,7 @@ impl_1145 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1145__value,
+        &impl_1145__value,
         {
             (const afw_object_t *)&impl_1145_meta_object,
             (const afw_object_t *)&impl_1143,
@@ -121570,7 +121570,7 @@ impl_1146_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1146_meta_object__value
+        &impl_1146_meta_object__value
     },
     &impl_1146,
     NULL
@@ -121594,7 +121594,7 @@ impl_1146 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1146__value,
+        &impl_1146__value,
         {
             (const afw_object_t *)&impl_1146_meta_object,
             (const afw_object_t *)&impl_1143,
@@ -121666,7 +121666,7 @@ impl_1147_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1147_meta_object__value
+        &impl_1147_meta_object__value
     },
     &impl_1147,
     NULL
@@ -121690,7 +121690,7 @@ impl_1147 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1147__value,
+        &impl_1147__value,
         {
             (const afw_object_t *)&impl_1147_meta_object,
             (const afw_object_t *)&impl_1143,
@@ -121762,7 +121762,7 @@ impl_1148_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1148_meta_object__value
+        &impl_1148_meta_object__value
     },
     &impl_1148,
     NULL
@@ -121786,7 +121786,7 @@ impl_1148 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1148__value,
+        &impl_1148__value,
         {
             (const afw_object_t *)&impl_1148_meta_object,
             (const afw_object_t *)&impl_1143,
@@ -121858,7 +121858,7 @@ impl_1149_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1149_meta_object__value
+        &impl_1149_meta_object__value
     },
     &impl_1149,
     NULL
@@ -121882,7 +121882,7 @@ impl_1149 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1149__value,
+        &impl_1149__value,
         {
             (const afw_object_t *)&impl_1149_meta_object,
             (const afw_object_t *)&impl_1143,
@@ -121954,7 +121954,7 @@ impl_1150_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1150_meta_object__value
+        &impl_1150_meta_object__value
     },
     &impl_1150,
     NULL
@@ -121978,7 +121978,7 @@ impl_1150 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1150__value,
+        &impl_1150__value,
         {
             (const afw_object_t *)&impl_1150_meta_object,
             (const afw_object_t *)&impl_1143,
@@ -122050,7 +122050,7 @@ impl_1151_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1151_meta_object__value
+        &impl_1151_meta_object__value
     },
     &impl_1151,
     NULL
@@ -122074,7 +122074,7 @@ impl_1151 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1151__value,
+        &impl_1151__value,
         {
             (const afw_object_t *)&impl_1151_meta_object,
             (const afw_object_t *)&impl_1143,
@@ -122146,7 +122146,7 @@ impl_1152_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1152_meta_object__value
+        &impl_1152_meta_object__value
     },
     &impl_1152,
     NULL
@@ -122170,7 +122170,7 @@ impl_1152 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1152__value,
+        &impl_1152__value,
         {
             (const afw_object_t *)&impl_1152_meta_object,
             (const afw_object_t *)&impl_1143,
@@ -122242,7 +122242,7 @@ impl_1153_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1153_meta_object__value
+        &impl_1153_meta_object__value
     },
     &impl_1153,
     NULL
@@ -122266,7 +122266,7 @@ impl_1153 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1153__value,
+        &impl_1153__value,
         {
             (const afw_object_t *)&impl_1153_meta_object,
             (const afw_object_t *)&impl_1143,
@@ -122345,7 +122345,7 @@ impl_1154_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1154_meta_object__value
+        &impl_1154_meta_object__value
     },
     &impl_1154,
     NULL
@@ -122369,7 +122369,7 @@ impl_1154 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1154__value,
+        &impl_1154__value,
         {
             (const afw_object_t *)&impl_1154_meta_object,
             (const afw_object_t *)&impl_1143,
@@ -122441,7 +122441,7 @@ impl_1155_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1155_meta_object__value
+        &impl_1155_meta_object__value
     },
     &impl_1155,
     NULL
@@ -122465,7 +122465,7 @@ impl_1155 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1155__value,
+        &impl_1155__value,
         {
             (const afw_object_t *)&impl_1155_meta_object,
             (const afw_object_t *)&impl_1143,
@@ -122537,7 +122537,7 @@ impl_1156_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1156_meta_object__value
+        &impl_1156_meta_object__value
     },
     &impl_1156,
     NULL
@@ -122561,7 +122561,7 @@ impl_1156 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1156__value,
+        &impl_1156__value,
         {
             (const afw_object_t *)&impl_1156_meta_object,
             (const afw_object_t *)&impl_1143,
@@ -122640,7 +122640,7 @@ impl_1157_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1157_meta_object__value
+        &impl_1157_meta_object__value
     },
     &impl_1157,
     NULL
@@ -122664,7 +122664,7 @@ impl_1157 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1157__value,
+        &impl_1157__value,
         {
             (const afw_object_t *)&impl_1157_meta_object,
             (const afw_object_t *)&impl_1143,
@@ -122736,7 +122736,7 @@ impl_1158_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1158_meta_object__value
+        &impl_1158_meta_object__value
     },
     &impl_1158,
     NULL
@@ -122760,7 +122760,7 @@ impl_1158 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1158__value,
+        &impl_1158__value,
         {
             (const afw_object_t *)&impl_1158_meta_object,
             (const afw_object_t *)&impl_1143,
@@ -122832,7 +122832,7 @@ impl_1159_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1159_meta_object__value
+        &impl_1159_meta_object__value
     },
     &impl_1159,
     NULL
@@ -122856,7 +122856,7 @@ impl_1159 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1159__value,
+        &impl_1159__value,
         {
             (const afw_object_t *)&impl_1159_meta_object,
             (const afw_object_t *)&impl_1143,
@@ -122928,7 +122928,7 @@ impl_1160_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1160_meta_object__value
+        &impl_1160_meta_object__value
     },
     &impl_1160,
     NULL
@@ -122952,7 +122952,7 @@ impl_1160 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1160__value,
+        &impl_1160__value,
         {
             (const afw_object_t *)&impl_1160_meta_object,
             (const afw_object_t *)&impl_1143,
@@ -123024,7 +123024,7 @@ impl_1161_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1161_meta_object__value
+        &impl_1161_meta_object__value
     },
     &impl_1161,
     NULL
@@ -123048,7 +123048,7 @@ impl_1161 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1161__value,
+        &impl_1161__value,
         {
             (const afw_object_t *)&impl_1161_meta_object,
             (const afw_object_t *)&impl_1143,
@@ -123317,7 +123317,7 @@ impl_1143_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1143_meta_object__value
+        &impl_1143_meta_object__value
     },
     &impl_1143,
     NULL
@@ -123341,7 +123341,7 @@ impl_1143 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1143__value,
+        &impl_1143__value,
         {
             (const afw_object_t *)&impl_1143_meta_object,
             (const afw_object_t *)&impl_1142,
@@ -123501,7 +123501,7 @@ impl_1142_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1142_meta_object__value
+        &impl_1142_meta_object__value
     },
     &impl_1142,
     NULL
@@ -123525,7 +123525,7 @@ impl_1142 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_1142__value,
+        &impl_1142__value,
         {
             (const afw_object_t *)&impl_1142_meta_object,
             NULL,
@@ -123579,7 +123579,7 @@ impl_1165_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1165_meta_object__value
+        &impl_1165_meta_object__value
     },
     &impl_1165,
     NULL
@@ -123603,7 +123603,7 @@ impl_1165 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1165__value,
+        &impl_1165__value,
         {
             (const afw_object_t *)&impl_1165_meta_object,
             (const afw_object_t *)&impl_1164,
@@ -123692,7 +123692,7 @@ impl_1164_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1164_meta_object__value
+        &impl_1164_meta_object__value
     },
     &impl_1164,
     NULL
@@ -123716,7 +123716,7 @@ impl_1164 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1164__value,
+        &impl_1164__value,
         {
             (const afw_object_t *)&impl_1164_meta_object,
             (const afw_object_t *)&impl_1163,
@@ -123764,7 +123764,7 @@ impl_1163_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1163_meta_object__value
+        &impl_1163_meta_object__value
     },
     &impl_1163,
     NULL
@@ -123788,7 +123788,7 @@ impl_1163 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1163__value,
+        &impl_1163__value,
         {
             (const afw_object_t *)&impl_1163_meta_object,
             (const afw_object_t *)&impl_1162,
@@ -123849,7 +123849,7 @@ impl_1167_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1167_meta_object__value
+        &impl_1167_meta_object__value
     },
     &impl_1167,
     NULL
@@ -123873,7 +123873,7 @@ impl_1167 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1167__value,
+        &impl_1167__value,
         {
             (const afw_object_t *)&impl_1167_meta_object,
             (const afw_object_t *)&impl_1166,
@@ -123941,7 +123941,7 @@ impl_1166_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1166_meta_object__value
+        &impl_1166_meta_object__value
     },
     &impl_1166,
     NULL
@@ -123965,7 +123965,7 @@ impl_1166 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1166__value,
+        &impl_1166__value,
         {
             (const afw_object_t *)&impl_1166_meta_object,
             (const afw_object_t *)&impl_1162,
@@ -124131,7 +124131,7 @@ impl_1162_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1162_meta_object__value
+        &impl_1162_meta_object__value
     },
     &impl_1162,
     NULL
@@ -124155,7 +124155,7 @@ impl_1162 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_1162__value,
+        &impl_1162__value,
         {
             (const afw_object_t *)&impl_1162_meta_object,
             NULL,
@@ -124196,7 +124196,7 @@ impl_1169_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1169_meta_object__value
+        &impl_1169_meta_object__value
     },
     &impl_1169,
     NULL
@@ -124220,7 +124220,7 @@ impl_1169 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1169__value,
+        &impl_1169__value,
         {
             (const afw_object_t *)&impl_1169_meta_object,
             (const afw_object_t *)&impl_1168,
@@ -124334,7 +124334,7 @@ impl_1168_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1168_meta_object__value
+        &impl_1168_meta_object__value
     },
     &impl_1168,
     NULL
@@ -124358,7 +124358,7 @@ impl_1168 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_1168__value,
+        &impl_1168__value,
         {
             (const afw_object_t *)&impl_1168_meta_object,
             NULL,
@@ -124450,7 +124450,7 @@ impl_1172_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1172_meta_object__value
+        &impl_1172_meta_object__value
     },
     &impl_1172,
     NULL
@@ -124474,7 +124474,7 @@ impl_1172 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1172__value,
+        &impl_1172__value,
         {
             (const afw_object_t *)&impl_1172_meta_object,
             (const afw_object_t *)&impl_1171,
@@ -124553,7 +124553,7 @@ impl_1173_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1173_meta_object__value
+        &impl_1173_meta_object__value
     },
     &impl_1173,
     NULL
@@ -124577,7 +124577,7 @@ impl_1173 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1173__value,
+        &impl_1173__value,
         {
             (const afw_object_t *)&impl_1173_meta_object,
             (const afw_object_t *)&impl_1171,
@@ -124650,7 +124650,7 @@ impl_1174_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1174_meta_object__value
+        &impl_1174_meta_object__value
     },
     &impl_1174,
     NULL
@@ -124674,7 +124674,7 @@ impl_1174 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1174__value,
+        &impl_1174__value,
         {
             (const afw_object_t *)&impl_1174_meta_object,
             (const afw_object_t *)&impl_1171,
@@ -124748,7 +124748,7 @@ impl_1171_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1171_meta_object__value
+        &impl_1171_meta_object__value
     },
     &impl_1171,
     NULL
@@ -124772,7 +124772,7 @@ impl_1171 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1171__value,
+        &impl_1171__value,
         {
             (const afw_object_t *)&impl_1171_meta_object,
             (const afw_object_t *)&impl_1170,
@@ -124893,7 +124893,7 @@ impl_1170_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1170_meta_object__value
+        &impl_1170_meta_object__value
     },
     &impl_1170,
     NULL
@@ -124917,7 +124917,7 @@ impl_1170 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_1170__value,
+        &impl_1170__value,
         {
             (const afw_object_t *)&impl_1170_meta_object,
             NULL,
@@ -124972,7 +124972,7 @@ impl_1176_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1176_meta_object__value
+        &impl_1176_meta_object__value
     },
     &impl_1176,
     NULL
@@ -124996,7 +124996,7 @@ impl_1176 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1176__value,
+        &impl_1176__value,
         {
             (const afw_object_t *)&impl_1176_meta_object,
             (const afw_object_t *)&impl_1175,
@@ -125110,7 +125110,7 @@ impl_1175_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1175_meta_object__value
+        &impl_1175_meta_object__value
     },
     &impl_1175,
     NULL
@@ -125134,7 +125134,7 @@ impl_1175 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_1175__value,
+        &impl_1175__value,
         {
             (const afw_object_t *)&impl_1175_meta_object,
             NULL,
@@ -125182,7 +125182,7 @@ impl_1178_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1178_meta_object__value
+        &impl_1178_meta_object__value
     },
     &impl_1178,
     NULL
@@ -125206,7 +125206,7 @@ impl_1178 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1178__value,
+        &impl_1178__value,
         {
             (const afw_object_t *)&impl_1178_meta_object,
             (const afw_object_t *)&impl_1177,
@@ -125320,7 +125320,7 @@ impl_1177_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1177_meta_object__value
+        &impl_1177_meta_object__value
     },
     &impl_1177,
     NULL
@@ -125344,7 +125344,7 @@ impl_1177 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_1177__value,
+        &impl_1177__value,
         {
             (const afw_object_t *)&impl_1177_meta_object,
             NULL,
@@ -125399,7 +125399,7 @@ impl_1180_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1180_meta_object__value
+        &impl_1180_meta_object__value
     },
     &impl_1180,
     NULL
@@ -125423,7 +125423,7 @@ impl_1180 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1180__value,
+        &impl_1180__value,
         {
             (const afw_object_t *)&impl_1180_meta_object,
             (const afw_object_t *)&impl_1179,
@@ -125492,7 +125492,7 @@ impl_1182_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1182_meta_object__value
+        &impl_1182_meta_object__value
     },
     &impl_1182,
     NULL
@@ -125516,7 +125516,7 @@ impl_1182 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1182__value,
+        &impl_1182__value,
         {
             (const afw_object_t *)&impl_1182_meta_object,
             (const afw_object_t *)&impl_1181,
@@ -125595,7 +125595,7 @@ impl_1183_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1183_meta_object__value
+        &impl_1183_meta_object__value
     },
     &impl_1183,
     NULL
@@ -125619,7 +125619,7 @@ impl_1183 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1183__value,
+        &impl_1183__value,
         {
             (const afw_object_t *)&impl_1183_meta_object,
             (const afw_object_t *)&impl_1181,
@@ -125698,7 +125698,7 @@ impl_1184_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1184_meta_object__value
+        &impl_1184_meta_object__value
     },
     &impl_1184,
     NULL
@@ -125722,7 +125722,7 @@ impl_1184 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1184__value,
+        &impl_1184__value,
         {
             (const afw_object_t *)&impl_1184_meta_object,
             (const afw_object_t *)&impl_1181,
@@ -125801,7 +125801,7 @@ impl_1185_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1185_meta_object__value
+        &impl_1185_meta_object__value
     },
     &impl_1185,
     NULL
@@ -125825,7 +125825,7 @@ impl_1185 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1185__value,
+        &impl_1185__value,
         {
             (const afw_object_t *)&impl_1185_meta_object,
             (const afw_object_t *)&impl_1181,
@@ -125911,7 +125911,7 @@ impl_1186_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1186_meta_object__value
+        &impl_1186_meta_object__value
     },
     &impl_1186,
     NULL
@@ -125935,7 +125935,7 @@ impl_1186 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1186__value,
+        &impl_1186__value,
         {
             (const afw_object_t *)&impl_1186_meta_object,
             (const afw_object_t *)&impl_1181,
@@ -126001,7 +126001,7 @@ impl_1187_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1187_meta_object__value
+        &impl_1187_meta_object__value
     },
     &impl_1187,
     NULL
@@ -126025,7 +126025,7 @@ impl_1187 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1187__value,
+        &impl_1187__value,
         {
             (const afw_object_t *)&impl_1187_meta_object,
             (const afw_object_t *)&impl_1181,
@@ -126138,7 +126138,7 @@ impl_1181_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1181_meta_object__value
+        &impl_1181_meta_object__value
     },
     &impl_1181,
     NULL
@@ -126162,7 +126162,7 @@ impl_1181 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1181__value,
+        &impl_1181__value,
         {
             (const afw_object_t *)&impl_1181_meta_object,
             (const afw_object_t *)&impl_1179,
@@ -126289,7 +126289,7 @@ impl_1179_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1179_meta_object__value
+        &impl_1179_meta_object__value
     },
     &impl_1179,
     NULL
@@ -126313,7 +126313,7 @@ impl_1179 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_1179__value,
+        &impl_1179__value,
         {
             (const afw_object_t *)&impl_1179_meta_object,
             NULL,
@@ -126368,7 +126368,7 @@ impl_1189_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1189_meta_object__value
+        &impl_1189_meta_object__value
     },
     &impl_1189,
     NULL
@@ -126392,7 +126392,7 @@ impl_1189 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1189__value,
+        &impl_1189__value,
         {
             (const afw_object_t *)&impl_1189_meta_object,
             (const afw_object_t *)&impl_1188,
@@ -126461,7 +126461,7 @@ impl_1191_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1191_meta_object__value
+        &impl_1191_meta_object__value
     },
     &impl_1191,
     NULL
@@ -126485,7 +126485,7 @@ impl_1191 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1191__value,
+        &impl_1191__value,
         {
             (const afw_object_t *)&impl_1191_meta_object,
             (const afw_object_t *)&impl_1190,
@@ -126551,7 +126551,7 @@ impl_1192_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1192_meta_object__value
+        &impl_1192_meta_object__value
     },
     &impl_1192,
     NULL
@@ -126575,7 +126575,7 @@ impl_1192 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1192__value,
+        &impl_1192__value,
         {
             (const afw_object_t *)&impl_1192_meta_object,
             (const afw_object_t *)&impl_1190,
@@ -126641,7 +126641,7 @@ impl_1193_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1193_meta_object__value
+        &impl_1193_meta_object__value
     },
     &impl_1193,
     NULL
@@ -126665,7 +126665,7 @@ impl_1193 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1193__value,
+        &impl_1193__value,
         {
             (const afw_object_t *)&impl_1193_meta_object,
             (const afw_object_t *)&impl_1190,
@@ -126744,7 +126744,7 @@ impl_1194_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1194_meta_object__value
+        &impl_1194_meta_object__value
     },
     &impl_1194,
     NULL
@@ -126768,7 +126768,7 @@ impl_1194 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1194__value,
+        &impl_1194__value,
         {
             (const afw_object_t *)&impl_1194_meta_object,
             (const afw_object_t *)&impl_1190,
@@ -126834,7 +126834,7 @@ impl_1195_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1195_meta_object__value
+        &impl_1195_meta_object__value
     },
     &impl_1195,
     NULL
@@ -126858,7 +126858,7 @@ impl_1195 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1195__value,
+        &impl_1195__value,
         {
             (const afw_object_t *)&impl_1195_meta_object,
             (const afw_object_t *)&impl_1190,
@@ -126924,7 +126924,7 @@ impl_1196_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1196_meta_object__value
+        &impl_1196_meta_object__value
     },
     &impl_1196,
     NULL
@@ -126948,7 +126948,7 @@ impl_1196 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1196__value,
+        &impl_1196__value,
         {
             (const afw_object_t *)&impl_1196_meta_object,
             (const afw_object_t *)&impl_1190,
@@ -127014,7 +127014,7 @@ impl_1197_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1197_meta_object__value
+        &impl_1197_meta_object__value
     },
     &impl_1197,
     NULL
@@ -127038,7 +127038,7 @@ impl_1197 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1197__value,
+        &impl_1197__value,
         {
             (const afw_object_t *)&impl_1197_meta_object,
             (const afw_object_t *)&impl_1190,
@@ -127104,7 +127104,7 @@ impl_1198_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1198_meta_object__value
+        &impl_1198_meta_object__value
     },
     &impl_1198,
     NULL
@@ -127128,7 +127128,7 @@ impl_1198 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1198__value,
+        &impl_1198__value,
         {
             (const afw_object_t *)&impl_1198_meta_object,
             (const afw_object_t *)&impl_1190,
@@ -127207,7 +127207,7 @@ impl_1199_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1199_meta_object__value
+        &impl_1199_meta_object__value
     },
     &impl_1199,
     NULL
@@ -127231,7 +127231,7 @@ impl_1199 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1199__value,
+        &impl_1199__value,
         {
             (const afw_object_t *)&impl_1199_meta_object,
             (const afw_object_t *)&impl_1190,
@@ -127297,7 +127297,7 @@ impl_1200_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1200_meta_object__value
+        &impl_1200_meta_object__value
     },
     &impl_1200,
     NULL
@@ -127321,7 +127321,7 @@ impl_1200 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1200__value,
+        &impl_1200__value,
         {
             (const afw_object_t *)&impl_1200_meta_object,
             (const afw_object_t *)&impl_1190,
@@ -127387,7 +127387,7 @@ impl_1201_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1201_meta_object__value
+        &impl_1201_meta_object__value
     },
     &impl_1201,
     NULL
@@ -127411,7 +127411,7 @@ impl_1201 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1201__value,
+        &impl_1201__value,
         {
             (const afw_object_t *)&impl_1201_meta_object,
             (const afw_object_t *)&impl_1190,
@@ -127477,7 +127477,7 @@ impl_1202_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1202_meta_object__value
+        &impl_1202_meta_object__value
     },
     &impl_1202,
     NULL
@@ -127501,7 +127501,7 @@ impl_1202 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1202__value,
+        &impl_1202__value,
         {
             (const afw_object_t *)&impl_1202_meta_object,
             (const afw_object_t *)&impl_1190,
@@ -127580,7 +127580,7 @@ impl_1203_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1203_meta_object__value
+        &impl_1203_meta_object__value
     },
     &impl_1203,
     NULL
@@ -127604,7 +127604,7 @@ impl_1203 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1203__value,
+        &impl_1203__value,
         {
             (const afw_object_t *)&impl_1203_meta_object,
             (const afw_object_t *)&impl_1190,
@@ -127663,7 +127663,7 @@ impl_1204_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1204_meta_object__value
+        &impl_1204_meta_object__value
     },
     &impl_1204,
     NULL
@@ -127687,7 +127687,7 @@ impl_1204 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1204__value,
+        &impl_1204__value,
         {
             (const afw_object_t *)&impl_1204_meta_object,
             (const afw_object_t *)&impl_1190,
@@ -127753,7 +127753,7 @@ impl_1205_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1205_meta_object__value
+        &impl_1205_meta_object__value
     },
     &impl_1205,
     NULL
@@ -127777,7 +127777,7 @@ impl_1205 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1205__value,
+        &impl_1205__value,
         {
             (const afw_object_t *)&impl_1205_meta_object,
             (const afw_object_t *)&impl_1190,
@@ -127856,7 +127856,7 @@ impl_1206_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1206_meta_object__value
+        &impl_1206_meta_object__value
     },
     &impl_1206,
     NULL
@@ -127880,7 +127880,7 @@ impl_1206 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1206__value,
+        &impl_1206__value,
         {
             (const afw_object_t *)&impl_1206_meta_object,
             (const afw_object_t *)&impl_1190,
@@ -127946,7 +127946,7 @@ impl_1207_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1207_meta_object__value
+        &impl_1207_meta_object__value
     },
     &impl_1207,
     NULL
@@ -127970,7 +127970,7 @@ impl_1207 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1207__value,
+        &impl_1207__value,
         {
             (const afw_object_t *)&impl_1207_meta_object,
             (const afw_object_t *)&impl_1190,
@@ -128036,7 +128036,7 @@ impl_1208_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1208_meta_object__value
+        &impl_1208_meta_object__value
     },
     &impl_1208,
     NULL
@@ -128060,7 +128060,7 @@ impl_1208 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1208__value,
+        &impl_1208__value,
         {
             (const afw_object_t *)&impl_1208_meta_object,
             (const afw_object_t *)&impl_1190,
@@ -128126,7 +128126,7 @@ impl_1209_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1209_meta_object__value
+        &impl_1209_meta_object__value
     },
     &impl_1209,
     NULL
@@ -128150,7 +128150,7 @@ impl_1209 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1209__value,
+        &impl_1209__value,
         {
             (const afw_object_t *)&impl_1209_meta_object,
             (const afw_object_t *)&impl_1190,
@@ -128216,7 +128216,7 @@ impl_1210_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1210_meta_object__value
+        &impl_1210_meta_object__value
     },
     &impl_1210,
     NULL
@@ -128240,7 +128240,7 @@ impl_1210 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1210__value,
+        &impl_1210__value,
         {
             (const afw_object_t *)&impl_1210_meta_object,
             (const afw_object_t *)&impl_1190,
@@ -128319,7 +128319,7 @@ impl_1211_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1211_meta_object__value
+        &impl_1211_meta_object__value
     },
     &impl_1211,
     NULL
@@ -128343,7 +128343,7 @@ impl_1211 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1211__value,
+        &impl_1211__value,
         {
             (const afw_object_t *)&impl_1211_meta_object,
             (const afw_object_t *)&impl_1190,
@@ -128409,7 +128409,7 @@ impl_1212_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1212_meta_object__value
+        &impl_1212_meta_object__value
     },
     &impl_1212,
     NULL
@@ -128433,7 +128433,7 @@ impl_1212 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1212__value,
+        &impl_1212__value,
         {
             (const afw_object_t *)&impl_1212_meta_object,
             (const afw_object_t *)&impl_1190,
@@ -128499,7 +128499,7 @@ impl_1213_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1213_meta_object__value
+        &impl_1213_meta_object__value
     },
     &impl_1213,
     NULL
@@ -128523,7 +128523,7 @@ impl_1213 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1213__value,
+        &impl_1213__value,
         {
             (const afw_object_t *)&impl_1213_meta_object,
             (const afw_object_t *)&impl_1190,
@@ -128589,7 +128589,7 @@ impl_1214_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1214_meta_object__value
+        &impl_1214_meta_object__value
     },
     &impl_1214,
     NULL
@@ -128613,7 +128613,7 @@ impl_1214 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1214__value,
+        &impl_1214__value,
         {
             (const afw_object_t *)&impl_1214_meta_object,
             (const afw_object_t *)&impl_1190,
@@ -128692,7 +128692,7 @@ impl_1215_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1215_meta_object__value
+        &impl_1215_meta_object__value
     },
     &impl_1215,
     NULL
@@ -128716,7 +128716,7 @@ impl_1215 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1215__value,
+        &impl_1215__value,
         {
             (const afw_object_t *)&impl_1215_meta_object,
             (const afw_object_t *)&impl_1190,
@@ -129076,7 +129076,7 @@ impl_1190_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1190_meta_object__value
+        &impl_1190_meta_object__value
     },
     &impl_1190,
     NULL
@@ -129100,7 +129100,7 @@ impl_1190 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1190__value,
+        &impl_1190__value,
         {
             (const afw_object_t *)&impl_1190_meta_object,
             (const afw_object_t *)&impl_1188,
@@ -129227,7 +129227,7 @@ impl_1188_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1188_meta_object__value
+        &impl_1188_meta_object__value
     },
     &impl_1188,
     NULL
@@ -129251,7 +129251,7 @@ impl_1188 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_1188__value,
+        &impl_1188__value,
         {
             (const afw_object_t *)&impl_1188_meta_object,
             NULL,
@@ -129305,7 +129305,7 @@ impl_1219_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1219_meta_object__value
+        &impl_1219_meta_object__value
     },
     &impl_1219,
     NULL
@@ -129329,7 +129329,7 @@ impl_1219 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1219__value,
+        &impl_1219__value,
         {
             (const afw_object_t *)&impl_1219_meta_object,
             (const afw_object_t *)&impl_1218,
@@ -129418,7 +129418,7 @@ impl_1218_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1218_meta_object__value
+        &impl_1218_meta_object__value
     },
     &impl_1218,
     NULL
@@ -129442,7 +129442,7 @@ impl_1218 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1218__value,
+        &impl_1218__value,
         {
             (const afw_object_t *)&impl_1218_meta_object,
             (const afw_object_t *)&impl_1217,
@@ -129490,7 +129490,7 @@ impl_1217_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1217_meta_object__value
+        &impl_1217_meta_object__value
     },
     &impl_1217,
     NULL
@@ -129514,7 +129514,7 @@ impl_1217 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1217__value,
+        &impl_1217__value,
         {
             (const afw_object_t *)&impl_1217_meta_object,
             (const afw_object_t *)&impl_1216,
@@ -129575,7 +129575,7 @@ impl_1221_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1221_meta_object__value
+        &impl_1221_meta_object__value
     },
     &impl_1221,
     NULL
@@ -129599,7 +129599,7 @@ impl_1221 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1221__value,
+        &impl_1221__value,
         {
             (const afw_object_t *)&impl_1221_meta_object,
             (const afw_object_t *)&impl_1220,
@@ -129667,7 +129667,7 @@ impl_1220_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1220_meta_object__value
+        &impl_1220_meta_object__value
     },
     &impl_1220,
     NULL
@@ -129691,7 +129691,7 @@ impl_1220 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1220__value,
+        &impl_1220__value,
         {
             (const afw_object_t *)&impl_1220_meta_object,
             (const afw_object_t *)&impl_1216,
@@ -129857,7 +129857,7 @@ impl_1216_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1216_meta_object__value
+        &impl_1216_meta_object__value
     },
     &impl_1216,
     NULL
@@ -129881,7 +129881,7 @@ impl_1216 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_1216__value,
+        &impl_1216__value,
         {
             (const afw_object_t *)&impl_1216_meta_object,
             NULL,
@@ -129966,7 +129966,7 @@ impl_1224_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1224_meta_object__value
+        &impl_1224_meta_object__value
     },
     &impl_1224,
     NULL
@@ -129990,7 +129990,7 @@ impl_1224 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1224__value,
+        &impl_1224__value,
         {
             (const afw_object_t *)&impl_1224_meta_object,
             (const afw_object_t *)&impl_1223,
@@ -130069,7 +130069,7 @@ impl_1225_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1225_meta_object__value
+        &impl_1225_meta_object__value
     },
     &impl_1225,
     NULL
@@ -130093,7 +130093,7 @@ impl_1225 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1225__value,
+        &impl_1225__value,
         {
             (const afw_object_t *)&impl_1225_meta_object,
             (const afw_object_t *)&impl_1223,
@@ -130172,7 +130172,7 @@ impl_1226_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1226_meta_object__value
+        &impl_1226_meta_object__value
     },
     &impl_1226,
     NULL
@@ -130196,7 +130196,7 @@ impl_1226 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1226__value,
+        &impl_1226__value,
         {
             (const afw_object_t *)&impl_1226_meta_object,
             (const afw_object_t *)&impl_1223,
@@ -130275,7 +130275,7 @@ impl_1227_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1227_meta_object__value
+        &impl_1227_meta_object__value
     },
     &impl_1227,
     NULL
@@ -130299,7 +130299,7 @@ impl_1227 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1227__value,
+        &impl_1227__value,
         {
             (const afw_object_t *)&impl_1227_meta_object,
             (const afw_object_t *)&impl_1223,
@@ -130378,7 +130378,7 @@ impl_1228_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1228_meta_object__value
+        &impl_1228_meta_object__value
     },
     &impl_1228,
     NULL
@@ -130402,7 +130402,7 @@ impl_1228 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1228__value,
+        &impl_1228__value,
         {
             (const afw_object_t *)&impl_1228_meta_object,
             (const afw_object_t *)&impl_1223,
@@ -130488,7 +130488,7 @@ impl_1229_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1229_meta_object__value
+        &impl_1229_meta_object__value
     },
     &impl_1229,
     NULL
@@ -130512,7 +130512,7 @@ impl_1229 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1229__value,
+        &impl_1229__value,
         {
             (const afw_object_t *)&impl_1229_meta_object,
             (const afw_object_t *)&impl_1223,
@@ -130591,7 +130591,7 @@ impl_1230_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1230_meta_object__value
+        &impl_1230_meta_object__value
     },
     &impl_1230,
     NULL
@@ -130615,7 +130615,7 @@ impl_1230 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1230__value,
+        &impl_1230__value,
         {
             (const afw_object_t *)&impl_1230_meta_object,
             (const afw_object_t *)&impl_1223,
@@ -130694,7 +130694,7 @@ impl_1231_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1231_meta_object__value
+        &impl_1231_meta_object__value
     },
     &impl_1231,
     NULL
@@ -130718,7 +130718,7 @@ impl_1231 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1231__value,
+        &impl_1231__value,
         {
             (const afw_object_t *)&impl_1231_meta_object,
             (const afw_object_t *)&impl_1223,
@@ -130797,7 +130797,7 @@ impl_1232_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1232_meta_object__value
+        &impl_1232_meta_object__value
     },
     &impl_1232,
     NULL
@@ -130821,7 +130821,7 @@ impl_1232 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1232__value,
+        &impl_1232__value,
         {
             (const afw_object_t *)&impl_1232_meta_object,
             (const afw_object_t *)&impl_1223,
@@ -130900,7 +130900,7 @@ impl_1233_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1233_meta_object__value
+        &impl_1233_meta_object__value
     },
     &impl_1233,
     NULL
@@ -130924,7 +130924,7 @@ impl_1233 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1233__value,
+        &impl_1233__value,
         {
             (const afw_object_t *)&impl_1233_meta_object,
             (const afw_object_t *)&impl_1223,
@@ -130996,7 +130996,7 @@ impl_1234_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1234_meta_object__value
+        &impl_1234_meta_object__value
     },
     &impl_1234,
     NULL
@@ -131020,7 +131020,7 @@ impl_1234 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1234__value,
+        &impl_1234__value,
         {
             (const afw_object_t *)&impl_1234_meta_object,
             (const afw_object_t *)&impl_1223,
@@ -131106,7 +131106,7 @@ impl_1235_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1235_meta_object__value
+        &impl_1235_meta_object__value
     },
     &impl_1235,
     NULL
@@ -131130,7 +131130,7 @@ impl_1235 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1235__value,
+        &impl_1235__value,
         {
             (const afw_object_t *)&impl_1235_meta_object,
             (const afw_object_t *)&impl_1223,
@@ -131216,7 +131216,7 @@ impl_1236_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1236_meta_object__value
+        &impl_1236_meta_object__value
     },
     &impl_1236,
     NULL
@@ -131240,7 +131240,7 @@ impl_1236 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1236__value,
+        &impl_1236__value,
         {
             (const afw_object_t *)&impl_1236_meta_object,
             (const afw_object_t *)&impl_1223,
@@ -131319,7 +131319,7 @@ impl_1237_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1237_meta_object__value
+        &impl_1237_meta_object__value
     },
     &impl_1237,
     NULL
@@ -131343,7 +131343,7 @@ impl_1237 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1237__value,
+        &impl_1237__value,
         {
             (const afw_object_t *)&impl_1237_meta_object,
             (const afw_object_t *)&impl_1223,
@@ -131422,7 +131422,7 @@ impl_1238_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1238_meta_object__value
+        &impl_1238_meta_object__value
     },
     &impl_1238,
     NULL
@@ -131446,7 +131446,7 @@ impl_1238 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1238__value,
+        &impl_1238__value,
         {
             (const afw_object_t *)&impl_1238_meta_object,
             (const afw_object_t *)&impl_1223,
@@ -131525,7 +131525,7 @@ impl_1239_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1239_meta_object__value
+        &impl_1239_meta_object__value
     },
     &impl_1239,
     NULL
@@ -131549,7 +131549,7 @@ impl_1239 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1239__value,
+        &impl_1239__value,
         {
             (const afw_object_t *)&impl_1239_meta_object,
             (const afw_object_t *)&impl_1223,
@@ -131621,7 +131621,7 @@ impl_1240_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1240_meta_object__value
+        &impl_1240_meta_object__value
     },
     &impl_1240,
     NULL
@@ -131645,7 +131645,7 @@ impl_1240 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1240__value,
+        &impl_1240__value,
         {
             (const afw_object_t *)&impl_1240_meta_object,
             (const afw_object_t *)&impl_1223,
@@ -131724,7 +131724,7 @@ impl_1241_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1241_meta_object__value
+        &impl_1241_meta_object__value
     },
     &impl_1241,
     NULL
@@ -131748,7 +131748,7 @@ impl_1241 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1241__value,
+        &impl_1241__value,
         {
             (const afw_object_t *)&impl_1241_meta_object,
             (const afw_object_t *)&impl_1223,
@@ -131820,7 +131820,7 @@ impl_1242_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1242_meta_object__value
+        &impl_1242_meta_object__value
     },
     &impl_1242,
     NULL
@@ -131844,7 +131844,7 @@ impl_1242 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1242__value,
+        &impl_1242__value,
         {
             (const afw_object_t *)&impl_1242_meta_object,
             (const afw_object_t *)&impl_1223,
@@ -131923,7 +131923,7 @@ impl_1243_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1243_meta_object__value
+        &impl_1243_meta_object__value
     },
     &impl_1243,
     NULL
@@ -131947,7 +131947,7 @@ impl_1243 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1243__value,
+        &impl_1243__value,
         {
             (const afw_object_t *)&impl_1243_meta_object,
             (const afw_object_t *)&impl_1223,
@@ -132026,7 +132026,7 @@ impl_1244_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1244_meta_object__value
+        &impl_1244_meta_object__value
     },
     &impl_1244,
     NULL
@@ -132050,7 +132050,7 @@ impl_1244 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1244__value,
+        &impl_1244__value,
         {
             (const afw_object_t *)&impl_1244_meta_object,
             (const afw_object_t *)&impl_1223,
@@ -132129,7 +132129,7 @@ impl_1245_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1245_meta_object__value
+        &impl_1245_meta_object__value
     },
     &impl_1245,
     NULL
@@ -132153,7 +132153,7 @@ impl_1245 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1245__value,
+        &impl_1245__value,
         {
             (const afw_object_t *)&impl_1245_meta_object,
             (const afw_object_t *)&impl_1223,
@@ -132245,7 +132245,7 @@ impl_1246_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1246_meta_object__value
+        &impl_1246_meta_object__value
     },
     &impl_1246,
     NULL
@@ -132269,7 +132269,7 @@ impl_1246 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1246__value,
+        &impl_1246__value,
         {
             (const afw_object_t *)&impl_1246_meta_object,
             (const afw_object_t *)&impl_1223,
@@ -132355,7 +132355,7 @@ impl_1247_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1247_meta_object__value
+        &impl_1247_meta_object__value
     },
     &impl_1247,
     NULL
@@ -132379,7 +132379,7 @@ impl_1247 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1247__value,
+        &impl_1247__value,
         {
             (const afw_object_t *)&impl_1247_meta_object,
             (const afw_object_t *)&impl_1223,
@@ -132451,7 +132451,7 @@ impl_1248_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1248_meta_object__value
+        &impl_1248_meta_object__value
     },
     &impl_1248,
     NULL
@@ -132475,7 +132475,7 @@ impl_1248 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1248__value,
+        &impl_1248__value,
         {
             (const afw_object_t *)&impl_1248_meta_object,
             (const afw_object_t *)&impl_1223,
@@ -132548,7 +132548,7 @@ impl_1249_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1249_meta_object__value
+        &impl_1249_meta_object__value
     },
     &impl_1249,
     NULL
@@ -132572,7 +132572,7 @@ impl_1249 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1249__value,
+        &impl_1249__value,
         {
             (const afw_object_t *)&impl_1249_meta_object,
             (const afw_object_t *)&impl_1223,
@@ -132651,7 +132651,7 @@ impl_1250_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1250_meta_object__value
+        &impl_1250_meta_object__value
     },
     &impl_1250,
     NULL
@@ -132675,7 +132675,7 @@ impl_1250 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1250__value,
+        &impl_1250__value,
         {
             (const afw_object_t *)&impl_1250_meta_object,
             (const afw_object_t *)&impl_1223,
@@ -132754,7 +132754,7 @@ impl_1251_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1251_meta_object__value
+        &impl_1251_meta_object__value
     },
     &impl_1251,
     NULL
@@ -132778,7 +132778,7 @@ impl_1251 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1251__value,
+        &impl_1251__value,
         {
             (const afw_object_t *)&impl_1251_meta_object,
             (const afw_object_t *)&impl_1223,
@@ -132870,7 +132870,7 @@ impl_1252_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1252_meta_object__value
+        &impl_1252_meta_object__value
     },
     &impl_1252,
     NULL
@@ -132894,7 +132894,7 @@ impl_1252 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1252__value,
+        &impl_1252__value,
         {
             (const afw_object_t *)&impl_1252_meta_object,
             (const afw_object_t *)&impl_1223,
@@ -133306,7 +133306,7 @@ impl_1223_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1223_meta_object__value
+        &impl_1223_meta_object__value
     },
     &impl_1223,
     NULL
@@ -133330,7 +133330,7 @@ impl_1223 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1223__value,
+        &impl_1223__value,
         {
             (const afw_object_t *)&impl_1223_meta_object,
             (const afw_object_t *)&impl_1222,
@@ -133444,7 +133444,7 @@ impl_1222_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1222_meta_object__value
+        &impl_1222_meta_object__value
     },
     &impl_1222,
     NULL
@@ -133468,7 +133468,7 @@ impl_1222 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_1222__value,
+        &impl_1222__value,
         {
             (const afw_object_t *)&impl_1222_meta_object,
             NULL,
@@ -133540,7 +133540,7 @@ impl_1255_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1255_meta_object__value
+        &impl_1255_meta_object__value
     },
     &impl_1255,
     NULL
@@ -133564,7 +133564,7 @@ impl_1255 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1255__value,
+        &impl_1255__value,
         {
             (const afw_object_t *)&impl_1255_meta_object,
             (const afw_object_t *)&impl_1254,
@@ -133630,7 +133630,7 @@ impl_1256_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1256_meta_object__value
+        &impl_1256_meta_object__value
     },
     &impl_1256,
     NULL
@@ -133654,7 +133654,7 @@ impl_1256 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1256__value,
+        &impl_1256__value,
         {
             (const afw_object_t *)&impl_1256_meta_object,
             (const afw_object_t *)&impl_1254,
@@ -133720,7 +133720,7 @@ impl_1257_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1257_meta_object__value
+        &impl_1257_meta_object__value
     },
     &impl_1257,
     NULL
@@ -133744,7 +133744,7 @@ impl_1257 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1257__value,
+        &impl_1257__value,
         {
             (const afw_object_t *)&impl_1257_meta_object,
             (const afw_object_t *)&impl_1254,
@@ -133810,7 +133810,7 @@ impl_1258_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1258_meta_object__value
+        &impl_1258_meta_object__value
     },
     &impl_1258,
     NULL
@@ -133834,7 +133834,7 @@ impl_1258 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1258__value,
+        &impl_1258__value,
         {
             (const afw_object_t *)&impl_1258_meta_object,
             (const afw_object_t *)&impl_1254,
@@ -133900,7 +133900,7 @@ impl_1259_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1259_meta_object__value
+        &impl_1259_meta_object__value
     },
     &impl_1259,
     NULL
@@ -133924,7 +133924,7 @@ impl_1259 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1259__value,
+        &impl_1259__value,
         {
             (const afw_object_t *)&impl_1259_meta_object,
             (const afw_object_t *)&impl_1254,
@@ -133990,7 +133990,7 @@ impl_1260_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1260_meta_object__value
+        &impl_1260_meta_object__value
     },
     &impl_1260,
     NULL
@@ -134014,7 +134014,7 @@ impl_1260 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1260__value,
+        &impl_1260__value,
         {
             (const afw_object_t *)&impl_1260_meta_object,
             (const afw_object_t *)&impl_1254,
@@ -134080,7 +134080,7 @@ impl_1261_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1261_meta_object__value
+        &impl_1261_meta_object__value
     },
     &impl_1261,
     NULL
@@ -134104,7 +134104,7 @@ impl_1261 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1261__value,
+        &impl_1261__value,
         {
             (const afw_object_t *)&impl_1261_meta_object,
             (const afw_object_t *)&impl_1254,
@@ -134177,7 +134177,7 @@ impl_1262_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1262_meta_object__value
+        &impl_1262_meta_object__value
     },
     &impl_1262,
     NULL
@@ -134201,7 +134201,7 @@ impl_1262 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1262__value,
+        &impl_1262__value,
         {
             (const afw_object_t *)&impl_1262_meta_object,
             (const afw_object_t *)&impl_1254,
@@ -134267,7 +134267,7 @@ impl_1263_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1263_meta_object__value
+        &impl_1263_meta_object__value
     },
     &impl_1263,
     NULL
@@ -134291,7 +134291,7 @@ impl_1263 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1263__value,
+        &impl_1263__value,
         {
             (const afw_object_t *)&impl_1263_meta_object,
             (const afw_object_t *)&impl_1254,
@@ -134357,7 +134357,7 @@ impl_1264_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1264_meta_object__value
+        &impl_1264_meta_object__value
     },
     &impl_1264,
     NULL
@@ -134381,7 +134381,7 @@ impl_1264 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1264__value,
+        &impl_1264__value,
         {
             (const afw_object_t *)&impl_1264_meta_object,
             (const afw_object_t *)&impl_1254,
@@ -134447,7 +134447,7 @@ impl_1265_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1265_meta_object__value
+        &impl_1265_meta_object__value
     },
     &impl_1265,
     NULL
@@ -134471,7 +134471,7 @@ impl_1265 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1265__value,
+        &impl_1265__value,
         {
             (const afw_object_t *)&impl_1265_meta_object,
             (const afw_object_t *)&impl_1254,
@@ -134537,7 +134537,7 @@ impl_1266_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1266_meta_object__value
+        &impl_1266_meta_object__value
     },
     &impl_1266,
     NULL
@@ -134561,7 +134561,7 @@ impl_1266 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1266__value,
+        &impl_1266__value,
         {
             (const afw_object_t *)&impl_1266_meta_object,
             (const afw_object_t *)&impl_1254,
@@ -134627,7 +134627,7 @@ impl_1267_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1267_meta_object__value
+        &impl_1267_meta_object__value
     },
     &impl_1267,
     NULL
@@ -134651,7 +134651,7 @@ impl_1267 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1267__value,
+        &impl_1267__value,
         {
             (const afw_object_t *)&impl_1267_meta_object,
             (const afw_object_t *)&impl_1254,
@@ -134717,7 +134717,7 @@ impl_1268_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1268_meta_object__value
+        &impl_1268_meta_object__value
     },
     &impl_1268,
     NULL
@@ -134741,7 +134741,7 @@ impl_1268 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1268__value,
+        &impl_1268__value,
         {
             (const afw_object_t *)&impl_1268_meta_object,
             (const afw_object_t *)&impl_1254,
@@ -134807,7 +134807,7 @@ impl_1269_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1269_meta_object__value
+        &impl_1269_meta_object__value
     },
     &impl_1269,
     NULL
@@ -134831,7 +134831,7 @@ impl_1269 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1269__value,
+        &impl_1269__value,
         {
             (const afw_object_t *)&impl_1269_meta_object,
             (const afw_object_t *)&impl_1254,
@@ -134890,7 +134890,7 @@ impl_1270_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1270_meta_object__value
+        &impl_1270_meta_object__value
     },
     &impl_1270,
     NULL
@@ -134914,7 +134914,7 @@ impl_1270 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1270__value,
+        &impl_1270__value,
         {
             (const afw_object_t *)&impl_1270_meta_object,
             (const afw_object_t *)&impl_1254,
@@ -135157,7 +135157,7 @@ impl_1254_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1254_meta_object__value
+        &impl_1254_meta_object__value
     },
     &impl_1254,
     NULL
@@ -135181,7 +135181,7 @@ impl_1254 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1254__value,
+        &impl_1254__value,
         {
             (const afw_object_t *)&impl_1254_meta_object,
             (const afw_object_t *)&impl_1253,
@@ -135295,7 +135295,7 @@ impl_1253_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1253_meta_object__value
+        &impl_1253_meta_object__value
     },
     &impl_1253,
     NULL
@@ -135319,7 +135319,7 @@ impl_1253 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_1253__value,
+        &impl_1253__value,
         {
             (const afw_object_t *)&impl_1253_meta_object,
             NULL,
@@ -135367,7 +135367,7 @@ impl_1272_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1272_meta_object__value
+        &impl_1272_meta_object__value
     },
     &impl_1272,
     NULL
@@ -135391,7 +135391,7 @@ impl_1272 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1272__value,
+        &impl_1272__value,
         {
             (const afw_object_t *)&impl_1272_meta_object,
             (const afw_object_t *)&impl_1271,
@@ -135460,7 +135460,7 @@ impl_1274_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1274_meta_object__value
+        &impl_1274_meta_object__value
     },
     &impl_1274,
     NULL
@@ -135484,7 +135484,7 @@ impl_1274 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1274__value,
+        &impl_1274__value,
         {
             (const afw_object_t *)&impl_1274_meta_object,
             (const afw_object_t *)&impl_1273,
@@ -135550,7 +135550,7 @@ impl_1275_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1275_meta_object__value
+        &impl_1275_meta_object__value
     },
     &impl_1275,
     NULL
@@ -135574,7 +135574,7 @@ impl_1275 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1275__value,
+        &impl_1275__value,
         {
             (const afw_object_t *)&impl_1275_meta_object,
             (const afw_object_t *)&impl_1273,
@@ -135640,7 +135640,7 @@ impl_1276_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1276_meta_object__value
+        &impl_1276_meta_object__value
     },
     &impl_1276,
     NULL
@@ -135664,7 +135664,7 @@ impl_1276 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1276__value,
+        &impl_1276__value,
         {
             (const afw_object_t *)&impl_1276_meta_object,
             (const afw_object_t *)&impl_1273,
@@ -135730,7 +135730,7 @@ impl_1277_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1277_meta_object__value
+        &impl_1277_meta_object__value
     },
     &impl_1277,
     NULL
@@ -135754,7 +135754,7 @@ impl_1277 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1277__value,
+        &impl_1277__value,
         {
             (const afw_object_t *)&impl_1277_meta_object,
             (const afw_object_t *)&impl_1273,
@@ -135820,7 +135820,7 @@ impl_1278_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1278_meta_object__value
+        &impl_1278_meta_object__value
     },
     &impl_1278,
     NULL
@@ -135844,7 +135844,7 @@ impl_1278 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1278__value,
+        &impl_1278__value,
         {
             (const afw_object_t *)&impl_1278_meta_object,
             (const afw_object_t *)&impl_1273,
@@ -135910,7 +135910,7 @@ impl_1279_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1279_meta_object__value
+        &impl_1279_meta_object__value
     },
     &impl_1279,
     NULL
@@ -135934,7 +135934,7 @@ impl_1279 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1279__value,
+        &impl_1279__value,
         {
             (const afw_object_t *)&impl_1279_meta_object,
             (const afw_object_t *)&impl_1273,
@@ -136000,7 +136000,7 @@ impl_1280_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1280_meta_object__value
+        &impl_1280_meta_object__value
     },
     &impl_1280,
     NULL
@@ -136024,7 +136024,7 @@ impl_1280 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1280__value,
+        &impl_1280__value,
         {
             (const afw_object_t *)&impl_1280_meta_object,
             (const afw_object_t *)&impl_1273,
@@ -136090,7 +136090,7 @@ impl_1281_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1281_meta_object__value
+        &impl_1281_meta_object__value
     },
     &impl_1281,
     NULL
@@ -136114,7 +136114,7 @@ impl_1281 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1281__value,
+        &impl_1281__value,
         {
             (const afw_object_t *)&impl_1281_meta_object,
             (const afw_object_t *)&impl_1273,
@@ -136180,7 +136180,7 @@ impl_1282_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1282_meta_object__value
+        &impl_1282_meta_object__value
     },
     &impl_1282,
     NULL
@@ -136204,7 +136204,7 @@ impl_1282 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1282__value,
+        &impl_1282__value,
         {
             (const afw_object_t *)&impl_1282_meta_object,
             (const afw_object_t *)&impl_1273,
@@ -136270,7 +136270,7 @@ impl_1283_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1283_meta_object__value
+        &impl_1283_meta_object__value
     },
     &impl_1283,
     NULL
@@ -136294,7 +136294,7 @@ impl_1283 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1283__value,
+        &impl_1283__value,
         {
             (const afw_object_t *)&impl_1283_meta_object,
             (const afw_object_t *)&impl_1273,
@@ -136459,7 +136459,7 @@ impl_1273_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1273_meta_object__value
+        &impl_1273_meta_object__value
     },
     &impl_1273,
     NULL
@@ -136483,7 +136483,7 @@ impl_1273 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1273__value,
+        &impl_1273__value,
         {
             (const afw_object_t *)&impl_1273_meta_object,
             (const afw_object_t *)&impl_1271,
@@ -136656,7 +136656,7 @@ impl_1271_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1271_meta_object__value
+        &impl_1271_meta_object__value
     },
     &impl_1271,
     NULL
@@ -136680,7 +136680,7 @@ impl_1271 = {
     {
         &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
-        (const afw_value_t *)&impl_1271__value,
+        &impl_1271__value,
         {
             (const afw_object_t *)&impl_1271_meta_object,
             NULL,
@@ -136739,7 +136739,7 @@ impl_1284_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1284_meta_object__value
+        &impl_1284_meta_object__value
     },
     &impl_1284,
     NULL
@@ -136763,7 +136763,7 @@ impl_1284 = {
     {
         &afw_runtime_inf__AdaptiveFunctionCategory_,
         NULL,
-        (const afw_value_t *)&impl_1284__value,
+        &impl_1284__value,
         {
             (const afw_object_t *)&impl_1284_meta_object,
             NULL,
@@ -136822,7 +136822,7 @@ impl_1285_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1285_meta_object__value
+        &impl_1285_meta_object__value
     },
     &impl_1285,
     NULL
@@ -136846,7 +136846,7 @@ impl_1285 = {
     {
         &afw_runtime_inf__AdaptiveFunctionCategory_,
         NULL,
-        (const afw_value_t *)&impl_1285__value,
+        &impl_1285__value,
         {
             (const afw_object_t *)&impl_1285_meta_object,
             NULL,
@@ -136898,7 +136898,7 @@ impl_1286_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1286_meta_object__value
+        &impl_1286_meta_object__value
     },
     &impl_1286,
     NULL
@@ -136922,7 +136922,7 @@ impl_1286 = {
     {
         &afw_runtime_inf__AdaptiveCollection_,
         NULL,
-        (const afw_value_t *)&impl_1286__value,
+        &impl_1286__value,
         {
             (const afw_object_t *)&impl_1286_meta_object,
             NULL,
@@ -137011,7 +137011,7 @@ impl_1288_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1288_meta_object__value
+        &impl_1288_meta_object__value
     },
     &impl_1288,
     NULL
@@ -137035,7 +137035,7 @@ impl_1288 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1288__value,
+        &impl_1288__value,
         {
             (const afw_object_t *)&impl_1288_meta_object,
             (const afw_object_t *)&impl_1287,
@@ -137125,7 +137125,7 @@ impl_1290_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1290_meta_object__value
+        &impl_1290_meta_object__value
     },
     &impl_1290,
     NULL
@@ -137149,7 +137149,7 @@ impl_1290 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1290__value,
+        &impl_1290__value,
         {
             (const afw_object_t *)&impl_1290_meta_object,
             (const afw_object_t *)&impl_1289,
@@ -137229,7 +137229,7 @@ impl_1291_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1291_meta_object__value
+        &impl_1291_meta_object__value
     },
     &impl_1291,
     NULL
@@ -137253,7 +137253,7 @@ impl_1291 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1291__value,
+        &impl_1291__value,
         {
             (const afw_object_t *)&impl_1291_meta_object,
             (const afw_object_t *)&impl_1289,
@@ -137333,7 +137333,7 @@ impl_1292_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1292_meta_object__value
+        &impl_1292_meta_object__value
     },
     &impl_1292,
     NULL
@@ -137357,7 +137357,7 @@ impl_1292 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1292__value,
+        &impl_1292__value,
         {
             (const afw_object_t *)&impl_1292_meta_object,
             (const afw_object_t *)&impl_1289,
@@ -137437,7 +137437,7 @@ impl_1293_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1293_meta_object__value
+        &impl_1293_meta_object__value
     },
     &impl_1293,
     NULL
@@ -137461,7 +137461,7 @@ impl_1293 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1293__value,
+        &impl_1293__value,
         {
             (const afw_object_t *)&impl_1293_meta_object,
             (const afw_object_t *)&impl_1289,
@@ -137548,7 +137548,7 @@ impl_1294_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1294_meta_object__value
+        &impl_1294_meta_object__value
     },
     &impl_1294,
     NULL
@@ -137572,7 +137572,7 @@ impl_1294 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1294__value,
+        &impl_1294__value,
         {
             (const afw_object_t *)&impl_1294_meta_object,
             (const afw_object_t *)&impl_1289,
@@ -137659,7 +137659,7 @@ impl_1295_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1295_meta_object__value
+        &impl_1295_meta_object__value
     },
     &impl_1295,
     NULL
@@ -137683,7 +137683,7 @@ impl_1295 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1295__value,
+        &impl_1295__value,
         {
             (const afw_object_t *)&impl_1295_meta_object,
             (const afw_object_t *)&impl_1289,
@@ -137763,7 +137763,7 @@ impl_1296_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1296_meta_object__value
+        &impl_1296_meta_object__value
     },
     &impl_1296,
     NULL
@@ -137787,7 +137787,7 @@ impl_1296 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1296__value,
+        &impl_1296__value,
         {
             (const afw_object_t *)&impl_1296_meta_object,
             (const afw_object_t *)&impl_1289,
@@ -137867,7 +137867,7 @@ impl_1297_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1297_meta_object__value
+        &impl_1297_meta_object__value
     },
     &impl_1297,
     NULL
@@ -137891,7 +137891,7 @@ impl_1297 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1297__value,
+        &impl_1297__value,
         {
             (const afw_object_t *)&impl_1297_meta_object,
             (const afw_object_t *)&impl_1289,
@@ -137971,7 +137971,7 @@ impl_1298_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1298_meta_object__value
+        &impl_1298_meta_object__value
     },
     &impl_1298,
     NULL
@@ -137995,7 +137995,7 @@ impl_1298 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1298__value,
+        &impl_1298__value,
         {
             (const afw_object_t *)&impl_1298_meta_object,
             (const afw_object_t *)&impl_1289,
@@ -138049,7 +138049,7 @@ impl_1300_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1300_meta_object__value
+        &impl_1300_meta_object__value
     },
     &impl_1300,
     NULL
@@ -138073,7 +138073,7 @@ impl_1300 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1300__value,
+        &impl_1300__value,
         {
             (const afw_object_t *)&impl_1300_meta_object,
             (const afw_object_t *)&impl_1299,
@@ -138170,7 +138170,7 @@ impl_1299_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1299_meta_object__value
+        &impl_1299_meta_object__value
     },
     &impl_1299,
     NULL
@@ -138194,7 +138194,7 @@ impl_1299 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1299__value,
+        &impl_1299__value,
         {
             (const afw_object_t *)&impl_1299_meta_object,
             (const afw_object_t *)&impl_1289,
@@ -138294,7 +138294,7 @@ impl_1301_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1301_meta_object__value
+        &impl_1301_meta_object__value
     },
     &impl_1301,
     NULL
@@ -138318,7 +138318,7 @@ impl_1301 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1301__value,
+        &impl_1301__value,
         {
             (const afw_object_t *)&impl_1301_meta_object,
             (const afw_object_t *)&impl_1289,
@@ -138418,7 +138418,7 @@ impl_1302_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1302_meta_object__value
+        &impl_1302_meta_object__value
     },
     &impl_1302,
     NULL
@@ -138442,7 +138442,7 @@ impl_1302 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1302__value,
+        &impl_1302__value,
         {
             (const afw_object_t *)&impl_1302_meta_object,
             (const afw_object_t *)&impl_1289,
@@ -138522,7 +138522,7 @@ impl_1303_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1303_meta_object__value
+        &impl_1303_meta_object__value
     },
     &impl_1303,
     NULL
@@ -138546,7 +138546,7 @@ impl_1303 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1303__value,
+        &impl_1303__value,
         {
             (const afw_object_t *)&impl_1303_meta_object,
             (const afw_object_t *)&impl_1289,
@@ -138646,7 +138646,7 @@ impl_1304_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1304_meta_object__value
+        &impl_1304_meta_object__value
     },
     &impl_1304,
     NULL
@@ -138670,7 +138670,7 @@ impl_1304 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1304__value,
+        &impl_1304__value,
         {
             (const afw_object_t *)&impl_1304_meta_object,
             (const afw_object_t *)&impl_1289,
@@ -138750,7 +138750,7 @@ impl_1305_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1305_meta_object__value
+        &impl_1305_meta_object__value
     },
     &impl_1305,
     NULL
@@ -138774,7 +138774,7 @@ impl_1305 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1305__value,
+        &impl_1305__value,
         {
             (const afw_object_t *)&impl_1305_meta_object,
             (const afw_object_t *)&impl_1289,
@@ -138874,7 +138874,7 @@ impl_1306_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1306_meta_object__value
+        &impl_1306_meta_object__value
     },
     &impl_1306,
     NULL
@@ -138898,7 +138898,7 @@ impl_1306 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1306__value,
+        &impl_1306__value,
         {
             (const afw_object_t *)&impl_1306_meta_object,
             (const afw_object_t *)&impl_1289,
@@ -138998,7 +138998,7 @@ impl_1307_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1307_meta_object__value
+        &impl_1307_meta_object__value
     },
     &impl_1307,
     NULL
@@ -139022,7 +139022,7 @@ impl_1307 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1307__value,
+        &impl_1307__value,
         {
             (const afw_object_t *)&impl_1307_meta_object,
             (const afw_object_t *)&impl_1289,
@@ -139122,7 +139122,7 @@ impl_1308_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1308_meta_object__value
+        &impl_1308_meta_object__value
     },
     &impl_1308,
     NULL
@@ -139146,7 +139146,7 @@ impl_1308 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1308__value,
+        &impl_1308__value,
         {
             (const afw_object_t *)&impl_1308_meta_object,
             (const afw_object_t *)&impl_1289,
@@ -139415,7 +139415,7 @@ impl_1289_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1289_meta_object__value
+        &impl_1289_meta_object__value
     },
     &impl_1289,
     NULL
@@ -139439,7 +139439,7 @@ impl_1289 = {
     {
         &afw_runtime_inf_const_embedded_untyped_object,
         NULL,
-        (const afw_value_t *)&impl_1289__value,
+        &impl_1289__value,
         {
             (const afw_object_t *)&impl_1289_meta_object,
             (const afw_object_t *)&impl_1287,
@@ -139570,7 +139570,7 @@ impl_1287_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1287_meta_object__value
+        &impl_1287_meta_object__value
     },
     &impl_1287,
     NULL
@@ -139594,7 +139594,7 @@ impl_1287 = {
     {
         &afw_runtime_inf__AdaptivePackage_,
         NULL,
-        (const afw_value_t *)&impl_1287__value,
+        &impl_1287__value,
         {
             (const afw_object_t *)&impl_1287_meta_object,
             NULL,
@@ -139646,7 +139646,7 @@ impl_1309_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1309_meta_object__value
+        &impl_1309_meta_object__value
     },
     &impl_1309,
     NULL
@@ -139670,7 +139670,7 @@ impl_1309 = {
     {
         &afw_runtime_inf__AdaptiveInterface_,
         NULL,
-        (const afw_value_t *)&impl_1309__value,
+        &impl_1309__value,
         {
             (const afw_object_t *)&impl_1309_meta_object,
             NULL,
@@ -139722,7 +139722,7 @@ impl_1310_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1310_meta_object__value
+        &impl_1310_meta_object__value
     },
     &impl_1310,
     NULL
@@ -139746,7 +139746,7 @@ impl_1310 = {
     {
         &afw_runtime_inf__AdaptiveInterface_,
         NULL,
-        (const afw_value_t *)&impl_1310__value,
+        &impl_1310__value,
         {
             (const afw_object_t *)&impl_1310_meta_object,
             NULL,
@@ -139798,7 +139798,7 @@ impl_1311_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1311_meta_object__value
+        &impl_1311_meta_object__value
     },
     &impl_1311,
     NULL
@@ -139822,7 +139822,7 @@ impl_1311 = {
     {
         &afw_runtime_inf__AdaptiveInterface_,
         NULL,
-        (const afw_value_t *)&impl_1311__value,
+        &impl_1311__value,
         {
             (const afw_object_t *)&impl_1311_meta_object,
             NULL,
@@ -139874,7 +139874,7 @@ impl_1312_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1312_meta_object__value
+        &impl_1312_meta_object__value
     },
     &impl_1312,
     NULL
@@ -139898,7 +139898,7 @@ impl_1312 = {
     {
         &afw_runtime_inf__AdaptiveInterface_,
         NULL,
-        (const afw_value_t *)&impl_1312__value,
+        &impl_1312__value,
         {
             (const afw_object_t *)&impl_1312_meta_object,
             NULL,
@@ -139950,7 +139950,7 @@ impl_1313_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1313_meta_object__value
+        &impl_1313_meta_object__value
     },
     &impl_1313,
     NULL
@@ -139974,7 +139974,7 @@ impl_1313 = {
     {
         &afw_runtime_inf__AdaptiveInterface_,
         NULL,
-        (const afw_value_t *)&impl_1313__value,
+        &impl_1313__value,
         {
             (const afw_object_t *)&impl_1313_meta_object,
             NULL,
@@ -140026,7 +140026,7 @@ impl_1314_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1314_meta_object__value
+        &impl_1314_meta_object__value
     },
     &impl_1314,
     NULL
@@ -140050,7 +140050,7 @@ impl_1314 = {
     {
         &afw_runtime_inf__AdaptiveInterface_,
         NULL,
-        (const afw_value_t *)&impl_1314__value,
+        &impl_1314__value,
         {
             (const afw_object_t *)&impl_1314_meta_object,
             NULL,
@@ -140102,7 +140102,7 @@ impl_1315_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1315_meta_object__value
+        &impl_1315_meta_object__value
     },
     &impl_1315,
     NULL
@@ -140126,7 +140126,7 @@ impl_1315 = {
     {
         &afw_runtime_inf__AdaptiveInterface_,
         NULL,
-        (const afw_value_t *)&impl_1315__value,
+        &impl_1315__value,
         {
             (const afw_object_t *)&impl_1315_meta_object,
             NULL,
@@ -140178,7 +140178,7 @@ impl_1316_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1316_meta_object__value
+        &impl_1316_meta_object__value
     },
     &impl_1316,
     NULL
@@ -140202,7 +140202,7 @@ impl_1316 = {
     {
         &afw_runtime_inf__AdaptiveInterface_,
         NULL,
-        (const afw_value_t *)&impl_1316__value,
+        &impl_1316__value,
         {
             (const afw_object_t *)&impl_1316_meta_object,
             NULL,
@@ -140254,7 +140254,7 @@ impl_1317_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1317_meta_object__value
+        &impl_1317_meta_object__value
     },
     &impl_1317,
     NULL
@@ -140278,7 +140278,7 @@ impl_1317 = {
     {
         &afw_runtime_inf__AdaptiveInterface_,
         NULL,
-        (const afw_value_t *)&impl_1317__value,
+        &impl_1317__value,
         {
             (const afw_object_t *)&impl_1317_meta_object,
             NULL,
@@ -140330,7 +140330,7 @@ impl_1318_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1318_meta_object__value
+        &impl_1318_meta_object__value
     },
     &impl_1318,
     NULL
@@ -140354,7 +140354,7 @@ impl_1318 = {
     {
         &afw_runtime_inf__AdaptiveInterface_,
         NULL,
-        (const afw_value_t *)&impl_1318__value,
+        &impl_1318__value,
         {
             (const afw_object_t *)&impl_1318_meta_object,
             NULL,
@@ -140406,7 +140406,7 @@ impl_1319_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1319_meta_object__value
+        &impl_1319_meta_object__value
     },
     &impl_1319,
     NULL
@@ -140430,7 +140430,7 @@ impl_1319 = {
     {
         &afw_runtime_inf__AdaptiveInterface_,
         NULL,
-        (const afw_value_t *)&impl_1319__value,
+        &impl_1319__value,
         {
             (const afw_object_t *)&impl_1319_meta_object,
             NULL,
@@ -140482,7 +140482,7 @@ impl_1320_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1320_meta_object__value
+        &impl_1320_meta_object__value
     },
     &impl_1320,
     NULL
@@ -140506,7 +140506,7 @@ impl_1320 = {
     {
         &afw_runtime_inf__AdaptiveInterface_,
         NULL,
-        (const afw_value_t *)&impl_1320__value,
+        &impl_1320__value,
         {
             (const afw_object_t *)&impl_1320_meta_object,
             NULL,
@@ -140558,7 +140558,7 @@ impl_1321_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1321_meta_object__value
+        &impl_1321_meta_object__value
     },
     &impl_1321,
     NULL
@@ -140582,7 +140582,7 @@ impl_1321 = {
     {
         &afw_runtime_inf__AdaptiveInterface_,
         NULL,
-        (const afw_value_t *)&impl_1321__value,
+        &impl_1321__value,
         {
             (const afw_object_t *)&impl_1321_meta_object,
             NULL,
@@ -140858,7 +140858,7 @@ impl_1322_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1322_meta_object__value
+        &impl_1322_meta_object__value
     },
     &impl_1322,
     NULL
@@ -140882,7 +140882,7 @@ impl_1322 = {
     {
         &afw_runtime_inf__AdaptiveManifest_,
         NULL,
-        (const afw_value_t *)&impl_1322__value,
+        &impl_1322__value,
         {
             (const afw_object_t *)&impl_1322_meta_object,
             NULL,
@@ -140934,7 +140934,7 @@ impl_1323_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1323_meta_object__value
+        &impl_1323_meta_object__value
     },
     &impl_1323,
     NULL
@@ -140958,7 +140958,7 @@ impl_1323 = {
     {
         &afw_runtime_inf__AdaptiveInterface_,
         NULL,
-        (const afw_value_t *)&impl_1323__value,
+        &impl_1323__value,
         {
             (const afw_object_t *)&impl_1323_meta_object,
             NULL,
@@ -141010,7 +141010,7 @@ impl_1324_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1324_meta_object__value
+        &impl_1324_meta_object__value
     },
     &impl_1324,
     NULL
@@ -141034,7 +141034,7 @@ impl_1324 = {
     {
         &afw_runtime_inf__AdaptiveInterface_,
         NULL,
-        (const afw_value_t *)&impl_1324__value,
+        &impl_1324__value,
         {
             (const afw_object_t *)&impl_1324_meta_object,
             NULL,
@@ -141086,7 +141086,7 @@ impl_1325_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1325_meta_object__value
+        &impl_1325_meta_object__value
     },
     &impl_1325,
     NULL
@@ -141110,7 +141110,7 @@ impl_1325 = {
     {
         &afw_runtime_inf__AdaptiveInterface_,
         NULL,
-        (const afw_value_t *)&impl_1325__value,
+        &impl_1325__value,
         {
             (const afw_object_t *)&impl_1325_meta_object,
             NULL,
@@ -141162,7 +141162,7 @@ impl_1326_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1326_meta_object__value
+        &impl_1326_meta_object__value
     },
     &impl_1326,
     NULL
@@ -141186,7 +141186,7 @@ impl_1326 = {
     {
         &afw_runtime_inf__AdaptiveInterface_,
         NULL,
-        (const afw_value_t *)&impl_1326__value,
+        &impl_1326__value,
         {
             (const afw_object_t *)&impl_1326_meta_object,
             NULL,
@@ -141238,7 +141238,7 @@ impl_1327_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1327_meta_object__value
+        &impl_1327_meta_object__value
     },
     &impl_1327,
     NULL
@@ -141262,7 +141262,7 @@ impl_1327 = {
     {
         &afw_runtime_inf__AdaptiveInterface_,
         NULL,
-        (const afw_value_t *)&impl_1327__value,
+        &impl_1327__value,
         {
             (const afw_object_t *)&impl_1327_meta_object,
             NULL,
@@ -141314,7 +141314,7 @@ impl_1328_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1328_meta_object__value
+        &impl_1328_meta_object__value
     },
     &impl_1328,
     NULL
@@ -141338,7 +141338,7 @@ impl_1328 = {
     {
         &afw_runtime_inf__AdaptiveInterface_,
         NULL,
-        (const afw_value_t *)&impl_1328__value,
+        &impl_1328__value,
         {
             (const afw_object_t *)&impl_1328_meta_object,
             NULL,
@@ -141493,7 +141493,7 @@ impl_1329_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1329_meta_object__value
+        &impl_1329_meta_object__value
     },
     &impl_1329,
     NULL
@@ -141517,7 +141517,7 @@ impl_1329 = {
     {
         &afw_runtime_inf__AdaptiveManifest_,
         NULL,
-        (const afw_value_t *)&impl_1329__value,
+        &impl_1329__value,
         {
             (const afw_object_t *)&impl_1329_meta_object,
             NULL,
@@ -141673,7 +141673,7 @@ impl_1330_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1330_meta_object__value
+        &impl_1330_meta_object__value
     },
     &impl_1330,
     NULL
@@ -141697,7 +141697,7 @@ impl_1330 = {
     {
         &afw_runtime_inf__AdaptiveManifest_,
         NULL,
-        (const afw_value_t *)&impl_1330__value,
+        &impl_1330__value,
         {
             (const afw_object_t *)&impl_1330_meta_object,
             NULL,
@@ -141749,7 +141749,7 @@ impl_1331_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1331_meta_object__value
+        &impl_1331_meta_object__value
     },
     &impl_1331,
     NULL
@@ -141773,7 +141773,7 @@ impl_1331 = {
     {
         &afw_runtime_inf__AdaptiveInterface_,
         NULL,
-        (const afw_value_t *)&impl_1331__value,
+        &impl_1331__value,
         {
             (const afw_object_t *)&impl_1331_meta_object,
             NULL,
@@ -141825,7 +141825,7 @@ impl_1332_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1332_meta_object__value
+        &impl_1332_meta_object__value
     },
     &impl_1332,
     NULL
@@ -141849,7 +141849,7 @@ impl_1332 = {
     {
         &afw_runtime_inf__AdaptiveInterface_,
         NULL,
-        (const afw_value_t *)&impl_1332__value,
+        &impl_1332__value,
         {
             (const afw_object_t *)&impl_1332_meta_object,
             NULL,
@@ -141901,7 +141901,7 @@ impl_1333_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1333_meta_object__value
+        &impl_1333_meta_object__value
     },
     &impl_1333,
     NULL
@@ -141925,7 +141925,7 @@ impl_1333 = {
     {
         &afw_runtime_inf__AdaptiveInterface_,
         NULL,
-        (const afw_value_t *)&impl_1333__value,
+        &impl_1333__value,
         {
             (const afw_object_t *)&impl_1333_meta_object,
             NULL,
@@ -141977,7 +141977,7 @@ impl_1334_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1334_meta_object__value
+        &impl_1334_meta_object__value
     },
     &impl_1334,
     NULL
@@ -142001,7 +142001,7 @@ impl_1334 = {
     {
         &afw_runtime_inf__AdaptiveInterface_,
         NULL,
-        (const afw_value_t *)&impl_1334__value,
+        &impl_1334__value,
         {
             (const afw_object_t *)&impl_1334_meta_object,
             NULL,
@@ -142053,7 +142053,7 @@ impl_1335_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1335_meta_object__value
+        &impl_1335_meta_object__value
     },
     &impl_1335,
     NULL
@@ -142077,7 +142077,7 @@ impl_1335 = {
     {
         &afw_runtime_inf__AdaptiveInterface_,
         NULL,
-        (const afw_value_t *)&impl_1335__value,
+        &impl_1335__value,
         {
             (const afw_object_t *)&impl_1335_meta_object,
             NULL,
@@ -142129,7 +142129,7 @@ impl_1336_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1336_meta_object__value
+        &impl_1336_meta_object__value
     },
     &impl_1336,
     NULL
@@ -142153,7 +142153,7 @@ impl_1336 = {
     {
         &afw_runtime_inf__AdaptiveInterface_,
         NULL,
-        (const afw_value_t *)&impl_1336__value,
+        &impl_1336__value,
         {
             (const afw_object_t *)&impl_1336_meta_object,
             NULL,
@@ -142205,7 +142205,7 @@ impl_1337_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1337_meta_object__value
+        &impl_1337_meta_object__value
     },
     &impl_1337,
     NULL
@@ -142229,7 +142229,7 @@ impl_1337 = {
     {
         &afw_runtime_inf__AdaptiveInterface_,
         NULL,
-        (const afw_value_t *)&impl_1337__value,
+        &impl_1337__value,
         {
             (const afw_object_t *)&impl_1337_meta_object,
             NULL,
@@ -142281,7 +142281,7 @@ impl_1338_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1338_meta_object__value
+        &impl_1338_meta_object__value
     },
     &impl_1338,
     NULL
@@ -142305,7 +142305,7 @@ impl_1338 = {
     {
         &afw_runtime_inf__AdaptiveInterface_,
         NULL,
-        (const afw_value_t *)&impl_1338__value,
+        &impl_1338__value,
         {
             (const afw_object_t *)&impl_1338_meta_object,
             NULL,
@@ -142357,7 +142357,7 @@ impl_1339_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1339_meta_object__value
+        &impl_1339_meta_object__value
     },
     &impl_1339,
     NULL
@@ -142381,7 +142381,7 @@ impl_1339 = {
     {
         &afw_runtime_inf__AdaptiveInterface_,
         NULL,
-        (const afw_value_t *)&impl_1339__value,
+        &impl_1339__value,
         {
             (const afw_object_t *)&impl_1339_meta_object,
             NULL,
@@ -142433,7 +142433,7 @@ impl_1340_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1340_meta_object__value
+        &impl_1340_meta_object__value
     },
     &impl_1340,
     NULL
@@ -142457,7 +142457,7 @@ impl_1340 = {
     {
         &afw_runtime_inf__AdaptiveInterface_,
         NULL,
-        (const afw_value_t *)&impl_1340__value,
+        &impl_1340__value,
         {
             (const afw_object_t *)&impl_1340_meta_object,
             NULL,
@@ -142509,7 +142509,7 @@ impl_1341_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1341_meta_object__value
+        &impl_1341_meta_object__value
     },
     &impl_1341,
     NULL
@@ -142533,7 +142533,7 @@ impl_1341 = {
     {
         &afw_runtime_inf__AdaptiveInterface_,
         NULL,
-        (const afw_value_t *)&impl_1341__value,
+        &impl_1341__value,
         {
             (const afw_object_t *)&impl_1341_meta_object,
             NULL,
@@ -142585,7 +142585,7 @@ impl_1342_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1342_meta_object__value
+        &impl_1342_meta_object__value
     },
     &impl_1342,
     NULL
@@ -142609,7 +142609,7 @@ impl_1342 = {
     {
         &afw_runtime_inf__AdaptiveInterface_,
         NULL,
-        (const afw_value_t *)&impl_1342__value,
+        &impl_1342__value,
         {
             (const afw_object_t *)&impl_1342_meta_object,
             NULL,
@@ -142714,7 +142714,7 @@ impl_1343_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1343_meta_object__value
+        &impl_1343_meta_object__value
     },
     &impl_1343,
     NULL
@@ -142738,7 +142738,7 @@ impl_1343 = {
     {
         &afw_runtime_inf__AdaptiveManifest_,
         NULL,
-        (const afw_value_t *)&impl_1343__value,
+        &impl_1343__value,
         {
             (const afw_object_t *)&impl_1343_meta_object,
             NULL,
@@ -142790,7 +142790,7 @@ impl_1344_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1344_meta_object__value
+        &impl_1344_meta_object__value
     },
     &impl_1344,
     NULL
@@ -142814,7 +142814,7 @@ impl_1344 = {
     {
         &afw_runtime_inf__AdaptiveInterface_,
         NULL,
-        (const afw_value_t *)&impl_1344__value,
+        &impl_1344__value,
         {
             (const afw_object_t *)&impl_1344_meta_object,
             NULL,
@@ -142866,7 +142866,7 @@ impl_1345_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1345_meta_object__value
+        &impl_1345_meta_object__value
     },
     &impl_1345,
     NULL
@@ -142890,7 +142890,7 @@ impl_1345 = {
     {
         &afw_runtime_inf__AdaptiveInterface_,
         NULL,
-        (const afw_value_t *)&impl_1345__value,
+        &impl_1345__value,
         {
             (const afw_object_t *)&impl_1345_meta_object,
             NULL,
@@ -143036,7 +143036,7 @@ impl_1346_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1346_meta_object__value
+        &impl_1346_meta_object__value
     },
     &impl_1346,
     NULL
@@ -143060,7 +143060,7 @@ impl_1346 = {
     {
         &afw_runtime_inf__AdaptiveManifest_,
         NULL,
-        (const afw_value_t *)&impl_1346__value,
+        &impl_1346__value,
         {
             (const afw_object_t *)&impl_1346_meta_object,
             NULL,
@@ -143112,7 +143112,7 @@ impl_1347_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1347_meta_object__value
+        &impl_1347_meta_object__value
     },
     &impl_1347,
     NULL
@@ -143136,7 +143136,7 @@ impl_1347 = {
     {
         &afw_runtime_inf__AdaptiveInterface_,
         NULL,
-        (const afw_value_t *)&impl_1347__value,
+        &impl_1347__value,
         {
             (const afw_object_t *)&impl_1347_meta_object,
             NULL,
@@ -143281,7 +143281,7 @@ impl_1348_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1348_meta_object__value
+        &impl_1348_meta_object__value
     },
     &impl_1348,
     NULL
@@ -143305,7 +143305,7 @@ impl_1348 = {
     {
         &afw_runtime_inf__AdaptiveManifest_,
         NULL,
-        (const afw_value_t *)&impl_1348__value,
+        &impl_1348__value,
         {
             (const afw_object_t *)&impl_1348_meta_object,
             NULL,
@@ -143377,7 +143377,7 @@ impl_1349_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1349_meta_object__value
+        &impl_1349_meta_object__value
     },
     &impl_1349,
     NULL
@@ -143401,7 +143401,7 @@ impl_1349 = {
     {
         &afw_runtime_inf__AdaptiveFunctionCategory_,
         NULL,
-        (const afw_value_t *)&impl_1349__value,
+        &impl_1349__value,
         {
             (const afw_object_t *)&impl_1349_meta_object,
             NULL,
@@ -143473,7 +143473,7 @@ impl_1350_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1350_meta_object__value
+        &impl_1350_meta_object__value
     },
     &impl_1350,
     NULL
@@ -143497,7 +143497,7 @@ impl_1350 = {
     {
         &afw_runtime_inf__AdaptiveFunctionCategory_,
         NULL,
-        (const afw_value_t *)&impl_1350__value,
+        &impl_1350__value,
         {
             (const afw_object_t *)&impl_1350_meta_object,
             NULL,
@@ -143556,7 +143556,7 @@ impl_1351_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1351_meta_object__value
+        &impl_1351_meta_object__value
     },
     &impl_1351,
     NULL
@@ -143580,7 +143580,7 @@ impl_1351 = {
     {
         &afw_runtime_inf__AdaptiveFunctionCategory_,
         NULL,
-        (const afw_value_t *)&impl_1351__value,
+        &impl_1351__value,
         {
             (const afw_object_t *)&impl_1351_meta_object,
             NULL,
@@ -143652,7 +143652,7 @@ impl_1352_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1352_meta_object__value
+        &impl_1352_meta_object__value
     },
     &impl_1352,
     NULL
@@ -143676,7 +143676,7 @@ impl_1352 = {
     {
         &afw_runtime_inf__AdaptiveFunctionCategory_,
         NULL,
-        (const afw_value_t *)&impl_1352__value,
+        &impl_1352__value,
         {
             (const afw_object_t *)&impl_1352_meta_object,
             NULL,
@@ -143748,7 +143748,7 @@ impl_1353_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1353_meta_object__value
+        &impl_1353_meta_object__value
     },
     &impl_1353,
     NULL
@@ -143772,7 +143772,7 @@ impl_1353 = {
     {
         &afw_runtime_inf__AdaptiveFunctionCategory_,
         NULL,
-        (const afw_value_t *)&impl_1353__value,
+        &impl_1353__value,
         {
             (const afw_object_t *)&impl_1353_meta_object,
             NULL,
@@ -143831,7 +143831,7 @@ impl_1354_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1354_meta_object__value
+        &impl_1354_meta_object__value
     },
     &impl_1354,
     NULL
@@ -143855,7 +143855,7 @@ impl_1354 = {
     {
         &afw_runtime_inf__AdaptiveFunctionCategory_,
         NULL,
-        (const afw_value_t *)&impl_1354__value,
+        &impl_1354__value,
         {
             (const afw_object_t *)&impl_1354_meta_object,
             NULL,
@@ -143914,7 +143914,7 @@ impl_1355_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1355_meta_object__value
+        &impl_1355_meta_object__value
     },
     &impl_1355,
     NULL
@@ -143938,7 +143938,7 @@ impl_1355 = {
     {
         &afw_runtime_inf__AdaptiveFunctionCategory_,
         NULL,
-        (const afw_value_t *)&impl_1355__value,
+        &impl_1355__value,
         {
             (const afw_object_t *)&impl_1355_meta_object,
             NULL,
@@ -143997,7 +143997,7 @@ impl_1356_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1356_meta_object__value
+        &impl_1356_meta_object__value
     },
     &impl_1356,
     NULL
@@ -144021,7 +144021,7 @@ impl_1356 = {
     {
         &afw_runtime_inf__AdaptiveFunctionCategory_,
         NULL,
-        (const afw_value_t *)&impl_1356__value,
+        &impl_1356__value,
         {
             (const afw_object_t *)&impl_1356_meta_object,
             NULL,
@@ -144080,7 +144080,7 @@ impl_1357_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1357_meta_object__value
+        &impl_1357_meta_object__value
     },
     &impl_1357,
     NULL
@@ -144104,7 +144104,7 @@ impl_1357 = {
     {
         &afw_runtime_inf__AdaptiveAuthorizationMode_,
         NULL,
-        (const afw_value_t *)&impl_1357__value,
+        &impl_1357__value,
         {
             (const afw_object_t *)&impl_1357_meta_object,
             NULL,
@@ -144156,7 +144156,7 @@ impl_1358_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1358_meta_object__value
+        &impl_1358_meta_object__value
     },
     &impl_1358,
     NULL
@@ -144180,7 +144180,7 @@ impl_1358 = {
     {
         &afw_runtime_inf__AdaptiveCollection_,
         NULL,
-        (const afw_value_t *)&impl_1358__value,
+        &impl_1358__value,
         {
             (const afw_object_t *)&impl_1358_meta_object,
             NULL,
@@ -144252,7 +144252,7 @@ impl_1359_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1359_meta_object__value
+        &impl_1359_meta_object__value
     },
     &impl_1359,
     NULL
@@ -144276,7 +144276,7 @@ impl_1359 = {
     {
         &afw_runtime_inf__AdaptiveFunctionCategory_,
         NULL,
-        (const afw_value_t *)&impl_1359__value,
+        &impl_1359__value,
         {
             (const afw_object_t *)&impl_1359_meta_object,
             NULL,
@@ -144348,7 +144348,7 @@ impl_1360_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1360_meta_object__value
+        &impl_1360_meta_object__value
     },
     &impl_1360,
     NULL
@@ -144372,7 +144372,7 @@ impl_1360 = {
     {
         &afw_runtime_inf__AdaptiveFunctionCategory_,
         NULL,
-        (const afw_value_t *)&impl_1360__value,
+        &impl_1360__value,
         {
             (const afw_object_t *)&impl_1360_meta_object,
             NULL,
@@ -144444,7 +144444,7 @@ impl_1361_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1361_meta_object__value
+        &impl_1361_meta_object__value
     },
     &impl_1361,
     NULL
@@ -144468,7 +144468,7 @@ impl_1361 = {
     {
         &afw_runtime_inf__AdaptiveFunctionCategory_,
         NULL,
-        (const afw_value_t *)&impl_1361__value,
+        &impl_1361__value,
         {
             (const afw_object_t *)&impl_1361_meta_object,
             NULL,
@@ -144527,7 +144527,7 @@ impl_1362_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1362_meta_object__value
+        &impl_1362_meta_object__value
     },
     &impl_1362,
     NULL
@@ -144551,7 +144551,7 @@ impl_1362 = {
     {
         &afw_runtime_inf__AdaptiveAuthorizationDecision_,
         NULL,
-        (const afw_value_t *)&impl_1362__value,
+        &impl_1362__value,
         {
             (const afw_object_t *)&impl_1362_meta_object,
             NULL,
@@ -144623,7 +144623,7 @@ impl_1363_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1363_meta_object__value
+        &impl_1363_meta_object__value
     },
     &impl_1363,
     NULL
@@ -144647,7 +144647,7 @@ impl_1363 = {
     {
         &afw_runtime_inf__AdaptiveFunctionCategory_,
         NULL,
-        (const afw_value_t *)&impl_1363__value,
+        &impl_1363__value,
         {
             (const afw_object_t *)&impl_1363_meta_object,
             NULL,
@@ -144719,7 +144719,7 @@ impl_1364_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1364_meta_object__value
+        &impl_1364_meta_object__value
     },
     &impl_1364,
     NULL
@@ -144743,7 +144743,7 @@ impl_1364 = {
     {
         &afw_runtime_inf__AdaptiveFunctionCategory_,
         NULL,
-        (const afw_value_t *)&impl_1364__value,
+        &impl_1364__value,
         {
             (const afw_object_t *)&impl_1364_meta_object,
             NULL,
@@ -144815,7 +144815,7 @@ impl_1365_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1365_meta_object__value
+        &impl_1365_meta_object__value
     },
     &impl_1365,
     NULL
@@ -144839,7 +144839,7 @@ impl_1365 = {
     {
         &afw_runtime_inf__AdaptiveFunctionCategory_,
         NULL,
-        (const afw_value_t *)&impl_1365__value,
+        &impl_1365__value,
         {
             (const afw_object_t *)&impl_1365_meta_object,
             NULL,
@@ -144911,7 +144911,7 @@ impl_1366_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1366_meta_object__value
+        &impl_1366_meta_object__value
     },
     &impl_1366,
     NULL
@@ -144935,7 +144935,7 @@ impl_1366 = {
     {
         &afw_runtime_inf__AdaptiveFunctionCategory_,
         NULL,
-        (const afw_value_t *)&impl_1366__value,
+        &impl_1366__value,
         {
             (const afw_object_t *)&impl_1366_meta_object,
             NULL,
@@ -144994,7 +144994,7 @@ impl_1367_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1367_meta_object__value
+        &impl_1367_meta_object__value
     },
     &impl_1367,
     NULL
@@ -145018,7 +145018,7 @@ impl_1367 = {
     {
         &afw_runtime_inf__AdaptiveFunctionCategory_,
         NULL,
-        (const afw_value_t *)&impl_1367__value,
+        &impl_1367__value,
         {
             (const afw_object_t *)&impl_1367_meta_object,
             NULL,
@@ -145090,7 +145090,7 @@ impl_1368_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1368_meta_object__value
+        &impl_1368_meta_object__value
     },
     &impl_1368,
     NULL
@@ -145114,7 +145114,7 @@ impl_1368 = {
     {
         &afw_runtime_inf__AdaptiveFunctionCategory_,
         NULL,
-        (const afw_value_t *)&impl_1368__value,
+        &impl_1368__value,
         {
             (const afw_object_t *)&impl_1368_meta_object,
             NULL,
@@ -145173,7 +145173,7 @@ impl_1369_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1369_meta_object__value
+        &impl_1369_meta_object__value
     },
     &impl_1369,
     NULL
@@ -145197,7 +145197,7 @@ impl_1369 = {
     {
         &afw_runtime_inf__AdaptiveAuthorizationDecision_,
         NULL,
-        (const afw_value_t *)&impl_1369__value,
+        &impl_1369__value,
         {
             (const afw_object_t *)&impl_1369_meta_object,
             NULL,
@@ -145269,7 +145269,7 @@ impl_1370_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1370_meta_object__value
+        &impl_1370_meta_object__value
     },
     &impl_1370,
     NULL
@@ -145293,7 +145293,7 @@ impl_1370 = {
     {
         &afw_runtime_inf__AdaptiveAuthorizationDecision_,
         NULL,
-        (const afw_value_t *)&impl_1370__value,
+        &impl_1370__value,
         {
             (const afw_object_t *)&impl_1370_meta_object,
             NULL,
@@ -145365,7 +145365,7 @@ impl_1371_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1371_meta_object__value
+        &impl_1371_meta_object__value
     },
     &impl_1371,
     NULL
@@ -145389,7 +145389,7 @@ impl_1371 = {
     {
         &afw_runtime_inf__AdaptiveAuthorizationDecision_,
         NULL,
-        (const afw_value_t *)&impl_1371__value,
+        &impl_1371__value,
         {
             (const afw_object_t *)&impl_1371_meta_object,
             NULL,
@@ -145461,7 +145461,7 @@ impl_1372_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1372_meta_object__value
+        &impl_1372_meta_object__value
     },
     &impl_1372,
     NULL
@@ -145485,7 +145485,7 @@ impl_1372 = {
     {
         &afw_runtime_inf__AdaptiveAuthorizationDecision_,
         NULL,
-        (const afw_value_t *)&impl_1372__value,
+        &impl_1372__value,
         {
             (const afw_object_t *)&impl_1372_meta_object,
             NULL,
@@ -145544,7 +145544,7 @@ impl_1373_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1373_meta_object__value
+        &impl_1373_meta_object__value
     },
     &impl_1373,
     NULL
@@ -145568,7 +145568,7 @@ impl_1373 = {
     {
         &afw_runtime_inf__AdaptiveFunctionCategory_,
         NULL,
-        (const afw_value_t *)&impl_1373__value,
+        &impl_1373__value,
         {
             (const afw_object_t *)&impl_1373_meta_object,
             NULL,
@@ -145640,7 +145640,7 @@ impl_1374_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1374_meta_object__value
+        &impl_1374_meta_object__value
     },
     &impl_1374,
     NULL
@@ -145664,7 +145664,7 @@ impl_1374 = {
     {
         &afw_runtime_inf__AdaptiveFunctionCategory_,
         NULL,
-        (const afw_value_t *)&impl_1374__value,
+        &impl_1374__value,
         {
             (const afw_object_t *)&impl_1374_meta_object,
             NULL,
@@ -145723,7 +145723,7 @@ impl_1375_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1375_meta_object__value
+        &impl_1375_meta_object__value
     },
     &impl_1375,
     NULL
@@ -145747,7 +145747,7 @@ impl_1375 = {
     {
         &afw_runtime_inf__AdaptiveAuthorizationMode_,
         NULL,
-        (const afw_value_t *)&impl_1375__value,
+        &impl_1375__value,
         {
             (const afw_object_t *)&impl_1375_meta_object,
             NULL,
@@ -145819,7 +145819,7 @@ impl_1376_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1376_meta_object__value
+        &impl_1376_meta_object__value
     },
     &impl_1376,
     NULL
@@ -145843,7 +145843,7 @@ impl_1376 = {
     {
         &afw_runtime_inf__AdaptiveFunctionCategory_,
         NULL,
-        (const afw_value_t *)&impl_1376__value,
+        &impl_1376__value,
         {
             (const afw_object_t *)&impl_1376_meta_object,
             NULL,
@@ -145902,7 +145902,7 @@ impl_1377_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1377_meta_object__value
+        &impl_1377_meta_object__value
     },
     &impl_1377,
     NULL
@@ -145926,7 +145926,7 @@ impl_1377 = {
     {
         &afw_runtime_inf__AdaptiveFunctionCategory_,
         NULL,
-        (const afw_value_t *)&impl_1377__value,
+        &impl_1377__value,
         {
             (const afw_object_t *)&impl_1377_meta_object,
             NULL,
@@ -145998,7 +145998,7 @@ impl_1378_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1378_meta_object__value
+        &impl_1378_meta_object__value
     },
     &impl_1378,
     NULL
@@ -146022,7 +146022,7 @@ impl_1378 = {
     {
         &afw_runtime_inf__AdaptiveFunctionCategory_,
         NULL,
-        (const afw_value_t *)&impl_1378__value,
+        &impl_1378__value,
         {
             (const afw_object_t *)&impl_1378_meta_object,
             NULL,
@@ -146081,7 +146081,7 @@ impl_1379_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1379_meta_object__value
+        &impl_1379_meta_object__value
     },
     &impl_1379,
     NULL
@@ -146105,7 +146105,7 @@ impl_1379 = {
     {
         &afw_runtime_inf__AdaptiveFunctionCategory_,
         NULL,
-        (const afw_value_t *)&impl_1379__value,
+        &impl_1379__value,
         {
             (const afw_object_t *)&impl_1379_meta_object,
             NULL,
@@ -146164,7 +146164,7 @@ impl_1380_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1380_meta_object__value
+        &impl_1380_meta_object__value
     },
     &impl_1380,
     NULL
@@ -146188,7 +146188,7 @@ impl_1380 = {
     {
         &afw_runtime_inf__AdaptiveFunctionCategory_,
         NULL,
-        (const afw_value_t *)&impl_1380__value,
+        &impl_1380__value,
         {
             (const afw_object_t *)&impl_1380_meta_object,
             NULL,
@@ -146247,7 +146247,7 @@ impl_1381_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1381_meta_object__value
+        &impl_1381_meta_object__value
     },
     &impl_1381,
     NULL
@@ -146271,7 +146271,7 @@ impl_1381 = {
     {
         &afw_runtime_inf__AdaptiveFunctionCategory_,
         NULL,
-        (const afw_value_t *)&impl_1381__value,
+        &impl_1381__value,
         {
             (const afw_object_t *)&impl_1381_meta_object,
             NULL,
@@ -146330,7 +146330,7 @@ impl_1382_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1382_meta_object__value
+        &impl_1382_meta_object__value
     },
     &impl_1382,
     NULL
@@ -146354,7 +146354,7 @@ impl_1382 = {
     {
         &afw_runtime_inf__AdaptiveAuthorizationDecision_,
         NULL,
-        (const afw_value_t *)&impl_1382__value,
+        &impl_1382__value,
         {
             (const afw_object_t *)&impl_1382_meta_object,
             NULL,
@@ -146426,7 +146426,7 @@ impl_1383_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1383_meta_object__value
+        &impl_1383_meta_object__value
     },
     &impl_1383,
     NULL
@@ -146450,7 +146450,7 @@ impl_1383 = {
     {
         &afw_runtime_inf__AdaptiveFunctionCategory_,
         NULL,
-        (const afw_value_t *)&impl_1383__value,
+        &impl_1383__value,
         {
             (const afw_object_t *)&impl_1383_meta_object,
             NULL,
@@ -146522,7 +146522,7 @@ impl_1384_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1384_meta_object__value
+        &impl_1384_meta_object__value
     },
     &impl_1384,
     NULL
@@ -146546,7 +146546,7 @@ impl_1384 = {
     {
         &afw_runtime_inf__AdaptiveFunctionCategory_,
         NULL,
-        (const afw_value_t *)&impl_1384__value,
+        &impl_1384__value,
         {
             (const afw_object_t *)&impl_1384_meta_object,
             NULL,
@@ -146618,7 +146618,7 @@ impl_1385_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1385_meta_object__value
+        &impl_1385_meta_object__value
     },
     &impl_1385,
     NULL
@@ -146642,7 +146642,7 @@ impl_1385 = {
     {
         &afw_runtime_inf__AdaptiveFunctionCategory_,
         NULL,
-        (const afw_value_t *)&impl_1385__value,
+        &impl_1385__value,
         {
             (const afw_object_t *)&impl_1385_meta_object,
             NULL,
@@ -146714,7 +146714,7 @@ impl_1386_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1386_meta_object__value
+        &impl_1386_meta_object__value
     },
     &impl_1386,
     NULL
@@ -146738,7 +146738,7 @@ impl_1386 = {
     {
         &afw_runtime_inf__AdaptiveFunctionCategory_,
         NULL,
-        (const afw_value_t *)&impl_1386__value,
+        &impl_1386__value,
         {
             (const afw_object_t *)&impl_1386_meta_object,
             NULL,
@@ -146810,7 +146810,7 @@ impl_1387_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1387_meta_object__value
+        &impl_1387_meta_object__value
     },
     &impl_1387,
     NULL
@@ -146834,7 +146834,7 @@ impl_1387 = {
     {
         &afw_runtime_inf__AdaptiveFunctionCategory_,
         NULL,
-        (const afw_value_t *)&impl_1387__value,
+        &impl_1387__value,
         {
             (const afw_object_t *)&impl_1387_meta_object,
             NULL,
@@ -146893,7 +146893,7 @@ impl_1388_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1388_meta_object__value
+        &impl_1388_meta_object__value
     },
     &impl_1388,
     NULL
@@ -146917,7 +146917,7 @@ impl_1388 = {
     {
         &afw_runtime_inf__AdaptiveAuthorizationDecision_,
         NULL,
-        (const afw_value_t *)&impl_1388__value,
+        &impl_1388__value,
         {
             (const afw_object_t *)&impl_1388_meta_object,
             NULL,
@@ -146976,7 +146976,7 @@ impl_1389_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1389_meta_object__value
+        &impl_1389_meta_object__value
     },
     &impl_1389,
     NULL
@@ -147000,7 +147000,7 @@ impl_1389 = {
     {
         &afw_runtime_inf__AdaptiveFunctionCategory_,
         NULL,
-        (const afw_value_t *)&impl_1389__value,
+        &impl_1389__value,
         {
             (const afw_object_t *)&impl_1389_meta_object,
             NULL,
@@ -147059,7 +147059,7 @@ impl_1390_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1390_meta_object__value
+        &impl_1390_meta_object__value
     },
     &impl_1390,
     NULL
@@ -147083,7 +147083,7 @@ impl_1390 = {
     {
         &afw_runtime_inf__AdaptiveFunctionCategory_,
         NULL,
-        (const afw_value_t *)&impl_1390__value,
+        &impl_1390__value,
         {
             (const afw_object_t *)&impl_1390_meta_object,
             NULL,
@@ -147155,7 +147155,7 @@ impl_1391_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1391_meta_object__value
+        &impl_1391_meta_object__value
     },
     &impl_1391,
     NULL
@@ -147179,7 +147179,7 @@ impl_1391 = {
     {
         &afw_runtime_inf__AdaptiveFunctionCategory_,
         NULL,
-        (const afw_value_t *)&impl_1391__value,
+        &impl_1391__value,
         {
             (const afw_object_t *)&impl_1391_meta_object,
             NULL,
@@ -147251,7 +147251,7 @@ impl_1392_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1392_meta_object__value
+        &impl_1392_meta_object__value
     },
     &impl_1392,
     NULL
@@ -147275,7 +147275,7 @@ impl_1392 = {
     {
         &afw_runtime_inf__AdaptiveFunctionCategory_,
         NULL,
-        (const afw_value_t *)&impl_1392__value,
+        &impl_1392__value,
         {
             (const afw_object_t *)&impl_1392_meta_object,
             NULL,
@@ -147347,7 +147347,7 @@ impl_1393_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1393_meta_object__value
+        &impl_1393_meta_object__value
     },
     &impl_1393,
     NULL
@@ -147371,7 +147371,7 @@ impl_1393 = {
     {
         &afw_runtime_inf__AdaptiveFunctionCategory_,
         NULL,
-        (const afw_value_t *)&impl_1393__value,
+        &impl_1393__value,
         {
             (const afw_object_t *)&impl_1393_meta_object,
             NULL,
@@ -147443,7 +147443,7 @@ impl_1394_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1394_meta_object__value
+        &impl_1394_meta_object__value
     },
     &impl_1394,
     NULL
@@ -147467,7 +147467,7 @@ impl_1394 = {
     {
         &afw_runtime_inf__AdaptiveFunctionCategory_,
         NULL,
-        (const afw_value_t *)&impl_1394__value,
+        &impl_1394__value,
         {
             (const afw_object_t *)&impl_1394_meta_object,
             NULL,
@@ -147526,7 +147526,7 @@ impl_1395_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1395_meta_object__value
+        &impl_1395_meta_object__value
     },
     &impl_1395,
     NULL
@@ -147550,7 +147550,7 @@ impl_1395 = {
     {
         &afw_runtime_inf__AdaptiveFunctionCategory_,
         NULL,
-        (const afw_value_t *)&impl_1395__value,
+        &impl_1395__value,
         {
             (const afw_object_t *)&impl_1395_meta_object,
             NULL,
@@ -147622,7 +147622,7 @@ impl_1396_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1396_meta_object__value
+        &impl_1396_meta_object__value
     },
     &impl_1396,
     NULL
@@ -147646,7 +147646,7 @@ impl_1396 = {
     {
         &afw_runtime_inf__AdaptiveFunctionCategory_,
         NULL,
-        (const afw_value_t *)&impl_1396__value,
+        &impl_1396__value,
         {
             (const afw_object_t *)&impl_1396_meta_object,
             NULL,
@@ -147718,7 +147718,7 @@ impl_1397_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1397_meta_object__value
+        &impl_1397_meta_object__value
     },
     &impl_1397,
     NULL
@@ -147742,7 +147742,7 @@ impl_1397 = {
     {
         &afw_runtime_inf__AdaptiveFunctionCategory_,
         NULL,
-        (const afw_value_t *)&impl_1397__value,
+        &impl_1397__value,
         {
             (const afw_object_t *)&impl_1397_meta_object,
             NULL,
@@ -147814,7 +147814,7 @@ impl_1398_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1398_meta_object__value
+        &impl_1398_meta_object__value
     },
     &impl_1398,
     NULL
@@ -147838,7 +147838,7 @@ impl_1398 = {
     {
         &afw_runtime_inf__AdaptiveFunctionCategory_,
         NULL,
-        (const afw_value_t *)&impl_1398__value,
+        &impl_1398__value,
         {
             (const afw_object_t *)&impl_1398_meta_object,
             NULL,
@@ -147897,7 +147897,7 @@ impl_1399_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1399_meta_object__value
+        &impl_1399_meta_object__value
     },
     &impl_1399,
     NULL
@@ -147921,7 +147921,7 @@ impl_1399 = {
     {
         &afw_runtime_inf__AdaptiveAuthorizationMode_,
         NULL,
-        (const afw_value_t *)&impl_1399__value,
+        &impl_1399__value,
         {
             (const afw_object_t *)&impl_1399_meta_object,
             NULL,
@@ -147980,7 +147980,7 @@ impl_1400_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1400_meta_object__value
+        &impl_1400_meta_object__value
     },
     &impl_1400,
     NULL
@@ -148004,7 +148004,7 @@ impl_1400 = {
     {
         &afw_runtime_inf__AdaptiveFunctionCategory_,
         NULL,
-        (const afw_value_t *)&impl_1400__value,
+        &impl_1400__value,
         {
             (const afw_object_t *)&impl_1400_meta_object,
             NULL,
@@ -148076,7 +148076,7 @@ impl_1401_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1401_meta_object__value
+        &impl_1401_meta_object__value
     },
     &impl_1401,
     NULL
@@ -148100,7 +148100,7 @@ impl_1401 = {
     {
         &afw_runtime_inf__AdaptiveFunctionCategory_,
         NULL,
-        (const afw_value_t *)&impl_1401__value,
+        &impl_1401__value,
         {
             (const afw_object_t *)&impl_1401_meta_object,
             NULL,
@@ -148159,7 +148159,7 @@ impl_1402_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1402_meta_object__value
+        &impl_1402_meta_object__value
     },
     &impl_1402,
     NULL
@@ -148183,7 +148183,7 @@ impl_1402 = {
     {
         &afw_runtime_inf__AdaptiveFunctionCategory_,
         NULL,
-        (const afw_value_t *)&impl_1402__value,
+        &impl_1402__value,
         {
             (const afw_object_t *)&impl_1402_meta_object,
             NULL,
@@ -148242,7 +148242,7 @@ impl_1403_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1403_meta_object__value
+        &impl_1403_meta_object__value
     },
     &impl_1403,
     NULL
@@ -148266,7 +148266,7 @@ impl_1403 = {
     {
         &afw_runtime_inf__AdaptiveFunctionCategory_,
         NULL,
-        (const afw_value_t *)&impl_1403__value,
+        &impl_1403__value,
         {
             (const afw_object_t *)&impl_1403_meta_object,
             NULL,
@@ -148338,7 +148338,7 @@ impl_1404_meta_object = {
     {
         &afw_runtime_inf_const_meta_object_inf,
         NULL,
-        (const afw_value_t *)&impl_1404_meta_object__value
+        &impl_1404_meta_object__value
     },
     &impl_1404,
     NULL
@@ -148362,7 +148362,7 @@ impl_1404 = {
     {
         &afw_runtime_inf__AdaptiveFunctionCategory_,
         NULL,
-        (const afw_value_t *)&impl_1404__value,
+        &impl_1404__value,
         {
             (const afw_object_t *)&impl_1404_meta_object,
             NULL,
