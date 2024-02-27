@@ -415,7 +415,7 @@ impl_parse_definition(
         return NULL;
     }
     if (!afw_value_is_array_of_string(value)) {
-        AFW_THROW_ERROR_Z(general, "Expecting list of strings", xctx);
+        AFW_THROW_ERROR_Z(general, "Expecting array of strings", xctx);
     }
     list = ((const afw_value_array_t *)value)->internal;
 

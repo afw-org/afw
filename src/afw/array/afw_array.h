@@ -210,7 +210,7 @@ afw_array_convert_to_array_of_strings(
  * If indirect is false, array must be an array of data_type->cType.  If
  * indirect is true, array must be an array of data_type->cType *.
  *
- * If count is -1, the array must bean array of pointers.  This can either
+ * If count is -1, the array must be an array of pointers.  This can either
  * be because data_type->cType ends in an asterisk or the indirect parameter
  * is true.
  */
@@ -323,11 +323,11 @@ afw_array_of_utf8_get_next(
 
 
 /**
- * @brief Setan array to immutable if not already.
+ * @brief Set an array to immutable if not already.
  * @param instance Pointer to this value array instance.
  * @param xctx of caller.
  *
- * Oncean array is set to immutable, all other set calls will throw
+ * Once an array is set to immutable, all other set calls will throw
  * an error.
  */
 AFW_DECLARE(void)
@@ -345,10 +345,10 @@ afw_array_set_immutable(
  *    or unknown.
  *
  * If data type of values in array is not already known and all
- * values is array have the same data type, make the arrayan array of
+ * values is array have the same data type, make the array an array of
  * that data type.
  *
- * Oncean array is set to immutable, all other set calls will throw
+ * Once an array is set to immutable, all other set calls will throw
  * an error.
  */
 AFW_DECLARE(const afw_data_type_t *)

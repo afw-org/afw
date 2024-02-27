@@ -861,7 +861,7 @@ impl_parse_string_list_value(impl_string_parser_t *parser)
 
         /* Token should be a string. */
         if (parser->token_type != impl_token_type_string) {
-            IMPL_STRING_THROW_ERROR_Z("Invalid list item in relation");
+            IMPL_STRING_THROW_ERROR_Z("Invalid array item in relation");
         }
 
         /*
@@ -1424,7 +1424,7 @@ impl_AdaptiveQueryCriteria_object_parse_filter(
             }
             if (!afw_value_is_object(value)) {
                 AFW_THROW_ERROR_Z(general,
-                    "Property \"filters\" list entries must be objects",
+                    "Property \"filters\" array entries must be objects",
                     parser->xctx);
             }
             child_object = afw_value_as_object(value, parser->xctx);
@@ -1579,6 +1579,7 @@ impl_compare_value(
     const afw_data_type_t *entry_data_type;
     const afw_array_t *list;
     afw_array_wrapper_for_array_self_t list_for_single_internal;
+    const afw_value_t *entry_value_converted;
 
     /*
      * If not operator contains or match and data type passed does not match,
@@ -1738,6 +1739,7 @@ impl_compare_value(
 
     case afw_query_criteria_filter_op_id_in:
         AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
+        
         /** @fixme 
         entry_list = ((const afw_value_array_t *)entry_value)->internal;
         for (is_true = false, iterator = NULL;;) {
@@ -1788,25 +1790,30 @@ impl_compare_value(
         break;
          */
 
-    case afw_query_criteria_filter_op_id_contains:
-        AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
-        /** @fixme 
-        s1 = afw_value_as_utf8(entry->value, p, xctx);
-        for (is_true = false;
-            count > 0 && !is_true;
-            count--, i2 += value->data_type->c_type_size)
-        {
-            s2 = afw_data_type_internal_to_utf8(value->data_type,
-                i2, p, xctx);
-            for (c = s2->s, len = s2->len; len >= s1->len; len--, c++) {
-                if (memcmp(c, s1->s, s1->len) == 0) {
-                    is_true = true;
-                    break;
-                }
+    case afw_query_criteria_filter_op_id_contains:        
+
+        /* run through the array of values, looking for at least one equality */
+        for (is_true = false, iterator = NULL; !is_true;) {
+            afw_array_get_next_internal(list, &iterator,
+                &entry_data_type, &i2, xctx);
+            if (!i2) {
+                /* no more entries */
+                break;
+            }
+            /* convert the entry_value data_type to our array entry value data_type */
+            entry_value_converted = afw_value_convert(entry_value,
+                entry_data_type, false,
+                p, xctx);        
+            i1 = (const void *)&((const afw_value_common_t *)entry_value_converted)->internal;                  
+            /* now compare the list entry with our criteria entry */
+            if (afw_data_type_compare_internal(entry_data_type,
+                i1, i2, xctx) == 0) {
+                is_true = true;
             }
         }
+        
         break;
-         */
+         
 
     default:
         AFW_THROW_ERROR_Z(general,

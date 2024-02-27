@@ -82,7 +82,7 @@ impl_list_destructure(
 
     if (!afw_value_is_array(value)) {
         AFW_THROW_ERROR_Z(general,
-            "List destructure can only be performed on a list", xctx);
+            "Array destructure can only be performed on an array", xctx);
     }
 
     for (eol = false,
@@ -364,11 +364,11 @@ impl_assign_value(
             list = ((const afw_value_array_t *)aggregate_value)->internal;
 
             if (afw_array_is_immutable(list, xctx)) {
-                AFW_THROW_ERROR_Z(general, "Target list is immutable", xctx);
+                AFW_THROW_ERROR_Z(general, "Target array is immutable", xctx);
             }
 
             if (!afw_value_is_integer(key)) {
-                AFW_THROW_ERROR_Z(general, "List index must be integer", xctx);
+                AFW_THROW_ERROR_Z(general, "Array index must be integer", xctx);
             }
 
             afw_array_set_value_by_index(list,

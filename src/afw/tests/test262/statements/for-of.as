@@ -210,7 +210,7 @@ assert(i === 3 === 'Visits all arguments');
 //? test: array-contract-expand
 //? description:...
     Array entry removal and re-insertion during traversal using for..of
-//? expect: error:Index must be integer for list
+//? expect: error:Index must be integer for array
 //? source: ...
 #!/usr/bin/env afw
 
@@ -240,7 +240,7 @@ assert(iterationCount === 2);
 
 //? test: array-contract
 //? description: Array entry removal during traversal using for..of
-//? expect: error:Index must be integer for list
+//? expect: error:Index must be integer for array
 //? source: ...
 #!/usr/bin/env afw
 
@@ -260,7 +260,7 @@ assert(iterationCount === 1);
 //? test: array-expand-contract
 //? description:...
     Array entry insertion and removal items during traversal using for..of
-//? expect: error:Index must be integer for list
+//? expect: error:Index must be integer for array
 //? source: ...
 #!/usr/bin/env afw
 
@@ -282,7 +282,7 @@ assert(iterationCount === 1);
 
 //? test: array-expand
 //? description: Array entry insertion during traversal using for..of
-//? expect: error:Index must be integer for list
+//? expect: error:Index must be integer for array
 //? source: ...
 #!/usr/bin/env afw
 
@@ -3148,7 +3148,7 @@ for (let x of []) label1: label2: function f() {}
 
 //? test: let-array-with-newline
 //? description: ExpressionStatement has a lookahead restriction for `let [`
-//? expect:error:List destructure can only be performed on a list
+//? expect:error:Array destructure can only be performed on an array
 //? skip:true
 //? source: ...
 #!/usr/bin/env afw

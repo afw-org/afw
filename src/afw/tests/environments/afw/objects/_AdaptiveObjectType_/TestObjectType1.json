@@ -20,6 +20,16 @@
         "TestBoolean1": {
             "dataType": "boolean",
             "allowQuery": true
+        },
+        "TestObject1": {
+            "dataType": "object",
+            "dataTypeParameter": "TestObjectType3",
+            "allowQuery": true
+        },
+        "TestArray1": {
+            "dataType": "array",
+            "dataTypeParameter": "string",
+            "allowQuery": true
         }
-    }     
+    }
 }

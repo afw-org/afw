@@ -132,6 +132,26 @@ afw_object_type_property_type_get(
 
 
 /**
+ * @brief Get property type object for an object type's own property 
+ *        or embedded property.
+ * @param object_type.
+ * @param property_name of property type to get. Can be dotted to access
+ *       embedded property type objects.
+ * @param xctx of caller.
+ * @return property type or NULL if not found.
+ *
+ * If there is not a specific property type object for the named
+ * property, the otherProperties property type is returned if
+ * available.
+ */
+AFW_DECLARE(const afw_object_type_property_type_t *)
+afw_object_type_property_type_get_extended(
+    const afw_object_type_t *object_type,
+    const afw_utf8_t *property_name_extended,
+    afw_xctx_t *xctx);
+
+
+/**
  * @brief Get next property type for object type.
  * @param object_type.
  * @param iterator pointer. Set to NULL before first call.

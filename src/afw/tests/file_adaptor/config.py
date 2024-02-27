@@ -9,6 +9,7 @@ Environment = "afw"
 ignore = [
     "objects/_AdaptiveObjectType_/TestObjectType1.json",
     "objects/_AdaptiveObjectType_/TestObjectType2.json",
+    "objects/_AdaptiveObjectType_/TestObjectType3.json",
     "objects/TestObjectType1/Test1.json"
 ]
 

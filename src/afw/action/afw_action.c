@@ -323,7 +323,7 @@ afw_action_perform(
             /* Action must be a single_object. */
             if (!afw_value_is_object(value)) {
                 AFW_THROW_ERROR_Z(syntax,
-                    "Entries in actions list must be objects",
+                    "Entries in actions array must be objects",
                     xctx);
             }
             action_entry = ((const afw_value_object_t *)value)->internal;

@@ -186,7 +186,7 @@ afw_object_meta_get_parent_paths_value(
         if (value && !afw_value_is_array_of_anyURI(value))
         {
             AFW_THROW_ERROR_Z(general,
-                "Expecting parentPaths to be a list of anyURI",
+                "Expecting parentPaths to be an array of anyURI",
                 xctx);
         }
     }

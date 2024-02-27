@@ -31,6 +31,31 @@
       ]
     },
     {
+      "name": "Debug: afw current test_script file",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "/usr/local/bin/afw",
+      "args": [
+        "--syntax",
+        "test_script",
+        "-f",
+        "afw.conf",
+        "${file}"
+      ],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}/src/afw/tests/environments/afw",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ]
+    },
+    {
       "name": "Debug: afwfcgi",
       "type": "cppdbg",
       "request": "launch",

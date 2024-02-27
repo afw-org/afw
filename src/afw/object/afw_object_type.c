@@ -163,6 +163,102 @@ afw_object_type_property_type_get_next(
 }
 
 
+AFW_DEFINE(const afw_object_type_property_type_t *)
+afw_object_type_property_type_get_extended(
+    const afw_object_type_t *object_type,
+    const afw_utf8_t *property_name_extended,
+    afw_xctx_t *xctx)
+{
+    const afw_object_type_t *type;
+    const afw_utf8_t *meta;
+    afw_utf8_t after_dot;
+    const afw_object_type_property_type_t *result;
+    afw_utf8_t meta_pn;
+    afw_utf8_t pn;
+
+    /** @fixme Correct? Return NULL if object_type or property_name is missing. */
+    if (!object_type ||
+        !property_name_extended ||
+        property_name_extended->len == 0)
+    {
+        return NULL;
+    }
+
+    /* Return property type from object type passed or an ancestor */
+    type = object_type;
+    result = NULL;
+
+    /* If the property name starts with _meta_, process accordingly. */
+    if (afw_utf8_starts_with_z(property_name_extended,
+        AFW_OBJECT_Q_PN_META  "."))
+    {
+        meta = NULL;
+        afw_utf8_substring_byte(&meta_pn, property_name_extended,
+            strlen(AFW_OBJECT_Q_PN_META  "."), property_name_extended->len);
+        if (afw_utf8_equal_utf8_z(&meta_pn, "objectId")) {
+            //meta = afw_object_meta_get_object_id(instance, xctx);            
+        }
+        else if (afw_utf8_equal_utf8_z(&meta_pn, "objectType")) {
+            //meta = afw_object_meta_get_object_type(instance, xctx);
+        }
+        else if (afw_utf8_equal_utf8_z(&meta_pn, "path")) {
+            //meta = afw_object_meta_get_path(instance, xctx);
+        }
+        else if (afw_utf8_equal_utf8_z(&meta_pn, "parentPaths")) {
+            //meta = afw_object_get_parent_paths(instance, xctx);
+        };
+         
+        if (meta) {
+            //result = afw_value_create_unmanaged_object(
+            //    meta, xctx->p, xctx);            
+        }
+        return result;
+    }    
+
+    /* Check for dotted property name. */
+    pn.s = property_name_extended->s;
+    pn.len = property_name_extended->len;
+
+    for (after_dot.s = property_name_extended->s,
+        after_dot.len = property_name_extended->len;
+        after_dot.len > 0;
+        (after_dot.s)++, (after_dot.len)--)
+    {
+        /** @fixme Property names like "xyz." and "xyz..x get through. */
+        if (*after_dot.s == '.') {
+            pn.len -= after_dot.len;
+            (after_dot.s)++;
+            (after_dot.len)--;
+            break;
+        }
+    }
+
+    /* Attempt to get property and return if error or found. */
+    result = afw_object_type_property_type_get(object_type, &pn, xctx);
+    if (result) {
+
+        /* If dotted name, process rest of name if it's object. */
+        if (after_dot.len > 0) {
+            if (result->data_type == afw_data_type_object) {        
+                if (type) {} /* @fixme remove this later */ 
+                /** 
+                    @fixme we will need a way to resolve an object_type from a property_type
+                    and this could be very complicated, since additional objects would need to 
+                    be resolved by an adaptor.
+
+                result = afw_object_get_property_extended(
+                    result->object_type_object,
+                    &after_dot, xtcx);                
+                */
+            }
+        }
+    }
+
+    /* Return result. */
+    return result;
+}
+
+
 /* Normalize a value based on property type. */
 AFW_DEFINE(const afw_value_t *)
 afw_object_type_property_type_normalize(

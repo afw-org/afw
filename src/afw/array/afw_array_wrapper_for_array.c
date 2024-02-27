@@ -81,7 +81,7 @@ afw_array_create_wrapper_for_array(
 
 
 
-/* Convertan array toan array of strings. */
+/* Convert an array to an array of strings. */
 AFW_DEFINE(const afw_array_t *)
 afw_array_convert_to_array_of_strings(
     const afw_array_t *array,

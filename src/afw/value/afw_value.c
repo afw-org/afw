@@ -626,7 +626,7 @@ afw_value_convert(
             list = ((const afw_value_array_t *)value)->internal;
             if (afw_array_get_count(list, xctx) != 1) {
                 AFW_THROW_ERROR_Z(general,
-                    "Can't down convert a list with more than one entry",
+                    "Can't down convert an array with more than one entry",
                     xctx);
             }
             iterator = NULL;

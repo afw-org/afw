@@ -80,9 +80,9 @@ assert(result.status === "error");
 return result.error.message;
 
 
-//? test: entries_in_actions_list
+//? test: entries_in_actions_array
 //? description: Entries in actions array must be objects
-//? expect: "Entries in actions list must be objects"
+//? expect: "Entries in actions array must be objects"
 //? source: ...
 
 const result = perform({

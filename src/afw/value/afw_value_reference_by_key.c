@@ -136,7 +136,7 @@ impl_afw_value_optional_evaluate(
         key = afw_value_evaluate(self->key, p, xctx);
         if (!afw_value_is_integer(key)) {
             AFW_THROW_ERROR_Z(evaluate,
-                "Index must be integer for list", xctx);
+                "Index must be integer for array", xctx);
         }
         i = afw_safe_cast_integer_to_size(
             ((const afw_value_integer_t *)key)->internal,
@@ -146,13 +146,13 @@ impl_afw_value_optional_evaluate(
             i, p, xctx);
         if (!result) {
             AFW_THROW_ERROR_Z(evaluate,
-                "Index out of range for list", xctx);
+                "Index out of range for array", xctx);
         }
     }
 
     else {
         AFW_THROW_ERROR_Z(evaluate,
-            "Expecting object or list", xctx);
+            "Expecting object or array", xctx);
     }
 
     /* Pop value from evaluation stack and return result. */
@@ -207,7 +207,7 @@ impl_afw_value_get_evaluated_meta(
         key = afw_value_convert(key, afw_data_type_integer, false, p, xctx);
         if (!afw_value_is_integer(key)) {
             AFW_THROW_ERROR_Z(general,
-                "reference_by_key key for list must be an integer",
+                "reference_by_key key for array must be an integer",
                 xctx);
         }
         result = afw_array_get_entry_meta(
@@ -217,7 +217,7 @@ impl_afw_value_get_evaluated_meta(
     }
     else {
         AFW_THROW_ERROR_Z(general,
-            "reference_by_key aggregate_value must be list or object",
+            "reference_by_key aggregate_value must be array or object",
             xctx);
     }
 

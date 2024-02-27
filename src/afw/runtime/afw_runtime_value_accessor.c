@@ -458,16 +458,16 @@ afw_runtime_value_accessor_null_terminated_array_of_internal(
         return NULL;
     }
 
-    /* Must be data type list. */
+    /* Must be data type array. */
     if (prop->data_type != afw_data_type_array) {
         AFW_THROW_ERROR_Z(general,
-            "data type must be list for value accessor array_of_pointers.",
+            "data type must be array for value accessor array_of_pointers.",
             xctx);
     }
 
     /* The dataTypeParameter is needed for runtime list. */
     if (!prop->data_type_parameter_data_type) {
-        AFW_THROW_ERROR_Z(general, "list data type required", xctx);
+        AFW_THROW_ERROR_Z(general, "array data type required", xctx);
     }
 
     /* Support for pointer to array of internals. */
@@ -556,16 +556,16 @@ afw_runtime_value_accessor_null_terminated_array_of_pointers(
         return NULL;
     }
 
-    /* Must be data type list. */
+    /* Must be data type array. */
     if (prop->data_type != afw_data_type_array) {
         AFW_THROW_ERROR_Z(general,
-            "data type must be list for value accessor array_of_pointers.",
+            "data type must be array for value accessor array_of_pointers.",
             xctx);
     }
 
     /* The dataTypeParameter is needed for runtime list. */
     if (!prop->data_type_parameter_data_type) {
-        AFW_THROW_ERROR_Z(general, "list data type required", xctx);
+        AFW_THROW_ERROR_Z(general, "array data type parameter required", xctx);
     }
 
     /* Support for pointer to array of pointers. */

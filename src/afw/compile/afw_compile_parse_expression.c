@@ -960,7 +960,7 @@ afw_compile_parse_Type(afw_compile_parser_t *parser)
                     else {
                         if (list_type->cell_type) {
                             AFW_COMPILE_THROW_ERROR_Z(
-                                "Only 'of list' can be specified except for "
+                                "Only 'of array' can be specified except for "
                                 "final 'of'");
                         }
                         afw_compile_reuse_token();
