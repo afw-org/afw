@@ -447,8 +447,10 @@ afw_adaptor_get_object_type(
 {
     const afw_object_type_t *result;
     const afw_object_t *object;
+    const afw_utf8_t *embedded_object_type_id;
     const afw_adaptor_object_type_cache_t *adaptor_cache;
     afw_adaptor_internal_session_cache_t *session_cache;
+    afw_object_type_property_type_t *property_type;
     const afw_adaptor_t *adaptor;
     const afw_pool_t *p;
     afw_boolean_t final_result;
@@ -525,7 +527,10 @@ afw_adaptor_get_object_type(
         }
     }
 
-    /* If result, cache in adaptor or session. */
+    /*
+     * If result, cache in adaptor or session. Then, resolve any embedded object
+     * types base on data_type_parameter (default _AdaptiveObject_).
+     */
     if (result) {
         if (result && adaptor_cache && adaptor_cache->all_object_types_immutable)
         {
@@ -538,6 +543,38 @@ afw_adaptor_get_object_type(
             }
             apr_hash_set(session_cache->object_types_ht,
                 object_type_id->s, object_type_id->len, result);
+        }
+
+        for (
+            property_type =
+                (afw_object_type_property_type_t *)result->first_property_type;
+            property_type;
+            property_type =
+                (afw_object_type_property_type_t *)property_type->next
+            )
+        {
+            if (property_type->data_type == afw_data_type_object &&
+                !property_type->object_type)
+            {
+                embedded_object_type_id = (property_type->data_type_parameter)
+                    ? property_type->data_type_parameter
+                    : afw_s__AdaptiveObject_;
+                property_type->object_type = afw_adaptor_get_object_type(
+                    adaptor_id, embedded_object_type_id, journal_entry, xctx);
+            }
+        }
+
+        property_type =
+            (afw_object_type_property_type_t *)result->other_properties;
+        if (property_type &&
+            property_type->data_type == afw_data_type_object &&
+            !property_type->object_type)
+        {
+            embedded_object_type_id = (property_type->data_type_parameter)
+                ? property_type->data_type_parameter
+                : afw_s__AdaptiveObject_;
+            property_type->object_type = afw_adaptor_get_object_type(
+                adaptor_id, embedded_object_type_id, journal_entry, xctx);
         }
     }
 

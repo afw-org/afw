@@ -63,6 +63,9 @@ struct afw_object_type_property_type_s {
     const afw_data_type_t *data_type;
     const afw_utf8_t *data_type_parameter;
 
+    /* If this is data type object, this is the object type struct. */
+    const afw_object_type_t *object_type;
+
     const afw_value_t *default_value;
 
     afw_boolean_t allow_write;
