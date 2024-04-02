@@ -887,7 +887,6 @@ return 0;
 //? test: retrieve_objects_query_criteria_rql_eq_object
 //? description: Test file adaptor retrieve_objects with rql query criteria eq object.
 //? expect: 0
-//? skip: true
 //? source: ...
 
 const objects: array = retrieve_objects("file", "TestObjectType1", {
@@ -900,5 +899,24 @@ assert(obj !== undefined);
 
 // make sure the mapped property exists
 assert(obj.TestObject1.prop1 === "val1");
+
+return 0;
+
+
+//? test: retrieve_objects_query_criteria_rql_eq_object_no_allowQuery
+//? description: Test file adaptor retrieve_objects with rql query criteria eq object when allowQuery=false.
+//? expect: error:Query string error at offset +0: Property 'TestObject1.prop2' cannot be queried
+//? source: ...
+
+const objects: array = retrieve_objects("file", "TestObjectType1", {
+    "urlEncodedRQLString": "TestObject1.prop2=val2"
+});
+
+// we should have one object to start with
+const obj: object = objects[0];
+assert(obj !== undefined);
+
+// make sure the mapped property exists
+assert(obj.TestObject1.prop2 === "val2");
 
 return 0;

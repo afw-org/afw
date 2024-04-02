@@ -188,7 +188,9 @@ afw_object_type_property_type_get_extended(
     type = object_type;
     result = NULL;
 
-    /* If the property name starts with _meta_, process accordingly. */
+    /* If the property name starts with _meta_, process accordingly. 
+       @fixme not implemented yet
+     */
     if (afw_utf8_starts_with_z(property_name_extended,
         AFW_OBJECT_Q_PN_META  "."))
     {
@@ -239,17 +241,11 @@ afw_object_type_property_type_get_extended(
 
         /* If dotted name, process rest of name if it's object. */
         if (after_dot.len > 0) {
-            if (result->data_type == afw_data_type_object) {        
-                if (type) {} /* @fixme remove this later */ 
-                /** 
-                    @fixme we will need a way to resolve an object_type from a property_type
-                    and this could be very complicated, since additional objects would need to 
-                    be resolved by an adaptor.
-
-                result = afw_object_get_property_extended(
-                    result->object_type_object,
-                    &after_dot, xtcx);                
-                */
+            if (result->data_type == afw_data_type_object) {   
+                type = result->object_type;
+                
+                result = afw_object_type_property_type_get_extended(type,
+                    &after_dot, xctx);                                
             }
         }
     }

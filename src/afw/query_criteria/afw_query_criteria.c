@@ -748,7 +748,7 @@ impl_parse_string_sort(impl_string_parser_t *parser)
         /* Get property name from token. */
         entry->property_name = impl_decode_token(parser);
         if (parser->criteria->object_type && entry->property_name) {
-            entry->pt = afw_object_type_property_type_get(
+            entry->pt = afw_object_type_property_type_get_extended(
                 parser->criteria->object_type,
                 entry->property_name, parser->xctx);
             if (!entry->pt || !entry->pt->allow_query) {
@@ -931,7 +931,7 @@ impl_parse_string_relation(
     }
     entry->property_name = impl_decode_token(parser);
     if (parser->criteria->object_type && entry->property_name) {
-        entry->pt = afw_object_type_property_type_get(
+        entry->pt = afw_object_type_property_type_get_extended(
             parser->criteria->object_type,
             entry->property_name, parser->xctx);
         if (!entry->pt || !entry->pt->allow_query) {
@@ -1254,7 +1254,7 @@ impl_parse_string_function(
         }
         entry->property_name = impl_decode_token(parser);
         if (parser->criteria->object_type && entry->property_name) {
-            entry->pt = afw_object_type_property_type_get(
+            entry->pt = afw_object_type_property_type_get_extended(
                 parser->criteria->object_type,
                 entry->property_name, parser->xctx);
             if (!entry->pt || !entry->pt->allow_query) {
@@ -1465,7 +1465,7 @@ impl_AdaptiveQueryCriteria_object_parse_filter(
         entry->property_name = afw_object_old_get_property_as_string(
             filter_object, afw_s_property, parser->xctx);
         if (parser->criteria->object_type && entry->property_name) {
-            entry->pt = afw_object_type_property_type_get(
+            entry->pt = afw_object_type_property_type_get_extended(
                 parser->criteria->object_type,
                 entry->property_name, parser->xctx);
             if (!entry->pt || !entry->pt->allow_query) {
