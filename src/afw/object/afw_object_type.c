@@ -169,7 +169,6 @@ afw_object_type_property_type_get_extended(
     const afw_utf8_t *property_name_extended,
     afw_xctx_t *xctx)
 {
-    const afw_object_type_t *type;
     const afw_utf8_t *meta;
     afw_utf8_t after_dot;
     const afw_object_type_property_type_t *result;
@@ -184,8 +183,7 @@ afw_object_type_property_type_get_extended(
         return NULL;
     }
 
-    /* Return property type from object type passed or an ancestor */
-    type = object_type;
+    /* Return property type from object type passed or an ancestor */    
     result = NULL;
 
     /* If the property name starts with _meta_, process accordingly. 
@@ -238,13 +236,10 @@ afw_object_type_property_type_get_extended(
     /* Attempt to get property and return if error or found. */
     result = afw_object_type_property_type_get(object_type, &pn, xctx);
     if (result) {
-
         /* If dotted name, process rest of name if it's object. */
         if (after_dot.len > 0) {
             if (result->data_type == afw_data_type_object) {   
-                type = result->object_type;
-                
-                result = afw_object_type_property_type_get_extended(type,
+                result = afw_object_type_property_type_get_extended(result->object_type,
                     &after_dot, xctx);                                
             }
         }
