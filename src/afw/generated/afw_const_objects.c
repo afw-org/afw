@@ -136952,6 +136952,7 @@ impl_1288;
 
 static const afw_utf8_t
 impl_1288_array_GNU[] = {
+    AFW_UTF8_LITERAL("-D_DEFAULT_SOURCE"),
     AFW_UTF8_LITERAL("-Wall"),
     AFW_UTF8_LITERAL("-Werror"),
     AFW_UTF8_LITERAL("-Wextra"),
