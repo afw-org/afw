@@ -1573,21 +1573,22 @@ impl_compare_value(
 {
     afw_boolean_t is_true;
     const void *i1, *i2;
-    const afw_iterator_t *iterator;
+    const afw_iterator_t *iterator, *iterator2;
     const afw_value_t *entry_value;
     const afw_data_type_t *data_type;
-    const afw_data_type_t *entry_data_type;
-    const afw_array_t *list;
+    const afw_data_type_t *entry_data_type, *value_data_type;
+    const afw_array_t *list, *entry_list;
     afw_array_wrapper_for_array_self_t list_for_single_internal;
     const afw_value_t *entry_value_converted;
 
     /*
-     * If not operator contains or match and data type passed does not match,
+     * If operator is not contains, match or in, and data type passed does not match,
      * try to convert property value to entry type.
      */
     entry_value = entry->value;
     if (entry->op_id != afw_query_criteria_filter_op_id_match &&
-        entry->op_id != afw_query_criteria_filter_op_id_contains)
+        entry->op_id != afw_query_criteria_filter_op_id_contains &&
+        entry->op_id != afw_query_criteria_filter_op_id_in)
     {
         if (value->inf != entry_value->inf) {
             AFW_TRY {
@@ -1737,39 +1738,45 @@ impl_compare_value(
         }
         break;
 
-    case afw_query_criteria_filter_op_id_in:
-        AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
+    case afw_query_criteria_filter_op_id_in:        
+
+        if (!afw_value_is_array(entry_value)) {
+            AFW_THROW_ERROR_Z(general, "array required for 'in' operator", xctx);
+        }
         
-        /** @fixme 
-        entry_list = ((const afw_value_array_t *)entry_value)->internal;
-        for (is_true = false, iterator = NULL;;) {
+        /* get our list of property values to compare */
+        for (is_true = false, iterator = NULL; is_true == false;) {
             afw_array_get_next_internal(list, &iterator, &entry_data_type, &i1, xctx);
             if (!i1) {
                 break;
             }
-            if (data_type != entry_data_type) {
-                AFW_THROW_ERROR_Z(general, "data type mismatch", xctx);
-            }
-            for (iterator2 = NULL;;) {
-                afw_array_get_next_internal(entry_list, &iterator2, NULL, &i2, xctx);
+        
+            /* get our list of query criteria entry values to compare */            
+            entry_list = ((const afw_value_array_t *)entry_value)->internal;        
+            for (is_true = false, iterator2 = NULL; !is_true;) {
+                afw_array_get_next_internal(entry_list, &iterator2, &value_data_type, &i2, xctx);
                 if (!i2) {
+                    /* no more values */                    
                     break;
                 }
-                is_true = afw_data_type_compare_internal(data_type, i1, i2, xctx) == 0;
+
+                /* make sure types match */
+                if (value_data_type != entry_data_type) {
+                    AFW_THROW_ERROR_Z(general, "data type mismatch", xctx);
+                }
+                
+                is_true = afw_data_type_compare_internal(entry_data_type, i1, i2, xctx) == 0;
                 if (is_true) {
                     break;
                 }
-            }
-            if (is_true) {
-                break;
-            }
+            }            
         }
-        break;
-         */
 
+        break;
 
     case afw_query_criteria_filter_op_id_match:
         AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
+
         /** @fixme 
         for (is_true = false;
             count > 0 && !is_true;
