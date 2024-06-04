@@ -31,6 +31,8 @@
 
 #define impl_afw_value_get_evaluated_metas \
     afw_value_internal_get_evaluated_metas_default
+
+#define impl_afw_value_optional_evaluate NULL
     
 #define impl_afw_value_create_iterator NULL
 
@@ -78,18 +80,6 @@ afw_value_script_function_definition_create(
     return &self->pub;
 }
 
-
-/*
- * Implementation of method optional_evaluate for interface afw_value.
- */
-const afw_value_t *
-impl_afw_value_optional_evaluate(
-    const afw_value_t * instance,
-    const afw_pool_t * p,
-    afw_xctx_t *xctx)
-{
-    return instance;
-}
 
 /*
  * Implementation of method get_data_type for interface afw_value.

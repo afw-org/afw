@@ -7,7 +7,6 @@
 //? test: function_array_as_parameter
 //? description: pass function from array as a parameter
 //? expect: "foo"
-//? skip: true
 //? source: ...
 #!/usr/bin/env afw
 

@@ -583,7 +583,7 @@ afw_value_convert(
     result = value;
     AFW_VALUE_UNDECORATE(result);
     for (evaluate_count = 0;
-        result && !afw_value_is_defined_and_evaluated(result);
+        result && result->inf->optional_evaluate;
         evaluate_count++)
     {
         if (evaluate_count >= /** @fixme make parameter */ 20) {
