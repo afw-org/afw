@@ -155,9 +155,10 @@ impl_open_and_retrieve_peer_object(
 
     *full_peer_path_z = afw_utf8_z_printf(p, xctx,
         AFW_UTF8_FMT AFW_OBJECT_Q_OBJECT_TYPE_ID_PROVISIONING_PEER
-        "/" AFW_UTF8_FMT,
+        "/" AFW_UTF8_FMT AFW_UTF8_FMT,
         AFW_UTF8_FMT_ARG(adaptor->root),
-        AFW_UTF8_FMT_ARG(consumer_id));
+        AFW_UTF8_FMT_ARG(consumer_id),
+        AFW_UTF8_FMT_OPTIONAL_ARG(adaptor->filename_suffix));
 
     AFW_ERROR_FOOTPRINT("apr_stat()");
     rv = apr_stat(&finfo, *full_peer_path_z, APR_FINFO_SIZE,
