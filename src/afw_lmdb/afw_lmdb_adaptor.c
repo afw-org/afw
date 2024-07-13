@@ -287,9 +287,9 @@ const afw_adaptor_t * afw_lmdb_adaptor_create_cede_p(
     /* Now, open our LMDB environment */
     rc = mdb_env_open(self->dbEnv, self->env->path_z, 0, self->env->mode);
     if (rc) {
-        AFW_THROW_ERROR_RV_Z(general, lmdb, rc,
-            "Unable to open LMDB environment.  Check path and permissions.",
-            xctx);
+        AFW_THROW_ERROR_RV_FZ(general, lmdb, rc, xctx,
+            "Unable to open LMDB environment at path %s.  Check path and permissions.",
+            self->env->path_z);
     }
 
     /* 

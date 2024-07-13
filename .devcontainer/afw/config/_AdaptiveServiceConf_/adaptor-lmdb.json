@@ -17,7 +17,7 @@
             }
         },
         "env":{
-            "mapsize":137438953472,
+            "mapsize":13743895347,
             "maxdbs":128,
             "maxreaders":126,
             "mode":384,
