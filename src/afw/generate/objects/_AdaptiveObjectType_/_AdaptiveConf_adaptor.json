@@ -34,6 +34,14 @@
             "description": "Id of authorization handler used to control access to resources in this adaptor.",
             "label": "Authorization Handler"
         },
+        "checkIndividualObjectReadAccess": {
+            "brief": "Check individual object read access",
+            "dataType": "boolean",
+            "defaultValue": false,
+            "description": "Adaptor requests to get and retrieve objects always do an action 'query' authorization check before any objects are retrieved. If this property is 'true', an additional action 'read' authorization check is made for each individual object. This is useful if the properties of an object are needed to make an authorization decision.",
+            "label": "Check Individual Object Access",
+            "required": false
+        },
         "journalAdaptorId": {
             "allowQuery": true,
             "brief": "The adaptorId that provides journal service for this adaptor",

@@ -371,6 +371,11 @@ afw_adaptor_impl_create_cede_p(
     impl->authorization = afw_object_get_property(
         properties, afw_s_authorization, xctx);
 
+    /* checkIndividualObjectReadAccess property */
+    impl->check_individual_object_read_access =
+        afw_object_old_get_property_as_boolean_deprecated(
+            properties, afw_s_checkIndividualObjectReadAccess, xctx);
+
     /** @fixme Reuse if already exists or reuse correct pool. */
     /* Create runtime metrics object and set in properties. */
     impl->metrics_object = afw_runtime_object_create_indirect(
@@ -991,6 +996,8 @@ impl_afw_adaptor_session_retrieve_objects(
     afw_adaptor_impl_core_object_type_t *e;
     afw_utf8_t object_id;
     impl_request_context_t ctx;
+    afw_object_cb_t callback_to_use_for_get;
+    void *context_to_use_for_get;
 
     /* Initialize ctx. */
     afw_memory_clear(&ctx);
@@ -1009,6 +1016,16 @@ impl_afw_adaptor_session_retrieve_objects(
             AFW_UTF8_FMT_ARG(object_type_id));
     }
     ctx.action_id_value = afw_authorization_action_id_query;
+
+    /* If checkIndividualObjectReadAccess, use extra cb to check read access. */
+    if (self->pub.adaptor->impl->check_individual_object_read_access) {
+        callback_to_use_for_get = impl_authorization_cb;
+        context_to_use_for_get = &ctx;
+    }
+    else {
+        callback_to_use_for_get = callback;
+        context_to_use_for_get = context;
+    }
 
     /* Trace begin */
     afw_trace_fz(1, adaptor->trace_flag_index, self->wrapped_session, xctx,
@@ -1050,7 +1067,7 @@ impl_afw_adaptor_session_retrieve_objects(
         afw_adaptor_session_retrieve_objects(
             self->wrapped_session, impl_request,
             object_type_id, criteria,
-            &ctx, impl_authorization_cb,
+            context_to_use_for_get, callback_to_use_for_get,
             adaptor_type_specific,
             p, xctx);
     }
@@ -1062,7 +1079,7 @@ impl_afw_adaptor_session_retrieve_objects(
         afw_adaptor_session_retrieve_objects(
             self->wrapped_session, impl_request,
             object_type_id, criteria,
-            &ctx, impl_authorization_cb,
+            context_to_use_for_get, callback_to_use_for_get,
             adaptor_type_specific,
             p, xctx);
     }
@@ -1073,7 +1090,7 @@ impl_afw_adaptor_session_retrieve_objects(
         afw_adaptor_session_retrieve_objects(
             self->wrapped_session, impl_request,
             object_type_id, criteria,
-            &ctx, impl_authorization_cb,
+            context_to_use_for_get, callback_to_use_for_get,
             adaptor_type_specific,
             p, xctx);
     }
@@ -1110,6 +1127,8 @@ impl_afw_adaptor_session_get_object(
     const afw_object_t *object_type_object;
     afw_adaptor_impl_core_object_type_t *e;
     impl_request_context_t ctx;
+    afw_object_cb_t callback_to_use_for_get;
+    void *context_to_use_for_get;
 
     /* Initialize ctx. */
     afw_memory_clear(&ctx);
@@ -1129,6 +1148,16 @@ impl_afw_adaptor_session_get_object(
             AFW_UTF8_FMT_ARG(object_id));
     }
     ctx.action_id_value = afw_authorization_action_id_query;
+
+    /* If checkIndividualObjectReadAccess, use extra cb to check read access. */
+    if (self->pub.adaptor->impl->check_individual_object_read_access) {
+        callback_to_use_for_get = impl_authorization_cb;
+        context_to_use_for_get = &ctx;
+    }
+    else {
+        callback_to_use_for_get = callback;
+        context_to_use_for_get = context;
+    }
 
     /* Trace begin */
     afw_trace_fz(1, adaptor->trace_flag_index, self->wrapped_session, xctx,
@@ -1152,7 +1181,7 @@ impl_afw_adaptor_session_get_object(
         if (e) {
             ctx.impl_callback_context = context;
             ctx.impl_callback = callback;
-            impl_authorization_cb(e->object, &ctx, xctx);
+            callback_to_use_for_get(e->object, context_to_use_for_get, xctx);
             goto end_trace;
         }
 
@@ -1162,7 +1191,8 @@ impl_afw_adaptor_session_get_object(
         if (object_type_object) {
             ctx.impl_callback_context = context;
             ctx.impl_callback = callback;
-            impl_authorization_cb(object_type_object, &ctx, xctx);
+            callback_to_use_for_get(
+                object_type_object, context_to_use_for_get, xctx);
         }
 
         /* Other special pattern object type ids that begin with _Adaptive. */
@@ -1172,7 +1202,7 @@ impl_afw_adaptor_session_get_object(
             afw_adaptor_session_get_object(
                 self->wrapped_session, impl_request,
                 object_type_id, object_id,
-                &ctx, impl_authorization_cb,
+                context_to_use_for_get, callback_to_use_for_get,
                 adaptor_type_specific,
                 p, xctx);
         }
@@ -1185,7 +1215,7 @@ impl_afw_adaptor_session_get_object(
         afw_adaptor_session_get_object(
             self->wrapped_session, impl_request,
             object_type_id, object_id,
-            &ctx, impl_authorization_cb,
+            context_to_use_for_get, callback_to_use_for_get,
             adaptor_type_specific,
             p, xctx);
     }
@@ -1197,7 +1227,7 @@ impl_afw_adaptor_session_get_object(
         afw_adaptor_session_get_object(
             self->wrapped_session, impl_request,
             object_type_id, object_id,
-            &ctx, impl_authorization_cb,
+            context_to_use_for_get, callback_to_use_for_get,
             adaptor_type_specific,
             p, xctx);
     }

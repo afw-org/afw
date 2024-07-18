@@ -10712,6 +10712,12 @@ afw_self_v_ceil_double = {
 };
 
 const afw_value_string_t
+afw_self_v_checkIndividualObjectReadAccess = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_checkIndividualObjectReadAccess)
+};
+
+const afw_value_string_t
 afw_self_v_checkIntermediateMode = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_checkIntermediateMode)
@@ -30608,6 +30614,12 @@ afw_self_v_zz__2253 = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__2254 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__2254)
+};
+
+const afw_value_string_t
 afw_self_v_zz__226 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__226)
@@ -37274,6 +37286,12 @@ afw_self_v_zz__Can_attempt_to_stop_this_service_ = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__Check_Individual_Object_Access = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Check_Individual_Object_Access)
+};
+
+const afw_value_string_t
 afw_self_v_zz__Check_Intermediate = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Check_Intermediate)
@@ -37301,6 +37319,12 @@ const afw_value_string_t
 afw_self_v_zz__Check_for_n_true_values = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Check_for_n_true_values)
+};
+
+const afw_value_string_t
+afw_self_v_zz__Check_individual_object_read_access = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Check_individual_object_read_access)
 };
 
 const afw_value_string_t

@@ -200,6 +200,15 @@ struct afw_adaptor_impl_s {
     apr_hash_t *object_types_ht;
 
     /**
+     * @brief Check individual object read access.
+     *
+     * This is the value of the 'checkIndividualObjectReadAccess' property for
+     * this adaptor. If true, an additional 'read' check is performed for each
+     * object retrieved from the adaptor.
+     */
+    afw_boolean_t check_individual_object_read_access;
+
+    /**
      * @brief Object types last for lifetime of adaptor.
      *
      * The object_types member is fully loaded with object types.
