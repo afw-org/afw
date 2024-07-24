@@ -123,17 +123,20 @@ afw_model_location_get_model(
 
     if (model_location) {
 
-        AFW_THREAD_MUTEX_LOCK(model_location->mutex, xctx) {
-            for (model = (afw_model_t *)model_location->first_model;
-                model && !afw_utf8_equal(model_id, model->model_id);
-                model = (afw_model_t *)model->next_model);
+        AFW_AUTHORIZATION_INTERMEDIATE_ACCESS_BEGIN {
+            AFW_THREAD_MUTEX_LOCK(model_location->mutex, xctx) {
+                for (model = (afw_model_t *)model_location->first_model;
+                    model && !afw_utf8_equal(model_id, model->model_id);
+                    model = (afw_model_t *)model->next_model);
 
-            if (!model) {
-                model = impl_load_model(model_location_adaptor, model_id,
-                    xctx);
+                if (!model) {
+                    model = impl_load_model(model_location_adaptor, model_id,
+                        xctx);
+                }
             }
+            AFW_THREAD_MUTEX_UNLOCK();
         }
-        AFW_THREAD_MUTEX_UNLOCK();
+        AFW_AUTHORIZATION_INTERMEDIATE_ACCESS_END;
     }
 
     return model;

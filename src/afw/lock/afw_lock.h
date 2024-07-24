@@ -189,8 +189,8 @@ afw_lock_release_debug(const afw_lock_t *instance,
  * AFW_LOCK_END;
  */
 #define AFW_LOCK_BEGIN(instance) \
-const afw_lock_t *this_LOCK = instance; \
-afw_lock_obtain(this_LOCK, xctx); \
+const afw_lock_t *_this_LOCK = instance; \
+afw_lock_obtain(_this_LOCK, xctx); \
 AFW_TRY
 
 
@@ -201,7 +201,7 @@ AFW_TRY
  */
 #define AFW_LOCK_END \
 AFW_FINALLY { \
-    afw_lock_release(this_LOCK, xctx); \
+    afw_lock_release(_this_LOCK, xctx); \
 } \
 AFW_ENDTRY
 
@@ -301,7 +301,7 @@ afw_lock_read_release_debug(const afw_lock_rw_t *instance,
  *
  * Usage:
  * 
- * AFW_LOCK_READ_BEGIN(instance, xctx) {
+ * AFW_LOCK_READ_BEGIN(instance) {
  *    ... code that uses pool
  * }
  * AFW_LOCK_READ_END;

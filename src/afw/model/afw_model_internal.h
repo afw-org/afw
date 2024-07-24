@@ -398,6 +398,7 @@ typedef struct afw_model_internal_object_cb_context_s {
     const afw_adaptor_impl_request_t *impl_request;
     void * original_context;
     afw_object_cb_t original_callback;
+    const afw_value_t *original_callback_mode;
     const afw_model_object_type_t *model_object_type;
     const afw_utf8_t *object_id;
     const afw_query_criteria_t *criteria;

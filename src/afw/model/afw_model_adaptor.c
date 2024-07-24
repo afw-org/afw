@@ -1020,6 +1020,8 @@ impl_model_object_cb(
 {
     afw_model_internal_object_cb_context_t *ctx = context;
     const afw_object_t *object;
+    const afw_value_t *current_mode;
+    afw_boolean_t result;
 
     /* Process object from adaptor. */
     object = mapped_object;
@@ -1032,8 +1034,24 @@ impl_model_object_cb(
             ctx->p, xctx);
     }
 
-    /* Callback with view or NULL.  Callback will release view.  */
-    return ctx->original_callback(object, ctx->original_context, xctx);
+    /*
+     * Call original callback with view or NULL in the original mode of the
+     * callback.
+     * 
+     * Note: It's the callbacks responsibility to release this view.
+     */
+    AFW_TRY{
+        result = false;
+        current_mode = xctx->mode;
+        ((afw_xctx_t *)xctx)->mode = ctx->original_callback_mode;
+        result = ctx->original_callback(object, ctx->original_context, xctx);
+    }
+    AFW_FINALLY{
+        ((afw_xctx_t *)xctx)->mode = current_mode;
+    }
+    AFW_ENDTRY;
+
+    return result;
 }
 
 
@@ -1069,91 +1087,97 @@ impl_afw_adaptor_session_retrieve_objects(
     cb_ctx.session = self;
     cb_ctx.original_context = context;
     cb_ctx.original_callback = callback;
+    cb_ctx.original_callback_mode = xctx->mode;
     cb_ctx.criteria = criteria;
 
-    if (afw_utf8_equal(object_type_id, afw_s__AdaptiveObjectType_)) {
+    AFW_AUTHORIZATION_INTERMEDIATE_ACCESS_BEGIN {
 
-        /* Process other object types and return. */
-        for (hi = apr_hash_first(afw_pool_get_apr_pool(p),
-            self->model->model_object_types);
-            hi;
-            hi = apr_hash_next(hi))
-        {
-            /** @todo make sure (apr_ssize_t *) doesn't cause loss of bits. */
-            apr_hash_this(hi, (const void **)&id.s, (apr_ssize_t *)&id.len,
-                (void **)&model_object_type);
-            impl_AdaptiveObjectType_cb(model_object_type, &cb_ctx, xctx);
-        }
-        callback(NULL, context, xctx);
-        return;
-    }
+        if (afw_utf8_equal(object_type_id, afw_s__AdaptiveObjectType_)) {
 
-    cb_ctx.model_object_type = afw_model_get_object_type(self->model,
-        object_type_id, xctx);
-    if (!cb_ctx.model_object_type) {
-        callback(NULL, context, xctx);
-        return;
-    }
-
-    use_default_processing = true;
-    if (cb_ctx.model_object_type->onRetrieveObjects) {
-        const afw_value_t *result;
-        int top;
-
-        use_default_processing = false;
-        top = afw_xctx_qualifier_stack_top_get(xctx);
-        AFW_TRY{
-
-            /* Prime context for "onRetrieveObjects". */
-            ctx = afw_model_internal_create_skeleton_context(
-                &self->adaptor->
-                instance_skeleton__AdaptiveModelCurrentOnRetrieveObjects_,
-                &afw_model_internal_context_current_retrieve_objects[0],
-                self, impl_request, cb_ctx.model_object_type, p, xctx);
-            ctx->mapBackObject_value = afw_value_function_thunk_create(
-                afw_s_a_current_colon_colon_mapBackObject,
-                adaptor->mapBackObject_signature,
-                impl_execute_mapBackObject_thunk, &cb_ctx, p, xctx);
-            ctx->returnObject_value = afw_value_function_thunk_create(
-                afw_s_a_current_colon_colon_returnObject,
-                adaptor->returnObject_signature,
-                impl_execute_returnObject_thunk, &cb_ctx, p, xctx);
-            ctx->mapped_object_type_id_value =
-                ctx->model_object_type->mapped_object_type_id_value;
-            ctx->criteria = criteria;
-
-            result = afw_value_evaluate(
-                cb_ctx.model_object_type->onRetrieveObjects,
-                p, xctx);
-            if (result == ctx->useDefaultProcessing_value) {
-                use_default_processing = true;
-                break;
+            /* Process other object types and return. */
+            for (hi = apr_hash_first(afw_pool_get_apr_pool(p),
+                self->model->model_object_types);
+                hi;
+                hi = apr_hash_next(hi))
+            {
+                /** @todo make sure (apr_ssize_t *) doesn't cause loss of bits. */
+                apr_hash_this(hi, (const void **)&id.s, (apr_ssize_t *)&id.len,
+                    (void **)&model_object_type);
+                impl_AdaptiveObjectType_cb(model_object_type, &cb_ctx, xctx);
             }
             callback(NULL, context, xctx);
+            return;
         }
 
-        /* Always restore top for qualifier stack to entry value. */
-            AFW_FINALLY{
-                afw_xctx_qualifier_stack_top_set(top, xctx);
+        cb_ctx.model_object_type = afw_model_get_object_type(self->model,
+            object_type_id, xctx);
+        if (!cb_ctx.model_object_type) {
+            callback(NULL, context, xctx);
+            return;
         }
 
-        AFW_ENDTRY;
+        use_default_processing = true;
+        if (cb_ctx.model_object_type->onRetrieveObjects) {
+            const afw_value_t *result;
+            int top;
+
+            use_default_processing = false;
+            top = afw_xctx_qualifier_stack_top_get(xctx);
+            AFW_TRY{
+
+                /* Prime context for "onRetrieveObjects". */
+                ctx = afw_model_internal_create_skeleton_context(
+                    &self->adaptor->
+                    instance_skeleton__AdaptiveModelCurrentOnRetrieveObjects_,
+                    &afw_model_internal_context_current_retrieve_objects[0],
+                    self, impl_request, cb_ctx.model_object_type, p, xctx);
+                ctx->mapBackObject_value = afw_value_function_thunk_create(
+                    afw_s_a_current_colon_colon_mapBackObject,
+                    adaptor->mapBackObject_signature,
+                    impl_execute_mapBackObject_thunk, &cb_ctx, p, xctx);
+                ctx->returnObject_value = afw_value_function_thunk_create(
+                    afw_s_a_current_colon_colon_returnObject,
+                    adaptor->returnObject_signature,
+                    impl_execute_returnObject_thunk, &cb_ctx, p, xctx);
+                ctx->mapped_object_type_id_value =
+                    ctx->model_object_type->mapped_object_type_id_value;
+                ctx->criteria = criteria;
+
+                result = afw_value_evaluate(
+                    cb_ctx.model_object_type->onRetrieveObjects,
+                    p, xctx);
+                if (result == ctx->useDefaultProcessing_value) {
+                    use_default_processing = true;
+                    break;
+                }
+                callback(NULL, context, xctx);
+            }
+
+            /* Always restore top for qualifier stack to entry value. */
+                AFW_FINALLY{
+                    afw_xctx_qualifier_stack_top_set(top, xctx);
+            }
+
+            AFW_ENDTRY;
+        }
+
+        if (use_default_processing) {
+            if (criteria) {
+                cb_ctx.criteria = afw_model_internal_convert_query_criteria(
+                    cb_ctx.model_object_type, criteria, p, xctx);
+            }
+
+            afw_adaptor_retrieve_objects(self->adaptor->mapped_adaptor_id,
+                cb_ctx.model_object_type->mapped_object_type_id,
+                impl_request->options, cb_ctx.criteria,
+                afw_object_create_managed(p, xctx),
+                &cb_ctx, impl_model_object_cb,
+                adaptor_type_specific,
+                p, xctx);
+        }
+
     }
-
-    if (use_default_processing) {
-        if (criteria) {
-            cb_ctx.criteria = afw_model_internal_convert_query_criteria(
-                cb_ctx.model_object_type, criteria, p, xctx);
-        }
-
-        afw_adaptor_retrieve_objects(self->adaptor->mapped_adaptor_id,
-            cb_ctx.model_object_type->mapped_object_type_id,
-            impl_request->options, cb_ctx.criteria,
-            afw_object_create_managed(p, xctx),
-            &cb_ctx, impl_model_object_cb,
-            adaptor_type_specific,
-            p, xctx);
-    }
+    AFW_AUTHORIZATION_INTERMEDIATE_ACCESS_END;
 }
 
 
@@ -1187,94 +1211,100 @@ impl_afw_adaptor_session_get_object(
     cb_ctx.p = p;
     cb_ctx.session = self;
     cb_ctx.original_context = context;
-    cb_ctx.original_callback = callback;
- 
-    if (afw_utf8_equal(object_type_id, afw_s__AdaptiveObjectType_)) {
-        cb_ctx.model_object_type = afw_model_get_object_type(self->model,
-            object_id, xctx);
-        object = (cb_ctx.model_object_type)
-            ? cb_ctx.model_object_type->object_type_object
-            : NULL;
-        callback(object, context, xctx);
-        return;
-    }
+    cb_ctx.original_callback = callback;   
+    cb_ctx.original_callback_mode = xctx->mode;
 
-    cb_ctx.model_object_type = afw_model_get_object_type(self->model,
-        object_type_id, xctx);
-    cb_ctx.object_id = object_id;
-    if (!cb_ctx.model_object_type) {
-        callback(NULL, context, xctx);
-        return;
-    }
+    AFW_AUTHORIZATION_INTERMEDIATE_ACCESS_BEGIN {
 
-    /* Get object via onGet. */
-    use_default_processing = true;
-    if (cb_ctx.model_object_type->onGetObject) {
-        const afw_value_t *object_value;
-        const afw_object_t *object;
-        int top;
-
-        use_default_processing = false;
-        top = afw_xctx_qualifier_stack_top_get(xctx);
-        AFW_TRY{
-
-            /* Prime context for onGetObject. */
-            ctx = afw_model_internal_create_skeleton_context(
-                &self->adaptor->
-                instance_skeleton__AdaptiveModelCurrentOnGetObject_,
-                &afw_model_internal_context_current_get_object[0],
-                self, impl_request, cb_ctx.model_object_type, p, xctx);
-            ctx->mapBackObject_value = afw_value_function_thunk_create(
-                afw_s_a_current_colon_colon_mapBackObject,
-                adaptor->mapBackObject_signature,
-                impl_execute_mapBackObject_thunk, &cb_ctx, p, xctx);
-            ctx->mapped_object_type_id_value =
-                ctx->model_object_type->mapped_object_type_id_value;
-            ctx->object_id = object_id;
-
-            object_value = afw_value_evaluate(
-                cb_ctx.model_object_type->onGetObject,
-                p, xctx);
-            if (object_value == ctx->useDefaultProcessing_value) {
-                use_default_processing = true;
-                break;
-            }
-            if (afw_value_is_nullish(object_value)) {
-                object = NULL;
-            }
-            else if (afw_value_is_object(object_value)) {
-                object = ((const afw_value_object_t *)object_value)->internal;
-            }
-            else {
-                AFW_THROW_ERROR_Z(general,
-                    "onGetObject returned invalid value", xctx);
-            }
-
+         if (afw_utf8_equal(object_type_id, afw_s__AdaptiveObjectType_)) {
+            cb_ctx.model_object_type = afw_model_get_object_type(self->model,
+                object_id, xctx);
+            object = (cb_ctx.model_object_type)
+                ? cb_ctx.model_object_type->object_type_object
+                : NULL;
             callback(object, context, xctx);
+            return;
         }
 
-        /* Always restore top for qualifier stack to entry value. */
-        AFW_FINALLY{
-            afw_xctx_qualifier_stack_top_set(top, xctx);
+        cb_ctx.model_object_type = afw_model_get_object_type(self->model,
+            object_type_id, xctx);
+        cb_ctx.object_id = object_id;
+        if (!cb_ctx.model_object_type) {
+            callback(NULL, context, xctx);
+            return;
         }
 
-        AFW_ENDTRY;
-    }
+        /* Get object via onGet. */
+        use_default_processing = true;
+        if (cb_ctx.model_object_type->onGetObject) {
+            const afw_value_t *object_value;
+            const afw_object_t *object;
+            int top;
 
-    /* Get object and map.  */
-    if (use_default_processing) {
-        mapped_object = afw_adaptor_get_object(
-            self->adaptor->mapped_adaptor_id,
-            cb_ctx.model_object_type->mapped_object_type_id,
-            object_id, NULL, NULL,
-            afw_object_create_managed(p, xctx),
-            adaptor_type_specific, p, xctx);
-        cb_ctx.p = p;
-        cb_ctx.session = self;
-        cb_ctx.original_context = context;
-        cb_ctx.original_callback = callback;
-        impl_model_object_cb(mapped_object, &cb_ctx, xctx);
+            use_default_processing = false;
+            top = afw_xctx_qualifier_stack_top_get(xctx);
+            AFW_TRY{
+
+                /* Prime context for onGetObject. */
+                ctx = afw_model_internal_create_skeleton_context(
+                    &self->adaptor->
+                    instance_skeleton__AdaptiveModelCurrentOnGetObject_,
+                    &afw_model_internal_context_current_get_object[0],
+                    self, impl_request, cb_ctx.model_object_type, p, xctx);
+                ctx->mapBackObject_value = afw_value_function_thunk_create(
+                    afw_s_a_current_colon_colon_mapBackObject,
+                    adaptor->mapBackObject_signature,
+                    impl_execute_mapBackObject_thunk, &cb_ctx, p, xctx);
+                ctx->mapped_object_type_id_value =
+                    ctx->model_object_type->mapped_object_type_id_value;
+                ctx->object_id = object_id;
+
+                object_value = afw_value_evaluate(
+                    cb_ctx.model_object_type->onGetObject,
+                    p, xctx);
+                if (object_value == ctx->useDefaultProcessing_value) {
+                    use_default_processing = true;
+                    break;
+                }
+                if (afw_value_is_nullish(object_value)) {
+                    object = NULL;
+                }
+                else if (afw_value_is_object(object_value)) {
+                    object = ((const afw_value_object_t *)object_value)->internal;
+                }
+                else {
+                    AFW_THROW_ERROR_Z(general,
+                        "onGetObject returned invalid value", xctx);
+                }
+
+                callback(object, context, xctx);
+            }
+
+            /* Always restore top for qualifier stack to entry value. */
+            AFW_FINALLY{
+                afw_xctx_qualifier_stack_top_set(top, xctx);
+            }
+
+            AFW_ENDTRY;
+        }
+
+        /* Get object and map.  */
+        if (use_default_processing) {
+            mapped_object = afw_adaptor_get_object(
+                self->adaptor->mapped_adaptor_id,
+                cb_ctx.model_object_type->mapped_object_type_id,
+                object_id, NULL, NULL,
+                afw_object_create_managed(p, xctx),
+                adaptor_type_specific, p, xctx);
+            cb_ctx.p = p;
+            cb_ctx.session = self;
+            cb_ctx.original_context = context;
+            cb_ctx.original_callback = callback;
+            impl_model_object_cb(mapped_object, &cb_ctx, xctx);
+        }
+
     }
+    AFW_AUTHORIZATION_INTERMEDIATE_ACCESS_END;
 }
 
 
@@ -1411,67 +1441,72 @@ impl_afw_adaptor_session_add_object(
     int top;
     afw_boolean_t use_default_processing;
 
-    /* _AdaptiveObjectType_ objects are immutable in model adaptor. */
-    if (afw_utf8_equal(object_type_id, afw_s__AdaptiveObjectType_)) {
-        AFW_OBJECT_ERROR_OBJECT_IMMUTABLE;
-    }
+    AFW_AUTHORIZATION_INTERMEDIATE_ACCESS_BEGIN {
 
-    /* Save top for qualifier stack. */
-    top = afw_xctx_qualifier_stack_top_get(xctx);
-    mapped_object_id = NULL;
-    AFW_TRY {
-
-        /* Prime context for "to adaptor" (current property to mapped is superset). */
-        ctx = afw_model_internal_create_to_adaptor_skeleton_context(
-            self,
-            &self->adaptor->instance_skeleton__AdaptiveModelCurrentOnAddObject_,
-            self->model,
-            impl_request,
-            object_type_id,
-            suggested_object_id,
-            xctx);
-        ctx->object = object;
-        ctx->process_initial_values = true;
-
-        /* If onAddObject, evaluate it. */
-        use_default_processing = true;
-        if (ctx->model_object_type->onAddObject) {
-            use_default_processing = false;
-            value = afw_value_evaluate(ctx->model_object_type->onAddObject,
-                ctx->p, xctx);
-            if (value == ctx->useDefaultProcessing_value) {
-                use_default_processing = true;
-            }
-            else {
-                if (!afw_value_is_string(value)) {
-                    AFW_THROW_ERROR_Z(general, "onAddObject must return string", xctx);
-                }
-                mapped_object_id = &((const afw_value_string_t *)value)->internal;
-            }
+        /* _AdaptiveObjectType_ objects are immutable in model adaptor. */
+        if (afw_utf8_equal(object_type_id, afw_s__AdaptiveObjectType_)) {
+            AFW_OBJECT_ERROR_OBJECT_IMMUTABLE;
         }
 
-        /* If no onAddObject or it returned undefined, do default processing. */
-        if (use_default_processing) {
-            afw_model_internal_complete_ctx_default_add_object(ctx, xctx);
-            journal_entry = afw_object_create_managed(ctx->p, xctx);
-            mapped_object_id = afw_adaptor_add_object(
-                self->adaptor->mapped_adaptor_id,
-                ctx->mapped_object_type_id,
-                ctx->mapped_object_id,
-                ctx->mapped_object,
-                journal_entry,
-                adaptor_type_specific,
+        /* Save top for qualifier stack. */
+        top = afw_xctx_qualifier_stack_top_get(xctx);
+        mapped_object_id = NULL;
+        AFW_TRY {
+
+            /* Prime context for "to adaptor" (current property to mapped is superset). */
+            ctx = afw_model_internal_create_to_adaptor_skeleton_context(
+                self,
+                &self->adaptor->instance_skeleton__AdaptiveModelCurrentOnAddObject_,
+                self->model,
+                impl_request,
+                object_type_id,
+                suggested_object_id,
                 xctx);
+            ctx->object = object;
+            ctx->process_initial_values = true;
+
+            /* If onAddObject, evaluate it. */
+            use_default_processing = true;
+            if (ctx->model_object_type->onAddObject) {
+                use_default_processing = false;
+                value = afw_value_evaluate(ctx->model_object_type->onAddObject,
+                    ctx->p, xctx);
+                if (value == ctx->useDefaultProcessing_value) {
+                    use_default_processing = true;
+                }
+                else {
+                    if (!afw_value_is_string(value)) {
+                        AFW_THROW_ERROR_Z(general, "onAddObject must return string", xctx);
+                    }
+                    mapped_object_id = &((const afw_value_string_t *)value)->internal;
+                }
+            }
+
+            /* If no onAddObject or it returned undefined, do default processing. */
+            if (use_default_processing) {
+                afw_model_internal_complete_ctx_default_add_object(ctx, xctx);
+                journal_entry = afw_object_create_managed(ctx->p, xctx);
+                mapped_object_id = afw_adaptor_add_object(
+                    self->adaptor->mapped_adaptor_id,
+                    ctx->mapped_object_type_id,
+                    ctx->mapped_object_id,
+                    ctx->mapped_object,
+                    journal_entry,
+                    adaptor_type_specific,
+                    xctx);
+            }
+
         }
 
-    }
+        /* Always restore top for qualifier stack to entry value. */
+        AFW_FINALLY{
+            afw_xctx_qualifier_stack_top_set(top, xctx);
+        }
 
-    /* Always restore top for qualifier stack to entry value. */
-    AFW_FINALLY{
-        afw_xctx_qualifier_stack_top_set(top, xctx);
-    }
+        AFW_ENDTRY;
 
-    AFW_ENDTRY;
+    }
+    AFW_AUTHORIZATION_INTERMEDIATE_ACCESS_END;
 
     /* Return object id. */
     return mapped_object_id;
@@ -1553,7 +1588,6 @@ afw_model_internal_complete_ctx_default_modify_object(
 }
 
 
-
 /*
  * Implementation of method modify_object for interface afw_adaptor_session.
  */
@@ -1576,63 +1610,68 @@ impl_afw_adaptor_session_modify_object(
     int top;
     afw_boolean_t use_default_processing;
 
-    /* _AdaptiveObjectType_ objects are immutable in model adaptor. */
-    if (afw_utf8_equal(object_type_id, afw_s__AdaptiveObjectType_)) {
-        AFW_OBJECT_ERROR_OBJECT_IMMUTABLE;
-    }
+    AFW_AUTHORIZATION_INTERMEDIATE_ACCESS_BEGIN {
 
-    /* Save top for qualifier stack. */
-    top = afw_xctx_qualifier_stack_top_get(xctx);
-    AFW_TRY {
-
-        /* Prime context for "to adaptor". */
-        ctx = afw_model_internal_create_to_adaptor_skeleton_context(
-            self,
-            &self->adaptor->instance_skeleton__AdaptiveModelCurrentOnModifyObject_,
-            self->model,
-            impl_request,
-            object_type_id,
-            object_id,
-            xctx);
-        ctx->modify_entries = entry;
-
-        /* If onModifyObject, evaluate it to modify object. */
-        use_default_processing = true;
-        if (ctx->model_object_type->onModifyObject) {
-            use_default_processing = false;
-            entries_list = afw_adaptor_modify_entries_to_list(entry,
-                ctx->p, xctx);
-            ctx->modify_entries_value = afw_value_create_unmanaged_array(
-                entries_list, ctx->p, xctx);
-            value = afw_value_evaluate(ctx->model_object_type->onModifyObject,
-                ctx->p, xctx);
-            if (value == ctx->useDefaultProcessing_value) {
-                use_default_processing = true;
-            }
+        /* _AdaptiveObjectType_ objects are immutable in model adaptor. */
+        if (afw_utf8_equal(object_type_id, afw_s__AdaptiveObjectType_)) {
+            AFW_OBJECT_ERROR_OBJECT_IMMUTABLE;
         }
 
-        /* If no onModifyObject or it returned undefined, do default processing. */
-        if(use_default_processing) {
-            afw_model_internal_complete_ctx_default_modify_object(ctx, xctx);
-            journal_entry = afw_object_create_managed(ctx->p, xctx);
-            afw_adaptor_modify_object(
-                self->adaptor->mapped_adaptor_id,
-                ctx->mapped_object_type_id,
-                ctx->mapped_object_id,
-                ctx->mapped_entries,
-                journal_entry, adaptor_type_specific,
+        /* Save top for qualifier stack. */
+        top = afw_xctx_qualifier_stack_top_get(xctx);
+        AFW_TRY {
+
+            /* Prime context for "to adaptor". */
+            ctx = afw_model_internal_create_to_adaptor_skeleton_context(
+                self,
+                &self->adaptor->instance_skeleton__AdaptiveModelCurrentOnModifyObject_,
+                self->model,
+                impl_request,
+                object_type_id,
+                object_id,
                 xctx);
+            ctx->modify_entries = entry;
+
+            /* If onModifyObject, evaluate it to modify object. */
+            use_default_processing = true;
+            if (ctx->model_object_type->onModifyObject) {
+                use_default_processing = false;
+                entries_list = afw_adaptor_modify_entries_to_list(entry,
+                    ctx->p, xctx);
+                ctx->modify_entries_value = afw_value_create_unmanaged_array(
+                    entries_list, ctx->p, xctx);
+                value = afw_value_evaluate(ctx->model_object_type->onModifyObject,
+                    ctx->p, xctx);
+                if (value == ctx->useDefaultProcessing_value) {
+                    use_default_processing = true;
+                }
+            }
+
+            /* If no onModifyObject or it returned undefined, do default processing. */
+            if(use_default_processing) {
+                afw_model_internal_complete_ctx_default_modify_object(ctx, xctx);
+                journal_entry = afw_object_create_managed(ctx->p, xctx);
+                afw_adaptor_modify_object(
+                    self->adaptor->mapped_adaptor_id,
+                    ctx->mapped_object_type_id,
+                    ctx->mapped_object_id,
+                    ctx->mapped_entries,
+                    journal_entry, adaptor_type_specific,
+                    xctx);
+            }
+
+            /** @fixme Deal with results in journal entry. */
         }
 
-        /** @fixme Deal with results in journal entry. */
-    }
+        /* Always restore top for qualifier stack to entry value. */
+        AFW_FINALLY{
+            afw_xctx_qualifier_stack_top_set(top, xctx);
+        }
 
-    /* Always restore top for qualifier stack to entry value. */
-    AFW_FINALLY{
-        afw_xctx_qualifier_stack_top_set(top, xctx);
-    }
+        AFW_ENDTRY;
 
-    AFW_ENDTRY;
+    }
+    AFW_AUTHORIZATION_INTERMEDIATE_ACCESS_END;
 }
 
 
@@ -1669,59 +1708,64 @@ impl_afw_adaptor_session_replace_object(
     int top;
     afw_boolean_t use_default_processing;
 
-    /* _AdaptiveObjectType_ objects are immutable in model adaptor. */
-    if (afw_utf8_equal(object_type_id, afw_s__AdaptiveObjectType_)) {
-        AFW_OBJECT_ERROR_OBJECT_IMMUTABLE;
-    }
+    AFW_AUTHORIZATION_INTERMEDIATE_ACCESS_BEGIN {
 
-    /* Save top for qualifier stack. */
-    top = afw_xctx_qualifier_stack_top_get(xctx);
-    AFW_TRY {
-
-        /* Prime context for "to adaptor". */
-        ctx = afw_model_internal_create_to_adaptor_skeleton_context(
-            self,
-            &self->adaptor->instance_skeleton__AdaptiveModelCurrentOnReplaceObject_,
-            self->model,
-            impl_request,
-            object_type_id,
-            object_id,
-            xctx);
-        ctx->object = replacement_object;
-
-        /* If onReplaceObject, evaluate it. */
-        use_default_processing = true;
-        if (ctx->model_object_type->onReplaceObject) {
-            use_default_processing = false;
-            value = afw_value_evaluate(ctx->model_object_type->onReplaceObject,
-                ctx->p, xctx);
-            if (value == ctx->useDefaultProcessing_value) {
-                use_default_processing = true;
-            }
+        /* _AdaptiveObjectType_ objects are immutable in model adaptor. */
+        if (afw_utf8_equal(object_type_id, afw_s__AdaptiveObjectType_)) {
+            AFW_OBJECT_ERROR_OBJECT_IMMUTABLE;
         }
 
-        /* If no onReplaceObject or it returned undefined, do default processing. */
-        if (use_default_processing) {
-            journal_entry = afw_object_create_managed(ctx->p, xctx);
-            afw_model_internal_complete_ctx_default_replace_object(ctx, xctx);
-            afw_adaptor_replace_object(
-                self->adaptor->mapped_adaptor_id,
-                ctx->mapped_object_type_id,
-                ctx->mapped_object_id,
-                ctx->mapped_object,
-                journal_entry, adaptor_type_specific,
+        /* Save top for qualifier stack. */
+        top = afw_xctx_qualifier_stack_top_get(xctx);
+        AFW_TRY {
+
+            /* Prime context for "to adaptor". */
+            ctx = afw_model_internal_create_to_adaptor_skeleton_context(
+                self,
+                &self->adaptor->instance_skeleton__AdaptiveModelCurrentOnReplaceObject_,
+                self->model,
+                impl_request,
+                object_type_id,
+                object_id,
                 xctx);
+            ctx->object = replacement_object;
+
+            /* If onReplaceObject, evaluate it. */
+            use_default_processing = true;
+            if (ctx->model_object_type->onReplaceObject) {
+                use_default_processing = false;
+                value = afw_value_evaluate(ctx->model_object_type->onReplaceObject,
+                    ctx->p, xctx);
+                if (value == ctx->useDefaultProcessing_value) {
+                    use_default_processing = true;
+                }
+            }
+
+            /* If no onReplaceObject or it returned undefined, do default processing. */
+            if (use_default_processing) {
+                journal_entry = afw_object_create_managed(ctx->p, xctx);
+                afw_model_internal_complete_ctx_default_replace_object(ctx, xctx);
+                afw_adaptor_replace_object(
+                    self->adaptor->mapped_adaptor_id,
+                    ctx->mapped_object_type_id,
+                    ctx->mapped_object_id,
+                    ctx->mapped_object,
+                    journal_entry, adaptor_type_specific,
+                    xctx);
+            }
+    
+            /** @fixme Deal with results in journal entry. */
         }
- 
-        /** @fixme Deal with results in journal entry. */
-    }
 
-    /* Always restore top for qualifier stack to entry value. */
-    AFW_FINALLY{
-        afw_xctx_qualifier_stack_top_set(top, xctx);
-    }
+        /* Always restore top for qualifier stack to entry value. */
+        AFW_FINALLY{
+            afw_xctx_qualifier_stack_top_set(top, xctx);
+        }
 
-    AFW_ENDTRY;
+        AFW_ENDTRY;
+
+    }
+    AFW_AUTHORIZATION_INTERMEDIATE_ACCESS_END;
 }
 
 
@@ -1756,52 +1800,57 @@ impl_afw_adaptor_session_delete_object(
     int top;
     afw_boolean_t use_default_processing;
 
-    /* _AdaptiveObjectType_ objects are immutable in model adaptor. */
-    if (afw_utf8_equal(object_type_id, afw_s__AdaptiveObjectType_)) {
-        AFW_OBJECT_ERROR_OBJECT_IMMUTABLE;
-    }
+    AFW_AUTHORIZATION_INTERMEDIATE_ACCESS_BEGIN {
 
-    /* Save top for qualifier stack. */
-    top = afw_xctx_qualifier_stack_top_get(xctx);
-    AFW_TRY {
+        /* _AdaptiveObjectType_ objects are immutable in model adaptor. */
+        if (afw_utf8_equal(object_type_id, afw_s__AdaptiveObjectType_)) {
+            AFW_OBJECT_ERROR_OBJECT_IMMUTABLE;
+        }
 
-        /* Prime context for "to adaptor". */
-        ctx = afw_model_internal_create_to_adaptor_skeleton_context(
-            self,
-            &self->adaptor->instance_skeleton__AdaptiveModelCurrentOnDeleteObject_,
-            self->model,
-            impl_request,
-            object_type_id,
-            object_id,
-            xctx);
+        /* Save top for qualifier stack. */
+        top = afw_xctx_qualifier_stack_top_get(xctx);
+        AFW_TRY {
 
-        /* If onDeleteObject, evaluate it. */
-        use_default_processing = true;
-        if (ctx->model_object_type->onDeleteObject) {
-            use_default_processing = false;
-            value = afw_value_evaluate(ctx->model_object_type->onDeleteObject,
-                ctx->p, xctx);
-            if (value == ctx->useDefaultProcessing_value) {
-                use_default_processing = true;
+            /* Prime context for "to adaptor". */
+            ctx = afw_model_internal_create_to_adaptor_skeleton_context(
+                self,
+                &self->adaptor->instance_skeleton__AdaptiveModelCurrentOnDeleteObject_,
+                self->model,
+                impl_request,
+                object_type_id,
+                object_id,
+                xctx);
+
+            /* If onDeleteObject, evaluate it. */
+            use_default_processing = true;
+            if (ctx->model_object_type->onDeleteObject) {
+                use_default_processing = false;
+                value = afw_value_evaluate(ctx->model_object_type->onDeleteObject,
+                    ctx->p, xctx);
+                if (value == ctx->useDefaultProcessing_value) {
+                    use_default_processing = true;
+                }
+            }
+
+            /* If no onDeleteObjector or it returned undefined, do default processing. */
+            if (use_default_processing) {
+                journal_entry = afw_object_create_unmanaged(ctx->p, xctx);
+                afw_model_internal_complete_ctx_default_delete_object(ctx, xctx);
+                afw_adaptor_delete_object(self->adaptor->mapped_adaptor_id,
+                    ctx->mapped_object_type_id, ctx->mapped_object_id,
+                    journal_entry,  /*FIXME */ NULL, xctx);
             }
         }
 
-        /* If no onDeleteObjector or it returned undefined, do default processing. */
-        if (use_default_processing) {
-            journal_entry = afw_object_create_unmanaged(ctx->p, xctx);
-            afw_model_internal_complete_ctx_default_delete_object(ctx, xctx);
-            afw_adaptor_delete_object(self->adaptor->mapped_adaptor_id,
-                ctx->mapped_object_type_id, ctx->mapped_object_id,
-                journal_entry,  /*FIXME */ NULL, xctx);
+        /* Always restore top for qualifier stack to entry value. */
+        AFW_FINALLY{
+            afw_xctx_qualifier_stack_top_set(top, xctx);
         }
-    }
 
-    /* Always restore top for qualifier stack to entry value. */
-    AFW_FINALLY{
-        afw_xctx_qualifier_stack_top_set(top, xctx);
+        AFW_ENDTRY;
+        
     }
-
-    AFW_ENDTRY;
+    AFW_AUTHORIZATION_INTERMEDIATE_ACCESS_END;
 }
 
 
