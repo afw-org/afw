@@ -24,7 +24,7 @@
 
 # Header files that are installed for public use.
 set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST 
-    afw_vfs_adaptor_internal.h
+    afw_vfs_adapter_internal.h
     generated/afw_vfs_const_objects.h
     generated/afw_vfs_declare_helpers.h
     generated/afw_vfs_generated.h
@@ -41,13 +41,13 @@ set(AFWDEV_GENERATED_INCLUDE_DIRECTORIES_LIST
 
 # Source files to compile.
 set(AFWDEV_GENERATED_SOURCE_LIST 
-    afw_vfs_adaptor.c
-    afw_vfs_adaptor_factory.c
-    afw_vfs_adaptor_session.c
+    afw_vfs_adapter.c
+    afw_vfs_adapter_factory.c
+    afw_vfs_adapter_session.c
     afw_vfs_extension.c
     generated/afw_vfs_const_objects.c
     generated/afw_vfs_generated.c
-    generated/afw_vfs_register_adaptor_type_vfs.c
+    generated/afw_vfs_register_adapter_type_vfs.c
     generated/afw_vfs_runtime_object_maps.c
     generated/afw_vfs_strings.c
 )

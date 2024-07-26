@@ -10,7 +10,7 @@ import {useTheme} from "../../hooks";
 export const PropertyType = (props) => {
 
     const theme = useTheme();
-    const {propertyName, propertyType, adaptorId, objectTypeObject} = props;
+    const {propertyName, propertyType, adapterId, objectTypeObject} = props;
 
     const {
         description, originURI, referenceURI, collectionURIs, 
@@ -155,7 +155,7 @@ export const PropertyType = (props) => {
                         {
                             <li>                                
                                 <Link 
-                                    url={"/Documentation/Reference/Schema/" + encodeURIComponent(adaptorId) + "/" + encodeURIComponent(objectTypeObject.getObjectId())} 
+                                    url={"/Documentation/Reference/Schema/" + encodeURIComponent(adapterId) + "/" + encodeURIComponent(objectTypeObject.getObjectId())} 
                                     text={objectTypeObject.getObjectId()} />
                             </li>
                         }

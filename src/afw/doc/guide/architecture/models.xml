@@ -2,29 +2,29 @@
 <doc>    
     <title>Models</title>          
     <paragraph>
-        Some adaptors connect to data stores that maintain their own metadata,
-        or schemas. These schemas may be harvested by the adaptor and presented
+        Some adapters connect to data stores that maintain their own metadata,
+        or schemas. These schemas may be harvested by the adapter and presented
         as a collection of Adaptive Object Types and Property Types, referred to 
         as <literal>Adaptive Schemas</literal>. For instance, an SQL database 
-        will contain tables that describe their table columns. A SQL adaptor may 
+        will contain tables that describe their table columns. A SQL adapter may 
         translate those tables into Adaptive Schemas by converting them into the 
         appropriate Object Type definitions.
     </paragraph> 
     <paragraph>
-        Adaptive Framework provides a special adaptor, known as the 
-        <literal>Model Adaptor</literal>, which takes as input an 
+        Adaptive Framework provides a special adapter, known as the 
+        <literal>Model Adapter</literal>, which takes as input an 
         <literal>Adaptive Model</literal>, and uses it to transform the objects 
-        provided by a separate adaptor, such as SQL. These transforms can by 
+        provided by a separate adapter, such as SQL. These transforms can by 
         simple, such as name mapping, or more complex, by completely 
         synthesizing new objects using Adaptive Scripts or Expressions.
     </paragraph>
     <paragraph>
         An Adaptive Model is defined by an instance of the object type
         <literal>_AdaptiveModel_</literal>. An Adaptive Model can be stored 
-        by any adaptor that supports the configuration parameter 
+        by any adapter that supports the configuration parameter 
         <literal>isModelLocation=true</literal>. The model is then 
-        referenced by the Model Adaptor, using the 
-        <literal>modelLocationAdaptorId</literal> and 
+        referenced by the Model Adapter, using the 
+        <literal>modelLocationAdapterId</literal> and 
         <literal>modelId</literal> parameter combination.
     </paragraph>
     <header>
@@ -52,7 +52,7 @@
         In the previous example, you'll notice a special property called 
         <literal>onGetValue</literal>. This is one of many <literal>on</literal> 
         functions that can be declared in an Adaptive Model to compute object 
-        and property values on particular adaptor functions.
+        and property values on particular adapter functions.
     </paragraph>
     <paragraph>
         Here is a table of more of these functions:

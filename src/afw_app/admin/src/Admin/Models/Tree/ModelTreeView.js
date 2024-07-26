@@ -78,7 +78,7 @@ const ObjectTypesMainContent = ({ model, propertyName, onReloadTree }) => {
     const {editable} = useOperational();
 
     const objectTypes = model.getPropertyValue(propertyName);
-    const adaptorId = model.getAdaptorId();
+    const adapterId = model.getAdapterId();
     const modelId = model.getPropertyValue("modelId");
 
     return (
@@ -89,14 +89,14 @@ const ObjectTypesMainContent = ({ model, propertyName, onReloadTree }) => {
                 size="3" 
                 text="Object Types define the shape of objects that are presented by this Model.  
                     Each Object Type may have a unique set of Property Types and Action rules to declare 
-                    how objects are retrieve and stored by the underlying adaptor.
+                    how objects are retrieve and stored by the underlying adapter.
                     Expand the tree and select an Object Type from the Menu, or create a new one." />
             <Pad />
             <ul>
                 {
                     objectTypes && objectTypes.getProperties().map(o => 
                         <li key={o.getName()}>
-                            <Link url={"/Admin/Models/" + adaptorId + "/" + modelId + "/objectTypes/" + o.getName() + treeHash} text={o.getName()} />
+                            <Link url={"/Admin/Models/" + adapterId + "/" + modelId + "/objectTypes/" + o.getName() + treeHash} text={o.getName()} />
                         </li>
                     )
                 }
@@ -121,7 +121,7 @@ const ObjectTypesMainContent = ({ model, propertyName, onReloadTree }) => {
                     setShowAdd(false);
                     onReloadTree();
 
-                    history.push("/Admin/Models/" + adaptorId + "/" + modelId + "/objectTypes/" + objectTypeId + treeHash);
+                    history.push("/Admin/Models/" + adapterId + "/" + modelId + "/objectTypes/" + objectTypeId + treeHash);
                 }}
             />
         </Container>
@@ -143,7 +143,7 @@ const PropertyTypesMainContent = ({ model, objectType, propertyName, onReloadTre
     const {editable} = useOperational();
 
     const propertyTypes = model.getPropertyValue(propertyName);
-    const adaptorId = model.getAdaptorId();
+    const adapterId = model.getAdapterId();
     const modelId = model.getPropertyValue("modelId");
 
     return (
@@ -160,7 +160,7 @@ const PropertyTypesMainContent = ({ model, objectType, propertyName, onReloadTre
                 {
                     propertyTypes && propertyTypes.getProperties().map(p => 
                         <li key={p.getName()}>
-                            <Link url={"/Admin/Models/" + adaptorId + "/" + modelId + (objectType ? ("/objectTypes/" + objectType) : "") + "/propertyTypes/" + p.getName() + treeHash} text={p.getName()} />
+                            <Link url={"/Admin/Models/" + adapterId + "/" + modelId + (objectType ? ("/objectTypes/" + objectType) : "") + "/propertyTypes/" + p.getName() + treeHash} text={p.getName()} />
                         </li>
                     )
                 }
@@ -191,9 +191,9 @@ const PropertyTypesMainContent = ({ model, objectType, propertyName, onReloadTre
                         onReloadTree();
 
                         if (objectType)
-                            history.push("/Admin/Models/" + adaptorId + "/" + modelId + "/objectTypes/" + objectType + "/propertyTypes/" + propertyTypeName + treeHash);
+                            history.push("/Admin/Models/" + adapterId + "/" + modelId + "/objectTypes/" + objectType + "/propertyTypes/" + propertyTypeName + treeHash);
                         else
-                            history.push("/Admin/Models/" + adaptorId + "/" + modelId + "/propertyTypes/" + propertyTypeName + treeHash);
+                            history.push("/Admin/Models/" + adapterId + "/" + modelId + "/propertyTypes/" + propertyTypeName + treeHash);
                     }}
                 />
             }
@@ -219,7 +219,7 @@ const ObjectTypeMainContent = ({ property, objectType, model, onReloadTree }) =>
     const {propertyTypes, description, custom} = property.getValue().getPropertyValues();
 
     const modelId = model.getPropertyValue("modelId");
-    const adaptorId = model.getAdaptorId();    
+    const adapterId = model.getAdapterId();    
     const properties = propertyTypes?.propertyTypes?.getProperties().sort((A, B) => 
         A.getName().toLowerCase().localeCompare(B.getName().toLowerCase())
     ) || [];
@@ -260,7 +260,7 @@ const ObjectTypeMainContent = ({ property, objectType, model, onReloadTree }) =>
                 {
                     properties.map(p => 
                         <li key={p.getName()}>
-                            <Link url={"/Admin/Models/" + adaptorId + "/" +  modelId + "/objectTypes/" + objectType + "/propertyTypes/" + p.getName() + treeHash} text={p.getName()} />
+                            <Link url={"/Admin/Models/" + adapterId + "/" +  modelId + "/objectTypes/" + objectType + "/propertyTypes/" + p.getName() + treeHash} text={p.getName()} />
                         </li>
                     )
                 }
@@ -293,9 +293,9 @@ const ObjectTypeMainContent = ({ property, objectType, model, onReloadTree }) =>
                         onReloadTree();
 
                         if (objectType)
-                            history.push("/Admin/Models/" + adaptorId + "/" + modelId + "/objectTypes/" + objectType + "/propertyTypes/" + propertyName + treeHash);
+                            history.push("/Admin/Models/" + adapterId + "/" + modelId + "/objectTypes/" + objectType + "/propertyTypes/" + propertyName + treeHash);
                         else
-                            history.push("/Admin/Models/" + adaptorId + "/" + modelId + "/propertyTypes/" + propertyName + treeHash);
+                            history.push("/Admin/Models/" + adapterId + "/" + modelId + "/propertyTypes/" + propertyName + treeHash);
                     }}
                 />
             }
@@ -331,7 +331,7 @@ const ObjectTypeMainContent = ({ property, objectType, model, onReloadTree }) =>
                 {
                     custom?.getProperties().map(c => 
                         <li key={c.getName()}>
-                            <Link url={"/Admin/Models/" + adaptorId + "/" +  modelId + "/objectTypes/" + objectType + "/custom/" + c.getName() + treeHash} text={c.getName()} />
+                            <Link url={"/Admin/Models/" + adapterId + "/" +  modelId + "/objectTypes/" + objectType + "/custom/" + c.getName() + treeHash} text={c.getName()} />
                         </li>
                     )
                 }
@@ -394,27 +394,27 @@ const OnFunctionsMainContent = ({ objectType, propertyType }) => {
                 <Pad />
                 <Typography 
                     size="3" 
-                    text="When an Object or Property value is calculated by the Model Adaptor, you may override the 
+                    text="When an Object or Property value is calculated by the Model Adapter, you may override the 
                         default behavior by implementing Action handlers." />
                 <Pad />
                 <div style={{ marginLeft: theme.spacing(2) }}>                
                     <Typography component="h3" size="5" text="On Get Initial Value()" />
                     <Typography 
                         size="3" 
-                        text="When an Adaptive Property is created by an adaptor, the value may be
+                        text="When an Adaptive Property is created by an adapter, the value may be
                             automatically generated by this expression." />
                     <Pad />
                     <Typography component="h3" size="5" text="Set Property()" />
                     <Typography 
                         size="3" 
                         text="You may augment or override the default model behavior when new Adaptive Property 
-                            of this Property Type is created through the adaptor interface." />
+                            of this Property Type is created through the adapter interface." />
                     <Pad />
                     <Typography component="h3" size="5" text="Get Property()" />
                     <Typography 
                         size="3" 
                         text="You may augment or override the default model behavior when an Adaptive Property 
-                        of this Property Type is retrieved through the adaptor's get_object() or retrieve_objects() interfaces." />       
+                        of this Property Type is retrieved through the adapter's get_object() or retrieve_objects() interfaces." />       
                     <div style={{ height: theme.spacing(5) }} />                                                    
                 </div>
                 <Typography 
@@ -431,51 +431,51 @@ const OnFunctionsMainContent = ({ objectType, propertyType }) => {
                 <Pad />
                 <Typography 
                     size="3" 
-                    text="When an Object or Property value is calculated by the Model Adaptor, you may override the 
+                    text="When an Object or Property value is calculated by the Model Adapter, you may override the 
                         default behavior by implementing Action handlers." />
                 <Pad />
                 <div style={{ marginLeft: theme.spacing(2) }}>                
                     <Typography component="h3" size="5" text="On Get Initial ObjectId()" />
                     <Typography 
                         size="3" 
-                        text="When an Adaptive Object is created by an adaptor, the required objectId may be
+                        text="When an Adaptive Object is created by an adapter, the required objectId may be
                             automatically generated by this Object Type definition." />
                     <Pad />
                     <Typography component="h3" size="5" text="On Add Object()" />
                     <Typography 
                         size="3" 
                         text="You may augment or override the default model behavior when new Adaptive Objects 
-                            of this Object Type are created through the adaptor's add_object() interface." />
+                            of this Object Type are created through the adapter's add_object() interface." />
                     <Pad />
                     <Typography component="h3" size="5" text="On Modify Object()" />
                     <Typography 
                         size="3" 
                         text="You may augment or override the default model behavior when Adaptive Objects 
-                        of this Object Type are modified through the adaptor's modify_object() interface." />
+                        of this Object Type are modified through the adapter's modify_object() interface." />
                     <Pad />
                     <Typography component="h3" size="5" text="On Replace Object()" />
                     <Typography 
                         size="3" 
                         text="You may augment or override the default model behavior when Adaptive Objects 
-                        of this Object Type are replaced through the adaptor's replace_object() interface." />
+                        of this Object Type are replaced through the adapter's replace_object() interface." />
                     <Pad />
                     <Typography component="h3" size="5" text="On Delete Object()" />
                     <Typography 
                         size="3" 
                         text="You may augment or override the default model behavior when Adaptive Objects 
-                        of this Object Type are deleted through the adaptor's delete_object() interface." />
+                        of this Object Type are deleted through the adapter's delete_object() interface." />
                     <Pad />
                     <Typography component="h3" size="5" text="On Get Object()" />
                     <Typography 
                         size="3" 
                         text="You may augment or override the default model behavior when an Adaptive Object
-                        of this Object Type is returned through the adaptor's get_object() interface." />
+                        of this Object Type is returned through the adapter's get_object() interface." />
                     <Pad />
                     <Typography component="h3" size="5" text="On Retrieve Objects()" />
                     <Typography 
                         size="3" 
                         text="You may augment or override the default model behavior when Adaptive Objects 
-                        of this Object Type are returned through the adaptor's retrieve_objects() interface." />
+                        of this Object Type are returned through the adapter's retrieve_objects() interface." />
                     <div style={{ height: theme.spacing(5) }} />
                 </div>
                 <Typography 
@@ -612,7 +612,7 @@ const CustomVariablesMainContent = ({ model, objectType, propertyType, propertyN
     const [variable, setVariable] = useState();
     const theme = useTheme();
     
-    const adaptorId = model.getAdaptorId();
+    const adapterId = model.getAdapterId();
     const modelId = model.getPropertyValue("modelId");
     const custom = model.getPropertyValue(propertyName);
 
@@ -633,7 +633,7 @@ const CustomVariablesMainContent = ({ model, objectType, propertyType, propertyN
                             return (
                                 <li key={c.getName()}>
                                     <Link 
-                                        url={"/Admin/Models/" + adaptorId + "/" +  modelId + "/objectTypes/" + objectType + "/propertyTypes/" + propertyType + "/custom/" + c.getName() + treeHash} 
+                                        url={"/Admin/Models/" + adapterId + "/" +  modelId + "/objectTypes/" + objectType + "/propertyTypes/" + propertyType + "/custom/" + c.getName() + treeHash} 
                                         text={c.getName()} 
                                     />
                                 </li>
@@ -643,7 +643,7 @@ const CustomVariablesMainContent = ({ model, objectType, propertyType, propertyN
                             return (
                                 <li key={c.getName()}>
                                     <Link 
-                                        url={"/Admin/Models/" + adaptorId + "/" +  modelId + "/objectTypes/" + objectType + "/custom/" + c.getName() + treeHash} 
+                                        url={"/Admin/Models/" + adapterId + "/" +  modelId + "/objectTypes/" + objectType + "/custom/" + c.getName() + treeHash} 
                                         text={c.getName()} 
                                     />
                                 </li>
@@ -653,7 +653,7 @@ const CustomVariablesMainContent = ({ model, objectType, propertyType, propertyN
                             return (
                                 <li key={c.getName()}>
                                     <Link 
-                                        url={"/Admin/Models/" + adaptorId + "/" +  modelId + "/custom/" + c.getName() + treeHash} 
+                                        url={"/Admin/Models/" + adapterId + "/" +  modelId + "/custom/" + c.getName() + treeHash} 
                                         text={c.getName()} 
                                     />
                                 </li>
@@ -706,7 +706,7 @@ const DefaultMainContent = ({ model }) => {
     const theme = useTheme();
     const {editable} = useOperational();
         
-    const adaptorId = model.getAdaptorId();
+    const adapterId = model.getAdapterId();
     const {modelId, description, custom, propertyTypes, objectTypes} = model.getPropertyValues();
 
     const objectTypeProperties = objectTypes?.getProperties().sort((A, B) => 
@@ -738,7 +738,7 @@ const DefaultMainContent = ({ model }) => {
                         {
                             custom.getProperties().map(c => 
                                 <li key={c.getName()}>
-                                    <Link url={"/Admin/Models/" + adaptorId + "/" +  modelId + "/custom/" + c.getName() + treeHash} text={c.getName()} />
+                                    <Link url={"/Admin/Models/" + adapterId + "/" +  modelId + "/custom/" + c.getName() + treeHash} text={c.getName()} />
                                 </li>
                             )
                         }
@@ -757,7 +757,7 @@ const DefaultMainContent = ({ model }) => {
                 {
                     objectTypeProperties.map(o => 
                         <li key={o.getName()}>
-                            <Link url={"/Admin/Models/" + adaptorId + "/" +  modelId + "/objectTypes/" + o.getName() + treeHash} text={o.getName()} />
+                            <Link url={"/Admin/Models/" + adapterId + "/" +  modelId + "/objectTypes/" + o.getName() + treeHash} text={o.getName()} />
                         </li>
                     )
                 }
@@ -775,7 +775,7 @@ const DefaultMainContent = ({ model }) => {
                         {
                             propertyTypes.getProperties().map(p => 
                                 <li key={p.getName()}>
-                                    <Link url={"/Admin/Models/" + adaptorId + "/" +  modelId + "/propertyTypes/" + p.getName() + treeHash} text={p.getName()} />
+                                    <Link url={"/Admin/Models/" + adapterId + "/" +  modelId + "/propertyTypes/" + p.getName() + treeHash} text={p.getName()} />
                                 </li>
                             )
                         }

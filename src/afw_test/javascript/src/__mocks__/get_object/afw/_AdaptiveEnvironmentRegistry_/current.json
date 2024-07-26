@@ -169,12 +169,12 @@
                 "description": "XACML attribute id registry type",
                 "registryType": "xacml_attribute_id"
             },
-            "adaptor_id": {
+            "adapter_id": {
                 "allowReregister": false,
                 "autoRegister": false,
-                "description": "The afw_adaptor_id_t struct for this adaptor id.",
-                "objectType": "_AdaptiveAdaptor_",
-                "registryType": "adaptor_id"
+                "description": "The afw_adapter_id_t struct for this adapter id.",
+                "objectType": "_AdaptiveAdapter_",
+                "registryType": "adapter_id"
             },
             "value_inf": {
                 "allowReregister": false,
@@ -252,12 +252,12 @@
                 "objectType": "_AdaptivePolicyCombiningAlgorithm_",
                 "registryType": "policy_combining_algorithm"
             },
-            "adaptor_type": {
+            "adapter_type": {
                 "allowReregister": false,
                 "autoRegister": false,
-                "description": "The afw_adaptor_factory_t instance for an adaptor type.",
-                "objectType": "_AdaptiveAdaptorType_",
-                "registryType": "adaptor_type"
+                "description": "The afw_adapter_factory_t instance for an adapter type.",
+                "objectType": "_AdaptiveAdapterType_",
+                "registryType": "adapter_type"
             },
             "authorization_handler_type": {
                 "allowReregister": false,
@@ -275,9 +275,9 @@
                 "key": "afw_xacml_environment"
             }
         },
-        "adaptor_id": {
+        "adapter_id": {
             "afw": {
-                "adaptorId": "afw",
+                "adapterId": "afw",
                 "metrics": {
                     "addObjectCount": 0,
                     "deleteObjectCount": 0,
@@ -288,22 +288,22 @@
                     "updateObjectCount": 0
                 },
                 "properties": {
-                    "type": "adaptor",
-                    "adaptorType": "afw_runtime",
-                    "adaptorId": "afw",
-                    "sourceLocation": "Core afw adaptor"
+                    "type": "adapter",
+                    "adapterType": "afw_runtime",
+                    "adapterId": "afw",
+                    "sourceLocation": "Core afw adapter"
                 },
                 "referenceCount": 3,
-                "serviceId": "adaptor-afw"
+                "serviceId": "adapter-afw"
             },
             "lmdb": {
-                "adaptorId": "lmdb",
+                "adapterId": "lmdb",
                 "metrics": {
                     "addObjectCount": 0,
                     "additional": {
                         "version": {
                             "_meta_": {
-                                "objectType": "_AdaptiveAdaptorMetrics_adaptor_lmdb_version"
+                                "objectType": "_AdaptiveAdapterMetrics_adapter_lmdb_version"
                             },
                             "version_string": "LMDB 0.9.24: (July 24, 2019)",
                             "major": 0,
@@ -312,11 +312,11 @@
                         },
                         "statistics": {
                             "_meta_": {
-                                "objectType": "_AdaptiveAdaptorMetrics_adaptor_lmdb_statistics"
+                                "objectType": "_AdaptiveAdapterMetrics_adapter_lmdb_statistics"
                             },
                             "environment": {
                                 "_meta_": {
-                                    "objectType": "_AdaptiveAdaptorMetrics_adaptor_lmdb_statistic"
+                                    "objectType": "_AdaptiveAdapterMetrics_adapter_lmdb_statistic"
                                 },
                                 "psize": 4096,
                                 "depth": 1,
@@ -327,7 +327,7 @@
                             },
                             "Journal": {
                                 "_meta_": {
-                                    "objectType": "_AdaptiveAdaptorMetrics_adaptor_lmdb_statistic"
+                                    "objectType": "_AdaptiveAdapterMetrics_adapter_lmdb_statistic"
                                 },
                                 "psize": 4096,
                                 "depth": 0,
@@ -338,7 +338,7 @@
                             },
                             "Primary": {
                                 "_meta_": {
-                                    "objectType": "_AdaptiveAdaptorMetrics_adaptor_lmdb_statistic"
+                                    "objectType": "_AdaptiveAdapterMetrics_adapter_lmdb_statistic"
                                 },
                                 "psize": 4096,
                                 "depth": 1,
@@ -350,7 +350,7 @@
                         },
                         "information": {
                             "_meta_": {
-                                "objectType": "_AdaptiveAdaptorMetrics_adaptor_lmdb_information"
+                                "objectType": "_AdaptiveAdapterMetrics_adapter_lmdb_information"
                             },
                             "mapaddr": 0,
                             "mapsize": 137438953472,
@@ -369,12 +369,12 @@
                 },
                 "properties": {
                     "_meta_": {
-                        "path": "/afw/_AdaptiveConf_adaptor_lmdb/lmdb"
+                        "path": "/afw/_AdaptiveConf_adapter_lmdb/lmdb"
                     },
-                    "sourceLocation": "/conf/_AdaptiveServiceConf_/adaptor-lmdb/conf",
+                    "sourceLocation": "/conf/_AdaptiveServiceConf_/adapter-lmdb/conf",
                     "env": {
                         "_meta_": {
-                            "objectType": "_AdaptiveConf_adaptor_lmdb_env"
+                            "objectType": "_AdaptiveConf_adapter_lmdb_env"
                         },
                         "path": "/afw/lmdb",
                         "mode": 384,
@@ -384,33 +384,33 @@
                     },
                     "limits": {
                         "_meta_": {
-                            "objectType": "_AdaptiveConf_adaptor_lmdb_limits"
+                            "objectType": "_AdaptiveConf_adapter_lmdb_limits"
                         },
                         "size": {
                             "_meta_": {
-                                "objectType": "_AdaptiveConf_adaptor_lmdb_limits_size"
+                                "objectType": "_AdaptiveConf_adapter_lmdb_limits_size"
                             },
                             "soft": 500,
                             "hard": 1000
                         },
                         "time": {
                             "_meta_": {
-                                "objectType": "_AdaptiveConf_adaptor_lmdb_limits_time"
+                                "objectType": "_AdaptiveConf_adapter_lmdb_limits_time"
                             },
                             "soft": 3600,
                             "hard": 14400
                         }
                     },
                     "description": "A LMDB (Lightning Memory-Mapped Database).",
-                    "adaptorId": "lmdb",
-                    "adaptorType": "lmdb",
-                    "type": "adaptor"
+                    "adapterId": "lmdb",
+                    "adapterType": "lmdb",
+                    "type": "adapter"
                 },
                 "referenceCount": 1,
-                "serviceId": "adaptor-lmdb"
+                "serviceId": "adapter-lmdb"
             },
             "dev": {
-                "adaptorId": "dev",
+                "adapterId": "dev",
                 "metrics": {
                     "addObjectCount": 0,
                     "deleteObjectCount": 0,
@@ -422,23 +422,23 @@
                 },
                 "properties": {
                     "_meta_": {
-                        "path": "/afw/_AdaptiveConf_adaptor_file/dev"
+                        "path": "/afw/_AdaptiveConf_adapter_file/dev"
                     },
-                    "sourceLocation": "/conf/_AdaptiveServiceConf_/adaptor-dev/conf",
+                    "sourceLocation": "/conf/_AdaptiveServiceConf_/adapter-dev/conf",
                     "contentType": "json",
                     "filenameSuffix": ".json",
                     "isDevelopmentInput": true,
                     "root": "/workspace/src/afw/generate/objects/",
-                    "description": "File adaptor for development input strings and objects.",
-                    "type": "adaptor",
-                    "adaptorType": "file",
-                    "adaptorId": "dev"
+                    "description": "File adapter for development input strings and objects.",
+                    "type": "adapter",
+                    "adapterType": "file",
+                    "adapterId": "dev"
                 },
                 "referenceCount": 1,
-                "serviceId": "adaptor-dev"
+                "serviceId": "adapter-dev"
             },
             "layouts": {
-                "adaptorId": "layouts",
+                "adapterId": "layouts",
                 "metrics": {
                     "addObjectCount": 0,
                     "deleteObjectCount": 0,
@@ -450,22 +450,22 @@
                 },
                 "properties": {
                     "_meta_": {
-                        "path": "/afw/_AdaptiveConf_adaptor_file/layouts"
+                        "path": "/afw/_AdaptiveConf_adapter_file/layouts"
                     },
-                    "sourceLocation": "/conf/_AdaptiveServiceConf_/adaptor-layouts/conf",
-                    "adaptorId": "layouts",
+                    "sourceLocation": "/conf/_AdaptiveServiceConf_/adapter-layouts/conf",
+                    "adapterId": "layouts",
                     "description": "Stores adaptive layouts.",
                     "filenameSuffix": ".json",
                     "contentType": "json",
                     "root": "/afw/layouts/",
-                    "adaptorType": "file",
-                    "type": "adaptor"
+                    "adapterType": "file",
+                    "type": "adapter"
                 },
                 "referenceCount": 1,
-                "serviceId": "adaptor-layouts"
+                "serviceId": "adapter-layouts"
             },
             "auth": {
-                "adaptorId": "auth",
+                "adapterId": "auth",
                 "metrics": {
                     "addObjectCount": 0,
                     "deleteObjectCount": 0,
@@ -477,23 +477,23 @@
                 },
                 "properties": {
                     "_meta_": {
-                        "path": "/afw/_AdaptiveConf_adaptor_file/auth"
+                        "path": "/afw/_AdaptiveConf_adapter_file/auth"
                     },
-                    "sourceLocation": "/conf/_AdaptiveServiceConf_/adaptor-auth/conf",
-                    "adaptorId": "auth",
+                    "sourceLocation": "/conf/_AdaptiveServiceConf_/adapter-auth/conf",
+                    "adapterId": "auth",
                     "description": "Stores adaptive authorization policies.",
                     "filenameSuffix": ".json",
                     "contentType": "json",
                     "root": "/afw/auth/",
                     "isPolicyLocation": true,
-                    "adaptorType": "file",
-                    "type": "adaptor"
+                    "adapterType": "file",
+                    "type": "adapter"
                 },
                 "referenceCount": 1,
-                "serviceId": "adaptor-auth"
+                "serviceId": "adapter-auth"
             },
             "files": {
-                "adaptorId": "files",
+                "adapterId": "files",
                 "metrics": {
                     "addObjectCount": 0,
                     "deleteObjectCount": 0,
@@ -505,23 +505,23 @@
                 },
                 "properties": {
                     "_meta_": {
-                        "path": "/afw/_AdaptiveConf_adaptor_file/files"
+                        "path": "/afw/_AdaptiveConf_adapter_file/files"
                     },
-                    "sourceLocation": "/conf/_AdaptiveServiceConf_/adaptor-files/conf",
-                    "adaptorId": "files",
+                    "sourceLocation": "/conf/_AdaptiveServiceConf_/adapter-files/conf",
+                    "adapterId": "files",
                     "isDevelopmentInput": true,
                     "description": "Stores objects in files.",
                     "filenameSuffix": ".json",
                     "contentType": "json",
                     "root": "/afw/files/",
-                    "adaptorType": "file",
-                    "type": "adaptor"
+                    "adapterType": "file",
+                    "type": "adapter"
                 },
                 "referenceCount": 1,
-                "serviceId": "adaptor-files"
+                "serviceId": "adapter-files"
             },
             "models": {
-                "adaptorId": "models",
+                "adapterId": "models",
                 "metrics": {
                     "addObjectCount": 0,
                     "deleteObjectCount": 0,
@@ -533,23 +533,23 @@
                 },
                 "properties": {
                     "_meta_": {
-                        "path": "/afw/_AdaptiveConf_adaptor_file/models"
+                        "path": "/afw/_AdaptiveConf_adapter_file/models"
                     },
-                    "sourceLocation": "/conf/_AdaptiveServiceConf_/adaptor-models/conf",
-                    "adaptorId": "models",
+                    "sourceLocation": "/conf/_AdaptiveServiceConf_/adapter-models/conf",
+                    "adapterId": "models",
                     "description": "Stores adaptive models.",
                     "filenameSuffix": ".json",
                     "contentType": "json",
                     "root": "/afw/models/",
                     "isModelLocation": true,
-                    "adaptorType": "file",
-                    "type": "adaptor"
+                    "adapterType": "file",
+                    "type": "adapter"
                 },
                 "referenceCount": 1,
-                "serviceId": "adaptor-models"
+                "serviceId": "adapter-models"
             },
             "tier": {
-                "adaptorId": "tier",
+                "adapterId": "tier",
                 "metrics": {
                     "addObjectCount": 0,
                     "deleteObjectCount": 0,
@@ -561,22 +561,22 @@
                 },
                 "properties": {
                     "_meta_": {
-                        "path": "/afw/_AdaptiveConf_adaptor_model/tier"
+                        "path": "/afw/_AdaptiveConf_adapter_model/tier"
                     },
-                    "sourceLocation": "/conf/_AdaptiveServiceConf_/adaptor-tier/conf",
-                    "mappedAdaptorId": "lmdb",
+                    "sourceLocation": "/conf/_AdaptiveServiceConf_/adapter-tier/conf",
+                    "mappedAdapterId": "lmdb",
                     "modelId": "TIER Core Schema",
-                    "modelLocationAdaptorId": "models",
+                    "modelLocationAdapterId": "models",
                     "description": "TIER model using LMDB as a backend.",
-                    "type": "adaptor",
-                    "adaptorType": "model",
-                    "adaptorId": "tier"
+                    "type": "adapter",
+                    "adapterType": "model",
+                    "adapterId": "tier"
                 },
                 "referenceCount": 1,
-                "serviceId": "adaptor-tier"
+                "serviceId": "adapter-tier"
             },
             "conf": {
-                "adaptorId": "conf",
+                "adapterId": "conf",
                 "metrics": {
                     "addObjectCount": 0,
                     "deleteObjectCount": 0,
@@ -588,48 +588,48 @@
                 },
                 "properties": {
                     "_meta_": {
-                        "path": "/afw/_AdaptiveConf_adaptor_file/conf"
+                        "path": "/afw/_AdaptiveConf_adapter_file/conf"
                     },
                     "sourceLocation": "/workspace/docker/dev/afw.conf entry 1",
                     "root": "/afw/config/",
                     "contentType": "json",
                     "filenameSuffix": ".json",
-                    "adaptorType": "file",
-                    "adaptorId": "conf",
-                    "type": "adaptor"
+                    "adapterType": "file",
+                    "adapterId": "conf",
+                    "type": "adapter"
                 },
                 "referenceCount": 3,
-                "serviceId": "adaptor-conf"
+                "serviceId": "adapter-conf"
             }
         },
-        "adaptor_type": {
+        "adapter_type": {
             "lmdb": {
-                "adaptorType": "lmdb",
-                "description": "Adaptor type for Lightning Memory-Mapped Database (LMDB)."
+                "adapterType": "lmdb",
+                "description": "Adapter type for Lightning Memory-Mapped Database (LMDB)."
             },
             "dbd_mysql": {
-                "adaptorType": "dbd_mysql",
-                "description": "Adaptor type for Apache DBD (MySQL)."
+                "adapterType": "dbd_mysql",
+                "description": "Adapter type for Apache DBD (MySQL)."
             },
             "file": {
-                "adaptorType": "file",
-                "description": "Adaptor type for accessing objects contained in files."
+                "adapterType": "file",
+                "description": "Adapter type for accessing objects contained in files."
             },
             "sql": {
-                "adaptorType": "sql",
-                "description": "Adaptor type for Structured Query Language (SQL)."
+                "adapterType": "sql",
+                "description": "Adapter type for Structured Query Language (SQL)."
             },
             "afw_runtime": {
-                "adaptorType": "afw_runtime",
-                "description": "Adaptor type for accessing runtime objects."
+                "adapterType": "afw_runtime",
+                "description": "Adapter type for accessing runtime objects."
             },
             "model": {
-                "adaptorType": "model",
-                "description": "Adaptor type for using models to access objects."
+                "adapterType": "model",
+                "description": "Adapter type for using models to access objects."
             },
             "ldap": {
-                "adaptorType": "ldap",
-                "description": "Adaptor type for Lightweight Directory Access Protocol (LDAP)."
+                "adapterType": "ldap",
+                "description": "Adapter type for Lightweight Directory Access Protocol (LDAP)."
             }
         },
         "authorization_handler_id": {
@@ -687,17 +687,17 @@
                 "title": "Adaptive Framework Request Handler Configuration",
                 "type": "requestHandler"
             },
-            "adaptor": {
-                "description": "This configuration type adds an adaptor and corresponding service to this Adaptive Framework environment.",
-                "idPropertyName": "adaptorId",
-                "idRegistryType": "adaptor_id",
-                "idRuntimeObjectType": "_AdaptiveAdaptor_",
+            "adapter": {
+                "description": "This configuration type adds an adapter and corresponding service to this Adaptive Framework environment.",
+                "idPropertyName": "adapterId",
+                "idRegistryType": "adapter_id",
+                "idRuntimeObjectType": "_AdaptiveAdapter_",
                 "isUnique": true,
-                "subtypePropertyName": "adaptorType",
-                "subtypeRegistryType": "adaptor_type",
-                "subtypeRuntimeObjectType": "_AdaptiveAdaptorType_",
-                "title": "Adaptive Framework Adaptor Configuration",
-                "type": "adaptor"
+                "subtypePropertyName": "adapterType",
+                "subtypeRegistryType": "adapter_type",
+                "subtypeRuntimeObjectType": "_AdaptiveAdapterType_",
+                "title": "Adaptive Framework Adapter Configuration",
+                "type": "adapter"
             },
             "extension": {
                 "description": "This configuration type adds additional functionality this Adaptive Framework environment.",
@@ -782,13 +782,13 @@
                         "_meta_": {
                             "objectType": "_AdaptivePropertyTypes_"
                         },
-                        "adaptorId": {
+                        "adapterId": {
                             "_meta_": {
                                 "objectType": "_AdaptiveValueMeta_"
                             },
                             "dataType": "string",
-                            "label": "Adaptor Id",
-                            "description": "The adaptor id of the object being converted to mapped object."
+                            "label": "Adapter Id",
+                            "description": "The adapter id of the object being converted to mapped object."
                         },
                         "objectId": {
                             "_meta_": {
@@ -808,7 +808,7 @@
                         }
                     }
                 },
-                "description": "current:: variables available in delete object hybrid values related to objects going to an adaptor"
+                "description": "current:: variables available in delete object hybrid values related to objects going to an adapter"
             },
             "logType-splunk": {
                 "contextTypeId": "logType-splunk",
@@ -1096,13 +1096,13 @@
                         "_meta_": {
                             "objectType": "_AdaptivePropertyTypes_"
                         },
-                        "mappedAdaptorId": {
+                        "mappedAdapterId": {
                             "_meta_": {
                                 "objectType": "_AdaptiveValueMeta_"
                             },
                             "dataType": "string",
-                            "label": "Mapped Adaptor Id",
-                            "description": "The adaptor id of the object being converted to object."
+                            "label": "Mapped Adapter Id",
+                            "description": "The adapter id of the object being converted to object."
                         },
                         "mappedObject": {
                             "_meta_": {
@@ -1128,13 +1128,13 @@
                             "label": "Mapped Object Type",
                             "description": "The object type of the object being converted to object."
                         },
-                        "adaptorId": {
+                        "adapterId": {
                             "_meta_": {
                                 "objectType": "_AdaptiveValueMeta_"
                             },
                             "dataType": "string",
-                            "label": "Adaptor Id",
-                            "description": "The adaptor id of the object being converted to mapped object."
+                            "label": "Adapter Id",
+                            "description": "The adapter id of the object being converted to mapped object."
                         },
                         "object": {
                             "_meta_": {
@@ -1232,13 +1232,13 @@
                             "label": "Modify Entries",
                             "description": "The modify entries."
                         },
-                        "adaptorId": {
+                        "adapterId": {
                             "_meta_": {
                                 "objectType": "_AdaptiveValueMeta_"
                             },
                             "dataType": "string",
-                            "label": "Adaptor Id",
-                            "description": "The adaptor id of the object being converted to mapped object."
+                            "label": "Adapter Id",
+                            "description": "The adapter id of the object being converted to mapped object."
                         },
                         "object": {
                             "_meta_": {
@@ -1266,7 +1266,7 @@
                         }
                     }
                 },
-                "description": "current:: variables available in modify object hybrid values related to objects going to an adaptor"
+                "description": "current:: variables available in modify object hybrid values related to objects going to an adapter"
             },
             "authorizationHandler-auth-script": {
                 "contextTypeId": "authorizationHandler-auth-script",
@@ -1403,13 +1403,13 @@
                         "_meta_": {
                             "objectType": "_AdaptivePropertyTypes_"
                         },
-                        "mappedAdaptorId": {
+                        "mappedAdapterId": {
                             "_meta_": {
                                 "objectType": "_AdaptiveValueMeta_"
                             },
                             "dataType": "string",
-                            "label": "Mapped Adaptor Id",
-                            "description": "The adaptor id of the object being converted to object."
+                            "label": "Mapped Adapter Id",
+                            "description": "The adapter id of the object being converted to object."
                         },
                         "mappedObject": {
                             "_meta_": {
@@ -1437,7 +1437,7 @@
                         }
                     }
                 },
-                "description": "current:: variables available in _AdaptiveModelObjectType_ hybrid values related to objects coming from an adaptor"
+                "description": "current:: variables available in _AdaptiveModelObjectType_ hybrid values related to objects coming from an adapter"
             },
             "modelAddObject": {
                 "contextTypeId": "modelAddObject",
@@ -1451,13 +1451,13 @@
                         "_meta_": {
                             "objectType": "_AdaptivePropertyTypes_"
                         },
-                        "adaptorId": {
+                        "adapterId": {
                             "_meta_": {
                                 "objectType": "_AdaptiveValueMeta_"
                             },
                             "dataType": "string",
-                            "label": "Adaptor Id",
-                            "description": "The adaptor id of the object being converted to mapped object."
+                            "label": "Adapter Id",
+                            "description": "The adapter id of the object being converted to mapped object."
                         },
                         "object": {
                             "_meta_": {
@@ -1485,7 +1485,7 @@
                         }
                     }
                 },
-                "description": "current:: variables available in add object hybridvalues related to objects going to an adaptor"
+                "description": "current:: variables available in add object hybridvalues related to objects going to an adapter"
             },
             "logType-standard": {
                 "contextTypeId": "logType-standard",
@@ -1701,13 +1701,13 @@
                         "_meta_": {
                             "objectType": "_AdaptivePropertyTypes_"
                         },
-                        "adaptorId": {
+                        "adapterId": {
                             "_meta_": {
                                 "objectType": "_AdaptiveValueMeta_"
                             },
                             "dataType": "string",
-                            "label": "Adaptor Id",
-                            "description": "The adaptor id of the object being converted to mapped object."
+                            "label": "Adapter Id",
+                            "description": "The adapter id of the object being converted to mapped object."
                         },
                         "object": {
                             "_meta_": {
@@ -2075,28 +2075,28 @@
                             "label": "Description",
                             "required": false
                         },
-                        "defaultAdaptorId": {
+                        "defaultAdapterId": {
                             "allowQuery": true,
-                            "brief": "This is the adaptorId chosen by default for user interface select components",
+                            "brief": "This is the adapterId chosen by default for user interface select components",
                             "dataType": "string",
-                            "description": "This is the adaptorId chosen by default for user interface select components.",
-                            "label": "Default Adaptor",
+                            "description": "This is the adapterId chosen by default for user interface select components.",
+                            "label": "Default Adapter",
                             "required": false
                         },
-                        "defaultModelAdaptorId": {
+                        "defaultModelAdapterId": {
                             "allowQuery": true,
-                            "brief": "The default adaptorId to select for model storage",
+                            "brief": "The default adapterId to select for model storage",
                             "dataType": "string",
-                            "description": "When presented with multiple model adaptors, this is the default adaptorId to use.  This will be the default selected adaptor chosen by user interface components.",
-                            "label": "Default Model Adaptor",
+                            "description": "When presented with multiple model adapters, this is the default adapterId to use.  This will be the default selected adapter chosen by user interface components.",
+                            "label": "Default Model Adapter",
                             "required": false
                         },
-                        "layoutsAdaptorId": {
+                        "layoutsAdapterId": {
                             "allowQuery": true,
-                            "brief": "The default adaptorId to select for layout component objects",
+                            "brief": "The default adapterId to select for layout component objects",
                             "dataType": "string",
-                            "description": "This is the adaptorId that locates Adaptive Layout Component objects.",
-                            "label": "Layouts Adaptor",
+                            "description": "This is the adapterId that locates Adaptive Layout Component objects.",
+                            "label": "Layouts Adapter",
                             "required": false
                         },
                         "qualifiedVariables": {
@@ -2137,13 +2137,13 @@
                             "description": "This is id of the application.  The default applicationId is \"application\".  This property can only be specified in the type=application entry of the conf file.",
                             "label": "Application"
                         },
-                        "confAdaptorId": {
+                        "confAdapterId": {
                             "allowQuery": true,
                             "allowWrite": false,
-                            "brief": "Optional adaptorId of the running adaptor that contains configuration related objects",
+                            "brief": "Optional adapterId of the running adapter that contains configuration related objects",
                             "dataType": "string",
-                            "description": "This is the optional adaptorId of the running adaptor that contains configuration related objects.  This property can only be specified in the type=application entry of the conf file.\n\nThe runtime /afw/_AdaptiveApplication_/current object will consist of properties from the type=application entry of the conf file plus unique properties from the optional /<confAdaptorId>/_AdaptiveConf_application/<applicationId> object.\n\nAll services defined by _AdaptiveServiceConf_ objects in <confAdaptorId> with startup \"permanent\" or \"immediate\" will be started when the type=application conf entry is processed.",
-                            "label": "Conf Adaptor"
+                            "description": "This is the optional adapterId of the running adapter that contains configuration related objects.  This property can only be specified in the type=application entry of the conf file.\n\nThe runtime /afw/_AdaptiveApplication_/current object will consist of properties from the type=application entry of the conf file plus unique properties from the optional /<confAdapterId>/_AdaptiveConf_application/<applicationId> object.\n\nAll services defined by _AdaptiveServiceConf_ objects in <confAdapterId> with startup \"permanent\" or \"immediate\" will be started when the type=application conf entry is processed.",
+                            "label": "Conf Adapter"
                         },
                         "type": {
                             "required": true,
@@ -2217,13 +2217,13 @@
                         "_meta_": {
                             "objectType": "_AdaptivePropertyTypes_"
                         },
-                        "adaptorId": {
+                        "adapterId": {
                             "_meta_": {
                                 "objectType": "_AdaptiveValueMeta_"
                             },
                             "dataType": "string",
-                            "label": "Adaptor Id",
-                            "description": "The adaptor id of the object being converted to mapped object."
+                            "label": "Adapter Id",
+                            "description": "The adapter id of the object being converted to mapped object."
                         },
                         "object": {
                             "_meta_": {
@@ -2251,7 +2251,7 @@
                         }
                     }
                 },
-                "description": "current:: variables available in replace object hybrid values related to objects going to an adaptor"
+                "description": "current:: variables available in replace object hybrid values related to objects going to an adapter"
             },
             "modelGetProperty": {
                 "contextTypeId": "modelGetProperty",
@@ -2265,13 +2265,13 @@
                         "_meta_": {
                             "objectType": "_AdaptivePropertyTypes_"
                         },
-                        "mappedAdaptorId": {
+                        "mappedAdapterId": {
                             "_meta_": {
                                 "objectType": "_AdaptiveValueMeta_"
                             },
                             "dataType": "string",
-                            "label": "Mapped Adaptor Id",
-                            "description": "The adaptor id of the object being converted to object."
+                            "label": "Mapped Adapter Id",
+                            "description": "The adapter id of the object being converted to object."
                         },
                         "mappedObject": {
                             "_meta_": {
@@ -2328,13 +2328,13 @@
                         "_meta_": {
                             "objectType": "_AdaptivePropertyTypes_"
                         },
-                        "mappedAdaptorId": {
+                        "mappedAdapterId": {
                             "_meta_": {
                                 "objectType": "_AdaptiveValueMeta_"
                             },
                             "dataType": "string",
-                            "label": "Mapped Adaptor Id",
-                            "description": "The adaptor id of the object being converted to object."
+                            "label": "Mapped Adapter Id",
+                            "description": "The adapter id of the object being converted to object."
                         },
                         "mappedObject": {
                             "_meta_": {
@@ -2362,7 +2362,7 @@
                         }
                     }
                 },
-                "description": "current:: variables available in _AdaptiveModelObjectType_ hybrid values related to objects coming from an adaptor"
+                "description": "current:: variables available in _AdaptiveModelObjectType_ hybrid values related to objects coming from an adapter"
             }
         },
         "data_type": {
@@ -2643,7 +2643,7 @@
                 "brief": "An adaptive object's object path",
                 "cType": "afw_utf8_t",
                 "dataType": "objectPath",
-                "description": "Data type objectPath is the path within the same instance of Adaptive Framework of an object.  Its for is /<adaptorId>/<objectType>/<objectId> where <adaptorId> is an adaptor id, <objectType> is the object id of an object type, and <objectId> is the id of an object.",
+                "description": "Data type objectPath is the path within the same instance of Adaptive Framework of an object.  Its for is /<adapterId>/<objectType>/<objectId> where <adapterId> is an adapter id, <objectType> is the object id of an object type, and <objectId> is the id of an object.",
                 "directReturn": false,
                 "evaluated": false,
                 "jsonImpliesDataType": false,
@@ -2657,7 +2657,7 @@
                 "cType": "afw_utf8_t",
                 "dataType": "objectId",
                 "dataTypeParameterType": "ObjectType",
-                "description": "Data type objectId holds an adaptive object's object id.  This is an association with another adaptive object by objectId that has the same adaptor id and object type id.",
+                "description": "Data type objectId holds an adaptive object's object id.  This is an association with another adaptive object by objectId that has the same adapter id and object type id.",
                 "directReturn": false,
                 "evaluated": false,
                 "jsonImpliesDataType": false,
@@ -2835,92 +2835,92 @@
             }
         },
         "flag": {
-            "trace:adaptorId:auth:detail": {
+            "trace:adapterId:auth:detail": {
                 "applicableFlags": [
-                    "trace:adaptorId:auth:detail",
-                    "trace:adaptorId:auth"
+                    "trace:adapterId:auth:detail",
+                    "trace:adapterId:auth"
                 ],
-                "brief": "Detail trace of adaptor id auth",
-                "description": "This produces a basic plus detail trace of adaptor id auth.",
-                "flagId": "trace:adaptorId:auth:detail",
+                "brief": "Detail trace of adapter id auth",
+                "description": "This produces a basic plus detail trace of adapter id auth.",
+                "flagId": "trace:adapterId:auth:detail",
                 "flagIndex": 57,
                 "includedByFlags": [
-                    "trace:adaptorType:file:detail"
+                    "trace:adapterType:file:detail"
                 ],
                 "includesFlags": [
-                    "trace:adaptorId:auth"
+                    "trace:adapterId:auth"
                 ]
             },
-            "trace:adaptorId:tier:detail": {
+            "trace:adapterId:tier:detail": {
                 "applicableFlags": [
-                    "trace:adaptorId:tier:detail",
-                    "trace:adaptorId:tier"
+                    "trace:adapterId:tier:detail",
+                    "trace:adapterId:tier"
                 ],
-                "brief": "Detail trace of adaptor id tier",
-                "description": "This produces a basic plus detail trace of adaptor id tier.",
-                "flagId": "trace:adaptorId:tier:detail",
+                "brief": "Detail trace of adapter id tier",
+                "description": "This produces a basic plus detail trace of adapter id tier.",
+                "flagId": "trace:adapterId:tier:detail",
                 "flagIndex": 59,
                 "includedByFlags": [
-                    "trace:adaptorType:model:detail"
+                    "trace:adapterType:model:detail"
                 ],
                 "includesFlags": [
-                    "trace:adaptorId:tier"
+                    "trace:adapterId:tier"
                 ]
             },
-            "trace:adaptorType:dbd_mysql:detail": {
+            "trace:adapterType:dbd_mysql:detail": {
                 "applicableFlags": [
-                    "trace:adaptorType:dbd_mysql:detail",
-                    "trace:adaptorType:dbd_mysql"
+                    "trace:adapterType:dbd_mysql:detail",
+                    "trace:adapterType:dbd_mysql"
                 ],
-                "brief": "Debug trace adaptor type dbd_mysql",
-                "description": "This produces a basic plus additional detail trace for all adaptors of type dbd_mysql.",
-                "flagId": "trace:adaptorType:dbd_mysql:detail",
+                "brief": "Debug trace adapter type dbd_mysql",
+                "description": "This produces a basic plus additional detail trace for all adapters of type dbd_mysql.",
+                "flagId": "trace:adapterType:dbd_mysql:detail",
                 "flagIndex": 49,
                 "includedByFlags": [
-                    "trace:adaptor:detail"
+                    "trace:adapter:detail"
                 ],
                 "includesFlags": [
-                    "trace:adaptorType:dbd_mysql"
+                    "trace:adapterType:dbd_mysql"
                 ]
             },
-            "trace:adaptorType:lmdb:detail": {
+            "trace:adapterType:lmdb:detail": {
                 "applicableFlags": [
-                    "trace:adaptorType:lmdb:detail",
-                    "trace:adaptorType:lmdb",
-                    "trace:adaptorId:lmdb:detail",
-                    "trace:adaptorId:lmdb"
+                    "trace:adapterType:lmdb:detail",
+                    "trace:adapterType:lmdb",
+                    "trace:adapterId:lmdb:detail",
+                    "trace:adapterId:lmdb"
                 ],
-                "brief": "Debug trace adaptor type lmdb",
-                "description": "This produces a basic plus additional detail trace for all adaptors of type lmdb.",
-                "flagId": "trace:adaptorType:lmdb:detail",
+                "brief": "Debug trace adapter type lmdb",
+                "description": "This produces a basic plus additional detail trace for all adapters of type lmdb.",
+                "flagId": "trace:adapterType:lmdb:detail",
                 "flagIndex": 47,
                 "includedByFlags": [
-                    "trace:adaptor:detail"
+                    "trace:adapter:detail"
                 ],
                 "includesFlags": [
-                    "trace:adaptorType:lmdb",
-                    "trace:adaptorId:lmdb:detail"
+                    "trace:adapterType:lmdb",
+                    "trace:adapterId:lmdb:detail"
                 ]
             },
             "trace:detail": {
                 "applicableFlags": [
                     "trace:detail",
                     "trace",
-                    "trace:adaptor:detail",
-                    "trace:adaptor",
+                    "trace:adapter:detail",
+                    "trace:adapter",
                     "trace:authorizationHandler:detail",
                     "trace:authorizationHandler",
                     "trace:evaluation:detail",
                     "trace:request:detail",
                     "trace:request",
-                    "trace:adaptorType:afw_runtime:detail",
-                    "trace:adaptorType:afw_runtime",
-                    "trace:adaptorId:afw:detail",
-                    "trace:adaptorId:afw",
-                    "trace:adaptorType:file:detail",
-                    "trace:adaptorType:file",
-                    "trace:adaptorType:model:detail",
-                    "trace:adaptorType:model",
+                    "trace:adapterType:afw_runtime:detail",
+                    "trace:adapterType:afw_runtime",
+                    "trace:adapterId:afw:detail",
+                    "trace:adapterId:afw",
+                    "trace:adapterType:file:detail",
+                    "trace:adapterType:file",
+                    "trace:adapterType:model:detail",
+                    "trace:adapterType:model",
                     "trace:authorizationHandlerType:script:detail",
                     "trace:authorizationHandlerType:script",
                     "trace:authorization:detail",
@@ -2930,36 +2930,36 @@
                     "trace:authorization:check",
                     "trace:authorization:decision:detail",
                     "trace:authorization:decision",
-                    "trace:adaptorId:conf:detail",
-                    "trace:adaptorId:conf",
+                    "trace:adapterId:conf:detail",
+                    "trace:adapterId:conf",
                     "trace:authorizationHandlerType:policy:detail",
                     "trace:authorizationHandlerType:policy",
                     "trace:authorizationHandlerType:xacml:detail",
                     "trace:authorizationHandlerType:xacml",
-                    "trace:adaptorType:ldap:detail",
-                    "trace:adaptorType:ldap",
-                    "trace:adaptorType:lmdb:detail",
-                    "trace:adaptorType:lmdb",
-                    "trace:adaptorType:dbd_mysql:detail",
-                    "trace:adaptorType:dbd_mysql",
-                    "trace:adaptorType:sql:detail",
-                    "trace:adaptorType:sql",
-                    "trace:adaptorId:layouts:detail",
-                    "trace:adaptorId:layouts",
-                    "trace:adaptorId:models:detail",
-                    "trace:adaptorId:models",
-                    "trace:adaptorId:auth:detail",
-                    "trace:adaptorId:auth",
-                    "trace:adaptorId:tier:detail",
-                    "trace:adaptorId:tier",
+                    "trace:adapterType:ldap:detail",
+                    "trace:adapterType:ldap",
+                    "trace:adapterType:lmdb:detail",
+                    "trace:adapterType:lmdb",
+                    "trace:adapterType:dbd_mysql:detail",
+                    "trace:adapterType:dbd_mysql",
+                    "trace:adapterType:sql:detail",
+                    "trace:adapterType:sql",
+                    "trace:adapterId:layouts:detail",
+                    "trace:adapterId:layouts",
+                    "trace:adapterId:models:detail",
+                    "trace:adapterId:models",
+                    "trace:adapterId:auth:detail",
+                    "trace:adapterId:auth",
+                    "trace:adapterId:tier:detail",
+                    "trace:adapterId:tier",
                     "trace:authorizationHandlerId:auth-script:detail",
                     "trace:authorizationHandlerId:auth-script",
-                    "trace:adaptorId:files:detail",
-                    "trace:adaptorId:files",
-                    "trace:adaptorId:lmdb:detail",
-                    "trace:adaptorId:lmdb",
-                    "trace:adaptorId:dev:detail",
-                    "trace:adaptorId:dev",
+                    "trace:adapterId:files:detail",
+                    "trace:adapterId:files",
+                    "trace:adapterId:lmdb:detail",
+                    "trace:adapterId:lmdb",
+                    "trace:adapterId:dev:detail",
+                    "trace:adapterId:dev",
                     "trace:server",
                     "trace:server:request",
                     "trace:server:request:process"
@@ -2970,7 +2970,7 @@
                 "flagIndex": 13,
                 "includesFlags": [
                     "trace",
-                    "trace:adaptor:detail",
+                    "trace:adapter:detail",
                     "trace:authorizationHandler:detail",
                     "trace:evaluation:detail",
                     "trace:request:detail",
@@ -3023,63 +3023,63 @@
                     "response:error:hasAdditionalDetail"
                 ]
             },
-            "trace:adaptorId:models:detail": {
+            "trace:adapterId:models:detail": {
                 "applicableFlags": [
-                    "trace:adaptorId:models:detail",
-                    "trace:adaptorId:models"
+                    "trace:adapterId:models:detail",
+                    "trace:adapterId:models"
                 ],
-                "brief": "Detail trace of adaptor id models",
-                "description": "This produces a basic plus detail trace of adaptor id models.",
-                "flagId": "trace:adaptorId:models:detail",
+                "brief": "Detail trace of adapter id models",
+                "description": "This produces a basic plus detail trace of adapter id models.",
+                "flagId": "trace:adapterId:models:detail",
                 "flagIndex": 55,
                 "includedByFlags": [
-                    "trace:adaptorType:file:detail"
+                    "trace:adapterType:file:detail"
                 ],
                 "includesFlags": [
-                    "trace:adaptorId:models"
+                    "trace:adapterId:models"
                 ]
             },
-            "trace:adaptorId:tier": {
+            "trace:adapterId:tier": {
                 "applicableFlags": [
-                    "trace:adaptorId:tier"
+                    "trace:adapterId:tier"
                 ],
-                "brief": "Trace adaptor id tier",
-                "description": "This produces a basic trace of adaptor id tier.",
-                "flagId": "trace:adaptorId:tier",
+                "brief": "Trace adapter id tier",
+                "description": "This produces a basic trace of adapter id tier.",
+                "flagId": "trace:adapterId:tier",
                 "flagIndex": 60,
                 "includedByFlags": [
-                    "trace:adaptorType:model",
-                    "trace:adaptorId:tier:detail"
+                    "trace:adapterType:model",
+                    "trace:adapterId:tier:detail"
                 ]
             },
-            "trace:adaptorType:dbd_mysql": {
+            "trace:adapterType:dbd_mysql": {
                 "applicableFlags": [
-                    "trace:adaptorType:dbd_mysql"
+                    "trace:adapterType:dbd_mysql"
                 ],
-                "brief": "Trace adaptor type dbd_mysql",
-                "description": "This produces a basic trace of all adaptors of type dbd_mysql.",
-                "flagId": "trace:adaptorType:dbd_mysql",
+                "brief": "Trace adapter type dbd_mysql",
+                "description": "This produces a basic trace of all adapters of type dbd_mysql.",
+                "flagId": "trace:adapterType:dbd_mysql",
                 "flagIndex": 50,
                 "includedByFlags": [
-                    "trace:adaptor",
-                    "trace:adaptorType:dbd_mysql:detail"
+                    "trace:adapter",
+                    "trace:adapterType:dbd_mysql:detail"
                 ]
             },
-            "trace:adaptorType:lmdb": {
+            "trace:adapterType:lmdb": {
                 "applicableFlags": [
-                    "trace:adaptorType:lmdb",
-                    "trace:adaptorId:lmdb"
+                    "trace:adapterType:lmdb",
+                    "trace:adapterId:lmdb"
                 ],
-                "brief": "Trace adaptor type lmdb",
-                "description": "This produces a basic trace of all adaptors of type lmdb.",
-                "flagId": "trace:adaptorType:lmdb",
+                "brief": "Trace adapter type lmdb",
+                "description": "This produces a basic trace of all adapters of type lmdb.",
+                "flagId": "trace:adapterType:lmdb",
                 "flagIndex": 48,
                 "includedByFlags": [
-                    "trace:adaptor",
-                    "trace:adaptorType:lmdb:detail"
+                    "trace:adapter",
+                    "trace:adapterType:lmdb:detail"
                 ],
                 "includesFlags": [
-                    "trace:adaptorId:lmdb"
+                    "trace:adapterId:lmdb"
                 ]
             },
             "trace:authorization:decision:detail": {
@@ -3101,33 +3101,33 @@
             "trace": {
                 "applicableFlags": [
                     "trace",
-                    "trace:adaptor",
+                    "trace:adapter",
                     "trace:authorizationHandler",
                     "trace:request",
-                    "trace:adaptorType:afw_runtime",
-                    "trace:adaptorId:afw",
-                    "trace:adaptorType:file",
-                    "trace:adaptorType:model",
+                    "trace:adapterType:afw_runtime",
+                    "trace:adapterId:afw",
+                    "trace:adapterType:file",
+                    "trace:adapterType:model",
                     "trace:authorizationHandlerType:script",
                     "trace:authorization",
                     "trace:authorization:bypass",
                     "trace:authorization:check",
                     "trace:authorization:decision",
-                    "trace:adaptorId:conf",
+                    "trace:adapterId:conf",
                     "trace:authorizationHandlerType:policy",
                     "trace:authorizationHandlerType:xacml",
-                    "trace:adaptorType:ldap",
-                    "trace:adaptorType:lmdb",
-                    "trace:adaptorType:dbd_mysql",
-                    "trace:adaptorType:sql",
-                    "trace:adaptorId:layouts",
-                    "trace:adaptorId:models",
-                    "trace:adaptorId:auth",
-                    "trace:adaptorId:tier",
+                    "trace:adapterType:ldap",
+                    "trace:adapterType:lmdb",
+                    "trace:adapterType:dbd_mysql",
+                    "trace:adapterType:sql",
+                    "trace:adapterId:layouts",
+                    "trace:adapterId:models",
+                    "trace:adapterId:auth",
+                    "trace:adapterId:tier",
                     "trace:authorizationHandlerId:auth-script",
-                    "trace:adaptorId:files",
-                    "trace:adaptorId:lmdb",
-                    "trace:adaptorId:dev",
+                    "trace:adapterId:files",
+                    "trace:adapterId:lmdb",
+                    "trace:adapterId:dev",
                     "trace:server",
                     "trace:server:request",
                     "trace:server:request:process"
@@ -3140,7 +3140,7 @@
                     "trace:detail"
                 ],
                 "includesFlags": [
-                    "trace:adaptor",
+                    "trace:adapter",
                     "trace:authorizationHandler",
                     "trace:request",
                     "trace:authorization",
@@ -3164,42 +3164,42 @@
                     "debug:function_active"
                 ]
             },
-            "trace:adaptor": {
+            "trace:adapter": {
                 "applicableFlags": [
-                    "trace:adaptor",
-                    "trace:adaptorType:afw_runtime",
-                    "trace:adaptorId:afw",
-                    "trace:adaptorType:file",
-                    "trace:adaptorType:model",
-                    "trace:adaptorId:conf",
-                    "trace:adaptorType:ldap",
-                    "trace:adaptorType:lmdb",
-                    "trace:adaptorType:dbd_mysql",
-                    "trace:adaptorType:sql",
-                    "trace:adaptorId:layouts",
-                    "trace:adaptorId:models",
-                    "trace:adaptorId:auth",
-                    "trace:adaptorId:tier",
-                    "trace:adaptorId:files",
-                    "trace:adaptorId:lmdb",
-                    "trace:adaptorId:dev"
+                    "trace:adapter",
+                    "trace:adapterType:afw_runtime",
+                    "trace:adapterId:afw",
+                    "trace:adapterType:file",
+                    "trace:adapterType:model",
+                    "trace:adapterId:conf",
+                    "trace:adapterType:ldap",
+                    "trace:adapterType:lmdb",
+                    "trace:adapterType:dbd_mysql",
+                    "trace:adapterType:sql",
+                    "trace:adapterId:layouts",
+                    "trace:adapterId:models",
+                    "trace:adapterId:auth",
+                    "trace:adapterId:tier",
+                    "trace:adapterId:files",
+                    "trace:adapterId:lmdb",
+                    "trace:adapterId:dev"
                 ],
-                "brief": "Basic trace for all adaptors",
-                "description": "This produces basic traces for all adaptors.",
-                "flagId": "trace:adaptor",
+                "brief": "Basic trace for all adapters",
+                "description": "This produces basic traces for all adapters.",
+                "flagId": "trace:adapter",
                 "flagIndex": 16,
                 "includedByFlags": [
                     "trace",
-                    "trace:adaptor:detail"
+                    "trace:adapter:detail"
                 ],
                 "includesFlags": [
-                    "trace:adaptorType:afw_runtime",
-                    "trace:adaptorType:file",
-                    "trace:adaptorType:model",
-                    "trace:adaptorType:ldap",
-                    "trace:adaptorType:lmdb",
-                    "trace:adaptorType:dbd_mysql",
-                    "trace:adaptorType:sql"
+                    "trace:adapterType:afw_runtime",
+                    "trace:adapterType:file",
+                    "trace:adapterType:model",
+                    "trace:adapterType:ldap",
+                    "trace:adapterType:lmdb",
+                    "trace:adapterType:dbd_mysql",
+                    "trace:adapterType:sql"
                 ]
             },
             "response:error:hasAdditionalDetail": {
@@ -3239,17 +3239,17 @@
                     "trace:authorizationHandlerType:xacml"
                 ]
             },
-            "trace:adaptorId:afw": {
+            "trace:adapterId:afw": {
                 "applicableFlags": [
-                    "trace:adaptorId:afw"
+                    "trace:adapterId:afw"
                 ],
-                "brief": "Trace adaptor id afw",
-                "description": "This produces a basic trace of adaptor id afw.",
-                "flagId": "trace:adaptorId:afw",
+                "brief": "Trace adapter id afw",
+                "description": "This produces a basic trace of adapter id afw.",
+                "flagId": "trace:adapterId:afw",
                 "flagIndex": 25,
                 "includedByFlags": [
-                    "trace:adaptorType:afw_runtime",
-                    "trace:adaptorId:afw:detail"
+                    "trace:adapterType:afw_runtime",
+                    "trace:adapterId:afw:detail"
                 ]
             },
             "trace:authorization": {
@@ -3294,80 +3294,80 @@
                     "trace:server:request"
                 ]
             },
-            "trace:adaptorType:file:detail": {
+            "trace:adapterType:file:detail": {
                 "applicableFlags": [
-                    "trace:adaptorType:file:detail",
-                    "trace:adaptorType:file",
-                    "trace:adaptorId:conf:detail",
-                    "trace:adaptorId:conf",
-                    "trace:adaptorId:layouts:detail",
-                    "trace:adaptorId:layouts",
-                    "trace:adaptorId:models:detail",
-                    "trace:adaptorId:models",
-                    "trace:adaptorId:auth:detail",
-                    "trace:adaptorId:auth",
-                    "trace:adaptorId:files:detail",
-                    "trace:adaptorId:files",
-                    "trace:adaptorId:dev:detail",
-                    "trace:adaptorId:dev"
+                    "trace:adapterType:file:detail",
+                    "trace:adapterType:file",
+                    "trace:adapterId:conf:detail",
+                    "trace:adapterId:conf",
+                    "trace:adapterId:layouts:detail",
+                    "trace:adapterId:layouts",
+                    "trace:adapterId:models:detail",
+                    "trace:adapterId:models",
+                    "trace:adapterId:auth:detail",
+                    "trace:adapterId:auth",
+                    "trace:adapterId:files:detail",
+                    "trace:adapterId:files",
+                    "trace:adapterId:dev:detail",
+                    "trace:adapterId:dev"
                 ],
-                "brief": "Debug trace adaptor type file",
-                "description": "This produces a basic plus additional detail trace for all adaptors of type file.",
-                "flagId": "trace:adaptorType:file:detail",
+                "brief": "Debug trace adapter type file",
+                "description": "This produces a basic plus additional detail trace for all adapters of type file.",
+                "flagId": "trace:adapterType:file:detail",
                 "flagIndex": 26,
                 "includedByFlags": [
-                    "trace:adaptor:detail"
+                    "trace:adapter:detail"
                 ],
                 "includesFlags": [
-                    "trace:adaptorType:file",
-                    "trace:adaptorId:conf:detail",
-                    "trace:adaptorId:layouts:detail",
-                    "trace:adaptorId:models:detail",
-                    "trace:adaptorId:auth:detail",
-                    "trace:adaptorId:files:detail",
-                    "trace:adaptorId:dev:detail"
+                    "trace:adapterType:file",
+                    "trace:adapterId:conf:detail",
+                    "trace:adapterId:layouts:detail",
+                    "trace:adapterId:models:detail",
+                    "trace:adapterId:auth:detail",
+                    "trace:adapterId:files:detail",
+                    "trace:adapterId:dev:detail"
                 ]
             },
-            "trace:adaptorType:ldap:detail": {
+            "trace:adapterType:ldap:detail": {
                 "applicableFlags": [
-                    "trace:adaptorType:ldap:detail",
-                    "trace:adaptorType:ldap"
+                    "trace:adapterType:ldap:detail",
+                    "trace:adapterType:ldap"
                 ],
-                "brief": "Debug trace adaptor type ldap",
-                "description": "This produces a basic plus additional detail trace for all adaptors of type ldap.",
-                "flagId": "trace:adaptorType:ldap:detail",
+                "brief": "Debug trace adapter type ldap",
+                "description": "This produces a basic plus additional detail trace for all adapters of type ldap.",
+                "flagId": "trace:adapterType:ldap:detail",
                 "flagIndex": 45,
                 "includedByFlags": [
-                    "trace:adaptor:detail"
+                    "trace:adapter:detail"
                 ],
                 "includesFlags": [
-                    "trace:adaptorType:ldap"
+                    "trace:adapterType:ldap"
                 ]
             },
-            "trace:adaptorId:models": {
+            "trace:adapterId:models": {
                 "applicableFlags": [
-                    "trace:adaptorId:models"
+                    "trace:adapterId:models"
                 ],
-                "brief": "Trace adaptor id models",
-                "description": "This produces a basic trace of adaptor id models.",
-                "flagId": "trace:adaptorId:models",
+                "brief": "Trace adapter id models",
+                "description": "This produces a basic trace of adapter id models.",
+                "flagId": "trace:adapterId:models",
                 "flagIndex": 56,
                 "includedByFlags": [
-                    "trace:adaptorType:file",
-                    "trace:adaptorId:models:detail"
+                    "trace:adapterType:file",
+                    "trace:adapterId:models:detail"
                 ]
             },
-            "trace:adaptorType:sql": {
+            "trace:adapterType:sql": {
                 "applicableFlags": [
-                    "trace:adaptorType:sql"
+                    "trace:adapterType:sql"
                 ],
-                "brief": "Trace adaptor type sql",
-                "description": "This produces a basic trace of all adaptors of type sql.",
-                "flagId": "trace:adaptorType:sql",
+                "brief": "Trace adapter type sql",
+                "description": "This produces a basic trace of all adapters of type sql.",
+                "flagId": "trace:adapterType:sql",
                 "flagIndex": 52,
                 "includedByFlags": [
-                    "trace:adaptor",
-                    "trace:adaptorType:sql:detail"
+                    "trace:adapter",
+                    "trace:adapterType:sql:detail"
                 ]
             },
             "trace:server:request": {
@@ -3451,17 +3451,17 @@
                 "flagId": "response:stdout",
                 "flagIndex": 12
             },
-            "trace:adaptorId:files": {
+            "trace:adapterId:files": {
                 "applicableFlags": [
-                    "trace:adaptorId:files"
+                    "trace:adapterId:files"
                 ],
-                "brief": "Trace adaptor id files",
-                "description": "This produces a basic trace of adaptor id files.",
-                "flagId": "trace:adaptorId:files",
+                "brief": "Trace adapter id files",
+                "description": "This produces a basic trace of adapter id files.",
+                "flagId": "trace:adapterId:files",
                 "flagIndex": 64,
                 "includedByFlags": [
-                    "trace:adaptorType:file",
-                    "trace:adaptorId:files:detail"
+                    "trace:adapterType:file",
+                    "trace:adapterId:files:detail"
                 ]
             },
             "trace:authorizationHandlerType:policy:detail": {
@@ -3480,21 +3480,21 @@
                     "trace:authorizationHandlerType:policy"
                 ]
             },
-            "trace:adaptorType:afw_runtime": {
+            "trace:adapterType:afw_runtime": {
                 "applicableFlags": [
-                    "trace:adaptorType:afw_runtime",
-                    "trace:adaptorId:afw"
+                    "trace:adapterType:afw_runtime",
+                    "trace:adapterId:afw"
                 ],
-                "brief": "Trace adaptor type afw_runtime",
-                "description": "This produces a basic trace of all adaptors of type afw_runtime.",
-                "flagId": "trace:adaptorType:afw_runtime",
+                "brief": "Trace adapter type afw_runtime",
+                "description": "This produces a basic trace of all adapters of type afw_runtime.",
+                "flagId": "trace:adapterType:afw_runtime",
                 "flagIndex": 23,
                 "includedByFlags": [
-                    "trace:adaptor",
-                    "trace:adaptorType:afw_runtime:detail"
+                    "trace:adapter",
+                    "trace:adapterType:afw_runtime:detail"
                 ],
                 "includesFlags": [
-                    "trace:adaptorId:afw"
+                    "trace:adapterId:afw"
                 ]
             },
             "trace:authorization:check": {
@@ -3558,49 +3558,49 @@
                     "response:error:hasAdditionalDetail"
                 ]
             },
-            "trace:adaptorId:layouts:detail": {
+            "trace:adapterId:layouts:detail": {
                 "applicableFlags": [
-                    "trace:adaptorId:layouts:detail",
-                    "trace:adaptorId:layouts"
+                    "trace:adapterId:layouts:detail",
+                    "trace:adapterId:layouts"
                 ],
-                "brief": "Detail trace of adaptor id layouts",
-                "description": "This produces a basic plus detail trace of adaptor id layouts.",
-                "flagId": "trace:adaptorId:layouts:detail",
+                "brief": "Detail trace of adapter id layouts",
+                "description": "This produces a basic plus detail trace of adapter id layouts.",
+                "flagId": "trace:adapterId:layouts:detail",
                 "flagIndex": 53,
                 "includedByFlags": [
-                    "trace:adaptorType:file:detail"
+                    "trace:adapterType:file:detail"
                 ],
                 "includesFlags": [
-                    "trace:adaptorId:layouts"
+                    "trace:adapterId:layouts"
                 ]
             },
-            "trace:adaptorId:dev": {
+            "trace:adapterId:dev": {
                 "applicableFlags": [
-                    "trace:adaptorId:dev"
+                    "trace:adapterId:dev"
                 ],
-                "brief": "Trace adaptor id dev",
-                "description": "This produces a basic trace of adaptor id dev.",
-                "flagId": "trace:adaptorId:dev",
+                "brief": "Trace adapter id dev",
+                "description": "This produces a basic trace of adapter id dev.",
+                "flagId": "trace:adapterId:dev",
                 "flagIndex": 68,
                 "includedByFlags": [
-                    "trace:adaptorType:file",
-                    "trace:adaptorId:dev:detail"
+                    "trace:adapterType:file",
+                    "trace:adapterId:dev:detail"
                 ]
             },
-            "trace:adaptorId:files:detail": {
+            "trace:adapterId:files:detail": {
                 "applicableFlags": [
-                    "trace:adaptorId:files:detail",
-                    "trace:adaptorId:files"
+                    "trace:adapterId:files:detail",
+                    "trace:adapterId:files"
                 ],
-                "brief": "Detail trace of adaptor id files",
-                "description": "This produces a basic plus detail trace of adaptor id files.",
-                "flagId": "trace:adaptorId:files:detail",
+                "brief": "Detail trace of adapter id files",
+                "description": "This produces a basic plus detail trace of adapter id files.",
+                "flagId": "trace:adapterId:files:detail",
                 "flagIndex": 63,
                 "includedByFlags": [
-                    "trace:adaptorType:file:detail"
+                    "trace:adapterType:file:detail"
                 ],
                 "includesFlags": [
-                    "trace:adaptorId:files"
+                    "trace:adapterId:files"
                 ]
             },
             "response:stderr": {
@@ -3660,34 +3660,34 @@
                     "trace:authorizationHandlerId:auth-script"
                 ]
             },
-            "trace:adaptorId:conf": {
+            "trace:adapterId:conf": {
                 "applicableFlags": [
-                    "trace:adaptorId:conf"
+                    "trace:adapterId:conf"
                 ],
-                "brief": "Trace adaptor id conf",
-                "description": "This produces a basic trace of adaptor id conf.",
-                "flagId": "trace:adaptorId:conf",
+                "brief": "Trace adapter id conf",
+                "description": "This produces a basic trace of adapter id conf.",
+                "flagId": "trace:adapterId:conf",
                 "flagIndex": 40,
                 "includedByFlags": [
-                    "trace:adaptorType:file",
-                    "trace:adaptorId:conf:detail"
+                    "trace:adapterType:file",
+                    "trace:adapterId:conf:detail"
                 ]
             },
-            "trace:adaptorType:model": {
+            "trace:adapterType:model": {
                 "applicableFlags": [
-                    "trace:adaptorType:model",
-                    "trace:adaptorId:tier"
+                    "trace:adapterType:model",
+                    "trace:adapterId:tier"
                 ],
-                "brief": "Trace adaptor type model",
-                "description": "This produces a basic trace of all adaptors of type model.",
-                "flagId": "trace:adaptorType:model",
+                "brief": "Trace adapter type model",
+                "description": "This produces a basic trace of all adapters of type model.",
+                "flagId": "trace:adapterType:model",
                 "flagIndex": 29,
                 "includedByFlags": [
-                    "trace:adaptor",
-                    "trace:adaptorType:model:detail"
+                    "trace:adapter",
+                    "trace:adapterType:model:detail"
                 ],
                 "includesFlags": [
-                    "trace:adaptorId:tier"
+                    "trace:adapterId:tier"
                 ]
             },
             "trace:authorization:bypass": {
@@ -3702,36 +3702,36 @@
                     "trace:authorization"
                 ]
             },
-            "trace:adaptorId:afw:detail": {
+            "trace:adapterId:afw:detail": {
                 "applicableFlags": [
-                    "trace:adaptorId:afw:detail",
-                    "trace:adaptorId:afw"
+                    "trace:adapterId:afw:detail",
+                    "trace:adapterId:afw"
                 ],
-                "brief": "Detail trace of adaptor id afw",
-                "description": "This produces a basic plus detail trace of adaptor id afw.",
-                "flagId": "trace:adaptorId:afw:detail",
+                "brief": "Detail trace of adapter id afw",
+                "description": "This produces a basic plus detail trace of adapter id afw.",
+                "flagId": "trace:adapterId:afw:detail",
                 "flagIndex": 24,
                 "includedByFlags": [
-                    "trace:adaptorType:afw_runtime:detail"
+                    "trace:adapterType:afw_runtime:detail"
                 ],
                 "includesFlags": [
-                    "trace:adaptorId:afw"
+                    "trace:adapterId:afw"
                 ]
             },
-            "trace:adaptorId:dev:detail": {
+            "trace:adapterId:dev:detail": {
                 "applicableFlags": [
-                    "trace:adaptorId:dev:detail",
-                    "trace:adaptorId:dev"
+                    "trace:adapterId:dev:detail",
+                    "trace:adapterId:dev"
                 ],
-                "brief": "Detail trace of adaptor id dev",
-                "description": "This produces a basic plus detail trace of adaptor id dev.",
-                "flagId": "trace:adaptorId:dev:detail",
+                "brief": "Detail trace of adapter id dev",
+                "description": "This produces a basic plus detail trace of adapter id dev.",
+                "flagId": "trace:adapterId:dev:detail",
                 "flagIndex": 67,
                 "includedByFlags": [
-                    "trace:adaptorType:file:detail"
+                    "trace:adapterType:file:detail"
                 ],
                 "includesFlags": [
-                    "trace:adaptorId:dev"
+                    "trace:adapterId:dev"
                 ]
             },
             "trace:authorizationHandlerType:xacml": {
@@ -3747,17 +3747,17 @@
                     "trace:authorizationHandlerType:xacml:detail"
                 ]
             },
-            "trace:adaptorId:auth": {
+            "trace:adapterId:auth": {
                 "applicableFlags": [
-                    "trace:adaptorId:auth"
+                    "trace:adapterId:auth"
                 ],
-                "brief": "Trace adaptor id auth",
-                "description": "This produces a basic trace of adaptor id auth.",
-                "flagId": "trace:adaptorId:auth",
+                "brief": "Trace adapter id auth",
+                "description": "This produces a basic trace of adapter id auth.",
+                "flagId": "trace:adapterId:auth",
                 "flagIndex": 58,
                 "includedByFlags": [
-                    "trace:adaptorType:file",
-                    "trace:adaptorId:auth:detail"
+                    "trace:adapterType:file",
+                    "trace:adapterId:auth:detail"
                 ]
             },
             "trace:evaluation:detail": {
@@ -3772,31 +3772,31 @@
                     "trace:detail"
                 ]
             },
-            "trace:adaptorType:file": {
+            "trace:adapterType:file": {
                 "applicableFlags": [
-                    "trace:adaptorType:file",
-                    "trace:adaptorId:conf",
-                    "trace:adaptorId:layouts",
-                    "trace:adaptorId:models",
-                    "trace:adaptorId:auth",
-                    "trace:adaptorId:files",
-                    "trace:adaptorId:dev"
+                    "trace:adapterType:file",
+                    "trace:adapterId:conf",
+                    "trace:adapterId:layouts",
+                    "trace:adapterId:models",
+                    "trace:adapterId:auth",
+                    "trace:adapterId:files",
+                    "trace:adapterId:dev"
                 ],
-                "brief": "Trace adaptor type file",
-                "description": "This produces a basic trace of all adaptors of type file.",
-                "flagId": "trace:adaptorType:file",
+                "brief": "Trace adapter type file",
+                "description": "This produces a basic trace of all adapters of type file.",
+                "flagId": "trace:adapterType:file",
                 "flagIndex": 27,
                 "includedByFlags": [
-                    "trace:adaptor",
-                    "trace:adaptorType:file:detail"
+                    "trace:adapter",
+                    "trace:adapterType:file:detail"
                 ],
                 "includesFlags": [
-                    "trace:adaptorId:conf",
-                    "trace:adaptorId:layouts",
-                    "trace:adaptorId:models",
-                    "trace:adaptorId:auth",
-                    "trace:adaptorId:files",
-                    "trace:adaptorId:dev"
+                    "trace:adapterId:conf",
+                    "trace:adapterId:layouts",
+                    "trace:adapterId:models",
+                    "trace:adapterId:auth",
+                    "trace:adapterId:files",
+                    "trace:adapterId:dev"
                 ]
             },
             "trace:authorizationHandlerId:auth-script": {
@@ -3831,91 +3831,91 @@
                     "trace:authorizationHandlerId:auth-script:detail"
                 ]
             },
-            "trace:adaptorId:lmdb": {
+            "trace:adapterId:lmdb": {
                 "applicableFlags": [
-                    "trace:adaptorId:lmdb"
+                    "trace:adapterId:lmdb"
                 ],
-                "brief": "Trace adaptor id lmdb",
-                "description": "This produces a basic trace of adaptor id lmdb.",
-                "flagId": "trace:adaptorId:lmdb",
+                "brief": "Trace adapter id lmdb",
+                "description": "This produces a basic trace of adapter id lmdb.",
+                "flagId": "trace:adapterId:lmdb",
                 "flagIndex": 66,
                 "includedByFlags": [
-                    "trace:adaptorType:lmdb",
-                    "trace:adaptorId:lmdb:detail"
+                    "trace:adapterType:lmdb",
+                    "trace:adapterId:lmdb:detail"
                 ]
             },
-            "trace:adaptorType:afw_runtime:detail": {
+            "trace:adapterType:afw_runtime:detail": {
                 "applicableFlags": [
-                    "trace:adaptorType:afw_runtime:detail",
-                    "trace:adaptorType:afw_runtime",
-                    "trace:adaptorId:afw:detail",
-                    "trace:adaptorId:afw"
+                    "trace:adapterType:afw_runtime:detail",
+                    "trace:adapterType:afw_runtime",
+                    "trace:adapterId:afw:detail",
+                    "trace:adapterId:afw"
                 ],
-                "brief": "Debug trace adaptor type afw_runtime",
-                "description": "This produces a basic plus additional detail trace for all adaptors of type afw_runtime.",
-                "flagId": "trace:adaptorType:afw_runtime:detail",
+                "brief": "Debug trace adapter type afw_runtime",
+                "description": "This produces a basic plus additional detail trace for all adapters of type afw_runtime.",
+                "flagId": "trace:adapterType:afw_runtime:detail",
                 "flagIndex": 22,
                 "includedByFlags": [
-                    "trace:adaptor:detail"
+                    "trace:adapter:detail"
                 ],
                 "includesFlags": [
-                    "trace:adaptorType:afw_runtime",
-                    "trace:adaptorId:afw:detail"
+                    "trace:adapterType:afw_runtime",
+                    "trace:adapterId:afw:detail"
                 ]
             },
-            "trace:adaptor:detail": {
+            "trace:adapter:detail": {
                 "applicableFlags": [
-                    "trace:adaptor:detail",
-                    "trace:adaptor",
-                    "trace:adaptorType:afw_runtime:detail",
-                    "trace:adaptorType:afw_runtime",
-                    "trace:adaptorId:afw:detail",
-                    "trace:adaptorId:afw",
-                    "trace:adaptorType:file:detail",
-                    "trace:adaptorType:file",
-                    "trace:adaptorType:model:detail",
-                    "trace:adaptorType:model",
-                    "trace:adaptorId:conf:detail",
-                    "trace:adaptorId:conf",
-                    "trace:adaptorType:ldap:detail",
-                    "trace:adaptorType:ldap",
-                    "trace:adaptorType:lmdb:detail",
-                    "trace:adaptorType:lmdb",
-                    "trace:adaptorType:dbd_mysql:detail",
-                    "trace:adaptorType:dbd_mysql",
-                    "trace:adaptorType:sql:detail",
-                    "trace:adaptorType:sql",
-                    "trace:adaptorId:layouts:detail",
-                    "trace:adaptorId:layouts",
-                    "trace:adaptorId:models:detail",
-                    "trace:adaptorId:models",
-                    "trace:adaptorId:auth:detail",
-                    "trace:adaptorId:auth",
-                    "trace:adaptorId:tier:detail",
-                    "trace:adaptorId:tier",
-                    "trace:adaptorId:files:detail",
-                    "trace:adaptorId:files",
-                    "trace:adaptorId:lmdb:detail",
-                    "trace:adaptorId:lmdb",
-                    "trace:adaptorId:dev:detail",
-                    "trace:adaptorId:dev"
+                    "trace:adapter:detail",
+                    "trace:adapter",
+                    "trace:adapterType:afw_runtime:detail",
+                    "trace:adapterType:afw_runtime",
+                    "trace:adapterId:afw:detail",
+                    "trace:adapterId:afw",
+                    "trace:adapterType:file:detail",
+                    "trace:adapterType:file",
+                    "trace:adapterType:model:detail",
+                    "trace:adapterType:model",
+                    "trace:adapterId:conf:detail",
+                    "trace:adapterId:conf",
+                    "trace:adapterType:ldap:detail",
+                    "trace:adapterType:ldap",
+                    "trace:adapterType:lmdb:detail",
+                    "trace:adapterType:lmdb",
+                    "trace:adapterType:dbd_mysql:detail",
+                    "trace:adapterType:dbd_mysql",
+                    "trace:adapterType:sql:detail",
+                    "trace:adapterType:sql",
+                    "trace:adapterId:layouts:detail",
+                    "trace:adapterId:layouts",
+                    "trace:adapterId:models:detail",
+                    "trace:adapterId:models",
+                    "trace:adapterId:auth:detail",
+                    "trace:adapterId:auth",
+                    "trace:adapterId:tier:detail",
+                    "trace:adapterId:tier",
+                    "trace:adapterId:files:detail",
+                    "trace:adapterId:files",
+                    "trace:adapterId:lmdb:detail",
+                    "trace:adapterId:lmdb",
+                    "trace:adapterId:dev:detail",
+                    "trace:adapterId:dev"
                 ],
-                "brief": "Detail trace for all adaptors",
-                "description": "This produces all basic plus additional detail traces for all adaptors.",
-                "flagId": "trace:adaptor:detail",
+                "brief": "Detail trace for all adapters",
+                "description": "This produces all basic plus additional detail traces for all adapters.",
+                "flagId": "trace:adapter:detail",
                 "flagIndex": 15,
                 "includedByFlags": [
                     "trace:detail"
                 ],
                 "includesFlags": [
-                    "trace:adaptor",
-                    "trace:adaptorType:afw_runtime:detail",
-                    "trace:adaptorType:file:detail",
-                    "trace:adaptorType:model:detail",
-                    "trace:adaptorType:ldap:detail",
-                    "trace:adaptorType:lmdb:detail",
-                    "trace:adaptorType:dbd_mysql:detail",
-                    "trace:adaptorType:sql:detail"
+                    "trace:adapter",
+                    "trace:adapterType:afw_runtime:detail",
+                    "trace:adapterType:file:detail",
+                    "trace:adapterType:model:detail",
+                    "trace:adapterType:ldap:detail",
+                    "trace:adapterType:lmdb:detail",
+                    "trace:adapterType:dbd_mysql:detail",
+                    "trace:adapterType:sql:detail"
                 ]
             },
             "debug:function_active": {
@@ -3972,49 +3972,49 @@
                     "trace:authorizationHandlerType:xacml:detail"
                 ]
             },
-            "trace:adaptorId:lmdb:detail": {
+            "trace:adapterId:lmdb:detail": {
                 "applicableFlags": [
-                    "trace:adaptorId:lmdb:detail",
-                    "trace:adaptorId:lmdb"
+                    "trace:adapterId:lmdb:detail",
+                    "trace:adapterId:lmdb"
                 ],
-                "brief": "Detail trace of adaptor id lmdb",
-                "description": "This produces a basic plus detail trace of adaptor id lmdb.",
-                "flagId": "trace:adaptorId:lmdb:detail",
+                "brief": "Detail trace of adapter id lmdb",
+                "description": "This produces a basic plus detail trace of adapter id lmdb.",
+                "flagId": "trace:adapterId:lmdb:detail",
                 "flagIndex": 65,
                 "includedByFlags": [
-                    "trace:adaptorType:lmdb:detail"
+                    "trace:adapterType:lmdb:detail"
                 ],
                 "includesFlags": [
-                    "trace:adaptorId:lmdb"
+                    "trace:adapterId:lmdb"
                 ]
             },
-            "trace:adaptorId:layouts": {
+            "trace:adapterId:layouts": {
                 "applicableFlags": [
-                    "trace:adaptorId:layouts"
+                    "trace:adapterId:layouts"
                 ],
-                "brief": "Trace adaptor id layouts",
-                "description": "This produces a basic trace of adaptor id layouts.",
-                "flagId": "trace:adaptorId:layouts",
+                "brief": "Trace adapter id layouts",
+                "description": "This produces a basic trace of adapter id layouts.",
+                "flagId": "trace:adapterId:layouts",
                 "flagIndex": 54,
                 "includedByFlags": [
-                    "trace:adaptorType:file",
-                    "trace:adaptorId:layouts:detail"
+                    "trace:adapterType:file",
+                    "trace:adapterId:layouts:detail"
                 ]
             },
-            "trace:adaptorType:sql:detail": {
+            "trace:adapterType:sql:detail": {
                 "applicableFlags": [
-                    "trace:adaptorType:sql:detail",
-                    "trace:adaptorType:sql"
+                    "trace:adapterType:sql:detail",
+                    "trace:adapterType:sql"
                 ],
-                "brief": "Debug trace adaptor type sql",
-                "description": "This produces a basic plus additional detail trace for all adaptors of type sql.",
-                "flagId": "trace:adaptorType:sql:detail",
+                "brief": "Debug trace adapter type sql",
+                "description": "This produces a basic plus additional detail trace for all adapters of type sql.",
+                "flagId": "trace:adapterType:sql:detail",
                 "flagIndex": 51,
                 "includedByFlags": [
-                    "trace:adaptor:detail"
+                    "trace:adapter:detail"
                 ],
                 "includesFlags": [
-                    "trace:adaptorType:sql"
+                    "trace:adapterType:sql"
                 ]
             },
             "response:error:backtrace": {
@@ -4033,39 +4033,39 @@
                     "response:error:hasAdditionalDetail"
                 ]
             },
-            "trace:adaptorId:conf:detail": {
+            "trace:adapterId:conf:detail": {
                 "applicableFlags": [
-                    "trace:adaptorId:conf:detail",
-                    "trace:adaptorId:conf"
+                    "trace:adapterId:conf:detail",
+                    "trace:adapterId:conf"
                 ],
-                "brief": "Detail trace of adaptor id conf",
-                "description": "This produces a basic plus detail trace of adaptor id conf.",
-                "flagId": "trace:adaptorId:conf:detail",
+                "brief": "Detail trace of adapter id conf",
+                "description": "This produces a basic plus detail trace of adapter id conf.",
+                "flagId": "trace:adapterId:conf:detail",
                 "flagIndex": 39,
                 "includedByFlags": [
-                    "trace:adaptorType:file:detail"
+                    "trace:adapterType:file:detail"
                 ],
                 "includesFlags": [
-                    "trace:adaptorId:conf"
+                    "trace:adapterId:conf"
                 ]
             },
-            "trace:adaptorType:model:detail": {
+            "trace:adapterType:model:detail": {
                 "applicableFlags": [
-                    "trace:adaptorType:model:detail",
-                    "trace:adaptorType:model",
-                    "trace:adaptorId:tier:detail",
-                    "trace:adaptorId:tier"
+                    "trace:adapterType:model:detail",
+                    "trace:adapterType:model",
+                    "trace:adapterId:tier:detail",
+                    "trace:adapterId:tier"
                 ],
-                "brief": "Debug trace adaptor type model",
-                "description": "This produces a basic plus additional detail trace for all adaptors of type model.",
-                "flagId": "trace:adaptorType:model:detail",
+                "brief": "Debug trace adapter type model",
+                "description": "This produces a basic plus additional detail trace for all adapters of type model.",
+                "flagId": "trace:adapterType:model:detail",
                 "flagIndex": 28,
                 "includedByFlags": [
-                    "trace:adaptor:detail"
+                    "trace:adapter:detail"
                 ],
                 "includesFlags": [
-                    "trace:adaptorType:model",
-                    "trace:adaptorId:tier:detail"
+                    "trace:adapterType:model",
+                    "trace:adapterId:tier:detail"
                 ]
             },
             "debug:function_active:detail": {
@@ -4093,17 +4093,17 @@
                 "flagId": "unspecified",
                 "flagIndex": 0
             },
-            "trace:adaptorType:ldap": {
+            "trace:adapterType:ldap": {
                 "applicableFlags": [
-                    "trace:adaptorType:ldap"
+                    "trace:adapterType:ldap"
                 ],
-                "brief": "Trace adaptor type ldap",
-                "description": "This produces a basic trace of all adaptors of type ldap.",
-                "flagId": "trace:adaptorType:ldap",
+                "brief": "Trace adapter type ldap",
+                "description": "This produces a basic trace of all adapters of type ldap.",
+                "flagId": "trace:adapterType:ldap",
                 "flagIndex": 46,
                 "includedByFlags": [
-                    "trace:adaptor",
-                    "trace:adaptorType:ldap:detail"
+                    "trace:adapter",
+                    "trace:adapterType:ldap:detail"
                 ]
             },
             "trace:authorizationHandlerType:xacml:detail": {
@@ -5369,14 +5369,14 @@
                 "description": "Create an index definition.",
                 "functionId": "index_create",
                 "functionLabel": "index_create",
-                "functionSignature": "object(string adaptorId, string key, string value?, string objectType?, string filter?, string options?, boolean retroactive?, boolean test?)",
-                "functionDeclaration": "/* Create index definition */\nobject (\n    string adaptorId,\n    string key,\n    string value?,\n    string objectType?,\n    string filter?,\n    string options?,\n    boolean retroactive?,\n    boolean test?)",
+                "functionSignature": "object(string adapterId, string key, string value?, string objectType?, string filter?, string options?, boolean retroactive?, boolean test?)",
+                "functionDeclaration": "/* Create index definition */\nobject (\n    string adapterId,\n    string key,\n    string value?,\n    string objectType?,\n    string filter?,\n    string options?,\n    boolean retroactive?,\n    boolean test?)",
                 "parameters": [
                     {
                         "dataType": "string",
-                        "description": "Id of adaptor.",
+                        "description": "Id of adapter.",
                         "minArgs": -1,
-                        "name": "adaptorId",
+                        "name": "adapterId",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -7196,14 +7196,14 @@
                 "afwCamelCaseFunctionLabel": "afwModifyObjectWithUri",
                 "brief": "Modify adaptive object with URI",
                 "camelCaseFunctionLabel": "modifyObjectWithUri",
-                "category": "adaptor",
+                "category": "adapter",
                 "dataTypeMethodNumber": 0,
                 "deprecated": false,
                 "description": "Modify an adaptive object with a given URI.",
                 "functionId": "modify_object_with_uri",
                 "functionLabel": "modify_object_with_uri",
-                "functionSignature": "(object _AdaptiveJournalEntry_)(anyURI uri, list entries, object journal?, object adaptorTypeSpecific?)",
-                "functionDeclaration": "/* Modify adaptive object with URI */\n(object _AdaptiveJournalEntry_) (\n    anyURI uri,\n    list entries,\n    object journal?,\n    object adaptorTypeSpecific?)",
+                "functionSignature": "(object _AdaptiveJournalEntry_)(anyURI uri, list entries, object journal?, object adapterTypeSpecific?)",
+                "functionDeclaration": "/* Modify adaptive object with URI */\n(object _AdaptiveJournalEntry_) (\n    anyURI uri,\n    list entries,\n    object journal?,\n    object adapterTypeSpecific?)",
                 "parameters": [
                     {
                         "dataType": "anyURI",
@@ -7234,9 +7234,9 @@
                     },
                     {
                         "dataType": "object",
-                        "description": "This is an optional object parameter with an objectType determined by the adaptorType associated with the adaptorId parameter.  If the adaptorType supports this parameter, adaptor afw will have an adaptive object type with an id of:\n\n_AdaptiveAdaptorTypeSpecific_${adaptorType}_modify_object\n\nWhere ${adaptorType} is the adaptor type id.",
+                        "description": "This is an optional object parameter with an objectType determined by the adapterType associated with the adapterId parameter.  If the adapterType supports this parameter, adapter afw will have an adaptive object type with an id of:\n\n_AdaptiveAdapterTypeSpecific_${adapterType}_modify_object\n\nWhere ${adapterType} is the adapter type id.",
                         "minArgs": -1,
-                        "name": "adaptorTypeSpecific",
+                        "name": "adapterTypeSpecific",
                         "optional": true,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -7334,7 +7334,7 @@
             },
             "model_default_modify_object_action": {
                 "afwCamelCaseFunctionLabel": "afwModelDefaultModifyObjectAction",
-                "brief": "Produce a default _AdaptiveAction_ object for an modify object request to a model adaptor.",
+                "brief": "Produce a default _AdaptiveAction_ object for an modify object request to a model adapter.",
                 "camelCaseFunctionLabel": "modelDefaultModifyObjectAction",
                 "category": "model",
                 "dataTypeMethodNumber": 0,
@@ -7342,14 +7342,14 @@
                 "description": "This function returns a _AdaptiveAction_ object for the default action performed if a onModifyObject parameter is not specified on the associated _AdaptiveModelObjectType_.  The action is not performed, but be aware that functions called while producing the _AdaptiveAction_ object may cause side effects.  This function can be called as part of a onModify expression or for testing.",
                 "functionId": "model_default_modify_object_action",
                 "functionLabel": "model_default_modify_object_action",
-                "functionSignature": "(object _AdaptiveAction_)(string adaptorId, string objectType, string objectId, list entries, string modelId?, (object _AdaptiveContextType_) context?)",
-                "functionDeclaration": "/* Produce a default _AdaptiveAction_ object for an modify object request to a model adaptor. */\n(object _AdaptiveAction_) (\n    string adaptorId,\n    string objectType,\n    string objectId,\n    list entries,\n    string modelId?,\n    (object _AdaptiveContextType_) context?)",
+                "functionSignature": "(object _AdaptiveAction_)(string adapterId, string objectType, string objectId, list entries, string modelId?, (object _AdaptiveContextType_) context?)",
+                "functionDeclaration": "/* Produce a default _AdaptiveAction_ object for an modify object request to a model adapter. */\n(object _AdaptiveAction_) (\n    string adapterId,\n    string objectType,\n    string objectId,\n    list entries,\n    string modelId?,\n    (object _AdaptiveContextType_) context?)",
                 "parameters": [
                     {
                         "dataType": "string",
-                        "description": "This is the adaptorId of a model adaptor.  Variable custom::adaptorId can be used to access this value in model expressions.",
+                        "description": "This is the adapterId of a model adapter.  Variable custom::adapterId can be used to access this value in model expressions.",
                         "minArgs": -1,
-                        "name": "adaptorId",
+                        "name": "adapterId",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -7383,7 +7383,7 @@
                     },
                     {
                         "dataType": "string",
-                        "description": "This specifics a modelId of model to use for producing results.  If not specified, the adaptor's current model will be used.",
+                        "description": "This specifics a modelId of model to use for producing results.  If not specified, the adapter's current model will be used.",
                         "minArgs": -1,
                         "name": "modelId",
                         "optional": true,
@@ -7418,21 +7418,21 @@
                 "afwCamelCaseFunctionLabel": "afwRetrieveObjects",
                 "brief": "Retrieve adaptive objects",
                 "camelCaseFunctionLabel": "retrieveObjects",
-                "category": "adaptor",
+                "category": "adapter",
                 "dataTypeMethodNumber": 0,
                 "deprecated": false,
-                "description": "This function Retrieves adaptive objects from an adaptor, specified by adaptorId, which match the type specified by objectType.  The optional queryString is used to filter the adaptive object list, which match the filter expression.  Use the objectOptions parameter to influence how the objects are viewed.  Options, specific to the adaptorId, may be optionally supplied to this retrieve as well.",
+                "description": "This function Retrieves adaptive objects from an adapter, specified by adapterId, which match the type specified by objectType.  The optional queryString is used to filter the adaptive object list, which match the filter expression.  Use the objectOptions parameter to influence how the objects are viewed.  Options, specific to the adapterId, may be optionally supplied to this retrieve as well.",
                 "functionId": "retrieve_objects",
                 "functionLabel": "retrieve_objects",
-                "functionSignature": "list(string adaptorId, string objectType, (object _AdaptiveQueryCriteria_) queryCriteria?, (object _AdaptiveObjectOptions_) options?, object adaptorTypeSpecific?)",
-                "functionDeclaration": "/* Retrieve adaptive objects */\nlist /* Objects retrieved */ (\n    string adaptorId                                /* Id of adaptor */,\n    string objectType                               /* Id of object type */,\n    (object _AdaptiveQueryCriteria_) queryCriteria? /* Query criteria */,\n    (object _AdaptiveObjectOptions_) options?       /* Object options */,\n    object adaptorTypeSpecific?                     /* Adaptor specific */)",
+                "functionSignature": "list(string adapterId, string objectType, (object _AdaptiveQueryCriteria_) queryCriteria?, (object _AdaptiveObjectOptions_) options?, object adapterTypeSpecific?)",
+                "functionDeclaration": "/* Retrieve adaptive objects */\nlist /* Objects retrieved */ (\n    string adapterId                                /* Id of adapter */,\n    string objectType                               /* Id of object type */,\n    (object _AdaptiveQueryCriteria_) queryCriteria? /* Query criteria */,\n    (object _AdaptiveObjectOptions_) options?       /* Object options */,\n    object adapterTypeSpecific?                     /* Adapter specific */)",
                 "parameters": [
                     {
-                        "brief": "Id of adaptor",
+                        "brief": "Id of adapter",
                         "dataType": "string",
-                        "description": "Id of adaptor containing objects to retrieve.",
+                        "description": "Id of adapter containing objects to retrieve.",
                         "minArgs": -1,
-                        "name": "adaptorId",
+                        "name": "adapterId",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -7470,11 +7470,11 @@
                         "polymorphicDataTypeParameter": false
                     },
                     {
-                        "brief": "Adaptor specific",
+                        "brief": "Adapter specific",
                         "dataType": "object",
-                        "description": "This is an optional object parameter with an objectType determined by the adaptorType associated with the adaptorId parameter.  If the adaptorType supports this parameter, adaptor afw will have an adaptive object type with an id of:\n\n_AdaptiveAdaptorTypeSpecific_${adaptorType}_retrieve_objects\n\nWhere ${adaptorType} is the adaptor type id.",
+                        "description": "This is an optional object parameter with an objectType determined by the adapterType associated with the adapterId parameter.  If the adapterType supports this parameter, adapter afw will have an adaptive object type with an id of:\n\n_AdaptiveAdapterTypeSpecific_${adapterType}_retrieve_objects\n\nWhere ${adapterType} is the adapter type id.",
                         "minArgs": -1,
-                        "name": "adaptorTypeSpecific",
+                        "name": "adapterTypeSpecific",
                         "optional": true,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -7502,14 +7502,14 @@
                 "description": "Check for stale entries in the reader lock table.",
                 "functionId": "reader_check",
                 "functionLabel": "reader_check",
-                "functionSignature": "integer(string adaptorId)",
-                "functionDeclaration": "integer (\n    string adaptorId)",
+                "functionSignature": "integer(string adapterId)",
+                "functionDeclaration": "integer (\n    string adapterId)",
                 "parameters": [
                     {
                         "dataType": "string",
-                        "description": "Adaptor Id.",
+                        "description": "Adapter Id.",
                         "minArgs": -1,
-                        "name": "adaptorId",
+                        "name": "adapterId",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -8002,14 +8002,14 @@
                 "description": "List property indexes",
                 "functionId": "index_list",
                 "functionLabel": "index_list",
-                "functionSignature": "object(string adaptorId, string objectType?)",
-                "functionDeclaration": "/* List property indexes */\nobject (\n    string adaptorId,\n    string objectType?)",
+                "functionSignature": "object(string adapterId, string objectType?)",
+                "functionDeclaration": "/* List property indexes */\nobject (\n    string adapterId,\n    string objectType?)",
                 "parameters": [
                     {
                         "dataType": "string",
-                        "description": "Id of adaptor.",
+                        "description": "Id of adapter.",
                         "minArgs": -1,
-                        "name": "adaptorId",
+                        "name": "adapterId",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -8885,7 +8885,7 @@
             },
             "model_default_delete_object_action": {
                 "afwCamelCaseFunctionLabel": "afwModelDefaultDeleteObjectAction",
-                "brief": "Produce a default _AdaptiveAction_ object for an delete object request to a model adaptor.",
+                "brief": "Produce a default _AdaptiveAction_ object for an delete object request to a model adapter.",
                 "camelCaseFunctionLabel": "modelDefaultDeleteObjectAction",
                 "category": "model",
                 "dataTypeMethodNumber": 0,
@@ -8893,14 +8893,14 @@
                 "description": "This function returns a _AdaptiveAction_ object for the default action performed if a onDeleteObject parameter is not specified on the associated _AdaptiveModelObjectType_.  The action is not performed, but be aware that functions called while producing the _AdaptiveAction_ object may cause side effects.  This function can be called as part of a onDelete expression or for testing.",
                 "functionId": "model_default_delete_object_action",
                 "functionLabel": "model_default_delete_object_action",
-                "functionSignature": "(object _AdaptiveAction_)(string adaptorId, string objectType, string objectId, string modelId?, (object _AdaptiveContextType_) context?)",
-                "functionDeclaration": "/* Produce a default _AdaptiveAction_ object for an delete object request to a model adaptor. */\n(object _AdaptiveAction_) (\n    string adaptorId,\n    string objectType,\n    string objectId,\n    string modelId?,\n    (object _AdaptiveContextType_) context?)",
+                "functionSignature": "(object _AdaptiveAction_)(string adapterId, string objectType, string objectId, string modelId?, (object _AdaptiveContextType_) context?)",
+                "functionDeclaration": "/* Produce a default _AdaptiveAction_ object for an delete object request to a model adapter. */\n(object _AdaptiveAction_) (\n    string adapterId,\n    string objectType,\n    string objectId,\n    string modelId?,\n    (object _AdaptiveContextType_) context?)",
                 "parameters": [
                     {
                         "dataType": "string",
-                        "description": "This is the adaptorId of a model adaptor.  Variable custom::adaptorId can be used to access this value in model expressions.",
+                        "description": "This is the adapterId of a model adapter.  Variable custom::adapterId can be used to access this value in model expressions.",
                         "minArgs": -1,
-                        "name": "adaptorId",
+                        "name": "adapterId",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -8925,7 +8925,7 @@
                     },
                     {
                         "dataType": "string",
-                        "description": "This specifics a modelId of model to use for producing results.  If not specified, the adaptor's current model will be used.",
+                        "description": "This specifics a modelId of model to use for producing results.  If not specified, the adapter's current model will be used.",
                         "minArgs": -1,
                         "name": "modelId",
                         "optional": true,
@@ -9407,14 +9407,14 @@
                 "description": "Get journal entry specified by entry_cursor parameter.\n\nThis option will set response properties \"entry\" and \"cursor\" if there is an entry to retrieve.  If an entry with the supplied cursor does not exist, a not_found error is thrown.",
                 "functionId": "journal_get_by_cursor",
                 "functionLabel": "journal_get_by_cursor",
-                "functionSignature": "object(string adaptorId, string cursor)",
-                "functionDeclaration": "/* Get journal entry at cursor */\nobject (\n    string adaptorId,\n    string cursor)",
+                "functionSignature": "object(string adapterId, string cursor)",
+                "functionDeclaration": "/* Get journal entry at cursor */\nobject (\n    string adapterId,\n    string cursor)",
                 "parameters": [
                     {
                         "dataType": "string",
-                        "description": "Id of adaptor.",
+                        "description": "Id of adapter.",
                         "minArgs": -1,
-                        "name": "adaptorId",
+                        "name": "adapterId",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -10598,14 +10598,14 @@
                 "afwCamelCaseFunctionLabel": "afwRetrieveObjectsWithUri",
                 "brief": "Retrieve adaptive object with URI",
                 "camelCaseFunctionLabel": "retrieveObjectsWithUri",
-                "category": "adaptor",
+                "category": "adapter",
                 "dataTypeMethodNumber": 0,
                 "deprecated": false,
                 "description": "Retrieve adaptive objects with a given URI.",
                 "functionId": "retrieve_objects_with_uri",
                 "functionLabel": "retrieve_objects_with_uri",
-                "functionSignature": "list(anyURI uri, (object _AdaptiveObjectOptions_) options?, object adaptorTypeSpecific?)",
-                "functionDeclaration": "/* Retrieve adaptive object with URI */\nlist (\n    anyURI uri,\n    (object _AdaptiveObjectOptions_) options?,\n    object adaptorTypeSpecific?)",
+                "functionSignature": "list(anyURI uri, (object _AdaptiveObjectOptions_) options?, object adapterTypeSpecific?)",
+                "functionDeclaration": "/* Retrieve adaptive object with URI */\nlist (\n    anyURI uri,\n    (object _AdaptiveObjectOptions_) options?,\n    object adapterTypeSpecific?)",
                 "parameters": [
                     {
                         "dataType": "anyURI",
@@ -10628,9 +10628,9 @@
                     },
                     {
                         "dataType": "object",
-                        "description": "This is an optional object parameter with an objectType determined by the adaptorType associated with the adaptorId parameter.  If the adaptorType supports this parameter, adaptor afw will have an adaptive object type with an id of:\n\n_AdaptiveAdaptorTypeSpecific_${adaptorType}_retrieve_objects\n\nWhere ${adaptorType} is the adaptor type id.",
+                        "description": "This is an optional object parameter with an objectType determined by the adapterType associated with the adapterId parameter.  If the adapterType supports this parameter, adapter afw will have an adaptive object type with an id of:\n\n_AdaptiveAdapterTypeSpecific_${adapterType}_retrieve_objects\n\nWhere ${adapterType} is the adapter type id.",
                         "minArgs": -1,
-                        "name": "adaptorTypeSpecific",
+                        "name": "adapterTypeSpecific",
                         "optional": true,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -10762,20 +10762,20 @@
                 "afwCamelCaseFunctionLabel": "afwAddObject",
                 "brief": "Add adaptive object",
                 "camelCaseFunctionLabel": "addObject",
-                "category": "adaptor",
+                "category": "adapter",
                 "dataTypeMethodNumber": 0,
                 "deprecated": false,
-                "description": "Add an adaptive object to an adaptor, specified by the adaptorId, with a specified objectType.  You may supply an optional objectId, if the underlying adaptorId allows it.",
+                "description": "Add an adaptive object to an adapter, specified by the adapterId, with a specified objectType.  You may supply an optional objectId, if the underlying adapterId allows it.",
                 "functionId": "add_object",
                 "functionLabel": "add_object",
-                "functionSignature": "(object _AdaptiveJournalEntry_)(string adaptorId, string objectType, object object, string objectId?, object journal?, object adaptorTypeSpecific?)",
-                "functionDeclaration": "/* Add adaptive object */\n(object _AdaptiveJournalEntry_) (\n    string adaptorId,\n    string objectType,\n    object object,\n    string objectId?,\n    object journal?,\n    object adaptorTypeSpecific?)",
+                "functionSignature": "(object _AdaptiveJournalEntry_)(string adapterId, string objectType, object object, string objectId?, object journal?, object adapterTypeSpecific?)",
+                "functionDeclaration": "/* Add adaptive object */\n(object _AdaptiveJournalEntry_) (\n    string adapterId,\n    string objectType,\n    object object,\n    string objectId?,\n    object journal?,\n    object adapterTypeSpecific?)",
                 "parameters": [
                     {
                         "dataType": "string",
-                        "description": "Id of adaptor.",
+                        "description": "Id of adapter.",
                         "minArgs": -1,
-                        "name": "adaptorId",
+                        "name": "adapterId",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -10800,7 +10800,7 @@
                     },
                     {
                         "dataType": "string",
-                        "description": "Optional preferred objectId of object to add.  The adaptor may ignore this.",
+                        "description": "Optional preferred objectId of object to add.  The adapter may ignore this.",
                         "minArgs": -1,
                         "name": "objectId",
                         "optional": true,
@@ -10818,9 +10818,9 @@
                     },
                     {
                         "dataType": "object",
-                        "description": "This is an optional object parameter with an objectType determined by the adaptorType associated with the adaptorId parameter.  If the adaptorType supports this parameter, adaptor afw will have an adaptive object type with an id of:\n\n_AdaptiveAdaptorTypeSpecific_${adaptorType}_add_object\n\nwhere ${adaptorType} is the adaptor type id.",
+                        "description": "This is an optional object parameter with an objectType determined by the adapterType associated with the adapterId parameter.  If the adapterType supports this parameter, adapter afw will have an adaptive object type with an id of:\n\n_AdaptiveAdapterTypeSpecific_${adapterType}_add_object\n\nwhere ${adapterType} is the adapter type id.",
                         "minArgs": -1,
-                        "name": "adaptorTypeSpecific",
+                        "name": "adapterTypeSpecific",
                         "optional": true,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -10831,7 +10831,7 @@
                 "returns": {
                     "dataType": "object",
                     "dataTypeParameter": "_AdaptiveJournalEntry_",
-                    "description": "Resulting journal entry.  Property \"objectId\" is the objectId assigned by the adaptor.",
+                    "description": "Resulting journal entry.  Property \"objectId\" is the objectId assigned by the adapter.",
                     "minArgs": -1,
                     "optional": false,
                     "polymorphicDataType": false,
@@ -12559,14 +12559,14 @@
                 "description": "Mark a journal entry returned by get_next_for_consumer() as consumed.",
                 "functionId": "journal_mark_consumed",
                 "functionLabel": "journal_mark_consumed",
-                "functionSignature": "null(string adaptorId, string consumerId, string cursor)",
-                "functionDeclaration": "/* Mark journal entry consumed */\nnull (\n    string adaptorId,\n    string consumerId,\n    string cursor)",
+                "functionSignature": "null(string adapterId, string consumerId, string cursor)",
+                "functionDeclaration": "/* Mark journal entry consumed */\nnull (\n    string adapterId,\n    string consumerId,\n    string cursor)",
                 "parameters": [
                     {
                         "dataType": "string",
-                        "description": "Id of adaptor.",
+                        "description": "Id of adapter.",
                         "minArgs": -1,
-                        "name": "adaptorId",
+                        "name": "adapterId",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -13532,14 +13532,14 @@
                 "description": "Update the advance cursor for a consumer referenced by the consumerId parameter.  The limit parameter specifies the maximum number of entries to scan for an applicable entry for consumer before returning.  NULL is always returned.\n\nThere are no response properties set by this function.\n\nThe properties of the _AdaptiveProvisioningPeer_ object associated with the consumer_id are used in the following way:\n\nThe consumerFilter expression is used to determine if an entry is applicable.\n\nJournal entries are scanned beginning at the entry at the cursor in the advanceCursor property.  If the advanceCursor property is not present, the scan begins after the cursor in currentCursor.  If neither are present, the scan begins at the start of the journal.\n\nIf an new applicable entry is found or if the limit is met, the advanceCursor property is set to the currently scanned entry's cursor.",
                 "functionId": "journal_advance_cursor_for_consumer",
                 "functionLabel": "journal_advance_cursor_for_consumer",
-                "functionSignature": "object(string adaptorId, string consumerId, integer limit?)",
-                "functionDeclaration": "/* Advance journal cursor for consumer */\nobject (\n    string adaptorId,\n    string consumerId,\n    integer limit?)",
+                "functionSignature": "object(string adapterId, string consumerId, integer limit?)",
+                "functionDeclaration": "/* Advance journal cursor for consumer */\nobject (\n    string adapterId,\n    string consumerId,\n    integer limit?)",
                 "parameters": [
                     {
                         "dataType": "string",
-                        "description": "Id of adaptor.",
+                        "description": "Id of adapter.",
                         "minArgs": -1,
-                        "name": "adaptorId",
+                        "name": "adapterId",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -13735,14 +13735,14 @@
                 "description": "Get first journal entry.\n\nThis option will set response properties \"entry\" and \"cursor\" if there is a first entry to return.",
                 "functionId": "journal_get_first",
                 "functionLabel": "journal_get_first",
-                "functionSignature": "object(string adaptorId)",
-                "functionDeclaration": "/* Get first journal entry */\nobject (\n    string adaptorId)",
+                "functionSignature": "object(string adapterId)",
+                "functionDeclaration": "/* Get first journal entry */\nobject (\n    string adapterId)",
                 "parameters": [
                     {
                         "dataType": "string",
-                        "description": "Id of adaptor.",
+                        "description": "Id of adapter.",
                         "minArgs": -1,
-                        "name": "adaptorId",
+                        "name": "adapterId",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -14013,14 +14013,14 @@
                 "description": "Dump the entries in the reader lock table.",
                 "functionId": "reader_list",
                 "functionLabel": "reader_list",
-                "functionSignature": "string(string adaptorId)",
-                "functionDeclaration": "string (\n    string adaptorId)",
+                "functionSignature": "string(string adapterId)",
+                "functionDeclaration": "string (\n    string adapterId)",
                 "parameters": [
                     {
                         "dataType": "string",
-                        "description": "Adaptor Id.",
+                        "description": "Adapter Id.",
                         "minArgs": -1,
-                        "name": "adaptorId",
+                        "name": "adapterId",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -14722,20 +14722,20 @@
                 "afwCamelCaseFunctionLabel": "afwDeleteObject",
                 "brief": "Delete adaptive object",
                 "camelCaseFunctionLabel": "deleteObject",
-                "category": "adaptor",
+                "category": "adapter",
                 "dataTypeMethodNumber": 0,
                 "deprecated": false,
                 "description": "Delete an adaptive object.",
                 "functionId": "delete_object",
                 "functionLabel": "delete_object",
-                "functionSignature": "(object _AdaptiveJournalEntry_)(string adaptorId, string objectType, string objectId, object journal?, object adaptorTypeSpecific?)",
-                "functionDeclaration": "/* Delete adaptive object */\n(object _AdaptiveJournalEntry_) (\n    string adaptorId,\n    string objectType,\n    string objectId,\n    object journal?,\n    object adaptorTypeSpecific?)",
+                "functionSignature": "(object _AdaptiveJournalEntry_)(string adapterId, string objectType, string objectId, object journal?, object adapterTypeSpecific?)",
+                "functionDeclaration": "/* Delete adaptive object */\n(object _AdaptiveJournalEntry_) (\n    string adapterId,\n    string objectType,\n    string objectId,\n    object journal?,\n    object adapterTypeSpecific?)",
                 "parameters": [
                     {
                         "dataType": "string",
-                        "description": "Id of adaptor containing object to delete.",
+                        "description": "Id of adapter containing object to delete.",
                         "minArgs": -1,
-                        "name": "adaptorId",
+                        "name": "adapterId",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -14769,9 +14769,9 @@
                     },
                     {
                         "dataType": "object",
-                        "description": "This is an optional object parameter with an objectType determined by the adaptorType associated with the adaptorId parameter.  If the adaptorType supports this parameter, adaptor afw will have an adaptive object type with an id of:\n\n_AdaptiveAdaptorTypeSpecific_${adaptorType}_delete_object\n\nwhere ${adaptorType} is the adaptor type id.",
+                        "description": "This is an optional object parameter with an objectType determined by the adapterType associated with the adapterId parameter.  If the adapterType supports this parameter, adapter afw will have an adaptive object type with an id of:\n\n_AdaptiveAdapterTypeSpecific_${adapterType}_delete_object\n\nwhere ${adapterType} is the adapter type id.",
                         "minArgs": -1,
-                        "name": "adaptorTypeSpecific",
+                        "name": "adapterTypeSpecific",
                         "optional": true,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -14814,7 +14814,7 @@
                     },
                     {
                         "dataType": "boolean",
-                        "description": "The URI is an adaptive value path.  If the path begins with a single slash \"/\", the URI will be parsed as an adaptive value path (example: /adaptorId/objectType/objectId.propertyNames)",
+                        "description": "The URI is an adaptive value path.  If the path begins with a single slash \"/\", the URI will be parsed as an adaptive value path (example: /adapterId/objectType/objectId.propertyNames)",
                         "minArgs": -1,
                         "name": "isValuePath",
                         "optional": true,
@@ -14969,14 +14969,14 @@
                 "afwCamelCaseFunctionLabel": "afwReplaceObjectWithUri",
                 "brief": "Replace adaptive object with URI",
                 "camelCaseFunctionLabel": "replaceObjectWithUri",
-                "category": "adaptor",
+                "category": "adapter",
                 "dataTypeMethodNumber": 0,
                 "deprecated": false,
                 "description": "Replace an adaptive object with a given URI.",
                 "functionId": "replace_object_with_uri",
                 "functionLabel": "replace_object_with_uri",
-                "functionSignature": "(object _AdaptiveJournalEntry_)(anyURI uri, object object, object journal?, object adaptorTypeSpecific?)",
-                "functionDeclaration": "/* Replace adaptive object with URI */\n(object _AdaptiveJournalEntry_) (\n    anyURI uri,\n    object object,\n    object journal?,\n    object adaptorTypeSpecific?)",
+                "functionSignature": "(object _AdaptiveJournalEntry_)(anyURI uri, object object, object journal?, object adapterTypeSpecific?)",
+                "functionDeclaration": "/* Replace adaptive object with URI */\n(object _AdaptiveJournalEntry_) (\n    anyURI uri,\n    object object,\n    object journal?,\n    object adapterTypeSpecific?)",
                 "parameters": [
                     {
                         "dataType": "anyURI",
@@ -15007,9 +15007,9 @@
                     },
                     {
                         "dataType": "object",
-                        "description": "This is an optional object parameter with an objectType determined by the adaptorType associated with the adaptorId parameter.  If the adaptorType supports this parameter, adaptor afw will have an adaptive object type with an id of:\n\n_AdaptiveAdaptorTypeSpecific_${adaptorType}_replace_object\n\nWhere ${adaptorType} is the adaptor type id.",
+                        "description": "This is an optional object parameter with an objectType determined by the adapterType associated with the adapterId parameter.  If the adapterType supports this parameter, adapter afw will have an adaptive object type with an id of:\n\n_AdaptiveAdapterTypeSpecific_${adapterType}_replace_object\n\nWhere ${adapterType} is the adapter type id.",
                         "minArgs": -1,
-                        "name": "adaptorTypeSpecific",
+                        "name": "adapterTypeSpecific",
                         "optional": true,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -15208,20 +15208,20 @@
                 "afwCamelCaseFunctionLabel": "afwReplaceObject",
                 "brief": "Replace adaptive object",
                 "camelCaseFunctionLabel": "replaceObject",
-                "category": "adaptor",
+                "category": "adapter",
                 "dataTypeMethodNumber": 0,
                 "deprecated": false,
                 "description": "Replace an adaptive object.",
                 "functionId": "replace_object",
                 "functionLabel": "replace_object",
-                "functionSignature": "(object _AdaptiveJournalEntry_)(string adaptorId, string objectType, string objectId, object object, object journal?, object adaptorTypeSpecific?)",
-                "functionDeclaration": "/* Replace adaptive object */\n(object _AdaptiveJournalEntry_) (\n    string adaptorId,\n    string objectType,\n    string objectId,\n    object object,\n    object journal?,\n    object adaptorTypeSpecific?)",
+                "functionSignature": "(object _AdaptiveJournalEntry_)(string adapterId, string objectType, string objectId, object object, object journal?, object adapterTypeSpecific?)",
+                "functionDeclaration": "/* Replace adaptive object */\n(object _AdaptiveJournalEntry_) (\n    string adapterId,\n    string objectType,\n    string objectId,\n    object object,\n    object journal?,\n    object adapterTypeSpecific?)",
                 "parameters": [
                     {
                         "dataType": "string",
-                        "description": "Id of adaptor containing object to replace.",
+                        "description": "Id of adapter containing object to replace.",
                         "minArgs": -1,
-                        "name": "adaptorId",
+                        "name": "adapterId",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -15264,9 +15264,9 @@
                     },
                     {
                         "dataType": "object",
-                        "description": "This is an optional object parameter with an objectType determined by the adaptorType associated with the adaptorId parameter.  If the adaptorType supports this parameter, adaptor afw will have an adaptive object type with an id of:\n\n_AdaptiveAdaptorTypeSpecific_${adaptorType}_replace_object\n\nWhere ${adaptorType} is the adaptor type id.",
+                        "description": "This is an optional object parameter with an objectType determined by the adapterType associated with the adapterId parameter.  If the adapterType supports this parameter, adapter afw will have an adaptive object type with an id of:\n\n_AdaptiveAdapterTypeSpecific_${adapterType}_replace_object\n\nWhere ${adapterType} is the adapter type id.",
                         "minArgs": -1,
-                        "name": "adaptorTypeSpecific",
+                        "name": "adapterTypeSpecific",
                         "optional": true,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -15694,14 +15694,14 @@
                 "description": "Remove an index definition.",
                 "functionId": "index_remove",
                 "functionLabel": "index_remove",
-                "functionSignature": "object(string adaptorId, string key)",
-                "functionDeclaration": "/* Remove index definition */\nobject (\n    string adaptorId,\n    string key)",
+                "functionSignature": "object(string adapterId, string key)",
+                "functionDeclaration": "/* Remove index definition */\nobject (\n    string adapterId,\n    string key)",
                 "parameters": [
                     {
                         "dataType": "string",
-                        "description": "Id of adaptor.",
+                        "description": "Id of adapter.",
                         "minArgs": -1,
-                        "name": "adaptorId",
+                        "name": "adapterId",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -19510,20 +19510,20 @@
                 "afwCamelCaseFunctionLabel": "afwPrintObjects",
                 "brief": "Print adaptive objects",
                 "camelCaseFunctionLabel": "printObjects",
-                "category": "adaptor",
+                "category": "adapter",
                 "dataTypeMethodNumber": 0,
                 "deprecated": false,
                 "description": "Print adaptive objects as their to_string() value.  Each object will be preceded with a line containing the decimal length of the object's string.",
                 "functionId": "print_objects",
                 "functionLabel": "print_objects",
-                "functionSignature": "string(string adaptorId, string objectType, (object _AdaptiveQueryCriteria_) queryCriteria?, (object _AdaptiveObjectOptions_) options?)",
-                "functionDeclaration": "/* Print adaptive objects */\nstring (\n    string adaptorId,\n    string objectType,\n    (object _AdaptiveQueryCriteria_) queryCriteria?,\n    (object _AdaptiveObjectOptions_) options?)",
+                "functionSignature": "string(string adapterId, string objectType, (object _AdaptiveQueryCriteria_) queryCriteria?, (object _AdaptiveObjectOptions_) options?)",
+                "functionDeclaration": "/* Print adaptive objects */\nstring (\n    string adapterId,\n    string objectType,\n    (object _AdaptiveQueryCriteria_) queryCriteria?,\n    (object _AdaptiveObjectOptions_) options?)",
                 "parameters": [
                     {
                         "dataType": "string",
-                        "description": "Id of adaptor containing objects to print.",
+                        "description": "Id of adapter containing objects to print.",
                         "minArgs": -1,
-                        "name": "adaptorId",
+                        "name": "adapterId",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -19879,14 +19879,14 @@
                 "afwCamelCaseFunctionLabel": "afwConvertAdaptiveQueryCriteriaToQueryString",
                 "brief": "Convert _AdaptiveQueryCriteria_ to RQL",
                 "camelCaseFunctionLabel": "convertAdaptiveQueryCriteriaToQueryString",
-                "category": "adaptor",
+                "category": "adapter",
                 "dataTypeMethodNumber": 0,
                 "deprecated": false,
                 "description": "This function converts an _AdaptiveQueryCriteria_ object to a query string.",
                 "functionId": "convert_AdaptiveQueryCriteria_to_query_string",
                 "functionLabel": "convert_AdaptiveQueryCriteria_to_query_string",
-                "functionSignature": "string((object _AdaptiveQueryCriteria_) queryCriteria, string adaptorId?, string objectType?, integer style?)",
-                "functionDeclaration": "/* Convert _AdaptiveQueryCriteria_ to RQL */\nstring (\n    (object _AdaptiveQueryCriteria_) queryCriteria,\n    string adaptorId?,\n    string objectType?,\n    integer style?)",
+                "functionSignature": "string((object _AdaptiveQueryCriteria_) queryCriteria, string adapterId?, string objectType?, integer style?)",
+                "functionDeclaration": "/* Convert _AdaptiveQueryCriteria_ to RQL */\nstring (\n    (object _AdaptiveQueryCriteria_) queryCriteria,\n    string adapterId?,\n    string objectType?,\n    integer style?)",
                 "parameters": [
                     {
                         "dataType": "object",
@@ -19900,16 +19900,16 @@
                     },
                     {
                         "dataType": "string",
-                        "description": "This is the adaptorId of adaptor containing the objectType for validating and mapping this query.  If not specified, no validation or mapping will occur.",
+                        "description": "This is the adapterId of adapter containing the objectType for validating and mapping this query.  If not specified, no validation or mapping will occur.",
                         "minArgs": -1,
-                        "name": "adaptorId",
+                        "name": "adapterId",
                         "optional": true,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
                     },
                     {
                         "dataType": "string",
-                        "description": "This is the objectType used in conjunction with the adaptorId parameter.  This parameter is only allowed and is required if the adaptorId parameter is specified.",
+                        "description": "This is the objectType used in conjunction with the adapterId parameter.  This parameter is only allowed and is required if the adapterId parameter is specified.",
                         "minArgs": -1,
                         "name": "objectType",
                         "optional": true,
@@ -20145,7 +20145,7 @@
                 "afwCamelCaseFunctionLabel": "afwReconcileObject",
                 "brief": "Reconcile adaptive object",
                 "camelCaseFunctionLabel": "reconcileObject",
-                "category": "adaptor",
+                "category": "adapter",
                 "dataTypeMethodNumber": 0,
                 "deprecated": false,
                 "description": "Reconcile an adaptive object.",
@@ -20539,7 +20539,7 @@
                     },
                     {
                         "dataType": "boolean",
-                        "description": "The URIs are adaptive value paths.  If one of the URIs begins with a single slash \"/\", both must, and each URI will be parsed as an adaptive value path (example: /adaptorId/objectType/objectId.propertyNames).",
+                        "description": "The URIs are adaptive value paths.  If one of the URIs begins with a single slash \"/\", both must, and each URI will be parsed as an adaptive value path (example: /adapterId/objectType/objectId.propertyNames).",
                         "minArgs": -1,
                         "name": "isValuePath",
                         "optional": true,
@@ -21670,14 +21670,14 @@
                 "description": "Get the next journal entry after the one specified by the entry_cursor parameter.\n\nThis option will set response properties \"entry\" and \"cursor\" if there is a next entry to retrieve.",
                 "functionId": "journal_get_next_after_cursor",
                 "functionLabel": "journal_get_next_after_cursor",
-                "functionSignature": "object(string adaptorId, string cursor)",
-                "functionDeclaration": "/* Get next journal entry after cursor */\nobject (\n    string adaptorId,\n    string cursor)",
+                "functionSignature": "object(string adapterId, string cursor)",
+                "functionDeclaration": "/* Get next journal entry after cursor */\nobject (\n    string adapterId,\n    string cursor)",
                 "parameters": [
                     {
                         "dataType": "string",
-                        "description": "Id of adaptor.",
+                        "description": "Id of adapter.",
                         "minArgs": -1,
-                        "name": "adaptorId",
+                        "name": "adapterId",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -22225,20 +22225,20 @@
                 "afwCamelCaseFunctionLabel": "afwGetObject",
                 "brief": "Get adaptive object",
                 "camelCaseFunctionLabel": "getObject",
-                "category": "adaptor",
+                "category": "adapter",
                 "dataTypeMethodNumber": 0,
                 "deprecated": false,
-                "description": "Get an adaptive object from the adaptor, specified by adaptorId, objectType and objectId.  Optional view options and adaptor-specific options may be supplied to influence how the object is returned.",
+                "description": "Get an adaptive object from the adapter, specified by adapterId, objectType and objectId.  Optional view options and adapter-specific options may be supplied to influence how the object is returned.",
                 "functionId": "get_object",
                 "functionLabel": "get_object",
-                "functionSignature": "object(string adaptorId, string objectType, string objectId, (object _AdaptiveObjectOptions_) options?, object adaptorTypeSpecific?)",
-                "functionDeclaration": "/* Get adaptive object */\nobject (\n    string adaptorId,\n    string objectType,\n    string objectId,\n    (object _AdaptiveObjectOptions_) options?,\n    object adaptorTypeSpecific?)",
+                "functionSignature": "object(string adapterId, string objectType, string objectId, (object _AdaptiveObjectOptions_) options?, object adapterTypeSpecific?)",
+                "functionDeclaration": "/* Get adaptive object */\nobject (\n    string adapterId,\n    string objectType,\n    string objectId,\n    (object _AdaptiveObjectOptions_) options?,\n    object adapterTypeSpecific?)",
                 "parameters": [
                     {
                         "dataType": "string",
-                        "description": "Id of adaptor containing object to retrieve.",
+                        "description": "Id of adapter containing object to retrieve.",
                         "minArgs": -1,
-                        "name": "adaptorId",
+                        "name": "adapterId",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -22273,9 +22273,9 @@
                     },
                     {
                         "dataType": "object",
-                        "description": "This is an optional object parameter with an objectType determined by the adaptorType associated with the adaptorId parameter.  If the adaptorType supports this parameter, adaptor afw will have an adaptive object type with an id of:\n\n_AdaptiveAdaptorTypeSpecific_${adaptorType}_get_object\n\nWhere ${adaptorType} is the adaptor type id.",
+                        "description": "This is an optional object parameter with an objectType determined by the adapterType associated with the adapterId parameter.  If the adapterType supports this parameter, adapter afw will have an adaptive object type with an id of:\n\n_AdaptiveAdapterTypeSpecific_${adapterType}_get_object\n\nWhere ${adapterType} is the adapter type id.",
                         "minArgs": -1,
-                        "name": "adaptorTypeSpecific",
+                        "name": "adapterTypeSpecific",
                         "optional": true,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -23016,20 +23016,20 @@
                 "afwCamelCaseFunctionLabel": "afwModifyObject",
                 "brief": "Modify adaptive object",
                 "camelCaseFunctionLabel": "modifyObject",
-                "category": "adaptor",
+                "category": "adapter",
                 "dataTypeMethodNumber": 0,
                 "deprecated": false,
                 "description": "Modify an adaptive object.",
                 "functionId": "modify_object",
                 "functionLabel": "modify_object",
-                "functionSignature": "(object _AdaptiveJournalEntry_)(string adaptorId, string objectType, string objectId, list entries, object journal?, object adaptorTypeSpecific?)",
-                "functionDeclaration": "/* Modify adaptive object */\n(object _AdaptiveJournalEntry_) (\n    string adaptorId,\n    string objectType,\n    string objectId,\n    list entries,\n    object journal?,\n    object adaptorTypeSpecific?)",
+                "functionSignature": "(object _AdaptiveJournalEntry_)(string adapterId, string objectType, string objectId, list entries, object journal?, object adapterTypeSpecific?)",
+                "functionDeclaration": "/* Modify adaptive object */\n(object _AdaptiveJournalEntry_) (\n    string adapterId,\n    string objectType,\n    string objectId,\n    list entries,\n    object journal?,\n    object adapterTypeSpecific?)",
                 "parameters": [
                     {
                         "dataType": "string",
-                        "description": "Id of adaptor containing object to modify.",
+                        "description": "Id of adapter containing object to modify.",
                         "minArgs": -1,
-                        "name": "adaptorId",
+                        "name": "adapterId",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -23072,9 +23072,9 @@
                     },
                     {
                         "dataType": "object",
-                        "description": "This is an optional object parameter with an objectType determined by the adaptorType associated with the adaptorId parameter.  If the adaptorType supports this parameter, adaptor afw will have an adaptive object type with an id of:\n\n_AdaptiveAdaptorTypeSpecific_${adaptorType}_modify_object\n\nWhere ${adaptorType} is the adaptor type id.",
+                        "description": "This is an optional object parameter with an objectType determined by the adapterType associated with the adapterId parameter.  If the adapterType supports this parameter, adapter afw will have an adaptive object type with an id of:\n\n_AdaptiveAdapterTypeSpecific_${adapterType}_modify_object\n\nWhere ${adapterType} is the adapter type id.",
                         "minArgs": -1,
-                        "name": "adaptorTypeSpecific",
+                        "name": "adapterTypeSpecific",
                         "optional": true,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -24282,14 +24282,14 @@
                 "afwCamelCaseFunctionLabel": "afwConvertQueryStringToAdaptiveQueryCriteria",
                 "brief": "Convert query string to _AdaptiveQueryCriteria_",
                 "camelCaseFunctionLabel": "convertQueryStringToAdaptiveQueryCriteria",
-                "category": "adaptor",
+                "category": "adapter",
                 "dataTypeMethodNumber": 0,
                 "deprecated": false,
                 "description": "This function converts a query string to an _AdaptiveQueryCriteria_ object.",
                 "functionId": "convert_query_string_to_AdaptiveQueryCriteria",
                 "functionLabel": "convert_query_string_to_AdaptiveQueryCriteria",
-                "functionSignature": "(object _AdaptiveQueryCriteria_)(string queryString, string adaptorId?, string objectType?)",
-                "functionDeclaration": "/* Convert query string to _AdaptiveQueryCriteria_ */\n(object _AdaptiveQueryCriteria_) (\n    string queryString,\n    string adaptorId?,\n    string objectType?)",
+                "functionSignature": "(object _AdaptiveQueryCriteria_)(string queryString, string adapterId?, string objectType?)",
+                "functionDeclaration": "/* Convert query string to _AdaptiveQueryCriteria_ */\n(object _AdaptiveQueryCriteria_) (\n    string queryString,\n    string adapterId?,\n    string objectType?)",
                 "parameters": [
                     {
                         "dataType": "string",
@@ -24302,16 +24302,16 @@
                     },
                     {
                         "dataType": "string",
-                        "description": "This is the adaptorId of adaptor containing the objectType for validating and mapping this query.  If not specified, no validation or mapping will occur.",
+                        "description": "This is the adapterId of adapter containing the objectType for validating and mapping this query.  If not specified, no validation or mapping will occur.",
                         "minArgs": -1,
-                        "name": "adaptorId",
+                        "name": "adapterId",
                         "optional": true,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
                     },
                     {
                         "dataType": "string",
-                        "description": "This is the objectType used in conjunction with the adaptorId parameter.  This parameter is only allowed and is required if the adaptorId parameter is specified.",
+                        "description": "This is the objectType used in conjunction with the adapterId parameter.  This parameter is only allowed and is required if the adapterId parameter is specified.",
                         "minArgs": -1,
                         "name": "objectType",
                         "optional": true,
@@ -25144,14 +25144,14 @@
                 "afwCamelCaseFunctionLabel": "afwGetObjectWithUri",
                 "brief": "Get adaptive object with URI",
                 "camelCaseFunctionLabel": "getObjectWithUri",
-                "category": "adaptor",
+                "category": "adapter",
                 "dataTypeMethodNumber": 0,
                 "deprecated": false,
                 "description": "Get an object with a given URI.",
                 "functionId": "get_object_with_uri",
                 "functionLabel": "get_object_with_uri",
-                "functionSignature": "object(anyURI uri, (object _AdaptiveObjectOptions_) options?, object adaptorTypeSpecific?)",
-                "functionDeclaration": "/* Get adaptive object with URI */\nobject (\n    anyURI uri,\n    (object _AdaptiveObjectOptions_) options?,\n    object adaptorTypeSpecific?)",
+                "functionSignature": "object(anyURI uri, (object _AdaptiveObjectOptions_) options?, object adapterTypeSpecific?)",
+                "functionDeclaration": "/* Get adaptive object with URI */\nobject (\n    anyURI uri,\n    (object _AdaptiveObjectOptions_) options?,\n    object adapterTypeSpecific?)",
                 "parameters": [
                     {
                         "dataType": "anyURI",
@@ -25174,9 +25174,9 @@
                     },
                     {
                         "dataType": "object",
-                        "description": "This is an optional object parameter with an objectType determined by the adaptorType associated with the adaptorId parameter.  If the adaptorType supports this parameter, adaptor afw will have an adaptive object type with an id of:\n\n_AdaptiveAdaptorTypeSpecific_${adaptorType}_get_object\n\nwhere ${adaptorType} is the adaptor type id.",
+                        "description": "This is an optional object parameter with an objectType determined by the adapterType associated with the adapterId parameter.  If the adapterType supports this parameter, adapter afw will have an adaptive object type with an id of:\n\n_AdaptiveAdapterTypeSpecific_${adapterType}_get_object\n\nwhere ${adapterType} is the adapter type id.",
                         "minArgs": -1,
-                        "name": "adaptorTypeSpecific",
+                        "name": "adapterTypeSpecific",
                         "optional": true,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -25381,7 +25381,7 @@
             },
             "model_default_replace_object_action": {
                 "afwCamelCaseFunctionLabel": "afwModelDefaultReplaceObjectAction",
-                "brief": "Produce a default _AdaptiveAction_ object for an replace object request to a model adaptor.",
+                "brief": "Produce a default _AdaptiveAction_ object for an replace object request to a model adapter.",
                 "camelCaseFunctionLabel": "modelDefaultReplaceObjectAction",
                 "category": "model",
                 "dataTypeMethodNumber": 0,
@@ -25389,14 +25389,14 @@
                 "description": "This function returns a _AdaptiveAction_ object for the default action performed if a onReplaceObject parameter is not specified on the associated _AdaptiveModelObjectType_.  The action is not performed, but be aware that functions called while producing the _AdaptiveAction_ object may cause side effects.  This function can be called as part of a onReplace expression or for testing.",
                 "functionId": "model_default_replace_object_action",
                 "functionLabel": "model_default_replace_object_action",
-                "functionSignature": "(object _AdaptiveAction_)(string adaptorId, string objectType, string objectId, object object, string modelId?, (object _AdaptiveContextType_) context?)",
-                "functionDeclaration": "/* Produce a default _AdaptiveAction_ object for an replace object request to a model adaptor. */\n(object _AdaptiveAction_) (\n    string adaptorId,\n    string objectType,\n    string objectId,\n    object object,\n    string modelId?,\n    (object _AdaptiveContextType_) context?)",
+                "functionSignature": "(object _AdaptiveAction_)(string adapterId, string objectType, string objectId, object object, string modelId?, (object _AdaptiveContextType_) context?)",
+                "functionDeclaration": "/* Produce a default _AdaptiveAction_ object for an replace object request to a model adapter. */\n(object _AdaptiveAction_) (\n    string adapterId,\n    string objectType,\n    string objectId,\n    object object,\n    string modelId?,\n    (object _AdaptiveContextType_) context?)",
                 "parameters": [
                     {
                         "dataType": "string",
-                        "description": "This is the adaptorId of a model adaptor.  Variable custom::adaptorId can be used to access this value in model expressions.",
+                        "description": "This is the adapterId of a model adapter.  Variable custom::adapterId can be used to access this value in model expressions.",
                         "minArgs": -1,
-                        "name": "adaptorId",
+                        "name": "adapterId",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -25430,7 +25430,7 @@
                     },
                     {
                         "dataType": "string",
-                        "description": "This specifics a modelId of model to use for producing results.  If not specified, the adaptor's current model will be used.",
+                        "description": "This specifics a modelId of model to use for producing results.  If not specified, the adapter's current model will be used.",
                         "minArgs": -1,
                         "name": "modelId",
                         "optional": true,
@@ -25825,14 +25825,14 @@
                 "description": "Get the next journal entry for a consumer referenced by the consumer_id after the one specified by the entry_cursor parameter. The limit parameter specifies the maximum number of entries to scan for an applicable entry for consumer before returning.\n\nThis option will set response properties \"entry\" and \"cursor\" if an applicable entry is retrieved.\n\nThe properties of the _AdaptiveProvisioningPeer_ object associated with the consumer_id are used in the following way:\n\nThe consumerFilter expression is used to determine if an entry is applicable.\n\nUnlike option get_next_for_consumer, no other properties are referenced or modified.",
                 "functionId": "journal_get_next_for_consumer_after_cursor",
                 "functionLabel": "journal_get_next_for_consumer_after_cursor",
-                "functionSignature": "object(string adaptorId, string consumerId, string cursor, integer limit?)",
-                "functionDeclaration": "/* Get next journal entry for consumer after cursor */\nobject (\n    string adaptorId,\n    string consumerId,\n    string cursor,\n    integer limit?)",
+                "functionSignature": "object(string adapterId, string consumerId, string cursor, integer limit?)",
+                "functionDeclaration": "/* Get next journal entry for consumer after cursor */\nobject (\n    string adapterId,\n    string consumerId,\n    string cursor,\n    integer limit?)",
                 "parameters": [
                     {
                         "dataType": "string",
-                        "description": "Id of adaptor.",
+                        "description": "Id of adapter.",
                         "minArgs": -1,
-                        "name": "adaptorId",
+                        "name": "adapterId",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -26523,14 +26523,14 @@
             "delete_object_with_uri": {
                 "afwCamelCaseFunctionLabel": "afwDeleteObjectWithUri",
                 "camelCaseFunctionLabel": "deleteObjectWithUri",
-                "category": "adaptor",
+                "category": "adapter",
                 "dataTypeMethodNumber": 0,
                 "deprecated": false,
                 "description": "Delete an adaptive object with a given URI.",
                 "functionId": "delete_object_with_uri",
                 "functionLabel": "delete_object_with_uri",
-                "functionSignature": "(object _AdaptiveJournalEntry_)(anyURI uri, object journal?, object adaptorTypeSpecific?)",
-                "functionDeclaration": "(object _AdaptiveJournalEntry_) (\n    anyURI uri,\n    object journal?,\n    object adaptorTypeSpecific?)",
+                "functionSignature": "(object _AdaptiveJournalEntry_)(anyURI uri, object journal?, object adapterTypeSpecific?)",
+                "functionDeclaration": "(object _AdaptiveJournalEntry_) (\n    anyURI uri,\n    object journal?,\n    object adapterTypeSpecific?)",
                 "parameters": [
                     {
                         "dataType": "anyURI",
@@ -26552,9 +26552,9 @@
                     },
                     {
                         "dataType": "object",
-                        "description": "This is an optional object parameter with an objectType determined by the adaptorType associated with the adaptorId parameter.  If the adaptorType supports this parameter, adaptor afw will have an adaptive object type with an id of:\n\n_AdaptiveAdaptorTypeSpecific_${adaptorType}_delete_object\n\nwhere ${adaptorType} is the adaptor type id.",
+                        "description": "This is an optional object parameter with an objectType determined by the adapterType associated with the adapterId parameter.  If the adapterType supports this parameter, adapter afw will have an adaptive object type with an id of:\n\n_AdaptiveAdapterTypeSpecific_${adapterType}_delete_object\n\nwhere ${adapterType} is the adapter type id.",
                         "minArgs": -1,
-                        "name": "adaptorTypeSpecific",
+                        "name": "adapterTypeSpecific",
                         "optional": true,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -27307,18 +27307,18 @@
                 "afwCamelCaseFunctionLabel": "afwAddObjectWithUri",
                 "brief": "Add adaptive object with URI",
                 "camelCaseFunctionLabel": "addObjectWithUri",
-                "category": "adaptor",
+                "category": "adapter",
                 "dataTypeMethodNumber": 0,
                 "deprecated": false,
                 "description": "Add an adaptive object with a given URI.",
                 "functionId": "add_object_with_uri",
                 "functionLabel": "add_object_with_uri",
-                "functionSignature": "(object _AdaptiveJournalEntry_)(anyURI uri, object object, object journal?, object adaptorTypeSpecific?)",
-                "functionDeclaration": "/* Add adaptive object with URI */\n(object _AdaptiveJournalEntry_) (\n    anyURI uri,\n    object object,\n    object journal?,\n    object adaptorTypeSpecific?)",
+                "functionSignature": "(object _AdaptiveJournalEntry_)(anyURI uri, object object, object journal?, object adapterTypeSpecific?)",
+                "functionDeclaration": "/* Add adaptive object with URI */\n(object _AdaptiveJournalEntry_) (\n    anyURI uri,\n    object object,\n    object journal?,\n    object adapterTypeSpecific?)",
                 "parameters": [
                     {
                         "dataType": "anyURI",
-                        "description": "URI of object to add.  If a URI begins with a single slash ('/'), it is the local object path.  In the case of a local path, an optional preferred objectId of object can be including in URI which the adaptor may ignore.",
+                        "description": "URI of object to add.  If a URI begins with a single slash ('/'), it is the local object path.  In the case of a local path, an optional preferred objectId of object can be including in URI which the adapter may ignore.",
                         "minArgs": -1,
                         "name": "uri",
                         "optional": false,
@@ -27345,9 +27345,9 @@
                     },
                     {
                         "dataType": "object",
-                        "description": "This is an optional object parameter with an objectType determined by the adaptorType associated with the adaptorId parameter.  If the adaptorType supports this parameter, adaptor afw will have an adaptive object type with an id of:\n\n_AdaptiveAdaptorTypeSpecific_${adaptorType}_add_object\n\nWhere ${adaptorType} is the adaptor type id.",
+                        "description": "This is an optional object parameter with an objectType determined by the adapterType associated with the adapterId parameter.  If the adapterType supports this parameter, adapter afw will have an adaptive object type with an id of:\n\n_AdaptiveAdapterTypeSpecific_${adapterType}_add_object\n\nWhere ${adapterType} is the adapter type id.",
                         "minArgs": -1,
-                        "name": "adaptorTypeSpecific",
+                        "name": "adapterTypeSpecific",
                         "optional": true,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -27358,7 +27358,7 @@
                 "returns": {
                     "dataType": "object",
                     "dataTypeParameter": "_AdaptiveJournalEntry_",
-                    "description": "Resulting journal entry.  Property \"objectId\" is the objectId assigned by the adaptor.",
+                    "description": "Resulting journal entry.  Property \"objectId\" is the objectId assigned by the adapter.",
                     "minArgs": -1,
                     "optional": false,
                     "polymorphicDataType": false,
@@ -28091,14 +28091,14 @@
                 "afwCamelCaseFunctionLabel": "afwUpdateObjectWithUri",
                 "brief": "Update adaptive object with URI",
                 "camelCaseFunctionLabel": "updateObjectWithUri",
-                "category": "adaptor",
+                "category": "adapter",
                 "dataTypeMethodNumber": 0,
                 "deprecated": false,
                 "description": "Update an adaptive object with a given URI.",
                 "functionId": "update_object_with_uri",
                 "functionLabel": "update_object_with_uri",
-                "functionSignature": "(object _AdaptiveJournalEntry_)(anyURI uri, object object, object journal?, object adaptorTypeSpecific?)",
-                "functionDeclaration": "/* Update adaptive object with URI */\n(object _AdaptiveJournalEntry_) (\n    anyURI uri,\n    object object,\n    object journal?,\n    object adaptorTypeSpecific?)",
+                "functionSignature": "(object _AdaptiveJournalEntry_)(anyURI uri, object object, object journal?, object adapterTypeSpecific?)",
+                "functionDeclaration": "/* Update adaptive object with URI */\n(object _AdaptiveJournalEntry_) (\n    anyURI uri,\n    object object,\n    object journal?,\n    object adapterTypeSpecific?)",
                 "parameters": [
                     {
                         "dataType": "anyURI",
@@ -28129,9 +28129,9 @@
                     },
                     {
                         "dataType": "object",
-                        "description": "This is an optional object parameter with an objectType determined by the adaptorType associated with the adaptorId parameter.  If the adaptorType supports this parameter, adaptor afw will have an adaptive object type with an id of:\n\n_AdaptiveAdaptorTypeSpecific_${adaptorType}_modify_object\n\nWhere ${adaptorType} is the adaptor type id.",
+                        "description": "This is an optional object parameter with an objectType determined by the adapterType associated with the adapterId parameter.  If the adapterType supports this parameter, adapter afw will have an adaptive object type with an id of:\n\n_AdaptiveAdapterTypeSpecific_${adapterType}_modify_object\n\nWhere ${adapterType} is the adapter type id.",
                         "minArgs": -1,
-                        "name": "adaptorTypeSpecific",
+                        "name": "adapterTypeSpecific",
                         "optional": true,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -29061,14 +29061,14 @@
                 "description": "Get the next journal entry for a consumer referenced by the consumer_id parameter.  The entry_cursor parameter is ignored. The limit parameter specifies the maximum number of entries to scan for an applicable entry for consumer before returning.\n\n This option will set response properties \"entry\" and \"entryCursor\" if an applicable entry is retrieved.  Property \"reissue\" will be set as described below.\n\nThe properties of the _AdaptiveProvisioningPeer_ object associated with the consumer_id are used in the following way:\n\nThe consumerFilter expression is used to determine if an entry is applicable.\n\nIf consumeCursor property exists, return that entry at that cursor again immediately with a \"reissue\" property added and set to true.\n\nJournal entries are scanned beginning at the entry at the cursor in the advanceCursor property.  If the advanceCursor property is not present, the scan begins after the cursor in currentCursor.  If neither are present, the scan begins at the start of the journal.\n\nIf an applicable entry is found, properties consumeStart and consumeCursor are set, advanceCursor is removed, and the entry is returned.  Method mark_entry_consumed() will remove these properties.\n\nIf no applicable entry is found, advanceCursor is set to the last entry scanned.",
                 "functionId": "journal_get_next_for_consumer",
                 "functionLabel": "journal_get_next_for_consumer",
-                "functionSignature": "object(string adaptorId, string consumerId, integer limit?)",
-                "functionDeclaration": "/* Get next journal entry for consumer */\nobject (\n    string adaptorId,\n    string consumerId,\n    integer limit?)",
+                "functionSignature": "object(string adapterId, string consumerId, integer limit?)",
+                "functionDeclaration": "/* Get next journal entry for consumer */\nobject (\n    string adapterId,\n    string consumerId,\n    integer limit?)",
                 "parameters": [
                     {
                         "dataType": "string",
-                        "description": "Id of adaptor.",
+                        "description": "Id of adapter.",
                         "minArgs": -1,
-                        "name": "adaptorId",
+                        "name": "adapterId",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -29218,7 +29218,7 @@
             },
             "model_default_add_object_action": {
                 "afwCamelCaseFunctionLabel": "afwModelDefaultAddObjectAction",
-                "brief": "Produce a default _AdaptiveAction_ object for an add object request to a model adaptor.",
+                "brief": "Produce a default _AdaptiveAction_ object for an add object request to a model adapter.",
                 "camelCaseFunctionLabel": "modelDefaultAddObjectAction",
                 "category": "model",
                 "dataTypeMethodNumber": 0,
@@ -29226,14 +29226,14 @@
                 "description": "This function returns a _AdaptiveAction_ object for the default action performed if a onAdd parameter is not specified on the associated _AdaptiveModelObjectType_.  The action is not performed, but be aware that functions called while producing the _AdaptiveAction_ object may cause side effects.  This function can be called as part of a onAdd expression or for testing.",
                 "functionId": "model_default_add_object_action",
                 "functionLabel": "model_default_add_object_action",
-                "functionSignature": "(object _AdaptiveAction_)(string adaptorId, string objectType, object object, string objectId?, string modelId?, (object _AdaptiveContextType_) context?)",
-                "functionDeclaration": "/* Produce a default _AdaptiveAction_ object for an add object request to a model adaptor. */\n(object _AdaptiveAction_) (\n    string adaptorId,\n    string objectType,\n    object object,\n    string objectId?,\n    string modelId?,\n    (object _AdaptiveContextType_) context?)",
+                "functionSignature": "(object _AdaptiveAction_)(string adapterId, string objectType, object object, string objectId?, string modelId?, (object _AdaptiveContextType_) context?)",
+                "functionDeclaration": "/* Produce a default _AdaptiveAction_ object for an add object request to a model adapter. */\n(object _AdaptiveAction_) (\n    string adapterId,\n    string objectType,\n    object object,\n    string objectId?,\n    string modelId?,\n    (object _AdaptiveContextType_) context?)",
                 "parameters": [
                     {
                         "dataType": "string",
-                        "description": "This is the adaptorId of a model adaptor.  Variable custom::adaptorId can be used to access this value in model expressions.",
+                        "description": "This is the adapterId of a model adapter.  Variable custom::adapterId can be used to access this value in model expressions.",
                         "minArgs": -1,
-                        "name": "adaptorId",
+                        "name": "adapterId",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -29258,7 +29258,7 @@
                     },
                     {
                         "dataType": "string",
-                        "description": "This is the optional preferred objectId of object to add.  The adaptor may ignore this.  Variable custom::objectId can be used to access this value in model expressions.",
+                        "description": "This is the optional preferred objectId of object to add.  The adapter may ignore this.  Variable custom::objectId can be used to access this value in model expressions.",
                         "minArgs": -1,
                         "name": "objectId",
                         "optional": true,
@@ -29267,7 +29267,7 @@
                     },
                     {
                         "dataType": "string",
-                        "description": "This specifics a modelId of model to use for producing results.  If not specified, the adaptor's current model will be used.",
+                        "description": "This specifics a modelId of model to use for producing results.  If not specified, the adapter's current model will be used.",
                         "minArgs": -1,
                         "name": "modelId",
                         "optional": true,
@@ -29636,20 +29636,20 @@
                 "afwCamelCaseFunctionLabel": "afwUpdateObject",
                 "brief": "Update adaptive object",
                 "camelCaseFunctionLabel": "updateObject",
-                "category": "adaptor",
+                "category": "adapter",
                 "dataTypeMethodNumber": 0,
                 "deprecated": false,
                 "description": "Update an adaptive object.",
                 "functionId": "update_object",
                 "functionLabel": "update_object",
-                "functionSignature": "(object _AdaptiveJournalEntry_)(string adaptorId, string objectType, string objectId, object object, object journal?, object adaptorTypeSpecific?)",
-                "functionDeclaration": "/* Update adaptive object */\n(object _AdaptiveJournalEntry_) (\n    string adaptorId,\n    string objectType,\n    string objectId,\n    object object,\n    object journal?,\n    object adaptorTypeSpecific?)",
+                "functionSignature": "(object _AdaptiveJournalEntry_)(string adapterId, string objectType, string objectId, object object, object journal?, object adapterTypeSpecific?)",
+                "functionDeclaration": "/* Update adaptive object */\n(object _AdaptiveJournalEntry_) (\n    string adapterId,\n    string objectType,\n    string objectId,\n    object object,\n    object journal?,\n    object adapterTypeSpecific?)",
                 "parameters": [
                     {
                         "dataType": "string",
-                        "description": "Id of adaptor containing object to update.",
+                        "description": "Id of adapter containing object to update.",
                         "minArgs": -1,
-                        "name": "adaptorId",
+                        "name": "adapterId",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -29692,9 +29692,9 @@
                     },
                     {
                         "dataType": "object",
-                        "description": "This is an optional object parameter with an objectType determined by the adaptorType associated with the adaptorId parameter.  If the adaptorType supports this parameter, adaptor afw will have an adaptive object type with an id of:\n\n_AdaptiveAdaptorTypeSpecific_${adaptorType}_modify_object\n\nWhere ${adaptorType} is the adaptor type id.",
+                        "description": "This is an optional object parameter with an objectType determined by the adapterType associated with the adapterId parameter.  If the adapterType supports this parameter, adapter afw will have an adaptive object type with an id of:\n\n_AdaptiveAdapterTypeSpecific_${adapterType}_modify_object\n\nWhere ${adapterType} is the adapter type id.",
                         "minArgs": -1,
-                        "name": "adaptorTypeSpecific",
+                        "name": "adapterTypeSpecific",
                         "optional": true,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -30537,8 +30537,8 @@
                 "description": "This is used to set the ids in a local mutable object.  The ids are used to construct a local path.",
                 "functionId": "local_object_meta_set_ids",
                 "functionLabel": "local_object_meta_set_ids",
-                "functionSignature": "null(object object, string adaptorId, string objectType, string objectId)",
-                "functionDeclaration": "/* Set ids in a local mutable object */\nnull (\n    object object,\n    string adaptorId,\n    string objectType,\n    string objectId)",
+                "functionSignature": "null(object object, string adapterId, string objectType, string objectId)",
+                "functionDeclaration": "/* Set ids in a local mutable object */\nnull (\n    object object,\n    string adapterId,\n    string objectType,\n    string objectId)",
                 "parameters": [
                     {
                         "dataType": "object",
@@ -30551,9 +30551,9 @@
                     },
                     {
                         "dataType": "string",
-                        "description": "Adaptor id for object.",
+                        "description": "Adapter id for object.",
                         "minArgs": -1,
-                        "name": "adaptorId",
+                        "name": "adapterId",
                         "optional": false,
                         "polymorphicDataType": false,
                         "polymorphicDataTypeParameter": false
@@ -30975,41 +30975,41 @@
             }
         },
         "lock": {
-            "adaptor_id:layouts": {
-                "brief": "Adaptor id layouts read/write lock",
+            "adapter_id:layouts": {
+                "brief": "Adapter id layouts read/write lock",
                 "debugFlagIndex": 0,
-                "description": "Read/write lock used internally by adaptor id layouts implementation.",
-                "lockId": "adaptor_id:layouts"
+                "description": "Read/write lock used internally by adapter id layouts implementation.",
+                "lockId": "adapter_id:layouts"
             },
-            "adaptor_id:auth": {
-                "brief": "Adaptor id auth read/write lock",
+            "adapter_id:auth": {
+                "brief": "Adapter id auth read/write lock",
                 "debugFlagIndex": 0,
-                "description": "Read/write lock used internally by adaptor id auth implementation.",
-                "lockId": "adaptor_id:auth"
+                "description": "Read/write lock used internally by adapter id auth implementation.",
+                "lockId": "adapter_id:auth"
             },
-            "adaptor_id:files": {
-                "brief": "Adaptor id files read/write lock",
+            "adapter_id:files": {
+                "brief": "Adapter id files read/write lock",
                 "debugFlagIndex": 0,
-                "description": "Read/write lock used internally by adaptor id files implementation.",
-                "lockId": "adaptor_id:files"
+                "description": "Read/write lock used internally by adapter id files implementation.",
+                "lockId": "adapter_id:files"
             },
-            "adaptor_id:models": {
-                "brief": "Adaptor id models read/write lock",
+            "adapter_id:models": {
+                "brief": "Adapter id models read/write lock",
                 "debugFlagIndex": 0,
-                "description": "Read/write lock used internally by adaptor id models implementation.",
-                "lockId": "adaptor_id:models"
+                "description": "Read/write lock used internally by adapter id models implementation.",
+                "lockId": "adapter_id:models"
             },
-            "adaptor_id:tier": {
-                "brief": "Adaptor id tier read/write lock",
+            "adapter_id:tier": {
+                "brief": "Adapter id tier read/write lock",
                 "debugFlagIndex": 0,
-                "description": "Read/write lock used internally by adaptor id tier implementation.",
-                "lockId": "adaptor_id:tier"
+                "description": "Read/write lock used internally by adapter id tier implementation.",
+                "lockId": "adapter_id:tier"
             },
-            "adaptor_id:conf": {
-                "brief": "Adaptor id conf read/write lock",
+            "adapter_id:conf": {
+                "brief": "Adapter id conf read/write lock",
                 "debugFlagIndex": 0,
-                "description": "Read/write lock used internally by adaptor id conf implementation.",
-                "lockId": "adaptor_id:conf"
+                "description": "Read/write lock used internally by adapter id conf implementation.",
+                "lockId": "adapter_id:conf"
             },
             "environment:registry": {
                 "brief": "Environment registry lock",
@@ -31041,29 +31041,29 @@
                 "description": "This lock is used internally when accessing environment flags memory.",
                 "lockId": "environment:flags"
             },
-            "adaptor_id:afw": {
-                "brief": "Adaptor id afw read/write lock",
+            "adapter_id:afw": {
+                "brief": "Adapter id afw read/write lock",
                 "debugFlagIndex": 0,
-                "description": "Read/write lock used internally by adaptor id afw implementation.",
-                "lockId": "adaptor_id:afw"
+                "description": "Read/write lock used internally by adapter id afw implementation.",
+                "lockId": "adapter_id:afw"
             },
-            "environment:adaptor_id_anchor": {
-                "brief": "Adaptor id anchor lock",
+            "environment:adapter_id_anchor": {
+                "brief": "Adapter id anchor lock",
                 "debugFlagIndex": 0,
-                "description": "This lock is used internally when accessing adaptor id anchor memory.",
-                "lockId": "environment:adaptor_id_anchor"
+                "description": "This lock is used internally when accessing adapter id anchor memory.",
+                "lockId": "environment:adapter_id_anchor"
             },
-            "adaptor_id:lmdb": {
-                "brief": "Adaptor id lmdb read/write lock",
+            "adapter_id:lmdb": {
+                "brief": "Adapter id lmdb read/write lock",
                 "debugFlagIndex": 0,
-                "description": "Read/write lock used internally by adaptor id lmdb implementation.",
-                "lockId": "adaptor_id:lmdb"
+                "description": "Read/write lock used internally by adapter id lmdb implementation.",
+                "lockId": "adapter_id:lmdb"
             },
-            "adaptor_id:dev": {
-                "brief": "Adaptor id dev read/write lock",
+            "adapter_id:dev": {
+                "brief": "Adapter id dev read/write lock",
                 "debugFlagIndex": 0,
-                "description": "Read/write lock used internally by adaptor id dev implementation.",
-                "lockId": "adaptor_id:dev"
+                "description": "Read/write lock used internally by adapter id dev implementation.",
+                "lockId": "adapter_id:dev"
             }
         },
         "log": {
@@ -31118,7 +31118,7 @@
             "2": {
                 "type": "requestHandler",
                 "uriPrefix": "/",
-                "requestHandlerType": "adaptor",
+                "requestHandlerType": "adapter",
                 "sourceLocation": "/workspace/docker/dev/afw.conf entry 3"
             }
         },
@@ -31127,9 +31127,9 @@
                 "description": "XACML request handler.",
                 "requestHandlerType": "xacml"
             },
-            "adaptor": {
+            "adapter": {
                 "description": "Request handler type to provide \"rest-like\" access to adaptive objects plus access to actions.",
-                "requestHandlerType": "adaptor"
+                "requestHandlerType": "adapter"
             }
         },
         "rule_combining_algorithm": {},
@@ -31152,8 +31152,8 @@
             "octet": {
                 "key": "octet"
             },
-            "adaptor_metrics": {
-                "key": "adaptor_metrics"
+            "adapter_metrics": {
+                "key": "adapter_metrics"
             },
             "null_terminated_array_of_objects": {
                 "key": "null_terminated_array_of_objects"
@@ -31164,8 +31164,8 @@
             "uint32": {
                 "key": "uint32"
             },
-            "stopping_adaptor_instances": {
-                "key": "stopping_adaptor_instances"
+            "stopping_adapter_instances": {
+                "key": "stopping_adapter_instances"
             },
             "default": {
                 "key": "default"
@@ -31191,8 +31191,8 @@
             "null_terminated_array_of_internal": {
                 "key": "null_terminated_array_of_internal"
             },
-            "adaptor_additional_metrics": {
-                "key": "adaptor_additional_metrics"
+            "adapter_additional_metrics": {
+                "key": "adapter_additional_metrics"
             },
             "applicable_flags": {
                 "key": "applicable_flags"
@@ -31200,21 +31200,21 @@
         },
         "service": {},
         "service_type": {
-            "adaptor": {
+            "adapter": {
                 "confType": {
-                    "description": "This configuration type adds an adaptor and corresponding service to this Adaptive Framework environment.",
-                    "idPropertyName": "adaptorId",
-                    "idRegistryType": "adaptor_id",
-                    "idRuntimeObjectType": "_AdaptiveAdaptor_",
+                    "description": "This configuration type adds an adapter and corresponding service to this Adaptive Framework environment.",
+                    "idPropertyName": "adapterId",
+                    "idRegistryType": "adapter_id",
+                    "idRuntimeObjectType": "_AdaptiveAdapter_",
                     "isUnique": true,
-                    "subtypePropertyName": "adaptorType",
-                    "subtypeRegistryType": "adaptor_type",
-                    "subtypeRuntimeObjectType": "_AdaptiveAdaptorType_",
-                    "title": "Adaptive Framework Adaptor Configuration",
-                    "type": "adaptor"
+                    "subtypePropertyName": "adapterType",
+                    "subtypeRegistryType": "adapter_type",
+                    "subtypeRuntimeObjectType": "_AdaptiveAdapterType_",
+                    "title": "Adaptive Framework Adapter Configuration",
+                    "type": "adapter"
                 },
-                "serviceType": "adaptor",
-                "title": "Service type for adaptors."
+                "serviceType": "adapter",
+                "title": "Service type for adapters."
             },
             "authorizationHandler": {
                 "confType": {

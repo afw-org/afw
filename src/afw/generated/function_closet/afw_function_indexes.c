@@ -31,7 +31,7 @@
  *
  * ```
  *   function index_create(
- *       adaptorId: string,
+ *       adapterId: string,
  *       key: string,
  *       value?: string,
  *       objectType?: string,
@@ -44,7 +44,7 @@
  *
  * Parameters:
  *
- *   adaptorId - (string) Id of adaptor.
+ *   adapterId - (string) Id of adapter.
  *
  *   key - (string) Name of the property index to be created.
  *
@@ -92,14 +92,14 @@ afw_function_execute_index_create(
  *
  * ```
  *   function index_list(
- *       adaptorId: string,
+ *       adapterId: string,
  *       objectType?: string
  *   ): object;
  * ```
  *
  * Parameters:
  *
- *   adaptorId - (string) Id of adaptor.
+ *   adapterId - (string) Id of adapter.
  *
  *   objectType - (optional string) Id of adaptive object type indexes.
  *
@@ -133,14 +133,14 @@ afw_function_execute_index_list(
  *
  * ```
  *   function index_remove(
- *       adaptorId: string,
+ *       adapterId: string,
  *       key: string
  *   ): object;
  * ```
  *
  * Parameters:
  *
- *   adaptorId - (string) Id of adaptor.
+ *   adapterId - (string) Id of adapter.
  *
  *   key - (string) The index key to be removed.
  *

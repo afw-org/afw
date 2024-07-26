@@ -49,7 +49,7 @@ class journal
      * If an new applicable entry is found or if the limit is met, the
      * advanceCursor property is set to the currently scanned entry's cursor.
      *
-     * @param string $adaptorId Id of adaptor.
+     * @param string $adapterId Id of adapter.
      * @param string $consumerId The consumerId property value of the
      *                           associated _AdaptiveProvisioningPeer_ object.
      * @param integer $limit The maximum number of entries that will be
@@ -60,7 +60,7 @@ class journal
      *
      * @return object Response object.
      */
-    public function journal_advance_cursor_for_consumer(, $consumerId, $adaptorId = null, $limit = null)
+    public function journal_advance_cursor_for_consumer(, $consumerId, $adapterId = null, $limit = null)
     {
         $request = $this->$session->request();
 
@@ -70,8 +70,8 @@ class journal
         $request->set("consumerId", $consumerId);
 
         /* pass along any optional parameters to the request payload */
-        if ($adaptorId != null)
-            $request->set('adaptorId', $adaptorId);
+        if ($adapterId != null)
+            $request->set('adapterId', $adapterId);
 
         if ($limit != null)
             $request->set('limit', $limit);
@@ -88,12 +88,12 @@ class journal
      * is an entry to retrieve. If an entry with the supplied cursor does not
      * exist, a not_found error is thrown.
      *
-     * @param string $adaptorId Id of adaptor.
+     * @param string $adapterId Id of adapter.
      * @param string $cursor Journal entry cursor.
      *
      * @return object Response object.
      */
-    public function journal_get_by_cursor(, $cursor, $adaptorId = null)
+    public function journal_get_by_cursor(, $cursor, $adapterId = null)
     {
         $request = $this->$session->request();
 
@@ -103,8 +103,8 @@ class journal
         $request->set("cursor", $cursor);
 
         /* pass along any optional parameters to the request payload */
-        if ($adaptorId != null)
-            $request->set('adaptorId', $adaptorId);
+        if ($adapterId != null)
+            $request->set('adapterId', $adapterId);
 
         return $request->get_result();
     }
@@ -117,11 +117,11 @@ class journal
      * This option will set response properties 'entry' and 'cursor' if there
      * is a first entry to return.
      *
-     * @param string $adaptorId Id of adaptor.
+     * @param string $adapterId Id of adapter.
      *
      * @return object Response object.
      */
-    public function journal_get_first(, $adaptorId = null)
+    public function journal_get_first(, $adapterId = null)
     {
         $request = $this->$session->request();
 
@@ -130,8 +130,8 @@ class journal
         /* pass along required parameters to the request payload */
 
         /* pass along any optional parameters to the request payload */
-        if ($adaptorId != null)
-            $request->set('adaptorId', $adaptorId);
+        if ($adapterId != null)
+            $request->set('adapterId', $adapterId);
 
         return $request->get_result();
     }
@@ -145,12 +145,12 @@ class journal
      * This option will set response properties 'entry' and 'cursor' if there
      * is a next entry to retrieve.
      *
-     * @param string $adaptorId Id of adaptor.
+     * @param string $adapterId Id of adapter.
      * @param string $cursor Journal entry cursor.
      *
      * @return object Response object.
      */
-    public function journal_get_next_after_cursor(, $cursor, $adaptorId = null)
+    public function journal_get_next_after_cursor(, $cursor, $adapterId = null)
     {
         $request = $this->$session->request();
 
@@ -160,8 +160,8 @@ class journal
         $request->set("cursor", $cursor);
 
         /* pass along any optional parameters to the request payload */
-        if ($adaptorId != null)
-            $request->set('adaptorId', $adaptorId);
+        if ($adapterId != null)
+            $request->set('adapterId', $adapterId);
 
         return $request->get_result();
     }
@@ -199,7 +199,7 @@ class journal
      * If no applicable entry is found, advanceCursor is set to the last entry
      * scanned.
      *
-     * @param string $adaptorId Id of adaptor.
+     * @param string $adapterId Id of adapter.
      * @param string $consumerId The consumerId property value of the
      *                           associated _AdaptiveProvisioningPeer_ object.
      * @param integer $limit The maximum number of entries that will be
@@ -210,7 +210,7 @@ class journal
      *
      * @return object Response object.
      */
-    public function journal_get_next_for_consumer(, $consumerId, $adaptorId = null, $limit = null)
+    public function journal_get_next_for_consumer(, $consumerId, $adapterId = null, $limit = null)
     {
         $request = $this->$session->request();
 
@@ -220,8 +220,8 @@ class journal
         $request->set("consumerId", $consumerId);
 
         /* pass along any optional parameters to the request payload */
-        if ($adaptorId != null)
-            $request->set('adaptorId', $adaptorId);
+        if ($adapterId != null)
+            $request->set('adapterId', $adapterId);
 
         if ($limit != null)
             $request->set('limit', $limit);
@@ -249,7 +249,7 @@ class journal
      * Unlike option get_next_for_consumer, no other properties are referenced
      * or modified.
      *
-     * @param string $adaptorId Id of adaptor.
+     * @param string $adapterId Id of adapter.
      * @param string $consumerId The consumerId property value of the
      *                           associated _AdaptiveProvisioningPeer_ object.
      * @param string $cursor Journal entry cursor.
@@ -261,7 +261,7 @@ class journal
      *
      * @return object Response object.
      */
-    public function journal_get_next_for_consumer_after_cursor(, $consumerId, $cursor, $adaptorId = null, $limit = null)
+    public function journal_get_next_for_consumer_after_cursor(, $consumerId, $cursor, $adapterId = null, $limit = null)
     {
         $request = $this->$session->request();
 
@@ -272,8 +272,8 @@ class journal
         $request->set("cursor", $cursor);
 
         /* pass along any optional parameters to the request payload */
-        if ($adaptorId != null)
-            $request->set('adaptorId', $adaptorId);
+        if ($adapterId != null)
+            $request->set('adapterId', $adapterId);
 
         if ($limit != null)
             $request->set('limit', $limit);
@@ -286,14 +286,14 @@ class journal
      *
      * Mark a journal entry returned by get_next_for_consumer() as consumed.
      *
-     * @param string $adaptorId Id of adaptor.
+     * @param string $adapterId Id of adapter.
      * @param string $consumerId The consumerId property value of the
      *                           associated _AdaptiveProvisioningPeer_ object.
      * @param string $cursor Journal entry cursor.
      *
      * @return void
      */
-    public function journal_mark_consumed(, $consumerId, $cursor, $adaptorId = null)
+    public function journal_mark_consumed(, $consumerId, $cursor, $adapterId = null)
     {
         $request = $this->$session->request();
 
@@ -304,8 +304,8 @@ class journal
         $request->set("cursor", $cursor);
 
         /* pass along any optional parameters to the request payload */
-        if ($adaptorId != null)
-            $request->set('adaptorId', $adaptorId);
+        if ($adapterId != null)
+            $request->set('adapterId', $adapterId);
 
         return $request->get_result();
     }

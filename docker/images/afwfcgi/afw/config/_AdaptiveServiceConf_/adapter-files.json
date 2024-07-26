@@ -1,0 +1,14 @@
+{
+    "serviceId":"adapter-files",
+    "startup":"immediate",
+    "conf":{
+        "type":"adapter",
+        "adapterType":"file",
+        "root":"/afw/files/",
+        "contentType":"json",
+        "filenameSuffix":".json",
+        "description":"Stores objects in files.",
+        "isDevelopmentInput": true,
+        "adapterId":"files"
+    }
+}

@@ -29,15 +29,15 @@ export const handlers = [
         mswPostCallback("/afw", req, res, ctx);
 
         //const accept = req.headers.get("accept");
-        let {function: func, uri, adaptorId, objectType, objectId} = req.body;
+        let {function: func, uri, adapterId, objectType, objectId} = req.body;
 
         switch (func) {
         case "get_object_with_uri":            
-            ([,adaptorId, objectType, objectId] = uri.split("/"));
+            ([,adapterId, objectType, objectId] = uri.split("/"));
         // eslint-disable-next-line no-fallthrough
         case "get_object":
             
-            switch (adaptorId) {
+            switch (adapterId) {
             case "afw":
                 switch (objectType) {                
                 case "_AdaptiveObjectType_":
@@ -75,7 +75,7 @@ export const handlers = [
                 default: {                                        
                     let obj;                  
                     try {
-                        obj = await import("./get_object/" + adaptorId + "/" + objectType + "/" + objectId);                                                      
+                        obj = await import("./get_object/" + adapterId + "/" + objectType + "/" + objectId);                                                      
                         if (obj)
                             return res( ctx.status(200), ctx.json(obj));
                     } catch (e) {
@@ -85,11 +85,11 @@ export const handlers = [
                 }}            
                 break;            
 
-            // default case for adaptorId is to use local mocks
+            // default case for adapterId is to use local mocks
             default: {
                 let obj;
                 try {
-                    obj = await import("./get_object/" + adaptorId + "/" + objectType + "/" + objectId);
+                    obj = await import("./get_object/" + adapterId + "/" + objectType + "/" + objectId);
                     if (obj)
                         return res( ctx.status(200), ctx.json(obj));                    
                 } catch (e) {
@@ -103,7 +103,7 @@ export const handlers = [
             
             let data;
             try {                    
-                data = await import("./retrieve_objects/" + adaptorId + "/" + objectType);                    
+                data = await import("./retrieve_objects/" + adapterId + "/" + objectType);                    
             } catch (e) {
                 console.log(e);
             }                
@@ -114,7 +114,7 @@ export const handlers = [
         case "retrieve_objects_to_response": {
             let data;
             try {                    
-                data = await import("./retrieve_objects/" + adaptorId + "/" + objectType);                    
+                data = await import("./retrieve_objects/" + adapterId + "/" + objectType);                    
             } catch (e) {
                 console.log(e);
             }                
@@ -159,14 +159,14 @@ export const handlers = [
         }
     }),
 
-    rest.get("/:adaptorId/:objectTypeId/:objectId", async (req, res, ctx) => {
-        const {adaptorId, objectTypeId, objectId} = req.params;
+    rest.get("/:adapterId/:objectTypeId/:objectId", async (req, res, ctx) => {
+        const {adapterId, objectTypeId, objectId} = req.params;
 
-        mswGetCallback("/" + adaptorId + "/" + objectTypeId + "/" + objectId, req, res, ctx);
+        mswGetCallback("/" + adapterId + "/" + objectTypeId + "/" + objectId, req, res, ctx);
         
         let data;
         try {
-            data = await import("./get_object/" + adaptorId + "/" + objectTypeId + "/" + objectId);
+            data = await import("./get_object/" + adapterId + "/" + objectTypeId + "/" + objectId);
         } catch (e) {
             console.log(e);
         }

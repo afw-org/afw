@@ -31,13 +31,13 @@
  *
  * ```
  *   function reader_check(
- *       adaptorId: string
+ *       adapterId: string
  *   ): integer;
  * ```
  *
  * Parameters:
  *
- *   adaptorId - (string) Adaptor Id.
+ *   adapterId - (string) Adapter Id.
  *
  * Returns:
  *
@@ -69,13 +69,13 @@ afw_lmdb_function_execute_reader_check(
  *
  * ```
  *   function reader_list(
- *       adaptorId: string
+ *       adapterId: string
  *   ): string;
  * ```
  *
  * Parameters:
  *
- *   adaptorId - (string) Adaptor Id.
+ *   adapterId - (string) Adapter Id.
  *
  * Returns:
  *

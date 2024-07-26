@@ -2,16 +2,16 @@
     "afwCamelCaseFunctionLabel": "afwRetrieveObjectsToResponse",
     "brief": "Retrieve adaptive objects to a response",
     "camelCaseFunctionLabel": "retrieveObjectsToResponse",
-    "category": "adaptor",
-    "description": "This function retrieves adaptive objects from an adaptor, specified by adaptorId, which match the type specified by objectType.\n\nThis function is only allowed when called during a request with content type 'application/x-afw'. An '_AdaptiveResponse_' object is written to the request's response as each object is retrieved. This '_AdaptiveResponse_' object has a 'result' property containing the retrieved object and a 'intermediate' property set to true.\n\nThe optional queryCriteria is used to filter the adaptive objects returned. Use the objectOptions parameter to influence how the objects are viewed.\n\nOptions, specific to the adaptorId, can be optionally supplied.",
+    "category": "adapter",
+    "description": "This function retrieves adaptive objects from an adapter, specified by adapterId, which match the type specified by objectType.\n\nThis function is only allowed when called during a request with content type 'application/x-afw'. An '_AdaptiveResponse_' object is written to the request's response as each object is retrieved. This '_AdaptiveResponse_' object has a 'result' property containing the retrieved object and a 'intermediate' property set to true.\n\nThe optional queryCriteria is used to filter the adaptive objects returned. Use the objectOptions parameter to influence how the objects are viewed.\n\nOptions, specific to the adapterId, can be optionally supplied.",
     "functionId": "retrieve_objects_to_response",
     "functionLabel": "retrieve_objects_to_response",
     "parameters": [
         {
-            "brief": "Id of adaptor",
+            "brief": "Id of adapter",
             "dataType": "string",
-            "description": "Id of adaptor containing objects to retrieve.",
-            "name": "adaptorId"
+            "description": "Id of adapter containing objects to retrieve.",
+            "name": "adapterId"
         },
         {
             "brief": "Id of object type",
@@ -36,10 +36,10 @@
             "optional": true
         },
         {
-            "brief": "Adaptor specific",
+            "brief": "Adapter specific",
             "dataType": "object",
-            "description": "This is an optional object parameter with an objectType determined by the adaptorType associated with the adaptorId parameter. If the adaptorType supports this parameter, adaptor afw will have an adaptive object type with an id of:\n\n_AdaptiveAdaptorTypeSpecific_${adaptorType}_retrieve_objects\n\nWhere ${adaptorType} is the adaptor type id.",
-            "name": "adaptorTypeSpecific",
+            "description": "This is an optional object parameter with an objectType determined by the adapterType associated with the adapterId parameter. If the adapterType supports this parameter, adapter afw will have an adaptive object type with an id of:\n\n_AdaptiveAdapterTypeSpecific_${adapterType}_retrieve_objects\n\nWhere ${adapterType} is the adapter type id.",
+            "name": "adapterTypeSpecific",
             "optional": true
         }
     ],

@@ -1,6 +1,6 @@
 {
     "brief": "Convert query string to _AdaptiveQueryCriteria_",
-    "category": "adaptor",
+    "category": "adapter",
     "description": "This function converts a query string to an _AdaptiveQueryCriteria_ object.",
     "functionId": "convert_query_string_to_AdaptiveQueryCriteria",
     "functionLabel": "convert_query_string_to_AdaptiveQueryCriteria",
@@ -12,13 +12,13 @@
         },
         {
             "dataType": "string",
-            "description": "This is the adaptorId of adaptor containing the objectType for validating and mapping this query. If not specified, no validation or mapping will occur.",
-            "name": "adaptorId",
+            "description": "This is the adapterId of adapter containing the objectType for validating and mapping this query. If not specified, no validation or mapping will occur.",
+            "name": "adapterId",
             "optional": true
         },
         {
             "dataType": "string",
-            "description": "This is the objectType used in conjunction with the adaptorId parameter. This parameter is only allowed and is required if the adaptorId parameter is specified.",
+            "description": "This is the objectType used in conjunction with the adapterId parameter. This parameter is only allowed and is required if the adapterId parameter is specified.",
             "name": "objectType",
             "optional": true
         }

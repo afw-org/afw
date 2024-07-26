@@ -1,0 +1,4 @@
+{
+    "name": "afw_adapter_factory",
+    "description": "Factory to create an instance of an afw_adapter."
+}

@@ -30,7 +30,7 @@ import {
 interface Config {
     model?:             AfwModel | undefined;
     debounce?:          boolean;
-    adaptorId?:         string;    
+    adapterId?:         string;    
     objectTypeId?:      string;
     objectId?:          string;
     path?:              string;
@@ -92,7 +92,7 @@ const afwDataTypeToJSONSchemaType : {
 export class AfwObject extends AfwEvent {
 
     private model?:             AfwModel;    
-    private adaptorId?:         string;
+    private adapterId?:         string;
     private objectTypeId?:      string;
     private objectId?:          string;
     private path?:              string;
@@ -112,7 +112,7 @@ export class AfwObject extends AfwEvent {
         super(config);
 
         this.model              = config.model;
-        this.adaptorId          = config.adaptorId;
+        this.adapterId          = config.adapterId;
         this.objectTypeId       = config.objectTypeId;
         this.objectId           = config.objectId;
         this.path               = config.path;
@@ -125,7 +125,7 @@ export class AfwObject extends AfwEvent {
          * Derive some path components if it's presented.
          */
         if (config.path) {
-            this.adaptorId = config.path.split("/")[1];
+            this.adapterId = config.path.split("/")[1];
             this.objectTypeId = config.path.split("/")[2];
             this.objectId = config.path.split("/")[3];
         }
@@ -134,7 +134,7 @@ export class AfwObject extends AfwEvent {
             const path = config.object._meta_.path;
 
             this.path = path;
-            this.adaptorId = path.split("/")[1];
+            this.adapterId = path.split("/")[1];
             this.objectTypeId = path.split("/")[2];
             this.objectId = path.split("/")[3];
         }
@@ -158,7 +158,7 @@ export class AfwObject extends AfwEvent {
      */
     async initialize(model? : (AfwModel | undefined)) {
 
-        const {adaptorId, objectTypeId, object} = this;
+        const {adapterId, objectTypeId, object} = this;
 
         if (!model)
             model = this.model;
@@ -168,11 +168,11 @@ export class AfwObject extends AfwEvent {
         if (!model)
             throw new Error("Unable to initialize AfwObject without an underlying data model.");
 
-        /* Without an adaptorId and objectTypeId, we can only assume it's an _AdaptiveObject_ */
-        if (adaptorId && objectTypeId) {
-            await model.loadDependencies({ adaptorId, objectTypeId, object });
+        /* Without an adapterId and objectTypeId, we can only assume it's an _AdaptiveObject_ */
+        if (adapterId && objectTypeId) {
+            await model.loadDependencies({ adapterId, objectTypeId, object });
         } else {
-            /* we don't know the adaptorId/objectTypeId, so assume it's an _AdaptiveObject_ */
+            /* we don't know the adapterId/objectTypeId, so assume it's an _AdaptiveObject_ */
             await model.loadObjectTypeDependency({ path: "/afw/_AdaptiveObjectType_/_AdaptiveObject_" });
         }
 
@@ -217,10 +217,10 @@ export class AfwObject extends AfwEvent {
             initialized
         } = this;
         const model = this.getModel();
-        const adaptorId = this.getAdaptorId();
+        const adapterId = this.getAdapterId();
        
         let obj = new AfwObject({
-            model, adaptorId, objectTypeId, objectId,
+            model, adapterId, objectTypeId, objectId,
             object: this.toJSON(),
             path, parent, propertyName, objectTypeObject,
         });
@@ -458,35 +458,35 @@ export class AfwObject extends AfwEvent {
     getObjectTypeObject() : IAnyObject | undefined {
         const {objectTypeId} = this;
         const model = this.getModel();
-        const adaptorId = this.getAdaptorId();
+        const adapterId = this.getAdapterId();
         const embeddingObject = this.getEmbeddingObject();
 
         if (this.objectTypeObject)
             return this.objectTypeObject;
 
         if (!embeddingObject && !this.initialized) {            
-            throw new Error("Object /" + adaptorId + "/" + objectTypeId + "/" + this.objectId +  " is not initialized yet.");
+            throw new Error("Object /" + adapterId + "/" + objectTypeId + "/" + this.objectId +  " is not initialized yet.");
         }
 
-        if (adaptorId && objectTypeId) {            
-            this.objectTypeObject = model?.getObjectTypeObject({ adaptorId, objectTypeId });  
+        if (adapterId && objectTypeId) {            
+            this.objectTypeObject = model?.getObjectTypeObject({ adapterId, objectTypeId });  
         } else {
-            /* without an adaptorId, or objectTypeId, then we don't have an objectType to go by */
-            this.objectTypeObject = model?.getObjectTypeObject({ adaptorId: "afw", objectTypeId: "_AdaptiveObject_" });
+            /* without an adapterId, or objectTypeId, then we don't have an objectType to go by */
+            this.objectTypeObject = model?.getObjectTypeObject({ adapterId: "afw", objectTypeId: "_AdaptiveObject_" });
         }
 
         return this.objectTypeObject;        
     }
 
     /**
-     * Returns the adaptorId for this object.  If it's embedded, it requests from the parent.
+     * Returns the adapterId for this object.  If it's embedded, it requests from the parent.
      */
-    getAdaptorId() : string | undefined {
-        if (this.adaptorId)
-            return this.adaptorId;
+    getAdapterId() : string | undefined {
+        if (this.adapterId)
+            return this.adapterId;
 
-        /* if this is an embedded object, the parent will know the adaptorId */        
-        return this.getEmbeddingObject()?.getAdaptorId();
+        /* if this is an embedded object, the parent will know the adapterId */        
+        return this.getEmbeddingObject()?.getAdapterId();
     }
 
     /**
@@ -598,11 +598,11 @@ export class AfwObject extends AfwEvent {
      */
     getMetaObject() {
         const model = this.getModel();
-        const adaptorId = this.getAdaptorId();
+        const adapterId = this.getAdapterId();
 
         const obj = new AfwObject({
             model, 
-            adaptorId, 
+            adapterId, 
             objectTypeId: "_AdaptiveMeta_",
             object: this.getMeta(),
         });
@@ -650,7 +650,7 @@ export class AfwObject extends AfwEvent {
      * Returns the path for this object.
      */
     getPath() : string | undefined {
-        const {adaptorId, objectTypeId, objectId} = this;
+        const {adapterId, objectTypeId, objectId} = this;
 
         if (this.getEmbeddingObject()) {
             if (this.getEmbeddingObject()?.getPath())
@@ -662,8 +662,8 @@ export class AfwObject extends AfwEvent {
         else if (this.path)
             return this.path;
 
-        else if (adaptorId && objectTypeId && objectId)
-            return "/" + adaptorId + "/" + objectTypeId + "/" + objectId;
+        else if (adapterId && objectTypeId && objectId)
+            return "/" + adapterId + "/" + objectTypeId + "/" + objectId;
 
         else
             return this.getMetaProperty("path");
@@ -684,10 +684,10 @@ export class AfwObject extends AfwEvent {
     }
 
     /**
-     * Sets the adaptorId metadata property
+     * Sets the adapterId metadata property
      */
-    setAdaptorId(adaptorId : string) {
-        this.adaptorId = adaptorId;
+    setAdapterId(adapterId : string) {
+        this.adapterId = adapterId;
     } 
 
     /**
@@ -722,7 +722,7 @@ export class AfwObject extends AfwEvent {
     
         this.setMetaProperty("path", path);
 
-        this.adaptorId = path.split("/")[1];
+        this.adapterId = path.split("/")[1];
         this.objectTypeId = path.split("/")[2];
         this.objectId = path.split("/")[3];
     }
@@ -1035,7 +1035,7 @@ export class AfwObject extends AfwEvent {
 
         /* all object types have a _meta_ property, which is described by _AdaptiveMeta_ */    
         if (recurseMeta) {
-            const metaObjectTypeObject = model.getObjectTypeObject({ adaptorId: "afw", objectTypeId: "_AdaptiveMeta_" });
+            const metaObjectTypeObject = model.getObjectTypeObject({ adapterId: "afw", objectTypeId: "_AdaptiveMeta_" });
             jsonSchema.properties["_meta_"] = this.getJSONSchema(metaObjectTypeObject, false);
         }
 
@@ -1063,7 +1063,7 @@ export class AfwObject extends AfwEvent {
                     if (dataTypeParameters.length > 1) {
                         /* may have an array of objects, or an array of array of... */
                         if (dataTypeParameters[0] === "object") {
-                            const embeddedObjectTypeObject = model.getObjectTypeObject({ adaptorId: this.getAdaptorId(), objectTypeId: dataTypeParameters[1] });
+                            const embeddedObjectTypeObject = model.getObjectTypeObject({ adapterId: this.getAdapterId(), objectTypeId: dataTypeParameters[1] });
                             if (embeddedObjectTypeObject) {
                                 jsonSchema.properties[name].items = this.getJSONSchema(embeddedObjectTypeObject, recurseMeta);                                
                             } else 
@@ -1081,7 +1081,7 @@ export class AfwObject extends AfwEvent {
                 }
 
                 if (dataType === "object" && dataTypeParameter) {                    
-                    const embeddedObjectTypeObject = model.getObjectTypeObject({ adaptorId: this.getAdaptorId(), objectTypeId: dataTypeParameter });
+                    const embeddedObjectTypeObject = model.getObjectTypeObject({ adapterId: this.getAdapterId(), objectTypeId: dataTypeParameter });
                     if (embeddedObjectTypeObject) {
                         jsonSchema.properties[name] = this.getJSONSchema(embeddedObjectTypeObject, recurseMeta);
                     }
@@ -1110,7 +1110,7 @@ export class AfwObject extends AfwEvent {
                 };      
                 
                 if (dataType === "object" && dataTypeParameter) {
-                    const embeddedObjectTypeObject = model.getObjectTypeObject({ adaptorId: this.getAdaptorId(), objectTypeId: dataTypeParameter });
+                    const embeddedObjectTypeObject = model.getObjectTypeObject({ adapterId: this.getAdapterId(), objectTypeId: dataTypeParameter });
                     if (embeddedObjectTypeObject) {
                         jsonSchema.additionalProperties = this.getJSONSchema(embeddedObjectTypeObject, recurseMeta);
                     }
@@ -1297,13 +1297,13 @@ export class AfwObject extends AfwEvent {
             });
             response.result = wrappedResult;                       
         } else {
-            const adaptorId = this.getAdaptorId();
+            const adapterId = this.getAdapterId();
             const objectTypeId = this.getObjectTypeId();
             const objectId = this.getObjectId();
-            if (!adaptorId || !objectTypeId)
-                throw new Error("Cannot add object without a path or adaptorId and objectTypeId");
+            if (!adapterId || !objectTypeId)
+                throw new Error("Cannot add object without a path or adapterId and objectTypeId");
 
-            response = afwAddObject(client, objectTypeId, obj, adaptorId, objectId);   
+            response = afwAddObject(client, objectTypeId, obj, adapterId, objectId);   
             const {result} = response;            
             const wrappedResult : () => Promise<IJSONObject> = () => new Promise((resolve, reject) => {                
                 result().then((r: IJSONObject) => {

@@ -1,6 +1,6 @@
 {
   "brief": "Extension for LDAP",
-  "description": "This extension provides support for Lightweight Directory Access Protocol (LDAP). This includes an adaptor that allows Adaptive Objects to be retrieved and stored in a LDAP directory.",
+  "description": "This extension provides support for Lightweight Directory Access Protocol (LDAP). This includes an adapter that allows Adaptive Objects to be retrieved and stored in a LDAP directory.",
   "extensionId": "afw_ldap",
   "modulePath": "libafwldap"
 }

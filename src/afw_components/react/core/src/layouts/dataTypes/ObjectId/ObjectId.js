@@ -46,10 +46,10 @@ export const ObjectId = (props) => {
 
     else {
         const embeddingObject = property?.getEmbeddingObject();
-        const adaptorId = embeddingObject?.getAdaptorId();
+        const adapterId = embeddingObject?.getAdapterId();
 
-        if (objectTypeId && adaptorId && value) {            
-            let url = routeBasePath + "/" + adaptorId + "/" + objectTypeId + "/" + value;
+        if (objectTypeId && adapterId && value) {            
+            let url = routeBasePath + "/" + adapterId + "/" + objectTypeId + "/" + value;
 
             return (
                 <Link text={value} url={url} />

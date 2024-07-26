@@ -25,8 +25,8 @@ interface IAnyObject {
  * effects. This function can be called as part of a onAdd expression or for
  * testing.
  * 
- * @param {string} adaptorId - This is the adaptorId of a model adaptor.
- *     Variable custom::adaptorId can be used to access this value in model
+ * @param {string} adapterId - This is the adapterId of a model adapter.
+ *     Variable custom::adapterId can be used to access this value in model
  *     expressions.
  * 
  * @param {string} objectType - This is the adaptive object type of object
@@ -37,11 +37,11 @@ interface IAnyObject {
  *     can be used to access this value in model expressions.
  * 
  * @param {string} objectId - This is the optional preferred objectId of
- *     object to add. The adaptor may ignore this. Variable custom::objectId
+ *     object to add. The adapter may ignore this. Variable custom::objectId
  *     can be used to access this value in model expressions.
  * 
  * @param {string} modelId - This specifics a modelId of model to use for
- *     producing results. If not specified, the adaptor's current model will
+ *     producing results. If not specified, the adapter's current model will
  *     be used.
  * 
  * @param {object} context - This specifies additional context information
@@ -49,7 +49,7 @@ interface IAnyObject {
  * 
  * @returns {object} The default action object.
  */
-export function afwModelDefaultAddObjectAction(client : any, objectType : string, object : object, adaptorId? : string, objectId? : string, modelId? : string, context? : object) : any {
+export function afwModelDefaultAddObjectAction(client : any, objectType : string, object : object, adapterId? : string, objectId? : string, modelId? : string, context? : object) : any {
 
     let _action : IAnyObject = {};
 
@@ -57,8 +57,8 @@ export function afwModelDefaultAddObjectAction(client : any, objectType : string
     _action["objectType"] = objectType;
     _action["object"] = object;
 
-    if (adaptorId !== undefined)
-        _action["adaptorId"] = adaptorId;
+    if (adapterId !== undefined)
+        _action["adapterId"] = adapterId;
 
     if (objectId !== undefined)
         _action["objectId"] = objectId;
@@ -80,8 +80,8 @@ export function afwModelDefaultAddObjectAction(client : any, objectType : string
  * effects. This function can be called as part of a onDelete expression or
  * for testing.
  * 
- * @param {string} adaptorId - This is the adaptorId of a model adaptor.
- *     Variable custom::adaptorId can be used to access this value in model
+ * @param {string} adapterId - This is the adapterId of a model adapter.
+ *     Variable custom::adapterId can be used to access this value in model
  *     expressions.
  * 
  * @param {string} objectType - This is the adaptive object type of object
@@ -93,7 +93,7 @@ export function afwModelDefaultAddObjectAction(client : any, objectType : string
  *     expressions.
  * 
  * @param {string} modelId - This specifics a modelId of model to use for
- *     producing results. If not specified, the adaptor's current model will
+ *     producing results. If not specified, the adapter's current model will
  *     be used.
  * 
  * @param {object} context - This specifies additional context information
@@ -101,7 +101,7 @@ export function afwModelDefaultAddObjectAction(client : any, objectType : string
  * 
  * @returns {object} The default action object.
  */
-export function afwModelDefaultDeleteObjectAction(client : any, objectType : string, objectId : string, adaptorId? : string, modelId? : string, context? : object) : any {
+export function afwModelDefaultDeleteObjectAction(client : any, objectType : string, objectId : string, adapterId? : string, modelId? : string, context? : object) : any {
 
     let _action : IAnyObject = {};
 
@@ -109,8 +109,8 @@ export function afwModelDefaultDeleteObjectAction(client : any, objectType : str
     _action["objectType"] = objectType;
     _action["objectId"] = objectId;
 
-    if (adaptorId !== undefined)
-        _action["adaptorId"] = adaptorId;
+    if (adapterId !== undefined)
+        _action["adapterId"] = adapterId;
 
     if (modelId !== undefined)
         _action["modelId"] = modelId;
@@ -129,8 +129,8 @@ export function afwModelDefaultDeleteObjectAction(client : any, objectType : str
  * effects. This function can be called as part of a onModify expression or
  * for testing.
  * 
- * @param {string} adaptorId - This is the adaptorId of a model adaptor.
- *     Variable custom::adaptorId can be used to access this value in model
+ * @param {string} adapterId - This is the adapterId of a model adapter.
+ *     Variable custom::adapterId can be used to access this value in model
  *     expressions.
  * 
  * @param {string} objectType - This is the adaptive object type of object
@@ -158,7 +158,7 @@ export function afwModelDefaultDeleteObjectAction(client : any, objectType : str
  *     name', ... ],         value     ]
  * 
  * @param {string} modelId - This specifics a modelId of model to use for
- *     producing results. If not specified, the adaptor's current model will
+ *     producing results. If not specified, the adapter's current model will
  *     be used.
  * 
  * @param {object} context - This specifies additional context information
@@ -166,7 +166,7 @@ export function afwModelDefaultDeleteObjectAction(client : any, objectType : str
  * 
  * @returns {object} The default action object.
  */
-export function afwModelDefaultModifyObjectAction(client : any, objectType : string, objectId : string, entries : any[], adaptorId? : string, modelId? : string, context? : object) : any {
+export function afwModelDefaultModifyObjectAction(client : any, objectType : string, objectId : string, entries : any[], adapterId? : string, modelId? : string, context? : object) : any {
 
     let _action : IAnyObject = {};
 
@@ -175,8 +175,8 @@ export function afwModelDefaultModifyObjectAction(client : any, objectType : str
     _action["objectId"] = objectId;
     _action["entries"] = entries;
 
-    if (adaptorId !== undefined)
-        _action["adaptorId"] = adaptorId;
+    if (adapterId !== undefined)
+        _action["adapterId"] = adapterId;
 
     if (modelId !== undefined)
         _action["modelId"] = modelId;
@@ -195,8 +195,8 @@ export function afwModelDefaultModifyObjectAction(client : any, objectType : str
  * effects. This function can be called as part of a onReplace expression or
  * for testing.
  * 
- * @param {string} adaptorId - This is the adaptorId of a model adaptor.
- *     Variable custom::adaptorId can be used to access this value in model
+ * @param {string} adapterId - This is the adapterId of a model adapter.
+ *     Variable custom::adapterId can be used to access this value in model
  *     expressions.
  * 
  * @param {string} objectType - This is the adaptive object type of object
@@ -210,7 +210,7 @@ export function afwModelDefaultModifyObjectAction(client : any, objectType : str
  *     custom::object can be used to access this value in model expressions.
  * 
  * @param {string} modelId - This specifics a modelId of model to use for
- *     producing results. If not specified, the adaptor's current model will
+ *     producing results. If not specified, the adapter's current model will
  *     be used.
  * 
  * @param {object} context - This specifies additional context information
@@ -218,7 +218,7 @@ export function afwModelDefaultModifyObjectAction(client : any, objectType : str
  * 
  * @returns {object} The default action object.
  */
-export function afwModelDefaultReplaceObjectAction(client : any, objectType : string, objectId : string, object : object, adaptorId? : string, modelId? : string, context? : object) : any {
+export function afwModelDefaultReplaceObjectAction(client : any, objectType : string, objectId : string, object : object, adapterId? : string, modelId? : string, context? : object) : any {
 
     let _action : IAnyObject = {};
 
@@ -227,8 +227,8 @@ export function afwModelDefaultReplaceObjectAction(client : any, objectType : st
     _action["objectId"] = objectId;
     _action["object"] = object;
 
-    if (adaptorId !== undefined)
-        _action["adaptorId"] = adaptorId;
+    if (adapterId !== undefined)
+        _action["adapterId"] = adapterId;
 
     if (modelId !== undefined)
         _action["modelId"] = modelId;
@@ -246,7 +246,7 @@ export function afwModelDefaultReplaceObjectAction(client : any, objectType : st
  * 
  * @param {object} mappedObject - This is the object to map back.
  * 
- * @returns {object} This is the mappedObject mapped back from mapped adaptor
+ * @returns {object} This is the mappedObject mapped back from mapped adapter
  *     object.
  */
 export function afwModelMapBackObjectSignature(client : any, mappedObject : object) : any {
@@ -266,7 +266,7 @@ export function afwModelMapBackObjectSignature(client : any, mappedObject : obje
  * 
  * @param {object} object - This is the object to map.
  * 
- * @returns {object} This is the object mapped to mappedAdaptor object.
+ * @returns {object} This is the object mapped to mappedAdapter object.
  */
 export function afwModelMapObjectSignature(client : any, object : object) : any {
 
@@ -286,7 +286,7 @@ export function afwModelMapObjectSignature(client : any, object : object) : any 
  * @param {object} object - This is the object to return.
  * 
  * @param {boolean} userData - If this is present and true, the object will be
- *     mapped its mapped adaptor's object type to the model adaptor's object
+ *     mapped its mapped adapter's object type to the model adapter's object
  *     type.
  * 
  * @returns {boolean} This will return true if no more objects can be returned

@@ -2,14 +2,14 @@
     "$defs": {
         "_AdaptiveLdapRootDse_": {
             "additionalProperties": {
-                "description": "Object type for type=adaptor adaptor_type=ldap synthetic root dse object."
+                "description": "Object type for type=adapter adapter_type=ldap synthetic root dse object."
             },
             "anyOf": [
                 {
                     "$ref": "#/$defs/_AdaptiveLdapRootDse_.propertyTypes"
                 }
             ],
-            "description": "Object type for type=adaptor adaptor_type=ldap synthetic root dse object.",
+            "description": "Object type for type=adapter adapter_type=ldap synthetic root dse object.",
             "type": "object"
         },
         "_AdaptiveLdapRootDse_.propertyTypes": {

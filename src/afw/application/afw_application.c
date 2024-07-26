@@ -166,14 +166,14 @@ afw_application_internal_application_conf_type_create_cede_p(
 {
     afw_environment_t *env = (afw_environment_t *)xctx->env;
     const afw_utf8_t *application_id;
-    const afw_utf8_t *conf_adaptor_id;
-    const afw_adaptor_session_t *session;
+    const afw_utf8_t *conf_adapter_id;
+    const afw_adapter_session_t *session;
     const afw_iterator_t *iterator;
     const afw_value_t *value;
     const afw_value_t *entry_value;
     const afw_utf8_t *property_name;
     const afw_object_t *properties;
-    const afw_adaptor_t *layout_adaptor;
+    const afw_adapter_t *layout_adapter;
     const afw_object_t *context_type_object;
     const afw_object_t *variable_definitions_object;
     const afw_array_t *default_flags;
@@ -195,22 +195,22 @@ afw_application_internal_application_conf_type_create_cede_p(
     /* Log application starting. */
     AFW_LOG_Z(info, "Application starting.", xctx);
 
-    /* Get optional confAdaptorId. */
-    conf_adaptor_id = afw_object_old_get_property_as_utf8(
-        entry, afw_s_confAdaptorId, p, xctx);
+    /* Get optional confAdapterId. */
+    conf_adapter_id = afw_object_old_get_property_as_utf8(
+        entry, afw_s_confAdapterId, p, xctx);
 
-    /* Get conf adaptor.  It will not ever be released. */
-    if (conf_adaptor_id) {
+    /* Get conf adapter.  It will not ever be released. */
+    if (conf_adapter_id) {
         AFW_LOG_FZ(debug, xctx,
-            "Application specified confAdaptorId " AFW_UTF8_FMT
+            "Application specified confAdapterId " AFW_UTF8_FMT
             ".",
-            AFW_UTF8_FMT_ARG(conf_adaptor_id));
-        env->conf_adaptor = afw_adaptor_get_reference(conf_adaptor_id, xctx);
-        afw_adaptor_impl_set_supported_core_object_type(env->conf_adaptor,
+            AFW_UTF8_FMT_ARG(conf_adapter_id));
+        env->conf_adapter = afw_adapter_get_reference(conf_adapter_id, xctx);
+        afw_adapter_impl_set_supported_core_object_type(env->conf_adapter,
             afw_s__AdaptiveServiceConf_, true, true, xctx);
-        afw_adaptor_impl_set_supported_core_object_type(env->conf_adaptor,
+        afw_adapter_impl_set_supported_core_object_type(env->conf_adapter,
             afw_s__AdaptiveConf_application, true, true, xctx);
-        afw_adaptor_impl_set_supported_core_object_type(env->conf_adaptor,
+        afw_adapter_impl_set_supported_core_object_type(env->conf_adapter,
             afw_s__AdaptiveTemplateProperties_, false, true, xctx);
     }
 
@@ -226,15 +226,15 @@ afw_application_internal_application_conf_type_create_cede_p(
     ((afw_environment_t *)env)->application_id.s = application_id->s;
 
     /*
-     * If conf adaptor, merge in the _AdaptiveConf_application application_id
+     * If conf adapter, merge in the _AdaptiveConf_application application_id
      * object to entry.
      */
-    if (conf_adaptor_id) {
+    if (conf_adapter_id) {
         object = NULL;
         error = false;
-        session = afw_adaptor_session_create(conf_adaptor_id, xctx);
+        session = afw_adapter_session_create(conf_adapter_id, xctx);
         AFW_TRY {
-            afw_adaptor_session_get_object(
+            afw_adapter_session_get_object(
                 session, NULL,
                 afw_s__AdaptiveConf_application, application_id,
                 (void *)&object, impl_conf_object_cb, NULL, p, xctx);
@@ -254,7 +254,7 @@ afw_application_internal_application_conf_type_create_cede_p(
         }
 
         AFW_FINALLY{
-            afw_adaptor_session_release(session, xctx);
+            afw_adapter_session_release(session, xctx);
         }
 
         AFW_ENDTRY;
@@ -277,7 +277,7 @@ afw_application_internal_application_conf_type_create_cede_p(
                 entry_value = afw_object_get_property(entry,
                     property_name, xctx);
                 if (entry_value ||
-                    afw_utf8_equal(property_name, afw_s_confAdaptorId) ||
+                    afw_utf8_equal(property_name, afw_s_confAdapterId) ||
                     afw_utf8_equal(property_name, afw_s_applicationId))
                 {
                     if (!afw_value_equal(value, entry_value, xctx)) {
@@ -290,7 +290,7 @@ afw_application_internal_application_conf_type_create_cede_p(
                             " because it is allowWrite=false or specified "
                             " in the conf file.",
                             AFW_UTF8_FMT_ARG(source_location),
-                            AFW_UTF8_FMT_ARG(conf_adaptor_id),
+                            AFW_UTF8_FMT_ARG(conf_adapter_id),
                             AFW_UTF8_FMT_ARG(application_id),
                             AFW_UTF8_FMT_ARG(property_name));
                     }
@@ -371,22 +371,22 @@ afw_application_internal_application_conf_type_create_cede_p(
         afw_flag_set_default_flag_ids(default_flags, xctx);
     }
 
-    /* Get optional layoutAdaptorId. */
-    env->layout_adaptor_id = afw_object_old_get_property_as_utf8(
-        properties, afw_s_layoutsAdaptorId, p, xctx);
+    /* Get optional layoutAdapterId. */
+    env->layout_adapter_id = afw_object_old_get_property_as_utf8(
+        properties, afw_s_layoutsAdapterId, p, xctx);
 
-    /* Set supported core object type in adaptor. */
-    if (env->layout_adaptor_id) {
+    /* Set supported core object type in adapter. */
+    if (env->layout_adapter_id) {
         AFW_LOG_FZ(debug, xctx,
-            "Application specified layoutAdaptorId " AFW_UTF8_FMT_Q
+            "Application specified layoutAdapterId " AFW_UTF8_FMT_Q
             ".",
-            AFW_UTF8_FMT_ARG(env->layout_adaptor_id));
-        layout_adaptor = afw_adaptor_get_reference(env->layout_adaptor_id, xctx);
-        afw_adaptor_impl_set_supported_core_object_type(layout_adaptor,
+            AFW_UTF8_FMT_ARG(env->layout_adapter_id));
+        layout_adapter = afw_adapter_get_reference(env->layout_adapter_id, xctx);
+        afw_adapter_impl_set_supported_core_object_type(layout_adapter,
             afw_s__AdaptiveLayoutComponentType_, true, true, xctx);
-        afw_adaptor_impl_set_supported_core_object_type(layout_adaptor,
+        afw_adapter_impl_set_supported_core_object_type(layout_adapter,
             afw_s__AdaptiveLayoutComponent_, false, true, xctx);
-        afw_adaptor_release(layout_adaptor, xctx);
+        afw_adapter_release(layout_adapter, xctx);
     }
 
     /* Process authorizationControl*/
@@ -394,8 +394,8 @@ afw_application_internal_application_conf_type_create_cede_p(
         afw_s_authorizationControl, xctx);
     afw_authorization_internal_set_control(object, xctx);
 
-    /* If conf adaptor, start any services that are ready. */
-    if (conf_adaptor_id) {
+    /* If conf adapter, start any services that are ready. */
+    if (conf_adapter_id) {
         afw_service_internal_start_initial_services(p, xctx);
     }
 

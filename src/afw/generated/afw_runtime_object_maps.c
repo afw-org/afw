@@ -58,13 +58,13 @@ AFW_RUNTIME_OBJECT_INF(
     impl_runtime_meta__AdaptiveActions_);
 
 
-/* Runtime object map properties for _AdaptiveAdaptorMetrics_ objects. */
+/* Runtime object map properties for _AdaptiveAdapterMetrics_ objects. */
 
 static const afw_runtime_object_map_property_t
-impl_properties__AdaptiveAdaptorMetrics_[] = {
+impl_properties__AdaptiveAdapterMetrics_[] = {
     {
         &afw_self_s_addObjectCount,
-        offsetof(afw_adaptor_impl_t, add_object_count),
+        offsetof(afw_adapter_impl_t, add_object_count),
         -1,
         &afw_data_type_integer_direct,
         AFW_UTF8_LITERAL(""),
@@ -79,12 +79,12 @@ impl_properties__AdaptiveAdaptorMetrics_[] = {
         &afw_data_type_object_direct,
         AFW_UTF8_LITERAL(""),
         NULL,
-        &afw_self_s_adaptor_additional_metrics,
-        afw_runtime_value_accessor_adaptor_additional_metrics
+        &afw_self_s_adapter_additional_metrics,
+        afw_runtime_value_accessor_adapter_additional_metrics
     },
     {
         &afw_self_s_deleteObjectCount,
-        offsetof(afw_adaptor_impl_t, delete_object_count),
+        offsetof(afw_adapter_impl_t, delete_object_count),
         -1,
         &afw_data_type_integer_direct,
         AFW_UTF8_LITERAL(""),
@@ -94,7 +94,7 @@ impl_properties__AdaptiveAdaptorMetrics_[] = {
     },
     {
         &afw_self_s_getObjectCount,
-        offsetof(afw_adaptor_impl_t, get_object_count),
+        offsetof(afw_adapter_impl_t, get_object_count),
         -1,
         &afw_data_type_integer_direct,
         AFW_UTF8_LITERAL(""),
@@ -104,7 +104,7 @@ impl_properties__AdaptiveAdaptorMetrics_[] = {
     },
     {
         &afw_self_s_modifyObjectCount,
-        offsetof(afw_adaptor_impl_t, modify_object_count),
+        offsetof(afw_adapter_impl_t, modify_object_count),
         -1,
         &afw_data_type_integer_direct,
         AFW_UTF8_LITERAL(""),
@@ -114,7 +114,7 @@ impl_properties__AdaptiveAdaptorMetrics_[] = {
     },
     {
         &afw_self_s_replaceObjectCount,
-        offsetof(afw_adaptor_impl_t, replace_object_count),
+        offsetof(afw_adapter_impl_t, replace_object_count),
         -1,
         &afw_data_type_integer_direct,
         AFW_UTF8_LITERAL(""),
@@ -124,7 +124,7 @@ impl_properties__AdaptiveAdaptorMetrics_[] = {
     },
     {
         &afw_self_s_retrieveObjectsCount,
-        offsetof(afw_adaptor_impl_t, retrieve_objects_count),
+        offsetof(afw_adapter_impl_t, retrieve_objects_count),
         -1,
         &afw_data_type_integer_direct,
         AFW_UTF8_LITERAL(""),
@@ -134,7 +134,7 @@ impl_properties__AdaptiveAdaptorMetrics_[] = {
     },
     {
         &afw_self_s_updateObjectCount,
-        offsetof(afw_adaptor_impl_t, update_object_count),
+        offsetof(afw_adapter_impl_t, update_object_count),
         -1,
         &afw_data_type_integer_direct,
         AFW_UTF8_LITERAL(""),
@@ -145,32 +145,32 @@ impl_properties__AdaptiveAdaptorMetrics_[] = {
 };
 
 static const afw_runtime_object_map_t
-impl_runtime_object_map__AdaptiveAdaptorMetrics_ = {
-    &afw_self_s__AdaptiveAdaptorMetrics_,
+impl_runtime_object_map__AdaptiveAdapterMetrics_ = {
+    &afw_self_s__AdaptiveAdapterMetrics_,
     8,
-    &impl_properties__AdaptiveAdaptorMetrics_[0]
+    &impl_properties__AdaptiveAdapterMetrics_[0]
 };
 
 static const afw_runtime_object_type_meta_t
-impl_runtime_meta__AdaptiveAdaptorMetrics_ = {
-    &afw_self_s__AdaptiveAdaptorMetrics_,
-    &impl_runtime_object_map__AdaptiveAdaptorMetrics_,
+impl_runtime_meta__AdaptiveAdapterMetrics_ = {
+    &afw_self_s__AdaptiveAdapterMetrics_,
+    &impl_runtime_object_map__AdaptiveAdapterMetrics_,
     -1,
     true,
 };
 
 AFW_RUNTIME_OBJECT_INF( 
-    afw_runtime_inf__AdaptiveAdaptorMetrics_, 
-    impl_runtime_meta__AdaptiveAdaptorMetrics_);
+    afw_runtime_inf__AdaptiveAdapterMetrics_, 
+    impl_runtime_meta__AdaptiveAdapterMetrics_);
 
 
-/* Runtime object map properties for _AdaptiveAdaptorType_ objects. */
+/* Runtime object map properties for _AdaptiveAdapterType_ objects. */
 
 static const afw_runtime_object_map_property_t
-impl_properties__AdaptiveAdaptorType_[] = {
+impl_properties__AdaptiveAdapterType_[] = {
     {
-        &afw_self_s_adaptorType,
-        offsetof(afw_adaptor_factory_t, adaptor_type),
+        &afw_self_s_adapterType,
+        offsetof(afw_adapter_factory_t, adapter_type),
         -1,
         &afw_data_type_string_direct,
         AFW_UTF8_LITERAL(""),
@@ -180,7 +180,7 @@ impl_properties__AdaptiveAdaptorType_[] = {
     },
     {
         &afw_self_s_description,
-        offsetof(afw_adaptor_factory_t, description),
+        offsetof(afw_adapter_factory_t, description),
         -1,
         &afw_data_type_string_direct,
         AFW_UTF8_LITERAL("text/plain"),
@@ -191,32 +191,32 @@ impl_properties__AdaptiveAdaptorType_[] = {
 };
 
 static const afw_runtime_object_map_t
-impl_runtime_object_map__AdaptiveAdaptorType_ = {
-    &afw_self_s__AdaptiveAdaptorType_,
+impl_runtime_object_map__AdaptiveAdapterType_ = {
+    &afw_self_s__AdaptiveAdapterType_,
     2,
-    &impl_properties__AdaptiveAdaptorType_[0]
+    &impl_properties__AdaptiveAdapterType_[0]
 };
 
 static const afw_runtime_object_type_meta_t
-impl_runtime_meta__AdaptiveAdaptorType_ = {
-    &afw_self_s__AdaptiveAdaptorType_,
-    &impl_runtime_object_map__AdaptiveAdaptorType_,
+impl_runtime_meta__AdaptiveAdapterType_ = {
+    &afw_self_s__AdaptiveAdapterType_,
+    &impl_runtime_object_map__AdaptiveAdapterType_,
     -1,
     true,
 };
 
 AFW_RUNTIME_OBJECT_INF( 
-    afw_runtime_inf__AdaptiveAdaptorType_, 
-    impl_runtime_meta__AdaptiveAdaptorType_);
+    afw_runtime_inf__AdaptiveAdapterType_, 
+    impl_runtime_meta__AdaptiveAdapterType_);
 
 
-/* Runtime object map properties for _AdaptiveAdaptor_ objects. */
+/* Runtime object map properties for _AdaptiveAdapter_ objects. */
 
 static const afw_runtime_object_map_property_t
-impl_properties__AdaptiveAdaptor_[] = {
+impl_properties__AdaptiveAdapter_[] = {
     {
-        &afw_self_s_adaptorId,
-        offsetof(afw_adaptor_id_anchor_t, adaptor_id),
+        &afw_self_s_adapterId,
+        offsetof(afw_adapter_id_anchor_t, adapter_id),
         -1,
         &afw_data_type_string_direct,
         AFW_UTF8_LITERAL(""),
@@ -226,17 +226,17 @@ impl_properties__AdaptiveAdaptor_[] = {
     },
     {
         &afw_self_s_metrics,
-        offsetof(afw_adaptor_id_anchor_t, adaptor),
+        offsetof(afw_adapter_id_anchor_t, adapter),
         -1,
         &afw_data_type_object_direct,
-        AFW_UTF8_LITERAL("_AdaptiveAdaptorMetrics_"),
+        AFW_UTF8_LITERAL("_AdaptiveAdapterMetrics_"),
         NULL,
-        &afw_self_s_adaptor_metrics,
-        afw_runtime_value_accessor_adaptor_metrics
+        &afw_self_s_adapter_metrics,
+        afw_runtime_value_accessor_adapter_metrics
     },
     {
         &afw_self_s_properties,
-        offsetof(afw_adaptor_id_anchor_t, properties),
+        offsetof(afw_adapter_id_anchor_t, properties),
         -1,
         &afw_data_type_object_direct,
         AFW_UTF8_LITERAL(""),
@@ -246,7 +246,7 @@ impl_properties__AdaptiveAdaptor_[] = {
     },
     {
         &afw_self_s_referenceCount,
-        offsetof(afw_adaptor_id_anchor_t, reference_count),
+        offsetof(afw_adapter_id_anchor_t, reference_count),
         -1,
         &afw_data_type_integer_direct,
         AFW_UTF8_LITERAL(""),
@@ -256,7 +256,7 @@ impl_properties__AdaptiveAdaptor_[] = {
     },
     {
         &afw_self_s_serviceId,
-        offsetof(afw_adaptor_id_anchor_t, service_id),
+        offsetof(afw_adapter_id_anchor_t, service_id),
         -1,
         &afw_data_type_string_direct,
         AFW_UTF8_LITERAL(""),
@@ -266,34 +266,34 @@ impl_properties__AdaptiveAdaptor_[] = {
     },
     {
         &afw_self_s_stopping,
-        offsetof(afw_adaptor_id_anchor_t, adaptor_id),
+        offsetof(afw_adapter_id_anchor_t, adapter_id),
         -1,
         &afw_data_type_array_direct,
         AFW_UTF8_LITERAL("integer"),
         &afw_data_type_integer_direct,
-        &afw_self_s_stopping_adaptor_instances,
-        afw_runtime_value_accessor_stopping_adaptor_instances
+        &afw_self_s_stopping_adapter_instances,
+        afw_runtime_value_accessor_stopping_adapter_instances
     }
 };
 
 static const afw_runtime_object_map_t
-impl_runtime_object_map__AdaptiveAdaptor_ = {
-    &afw_self_s__AdaptiveAdaptor_,
+impl_runtime_object_map__AdaptiveAdapter_ = {
+    &afw_self_s__AdaptiveAdapter_,
     6,
-    &impl_properties__AdaptiveAdaptor_[0]
+    &impl_properties__AdaptiveAdapter_[0]
 };
 
 static const afw_runtime_object_type_meta_t
-impl_runtime_meta__AdaptiveAdaptor_ = {
-    &afw_self_s__AdaptiveAdaptor_,
-    &impl_runtime_object_map__AdaptiveAdaptor_,
+impl_runtime_meta__AdaptiveAdapter_ = {
+    &afw_self_s__AdaptiveAdapter_,
+    &impl_runtime_object_map__AdaptiveAdapter_,
     -1,
     true,
 };
 
 AFW_RUNTIME_OBJECT_INF( 
-    afw_runtime_inf__AdaptiveAdaptor_, 
-    impl_runtime_meta__AdaptiveAdaptor_);
+    afw_runtime_inf__AdaptiveAdapter_, 
+    impl_runtime_meta__AdaptiveAdapter_);
 
 
 /* Runtime object map properties for _AdaptiveApplicationComponents_ objects. */
@@ -695,64 +695,64 @@ AFW_RUNTIME_OBJECT_INF(
     impl_runtime_meta__AdaptiveConf_);
 
 
-/* Runtime object map properties for _AdaptiveConf_adaptor objects. */
+/* Runtime object map properties for _AdaptiveConf_adapter objects. */
 
 static const afw_runtime_object_type_meta_t
-impl_runtime_meta__AdaptiveConf_adaptor = {
-    &afw_self_s__AdaptiveConf_adaptor,
+impl_runtime_meta__AdaptiveConf_adapter = {
+    &afw_self_s__AdaptiveConf_adapter,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
 };
 
 AFW_RUNTIME_OBJECT_INF( 
-    afw_runtime_inf__AdaptiveConf_adaptor, 
-    impl_runtime_meta__AdaptiveConf_adaptor);
+    afw_runtime_inf__AdaptiveConf_adapter, 
+    impl_runtime_meta__AdaptiveConf_adapter);
 
 
-/* Runtime object map properties for _AdaptiveConf_adaptor_afw_runtime objects. */
+/* Runtime object map properties for _AdaptiveConf_adapter_afw_runtime objects. */
 
 static const afw_runtime_object_type_meta_t
-impl_runtime_meta__AdaptiveConf_adaptor_afw_runtime = {
-    &afw_self_s__AdaptiveConf_adaptor_afw_runtime,
+impl_runtime_meta__AdaptiveConf_adapter_afw_runtime = {
+    &afw_self_s__AdaptiveConf_adapter_afw_runtime,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
 };
 
 AFW_RUNTIME_OBJECT_INF( 
-    afw_runtime_inf__AdaptiveConf_adaptor_afw_runtime, 
-    impl_runtime_meta__AdaptiveConf_adaptor_afw_runtime);
+    afw_runtime_inf__AdaptiveConf_adapter_afw_runtime, 
+    impl_runtime_meta__AdaptiveConf_adapter_afw_runtime);
 
 
-/* Runtime object map properties for _AdaptiveConf_adaptor_file objects. */
+/* Runtime object map properties for _AdaptiveConf_adapter_file objects. */
 
 static const afw_runtime_object_type_meta_t
-impl_runtime_meta__AdaptiveConf_adaptor_file = {
-    &afw_self_s__AdaptiveConf_adaptor_file,
+impl_runtime_meta__AdaptiveConf_adapter_file = {
+    &afw_self_s__AdaptiveConf_adapter_file,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
 };
 
 AFW_RUNTIME_OBJECT_INF( 
-    afw_runtime_inf__AdaptiveConf_adaptor_file, 
-    impl_runtime_meta__AdaptiveConf_adaptor_file);
+    afw_runtime_inf__AdaptiveConf_adapter_file, 
+    impl_runtime_meta__AdaptiveConf_adapter_file);
 
 
-/* Runtime object map properties for _AdaptiveConf_adaptor_model objects. */
+/* Runtime object map properties for _AdaptiveConf_adapter_model objects. */
 
 static const afw_runtime_object_type_meta_t
-impl_runtime_meta__AdaptiveConf_adaptor_model = {
-    &afw_self_s__AdaptiveConf_adaptor_model,
+impl_runtime_meta__AdaptiveConf_adapter_model = {
+    &afw_self_s__AdaptiveConf_adapter_model,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
 };
 
 AFW_RUNTIME_OBJECT_INF( 
-    afw_runtime_inf__AdaptiveConf_adaptor_model, 
-    impl_runtime_meta__AdaptiveConf_adaptor_model);
+    afw_runtime_inf__AdaptiveConf_adapter_model, 
+    impl_runtime_meta__AdaptiveConf_adapter_model);
 
 
 /* Runtime object map properties for _AdaptiveConf_application objects. */
@@ -890,19 +890,19 @@ AFW_RUNTIME_OBJECT_INF(
     impl_runtime_meta__AdaptiveConf_requestHandler);
 
 
-/* Runtime object map properties for _AdaptiveConf_requestHandler_adaptor objects. */
+/* Runtime object map properties for _AdaptiveConf_requestHandler_adapter objects. */
 
 static const afw_runtime_object_type_meta_t
-impl_runtime_meta__AdaptiveConf_requestHandler_adaptor = {
-    &afw_self_s__AdaptiveConf_requestHandler_adaptor,
+impl_runtime_meta__AdaptiveConf_requestHandler_adapter = {
+    &afw_self_s__AdaptiveConf_requestHandler_adapter,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
 };
 
 AFW_RUNTIME_OBJECT_INF( 
-    afw_runtime_inf__AdaptiveConf_requestHandler_adaptor, 
-    impl_runtime_meta__AdaptiveConf_requestHandler_adaptor);
+    afw_runtime_inf__AdaptiveConf_requestHandler_adapter, 
+    impl_runtime_meta__AdaptiveConf_requestHandler_adapter);
 
 
 /* Runtime object map properties for _AdaptiveContentType_ objects. */
@@ -2266,34 +2266,34 @@ AFW_RUNTIME_OBJECT_INF(
 static const afw_runtime_object_map_property_t
 impl_properties__AdaptiveModelCurrentOnAddObject_[] = {
     {
-        &afw_self_s_adaptorId,
+        &afw_self_s_adapterId,
         -1,
         -1,
         &afw_data_type_string_direct,
         AFW_UTF8_LITERAL(""),
         NULL,
         NULL,
-        afw_model_internal_get_current_adaptorId
+        afw_model_internal_get_current_adapterId
     },
     {
-        &afw_self_s_adaptorTypeSpecific,
+        &afw_self_s_adapterTypeSpecific,
         -1,
         -1,
         &afw_data_type_object_direct,
         AFW_UTF8_LITERAL(""),
         NULL,
         NULL,
-        afw_model_internal_get_current_adaptorTypeSpecific
+        afw_model_internal_get_current_adapterTypeSpecific
     },
     {
-        &afw_self_s_mappedAdaptorId,
+        &afw_self_s_mappedAdapterId,
         -1,
         -1,
         &afw_data_type_string_direct,
         AFW_UTF8_LITERAL(""),
         NULL,
         NULL,
-        afw_model_internal_get_current_mappedAdaptorId
+        afw_model_internal_get_current_mappedAdapterId
     },
     {
         &afw_self_s_mappedObjectType,
@@ -2372,34 +2372,34 @@ AFW_RUNTIME_OBJECT_INF(
 static const afw_runtime_object_map_property_t
 impl_properties__AdaptiveModelCurrentOnDeleteObject_[] = {
     {
-        &afw_self_s_adaptorId,
+        &afw_self_s_adapterId,
         -1,
         -1,
         &afw_data_type_string_direct,
         AFW_UTF8_LITERAL(""),
         NULL,
         NULL,
-        afw_model_internal_get_current_adaptorId
+        afw_model_internal_get_current_adapterId
     },
     {
-        &afw_self_s_adaptorTypeSpecific,
+        &afw_self_s_adapterTypeSpecific,
         -1,
         -1,
         &afw_data_type_object_direct,
         AFW_UTF8_LITERAL(""),
         NULL,
         NULL,
-        afw_model_internal_get_current_adaptorTypeSpecific
+        afw_model_internal_get_current_adapterTypeSpecific
     },
     {
-        &afw_self_s_mappedAdaptorId,
+        &afw_self_s_mappedAdapterId,
         -1,
         -1,
         &afw_data_type_string_direct,
         AFW_UTF8_LITERAL(""),
         NULL,
         NULL,
-        afw_model_internal_get_current_mappedAdaptorId
+        afw_model_internal_get_current_mappedAdapterId
     },
     {
         &afw_self_s_mappedObjectType,
@@ -2468,34 +2468,34 @@ AFW_RUNTIME_OBJECT_INF(
 static const afw_runtime_object_map_property_t
 impl_properties__AdaptiveModelCurrentOnGetInitialObjectId_[] = {
     {
-        &afw_self_s_adaptorId,
+        &afw_self_s_adapterId,
         -1,
         -1,
         &afw_data_type_string_direct,
         AFW_UTF8_LITERAL(""),
         NULL,
         NULL,
-        afw_model_internal_get_current_adaptorId
+        afw_model_internal_get_current_adapterId
     },
     {
-        &afw_self_s_adaptorTypeSpecific,
+        &afw_self_s_adapterTypeSpecific,
         -1,
         -1,
         &afw_data_type_object_direct,
         AFW_UTF8_LITERAL(""),
         NULL,
         NULL,
-        afw_model_internal_get_current_adaptorTypeSpecific
+        afw_model_internal_get_current_adapterTypeSpecific
     },
     {
-        &afw_self_s_mappedAdaptorId,
+        &afw_self_s_mappedAdapterId,
         -1,
         -1,
         &afw_data_type_string_direct,
         AFW_UTF8_LITERAL(""),
         NULL,
         NULL,
-        afw_model_internal_get_current_mappedAdaptorId
+        afw_model_internal_get_current_mappedAdapterId
     },
     {
         &afw_self_s_mappedObject,
@@ -2634,34 +2634,34 @@ AFW_RUNTIME_OBJECT_INF(
 static const afw_runtime_object_map_property_t
 impl_properties__AdaptiveModelCurrentOnGetInitialValue_[] = {
     {
-        &afw_self_s_adaptorId,
+        &afw_self_s_adapterId,
         -1,
         -1,
         &afw_data_type_string_direct,
         AFW_UTF8_LITERAL(""),
         NULL,
         NULL,
-        afw_model_internal_get_current_adaptorId
+        afw_model_internal_get_current_adapterId
     },
     {
-        &afw_self_s_adaptorTypeSpecific,
+        &afw_self_s_adapterTypeSpecific,
         -1,
         -1,
         &afw_data_type_object_direct,
         AFW_UTF8_LITERAL(""),
         NULL,
         NULL,
-        afw_model_internal_get_current_adaptorTypeSpecific
+        afw_model_internal_get_current_adapterTypeSpecific
     },
     {
-        &afw_self_s_mappedAdaptorId,
+        &afw_self_s_mappedAdapterId,
         -1,
         -1,
         &afw_data_type_string_direct,
         AFW_UTF8_LITERAL(""),
         NULL,
         NULL,
-        afw_model_internal_get_current_mappedAdaptorId
+        afw_model_internal_get_current_mappedAdapterId
     },
     {
         &afw_self_s_mappedObjectId,
@@ -2790,24 +2790,24 @@ AFW_RUNTIME_OBJECT_INF(
 static const afw_runtime_object_map_property_t
 impl_properties__AdaptiveModelCurrentOnGetObject_[] = {
     {
-        &afw_self_s_adaptorId,
+        &afw_self_s_adapterId,
         -1,
         -1,
         &afw_data_type_string_direct,
         AFW_UTF8_LITERAL(""),
         NULL,
         NULL,
-        afw_model_internal_get_current_adaptorId
+        afw_model_internal_get_current_adapterId
     },
     {
-        &afw_self_s_adaptorTypeSpecific,
+        &afw_self_s_adapterTypeSpecific,
         -1,
         -1,
         &afw_data_type_object_direct,
         AFW_UTF8_LITERAL(""),
         NULL,
         NULL,
-        afw_model_internal_get_current_adaptorTypeSpecific
+        afw_model_internal_get_current_adapterTypeSpecific
     },
     {
         &afw_self_s_mapBackObject,
@@ -2820,14 +2820,14 @@ impl_properties__AdaptiveModelCurrentOnGetObject_[] = {
         afw_model_internal_get_current_mapBackObject
     },
     {
-        &afw_self_s_mappedAdaptorId,
+        &afw_self_s_mappedAdapterId,
         -1,
         -1,
         &afw_data_type_string_direct,
         AFW_UTF8_LITERAL(""),
         NULL,
         NULL,
-        afw_model_internal_get_current_mappedAdaptorId
+        afw_model_internal_get_current_mappedAdapterId
     },
     {
         &afw_self_s_mappedObjectType,
@@ -2896,34 +2896,34 @@ AFW_RUNTIME_OBJECT_INF(
 static const afw_runtime_object_map_property_t
 impl_properties__AdaptiveModelCurrentOnGetProperty_[] = {
     {
-        &afw_self_s_adaptorId,
+        &afw_self_s_adapterId,
         -1,
         -1,
         &afw_data_type_string_direct,
         AFW_UTF8_LITERAL(""),
         NULL,
         NULL,
-        afw_model_internal_get_current_adaptorId
+        afw_model_internal_get_current_adapterId
     },
     {
-        &afw_self_s_adaptorTypeSpecific,
+        &afw_self_s_adapterTypeSpecific,
         -1,
         -1,
         &afw_data_type_object_direct,
         AFW_UTF8_LITERAL(""),
         NULL,
         NULL,
-        afw_model_internal_get_current_adaptorTypeSpecific
+        afw_model_internal_get_current_adapterTypeSpecific
     },
     {
-        &afw_self_s_mappedAdaptorId,
+        &afw_self_s_mappedAdapterId,
         -1,
         -1,
         &afw_data_type_string_direct,
         AFW_UTF8_LITERAL(""),
         NULL,
         NULL,
-        afw_model_internal_get_current_mappedAdaptorId
+        afw_model_internal_get_current_mappedAdapterId
     },
     {
         &afw_self_s_mappedObject,
@@ -3022,34 +3022,34 @@ AFW_RUNTIME_OBJECT_INF(
 static const afw_runtime_object_map_property_t
 impl_properties__AdaptiveModelCurrentOnModifyObject_[] = {
     {
-        &afw_self_s_adaptorId,
+        &afw_self_s_adapterId,
         -1,
         -1,
         &afw_data_type_string_direct,
         AFW_UTF8_LITERAL(""),
         NULL,
         NULL,
-        afw_model_internal_get_current_adaptorId
+        afw_model_internal_get_current_adapterId
     },
     {
-        &afw_self_s_adaptorTypeSpecific,
+        &afw_self_s_adapterTypeSpecific,
         -1,
         -1,
         &afw_data_type_object_direct,
         AFW_UTF8_LITERAL(""),
         NULL,
         NULL,
-        afw_model_internal_get_current_adaptorTypeSpecific
+        afw_model_internal_get_current_adapterTypeSpecific
     },
     {
-        &afw_self_s_mappedAdaptorId,
+        &afw_self_s_mappedAdapterId,
         -1,
         -1,
         &afw_data_type_string_direct,
         AFW_UTF8_LITERAL(""),
         NULL,
         NULL,
-        afw_model_internal_get_current_mappedAdaptorId
+        afw_model_internal_get_current_mappedAdapterId
     },
     {
         &afw_self_s_mappedObjectType,
@@ -3128,34 +3128,34 @@ AFW_RUNTIME_OBJECT_INF(
 static const afw_runtime_object_map_property_t
 impl_properties__AdaptiveModelCurrentOnReplaceObject_[] = {
     {
-        &afw_self_s_adaptorId,
+        &afw_self_s_adapterId,
         -1,
         -1,
         &afw_data_type_string_direct,
         AFW_UTF8_LITERAL(""),
         NULL,
         NULL,
-        afw_model_internal_get_current_adaptorId
+        afw_model_internal_get_current_adapterId
     },
     {
-        &afw_self_s_adaptorTypeSpecific,
+        &afw_self_s_adapterTypeSpecific,
         -1,
         -1,
         &afw_data_type_object_direct,
         AFW_UTF8_LITERAL(""),
         NULL,
         NULL,
-        afw_model_internal_get_current_adaptorTypeSpecific
+        afw_model_internal_get_current_adapterTypeSpecific
     },
     {
-        &afw_self_s_mappedAdaptorId,
+        &afw_self_s_mappedAdapterId,
         -1,
         -1,
         &afw_data_type_string_direct,
         AFW_UTF8_LITERAL(""),
         NULL,
         NULL,
-        afw_model_internal_get_current_mappedAdaptorId
+        afw_model_internal_get_current_mappedAdapterId
     },
     {
         &afw_self_s_mappedObjectType,
@@ -3234,24 +3234,24 @@ AFW_RUNTIME_OBJECT_INF(
 static const afw_runtime_object_map_property_t
 impl_properties__AdaptiveModelCurrentOnRetrieveObjects_[] = {
     {
-        &afw_self_s_adaptorId,
+        &afw_self_s_adapterId,
         -1,
         -1,
         &afw_data_type_string_direct,
         AFW_UTF8_LITERAL(""),
         NULL,
         NULL,
-        afw_model_internal_get_current_adaptorId
+        afw_model_internal_get_current_adapterId
     },
     {
-        &afw_self_s_adaptorTypeSpecific,
+        &afw_self_s_adapterTypeSpecific,
         -1,
         -1,
         &afw_data_type_object_direct,
         AFW_UTF8_LITERAL(""),
         NULL,
         NULL,
-        afw_model_internal_get_current_adaptorTypeSpecific
+        afw_model_internal_get_current_adapterTypeSpecific
     },
     {
         &afw_self_s_mapBackObject,
@@ -3264,14 +3264,14 @@ impl_properties__AdaptiveModelCurrentOnRetrieveObjects_[] = {
         afw_model_internal_get_current_mapBackObject
     },
     {
-        &afw_self_s_mappedAdaptorId,
+        &afw_self_s_mappedAdapterId,
         -1,
         -1,
         &afw_data_type_string_direct,
         AFW_UTF8_LITERAL(""),
         NULL,
         NULL,
-        afw_model_internal_get_current_mappedAdaptorId
+        afw_model_internal_get_current_mappedAdapterId
     },
     {
         &afw_self_s_mappedObjectType,
@@ -3350,34 +3350,34 @@ AFW_RUNTIME_OBJECT_INF(
 static const afw_runtime_object_map_property_t
 impl_properties__AdaptiveModelCurrentOnSetProperty_[] = {
     {
-        &afw_self_s_adaptorId,
+        &afw_self_s_adapterId,
         -1,
         -1,
         &afw_data_type_string_direct,
         AFW_UTF8_LITERAL(""),
         NULL,
         NULL,
-        afw_model_internal_get_current_adaptorId
+        afw_model_internal_get_current_adapterId
     },
     {
-        &afw_self_s_adaptorTypeSpecific,
+        &afw_self_s_adapterTypeSpecific,
         -1,
         -1,
         &afw_data_type_object_direct,
         AFW_UTF8_LITERAL(""),
         NULL,
         NULL,
-        afw_model_internal_get_current_adaptorTypeSpecific
+        afw_model_internal_get_current_adapterTypeSpecific
     },
     {
-        &afw_self_s_mappedAdaptorId,
+        &afw_self_s_mappedAdapterId,
         -1,
         -1,
         &afw_data_type_string_direct,
         AFW_UTF8_LITERAL(""),
         NULL,
         NULL,
-        afw_model_internal_get_current_mappedAdaptorId
+        afw_model_internal_get_current_mappedAdapterId
     },
     {
         &afw_self_s_mappedObjectType,
@@ -3476,34 +3476,34 @@ AFW_RUNTIME_OBJECT_INF(
 static const afw_runtime_object_map_property_t
 impl_properties__AdaptiveModelCurrent_[] = {
     {
-        &afw_self_s_adaptorId,
+        &afw_self_s_adapterId,
         -1,
         -1,
         &afw_data_type_string_direct,
         AFW_UTF8_LITERAL(""),
         NULL,
         NULL,
-        afw_model_internal_get_current_adaptorId
+        afw_model_internal_get_current_adapterId
     },
     {
-        &afw_self_s_adaptorTypeSpecific,
+        &afw_self_s_adapterTypeSpecific,
         -1,
         -1,
         &afw_data_type_object_direct,
         AFW_UTF8_LITERAL(""),
         NULL,
         NULL,
-        afw_model_internal_get_current_adaptorTypeSpecific
+        afw_model_internal_get_current_adapterTypeSpecific
     },
     {
-        &afw_self_s_mappedAdaptorId,
+        &afw_self_s_mappedAdapterId,
         -1,
         -1,
         &afw_data_type_string_direct,
         AFW_UTF8_LITERAL(""),
         NULL,
         NULL,
-        afw_model_internal_get_current_mappedAdaptorId
+        afw_model_internal_get_current_mappedAdapterId
     },
     {
         &afw_self_s_mappedObjectType,
@@ -4578,9 +4578,9 @@ AFW_RUNTIME_OBJECT_INF(
 static const afw_object_inf_t * impl_inf[] = {
     &afw_runtime_inf__AdaptiveAction_,
     &afw_runtime_inf__AdaptiveActions_,
-    &afw_runtime_inf__AdaptiveAdaptorMetrics_,
-    &afw_runtime_inf__AdaptiveAdaptorType_,
-    &afw_runtime_inf__AdaptiveAdaptor_,
+    &afw_runtime_inf__AdaptiveAdapterMetrics_,
+    &afw_runtime_inf__AdaptiveAdapterType_,
+    &afw_runtime_inf__AdaptiveAdapter_,
     &afw_runtime_inf__AdaptiveApplicationComponents_,
     &afw_runtime_inf__AdaptiveApplication_,
     &afw_runtime_inf__AdaptiveAuthorizationControl_,
@@ -4592,10 +4592,10 @@ static const afw_object_inf_t * impl_inf[] = {
     &afw_runtime_inf__AdaptiveCollection_,
     &afw_runtime_inf__AdaptiveConfType_,
     &afw_runtime_inf__AdaptiveConf_,
-    &afw_runtime_inf__AdaptiveConf_adaptor,
-    &afw_runtime_inf__AdaptiveConf_adaptor_afw_runtime,
-    &afw_runtime_inf__AdaptiveConf_adaptor_file,
-    &afw_runtime_inf__AdaptiveConf_adaptor_model,
+    &afw_runtime_inf__AdaptiveConf_adapter,
+    &afw_runtime_inf__AdaptiveConf_adapter_afw_runtime,
+    &afw_runtime_inf__AdaptiveConf_adapter_file,
+    &afw_runtime_inf__AdaptiveConf_adapter_model,
     &afw_runtime_inf__AdaptiveConf_application,
     &afw_runtime_inf__AdaptiveConf_authorizationHandler,
     &afw_runtime_inf__AdaptiveConf_authorizationHandler_script,
@@ -4605,7 +4605,7 @@ static const afw_object_inf_t * impl_inf[] = {
     &afw_runtime_inf__AdaptiveConf_log_standard,
     &afw_runtime_inf__AdaptiveConf_log_syslog,
     &afw_runtime_inf__AdaptiveConf_requestHandler,
-    &afw_runtime_inf__AdaptiveConf_requestHandler_adaptor,
+    &afw_runtime_inf__AdaptiveConf_requestHandler_adapter,
     &afw_runtime_inf__AdaptiveContentType_,
     &afw_runtime_inf__AdaptiveContextType_,
     &afw_runtime_inf__AdaptiveDataTypeGenerate_,

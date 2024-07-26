@@ -36,7 +36,7 @@ struct afw_object_path_property_name_entry_s {
 /**
  * @brief Typedef for parsed object path.
  * 
- * `/<adaptor_id>/<object_type_id>[;own]/[<object_id>][.<property_name>]*`
+ * `/<adapter_id>/<object_type_id>[;own]/[<object_id>][.<property_name>]*`
  *
  */
 struct afw_object_path_parsed_s {
@@ -50,8 +50,8 @@ struct afw_object_path_parsed_s {
     /* @brief Entity part of normalized path. */
     afw_utf8_t entity_path;
 
-    /* @brief `<adaptor_id>` */
-    afw_utf8_t adaptor_id;
+    /* @brief `<adapter_id>` */
+    afw_utf8_t adapter_id;
 
     /* @brief `<object_type_id>` */
     afw_utf8_t object_type_id;
@@ -74,8 +74,8 @@ struct afw_object_path_parsed_s {
     /* @brief Current path was used for substitutions. */
     afw_boolean_t substitution_occurred;
 
-    /* @brief Adaptor id was substituted from current path. */
-    afw_boolean_t substituted_adaptor_id;
+    /* @brief Adapter id was substituted from current path. */
+    afw_boolean_t substituted_adapter_id;
 
     /* @brief Object type id was substituted from current path. */
     afw_boolean_t substituted_object_type_id;
@@ -110,7 +110,7 @@ afw_object_path_property_name_list_get_property(
 
 /**
  * @brief Construct an object path in a specified pool.
- * @param adaptor_id Adaptor id.
+ * @param adapter_id Adapter id.
  * @param object_type_id Object type id.
  * @param object_id Object id.
  * @param p Pool return value will be placed in.
@@ -119,7 +119,7 @@ afw_object_path_property_name_list_get_property(
  */
 AFW_DECLARE(const afw_utf8_t *)
 afw_object_path_make(
-    const afw_utf8_t *adaptor_id,
+    const afw_utf8_t *adapter_id,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
     const afw_pool_t *p,
@@ -169,10 +169,10 @@ afw_object_path_make_property_name_expression(
  *
  * Generally, a path is of the form:
  *
- * `/<adaptorId>/<objectType>/<objectId>` 
+ * `/<adapterId>/<objectType>/<objectId>` 
  *
- * where `<adaptorId>` is an adaptor id of the running instance, `<objectType>`
- * if the object type at path `/<adaptorId>/_AdaptiveObjectType_/<objectType>`,
+ * where `<adapterId>` is an adapter id of the running instance, `<objectType>`
+ * if the object type at path `/<adapterId>/_AdaptiveObjectType_/<objectType>`,
  * and `<objectId>` is the entity object id `<entityObjectId>` followed by zero
  * or more period "." `<propertyName>`.
  *
@@ -186,11 +186,11 @@ afw_object_path_make_property_name_expression(
  *
  * If current_path is specified, the path parameter can include asterisks
  * that are replaced with corresponding parts of current_path. In this case,
- * `<adaptorId>`, `<objectType>`, `<entityObjectId>`, and `<propertyName>` can
+ * `<adapterId>`, `<objectType>`, `<entityObjectId>`, and `<propertyName>` can
  * be an asterisk "*" to use the corresponding part from the current_path, plus
  * double asterisk "**" can be specified for the entire `<objectId>` to use the
  * entire `<objectId>` from the current path.  Also, `<objectId>` can be
- * specified alone without a preceding slash "/" when the `<adaptorId>` and
+ * specified alone without a preceding slash "/" when the `<adapterId>` and
  * `<objectType>`are the same as in the current path.  No substitution occurs in
  * the options part of `<objectType>`.
  */
@@ -206,7 +206,7 @@ afw_object_path_parse(
 /**
  * @brief Parse simple path into ids.
  * @param path to parse.
- * @param adaptor_id return location.
+ * @param adapter_id return location.
  * @param object_type_id return location.
  * @param object_id return location.
  * @param p to use for result.
@@ -223,7 +223,7 @@ afw_object_path_parse(
 AFW_DECLARE(void)
 afw_object_path_parse_simple(
     const afw_utf8_t *path,
-    const afw_utf8_t * *adaptor_id,
+    const afw_utf8_t * *adapter_id,
     const afw_utf8_t * *object_type_id,
     const afw_utf8_t * *object_id,
     const afw_pool_t *p,

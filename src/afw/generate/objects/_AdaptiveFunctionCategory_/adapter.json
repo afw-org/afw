@@ -1,0 +1,5 @@
+{
+    "brief": "Adapter related functions",
+    "category": "adapter",
+    "description": "These functions access adaptive objects via an Adaptive Framework adapter."
+}

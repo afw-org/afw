@@ -4,7 +4,7 @@ import {Switch, Route, useHistory, useLocation} from "react-router";
 import Container from "../common/Container";
 
 import {
-    AdaptorDropdown,
+    AdapterDropdown,
     Breadcrumb,
     Button,
     Checkbox,
@@ -26,7 +26,7 @@ const breadcrumbsRoot = { text: "Objects", link: "/Objects" };
 
 /**
  * The Objects layout provides a generic way to create, edit, and delete objects 
- * in any chosen adaptor.  It uses the application and adaptors to create pickers 
+ * in any chosen adapter.  It uses the application and adapters to create pickers 
  * that the user may select from in order to Retrieve or Create new objects of 
  * a particular Object Type.   
  * 
@@ -44,8 +44,8 @@ const Objects = () => {
     const [buildQueryCriteria, setBuildQueryCriteria] = useState(false);
     const [showHelp, setShowHelp] = useState(false);        
     const [selectedObject, setSelectedObject] = useState(); 
-    const [selectedAdaptor, setSelectedAdaptor] = useState();
-    const [selectedAdaptorId, setSelectedAdaptorId] = useState();
+    const [selectedAdapter, setSelectedAdapter] = useState();
+    const [selectedAdapterId, setSelectedAdapterId] = useState();
 
     const breadcrumbItems = useBreadcrumbs(breadcrumbsRoot);
     const {application} = useAppCore();
@@ -59,27 +59,27 @@ const Objects = () => {
     /**
      * parseApplication()
      *
-     * This routine parses out the application object and uses the configured defaultAdaptorId
-     * as the default chosen adaptorId.
+     * This routine parses out the application object and uses the configured defaultAdapterId
+     * as the default chosen adapterId.
      */
     useEffect(() => {        
         if (pathname && pathname.split("/").length > 2) 
-            setSelectedAdaptorId(pathname.split("/")[2]);
+            setSelectedAdapterId(pathname.split("/")[2]);
         else if (application)
-            setSelectedAdaptorId(application.getPropertyValue("defaultAdaptorId"));
+            setSelectedAdapterId(application.getPropertyValue("defaultAdapterId"));
         else 
             // default to afw, if path and application do not specify
-            setSelectedAdaptorId("afw");
+            setSelectedAdapterId("afw");
     }, [pathname, application]);
 
     /**
-     * Callbacks fired when the user selects an adaptorId or an objectType.  For now, we
+     * Callbacks fired when the user selects an adapterId or an objectType.  For now, we
      * simply save them away in our state, but we may want to do additional things later 
      * on.
      */
-    const onSelectAdaptorId = (selectedAdaptorId, selectedAdaptor) => {
-        setSelectedAdaptorId(selectedAdaptorId);
-        setSelectedAdaptor(selectedAdaptor);
+    const onSelectAdapterId = (selectedAdapterId, selectedAdapter) => {
+        setSelectedAdapterId(selectedAdapterId);
+        setSelectedAdapter(selectedAdapter);
     };
 
     const onSelectObjectType = (selectedObjectTypeId, selectedObjectTypeObject) => {
@@ -94,7 +94,7 @@ const Objects = () => {
      * the React Router code will be leveraged to retrieve the list of objects.
      */
     const onRetrieve = () => {
-        history.push("/Objects/" + selectedAdaptorId + "/" + selectedObjectTypeId + "?" + queryCriteria);
+        history.push("/Objects/" + selectedAdapterId + "/" + selectedObjectTypeId + "?" + queryCriteria);
     };
     
     /**
@@ -104,7 +104,7 @@ const Objects = () => {
      * the React Router code will be leveraged to get the object to be edited.
      */
     const onGet = () => {
-        history.push("/Objects/" + selectedAdaptorId + "/" + selectedObjectTypeId + "/" + objectId);
+        history.push("/Objects/" + selectedAdapterId + "/" + selectedObjectTypeId + "/" + objectId);
     };
     
     /**
@@ -134,17 +134,17 @@ const Objects = () => {
      * This renders the main "Routing" table for all Object operations.  Depending on the url, the user
      * is routed to the appropriate component.  Valid url paths include:
      * 
-     *      /Objects/:adaptorId/:objectTypeId/:objectId
+     *      /Objects/:adapterId/:objectTypeId/:objectId
      * 
      *          This links directly to an object.
      * 
-     *      /Objects/:adaptorId/:objectTypeId?queryString
+     *      /Objects/:adapterId/:objectTypeId?queryString
      * 
      *          This links to all of the objects for a given objectType with an appropriate queryString.
      * 
      *      /Objects/
      * 
-     *          This is the default route, which allows the user to select an adaptorId and objectType
+     *          This is the default route, which allows the user to select an adapterId and objectType
      *          and perform a search or get operation.
      */
     return (
@@ -160,15 +160,15 @@ const Objects = () => {
                 </div>
                 <div style={{ flex: 1, overflow: "auto" }}>
                     <Switch>                       
-                        <Route path={"/Objects/:adaptorId/:objectTypeId"} render={(props) => {                            
-                            let {adaptorId, objectTypeId} = props.match.params;
+                        <Route path={"/Objects/:adapterId/:objectTypeId"} render={(props) => {                            
+                            let {adapterId, objectTypeId} = props.match.params;
 
-                            adaptorId = decodeURIComponent(adaptorId);
+                            adapterId = decodeURIComponent(adapterId);
                             objectTypeId = decodeURIComponent(objectTypeId);
 
                             return (
                                 <ObjectsTable
-                                    adaptorId={adaptorId}
+                                    adapterId={adapterId}
                                     objectTypeId={objectTypeId}     
                                     objectTypeObject={selectedObjectTypeObject}     
                                     onSelectObject={setSelectedObject}                  
@@ -190,14 +190,14 @@ const Objects = () => {
                                                 },                                  
                                                 contains: 
                                                     <Tooltip 
-                                                        content={selectedAdaptor?.properties?.description || ""}
+                                                        content={selectedAdapter?.properties?.description || ""}
                                                         delay={2000}
                                                         target={
                                                             <div>
-                                                                <AdaptorDropdown 
-                                                                    id="admin-objects-adaptor-dropdown"
-                                                                    value={selectedAdaptorId}
-                                                                    onChanged={onSelectAdaptorId}
+                                                                <AdapterDropdown 
+                                                                    id="admin-objects-adapter-dropdown"
+                                                                    value={selectedAdapterId}
+                                                                    onChanged={onSelectAdapterId}
                                                                 />                                                                
                                                             </div>
                                                         }
@@ -223,14 +223,14 @@ const Objects = () => {
                                                             <div>
                                                                 <ObjectTypeDropdown      
                                                                     id="admin-objects-objectType-dropdown"                                                                 
-                                                                    adaptorId={selectedAdaptorId}
+                                                                    adapterId={selectedAdapterId}
                                                                     label="Object Type"
                                                                     description="Select an Object Type Id."                                
                                                                     value={selectedObjectTypeId}
                                                                     onChanged={onSelectObjectType}        
                                                                     requireEntity={true}     
                                                                     onError={(error) => notification({ message: error, type: "error" })}    
-                                                                    defaultFirstNonAdaptive={(selectedAdaptorId !== "afw")}                                                   
+                                                                    defaultFirstNonAdaptive={(selectedAdapterId !== "afw")}                                                   
                                                                 />                                                                
                                                             </div>
                                                         }
@@ -314,7 +314,7 @@ const Objects = () => {
                                                                         icon="search"
                                                                         size="small"
                                                                         onClick={onRetrieve}
-                                                                        disabled={!(selectedAdaptorId && selectedObjectTypeId)}
+                                                                        disabled={!(selectedAdapterId && selectedObjectTypeId)}
                                                                         tooltip="Retrieve Objects"
                                                                     /> :
                                                                     <Button                                             
@@ -325,7 +325,7 @@ const Objects = () => {
                                                                         icon="search"
                                                                         size="small"
                                                                         onClick={onGet}     
-                                                                        disabled={!(selectedAdaptorId && selectedObjectTypeId && objectId)}       
+                                                                        disabled={!(selectedAdapterId && selectedObjectTypeId && objectId)}       
                                                                         tooltip="Get Object"                                                            
                                                                     />
                                                             }                                                            
@@ -349,7 +349,7 @@ const Objects = () => {
                                         disabled={selectedObjectTypeObject ? false : true}
                                         objectTypeObject={selectedObjectTypeObject}
                                         onDismiss={() => setBuildQueryCriteria(false)}                             
-                                        adaptorId={selectedAdaptorId}
+                                        adapterId={selectedAdapterId}
                                         objectTypeId={selectedObjectTypeId ? selectedObjectTypeId : ""}
                                         queryCriteria={queryCriteria}
                                         onApply={(queryCriteria) => {
@@ -359,7 +359,7 @@ const Objects = () => {
                                     />
                                     <ObjectNew 
                                         open={showNewObject}
-                                        adaptorId={selectedAdaptorId}
+                                        adapterId={selectedAdapterId}
                                         objectTypeId={selectedObjectTypeId ? selectedObjectTypeId : ""}
                                         onAddObject={onAddObject}
                                         onDismiss={() => setShowNewObject(false)}
@@ -373,7 +373,7 @@ const Objects = () => {
                     open={showHelp}
                     onClose={() => setShowHelp(false)}
                     routes={ContextualHelpRoutes}
-                    selectedAdaptorId={selectedAdaptorId}
+                    selectedAdapterId={selectedAdapterId}
                     selectedObjectTypeId={selectedObjectTypeId}
                     selectedObject={selectedObject} 
                 />     

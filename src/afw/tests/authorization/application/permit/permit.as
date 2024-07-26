@@ -10,6 +10,6 @@
 //? expect: 0
 //? source: ...
 
-const o: object = get_object("afw", "_AdaptiveAdaptor_", "afw");
+const o: object = get_object("afw", "_AdaptiveAdapter_", "afw");
 
 return 0;

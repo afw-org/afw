@@ -42,7 +42,7 @@ const buildCustomTree = (model, treeIndex) => {
     const customTree = [];
 
     const {custom, modelId} = model.getPropertyValues();
-    const adaptorId = model.getAdaptorId();
+    const adapterId = model.getAdapterId();
 
     if (custom) {
         if (custom.getProperties()) {
@@ -55,7 +55,7 @@ const buildCustomTree = (model, treeIndex) => {
                     "data-testid": modelId + ".custom." + name,
                     type: "custom",
                     label: name,
-                    uri: buildUri([adaptorId, modelId, "custom", name]),
+                    uri: buildUri([adapterId, modelId, "custom", name]),
                     propertyName: ["custom", name],
                     icon: "Variable",
                 });
@@ -76,11 +76,11 @@ const buildCustomTree = (model, treeIndex) => {
  */
 const buildObjectTypeTree = (model, treeIndex, objectType) => {
 
-    const adaptorId = model.getAdaptorId();
+    const adapterId = model.getAdapterId();
     const modelId = model.getPropertyValue("modelId");
     const name = objectType.getName();
     const keyPrefix = modelId + ".objectTypes." + name;    
-    const uriPrefix = [ adaptorId, modelId, "objectTypes", name ];
+    const uriPrefix = [ adapterId, modelId, "objectTypes", name ];
 
     const node = {
         key: keyPrefix,
@@ -233,10 +233,10 @@ const buildObjectTypeTree = (model, treeIndex, objectType) => {
  */
 const buildPropertyTypeTree = (model, treeIndex, objectType, propertyType) => {
 
-    const adaptorId = model.getAdaptorId();
+    const adapterId = model.getAdapterId();
     const modelId = model.getPropertyValue("modelId");
     const keyPrefix = modelId + ".objectTypes." + objectType.getName() + ".propertyTypes." + propertyType.getName();
-    const uriPrefix = [ adaptorId, modelId, "objectTypes", objectType.getName(), "propertyTypes", propertyType.getName() ];
+    const uriPrefix = [ adapterId, modelId, "objectTypes", objectType.getName(), "propertyTypes", propertyType.getName() ];
     const propertyNamePrefix = [ "objectTypes", objectType.getName(), "propertyTypes", propertyType.getName() ];
 
     const node = {
@@ -390,7 +390,7 @@ const buildObjectTypesTree = (model, treeIndex) => {
  */
 const buildPropertyTypesTree = (model, treeIndex) => {
 
-    const adaptorId = model.getAdaptorId();
+    const adapterId = model.getAdapterId();
     const modelId = model.getPropertyValue("modelId");
     const propertyTypesTree = [];    
 
@@ -399,7 +399,7 @@ const buildPropertyTypesTree = (model, treeIndex) => {
         if (propertyTypes.getProperties()) {
             propertyTypes.getProperties().forEach(p => {
                 const keyPrefix = modelId + ".propertyTypes." + p.getName();
-                const uriPrefix = [ adaptorId, modelId, "propertyTypes", p.getName() ];
+                const uriPrefix = [ adapterId, modelId, "propertyTypes", p.getName() ];
 
                 const newNode = {
                     key: keyPrefix,
@@ -418,7 +418,7 @@ const buildPropertyTypesTree = (model, treeIndex) => {
                             children: []
                         }
                     ],
-                    uri: buildUri([ adaptorId, modelId, "propertyTypes", p.getName() ]),                                      
+                    uri: buildUri([ adapterId, modelId, "propertyTypes", p.getName() ]),                                      
                 };
 
                 treeIndex[keyPrefix] = propertyTypesTree[propertyTypesTree.length - 1];
@@ -551,7 +551,7 @@ export const ModelTree = ({ model, reload }) => {
         defaultPanelSize,
     } = state;
 
-    const adaptorId = model.getAdaptorId();
+    const adapterId = model.getAdapterId();
     const modelId = model.getPropertyValue("modelId");
 
     /*
@@ -570,7 +570,7 @@ export const ModelTree = ({ model, reload }) => {
                 label: "Custom Variables",
                 propertyName: ["custom"],
                 children: customTree,
-                uri: buildUri([ adaptorId, modelId, "custom" ]),
+                uri: buildUri([ adapterId, modelId, "custom" ]),
             });
             treeIndex[modelId + ".custom"] = modelTree[0];
 
@@ -582,7 +582,7 @@ export const ModelTree = ({ model, reload }) => {
                 label: "Object Types",
                 propertyName: ["objectTypes"],
                 children: objectTypesTree,
-                uri: buildUri([ adaptorId, modelId, "objectTypes" ]),
+                uri: buildUri([ adapterId, modelId, "objectTypes" ]),
             });
             treeIndex[modelId + ".objectTypes"] = modelTree[1];
 
@@ -594,7 +594,7 @@ export const ModelTree = ({ model, reload }) => {
                 label: "Property Types",
                 propertyName: ["propertyTypes"],
                 children: propertyTypesTree,
-                uri: buildUri([ adaptorId, modelId, "propertyTypes" ]),                
+                uri: buildUri([ adapterId, modelId, "propertyTypes" ]),                
             });
             treeIndex[modelId + ".propertyTypes"] = modelTree[2];         
             
@@ -604,13 +604,13 @@ export const ModelTree = ({ model, reload }) => {
                 type: "model",
                 label: modelId,
                 children: modelTree,
-                uri: buildUri([ adaptorId, modelId ]),
+                uri: buildUri([ adapterId, modelId ]),
             };
             treeIndex[modelId] = tree;
 
             dispatch({ type: "INIT", tree: [ tree ], modelTree, treeIndex });            
         }
-    }, [model, adaptorId, modelId, reload]);
+    }, [model, adapterId, modelId, reload]);
 
     /*
      * When the location url changes, set the expanded nodes, and selected node, as appropriate.
@@ -659,7 +659,7 @@ export const ModelTree = ({ model, reload }) => {
             label: "Custom Variables",
             propertyName: ["custom"],
             children: customTree,
-            uri: buildUri([adaptorId, modelId, "custom"]),
+            uri: buildUri([adapterId, modelId, "custom"]),
         });
         treeIndex[modelId + ".custom"] = modelTree[0];
 
@@ -671,7 +671,7 @@ export const ModelTree = ({ model, reload }) => {
             label: "Object Types",
             propertyName: ["objectTypes"],
             children: objectTypesTree,
-            uri: buildUri([adaptorId, modelId, "objectTypes"]),
+            uri: buildUri([adapterId, modelId, "objectTypes"]),
         });
         treeIndex[modelId + ".objectTypes"] = modelTree[1];
 
@@ -683,7 +683,7 @@ export const ModelTree = ({ model, reload }) => {
             label: "Property Types",
             propertyName: ["propertyTypes"],
             children: propertyTypesTree,
-            uri: buildUri([adaptorId, modelId, "propertyTypes"]),
+            uri: buildUri([adapterId, modelId, "propertyTypes"]),
         });
         treeIndex[modelId + ".propertyTypes"] = modelTree[2];
 
@@ -693,7 +693,7 @@ export const ModelTree = ({ model, reload }) => {
             type: "model",
             label: modelId,
             children: modelTree,            
-            uri: buildUri([adaptorId, modelId]),
+            uri: buildUri([adapterId, modelId]),
         };
         treeIndex[modelId] = tree;
 

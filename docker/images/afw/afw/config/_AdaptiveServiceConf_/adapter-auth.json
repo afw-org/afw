@@ -1,0 +1,14 @@
+{
+    "serviceId":"adapter-auth",
+    "startup":"immediate",
+    "conf":{
+        "type":"adapter",
+        "adapterType":"file",
+        "isPolicyLocation":true,
+        "root":"/afw/auth/",
+        "contentType":"json",
+        "filenameSuffix":".json",
+        "description":"Stores adaptive authorization policies.",
+        "adapterId":"auth"
+    }
+}

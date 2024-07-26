@@ -1,0 +1,4 @@
+{
+    "name": "afw_adapter_key_value",
+    "description": "Adapter implementation of key value interface."
+}

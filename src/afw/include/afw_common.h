@@ -153,8 +153,8 @@
 
 AFW_BEGIN_DECLARES
 
-/** Adaptive Framework's core adaptor id. */
-#define AFW_ADAPTOR_ID "afw"
+/** Adaptive Framework's core adapter id. */
+#define AFW_ADAPTER_ID "afw"
 
 /** @brief Evaluate x and quote the results. */
 #define AFW_STRINGIFY(x) AFW_STRINGIFY_x(x)
@@ -814,7 +814,7 @@ typedef struct afw_object_meta_s {
      * This is the URI of the object.  At a minimum, this is the relative URI of
      * the object within the current adaptive framework environment:
      *
-     * /<adaptor id>/<object type id>/<object id>
+     * /<adapter id>/<object type id>/<object id>
      *
      * Use these functions to access:
      *     . afw_object_meta_get_id()
@@ -843,7 +843,7 @@ typedef struct afw_object_meta_s {
  * bad_request              - Something about the request was bad.
  *
  * query_to_complex         - The query is too complex for the particular
- *                           adaptor and/or index.
+ *                           adapter and/or index.
  *
  * request_syntax           - A error occurred while parsing the request.
  *
@@ -1018,7 +1018,7 @@ typedef enum afw_log_priority_e {
 } afw_log_priority_t;
 
 
-/** @brief Typedef for afw_adaptor_journal get_entry options enum.
+/** @brief Typedef for afw_adapter_journal get_entry options enum.
  *
  * The options use zero of more of these parameters:
  *
@@ -1037,10 +1037,10 @@ typedef enum afw_log_priority_e {
  * entryCursor  | If a journal entry is retrieved, get_entry() will set this Sting property to its objectId, also know as its entryCursor.
  * reissue      | If the object retrieved is a reissue of one previously retrieved, this Boolean property will be set to true.
  */
-typedef enum afw_adaptor_journal_option_e {
+typedef enum afw_adapter_journal_option_e {
 
     /**
-     * @brief afw_adaptor_journal get_entry option get_first
+     * @brief afw_adapter_journal get_entry option get_first
      *
      * Get first journal entry. Parameters entry_cursor, consumer_id, and
      * limit are ignored.
@@ -1048,10 +1048,10 @@ typedef enum afw_adaptor_journal_option_e {
      * This option will set response properties "entry" and "entryCursor" if
      * there is a first entry to return.
      */
-    afw_adaptor_journal_option_get_first,
+    afw_adapter_journal_option_get_first,
  
     /**
-     * @brief afw_adaptor_journal get_entry option get_by_cursor
+     * @brief afw_adapter_journal get_entry option get_by_cursor
      *
      * Get journal entry specified by entry_cursor parameter.  Parameters
      * consumer_id and limit are ignored.
@@ -1060,10 +1060,10 @@ typedef enum afw_adaptor_journal_option_e {
      * there is an entry to retrieve.  If an entry with the supplied
      * entryCursor does not exist, a not_found error is thrown.
      */
-    afw_adaptor_journal_option_get_by_cursor,
+    afw_adapter_journal_option_get_by_cursor,
     
     /**
-     * @brief afw_adaptor_journal get_entry option get_next_after_cursor
+     * @brief afw_adapter_journal get_entry option get_next_after_cursor
      *
      * Get the next journal entry after the one specified by the entry_cursor
      * parameter.  Parameters consumer_id and limit are ignored.
@@ -1071,10 +1071,10 @@ typedef enum afw_adaptor_journal_option_e {
      * This option will set response properties "entry" and "entryCursor" if
      * there is next entry to retrieve.
      */
-    afw_adaptor_journal_option_get_next_after_cursor,
+    afw_adapter_journal_option_get_next_after_cursor,
     
     /**
-     * @brief afw_adaptor_journal get_entry option get_next_for_consumer
+     * @brief afw_adapter_journal get_entry option get_next_for_consumer
      *
      * Get the next journal entry for a consumer referenced by the
      * consumer_id parameter.  The entry_cursor parameter is ignored.
@@ -1106,10 +1106,10 @@ typedef enum afw_adaptor_journal_option_e {
      * If no applicable entry is found, advanceCursor is set to the last
      * entry scanned.
      */
-    afw_adaptor_journal_option_get_next_for_consumer,
+    afw_adapter_journal_option_get_next_for_consumer,
     
     /**
-     * @brief afw_adaptor_journal get_entry option
+     * @brief afw_adapter_journal get_entry option
      *     get_next_for_consumer_after_cursor
      *
      * Get the next journal entry for a consumer referenced by the
@@ -1129,10 +1129,10 @@ typedef enum afw_adaptor_journal_option_e {
      * Unlike option get_next_for_consumer, no other properties are
      * referenced or modified.
      */
-    afw_adaptor_journal_option_get_next_for_consumer_after_cursor,
+    afw_adapter_journal_option_get_next_for_consumer_after_cursor,
  
     /**
-     * @brief afw_adaptor_journal get_entry option advance_cursor_for_consumer
+     * @brief afw_adapter_journal get_entry option advance_cursor_for_consumer
      *
      * Update the advance cursor for a consumer referenced by the
      * consumer_id parameter.  The entry_cursor parameter is ignored.
@@ -1156,13 +1156,13 @@ typedef enum afw_adaptor_journal_option_e {
      * If an new applicable entry is found or if the limit is met, the
      * advanceCursor property is set to the currently scanned entry's cursor.
      */
-    afw_adaptor_journal_option_advance_cursor_for_consumer
+    afw_adapter_journal_option_advance_cursor_for_consumer
     
-} afw_adaptor_journal_option_t;
+} afw_adapter_journal_option_t;
 
 
 /** 
- * @brief Typedef for afw_adaptor_session_object callback.
+ * @brief Typedef for afw_adapter_session_object callback.
  * @param object pointer or NULL.
  * @param context supplied with callback
  * @param xctx of caller
@@ -1174,13 +1174,13 @@ typedef enum afw_adaptor_journal_option_e {
  * return false so that it will continue to called until there are no more
  * objects.
  * 
- * This is the callback passed to afw_adaptor_session_retrieve_objects() and
- * afw_adaptor_session_get_object().
+ * This is the callback passed to afw_adapter_session_retrieve_objects() and
+ * afw_adapter_session_get_object().
  * 
- * For afw_adaptor_session_retrieve_objects(), it is called each time an object
+ * For afw_adapter_session_retrieve_objects(), it is called each time an object
  * is retrieved and once with an object pointer when finished.
  *
- * For afw_adaptor_session_get_object(), it is called once, either with the
+ * For afw_adapter_session_get_object(), it is called once, either with the
  * object retrieved or NULL if not found.
  *
  * The callback function should call afw_object_release() on object once
@@ -1623,11 +1623,11 @@ struct afw_environment_s {
     /** @brief Environment variables at environment create. */
     const afw_object_t *initial_environment_variables;
 
-    /** @brief Adaptive framework core adaptor. */
-    const afw_adaptor_t *afw_adaptor;
+    /** @brief Adaptive framework core adapter. */
+    const afw_adapter_t *afw_adapter;
 
-    /** @brief Adaptor for application.confAdaptorId or NULL. */
-    const afw_adaptor_t *conf_adaptor;
+    /** @brief Adapter for application.confAdapterId or NULL. */
+    const afw_adapter_t *conf_adapter;
 
     /** @brief The id of the application. */
     afw_utf8_t application_id;
@@ -1641,8 +1641,8 @@ struct afw_environment_s {
     /** @brief  rootFilePaths - /afw/_AdaptiveApplication_/current/rootFilePaths. */
     const afw_object_t *root_file_paths;
 
-    /** @brief Custom layout adaptor or NULL. */
-    const afw_utf8_t *layout_adaptor_id;
+    /** @brief Custom layout adapter or NULL. */
+    const afw_utf8_t *layout_adapter_id;
 
     /** @brief Director log.  This log will direct to other logs. */
     const afw_log_t *log;
@@ -1704,8 +1704,8 @@ struct afw_environment_s {
     /** @brief Lock used internal to afw_pool.c. */
     const afw_lock_t *multithreaded_pool_lock;
     
-    /** @brief Lock for protecting changes to adaptor id anchors. */
-    const afw_lock_t *adaptor_id_anchor_lock;
+    /** @brief Lock for protecting changes to adapter id anchors. */
+    const afw_lock_t *adapter_id_anchor_lock;
     
     /**
      * @brief Lock for protecting changes to authorization handler id
@@ -1923,14 +1923,14 @@ struct afw_xctx_s {
     const afw_xctx_qualifier_stack_t *qualifier_stack;
 
     /**
-     * Internal struct used by adaptors for this xctx. May be NULL.
+     * Internal struct used by adapters for this xctx. May be NULL.
      */
-    afw_adaptor_xctx_internal_t *adaptor_xctx_internal;
+    afw_adapter_xctx_internal_t *adapter_xctx_internal;
 
     /**
      * The execution context (xctx) cache.
      */
-    afw_adaptor_internal_cache_t *cache;
+    afw_adapter_internal_cache_t *cache;
 
     /**
      * The local dateTime when execution context was created.

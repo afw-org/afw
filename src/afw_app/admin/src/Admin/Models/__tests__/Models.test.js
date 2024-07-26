@@ -121,9 +121,9 @@ describe("Models Tests", () => {
 
         server.use(
             rest.post("/afw", (req, res, ctx) => {
-                const {function: functionId, adaptorId} = req.body;
+                const {function: functionId, adapterId} = req.body;
 
-                if (functionId === "retrieve_objects" && adaptorId === "xyz") { 
+                if (functionId === "retrieve_objects" && adapterId === "xyz") { 
                     mswPostCallback("/afw", req, res, ctx);
 
                     return res(
@@ -132,7 +132,7 @@ describe("Models Tests", () => {
                             status: "error",
                             error: {
                                 error: true,
-                                message: "Error opening /afw/config/_AdaptiveServiceConf_/adaptor-xyz.json"                                
+                                message: "Error opening /afw/config/_AdaptiveServiceConf_/adapter-xyz.json"                                
                             }
                         })
                     );

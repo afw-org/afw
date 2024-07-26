@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * Adaptive Framework LMDB Adaptor Header
+ * Adaptive Framework LMDB Adapter Header
  *
  * Copyright (c) 2010-2024 Clemson University
  *
@@ -12,17 +12,17 @@
 #include "afw_minimal.h"
 
 /**
- * @defgroup afw_lmdb Lightning Memory-mapped Database Adaptor
+ * @defgroup afw_lmdb Lightning Memory-mapped Database Adapter
  * @ingroup afw_included_extensions
  * 
- * LMDB adaptor.
+ * LMDB adapter.
  * 
  * @{
  */
 
 /**
  * @file afw_lmdb.h
- * @brief Adaptive Framework LMDB Adaptor
+ * @brief Adaptive Framework LMDB Adapter
  */
 
 AFW_BEGIN_DECLARES
@@ -39,7 +39,7 @@ AFW_BEGIN_DECLARES
 /** lmdb_index rv source id */
 #define AFW_ERROR_RV_SOURCE_ID_Z_lmdb_index "lmdb_index"
 
-/** Prefix for lmdb adaptor synthetic names quoted string. */
+/** Prefix for lmdb adapter synthetic names quoted string. */
 #define AFW_LMDB_Q_OBJECT_TYPE_SYNTHETIC_PREFIX "_lmdb"
 
 AFW_END_DECLARES

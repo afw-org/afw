@@ -511,7 +511,7 @@ afw_object_meta_set_parent_paths(
 AFW_DEFINE(void)
 afw_object_meta_set_ids(
     const afw_object_t *instance,
-    const afw_utf8_t *adaptor_id,
+    const afw_utf8_t *adapter_id,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
     afw_xctx_t *xctx)
@@ -522,14 +522,14 @@ afw_object_meta_set_ids(
     IMPL_ASSERT_META_MUTABLE(instance, xctx);
     AFW_OBJECT_ASSERT_ENTITY(instance, xctx);
 
-    adaptor_id = afw_utf8_clone(adaptor_id, instance->p, xctx);
+    adapter_id = afw_utf8_clone(adapter_id, instance->p, xctx);
     object_type_id = afw_utf8_clone(object_type_id, instance->p, xctx);
     object_id = afw_utf8_clone(object_id, instance->p, xctx);
 
     self->meta.object_type_uri = object_type_id;
     self->meta.id = object_id;
     path = afw_object_path_make(
-        adaptor_id, object_type_id, object_id, instance->p, xctx);
+        adapter_id, object_type_id, object_id, instance->p, xctx);
     self->meta.object_uri = path;
 }
 
@@ -543,7 +543,7 @@ afw_object_meta_set_ids_using_path(
     afw_xctx_t *xctx)
 {
     afw_object_t *self = (afw_object_t *)instance;
-    const afw_utf8_t *adaptor_id;
+    const afw_utf8_t *adapter_id;
     const afw_utf8_t *object_type_id;
     const afw_utf8_t *object_id;
 
@@ -551,12 +551,12 @@ afw_object_meta_set_ids_using_path(
 
     path = afw_utf8_clone(path, instance->p, xctx);
     afw_object_path_parse_simple(path,
-        &adaptor_id, &object_type_id, &object_id,
+        &adapter_id, &object_type_id, &object_id,
         instance->p, xctx);
     self->meta.object_type_uri = object_type_id;
     self->meta.id = object_id;
     self->meta.object_uri = path;
-    if (afw_utf8_equal(adaptor_id, afw_s_a_asterisk) ||
+    if (afw_utf8_equal(adapter_id, afw_s_a_asterisk) ||
         afw_utf8_equal(object_type_id, afw_s_a_asterisk) ||
         afw_utf8_equal(object_id, afw_s_a_asterisk))
     {

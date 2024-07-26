@@ -2,8 +2,8 @@
     "result": [
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveService_/adaptor-models",
-                "objectId": "adaptor-models",
+                "path": "/afw/_AdaptiveService_/adapter-models",
+                "objectId": "adapter-models",
                 "objectType": "_AdaptiveService_"
             },
             "canRestart": true,
@@ -14,19 +14,19 @@
             "status": "running",
             "startupDescription": "Service is started immediately and can be stopped and started manually.",
             "startup": "immediate",
-            "confPropertyObjectType": "_AdaptiveConf_adaptor.file",
-            "uriRelated": "/afw/_AdaptiveAdaptor_/models",
+            "confPropertyObjectType": "_AdaptiveConf_adapter.file",
+            "uriRelated": "/afw/_AdaptiveAdapter_/models",
             "confSubtype": "file",
             "confId": "models",
-            "serviceType": "adaptor",
-            "serviceId": "adaptor-models",
-            "sourceLocation": "/conf/_AdaptiveServiceConf_/adaptor-models",
-            "uriServiceConf": "/conf/_AdaptiveServiceConf_/adaptor-models"
+            "serviceType": "adapter",
+            "serviceId": "adapter-models",
+            "sourceLocation": "/conf/_AdaptiveServiceConf_/adapter-models",
+            "uriServiceConf": "/conf/_AdaptiveServiceConf_/adapter-models"
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveService_/adaptor-auth",
-                "objectId": "adaptor-auth",
+                "path": "/afw/_AdaptiveService_/adapter-auth",
+                "objectId": "adapter-auth",
                 "objectType": "_AdaptiveService_"
             },
             "canRestart": true,
@@ -37,19 +37,19 @@
             "status": "running",
             "startupDescription": "Service is started immediately and can be stopped and started manually.",
             "startup": "immediate",
-            "confPropertyObjectType": "_AdaptiveConf_adaptor.file",
-            "uriRelated": "/afw/_AdaptiveAdaptor_/auth",
+            "confPropertyObjectType": "_AdaptiveConf_adapter.file",
+            "uriRelated": "/afw/_AdaptiveAdapter_/auth",
             "confSubtype": "file",
             "confId": "auth",
-            "serviceType": "adaptor",
-            "serviceId": "adaptor-auth",
-            "sourceLocation": "/conf/_AdaptiveServiceConf_/adaptor-auth",
-            "uriServiceConf": "/conf/_AdaptiveServiceConf_/adaptor-auth"
+            "serviceType": "adapter",
+            "serviceId": "adapter-auth",
+            "sourceLocation": "/conf/_AdaptiveServiceConf_/adapter-auth",
+            "uriServiceConf": "/conf/_AdaptiveServiceConf_/adapter-auth"
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveService_/adaptor-tier",
-                "objectId": "adaptor-tier",
+                "path": "/afw/_AdaptiveService_/adapter-tier",
+                "objectId": "adapter-tier",
                 "objectType": "_AdaptiveService_"
             },
             "canRestart": true,
@@ -60,14 +60,14 @@
             "status": "running",
             "startupDescription": "Service is started immediately and can be stopped and started manually.",
             "startup": "immediate",
-            "confPropertyObjectType": "_AdaptiveConf_adaptor.model",
-            "uriRelated": "/afw/_AdaptiveAdaptor_/tier",
+            "confPropertyObjectType": "_AdaptiveConf_adapter.model",
+            "uriRelated": "/afw/_AdaptiveAdapter_/tier",
             "confSubtype": "model",
             "confId": "tier",
-            "serviceType": "adaptor",
-            "serviceId": "adaptor-tier",
-            "sourceLocation": "/conf/_AdaptiveServiceConf_/adaptor-tier",
-            "uriServiceConf": "/conf/_AdaptiveServiceConf_/adaptor-tier"
+            "serviceType": "adapter",
+            "serviceId": "adapter-tier",
+            "sourceLocation": "/conf/_AdaptiveServiceConf_/adapter-tier",
+            "uriServiceConf": "/conf/_AdaptiveServiceConf_/adapter-tier"
         },
         {
             "_meta_": {
@@ -94,8 +94,8 @@
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveService_/adaptor-files",
-                "objectId": "adaptor-files",
+                "path": "/afw/_AdaptiveService_/adapter-files",
+                "objectId": "adapter-files",
                 "objectType": "_AdaptiveService_"
             },
             "canRestart": true,
@@ -106,14 +106,14 @@
             "status": "running",
             "startupDescription": "Service is started immediately and can be stopped and started manually.",
             "startup": "immediate",
-            "confPropertyObjectType": "_AdaptiveConf_adaptor.file",
-            "uriRelated": "/afw/_AdaptiveAdaptor_/files",
+            "confPropertyObjectType": "_AdaptiveConf_adapter.file",
+            "uriRelated": "/afw/_AdaptiveAdapter_/files",
             "confSubtype": "file",
             "confId": "files",
-            "serviceType": "adaptor",
-            "serviceId": "adaptor-files",
-            "sourceLocation": "/conf/_AdaptiveServiceConf_/adaptor-files",
-            "uriServiceConf": "/conf/_AdaptiveServiceConf_/adaptor-files"
+            "serviceType": "adapter",
+            "serviceId": "adapter-files",
+            "sourceLocation": "/conf/_AdaptiveServiceConf_/adapter-files",
+            "uriServiceConf": "/conf/_AdaptiveServiceConf_/adapter-files"
         },
         {
             "_meta_": {
@@ -140,8 +140,8 @@
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveService_/adaptor-lmdb",
-                "objectId": "adaptor-lmdb",
+                "path": "/afw/_AdaptiveService_/adapter-lmdb",
+                "objectId": "adapter-lmdb",
                 "objectType": "_AdaptiveService_"
             },
             "canRestart": true,
@@ -152,19 +152,19 @@
             "status": "running",
             "startupDescription": "Service is started immediately and can be stopped and started manually.",
             "startup": "immediate",
-            "confPropertyObjectType": "_AdaptiveConf_adaptor.lmdb",
-            "uriRelated": "/afw/_AdaptiveAdaptor_/lmdb",
+            "confPropertyObjectType": "_AdaptiveConf_adapter.lmdb",
+            "uriRelated": "/afw/_AdaptiveAdapter_/lmdb",
             "confSubtype": "lmdb",
             "confId": "lmdb",
-            "serviceType": "adaptor",
-            "serviceId": "adaptor-lmdb",
-            "sourceLocation": "/conf/_AdaptiveServiceConf_/adaptor-lmdb",
-            "uriServiceConf": "/conf/_AdaptiveServiceConf_/adaptor-lmdb"
+            "serviceType": "adapter",
+            "serviceId": "adapter-lmdb",
+            "sourceLocation": "/conf/_AdaptiveServiceConf_/adapter-lmdb",
+            "uriServiceConf": "/conf/_AdaptiveServiceConf_/adapter-lmdb"
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveService_/adaptor-dev",
-                "objectId": "adaptor-dev",
+                "path": "/afw/_AdaptiveService_/adapter-dev",
+                "objectId": "adapter-dev",
                 "objectType": "_AdaptiveService_"
             },
             "canRestart": true,
@@ -175,19 +175,19 @@
             "status": "running",
             "startupDescription": "Service is started immediately and can be stopped and started manually.",
             "startup": "immediate",
-            "confPropertyObjectType": "_AdaptiveConf_adaptor.file",
-            "uriRelated": "/afw/_AdaptiveAdaptor_/dev",
+            "confPropertyObjectType": "_AdaptiveConf_adapter.file",
+            "uriRelated": "/afw/_AdaptiveAdapter_/dev",
             "confSubtype": "file",
             "confId": "dev",
-            "serviceType": "adaptor",
-            "serviceId": "adaptor-dev",
-            "sourceLocation": "/conf/_AdaptiveServiceConf_/adaptor-dev",
-            "uriServiceConf": "/conf/_AdaptiveServiceConf_/adaptor-dev"
+            "serviceType": "adapter",
+            "serviceId": "adapter-dev",
+            "sourceLocation": "/conf/_AdaptiveServiceConf_/adapter-dev",
+            "uriServiceConf": "/conf/_AdaptiveServiceConf_/adapter-dev"
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveService_/adaptor-layouts",
-                "objectId": "adaptor-layouts",
+                "path": "/afw/_AdaptiveService_/adapter-layouts",
+                "objectId": "adapter-layouts",
                 "objectType": "_AdaptiveService_"
             },
             "canRestart": true,
@@ -198,19 +198,19 @@
             "status": "running",
             "startupDescription": "Service is started immediately and can be stopped and started manually.",
             "startup": "immediate",
-            "confPropertyObjectType": "_AdaptiveConf_adaptor.file",
-            "uriRelated": "/afw/_AdaptiveAdaptor_/layouts",
+            "confPropertyObjectType": "_AdaptiveConf_adapter.file",
+            "uriRelated": "/afw/_AdaptiveAdapter_/layouts",
             "confSubtype": "file",
             "confId": "layouts",
-            "serviceType": "adaptor",
-            "serviceId": "adaptor-layouts",
-            "sourceLocation": "/conf/_AdaptiveServiceConf_/adaptor-layouts",
-            "uriServiceConf": "/conf/_AdaptiveServiceConf_/adaptor-layouts"
+            "serviceType": "adapter",
+            "serviceId": "adapter-layouts",
+            "sourceLocation": "/conf/_AdaptiveServiceConf_/adapter-layouts",
+            "uriServiceConf": "/conf/_AdaptiveServiceConf_/adapter-layouts"
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveService_/adaptor-afw",
-                "objectId": "adaptor-afw",
+                "path": "/afw/_AdaptiveService_/adapter-afw",
+                "objectId": "adapter-afw",
                 "objectType": "_AdaptiveService_"
             },
             "canRestart": false,
@@ -222,17 +222,17 @@
             "status": "running",
             "startupDescription": "Service is permanently started and can not be stopped.",
             "startup": "permanent",
-            "confPropertyObjectType": "_AdaptiveConf_adaptor.afw_runtime",
-            "uriRelated": "/afw/_AdaptiveAdaptor_/afw",
+            "confPropertyObjectType": "_AdaptiveConf_adapter.afw_runtime",
+            "uriRelated": "/afw/_AdaptiveAdapter_/afw",
             "confSubtype": "afw_runtime",
             "confId": "afw",
-            "serviceType": "adaptor",
-            "serviceId": "adaptor-afw"
+            "serviceType": "adapter",
+            "serviceId": "adapter-afw"
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveService_/adaptor-conf",
-                "objectId": "adaptor-conf",
+                "path": "/afw/_AdaptiveService_/adapter-conf",
+                "objectId": "adapter-conf",
                 "objectType": "_AdaptiveService_"
             },
             "canRestart": false,
@@ -244,17 +244,17 @@
             "status": "running",
             "startupDescription": "Service is permanently started and can not be stopped.",
             "startup": "permanent",
-            "confPropertyObjectType": "_AdaptiveConf_adaptor.file",
-            "uriRelated": "/afw/_AdaptiveAdaptor_/conf",
+            "confPropertyObjectType": "_AdaptiveConf_adapter.file",
+            "uriRelated": "/afw/_AdaptiveAdapter_/conf",
             "confSubtype": "file",
             "confId": "conf",
-            "serviceType": "adaptor",
-            "serviceId": "adaptor-conf"
+            "serviceType": "adapter",
+            "serviceId": "adapter-conf"
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveService_/adaptor-test1",
-                "objectId": "adaptor-test1",
+                "path": "/afw/_AdaptiveService_/adapter-test1",
+                "objectId": "adapter-test1",
                 "objectType": "_AdaptiveService_"
             },
             "canRestart": false,
@@ -265,13 +265,13 @@
             "status": "stopped",
             "startupDescription": "Service is not running.",
             "startup": "manual",
-            "confPropertyObjectType": "_AdaptiveConf_adaptor.file",
-            "uriRelated": "/afw/_AdaptiveAdaptor_/test1",
+            "confPropertyObjectType": "_AdaptiveConf_adapter.file",
+            "uriRelated": "/afw/_AdaptiveAdapter_/test1",
             "confSubtype": "file",
             "confId": "test1",
-            "serviceType": "adaptor",
-            "serviceId": "adaptor-test1",
-            "uriServiceConf": "/conf/_AdaptiveServiceConf_/adaptor-test1"
+            "serviceType": "adapter",
+            "serviceId": "adapter-test1",
+            "uriServiceConf": "/conf/_AdaptiveServiceConf_/adapter-test1"
         }
     ],
     "status": "success"

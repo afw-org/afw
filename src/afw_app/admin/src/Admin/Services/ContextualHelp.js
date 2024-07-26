@@ -25,7 +25,7 @@ export const ServicesHelp = () => {
     return (
         <>
             <HelpText text={` \
-                Adaptive Services allow you to create a configuration for an Service Type (Adaptor, Log or Authorization Handler), along with \
+                Adaptive Services allow you to create a configuration for an Service Type (Adapter, Log or Authorization Handler), along with \
                 an identifier and startup condition, and make themselves known to Adaptive Framework Core.  This page allows you to \
                 manage existing Adaptive Services or create new ones.
                 

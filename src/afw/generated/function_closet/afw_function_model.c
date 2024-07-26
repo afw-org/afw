@@ -36,7 +36,7 @@
  *
  * ```
  *   function model_default_add_object_action(
- *       adaptorId: string,
+ *       adapterId: string,
  *       objectType: string,
  *       object: object,
  *       objectId?: string,
@@ -47,8 +47,8 @@
  *
  * Parameters:
  *
- *   adaptorId - (string) This is the adaptorId of a model adaptor. Variable
- *       custom::adaptorId can be used to access this value in model
+ *   adapterId - (string) This is the adapterId of a model adapter. Variable
+ *       custom::adapterId can be used to access this value in model
  *       expressions.
  *
  *   objectType - (string) This is the adaptive object type of object being
@@ -59,11 +59,11 @@
  *       used to access this value in model expressions.
  *
  *   objectId - (optional string) This is the optional preferred objectId of
- *       object to add. The adaptor may ignore this. Variable custom::objectId
+ *       object to add. The adapter may ignore this. Variable custom::objectId
  *       can be used to access this value in model expressions.
  *
  *   modelId - (optional string) This specifics a modelId of model to use for
- *       producing results. If not specified, the adaptor's current model will
+ *       producing results. If not specified, the adapter's current model will
  *       be used.
  *
  *   context - (optional object _AdaptiveContextType_) This specifies additional
@@ -104,7 +104,7 @@ afw_function_execute_model_default_add_object_action(
  *
  * ```
  *   function model_default_delete_object_action(
- *       adaptorId: string,
+ *       adapterId: string,
  *       objectType: string,
  *       objectId: string,
  *       modelId?: string,
@@ -114,8 +114,8 @@ afw_function_execute_model_default_add_object_action(
  *
  * Parameters:
  *
- *   adaptorId - (string) This is the adaptorId of a model adaptor. Variable
- *       custom::adaptorId can be used to access this value in model
+ *   adapterId - (string) This is the adapterId of a model adapter. Variable
+ *       custom::adapterId can be used to access this value in model
  *       expressions.
  *
  *   objectType - (string) This is the adaptive object type of object being
@@ -126,7 +126,7 @@ afw_function_execute_model_default_add_object_action(
  *       custom::object can be used to access this value in model expressions.
  *
  *   modelId - (optional string) This specifics a modelId of model to use for
- *       producing results. If not specified, the adaptor's current model will
+ *       producing results. If not specified, the adapter's current model will
  *       be used.
  *
  *   context - (optional object _AdaptiveContextType_) This specifies additional
@@ -167,7 +167,7 @@ afw_function_execute_model_default_delete_object_action(
  *
  * ```
  *   function model_default_modify_object_action(
- *       adaptorId: string,
+ *       adapterId: string,
  *       objectType: string,
  *       objectId: string,
  *       entries: array,
@@ -178,8 +178,8 @@ afw_function_execute_model_default_delete_object_action(
  *
  * Parameters:
  *
- *   adaptorId - (string) This is the adaptorId of a model adaptor. Variable
- *       custom::adaptorId can be used to access this value in model
+ *   adapterId - (string) This is the adapterId of a model adapter. Variable
+ *       custom::adapterId can be used to access this value in model
  *       expressions.
  *
  *   objectType - (string) This is the adaptive object type of object being
@@ -217,7 +217,7 @@ afw_function_execute_model_default_delete_object_action(
  *           ].
  *
  *   modelId - (optional string) This specifics a modelId of model to use for
- *       producing results. If not specified, the adaptor's current model will
+ *       producing results. If not specified, the adapter's current model will
  *       be used.
  *
  *   context - (optional object _AdaptiveContextType_) This specifies additional
@@ -258,7 +258,7 @@ afw_function_execute_model_default_modify_object_action(
  *
  * ```
  *   function model_default_replace_object_action(
- *       adaptorId: string,
+ *       adapterId: string,
  *       objectType: string,
  *       objectId: string,
  *       object: object,
@@ -269,8 +269,8 @@ afw_function_execute_model_default_modify_object_action(
  *
  * Parameters:
  *
- *   adaptorId - (string) This is the adaptorId of a model adaptor. Variable
- *       custom::adaptorId can be used to access this value in model
+ *   adapterId - (string) This is the adapterId of a model adapter. Variable
+ *       custom::adapterId can be used to access this value in model
  *       expressions.
  *
  *   objectType - (string) This is the adaptive object type of object being
@@ -284,7 +284,7 @@ afw_function_execute_model_default_modify_object_action(
  *       can be used to access this value in model expressions.
  *
  *   modelId - (optional string) This specifics a modelId of model to use for
- *       producing results. If not specified, the adaptor's current model will
+ *       producing results. If not specified, the adapter's current model will
  *       be used.
  *
  *   context - (optional object _AdaptiveContextType_) This specifies additional
@@ -332,7 +332,7 @@ afw_function_execute_model_default_replace_object_action(
  *
  * Returns:
  *
- *   (object) This is the mappedObject mapped back from mapped adaptor object.
+ *   (object) This is the mappedObject mapped back from mapped adapter object.
  */
 const afw_value_t *
 afw_function_execute_model_mapBackObject_signature(
@@ -372,7 +372,7 @@ afw_function_execute_model_mapBackObject_signature(
  *
  * Returns:
  *
- *   (object) This is the object mapped to mappedAdaptor object.
+ *   (object) This is the object mapped to mappedAdapter object.
  */
 const afw_value_t *
 afw_function_execute_model_mapObject_signature(
@@ -412,7 +412,7 @@ afw_function_execute_model_mapObject_signature(
  *   object - (object) This is the object to return.
  *
  *   userData - (optional boolean) If this is present and true, the object will
- *       be mapped its mapped adaptor's object type to the model adaptor's
+ *       be mapped its mapped adapter's object type to the model adapter's
  *       object type.
  *
  * Returns:

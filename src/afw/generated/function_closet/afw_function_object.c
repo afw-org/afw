@@ -120,7 +120,7 @@ afw_function_execute_apply_object_options(
  * ```
  *   function local_object_meta_set_ids(
  *       object: object,
- *       adaptorId: string,
+ *       adapterId: string,
  *       objectType: string,
  *       objectId: string
  *   ): void;
@@ -130,7 +130,7 @@ afw_function_execute_apply_object_options(
  *
  *   object - (object) Object to set ids in.
  *
- *   adaptorId - (string) Adaptor id for object.
+ *   adapterId - (string) Adapter id for object.
  *
  *   objectType - (string) Object type id for object.
  *

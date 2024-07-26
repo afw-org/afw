@@ -27,20 +27,20 @@
 
 AFW_BEGIN_DECLARES
 
-/** Instance of afw_request_handler_factory for adaptor request handler. */
+/** Instance of afw_request_handler_factory for adapter request handler. */
 AFW_DECLARE_CONST_DATA(afw_request_handler_factory_t)
-afw_request_handler_factory_adaptor;
+afw_request_handler_factory_adapter;
 
 
 /**
- * @brief Create an adaptor request handler.
+ * @brief Create an adapter request handler.
  * @param properties configuration.
  * @param p to use for request handler resources.
  * @param xctx of caller.
- * @return New instance of request handler adaptor.
+ * @return New instance of request handler adapter.
  */
 AFW_DECLARE(const afw_request_handler_t *)
-afw_request_handler_adaptor_create_cede_p(
+afw_request_handler_adapter_create_cede_p(
     const afw_object_t *properties,
     const afw_pool_t *p, afw_xctx_t *xctx);
 

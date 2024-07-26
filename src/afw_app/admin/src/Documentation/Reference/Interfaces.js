@@ -9,7 +9,7 @@ import {
 export const InterfaceTable = () => {
 
     const {objects : interfaces = []} = useRetrieveObjects({ 
-        adaptorId: "afw", 
+        adapterId: "afw", 
         objectTypeId: "_AdaptiveInterface_",
         modelOptions: modelOptions_noAdaptiveObject,
     });

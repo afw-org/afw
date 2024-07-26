@@ -129,7 +129,7 @@
             extracting their "metadata" and storing it in a common place. In 
             addition to Object Types and Property Types, all objects contain 
             some additional metadata that is useful for Adaptive Framework 
-            Core, Adaptors, and even clients. As you may have already guessed, 
+            Core, Adapters, and even clients. As you may have already guessed, 
             these too are documented and stored in a special Object Type called 
             <literal>_AdaptiveMeta_</literal>, which looks like the following:
         </paragraph>
@@ -142,25 +142,25 @@
             Every Adaptive Object in Adaptive Framework is uniquely identified
             by an <literal>Object Path</literal> of the form: 
         </paragraph>                
-        <code><![CDATA[/<adaptorId>/<objectTypeId>/<objectId>]]></code>
+        <code><![CDATA[/<adapterId>/<objectTypeId>/<objectId>]]></code>
         <paragraph>
             An <literal>objectId</literal> is the unique object identifier of
             the entity, optionally followed by a slash-separated representation
             of embedded properties.
         </paragraph>
-        <code><![CDATA[/<adaptorId</<objectType</objectId
-/<adaptorId</<objectType</objectId/propertyName
-/<adaptorId</<objectType</objectId/propertyNameA/propertyNameB]]></code>        
+        <code><![CDATA[/<adapterId</<objectType</objectId
+/<adapterId</<objectType</objectId/propertyName
+/<adapterId</<objectType</objectId/propertyNameA/propertyNameB]]></code>        
         <paragraph>
             If the property value is a list, a property name can be followed 
             with a zero based integer index enclosed in square brackets 
             (<literal>[n]</literal>).
         </paragraph>                        
         <code><![CDATA[
-/<adaptorId>/<objectTypeId>/<objectId>/<propertyNameA>[<index>]
-/<adaptorId>/<objectTypeId>/<objectId>/<propertyNameA>[<index>]/<property name>
-/<adaptorId>/<objectTypeId>/<objectId>/<propertyNameA>/<propertyNameB>[<index>]
-/<adaptorId>/<objectTypeId>/<objectId>/<propertyNameA>[<index>]/<propertyNameB>[<index>]
+/<adapterId>/<objectTypeId>/<objectId>/<propertyNameA>[<index>]
+/<adapterId>/<objectTypeId>/<objectId>/<propertyNameA>[<index>]/<property name>
+/<adapterId>/<objectTypeId>/<objectId>/<propertyNameA>/<propertyNameB>[<index>]
+/<adapterId>/<objectTypeId>/<objectId>/<propertyNameA>[<index>]/<propertyNameB>[<index>]
 ]]></code>        
         <header>Relative Adaptive Object Path</header>
         <paragraph>
@@ -171,7 +171,7 @@
         <paragraph>
             If a relative path begins with a <literal>/</literal>, its structure
             is the same as an absolute path with <literal>*</literal> used in 
-            place of &amp;lt;adaptorId&amp;gt;, &amp;lt;objectTypeId&amp;gt;, 
+            place of &amp;lt;adapterId&amp;gt;, &amp;lt;objectTypeId&amp;gt;, 
             and each slashed part of &amp;lt;objectId&amp;gt; to use the
             corresponding value from the supplied path. The
             &amp;lt;objectId&amp;gt; can also be
@@ -181,7 +181,7 @@
         </paragraph>
         <paragraph>
             If a relative path does not begin with a <literal>/</literal>, the
-            <literal><![CDATA[<adaptorId>]]></literal> and
+            <literal><![CDATA[<adapterId>]]></literal> and
             <literal><![CDATA[<objectTypeId>]]></literal> from the supplied path
             will be used and the relative path will be used as the
             <literal><![CDATA[/<objectId>]]></literal>. The character sequence 
@@ -191,7 +191,7 @@
         <paragraph>
             The following are some examples of relative references using the
             given path: 
-            <literal>/adaptorId/objectTypeId/objectId/prop1/prop2</literal>:
+            <literal>/adapterId/objectTypeId/objectId/prop1/prop2</literal>:
         </paragraph>
         <table>
             <columns>
@@ -201,39 +201,39 @@
             <rows>
                 <row>
                     <column><literal>objectId2</literal></column>
-                    <column>/adaptorId/objectTypeId/objectId2</column>
+                    <column>/adapterId/objectTypeId/objectId2</column>
                 </row>
                 <row>
                     <column><literal>objectId2/prop4</literal></column>
-                    <column>/adaptorId/objectTypeId/objectId2/prop4</column>
+                    <column>/adapterId/objectTypeId/objectId2/prop4</column>
                 </row>
                 <row>
                     <column><literal>/*/objectTypeId2/objectId3/prop5</literal></column>
-                    <column>/adaptorId/objectTypeId2/objectId3/prop5</column>
+                    <column>/adapterId/objectTypeId2/objectId3/prop5</column>
                 </row>
                 <row>
                     <column><literal>/*/objectTypeId2/*/prop5</literal></column>
-                    <column>/adaptorId/objectTypeId2/objectId/prop5</column>
+                    <column>/adapterId/objectTypeId2/objectId/prop5</column>
                 </row>
                 <row>
                     <column><literal>*/prop6</literal></column>
-                    <column>/adaptorId/objectTypeId/objectId/prop6</column>
+                    <column>/adapterId/objectTypeId/objectId/prop6</column>
                 </row>
                 <row>
                     <column><literal>*/*/prop7</literal></column>
-                    <column>/adaptorId/objectTypeId/objectId/prop1/prop7</column>
+                    <column>/adapterId/objectTypeId/objectId/prop1/prop7</column>
                 </row>
                 <row>
-                    <column><literal>/adaptorId2/*/**</literal></column>
-                    <column>/adaptorId2/objectTypeId/objectId/prop1/prop2</column>
+                    <column><literal>/adapterId2/*/**</literal></column>
+                    <column>/adapterId2/objectTypeId/objectId/prop1/prop2</column>
                 </row>
                 <row>
                     <column><literal>/*/*/**</literal></column>
-                    <column>/adaptorId/objectTypeId/objectId/prop1/prop2</column>
+                    <column>/adapterId/objectTypeId/objectId/prop1/prop2</column>
                 </row>
                 <row>
                     <column><literal>/*/*/*</literal></column>
-                    <column>/adaptorId/objectTypeId/objectId</column>
+                    <column>/adapterId/objectTypeId/objectId</column>
                 </row>                
             </rows>
         </table>        

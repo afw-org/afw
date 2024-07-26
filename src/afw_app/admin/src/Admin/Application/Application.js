@@ -53,10 +53,10 @@ const ApplicationLayout = ({ applicationConf, selectedTab, setSelectedTab }) => 
                                         "title",
                                         "description",
                                         "applicationId", 
-                                        "confAdaptorId", 
-                                        "defaultAdaptorId", 
-                                        "defaultModelAdaptorId", 
-                                        "layoutsAdaptorId",
+                                        "confAdapterId", 
+                                        "defaultAdapterId", 
+                                        "defaultModelAdapterId", 
+                                        "layoutsAdapterId",
                                         "rootFilePaths"
                                     ],
                                     filterValuedProperties: editable ? false : true
@@ -158,9 +158,9 @@ export const Application = () => {
     const breadcrumbItems = useBreadcrumbs(breadcrumbsRoot);
     const {notification} = useApplication();
     const {application} = useAppCore();
-    const {applicationId, confAdaptorId} = useValues(application);
+    const {applicationId, confAdapterId} = useValues(application);
     const {object: applicationConf, isLoading, error} = useGetObject({ 
-        adaptorId: confAdaptorId, objectTypeId: "_AdaptiveConf_application",
+        adapterId: confAdapterId, objectTypeId: "_AdaptiveConf_application",
         objectId: applicationId, objectOptions: objectOptions_reconcilable
     });    
 

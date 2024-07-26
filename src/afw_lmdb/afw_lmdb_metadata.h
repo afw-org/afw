@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * Adaptive Framework LMDB Adaptor Metadata Header
+ * Adaptive Framework LMDB Adapter Metadata Header
  *
  * Copyright (c) 2010-2024 Clemson University
  *
@@ -12,7 +12,7 @@
 
 /**
  * @file afw_lmdb_metadata.h
- * @brief Adaptive Framework LMDB Adaptor Metadata handler.
+ * @brief Adaptive Framework LMDB Adapter Metadata handler.
  */
 
 #include "afw_minimal.h"
@@ -39,32 +39,32 @@ struct afw_lmdb_metadata_s {
 
 
 /**
- * @brief Refreshes LMDB adaptors Metadata.
- * @param adaptor Internal LMDB Adaptor
+ * @brief Refreshes LMDB adapters Metadata.
+ * @param adapter Internal LMDB Adapter
  * @param xctx of caller
  *
  *
  *
  */
 void afw_lmdb_metadata_refresh(
-    afw_lmdb_adaptor_t *adaptor,
+    afw_lmdb_adapter_t *adapter,
     afw_xctx_t *xctx);
 
 
 /**
- * @brief Called by afw_lmdb_adaptor_session() to retrieve metadata objects.
+ * @brief Called by afw_lmdb_adapter_session() to retrieve metadata objects.
  */
 const afw_array_t * afw_lmdb_metadata_retrieve_objects(
-    afw_lmdb_adaptor_session_t *self,
+    afw_lmdb_adapter_session_t *self,
     const afw_utf8_t *object_type_id,
     const afw_query_criteria_t *criteria,
     afw_xctx_t *xctx);
 
 /**
- * @brief Called by afw_lmdb_adaptor_session() to get a metadata object.
+ * @brief Called by afw_lmdb_adapter_session() to get a metadata object.
  */
 const afw_object_t * afw_lmdb_metadata_get_object(
-    afw_lmdb_adaptor_session_t * self,
+    afw_lmdb_adapter_session_t * self,
     const afw_utf8_t * object_type_id,
     const afw_utf8_t * id,
     const afw_query_criteria_t * criteria,

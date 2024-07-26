@@ -54,7 +54,7 @@ struct afw_service_s {
      * The service name is a type followed by a dash ('-') followed by an
      * associated id.  The type must be a registered configuration type that
      * has isService=true.  The id an appropriate id based on the type.  For
-     * example, for type adaptor, the associated id is the adaptorId.
+     * example, for type adapter, the associated id is the adapterId.
      */
     afw_utf8_t service_id;
 

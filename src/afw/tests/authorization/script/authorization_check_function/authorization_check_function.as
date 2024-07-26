@@ -5,7 +5,7 @@
 //? description: ...
 Test authorization_check built-in function. The associated afw.conf has a
 authorizationCheck that only makes a 'permit' decision on resourceId
-'/afw/_AdaptiveAdaptor_/afw'.
+'/afw/_AdaptiveAdapter_/afw'.
 //? sourceType: script
 //?
 //? test: authorization_check_permit
@@ -18,7 +18,7 @@ let result;
 try {
     result = authorization_check(
         'aRequestId',                   // requestId
-        '/afw/_AdaptiveAdaptor_/afw',   // resourceId
+        '/afw/_AdaptiveAdapter_/afw',   // resourceId
         'maluba',                       // actionId
         ,                               // object
         true);                          // enforce
@@ -40,7 +40,7 @@ let result;
 try {
     result = authorization_check(
         'aRequestId',                      // requestId
-        '/afw/_AdaptiveAdaptor_/secret',   // resourceId
+        '/afw/_AdaptiveAdapter_/secret',   // resourceId
         'maluba',                          // actionId
         ,                                  // object
         true);                             // enforce
@@ -63,7 +63,7 @@ let result;
 try {
     result = authorization_check(
         'aRequestId',                      // requestId
-        '/afw/_AdaptiveAdaptor_/secret',   // resourceId
+        '/afw/_AdaptiveAdapter_/secret',   // resourceId
         'maluba',                          // actionId
         ,                                  // object
         false);                            // enforce
@@ -87,7 +87,7 @@ let result;
 try {
     result = authorization_check(
         'aRequestId',                      // requestId
-        '/afw/_AdaptiveAdaptor_/secret',   // resourceId
+        '/afw/_AdaptiveAdapter_/secret',   // resourceId
         'maluba');                         // actionId
 }
 catch (e) {

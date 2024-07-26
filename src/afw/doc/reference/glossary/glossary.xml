@@ -53,7 +53,7 @@
         <term>
             <identifier>Adaptive Framework Environment</identifier>
             <definition>
-                The environment includes registered adaptor factories, adaptors, configuration handlers, content types, data types, functions, module paths, 
+                The environment includes registered adapter factories, adapters, configuration handlers, content types, data types, functions, module paths, 
                 request handler factories, request handlers, value interfaces, etc. Adaptive Framework has a core environment that can be extended by extensions.
             </definition>
         </term>
@@ -82,13 +82,13 @@
             <identifier>Adaptive Model</identifier>
             <definition>
                 An adaptive object that maps the properties of an adaptive object of a model adaptive object type to their source and destination values, 
-                possibly in one or more other adaptors.
+                possibly in one or more other adapters.
             </definition>
         </term>
         <term>
             <identifier>Adaptive Service</identifier>
             <definition>
-                An adaptive object that contains configuration for a service type such as an adaptor, log, or authorizationHandler, along with 
+                An adaptive object that contains configuration for a service type such as an adapter, log, or authorizationHandler, along with 
                 options for how to start the service.
             </definition>
         </term>
@@ -131,7 +131,7 @@
         <term>
             <identifier>Adaptive Object Id</identifier>
             <definition>
-                An adaptive object id is a string used to uniquely identify an object for a given adaptor and 
+                An adaptive object id is a string used to uniquely identify an object for a given adapter and 
                 object type.
             </definition>
         </term>
@@ -144,7 +144,7 @@
         <term>
             <identifier>Adaptive Object Store</identifier>
             <definition>
-                Any place adaptive objects can be stored and accessed via an adaptor.
+                Any place adaptive objects can be stored and accessed via an adapter.
             </definition>
         </term>
         <term>
@@ -183,7 +183,7 @@
         <term>
             <identifier>Adaptive Schema</identifier>
             <definition>
-                A collection of Object Types returned by an adaptor.
+                A collection of Object Types returned by an adapter.
             </definition>
         </term>
         <term>
@@ -202,17 +202,17 @@
             </definition>
         </term>
         <term>
-            <identifier>Adaptor</identifier>
+            <identifier>Adapter</identifier>
             <definition>
-                An adaptor is a implementation of the necessary Adaptive Framework interfaces to provide access
-                to adaptive objects and associated adaptive object types, along with adaptor specific tools and
+                An adapter is a implementation of the necessary Adaptive Framework interfaces to provide access
+                to adaptive objects and associated adaptive object types, along with adapter specific tools and
                 documentation.
 
-                Each implementation is identified by an adaptorType and is responsible for providing a common way
-                of accessing adaptive objects for its associated backend. For instance, adaptorType ldap provides
+                Each implementation is identified by an adapterType and is responsible for providing a common way
+                of accessing adaptive objects for its associated backend. For instance, adapterType ldap provides
                 a way to access objects via a ldap server and provides an _AdaptiveObjectType_ object for each
                 object class which is manufactured from information derived from the ldap schema. In the case of
-                adaptorType dbd, the adaptor provides an object for each row in a table and an _AdaptiveObjectType_
+                adapterType dbd, the adapter provides an object for each row in a table and an _AdaptiveObjectType_
                 object for each table.
             </definition>
         </term>
@@ -304,7 +304,7 @@
         <term>
             <identifier>Journal Entry</identifier>
             <definition>
-                An entry recording an action, event, etc. in a journal. In Adaptive Framework, this is often a record of an action taken though an adaptor.
+                An entry recording an action, event, etc. in a journal. In Adaptive Framework, this is often a record of an action taken though an adapter.
             </definition>
         </term>
         <term>

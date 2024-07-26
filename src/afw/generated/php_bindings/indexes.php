@@ -30,7 +30,7 @@ class indexes
      *
      * Create an index definition.
      *
-     * @param string $adaptorId Id of adaptor.
+     * @param string $adapterId Id of adapter.
      * @param string $key Name of the property index to be created.
      * @param string $value Expression to calculate the index value(s).
      * @param string $objectType Object Type(s) this index may apply to.
@@ -43,7 +43,7 @@ class indexes
      *
      * @return object Object response from the indexing process
      */
-    public function index_create(, $key, $adaptorId = null, $value = null, $objectType = null, $filter = null, $options = null, $retroactive = null, $test = null)
+    public function index_create(, $key, $adapterId = null, $value = null, $objectType = null, $filter = null, $options = null, $retroactive = null, $test = null)
     {
         $request = $this->$session->request();
 
@@ -53,8 +53,8 @@ class indexes
         $request->set("key", $key);
 
         /* pass along any optional parameters to the request payload */
-        if ($adaptorId != null)
-            $request->set('adaptorId', $adaptorId);
+        if ($adapterId != null)
+            $request->set('adapterId', $adapterId);
 
         if ($value != null)
             $request->set('value', $value);
@@ -82,12 +82,12 @@ class indexes
      *
      * List property indexes
      *
-     * @param string $adaptorId Id of adaptor.
+     * @param string $adapterId Id of adapter.
      * @param string $objectType Id of adaptive object type indexes
      *
      * @return object Object response from the index repair process
      */
-    public function index_list(, $adaptorId = null, $objectType = null)
+    public function index_list(, $adapterId = null, $objectType = null)
     {
         $request = $this->$session->request();
 
@@ -96,8 +96,8 @@ class indexes
         /* pass along required parameters to the request payload */
 
         /* pass along any optional parameters to the request payload */
-        if ($adaptorId != null)
-            $request->set('adaptorId', $adaptorId);
+        if ($adapterId != null)
+            $request->set('adapterId', $adapterId);
 
         if ($objectType != null)
             $request->set('objectType', $objectType);
@@ -110,12 +110,12 @@ class indexes
      *
      * Remove an index definition.
      *
-     * @param string $adaptorId Id of adaptor.
+     * @param string $adapterId Id of adapter.
      * @param string $key The index key to be removed.
      *
      * @return object Object response from the indexing process
      */
-    public function index_remove(, $key, $adaptorId = null)
+    public function index_remove(, $key, $adapterId = null)
     {
         $request = $this->$session->request();
 
@@ -125,8 +125,8 @@ class indexes
         $request->set("key", $key);
 
         /* pass along any optional parameters to the request payload */
-        if ($adaptorId != null)
-            $request->set('adaptorId', $adaptorId);
+        if ($adapterId != null)
+            $request->set('adapterId', $adapterId);
 
         return $request->get_result();
     }

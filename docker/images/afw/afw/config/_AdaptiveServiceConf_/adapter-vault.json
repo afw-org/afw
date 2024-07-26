@@ -1,0 +1,13 @@
+{
+    "serviceId":"adapter-vault",
+    "startup":"immediate",
+    "conf":{
+        "type":"adapter",
+        "adapterType":"model",
+        "adapterId":"vault",
+        "description":"The vault, using TIER Schema.",
+        "modelLocationAdapterId": "models",
+        "modelId": "TIER Core Schema",
+        "mappedAdapterId": "lmdb"
+    }
+}

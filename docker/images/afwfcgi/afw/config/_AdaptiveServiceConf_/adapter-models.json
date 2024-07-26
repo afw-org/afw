@@ -1,0 +1,14 @@
+{
+    "serviceId":"adapter-models",
+    "startup":"immediate",
+    "conf":{
+        "type":"adapter",
+        "adapterType":"file",
+        "isModelLocation":true,
+        "root":"/afw/models/",
+        "contentType":"json",
+        "filenameSuffix":".json",
+        "description":"Stores adaptive models.",
+        "adapterId":"models"
+    }
+}

@@ -35,7 +35,7 @@ import {useAdaptiveLayout} from "@afw/react";
  * 
  *         data={
  *             object: <AfwObject> | <JSON>,
- *             objectUri: "/adaptorId/objectType/objectId",
+ *             objectUri: "/adapterId/objectType/objectId",
  *             property: <AdaptiveProperty>,
  *             objectType: <JSON>,
  *         }
@@ -51,11 +51,11 @@ import {useAdaptiveLayout} from "@afw/react";
  *         Default handlers for object types, property types and data types.  These are compiled 
  *         in as Javascript components.  For example, dataType=string will be handled by TextFields 
  *         and dataType=boolean will be handled by checkboxes, by default.  Some default propertyTypes
- *         also have defaults, such as adaptorId and dataType dropdown pickers.
+ *         also have defaults, such as adapterId and dataType dropdown pickers.
  * 
  *         String => TextField
  *         Boolean => Checkbox
- *         adaptorId => AdaptorDropdown
+ *         adapterId => AdapterDropdown
  *         propertyType => PropertyTypeDropdown
  * 
  *     5.  Registered Built-ins

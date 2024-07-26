@@ -14,18 +14,18 @@
         },
         "allowChange": {
             "allowQuery": true,
-            "brief": "This object can be changed, unless denied by authorization policy or by the adaptor",
+            "brief": "This object can be changed, unless denied by authorization policy or by the adapter",
             "dataType": "boolean",
             "defaultValue": true,
-            "description": "If false this object is read only. If true, the object can be changed unless denied by authorization policy or by the adaptor.",
+            "description": "If false this object is read only. If true, the object can be changed unless denied by authorization policy or by the adapter.",
             "label": "Allow Change"
         },
         "allowDelete": {
             "allowQuery": true,
-            "brief": "This object can be deleted unless denied by authorization policy or by the adaptor",
+            "brief": "This object can be deleted unless denied by authorization policy or by the adapter",
             "dataType": "boolean",
             "defaultValue": true,
-            "description": "If false this object can not be deleted. If true, the object can be deleted unless denied by authorization policy or by the adaptor.",
+            "description": "If false this object can not be deleted. If true, the object can be deleted unless denied by authorization policy or by the adapter.",
             "label": "Allow Delete"
         },
         "ancestorPaths": {
@@ -57,13 +57,13 @@
         "objectId": {
             "brief": "Id to unique identify this object",
             "dataType": "string",
-            "description": "This the id that uniquely defines the associated object when combined with its adaptor id and object type id within an Adaptive Framework environment. The objectId should be considered opaque unless the associated adaptor or mapping specifies otherwise.",
+            "description": "This the id that uniquely defines the associated object when combined with its adapter id and object type id within an Adaptive Framework environment. The objectId should be considered opaque unless the associated adapter or mapping specifies otherwise.",
             "label": "Object Id"
         },
         "objectType": {
-            "brief": "The id of the associated object's object type, within the object's adaptor",
+            "brief": "The id of the associated object's object type, within the object's adapter",
             "dataType": "string",
-            "description": "This the id of the associated object's object type within the object's adaptor.",
+            "description": "This the id of the associated object's object type within the object's adapter.",
             "label": "Object Type"
         },
         "objectTypes": {
@@ -83,7 +83,7 @@
         "path": {
             "brief": "The associated object's path",
             "dataType": "anyURI",
-            "description": "This is the associated object's path within an Adaptive Framework environment. The path is of the form '/adaptorId/objectType/objectId'.",
+            "description": "This is the associated object's path within an Adaptive Framework environment. The path is of the form '/adapterId/objectType/objectId'.",
             "label": "Path"
         },
         "propertyTypes": {

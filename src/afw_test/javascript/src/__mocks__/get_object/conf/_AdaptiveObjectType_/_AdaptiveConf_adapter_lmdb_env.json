@@ -1,0 +1,74 @@
+{
+    "result": {
+        "_meta_": {
+            "path": "/conf/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_env"
+        },
+        "propertyTypes": {
+            "_meta_": {
+                "objectType": "_AdaptivePropertyTypes_"
+            },
+            "path": {
+                "_meta_": {
+                    "objectType": "_AdaptiveValueMeta_"
+                },
+                "unique": false,
+                "required": true,
+                "label": "Path",
+                "description": "Database path for LMDB.",
+                "dataType": "string",
+                "allowQuery": true
+            },
+            "mode": {
+                "_meta_": {
+                    "objectType": "_AdaptiveValueMeta_"
+                },
+                "unique": false,
+                "required": true,
+                "label": "Mode",
+                "description": "Database file mode (in decimal) for LMDB.",
+                "dataType": "integer",
+                "allowQuery": true
+            },
+            "maxreaders": {
+                "_meta_": {
+                    "objectType": "_AdaptiveValueMeta_"
+                },
+                "unique": false,
+                "required": true,
+                "label": "Max Readers",
+                "description": "Number of reader slots allocated in the lock file.",
+                "dataType": "integer",
+                "allowQuery": true
+            },
+            "maxdbs": {
+                "_meta_": {
+                    "objectType": "_AdaptiveValueMeta_"
+                },
+                "unique": false,
+                "required": true,
+                "label": "Max Databases",
+                "description": "Maximum number of named databases for the environment.",
+                "dataType": "integer",
+                "allowQuery": true
+            },
+            "mapsize": {
+                "_meta_": {
+                    "objectType": "_AdaptiveValueMeta_"
+                },
+                "unique": false,
+                "required": true,
+                "label": "Map Size",
+                "description": "Size of the memory map to use for the environment.  The size should be a multiple of OS page size",
+                "dataType": "integer",
+                "allowQuery": true
+            }
+        },
+        "objectType": "_AdaptiveConf_adapter_lmdb_env",
+        "description": "Object type for type=adapter adapter_type=lmdb env conf entries.",
+        "collectionURIs": [
+            "/afw/_AdaptiveCollection_/lmdb_extension"
+        ],
+        "allowEntity": false
+    },
+    "status": "success"
+}

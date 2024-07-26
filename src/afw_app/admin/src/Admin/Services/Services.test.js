@@ -10,9 +10,9 @@ describe("Services Tests", () => {
 
     let fileService, modelService, syslogService, authHandlerService;
     for (const service of services.result) {
-        if (service.serviceId === "adaptor-files")
+        if (service.serviceId === "adapter-files")
             fileService = service;
-        else if (service.serviceId == "adaptor-models")
+        else if (service.serviceId == "adapter-models")
             modelService = service;
         else if (service.serviceId == "log-syslog")
             syslogService = service;
@@ -125,13 +125,13 @@ describe("Services Tests", () => {
         fireEvent.click(screen.getByLabelText("Start"));
       
         await waitFor(() => expect(mswPostCallback).toHaveCalledAdaptiveFunction("service_start"));
-        await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWithObjectContainingDeep("serviceId", "adaptor-test1"));
+        await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWithObjectContainingDeep("serviceId", "adapter-test1"));
 
         /* wait for reloading services */
         await waitFor(() => expect(mswPostCallback).toHaveCalledAdaptiveFunction("retrieve_objects"));
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWithObjectContainingDeep("objectType", "_AdaptiveService_"));
         
-        /* wait for reloading adaptors */
+        /* wait for reloading adapters */
         await waitFor(() => expect(mswPostCallback).toHaveCalledAdaptiveFunction("get_object_with_uri"));
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWithObjectContainingDeep("uri", "/afw/_AdaptiveEnvironmentRegistry_/current"));
 
@@ -167,7 +167,7 @@ describe("Services Tests", () => {
         await waitFor(() => expect(mswPostCallback).toHaveCalledAdaptiveFunction("retrieve_objects"));
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWithObjectContainingDeep("objectType", "_AdaptiveService_"));
 
-        /* wait for reloading adaptors */
+        /* wait for reloading adapters */
         await waitFor(() => expect(mswPostCallback).toHaveCalledAdaptiveFunction("get_object_with_uri"));
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWithObjectContainingDeep("uri", "/afw/_AdaptiveEnvironmentRegistry_/current"));
 
@@ -205,7 +205,7 @@ describe("Services Tests", () => {
         await waitFor(() => expect(mswPostCallback).toHaveCalledAdaptiveFunction("retrieve_objects"));
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWithObjectContainingDeep("objectType", "_AdaptiveService_"));
 
-        /* wait for reloading adaptors */
+        /* wait for reloading adapters */
         await waitFor(() => expect(mswPostCallback).toHaveCalledAdaptiveFunction("get_object_with_uri"));
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWithObjectContainingDeep("uri", "/afw/_AdaptiveEnvironmentRegistry_/current"));
 
@@ -236,13 +236,13 @@ describe("Services Tests", () => {
         fireEvent.click(screen.getByLabelText("Start"));
 
         await waitFor(() => expect(mswPostCallback).toHaveCalledAdaptiveFunction("service_start"));
-        await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWithObjectContainingDeep("serviceId", "adaptor-test1"));
+        await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWithObjectContainingDeep("serviceId", "adapter-test1"));
 
         /* wait for reloading services */
         await waitFor(() => expect(mswPostCallback).toHaveCalledAdaptiveFunction("retrieve_objects"));
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWithObjectContainingDeep("objectType", "_AdaptiveService_"));
 
-        /* wait for reloading adaptors */
+        /* wait for reloading adapters */
         await waitFor(() => expect(mswPostCallback).toHaveCalledAdaptiveFunction("get_object_with_uri"));
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWithObjectContainingDeep("uri", "/afw/_AdaptiveEnvironmentRegistry_/current"));
 
@@ -270,7 +270,7 @@ describe("Services Tests", () => {
 
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWith(
             "/afw",
-            expect.stringContaining("\"serviceId\":\"adaptor-test1\""),
+            expect.stringContaining("\"serviceId\":\"adapter-test1\""),
             expect.anything()
         ));
 
@@ -310,7 +310,7 @@ describe("Services Tests", () => {
         await waitFor(() => expect(mswPostCallback).toHaveCalledAdaptiveFunction("retrieve_objects"));
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWithObjectContainingDeep("objectType", "_AdaptiveService_"));
 
-        /* wait for reloading adaptors */
+        /* wait for reloading adapters */
         await waitFor(() => expect(mswPostCallback).toHaveCalledAdaptiveFunction("get_object_with_uri"));
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWithObjectContainingDeep("uri", "/afw/_AdaptiveEnvironmentRegistry_/current"));
 
@@ -320,7 +320,7 @@ describe("Services Tests", () => {
 
     describe("Creating new services", () => {
 
-        test("Create a new adaptor/file service", async () => {
+        test("Create a new adapter/file service", async () => {
 
             render( 
                 <MemoryRouter initialEntries={[ "/Admin/Services" ]}>
@@ -339,19 +339,19 @@ describe("Services Tests", () => {
             expect(await screen.findByLabelText("Previous")).toBeInTheDocument();            
             expect(await screen.findByLabelText("Cancel")).toBeInTheDocument();                                                         
             
-            const fileAdaptorBtn = await screen.findByLabelText("file");
+            const fileAdapterBtn = await screen.findByLabelText("file");
 
             await waitFor(() => expect(screen.getByLabelText("Next")).toHaveAttribute("disabled"));
-            fireEvent.click(fileAdaptorBtn);
+            fireEvent.click(fileAdapterBtn);
             await waitFor(() => expect(screen.getByLabelText("Next")).not.toHaveAttribute("disabled"));
 
             fireEvent.click(screen.getByLabelText("Next"));
 
-            await waitFor(() => expect(screen.getByLabelText("Adaptor *")).toBeInTheDocument());
+            await waitFor(() => expect(screen.getByLabelText("Adapter *")).toBeInTheDocument());
             await waitFor(() => expect(screen.getByLabelText("Description")).toBeInTheDocument());
 
-            fireEvent.change(screen.getByLabelText("Adaptor *"), { target: { value: "test2" }});
-            fireEvent.change(screen.getByLabelText("Description"), { target: { value: "New file adaptor service test2." }});
+            fireEvent.change(screen.getByLabelText("Adapter *"), { target: { value: "test2" }});
+            fireEvent.change(screen.getByLabelText("Description"), { target: { value: "New file adapter service test2." }});
 
             const radioGroup = screen.getByLabelText("Startup Condition");                                  
             await waitFor(() => expect(within(radioGroup).getByLabelText("Manual")).toHaveAttribute("checked"));
@@ -361,7 +361,7 @@ describe("Services Tests", () => {
             fireEvent.click(screen.getByLabelText("Next"));
 
             await waitFor(() => expect(screen.getByLabelText("Authorization Handler")).toBeInTheDocument());
-            await waitFor(() => expect(screen.getByLabelText("Journal Adaptor")).toBeInTheDocument());              
+            await waitFor(() => expect(screen.getByLabelText("Journal Adapter")).toBeInTheDocument());              
             
             const authHandler = screen.getByRole("button", { name: /Authorization Handler */i });
             let authHandlerOpts;
@@ -411,7 +411,7 @@ describe("Services Tests", () => {
             await waitFor(() => expect(screen.getByLabelText("No")).toBeInTheDocument());              
         });
 
-        test("Create a new adaptor/model service", async () => {
+        test("Create a new adapter/model service", async () => {
 
             let utils;
 
@@ -434,18 +434,18 @@ describe("Services Tests", () => {
     
             // render the baseElement (body) to also include the New Service dialog            
 
-            const modelAdaptorBtn = await screen.findByLabelText("model");
+            const modelAdapterBtn = await screen.findByLabelText("model");
             await waitFor(() => expect(screen.getByLabelText("Next")).toHaveAttribute("disabled"));
-            fireEvent.click(modelAdaptorBtn);
+            fireEvent.click(modelAdapterBtn);
             await waitFor(() => expect(screen.getByLabelText("Next")).not.toHaveAttribute("disabled"));
 
             fireEvent.click(screen.getByLabelText("Next"));
 
-            await waitFor(() => expect(screen.getByLabelText("Adaptor *")).toBeInTheDocument());
+            await waitFor(() => expect(screen.getByLabelText("Adapter *")).toBeInTheDocument());
             await waitFor(() => expect(screen.getByLabelText("Description")).toBeInTheDocument());
 
-            fireEvent.change(screen.getByLabelText("Adaptor *"), { target: { value: "test3" }});
-            fireEvent.change(screen.getByLabelText("Description"), { target: { value: "New model adaptor service test3." }});
+            fireEvent.change(screen.getByLabelText("Adapter *"), { target: { value: "test3" }});
+            fireEvent.change(screen.getByLabelText("Description"), { target: { value: "New model adapter service test3." }});
 
             const radioGroup = screen.getByLabelText("Startup Condition");
             utils = within(radioGroup);                        
@@ -455,7 +455,7 @@ describe("Services Tests", () => {
             fireEvent.click(screen.getByLabelText("Next"));
 
             await waitFor(() => expect(screen.getByLabelText("Authorization Handler")).toBeInTheDocument());
-            await waitFor(() => expect(screen.getByLabelText("Journal Adaptor")).toBeInTheDocument());               
+            await waitFor(() => expect(screen.getByLabelText("Journal Adapter")).toBeInTheDocument());               
             
             const authHandler = screen.getByRole("button", { name: /Authorization Handler */i });
             fireEvent.mouseDown(authHandler);           
@@ -466,20 +466,20 @@ describe("Services Tests", () => {
             const nextBtn = screen.getByLabelText("Next");
             fireEvent.click(nextBtn);
 
-            await waitFor(() => expect(screen.getByLabelText("Model Adaptor *")).toBeInTheDocument());
+            await waitFor(() => expect(screen.getByLabelText("Model Adapter *")).toBeInTheDocument());
             await waitFor(() => expect(screen.getByLabelText("Model *")).toBeInTheDocument());
-            await waitFor(() => expect(screen.getByLabelText("Mapped Adaptor *")).toBeInTheDocument());
+            await waitFor(() => expect(screen.getByLabelText("Mapped Adapter *")).toBeInTheDocument());
 
-            // select the model adaptorId                        
-            const modelAdaptor = within(screen.getByTestId("model-location-adaptor-dropdown"));
-            fireEvent.mouseDown(modelAdaptor.getByRole("button"));   
-            let modelAdaptorOpts;                  
-            await waitFor(() => expect(modelAdaptorOpts = screen.queryAllByRole("option")).not.toHaveLength(0));            
-            modelAdaptorOpts[0].click();
+            // select the model adapterId                        
+            const modelAdapter = within(screen.getByTestId("model-location-adapter-dropdown"));
+            fireEvent.mouseDown(modelAdapter.getByRole("button"));   
+            let modelAdapterOpts;                  
+            await waitFor(() => expect(modelAdapterOpts = screen.queryAllByRole("option")).not.toHaveLength(0));            
+            modelAdapterOpts[0].click();
             // wait options to disappear
             await waitFor(() => expect(screen.queryAllByRole("option")).toHaveLength(0));                        
 
-            // async calls to fetch models adaptor
+            // async calls to fetch models adapter
             await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());
             await waitForSpinner(); 
             
@@ -492,12 +492,12 @@ describe("Services Tests", () => {
             // wait options to disappear
             await waitFor(() => expect(screen.queryAllByRole("option")).toHaveLength(0));    
             
-            // select he mapped adaptor
-            const mappedAdaptor = within(screen.getByTestId("mapped-adaptor-dropdown"));
-            fireEvent.mouseDown(mappedAdaptor.getByRole("button"));  
-            let mappedAdaptorOpts;                                                          
-            await waitFor(() => expect(mappedAdaptorOpts = screen.queryAllByRole("option")).not.toHaveLength(0));                      
-            mappedAdaptorOpts[7].click();
+            // select he mapped adapter
+            const mappedAdapter = within(screen.getByTestId("mapped-adapter-dropdown"));
+            fireEvent.mouseDown(mappedAdapter.getByRole("button"));  
+            let mappedAdapterOpts;                                                          
+            await waitFor(() => expect(mappedAdapterOpts = screen.queryAllByRole("option")).not.toHaveLength(0));                      
+            mappedAdapterOpts[7].click();
             // wait options to disappear
             await waitFor(() => expect(screen.queryAllByRole("option")).toHaveLength(0));  
 
@@ -509,7 +509,7 @@ describe("Services Tests", () => {
             await waitForElementToBeRemoved(() => screen.queryByTestId("service-new"));
 
             await waitFor(() => expect(mswPostCallback).toHaveCalledAdaptiveFunction("add_object_with_uri"));
-            await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWithObjectContainingDeep("modelLocationAdaptorId", "models"));
+            await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWithObjectContainingDeep("modelLocationAdapterId", "models"));
               
             await waitForSpinner();
 
@@ -700,7 +700,7 @@ describe("Services Tests", () => {
 
     describe("Editing services", () => {      
 
-        test("View adaptor/file service tabs", async () => {
+        test("View adapter/file service tabs", async () => {
            
             render( 
                 <MemoryRouter initialEntries={[ "/Admin/Services" ]}>
@@ -745,7 +745,7 @@ describe("Services Tests", () => {
             
         });
 
-        test("Edit an adaptor/file service", async () => {
+        test("Edit an adapter/file service", async () => {
 
             render( 
                 <MemoryRouter initialEntries={[ "/Admin/Services" ]}>
@@ -773,13 +773,13 @@ describe("Services Tests", () => {
 
             // examine the General tab
             fireEvent.click(screen.getByLabelText("General"));            
-            await waitFor(() => expect(screen.getByLabelText("Service Id")).toHaveValue("adaptor-files"));                
+            await waitFor(() => expect(screen.getByLabelText("Service Id")).toHaveValue("adapter-files"));                
             const radioGroup = screen.getByLabelText("Startup Condition");
             const utils = within(radioGroup);            
             
             await waitFor(() => expect(utils.getByLabelText("Immediate")).toHaveAttribute("checked"));
             // change the serviceId
-            fireEvent.change(screen.getByLabelText("Service Id"), { target: { value: "adaptor-filesXYZ" } });      
+            fireEvent.change(screen.getByLabelText("Service Id"), { target: { value: "adapter-filesXYZ" } });      
 
             // examine the Configuration tab
             fireEvent.click(screen.getByLabelText("Configuration"));            
@@ -792,14 +792,14 @@ describe("Services Tests", () => {
             fireEvent.click(screen.getByLabelText("Save"));
 
             await waitFor(() => expect(mswPostCallback).toHaveCalledAdaptiveFunction("reconcile_object"));
-            await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWithObjectContainingDeep("serviceId", "adaptor-filesXYZ"));
+            await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWithObjectContainingDeep("serviceId", "adapter-filesXYZ"));
             await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWithObjectContainingDeep("description", "This is a new description."));
              
             await waitForSpinner();
 
         });
 
-        test("View adaptor/model service tabs", async () => {
+        test("View adapter/model service tabs", async () => {
 
             render( 
                 <MemoryRouter initialEntries={[ "/Admin/Services" ]}>
@@ -836,7 +836,7 @@ describe("Services Tests", () => {
             fireEvent.click(screen.getByLabelText("Runtime"));
         });
     
-        test("Edit a adaptor/model service", async () => {
+        test("Edit a adapter/model service", async () => {
 
             render( 
                 <MemoryRouter initialEntries={[ "/Admin/Services" ]}>
@@ -859,13 +859,13 @@ describe("Services Tests", () => {
             fireEvent.click(screen.getByLabelText("Edit Object"));
 
             await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());        
-            await waitFor(() => expect(screen.getByLabelText("Service Id")).toHaveValue("adaptor-tier"));                
+            await waitFor(() => expect(screen.getByLabelText("Service Id")).toHaveValue("adapter-tier"));                
             const radioGroup = screen.getByLabelText("Startup Condition");
             const utils = within(radioGroup);            
             
             await waitFor(() => expect(utils.getByLabelText("Immediate")).toHaveAttribute("checked"));
             // change the serviceId
-            fireEvent.change(screen.getByLabelText("Service Id"), { target: { value: "adaptor-tierXYZ" } });      
+            fireEvent.change(screen.getByLabelText("Service Id"), { target: { value: "adapter-tierXYZ" } });      
 
             // examine the Configuration tab
             fireEvent.click(screen.getByLabelText("Configuration"));            
@@ -878,7 +878,7 @@ describe("Services Tests", () => {
             fireEvent.click(screen.getByLabelText("Save"));
 
             await waitFor(() => expect(mswPostCallback).toHaveCalledAdaptiveFunction("reconcile_object"));
-            await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWithObjectContainingDeep("serviceId", "adaptor-tierXYZ"));
+            await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWithObjectContainingDeep("serviceId", "adapter-tierXYZ"));
             await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWithObjectContainingDeep("description", "This is a new description."));
                     
             await waitForSpinner();

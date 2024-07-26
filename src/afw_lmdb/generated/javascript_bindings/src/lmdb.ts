@@ -20,18 +20,18 @@ interface IAnyObject {
 /**
  * Check for stale entries in the reader lock table.
  * 
- * @param {string} adaptorId - Adaptor Id.
+ * @param {string} adapterId - Adapter Id.
  * 
  * @returns {integer} Number of stale slots that were cleared.
  */
-export function afwReaderCheck(client : any, adaptorId? : string) : any {
+export function afwReaderCheck(client : any, adapterId? : string) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "reader_check";
 
-    if (adaptorId !== undefined)
-        _action["adaptorId"] = adaptorId;
+    if (adapterId !== undefined)
+        _action["adapterId"] = adapterId;
 
     return client.perform(_action);
 }
@@ -39,18 +39,18 @@ export function afwReaderCheck(client : any, adaptorId? : string) : any {
 /**
  * Dump the entries in the reader lock table.
  * 
- * @param {string} adaptorId - Adaptor Id.
+ * @param {string} adapterId - Adapter Id.
  * 
  * @returns {string} Reader entries.
  */
-export function afwReaderList(client : any, adaptorId? : string) : any {
+export function afwReaderList(client : any, adapterId? : string) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "reader_list";
 
-    if (adaptorId !== undefined)
-        _action["adaptorId"] = adaptorId;
+    if (adapterId !== undefined)
+        _action["adapterId"] = adapterId;
 
     return client.perform(_action);
 }

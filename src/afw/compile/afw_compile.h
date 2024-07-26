@@ -290,7 +290,7 @@ afw_compile_template(
  * @brief Compile string to adaptive object.
  * @param string to compile.
  * @param source_location to associate with compiled string or NULL.
- * @param adaptor_id to use for created object or NULL.
+ * @param adapter_id to use for created object or NULL.
  * @param object_type_id to use for created object or NULL.
  * @param object_id to use for created object or NULL.
  * @param cede_p if true, cede control of p to the created object.
@@ -298,18 +298,18 @@ afw_compile_template(
  * @param xctx of caller.
  * @return object instance.
  *
- * If source_location is NULL and path is specified, adaptor_id,
+ * If source_location is NULL and path is specified, adapter_id,
  * object_type_id, and object_id will be used to produce a path that will
  * be used as the source location.
  * 
- * If adaptor_id is NULL, object_type_id and object_id must be NULL. If they're
+ * If adapter_id is NULL, object_type_id and object_id must be NULL. If they're
  * NULL, the object's meta will not be set.
  */
 AFW_DECLARE(const afw_object_t *)
 afw_compile_to_object(
     const afw_utf8_t *string,
     const afw_utf8_t *source_location,
-    const afw_utf8_t *adaptor_id,
+    const afw_utf8_t *adapter_id,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
     afw_boolean_t cede_p,

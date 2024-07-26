@@ -27,16 +27,16 @@
 
 
 /**
- * @brief Runtime object inf for object type _AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects
+ * @brief Runtime object inf for object type _AdaptiveAdapterTypeSpecific_vfs_retrieve_objects
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_runtime_inf__AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects;
+afw_runtime_inf__AdaptiveAdapterTypeSpecific_vfs_retrieve_objects;
 
 /**
- * @brief Runtime object inf for object type _AdaptiveConf_adaptor_vfs
+ * @brief Runtime object inf for object type _AdaptiveConf_adapter_vfs
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_runtime_inf__AdaptiveConf_adaptor_vfs;
+afw_runtime_inf__AdaptiveConf_adapter_vfs;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveFile_vfs

@@ -1645,8 +1645,8 @@
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb_env",
-                "objectId": "_AdaptiveConf_adaptor_lmdb_env",
+                "path": "/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_env",
+                "objectId": "_AdaptiveConf_adapter_lmdb_env",
                 "objectType": "_AdaptiveObjectType_"
             },
             "propertyTypes": {
@@ -1709,8 +1709,8 @@
                     "allowQuery": true
                 }
             },
-            "objectType": "_AdaptiveConf_adaptor_lmdb_env",
-            "description": "Object type for type=adaptor adaptor_type=lmdb env conf entries.",
+            "objectType": "_AdaptiveConf_adapter_lmdb_env",
+            "description": "Object type for type=adapter adapter_type=lmdb env conf entries.",
             "collectionURIs": [
                 "/afw/_AdaptiveCollection_/lmdb_extension"
             ],
@@ -2267,7 +2267,7 @@
                 }
             },
             "objectType": "_AdaptiveLdapRootDse_",
-            "description": "Object type for type=adaptor adaptor_type=ldap synthetic root dse object.",
+            "description": "Object type for type=adapter adapter_type=ldap synthetic root dse object.",
             "collectionURIs": [
                 "/afw/_AdaptiveCollection_/ldap_extension"
             ],
@@ -2462,8 +2462,8 @@
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveObjectType_/_AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects",
-                "objectId": "_AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects",
+                "path": "/afw/_AdaptiveObjectType_/_AdaptiveAdapterTypeSpecific_ldap_retrieve_objects",
+                "objectId": "_AdaptiveAdapterTypeSpecific_ldap_retrieve_objects",
                 "objectType": "_AdaptiveObjectType_"
             },
             "propertyTypes": {
@@ -2481,8 +2481,8 @@
                     "allowQuery": true
                 }
             },
-            "objectType": "_AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects",
-            "description": "This is the object type for the optional adaptorTypeSpecific parameter of the retrieve_objects() adaptive function when the adaptorType of the adaptorId is ldap.",
+            "objectType": "_AdaptiveAdapterTypeSpecific_ldap_retrieve_objects",
+            "description": "This is the object type for the optional adapterTypeSpecific parameter of the retrieve_objects() adaptive function when the adapterType of the adapterId is ldap.",
             "collectionURIs": [
                 "/afw/_AdaptiveCollection_/ldap_extension"
             ],
@@ -2493,20 +2493,20 @@
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_",
-                "objectId": "_AdaptiveAdaptorMetrics_",
+                "path": "/afw/_AdaptiveObjectType_/_AdaptiveAdapterMetrics_",
+                "objectId": "_AdaptiveAdapterMetrics_",
                 "objectType": "_AdaptiveObjectType_"
             },
             "runtime": {
                 "_meta_": {
                     "objectType": "_AdaptiveRuntimeObject_"
                 },
-                "typedef": "afw_adaptor_impl_t",
+                "typedef": "afw_adapter_impl_t",
                 "labels": {
                     "_meta_": {
                         "objectType": "_AdaptiveRuntimeLabels_"
                     },
-                    "objectId": "adaptor_id",
+                    "objectId": "adapter_id",
                     "indirectObjectId": true
                 },
                 "indirect": true
@@ -2627,11 +2627,11 @@
                             "objectType": "_AdaptiveRuntimeProperty_"
                         },
                         "zeroOffset": true,
-                        "valueAccessor": "adaptor_additional_metrics"
+                        "valueAccessor": "adapter_additional_metrics"
                     },
                     "required": true,
                     "label": "Additional",
-                    "description": "Additional adaptor specific metrics.",
+                    "description": "Additional adapter specific metrics.",
                     "dataType": "object",
                     "allowQuery": true
                 },
@@ -2653,8 +2653,8 @@
                     "allowQuery": true
                 }
             },
-            "objectType": "_AdaptiveAdaptorMetrics_",
-            "description": "Adaptor metrics.",
+            "objectType": "_AdaptiveAdapterMetrics_",
+            "description": "Adapter metrics.",
             "collectionURIs": [
                 "/afw/_AdaptiveCollection_/core"
             ],
@@ -4045,7 +4045,7 @@
                     "brief": "Objects of this type can be created",
                     "dataType": "boolean",
                     "defaultValue": true,
-                    "description": "If false, objects of this type can NEVER be added via an adaptor.  If true, objects of this type can be added via an adaptor as long as allowed by authorization policy and the adaptor.",
+                    "description": "If false, objects of this type can NEVER be added via an adapter.  If true, objects of this type can be added via an adapter as long as allowed by authorization policy and the adapter.",
                     "label": "Allow Add"
                 },
                 "allowChange": {
@@ -4067,7 +4067,7 @@
                     "brief": "Objects of this type can be changed",
                     "dataType": "boolean",
                     "defaultValue": true,
-                    "description": "If false, objects of this type can NEVER be changed via an adaptor.  If true, objects of this type can be changed via an adaptor as long as allowed by authorization policy and the adaptor.",
+                    "description": "If false, objects of this type can NEVER be changed via an adapter.  If true, objects of this type can be changed via an adapter as long as allowed by authorization policy and the adapter.",
                     "label": "Allow Change"
                 },
                 "allowDelete": {
@@ -4089,7 +4089,7 @@
                     "brief": "Objects of this type can be deleted",
                     "dataType": "boolean",
                     "defaultValue": true,
-                    "description": "If false, objects of this type can NEVER be deleted via an adaptor.  If true, objects of this type can be deleted via an adaptor as long as allowed by authorization policy and the adaptor.",
+                    "description": "If false, objects of this type can NEVER be deleted via an adapter.  If true, objects of this type can be deleted via an adapter as long as allowed by authorization policy and the adapter.",
                     "label": "Allow Delete"
                 },
                 "allowEntity": {
@@ -4122,7 +4122,7 @@
                     "brief": "The URIs of the collections this object type is a part of",
                     "dataType": "array",
                     "dataTypeParameter": "anyURI",
-                    "description": "This is the URIs of the collections this object type is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections.  If a collection is used outside of the local instance, it should be a full URI.  The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adaptor.",
+                    "description": "This is the URIs of the collections this object type is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections.  If a collection is used outside of the local instance, it should be a full URI.  The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adapter.",
                     "label": "Collection URIs"
                 },
                 "description": {
@@ -4163,7 +4163,7 @@
                     "allowQuery": true,
                     "brief": "The name of the property that is used as the \"objectId\" meta property",
                     "dataType": "string",
-                    "description": "The name of the property in an instance that is used as the \"objectId\" property in the meta for instances of this object type.  If not specified, the internal adaptor objectId for an object is used.",
+                    "description": "The name of the property in an instance that is used as the \"objectId\" property in the meta for instances of this object type.  If not specified, the internal adapter objectId for an object is used.",
                     "label": "Object Id Property Name"
                 },
                 "objectType": {
@@ -4214,7 +4214,7 @@
                     "brief": "Runtime information, available to runtime objects",
                     "dataType": "object",
                     "dataTypeParameter": "_AdaptiveRuntimeObject_",
-                    "description": "This is only valid for runtime object types.  These are objects that are accessed with adaptorId afw.  See afw_runtime.h for more information.",
+                    "description": "This is only valid for runtime object types.  These are objects that are accessed with adapterId afw.  See afw_runtime.h for more information.",
                     "label": "Runtime"
                 },
                 "tags": {
@@ -4303,7 +4303,7 @@
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "label": "Mapped Object Type",
-                    "description": "This is the objectType used internally by the adaptor for this object type.  It not specified, current::objectType is used.",
+                    "description": "This is the objectType used internally by the adapter for this object type.  It not specified, current::objectType is used.",
                     "dataType": "string",
                     "brief": "The objectTypeId to map this to and from"
                 },
@@ -4312,7 +4312,7 @@
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "label": "Initial Object Id",
-                    "description": "This optional hybrid value is evaluated to determine the objectId on add requests.  If not specified, current::objectId is used and if that is not specified, the adaptor must be capable of assigning one.  Even if specified, the adaptor is free to ignore this.",
+                    "description": "This optional hybrid value is evaluated to determine the objectId on add requests.  If not specified, current::objectId is used and if that is not specified, the adapter must be capable of assigning one.  Even if specified, the adapter is free to ignore this.",
                     "dataType": "template",
                     "contextType": "modelInitialObjectId",
                     "brief": "Optional hybrid value is evaluated to determine the objectId on add requests"
@@ -4510,8 +4510,8 @@
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb_limits_time",
-                "objectId": "_AdaptiveConf_adaptor_lmdb_limits_time",
+                "path": "/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits_time",
+                "objectId": "_AdaptiveConf_adapter_lmdb_limits_time",
                 "objectType": "_AdaptiveObjectType_"
             },
             "propertyTypes": {
@@ -4541,8 +4541,8 @@
                     "allowQuery": false
                 }
             },
-            "objectType": "_AdaptiveConf_adaptor_lmdb_limits_time",
-            "description": "Object type for type=adaptor adaptor_type=lmdb time limit conf entries.",
+            "objectType": "_AdaptiveConf_adapter_lmdb_limits_time",
+            "description": "Object type for type=adapter adapter_type=lmdb time limit conf entries.",
             "collectionURIs": [
                 "/afw/_AdaptiveCollection_/lmdb_extension"
             ],
@@ -4585,33 +4585,33 @@
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_dbd_mysql",
-                "objectId": "_AdaptiveConf_adaptor_dbd_mysql",
+                "path": "/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_dbd_mysql",
+                "objectId": "_AdaptiveConf_adapter_dbd_mysql",
                 "objectType": "_AdaptiveObjectType_"
             },
             "propertyTypes": {
                 "_meta_": {
                     "objectType": "_AdaptivePropertyTypes_"
                 },
-                "adaptorId": {
+                "adapterId": {
                     "_meta_": {
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "allowQuery": true,
-                    "brief": "Adaptor id",
+                    "brief": "Adapter id",
                     "dataType": "string",
-                    "description": "A unique identifier for this adaptor instance.",
-                    "label": "Adaptor"
+                    "description": "A unique identifier for this adapter instance.",
+                    "label": "Adapter"
                 },
-                "adaptorType": {
+                "adapterType": {
                     "_meta_": {
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "allowQuery": true,
-                    "brief": "Adaptor type",
+                    "brief": "Adapter type",
                     "dataType": "string",
-                    "description": "This specifies the type of adaptor to use.  The value of this field must match an adaptorType that is registered by core or by an extension.",
-                    "label": "Adaptor Type",
+                    "description": "This specifies the type of adapter to use.  The value of this field must match an adapterType that is registered by core or by an extension.",
+                    "label": "Adapter Type",
                     "required": true
                 },
                 "authorizationHandlerId": {
@@ -4621,18 +4621,18 @@
                     "allowQuery": true,
                     "brief": "Authorization Handler Id",
                     "dataType": "string",
-                    "description": "Id of authorization handler used to control access to resources in this adaptor.",
+                    "description": "Id of authorization handler used to control access to resources in this adapter.",
                     "label": "Authorization Handler"
                 },
-                "journalAdaptorId": {
+                "journalAdapterId": {
                     "_meta_": {
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "allowQuery": true,
-                    "brief": "The adaptorId that provides journal service for this adaptor",
+                    "brief": "The adapterId that provides journal service for this adapter",
                     "dataType": "string",
-                    "description": "This is the id of an adaptor that provides journal service for this adaptor.  This can be this adaptor's own id or a previously defined adaptor's id.  If not specified, no journaling will be performed.",
-                    "label": "Journal Adaptor"
+                    "description": "This is the id of an adapter that provides journal service for this adapter.  This can be this adapter's own id or a previously defined adapter's id.  If not specified, no journaling will be performed.",
+                    "label": "Journal Adapter"
                 },
                 "type": {
                     "_meta_": {
@@ -4777,8 +4777,8 @@
                     "allowQuery": false
                 }
             },
-            "objectType": "_AdaptiveConf_adaptor_dbd_mysql",
-            "description": "Object type for type=adaptor adaptor_type=mysql conf entries.",
+            "objectType": "_AdaptiveConf_adapter_dbd_mysql",
+            "description": "Object type for type=adapter adapter_type=mysql conf entries.",
             "collectionURIs": [
                 "/afw/_AdaptiveCollection_/dbd_extension"
             ],
@@ -5248,8 +5248,8 @@
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_version",
-                "objectId": "_AdaptiveAdaptorMetrics_adaptor_lmdb_version",
+                "path": "/afw/_AdaptiveObjectType_/_AdaptiveAdapterMetrics_adapter_lmdb_version",
+                "objectId": "_AdaptiveAdapterMetrics_adapter_lmdb_version",
                 "objectType": "_AdaptiveObjectType_"
             },
             "propertyTypes": {
@@ -5301,7 +5301,7 @@
                     "allowQuery": false
                 }
             },
-            "objectType": "_AdaptiveAdaptorMetrics_adaptor_lmdb_version",
+            "objectType": "_AdaptiveAdapterMetrics_adapter_lmdb_version",
             "description": "Version information reported by LMDB mdb_version() routine.",
             "collectionURIs": [
                 "/afw/_AdaptiveCollection_/lmdb_extension"
@@ -5310,33 +5310,33 @@
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_ldap",
-                "objectId": "_AdaptiveConf_adaptor_ldap",
+                "path": "/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_ldap",
+                "objectId": "_AdaptiveConf_adapter_ldap",
                 "objectType": "_AdaptiveObjectType_"
             },
             "propertyTypes": {
                 "_meta_": {
                     "objectType": "_AdaptivePropertyTypes_"
                 },
-                "adaptorId": {
+                "adapterId": {
                     "_meta_": {
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "allowQuery": true,
-                    "brief": "Adaptor id",
+                    "brief": "Adapter id",
                     "dataType": "string",
-                    "description": "A unique identifier for this adaptor instance.",
-                    "label": "Adaptor"
+                    "description": "A unique identifier for this adapter instance.",
+                    "label": "Adapter"
                 },
-                "adaptorType": {
+                "adapterType": {
                     "_meta_": {
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "allowQuery": true,
-                    "brief": "Adaptor type",
+                    "brief": "Adapter type",
                     "dataType": "string",
-                    "description": "This specifies the type of adaptor to use.  The value of this field must match an adaptorType that is registered by core or by an extension.",
-                    "label": "Adaptor Type",
+                    "description": "This specifies the type of adapter to use.  The value of this field must match an adapterType that is registered by core or by an extension.",
+                    "label": "Adapter Type",
                     "required": true
                 },
                 "authorizationHandlerId": {
@@ -5346,18 +5346,18 @@
                     "allowQuery": true,
                     "brief": "Authorization Handler Id",
                     "dataType": "string",
-                    "description": "Id of authorization handler used to control access to resources in this adaptor.",
+                    "description": "Id of authorization handler used to control access to resources in this adapter.",
                     "label": "Authorization Handler"
                 },
-                "journalAdaptorId": {
+                "journalAdapterId": {
                     "_meta_": {
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "allowQuery": true,
-                    "brief": "The adaptorId that provides journal service for this adaptor",
+                    "brief": "The adapterId that provides journal service for this adapter",
                     "dataType": "string",
-                    "description": "This is the id of an adaptor that provides journal service for this adaptor.  This can be this adaptor's own id or a previously defined adaptor's id.  If not specified, no journaling will be performed.",
-                    "label": "Journal Adaptor"
+                    "description": "This is the id of an adapter that provides journal service for this adapter.  This can be this adapter's own id or a previously defined adapter's id.  If not specified, no journaling will be performed.",
+                    "label": "Journal Adapter"
                 },
                 "type": {
                     "_meta_": {
@@ -5419,7 +5419,7 @@
                     "unique": false,
                     "required": false,
                     "label": "Prevent Verify Cert",
-                    "description": "Specify true to prevent the ldap server certificate from being verified when url uses the LDAPS scheme.  If this parameter is false or not specified, the adaptor does not influence the decision to verify the server certificate.",
+                    "description": "Specify true to prevent the ldap server certificate from being verified when url uses the LDAPS scheme.  If this parameter is false or not specified, the adapter does not influence the decision to verify the server certificate.",
                     "dataType": "boolean",
                     "allowQuery": true
                 },
@@ -5430,13 +5430,13 @@
                     "unique": false,
                     "required": true,
                     "label": "Bind Parameters",
-                    "description": "Bind parameters for this LDAP adaptor.",
-                    "dataTypeParameter": "object _AdaptiveConf_adaptor_ldap_bind",
+                    "description": "Bind parameters for this LDAP adapter.",
+                    "dataTypeParameter": "object _AdaptiveConf_adapter_ldap_bind",
                     "dataType": "template"
                 }
             },
-            "objectType": "_AdaptiveConf_adaptor_ldap",
-            "description": "Object type for type=adaptor adaptor_type=ldap conf entries.",
+            "objectType": "_AdaptiveConf_adapter_ldap",
+            "description": "Object type for type=adapter adapter_type=ldap conf entries.",
             "collectionURIs": [
                 "/afw/_AdaptiveCollection_/ldap_extension"
             ],
@@ -5798,18 +5798,18 @@
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_statistics",
-                "objectId": "_AdaptiveAdaptorMetrics_adaptor_lmdb_statistics",
+                "path": "/afw/_AdaptiveObjectType_/_AdaptiveAdapterMetrics_adapter_lmdb_statistics",
+                "objectId": "_AdaptiveAdapterMetrics_adapter_lmdb_statistics",
                 "objectType": "_AdaptiveObjectType_"
             },
             "otherProperties": {
                 "_meta_": {
                     "objectType": "_AdaptiveValueMeta_"
                 },
-                "dataTypeParameter": "_AdaptiveAdaptorMetrics_adaptor_lmdb_statistic",
+                "dataTypeParameter": "_AdaptiveAdapterMetrics_adapter_lmdb_statistic",
                 "dataType": "object"
             },
-            "objectType": "_AdaptiveAdaptorMetrics_adaptor_lmdb_statistics",
+            "objectType": "_AdaptiveAdapterMetrics_adapter_lmdb_statistics",
             "description": "Information about each LMDB database.  Uses the mdb_env_stat() routine.",
             "collectionURIs": [
                 "/afw/_AdaptiveCollection_/lmdb_extension"
@@ -6145,7 +6145,7 @@
                     "_meta_": {
                         "objectType": "_AdaptiveValueMeta_"
                     },
-                    "label": "Adaptor",
+                    "label": "Adapter",
                     "description": "Polymorphic Function.",
                     "dataType": "string",
                     "brief": "Polymorphic Function",
@@ -6602,7 +6602,7 @@
                     "_meta_": {
                         "objectType": "_AdaptiveRuntimeLabels_"
                     },
-                    "objectId": "adaptor_id",
+                    "objectId": "adapter_id",
                     "indirectObjectId": true
                 },
                 "indirect": true
@@ -6774,7 +6774,7 @@
                 }
             },
             "objectType": "_AdaptiveLdapMatchingRule_",
-            "description": "Object type for type=adaptor adaptor_type=ldap synthetic matching rule object.",
+            "description": "Object type for type=adapter adapter_type=ldap synthetic matching rule object.",
             "collectionURIs": [
                 "/afw/_AdaptiveCollection_/ldap_extension"
             ],
@@ -6785,33 +6785,33 @@
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_dbd_freetds",
-                "objectId": "_AdaptiveConf_adaptor_dbd_freetds",
+                "path": "/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_dbd_freetds",
+                "objectId": "_AdaptiveConf_adapter_dbd_freetds",
                 "objectType": "_AdaptiveObjectType_"
             },
             "propertyTypes": {
                 "_meta_": {
                     "objectType": "_AdaptivePropertyTypes_"
                 },
-                "adaptorId": {
+                "adapterId": {
                     "_meta_": {
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "allowQuery": true,
-                    "brief": "Adaptor id",
+                    "brief": "Adapter id",
                     "dataType": "string",
-                    "description": "A unique identifier for this adaptor instance.",
-                    "label": "Adaptor"
+                    "description": "A unique identifier for this adapter instance.",
+                    "label": "Adapter"
                 },
-                "adaptorType": {
+                "adapterType": {
                     "_meta_": {
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "allowQuery": true,
-                    "brief": "Adaptor type",
+                    "brief": "Adapter type",
                     "dataType": "string",
-                    "description": "This specifies the type of adaptor to use.  The value of this field must match an adaptorType that is registered by core or by an extension.",
-                    "label": "Adaptor Type",
+                    "description": "This specifies the type of adapter to use.  The value of this field must match an adapterType that is registered by core or by an extension.",
+                    "label": "Adapter Type",
                     "required": true
                 },
                 "authorizationHandlerId": {
@@ -6821,18 +6821,18 @@
                     "allowQuery": true,
                     "brief": "Authorization Handler Id",
                     "dataType": "string",
-                    "description": "Id of authorization handler used to control access to resources in this adaptor.",
+                    "description": "Id of authorization handler used to control access to resources in this adapter.",
                     "label": "Authorization Handler"
                 },
-                "journalAdaptorId": {
+                "journalAdapterId": {
                     "_meta_": {
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "allowQuery": true,
-                    "brief": "The adaptorId that provides journal service for this adaptor",
+                    "brief": "The adapterId that provides journal service for this adapter",
                     "dataType": "string",
-                    "description": "This is the id of an adaptor that provides journal service for this adaptor.  This can be this adaptor's own id or a previously defined adaptor's id.  If not specified, no journaling will be performed.",
-                    "label": "Journal Adaptor"
+                    "description": "This is the id of an adapter that provides journal service for this adapter.  This can be this adapter's own id or a previously defined adapter's id.  If not specified, no journaling will be performed.",
+                    "label": "Journal Adapter"
                 },
                 "type": {
                     "_meta_": {
@@ -6959,8 +6959,8 @@
                     "allowQuery": false
                 }
             },
-            "objectType": "_AdaptiveConf_adaptor_dbd_freetds",
-            "description": "Object type for type=adaptor adaptor_type=freetds conf entries (for MSSQL and SyBase).",
+            "objectType": "_AdaptiveConf_adapter_dbd_freetds",
+            "description": "Object type for type=adapter adapter_type=freetds conf entries (for MSSQL and SyBase).",
             "collectionURIs": [
                 "/afw/_AdaptiveCollection_/dbd_extension"
             ],
@@ -6995,7 +6995,7 @@
                     "brief": "Objects of this type can be created",
                     "dataType": "boolean",
                     "defaultValue": true,
-                    "description": "If false, objects of this type can NEVER be added via an adaptor.  If true, objects of this type can be added via an adaptor as long as allowed by authorization policy and the adaptor.",
+                    "description": "If false, objects of this type can NEVER be added via an adapter.  If true, objects of this type can be added via an adapter as long as allowed by authorization policy and the adapter.",
                     "label": "Allow Add"
                 },
                 "allowEntity": {
@@ -7028,7 +7028,7 @@
                     "brief": "The URIs of the collections this object type is a part of",
                     "dataType": "array",
                     "dataTypeParameter": "anyURI",
-                    "description": "This is the URIs of the collections this object type is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections.  If a collection is used outside of the local instance, it should be a full URI.  The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adaptor.",
+                    "description": "This is the URIs of the collections this object type is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections.  If a collection is used outside of the local instance, it should be a full URI.  The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adapter.",
                     "label": "Collection URIs"
                 },
                 "descriptionPropertyName": {
@@ -7058,7 +7058,7 @@
                     "allowQuery": true,
                     "brief": "The name of the property that is used as the \"objectId\" meta property",
                     "dataType": "string",
-                    "description": "The name of the property in an instance that is used as the \"objectId\" property in the meta for instances of this object type.  If not specified, the internal adaptor objectId for an object is used.",
+                    "description": "The name of the property in an instance that is used as the \"objectId\" property in the meta for instances of this object type.  If not specified, the internal adapter objectId for an object is used.",
                     "label": "Object Id Property Name"
                 },
                 "originURI": {
@@ -7099,7 +7099,7 @@
                     "brief": "Runtime information, available to runtime objects",
                     "dataType": "object",
                     "dataTypeParameter": "_AdaptiveRuntimeObject_",
-                    "description": "This is only valid for runtime object types.  These are objects that are accessed with adaptorId afw.  See afw_runtime.h for more information.",
+                    "description": "This is only valid for runtime object types.  These are objects that are accessed with adapterId afw.  See afw_runtime.h for more information.",
                     "label": "Runtime"
                 },
                 "tags": {
@@ -7147,7 +7147,7 @@
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "label": "Path",
-                    "description": "This is the associated object's path within an Adaptive Framework environment.  The path is of the form \"/adaptorId/objectType/objectId\".",
+                    "description": "This is the associated object's path within an Adaptive Framework environment.  The path is of the form \"/adapterId/objectType/objectId\".",
                     "dataType": "anyURI",
                     "brief": "The associated object's path"
                 },
@@ -7177,16 +7177,16 @@
                     },
                     "allowQuery": true,
                     "label": "Object Type",
-                    "description": "This the id of the associated object's object type within the object's adaptor.",
+                    "description": "This the id of the associated object's object type within the object's adapter.",
                     "dataType": "string",
-                    "brief": "The id of the associated object's object type, within the object's adaptor"
+                    "brief": "The id of the associated object's object type, within the object's adapter"
                 },
                 "objectId": {
                     "_meta_": {
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "label": "Object Id",
-                    "description": "This the id that uniquely defines the associated object when combined with its adaptor id and object type id within an Adaptive Framework environment.  The objectId should be considered opaque unless the associated adaptor or mapping specifies otherwise.",
+                    "description": "This the id that uniquely defines the associated object when combined with its adapter id and object type id within an Adaptive Framework environment.  The objectId should be considered opaque unless the associated adapter or mapping specifies otherwise.",
                     "dataType": "string",
                     "brief": "Id to unique identify this object"
                 },
@@ -7245,10 +7245,10 @@
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "label": "Allow Delete",
-                    "description": "If false this object can not be deleted.  If true, the object can be deleted unless denied by authorization policy or by the adaptor.",
+                    "description": "If false this object can not be deleted.  If true, the object can be deleted unless denied by authorization policy or by the adapter.",
                     "defaultValue": true,
                     "dataType": "boolean",
-                    "brief": "This object can be deleted unless denied by authorization policy or by the adaptor",
+                    "brief": "This object can be deleted unless denied by authorization policy or by the adapter",
                     "allowQuery": true
                 },
                 "allowChange": {
@@ -7267,10 +7267,10 @@
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "label": "Allow Change",
-                    "description": "If false this object is read only.  If true, the object can be changed unless denied by authorization policy or by the adaptor.",
+                    "description": "If false this object is read only.  If true, the object can be changed unless denied by authorization policy or by the adapter.",
                     "defaultValue": true,
                     "dataType": "boolean",
-                    "brief": "This object can be changed, unless denied by authorization policy or by the adaptor",
+                    "brief": "This object can be changed, unless denied by authorization policy or by the adapter",
                     "allowQuery": true
                 }
             },
@@ -7554,7 +7554,7 @@
                 }
             },
             "objectType": "_AdaptiveLdapObjectClass_",
-            "description": "Object type for type=adaptor adaptor_type=ldap synthetic object class object.",
+            "description": "Object type for type=adapter adapter_type=ldap synthetic object class object.",
             "collectionURIs": [
                 "/afw/_AdaptiveCollection_/ldap_extension"
             ],
@@ -7785,8 +7785,8 @@
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_information",
-                "objectId": "_AdaptiveAdaptorMetrics_adaptor_lmdb_information",
+                "path": "/afw/_AdaptiveObjectType_/_AdaptiveAdapterMetrics_adapter_lmdb_information",
+                "objectId": "_AdaptiveAdapterMetrics_adapter_lmdb_information",
                 "objectType": "_AdaptiveObjectType_"
             },
             "propertyTypes": {
@@ -7861,7 +7861,7 @@
                     "allowQuery": false
                 }
             },
-            "objectType": "_AdaptiveAdaptorMetrics_adaptor_lmdb_information",
+            "objectType": "_AdaptiveAdapterMetrics_adapter_lmdb_information",
             "description": "Information about the LMDB environment, its collection of databases.  Uses the mdb_env_info() routine.",
             "collectionURIs": [
                 "/afw/_AdaptiveCollection_/lmdb_extension"
@@ -7949,7 +7949,7 @@
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "label": "Collection URIs",
-                    "description": "This is the URIs of the collections this map is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections.  If a collection is used outside of the local instance, it should be a full URI.  The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adaptor.",
+                    "description": "This is the URIs of the collections this map is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections.  If a collection is used outside of the local instance, it should be a full URI.  The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adapter.",
                     "dataTypeParameter": "anyURI",
                     "dataType": "array",
                     "brief": "The URIs of the collections this map is part of",
@@ -9405,33 +9405,33 @@
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_dbd_sqlite3",
-                "objectId": "_AdaptiveConf_adaptor_dbd_sqlite3",
+                "path": "/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_dbd_sqlite3",
+                "objectId": "_AdaptiveConf_adapter_dbd_sqlite3",
                 "objectType": "_AdaptiveObjectType_"
             },
             "propertyTypes": {
                 "_meta_": {
                     "objectType": "_AdaptivePropertyTypes_"
                 },
-                "adaptorId": {
+                "adapterId": {
                     "_meta_": {
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "allowQuery": true,
-                    "brief": "Adaptor id",
+                    "brief": "Adapter id",
                     "dataType": "string",
-                    "description": "A unique identifier for this adaptor instance.",
-                    "label": "Adaptor"
+                    "description": "A unique identifier for this adapter instance.",
+                    "label": "Adapter"
                 },
-                "adaptorType": {
+                "adapterType": {
                     "_meta_": {
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "allowQuery": true,
-                    "brief": "Adaptor type",
+                    "brief": "Adapter type",
                     "dataType": "string",
-                    "description": "This specifies the type of adaptor to use.  The value of this field must match an adaptorType that is registered by core or by an extension.",
-                    "label": "Adaptor Type",
+                    "description": "This specifies the type of adapter to use.  The value of this field must match an adapterType that is registered by core or by an extension.",
+                    "label": "Adapter Type",
                     "required": true
                 },
                 "authorizationHandlerId": {
@@ -9441,18 +9441,18 @@
                     "allowQuery": true,
                     "brief": "Authorization Handler Id",
                     "dataType": "string",
-                    "description": "Id of authorization handler used to control access to resources in this adaptor.",
+                    "description": "Id of authorization handler used to control access to resources in this adapter.",
                     "label": "Authorization Handler"
                 },
-                "journalAdaptorId": {
+                "journalAdapterId": {
                     "_meta_": {
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "allowQuery": true,
-                    "brief": "The adaptorId that provides journal service for this adaptor",
+                    "brief": "The adapterId that provides journal service for this adapter",
                     "dataType": "string",
-                    "description": "This is the id of an adaptor that provides journal service for this adaptor.  This can be this adaptor's own id or a previously defined adaptor's id.  If not specified, no journaling will be performed.",
-                    "label": "Journal Adaptor"
+                    "description": "This is the id of an adapter that provides journal service for this adapter.  This can be this adapter's own id or a previously defined adapter's id.  If not specified, no journaling will be performed.",
+                    "label": "Journal Adapter"
                 },
                 "type": {
                     "_meta_": {
@@ -9508,8 +9508,8 @@
                     "allowQuery": false
                 }
             },
-            "objectType": "_AdaptiveConf_adaptor_dbd_sqlite3",
-            "description": "Object type for type=adaptor adaptor_type=sqlite3 conf entries.",
+            "objectType": "_AdaptiveConf_adapter_dbd_sqlite3",
+            "description": "Object type for type=adapter adapter_type=sqlite3 conf entries.",
             "collectionURIs": [
                 "/afw/_AdaptiveCollection_/dbd_extension"
             ],
@@ -9878,8 +9878,8 @@
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_statistic",
-                "objectId": "_AdaptiveAdaptorMetrics_adaptor_lmdb_statistic",
+                "path": "/afw/_AdaptiveObjectType_/_AdaptiveAdapterMetrics_adapter_lmdb_statistic",
+                "objectId": "_AdaptiveAdapterMetrics_adapter_lmdb_statistic",
                 "objectType": "_AdaptiveObjectType_"
             },
             "propertyTypes": {
@@ -9954,7 +9954,7 @@
                     "allowQuery": false
                 }
             },
-            "objectType": "_AdaptiveAdaptorMetrics_adaptor_lmdb_statistic",
+            "objectType": "_AdaptiveAdapterMetrics_adapter_lmdb_statistic",
             "description": "Information about a LMDB database.  Uses the mdb_env_stat() routine.",
             "collectionURIs": [
                 "/afw/_AdaptiveCollection_/lmdb_extension"
@@ -11877,33 +11877,33 @@
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_dbd_odbc",
-                "objectId": "_AdaptiveConf_adaptor_dbd_odbc",
+                "path": "/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_dbd_odbc",
+                "objectId": "_AdaptiveConf_adapter_dbd_odbc",
                 "objectType": "_AdaptiveObjectType_"
             },
             "propertyTypes": {
                 "_meta_": {
                     "objectType": "_AdaptivePropertyTypes_"
                 },
-                "adaptorId": {
+                "adapterId": {
                     "_meta_": {
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "allowQuery": true,
-                    "brief": "Adaptor id",
+                    "brief": "Adapter id",
                     "dataType": "string",
-                    "description": "A unique identifier for this adaptor instance.",
-                    "label": "Adaptor"
+                    "description": "A unique identifier for this adapter instance.",
+                    "label": "Adapter"
                 },
-                "adaptorType": {
+                "adapterType": {
                     "_meta_": {
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "allowQuery": true,
-                    "brief": "Adaptor type",
+                    "brief": "Adapter type",
                     "dataType": "string",
-                    "description": "This specifies the type of adaptor to use.  The value of this field must match an adaptorType that is registered by core or by an extension.",
-                    "label": "Adaptor Type",
+                    "description": "This specifies the type of adapter to use.  The value of this field must match an adapterType that is registered by core or by an extension.",
+                    "label": "Adapter Type",
                     "required": true
                 },
                 "authorizationHandlerId": {
@@ -11913,18 +11913,18 @@
                     "allowQuery": true,
                     "brief": "Authorization Handler Id",
                     "dataType": "string",
-                    "description": "Id of authorization handler used to control access to resources in this adaptor.",
+                    "description": "Id of authorization handler used to control access to resources in this adapter.",
                     "label": "Authorization Handler"
                 },
-                "journalAdaptorId": {
+                "journalAdapterId": {
                     "_meta_": {
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "allowQuery": true,
-                    "brief": "The adaptorId that provides journal service for this adaptor",
+                    "brief": "The adapterId that provides journal service for this adapter",
                     "dataType": "string",
-                    "description": "This is the id of an adaptor that provides journal service for this adaptor.  This can be this adaptor's own id or a previously defined adaptor's id.  If not specified, no journaling will be performed.",
-                    "label": "Journal Adaptor"
+                    "description": "This is the id of an adapter that provides journal service for this adapter.  This can be this adapter's own id or a previously defined adapter's id.  If not specified, no journaling will be performed.",
+                    "label": "Journal Adapter"
                 },
                 "type": {
                     "_meta_": {
@@ -12059,8 +12059,8 @@
                     "allowQuery": false
                 }
             },
-            "objectType": "_AdaptiveConf_adaptor_dbd_odbc",
-            "description": "Object type for type=adaptor adaptor_type=odbc conf entries.",
+            "objectType": "_AdaptiveConf_adapter_dbd_odbc",
+            "description": "Object type for type=adapter adapter_type=odbc conf entries.",
             "collectionURIs": [
                 "/afw/_AdaptiveCollection_/dbd_extension"
             ],
@@ -12175,7 +12175,7 @@
                 }
             },
             "objectType": "_AdaptiveLdapSchema_",
-            "description": "Object type for type=adaptor adaptor_type=ldap synthetic schema object.",
+            "description": "Object type for type=adapter adapter_type=ldap synthetic schema object.",
             "collectionURIs": [
                 "/afw/_AdaptiveCollection_/ldap_extension"
             ],
@@ -12553,26 +12553,26 @@
                     "description": "This defines how authorization checking occurs in this application.",
                     "label": "Authorization"
                 },
-                "confAdaptorId": {
+                "confAdapterId": {
                     "_meta_": {
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "allowQuery": true,
                     "allowWrite": false,
-                    "brief": "Optional adaptorId of the running adaptor that contains configuration related objects",
+                    "brief": "Optional adapterId of the running adapter that contains configuration related objects",
                     "dataType": "string",
-                    "description": "This is the optional adaptorId of the running adaptor that contains configuration related objects.  This property can only be specified in the type=application entry of the conf file.\n\nThe runtime /afw/_AdaptiveApplication_/current object will consist of properties from the type=application entry of the conf file plus unique properties from the optional /<confAdaptorId>/_AdaptiveConf_application/<applicationId> object.\n\nAll services defined by _AdaptiveServiceConf_ objects in <confAdaptorId> with startup \"permanent\" or \"immediate\" will be started when the type=application conf entry is processed.",
-                    "label": "Conf Adaptor"
+                    "description": "This is the optional adapterId of the running adapter that contains configuration related objects.  This property can only be specified in the type=application entry of the conf file.\n\nThe runtime /afw/_AdaptiveApplication_/current object will consist of properties from the type=application entry of the conf file plus unique properties from the optional /<confAdapterId>/_AdaptiveConf_application/<applicationId> object.\n\nAll services defined by _AdaptiveServiceConf_ objects in <confAdapterId> with startup \"permanent\" or \"immediate\" will be started when the type=application conf entry is processed.",
+                    "label": "Conf Adapter"
                 },
-                "defaultAdaptorId": {
+                "defaultAdapterId": {
                     "_meta_": {
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "allowQuery": true,
-                    "brief": "This is the adaptorId chosen by default for user interface select components",
+                    "brief": "This is the adapterId chosen by default for user interface select components",
                     "dataType": "string",
-                    "description": "This is the adaptorId chosen by default for user interface select components.",
-                    "label": "Default Adaptor",
+                    "description": "This is the adapterId chosen by default for user interface select components.",
+                    "label": "Default Adapter",
                     "required": false
                 },
                 "defaultFlags": {
@@ -12586,15 +12586,15 @@
                     "label": "Default Flags",
                     "required": false
                 },
-                "defaultModelAdaptorId": {
+                "defaultModelAdapterId": {
                     "_meta_": {
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "allowQuery": true,
-                    "brief": "The default adaptorId to select for model storage",
+                    "brief": "The default adapterId to select for model storage",
                     "dataType": "string",
-                    "description": "When presented with multiple model adaptors, this is the default adaptorId to use.  This will be the default selected adaptor chosen by user interface components.",
-                    "label": "Default Model Adaptor",
+                    "description": "When presented with multiple model adapters, this is the default adapterId to use.  This will be the default selected adapter chosen by user interface components.",
+                    "label": "Default Model Adapter",
                     "required": false
                 },
                 "description": {
@@ -12620,15 +12620,15 @@
                     "label": "Extensions",
                     "required": false
                 },
-                "layoutsAdaptorId": {
+                "layoutsAdapterId": {
                     "_meta_": {
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "allowQuery": true,
-                    "brief": "The default adaptorId to select for layout component objects",
+                    "brief": "The default adapterId to select for layout component objects",
                     "dataType": "string",
-                    "description": "This is the adaptorId that locates Adaptive Layout Component objects.",
-                    "label": "Layouts Adaptor",
+                    "description": "This is the adapterId that locates Adaptive Layout Component objects.",
+                    "label": "Layouts Adapter",
                     "required": false
                 },
                 "qualifiedVariables": {
@@ -12962,8 +12962,8 @@
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveObjectType_/_AdaptiveConf_requestHandler_adaptor",
-                "objectId": "_AdaptiveConf_requestHandler_adaptor",
+                "path": "/afw/_AdaptiveObjectType_/_AdaptiveConf_requestHandler_adapter",
+                "objectId": "_AdaptiveConf_requestHandler_adapter",
                 "objectType": "_AdaptiveObjectType_"
             },
             "propertyTypes": {
@@ -13038,7 +13038,7 @@
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "label": "Object Type",
-                    "description": "If this property is specified, a '/' followed by adaptorId followed by a '/' followed by objectType is prepended to the path passed to process request if it does not already have that prefix.  If this property is specified, adaptorId is required.",
+                    "description": "If this property is specified, a '/' followed by adapterId followed by a '/' followed by objectType is prepended to the path passed to process request if it does not already have that prefix.  If this property is specified, adapterId is required.",
                     "dataType": "string",
                     "brief": "If specified, this objectType is prepended to the path",
                     "allowQuery": true
@@ -13054,19 +13054,19 @@
                     "brief": "Default object options for method GET requests through this request handler",
                     "allowQuery": false
                 },
-                "adaptorId": {
+                "adapterId": {
                     "_meta_": {
                         "objectType": "_AdaptiveValueMeta_"
                     },
-                    "label": "Adaptor",
-                    "description": "If this property is specified, a '/' followed by adaptorId is prepended to the path passed to process request if it does not already have that prefix.",
+                    "label": "Adapter",
+                    "description": "If this property is specified, a '/' followed by adapterId is prepended to the path passed to process request if it does not already have that prefix.",
                     "dataType": "string",
-                    "brief": "If specified, this adaptorId is prepended to the path",
+                    "brief": "If specified, this adapterId is prepended to the path",
                     "allowQuery": true
                 }
             },
-            "objectType": "_AdaptiveConf_requestHandler_adaptor",
-            "description": "Adaptive Framework configuration component for type=requestHandler handlerType=adaptor.",
+            "objectType": "_AdaptiveConf_requestHandler_adapter",
+            "description": "Adaptive Framework configuration component for type=requestHandler handlerType=adapter.",
             "collectionURIs": [
                 "/afw/_AdaptiveCollection_/core"
             ],
@@ -13266,8 +13266,8 @@
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb_limits_size",
-                "objectId": "_AdaptiveConf_adaptor_lmdb_limits_size",
+                "path": "/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits_size",
+                "objectId": "_AdaptiveConf_adapter_lmdb_limits_size",
                 "objectType": "_AdaptiveObjectType_"
             },
             "propertyTypes": {
@@ -13297,8 +13297,8 @@
                     "allowQuery": false
                 }
             },
-            "objectType": "_AdaptiveConf_adaptor_lmdb_limits_size",
-            "description": "Object type for type=adaptor adaptor_type=lmdb size limit conf entries.",
+            "objectType": "_AdaptiveConf_adapter_lmdb_limits_size",
+            "description": "Object type for type=adapter adapter_type=lmdb size limit conf entries.",
             "collectionURIs": [
                 "/afw/_AdaptiveCollection_/lmdb_extension"
             ],
@@ -13685,7 +13685,7 @@
                     "brief": "The URIs of the collection this value meta is a part of",
                     "dataType": "array",
                     "dataTypeParameter": "anyURI",
-                    "description": "This is the URIs of the collections this value meta is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections.  If a collection is used outside of the local instance, it should be a full URI.  The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adaptor.",
+                    "description": "This is the URIs of the collections this value meta is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections.  If a collection is used outside of the local instance, it should be a full URI.  The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adapter.",
                     "label": "Collection URIs"
                 },
                 "contextType": {
@@ -13855,7 +13855,7 @@
                     "brief": "Runtime information for runtime values",
                     "dataType": "object",
                     "dataTypeParameter": "_AdaptiveRuntimeProperty_",
-                    "description": "This is only valid for runtime object types.  These are objects that are accessed with adaptorId afw.  See afw_runtime.h for more information.",
+                    "description": "This is only valid for runtime object types.  These are objects that are accessed with adapterId afw.  See afw_runtime.h for more information.",
                     "label": "Runtime"
                 },
                 "tags": {
@@ -14753,14 +14753,14 @@
                     "dataType": "boolean",
                     "brief": "Entire object id was substituted from current path"
                 },
-                "substitutedAdaptorId": {
+                "substitutedAdapterId": {
                     "_meta_": {
                         "objectType": "_AdaptiveValueMeta_"
                     },
-                    "label": "Substituted Adaptor",
-                    "description": "Adaptor id was substituted from current path.",
+                    "label": "Substituted Adapter",
+                    "description": "Adapter id was substituted from current path.",
                     "dataType": "boolean",
-                    "brief": "Adaptor id was substituted from current path"
+                    "brief": "Adapter id was substituted from current path"
                 },
                 "propertyNames": {
                     "_meta_": {
@@ -14844,14 +14844,14 @@
                     "dataType": "boolean",
                     "brief": "The path contains unresolved substitutions"
                 },
-                "adaptorId": {
+                "adapterId": {
                     "_meta_": {
                         "objectType": "_AdaptiveValueMeta_"
                     },
-                    "label": "Adaptor",
-                    "description": "Adaptor id.",
+                    "label": "Adapter",
+                    "description": "Adapter id.",
                     "dataType": "string",
-                    "brief": "Adaptor id"
+                    "brief": "Adapter id"
                 }
             },
             "objectType": "_AdaptiveValuePath_",
@@ -15126,33 +15126,33 @@
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_dbd_postgresql",
-                "objectId": "_AdaptiveConf_adaptor_dbd_postgresql",
+                "path": "/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_dbd_postgresql",
+                "objectId": "_AdaptiveConf_adapter_dbd_postgresql",
                 "objectType": "_AdaptiveObjectType_"
             },
             "propertyTypes": {
                 "_meta_": {
                     "objectType": "_AdaptivePropertyTypes_"
                 },
-                "adaptorId": {
+                "adapterId": {
                     "_meta_": {
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "allowQuery": true,
-                    "brief": "Adaptor id",
+                    "brief": "Adapter id",
                     "dataType": "string",
-                    "description": "A unique identifier for this adaptor instance.",
-                    "label": "Adaptor"
+                    "description": "A unique identifier for this adapter instance.",
+                    "label": "Adapter"
                 },
-                "adaptorType": {
+                "adapterType": {
                     "_meta_": {
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "allowQuery": true,
-                    "brief": "Adaptor type",
+                    "brief": "Adapter type",
                     "dataType": "string",
-                    "description": "This specifies the type of adaptor to use.  The value of this field must match an adaptorType that is registered by core or by an extension.",
-                    "label": "Adaptor Type",
+                    "description": "This specifies the type of adapter to use.  The value of this field must match an adapterType that is registered by core or by an extension.",
+                    "label": "Adapter Type",
                     "required": true
                 },
                 "authorizationHandlerId": {
@@ -15162,18 +15162,18 @@
                     "allowQuery": true,
                     "brief": "Authorization Handler Id",
                     "dataType": "string",
-                    "description": "Id of authorization handler used to control access to resources in this adaptor.",
+                    "description": "Id of authorization handler used to control access to resources in this adapter.",
                     "label": "Authorization Handler"
                 },
-                "journalAdaptorId": {
+                "journalAdapterId": {
                     "_meta_": {
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "allowQuery": true,
-                    "brief": "The adaptorId that provides journal service for this adaptor",
+                    "brief": "The adapterId that provides journal service for this adapter",
                     "dataType": "string",
-                    "description": "This is the id of an adaptor that provides journal service for this adaptor.  This can be this adaptor's own id or a previously defined adaptor's id.  If not specified, no journaling will be performed.",
-                    "label": "Journal Adaptor"
+                    "description": "This is the id of an adapter that provides journal service for this adapter.  This can be this adapter's own id or a previously defined adapter's id.  If not specified, no journaling will be performed.",
+                    "label": "Journal Adapter"
                 },
                 "type": {
                     "_meta_": {
@@ -15229,8 +15229,8 @@
                     "allowQuery": false
                 }
             },
-            "objectType": "_AdaptiveConf_adaptor_dbd_postgresql",
-            "description": "Object type for type=adaptor adaptor_type=postgresql conf entries.",
+            "objectType": "_AdaptiveConf_adapter_dbd_postgresql",
+            "description": "Object type for type=adapter adapter_type=postgresql conf entries.",
             "collectionURIs": [
                 "/afw/_AdaptiveCollection_/dbd_extension"
             ],
@@ -15238,33 +15238,33 @@
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_file",
-                "objectId": "_AdaptiveConf_adaptor_file",
+                "path": "/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_file",
+                "objectId": "_AdaptiveConf_adapter_file",
                 "objectType": "_AdaptiveObjectType_"
             },
             "propertyTypes": {
                 "_meta_": {
                     "objectType": "_AdaptivePropertyTypes_"
                 },
-                "adaptorId": {
+                "adapterId": {
                     "_meta_": {
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "allowQuery": true,
-                    "brief": "Adaptor id",
+                    "brief": "Adapter id",
                     "dataType": "string",
-                    "description": "A unique identifier for this adaptor instance.",
-                    "label": "Adaptor"
+                    "description": "A unique identifier for this adapter instance.",
+                    "label": "Adapter"
                 },
-                "adaptorType": {
+                "adapterType": {
                     "_meta_": {
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "allowQuery": true,
-                    "brief": "Adaptor type",
+                    "brief": "Adapter type",
                     "dataType": "string",
-                    "description": "This specifies the type of adaptor to use.  The value of this field must match an adaptorType that is registered by core or by an extension.",
-                    "label": "Adaptor Type",
+                    "description": "This specifies the type of adapter to use.  The value of this field must match an adapterType that is registered by core or by an extension.",
+                    "label": "Adapter Type",
                     "required": true
                 },
                 "authorizationHandlerId": {
@@ -15274,18 +15274,18 @@
                     "allowQuery": true,
                     "brief": "Authorization Handler Id",
                     "dataType": "string",
-                    "description": "Id of authorization handler used to control access to resources in this adaptor.",
+                    "description": "Id of authorization handler used to control access to resources in this adapter.",
                     "label": "Authorization Handler"
                 },
-                "journalAdaptorId": {
+                "journalAdapterId": {
                     "_meta_": {
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "allowQuery": true,
-                    "brief": "The adaptorId that provides journal service for this adaptor",
+                    "brief": "The adapterId that provides journal service for this adapter",
                     "dataType": "string",
-                    "description": "This is the id of an adaptor that provides journal service for this adaptor.  This can be this adaptor's own id or a previously defined adaptor's id.  If not specified, no journaling will be performed.",
-                    "label": "Journal Adaptor"
+                    "description": "This is the id of an adapter that provides journal service for this adapter.  This can be this adapter's own id or a previously defined adapter's id.  If not specified, no journaling will be performed.",
+                    "label": "Journal Adapter"
                 },
                 "type": {
                     "_meta_": {
@@ -15335,7 +15335,7 @@
                     },
                     "required": true,
                     "label": "Root",
-                    "description": "When locating objects within this adaptor, this root path will be prepended in order to resolve filenames.  It must already exist and be accessible.",
+                    "description": "When locating objects within this adapter, this root path will be prepended in order to resolve filenames.  It must already exist and be accessible.",
                     "dataType": "string",
                     "brief": "Path to the directory holding object type directories",
                     "allowQuery": true
@@ -15345,9 +15345,9 @@
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "label": "Is Policy Location",
-                    "description": "If specified, this adaptor can hold _AdaptivePolicy_ and _AdaptivePolicySet_ objects.  The appropriate core objects associated with Adaptive Policies and Policy Sets will be added automatically for this adaptor.",
+                    "description": "If specified, this adapter can hold _AdaptivePolicy_ and _AdaptivePolicySet_ objects.  The appropriate core objects associated with Adaptive Policies and Policy Sets will be added automatically for this adapter.",
                     "dataType": "boolean",
-                    "brief": "This adaptor can hold _AdaptivePolicy_ and _AdaptivePolicySet_ objects",
+                    "brief": "This adapter can hold _AdaptivePolicy_ and _AdaptivePolicySet_ objects",
                     "allowQuery": true
                 },
                 "isModelLocation": {
@@ -15355,9 +15355,9 @@
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "label": "Is Model Location",
-                    "description": "If specified, this adaptor can hold _AdaptiveModel_ objects.  The appropriate core objects associated with Adaptive Models will be added automatically for this adaptor.",
+                    "description": "If specified, this adapter can hold _AdaptiveModel_ objects.  The appropriate core objects associated with Adaptive Models will be added automatically for this adapter.",
                     "dataType": "boolean",
-                    "brief": "This adaptor can hold _AdaptiveModel_ objects",
+                    "brief": "This adapter can hold _AdaptiveModel_ objects",
                     "allowQuery": true
                 },
                 "isDevelopmentInput": {
@@ -15367,7 +15367,7 @@
                     "label": "Is Development Input",
                     "description": "This should only be used during Adaptive Framework core and extension development.  It allows core object type instances to be written to the directory used by generate.py.",
                     "dataType": "boolean",
-                    "brief": "Specifies this adaptor is used for object development input",
+                    "brief": "Specifies this adapter is used for object development input",
                     "allowQuery": true
                 },
                 "filenameSuffix": {
@@ -15375,7 +15375,7 @@
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "label": "Filename Suffix",
-                    "description": "When locating file objects, this adaptor will use this suffix to append to the objectId in order to resolve the filename.",
+                    "description": "When locating file objects, this adapter will use this suffix to append to the objectId in order to resolve the filename.",
                     "dataType": "string",
                     "brief": "Suffix that will be appended to objectId for filename",
                     "allowQuery": true
@@ -15386,14 +15386,14 @@
                     },
                     "required": true,
                     "label": "Content Type",
-                    "description": "This is the content type to be used for this file adaptor.  This must be a content-type that is registered by core or by an extension.",
+                    "description": "This is the content type to be used for this file adapter.  This must be a content-type that is registered by core or by an extension.",
                     "dataType": "string",
                     "brief": "Content type for file objects",
                     "allowQuery": true
                 }
             },
-            "objectType": "_AdaptiveConf_adaptor_file",
-            "description": "Adaptive Framework configuration component for type=adaptor adaptorType=file.",
+            "objectType": "_AdaptiveConf_adapter_file",
+            "description": "Adaptive Framework configuration component for type=adapter adapterType=file.",
             "collectionURIs": [
                 "/afw/_AdaptiveCollection_/core"
             ],
@@ -15488,33 +15488,33 @@
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_afw_runtime",
-                "objectId": "_AdaptiveConf_adaptor_afw_runtime",
+                "path": "/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_afw_runtime",
+                "objectId": "_AdaptiveConf_adapter_afw_runtime",
                 "objectType": "_AdaptiveObjectType_"
             },
             "propertyTypes": {
                 "_meta_": {
                     "objectType": "_AdaptivePropertyTypes_"
                 },
-                "adaptorId": {
+                "adapterId": {
                     "_meta_": {
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "allowQuery": true,
-                    "brief": "Adaptor id",
+                    "brief": "Adapter id",
                     "dataType": "string",
-                    "description": "A unique identifier for this adaptor instance.",
-                    "label": "Adaptor"
+                    "description": "A unique identifier for this adapter instance.",
+                    "label": "Adapter"
                 },
-                "adaptorType": {
+                "adapterType": {
                     "_meta_": {
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "allowQuery": true,
-                    "brief": "Adaptor type",
+                    "brief": "Adapter type",
                     "dataType": "string",
-                    "description": "This specifies the type of adaptor to use.  The value of this field must match an adaptorType that is registered by core or by an extension.",
-                    "label": "Adaptor Type",
+                    "description": "This specifies the type of adapter to use.  The value of this field must match an adapterType that is registered by core or by an extension.",
+                    "label": "Adapter Type",
                     "required": true
                 },
                 "authorizationHandlerId": {
@@ -15524,18 +15524,18 @@
                     "allowQuery": true,
                     "brief": "Authorization Handler Id",
                     "dataType": "string",
-                    "description": "Id of authorization handler used to control access to resources in this adaptor.",
+                    "description": "Id of authorization handler used to control access to resources in this adapter.",
                     "label": "Authorization Handler"
                 },
-                "journalAdaptorId": {
+                "journalAdapterId": {
                     "_meta_": {
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "allowQuery": true,
-                    "brief": "The adaptorId that provides journal service for this adaptor",
+                    "brief": "The adapterId that provides journal service for this adapter",
                     "dataType": "string",
-                    "description": "This is the id of an adaptor that provides journal service for this adaptor.  This can be this adaptor's own id or a previously defined adaptor's id.  If not specified, no journaling will be performed.",
-                    "label": "Journal Adaptor"
+                    "description": "This is the id of an adapter that provides journal service for this adapter.  This can be this adapter's own id or a previously defined adapter's id.  If not specified, no journaling will be performed.",
+                    "label": "Journal Adapter"
                 },
                 "type": {
                     "_meta_": {
@@ -15580,8 +15580,8 @@
                     "allowQuery": true
                 }
             },
-            "objectType": "_AdaptiveConf_adaptor_afw_runtime",
-            "description": "Adaptive Framework configuration component for type=adaptor adaptorType=afw_runtime conf entries.  The component is automatically define with an adaptorId of \"afw\" and can only be redefined to add common adaptor properties such as access control.",
+            "objectType": "_AdaptiveConf_adapter_afw_runtime",
+            "description": "Adaptive Framework configuration component for type=adapter adapterType=afw_runtime conf entries.  The component is automatically define with an adapterId of \"afw\" and can only be redefined to add common adapter properties such as access control.",
             "collectionURIs": [
                 "/afw/_AdaptiveCollection_/core"
             ],
@@ -15835,7 +15835,7 @@
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "label": "Service Id",
-                    "description": "Service id.  This is the type and type specific id property separated with a '-'.  For example, for conf type=adaptor, adaptorId=x, the serviceId must be \"adaptor-x\".",
+                    "description": "Service id.  This is the type and type specific id property separated with a '-'.  For example, for conf type=adapter, adapterId=x, the serviceId must be \"adapter-x\".",
                     "dataType": "string",
                     "brief": "The unique service id",
                     "allowQuery": true
@@ -17033,8 +17033,8 @@
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb_limits",
-                "objectId": "_AdaptiveConf_adaptor_lmdb_limits",
+                "path": "/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits",
+                "objectId": "_AdaptiveConf_adapter_lmdb_limits",
                 "objectType": "_AdaptiveObjectType_"
             },
             "propertyTypes": {
@@ -17049,7 +17049,7 @@
                     "required": true,
                     "label": "Time Limits",
                     "description": "Time limits for requests.",
-                    "dataTypeParameter": "_AdaptiveConf_adaptor_lmdb_limits_time",
+                    "dataTypeParameter": "_AdaptiveConf_adapter_lmdb_limits_time",
                     "dataType": "object",
                     "allowQuery": true
                 },
@@ -17061,13 +17061,13 @@
                     "required": true,
                     "label": "Size Limits",
                     "description": "Size limits for requests.",
-                    "dataTypeParameter": "_AdaptiveConf_adaptor_lmdb_limits_size",
+                    "dataTypeParameter": "_AdaptiveConf_adapter_lmdb_limits_size",
                     "dataType": "object",
                     "allowQuery": true
                 }
             },
-            "objectType": "_AdaptiveConf_adaptor_lmdb_limits",
-            "description": "Object type for type=adaptor adaptor_type=lmdb limit conf entries.",
+            "objectType": "_AdaptiveConf_adapter_lmdb_limits",
+            "description": "Object type for type=adapter adapter_type=lmdb limit conf entries.",
             "collectionURIs": [
                 "/afw/_AdaptiveCollection_/lmdb_extension"
             ],
@@ -17321,7 +17321,7 @@
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "label": "Runtime",
-                    "description": "This is only valid for runtime object types.  These are objects that are accessed with adaptorId afw.  See afw_runtime.h for more information.",
+                    "description": "This is only valid for runtime object types.  These are objects that are accessed with adapterId afw.  See afw_runtime.h for more information.",
                     "dataTypeParameter": "_AdaptiveRuntimeProperty_",
                     "dataType": "object",
                     "brief": "Runtime information for runtime values",
@@ -17491,7 +17491,7 @@
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "label": "Collection URIs",
-                    "description": "This is the URIs of the collections this value meta is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections.  If a collection is used outside of the local instance, it should be a full URI.  The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adaptor.",
+                    "description": "This is the URIs of the collections this value meta is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections.  If a collection is used outside of the local instance, it should be a full URI.  The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adapter.",
                     "dataTypeParameter": "anyURI",
                     "dataType": "array",
                     "brief": "The URIs of the collection this value meta is a part of",
@@ -18387,8 +18387,8 @@
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_ldap_bind",
-                "objectId": "_AdaptiveConf_adaptor_ldap_bind",
+                "path": "/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_ldap_bind",
+                "objectId": "_AdaptiveConf_adapter_ldap_bind",
                 "objectType": "_AdaptiveObjectType_"
             },
             "propertyTypes": {
@@ -18418,8 +18418,8 @@
                     "allowQuery": true
                 }
             },
-            "objectType": "_AdaptiveConf_adaptor_ldap_bind",
-            "description": "Object type for type=adaptor adaptor_type=ldap bind parameter object type.",
+            "objectType": "_AdaptiveConf_adapter_ldap_bind",
+            "description": "Object type for type=adapter adapter_type=ldap bind parameter object type.",
             "collectionURIs": [
                 "/afw/_AdaptiveCollection_/ldap_extension"
             ],
@@ -18486,7 +18486,7 @@
                     "brief": "The URIs of the collection this value meta is a part of",
                     "dataType": "array",
                     "dataTypeParameter": "anyURI",
-                    "description": "This is the URIs of the collections this value meta is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections.  If a collection is used outside of the local instance, it should be a full URI.  The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adaptor.",
+                    "description": "This is the URIs of the collections this value meta is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections.  If a collection is used outside of the local instance, it should be a full URI.  The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adapter.",
                     "label": "Collection URIs"
                 },
                 "contextType": {
@@ -18656,7 +18656,7 @@
                     "brief": "Runtime information for runtime values",
                     "dataType": "object",
                     "dataTypeParameter": "_AdaptiveRuntimeProperty_",
-                    "description": "This is only valid for runtime object types.  These are objects that are accessed with adaptorId afw.  See afw_runtime.h for more information.",
+                    "description": "This is only valid for runtime object types.  These are objects that are accessed with adapterId afw.  See afw_runtime.h for more information.",
                     "label": "Runtime"
                 },
                 "tags": {
@@ -18738,7 +18738,7 @@
                     },
                     "allowQuery": true,
                     "label": "Allow Write",
-                    "description": "If false, this property is read only.  If true, the property can be changed unless denied by authorization policy, constraint checking, or the adaptor.",
+                    "description": "If false, this property is read only.  If true, the property can be changed unless denied by authorization policy, constraint checking, or the adapter.",
                     "defaultValue": true,
                     "dataType": "boolean",
                     "brief": "This property is read-only"
@@ -18973,7 +18973,7 @@
                     "brief": "The URIs of the collection this value meta is a part of",
                     "dataType": "array",
                     "dataTypeParameter": "anyURI",
-                    "description": "This is the URIs of the collections this value meta is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections.  If a collection is used outside of the local instance, it should be a full URI.  The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adaptor.",
+                    "description": "This is the URIs of the collections this value meta is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections.  If a collection is used outside of the local instance, it should be a full URI.  The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adapter.",
                     "label": "Collection URIs"
                 },
                 "contextType": {
@@ -19143,7 +19143,7 @@
                     "brief": "Runtime information for runtime values",
                     "dataType": "object",
                     "dataTypeParameter": "_AdaptiveRuntimeProperty_",
-                    "description": "This is only valid for runtime object types.  These are objects that are accessed with adaptorId afw.  See afw_runtime.h for more information.",
+                    "description": "This is only valid for runtime object types.  These are objects that are accessed with adapterId afw.  See afw_runtime.h for more information.",
                     "label": "Runtime"
                 },
                 "tags": {
@@ -19203,7 +19203,7 @@
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "label": "Transitory",
-                    "description": "Indicates that this property is transitory and will not be persisted by the adaptor.  The value can be produced by setValue or supplied in the request.",
+                    "description": "Indicates that this property is transitory and will not be persisted by the adapter.  The value can be produced by setValue or supplied in the request.",
                     "defaultValue": false,
                     "dataType": "boolean",
                     "brief": "This property will not be persisted"
@@ -19232,7 +19232,7 @@
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "label": "Mapped Property Name",
-                    "description": "This is the property name of this property used internally by an adaptor.  If not specified, propertyName is used.",
+                    "description": "This is the property name of this property used internally by an adapter.  If not specified, propertyName is used.",
                     "dataType": "string",
                     "brief": "Name to map property to and from"
                 },
@@ -19998,7 +19998,7 @@
                         "memberName": "subtype_runtime_object_type_id"
                     },
                     "label": "Subtype Runtime Object Type",
-                    "description": "This is the subtype runtime object type for instances of this conf type.  For adaptor, this is \"_AdaptiveAdaptorType_\".",
+                    "description": "This is the subtype runtime object type for instances of this conf type.  For adapter, this is \"_AdaptiveAdapterType_\".",
                     "dataType": "string",
                     "brief": "The subtype runtime object type for instances of this conf type",
                     "allowQuery": true
@@ -20015,7 +20015,7 @@
                         "memberName": "subtype_registry_type_id"
                     },
                     "label": "Subtype Registry Type",
-                    "description": "This is the subtype registry type for instances of this conf type.  For adaptor, this is \"adaptor_type\".",
+                    "description": "This is the subtype registry type for instances of this conf type.  For adapter, this is \"adapter_type\".",
                     "dataType": "string",
                     "brief": "The subtype registry type for instances of this conf type",
                     "allowQuery": true
@@ -20032,7 +20032,7 @@
                         "memberName": "subtype_property_name"
                     },
                     "label": "Subtype Property Name",
-                    "description": "This is the subtype property name for instances of this conf type.   For adaptor, this is \"adaptorType\".",
+                    "description": "This is the subtype property name for instances of this conf type.   For adapter, this is \"adapterType\".",
                     "dataType": "string",
                     "brief": "The subtype property name for instances of this conf type",
                     "allowQuery": true
@@ -20065,7 +20065,7 @@
                         "memberName": "id_runtime_object_type_id"
                     },
                     "label": "Id Runtime Object Type",
-                    "description": "This is the runtime object type for instances of this conf type.  For adaptor, this is \"_AdaptiveAdaptor_\".",
+                    "description": "This is the runtime object type for instances of this conf type.  For adapter, this is \"_AdaptiveAdapter_\".",
                     "dataType": "string",
                     "brief": "Runtime object type for instances of this conf type",
                     "allowQuery": true
@@ -20082,7 +20082,7 @@
                         "memberName": "id_registry_type_id"
                     },
                     "label": "Id Registry Type",
-                    "description": "This is the registry type for instances of this conf type.  For adaptor, this is \"adaptor_id\".",
+                    "description": "This is the registry type for instances of this conf type.  For adapter, this is \"adapter_id\".",
                     "dataType": "string",
                     "brief": "Registry type for instances of this conf type",
                     "allowQuery": true
@@ -20099,7 +20099,7 @@
                         "memberName": "id_property_name"
                     },
                     "label": "Id Property Name",
-                    "description": "This is the id property name for instances of this conf type.  For adaptor, this is \"adaptorId\".",
+                    "description": "This is the id property name for instances of this conf type.  For adapter, this is \"adapterId\".",
                     "dataType": "string",
                     "brief": "The id property name for instances of this conf type",
                     "allowQuery": true
@@ -20134,8 +20134,8 @@
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb",
-                "objectId": "_AdaptiveAdaptorMetrics_adaptor_lmdb",
+                "path": "/afw/_AdaptiveObjectType_/_AdaptiveAdapterMetrics_adapter_lmdb",
+                "objectId": "_AdaptiveAdapterMetrics_adapter_lmdb",
                 "objectType": "_AdaptiveObjectType_"
             },
             "propertyTypes": {
@@ -20150,7 +20150,7 @@
                     "required": true,
                     "label": "Version",
                     "description": "Version information reported by LMDB.",
-                    "dataTypeParameter": "_AdaptiveAdaptorMetrics_adaptor_lmdb_version",
+                    "dataTypeParameter": "_AdaptiveAdapterMetrics_adapter_lmdb_version",
                     "dataType": "object",
                     "allowQuery": false
                 },
@@ -20162,7 +20162,7 @@
                     "required": true,
                     "label": "Statistics",
                     "description": "Information about individual LMDB databases.",
-                    "dataTypeParameter": "_AdaptiveAdaptorMetrics_adaptor_lmdb_statistics",
+                    "dataTypeParameter": "_AdaptiveAdapterMetrics_adapter_lmdb_statistics",
                     "dataType": "object",
                     "allowQuery": false
                 },
@@ -20174,13 +20174,13 @@
                     "required": true,
                     "label": "Information",
                     "description": "Information about the LMDB environment, its collection of databases.",
-                    "dataTypeParameter": "_AdaptiveAdaptorMetrics_adaptor_lmdb_information",
+                    "dataTypeParameter": "_AdaptiveAdapterMetrics_adapter_lmdb_information",
                     "dataType": "object",
                     "allowQuery": false
                 }
             },
-            "objectType": "_AdaptiveAdaptorMetrics_adaptor_lmdb",
-            "description": "Object type for LMDB adaptor additional metrics.",
+            "objectType": "_AdaptiveAdapterMetrics_adapter_lmdb",
+            "description": "Object type for LMDB adapter additional metrics.",
             "collectionURIs": [
                 "/afw/_AdaptiveCollection_/lmdb_extension"
             ],
@@ -20210,20 +20210,20 @@
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveObjectType_/_AdaptiveAdaptor_",
-                "objectId": "_AdaptiveAdaptor_",
+                "path": "/afw/_AdaptiveObjectType_/_AdaptiveAdapter_",
+                "objectId": "_AdaptiveAdapter_",
                 "objectType": "_AdaptiveObjectType_"
             },
             "runtime": {
                 "_meta_": {
                     "objectType": "_AdaptiveRuntimeObject_"
                 },
-                "typedef": "afw_adaptor_id_anchor_t",
+                "typedef": "afw_adapter_id_anchor_t",
                 "labels": {
                     "_meta_": {
                         "objectType": "_AdaptiveRuntimeLabels_"
                     },
-                    "objectId": "adaptor_id",
+                    "objectId": "adapter_id",
                     "indirectObjectId": true
                 },
                 "indirect": true
@@ -20240,8 +20240,8 @@
                         "_meta_": {
                             "objectType": "_AdaptiveRuntimeProperty_"
                         },
-                        "valueAccessor": "stopping_adaptor_instances",
-                        "memberName": "adaptor_id"
+                        "valueAccessor": "stopping_adapter_instances",
+                        "memberName": "adapter_id"
                     },
                     "label": "Stopping Instances",
                     "description": "Reference counts of stopping instances.",
@@ -20278,9 +20278,9 @@
                         "memberName": "reference_count"
                     },
                     "label": "Reference Count",
-                    "description": "The reference count is the total number of references that are currently being used for this adaptor.",
+                    "description": "The reference count is the total number of references that are currently being used for this adapter.",
                     "dataType": "integer",
-                    "brief": "Adaptor's reference count",
+                    "brief": "Adapter's reference count",
                     "allowQuery": true
                 },
                 "properties": {
@@ -20290,7 +20290,7 @@
                     "label": "Properties",
                     "description": "This object contains some of properties from the associated conf object plus other runtime properties.",
                     "dataType": "object",
-                    "brief": "Properties associated with adaptor"
+                    "brief": "Properties associated with adapter"
                 },
                 "metrics": {
                     "_meta_": {
@@ -20300,17 +20300,17 @@
                         "_meta_": {
                             "objectType": "_AdaptiveRuntimeProperty_"
                         },
-                        "valueAccessor": "adaptor_metrics",
-                        "memberName": "adaptor"
+                        "valueAccessor": "adapter_metrics",
+                        "memberName": "adapter"
                     },
                     "label": "Metrics",
-                    "description": "An adaptor may provide metrics to describe the current state of this adaptor instance.",
-                    "dataTypeParameter": "_AdaptiveAdaptorMetrics_",
+                    "description": "An adapter may provide metrics to describe the current state of this adapter instance.",
+                    "dataTypeParameter": "_AdaptiveAdapterMetrics_",
                     "dataType": "object",
-                    "brief": "Adaptor metrics",
+                    "brief": "Adapter metrics",
                     "allowQuery": true
                 },
-                "adaptorId": {
+                "adapterId": {
                     "_meta_": {
                         "objectType": "_AdaptiveValueMeta_"
                     },
@@ -20319,17 +20319,17 @@
                             "objectType": "_AdaptiveRuntimeProperty_"
                         },
                         "valueAccessor": "indirect",
-                        "memberName": "adaptor_id"
+                        "memberName": "adapter_id"
                     },
-                    "label": "Adaptor Id",
-                    "description": "The adaptor id uniquely identifies an adaptor instance.",
+                    "label": "Adapter Id",
+                    "description": "The adapter id uniquely identifies an adapter instance.",
                     "dataType": "string",
-                    "brief": "Unique adaptor id",
+                    "brief": "Unique adapter id",
                     "allowQuery": true
                 }
             },
-            "objectType": "_AdaptiveAdaptor_",
-            "description": "Runtime adaptor information.",
+            "objectType": "_AdaptiveAdapter_",
+            "description": "Runtime adapter information.",
             "collectionURIs": [
                 "/afw/_AdaptiveCollection_/core"
             ],
@@ -20340,33 +20340,33 @@
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb",
-                "objectId": "_AdaptiveConf_adaptor_lmdb",
+                "path": "/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb",
+                "objectId": "_AdaptiveConf_adapter_lmdb",
                 "objectType": "_AdaptiveObjectType_"
             },
             "propertyTypes": {
                 "_meta_": {
                     "objectType": "_AdaptivePropertyTypes_"
                 },
-                "adaptorId": {
+                "adapterId": {
                     "_meta_": {
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "allowQuery": true,
-                    "brief": "Adaptor id",
+                    "brief": "Adapter id",
                     "dataType": "string",
-                    "description": "A unique identifier for this adaptor instance.",
-                    "label": "Adaptor"
+                    "description": "A unique identifier for this adapter instance.",
+                    "label": "Adapter"
                 },
-                "adaptorType": {
+                "adapterType": {
                     "_meta_": {
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "allowQuery": true,
-                    "brief": "Adaptor type",
+                    "brief": "Adapter type",
                     "dataType": "string",
-                    "description": "This specifies the type of adaptor to use.  The value of this field must match an adaptorType that is registered by core or by an extension.",
-                    "label": "Adaptor Type",
+                    "description": "This specifies the type of adapter to use.  The value of this field must match an adapterType that is registered by core or by an extension.",
+                    "label": "Adapter Type",
                     "required": true
                 },
                 "authorizationHandlerId": {
@@ -20376,18 +20376,18 @@
                     "allowQuery": true,
                     "brief": "Authorization Handler Id",
                     "dataType": "string",
-                    "description": "Id of authorization handler used to control access to resources in this adaptor.",
+                    "description": "Id of authorization handler used to control access to resources in this adapter.",
                     "label": "Authorization Handler"
                 },
-                "journalAdaptorId": {
+                "journalAdapterId": {
                     "_meta_": {
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "allowQuery": true,
-                    "brief": "The adaptorId that provides journal service for this adaptor",
+                    "brief": "The adapterId that provides journal service for this adapter",
                     "dataType": "string",
-                    "description": "This is the id of an adaptor that provides journal service for this adaptor.  This can be this adaptor's own id or a previously defined adaptor's id.  If not specified, no journaling will be performed.",
-                    "label": "Journal Adaptor"
+                    "description": "This is the id of an adapter that provides journal service for this adapter.  This can be this adapter's own id or a previously defined adapter's id.  If not specified, no journaling will be performed.",
+                    "label": "Journal Adapter"
                 },
                 "type": {
                     "_meta_": {
@@ -20439,7 +20439,7 @@
                     "required": true,
                     "label": "Limits",
                     "description": "Database limits for LMDB.",
-                    "dataTypeParameter": "_AdaptiveConf_adaptor_lmdb_limits",
+                    "dataTypeParameter": "_AdaptiveConf_adapter_lmdb_limits",
                     "dataType": "object",
                     "allowQuery": true
                 },
@@ -20451,13 +20451,13 @@
                     "required": true,
                     "label": "Environment",
                     "description": "Environment settings for LMDB.",
-                    "dataTypeParameter": "_AdaptiveConf_adaptor_lmdb_env",
+                    "dataTypeParameter": "_AdaptiveConf_adapter_lmdb_env",
                     "dataType": "object",
                     "allowQuery": true
                 }
             },
-            "objectType": "_AdaptiveConf_adaptor_lmdb",
-            "description": "Object type for type=adaptor adaptor_type=lmdb conf entries.",
+            "objectType": "_AdaptiveConf_adapter_lmdb",
+            "description": "Object type for type=adapter adapter_type=lmdb conf entries.",
             "collectionURIs": [
                 "/afw/_AdaptiveCollection_/lmdb_extension"
             ],
@@ -20465,8 +20465,8 @@
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor",
-                "objectId": "_AdaptiveConf_adaptor",
+                "path": "/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter",
+                "objectId": "_AdaptiveConf_adapter",
                 "objectType": "_AdaptiveObjectType_"
             },
             "propertyTypes": {
@@ -20515,14 +20515,14 @@
                     "label": "Type",
                     "required": true
                 },
-                "journalAdaptorId": {
+                "journalAdapterId": {
                     "_meta_": {
                         "objectType": "_AdaptiveValueMeta_"
                     },
-                    "label": "Journal Adaptor",
-                    "description": "This is the id of an adaptor that provides journal service for this adaptor.  This can be this adaptor's own id or a previously defined adaptor's id.  If not specified, no journaling will be performed.",
+                    "label": "Journal Adapter",
+                    "description": "This is the id of an adapter that provides journal service for this adapter.  This can be this adapter's own id or a previously defined adapter's id.  If not specified, no journaling will be performed.",
                     "dataType": "string",
-                    "brief": "The adaptorId that provides journal service for this adaptor",
+                    "brief": "The adapterId that provides journal service for this adapter",
                     "allowQuery": true
                 },
                 "authorizationHandlerId": {
@@ -20530,35 +20530,35 @@
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "label": "Authorization Handler",
-                    "description": "Id of authorization handler used to control access to resources in this adaptor.",
+                    "description": "Id of authorization handler used to control access to resources in this adapter.",
                     "dataType": "string",
                     "brief": "Authorization Handler Id",
                     "allowQuery": true
                 },
-                "adaptorType": {
+                "adapterType": {
                     "_meta_": {
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "required": true,
-                    "label": "Adaptor Type",
-                    "description": "This specifies the type of adaptor to use.  The value of this field must match an adaptorType that is registered by core or by an extension.",
+                    "label": "Adapter Type",
+                    "description": "This specifies the type of adapter to use.  The value of this field must match an adapterType that is registered by core or by an extension.",
                     "dataType": "string",
-                    "brief": "Adaptor type",
+                    "brief": "Adapter type",
                     "allowQuery": true
                 },
-                "adaptorId": {
+                "adapterId": {
                     "_meta_": {
                         "objectType": "_AdaptiveValueMeta_"
                     },
-                    "label": "Adaptor",
-                    "description": "A unique identifier for this adaptor instance.",
+                    "label": "Adapter",
+                    "description": "A unique identifier for this adapter instance.",
                     "dataType": "string",
-                    "brief": "Adaptor id",
+                    "brief": "Adapter id",
                     "allowQuery": true
                 }
             },
-            "objectType": "_AdaptiveConf_adaptor",
-            "description": "Adaptive Framework configuration component for type=adaptor.  This object type is the parent of an _AdaptiveObjectType_ that contains adaptorType specific properties.",
+            "objectType": "_AdaptiveConf_adapter",
+            "description": "Adaptive Framework configuration component for type=adapter.  This object type is the parent of an _AdaptiveObjectType_ that contains adapterType specific properties.",
             "collectionURIs": [
                 "/afw/_AdaptiveCollection_/core"
             ],
@@ -21937,7 +21937,7 @@
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "label": "Runtime",
-                    "description": "This is only valid for runtime object types.  These are objects that are accessed with adaptorId afw.  See afw_runtime.h for more information.",
+                    "description": "This is only valid for runtime object types.  These are objects that are accessed with adapterId afw.  See afw_runtime.h for more information.",
                     "dataTypeParameter": "_AdaptiveRuntimeObject_",
                     "dataType": "object",
                     "brief": "Runtime information, available to runtime objects"
@@ -21999,7 +21999,7 @@
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "label": "Object Id Property Name",
-                    "description": "The name of the property in an instance that is used as the \"objectId\" property in the meta for instances of this object type.  If not specified, the internal adaptor objectId for an object is used.",
+                    "description": "The name of the property in an instance that is used as the \"objectId\" property in the meta for instances of this object type.  If not specified, the internal adapter objectId for an object is used.",
                     "dataType": "string",
                     "brief": "The name of the property that is used as the \"objectId\" meta property",
                     "allowQuery": true
@@ -22040,7 +22040,7 @@
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "label": "Collection URIs",
-                    "description": "This is the URIs of the collections this object type is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections.  If a collection is used outside of the local instance, it should be a full URI.  The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adaptor.",
+                    "description": "This is the URIs of the collections this object type is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections.  If a collection is used outside of the local instance, it should be a full URI.  The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adapter.",
                     "dataTypeParameter": "anyURI",
                     "dataType": "array",
                     "brief": "The URIs of the collections this object type is a part of",
@@ -22084,7 +22084,7 @@
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "label": "Allow Delete",
-                    "description": "If false, objects of this type can NEVER be deleted via an adaptor.  If true, objects of this type can be deleted via an adaptor as long as allowed by authorization policy and the adaptor.",
+                    "description": "If false, objects of this type can NEVER be deleted via an adapter.  If true, objects of this type can be deleted via an adapter as long as allowed by authorization policy and the adapter.",
                     "defaultValue": true,
                     "dataType": "boolean",
                     "brief": "Objects of this type can be deleted",
@@ -22106,7 +22106,7 @@
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "label": "Allow Change",
-                    "description": "If false, objects of this type can NEVER be changed via an adaptor.  If true, objects of this type can be changed via an adaptor as long as allowed by authorization policy and the adaptor.",
+                    "description": "If false, objects of this type can NEVER be changed via an adapter.  If true, objects of this type can be changed via an adapter as long as allowed by authorization policy and the adapter.",
                     "defaultValue": true,
                     "dataType": "boolean",
                     "brief": "Objects of this type can be changed",
@@ -22128,7 +22128,7 @@
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "label": "Allow Add",
-                    "description": "If false, objects of this type can NEVER be added via an adaptor.  If true, objects of this type can be added via an adaptor as long as allowed by authorization policy and the adaptor.",
+                    "description": "If false, objects of this type can NEVER be added via an adapter.  If true, objects of this type can be added via an adapter as long as allowed by authorization policy and the adapter.",
                     "defaultValue": true,
                     "dataType": "boolean",
                     "brief": "Objects of this type can be created",
@@ -22196,15 +22196,15 @@
                     "dataType": "object",
                     "brief": "Qualified set of variables"
                 },
-                "layoutsAdaptorId": {
+                "layoutsAdapterId": {
                     "_meta_": {
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "required": false,
-                    "label": "Layouts Adaptor",
-                    "description": "This is the adaptorId that locates Adaptive Layout Component objects.",
+                    "label": "Layouts Adapter",
+                    "description": "This is the adapterId that locates Adaptive Layout Component objects.",
                     "dataType": "string",
-                    "brief": "The default adaptorId to select for layout component objects",
+                    "brief": "The default adapterId to select for layout component objects",
                     "allowQuery": true
                 },
                 "extensions": {
@@ -22230,15 +22230,15 @@
                     "brief": "The description of the application",
                     "allowQuery": true
                 },
-                "defaultModelAdaptorId": {
+                "defaultModelAdapterId": {
                     "_meta_": {
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "required": false,
-                    "label": "Default Model Adaptor",
-                    "description": "When presented with multiple model adaptors, this is the default adaptorId to use.  This will be the default selected adaptor chosen by user interface components.",
+                    "label": "Default Model Adapter",
+                    "description": "When presented with multiple model adapters, this is the default adapterId to use.  This will be the default selected adapter chosen by user interface components.",
                     "dataType": "string",
-                    "brief": "The default adaptorId to select for model storage",
+                    "brief": "The default adapterId to select for model storage",
                     "allowQuery": true
                 },
                 "defaultFlags": {
@@ -22252,25 +22252,25 @@
                     "dataType": "array",
                     "brief": "List of default flags to be set when a scope (request) is created."
                 },
-                "defaultAdaptorId": {
+                "defaultAdapterId": {
                     "_meta_": {
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "required": false,
-                    "label": "Default Adaptor",
-                    "description": "This is the adaptorId chosen by default for user interface select components.",
+                    "label": "Default Adapter",
+                    "description": "This is the adapterId chosen by default for user interface select components.",
                     "dataType": "string",
-                    "brief": "This is the adaptorId chosen by default for user interface select components",
+                    "brief": "This is the adapterId chosen by default for user interface select components",
                     "allowQuery": true
                 },
-                "confAdaptorId": {
+                "confAdapterId": {
                     "_meta_": {
                         "objectType": "_AdaptiveValueMeta_"
                     },
-                    "label": "Conf Adaptor",
-                    "description": "This is the optional adaptorId of the running adaptor that contains configuration related objects.  This property can only be specified in the type=application entry of the conf file.\n\nThe runtime /afw/_AdaptiveApplication_/current object will consist of properties from the type=application entry of the conf file plus unique properties from the optional /<confAdaptorId>/_AdaptiveConf_application/<applicationId> object.\n\nAll services defined by _AdaptiveServiceConf_ objects in <confAdaptorId> with startup \"permanent\" or \"immediate\" will be started when the type=application conf entry is processed.",
+                    "label": "Conf Adapter",
+                    "description": "This is the optional adapterId of the running adapter that contains configuration related objects.  This property can only be specified in the type=application entry of the conf file.\n\nThe runtime /afw/_AdaptiveApplication_/current object will consist of properties from the type=application entry of the conf file plus unique properties from the optional /<confAdapterId>/_AdaptiveConf_application/<applicationId> object.\n\nAll services defined by _AdaptiveServiceConf_ objects in <confAdapterId> with startup \"permanent\" or \"immediate\" will be started when the type=application conf entry is processed.",
                     "dataType": "string",
-                    "brief": "Optional adaptorId of the running adaptor that contains configuration related objects",
+                    "brief": "Optional adapterId of the running adapter that contains configuration related objects",
                     "allowWrite": false,
                     "allowQuery": true
                 },
@@ -22594,33 +22594,33 @@
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_model",
-                "objectId": "_AdaptiveConf_adaptor_model",
+                "path": "/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_model",
+                "objectId": "_AdaptiveConf_adapter_model",
                 "objectType": "_AdaptiveObjectType_"
             },
             "propertyTypes": {
                 "_meta_": {
                     "objectType": "_AdaptivePropertyTypes_"
                 },
-                "adaptorId": {
+                "adapterId": {
                     "_meta_": {
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "allowQuery": true,
-                    "brief": "Adaptor id",
+                    "brief": "Adapter id",
                     "dataType": "string",
-                    "description": "A unique identifier for this adaptor instance.",
-                    "label": "Adaptor"
+                    "description": "A unique identifier for this adapter instance.",
+                    "label": "Adapter"
                 },
-                "adaptorType": {
+                "adapterType": {
                     "_meta_": {
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "allowQuery": true,
-                    "brief": "Adaptor type",
+                    "brief": "Adapter type",
                     "dataType": "string",
-                    "description": "This specifies the type of adaptor to use.  The value of this field must match an adaptorType that is registered by core or by an extension.",
-                    "label": "Adaptor Type",
+                    "description": "This specifies the type of adapter to use.  The value of this field must match an adapterType that is registered by core or by an extension.",
+                    "label": "Adapter Type",
                     "required": true
                 },
                 "authorizationHandlerId": {
@@ -22630,18 +22630,18 @@
                     "allowQuery": true,
                     "brief": "Authorization Handler Id",
                     "dataType": "string",
-                    "description": "Id of authorization handler used to control access to resources in this adaptor.",
+                    "description": "Id of authorization handler used to control access to resources in this adapter.",
                     "label": "Authorization Handler"
                 },
-                "journalAdaptorId": {
+                "journalAdapterId": {
                     "_meta_": {
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "allowQuery": true,
-                    "brief": "The adaptorId that provides journal service for this adaptor",
+                    "brief": "The adapterId that provides journal service for this adapter",
                     "dataType": "string",
-                    "description": "This is the id of an adaptor that provides journal service for this adaptor.  This can be this adaptor's own id or a previously defined adaptor's id.  If not specified, no journaling will be performed.",
-                    "label": "Journal Adaptor"
+                    "description": "This is the id of an adapter that provides journal service for this adapter.  This can be this adapter's own id or a previously defined adapter's id.  If not specified, no journaling will be performed.",
+                    "label": "Journal Adapter"
                 },
                 "type": {
                     "_meta_": {
@@ -22685,15 +22685,15 @@
                     "brief": "The description of this configuration component",
                     "allowQuery": true
                 },
-                "modelLocationAdaptorId": {
+                "modelLocationAdapterId": {
                     "_meta_": {
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "required": true,
-                    "label": "Model Adaptor",
-                    "description": "This is the id of the adaptor that contains object type _AdaptiveModel_ and related objects.",
+                    "label": "Model Adapter",
+                    "description": "This is the id of the adapter that contains object type _AdaptiveModel_ and related objects.",
                     "dataType": "template",
-                    "brief": "This is the id of the adaptor that contains object type _AdaptiveModel_ and related objects",
+                    "brief": "This is the id of the adapter that contains object type _AdaptiveModel_ and related objects",
                     "allowQuery": true
                 },
                 "modelId": {
@@ -22702,20 +22702,20 @@
                     },
                     "required": true,
                     "label": "Model",
-                    "description": "The objectId of the _AdaptiveModel_ object in the modelLocationAdaptorId adaptor.",
+                    "description": "The objectId of the _AdaptiveModel_ object in the modelLocationAdapterId adapter.",
                     "dataType": "template",
-                    "brief": "The objectId of the _AdaptiveModel_ object in the modelLocationAdaptorId adaptor",
+                    "brief": "The objectId of the _AdaptiveModel_ object in the modelLocationAdapterId adapter",
                     "allowQuery": true
                 },
-                "mappedAdaptorId": {
+                "mappedAdapterId": {
                     "_meta_": {
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "required": true,
-                    "label": "Mapped Adaptor",
-                    "description": "This is the default mappedAdaptorId value.",
+                    "label": "Mapped Adapter",
+                    "description": "This is the default mappedAdapterId value.",
                     "dataType": "template",
-                    "brief": "This is the default mappedAdaptorId value",
+                    "brief": "This is the default mappedAdapterId value",
                     "allowQuery": true
                 },
                 "custom": {
@@ -22730,8 +22730,8 @@
                     "allowQuery": true
                 }
             },
-            "objectType": "_AdaptiveConf_adaptor_model",
-            "description": "Adaptive Framework configuration component for type=adaptor adaptorType=model.",
+            "objectType": "_AdaptiveConf_adapter_model",
+            "description": "Adaptive Framework configuration component for type=adapter adapterType=model.",
             "collectionURIs": [
                 "/afw/_AdaptiveCollection_/core"
             ],
@@ -25456,7 +25456,7 @@
                 }
             },
             "objectType": "_AdaptiveLdapSyntax_",
-            "description": "Object type for type=adaptor adaptor_type=ldap synthetic syntax object.",
+            "description": "Object type for type=adapter adapter_type=ldap synthetic syntax object.",
             "collectionURIs": [
                 "/afw/_AdaptiveCollection_/ldap_extension"
             ],
@@ -25788,20 +25788,20 @@
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveObjectType_/_AdaptiveAdaptorType_",
-                "objectId": "_AdaptiveAdaptorType_",
+                "path": "/afw/_AdaptiveObjectType_/_AdaptiveAdapterType_",
+                "objectId": "_AdaptiveAdapterType_",
                 "objectType": "_AdaptiveObjectType_"
             },
             "runtime": {
                 "_meta_": {
                     "objectType": "_AdaptiveRuntimeObject_"
                 },
-                "typedef": "afw_adaptor_factory_t",
+                "typedef": "afw_adapter_factory_t",
                 "labels": {
                     "_meta_": {
                         "objectType": "_AdaptiveRuntimeLabels_"
                     },
-                    "objectId": "adaptor_type"
+                    "objectId": "adapter_type"
                 },
                 "indirect": true
             },
@@ -25820,13 +25820,13 @@
                         "valueAccessor": "indirect"
                     },
                     "label": "Description",
-                    "description": "This is the description for this adaptor type.",
+                    "description": "This is the description for this adapter type.",
                     "dataTypeParameter": "text/plain",
                     "dataType": "string",
-                    "brief": "Description of adaptor type",
+                    "brief": "Description of adapter type",
                     "allowQuery": true
                 },
-                "adaptorType": {
+                "adapterType": {
                     "_meta_": {
                         "objectType": "_AdaptiveValueMeta_"
                     },
@@ -25834,17 +25834,17 @@
                         "_meta_": {
                             "objectType": "_AdaptiveRuntimeProperty_"
                         },
-                        "memberName": "adaptor_type"
+                        "memberName": "adapter_type"
                     },
-                    "label": "Adaptor Type",
-                    "description": "This is the type for this adaptor.  It will create a registered adaptor_type string, from which adaptor instances will created from.",
+                    "label": "Adapter Type",
+                    "description": "This is the type for this adapter.  It will create a registered adapter_type string, from which adapter instances will created from.",
                     "dataType": "string",
-                    "brief": "Type of adaptor",
+                    "brief": "Type of adapter",
                     "allowQuery": true
                 }
             },
-            "objectType": "_AdaptiveAdaptorType_",
-            "description": "A registry type adaptor_factory entry.",
+            "objectType": "_AdaptiveAdapterType_",
+            "description": "A registry type adapter_factory entry.",
             "collectionURIs": [
                 "/afw/_AdaptiveCollection_/core"
             ],
@@ -25855,33 +25855,33 @@
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_dbd_oracle",
-                "objectId": "_AdaptiveConf_adaptor_dbd_oracle",
+                "path": "/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_dbd_oracle",
+                "objectId": "_AdaptiveConf_adapter_dbd_oracle",
                 "objectType": "_AdaptiveObjectType_"
             },
             "propertyTypes": {
                 "_meta_": {
                     "objectType": "_AdaptivePropertyTypes_"
                 },
-                "adaptorId": {
+                "adapterId": {
                     "_meta_": {
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "allowQuery": true,
-                    "brief": "Adaptor id",
+                    "brief": "Adapter id",
                     "dataType": "string",
-                    "description": "A unique identifier for this adaptor instance.",
-                    "label": "Adaptor"
+                    "description": "A unique identifier for this adapter instance.",
+                    "label": "Adapter"
                 },
-                "adaptorType": {
+                "adapterType": {
                     "_meta_": {
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "allowQuery": true,
-                    "brief": "Adaptor type",
+                    "brief": "Adapter type",
                     "dataType": "string",
-                    "description": "This specifies the type of adaptor to use.  The value of this field must match an adaptorType that is registered by core or by an extension.",
-                    "label": "Adaptor Type",
+                    "description": "This specifies the type of adapter to use.  The value of this field must match an adapterType that is registered by core or by an extension.",
+                    "label": "Adapter Type",
                     "required": true
                 },
                 "authorizationHandlerId": {
@@ -25891,18 +25891,18 @@
                     "allowQuery": true,
                     "brief": "Authorization Handler Id",
                     "dataType": "string",
-                    "description": "Id of authorization handler used to control access to resources in this adaptor.",
+                    "description": "Id of authorization handler used to control access to resources in this adapter.",
                     "label": "Authorization Handler"
                 },
-                "journalAdaptorId": {
+                "journalAdapterId": {
                     "_meta_": {
                         "objectType": "_AdaptiveValueMeta_"
                     },
                     "allowQuery": true,
-                    "brief": "The adaptorId that provides journal service for this adaptor",
+                    "brief": "The adapterId that provides journal service for this adapter",
                     "dataType": "string",
-                    "description": "This is the id of an adaptor that provides journal service for this adaptor.  This can be this adaptor's own id or a previously defined adaptor's id.  If not specified, no journaling will be performed.",
-                    "label": "Journal Adaptor"
+                    "description": "This is the id of an adapter that provides journal service for this adapter.  This can be this adapter's own id or a previously defined adapter's id.  If not specified, no journaling will be performed.",
+                    "label": "Journal Adapter"
                 },
                 "type": {
                     "_meta_": {
@@ -25987,8 +25987,8 @@
                     "allowQuery": false
                 }
             },
-            "objectType": "_AdaptiveConf_adaptor_dbd_oracle",
-            "description": "Object type for type=adaptor adaptor_type=oracle conf entries.",
+            "objectType": "_AdaptiveConf_adapter_dbd_oracle",
+            "description": "Object type for type=adapter adapter_type=oracle conf entries.",
             "collectionURIs": [
                 "/afw/_AdaptiveCollection_/dbd_extension"
             ],
@@ -26006,7 +26006,7 @@
                 }
             },
             "objectType": "_AdaptiveLdapMatchingRuleUse_",
-            "description": "Object type for type=adaptor adaptor_type=ldap synthetic matching rule use object.",
+            "description": "Object type for type=adapter adapter_type=ldap synthetic matching rule use object.",
             "collectionURIs": [
                 "/afw/_AdaptiveCollection_/ldap_extension"
             ],
@@ -26270,7 +26270,7 @@
                 }
             },
             "objectType": "_AdaptiveLdapAttributeType_",
-            "description": "Object type for type=adaptor adaptor_type=ldap synthetic attribute type object.",
+            "description": "Object type for type=adapter adapter_type=ldap synthetic attribute type object.",
             "collectionURIs": [
                 "/afw/_AdaptiveCollection_/ldap_extension"
             ],

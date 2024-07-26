@@ -28,17 +28,17 @@ const reducer = (state, action) => {
     case "LOCATION":
         return {
             ...state,
-            adaptorId: action.adaptorId,
+            adapterId: action.adapterId,
             modelId: action.modelId,
             objectType: action.objectType,
             propertyType: action.propertyType,
             hash: action.hash,
         };
 
-    case "SELECT_ADAPTOR":
+    case "SELECT_ADAPTER":
         return {
             ...state,
-            adaptorId: action.adaptorId,
+            adapterId: action.adapterId,
         };
 
     default:
@@ -49,7 +49,7 @@ const reducer = (state, action) => {
 /**
  * Header shows the Breadcrumbs and the Contextual Help button.
  */
-const Header = ({ adaptorId, modelId, objectType, propertyType, hash }) => {
+const Header = ({ adapterId, modelId, objectType, propertyType, hash }) => {
 
     const [showHelp, setShowHelp] = useState(false);
     const theme = useTheme();    
@@ -64,9 +64,9 @@ const Header = ({ adaptorId, modelId, objectType, propertyType, hash }) => {
     let link = "/Admin/Models";
     let text, key;
 
-    if (adaptorId) {
-        link += "/" + adaptorId;
-        text = key = adaptorId;
+    if (adapterId) {
+        link += "/" + adapterId;
+        text = key = adapterId;
         breadcrumbItems.push({ text, key, link });
 
         if (modelId) {
@@ -157,7 +157,7 @@ export const Models = () => {
         onRefresh,
         error: errorModels,
     } = useRetrieveObjects({
-        adaptorId: state.adaptorId,
+        adapterId: state.adapterId,
         objectTypeId: "_AdaptiveModel_",
         objectOptions: modelsObjectOptions,
     });
@@ -167,7 +167,7 @@ export const Models = () => {
         isLoading: isLoadingModel,
         error: errorModel,
     } = useGetObject({
-        adaptorId: state.adaptorId,
+        adapterId: state.adapterId,
         objectTypeId: "_AdaptiveModel_",
         objectId: state.modelId,
         objectOptions: modelObjectOptions,
@@ -175,17 +175,17 @@ export const Models = () => {
 
     useEffect(() => {
         if (application) {
-            let [, adaptorId, modelId,, objectType,, propertyType] = pathname.split("/").splice(2);
+            let [, adapterId, modelId,, objectType,, propertyType] = pathname.split("/").splice(2);
 
-            if (!adaptorId)
-                adaptorId = application.getPropertyValue("defaultModelAdaptorId");
+            if (!adapterId)
+                adapterId = application.getPropertyValue("defaultModelAdapterId");
 
-            dispatch({ type: "LOCATION", adaptorId, modelId, objectType, propertyType, hash });
+            dispatch({ type: "LOCATION", adapterId, modelId, objectType, propertyType, hash });
         }
     }, [pathname, hash, application]);
 
-    /* When multiple adaptors are used to store models, the user can select one */
-    const onSelectAdaptorId = (adaptorId) => dispatch({ type: "SELECT_ADAPTOR", adaptorId });   
+    /* When multiple adapters are used to store models, the user can select one */
+    const onSelectAdapterId = (adapterId) => dispatch({ type: "SELECT_ADAPTER", adapterId });   
 
     return (
         <div 
@@ -205,20 +205,20 @@ export const Models = () => {
                             {...props} 
                             {...state}                             
                             models={models} 
-                            onSelectAdaptorId={onSelectAdaptorId}
+                            onSelectAdapterId={onSelectAdapterId}
                             reloadModels={onRefresh} 
                         /> : null
                     } />
-                    <Route exact path="/Admin/Models/:adaptorId" render={props =>
+                    <Route exact path="/Admin/Models/:adapterId" render={props =>
                         (!errorModels && !isLoadingModels) ? <ModelsTable 
                             {...props} 
                             {...state}                             
                             models={models} 
-                            onSelectAdaptorId={onSelectAdaptorId}
+                            onSelectAdapterId={onSelectAdapterId}
                             reloadModels={onRefresh} 
                         /> : null
                     } />
-                    <Route path="/Admin/Models/:adaptorId/:modelId" render={props =>                    
+                    <Route path="/Admin/Models/:adapterId/:modelId" render={props =>                    
                         (!isLoadingModel && model) ? 
                             <ModelEditor 
                                 {...props} 

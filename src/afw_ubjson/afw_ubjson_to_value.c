@@ -503,7 +503,7 @@ const afw_object_t *
 afw_ubjson_to_object(
     const afw_memory_t *ubjson,
     const afw_utf8_t *source_location,
-    const afw_utf8_t * adaptor_id,
+    const afw_utf8_t * adapter_id,
     const afw_utf8_t * object_type_id,
     const afw_utf8_t * object_id,
     afw_boolean_t cede_p,
@@ -520,7 +520,7 @@ afw_ubjson_to_object(
     parser.p = (cede_p) ? p : afw_pool_create(p, xctx);
     parser.cede_p = true;
     parser.path = afw_object_path_make(
-        adaptor_id, object_type_id, object_id, parser.p, xctx);
+        adapter_id, object_type_id, object_id, parser.p, xctx);
 
     /* go ahead and read the first byte, since we assume it's an object. */
     afw_ubjson_next_byte(&parser, xctx);

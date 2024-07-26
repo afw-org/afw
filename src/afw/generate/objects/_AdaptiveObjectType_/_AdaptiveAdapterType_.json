@@ -1,0 +1,41 @@
+{
+    "allowAdd": false,
+    "allowChange": false,
+    "allowDelete": false,
+    "allowEntity": true,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "A registry type adapter_factory entry.",
+    "objectType": "_AdaptiveAdapterType_",
+    "propertyTypes": {
+        "adapterType": {
+            "allowQuery": true,
+            "brief": "Type of adapter",
+            "dataType": "string",
+            "description": "This is the type for this adapter. It will create a registered adapter_type string, from which adapter instances will created from.",
+            "label": "Adapter Type",
+            "runtime": {
+                "memberName": "adapter_type"
+            }
+        },
+        "description": {
+            "allowQuery": true,
+            "brief": "Description of adapter type",
+            "dataType": "string",
+            "dataTypeParameter": "text/plain",
+            "description": "This is the description for this adapter type.",
+            "label": "Description",
+            "runtime": {
+                "valueAccessor": "indirect"
+            }
+        }
+    },
+    "runtime": {
+        "indirect": true,
+        "labels": {
+            "objectId": "adapter_type"
+        },
+        "typedef": "afw_adapter_factory_t"
+    }
+}

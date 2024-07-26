@@ -18,45 +18,45 @@ const Spacer = () => {
 export const SchemaApiRest = (props) => {
 
     const theme = useTheme();
-    const {adaptorId, objectTypeObject} = props;
+    const {adapterId, objectTypeObject} = props;
 
     return (
         <div style={{ padding: theme.spacing(2) }}>
-            <Typography style={{ fontFamily: "Roboto mono" }} text={"GET /" + adaptorId + "/" + objectTypeObject.getObjectId() + "/"} />
+            <Typography style={{ fontFamily: "Roboto mono" }} text={"GET /" + adapterId + "/" + objectTypeObject.getObjectId() + "/"} />
             <Spacer />
-            <Typography size="3" text={"Retrieves object instances of type " + objectTypeObject.getObjectId() + " from the adaptor " + adaptorId + "."} />
+            <Typography size="3" text={"Retrieves object instances of type " + objectTypeObject.getObjectId() + " from the adapter " + adapterId + "."} />
 
             <Spacer />
             <Divider />
             <Spacer />
 
-            <Typography style={{ fontFamily: "Roboto mono" }} text={"GET /" + adaptorId + "/" + objectTypeObject.getObjectId() + "/{objectId}"} />
+            <Typography style={{ fontFamily: "Roboto mono" }} text={"GET /" + adapterId + "/" + objectTypeObject.getObjectId() + "/{objectId}"} />
             <Spacer />
-            <Typography size="3" text={"Gets an object instances of type " + objectTypeObject.getObjectId() + ", identified by objectId, from the adaptor " + adaptorId + "."} />
+            <Typography size="3" text={"Gets an object instances of type " + objectTypeObject.getObjectId() + ", identified by objectId, from the adapter " + adapterId + "."} />
 
             <Spacer />
             <Divider />
             <Spacer />
 
-            <Typography style={{ fontFamily: "Roboto mono" }} text={"PUT /" + adaptorId + "/" + objectTypeObject.getObjectId() + "/{objectId}"} />
+            <Typography style={{ fontFamily: "Roboto mono" }} text={"PUT /" + adapterId + "/" + objectTypeObject.getObjectId() + "/{objectId}"} />
             <Spacer />
-            <Typography size="3" text={"Creates a new object of type " + objectTypeObject.getObjectId() + ", with an optional objectId, in the adaptor " + adaptorId + "."} />
+            <Typography size="3" text={"Creates a new object of type " + objectTypeObject.getObjectId() + ", with an optional objectId, in the adapter " + adapterId + "."} />
 
             <Spacer />
             <Divider />
             <Spacer />
 
-            <Typography style={{ fontFamily: "Roboto mono" }} text={"DELETE /" + adaptorId + "/" + objectTypeObject.getObjectId() + "/{objectId}"} />
+            <Typography style={{ fontFamily: "Roboto mono" }} text={"DELETE /" + adapterId + "/" + objectTypeObject.getObjectId() + "/{objectId}"} />
             <Spacer />
-            <Typography size="3" text={"Deletes an existing object of type " + objectTypeObject.getObjectId() + " in the adaptor " + adaptorId + "."} />
+            <Typography size="3" text={"Deletes an existing object of type " + objectTypeObject.getObjectId() + " in the adapter " + adapterId + "."} />
 
             <Spacer />
             <Divider />
             <Spacer />
 
-            <Typography style={{ fontFamily: "Roboto mono" }} text={"POST /" + adaptorId + "/" + objectTypeObject.getObjectId() + "/{objectId}"} />
+            <Typography style={{ fontFamily: "Roboto mono" }} text={"POST /" + adapterId + "/" + objectTypeObject.getObjectId() + "/{objectId}"} />
             <Spacer />
-            <Typography size="3" text={"Modifies an existing object of type " + objectTypeObject.getObjectId() + ", identified by objectId, in the adaptor " + adaptorId + "."} />
+            <Typography size="3" text={"Modifies an existing object of type " + objectTypeObject.getObjectId() + ", identified by objectId, in the adapter " + adapterId + "."} />
         </div>
     );
 };
@@ -64,7 +64,7 @@ export const SchemaApiRest = (props) => {
 export const SchemaApiPerform = (props) => {
 
     const theme = useTheme();
-    const {adaptorId, objectTypeObject} = props;
+    const {adapterId, objectTypeObject} = props;
 
     return (
         <div style={{ padding: theme.spacing(2) }}>
@@ -74,11 +74,11 @@ export const SchemaApiPerform = (props) => {
             <Typography text="Payload:" />
             <Typography style={{ fontFamily: "Roboto mono", whiteSpace: "pre-wrap" }} text={`{
     "functionId": "retrieve_objects",
-    "adaptorId": "${adaptorId}",
+    "adapterId": "${adapterId}",
     "objectType": "${objectTypeObject.getObjectId()}"
 } `} />
             <Spacer />
-            <Typography size="3" text={"Retrieves object instances of type " + objectTypeObject.getObjectId() + " from the adaptor " + adaptorId + "."} />   
+            <Typography size="3" text={"Retrieves object instances of type " + objectTypeObject.getObjectId() + " from the adapter " + adapterId + "."} />   
             <Spacer />
 
             <Typography text="Response:" />
@@ -96,12 +96,12 @@ export const SchemaApiPerform = (props) => {
             <Typography text="Payload:" />
             <Typography style={{ fontFamily: "Roboto mono", whiteSpace: "pre-wrap" }} text={`{
     "functionId": "get_object",
-    "adaptorId": "${adaptorId}",
+    "adapterId": "${adapterId}",
     "objectType": "${objectTypeObject.getObjectId()}",
     "objectId": "{objectId}"
 } `} />
             <Spacer />
-            <Typography size="3" text={"Gets an object instances of type " + objectTypeObject.getObjectId() + ", identified by objectId, from the adaptor " + adaptorId + "."} />   
+            <Typography size="3" text={"Gets an object instances of type " + objectTypeObject.getObjectId() + ", identified by objectId, from the adapter " + adapterId + "."} />   
             <Spacer />
 
             <Typography text="Response:" />
@@ -123,7 +123,7 @@ export const SchemaApiPerform = (props) => {
 export const SchemaApi = (props) => {
 
     const theme = useTheme();
-    const {adaptorId, objectTypeObjects} = props;
+    const {adapterId, objectTypeObjects} = props;
 
     const sortedObjectTypes = Object.entries(objectTypeObjects)
         .sort((A, B) => A[0].toLowerCase().localeCompare(B[0].toLowerCase()))
@@ -132,7 +132,7 @@ export const SchemaApi = (props) => {
 
     return (
         <>
-            <Typography size="8" text={"API Reference for " + adaptorId} color="primary" />
+            <Typography size="8" text={"API Reference for " + adapterId} color="primary" />
             <div style={{ height: theme.spacing(5) }} />
             {
                 sortedObjectTypes.map( (objectTypeObject, index) => {                    

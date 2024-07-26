@@ -33,7 +33,7 @@ static const afw_runtime_const_object_instance_t
 impl_2;
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects/otherProperties
+ * /afw/_AdaptiveObjectType_/_AdaptiveAdapterTypeSpecific_vfs_retrieve_objects/otherProperties
  */
 
 static const afw_runtime_property_t
@@ -77,7 +77,7 @@ impl_2_meta_object__value = {
 
 static const afw_utf8_t
 impl_2_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects/otherProperties");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdapterTypeSpecific_vfs_retrieve_objects/otherProperties");
 
 static const afw_value_object_t
 impl_2__value;
@@ -112,7 +112,7 @@ static const afw_runtime_const_object_instance_t
 impl_4;
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects/propertyTypes/includeHidden
+ * /afw/_AdaptiveObjectType_/_AdaptiveAdapterTypeSpecific_vfs_retrieve_objects/propertyTypes/includeHidden
  */
 
 static const afw_runtime_property_t
@@ -183,7 +183,7 @@ impl_4_meta_object__value = {
 
 static const afw_utf8_t
 impl_4_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects/propertyTypes/includeHidden");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdapterTypeSpecific_vfs_retrieve_objects/propertyTypes/includeHidden");
 
 static const afw_value_object_t
 impl_4__value;
@@ -215,7 +215,7 @@ static const afw_runtime_const_object_instance_t
 impl_5;
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects/propertyTypes/recursive
+ * /afw/_AdaptiveObjectType_/_AdaptiveAdapterTypeSpecific_vfs_retrieve_objects/propertyTypes/recursive
  */
 
 static const afw_runtime_property_t
@@ -286,7 +286,7 @@ impl_5_meta_object__value = {
 
 static const afw_utf8_t
 impl_5_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects/propertyTypes/recursive");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdapterTypeSpecific_vfs_retrieve_objects/propertyTypes/recursive");
 
 static const afw_value_object_t
 impl_5__value;
@@ -318,7 +318,7 @@ static const afw_runtime_const_object_instance_t
 impl_6;
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects/propertyTypes/subdirectory
+ * /afw/_AdaptiveObjectType_/_AdaptiveAdapterTypeSpecific_vfs_retrieve_objects/propertyTypes/subdirectory
  */
 
 static const afw_runtime_property_t
@@ -389,7 +389,7 @@ impl_6_meta_object__value = {
 
 static const afw_utf8_t
 impl_6_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects/propertyTypes/subdirectory");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdapterTypeSpecific_vfs_retrieve_objects/propertyTypes/subdirectory");
 
 static const afw_value_object_t
 impl_6__value;
@@ -421,7 +421,7 @@ static const afw_runtime_const_object_instance_t
 impl_7;
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects/propertyTypes/suffix
+ * /afw/_AdaptiveObjectType_/_AdaptiveAdapterTypeSpecific_vfs_retrieve_objects/propertyTypes/suffix
  */
 
 static const afw_runtime_property_t
@@ -492,7 +492,7 @@ impl_7_meta_object__value = {
 
 static const afw_utf8_t
 impl_7_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects/propertyTypes/suffix");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdapterTypeSpecific_vfs_retrieve_objects/propertyTypes/suffix");
 
 static const afw_value_object_t
 impl_7__value;
@@ -521,7 +521,7 @@ impl_7__value = {
 };
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects/propertyTypes
+ * /afw/_AdaptiveObjectType_/_AdaptiveAdapterTypeSpecific_vfs_retrieve_objects/propertyTypes
  */
 
 static const afw_value_object_t
@@ -603,7 +603,7 @@ impl_3_meta_object__value = {
 
 static const afw_utf8_t
 impl_3_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects/propertyTypes");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdapterTypeSpecific_vfs_retrieve_objects/propertyTypes");
 
 static const afw_value_object_t
 impl_3__value;
@@ -632,7 +632,7 @@ impl_3__value = {
 };
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects
+ * /afw/_AdaptiveObjectType_/_AdaptiveAdapterTypeSpecific_vfs_retrieve_objects
  */
 
 static const afw_value_boolean_t
@@ -730,7 +730,7 @@ impl_1_property_description = {
 static const afw_runtime_property_t
 impl_1_property_objectType = {
     &afw_vfs_self_s_objectType,
-    &afw_vfs_self_v__AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects.pub
+    &afw_vfs_self_v__AdaptiveAdapterTypeSpecific_vfs_retrieve_objects.pub
 };
 
 static const afw_value_object_t
@@ -793,7 +793,7 @@ impl_1_meta_object__value = {
 
 static const afw_utf8_t
 impl_1_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdapterTypeSpecific_vfs_retrieve_objects");
 
 static const afw_value_object_t
 impl_1__value;
@@ -807,7 +807,7 @@ impl_1 = {
         {
             (const afw_object_t *)&impl_1_meta_object,
             NULL,
-            &afw_vfs_self_s__AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects,
+            &afw_vfs_self_s__AdaptiveAdapterTypeSpecific_vfs_retrieve_objects,
             &afw_vfs_self_s__AdaptiveObjectType_,
             &impl_1_meta_path
         }
@@ -831,7 +831,7 @@ static const afw_runtime_const_object_instance_t
 impl_10;
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_vfs/propertyTypes/markExecutable
+ * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_vfs/propertyTypes/markExecutable
  */
 
 static const afw_runtime_property_t
@@ -896,7 +896,7 @@ impl_10_meta_object__value = {
 
 static const afw_utf8_t
 impl_10_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_vfs/propertyTypes/markExecutable");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_vfs/propertyTypes/markExecutable");
 
 static const afw_value_object_t
 impl_10__value;
@@ -928,7 +928,7 @@ static const afw_runtime_const_object_instance_t
 impl_11;
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_vfs/propertyTypes/vfsMap
+ * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_vfs/propertyTypes/vfsMap
  */
 
 static const afw_runtime_property_t
@@ -1006,7 +1006,7 @@ impl_11_meta_object__value = {
 
 static const afw_utf8_t
 impl_11_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_vfs/propertyTypes/vfsMap");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_vfs/propertyTypes/vfsMap");
 
 static const afw_value_object_t
 impl_11__value;
@@ -1035,7 +1035,7 @@ impl_11__value = {
 };
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_vfs/propertyTypes
+ * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_vfs/propertyTypes
  */
 
 static const afw_value_object_t
@@ -1071,7 +1071,7 @@ impl_9_properties[] = {
 
 static const afw_utf8_t
 impl_9_parentPaths_array[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor/propertyTypes")
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter/propertyTypes")
 };
 
 static const afw_array_wrapper_for_array_self_t
@@ -1110,7 +1110,7 @@ impl_9_meta_object__value = {
 
 static const afw_utf8_t
 impl_9_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_vfs/propertyTypes");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_vfs/propertyTypes");
 
 static const afw_value_object_t
 impl_9__value;
@@ -1139,7 +1139,7 @@ impl_9__value = {
 };
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_vfs
+ * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_vfs
  */
 
 static const afw_value_boolean_t
@@ -1201,7 +1201,7 @@ impl_8_property_description = {
 static const afw_runtime_property_t
 impl_8_property_objectType = {
     &afw_vfs_self_s_objectType,
-    &afw_vfs_self_v__AdaptiveConf_adaptor_vfs.pub
+    &afw_vfs_self_v__AdaptiveConf_adapter_vfs.pub
 };
 
 static const afw_value_object_t
@@ -1248,7 +1248,7 @@ impl_8_meta_object__value = {
 
 static const afw_utf8_t
 impl_8_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_vfs");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_vfs");
 
 static const afw_value_object_t
 impl_8__value;
@@ -1262,7 +1262,7 @@ impl_8 = {
         {
             (const afw_object_t *)&impl_8_meta_object,
             NULL,
-            &afw_vfs_self_s__AdaptiveConf_adaptor_vfs,
+            &afw_vfs_self_s__AdaptiveConf_adapter_vfs,
             &afw_vfs_self_s__AdaptiveObjectType_,
             &impl_8_meta_path
         }
@@ -2094,7 +2094,7 @@ impl_12_property_collectionURIs = {
 static const afw_runtime_property_t
 impl_12_property_description = {
     &afw_vfs_self_s_description,
-    &afw_vfs_self_v_zz__This_is_the_single_object_type_of_objects_in_a_vfs_adaptor_.pub
+    &afw_vfs_self_v_zz__This_is_the_single_object_type_of_objects_in_a_vfs_adapter_.pub
 };
 
 static const afw_runtime_property_t

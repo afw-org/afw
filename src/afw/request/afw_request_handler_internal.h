@@ -27,13 +27,13 @@
 
 AFW_BEGIN_DECLARES
 
-typedef struct afw_request_handler_adaptor_internal_self_s {
+typedef struct afw_request_handler_adapter_internal_self_s {
     afw_request_handler_t pub;
     afw_xctx_t *xctx;
     const afw_pool_t *p;
     const afw_object_t *properties;
     const afw_object_options_t *default_options;
-} afw_request_handler_adaptor_internal_self_t;
+} afw_request_handler_adapter_internal_self_t;
 
 typedef struct afw_request_handler_entry_s
     afw_request_handler_entry_t;

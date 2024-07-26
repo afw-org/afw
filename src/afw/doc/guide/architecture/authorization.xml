@@ -18,7 +18,7 @@
         authorization logic can be specified at the Application level, which 
         will apply to all decisions. Other authorization logic may be declared  
         on just a particular service, so that its decisions will only apply to 
-        operations pertaining to an adaptor being used.
+        operations pertaining to an adapter being used.
     </paragraph>
     <paragraph>
         An authorization decision in Adaptive Framework borrows heavily from 

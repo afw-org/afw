@@ -385,12 +385,12 @@ afw_environment_create(
             afw_s_a_lock_environment_description,
             true, xctx);
 
-    /* Create adaptor id anchors lock. */
-    env->pub.adaptor_id_anchor_lock =
+    /* Create adapter id anchors lock. */
+    env->pub.adapter_id_anchor_lock =
         afw_lock_create_and_register(
-            afw_s_a_lock_adaptor_id_anchor,
-            afw_s_a_lock_adaptor_id_anchor_brief,
-            afw_s_a_lock_adaptor_id_anchor_description,
+            afw_s_a_lock_adapter_id_anchor,
+            afw_s_a_lock_adapter_id_anchor_brief,
+            afw_s_a_lock_adapter_id_anchor_description,
             true, xctx);
 
     /* Create authorization handler id anchors rw lock. */
@@ -1591,11 +1591,11 @@ afw_environment_register_functions(
 }
 
 
-/* Register an adaptor factory. */
+/* Register an adapter factory. */
 AFW_DEFINE(void)
-afw_environment_register_adaptor_type(
-    const afw_utf8_t *adaptor_type,
-    const afw_adaptor_factory_t *adaptor_factory,
+afw_environment_register_adapter_type(
+    const afw_utf8_t *adapter_type,
+    const afw_adapter_factory_t *adapter_factory,
     afw_xctx_t *xctx)
 {
     const afw_pool_t *p = xctx->env->p;
@@ -1607,42 +1607,42 @@ afw_environment_register_adaptor_type(
     AFW_LOCK_BEGIN(xctx->env->environment_lock) {
 
         afw_environment_registry_register(
-            afw_environemnt_registry_type_adaptor_type,
-            adaptor_type,
-            adaptor_factory,
+            afw_environemnt_registry_type_adapter_type,
+            adapter_type,
+            adapter_factory,
             xctx);
 
         detail_flag_id = afw_utf8_printf(p, xctx,
-            "trace:adaptorType:" AFW_UTF8_FMT ":detail",
-            AFW_UTF8_FMT_ARG(adaptor_type));
+            "trace:adapterType:" AFW_UTF8_FMT ":detail",
+            AFW_UTF8_FMT_ARG(adapter_type));
 
         brief = afw_utf8_printf(p, xctx,
-            "Debug trace adaptor type " AFW_UTF8_FMT,
-            AFW_UTF8_FMT_ARG(adaptor_type));
+            "Debug trace adapter type " AFW_UTF8_FMT,
+            AFW_UTF8_FMT_ARG(adapter_type));
 
         description = afw_utf8_printf(p, xctx,
             "This produces a basic plus additional detail trace for "
-            "all adaptors of type " AFW_UTF8_FMT_Q ".",
-            AFW_UTF8_FMT_ARG(adaptor_type));
+            "all adapters of type " AFW_UTF8_FMT_Q ".",
+            AFW_UTF8_FMT_ARG(adapter_type));
 
         afw_environment_register_flag(detail_flag_id, brief, description,
-            afw_s_a_flag_trace_adaptor_detail, xctx);
+            afw_s_a_flag_trace_adapter_detail, xctx);
 
         flag_id = afw_utf8_printf(p, xctx,
-            "trace:adaptorType:" AFW_UTF8_FMT,
-            AFW_UTF8_FMT_ARG(adaptor_type));
+            "trace:adapterType:" AFW_UTF8_FMT,
+            AFW_UTF8_FMT_ARG(adapter_type));
 
         brief = afw_utf8_printf(p, xctx,
-            "Trace adaptor type " AFW_UTF8_FMT_Q,
-            AFW_UTF8_FMT_ARG(adaptor_type));
+            "Trace adapter type " AFW_UTF8_FMT_Q,
+            AFW_UTF8_FMT_ARG(adapter_type));
 
         description = afw_utf8_printf(p, xctx,
-            "This produces a basic trace of all adaptors of type "
+            "This produces a basic trace of all adapters of type "
                 AFW_UTF8_FMT_Q ".",
-            AFW_UTF8_FMT_ARG(adaptor_type));
+            AFW_UTF8_FMT_ARG(adapter_type));
 
         afw_environment_register_flag(flag_id, brief, description,
-            afw_s_a_flag_trace_adaptor, xctx);
+            afw_s_a_flag_trace_adapter, xctx);
 
         afw_flag_add_included_by(flag_id, detail_flag_id, xctx);
     }

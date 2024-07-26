@@ -53,7 +53,7 @@
         "indirect": true,
         "labels": {
             "indirectObjectId": true,
-            "objectId": "adaptor_id"
+            "objectId": "adapter_id"
         },
         "typedef": "afw_log_t"
     }

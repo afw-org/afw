@@ -1,0 +1,107 @@
+{
+    "result": {
+        "_meta_": {
+            "path": "/conf/_AdaptiveObjectType_/_AdaptiveConf_adapter_model"
+        },
+        "propertyTypes": {
+            "adapterId": {
+                "allowQuery": true,
+                "brief": "Adapter id",
+                "dataType": "string",
+                "description": "A unique identifier for this adapter instance.",
+                "label": "Adapter"
+            },
+            "adapterType": {
+                "allowQuery": true,
+                "brief": "Adapter type",
+                "dataType": "string",
+                "description": "This specifies the type of adapter to use.  The value of this field must match an adapterType that is registered by core or by an extension.",
+                "label": "Adapter Type",
+                "required": true
+            },
+            "authorizationHandlerId": {
+                "allowQuery": true,
+                "brief": "Authorization Handler Id",
+                "dataType": "string",
+                "description": "Id of authorization handler used to control access to resources in this adapter.",
+                "label": "Authorization Handler"
+            },
+            "journalAdapterId": {
+                "allowQuery": true,
+                "brief": "The adapterId that provides journal service for this adapter",
+                "dataType": "string",
+                "description": "This is the id of an adapter that provides journal service for this adapter.  This can be this adapter's own id or a previously defined adapter's id.  If not specified, no journaling will be performed.",
+                "label": "Journal Adapter"
+            },
+            "type": {
+                "required": true,
+                "label": "Type",
+                "description": "Configuration type.",
+                "dataType": "string",
+                "brief": "Configuration type",
+                "allowQuery": true
+            },
+            "title": {
+                "label": "Title",
+                "description": "The title for this configuration component.",
+                "dataType": "string",
+                "brief": "The title for this configuration component",
+                "allowQuery": true
+            },
+            "sourceLocation": {
+                "label": "Source Location",
+                "description": "This is a contextual string added when this configuration object is processed.",
+                "dataType": "string",
+                "brief": "Contextual string added when this configuration object is processed",
+                "allowQuery": true
+            },
+            "description": {
+                "label": "Description",
+                "description": "The description of this configuration component.",
+                "dataTypeParameter": "text/plain",
+                "dataType": "string",
+                "brief": "The description of this configuration component",
+                "allowQuery": true
+            },
+            "modelLocationAdapterId": {
+                "required": true,
+                "label": "Model Adapter",
+                "description": "This is the id of the adapter that contains object type _AdaptiveModel_ and related objects.",
+                "dataType": "template",
+                "brief": "This is the id of the adapter that contains object type _AdaptiveModel_ and related objects",
+                "allowQuery": true
+            },
+            "modelId": {
+                "required": true,
+                "label": "Model",
+                "description": "The objectId of the _AdaptiveModel_ object in the modelLocationAdapterId adapter.",
+                "dataType": "template",
+                "brief": "The objectId of the _AdaptiveModel_ object in the modelLocationAdapterId adapter",
+                "allowQuery": true
+            },
+            "mappedAdapterId": {
+                "required": true,
+                "label": "Mapped Adapter",
+                "description": "This is the default mappedAdapterId value.",
+                "dataType": "template",
+                "brief": "This is the default mappedAdapterId value",
+                "allowQuery": true
+            },
+            "custom": {
+                "label": "Custom",
+                "description": "Qualifier custom:: variables available to model expressions.",
+                "dataTypeParameter": "_AdaptiveTemplateProperties_",
+                "dataType": "object",
+                "brief": "Qualifier custom:: variables available to model expressions",
+                "allowQuery": true
+            }
+        },
+        "objectType": "_AdaptiveConf_adapter_model",
+        "description": "Adaptive Framework configuration component for type=adapter adapterType=model.",
+        "collectionURIs": [
+            "/afw/_AdaptiveCollection_/core"
+        ],
+        "allowEntity": false
+    },
+    "status": "success"
+}

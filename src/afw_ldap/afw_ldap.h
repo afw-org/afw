@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * AFW LDAP Adaptor Header
+ * AFW LDAP Adapter Header
  *
  * Copyright (c) 2010-2024 Clemson University
  *
@@ -15,17 +15,17 @@
 #include "generated/afw_ldap_declare_helpers.h"
 
 /**
- * @defgroup afw_ldap LDAP Adaptor
+ * @defgroup afw_ldap LDAP Adapter
  * @ingroup afw_included_extensions
  *
- * Adaptive Framework LDAP adaptor.
+ * Adaptive Framework LDAP adapter.
  *
  * @{
  */
 
 /**
  * @file afw_ldap.h
- * @brief Header for AFW LDAP Adaptor.
+ * @brief Header for AFW LDAP Adapter.
  */
 
 AFW_LDAP_BEGIN_DECLARES

@@ -2,14 +2,14 @@
     "$defs": {
         "_AdaptiveLdapSyntax_": {
             "additionalProperties": {
-                "description": "Object type for type=adaptor adaptor_type=ldap synthetic syntax object."
+                "description": "Object type for type=adapter adapter_type=ldap synthetic syntax object."
             },
             "anyOf": [
                 {
                     "$ref": "#/$defs/_AdaptiveLdapSyntax_.propertyTypes"
                 }
             ],
-            "description": "Object type for type=adaptor adaptor_type=ldap synthetic syntax object.",
+            "description": "Object type for type=adapter adapter_type=ldap synthetic syntax object.",
             "type": "object"
         },
         "_AdaptiveLdapSyntax_.propertyTypes": {

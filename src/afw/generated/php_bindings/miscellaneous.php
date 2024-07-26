@@ -39,7 +39,7 @@ class miscellaneous
      *                             of the URIs begins with a single slash '/',
      *                             both must, and each URI will be parsed as
      *                             an adaptive value path (example:
-     *                             /adaptorId/objectType/objectId.propertyNames).
+     *                             /adapterId/objectType/objectId.propertyNames).
      * @param string $currentPath If isValuePath is true, this is the current
      *                            path that is used to resolve a relative path
      *                            in the URIs. If isValuePath is not true,
@@ -277,7 +277,7 @@ class miscellaneous
      *                             path begins with a single slash '/', the
      *                             URI will be parsed as an adaptive value
      *                             path (example:
-     *                             /adaptorId/objectType/objectId.propertyNames)
+     *                             /adapterId/objectType/objectId.propertyNames)
      * @param string $currentPath If isValuePath is true, this is the current
      *                            path that is used to resolve relative paths.
      *                            If isValuePath is not true, this parameter

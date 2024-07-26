@@ -41,9 +41,9 @@
                 "subjectId": "${variable_get(\"request::REMOTE_USER\", null)}"
             }
         },
-        "layoutsAdaptorId": "layouts",
-        "defaultModelAdaptorId": "models",
-        "defaultAdaptorId": "afw",
+        "layoutsAdapterId": "layouts",
+        "defaultModelAdapterId": "models",
+        "defaultAdapterId": "afw",
         "description": "Adaptive Framework Dev Container.",
         "title": "AFWDev"
     },

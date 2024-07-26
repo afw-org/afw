@@ -70,7 +70,7 @@ a_exclamation=!
 a_vertical_bar=|
 a_Content_dash_Type=Content-Type
 a_automatic_start=automatic start
-a_Core_afw_adaptor=Core afw adaptor
+a_Core_afw_adapter=Core afw adapter
 a_in_catch=in catch
 a_in_finally=in finally
 a_meta_key=meta()
@@ -111,9 +111,9 @@ a_lock_environment=environment:registry
 a_lock_environment_brief=Environment registry lock
 a_lock_environment_description=This lock is used internally by afw_environment.c when accessing environment registry memory.
 
-a_lock_adaptor_id_anchor=environment:adaptor_id_anchor
-a_lock_adaptor_id_anchor_brief=Adaptor id anchor lock
-a_lock_adaptor_id_anchor_description=This lock is used internally when accessing adaptor id anchor memory.
+a_lock_adapter_id_anchor=environment:adapter_id_anchor
+a_lock_adapter_id_anchor_brief=Adapter id anchor lock
+a_lock_adapter_id_anchor_description=This lock is used internally when accessing adapter id anchor memory.
 
 a_lock_authorization_handler_id_anchor=environment:authorization_handler_id
 a_lock_authorization_handler_id_anchor_brief=Authorization handler id anchor lock
@@ -211,13 +211,13 @@ a_flag_trace_detail=trace:detail
 a_flag_trace_detail_brief=All detail traces
 a_flag_trace_detail_description=This produces all basic plus additional detail traces.
 
-a_flag_trace_adaptor=trace:adaptor
-a_flag_trace_adaptor_brief=Basic trace for all adaptors
-a_flag_trace_adaptor_description=This produces basic traces for all adaptors.
+a_flag_trace_adapter=trace:adapter
+a_flag_trace_adapter_brief=Basic trace for all adapters
+a_flag_trace_adapter_description=This produces basic traces for all adapters.
 
-a_flag_trace_adaptor_detail=trace:adaptor:detail
-a_flag_trace_adaptor_detail_brief=Detail trace for all adaptors
-a_flag_trace_adaptor_detail_description=This produces all basic plus additional detail traces for all adaptors.
+a_flag_trace_adapter_detail=trace:adapter:detail
+a_flag_trace_adapter_detail_brief=Detail trace for all adapters
+a_flag_trace_adapter_detail_description=This produces all basic plus additional detail traces for all adapters.
 
 a_flag_trace_authorizationHandler=trace:authorizationHandler
 a_flag_trace_authorizationHandler_brief=Basic trace for all authorizationHandler
@@ -284,7 +284,7 @@ BS
 size
 uint32
 metrics
-adaptor_metrics
+adapter_metrics
 null_terminated_array_of_internal
 null_terminated_array_of_objects
 null_terminated_array_of_utf8_z_key_value_pair_objects
@@ -305,7 +305,7 @@ octet
 queryString
 undefined
 void
-adaptorTypeSpecific
+adapterTypeSpecific
 mapObject
 a_current_colon_colon_mapObject=current::mapObject
 mapBackObject
@@ -325,7 +325,7 @@ a_other_error=Other error
 a_slash_afw=/afw
 a_anonymous_function_id=**anonymous**
 
-# adaptor authorization
+# adapter authorization
 actionId
 modifyEntries
 create
@@ -333,11 +333,11 @@ delete
 query
 read
 update
-authorizationAdaptorCreate
-authorizationAdaptorDelete
-authorizationAdaptorQuery
-authorizationAdaptorRead
-authorizationAdaptorUpdate
+authorizationAdapterCreate
+authorizationAdapterDelete
+authorizationAdapterQuery
+authorizationAdapterRead
+authorizationAdapterUpdate
 subject
 resource
 action
@@ -436,10 +436,10 @@ disabled
 permanent
 manual
 immediate
-a_service_type_adaptor_title=Service type for adaptors.
+a_service_type_adapter_title=Service type for adapters.
 a_service_type_authorizationHandler_title=Service type for authorizationHandler.
 a_service_type_log_title=Service type for logs.
-stopping_adaptor_instances
+stopping_adapter_instances
 stopping_authorization_handler_instances
 Configuration
 
@@ -482,7 +482,7 @@ mappedObject
 mappedPropertyName
 mappedValue
 application
-adaptor
+adapter
 model
 objectTypeObject
 propertyTypeObject
@@ -498,7 +498,7 @@ request
 afw_utf8_t
 afw_memory_t
 none
-adaptor_additional_metrics
+adapter_additional_metrics
 applicable_flags
 
 errors
@@ -611,7 +611,7 @@ publish
 
 # publish action property names
 method
-adaptorId
+adapterId
 objectType
 suggestedObjectId
 objectId
@@ -663,9 +663,9 @@ afw_request_handler_head
 
 # registry types, titles, and descriptions.
 singleton
-adaptor
-adaptor_id
-adaptor_type
+adapter
+adapter_id
+adapter_type
 authorization_handler
 authorization_handler_id
 authorization_handler_type
@@ -677,7 +677,7 @@ function
 log
 log_id
 log_type
-model_adaptor
+model_adapter
 module_path
 policy_combining_algorithm
 registry_type
@@ -688,7 +688,7 @@ runtime_custom
 runtime_object_map_inf
 runtime_value_accessor
 
-adaptor_id_anchor
+adapter_id_anchor
 authorization_handler_id_anchor
 
 service
@@ -703,9 +703,9 @@ a_authorizationHandler_description=This configuration type adds an authorization
 extension
 a_extension_title=Adaptive Framework Extension Configuration
 a_extension_description=This configuration type adds additional functionality this Adaptive Framework environment.
-adaptor
-a_adaptor_title=Adaptive Framework Adaptor Configuration
-a_adaptor_description=This configuration type adds an adaptor and corresponding service to this Adaptive Framework environment.
+adapter
+a_adapter_title=Adaptive Framework Adapter Configuration
+a_adapter_description=This configuration type adds an adapter and corresponding service to this Adaptive Framework environment.
 log
 a_log_title=Adaptive Framework Log Configuration
 a_log_description=This configuration type adds a log and corresponding service to this Adaptive Framework environment.
@@ -717,21 +717,21 @@ a_services_title=Adaptive Framework Services Configuration
 a_services_description=This configuration type defines how services are handled in this Adaptive Framework environment.  It can only be specified once.
  
 # Extension ids and paths.
-afw_ldap_adaptor
-a_afw_ldap_adaptor_module_path_dll=libafwldap.dll
-a_afw_ldap_adaptor_module_path_so=libafwldap.so
-afw_sql_adaptor
-a_afw_sql_adaptor_module_path_dll=libafwsql.dll
-a_afw_sql_adaptor_module_path_so=libafwsql.so
-afw_bdb_adaptor
-a_afw_bdb_adaptor_module_path_dll=libafwbdb.dll
-a_afw_bdb_adaptor_module_path_so=libafwbdb.so
-afw_lmdb_adaptor
-a_afw_lmdb_adaptor_module_path_dll=libafwlmdb.dll
-a_afw_lmdb_adaptor_module_path_so=libafwlmdb.so
-afw_dynamo_db_adaptor
-a_afw_dynamo_db_adaptor_module_path_dll=libafwdynamodb.dll
-a_afw_dynamo_db_adaptor_module_path_so=libafwdynamodb.so
+afw_ldap_adapter
+a_afw_ldap_adapter_module_path_dll=libafwldap.dll
+a_afw_ldap_adapter_module_path_so=libafwldap.so
+afw_sql_adapter
+a_afw_sql_adapter_module_path_dll=libafwsql.dll
+a_afw_sql_adapter_module_path_so=libafwsql.so
+afw_bdb_adapter
+a_afw_bdb_adapter_module_path_dll=libafwbdb.dll
+a_afw_bdb_adapter_module_path_so=libafwbdb.so
+afw_lmdb_adapter
+a_afw_lmdb_adapter_module_path_dll=libafwlmdb.dll
+a_afw_lmdb_adapter_module_path_so=libafwlmdb.so
+afw_dynamo_db_adapter
+a_afw_dynamo_db_adapter_module_path_dll=libafwdynamodb.dll
+a_afw_dynamo_db_adapter_module_path_so=libafwdynamodb.so
 afw_yaml
 a_afw_yaml_module_path_dll=libafwyaml.dll
 a_afw_yaml_module_path_so=libafwyaml.so

@@ -250,9 +250,9 @@ afw_environment_prepare_conf_type_properties(
             afw_s_sourceLocation, source_location, xctx);
     }
 
-    /* If not adaptor for afw (which will cause loop), normalize result. */
+    /* If not adapter for afw (which will cause loop), normalize result. */
     result = properties;
-    if (!afw_utf8_equal(type, afw_s_adaptor) ||
+    if (!afw_utf8_equal(type, afw_s_adapter) ||
         !afw_utf8_equal(id, afw_s_afw))
     {
         result = afw_object_view_create(properties,

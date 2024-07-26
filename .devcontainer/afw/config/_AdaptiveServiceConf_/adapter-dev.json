@@ -1,0 +1,14 @@
+{
+	"startup":"immediate",
+	"serviceId":"adapter-dev",
+	"conf":{
+		"adapterId":"dev",
+		"adapterType":"file",
+		"type":"adapter",
+		"description":"File adapter for development input strings and objects.",
+		"root":"/workspace/src/afw/generate/objects/",
+		"isDevelopmentInput":true,
+		"filenameSuffix":".json",
+		"contentType":"json"
+	}
+}

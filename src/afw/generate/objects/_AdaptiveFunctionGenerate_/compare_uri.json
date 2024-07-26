@@ -18,7 +18,7 @@
         },
         {
             "dataType": "boolean",
-            "description": "The URIs are adaptive value paths. If one of the URIs begins with a single slash '/', both must, and each URI will be parsed as an adaptive value path (example: /adaptorId/objectType/objectId.propertyNames).",
+            "description": "The URIs are adaptive value paths. If one of the URIs begins with a single slash '/', both must, and each URI will be parsed as an adaptive value path (example: /adapterId/objectType/objectId.propertyNames).",
             "name": "isValuePath",
             "optional": true
         },

@@ -1,0 +1,30 @@
+{
+    "afwCamelCaseFunctionLabel": "afwAdapterObjectCallbackSignature",
+    "brief": "Signature used for adapter objectCallback",
+    "camelCaseFunctionLabel": "adapterObjectCallbackSignature",
+    "category": "adapter",
+    "description": "This is the function signature for the objectCallback parameter in adapter functions. Calling this directly will throw a 'Do not call directly' error.",
+    "functionId": "adapter_objectCallback_signature",
+    "functionLabel": "adapter_objectCallback_signature",
+    "parameters": [
+        {
+            "brief": "The object from adapter",
+            "dataType": "object",
+            "description": "This is the object from adapter or undefined if there are no more objects to return.",
+            "name": "object"
+        },
+        {
+            "brief": "User data",
+            "dataType": "any",
+            "description": "This is the value of the userData parameter when objectCallback was called.",
+            "name": "userData",
+            "optional": true
+        }
+    ],
+    "returns": {
+        "brief": "true if objectCallback should not be called again",
+        "dataType": "boolean",
+        "description": "Return true if this callback should not be called again for any reason such a limit exceeded or the desired object being found."
+    },
+    "signatureOnly": true
+}

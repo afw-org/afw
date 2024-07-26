@@ -1,0 +1,39 @@
+{
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/ldap_extension"
+    ],
+    "description": "Object type for type=adapter adapter_type=ldap conf entries.",
+    "objectType": "_AdaptiveConf_adapter_ldap",
+    "propertyTypes": {
+        "_meta_": {
+            "parentPaths": [
+                "/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter/propertyTypes"
+            ]
+        },
+        "bindParameters": {
+            "dataType": "template",
+            "dataTypeParameter": "object _AdaptiveConf_adapter_ldap_bind",
+            "description": "Bind parameters for this LDAP adapter.",
+            "label": "Bind Parameters",
+            "required": true,
+            "unique": false
+        },
+        "preventVerifyCert": {
+            "allowQuery": true,
+            "dataType": "boolean",
+            "description": "Specify true to prevent the ldap server certificate from being verified when url uses the LDAPS scheme. If this parameter is false or not specified, the adapter does not influence the decision to verify the server certificate.",
+            "label": "Prevent Verify Cert",
+            "required": false,
+            "unique": false
+        },
+        "url": {
+            "allowQuery": true,
+            "dataType": "string",
+            "description": "URL of LDAP Server. For example, ldaps://ldap-server:636",
+            "label": "Url",
+            "required": true,
+            "unique": false
+        }
+    }
+}

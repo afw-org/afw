@@ -57,17 +57,17 @@ export const ObjectPath = (props) => {
          */
         let url = routeBasePath;
 
-        /* includes adaptorId */
+        /* includes adapterId */
         if (value.startsWith("/"))
             url = url + value;
 
         /* includes objectTypeId */
         else if (value.indexOf("/") > 0)
-            url = url + "/" + property.getEmbeddingObject().getAdaptorId() + "/" +  value;
+            url = url + "/" + property.getEmbeddingObject().getAdapterId() + "/" +  value;
 
         /* just objectId */
         else
-            url = url + "/" + property.getEmbeddingObject().getAdaptorId() + "/" + property.getEmbeddingObject().getObjectTypeId() + "/" + value;
+            url = url + "/" + property.getEmbeddingObject().getAdapterId() + "/" + property.getEmbeddingObject().getObjectTypeId() + "/" + value;
 
         return (
             <Link text={value} url={url} />

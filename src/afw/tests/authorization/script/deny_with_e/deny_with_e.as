@@ -11,7 +11,7 @@
 //? source: ...
 
 try {
-    const o: object = get_object("afw", "_AdaptiveAdaptor_", "afw");
+    const o: object = get_object("afw", "_AdaptiveAdapter_", "afw");
 }
 catch (e) {
     return e.data.actionId;

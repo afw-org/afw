@@ -42,7 +42,7 @@
         "mappedPropertyName": {
             "brief": "Name to map property to and from",
             "dataType": "string",
-            "description": "This is the property name of this property used internally by an adaptor. If not specified, propertyName is used.",
+            "description": "This is the property name of this property used internally by an adapter. If not specified, propertyName is used.",
             "label": "Mapped Property Name"
         },
         "method": {
@@ -62,7 +62,7 @@
             "brief": "This property will not be persisted",
             "dataType": "boolean",
             "defaultValue": false,
-            "description": "Indicates that this property is transitory and will not be persisted by the adaptor. The value can be produced by setValue or supplied in the request.",
+            "description": "Indicates that this property is transitory and will not be persisted by the adapter. The value can be produced by setValue or supplied in the request.",
             "label": "Transitory"
         }
     }

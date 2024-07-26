@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * Adaptive Framework Model Adaptor
+ * Adaptive Framework Model Adapter
  *
  * Copyright (c) 2010-2024 Clemson University
  *
@@ -8,7 +8,7 @@
 
 /**
  * @file afw_model_context.c
- * @brief Adaptive Framework model adaptor.
+ * @brief Adaptive Framework model adapter.
  */
 
 /* Comment out next line to cause new model code to be called on modify, etc. */
@@ -35,9 +35,9 @@ impl_useDefaultProcessing = {
 };
 
 
-/* Value accessor afw_model_internal_get_current_adaptorId. */
+/* Value accessor afw_model_internal_get_current_adapterId. */
 AFW_DEFINE_INTERNAL(const afw_value_t *)
-afw_model_internal_get_current_adaptorId(
+afw_model_internal_get_current_adapterId(
     const afw_runtime_object_map_property_t *prop,
     const void *internal,
     const afw_pool_t *p,
@@ -45,19 +45,19 @@ afw_model_internal_get_current_adaptorId(
 {
     afw_model_internal_context_t *ctx = (afw_model_internal_context_t *)internal;
 
-    if (!ctx->adaptor_id_value) {
-        ctx->adaptor_id_value =
+    if (!ctx->adapter_id_value) {
+        ctx->adapter_id_value =
             afw_value_create_unmanaged_string(
-                &ctx->session_self->adaptor->pub.adaptor_id,
+                &ctx->session_self->adapter->pub.adapter_id,
                 ctx->p, xctx);
     }
 
-    return ctx->adaptor_id_value;
+    return ctx->adapter_id_value;
 }
 
-/* Value accessor afw_model_internal_get_current_adaptorTypeSpecific. */
+/* Value accessor afw_model_internal_get_current_adapterTypeSpecific. */
 AFW_DEFINE_INTERNAL(const afw_value_t *)
-afw_model_internal_get_current_adaptorTypeSpecific(
+afw_model_internal_get_current_adapterTypeSpecific(
     const afw_runtime_object_map_property_t *prop,
     const void *internal,
     const afw_pool_t *p,
@@ -65,13 +65,13 @@ afw_model_internal_get_current_adaptorTypeSpecific(
 {
     afw_model_internal_context_t *ctx = (afw_model_internal_context_t *)internal;
 
-    if (!ctx->adaptorTypeSpecific_value && ctx->adaptorTypeSpecific) {
-        ctx->adaptorTypeSpecific_value =
+    if (!ctx->adapterTypeSpecific_value && ctx->adapterTypeSpecific) {
+        ctx->adapterTypeSpecific_value =
             afw_value_create_unmanaged_object(
-                ctx->adaptorTypeSpecific, ctx->p, xctx);
+                ctx->adapterTypeSpecific, ctx->p, xctx);
     }
 
-    return ctx->adaptorTypeSpecific_value;
+    return ctx->adapterTypeSpecific_value;
 }
 
 /* Value accessor afw_model_internal_get_current_mapBackObject. */
@@ -100,9 +100,9 @@ afw_model_internal_get_current_mapObject(
     return ctx->mapObject_value;
 }
 
-/* Value accessor afw_model_internal_get_current_mappedAdaptorId. */
+/* Value accessor afw_model_internal_get_current_mappedAdapterId. */
 AFW_DEFINE_INTERNAL(const afw_value_t *)
-afw_model_internal_get_current_mappedAdaptorId(
+afw_model_internal_get_current_mappedAdapterId(
     const afw_runtime_object_map_property_t *prop,
     const void *internal,
     const afw_pool_t *p,
@@ -110,7 +110,7 @@ afw_model_internal_get_current_mappedAdaptorId(
 {
     afw_model_internal_context_t *ctx = (afw_model_internal_context_t *)internal;
 
-    return ctx->session_self->adaptor->mappedAdaptorId_value;
+    return ctx->session_self->adapter->mappedAdapterId_value;
 }
 
 /* Value accessor afw_model_internal_get_current_mappedObject. */
@@ -213,14 +213,14 @@ afw_model_internal_get_current_modifyEntries(
 {
     afw_model_internal_context_t *ctx = (afw_model_internal_context_t *)internal;
 
-    if (!ctx->adaptor_id_value) {
-        ctx->adaptor_id_value =
+    if (!ctx->adapter_id_value) {
+        ctx->adapter_id_value =
             afw_value_create_unmanaged_string(
-                &ctx->session_self->adaptor->pub.adaptor_id,
+                &ctx->session_self->adapter->pub.adapter_id,
                 ctx->p, xctx);
     }
 
-    return ctx->adaptor_id_value;
+    return ctx->adapter_id_value;
 }
 
 /* Value accessor afw_model_internal_get_current_object. */
@@ -368,14 +368,14 @@ impl_custom_variable_get_cb(
 
 
 static const afw_value_t *
-impl_mappedAdaptorId_from_mapped_cb(
+impl_mappedAdapterId_from_mapped_cb(
     const afw_xctx_qualifier_stack_entry_t *entry,
     const afw_utf8_t *name,
     afw_xctx_t *xctx)
 {
     afw_model_internal_context_t *ctx = entry->data;
 
-    return ctx->session_self->adaptor->mappedAdaptorId_value;
+    return ctx->session_self->adapter->mappedAdapterId_value;
 }
 
 
@@ -465,21 +465,21 @@ impl_mappedValue_from_mapped_cb(
 
 
 static const afw_value_t *
-impl_adaptorId_to_mapped_cb(
+impl_adapterId_to_mapped_cb(
     const afw_xctx_qualifier_stack_entry_t *entry,
     const afw_utf8_t *name,
     afw_xctx_t *xctx)
 {
     afw_model_internal_context_t *ctx = entry->data;
 
-    if (!ctx->adaptor_id_value) {
-        ctx->adaptor_id_value =
+    if (!ctx->adapter_id_value) {
+        ctx->adapter_id_value =
             afw_value_create_unmanaged_string(
-                &ctx->session_self->adaptor->pub.adaptor_id,
+                &ctx->session_self->adapter->pub.adapter_id,
                 ctx->p, xctx);
     }
 
-    return ctx->adaptor_id_value;
+    return ctx->adapter_id_value;
 }
 
 
@@ -568,20 +568,20 @@ impl_propertyName_to_mapped_cb(
 
 
 static const afw_value_t *
-impl_adaptorTypeSpecific_cb(
+impl_adapterTypeSpecific_cb(
     const afw_xctx_qualifier_stack_entry_t *entry,
     const afw_utf8_t *name,
     afw_xctx_t *xctx)
 {
     afw_model_internal_context_t *ctx = entry->data;
 
-    if (!ctx->adaptorTypeSpecific_value && ctx->adaptorTypeSpecific) {
-        ctx->adaptorTypeSpecific_value =
+    if (!ctx->adapterTypeSpecific_value && ctx->adapterTypeSpecific) {
+        ctx->adapterTypeSpecific_value =
             afw_value_create_unmanaged_object(
-                ctx->adaptorTypeSpecific, ctx->p, xctx);
+                ctx->adapterTypeSpecific, ctx->p, xctx);
     }
 
-    return ctx->adaptorTypeSpecific_value;
+    return ctx->adapterTypeSpecific_value;
 }
 
 
@@ -657,23 +657,23 @@ impl_value_to_mapped_cb(
 
 static const
 afw_context_cb_variable_meta_t
-impl_current_variable_meta_adaptorId =
+impl_current_variable_meta_adapterId =
 {
-    afw_s_adaptorId,
+    afw_s_adapterId,
     &afw_value_unmanaged_string_inf,
     &afw_data_type_string_direct,
-    "Adaptor Id"
+    "Adapter Id"
 };
 
 
 static const
 afw_context_cb_variable_meta_t
-impl_current_variable_meta_adaptorTypeSpecific =
+impl_current_variable_meta_adapterTypeSpecific =
 {
-    afw_s_adaptorTypeSpecific,
+    afw_s_adapterTypeSpecific,
     &afw_value_unmanaged_object_inf,
     &afw_data_type_object_direct,
-    "Adaptor Specific"
+    "Adapter Specific"
 };
 
 
@@ -775,12 +775,12 @@ impl_current_variable_meta_value =
 
 static const
 afw_context_cb_variable_meta_t
-impl_current_variable_meta_mappedAdaptorId =
+impl_current_variable_meta_mappedAdapterId =
 {
-    afw_s_mappedAdaptorId,
+    afw_s_mappedAdapterId,
     &afw_value_unmanaged_string_inf,
     &afw_data_type_string_direct,
-    "Mapped Adaptor Id"
+    "Mapped Adapter Id"
 };
 
 
@@ -864,20 +864,20 @@ impl_current_variable_meta_useDefaultProcessing =
 
 static const
 afw_context_cb_variable_t
-impl_current_variable_adaptorId = {
-    &impl_current_variable_meta_adaptorId,
-    "The adaptor id of the object being converted to mapped object.",
-    impl_adaptorId_to_mapped_cb,
+impl_current_variable_adapterId = {
+    &impl_current_variable_meta_adapterId,
+    "The adapter id of the object being converted to mapped object.",
+    impl_adapterId_to_mapped_cb,
     IMPL_INCLUDE_MASK_OBJECT_LEVEL
 };
 
 
 static const
 afw_context_cb_variable_t
-impl_current_variable_adaptorTypeSpecific = {
-    &impl_current_variable_meta_adaptorTypeSpecific,
-    "This is the adaptorTypeSpecific parameter value.",
-    impl_adaptorTypeSpecific_cb,
+impl_current_variable_adapterTypeSpecific = {
+    &impl_current_variable_meta_adapterTypeSpecific,
+    "This is the adapterTypeSpecific parameter value.",
+    impl_adapterTypeSpecific_cb,
     IMPL_INCLUDE_MASK_OBJECT_LEVEL
 };
 
@@ -974,10 +974,10 @@ impl_current_variable_value = {
 
 static const
 afw_context_cb_variable_t
-impl_current_variable_mappedAdaptorId = {
-    &impl_current_variable_meta_mappedAdaptorId,
-    "The adaptor id of the object being converted to object.",
-    impl_mappedAdaptorId_from_mapped_cb,
+impl_current_variable_mappedAdapterId = {
+    &impl_current_variable_meta_mappedAdapterId,
+    "The adapter id of the object being converted to object.",
+    impl_mappedAdapterId_from_mapped_cb,
     IMPL_INCLUDE_MASK_OBJECT_LEVEL
 };
 
@@ -1044,7 +1044,7 @@ impl_current_variable_useDefaultProcessing = {
 
 AFW_DEFINE_INTERNAL_CONST_DATA(afw_context_cb_variable_t *)
 afw_model_internal_context_current_property_to_mapped[] = {
-    &impl_current_variable_adaptorId,
+    &impl_current_variable_adapterId,
     &impl_current_variable_object,
     &impl_current_variable_objectId,
     &impl_current_variable_objectType,
@@ -1056,7 +1056,7 @@ afw_model_internal_context_current_property_to_mapped[] = {
 
 AFW_DEFINE_INTERNAL_CONST_DATA(afw_context_cb_variable_t *)
 afw_model_internal_context_current_add_object[] = {
-    &impl_current_variable_adaptorId,
+    &impl_current_variable_adapterId,
     &impl_current_variable_object,
     &impl_current_variable_objectId,
     &impl_current_variable_objectType,
@@ -1067,7 +1067,7 @@ afw_model_internal_context_current_add_object[] = {
 
 AFW_DEFINE_INTERNAL_CONST_DATA(afw_context_cb_variable_t *)
 afw_model_internal_context_current_delete_object[] = {
-    &impl_current_variable_adaptorId,
+    &impl_current_variable_adapterId,
     &impl_current_variable_objectId,
     &impl_current_variable_objectType,
     &impl_current_variable_useDefaultProcessing,
@@ -1077,13 +1077,13 @@ afw_model_internal_context_current_delete_object[] = {
 
 AFW_DEFINE_INTERNAL_CONST_DATA(afw_context_cb_variable_t *)
 afw_model_internal_context_current_get_object[] = {
-    &impl_current_variable_adaptorId,
-    &impl_current_variable_adaptorTypeSpecific,
+    &impl_current_variable_adapterId,
+    &impl_current_variable_adapterTypeSpecific,
     &impl_current_variable_mapBackObject,
     &impl_current_variable_objectId,
     &impl_current_variable_objectType,
     &impl_current_variable_useDefaultProcessing,
-    &impl_current_variable_mappedAdaptorId,
+    &impl_current_variable_mappedAdapterId,
     &impl_current_variable_mappedObjectType,
     NULL
 };
@@ -1092,7 +1092,7 @@ afw_model_internal_context_current_get_object[] = {
 AFW_DEFINE_INTERNAL_CONST_DATA(afw_context_cb_variable_t *)
 afw_model_internal_context_current_modify_object[] = {
     &impl_current_variable_modifyEntries,
-    &impl_current_variable_adaptorId,
+    &impl_current_variable_adapterId,
     &impl_current_variable_object,
     &impl_current_variable_objectId,
     &impl_current_variable_objectType,
@@ -1103,7 +1103,7 @@ afw_model_internal_context_current_modify_object[] = {
 
 AFW_DEFINE_INTERNAL_CONST_DATA(afw_context_cb_variable_t *)
 afw_model_internal_context_current_replace_object[] = {
-    &impl_current_variable_adaptorId,
+    &impl_current_variable_adapterId,
     &impl_current_variable_object,
     &impl_current_variable_objectId,
     &impl_current_variable_objectType,
@@ -1114,14 +1114,14 @@ afw_model_internal_context_current_replace_object[] = {
 
 AFW_DEFINE_INTERNAL_CONST_DATA(afw_context_cb_variable_t *)
 afw_model_internal_context_current_retrieve_objects[] = {
-    &impl_current_variable_adaptorId,
-    &impl_current_variable_adaptorTypeSpecific,
+    &impl_current_variable_adapterId,
+    &impl_current_variable_adapterTypeSpecific,
     &impl_current_variable_returnObject,
     &impl_current_variable_mapBackObject,
     &impl_current_variable_objectType,
     &impl_current_variable_queryCriteria,
     &impl_current_variable_useDefaultProcessing,
-    &impl_current_variable_mappedAdaptorId,
+    &impl_current_variable_mappedAdapterId,
     &impl_current_variable_mappedObjectType,
     NULL
 };
@@ -1129,7 +1129,7 @@ afw_model_internal_context_current_retrieve_objects[] = {
 
 AFW_DEFINE_INTERNAL_CONST_DATA(afw_context_cb_variable_t *)
 afw_model_internal_context_current_property_from_mapped[] = {
-    &impl_current_variable_mappedAdaptorId,
+    &impl_current_variable_mappedAdapterId,
     &impl_current_variable_mappedObject,
     &impl_current_variable_mappedObjectId,
     &impl_current_variable_mappedObjectType,
@@ -1141,13 +1141,13 @@ afw_model_internal_context_current_property_from_mapped[] = {
 
 AFW_DEFINE_INTERNAL_CONST_DATA(afw_context_cb_variable_t *)
 afw_model_internal_context_current_for_initial_object_id[] = {
-    &impl_current_variable_mappedAdaptorId,
+    &impl_current_variable_mappedAdapterId,
     &impl_current_variable_mappedObject,
     &impl_current_variable_mappedObjectId,
     &impl_current_variable_mappedObjectType,
     &impl_current_variable_mappedPropertyName,
     &impl_current_variable_mappedValue,
-    &impl_current_variable_adaptorId,
+    &impl_current_variable_adapterId,
     &impl_current_variable_object,
     &impl_current_variable_objectId,
     &impl_current_variable_objectType,
@@ -1158,13 +1158,13 @@ afw_model_internal_context_current_for_initial_object_id[] = {
 
 AFW_DEFINE_INTERNAL_CONST_DATA(afw_context_cb_variable_t *)
 afw_model_internal_context_current_runtime_ctx[] = {
-    &impl_current_variable_mappedAdaptorId,
+    &impl_current_variable_mappedAdapterId,
     &impl_current_variable_mappedObject,
     &impl_current_variable_mappedObjectId,
     &impl_current_variable_mappedObjectType,
     &impl_current_variable_mappedPropertyName,
     &impl_current_variable_mappedValue,
-    &impl_current_variable_adaptorId,
+    &impl_current_variable_adapterId,
     &impl_current_variable_object,
     &impl_current_variable_objectId,
     &impl_current_variable_objectType,
@@ -1281,15 +1281,15 @@ impl_custom_variable_get_cb(
 
 
 /*
- * Create a skeleton context used by many adaptor functions and push
+ * Create a skeleton context used by many adapter functions and push
  * qualifies.
  */
 AFW_DEFINE_INTERNAL(afw_model_internal_context_t *)
 afw_model_internal_create_skeleton_context(
     afw_runtime_object_indirect_t *runtime_object_level_skeleton,
     const afw_context_cb_variable_t * const* current_variables,
-    afw_model_internal_adaptor_session_self_t *session_self,
-    const afw_adaptor_impl_request_t *impl_request,
+    afw_model_internal_adapter_session_self_t *session_self,
+    const afw_adapter_impl_request_t *impl_request,
     const afw_model_object_type_t *model_object_type,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
@@ -1307,8 +1307,8 @@ afw_model_internal_create_skeleton_context(
     ctx->useDefaultProcessing_value = &impl_useDefaultProcessing.pub;
 
     /* Push qualifiers. */
-    afw_adaptor_impl_push_qualifiers(
-        (const afw_adaptor_t *)session_self->adaptor, xctx);
+    afw_adapter_impl_push_qualifiers(
+        (const afw_adapter_t *)session_self->adapter, xctx);
     afw_xctx_qualifier_stack_qualifier_push(afw_s_custom, NULL, true,
         impl_custom_variable_get_cb, ctx, p, xctx);
 
@@ -1352,11 +1352,11 @@ afw_model_internal_create_skeleton_context(
 
 
 AFW_DEFINE_INTERNAL(afw_model_internal_context_t *)
-afw_model_internal_create_to_adaptor_skeleton_context(
-    afw_model_internal_adaptor_session_self_t *self,
+afw_model_internal_create_to_adapter_skeleton_context(
+    afw_model_internal_adapter_session_self_t *self,
     afw_runtime_object_indirect_t *runtime_object_level_skeleton,
     const afw_model_t *model,
-    const afw_adaptor_impl_request_t *impl_request,
+    const afw_adapter_impl_request_t *impl_request,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
     afw_xctx_t *xctx)

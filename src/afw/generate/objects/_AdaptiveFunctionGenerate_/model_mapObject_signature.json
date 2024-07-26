@@ -15,7 +15,7 @@
     "returns": {
         "dataType": "object",
         "brief": "The mapped object",
-        "description": "This is the object mapped to mappedAdaptor object."
+        "description": "This is the object mapped to mappedAdapter object."
     },
     "signatureOnly": true
 }

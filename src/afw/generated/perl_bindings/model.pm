@@ -38,13 +38,13 @@ _AdaptiveModelObjectType_. The action is not performed, but be aware that
 functions called while producing the _AdaptiveAction_ object may cause side
 effects. This function can be called as part of a onAdd expression or for
 testing.
-Produce a default _AdaptiveAction_ object for an add object request to a model adaptor.
+Produce a default _AdaptiveAction_ object for an add object request to a model adapter.
 
 =head4 Parameters
 
-    $adaptorId
+    $adapterId
 
-This is the adaptorId of a model adaptor. Variable custom::adaptorId can be
+This is the adapterId of a model adapter. Variable custom::adapterId can be
 used to access this value in model expressions.
 
     $objectType
@@ -59,14 +59,14 @@ value in model expressions.
 
     $objectId
 
-This is the optional preferred objectId of object to add. The adaptor may
+This is the optional preferred objectId of object to add. The adapter may
 ignore this. Variable custom::objectId can be used to access this value in
 model expressions.
 
     $modelId
 
 This specifics a modelId of model to use for producing results. If not
-specified, the adaptor's current model will be used.
+specified, the adapter's current model will be used.
 
     $context
 
@@ -80,13 +80,13 @@ _AdaptiveModelObjectType_. The action is not performed, but be aware that
 functions called while producing the _AdaptiveAction_ object may cause side
 effects. This function can be called as part of a onDelete expression or for
 testing.
-Produce a default _AdaptiveAction_ object for an delete object request to a model adaptor.
+Produce a default _AdaptiveAction_ object for an delete object request to a model adapter.
 
 =head4 Parameters
 
-    $adaptorId
+    $adapterId
 
-This is the adaptorId of a model adaptor. Variable custom::adaptorId can be
+This is the adapterId of a model adapter. Variable custom::adapterId can be
 used to access this value in model expressions.
 
     $objectType
@@ -102,7 +102,7 @@ to access this value in model expressions.
     $modelId
 
 This specifics a modelId of model to use for producing results. If not
-specified, the adaptor's current model will be used.
+specified, the adapter's current model will be used.
 
     $context
 
@@ -116,13 +116,13 @@ _AdaptiveModelObjectType_. The action is not performed, but be aware that
 functions called while producing the _AdaptiveAction_ object may cause side
 effects. This function can be called as part of a onModify expression or for
 testing.
-Produce a default _AdaptiveAction_ object for an modify object request to a model adaptor.
+Produce a default _AdaptiveAction_ object for an modify object request to a model adapter.
 
 =head4 Parameters
 
-    $adaptorId
+    $adapterId
 
-This is the adaptorId of a model adaptor. Variable custom::adaptorId can be
+This is the adapterId of a model adapter. Variable custom::adapterId can be
 used to access this value in model expressions.
 
     $objectType
@@ -166,7 +166,7 @@ access this value in model expressions. Entries are of the form:
     $modelId
 
 This specifics a modelId of model to use for producing results. If not
-specified, the adaptor's current model will be used.
+specified, the adapter's current model will be used.
 
     $context
 
@@ -180,13 +180,13 @@ _AdaptiveModelObjectType_. The action is not performed, but be aware that
 functions called while producing the _AdaptiveAction_ object may cause side
 effects. This function can be called as part of a onReplace expression or for
 testing.
-Produce a default _AdaptiveAction_ object for an replace object request to a model adaptor.
+Produce a default _AdaptiveAction_ object for an replace object request to a model adapter.
 
 =head4 Parameters
 
-    $adaptorId
+    $adapterId
 
-This is the adaptorId of a model adaptor. Variable custom::adaptorId can be
+This is the adapterId of a model adapter. Variable custom::adapterId can be
 used to access this value in model expressions.
 
     $objectType
@@ -207,7 +207,7 @@ this value in model expressions.
     $modelId
 
 This specifics a modelId of model to use for producing results. If not
-specified, the adaptor's current model will be used.
+specified, the adapter's current model will be used.
 
     $context
 
@@ -254,13 +254,13 @@ This is the object to return.
 
     $userData
 
-If this is present and true, the object will be mapped its mapped adaptor's
-object type to the model adaptor's object type.
+If this is present and true, the object will be mapped its mapped adapter's
+object type to the model adapter's object type.
 
 =cut
 
 sub model_default_add_object_action {
-    my ($adaptorId, $objectType, $object, $objectId, $modelId, $context) = @_;
+    my ($adapterId, $objectType, $object, $objectId, $modelId, $context) = @_;
 
     my $request = $session->request()
 
@@ -268,8 +268,8 @@ sub model_default_add_object_action {
     $request->set("objectType", $objectType);
     $request->set("object", $object);
 
-    if (defined $adaptorId)
-        $request->set("adaptorId", $adaptorId);
+    if (defined $adapterId)
+        $request->set("adapterId", $adapterId);
 
     if (defined $objectId)
         $request->set("objectId", $objectId);
@@ -284,7 +284,7 @@ sub model_default_add_object_action {
 }
 
 sub model_default_delete_object_action {
-    my ($adaptorId, $objectType, $objectId, $modelId, $context) = @_;
+    my ($adapterId, $objectType, $objectId, $modelId, $context) = @_;
 
     my $request = $session->request()
 
@@ -292,8 +292,8 @@ sub model_default_delete_object_action {
     $request->set("objectType", $objectType);
     $request->set("objectId", $objectId);
 
-    if (defined $adaptorId)
-        $request->set("adaptorId", $adaptorId);
+    if (defined $adapterId)
+        $request->set("adapterId", $adapterId);
 
     if (defined $modelId)
         $request->set("modelId", $modelId);
@@ -305,7 +305,7 @@ sub model_default_delete_object_action {
 }
 
 sub model_default_modify_object_action {
-    my ($adaptorId, $objectType, $objectId, $entries, $modelId, $context) = @_;
+    my ($adapterId, $objectType, $objectId, $entries, $modelId, $context) = @_;
 
     my $request = $session->request()
 
@@ -314,8 +314,8 @@ sub model_default_modify_object_action {
     $request->set("objectId", $objectId);
     $request->set("entries", $entries);
 
-    if (defined $adaptorId)
-        $request->set("adaptorId", $adaptorId);
+    if (defined $adapterId)
+        $request->set("adapterId", $adapterId);
 
     if (defined $modelId)
         $request->set("modelId", $modelId);
@@ -327,7 +327,7 @@ sub model_default_modify_object_action {
 }
 
 sub model_default_replace_object_action {
-    my ($adaptorId, $objectType, $objectId, $object, $modelId, $context) = @_;
+    my ($adapterId, $objectType, $objectId, $object, $modelId, $context) = @_;
 
     my $request = $session->request()
 
@@ -336,8 +336,8 @@ sub model_default_replace_object_action {
     $request->set("objectId", $objectId);
     $request->set("object", $object);
 
-    if (defined $adaptorId)
-        $request->set("adaptorId", $adaptorId);
+    if (defined $adapterId)
+        $request->set("adapterId", $adapterId);
 
     if (defined $modelId)
         $request->set("modelId", $modelId);

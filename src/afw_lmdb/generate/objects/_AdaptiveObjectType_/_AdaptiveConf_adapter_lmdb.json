@@ -1,0 +1,33 @@
+{
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/lmdb_extension"
+    ],
+    "description": "Object type for type=adapter adapter_type=lmdb conf entries.",
+    "objectType": "_AdaptiveConf_adapter_lmdb",
+    "propertyTypes": {
+        "_meta_": {
+            "parentPaths": [
+                "/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter/propertyTypes"
+            ]
+        },
+        "env": {
+            "allowQuery": true,
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveConf_adapter_lmdb_env",
+            "description": "Environment settings for LMDB.",
+            "label": "Environment",
+            "required": true,
+            "unique": false
+        },
+        "limits": {
+            "allowQuery": true,
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveConf_adapter_lmdb_limits",
+            "description": "Database limits for LMDB.",
+            "label": "Limits",
+            "required": true,
+            "unique": false
+        }
+    }
+}

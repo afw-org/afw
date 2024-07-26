@@ -12,7 +12,7 @@ import InheritanceTree from "../../common/InheritanceTree";
 const ObjectType = (props) => {
 
     const theme = useTheme();
-    const {adaptorId, objectTypeObject, objectTypeObjects} = props;
+    const {adapterId, objectTypeObject, objectTypeObjects} = props;
    
     /* sort the propertyTypes */
     let propertyTypes;
@@ -74,7 +74,7 @@ const ObjectType = (props) => {
                                         );
                                     else
                                         return (
-                                            <Link url={"/Documentation/Reference/Schema/" + objectTypeObject.getAdaptorId() + "/" + paths[paths.length-1]} text={paths[paths.length - 1]} />
+                                            <Link url={"/Documentation/Reference/Schema/" + objectTypeObject.getAdapterId() + "/" + paths[paths.length-1]} text={paths[paths.length - 1]} />
                                         );
                                 }}
                             />
@@ -96,7 +96,7 @@ const ObjectType = (props) => {
                                         );
                                     else
                                         return (
-                                            <Link url={"/Documentation/Reference/Schema/" + objectTypeObject.getAdaptorId() + "/" + paths[paths.length-1]} text={paths[paths.length - 1]} />
+                                            <Link url={"/Documentation/Reference/Schema/" + objectTypeObject.getAdapterId() + "/" + paths[paths.length-1]} text={paths[paths.length - 1]} />
                                         );
                                 }}
                             />
@@ -110,7 +110,7 @@ const ObjectType = (props) => {
                                 <Typography style={{ display: "inline-block" }} text="  Instances of this object type use the " />
                                 <Link 
                                     style={{ display: "inline-block", padding: theme.spacing(1) }}
-                                    url={"/Documentation/Reference/Schema/" + encodeURIComponent(adaptorId) + "/" + encodeURIComponent(objectType) + "/" + encodeURIComponent(descriptionPropertyName)} 
+                                    url={"/Documentation/Reference/Schema/" + encodeURIComponent(adapterId) + "/" + encodeURIComponent(objectType) + "/" + encodeURIComponent(descriptionPropertyName)} 
                                     text={descriptionPropertyName} 
                                 />
                                 <Typography style={{ display: "inline-block" }} text=" property for its object description." />
@@ -122,7 +122,7 @@ const ObjectType = (props) => {
                                 <Typography style={{ display: "inline-block" }} text="  Instances of this object type use the " />
                                 <Link 
                                     style={{ display: "inline-block", padding: theme.spacing(1) }}
-                                    url={"/Documentation/Reference/Schema/" + encodeURIComponent(adaptorId) + "/" + encodeURIComponent(objectType) + "/" + encodeURIComponent(objectIdPropertyName)} 
+                                    url={"/Documentation/Reference/Schema/" + encodeURIComponent(adapterId) + "/" + encodeURIComponent(objectType) + "/" + encodeURIComponent(objectIdPropertyName)} 
                                     text={objectIdPropertyName} 
                                 />
                                 <Typography style={{ display: "inline-block" }}  text=" property for its Object Id." />
@@ -182,7 +182,7 @@ const ObjectType = (props) => {
                                 { 
                                     key: "name", name: "Property", minWidth: 100, maxWidth: 175, isResizable: true,
                                     style: { wordWrap: "break-word" },
-                                    onRender: (item) => <Link url={"/Documentation/Reference/Schema/" + adaptorId + "/" + objectType + "/" + item.getName()} text={item.getName()} />                                        
+                                    onRender: (item) => <Link url={"/Documentation/Reference/Schema/" + adapterId + "/" + objectType + "/" + item.getName()} text={item.getName()} />                                        
                                 },
                                                                     
                                 { 
@@ -211,7 +211,7 @@ const ObjectType = (props) => {
                                             } else if (dataType === "object")
                                                 return (
                                                     <Link 
-                                                        url={"/Documentation/Reference/Schema/" + adaptorId + "/" + encodeURIComponent(dataTypeParameter)} 
+                                                        url={"/Documentation/Reference/Schema/" + adapterId + "/" + encodeURIComponent(dataTypeParameter)} 
                                                         text={dataTypeParameter} 
                                                     />
                                                 );

@@ -1,13 +1,13 @@
 {
     "brief": "Add adaptive object with URI",
-    "category": "adaptor",
+    "category": "adapter",
     "description": "Add an adaptive object with a given URI.",
     "functionId": "add_object_with_uri",
     "functionLabel": "add_object_with_uri",
     "parameters": [
         {
             "dataType": "anyURI",
-            "description": "URI of object to add. If a URI begins with a single slash ('/'), it is the local object path. In the case of a local path, an optional preferred objectId of object can be including in URI which the adaptor may ignore.",
+            "description": "URI of object to add. If a URI begins with a single slash ('/'), it is the local object path. In the case of a local path, an optional preferred objectId of object can be including in URI which the adapter may ignore.",
             "name": "uri"
         },
         {
@@ -23,15 +23,15 @@
         },
         {
             "dataType": "object",
-            "description": "This is an optional object parameter with an objectType determined by the adaptorType associated with the adaptorId parameter. If the adaptorType supports this parameter, adaptor afw will have an adaptive object type with an id of:\n\n_AdaptiveAdaptorTypeSpecific_${adaptorType}_add_object\n\nWhere ${adaptorType} is the adaptor type id.",
-            "name": "adaptorTypeSpecific",
+            "description": "This is an optional object parameter with an objectType determined by the adapterType associated with the adapterId parameter. If the adapterType supports this parameter, adapter afw will have an adaptive object type with an id of:\n\n_AdaptiveAdapterTypeSpecific_${adapterType}_add_object\n\nWhere ${adapterType} is the adapter type id.",
+            "name": "adapterTypeSpecific",
             "optional": true
         }
     ],
     "returns": {
         "dataType": "object",
         "dataTypeParameter": "_AdaptiveJournalEntry_",
-        "description": "Resulting journal entry. Property 'objectId' is the objectId assigned by the adaptor."
+        "description": "Resulting journal entry. Property 'objectId' is the objectId assigned by the adapter."
     },
     "sideEffects": [
         "Object created"

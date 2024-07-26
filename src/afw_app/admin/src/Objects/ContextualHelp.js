@@ -21,7 +21,7 @@ const HelpText = ({ text }) => {
 /**
  * ContextualHelp components for /Objects route.
  */
-export const ObjectEditorHelp = ({ /*selectedAdaptorId, selectedObjectTypeId,*/ selectedObject }) => {
+export const ObjectEditorHelp = ({ /*selectedAdapterId, selectedObjectTypeId,*/ selectedObject }) => {
 
     const theme = useTheme();
     const properties = (selectedObject ? selectedObject.getProperties().sort((A, B) => A.getName().toLowerCase().localeCompare(B.getName().toLowerCase())) : []);
@@ -66,7 +66,7 @@ export const ObjectEditorHelp = ({ /*selectedAdaptorId, selectedObjectTypeId,*/ 
                 not be editable, making the icon disabled.  Once the object is editable, you may make \
                 changes to the object, using any of the appropriate layouts.  When you are finished, \
                 you may click "Cancel" to discard changes, or "Save" to save the changes back out to \
-                the adaptor.               
+                the adapter.               
             `} />
             <div style={{ textAlign: "center" }}>
                 <Icon style={{ display: "inline-block" }} iconName="lock" />
@@ -98,7 +98,7 @@ export const ObjectEditorHelp = ({ /*selectedAdaptorId, selectedObjectTypeId,*/ 
     );
 };
 
-export const ObjectsTableHelp = (/*{ selectedAdaptorId, selectedObjectTypeId }*/) => {
+export const ObjectsTableHelp = (/*{ selectedAdapterId, selectedObjectTypeId }*/) => {
 
     return (
         <>
@@ -113,13 +113,13 @@ export const ObjectsTableHelp = (/*{ selectedAdaptorId, selectedObjectTypeId }*/
     );
 };
 
-export const ObjectsHelp = (/*{ selectedAdaptorId, selectedObjectTypeId }*/) => {
+export const ObjectsHelp = (/*{ selectedAdapterId, selectedObjectTypeId }*/) => {
     return (
         <>
             <HelpText text={` \
-                The Objects page allows you to search or create new Objects for a specified adaptor.
+                The Objects page allows you to search or create new Objects for a specified adapter.
 
-                First, select the adaptor from the Dropdown component labeled "Adaptor".  Next, type or select \
+                First, select the adapter from the Dropdown component labeled "Adapter".  Next, type or select \
                 the Object Type to work with from the Dropdown component labeled "Object Type".
 
             `} />
@@ -136,7 +136,7 @@ export const ObjectsHelp = (/*{ selectedAdaptorId, selectedObjectTypeId }*/) => 
 
             <Typography color="primary" size="5" text="Getting an Object" />
             <HelpText text={`
-                The get_object() operation is often quicker for an adaptor to perform, as it may not require indexes or scans to \
+                The get_object() operation is often quicker for an adapter to perform, as it may not require indexes or scans to \
                 return the object in question.
 
                 If you want to Get a specific object, and you know the objectId, first un-check the "Retrieve" Checkbox.  Then \
@@ -146,7 +146,7 @@ export const ObjectsHelp = (/*{ selectedAdaptorId, selectedObjectTypeId }*/) => 
 
             <Typography color="primary" size="5" text="Create New Object" />
             <HelpText text={`
-                If you want to create a new Object for this Adaptor and Object Type, click the button labeled "New Object".
+                If you want to create a new Object for this Adapter and Object Type, click the button labeled "New Object".
             `} />
         </>
     );
@@ -154,8 +154,8 @@ export const ObjectsHelp = (/*{ selectedAdaptorId, selectedObjectTypeId }*/) => 
 
 
 export const ContextualHelpRoutes = [
-    { path: "/Objects/:adaptorId/:objectTypeId/:objectId",  title: "Objects Editor Help",   Component: ObjectEditorHelp    },
-    { path: "/Objects/:adaptorId/:objectTypeId",            title: "Objects Table Help",    Component: ObjectsTableHelp    },
+    { path: "/Objects/:adapterId/:objectTypeId/:objectId",  title: "Objects Editor Help",   Component: ObjectEditorHelp    },
+    { path: "/Objects/:adapterId/:objectTypeId",            title: "Objects Table Help",    Component: ObjectsTableHelp    },
     { path: "/Objects/",                                    title: "Objects Help",          Component: ObjectsHelp         },
 ];
 

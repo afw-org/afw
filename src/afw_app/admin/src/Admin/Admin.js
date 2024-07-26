@@ -9,7 +9,7 @@ import Server from "./Server/Server";
 import Status from "./Status";
 import Provisioning from "./Provisioning/Provisioning";
 import Authorization from "./Authorization/Authorization";
-import Adaptors from "./Services/Adaptors/Adaptors";
+import Adapters from "./Services/Adapters/Adapters";
 import AuthorizationHandlers from "./Services/AuthorizationHandlers/AuthorizationHandlers";
 import RequestHandlers from "./RequestHandlers/RequestHandlers";
 import Logs from "./Services/Logs/Logs";
@@ -30,7 +30,7 @@ export const Admin = ({ children }) => {
     const model = useModel();
     const {notification, marginHeight} = useApplication();
     const {application, error: appError} = useAppCore();
-    const {confAdaptorId} = useValues(application);
+    const {confAdapterId} = useValues(application);
 
 
     useEffect(() => {
@@ -38,8 +38,8 @@ export const Admin = ({ children }) => {
             try {
                 setLoading(true);
     
-                /* first load all object types from the config adaptor */
-                await model.loadObjectTypes({ adaptorId: confAdaptorId });
+                /* first load all object types from the config adapter */
+                await model.loadObjectTypes({ adapterId: confAdapterId });
     
                 setLoading(false);
             } catch (error) {
@@ -49,10 +49,10 @@ export const Admin = ({ children }) => {
             }
         };
 
-        if (confAdaptorId)
+        if (confAdapterId)
             loadConfigObjectTypes();
         
-    }, [confAdaptorId, model, notification]);
+    }, [confAdapterId, model, notification]);
         
     if (error || appError) {
         return (
@@ -98,7 +98,7 @@ export default () =>
             <Route path="/Admin/Authorization" component={Authorization} />
             <Route path="/Admin/Services" component={Services} />
             <Route path="/Admin/RequestHandlers" component={RequestHandlers} />
-            <Route path="/Admin/Adaptors" component={Adaptors} />
+            <Route path="/Admin/Adapters" component={Adapters} />
             <Route path="/Admin/Logs" component={Logs} />
             <Route path="/Admin/AuthHandlers" component={AuthorizationHandlers} />
             <Route exact path="/Admin" component={Status} />

@@ -20,7 +20,7 @@ interface IAnyObject {
 /**
  * Create an index definition.
  * 
- * @param {string} adaptorId - Id of adaptor.
+ * @param {string} adapterId - Id of adapter.
  * 
  * @param {string} key - Name of the property index to be created.
  * 
@@ -40,15 +40,15 @@ interface IAnyObject {
  * 
  * @returns {object} Object response from the indexing process
  */
-export function afwIndexCreate(client : any, key : string, adaptorId? : string, value? : string, objectType? : string, filter? : string, options? : string, retroactive? : boolean, test? : boolean) : any {
+export function afwIndexCreate(client : any, key : string, adapterId? : string, value? : string, objectType? : string, filter? : string, options? : string, retroactive? : boolean, test? : boolean) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "index_create";
     _action["key"] = key;
 
-    if (adaptorId !== undefined)
-        _action["adaptorId"] = adaptorId;
+    if (adapterId !== undefined)
+        _action["adapterId"] = adapterId;
 
     if (value !== undefined)
         _action["value"] = value;
@@ -74,20 +74,20 @@ export function afwIndexCreate(client : any, key : string, adaptorId? : string, 
 /**
  * List property indexes
  * 
- * @param {string} adaptorId - Id of adaptor.
+ * @param {string} adapterId - Id of adapter.
  * 
  * @param {string} objectType - Id of adaptive object type indexes
  * 
  * @returns {object} Object response from the index repair process
  */
-export function afwIndexList(client : any, adaptorId? : string, objectType? : string) : any {
+export function afwIndexList(client : any, adapterId? : string, objectType? : string) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "index_list";
 
-    if (adaptorId !== undefined)
-        _action["adaptorId"] = adaptorId;
+    if (adapterId !== undefined)
+        _action["adapterId"] = adapterId;
 
     if (objectType !== undefined)
         _action["objectType"] = objectType;
@@ -98,21 +98,21 @@ export function afwIndexList(client : any, adaptorId? : string, objectType? : st
 /**
  * Remove an index definition.
  * 
- * @param {string} adaptorId - Id of adaptor.
+ * @param {string} adapterId - Id of adapter.
  * 
  * @param {string} key - The index key to be removed.
  * 
  * @returns {object} Object response from the indexing process
  */
-export function afwIndexRemove(client : any, key : string, adaptorId? : string) : any {
+export function afwIndexRemove(client : any, key : string, adapterId? : string) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "index_remove";
     _action["key"] = key;
 
-    if (adaptorId !== undefined)
-        _action["adaptorId"] = adaptorId;
+    if (adapterId !== undefined)
+        _action["adapterId"] = adapterId;
 
     return client.perform(_action);
 }

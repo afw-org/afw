@@ -42,11 +42,11 @@ afw_vfs_generated_register(afw_xctx_t *xctx);
 
 
 /**
- * @brief Register function for adaptor_type vfs
+ * @brief Register function for adapter_type vfs
  * @param xctx of caller.
  */
 AFW_VFS_DECLARE_INTERNAL(void)
-afw_vfs_adaptor_type_vfs_register(
+afw_vfs_adapter_type_vfs_register(
     afw_xctx_t *xctx);
 
 

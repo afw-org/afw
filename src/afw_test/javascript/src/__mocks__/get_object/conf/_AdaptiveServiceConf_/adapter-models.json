@@ -1,0 +1,26 @@
+{
+    "result": {
+        "_meta_": {
+            "path": "/conf/_AdaptiveServiceConf_/adapter-models",
+            "objectId": "adapter-models",
+            "objectType": "_AdaptiveServiceConf_",
+            "reconcilable": "{\"_meta_\":{\"path\":\"/conf/_AdaptiveServiceConf_/adapter-models\"},\"conf\":{\"_meta_\":{\"objectType\":\"_AdaptiveConf_adapter_file\"},\"adapterId\":\"models\",\"description\":\"Stores adaptive models.\",\"filenameSuffix\":\".json\",\"contentType\":\"json\",\"root\":\"/afw/models/\",\"isModelLocation\":true,\"adapterType\":\"file\",\"type\":\"adapter\"},\"startup\":\"immediate\",\"serviceId\":\"adapter-models\"}"
+        },
+        "conf": {
+            "_meta_": {
+                "objectType": "_AdaptiveConf_adapter_file"
+            },
+            "adapterId": "models",
+            "description": "Stores adaptive models.",
+            "filenameSuffix": ".json",
+            "contentType": "json",
+            "root": "/afw/models/",
+            "isModelLocation": true,
+            "adapterType": "file",
+            "type": "adapter"
+        },
+        "startup": "immediate",
+        "serviceId": "adapter-models"
+    },
+    "status": "success"
+}

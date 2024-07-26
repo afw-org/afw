@@ -92,11 +92,11 @@ AFW_BEGIN_DECLARES
 /** @brief String pseudo meta property name for path. */
 #define AFW_OBJECT_S_PN_PATH afw_s_path
 
-/** @brief Quoted pseudo meta property name for adaptorId. */
-#define AFW_OBJECT_Q_PN_ADAPTOR_ID AFW_Q_adaptorId
+/** @brief Quoted pseudo meta property name for adapterId. */
+#define AFW_OBJECT_Q_PN_ADAPTER_ID AFW_Q_adapterId
 
-/** @brief String pseudo meta property name for adaptorId. */
-#define AFW_OBJECT_S_PN_ADAPTOR_ID afw_s_adaptorId
+/** @brief String pseudo meta property name for adapterId. */
+#define AFW_OBJECT_S_PN_ADAPTER_ID afw_s_adapterId
 
 /** @brief Quoted pseudo meta property name for objectType. */
 #define AFW_OBJECT_Q_PN_OBJECT_TYPE AFW_Q_objectType

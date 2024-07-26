@@ -14,7 +14,7 @@
  */
 
 #include "afw.h"
-#include "afw_vfs_adaptor_internal.h"
+#include "afw_vfs_adapter_internal.h"
 #include "generated/afw_vfs_generated.h"
 #include "generated/afw_vfs_version_info.h"
 

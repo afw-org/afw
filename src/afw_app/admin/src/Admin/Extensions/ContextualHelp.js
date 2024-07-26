@@ -29,7 +29,7 @@ export const ExtensionsHelp = ({ manifests }) => {
         <>
             <HelpText text={` \
                 Extensions are compiled shared libraries that, when registered and loaded with Adaptive Framework Core, provide \
-                data types, functions, content types, adaptors, request handlers, and more.  They are intended to extend \
+                data types, functions, content types, adapters, request handlers, and more.  They are intended to extend \
                 the functionality of Adaptive Framework core using a loadable module interface.
 
                 This page displays all extensions that are known by Adaptive Framework Core and represented in a table \

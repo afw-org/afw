@@ -32,7 +32,7 @@ AFW_BEGIN_DECLARES
  * @param register_additional custom callback function or NULL
  * @param allow_reregister true/false
  * @param property_name in _AdaptiveEnvironmentRegistry_
- * @param object_type_id in afw adaptor of registered keys of this registry type
+ * @param object_type_id in afw adapter of registered keys of this registry type
  * @param description of this registry type
  *
  * There must be and afw_s_ with each name in map.
@@ -62,19 +62,19 @@ AFW_BEGIN_DECLARES
         "_AdaptiveSingleton_",                                                  \
         "The void pointer for a singleton key.")                                \
                                                                                 \
-    XX(adaptor_id,                                                              \
+    XX(adapter_id,                                                              \
         impl_internal_additional_register_default,                              \
         false,                                                                  \
-        "adaptorId",                                                            \
-        "_AdaptiveAdaptor_",                                                    \
-        "The afw_adaptor_id_t struct for this adaptor id.")                     \
+        "adapterId",                                                            \
+        "_AdaptiveAdapter_",                                                    \
+        "The afw_adapter_id_t struct for this adapter id.")                     \
                                                                                 \
-    XX(adaptor_type,                                                            \
+    XX(adapter_type,                                                            \
         impl_internal_additional_register_default,                              \
         false,                                                                  \
-        "adaptorType",                                                          \
-        "_AdaptiveAdaptorType_",                                                \
-        "The afw_adaptor_factory_t instance for an adaptor type.")              \
+        "adapterType",                                                          \
+        "_AdaptiveAdapterType_",                                                \
+        "The afw_adapter_factory_t instance for an adapter type.")              \
                                                                                 \
     XX(authorization_handler_id,                                                \
         impl_internal_additional_register_default,                              \
@@ -299,8 +299,8 @@ afw_environment_extension_instance = &impl_extension
  * @param xctx of caller.
  *
  * The p should be a multithreaded pool whose control is ceded to the thing
- * being created.  For example, for type=adaptor, the adaptor should
- * destroy this pool when the adaptor's use count goes to zero.
+ * being created.  For example, for type=adapter, the adapter should
+ * destroy this pool when the adapter's use count goes to zero.
  */
 typedef void(*afw_environment_conf_type_create_cede_p_t)(
     const afw_utf8_t *type, const afw_object_t *conf,
@@ -677,7 +677,7 @@ afw_environment_foreach(
  * @param registry_type_id name.
  * @param property_name is a unique name for this type associated with key.
  * @param description of registry type.
- * @param object_type_id of objects in afw adaptor for entries of this type.
+ * @param object_type_id of objects in afw adapter for entries of this type.
  * @param allow_reregister of a key by replacing value.
  * @param auto_register is function to call if key is not already registered.
  * @param register_additional function pointer or NULL.  Required if
@@ -856,73 +856,73 @@ afw_environment_get_singleton(
 
 
 /**
- * @brief Register an adaptor factory.
- * @param adaptor_type used to identify adaptor factory being registered.
- * @param adaptor_factory instance to register.
+ * @brief Register an adapter factory.
+ * @param adapter_type used to identify adapter factory being registered.
+ * @param adapter_factory instance to register.
  * @param xctx of caller.
  *
- * This also registers flag `trace:adaptor_type:<adaptor_type>` where
- * `<adaptor_type>` is the supplied adaptor_type.
+ * This also registers flag `trace:adapter_type:<adapter_type>` where
+ * `<adapter_type>` is the supplied adapter_type.
  */
 AFW_DEFINE(void)
-afw_environment_register_adaptor_type(
-    const afw_utf8_t *adaptor_type,
-    const afw_adaptor_factory_t *adaptor_factory,
+afw_environment_register_adapter_type(
+    const afw_utf8_t *adapter_type,
+    const afw_adapter_factory_t *adapter_factory,
     afw_xctx_t *xctx);
 
 
 /**
- * @brief Get the adaptor factory instance associated with adaptor type.
- * @param adaptor_type of adaptor factory instance.
+ * @brief Get the adapter factory instance associated with adapter type.
+ * @param adapter_type of adapter factory instance.
  * @param xctx of caller.
  * @return Associated instance or NULL if not found.
  */
-AFW_DEFINE_STATIC_INLINE(const afw_adaptor_factory_t *)
-afw_environment_get_adaptor_type(
-    const afw_utf8_t *adaptor_type,
+AFW_DEFINE_STATIC_INLINE(const afw_adapter_factory_t *)
+afw_environment_get_adapter_type(
+    const afw_utf8_t *adapter_type,
     afw_xctx_t *xctx)
 {
-    return (const afw_adaptor_factory_t *) afw_environment_registry_get(
-        afw_environemnt_registry_type_adaptor_type,
-        adaptor_type,
+    return (const afw_adapter_factory_t *) afw_environment_registry_get(
+        afw_environemnt_registry_type_adapter_type,
+        adapter_type,
         xctx);
 }
 
 
 /**
- * @brief Register an adaptor id anchor.
- * @param adaptor_id being registered.
+ * @brief Register an adapter id anchor.
+ * @param adapter_id being registered.
  * @param anchor instance to register.
  * @param xctx of caller.
  */
 AFW_DEFINE_STATIC_INLINE(void)
-afw_environment_register_adaptor_id(
-    const afw_utf8_t *adaptor_id,
-    const afw_adaptor_id_anchor_t *anchor,
+afw_environment_register_adapter_id(
+    const afw_utf8_t *adapter_id,
+    const afw_adapter_id_anchor_t *anchor,
     afw_xctx_t *xctx)
 {
     afw_environment_registry_register(
-        afw_environemnt_registry_type_adaptor_id,
-        adaptor_id,
+        afw_environemnt_registry_type_adapter_id,
+        adapter_id,
         anchor,
         xctx);
 }
 
 
 /**
- * @brief Get the adaptor id anchor associated with adaptor id.
- * @param adaptor_id.
+ * @brief Get the adapter id anchor associated with adapter id.
+ * @param adapter_id.
  * @param xctx of caller.
- * @return Associated adaptor id anchor or NULL if not found.
+ * @return Associated adapter id anchor or NULL if not found.
  */
-AFW_DEFINE_STATIC_INLINE(const afw_adaptor_id_anchor_t *)
-afw_environment_get_adaptor_id(
-    const afw_utf8_t *adaptor_id,
+AFW_DEFINE_STATIC_INLINE(const afw_adapter_id_anchor_t *)
+afw_environment_get_adapter_id(
+    const afw_utf8_t *adapter_id,
     afw_xctx_t *xctx)
 {
-    return (const afw_adaptor_id_anchor_t *)afw_environment_registry_get(
-        afw_environemnt_registry_type_adaptor_id,
-        adaptor_id,
+    return (const afw_adapter_id_anchor_t *)afw_environment_registry_get(
+        afw_environemnt_registry_type_adapter_id,
+        adapter_id,
         xctx);
 }
 
@@ -1027,8 +1027,8 @@ afw_environment_get_authorization_handler_id(
  * @param is_unique indicate this type can only occur once.
  * @param xctx of caller.
  *
- * For adaptor, id_property_name is "adaptorId' and subtype_property_name
- * is "adaptor_type".
+ * For adapter, id_property_name is "adapterId' and subtype_property_name
+ * is "adapter_type".
  * 
  * If related_object_type_id is not NULL, the uri of the related object
  * will be `/afw/<related_object_type_id>/<id_property_name` value>

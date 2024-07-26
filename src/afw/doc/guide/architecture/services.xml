@@ -4,14 +4,14 @@
     <paragraph>
         Many of the interface implementations that were discussed in previous 
         sections require additional configuration in order to make them useful.
-        For instance, the LDAP adaptor needs to understand what service to 
-        connect to and which bind credentials to use. A File Adaptor needs to 
+        For instance, the LDAP adapter needs to understand what service to 
+        connect to and which bind credentials to use. A File Adapter needs to 
         know which directory it should store and retrieve files from, and in 
         what Content Type. An authorizationHandler may need to know which 
         policies to use or what script to execute.
     </paragraph>
     <paragraph>
-        When Adaptors, Logs or authorizationHandlers are configured in 
+        When Adapters, Logs or authorizationHandlers are configured in 
         Adaptive Framework, we bundle a configuration object into an object 
         instance of <literal>_AdaptiveServiceConf_</literal>. These is used 
         to create what's known as a <literal>Service</literal>. A service is 
@@ -21,16 +21,16 @@
     </paragraph>    
     <paragraph>
         The following example demonstrates what a service configuration object
-        looks like, using the LMDB adaptor:
+        looks like, using the LMDB adapter:
     </paragraph>
     <code>
 {
-    "serviceId": "adaptor-lmdb",
+    "serviceId": "adapter-lmdb",
     "startup": "immediate",
     "conf": {
-        "type": "adaptor",
-        "adaptorType": "lmdb",
-        "adaptorId": "lmdb",
+        "type": "adapter",
+        "adapterType": "lmdb",
+        "adapterId": "lmdb",
         "description": "A LMDB database for person registry",
         "env": {
             "mapsize": 10485760,
@@ -43,7 +43,7 @@
 }
     </code>
     <paragraph>
-        This particular configuration will create a LMDB adaptor immediately 
+        This particular configuration will create a LMDB adapter immediately 
         upon startup.
     </paragraph>
 </doc>

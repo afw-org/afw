@@ -57,7 +57,7 @@
             },
             "collectionURIs": {
                 "label": "Collection URIs",
-                "description": "This is the URIs of the collections this map is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections.  If a collection is used outside of the local instance, it should be a full URI.  The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adaptor.",
+                "description": "This is the URIs of the collections this map is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections.  If a collection is used outside of the local instance, it should be a full URI.  The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adapter.",
                 "dataTypeParameter": "anyURI",
                 "dataType": "array",
                 "brief": "The URIs of the collections this map is part of",

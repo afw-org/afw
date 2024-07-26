@@ -1,0 +1,16 @@
+{
+  "allowEntity": false,
+  "collectionURIs": [
+    "/afw/_AdaptiveCollection_/<afwdev {srcdirManifest}>"
+  ],
+  "description": "Adaptive Framework configuration for type=adapter adapterType=<afwdev {implementation_id}>.",
+  "objectType": "_AdaptiveConf_adapter_<afwdev {implementation_id}>",
+  "propertyTypes": {
+    "_meta_": {
+      "label": "Meta",
+      "parentPaths": [
+        "/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter/propertyTypes"
+      ]
+    }
+  }
+}

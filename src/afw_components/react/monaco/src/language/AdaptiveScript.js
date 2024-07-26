@@ -261,20 +261,20 @@ export const monarchLanguage = {
 
 
 /**
- * adaptorsCompletionItemProvider()
+ * adaptersCompletionItemProvider()
  *
- * This routine registers adaptors autocomplete items for the monaco editor.
+ * This routine registers adapters autocomplete items for the monaco editor.
  */
-export const adaptorsCompletionItemProvider = (monaco, adaptors) => {
+export const adaptersCompletionItemProvider = (monaco, adapters) => {
     const suggestions = [];
 
-    adaptors.forEach(adaptor => {
-        const adaptorId = adaptor.adaptorId;
+    adapters.forEach(adapter => {
+        const adapterId = adapter.adapterId;
 
         suggestions.push({
-            label: '"' + adaptorId + '"',
+            label: '"' + adapterId + '"',
             kind: monaco.languages.CompletionItemKind.Constant,
-            insertText: '"' + adaptorId + '"',
+            insertText: '"' + adapterId + '"',
             insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet
         });
     });

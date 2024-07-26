@@ -49,7 +49,7 @@
  *
  * ```
  *   function journal_advance_cursor_for_consumer(
- *       adaptorId: string,
+ *       adapterId: string,
  *       consumerId: string,
  *       limit?: integer
  *   ): object;
@@ -57,7 +57,7 @@
  *
  * Parameters:
  *
- *   adaptorId - (string) Id of adaptor.
+ *   adapterId - (string) Id of adapter.
  *
  *   consumerId - (string) The consumerId property value of the associated
  *       _AdaptiveProvisioningPeer_ object.
@@ -100,14 +100,14 @@ afw_function_execute_journal_advance_cursor_for_consumer(
  *
  * ```
  *   function journal_get_by_cursor(
- *       adaptorId: string,
+ *       adapterId: string,
  *       cursor: string
  *   ): object;
  * ```
  *
  * Parameters:
  *
- *   adaptorId - (string) Id of adaptor.
+ *   adapterId - (string) Id of adapter.
  *
  *   cursor - (string) Journal entry cursor.
  *
@@ -144,13 +144,13 @@ afw_function_execute_journal_get_by_cursor(
  *
  * ```
  *   function journal_get_first(
- *       adaptorId: string
+ *       adapterId: string
  *   ): object;
  * ```
  *
  * Parameters:
  *
- *   adaptorId - (string) Id of adaptor.
+ *   adapterId - (string) Id of adapter.
  *
  * Returns:
  *
@@ -186,14 +186,14 @@ afw_function_execute_journal_get_first(
  *
  * ```
  *   function journal_get_next_after_cursor(
- *       adaptorId: string,
+ *       adapterId: string,
  *       cursor: string
  *   ): object;
  * ```
  *
  * Parameters:
  *
- *   adaptorId - (string) Id of adaptor.
+ *   adapterId - (string) Id of adapter.
  *
  *   cursor - (string) Journal entry cursor.
  *
@@ -254,7 +254,7 @@ afw_function_execute_journal_get_next_after_cursor(
  *
  * ```
  *   function journal_get_next_for_consumer(
- *       adaptorId: string,
+ *       adapterId: string,
  *       consumerId: string,
  *       limit?: integer
  *   ): object;
@@ -262,7 +262,7 @@ afw_function_execute_journal_get_next_after_cursor(
  *
  * Parameters:
  *
- *   adaptorId - (string) Id of adaptor.
+ *   adapterId - (string) Id of adapter.
  *
  *   consumerId - (string) The consumerId property value of the associated
  *       _AdaptiveProvisioningPeer_ object.
@@ -315,7 +315,7 @@ afw_function_execute_journal_get_next_for_consumer(
  *
  * ```
  *   function journal_get_next_for_consumer_after_cursor(
- *       adaptorId: string,
+ *       adapterId: string,
  *       consumerId: string,
  *       cursor: string,
  *       limit?: integer
@@ -324,7 +324,7 @@ afw_function_execute_journal_get_next_for_consumer(
  *
  * Parameters:
  *
- *   adaptorId - (string) Id of adaptor.
+ *   adapterId - (string) Id of adapter.
  *
  *   consumerId - (string) The consumerId property value of the associated
  *       _AdaptiveProvisioningPeer_ object.
@@ -365,7 +365,7 @@ afw_function_execute_journal_get_next_for_consumer_after_cursor(
  *
  * ```
  *   function journal_mark_consumed(
- *       adaptorId: string,
+ *       adapterId: string,
  *       consumerId: string,
  *       cursor: string
  *   ): void;
@@ -373,7 +373,7 @@ afw_function_execute_journal_get_next_for_consumer_after_cursor(
  *
  * Parameters:
  *
- *   adaptorId - (string) Id of adaptor.
+ *   adapterId - (string) Id of adapter.
  *
  *   consumerId - (string) The consumerId property value of the associated
  *       _AdaptiveProvisioningPeer_ object.

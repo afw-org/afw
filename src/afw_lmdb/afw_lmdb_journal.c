@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * Implementation of afw_adaptor_journal interface for LMDB
+ * Implementation of afw_adapter_journal interface for LMDB
  *
  * Copyright (c) 2010-2024 Clemson University
  *
@@ -9,53 +9,53 @@
 
 /**
  * @file afw_lmdb_journal.c
- * @brief Implementation of afw_adaptor_journal interface for LMDB.
+ * @brief Implementation of afw_adapter_journal interface for LMDB.
  */
 
 #include "afw.h"
 #include "afw_lmdb.h"
 #include "afw_lmdb_internal.h"
 #include "generated/afw_lmdb_generated.h"
-#include "afw_adaptor_impl.h"
+#include "afw_adapter_impl.h"
 #include "lmdb.h"
 
-/* Declares and rti/inf defines for interface afw_adaptor_journal */
+/* Declares and rti/inf defines for interface afw_adapter_journal */
 #define AFW_IMPLEMENTATION_ID "lmdb"
-#include "afw_adaptor_journal_impl_declares.h"
+#include "afw_adapter_journal_impl_declares.h"
 
 afw_lmdb_journal_t *
 afw_lmdb_journal_create(
-    afw_lmdb_adaptor_session_t * session,
+    afw_lmdb_adapter_session_t * session,
     afw_xctx_t *xctx)
 {
     afw_lmdb_journal_t *self;
 
     self = afw_xctx_calloc_type(afw_lmdb_journal_t, xctx);
 
-    self->pub.inf = &impl_afw_adaptor_journal_inf;
-    self->session = (afw_adaptor_session_t *)session;
+    self->pub.inf = &impl_afw_adapter_journal_inf;
+    self->session = (afw_adapter_session_t *)session;
 
     return self;
 }
 
 
 /*
- * Implementation of method add_entry of interface afw_adaptor_journal.
+ * Implementation of method add_entry of interface afw_adapter_journal.
  */
 const afw_utf8_t *
-impl_afw_adaptor_journal_add_entry(
-    const afw_adaptor_journal_t * instance,
-    const afw_adaptor_impl_request_t * impl_request,
+impl_afw_adapter_journal_add_entry(
+    const afw_adapter_journal_t * instance,
+    const afw_adapter_impl_request_t * impl_request,
     const afw_object_t * entry,
     afw_xctx_t *xctx)
 {
     /* Assign instance pointer to self. */
     afw_lmdb_journal_t * self =
         (afw_lmdb_journal_t *)instance;
-    afw_lmdb_adaptor_session_t *session = 
-        (afw_lmdb_adaptor_session_t *)self->session;
-    afw_lmdb_adaptor_t *adaptor = 
-        (afw_lmdb_adaptor_t *)session->adaptor;
+    afw_lmdb_adapter_session_t *session = 
+        (afw_lmdb_adapter_session_t *)self->session;
+    afw_lmdb_adapter_t *adapter = 
+        (afw_lmdb_adapter_t *)session->adapter;
     const afw_utf8_t *token;
     const afw_memory_t *entry_string;
     MDB_dbi dbi;
@@ -64,10 +64,10 @@ impl_afw_adaptor_journal_add_entry(
     apr_uint64_t t = 0;
     int rc;
 
-    AFW_LMDB_BEGIN_TRANSACTION(adaptor, session, 0, false, xctx) {
+    AFW_LMDB_BEGIN_TRANSACTION(adapter, session, 0, false, xctx) {
 
         /* open the journal database */
-        dbi = afw_lmdb_internal_open_database(adaptor, 
+        dbi = afw_lmdb_internal_open_database(adapter, 
             AFW_LMDB_GET_TRANSACTION(),
             afw_lmdb_s_Journal, MDB_CREATE, xctx->p, xctx);
 
@@ -97,7 +97,7 @@ impl_afw_adaptor_journal_add_entry(
 
         /* store the entry into the next data pointer */
         entry_string = afw_content_type_object_to_raw(
-            adaptor->ubjson, entry, NULL, xctx->p, xctx);
+            adapter->ubjson, entry, NULL, xctx->p, xctx);
         data.mv_data = (void *)entry_string->ptr;
         data.mv_size = entry_string->size;
 
@@ -123,10 +123,10 @@ impl_afw_adaptor_journal_add_entry(
 }
 
 const afw_object_t *
-afw_lmdb_adaptor_journal_get_peer_object(
+afw_lmdb_adapter_journal_get_peer_object(
     afw_lmdb_journal_t * self,
-    afw_lmdb_adaptor_session_t * session,
-    afw_lmdb_adaptor_t * adaptor,
+    afw_lmdb_adapter_session_t * session,
+    afw_lmdb_adapter_t * adapter,
     MDB_dbi dbi,
     MDB_txn * txn,
     const afw_uuid_t *uuid,
@@ -145,7 +145,7 @@ afw_lmdb_adaptor_journal_get_peer_object(
         raw.size = data.mv_size;
         raw.ptr = data.mv_data;
 
-        value = afw_content_type_raw_to_value(adaptor->ubjson, &raw, NULL,
+        value = afw_content_type_raw_to_value(adapter->ubjson, &raw, NULL,
             xctx->p, xctx);
 
         if (value && afw_value_is_object(value)) {
@@ -162,8 +162,8 @@ afw_lmdb_adaptor_journal_get_peer_object(
 void
 afw_lmdb_journal_update_peer(
     afw_lmdb_journal_t * self,
-    afw_lmdb_adaptor_session_t * session,
-    afw_lmdb_adaptor_t *adaptor,
+    afw_lmdb_adapter_session_t * session,
+    afw_lmdb_adapter_t *adapter,
     MDB_dbi dbi,
     const afw_uuid_t *uuid,
     const afw_object_t *updated_object,
@@ -179,10 +179,10 @@ afw_lmdb_journal_update_peer(
 }
 
 const afw_object_t *
-afw_lmdb_adaptor_journal_get_entry_object(
+afw_lmdb_adapter_journal_get_entry_object(
     afw_lmdb_journal_t * self,
-    afw_lmdb_adaptor_session_t * session,
-    afw_lmdb_adaptor_t * adaptor,
+    afw_lmdb_adapter_session_t * session,
+    afw_lmdb_adapter_t * adapter,
     MDB_dbi dbi,
     MDB_txn * txn,
     apr_uint64_t cursor,
@@ -204,7 +204,7 @@ afw_lmdb_adaptor_journal_get_entry_object(
         raw.size = data.mv_size;
         raw.ptr = data.mv_data;
 
-        value = afw_content_type_raw_to_value(adaptor->ubjson, &raw, NULL,
+        value = afw_content_type_raw_to_value(adapter->ubjson, &raw, NULL,
             xctx->p, xctx);
 
         if (value && afw_value_is_object(value)) {
@@ -221,8 +221,8 @@ afw_lmdb_adaptor_journal_get_entry_object(
 void
 afw_lmdb_journal_get_first(
     afw_lmdb_journal_t * self,
-    afw_lmdb_adaptor_session_t *session,
-    afw_lmdb_adaptor_t * adaptor,
+    afw_lmdb_adapter_session_t *session,
+    afw_lmdb_adapter_t * adapter,
     MDB_dbi dbiJournal,
     MDB_txn * txn,
     const afw_object_t * response,
@@ -234,8 +234,8 @@ afw_lmdb_journal_get_first(
     /* each entry is represented numerically */
     cursor = 1;
 
-    entry = afw_lmdb_adaptor_journal_get_entry_object(
-        self, session, adaptor, dbiJournal, txn, cursor, xctx);
+    entry = afw_lmdb_adapter_journal_get_entry_object(
+        self, session, adapter, dbiJournal, txn, cursor, xctx);
     if (entry) {
         afw_object_set_property_as_string(response, afw_s_entryCursor,
                 afw_utf8_printf(xctx->p, xctx, "%lu", cursor), xctx);
@@ -249,8 +249,8 @@ afw_lmdb_journal_get_first(
 void
 afw_lmdb_journal_get_by_cursor(
     afw_lmdb_journal_t * self,
-    afw_lmdb_adaptor_session_t *session,
-    afw_lmdb_adaptor_t * adaptor,
+    afw_lmdb_adapter_session_t *session,
+    afw_lmdb_adapter_t * adapter,
     MDB_dbi dbiJournal,
     MDB_txn * txn,
     const afw_utf8_t * entry_cursor,
@@ -263,8 +263,8 @@ afw_lmdb_journal_get_by_cursor(
     cursor = apr_strtoi64(
         afw_utf8_to_utf8_z(entry_cursor, xctx->p, xctx), NULL, 10);
 
-    entry = afw_lmdb_adaptor_journal_get_entry_object(
-        self, session, adaptor, dbiJournal, txn, cursor, xctx);
+    entry = afw_lmdb_adapter_journal_get_entry_object(
+        self, session, adapter, dbiJournal, txn, cursor, xctx);
     if (entry) {
         afw_object_set_property_as_string(response, afw_s_entryCursor,
                 afw_utf8_printf(xctx->p, xctx, "%lu", cursor), xctx);
@@ -278,8 +278,8 @@ afw_lmdb_journal_get_by_cursor(
 void
 afw_lmdb_journal_get_next_after_cursor(
     afw_lmdb_journal_t * self,
-    afw_lmdb_adaptor_session_t *session,
-    afw_lmdb_adaptor_t * adaptor,
+    afw_lmdb_adapter_session_t *session,
+    afw_lmdb_adapter_t * adapter,
     MDB_dbi dbiJournal,
     MDB_txn * txn,
     const afw_utf8_t * entry_cursor,
@@ -294,8 +294,8 @@ afw_lmdb_journal_get_next_after_cursor(
     cursor = apr_strtoi64(
         afw_utf8_to_utf8_z(entry_cursor, xctx->p, xctx), NULL, 10) + 1;
 
-    entry = afw_lmdb_adaptor_journal_get_entry_object(
-        self, session, adaptor, dbiJournal, txn, cursor, xctx);
+    entry = afw_lmdb_adapter_journal_get_entry_object(
+        self, session, adapter, dbiJournal, txn, cursor, xctx);
     if (entry) {
         afw_object_set_property_as_string(response, afw_s_entryCursor,
                 afw_utf8_printf(xctx->p, xctx, "%lu", cursor), xctx);
@@ -309,8 +309,8 @@ afw_lmdb_journal_get_next_after_cursor(
 void
 afw_lmdb_journal_get_next_for_consumer_after_cursor(
     afw_lmdb_journal_t * self,
-    afw_lmdb_adaptor_session_t *session,
-    afw_lmdb_adaptor_t * adaptor,
+    afw_lmdb_adapter_session_t *session,
+    afw_lmdb_adapter_t * adapter,
     MDB_dbi dbiJournal,
     MDB_txn * txn,
     const afw_utf8_t * consumer_id,
@@ -336,14 +336,14 @@ afw_lmdb_journal_get_next_for_consumer_after_cursor(
     cursor = apr_strtoi64(
         afw_utf8_to_utf8_z(entry_cursor, xctx->p, xctx), NULL, 10);
 
-    dbiConsumers = afw_lmdb_internal_open_database(session->adaptor, 
+    dbiConsumers = afw_lmdb_internal_open_database(session->adapter, 
         txn, afw_lmdb_s_Primary, 0, xctx->p, xctx);
 
     /* lookup the cursor from the consumer database */
     uuid = afw_uuid_from_utf8(consumer_id, xctx->p, xctx);
 
-    peer = afw_lmdb_adaptor_journal_get_peer_object(
-        self, session, adaptor, dbiConsumers, txn, uuid, xctx);
+    peer = afw_lmdb_adapter_journal_get_peer_object(
+        self, session, adapter, dbiConsumers, txn, uuid, xctx);
     if (peer == NULL) {
         AFW_THROW_ERROR_Z(general,
             "Error, provisioning peer not found.", xctx);
@@ -356,13 +356,13 @@ afw_lmdb_journal_get_next_for_consumer_after_cursor(
 
     /* Scan our journal until we find an applicable entry, or hit our limit */
     for (i = 0; (i < limit) || !found;  i++) {
-        entry = afw_lmdb_adaptor_journal_get_entry_object(self,
-            session, adaptor, dbiJournal, txn, cursor, xctx);
+        entry = afw_lmdb_adapter_journal_get_entry_object(self,
+            session, adapter, dbiJournal, txn, cursor, xctx);
 
         if (entry) {
             /* Now, determine if it's applicable */
-            if (afw_adaptor_impl_is_journal_entry_applicable(
-                    (const afw_adaptor_journal_t *)self,
+            if (afw_adapter_impl_is_journal_entry_applicable(
+                    (const afw_adapter_journal_t *)self,
                     entry, peer, &consumer_filter, xctx)) {
                 found = AFW_TRUE;
             } else cursor++;
@@ -412,15 +412,15 @@ afw_lmdb_journal_get_next_for_consumer_after_cursor(
         afw_s_lastContactTime, now, xctx);
 
     /* update the peer object */
-    afw_lmdb_journal_update_peer(self, session, adaptor,
+    afw_lmdb_journal_update_peer(self, session, adapter,
         dbiConsumers, uuid, peer, xctx);
 }
 
 void
-impl_afw_adaptor_journal_get_next_for_consumer(
+impl_afw_adapter_journal_get_next_for_consumer(
     afw_lmdb_journal_t * self,
-    afw_lmdb_adaptor_session_t *session,
-    afw_lmdb_adaptor_t *adaptor,
+    afw_lmdb_adapter_session_t *session,
+    afw_lmdb_adapter_t *adapter,
     MDB_dbi dbiJournal,
     MDB_txn * txn,
     const afw_utf8_t * consumer_id,
@@ -442,14 +442,14 @@ impl_afw_adaptor_journal_get_next_for_consumer(
     const afw_dateTime_t *now;
     afw_size_t i;
 
-    dbiConsumers = afw_lmdb_internal_open_database(session->adaptor,
+    dbiConsumers = afw_lmdb_internal_open_database(session->adapter,
         txn, afw_lmdb_s_Primary, 0, xctx->p, xctx);
 
     /* lookup the cursor from the consumer database */
     uuid = afw_uuid_from_utf8(consumer_id, xctx->p, xctx);
 
-    peer = afw_lmdb_adaptor_journal_get_peer_object(
-        self, session, adaptor, dbiConsumers, txn, uuid, xctx);
+    peer = afw_lmdb_adapter_journal_get_peer_object(
+        self, session, adapter, dbiConsumers, txn, uuid, xctx);
     if (peer == NULL) {
         AFW_THROW_ERROR_Z(general,
             "Error, provisioning peer not found.", xctx);
@@ -482,13 +482,13 @@ impl_afw_adaptor_journal_get_next_for_consumer(
 
     /* Scan our journal until we find an applicable entry, or hit our limit */
     for (i = 0; (i < limit) || !found;  i++) {
-        entry = afw_lmdb_adaptor_journal_get_entry_object(self,
-            session, adaptor, dbiJournal, txn, cursor, xctx);
+        entry = afw_lmdb_adapter_journal_get_entry_object(self,
+            session, adapter, dbiJournal, txn, cursor, xctx);
 
         if (entry) {
             /* Now, determine if it's applicable */
-            if (afw_adaptor_impl_is_journal_entry_applicable(
-                    (const afw_adaptor_journal_t *)self, 
+            if (afw_adapter_impl_is_journal_entry_applicable(
+                    (const afw_adapter_journal_t *)self, 
                     entry, peer, &consumer_filter, xctx)) {
                 found = AFW_TRUE;
             } else cursor++;
@@ -544,15 +544,15 @@ impl_afw_adaptor_journal_get_next_for_consumer(
         afw_s_lastContactTime, now, xctx);   
 
     /* update the peer object */ 
-    afw_lmdb_journal_update_peer(self, session, adaptor,
+    afw_lmdb_journal_update_peer(self, session, adapter,
         dbiConsumers, uuid, peer, xctx); 
 }
 
 void
 afw_lmdb_journal_advance_cursor_for_consumer(
     afw_lmdb_journal_t * self,
-    afw_lmdb_adaptor_session_t * session,
-    afw_lmdb_adaptor_t * adaptor,
+    afw_lmdb_adapter_session_t * session,
+    afw_lmdb_adapter_t * adapter,
     MDB_dbi dbiJournal,
     MDB_txn * txn,
     const afw_utf8_t * consumer_id,
@@ -574,14 +574,14 @@ afw_lmdb_journal_advance_cursor_for_consumer(
     const afw_dateTime_t *now;
     afw_size_t i;
 
-    dbiConsumers = afw_lmdb_internal_open_database(session->adaptor,
+    dbiConsumers = afw_lmdb_internal_open_database(session->adapter,
         txn, afw_lmdb_s_Primary, 0, xctx->p, xctx);
 
     /* lookup the cursor from the consumer database */
     uuid = afw_uuid_from_utf8(consumer_id, xctx->p, xctx);
 
-    peer = afw_lmdb_adaptor_journal_get_peer_object(
-        self, session, adaptor, dbiConsumers, txn, uuid, xctx);
+    peer = afw_lmdb_adapter_journal_get_peer_object(
+        self, session, adapter, dbiConsumers, txn, uuid, xctx);
     if (peer == NULL) {
         AFW_THROW_ERROR_Z(general,
             "Error, provisioning peer not found.", xctx);
@@ -614,13 +614,13 @@ afw_lmdb_journal_advance_cursor_for_consumer(
 
     /* Scan our journal until we find an applicable entry, or hit our limit */
     for (i = 0; (i < limit) || !found;  i++) {
-        entry = afw_lmdb_adaptor_journal_get_entry_object(self,
-            session, adaptor, dbiJournal, txn, cursor, xctx);
+        entry = afw_lmdb_adapter_journal_get_entry_object(self,
+            session, adapter, dbiJournal, txn, cursor, xctx);
 
         if (entry) {
             /* Now, determine if it's applicable */
-            if (afw_adaptor_impl_is_journal_entry_applicable(
-                    (const afw_adaptor_journal_t *)self,
+            if (afw_adapter_impl_is_journal_entry_applicable(
+                    (const afw_adapter_journal_t *)self,
                     entry, peer, &consumer_filter, xctx)) {
                 found = AFW_TRUE;
             } else cursor++;
@@ -672,19 +672,19 @@ afw_lmdb_journal_advance_cursor_for_consumer(
         afw_s_lastContactTime, now, xctx);
 
     /* update the peer object */
-    afw_lmdb_journal_update_peer(self, session, adaptor,
+    afw_lmdb_journal_update_peer(self, session, adapter,
         dbiConsumers, uuid, peer, xctx);
 }
 
 
 /*
- * Implementation of method get_entry of interface afw_adaptor_journal.
+ * Implementation of method get_entry of interface afw_adapter_journal.
  */
 void
-impl_afw_adaptor_journal_get_entry(
-    const afw_adaptor_journal_t * instance,
-    const afw_adaptor_impl_request_t * impl_request,
-    afw_adaptor_journal_option_t option,
+impl_afw_adapter_journal_get_entry(
+    const afw_adapter_journal_t * instance,
+    const afw_adapter_impl_request_t * impl_request,
+    afw_adapter_journal_option_t option,
     const afw_utf8_t * consumer_id,
     const afw_utf8_t * entry_cursor,
     afw_size_t limit,
@@ -693,47 +693,47 @@ impl_afw_adaptor_journal_get_entry(
 {
     afw_lmdb_journal_t * self =
         (afw_lmdb_journal_t *)instance;
-    afw_lmdb_adaptor_session_t *session = 
-        (afw_lmdb_adaptor_session_t *)self->session;
-    afw_lmdb_adaptor_t *adaptor = 
-        (afw_lmdb_adaptor_t *)session->adaptor;
+    afw_lmdb_adapter_session_t *session = 
+        (afw_lmdb_adapter_session_t *)self->session;
+    afw_lmdb_adapter_t *adapter = 
+        (afw_lmdb_adapter_t *)session->adapter;
     MDB_dbi dbiJournal;    
     MDB_txn *txn;
 
-    AFW_LMDB_BEGIN_TRANSACTION(adaptor, session, 0, false, xctx) {
+    AFW_LMDB_BEGIN_TRANSACTION(adapter, session, 0, false, xctx) {
 
         txn = AFW_LMDB_GET_TRANSACTION();
 
         /* Open up our Journal database, for every call option */
-        dbiJournal = afw_lmdb_internal_open_database(adaptor, 
+        dbiJournal = afw_lmdb_internal_open_database(adapter, 
         txn, afw_lmdb_s_Journal, 0, xctx->p, xctx);
     
         switch (option) {
-            case afw_adaptor_journal_option_get_first:
+            case afw_adapter_journal_option_get_first:
                 afw_lmdb_journal_get_first(self, 
-                    session, adaptor, dbiJournal, txn, response, xctx);
+                    session, adapter, dbiJournal, txn, response, xctx);
                 break;
-            case afw_adaptor_journal_option_get_by_cursor:
+            case afw_adapter_journal_option_get_by_cursor:
                 afw_lmdb_journal_get_by_cursor(self, session,
-                    adaptor, dbiJournal, txn, entry_cursor, response, xctx);
+                    adapter, dbiJournal, txn, entry_cursor, response, xctx);
                 break;
-            case afw_adaptor_journal_option_get_next_after_cursor:
+            case afw_adapter_journal_option_get_next_after_cursor:
                 afw_lmdb_journal_get_next_after_cursor(self, session,
-                    adaptor, dbiJournal, txn, entry_cursor, limit, response, xctx);
+                    adapter, dbiJournal, txn, entry_cursor, limit, response, xctx);
                 break;
-            case afw_adaptor_journal_option_get_next_for_consumer:
-                impl_afw_adaptor_journal_get_next_for_consumer(
-                    self, session, adaptor, dbiJournal, txn, consumer_id,
+            case afw_adapter_journal_option_get_next_for_consumer:
+                impl_afw_adapter_journal_get_next_for_consumer(
+                    self, session, adapter, dbiJournal, txn, consumer_id,
                     limit, response, xctx);
                 break;
-            case afw_adaptor_journal_option_get_next_for_consumer_after_cursor:
+            case afw_adapter_journal_option_get_next_for_consumer_after_cursor:
                 afw_lmdb_journal_get_next_for_consumer_after_cursor(
-                    self, session, adaptor, dbiJournal, txn, consumer_id,
+                    self, session, adapter, dbiJournal, txn, consumer_id,
                     entry_cursor, limit, response, xctx);
                 break;
-            case afw_adaptor_journal_option_advance_cursor_for_consumer:
+            case afw_adapter_journal_option_advance_cursor_for_consumer:
                 afw_lmdb_journal_advance_cursor_for_consumer(
-                    self, session, adaptor, dbiJournal, txn, consumer_id,
+                    self, session, adapter, dbiJournal, txn, consumer_id,
                     limit, response, xctx);
                 break;
         }
@@ -747,22 +747,22 @@ impl_afw_adaptor_journal_get_entry(
 
 
 /*
- * Implementation of method mark_entry_consumed of interface afw_adaptor_journal.
+ * Implementation of method mark_entry_consumed of interface afw_adapter_journal.
  */
 void
-impl_afw_adaptor_journal_mark_entry_consumed(
-    const afw_adaptor_journal_t * instance,
-    const afw_adaptor_impl_request_t * impl_request,
+impl_afw_adapter_journal_mark_entry_consumed(
+    const afw_adapter_journal_t * instance,
+    const afw_adapter_impl_request_t * impl_request,
     const afw_utf8_t * consumer_id,
     const afw_utf8_t * entry_cursor,
     afw_xctx_t *xctx)
 {
     afw_lmdb_journal_t * self =
         (afw_lmdb_journal_t *)instance;
-    afw_lmdb_adaptor_session_t *session = 
-        (afw_lmdb_adaptor_session_t *)self->session;
-    afw_lmdb_adaptor_t *adaptor = 
-        (afw_lmdb_adaptor_t *)session->adaptor;
+    afw_lmdb_adapter_session_t *session = 
+        (afw_lmdb_adapter_session_t *)self->session;
+    afw_lmdb_adapter_t *adapter = 
+        (afw_lmdb_adapter_t *)session->adapter;
     const afw_object_t *peer;
     const afw_utf8_t *consume_cursor;
     const afw_uuid_t *uuid;
@@ -770,18 +770,18 @@ impl_afw_adaptor_journal_mark_entry_consumed(
     MDB_txn * txn;
     const afw_dateTime_t *now;    
 
-    AFW_LMDB_BEGIN_TRANSACTION(adaptor, session, 0, false, xctx) {
+    AFW_LMDB_BEGIN_TRANSACTION(adapter, session, 0, false, xctx) {
 
         txn = AFW_LMDB_GET_TRANSACTION();
 
-        dbiConsumers = afw_lmdb_internal_open_database(adaptor,
+        dbiConsumers = afw_lmdb_internal_open_database(adapter,
             txn, afw_lmdb_s_Primary, 0, xctx->p, xctx);
 
         /* lookup the cursor from the database */
         uuid = afw_uuid_from_utf8(consumer_id, xctx->p, xctx);
 
-        peer = afw_lmdb_adaptor_journal_get_peer_object(
-            self, session, adaptor, dbiConsumers, txn, uuid, xctx);
+        peer = afw_lmdb_adapter_journal_get_peer_object(
+            self, session, adapter, dbiConsumers, txn, uuid, xctx);
 
         consume_cursor = afw_object_old_get_property_as_string(peer,
             afw_s_consumeCursor, xctx);
@@ -800,7 +800,7 @@ impl_afw_adaptor_journal_mark_entry_consumed(
             now, xctx);
 
         /* write out the object and commit */
-        afw_lmdb_journal_update_peer(self, session, adaptor,
+        afw_lmdb_journal_update_peer(self, session, adapter,
             dbiConsumers, uuid, peer, xctx); 
 
         AFW_LMDB_COMMIT_TRANSACTION();

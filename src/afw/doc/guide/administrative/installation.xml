@@ -38,7 +38,7 @@
                         The afw-admin image provides nginx and the administrative web app for 
                         managing an Adaptive Framework application. This web application is 
                         general-purpose and allows you to edit object data as well as configure 
-                        and maintain services, logs, adaptors and authorization handlers.
+                        and maintain services, logs, adapters and authorization handlers.
                     </column>
                 </row>
                 <row>
@@ -47,7 +47,7 @@
                         This image contains everything. It runs both afwfcgi, along 
                         with an nginx instance serving the admin interface. Additionally, 
                         it has some minimal configuration in place to provide a handful 
-                        of adaptors in order to demo the framework.
+                        of adapters in order to demo the framework.
                     </column>
                 </row>
                 <row>
@@ -190,11 +190,11 @@ sudo apt-get install -y libicu-dev
 
 # libunwind and elfutils for stack trace
 sudo apt-get install -y libunwind-setjmp0-dev elfutils libdw-dev</code>
-            <header>Install AdaptiveFramework Adaptor dependencies</header>
-            <code># LightningDB Adaptor
+            <header>Install AdaptiveFramework Adapter dependencies</header>
+            <code># LightningDB Adapter
 sudo apt-get install -y liblmdb-dev
 
-# need OpenSSL and CURL for DynamoDB adaptor dependencies
+# need OpenSSL and CURL for DynamoDB adapter dependencies
 sudo apt-get install -y libcurl4-openssl-dev libssl-dev
 
 # YAML

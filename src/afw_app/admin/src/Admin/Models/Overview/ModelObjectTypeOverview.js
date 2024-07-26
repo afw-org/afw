@@ -187,7 +187,7 @@ export const ModelObjectTypeOverviewEditable = (props) => {
 const ModelPropertyTypesTableReadonly = (props) => {
 
     const { 
-        adaptorId, 
+        adapterId, 
         modelId, 
         objectType,
         propertyTypes,
@@ -214,7 +214,7 @@ const ModelPropertyTypesTableReadonly = (props) => {
                     isResizable: true,
                     onRender: (propertyType) => 
                         <Link 
-                            url={"/Admin/Models/" + adaptorId + "/" + modelId + "/objectTypes/" + objectType + "/propertyTypes/" + propertyType + "#overview"} 
+                            url={"/Admin/Models/" + adapterId + "/" + modelId + "/objectTypes/" + objectType + "/propertyTypes/" + propertyType + "#overview"} 
                             text={propertyType} 
                         />                            
                 },
@@ -231,7 +231,7 @@ const ModelPropertyTypesTableReadonly = (props) => {
                         if (dataType === "object" && dataTypeParameter) {
                             return (
                                 <Link 
-                                    url={"/Admin/Models/" + adaptorId + "/" + modelId + "/objectTypes/" + dataTypeParameter + "#overview"}
+                                    url={"/Admin/Models/" + adapterId + "/" + modelId + "/objectTypes/" + dataTypeParameter + "#overview"}
                                     text={dataTypeParameter}
                                 />
                             );
@@ -244,7 +244,7 @@ const ModelPropertyTypesTableReadonly = (props) => {
                                         text={dataType}
                                     />
                                     <Link 
-                                        url={"/Admin/Models/" + adaptorId + "/" + modelId + "/objectTypes/" + dataTypeParameter + "#overview"}
+                                        url={"/Admin/Models/" + adapterId + "/" + modelId + "/objectTypes/" + dataTypeParameter + "#overview"}
                                         text={" (" + dataTypeParameter + ")"}
                                     />
                                 </div>
@@ -293,7 +293,7 @@ const ModelPropertyTypesTableReadonly = (props) => {
 
 export const ModelObjectTypeOverviewReadonly = (props) => {
 
-    const {adaptorId, model, objectType, objectTypeObject} = props;
+    const {adapterId, model, objectType, objectTypeObject} = props;
     const {editable} = useOperational(props);
     const theme = useTheme();
 
@@ -346,7 +346,7 @@ export const ModelObjectTypeOverviewReadonly = (props) => {
                     else
                         return (
                             <Link 
-                                url={"/Admin/Models/" + adaptorId + "/" + modelId + "/objectTypes/" + paths[paths.length - 1] + "#overview"} 
+                                url={"/Admin/Models/" + adapterId + "/" + modelId + "/objectTypes/" + paths[paths.length - 1] + "#overview"} 
                                 text={paths[paths.length - 1]} 
                             />
                         );
@@ -358,7 +358,7 @@ export const ModelObjectTypeOverviewReadonly = (props) => {
                 text="Property Types"
             />
             <ModelPropertyTypesTableReadonly 
-                adaptorId={adaptorId}
+                adapterId={adapterId}
                 modelId={modelId}
                 objectType={objectType}
                 propertyTypes={propertyTypes}

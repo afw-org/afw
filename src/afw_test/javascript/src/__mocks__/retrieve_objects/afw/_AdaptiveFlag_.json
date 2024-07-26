@@ -23,187 +23,187 @@
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveFlag_/trace%3AadaptorType%3Aldap",
-                "objectId": "trace:adaptorType:ldap",
+                "path": "/afw/_AdaptiveFlag_/trace%3AadapterType%3Aldap",
+                "objectId": "trace:adapterType:ldap",
                 "objectType": "_AdaptiveFlag_"
             },
             "includedByFlags": [
-                "trace:adaptor",
-                "trace:adaptorType:ldap:detail"
+                "trace:adapter",
+                "trace:adapterType:ldap:detail"
             ],
             "flagIndex": 42,
-            "flagId": "trace:adaptorType:ldap",
-            "description": "This produces a basic trace of all adaptors of type ldap.",
-            "brief": "Trace adaptor type ldap",
+            "flagId": "trace:adapterType:ldap",
+            "description": "This produces a basic trace of all adapters of type ldap.",
+            "brief": "Trace adapter type ldap",
             "applicableFlags": [
-                "trace:adaptorType:ldap"
+                "trace:adapterType:ldap"
             ]
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveFlag_/trace%3Aadaptor",
-                "objectId": "trace:adaptor",
+                "path": "/afw/_AdaptiveFlag_/trace%3Aadapter",
+                "objectId": "trace:adapter",
                 "objectType": "_AdaptiveFlag_"
             },
             "includesFlags": [
-                "trace:adaptorType:afw_runtime",
-                "trace:adaptorType:file",
-                "trace:adaptorType:model",
-                "trace:adaptorType:ldap",
-                "trace:adaptorType:lmdb",
-                "trace:adaptorType:dbd_mysql",
-                "trace:adaptorType:sql",
-                "trace:adaptorType:bdb",
-                "trace:adaptorType:dynamo_db"
+                "trace:adapterType:afw_runtime",
+                "trace:adapterType:file",
+                "trace:adapterType:model",
+                "trace:adapterType:ldap",
+                "trace:adapterType:lmdb",
+                "trace:adapterType:dbd_mysql",
+                "trace:adapterType:sql",
+                "trace:adapterType:bdb",
+                "trace:adapterType:dynamo_db"
             ],
             "includedByFlags": [
                 "trace",
-                "trace:adaptor:detail"
+                "trace:adapter:detail"
             ],
             "flagIndex": 16,
-            "flagId": "trace:adaptor",
-            "description": "This produces basic traces for all adaptors.",
-            "brief": "Basic trace for all adaptors",
+            "flagId": "trace:adapter",
+            "description": "This produces basic traces for all adapters.",
+            "brief": "Basic trace for all adapters",
             "applicableFlags": [
-                "trace:adaptor",
-                "trace:adaptorType:afw_runtime",
-                "trace:adaptorId:afw",
-                "trace:adaptorType:file",
-                "trace:adaptorType:model",
-                "trace:adaptorId:conf",
-                "trace:adaptorType:ldap",
-                "trace:adaptorType:lmdb",
-                "trace:adaptorType:dbd_mysql",
-                "trace:adaptorType:sql",
-                "trace:adaptorId:layouts",
-                "trace:adaptorId:models",
-                "trace:adaptorId:auth",
-                "trace:adaptorId:tier",
-                "trace:adaptorId:files",
-                "trace:adaptorId:lmdb",
-                "trace:adaptorId:dev",
-                "trace:adaptorType:bdb",
-                "trace:adaptorType:dynamo_db"
+                "trace:adapter",
+                "trace:adapterType:afw_runtime",
+                "trace:adapterId:afw",
+                "trace:adapterType:file",
+                "trace:adapterType:model",
+                "trace:adapterId:conf",
+                "trace:adapterType:ldap",
+                "trace:adapterType:lmdb",
+                "trace:adapterType:dbd_mysql",
+                "trace:adapterType:sql",
+                "trace:adapterId:layouts",
+                "trace:adapterId:models",
+                "trace:adapterId:auth",
+                "trace:adapterId:tier",
+                "trace:adapterId:files",
+                "trace:adapterId:lmdb",
+                "trace:adapterId:dev",
+                "trace:adapterType:bdb",
+                "trace:adapterType:dynamo_db"
             ]
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveFlag_/trace%3AadaptorType%3Abdb",
-                "objectId": "trace:adaptorType:bdb",
+                "path": "/afw/_AdaptiveFlag_/trace%3AadapterType%3Abdb",
+                "objectId": "trace:adapterType:bdb",
                 "objectType": "_AdaptiveFlag_"
             },
             "includedByFlags": [
-                "trace:adaptor",
-                "trace:adaptorType:bdb:detail"
+                "trace:adapter",
+                "trace:adapterType:bdb:detail"
             ],
             "flagIndex": 71,
-            "flagId": "trace:adaptorType:bdb",
-            "description": "This produces a basic trace of all adaptors of type bdb.",
-            "brief": "Trace adaptor type bdb",
+            "flagId": "trace:adapterType:bdb",
+            "description": "This produces a basic trace of all adapters of type bdb.",
+            "brief": "Trace adapter type bdb",
             "applicableFlags": [
-                "trace:adaptorType:bdb"
+                "trace:adapterType:bdb"
             ]
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveFlag_/trace%3AadaptorId%3Afiles%3Adetail",
-                "objectId": "trace:adaptorId:files:detail",
+                "path": "/afw/_AdaptiveFlag_/trace%3AadapterId%3Afiles%3Adetail",
+                "objectId": "trace:adapterId:files:detail",
                 "objectType": "_AdaptiveFlag_"
             },
             "includesFlags": [
-                "trace:adaptorId:files"
+                "trace:adapterId:files"
             ],
             "includedByFlags": [
-                "trace:adaptorType:file:detail"
+                "trace:adapterType:file:detail"
             ],
             "flagIndex": 61,
-            "flagId": "trace:adaptorId:files:detail",
-            "description": "This produces a basic plus detail trace of adaptor id files.",
-            "brief": "Detail trace of adaptor id files",
+            "flagId": "trace:adapterId:files:detail",
+            "description": "This produces a basic plus detail trace of adapter id files.",
+            "brief": "Detail trace of adapter id files",
             "applicableFlags": [
-                "trace:adaptorId:files:detail",
-                "trace:adaptorId:files"
+                "trace:adapterId:files:detail",
+                "trace:adapterId:files"
             ]
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveFlag_/trace%3AadaptorType%3Adbd_mysql%3Adetail",
-                "objectId": "trace:adaptorType:dbd_mysql:detail",
+                "path": "/afw/_AdaptiveFlag_/trace%3AadapterType%3Adbd_mysql%3Adetail",
+                "objectId": "trace:adapterType:dbd_mysql:detail",
                 "objectType": "_AdaptiveFlag_"
             },
             "includesFlags": [
-                "trace:adaptorType:dbd_mysql"
+                "trace:adapterType:dbd_mysql"
             ],
             "includedByFlags": [
-                "trace:adaptor:detail"
+                "trace:adapter:detail"
             ],
             "flagIndex": 45,
-            "flagId": "trace:adaptorType:dbd_mysql:detail",
-            "description": "This produces a basic plus additional detail trace for all adaptors of type dbd_mysql.",
-            "brief": "Debug trace adaptor type dbd_mysql",
+            "flagId": "trace:adapterType:dbd_mysql:detail",
+            "description": "This produces a basic plus additional detail trace for all adapters of type dbd_mysql.",
+            "brief": "Debug trace adapter type dbd_mysql",
             "applicableFlags": [
-                "trace:adaptorType:dbd_mysql:detail",
-                "trace:adaptorType:dbd_mysql"
+                "trace:adapterType:dbd_mysql:detail",
+                "trace:adapterType:dbd_mysql"
             ]
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveFlag_/trace%3AadaptorType%3Afile%3Adetail",
-                "objectId": "trace:adaptorType:file:detail",
+                "path": "/afw/_AdaptiveFlag_/trace%3AadapterType%3Afile%3Adetail",
+                "objectId": "trace:adapterType:file:detail",
                 "objectType": "_AdaptiveFlag_"
             },
             "includesFlags": [
-                "trace:adaptorType:file",
-                "trace:adaptorId:conf:detail",
-                "trace:adaptorId:layouts:detail",
-                "trace:adaptorId:models:detail",
-                "trace:adaptorId:auth:detail",
-                "trace:adaptorId:files:detail",
-                "trace:adaptorId:dev:detail"
+                "trace:adapterType:file",
+                "trace:adapterId:conf:detail",
+                "trace:adapterId:layouts:detail",
+                "trace:adapterId:models:detail",
+                "trace:adapterId:auth:detail",
+                "trace:adapterId:files:detail",
+                "trace:adapterId:dev:detail"
             ],
             "includedByFlags": [
-                "trace:adaptor:detail"
+                "trace:adapter:detail"
             ],
             "flagIndex": 26,
-            "flagId": "trace:adaptorType:file:detail",
-            "description": "This produces a basic plus additional detail trace for all adaptors of type file.",
-            "brief": "Debug trace adaptor type file",
+            "flagId": "trace:adapterType:file:detail",
+            "description": "This produces a basic plus additional detail trace for all adapters of type file.",
+            "brief": "Debug trace adapter type file",
             "applicableFlags": [
-                "trace:adaptorType:file:detail",
-                "trace:adaptorType:file",
-                "trace:adaptorId:conf:detail",
-                "trace:adaptorId:conf",
-                "trace:adaptorId:layouts:detail",
-                "trace:adaptorId:layouts",
-                "trace:adaptorId:models:detail",
-                "trace:adaptorId:models",
-                "trace:adaptorId:auth:detail",
-                "trace:adaptorId:auth",
-                "trace:adaptorId:files:detail",
-                "trace:adaptorId:files",
-                "trace:adaptorId:dev:detail",
-                "trace:adaptorId:dev"
+                "trace:adapterType:file:detail",
+                "trace:adapterType:file",
+                "trace:adapterId:conf:detail",
+                "trace:adapterId:conf",
+                "trace:adapterId:layouts:detail",
+                "trace:adapterId:layouts",
+                "trace:adapterId:models:detail",
+                "trace:adapterId:models",
+                "trace:adapterId:auth:detail",
+                "trace:adapterId:auth",
+                "trace:adapterId:files:detail",
+                "trace:adapterId:files",
+                "trace:adapterId:dev:detail",
+                "trace:adapterId:dev"
             ]
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveFlag_/trace%3AadaptorType%3Aldap%3Adetail",
-                "objectId": "trace:adaptorType:ldap:detail",
+                "path": "/afw/_AdaptiveFlag_/trace%3AadapterType%3Aldap%3Adetail",
+                "objectId": "trace:adapterType:ldap:detail",
                 "objectType": "_AdaptiveFlag_"
             },
             "includesFlags": [
-                "trace:adaptorType:ldap"
+                "trace:adapterType:ldap"
             ],
             "includedByFlags": [
-                "trace:adaptor:detail"
+                "trace:adapter:detail"
             ],
             "flagIndex": 41,
-            "flagId": "trace:adaptorType:ldap:detail",
-            "description": "This produces a basic plus additional detail trace for all adaptors of type ldap.",
-            "brief": "Debug trace adaptor type ldap",
+            "flagId": "trace:adapterType:ldap:detail",
+            "description": "This produces a basic plus additional detail trace for all adapters of type ldap.",
+            "brief": "Debug trace adapter type ldap",
             "applicableFlags": [
-                "trace:adaptorType:ldap:detail",
-                "trace:adaptorType:ldap"
+                "trace:adapterType:ldap:detail",
+                "trace:adapterType:ldap"
             ]
         },
         {
@@ -250,38 +250,38 @@
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveFlag_/trace%3AadaptorType%3Asql",
-                "objectId": "trace:adaptorType:sql",
+                "path": "/afw/_AdaptiveFlag_/trace%3AadapterType%3Asql",
+                "objectId": "trace:adapterType:sql",
                 "objectType": "_AdaptiveFlag_"
             },
             "includedByFlags": [
-                "trace:adaptor",
-                "trace:adaptorType:sql:detail"
+                "trace:adapter",
+                "trace:adapterType:sql:detail"
             ],
             "flagIndex": 48,
-            "flagId": "trace:adaptorType:sql",
-            "description": "This produces a basic trace of all adaptors of type sql.",
-            "brief": "Trace adaptor type sql",
+            "flagId": "trace:adapterType:sql",
+            "description": "This produces a basic trace of all adapters of type sql.",
+            "brief": "Trace adapter type sql",
             "applicableFlags": [
-                "trace:adaptorType:sql"
+                "trace:adapterType:sql"
             ]
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveFlag_/trace%3AadaptorId%3Aconf",
-                "objectId": "trace:adaptorId:conf",
+                "path": "/afw/_AdaptiveFlag_/trace%3AadapterId%3Aconf",
+                "objectId": "trace:adapterId:conf",
                 "objectType": "_AdaptiveFlag_"
             },
             "includedByFlags": [
-                "trace:adaptorType:file",
-                "trace:adaptorId:conf:detail"
+                "trace:adapterType:file",
+                "trace:adapterId:conf:detail"
             ],
             "flagIndex": 40,
-            "flagId": "trace:adaptorId:conf",
-            "description": "This produces a basic trace of adaptor id conf.",
-            "brief": "Trace adaptor id conf",
+            "flagId": "trace:adapterId:conf",
+            "description": "This produces a basic trace of adapter id conf.",
+            "brief": "Trace adapter id conf",
             "applicableFlags": [
-                "trace:adaptorId:conf"
+                "trace:adapterId:conf"
             ]
         },
         {
@@ -307,23 +307,23 @@
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveFlag_/trace%3AadaptorId%3Almdb%3Adetail",
-                "objectId": "trace:adaptorId:lmdb:detail",
+                "path": "/afw/_AdaptiveFlag_/trace%3AadapterId%3Almdb%3Adetail",
+                "objectId": "trace:adapterId:lmdb:detail",
                 "objectType": "_AdaptiveFlag_"
             },
             "includesFlags": [
-                "trace:adaptorId:lmdb"
+                "trace:adapterId:lmdb"
             ],
             "includedByFlags": [
-                "trace:adaptorType:lmdb:detail"
+                "trace:adapterType:lmdb:detail"
             ],
             "flagIndex": 63,
-            "flagId": "trace:adaptorId:lmdb:detail",
-            "description": "This produces a basic plus detail trace of adaptor id lmdb.",
-            "brief": "Detail trace of adaptor id lmdb",
+            "flagId": "trace:adapterId:lmdb:detail",
+            "description": "This produces a basic plus detail trace of adapter id lmdb.",
+            "brief": "Detail trace of adapter id lmdb",
             "applicableFlags": [
-                "trace:adaptorId:lmdb:detail",
-                "trace:adaptorId:lmdb"
+                "trace:adapterId:lmdb:detail",
+                "trace:adapterId:lmdb"
             ]
         },
         {
@@ -371,99 +371,99 @@
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveFlag_/trace%3AadaptorId%3Alayouts",
-                "objectId": "trace:adaptorId:layouts",
+                "path": "/afw/_AdaptiveFlag_/trace%3AadapterId%3Alayouts",
+                "objectId": "trace:adapterId:layouts",
                 "objectType": "_AdaptiveFlag_"
             },
             "includedByFlags": [
-                "trace:adaptorType:file",
-                "trace:adaptorId:layouts:detail"
+                "trace:adapterType:file",
+                "trace:adapterId:layouts:detail"
             ],
             "flagIndex": 52,
-            "flagId": "trace:adaptorId:layouts",
-            "description": "This produces a basic trace of adaptor id layouts.",
-            "brief": "Trace adaptor id layouts",
+            "flagId": "trace:adapterId:layouts",
+            "description": "This produces a basic trace of adapter id layouts.",
+            "brief": "Trace adapter id layouts",
             "applicableFlags": [
-                "trace:adaptorId:layouts"
+                "trace:adapterId:layouts"
             ]
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveFlag_/trace%3AadaptorId%3Aauth",
-                "objectId": "trace:adaptorId:auth",
+                "path": "/afw/_AdaptiveFlag_/trace%3AadapterId%3Aauth",
+                "objectId": "trace:adapterId:auth",
                 "objectType": "_AdaptiveFlag_"
             },
             "includedByFlags": [
-                "trace:adaptorType:file",
-                "trace:adaptorId:auth:detail"
+                "trace:adapterType:file",
+                "trace:adapterId:auth:detail"
             ],
             "flagIndex": 56,
-            "flagId": "trace:adaptorId:auth",
-            "description": "This produces a basic trace of adaptor id auth.",
-            "brief": "Trace adaptor id auth",
+            "flagId": "trace:adapterId:auth",
+            "description": "This produces a basic trace of adapter id auth.",
+            "brief": "Trace adapter id auth",
             "applicableFlags": [
-                "trace:adaptorId:auth"
+                "trace:adapterId:auth"
             ]
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveFlag_/trace%3AadaptorId%3Afiles",
-                "objectId": "trace:adaptorId:files",
+                "path": "/afw/_AdaptiveFlag_/trace%3AadapterId%3Afiles",
+                "objectId": "trace:adapterId:files",
                 "objectType": "_AdaptiveFlag_"
             },
             "includedByFlags": [
-                "trace:adaptorType:file",
-                "trace:adaptorId:files:detail"
+                "trace:adapterType:file",
+                "trace:adapterId:files:detail"
             ],
             "flagIndex": 62,
-            "flagId": "trace:adaptorId:files",
-            "description": "This produces a basic trace of adaptor id files.",
-            "brief": "Trace adaptor id files",
+            "flagId": "trace:adapterId:files",
+            "description": "This produces a basic trace of adapter id files.",
+            "brief": "Trace adapter id files",
             "applicableFlags": [
-                "trace:adaptorId:files"
+                "trace:adapterId:files"
             ]
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveFlag_/trace%3AadaptorId%3Aconf%3Adetail",
-                "objectId": "trace:adaptorId:conf:detail",
+                "path": "/afw/_AdaptiveFlag_/trace%3AadapterId%3Aconf%3Adetail",
+                "objectId": "trace:adapterId:conf:detail",
                 "objectType": "_AdaptiveFlag_"
             },
             "includesFlags": [
-                "trace:adaptorId:conf"
+                "trace:adapterId:conf"
             ],
             "includedByFlags": [
-                "trace:adaptorType:file:detail"
+                "trace:adapterType:file:detail"
             ],
             "flagIndex": 39,
-            "flagId": "trace:adaptorId:conf:detail",
-            "description": "This produces a basic plus detail trace of adaptor id conf.",
-            "brief": "Detail trace of adaptor id conf",
+            "flagId": "trace:adapterId:conf:detail",
+            "description": "This produces a basic plus detail trace of adapter id conf.",
+            "brief": "Detail trace of adapter id conf",
             "applicableFlags": [
-                "trace:adaptorId:conf:detail",
-                "trace:adaptorId:conf"
+                "trace:adapterId:conf:detail",
+                "trace:adapterId:conf"
             ]
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveFlag_/trace%3AadaptorType%3Almdb",
-                "objectId": "trace:adaptorType:lmdb",
+                "path": "/afw/_AdaptiveFlag_/trace%3AadapterType%3Almdb",
+                "objectId": "trace:adapterType:lmdb",
                 "objectType": "_AdaptiveFlag_"
             },
             "includesFlags": [
-                "trace:adaptorId:lmdb"
+                "trace:adapterId:lmdb"
             ],
             "includedByFlags": [
-                "trace:adaptor",
-                "trace:adaptorType:lmdb:detail"
+                "trace:adapter",
+                "trace:adapterType:lmdb:detail"
             ],
             "flagIndex": 44,
-            "flagId": "trace:adaptorType:lmdb",
-            "description": "This produces a basic trace of all adaptors of type lmdb.",
-            "brief": "Trace adaptor type lmdb",
+            "flagId": "trace:adapterType:lmdb",
+            "description": "This produces a basic trace of all adapters of type lmdb.",
+            "brief": "Trace adapter type lmdb",
             "applicableFlags": [
-                "trace:adaptorType:lmdb",
-                "trace:adaptorId:lmdb"
+                "trace:adapterType:lmdb",
+                "trace:adapterId:lmdb"
             ]
         },
         {
@@ -482,24 +482,24 @@
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveFlag_/trace%3AadaptorType%3Aafw_runtime",
-                "objectId": "trace:adaptorType:afw_runtime",
+                "path": "/afw/_AdaptiveFlag_/trace%3AadapterType%3Aafw_runtime",
+                "objectId": "trace:adapterType:afw_runtime",
                 "objectType": "_AdaptiveFlag_"
             },
             "includesFlags": [
-                "trace:adaptorId:afw"
+                "trace:adapterId:afw"
             ],
             "includedByFlags": [
-                "trace:adaptor",
-                "trace:adaptorType:afw_runtime:detail"
+                "trace:adapter",
+                "trace:adapterType:afw_runtime:detail"
             ],
             "flagIndex": 23,
-            "flagId": "trace:adaptorType:afw_runtime",
-            "description": "This produces a basic trace of all adaptors of type afw_runtime.",
-            "brief": "Trace adaptor type afw_runtime",
+            "flagId": "trace:adapterType:afw_runtime",
+            "description": "This produces a basic trace of all adapters of type afw_runtime.",
+            "brief": "Trace adapter type afw_runtime",
             "applicableFlags": [
-                "trace:adaptorType:afw_runtime",
-                "trace:adaptorId:afw"
+                "trace:adapterType:afw_runtime",
+                "trace:adapterId:afw"
             ]
         },
         {
@@ -648,209 +648,209 @@
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveFlag_/trace%3AadaptorId%3Aauth%3Adetail",
-                "objectId": "trace:adaptorId:auth:detail",
+                "path": "/afw/_AdaptiveFlag_/trace%3AadapterId%3Aauth%3Adetail",
+                "objectId": "trace:adapterId:auth:detail",
                 "objectType": "_AdaptiveFlag_"
             },
             "includesFlags": [
-                "trace:adaptorId:auth"
+                "trace:adapterId:auth"
             ],
             "includedByFlags": [
-                "trace:adaptorType:file:detail"
+                "trace:adapterType:file:detail"
             ],
             "flagIndex": 55,
-            "flagId": "trace:adaptorId:auth:detail",
-            "description": "This produces a basic plus detail trace of adaptor id auth.",
-            "brief": "Detail trace of adaptor id auth",
+            "flagId": "trace:adapterId:auth:detail",
+            "description": "This produces a basic plus detail trace of adapter id auth.",
+            "brief": "Detail trace of adapter id auth",
             "applicableFlags": [
-                "trace:adaptorId:auth:detail",
-                "trace:adaptorId:auth"
+                "trace:adapterId:auth:detail",
+                "trace:adapterId:auth"
             ]
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveFlag_/trace%3AadaptorId%3Almdb",
-                "objectId": "trace:adaptorId:lmdb",
+                "path": "/afw/_AdaptiveFlag_/trace%3AadapterId%3Almdb",
+                "objectId": "trace:adapterId:lmdb",
                 "objectType": "_AdaptiveFlag_"
             },
             "includedByFlags": [
-                "trace:adaptorType:lmdb",
-                "trace:adaptorId:lmdb:detail"
+                "trace:adapterType:lmdb",
+                "trace:adapterId:lmdb:detail"
             ],
             "flagIndex": 64,
-            "flagId": "trace:adaptorId:lmdb",
-            "description": "This produces a basic trace of adaptor id lmdb.",
-            "brief": "Trace adaptor id lmdb",
+            "flagId": "trace:adapterId:lmdb",
+            "description": "This produces a basic trace of adapter id lmdb.",
+            "brief": "Trace adapter id lmdb",
             "applicableFlags": [
-                "trace:adaptorId:lmdb"
+                "trace:adapterId:lmdb"
             ]
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveFlag_/trace%3AadaptorId%3Atier%3Adetail",
-                "objectId": "trace:adaptorId:tier:detail",
+                "path": "/afw/_AdaptiveFlag_/trace%3AadapterId%3Atier%3Adetail",
+                "objectId": "trace:adapterId:tier:detail",
                 "objectType": "_AdaptiveFlag_"
             },
             "includesFlags": [
-                "trace:adaptorId:tier"
+                "trace:adapterId:tier"
             ],
             "includedByFlags": [
-                "trace:adaptorType:model:detail"
+                "trace:adapterType:model:detail"
             ],
             "flagIndex": 57,
-            "flagId": "trace:adaptorId:tier:detail",
-            "description": "This produces a basic plus detail trace of adaptor id tier.",
-            "brief": "Detail trace of adaptor id tier",
+            "flagId": "trace:adapterId:tier:detail",
+            "description": "This produces a basic plus detail trace of adapter id tier.",
+            "brief": "Detail trace of adapter id tier",
             "applicableFlags": [
-                "trace:adaptorId:tier:detail",
-                "trace:adaptorId:tier"
+                "trace:adapterId:tier:detail",
+                "trace:adapterId:tier"
             ]
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveFlag_/trace%3AadaptorType%3Adynamo_db",
-                "objectId": "trace:adaptorType:dynamo_db",
+                "path": "/afw/_AdaptiveFlag_/trace%3AadapterType%3Adynamo_db",
+                "objectId": "trace:adapterType:dynamo_db",
                 "objectType": "_AdaptiveFlag_"
             },
             "includedByFlags": [
-                "trace:adaptor",
-                "trace:adaptorType:dynamo_db:detail"
+                "trace:adapter",
+                "trace:adapterType:dynamo_db:detail"
             ],
             "flagIndex": 73,
-            "flagId": "trace:adaptorType:dynamo_db",
-            "description": "This produces a basic trace of all adaptors of type dynamo_db.",
-            "brief": "Trace adaptor type dynamo_db",
+            "flagId": "trace:adapterType:dynamo_db",
+            "description": "This produces a basic trace of all adapters of type dynamo_db.",
+            "brief": "Trace adapter type dynamo_db",
             "applicableFlags": [
-                "trace:adaptorType:dynamo_db"
+                "trace:adapterType:dynamo_db"
             ]
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveFlag_/trace%3AadaptorType%3Aafw_runtime%3Adetail",
-                "objectId": "trace:adaptorType:afw_runtime:detail",
+                "path": "/afw/_AdaptiveFlag_/trace%3AadapterType%3Aafw_runtime%3Adetail",
+                "objectId": "trace:adapterType:afw_runtime:detail",
                 "objectType": "_AdaptiveFlag_"
             },
             "includesFlags": [
-                "trace:adaptorType:afw_runtime",
-                "trace:adaptorId:afw:detail"
+                "trace:adapterType:afw_runtime",
+                "trace:adapterId:afw:detail"
             ],
             "includedByFlags": [
-                "trace:adaptor:detail"
+                "trace:adapter:detail"
             ],
             "flagIndex": 22,
-            "flagId": "trace:adaptorType:afw_runtime:detail",
-            "description": "This produces a basic plus additional detail trace for all adaptors of type afw_runtime.",
-            "brief": "Debug trace adaptor type afw_runtime",
+            "flagId": "trace:adapterType:afw_runtime:detail",
+            "description": "This produces a basic plus additional detail trace for all adapters of type afw_runtime.",
+            "brief": "Debug trace adapter type afw_runtime",
             "applicableFlags": [
-                "trace:adaptorType:afw_runtime:detail",
-                "trace:adaptorType:afw_runtime",
-                "trace:adaptorId:afw:detail",
-                "trace:adaptorId:afw"
+                "trace:adapterType:afw_runtime:detail",
+                "trace:adapterType:afw_runtime",
+                "trace:adapterId:afw:detail",
+                "trace:adapterId:afw"
             ]
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveFlag_/trace%3AadaptorId%3Amodels",
-                "objectId": "trace:adaptorId:models",
+                "path": "/afw/_AdaptiveFlag_/trace%3AadapterId%3Amodels",
+                "objectId": "trace:adapterId:models",
                 "objectType": "_AdaptiveFlag_"
             },
             "includedByFlags": [
-                "trace:adaptorType:file",
-                "trace:adaptorId:models:detail"
+                "trace:adapterType:file",
+                "trace:adapterId:models:detail"
             ],
             "flagIndex": 54,
-            "flagId": "trace:adaptorId:models",
-            "description": "This produces a basic trace of adaptor id models.",
-            "brief": "Trace adaptor id models",
+            "flagId": "trace:adapterId:models",
+            "description": "This produces a basic trace of adapter id models.",
+            "brief": "Trace adapter id models",
             "applicableFlags": [
-                "trace:adaptorId:models"
+                "trace:adapterId:models"
             ]
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveFlag_/trace%3Aadaptor%3Adetail",
-                "objectId": "trace:adaptor:detail",
+                "path": "/afw/_AdaptiveFlag_/trace%3Aadapter%3Adetail",
+                "objectId": "trace:adapter:detail",
                 "objectType": "_AdaptiveFlag_"
             },
             "includesFlags": [
-                "trace:adaptor",
-                "trace:adaptorType:afw_runtime:detail",
-                "trace:adaptorType:file:detail",
-                "trace:adaptorType:model:detail",
-                "trace:adaptorType:ldap:detail",
-                "trace:adaptorType:lmdb:detail",
-                "trace:adaptorType:dbd_mysql:detail",
-                "trace:adaptorType:sql:detail",
-                "trace:adaptorType:bdb:detail",
-                "trace:adaptorType:dynamo_db:detail"
+                "trace:adapter",
+                "trace:adapterType:afw_runtime:detail",
+                "trace:adapterType:file:detail",
+                "trace:adapterType:model:detail",
+                "trace:adapterType:ldap:detail",
+                "trace:adapterType:lmdb:detail",
+                "trace:adapterType:dbd_mysql:detail",
+                "trace:adapterType:sql:detail",
+                "trace:adapterType:bdb:detail",
+                "trace:adapterType:dynamo_db:detail"
             ],
             "includedByFlags": [
                 "trace:detail"
             ],
             "flagIndex": 15,
-            "flagId": "trace:adaptor:detail",
-            "description": "This produces all basic plus additional detail traces for all adaptors.",
-            "brief": "Detail trace for all adaptors",
+            "flagId": "trace:adapter:detail",
+            "description": "This produces all basic plus additional detail traces for all adapters.",
+            "brief": "Detail trace for all adapters",
             "applicableFlags": [
-                "trace:adaptor:detail",
-                "trace:adaptor",
-                "trace:adaptorType:afw_runtime:detail",
-                "trace:adaptorType:afw_runtime",
-                "trace:adaptorId:afw:detail",
-                "trace:adaptorId:afw",
-                "trace:adaptorType:file:detail",
-                "trace:adaptorType:file",
-                "trace:adaptorType:model:detail",
-                "trace:adaptorType:model",
-                "trace:adaptorId:conf:detail",
-                "trace:adaptorId:conf",
-                "trace:adaptorType:ldap:detail",
-                "trace:adaptorType:ldap",
-                "trace:adaptorType:lmdb:detail",
-                "trace:adaptorType:lmdb",
-                "trace:adaptorType:dbd_mysql:detail",
-                "trace:adaptorType:dbd_mysql",
-                "trace:adaptorType:sql:detail",
-                "trace:adaptorType:sql",
-                "trace:adaptorId:layouts:detail",
-                "trace:adaptorId:layouts",
-                "trace:adaptorId:models:detail",
-                "trace:adaptorId:models",
-                "trace:adaptorId:auth:detail",
-                "trace:adaptorId:auth",
-                "trace:adaptorId:tier:detail",
-                "trace:adaptorId:tier",
-                "trace:adaptorId:files:detail",
-                "trace:adaptorId:files",
-                "trace:adaptorId:lmdb:detail",
-                "trace:adaptorId:lmdb",
-                "trace:adaptorId:dev:detail",
-                "trace:adaptorId:dev",
-                "trace:adaptorType:bdb:detail",
-                "trace:adaptorType:bdb",
-                "trace:adaptorType:dynamo_db:detail",
-                "trace:adaptorType:dynamo_db"
+                "trace:adapter:detail",
+                "trace:adapter",
+                "trace:adapterType:afw_runtime:detail",
+                "trace:adapterType:afw_runtime",
+                "trace:adapterId:afw:detail",
+                "trace:adapterId:afw",
+                "trace:adapterType:file:detail",
+                "trace:adapterType:file",
+                "trace:adapterType:model:detail",
+                "trace:adapterType:model",
+                "trace:adapterId:conf:detail",
+                "trace:adapterId:conf",
+                "trace:adapterType:ldap:detail",
+                "trace:adapterType:ldap",
+                "trace:adapterType:lmdb:detail",
+                "trace:adapterType:lmdb",
+                "trace:adapterType:dbd_mysql:detail",
+                "trace:adapterType:dbd_mysql",
+                "trace:adapterType:sql:detail",
+                "trace:adapterType:sql",
+                "trace:adapterId:layouts:detail",
+                "trace:adapterId:layouts",
+                "trace:adapterId:models:detail",
+                "trace:adapterId:models",
+                "trace:adapterId:auth:detail",
+                "trace:adapterId:auth",
+                "trace:adapterId:tier:detail",
+                "trace:adapterId:tier",
+                "trace:adapterId:files:detail",
+                "trace:adapterId:files",
+                "trace:adapterId:lmdb:detail",
+                "trace:adapterId:lmdb",
+                "trace:adapterId:dev:detail",
+                "trace:adapterId:dev",
+                "trace:adapterType:bdb:detail",
+                "trace:adapterType:bdb",
+                "trace:adapterType:dynamo_db:detail",
+                "trace:adapterType:dynamo_db"
             ]
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveFlag_/trace%3AadaptorType%3Abdb%3Adetail",
-                "objectId": "trace:adaptorType:bdb:detail",
+                "path": "/afw/_AdaptiveFlag_/trace%3AadapterType%3Abdb%3Adetail",
+                "objectId": "trace:adapterType:bdb:detail",
                 "objectType": "_AdaptiveFlag_"
             },
             "includesFlags": [
-                "trace:adaptorType:bdb"
+                "trace:adapterType:bdb"
             ],
             "includedByFlags": [
-                "trace:adaptor:detail"
+                "trace:adapter:detail"
             ],
             "flagIndex": 70,
-            "flagId": "trace:adaptorType:bdb:detail",
-            "description": "This produces a basic plus additional detail trace for all adaptors of type bdb.",
-            "brief": "Debug trace adaptor type bdb",
+            "flagId": "trace:adapterType:bdb:detail",
+            "description": "This produces a basic plus additional detail trace for all adapters of type bdb.",
+            "brief": "Debug trace adapter type bdb",
             "applicableFlags": [
-                "trace:adaptorType:bdb:detail",
-                "trace:adaptorType:bdb"
+                "trace:adapterType:bdb:detail",
+                "trace:adapterType:bdb"
             ]
         },
         {
@@ -883,44 +883,44 @@
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveFlag_/trace%3AadaptorType%3Adynamo_db%3Adetail",
-                "objectId": "trace:adaptorType:dynamo_db:detail",
+                "path": "/afw/_AdaptiveFlag_/trace%3AadapterType%3Adynamo_db%3Adetail",
+                "objectId": "trace:adapterType:dynamo_db:detail",
                 "objectType": "_AdaptiveFlag_"
             },
             "includesFlags": [
-                "trace:adaptorType:dynamo_db"
+                "trace:adapterType:dynamo_db"
             ],
             "includedByFlags": [
-                "trace:adaptor:detail"
+                "trace:adapter:detail"
             ],
             "flagIndex": 72,
-            "flagId": "trace:adaptorType:dynamo_db:detail",
-            "description": "This produces a basic plus additional detail trace for all adaptors of type dynamo_db.",
-            "brief": "Debug trace adaptor type dynamo_db",
+            "flagId": "trace:adapterType:dynamo_db:detail",
+            "description": "This produces a basic plus additional detail trace for all adapters of type dynamo_db.",
+            "brief": "Debug trace adapter type dynamo_db",
             "applicableFlags": [
-                "trace:adaptorType:dynamo_db:detail",
-                "trace:adaptorType:dynamo_db"
+                "trace:adapterType:dynamo_db:detail",
+                "trace:adapterType:dynamo_db"
             ]
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveFlag_/trace%3AadaptorType%3Asql%3Adetail",
-                "objectId": "trace:adaptorType:sql:detail",
+                "path": "/afw/_AdaptiveFlag_/trace%3AadapterType%3Asql%3Adetail",
+                "objectId": "trace:adapterType:sql:detail",
                 "objectType": "_AdaptiveFlag_"
             },
             "includesFlags": [
-                "trace:adaptorType:sql"
+                "trace:adapterType:sql"
             ],
             "includedByFlags": [
-                "trace:adaptor:detail"
+                "trace:adapter:detail"
             ],
             "flagIndex": 47,
-            "flagId": "trace:adaptorType:sql:detail",
-            "description": "This produces a basic plus additional detail trace for all adaptors of type sql.",
-            "brief": "Debug trace adaptor type sql",
+            "flagId": "trace:adapterType:sql:detail",
+            "description": "This produces a basic plus additional detail trace for all adapters of type sql.",
+            "brief": "Debug trace adapter type sql",
             "applicableFlags": [
-                "trace:adaptorType:sql:detail",
-                "trace:adaptorType:sql"
+                "trace:adapterType:sql:detail",
+                "trace:adapterType:sql"
             ]
         },
         {
@@ -946,20 +946,20 @@
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveFlag_/trace%3AadaptorType%3Adbd_mysql",
-                "objectId": "trace:adaptorType:dbd_mysql",
+                "path": "/afw/_AdaptiveFlag_/trace%3AadapterType%3Adbd_mysql",
+                "objectId": "trace:adapterType:dbd_mysql",
                 "objectType": "_AdaptiveFlag_"
             },
             "includedByFlags": [
-                "trace:adaptor",
-                "trace:adaptorType:dbd_mysql:detail"
+                "trace:adapter",
+                "trace:adapterType:dbd_mysql:detail"
             ],
             "flagIndex": 46,
-            "flagId": "trace:adaptorType:dbd_mysql",
-            "description": "This produces a basic trace of all adaptors of type dbd_mysql.",
-            "brief": "Trace adaptor type dbd_mysql",
+            "flagId": "trace:adapterType:dbd_mysql",
+            "description": "This produces a basic trace of all adapters of type dbd_mysql.",
+            "brief": "Trace adapter type dbd_mysql",
             "applicableFlags": [
-                "trace:adaptorType:dbd_mysql"
+                "trace:adapterType:dbd_mysql"
             ]
         },
         {
@@ -1030,41 +1030,41 @@
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveFlag_/trace%3AadaptorId%3Alayouts%3Adetail",
-                "objectId": "trace:adaptorId:layouts:detail",
+                "path": "/afw/_AdaptiveFlag_/trace%3AadapterId%3Alayouts%3Adetail",
+                "objectId": "trace:adapterId:layouts:detail",
                 "objectType": "_AdaptiveFlag_"
             },
             "includesFlags": [
-                "trace:adaptorId:layouts"
+                "trace:adapterId:layouts"
             ],
             "includedByFlags": [
-                "trace:adaptorType:file:detail"
+                "trace:adapterType:file:detail"
             ],
             "flagIndex": 51,
-            "flagId": "trace:adaptorId:layouts:detail",
-            "description": "This produces a basic plus detail trace of adaptor id layouts.",
-            "brief": "Detail trace of adaptor id layouts",
+            "flagId": "trace:adapterId:layouts:detail",
+            "description": "This produces a basic plus detail trace of adapter id layouts.",
+            "brief": "Detail trace of adapter id layouts",
             "applicableFlags": [
-                "trace:adaptorId:layouts:detail",
-                "trace:adaptorId:layouts"
+                "trace:adapterId:layouts:detail",
+                "trace:adapterId:layouts"
             ]
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveFlag_/trace%3AadaptorId%3Aafw",
-                "objectId": "trace:adaptorId:afw",
+                "path": "/afw/_AdaptiveFlag_/trace%3AadapterId%3Aafw",
+                "objectId": "trace:adapterId:afw",
                 "objectType": "_AdaptiveFlag_"
             },
             "includedByFlags": [
-                "trace:adaptorType:afw_runtime",
-                "trace:adaptorId:afw:detail"
+                "trace:adapterType:afw_runtime",
+                "trace:adapterId:afw:detail"
             ],
             "flagIndex": 25,
-            "flagId": "trace:adaptorId:afw",
-            "description": "This produces a basic trace of adaptor id afw.",
-            "brief": "Trace adaptor id afw",
+            "flagId": "trace:adapterId:afw",
+            "description": "This produces a basic trace of adapter id afw.",
+            "brief": "Trace adapter id afw",
             "applicableFlags": [
-                "trace:adaptorId:afw"
+                "trace:adapterId:afw"
             ]
         },
         {
@@ -1101,7 +1101,7 @@
             },
             "includesFlags": [
                 "trace",
-                "trace:adaptor:detail",
+                "trace:adapter:detail",
                 "trace:authorizationHandler:detail",
                 "trace:evaluation:detail",
                 "trace:request:detail",
@@ -1114,21 +1114,21 @@
             "applicableFlags": [
                 "trace:detail",
                 "trace",
-                "trace:adaptor:detail",
-                "trace:adaptor",
+                "trace:adapter:detail",
+                "trace:adapter",
                 "trace:authorizationHandler:detail",
                 "trace:authorizationHandler",
                 "trace:evaluation:detail",
                 "trace:request:detail",
                 "trace:request",
-                "trace:adaptorType:afw_runtime:detail",
-                "trace:adaptorType:afw_runtime",
-                "trace:adaptorId:afw:detail",
-                "trace:adaptorId:afw",
-                "trace:adaptorType:file:detail",
-                "trace:adaptorType:file",
-                "trace:adaptorType:model:detail",
-                "trace:adaptorType:model",
+                "trace:adapterType:afw_runtime:detail",
+                "trace:adapterType:afw_runtime",
+                "trace:adapterId:afw:detail",
+                "trace:adapterId:afw",
+                "trace:adapterType:file:detail",
+                "trace:adapterType:file",
+                "trace:adapterType:model:detail",
+                "trace:adapterType:model",
                 "trace:authorizationHandlerType:script:detail",
                 "trace:authorizationHandlerType:script",
                 "trace:authorization:detail",
@@ -1138,41 +1138,41 @@
                 "trace:authorization:check",
                 "trace:authorization:decision:detail",
                 "trace:authorization:decision",
-                "trace:adaptorId:conf:detail",
-                "trace:adaptorId:conf",
-                "trace:adaptorType:ldap:detail",
-                "trace:adaptorType:ldap",
-                "trace:adaptorType:lmdb:detail",
-                "trace:adaptorType:lmdb",
-                "trace:adaptorType:dbd_mysql:detail",
-                "trace:adaptorType:dbd_mysql",
-                "trace:adaptorType:sql:detail",
-                "trace:adaptorType:sql",
+                "trace:adapterId:conf:detail",
+                "trace:adapterId:conf",
+                "trace:adapterType:ldap:detail",
+                "trace:adapterType:ldap",
+                "trace:adapterType:lmdb:detail",
+                "trace:adapterType:lmdb",
+                "trace:adapterType:dbd_mysql:detail",
+                "trace:adapterType:dbd_mysql",
+                "trace:adapterType:sql:detail",
+                "trace:adapterType:sql",
                 "trace:authorizationHandlerType:policy:detail",
                 "trace:authorizationHandlerType:policy",
-                "trace:adaptorId:layouts:detail",
-                "trace:adaptorId:layouts",
-                "trace:adaptorId:models:detail",
-                "trace:adaptorId:models",
-                "trace:adaptorId:auth:detail",
-                "trace:adaptorId:auth",
-                "trace:adaptorId:tier:detail",
-                "trace:adaptorId:tier",
+                "trace:adapterId:layouts:detail",
+                "trace:adapterId:layouts",
+                "trace:adapterId:models:detail",
+                "trace:adapterId:models",
+                "trace:adapterId:auth:detail",
+                "trace:adapterId:auth",
+                "trace:adapterId:tier:detail",
+                "trace:adapterId:tier",
                 "trace:authorizationHandlerId:auth-script:detail",
                 "trace:authorizationHandlerId:auth-script",
-                "trace:adaptorId:files:detail",
-                "trace:adaptorId:files",
-                "trace:adaptorId:lmdb:detail",
-                "trace:adaptorId:lmdb",
-                "trace:adaptorId:dev:detail",
-                "trace:adaptorId:dev",
+                "trace:adapterId:files:detail",
+                "trace:adapterId:files",
+                "trace:adapterId:lmdb:detail",
+                "trace:adapterId:lmdb",
+                "trace:adapterId:dev:detail",
+                "trace:adapterId:dev",
                 "trace:server",
                 "trace:server:request",
                 "trace:server:request:process",
-                "trace:adaptorType:bdb:detail",
-                "trace:adaptorType:bdb",
-                "trace:adaptorType:dynamo_db:detail",
-                "trace:adaptorType:dynamo_db"
+                "trace:adapterType:bdb:detail",
+                "trace:adapterType:bdb",
+                "trace:adapterType:dynamo_db:detail",
+                "trace:adapterType:dynamo_db"
             ]
         },
         {
@@ -1300,44 +1300,44 @@
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveFlag_/trace%3AadaptorId%3Aafw%3Adetail",
-                "objectId": "trace:adaptorId:afw:detail",
+                "path": "/afw/_AdaptiveFlag_/trace%3AadapterId%3Aafw%3Adetail",
+                "objectId": "trace:adapterId:afw:detail",
                 "objectType": "_AdaptiveFlag_"
             },
             "includesFlags": [
-                "trace:adaptorId:afw"
+                "trace:adapterId:afw"
             ],
             "includedByFlags": [
-                "trace:adaptorType:afw_runtime:detail"
+                "trace:adapterType:afw_runtime:detail"
             ],
             "flagIndex": 24,
-            "flagId": "trace:adaptorId:afw:detail",
-            "description": "This produces a basic plus detail trace of adaptor id afw.",
-            "brief": "Detail trace of adaptor id afw",
+            "flagId": "trace:adapterId:afw:detail",
+            "description": "This produces a basic plus detail trace of adapter id afw.",
+            "brief": "Detail trace of adapter id afw",
             "applicableFlags": [
-                "trace:adaptorId:afw:detail",
-                "trace:adaptorId:afw"
+                "trace:adapterId:afw:detail",
+                "trace:adapterId:afw"
             ]
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveFlag_/trace%3AadaptorId%3Adev%3Adetail",
-                "objectId": "trace:adaptorId:dev:detail",
+                "path": "/afw/_AdaptiveFlag_/trace%3AadapterId%3Adev%3Adetail",
+                "objectId": "trace:adapterId:dev:detail",
                 "objectType": "_AdaptiveFlag_"
             },
             "includesFlags": [
-                "trace:adaptorId:dev"
+                "trace:adapterId:dev"
             ],
             "includedByFlags": [
-                "trace:adaptorType:file:detail"
+                "trace:adapterType:file:detail"
             ],
             "flagIndex": 65,
-            "flagId": "trace:adaptorId:dev:detail",
-            "description": "This produces a basic plus detail trace of adaptor id dev.",
-            "brief": "Detail trace of adaptor id dev",
+            "flagId": "trace:adapterId:dev:detail",
+            "description": "This produces a basic plus detail trace of adapter id dev.",
+            "brief": "Detail trace of adapter id dev",
             "applicableFlags": [
-                "trace:adaptorId:dev:detail",
-                "trace:adaptorId:dev"
+                "trace:adapterId:dev:detail",
+                "trace:adapterId:dev"
             ]
         },
         {
@@ -1356,52 +1356,52 @@
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveFlag_/trace%3AadaptorId%3Atier",
-                "objectId": "trace:adaptorId:tier",
+                "path": "/afw/_AdaptiveFlag_/trace%3AadapterId%3Atier",
+                "objectId": "trace:adapterId:tier",
                 "objectType": "_AdaptiveFlag_"
             },
             "includedByFlags": [
-                "trace:adaptorType:model",
-                "trace:adaptorId:tier:detail"
+                "trace:adapterType:model",
+                "trace:adapterId:tier:detail"
             ],
             "flagIndex": 58,
-            "flagId": "trace:adaptorId:tier",
-            "description": "This produces a basic trace of adaptor id tier.",
-            "brief": "Trace adaptor id tier",
+            "flagId": "trace:adapterId:tier",
+            "description": "This produces a basic trace of adapter id tier.",
+            "brief": "Trace adapter id tier",
             "applicableFlags": [
-                "trace:adaptorId:tier"
+                "trace:adapterId:tier"
             ]
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveFlag_/trace%3AadaptorType%3Afile",
-                "objectId": "trace:adaptorType:file",
+                "path": "/afw/_AdaptiveFlag_/trace%3AadapterType%3Afile",
+                "objectId": "trace:adapterType:file",
                 "objectType": "_AdaptiveFlag_"
             },
             "includesFlags": [
-                "trace:adaptorId:conf",
-                "trace:adaptorId:layouts",
-                "trace:adaptorId:models",
-                "trace:adaptorId:auth",
-                "trace:adaptorId:files",
-                "trace:adaptorId:dev"
+                "trace:adapterId:conf",
+                "trace:adapterId:layouts",
+                "trace:adapterId:models",
+                "trace:adapterId:auth",
+                "trace:adapterId:files",
+                "trace:adapterId:dev"
             ],
             "includedByFlags": [
-                "trace:adaptor",
-                "trace:adaptorType:file:detail"
+                "trace:adapter",
+                "trace:adapterType:file:detail"
             ],
             "flagIndex": 27,
-            "flagId": "trace:adaptorType:file",
-            "description": "This produces a basic trace of all adaptors of type file.",
-            "brief": "Trace adaptor type file",
+            "flagId": "trace:adapterType:file",
+            "description": "This produces a basic trace of all adapters of type file.",
+            "brief": "Trace adapter type file",
             "applicableFlags": [
-                "trace:adaptorType:file",
-                "trace:adaptorId:conf",
-                "trace:adaptorId:layouts",
-                "trace:adaptorId:models",
-                "trace:adaptorId:auth",
-                "trace:adaptorId:files",
-                "trace:adaptorId:dev"
+                "trace:adapterType:file",
+                "trace:adapterId:conf",
+                "trace:adapterId:layouts",
+                "trace:adapterId:models",
+                "trace:adapterId:auth",
+                "trace:adapterId:files",
+                "trace:adapterId:dev"
             ]
         },
         {
@@ -1428,44 +1428,44 @@
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveFlag_/trace%3AadaptorId%3Adev",
-                "objectId": "trace:adaptorId:dev",
+                "path": "/afw/_AdaptiveFlag_/trace%3AadapterId%3Adev",
+                "objectId": "trace:adapterId:dev",
                 "objectType": "_AdaptiveFlag_"
             },
             "includedByFlags": [
-                "trace:adaptorType:file",
-                "trace:adaptorId:dev:detail"
+                "trace:adapterType:file",
+                "trace:adapterId:dev:detail"
             ],
             "flagIndex": 66,
-            "flagId": "trace:adaptorId:dev",
-            "description": "This produces a basic trace of adaptor id dev.",
-            "brief": "Trace adaptor id dev",
+            "flagId": "trace:adapterId:dev",
+            "description": "This produces a basic trace of adapter id dev.",
+            "brief": "Trace adapter id dev",
             "applicableFlags": [
-                "trace:adaptorId:dev"
+                "trace:adapterId:dev"
             ]
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveFlag_/trace%3AadaptorType%3Almdb%3Adetail",
-                "objectId": "trace:adaptorType:lmdb:detail",
+                "path": "/afw/_AdaptiveFlag_/trace%3AadapterType%3Almdb%3Adetail",
+                "objectId": "trace:adapterType:lmdb:detail",
                 "objectType": "_AdaptiveFlag_"
             },
             "includesFlags": [
-                "trace:adaptorType:lmdb",
-                "trace:adaptorId:lmdb:detail"
+                "trace:adapterType:lmdb",
+                "trace:adapterId:lmdb:detail"
             ],
             "includedByFlags": [
-                "trace:adaptor:detail"
+                "trace:adapter:detail"
             ],
             "flagIndex": 43,
-            "flagId": "trace:adaptorType:lmdb:detail",
-            "description": "This produces a basic plus additional detail trace for all adaptors of type lmdb.",
-            "brief": "Debug trace adaptor type lmdb",
+            "flagId": "trace:adapterType:lmdb:detail",
+            "description": "This produces a basic plus additional detail trace for all adapters of type lmdb.",
+            "brief": "Debug trace adapter type lmdb",
             "applicableFlags": [
-                "trace:adaptorType:lmdb:detail",
-                "trace:adaptorType:lmdb",
-                "trace:adaptorId:lmdb:detail",
-                "trace:adaptorId:lmdb"
+                "trace:adapterType:lmdb:detail",
+                "trace:adapterType:lmdb",
+                "trace:adapterId:lmdb:detail",
+                "trace:adapterId:lmdb"
             ]
         },
         {
@@ -1536,24 +1536,24 @@
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveFlag_/trace%3AadaptorType%3Amodel",
-                "objectId": "trace:adaptorType:model",
+                "path": "/afw/_AdaptiveFlag_/trace%3AadapterType%3Amodel",
+                "objectId": "trace:adapterType:model",
                 "objectType": "_AdaptiveFlag_"
             },
             "includesFlags": [
-                "trace:adaptorId:tier"
+                "trace:adapterId:tier"
             ],
             "includedByFlags": [
-                "trace:adaptor",
-                "trace:adaptorType:model:detail"
+                "trace:adapter",
+                "trace:adapterType:model:detail"
             ],
             "flagIndex": 29,
-            "flagId": "trace:adaptorType:model",
-            "description": "This produces a basic trace of all adaptors of type model.",
-            "brief": "Trace adaptor type model",
+            "flagId": "trace:adapterType:model",
+            "description": "This produces a basic trace of all adapters of type model.",
+            "brief": "Trace adapter type model",
             "applicableFlags": [
-                "trace:adaptorType:model",
-                "trace:adaptorId:tier"
+                "trace:adapterType:model",
+                "trace:adapterId:tier"
             ]
         },
         {
@@ -1579,23 +1579,23 @@
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveFlag_/trace%3AadaptorId%3Amodels%3Adetail",
-                "objectId": "trace:adaptorId:models:detail",
+                "path": "/afw/_AdaptiveFlag_/trace%3AadapterId%3Amodels%3Adetail",
+                "objectId": "trace:adapterId:models:detail",
                 "objectType": "_AdaptiveFlag_"
             },
             "includesFlags": [
-                "trace:adaptorId:models"
+                "trace:adapterId:models"
             ],
             "includedByFlags": [
-                "trace:adaptorType:file:detail"
+                "trace:adapterType:file:detail"
             ],
             "flagIndex": 53,
-            "flagId": "trace:adaptorId:models:detail",
-            "description": "This produces a basic plus detail trace of adaptor id models.",
-            "brief": "Detail trace of adaptor id models",
+            "flagId": "trace:adapterId:models:detail",
+            "description": "This produces a basic plus detail trace of adapter id models.",
+            "brief": "Detail trace of adapter id models",
             "applicableFlags": [
-                "trace:adaptorId:models:detail",
-                "trace:adaptorId:models"
+                "trace:adapterId:models:detail",
+                "trace:adapterId:models"
             ]
         },
         {
@@ -1617,26 +1617,26 @@
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveFlag_/trace%3AadaptorType%3Amodel%3Adetail",
-                "objectId": "trace:adaptorType:model:detail",
+                "path": "/afw/_AdaptiveFlag_/trace%3AadapterType%3Amodel%3Adetail",
+                "objectId": "trace:adapterType:model:detail",
                 "objectType": "_AdaptiveFlag_"
             },
             "includesFlags": [
-                "trace:adaptorType:model",
-                "trace:adaptorId:tier:detail"
+                "trace:adapterType:model",
+                "trace:adapterId:tier:detail"
             ],
             "includedByFlags": [
-                "trace:adaptor:detail"
+                "trace:adapter:detail"
             ],
             "flagIndex": 28,
-            "flagId": "trace:adaptorType:model:detail",
-            "description": "This produces a basic plus additional detail trace for all adaptors of type model.",
-            "brief": "Debug trace adaptor type model",
+            "flagId": "trace:adapterType:model:detail",
+            "description": "This produces a basic plus additional detail trace for all adapters of type model.",
+            "brief": "Debug trace adapter type model",
             "applicableFlags": [
-                "trace:adaptorType:model:detail",
-                "trace:adaptorType:model",
-                "trace:adaptorId:tier:detail",
-                "trace:adaptorId:tier"
+                "trace:adapterType:model:detail",
+                "trace:adapterType:model",
+                "trace:adapterId:tier:detail",
+                "trace:adapterId:tier"
             ]
         },
         {
@@ -1646,7 +1646,7 @@
                 "objectType": "_AdaptiveFlag_"
             },
             "includesFlags": [
-                "trace:adaptor",
+                "trace:adapter",
                 "trace:authorizationHandler",
                 "trace:request",
                 "trace:authorization",
@@ -1661,37 +1661,37 @@
             "brief": "Basic traces",
             "applicableFlags": [
                 "trace",
-                "trace:adaptor",
+                "trace:adapter",
                 "trace:authorizationHandler",
                 "trace:request",
-                "trace:adaptorType:afw_runtime",
-                "trace:adaptorId:afw",
-                "trace:adaptorType:file",
-                "trace:adaptorType:model",
+                "trace:adapterType:afw_runtime",
+                "trace:adapterId:afw",
+                "trace:adapterType:file",
+                "trace:adapterType:model",
                 "trace:authorizationHandlerType:script",
                 "trace:authorization",
                 "trace:authorization:bypass",
                 "trace:authorization:check",
                 "trace:authorization:decision",
-                "trace:adaptorId:conf",
-                "trace:adaptorType:ldap",
-                "trace:adaptorType:lmdb",
-                "trace:adaptorType:dbd_mysql",
-                "trace:adaptorType:sql",
+                "trace:adapterId:conf",
+                "trace:adapterType:ldap",
+                "trace:adapterType:lmdb",
+                "trace:adapterType:dbd_mysql",
+                "trace:adapterType:sql",
                 "trace:authorizationHandlerType:policy",
-                "trace:adaptorId:layouts",
-                "trace:adaptorId:models",
-                "trace:adaptorId:auth",
-                "trace:adaptorId:tier",
+                "trace:adapterId:layouts",
+                "trace:adapterId:models",
+                "trace:adapterId:auth",
+                "trace:adapterId:tier",
                 "trace:authorizationHandlerId:auth-script",
-                "trace:adaptorId:files",
-                "trace:adaptorId:lmdb",
-                "trace:adaptorId:dev",
+                "trace:adapterId:files",
+                "trace:adapterId:lmdb",
+                "trace:adapterId:dev",
                 "trace:server",
                 "trace:server:request",
                 "trace:server:request:process",
-                "trace:adaptorType:bdb",
-                "trace:adaptorType:dynamo_db"
+                "trace:adapterType:bdb",
+                "trace:adapterType:dynamo_db"
             ]
         }
     ],

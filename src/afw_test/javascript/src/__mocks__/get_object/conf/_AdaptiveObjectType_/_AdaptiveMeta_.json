@@ -22,7 +22,7 @@
                 "brief": "Objects of this type can be created",
                 "dataType": "boolean",
                 "defaultValue": true,
-                "description": "If false, objects of this type can NEVER be added via an adaptor.  If true, objects of this type can be added via an adaptor as long as allowed by authorization policy and the adaptor.",
+                "description": "If false, objects of this type can NEVER be added via an adapter.  If true, objects of this type can be added via an adapter as long as allowed by authorization policy and the adapter.",
                 "label": "Allow Add"
             },
             "allowEntity": {
@@ -51,7 +51,7 @@
                 "brief": "The URIs of the collections this object type is a part of",
                 "dataType": "array",
                 "dataTypeParameter": "anyURI",
-                "description": "This is the URIs of the collections this object type is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections.  If a collection is used outside of the local instance, it should be a full URI.  The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adaptor.",
+                "description": "This is the URIs of the collections this object type is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections.  If a collection is used outside of the local instance, it should be a full URI.  The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adapter.",
                 "label": "Collection URIs"
             },
             "descriptionPropertyName": {
@@ -72,7 +72,7 @@
                 "allowQuery": true,
                 "brief": "The name of the property that is used as the \"objectId\" meta property",
                 "dataType": "string",
-                "description": "The name of the property in an instance that is used as the \"objectId\" property in the meta for instances of this object type.  If not specified, the internal adaptor objectId for an object is used.",
+                "description": "The name of the property in an instance that is used as the \"objectId\" property in the meta for instances of this object type.  If not specified, the internal adapter objectId for an object is used.",
                 "label": "Object Id Property Name"
             },
             "originURI": {
@@ -101,7 +101,7 @@
                 "brief": "Runtime information, available to runtime objects",
                 "dataType": "object",
                 "dataTypeParameter": "_AdaptiveRuntimeObject_",
-                "description": "This is only valid for runtime object types.  These are objects that are accessed with adaptorId afw.  See afw_runtime.h for more information.",
+                "description": "This is only valid for runtime object types.  These are objects that are accessed with adapterId afw.  See afw_runtime.h for more information.",
                 "label": "Runtime"
             },
             "tags": {
@@ -134,7 +134,7 @@
             },
             "path": {
                 "label": "Path",
-                "description": "This is the associated object's path within an Adaptive Framework environment.  The path is of the form \"/adaptorId/objectType/objectId\".",
+                "description": "This is the associated object's path within an Adaptive Framework environment.  The path is of the form \"/adapterId/objectType/objectId\".",
                 "dataType": "anyURI",
                 "brief": "The associated object's path"
             },
@@ -155,13 +155,13 @@
             "objectType": {
                 "allowQuery": true,
                 "label": "Object Type",
-                "description": "This the id of the associated object's object type within the object's adaptor.",
+                "description": "This the id of the associated object's object type within the object's adapter.",
                 "dataType": "string",
-                "brief": "The id of the associated object's object type, within the object's adaptor"
+                "brief": "The id of the associated object's object type, within the object's adapter"
             },
             "objectId": {
                 "label": "Object Id",
-                "description": "This the id that uniquely defines the associated object when combined with its adaptor id and object type id within an Adaptive Framework environment.  The objectId should be considered opaque unless the associated adaptor or mapping specifies otherwise.",
+                "description": "This the id that uniquely defines the associated object when combined with its adapter id and object type id within an Adaptive Framework environment.  The objectId should be considered opaque unless the associated adapter or mapping specifies otherwise.",
                 "dataType": "string",
                 "brief": "Id to unique identify this object"
             },
@@ -207,10 +207,10 @@
                     }
                 },
                 "label": "Allow Delete",
-                "description": "If false this object can not be deleted.  If true, the object can be deleted unless denied by authorization policy or by the adaptor.",
+                "description": "If false this object can not be deleted.  If true, the object can be deleted unless denied by authorization policy or by the adapter.",
                 "defaultValue": true,
                 "dataType": "boolean",
-                "brief": "This object can be deleted unless denied by authorization policy or by the adaptor",
+                "brief": "This object can be deleted unless denied by authorization policy or by the adapter",
                 "allowQuery": true
             },
             "allowChange": {
@@ -228,10 +228,10 @@
                     }
                 },
                 "label": "Allow Change",
-                "description": "If false this object is read only.  If true, the object can be changed unless denied by authorization policy or by the adaptor.",
+                "description": "If false this object is read only.  If true, the object can be changed unless denied by authorization policy or by the adapter.",
                 "defaultValue": true,
                 "dataType": "boolean",
-                "brief": "This object can be changed, unless denied by authorization policy or by the adaptor",
+                "brief": "This object can be changed, unless denied by authorization policy or by the adapter",
                 "allowQuery": true
             }
         },

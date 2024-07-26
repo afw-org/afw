@@ -1,0 +1,59 @@
+{
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/lmdb_extension"
+    ],
+    "description": "Information about a LMDB database. Uses the mdb_env_stat() routine.",
+    "objectType": "_AdaptiveAdapterMetrics_adapter_lmdb_statistic",
+    "propertyTypes": {
+        "branch_pages": {
+            "allowQuery": false,
+            "dataType": "integer",
+            "description": "Number of internal (non-leaf) pages.",
+            "label": "Branch Pages",
+            "required": true,
+            "unique": false
+        },
+        "depth": {
+            "allowQuery": false,
+            "dataType": "integer",
+            "description": "Height of the B-tree",
+            "label": "Depth",
+            "required": true,
+            "unique": false
+        },
+        "entries": {
+            "allowQuery": false,
+            "dataType": "integer",
+            "description": "Number of data items.",
+            "label": "Entries",
+            "required": true,
+            "unique": false
+        },
+        "leaf_pages": {
+            "allowQuery": false,
+            "dataType": "integer",
+            "description": "Number of leaf pages.",
+            "label": "Leaf Pages",
+            "required": true,
+            "unique": false
+        },
+        "overflow_pages": {
+            "allowQuery": false,
+            "allowWrite": false,
+            "dataType": "integer",
+            "description": "Number of overflow pages.",
+            "label": "Overflow Pages",
+            "required": true,
+            "unique": false
+        },
+        "psize": {
+            "allowQuery": false,
+            "dataType": "integer",
+            "description": "Size of a database page in bytes.",
+            "label": "Page Size",
+            "required": true,
+            "unique": false
+        }
+    }
+}

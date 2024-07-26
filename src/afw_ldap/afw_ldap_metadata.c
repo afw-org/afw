@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * Internal LDAP Adaptive Framework Adaptor functions
+ * Internal LDAP Adaptive Framework Adapter functions
  *
  * Copyright (c) 2010-2024 Clemson University
  *
@@ -27,12 +27,12 @@ typedef struct impl_lexical_s {
 
 static const afw_object_t *
 impl_get_rootdse(
-    afw_ldap_internal_adaptor_session_t *session,
+    afw_ldap_internal_adapter_session_t *session,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
 static const afw_object_t *
 impl_get_schema(
-    afw_ldap_internal_adaptor_session_t *session,
+    afw_ldap_internal_adapter_session_t *session,
     const afw_utf8_t *subschema_subentry,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
@@ -46,7 +46,7 @@ impl_parse_schema_entry(
 
 static apr_hash_t *
 impl_parse_definition(
-    const afw_utf8_t *adaptor_id,
+    const afw_utf8_t *adapter_id,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *name_in_schema,
     afw_ldap_metadata_t *metadata,
@@ -55,7 +55,7 @@ impl_parse_definition(
 
 static void
 impl_retrieve_objects(
-    afw_ldap_internal_adaptor_session_t * self,
+    afw_ldap_internal_adapter_session_t * self,
     apr_hash_t *ht,
     const afw_query_criteria_t * criteria,
     void * context,
@@ -65,14 +65,14 @@ impl_retrieve_objects(
 
 static void
 impl_make_property_type_and_handler_hash_tables(
-    const afw_utf8_t *adaptor_id,
+    const afw_utf8_t *adapter_id,
     afw_ldap_metadata_t *metadata,
     afw_xctx_t *xctx);
 
 
 static void
 impl_make_object_types(
-    const afw_utf8_t *adaptor_id,
+    const afw_utf8_t *adapter_id,
     afw_ldap_metadata_t *metadata,
     afw_xctx_t *xctx);
 
@@ -89,7 +89,7 @@ impl_get(
 
 const afw_object_t *
 impl_get_rootdse(
-    afw_ldap_internal_adaptor_session_t *session,
+    afw_ldap_internal_adapter_session_t *session,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
     LDAPMessage *res;
@@ -113,7 +113,7 @@ impl_get_rootdse(
 
 const afw_object_t *
 impl_get_schema(
-    afw_ldap_internal_adaptor_session_t *session,
+    afw_ldap_internal_adapter_session_t *session,
     const afw_utf8_t *subschema_subentry,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
@@ -371,7 +371,7 @@ static void
 impl_parse_definition_add(
     apr_hash_t *ht,
     const afw_object_t *obj,
-    const afw_utf8_t *adaptor_id,
+    const afw_utf8_t *adapter_id,
     const afw_utf8_t *object_type,
     const afw_utf8_t *id,
     afw_ldap_metadata_t *metadata,
@@ -381,7 +381,7 @@ impl_parse_definition_add(
 
     /* Set ids in object. */
     object_id = afw_utf8_clone(id, metadata->p, xctx);
-    afw_object_meta_set_ids(obj, adaptor_id, object_type, object_id, xctx);
+    afw_object_meta_set_ids(obj, adapter_id, object_type, object_id, xctx);
 
     /* Add object to hash table. */
     apr_hash_set(ht, object_id->s, object_id->len, obj);    
@@ -389,7 +389,7 @@ impl_parse_definition_add(
 
 apr_hash_t *
 impl_parse_definition(
-    const afw_utf8_t *adaptor_id,
+    const afw_utf8_t *adapter_id,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *name_in_schema,
     afw_ldap_metadata_t *metadata,
@@ -450,7 +450,7 @@ impl_parse_definition(
                 if (!name) {
                     break;
                 }
-                impl_parse_definition_add(ht, obj, adaptor_id, object_type_id,
+                impl_parse_definition_add(ht, obj, adapter_id, object_type_id,
                     name, metadata, xctx);
             }
         }
@@ -459,7 +459,7 @@ impl_parse_definition(
             if (!id) {
                 AFW_THROW_ERROR_Z(general, "Error parsing schema", xctx);
             }
-            impl_parse_definition_add(ht, obj, adaptor_id, object_type_id, id,
+            impl_parse_definition_add(ht, obj, adapter_id, object_type_id, id,
                 metadata, xctx);
         }
     }
@@ -470,7 +470,7 @@ impl_parse_definition(
 
 void
 impl_make_property_type_and_handler_hash_tables(
-    const afw_utf8_t *adaptor_id,
+    const afw_utf8_t *adapter_id,
     afw_ldap_metadata_t *metadata,
     afw_xctx_t *xctx)
 {
@@ -612,7 +612,7 @@ impl_make_property_type_and_handler_hash_tables(
                 id = afw_object_meta_get_object_id(attribute_type_object, xctx);
                 afw_object_meta_set_ids(
                     attribute_type->property_type_object,
-                    adaptor_id, afw_s__AdaptiveValueMeta_, id, xctx);
+                    adapter_id, afw_s__AdaptiveValueMeta_, id, xctx);
                 attribute_type->property_name = id;
 
                 /* Set data type and data type parameter. */
@@ -1032,7 +1032,7 @@ impl_add_parents_and_property_types(
 /* impl_make_property_type_and_handler_hash_tables() must be called first. */
 static void
 impl_make_object_types(
-    const afw_utf8_t *adaptor_id,
+    const afw_utf8_t *adapter_id,
     afw_ldap_metadata_t *metadata,
     afw_xctx_t *xctx)
 {
@@ -1063,7 +1063,7 @@ impl_make_object_types(
         /* Create _AdaptiveObjectType_ and initialize. */
         object_type_object = afw_object_create_unmanaged(p, xctx);
         id = afw_object_meta_get_object_id(object_class_object, xctx);
-        afw_object_meta_set_ids(object_type_object, adaptor_id,
+        afw_object_meta_set_ids(object_type_object, adapter_id,
             afw_ldap_s__AdaptiveObjectType_, id, xctx);
         afw_object_set_property_as_string(object_type_object, afw_s_objectType,
             id, xctx);
@@ -1160,24 +1160,24 @@ impl_make_object_types(
 
 void
 afw_ldap_metadata_load(
-    afw_ldap_internal_adaptor_t *adaptor,
+    afw_ldap_internal_adapter_t *adapter,
     afw_xctx_t *xctx)
 {
-    afw_ldap_internal_adaptor_session_t *session;
+    afw_ldap_internal_adapter_session_t *session;
     afw_ldap_metadata_t *new_metadata;
     afw_ldap_metadata_t *old_metadata;
     const afw_value_t *value;
     const afw_pool_t *p;
 
-    /* Use adaptor's pool. */
-    p = adaptor->pub.p;
+    /* Use adapter's pool. */
+    p = adapter->pub.p;
 
     /* Allocate new afw_ldap_metadata_t in subpool. */
     new_metadata = afw_pool_calloc_type(p, afw_ldap_metadata_t, xctx);
     new_metadata->p = p;
 
-    /* Begin a temporary session with ldap adaptor. */
-    session = afw_ldap_internal_adaptor_session_create(adaptor, xctx);
+    /* Begin a temporary session with ldap adapter. */
+    session = afw_ldap_internal_adapter_session_create(adapter, xctx);
 
     /* Get rootDSE. */
     new_metadata->rootdse_object =
@@ -1200,66 +1200,66 @@ afw_ldap_metadata_load(
 
     new_metadata->attribute_type_objects =
         impl_parse_definition(
-            &adaptor->pub.adaptor_id,
+            &adapter->pub.adapter_id,
             afw_ldap_s__AdaptiveLdapAttributeType_,
             afw_ldap_s_attributeTypes,
             new_metadata, xctx);
 
     new_metadata->ldap_syntax_objects =
         impl_parse_definition(
-            &adaptor->pub.adaptor_id,
+            &adapter->pub.adapter_id,
             afw_ldap_s__AdaptiveLdapSyntax_,
             afw_ldap_s_ldapSyntaxes,
             new_metadata, xctx);
 
     new_metadata->matching_rule_objects =
         impl_parse_definition(
-            &adaptor->pub.adaptor_id,
+            &adapter->pub.adapter_id,
             afw_ldap_s__AdaptiveLdapMatchingRule_,
             afw_ldap_s_matchingRules,
             new_metadata, xctx);
 
     new_metadata->matching_rule_use_objects =
         impl_parse_definition(
-            &adaptor->pub.adaptor_id,
+            &adapter->pub.adapter_id,
             afw_ldap_s__AdaptiveLdapMatchingRuleUse_,
             afw_ldap_s_matchingRuleUse,
             new_metadata, xctx);
 
     new_metadata->object_class_objects =
         impl_parse_definition(
-            &adaptor->pub.adaptor_id,
+            &adapter->pub.adapter_id,
             afw_ldap_s__AdaptiveLdapObjectClass_,
             afw_ldap_s_objectClasses,
             new_metadata, xctx);
 
     impl_make_property_type_and_handler_hash_tables(
-        &adaptor->pub.adaptor_id,
+        &adapter->pub.adapter_id,
         new_metadata, xctx);
 
     impl_make_object_types(
-            &adaptor->pub.adaptor_id,
+            &adapter->pub.adapter_id,
             new_metadata, xctx);
 
     /** @fixme add code*/
 
     /* Start using new metadata. */
     /** @fixme use use count based release. */
-    old_metadata = adaptor->metadata;
-    adaptor->metadata = new_metadata;
+    old_metadata = adapter->metadata;
+    adapter->metadata = new_metadata;
     if (old_metadata) {
         afw_pool_release(old_metadata->p, xctx);
     }
 
     /* Release temporary session. */
-    afw_adaptor_session_release((const afw_adaptor_session_t *)session, xctx);
+    afw_adapter_session_release((const afw_adapter_session_t *)session, xctx);
 
     return;
 }
 
 void
 impl_retrieve_objects(
-    afw_ldap_internal_adaptor_session_t * self,
+    afw_ldap_internal_adapter_session_t * self,
     apr_hash_t *ht,
     const afw_query_criteria_t * criteria,
     void * context,
@@ -1283,10 +1283,10 @@ impl_retrieve_objects(
 }
 
 
-/* Used by afw_ldap_adaptor_session() to retrieve metadata objects. */
+/* Used by afw_ldap_adapter_session() to retrieve metadata objects. */
 void
 afw_ldap_metadata_retrieve_objects(
-    afw_ldap_internal_adaptor_session_t * self,
+    afw_ldap_internal_adapter_session_t * self,
     const afw_utf8_t * object_type_id,
     const afw_query_criteria_t * criteria,
     void * context,
@@ -1302,49 +1302,49 @@ afw_ldap_metadata_retrieve_objects(
     if (afw_utf8_equal(object_type_id,
         AFW_OBJECT_S_OBJECT_TYPE_ID_OBJECT_TYPE))
     {
-        ht = self->adaptor->metadata->object_type_objects;
+        ht = self->adapter->metadata->object_type_objects;
     }
 
     /* ValueMeta. */
     else if (afw_utf8_equal(object_type_id,
         AFW_OBJECT_S_OBJECT_TYPE_ID_VALUE_META))
     {
-        ht = self->adaptor->metadata->value_meta_objects;
+        ht = self->adapter->metadata->value_meta_objects;
     }
 
     /* Object Class. */
     else if (afw_utf8_equal(object_type_id,
         afw_ldap_s__AdaptiveLdapObjectClass_))
     {
-        ht = self->adaptor->metadata->object_class_objects;
+        ht = self->adapter->metadata->object_class_objects;
     }
 
     /* Attribute Type */
     else if (afw_utf8_equal(object_type_id,
         afw_ldap_s__AdaptiveLdapAttributeType_))
     {
-        ht = self->adaptor->metadata->attribute_type_objects;
+        ht = self->adapter->metadata->attribute_type_objects;
     }
 
     /* Syntax */
     else if (afw_utf8_equal(object_type_id,
         afw_ldap_s__AdaptiveLdapSyntax_))
     {
-        ht = self->adaptor->metadata->ldap_syntax_objects;
+        ht = self->adapter->metadata->ldap_syntax_objects;
     }
 
     /* Matching Rule */
     else if (afw_utf8_equal(object_type_id,
         afw_ldap_s__AdaptiveLdapMatchingRule_))
     {
-        ht = self->adaptor->metadata->matching_rule_objects;
+        ht = self->adapter->metadata->matching_rule_objects;
     }
 
     /* Matching Rule Use */
     else if (afw_utf8_equal(object_type_id,
         afw_ldap_s__AdaptiveLdapMatchingRuleUse_))
     {
-        ht = self->adaptor->metadata->matching_rule_use_objects;
+        ht = self->adapter->metadata->matching_rule_use_objects;
     }
 
     /* If one of the multi entry pseudo object types, call retrieve them. */
@@ -1359,7 +1359,7 @@ afw_ldap_metadata_retrieve_objects(
         if (afw_utf8_equal(object_type_id,
             afw_ldap_s__AdaptiveLdapRootDse_))
         {
-            obj = self->adaptor->metadata->rootdse_object;
+            obj = self->adapter->metadata->rootdse_object;
             if (afw_query_criteria_test_object(obj, criteria,
                 xctx->p, xctx))
             {
@@ -1371,7 +1371,7 @@ afw_ldap_metadata_retrieve_objects(
         if (afw_utf8_equal(object_type_id,
             afw_ldap_s__AdaptiveLdapSchema_))
         {
-            obj = self->adaptor->metadata->schema_object;
+            obj = self->adapter->metadata->schema_object;
             if (afw_query_criteria_test_object(obj, criteria,
                 xctx->p, xctx))
             {
@@ -1388,7 +1388,7 @@ afw_ldap_metadata_retrieve_objects(
 
 AFW_DEFINE_STATIC_INLINE(const afw_object_t *)
 impl_get_object(
-    afw_ldap_internal_adaptor_session_t * self,
+    afw_ldap_internal_adapter_session_t * self,
     apr_hash_t *ht,
     const afw_utf8_t * object_id,
     afw_xctx_t *xctx)
@@ -1397,10 +1397,10 @@ impl_get_object(
 }
 
 
-/* Called by afw_ldap_adaptor_session() to get a metadata object. */
+/* Called by afw_ldap_adapter_session() to get a metadata object. */
 void
 afw_ldap_metadata_get_object(
-    afw_ldap_internal_adaptor_session_t * self,
+    afw_ldap_internal_adapter_session_t * self,
     const afw_utf8_t * object_type_id,
     const afw_utf8_t * object_id,
     void * context,
@@ -1416,7 +1416,7 @@ afw_ldap_metadata_get_object(
     if (afw_utf8_equal(object_type_id, afw_ldap_s__AdaptiveLdapRootDse_))
     {
         if (afw_utf8_equal(object_id, afw_s_current)) {
-            obj = self->adaptor->metadata->rootdse_object;
+            obj = self->adapter->metadata->rootdse_object;
         }
     }
 
@@ -1425,7 +1425,7 @@ afw_ldap_metadata_get_object(
         afw_ldap_s__AdaptiveLdapSchema_))
     {
         if (afw_utf8_equal(object_id, afw_s_current)) {
-            obj = self->adaptor->metadata->schema_object;
+            obj = self->adapter->metadata->schema_object;
         }
     }
 
@@ -1433,7 +1433,7 @@ afw_ldap_metadata_get_object(
     else if (afw_utf8_equal(object_type_id, afw_s__AdaptiveObjectType_))
     {
         obj = impl_get_object(self,
-            self->adaptor->metadata->object_type_objects,
+            self->adapter->metadata->object_type_objects,
             object_id, xctx);
     }
 
@@ -1441,7 +1441,7 @@ afw_ldap_metadata_get_object(
     else if (afw_utf8_equal(object_type_id, afw_s__AdaptiveValueMeta_))
     {
         obj = impl_get_object(self,
-            self->adaptor->metadata->value_meta_objects,
+            self->adapter->metadata->value_meta_objects,
             object_id, xctx);
     }
 
@@ -1450,7 +1450,7 @@ afw_ldap_metadata_get_object(
         afw_ldap_s__AdaptiveLdapObjectClass_))
     {
         obj = impl_get_object(self,
-            self->adaptor->metadata->object_class_objects,
+            self->adapter->metadata->object_class_objects,
             object_id, xctx);
     }
 
@@ -1459,7 +1459,7 @@ afw_ldap_metadata_get_object(
         afw_ldap_s__AdaptiveLdapAttributeType_))
     {
         obj = impl_get_object(self,
-            self->adaptor->metadata->attribute_type_objects,
+            self->adapter->metadata->attribute_type_objects,
             object_id, xctx);
     }
 
@@ -1468,7 +1468,7 @@ afw_ldap_metadata_get_object(
         afw_ldap_s__AdaptiveLdapSyntax_))
     {
         obj = impl_get_object(self,
-            self->adaptor->metadata->ldap_syntax_objects,
+            self->adapter->metadata->ldap_syntax_objects,
             object_id, xctx);
     }
 
@@ -1477,7 +1477,7 @@ afw_ldap_metadata_get_object(
         afw_ldap_s__AdaptiveLdapMatchingRule_))
     {
         obj = impl_get_object(self,
-            self->adaptor->metadata->matching_rule_objects,
+            self->adapter->metadata->matching_rule_objects,
             object_id, xctx);
     }
 
@@ -1486,7 +1486,7 @@ afw_ldap_metadata_get_object(
         afw_ldap_s__AdaptiveLdapMatchingRuleUse_))
     {
         obj = impl_get_object(self,
-            self->adaptor->metadata->matching_rule_use_objects,
+            self->adapter->metadata->matching_rule_use_objects,
             object_id, xctx);
     }
 
@@ -1509,7 +1509,7 @@ afw_ldap_metadata_handles(const afw_utf8_t *object_type)
 
 const afw_value_t *
 afw_ldap_metadata_bv_to_value(
-    afw_ldap_internal_adaptor_session_t *session,
+    afw_ldap_internal_adapter_session_t *session,
     afw_ldap_object_type_attribute_t *attribute,
     const afw_utf8_t *attribute_name,
     struct berval * *bv,
@@ -1534,14 +1534,14 @@ afw_ldap_metadata_bv_to_value(
 }
 
 struct berval **
-afw_ldap_metadata_value_to_bv(afw_ldap_internal_adaptor_session_t *session,
+afw_ldap_metadata_value_to_bv(afw_ldap_internal_adapter_session_t *session,
     const afw_utf8_t *attribute_name, const afw_value_t *value,
     afw_xctx_t *xctx)
 {
     const afw_ldap_metadata_attribute_type_t *attribute_type;
 
     attribute_type = apr_hash_get(
-        session->adaptor->metadata->attribute_types,
+        session->adapter->metadata->attribute_types,
         attribute_name->s, attribute_name->len);
     if (!attribute_type) {
         AFW_THROW_ERROR_FZ(general, xctx,

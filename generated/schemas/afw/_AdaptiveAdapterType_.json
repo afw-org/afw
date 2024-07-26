@@ -1,0 +1,36 @@
+{
+    "$defs": {
+        "_AdaptiveAdapterType_": {
+            "anyOf": [
+                {
+                    "$ref": "#/$defs/_AdaptiveAdapterType_.propertyTypes"
+                }
+            ],
+            "description": "A registry type adapter_factory entry.",
+            "type": "object",
+            "unevaluatedProperties": false
+        },
+        "_AdaptiveAdapterType_.propertyTypes": {
+            "properties": {
+                "adapterType": {
+                    "description": "This is the type for this adapter. It will create a registered adapter_type string, from which adapter instances will created from.",
+                    "title": "Adapter Type",
+                    "type": "string"
+                },
+                "description": {
+                    "contentMediaType": "text/plain",
+                    "description": "This is the description for this adapter type.",
+                    "title": "Description",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    },
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "anyOf": [
+        {
+            "$ref": "#/$defs/_AdaptiveAdapterType_"
+        }
+    ]
+}

@@ -9,8 +9,8 @@
     "parameters": [
         {
             "dataType": "string",
-            "description": "Id of adaptor.",
-            "name": "adaptorId"
+            "description": "Id of adapter.",
+            "name": "adapterId"
         }
     ],
     "returns": {

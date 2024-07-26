@@ -105,7 +105,7 @@
                 The <literal>Adaptive Framework Core</literal> refers to the
                 functionality that is provided by the framework, by default.  
                 Core includes built-in interfaces, data types, functions,
-                extensions, adaptors for persisting objects, logs and request 
+                extensions, adapters for persisting objects, logs and request 
                 handlers. It also includes a runtime environment and a language 
                 interpreter to evaluate Adaptive Scripts and Expressions.
             </paragraph>        
@@ -116,7 +116,7 @@
                 <literal>Extensions</literal> are shared libraries that are able
                 to be loaded dynamically at runtime by Adaptive Framework Core.
                 These extensions can then register additional functionality,
-                such as new data types, functions or adaptors.
+                such as new data types, functions or adapters.
             </paragraph>        
         </section> 
         <section>
@@ -125,7 +125,7 @@
                 <literal>Services</literal> bundle configuration objects with 
                 extension implementations, along with startup instructions, to 
                 deploy a dynamically reloadable unit of work. These may include 
-                logging, database adaptors, authorization handlers and more.
+                logging, database adapters, authorization handlers and more.
             </paragraph>        
         </section> 
         <section>

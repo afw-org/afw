@@ -25,68 +25,68 @@
 
 
 /**
- * Opaque typedef for afw_adaptor_id_anchor_t.
+ * Opaque typedef for afw_adapter_id_anchor_t.
  *
- * See afw_adaptor.h for struct and more information.
+ * See afw_adapter.h for struct and more information.
  */
-typedef struct afw_adaptor_id_anchor_s
-afw_adaptor_id_anchor_t;
+typedef struct afw_adapter_id_anchor_s
+afw_adapter_id_anchor_t;
 
 /**
- * Opaque typedef for afw_adaptor_impl_t.
+ * Opaque typedef for afw_adapter_impl_t.
  *
- * See afw_adaptor_impl.h for struct and more information.
+ * See afw_adapter_impl.h for struct and more information.
  */
-typedef struct afw_adaptor_impl_s
-afw_adaptor_impl_t;
+typedef struct afw_adapter_impl_s
+afw_adapter_impl_t;
 
 /**
- * Opaque typedef for afw_adaptor_impl_request_t.
+ * Opaque typedef for afw_adapter_impl_request_t.
  *
- * See afw_adaptor_impl.h for struct and more information.
+ * See afw_adapter_impl.h for struct and more information.
  */
-typedef struct afw_adaptor_impl_request_s
-afw_adaptor_impl_request_t;
+typedef struct afw_adapter_impl_request_s
+afw_adapter_impl_request_t;
 
 /**
- * Opaque typedef for afw_adaptor_impl_session_t.
+ * Opaque typedef for afw_adapter_impl_session_t.
  *
- * See afw_adaptor_impl.h for struct and more information.
+ * See afw_adapter_impl.h for struct and more information.
  */
-typedef struct afw_adaptor_impl_session_s
-afw_adaptor_impl_session_t;
+typedef struct afw_adapter_impl_session_s
+afw_adapter_impl_session_t;
 
 /**
- * Opaque typedef for afw_adaptor_internal_cache_t.
+ * Opaque typedef for afw_adapter_internal_cache_t.
  *
- * See afw_adaptor_internal.h for struct and more information.
+ * See afw_adapter_internal.h for struct and more information.
  */
-typedef struct afw_adaptor_internal_cache_s
-afw_adaptor_internal_cache_t;
+typedef struct afw_adapter_internal_cache_s
+afw_adapter_internal_cache_t;
 
 /**
- * Opaque typedef for afw_adaptor_internal_session_cache_t.
+ * Opaque typedef for afw_adapter_internal_session_cache_t.
  *
- * See afw_adaptor_internal.h for struct and more information.
+ * See afw_adapter_internal.h for struct and more information.
  */
-typedef struct afw_adaptor_internal_session_cache_s
-afw_adaptor_internal_session_cache_t;
+typedef struct afw_adapter_internal_session_cache_s
+afw_adapter_internal_session_cache_t;
 
 /**
- * Opaque typedef for afw_adaptor_modify_entry_t.
+ * Opaque typedef for afw_adapter_modify_entry_t.
  *
- * See afw_adaptor.h for struct and more information.
+ * See afw_adapter.h for struct and more information.
  */
-typedef struct afw_adaptor_modify_entry_s
-afw_adaptor_modify_entry_t;
+typedef struct afw_adapter_modify_entry_s
+afw_adapter_modify_entry_t;
 
 /**
- * Opaque typedef for afw_adaptor_internal_t.
+ * Opaque typedef for afw_adapter_internal_t.
  *
- * See afw_adaptor_internal.h for struct and more information.
+ * See afw_adapter_internal.h for struct and more information.
  */
-typedef struct afw_adaptor_xctx_internal_s 
-afw_adaptor_xctx_internal_t;
+typedef struct afw_adapter_xctx_internal_s 
+afw_adapter_xctx_internal_t;
 
 /**
  * @brief Application app (afw_app) object.
@@ -447,20 +447,20 @@ typedef struct afw_model_internal_context_s
 afw_model_internal_context_t;
 
 /**
- * Opaque typedef for type=model adaptor self.
+ * Opaque typedef for type=model adapter self.
  *
  * See afw_model.h for struct definition.
  */
-typedef struct afw_model_internal_adaptor_self_s
-afw_model_internal_adaptor_self_t;
+typedef struct afw_model_internal_adapter_self_s
+afw_model_internal_adapter_self_t;
 
 /**
- * Opaque typedef for type=model adaptor session self.
+ * Opaque typedef for type=model adapter session self.
  *
  * See afw_model.h for struct definition.
  */
-typedef struct afw_model_internal_adaptor_session_self_s
-afw_model_internal_adaptor_session_self_t;
+typedef struct afw_model_internal_adapter_session_self_s
+afw_model_internal_adapter_session_self_t;
 
 /**
  * Opaque typedef for model object type.

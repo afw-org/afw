@@ -39,7 +39,7 @@ impl_default_afw_conf = AFW_UTF8_LITERAL(
 "    {\n"
 "        \"type\"                : \"requestHandler\",\n"
 "        \"uriPrefix\"           : \"/\",\n"
-"        \"requestHandlerType\"  : \"adaptor\"\n"
+"        \"requestHandlerType\"  : \"adapter\"\n"
 "    }\n"
 "]\n"
 );
@@ -412,7 +412,7 @@ impl_read_and_process_request(
 
     AFW_FINALLY{
         xctx->request = NULL;
-        afw_adaptor_session_commit_and_release_cache(error_occurred, xctx);
+        afw_adapter_session_commit_and_release_cache(error_occurred, xctx);
         /* Special case: xctx is gone, so return before AFW_ENDTRY. */
         if (keep_going) {
             afw_command_local_server_write_end(self);

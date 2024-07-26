@@ -52,7 +52,7 @@ afw_request_handler_director_create(
         AFW_THROW_ERROR_Z(general, "Request handler head missing.", xctx);
     }
 
-    /* Return new adaptor. */
+    /* Return new adapter. */
     return (const afw_request_handler_t *)self;
 }
 

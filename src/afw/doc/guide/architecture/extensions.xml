@@ -12,7 +12,7 @@
     <paragraph>
         An Adaptive Framework Extension is a shared library, which, when loaded
         by the Core, may register interface implementations, such as additional
-        data types, functions, adaptors, content types or request handlers.
+        data types, functions, adapters, content types or request handlers.
         These allow for other technologies to be integrated in a way that they
         can seem like a part of the core, as first-class citizens.  
     </paragraph>

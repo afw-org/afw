@@ -27,7 +27,7 @@ AFW_DEFINE(const afw_authorization_handler_t *)
     AFW_AUTHORIZATION_HANDLER_SELF_T *self;
     afw_authorization_handler_t *authorization_handler;
     
-    /* Create adaptor and process common properties. */
+    /* Create adapter and process common properties. */
     authorization_handler = afw_authorization_handler_impl_create_cede_p(
             &impl_afw_authorization_handler_inf,
             sizeof(AFW_AUTHORIZATION_HANDLER_SELF_T),

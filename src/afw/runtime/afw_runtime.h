@@ -17,14 +17,14 @@ AFW_BEGIN_DECLARES
  * @defgroup afw_runtime Runtime objects
  * @ingroup afw_c_api_public
  *
- * This is an Adaptive Framework read-only objects adaptor.
+ * This is an Adaptive Framework read-only objects adapter.
  *
  * @{
  */
 
 /**
  * @file afw_runtime.h
- * @brief Runtime objects adaptor.
+ * @brief Runtime objects adapter.
  */
 
 
@@ -43,10 +43,10 @@ afw_runtime_inf_const_meta_object_inf;
 struct afw_runtime_custom_s {
 
     /** @brief The session retrieve_objects method. */
-    afw_adaptor_session_retrieve_objects_t retrieve_objects;
+    afw_adapter_session_retrieve_objects_t retrieve_objects;
 
     /** @brief The session get_object method. */
-    afw_adaptor_session_get_object_t get_object;
+    afw_adapter_session_get_object_t get_object;
 
 };
 
@@ -335,7 +335,7 @@ afw_runtime_env_create_and_set_indirect_object_using_inf(
  * Custom handled object types are not supported and will call callback
  * once with NULL object.
  *
- * The callback function is the same type as the normal adaptor get/retrieve
+ * The callback function is the same type as the normal adapter get/retrieve
  * callback, but should not release the object passed.
  */
 AFW_DECLARE(void)
@@ -347,11 +347,11 @@ afw_runtime_foreach(
 
 
 /**
- * @brief Get singleton factory for runtime adaptor.
- * @return pointer to adaptor factory.
+ * @brief Get singleton factory for runtime adapter.
+ * @return pointer to adapter factory.
  */
-AFW_DECLARE(const afw_adaptor_factory_t *)
-afw_runtime_get_adaptor_factory();
+AFW_DECLARE(const afw_adapter_factory_t *)
+afw_runtime_get_adapter_factory();
 
 
 
@@ -359,9 +359,9 @@ afw_runtime_get_adaptor_factory();
  * @brief Get an internal session for runtime objects.
  * @param p to use for session.
  * @param xctx of caller.
- * @return pointer to adaptor factory.
+ * @return pointer to adapter factory.
  */
-AFW_DECLARE(const afw_adaptor_session_t *)
+AFW_DECLARE(const afw_adapter_session_t *)
 afw_runtime_get_internal_session(
     afw_xctx_t *xctx);
 

@@ -3,7 +3,7 @@
     "collectionURIs": [
         "/afw/_AdaptiveCollection_/vfs_extension"
     ],
-    "description": "This is the single object type of objects in a vfs adaptor.",
+    "description": "This is the single object type of objects in a vfs adapter.",
     "objectType": "_AdaptiveFile_vfs",
     "propertyTypes": {
         "data": {

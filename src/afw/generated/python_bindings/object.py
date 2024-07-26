@@ -357,7 +357,7 @@ def le_object(session, arg1, arg2):
 
     return response['actions'][0]['result']
 
-def local_object_meta_set_ids(session, object, objectType, objectId, adaptorId=None):
+def local_object_meta_set_ids(session, object, objectType, objectId, adapterId=None):
     """
     Set ids in a local mutable object
 
@@ -367,7 +367,7 @@ def local_object_meta_set_ids(session, object, objectType, objectId, adaptorId=N
     Args:
         object (dict): Object to set ids in.
 
-        adaptorId (str): Adaptor id for object.
+        adapterId (str): Adapter id for object.
 
         objectType (str): Object type id for object.
 
@@ -386,8 +386,8 @@ def local_object_meta_set_ids(session, object, objectType, objectId, adaptorId=N
         "objectId": objectId
     }
 
-    if adaptorId != None:
-        action['adaptorId'] = adaptorId
+    if adapterId != None:
+        action['adapterId'] = adapterId
 
     request.add_action(action)
 

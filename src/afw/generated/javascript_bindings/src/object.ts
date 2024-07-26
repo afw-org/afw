@@ -246,7 +246,7 @@ export function afwLeObject(client : any, arg1 : object, arg2 : any) : any {
  * 
  * @param {object} object - Object to set ids in.
  * 
- * @param {string} adaptorId - Adaptor id for object.
+ * @param {string} adapterId - Adapter id for object.
  * 
  * @param {string} objectType - Object type id for object.
  * 
@@ -254,7 +254,7 @@ export function afwLeObject(client : any, arg1 : object, arg2 : any) : any {
  * 
  * @returns {void}
  */
-export function afwLocalObjectMetaSetIds(client : any, object : object, objectType : string, objectId : string, adaptorId? : string) : any {
+export function afwLocalObjectMetaSetIds(client : any, object : object, objectType : string, objectId : string, adapterId? : string) : any {
 
     let _action : IAnyObject = {};
 
@@ -263,8 +263,8 @@ export function afwLocalObjectMetaSetIds(client : any, object : object, objectTy
     _action["objectType"] = objectType;
     _action["objectId"] = objectId;
 
-    if (adaptorId !== undefined)
-        _action["adaptorId"] = adaptorId;
+    if (adapterId !== undefined)
+        _action["adapterId"] = adapterId;
 
     return client.perform(_action);
 }

@@ -129,7 +129,7 @@ HTTP-like local server implementation.
 
 The --conf specified on the afw command allow much of the configuration
 available to an afw HTTP server. If there is not a conf file supplied, a request
-handler is added for "/" that used the adaptor request handler.
+handler is added for "/" that used the adapter request handler.
 
 The first line of the request must be an HTTP method name followed by a URI. The
 remainder of the first line is ignored for now but for possible future

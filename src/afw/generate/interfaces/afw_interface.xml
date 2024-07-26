@@ -133,7 +133,7 @@ AFW_ENVIRONMENT_DEFINE_EXTENSION_IMPL();
       </description>
 
       <parameter name="instance" type="const afw_extension_t *">
-        <description>Pointer to this adaptor instance.</description>
+        <description>Pointer to this adapter instance.</description>
       </parameter>
 
       <parameter name="xctx" type="afw_xctx_t *">
@@ -147,16 +147,16 @@ AFW_ENVIRONMENT_DEFINE_EXTENSION_IMPL();
   </interface>
 
 
-  <interface name="afw_adaptor_factory" id="afwaf">
+  <interface name="afw_adapter_factory" id="afwaf">
 
-    <description>Factory to create an instance of an afw_adaptor.</description>
+    <description>Factory to create an instance of an afw_adapter.</description>
 
-    <variable name="adaptor_type" type="afw_utf8_t">
-      <description>Type of adaptor this factory creates.</description>
+    <variable name="adapter_type" type="afw_utf8_t">
+      <description>Type of adapter this factory creates.</description>
     </variable>
 
     <variable name="description" type="const afw_utf8_t *">
-      <description>Type of adaptor this factory creates.</description>
+      <description>Type of adapter this factory creates.</description>
     </variable>
 
     <model_c_code label="more_includes">
@@ -164,26 +164,26 @@ AFW_ENVIRONMENT_DEFINE_EXTENSION_IMPL();
 #include "<afwdev {prefixed_interface_name.replace('_factory','')}>.h"]]>
     </model_c_code>
 
-    <method name="create_adaptor_cede_p">
+    <method name="create_adapter_cede_p">
 
       <description>
-        Create an adaptor of the factory's type.
+        Create an adapter of the factory's type.
       </description>
 
-      <parameter name="instance" type="const afw_adaptor_factory_t *">
-        <description>Pointer to this adaptor instance.</description>
+      <parameter name="instance" type="const afw_adapter_factory_t *">
+        <description>Pointer to this adapter instance.</description>
       </parameter>
 
       <parameter name="properties" type="const afw_object_t *">
         <description>
-          Configuration parameters for the particular type of adaptor. This
-          will become the properties object for adaptor.
+          Configuration parameters for the particular type of adapter. This
+          will become the properties object for adapter.
         </description>
       </parameter>
 
       <parameter name="p" type="const afw_pool_t *">
         <description>
-          The pool that will be used for adaptor resources.
+          The pool that will be used for adapter resources.
         </description>
       </parameter>
 
@@ -191,9 +191,9 @@ AFW_ENVIRONMENT_DEFINE_EXTENSION_IMPL();
         <description>This is the caller's xctx.</description>
       </parameter>
 
-      <return type="const afw_adaptor_t *">
+      <return type="const afw_adapter_t *">
         <description>
-          An instance of an adaptor.
+          An instance of an adapter.
         </description>
       </return>
 
@@ -201,7 +201,7 @@ AFW_ENVIRONMENT_DEFINE_EXTENSION_IMPL();
         <![CDATA[
     /** @todo If needed, add/modify the following code to implement method. */
 
-    /* Return adaptor instance. */
+    /* Return adapter instance. */
     return <afwdev {prefixed_interface_name.replace('_factory','')}>_create_cede_p(properties, p, xctx);
       ]]>
       </model_c_code>
@@ -211,24 +211,24 @@ AFW_ENVIRONMENT_DEFINE_EXTENSION_IMPL();
   </interface>
 
 
-  <interface name="afw_adaptor" id="afwa" create_function="create_cede_p">
+  <interface name="afw_adapter" id="afwa" create_function="create_cede_p">
 
     <description>
-      Adaptor interface.
+      Adapter interface.
     </description>
 
     <variable name="p" type="const afw_pool_t *">
       <description>
-        Adaptor's pool. This pool will exist for the life of the adaptor.
+        Adapter's pool. This pool will exist for the life of the adapter.
       </description>
     </variable>
 
-    <variable name="adaptor_id" type="afw_utf8_t">
-      <description>Id of adaptor.</description>
+    <variable name="adapter_id" type="afw_utf8_t">
+      <description>Id of adapter.</description>
     </variable>
 
-    <variable name="adaptor_type_id" type="const afw_utf8_t *">
-      <description>Id of adaptor type.</description>
+    <variable name="adapter_type_id" type="const afw_utf8_t *">
+      <description>Id of adapter type.</description>
     </variable>
 
     <variable name="service_id" type="const afw_utf8_t *">
@@ -239,67 +239,67 @@ AFW_ENVIRONMENT_DEFINE_EXTENSION_IMPL();
     </variable>
 
     <variable name="properties" type="const afw_object_t *">
-      <description>This adaptor's properties (configuration) object.</description>
+      <description>This adapter's properties (configuration) object.</description>
     </variable>
 
     <variable name="source_location" type="const afw_utf8_t *">
       <description>
-        This is the source location to help determine how this adaptor was defined.
+        This is the source location to help determine how this adapter was defined.
       </description>
     </variable>
 
     <variable name="trace_flag_id" type="const afw_utf8_t *">
       <description>
-        This is the basic trace flag id for this adaptor's adaptor id.
+        This is the basic trace flag id for this adapter's adapter id.
       </description>
     </variable>
 
     <variable name="trace_flag_index" type="afw_size_t">
       <description>
-        This is the basic trace flag index for this adaptor's adaptor id.
+        This is the basic trace flag index for this adapter's adapter id.
       </description>
     </variable>
 
     <variable name="detail_flag_id" type="const afw_utf8_t *">
       <description>
-        This is the detail trace flag id for this adaptor's adaptor id.
+        This is the detail trace flag id for this adapter's adapter id.
       </description>
     </variable>
 
     <variable name="detail_flag_index" type="afw_size_t">
       <description>
-        This is the detail trace flag index for this adaptor's adaptor id.
+        This is the detail trace flag index for this adapter's adapter id.
       </description>
     </variable>
 
-    <variable name="impl" type="const afw_adaptor_impl_t *">
+    <variable name="impl" type="const afw_adapter_impl_t *">
       <description>
-        Used by adaptor common code.
+        Used by adapter common code.
       </description>
     </variable>
 
     <model_c_code label="create">
       <![CDATA[    
-/* Create an instance of the adaptor. */
-AFW_DEFINE(const afw_adaptor_t *)
+/* Create an instance of the adapter. */
+AFW_DEFINE(const afw_adapter_t *)
 <afwdev {prefixed_interface_name}>_create_cede_p(
     const afw_object_t *properties,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    AFW_ADAPTOR_SELF_T *self;
-    afw_adaptor_t *adaptor;
+    AFW_ADAPTER_SELF_T *self;
+    afw_adapter_t *adapter;
     
-    /* Create adaptor and process common properties. */
-    adaptor = afw_adaptor_impl_create_cede_p(
-            &impl_afw_adaptor_inf,
-            sizeof(AFW_ADAPTOR_SELF_T),
+    /* Create adapter and process common properties. */
+    adapter = afw_adapter_impl_create_cede_p(
+            &impl_afw_adapter_inf,
+            sizeof(AFW_ADAPTER_SELF_T),
             properties, p, xctx);
-    self = (AFW_ADAPTOR_SELF_T *)adaptor;
+    self = (AFW_ADAPTER_SELF_T *)adapter;
 
     /** @todo Handle implementation specific configuration parameters, etc. */
        
-    /* Return adaptor. */
-    return adaptor;
+    /* Return adapter. */
+    return adapter;
 }
       ]]>
     </model_c_code>
@@ -309,15 +309,15 @@ AFW_DEFINE(const afw_adaptor_t *)
 
       <description>
         This method should not be called directly unless you are manually
-        managing the lifetime of this adaptor. The functions in afw_adaptor.h
-        will call this method when there are no more references to this adaptor
+        managing the lifetime of this adapter. The functions in afw_adapter.h
+        will call this method when there are no more references to this adapter
         and then destroy the pool passed to the create function.
 
         The implementation of this method releases any resource not tied to that pool.
       </description>
 
-      <parameter name="instance" type="const afw_adaptor_t *">
-        <description>Pointer to this adaptor instance.</description>
+      <parameter name="instance" type="const afw_adapter_t *">
+        <description>Pointer to this adapter instance.</description>
       </parameter>
 
       <parameter name="xctx" type="afw_xctx_t *">
@@ -329,17 +329,17 @@ AFW_DEFINE(const afw_adaptor_t *)
     </method>
 
 
-    <method name="create_adaptor_session">
+    <method name="create_adapter_session">
 
       <description>
         This method should not be called directly unless you are manually
-        managing the lifetime of this adaptor. The functions in afw_adaptor.h will
-        call this method to create an adaptor session instance and will call
+        managing the lifetime of this adapter. The functions in afw_adapter.h will
+        call this method to create an adapter session instance and will call
         the session's destroy() method when the session has on more references.
       </description>
 
-      <parameter name="instance" type="const afw_adaptor_t *">
-        <description>Pointer to this adaptor instance.</description>
+      <parameter name="instance" type="const afw_adapter_t *">
+        <description>Pointer to this adapter instance.</description>
       </parameter>
 
       <parameter name="xctx" type="afw_xctx_t *">
@@ -348,8 +348,8 @@ AFW_DEFINE(const afw_adaptor_t *)
         </description>
       </parameter>
 
-      <return type="const afw_adaptor_session_t *">
-        <description>Pointer to new adaptor session instance.</description>
+      <return type="const afw_adapter_session_t *">
+        <description>Pointer to new adapter session instance.</description>
       </return>
 
     </method>
@@ -357,11 +357,11 @@ AFW_DEFINE(const afw_adaptor_t *)
     <method name="get_additional_metrics">
 
       <description>
-        Get additional adaptor specific metrics.
+        Get additional adapter specific metrics.
       </description>
 
-      <parameter name="instance" type="const afw_adaptor_t *">
-        <description>Pointer to this adaptor instance.</description>
+      <parameter name="instance" type="const afw_adapter_t *">
+        <description>Pointer to this adapter instance.</description>
       </parameter>
 
       <parameter name="p" type="const afw_pool_t *">
@@ -385,27 +385,27 @@ AFW_DEFINE(const afw_adaptor_t *)
   </interface>
 
 
-  <interface name="afw_adaptor_object_type_cache" id="afwaot">
+  <interface name="afw_adapter_object_type_cache" id="afwaot">
 
     <description>
-      Adaptor object type cache interface. This interface is used by
-      afw_adaptor_get_object_type(). 
+      Adapter object type cache interface. This interface is used by
+      afw_adapter_get_object_type(). 
     </description>
 
-    <variable name="session" type="const afw_adaptor_session_t *">
+    <variable name="session" type="const afw_adapter_session_t *">
       <description>
-        Associated adaptor session.
+        Associated adapter session.
       </description>
     </variable>
 
     <variable name="all_object_types_immutable" type="afw_boolean_t">
       <description>
-        All object types for associated adaptor are immutable.
+        All object types for associated adapter are immutable.
 
-        If true, afw_adaptor_get_object_type() will call the set()
+        If true, afw_adapter_get_object_type() will call the set()
         method when new object types are created.
 
-        If false, afw_adaptor_get_object_type() will only cache object
+        If false, afw_adapter_get_object_type() will only cache object
         type for session.
       </description>
     </variable>
@@ -416,9 +416,9 @@ AFW_DEFINE(const afw_adaptor_t *)
         Get a object type.
       </description>
 
-      <parameter name="instance" type="const afw_adaptor_object_type_cache_t *">
+      <parameter name="instance" type="const afw_adapter_object_type_cache_t *">
         <description>
-          Pointer to this adaptor object type cache instance.
+          Pointer to this adapter object type cache instance.
         </description>
       </parameter>
 
@@ -432,10 +432,10 @@ AFW_DEFINE(const afw_adaptor_t *)
         <description>
           Pointer to place to return flag.
 
-          If true, afw_adaptor_get_object_type() will always return the
+          If true, afw_adapter_get_object_type() will always return the
           result of calling the get() method.
 
-          If false and get() returns NULL, afw_adaptor_get_object_type()
+          If false and get() returns NULL, afw_adapter_get_object_type()
           will try to create and return a new object_type and return.
           The set() method will be called if all_object_types_immutable is
           true.
@@ -460,9 +460,9 @@ AFW_DEFINE(const afw_adaptor_t *)
         Get a object type.
       </description>
 
-      <parameter name="instance" type="const afw_adaptor_object_type_cache_t *">
+      <parameter name="instance" type="const afw_adapter_object_type_cache_t *">
         <description>
-          Pointer to this adaptor object type cache instance.
+          Pointer to this adapter object type cache instance.
         </description>
       </parameter>
 
@@ -483,34 +483,34 @@ AFW_DEFINE(const afw_adaptor_t *)
   </interface>
 
 
-  <interface name="afw_adaptor_session" id="afwas" create_function="create_internal">
+  <interface name="afw_adapter_session" id="afwas" create_function="create_internal">
 
     <description>
-      Adaptor session interface.
+      Adapter session interface.
     </description>
 
-    <variable name="adaptor" type="const afw_adaptor_t *">
-      <description>Adaptor sessions's associated adaptor.</description>
+    <variable name="adapter" type="const afw_adapter_t *">
+      <description>Adapter sessions's associated adapter.</description>
     </variable>
 
     <variable name="p" type="const afw_pool_t *">
-      <description>Adaptor sessions's pool. This pool will exist for the life of the adaptor session.</description>
+      <description>Adapter sessions's pool. This pool will exist for the life of the adapter session.</description>
     </variable>
 
     <method name="destroy">
 
       <description>
         This method should not be called directly unless you are manually
-        managing the lifetime of this adaptor. The functions in afw_adaptor.h will
-        call this method when there are no more references to this adaptor session.
+        managing the lifetime of this adapter. The functions in afw_adapter.h will
+        call this method when there are no more references to this adapter session.
 
         The implementation releases resources acquired since the session was
-        created by create_adaptor_session().
+        created by create_adapter_session().
       </description>
 
-      <parameter name="instance" type="const afw_adaptor_session_t *">
+      <parameter name="instance" type="const afw_adapter_session_t *">
         <description>
-          Pointer to this adaptor session instance.
+          Pointer to this adapter session instance.
           Make sure to call commit or changes will be lost.
         </description>
       </parameter>
@@ -527,17 +527,17 @@ AFW_DEFINE(const afw_adaptor_t *)
     <method name="retrieve_objects">
 
       <description>
-        Retrieve adaptive objects via this adaptor that match criteria.
+        Retrieve adaptive objects via this adapter that match criteria.
       </description>
 
-      <parameter name="instance" type="const afw_adaptor_session_t *">
-        <description>Pointer to this adaptor session instance.</description>
+      <parameter name="instance" type="const afw_adapter_session_t *">
+        <description>Pointer to this adapter session instance.</description>
       </parameter>
 
-      <parameter name="impl_request" type="const afw_adaptor_impl_request_t *">
+      <parameter name="impl_request" type="const afw_adapter_impl_request_t *">
         <description>
-          Pass this as first parameter of afw_adaptor_impl_request_*() functions.
-          See afw_adaptor_impl.h for more information.
+          Pass this as first parameter of afw_adapter_impl_request_*() functions.
+          See afw_adapter_impl.h for more information.
         </description>
       </parameter>
 
@@ -570,16 +570,16 @@ AFW_DEFINE(const afw_adaptor_t *)
         </description>
       </parameter>
 
-      <parameter name="adaptor_type_specific" type="const afw_object_t *">
+      <parameter name="adapter_type_specific" type="const afw_object_t *">
         <description>
-          This is an adaptor type specific object parameter or NULL.
+          This is an adapter type specific object parameter or NULL.
           
-          If the adaptor type supports this parameter, the object type of the
-          object is available via the afw adaptor with an object type id of:
+          If the adapter type supports this parameter, the object type of the
+          object is available via the afw adapter with an object type id of:
 
-          _AdaptiveAdaptorTypeSpecific_${adaptorType}_retrieve_objects
+          _AdaptiveAdapterTypeSpecific_${adapterType}_retrieve_objects
 
-          where ${adaptorType} is the adaptor type id.
+          where ${adapterType} is the adapter type id.
         </description>
       </parameter>
 
@@ -599,17 +599,17 @@ AFW_DEFINE(const afw_adaptor_t *)
     <method name="get_object">
 
       <description>
-        Retrieve an read-only copy of an adaptive object via adaptor.
+        Retrieve an read-only copy of an adaptive object via adapter.
       </description>
 
-      <parameter name="instance" type="const afw_adaptor_session_t *">
-        <description>Pointer to this adaptor session instance.</description>
+      <parameter name="instance" type="const afw_adapter_session_t *">
+        <description>Pointer to this adapter session instance.</description>
       </parameter>
 
-      <parameter name="impl_request" type="const afw_adaptor_impl_request_t *">
+      <parameter name="impl_request" type="const afw_adapter_impl_request_t *">
         <description>
-          Pass this as first parameter of afw_adaptor_impl_request_*() functions.
-          See afw_adaptor_impl.h for more information.
+          Pass this as first parameter of afw_adapter_impl_request_*() functions.
+          See afw_adapter_impl.h for more information.
         </description>
       </parameter>
 
@@ -637,16 +637,16 @@ AFW_DEFINE(const afw_adaptor_t *)
         </description>
       </parameter>
 
-      <parameter name="adaptor_type_specific" type="const afw_object_t *">
+      <parameter name="adapter_type_specific" type="const afw_object_t *">
         <description>
-          This is an adaptor type specific object parameter or NULL.
+          This is an adapter type specific object parameter or NULL.
 
-          If the adaptor type supports this parameter, the object type of the
-          object is available via the afw adaptor with an object type id of:
+          If the adapter type supports this parameter, the object type of the
+          object is available via the afw adapter with an object type id of:
 
-          _AdaptiveAdaptorTypeSpecific_${adaptorType}_get_object
+          _AdaptiveAdapterTypeSpecific_${adapterType}_get_object
 
-          where ${adaptorType} is the adaptor type id.
+          where ${adapterType} is the adapter type id.
         </description>
       </parameter>
 
@@ -666,17 +666,17 @@ AFW_DEFINE(const afw_adaptor_t *)
     <method name="add_object">
 
       <description>
-        Add an adaptive object via this adaptor.
+        Add an adaptive object via this adapter.
       </description>
 
-      <parameter name="instance" type="const afw_adaptor_session_t *">
-        <description>Pointer to this adaptor session instance.</description>
+      <parameter name="instance" type="const afw_adapter_session_t *">
+        <description>Pointer to this adapter session instance.</description>
       </parameter>
 
-      <parameter name="impl_request" type="const afw_adaptor_impl_request_t *">
+      <parameter name="impl_request" type="const afw_adapter_impl_request_t *">
         <description>
-          Pass this as first parameter of afw_adaptor_impl_request_*() functions.
-          See afw_adaptor_impl.h for more information.
+          Pass this as first parameter of afw_adapter_impl_request_*() functions.
+          See afw_adapter_impl.h for more information.
         </description>
       </parameter>
 
@@ -687,8 +687,8 @@ AFW_DEFINE(const afw_adaptor_t *)
       <parameter name="suggested_object_id" type="const afw_utf8_t *">
         <description>
           The suggested object id of the added object. This object id must be
-          unique within the object type. If NULL or at the adaptor's option,
-          the adaptor will generate a unique object id.
+          unique within the object type. If NULL or at the adapter's option,
+          the adapter will generate a unique object id.
         </description>
       </parameter>
 
@@ -697,27 +697,27 @@ AFW_DEFINE(const afw_adaptor_t *)
           Object to add.
 
           Unless documented otherwise by non-default options, this object only needs
-          to exist for the life of the add_object() call. Some adaptors have options
+          to exist for the life of the add_object() call. Some adapters have options
           that require longer lifetimes for these objects. For example, a memory
-          adaptor can be created with the option to not clone an object when added
+          adapter can be created with the option to not clone an object when added
           to memory store. In this case, it's the caller responsibility to create
-          the object in a pool that has the minimal lifetime of the memory adaptor
-          itself. For instance, the adaptor's pool can be used during object create.
-          The memory adaptor then uses the object's pool's get_reference() and release()
+          the object in a pool that has the minimal lifetime of the memory adapter
+          itself. For instance, the adapter's pool can be used during object create.
+          The memory adapter then uses the object's pool's get_reference() and release()
           methods to manage the lifetime of the object.
         </description>
       </parameter>
 
-      <parameter name="adaptor_type_specific" type="const afw_object_t *">
+      <parameter name="adapter_type_specific" type="const afw_object_t *">
         <description>
-          This is an adaptor type specific object parameter or NULL.
+          This is an adapter type specific object parameter or NULL.
 
-          If the adaptor type supports this parameter, the object type of the
-          object is available via the afw adaptor with an object type id of:
+          If the adapter type supports this parameter, the object type of the
+          object is available via the afw adapter with an object type id of:
 
-          _AdaptiveAdaptorTypeSpecific_${adaptorType}_add_object
+          _AdaptiveAdapterTypeSpecific_${adapterType}_add_object
 
-          where ${adaptorType} is the adaptor type id.
+          where ${adapterType} is the adapter type id.
         </description>
       </parameter>
 
@@ -735,19 +735,19 @@ AFW_DEFINE(const afw_adaptor_t *)
     <method name="modify_object">
 
       <description>
-        Modify an existing adaptive object via adaptor. Unlike the
+        Modify an existing adaptive object via adapter. Unlike the
         update_object method, this method allows value assertions and
         modifications of single values of multi-value properties.
       </description>
 
-      <parameter name="instance" type="const afw_adaptor_session_t *">
-        <description>Pointer to this adaptor session instance.</description>
+      <parameter name="instance" type="const afw_adapter_session_t *">
+        <description>Pointer to this adapter session instance.</description>
       </parameter>
 
-      <parameter name="impl_request" type="const afw_adaptor_impl_request_t *">
+      <parameter name="impl_request" type="const afw_adapter_impl_request_t *">
         <description>
-          Pass this as first parameter of afw_adaptor_impl_request_*() functions.
-          See afw_adaptor_impl.h for more information.
+          Pass this as first parameter of afw_adapter_impl_request_*() functions.
+          See afw_adapter_impl.h for more information.
         </description>
       </parameter>
 
@@ -759,20 +759,20 @@ AFW_DEFINE(const afw_adaptor_t *)
         <description>Object id of object to modify.</description>
       </parameter>
 
-      <parameter name="entry" type="const afw_adaptor_modify_entry_t * const *">
-        <description>NULL terminated array of pointers to adaptor modify entries.</description>
+      <parameter name="entry" type="const afw_adapter_modify_entry_t * const *">
+        <description>NULL terminated array of pointers to adapter modify entries.</description>
       </parameter>
 
-      <parameter name="adaptor_type_specific" type="const afw_object_t *">
+      <parameter name="adapter_type_specific" type="const afw_object_t *">
         <description>
-          This is an adaptor type specific object parameter or NULL.
+          This is an adapter type specific object parameter or NULL.
 
-          If the adaptor type supports this parameter, the object type of the
-          object is available via the afw adaptor with an object type id of:
+          If the adapter type supports this parameter, the object type of the
+          object is available via the afw adapter with an object type id of:
 
-          _AdaptiveAdaptorTypeSpecific_${adaptorType}_modify_object
+          _AdaptiveAdapterTypeSpecific_${adapterType}_modify_object
 
-          where ${adaptorType} is the adaptor type id.
+          where ${adapterType} is the adapter type id.
         </description>
       </parameter>
 
@@ -788,17 +788,17 @@ AFW_DEFINE(const afw_adaptor_t *)
     <method name="replace_object">
 
       <description>
-        Completely replace an existing adaptive object via adaptor.
+        Completely replace an existing adaptive object via adapter.
       </description>
 
-      <parameter name="instance" type="const afw_adaptor_session_t *">
-        <description>Pointer to this adaptor session instance.</description>
+      <parameter name="instance" type="const afw_adapter_session_t *">
+        <description>Pointer to this adapter session instance.</description>
       </parameter>
 
-      <parameter name="impl_request" type="const afw_adaptor_impl_request_t *">
+      <parameter name="impl_request" type="const afw_adapter_impl_request_t *">
         <description>
-          Pass this as first parameter of afw_adaptor_impl_request_*() functions.
-          See afw_adaptor_impl.h for more information.
+          Pass this as first parameter of afw_adapter_impl_request_*() functions.
+          See afw_adapter_impl.h for more information.
         </description>
       </parameter>
 
@@ -816,16 +816,16 @@ AFW_DEFINE(const afw_adaptor_t *)
         </description>
       </parameter>
 
-      <parameter name="adaptor_type_specific" type="const afw_object_t *">
+      <parameter name="adapter_type_specific" type="const afw_object_t *">
         <description>
-          This is an adaptor type specific object parameter or NULL.
+          This is an adapter type specific object parameter or NULL.
 
-          If the adaptor type supports this parameter, the object type of the
-          object is available via the afw adaptor with an object type id of:
+          If the adapter type supports this parameter, the object type of the
+          object is available via the afw adapter with an object type id of:
 
-          _AdaptiveAdaptorTypeSpecific_${adaptorType}_replace_object
+          _AdaptiveAdapterTypeSpecific_${adapterType}_replace_object
 
-          where ${adaptorType} is the adaptor type id.
+          where ${adapterType} is the adapter type id.
         </description>
       </parameter>
 
@@ -845,14 +845,14 @@ AFW_DEFINE(const afw_adaptor_t *)
         considered an error if object does not exist.
       </description>
 
-      <parameter name="instance" type="const afw_adaptor_session_t *">
-        <description>Pointer to this adaptor session instance.</description>
+      <parameter name="instance" type="const afw_adapter_session_t *">
+        <description>Pointer to this adapter session instance.</description>
       </parameter>
 
-      <parameter name="impl_request" type="const afw_adaptor_impl_request_t *">
+      <parameter name="impl_request" type="const afw_adapter_impl_request_t *">
         <description>
-          Pass this as first parameter of afw_adaptor_impl_request_*() functions.
-          See afw_adaptor_impl.h for more information.
+          Pass this as first parameter of afw_adapter_impl_request_*() functions.
+          See afw_adapter_impl.h for more information.
         </description>
       </parameter>
 
@@ -864,16 +864,16 @@ AFW_DEFINE(const afw_adaptor_t *)
         <description>Object id of object to delete.</description>
       </parameter>
 
-      <parameter name="adaptor_type_specific" type="const afw_object_t *">
+      <parameter name="adapter_type_specific" type="const afw_object_t *">
         <description>
-          This is an adaptor type specific object parameter or NULL.
+          This is an adapter type specific object parameter or NULL.
 
-          If the adaptor type supports this parameter, the object type of the
-          object is available via the afw adaptor with an object type id of:
+          If the adapter type supports this parameter, the object type of the
+          object is available via the afw adapter with an object type id of:
 
-          _AdaptiveAdaptorTypeSpecific_${adaptorType}_delete_object
+          _AdaptiveAdapterTypeSpecific_${adapterType}_delete_object
 
-          where ${adaptorType} is the adaptor type id.
+          where ${adapterType} is the adapter type id.
         </description>
       </parameter>
 
@@ -889,24 +889,24 @@ AFW_DEFINE(const afw_adaptor_t *)
     <method name="begin_transaction">
 
       <description>
-        If this adaptor supports transactions, call this method to begin a
+        If this adapter supports transactions, call this method to begin a
         transaction. If this function is called and returns a non-NULL
         result, add_object(), delete_object(), modify_object(), replace_object(),
         and update_object() will not commit changes until the transactions
         commit function is called.
       </description>
 
-      <parameter name="instance" type="const afw_adaptor_session_t *">
-        <description>Pointer to this adaptor session instance.</description>
+      <parameter name="instance" type="const afw_adapter_session_t *">
+        <description>Pointer to this adapter session instance.</description>
       </parameter>
 
       <parameter name="xctx" type="afw_xctx_t *">
         <description>This is the caller's xctx.</description>
       </parameter>
 
-      <return type="const afw_adaptor_transaction_t *">
+      <return type="const afw_adapter_transaction_t *">
         <description>
-          Transaction instance or NULL if adaptor does not support
+          Transaction instance or NULL if adapter does not support
           transactions.
         </description>
       </return>
@@ -916,18 +916,18 @@ AFW_DEFINE(const afw_adaptor_t *)
     <method name="get_journal_interface">
 
       <description>
-        Returns the optional afw_adaptor_journal interface for this session.
+        Returns the optional afw_adapter_journal interface for this session.
       </description>
 
-      <parameter name="instance" type="const afw_adaptor_session_t *">
-        <description>Pointer to this adaptor session instance.</description>
+      <parameter name="instance" type="const afw_adapter_session_t *">
+        <description>Pointer to this adapter session instance.</description>
       </parameter>
 
       <parameter name="xctx" type="afw_xctx_t *">
         <description>This is the caller's xctx.</description>
       </parameter>
 
-      <return type="const afw_adaptor_journal_t *">
+      <return type="const afw_adapter_journal_t *">
         <description>
           Event journal instance for this session or NULL if not support it.
         </description>
@@ -938,18 +938,18 @@ AFW_DEFINE(const afw_adaptor_t *)
     <method name="get_key_value_interface">
 
       <description>
-        Returns the optional afw_adaptor_key_value interface for this session.
+        Returns the optional afw_adapter_key_value interface for this session.
       </description>
 
-      <parameter name="instance" type="const afw_adaptor_session_t *">
-        <description>Pointer to this adaptor session instance.</description>
+      <parameter name="instance" type="const afw_adapter_session_t *">
+        <description>Pointer to this adapter session instance.</description>
       </parameter>
 
       <parameter name="xctx" type="afw_xctx_t *">
         <description>This is the caller's xctx.</description>
       </parameter>
 
-      <return type="const afw_adaptor_key_value_t *">
+      <return type="const afw_adapter_key_value_t *">
         <description>
           Key value instance for this session or NULL if not support it.
         </description>
@@ -960,18 +960,18 @@ AFW_DEFINE(const afw_adaptor_t *)
     <method name="get_index_interface">
 
       <description>
-        Returns the optional afw_adaptor_impl_index interface for this session.
+        Returns the optional afw_adapter_impl_index interface for this session.
       </description>
 
-      <parameter name="instance" type="const afw_adaptor_session_t *">
-        <description>Pointer to this adaptor session instance.</description>
+      <parameter name="instance" type="const afw_adapter_session_t *">
+        <description>Pointer to this adapter session instance.</description>
       </parameter>
 
       <parameter name="xctx" type="afw_xctx_t *">
         <description>This is the caller's xctx.</description>
       </parameter>
 
-      <return type="const afw_adaptor_impl_index_t *">
+      <return type="const afw_adapter_impl_index_t *">
         <description>
           Index instance for this session or NULL if not support it.
         </description>
@@ -982,21 +982,21 @@ AFW_DEFINE(const afw_adaptor_t *)
     <method name="get_object_type_cache_interface">
 
       <description>
-        Returns the optional afw_adaptor_object_type_cache interface for this
-        adaptor.
+        Returns the optional afw_adapter_object_type_cache interface for this
+        adapter.
       </description>
 
-      <parameter name="instance" type="const afw_adaptor_session_t *">
-        <description>Pointer to this adaptor session instance.</description>
+      <parameter name="instance" type="const afw_adapter_session_t *">
+        <description>Pointer to this adapter session instance.</description>
       </parameter>
 
       <parameter name="xctx" type="afw_xctx_t *">
         <description>This is the caller's xctx.</description>
       </parameter>
 
-      <return type="const afw_adaptor_object_type_cache_t *">
+      <return type="const afw_adapter_object_type_cache_t *">
         <description>
-          Object type cache interface for this adaptor or NULL.
+          Object type cache interface for this adapter or NULL.
         </description>
       </return>
 
@@ -1005,21 +1005,21 @@ AFW_DEFINE(const afw_adaptor_t *)
   </interface>
 
 
-  <interface name="afw_adaptor_transaction" id="afwast">
+  <interface name="afw_adapter_transaction" id="afwast">
 
     <description>
-      Adaptor session transaction interface.
+      Adapter session transaction interface.
     </description>
 
     <method name="release">
 
       <description>
-        Release resources associated with adaptor session transaction. If
+        Release resources associated with adapter session transaction. If
         commit() is not called before release, any changes will be lost.
       </description>
 
-      <parameter name="instance" type="const afw_adaptor_transaction_t *">
-        <description>Pointer to this adaptor session transaction instance.</description>
+      <parameter name="instance" type="const afw_adapter_transaction_t *">
+        <description>Pointer to this adapter session transaction instance.</description>
       </parameter>
 
       <parameter name="xctx" type="afw_xctx_t *">
@@ -1037,9 +1037,9 @@ AFW_DEFINE(const afw_adaptor_t *)
         Commit changes to objects have occurred since transaction began.
       </description>
 
-      <parameter name="instance" type="const afw_adaptor_transaction_t *">
+      <parameter name="instance" type="const afw_adapter_transaction_t *">
         <description>
-          Pointer to this adaptor session transaction instance.
+          Pointer to this adapter session transaction instance.
         </description>
       </parameter>
 
@@ -1053,7 +1053,7 @@ AFW_DEFINE(const afw_adaptor_t *)
 
   </interface>
 
-  <interface name="afw_adaptor_impl_index_cursor" id="afwaiic">
+  <interface name="afw_adapter_impl_index_cursor" id="afwaiic">
 
     <variable name="filter_entry" type="const afw_query_criteria_filter_entry_t *">
       <description>The query criteria associated with this cursor.</description>
@@ -1064,7 +1064,7 @@ AFW_DEFINE(const afw_adaptor_t *)
     </variable>
 
     <description>
-      Adaptor implementation index cursor interface.
+      Adapter implementation index cursor interface.
     </description>
 
     <method name="release">
@@ -1073,8 +1073,8 @@ AFW_DEFINE(const afw_adaptor_t *)
         Release resources.
       </description>
 
-      <parameter name="instance" type="const afw_adaptor_impl_index_cursor_t *">
-        <description>Pointer to this adaptor impl index cursor instance.</description>
+      <parameter name="instance" type="const afw_adapter_impl_index_cursor_t *">
+        <description>Pointer to this adapter impl index cursor instance.</description>
       </parameter>
 
       <parameter name="xctx" type="afw_xctx_t *">
@@ -1088,11 +1088,11 @@ AFW_DEFINE(const afw_adaptor_t *)
     <method name="get_next_object">
 
       <description>
-        Get the next indexed object from the adaptor store.
+        Get the next indexed object from the adapter store.
       </description>
 
-      <parameter name="instance" type="const afw_adaptor_impl_index_cursor_t *">
-        <description>Pointer to this adaptor impl index cursor instance.</description>
+      <parameter name="instance" type="const afw_adapter_impl_index_cursor_t *">
+        <description>Pointer to this adapter impl index cursor instance.</description>
       </parameter>
 
       <parameter name="pool" type="const afw_pool_t *">
@@ -1113,8 +1113,8 @@ AFW_DEFINE(const afw_adaptor_t *)
         Returns true or false, if the object is contained in this cursor.
       </description>
 
-      <parameter name="instance" type="const afw_adaptor_impl_index_cursor_t *">
-        <description>Pointer to this adaptor impl index cursor instance.</description>
+      <parameter name="instance" type="const afw_adapter_impl_index_cursor_t *">
+        <description>Pointer to this adapter impl index cursor instance.</description>
       </parameter>
 
       <parameter name="object" type="const afw_object_t *">
@@ -1135,11 +1135,11 @@ AFW_DEFINE(const afw_adaptor_t *)
         Join this cursor with another cursor and return the intersection. An implementation may use cardinality, if known, or simply return one or the other (left or right inner join).
       </description>
 
-      <parameter name="instance" type="const afw_adaptor_impl_index_cursor_t *">
-        <description>Pointer to this adaptor impl index cursor instance.</description>
+      <parameter name="instance" type="const afw_adapter_impl_index_cursor_t *">
+        <description>Pointer to this adapter impl index cursor instance.</description>
       </parameter>
 
-      <parameter name="cursor" type="const afw_adaptor_impl_index_cursor_t *">
+      <parameter name="cursor" type="const afw_adapter_impl_index_cursor_t *">
         <description>Pointer to the cursor we need to join with.</description>
       </parameter>
 
@@ -1147,7 +1147,7 @@ AFW_DEFINE(const afw_adaptor_t *)
         <description>This is the caller's xctx.</description>
       </parameter>
 
-      <return type="const afw_adaptor_impl_index_cursor_t *" />
+      <return type="const afw_adapter_impl_index_cursor_t *" />
 
     </method>
 
@@ -1157,8 +1157,8 @@ AFW_DEFINE(const afw_adaptor_t *)
         Return the count, or cardinality, associated with this cursor. This should return true if successful.
       </description>
 
-      <parameter name="instance" type="const afw_adaptor_impl_index_cursor_t *">
-        <description>Pointer to this adaptor impl index cursor instance.</description>
+      <parameter name="instance" type="const afw_adapter_impl_index_cursor_t *">
+        <description>Pointer to this adapter impl index cursor instance.</description>
       </parameter>
 
       <parameter name="count" type="size_t *">
@@ -1175,10 +1175,10 @@ AFW_DEFINE(const afw_adaptor_t *)
 
   </interface>
 
-  <interface name="afw_adaptor_key_value" id="afwkv">
+  <interface name="afw_adapter_key_value" id="afwkv">
 
     <description>
-      Adaptor implementation of key value interface.
+      Adapter implementation of key value interface.
     </description>
 
     <method name="add">
@@ -1187,8 +1187,8 @@ AFW_DEFINE(const afw_adaptor_t *)
         Add a keyed value.
       </description>
 
-      <parameter name="instance" type="const afw_adaptor_key_value_t *">
-        <description>Pointer to this adaptor key value instance.</description>
+      <parameter name="instance" type="const afw_adapter_key_value_t *">
+        <description>Pointer to this adapter key value instance.</description>
       </parameter>
 
       <parameter name="namespace" type="const afw_utf8_t *">
@@ -1217,8 +1217,8 @@ AFW_DEFINE(const afw_adaptor_t *)
         Delete a keyed value.
       </description>
 
-      <parameter name="instance" type="const afw_adaptor_key_value_t *">
-        <description>Pointer to this adaptor key value instance.</description>
+      <parameter name="instance" type="const afw_adapter_key_value_t *">
+        <description>Pointer to this adapter key value instance.</description>
       </parameter>
 
       <parameter name="namespace" type="const afw_utf8_t *">
@@ -1251,8 +1251,8 @@ AFW_DEFINE(const afw_adaptor_t *)
         Replace a keyed value.
       </description>
 
-      <parameter name="instance" type="const afw_adaptor_key_value_t *">
-        <description>Pointer to this adaptor key value instance.</description>
+      <parameter name="instance" type="const afw_adapter_key_value_t *">
+        <description>Pointer to this adapter key value instance.</description>
       </parameter>
 
       <parameter name="namespace" type="const afw_utf8_t *">
@@ -1288,8 +1288,8 @@ AFW_DEFINE(const afw_adaptor_t *)
         Get a keyed value.
       </description>
 
-      <parameter name="instance" type="const afw_adaptor_key_value_t *">
-        <description>Pointer to this adaptor key value instance.</description>
+      <parameter name="instance" type="const afw_adapter_key_value_t *">
+        <description>Pointer to this adapter key value instance.</description>
       </parameter>
 
       <parameter name="namespace" type="const afw_utf8_t *">
@@ -1311,10 +1311,10 @@ AFW_DEFINE(const afw_adaptor_t *)
   </interface>
 
 
-  <interface name="afw_adaptor_impl_index" id="afwaii">
+  <interface name="afw_adapter_impl_index" id="afwaii">
 
     <description>
-      Adaptor implementation index interface.
+      Adapter implementation index interface.
     </description>
 
     <variable name="indexDefinitions" type="const afw_object_t *">
@@ -1324,15 +1324,15 @@ AFW_DEFINE(const afw_adaptor_t *)
     <method name="open">
 
       <description>
-        Open an index database. This may be useful for adaptors that have special parameters or need to open the database/table before an index can be used.
+        Open an index database. This may be useful for adapters that have special parameters or need to open the database/table before an index can be used.
       </description>
 
-      <parameter name="instance" type="const afw_adaptor_impl_index_t *">
-        <description>Pointer to this adaptor impl index instance.</description>
+      <parameter name="instance" type="const afw_adapter_impl_index_t *">
+        <description>Pointer to this adapter impl index instance.</description>
       </parameter>
 
       <parameter name="object_type_id" type="const afw_utf8_t *">
-        <description>Object type id associated with the property and value that we are indexing. This may be useful for the adaptor to determine the target table or database to store the index. NULL means all objectTypes are applicable.</description>
+        <description>Object type id associated with the property and value that we are indexing. This may be useful for the adapter to determine the target table or database to store the index. NULL means all objectTypes are applicable.</description>
       </parameter>
 
       <parameter name="key" type="const afw_utf8_t *">
@@ -1368,8 +1368,8 @@ AFW_DEFINE(const afw_adaptor_t *)
         Release resources.
       </description>
 
-      <parameter name="instance" type="const afw_adaptor_impl_index_t *">
-        <description>Pointer to this adaptor impl index instance.</description>
+      <parameter name="instance" type="const afw_adapter_impl_index_t *">
+        <description>Pointer to this adapter impl index instance.</description>
       </parameter>
 
       <parameter name="xctx" type="afw_xctx_t *">
@@ -1383,11 +1383,11 @@ AFW_DEFINE(const afw_adaptor_t *)
     <method name="get_index_definitions">
 
       <description>
-        Returns the adaptor's internal index definitions.
+        Returns the adapter's internal index definitions.
       </description>
 
-      <parameter name="instance" type="const afw_adaptor_impl_index_t *">
-        <description>Pointer to this adaptor impl index instance.</description>
+      <parameter name="instance" type="const afw_adapter_impl_index_t *">
+        <description>Pointer to this adapter impl index instance.</description>
       </parameter>
 
       <parameter name="xctx" type="afw_xctx_t *">
@@ -1401,11 +1401,11 @@ AFW_DEFINE(const afw_adaptor_t *)
     <method name="update_index_definitions">
 
       <description>
-        Replace the adaptor's internal index definitions with the updated index configuration object.
+        Replace the adapter's internal index definitions with the updated index configuration object.
       </description>
 
-      <parameter name="instance" type="const afw_adaptor_impl_index_t *">
-        <description>Pointer to this adaptor impl index instance.</description>
+      <parameter name="instance" type="const afw_adapter_impl_index_t *">
+        <description>Pointer to this adapter impl index instance.</description>
       </parameter>
 
       <parameter name="indexDefinitions" type="const afw_object_t *">
@@ -1423,19 +1423,19 @@ AFW_DEFINE(const afw_adaptor_t *)
     <method name="add">
 
       <description>
-        Add an index to the adaptor store
+        Add an index to the adapter store
       </description>
 
-      <parameter name="instance" type="const afw_adaptor_impl_index_t *">
-        <description>Pointer to this adaptor impl index instance.</description>
+      <parameter name="instance" type="const afw_adapter_impl_index_t *">
+        <description>Pointer to this adapter impl index instance.</description>
       </parameter>
 
       <parameter name="object_type_id" type="const afw_utf8_t *">
-        <description>Object type id associated with the property and value that we are indexing. This may be useful for the adaptor to determine the target table or database to store the index.</description>
+        <description>Object type id associated with the property and value that we are indexing. This may be useful for the adapter to determine the target table or database to store the index.</description>
       </parameter>
 
       <parameter name="object_id" type="const afw_utf8_t *">
-        <description>Object id for the object associated with the property and value that we are indexing. This should be used by the adaptor as a reference to the primary entry.</description>
+        <description>Object id for the object associated with the property and value that we are indexing. This should be used by the adapter as a reference to the primary entry.</description>
       </parameter>
 
       <parameter name="key" type="const afw_utf8_t *">
@@ -1443,7 +1443,7 @@ AFW_DEFINE(const afw_adaptor_t *)
       </parameter>
 
       <parameter name="value" type="const afw_utf8_t*">
-        <description>Index value associated with the index we are creating. This should be used by the adaptor as the key to the index entry.</description>
+        <description>Index value associated with the index we are creating. This should be used by the adapter as the key to the index entry.</description>
       </parameter>
 
       <parameter name="unique" type="afw_boolean_t">
@@ -1465,19 +1465,19 @@ AFW_DEFINE(const afw_adaptor_t *)
     <method name="delete">
 
       <description>
-        Delete an index from the adaptor store.
+        Delete an index from the adapter store.
       </description>
 
-      <parameter name="instance" type="const afw_adaptor_impl_index_t *">
-        <description>Pointer to this adaptor impl index instance.</description>
+      <parameter name="instance" type="const afw_adapter_impl_index_t *">
+        <description>Pointer to this adapter impl index instance.</description>
       </parameter>
 
       <parameter name="object_type_id" type="const afw_utf8_t *">
-        <description>Object type id associated with the property and value of the index we are removing. This may be useful for the adaptor to determine the target table or database to store the index.</description>
+        <description>Object type id associated with the property and value of the index we are removing. This may be useful for the adapter to determine the target table or database to store the index.</description>
       </parameter>
 
       <parameter name="object_id" type="const afw_utf8_t *">
-        <description>Object id for the object associated with the property and value of the index we are removing. This should be used by the adaptor as a reference to the primary entry.</description>
+        <description>Object id for the object associated with the property and value of the index we are removing. This should be used by the adapter as a reference to the primary entry.</description>
       </parameter>
 
       <parameter name="key" type="const afw_utf8_t *">
@@ -1485,7 +1485,7 @@ AFW_DEFINE(const afw_adaptor_t *)
       </parameter>
 
       <parameter name="value" type="const afw_utf8_t*">
-        <description>Index value associated with the index we are deleting. This should be used by the adaptor as the key to the index entry.</description>
+        <description>Index value associated with the index we are deleting. This should be used by the adapter as the key to the index entry.</description>
       </parameter>
 
       <parameter name="pool" type="const afw_pool_t *">
@@ -1503,19 +1503,19 @@ AFW_DEFINE(const afw_adaptor_t *)
     <method name="replace">
 
       <description>
-        Replace an index in the adaptor store
+        Replace an index in the adapter store
       </description>
 
-      <parameter name="instance" type="const afw_adaptor_impl_index_t *">
-        <description>Pointer to this adaptor impl index instance.</description>
+      <parameter name="instance" type="const afw_adapter_impl_index_t *">
+        <description>Pointer to this adapter impl index instance.</description>
       </parameter>
 
       <parameter name="object_type_id" type="const afw_utf8_t *">
-        <description>Object type id associated with the property and value that we are indexing. This may be useful for the adaptor to determine the target table or database to store the index.</description>
+        <description>Object type id associated with the property and value that we are indexing. This may be useful for the adapter to determine the target table or database to store the index.</description>
       </parameter>
 
       <parameter name="object_id" type="const afw_utf8_t *">
-        <description>Object id for the object associated with the property and value that we are indexing. This should be used by the adaptor as a reference to the primary entry.</description>
+        <description>Object id for the object associated with the property and value that we are indexing. This should be used by the adapter as a reference to the primary entry.</description>
       </parameter>
 
       <parameter name="key" type="const afw_utf8_t *">
@@ -1523,11 +1523,11 @@ AFW_DEFINE(const afw_adaptor_t *)
       </parameter>
 
       <parameter name="old_value" type="const afw_utf8_t*">
-        <description>Old index value associated with the index we are replacing. This should be used by the adaptor as the key to the index entry.</description>
+        <description>Old index value associated with the index we are replacing. This should be used by the adapter as the key to the index entry.</description>
       </parameter>
 
       <parameter name="new_value" type="const afw_utf8_t*">
-        <description>New index value associated with the index we are replacing. This should be used by the adaptor as the key to the index entry.</description>
+        <description>New index value associated with the index we are replacing. This should be used by the adapter as the key to the index entry.</description>
       </parameter>
 
       <parameter name="pool" type="const afw_pool_t *">
@@ -1548,12 +1548,12 @@ AFW_DEFINE(const afw_adaptor_t *)
         Drop an in index. The underlying store may decide to drop an entire table or database. Returns a boolean, determining whether the operation was successful.
       </description>
 
-      <parameter name="instance" type="const afw_adaptor_impl_index_t *">
-        <description>Pointer to this adaptor impl index instance.</description>
+      <parameter name="instance" type="const afw_adapter_impl_index_t *">
+        <description>Pointer to this adapter impl index instance.</description>
       </parameter>
 
       <parameter name="object_type_id" type="const afw_utf8_t *">
-        <description>Object type id associated with the index. This may be useful for the adaptor to determine the target table or database for the index.</description>
+        <description>Object type id associated with the index. This may be useful for the adapter to determine the target table or database for the index.</description>
       </parameter>
 
       <parameter name="key" type="const afw_utf8_t *">
@@ -1578,12 +1578,12 @@ AFW_DEFINE(const afw_adaptor_t *)
         Opens a cursor to an index table or database, from which the caller can iterate over to obtain objects.
       </description>
 
-      <parameter name="instance" type="const afw_adaptor_impl_index_t *">
-        <description>Pointer to this adaptor impl index instance.</description>
+      <parameter name="instance" type="const afw_adapter_impl_index_t *">
+        <description>Pointer to this adapter impl index instance.</description>
       </parameter>
 
       <parameter name="object_type_id" type="const afw_utf8_t *">
-        <description>Object type id associated with the property and value that we are indexing. This may be useful for the adaptor to determine the target table or database to find the index.</description>
+        <description>Object type id associated with the property and value that we are indexing. This may be useful for the adapter to determine the target table or database to find the index.</description>
       </parameter>
 
       <parameter name="index_key" type="const afw_utf8_t *">
@@ -1595,7 +1595,7 @@ AFW_DEFINE(const afw_adaptor_t *)
       </parameter>
 
       <parameter name="value" type="const afw_utf8_t *">
-        <description>Index value associated with the index we are querying. This should be used by the adaptor as the key to the index entry.</description>
+        <description>Index value associated with the index we are querying. This should be used by the adapter as the key to the index entry.</description>
       </parameter>
 
       <parameter name="unique" type="afw_boolean_t">
@@ -1610,25 +1610,25 @@ AFW_DEFINE(const afw_adaptor_t *)
         <description>This is the caller's xctx.</description>
       </parameter>
 
-      <return type="afw_adaptor_impl_index_cursor_t *" />
+      <return type="afw_adapter_impl_index_cursor_t *" />
 
     </method>
 
     <method name="get_session">
 
       <description>
-        Obtains the session for this adaptor, used to build and repair indexes.
+        Obtains the session for this adapter, used to build and repair indexes.
       </description>
 
-      <parameter name="instance" type="const afw_adaptor_impl_index_t *">
-        <description>Pointer to this adaptor impl index instance.</description>
+      <parameter name="instance" type="const afw_adapter_impl_index_t *">
+        <description>Pointer to this adapter impl index instance.</description>
       </parameter>
 
       <parameter name="xctx" type="afw_xctx_t *">
         <description>This is the caller's xctx.</description>
       </parameter>
 
-      <return type="const afw_adaptor_session_t *"/>
+      <return type="const afw_adapter_session_t *"/>
 
     </method>
 
@@ -1644,7 +1644,7 @@ AFW_DEFINE(const afw_adaptor_t *)
     </variable>
 
     <variable name="description" type="const afw_utf8_t *">
-      <description>Type of adaptor this factory creates.</description>
+      <description>Type of adapter this factory creates.</description>
     </variable>
 
     <model_c_code label="more_includes">
@@ -1689,7 +1689,7 @@ AFW_DEFINE(const afw_adaptor_t *)
         <![CDATA[
     /** @todo If needed, add/modify the following code to implement method. */
 
-    /* Return adaptor instance. */
+    /* Return adapter instance. */
     return <afwdev {prefixed_interface_name.replace('_factory','')}>_create_cede_p(properties, p, xctx);
       ]]>
       </model_c_code>
@@ -1809,7 +1809,7 @@ AFW_DEFINE(const afw_authorization_handler_t *)
     AFW_AUTHORIZATION_HANDLER_SELF_T *self;
     afw_authorization_handler_t *authorization_handler;
     
-    /* Create adaptor and process common properties. */
+    /* Create adapter and process common properties. */
     authorization_handler = afw_authorization_handler_impl_create_cede_p(
             &impl_afw_authorization_handler_inf,
             sizeof(AFW_AUTHORIZATION_HANDLER_SELF_T),
@@ -2009,8 +2009,8 @@ impl_afw_content_type =
         <description>Source location or NULL.</description>
       </parameter>
 
-      <parameter name="adaptor_id" type="const afw_utf8_t *">
-        <description>Adaptor id for created object.</description>
+      <parameter name="adapter_id" type="const afw_utf8_t *">
+        <description>Adapter id for created object.</description>
       </parameter>
 
       <parameter name="object_type_id" type="const afw_utf8_t *">
@@ -2936,7 +2936,7 @@ impl_afw_content_type =
 
       <description>
         Release resources associated with adaptive value array. This will automatically be called
-        if value array is part of an adaptive adaptor session.
+        if value array is part of an adaptive adapter session.
       </description>
 
       <parameter name="instance" type="const afw_array_t *">
@@ -3273,7 +3273,7 @@ impl_afw_content_type =
     </variable>
 
     <variable name="description" type="const afw_utf8_t *">
-      <description>Type of adaptor this factory creates.</description>
+      <description>Type of adapter this factory creates.</description>
     </variable>
 
     <model_c_code label="more_includes">
@@ -3313,7 +3313,7 @@ impl_afw_content_type =
         <![CDATA[
     /** @todo If needed, add/modify the following code to implement method. */
 
-    /* Return adaptor instance. */
+    /* Return adapter instance. */
     return <afwdev {prefixed_interface_name.replace('_factory','')}>_create_cede_p(properties, p, xctx);
       ]]>
       </model_c_code>
@@ -4330,7 +4330,7 @@ AFW_DEFINE(const afw_log_t *)
     </variable>
 
     <variable name="description" type="const afw_utf8_t *">
-      <description>Type of adaptor this factory creates.</description>
+      <description>Type of adapter this factory creates.</description>
     </variable>
 
     <model_c_code label="more_includes">
@@ -4370,7 +4370,7 @@ AFW_DEFINE(const afw_log_t *)
         <![CDATA[
     /** @todo If needed, add/modify the following code to implement method. */
 
-    /* Return adaptor instance. */
+    /* Return adapter instance. */
     return <afwdev {prefixed_interface_name.replace('_factory','')}>_create_cede_p(properties, p, xctx);
       ]]>
       </model_c_code>
@@ -5197,26 +5197,26 @@ AFW_DEFINE(const afw_request_handler_t *)
   </interface>
 
 
-  <interface name="afw_adaptor_journal" id="afwej">
+  <interface name="afw_adapter_journal" id="afwej">
 
-    <description>Adaptor journal interface.</description>
+    <description>Adapter journal interface.</description>
 
-    <variable name="session" type="const afw_adaptor_session_t *">
-      <description>Associated adaptor session.</description>
+    <variable name="session" type="const afw_adapter_session_t *">
+      <description>Associated adapter session.</description>
     </variable>
 
     <method name="add_entry">
 
       <description>Record a journal entry.</description>
 
-      <parameter name="instance" type="const afw_adaptor_journal_t *">
+      <parameter name="instance" type="const afw_adapter_journal_t *">
         <description>Pointer to this adaptive event journal instance.</description>
       </parameter>
 
-      <parameter name="impl_request" type="const afw_adaptor_impl_request_t *">
+      <parameter name="impl_request" type="const afw_adapter_impl_request_t *">
         <description>
-          Pass this as first parameter of afw_adaptor_impl_request_*() functions.
-          See afw_adaptor_impl.h for more information.
+          Pass this as first parameter of afw_adapter_impl_request_*() functions.
+          See afw_adapter_impl.h for more information.
         </description>
       </parameter>
 
@@ -5238,22 +5238,22 @@ AFW_DEFINE(const afw_request_handler_t *)
 
       <description>Gets an entry.</description>
 
-      <parameter name="instance" type="const afw_adaptor_journal_t *">
+      <parameter name="instance" type="const afw_adapter_journal_t *">
         <description>
           Pointer to this adaptive event journal instance.
         </description>
       </parameter>
 
-      <parameter name="impl_request" type="const afw_adaptor_impl_request_t *">
+      <parameter name="impl_request" type="const afw_adapter_impl_request_t *">
         <description>
-          Pass this as first parameter of afw_adaptor_impl_request_*() functions.
-          See afw_adaptor_impl.h for more information.
+          Pass this as first parameter of afw_adapter_impl_request_*() functions.
+          See afw_adapter_impl.h for more information.
         </description>
       </parameter>
 
-      <parameter name="option" type="afw_adaptor_journal_option_t">
+      <parameter name="option" type="afw_adapter_journal_option_t">
         <description>
-          Get entry option. See afw_adaptor_journal_option_t for
+          Get entry option. See afw_adapter_journal_option_t for
           more information.
         </description>
       </parameter>
@@ -5261,7 +5261,7 @@ AFW_DEFINE(const afw_request_handler_t *)
       <parameter name="consumer_id" type="const afw_utf8_t *">
         <description>
           Peer id of consumer of event of NULL. See
-          afw_adaptor_journal_option_t for information on how this
+          afw_adapter_journal_option_t for information on how this
           parameter is used or ignored.
         </description>
       </parameter>
@@ -5269,7 +5269,7 @@ AFW_DEFINE(const afw_request_handler_t *)
       <parameter name="entry_cursor" type="const afw_utf8_t *">
         <description>
           Journal entry cursor or NULL. See
-          afw_adaptor_journal_option_t for information on how this
+          afw_adapter_journal_option_t for information on how this
           parameter is used or ignored.
         </description>
       </parameter>
@@ -5277,7 +5277,7 @@ AFW_DEFINE(const afw_request_handler_t *)
       <parameter name="limit" type="afw_size_t">
         <description>
           Limit or 0. See
-          afw_adaptor_journal_option_t for information on how this
+          afw_adapter_journal_option_t for information on how this
           parameter is used or ignored.
         </description>
       </parameter>
@@ -5286,7 +5286,7 @@ AFW_DEFINE(const afw_request_handler_t *)
         <description>
           This is an existing response object that can have properties already
           set. Depending on the option specified, get_entry() will set
-          additional properties. See afw_adaptor_journal_option_t
+          additional properties. See afw_adapter_journal_option_t
           for information on which properties are set and under what condition.
         </description>
       </parameter>
@@ -5308,22 +5308,22 @@ AFW_DEFINE(const afw_request_handler_t *)
         Different journal ids?
       </description>
 
-      <parameter name="instance" type="const afw_adaptor_journal_t *">
+      <parameter name="instance" type="const afw_adapter_journal_t *">
         <description>
           Pointer to this adaptive event journal instance.
         </description>
       </parameter>
 
-      <parameter name="impl_request" type="const afw_adaptor_impl_request_t *">
+      <parameter name="impl_request" type="const afw_adapter_impl_request_t *">
         <description>
-          Pass this as first parameter of afw_adaptor_impl_request_*() functions.
-          See afw_adaptor_impl.h for more information.
+          Pass this as first parameter of afw_adapter_impl_request_*() functions.
+          See afw_adapter_impl.h for more information.
         </description>
       </parameter>
 
       <parameter name="consumer_id" type="const afw_utf8_t *">
         <description>
-          Get entry option. See afw_adaptor_journal_option_t for
+          Get entry option. See afw_adapter_journal_option_t for
           more information.
         </description>
       </parameter>

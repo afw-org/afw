@@ -39,7 +39,7 @@ interface IAnyObject {
  * If an new applicable entry is found or if the limit is met, the
  * advanceCursor property is set to the currently scanned entry's cursor.
  * 
- * @param {string} adaptorId - Id of adaptor.
+ * @param {string} adapterId - Id of adapter.
  * 
  * @param {string} consumerId - The consumerId property value of the
  *     associated _AdaptiveProvisioningPeer_ object.
@@ -50,15 +50,15 @@ interface IAnyObject {
  * 
  * @returns {object} Response object.
  */
-export function afwJournalAdvanceCursorForConsumer(client : any, consumerId : string, adaptorId? : string, limit? : number) : any {
+export function afwJournalAdvanceCursorForConsumer(client : any, consumerId : string, adapterId? : string, limit? : number) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "journal_advance_cursor_for_consumer";
     _action["consumerId"] = consumerId;
 
-    if (adaptorId !== undefined)
-        _action["adaptorId"] = adaptorId;
+    if (adapterId !== undefined)
+        _action["adapterId"] = adapterId;
 
     if (limit !== undefined)
         _action["limit"] = limit;
@@ -73,21 +73,21 @@ export function afwJournalAdvanceCursorForConsumer(client : any, consumerId : st
  * an entry to retrieve. If an entry with the supplied cursor does not exist,
  * a not_found error is thrown.
  * 
- * @param {string} adaptorId - Id of adaptor.
+ * @param {string} adapterId - Id of adapter.
  * 
  * @param {string} cursor - Journal entry cursor.
  * 
  * @returns {object} Response object.
  */
-export function afwJournalGetByCursor(client : any, cursor : string, adaptorId? : string) : any {
+export function afwJournalGetByCursor(client : any, cursor : string, adapterId? : string) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "journal_get_by_cursor";
     _action["cursor"] = cursor;
 
-    if (adaptorId !== undefined)
-        _action["adaptorId"] = adaptorId;
+    if (adapterId !== undefined)
+        _action["adapterId"] = adapterId;
 
     return client.perform(_action);
 }
@@ -98,18 +98,18 @@ export function afwJournalGetByCursor(client : any, cursor : string, adaptorId? 
  * This option will set response properties 'entry' and 'cursor' if there is a
  * first entry to return.
  * 
- * @param {string} adaptorId - Id of adaptor.
+ * @param {string} adapterId - Id of adapter.
  * 
  * @returns {object} Response object.
  */
-export function afwJournalGetFirst(client : any, adaptorId? : string) : any {
+export function afwJournalGetFirst(client : any, adapterId? : string) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "journal_get_first";
 
-    if (adaptorId !== undefined)
-        _action["adaptorId"] = adaptorId;
+    if (adapterId !== undefined)
+        _action["adapterId"] = adapterId;
 
     return client.perform(_action);
 }
@@ -121,21 +121,21 @@ export function afwJournalGetFirst(client : any, adaptorId? : string) : any {
  * This option will set response properties 'entry' and 'cursor' if there is a
  * next entry to retrieve.
  * 
- * @param {string} adaptorId - Id of adaptor.
+ * @param {string} adapterId - Id of adapter.
  * 
  * @param {string} cursor - Journal entry cursor.
  * 
  * @returns {object} Response object.
  */
-export function afwJournalGetNextAfterCursor(client : any, cursor : string, adaptorId? : string) : any {
+export function afwJournalGetNextAfterCursor(client : any, cursor : string, adapterId? : string) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "journal_get_next_after_cursor";
     _action["cursor"] = cursor;
 
-    if (adaptorId !== undefined)
-        _action["adaptorId"] = adaptorId;
+    if (adapterId !== undefined)
+        _action["adapterId"] = adapterId;
 
     return client.perform(_action);
 }
@@ -171,7 +171,7 @@ export function afwJournalGetNextAfterCursor(client : any, cursor : string, adap
  * If no applicable entry is found, advanceCursor is set to the last entry
  * scanned.
  * 
- * @param {string} adaptorId - Id of adaptor.
+ * @param {string} adapterId - Id of adapter.
  * 
  * @param {string} consumerId - The consumerId property value of the
  *     associated _AdaptiveProvisioningPeer_ object.
@@ -182,15 +182,15 @@ export function afwJournalGetNextAfterCursor(client : any, cursor : string, adap
  * 
  * @returns {object} Response object.
  */
-export function afwJournalGetNextForConsumer(client : any, consumerId : string, adaptorId? : string, limit? : number) : any {
+export function afwJournalGetNextForConsumer(client : any, consumerId : string, adapterId? : string, limit? : number) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "journal_get_next_for_consumer";
     _action["consumerId"] = consumerId;
 
-    if (adaptorId !== undefined)
-        _action["adaptorId"] = adaptorId;
+    if (adapterId !== undefined)
+        _action["adapterId"] = adapterId;
 
     if (limit !== undefined)
         _action["limit"] = limit;
@@ -216,7 +216,7 @@ export function afwJournalGetNextForConsumer(client : any, consumerId : string, 
  * Unlike option get_next_for_consumer, no other properties are referenced or
  * modified.
  * 
- * @param {string} adaptorId - Id of adaptor.
+ * @param {string} adapterId - Id of adapter.
  * 
  * @param {string} consumerId - The consumerId property value of the
  *     associated _AdaptiveProvisioningPeer_ object.
@@ -229,7 +229,7 @@ export function afwJournalGetNextForConsumer(client : any, consumerId : string, 
  * 
  * @returns {object} Response object.
  */
-export function afwJournalGetNextForConsumerAfterCursor(client : any, consumerId : string, cursor : string, adaptorId? : string, limit? : number) : any {
+export function afwJournalGetNextForConsumerAfterCursor(client : any, consumerId : string, cursor : string, adapterId? : string, limit? : number) : any {
 
     let _action : IAnyObject = {};
 
@@ -237,8 +237,8 @@ export function afwJournalGetNextForConsumerAfterCursor(client : any, consumerId
     _action["consumerId"] = consumerId;
     _action["cursor"] = cursor;
 
-    if (adaptorId !== undefined)
-        _action["adaptorId"] = adaptorId;
+    if (adapterId !== undefined)
+        _action["adapterId"] = adapterId;
 
     if (limit !== undefined)
         _action["limit"] = limit;
@@ -249,7 +249,7 @@ export function afwJournalGetNextForConsumerAfterCursor(client : any, consumerId
 /**
  * Mark a journal entry returned by get_next_for_consumer() as consumed.
  * 
- * @param {string} adaptorId - Id of adaptor.
+ * @param {string} adapterId - Id of adapter.
  * 
  * @param {string} consumerId - The consumerId property value of the
  *     associated _AdaptiveProvisioningPeer_ object.
@@ -258,7 +258,7 @@ export function afwJournalGetNextForConsumerAfterCursor(client : any, consumerId
  * 
  * @returns {void}
  */
-export function afwJournalMarkConsumed(client : any, consumerId : string, cursor : string, adaptorId? : string) : any {
+export function afwJournalMarkConsumed(client : any, consumerId : string, cursor : string, adapterId? : string) : any {
 
     let _action : IAnyObject = {};
 
@@ -266,8 +266,8 @@ export function afwJournalMarkConsumed(client : any, consumerId : string, cursor
     _action["consumerId"] = consumerId;
     _action["cursor"] = cursor;
 
-    if (adaptorId !== undefined)
-        _action["adaptorId"] = adaptorId;
+    if (adapterId !== undefined)
+        _action["adapterId"] = adapterId;
 
     return client.perform(_action);
 }

@@ -11,7 +11,7 @@
 import requests
 import json
 
-def journal_advance_cursor_for_consumer(session, consumerId, adaptorId=None, limit=None):
+def journal_advance_cursor_for_consumer(session, consumerId, adapterId=None, limit=None):
     """
     Advance journal cursor for consumer
 
@@ -37,7 +37,7 @@ def journal_advance_cursor_for_consumer(session, consumerId, adaptorId=None, lim
     advanceCursor property is set to the currently scanned entry's cursor.
 
     Args:
-        adaptorId (str): Id of adaptor.
+        adapterId (str): Id of adapter.
 
         consumerId (str): The consumerId property value of the associated
         _AdaptiveProvisioningPeer_ object.
@@ -57,8 +57,8 @@ def journal_advance_cursor_for_consumer(session, consumerId, adaptorId=None, lim
         "consumerId": consumerId
     }
 
-    if adaptorId != None:
-        action['adaptorId'] = adaptorId
+    if adapterId != None:
+        action['adapterId'] = adapterId
 
     if limit != None:
         action['limit'] = limit
@@ -71,7 +71,7 @@ def journal_advance_cursor_for_consumer(session, consumerId, adaptorId=None, lim
 
     return response['actions'][0]['result']
 
-def journal_get_by_cursor(session, cursor, adaptorId=None):
+def journal_get_by_cursor(session, cursor, adapterId=None):
     """
     Get journal entry at cursor
 
@@ -82,7 +82,7 @@ def journal_get_by_cursor(session, cursor, adaptorId=None):
     a not_found error is thrown.
 
     Args:
-        adaptorId (str): Id of adaptor.
+        adapterId (str): Id of adapter.
 
         cursor (str): Journal entry cursor.
 
@@ -97,8 +97,8 @@ def journal_get_by_cursor(session, cursor, adaptorId=None):
         "cursor": cursor
     }
 
-    if adaptorId != None:
-        action['adaptorId'] = adaptorId
+    if adapterId != None:
+        action['adapterId'] = adapterId
 
     request.add_action(action)
 
@@ -108,7 +108,7 @@ def journal_get_by_cursor(session, cursor, adaptorId=None):
 
     return response['actions'][0]['result']
 
-def journal_get_first(session, adaptorId=None):
+def journal_get_first(session, adapterId=None):
     """
     Get first journal entry
 
@@ -118,7 +118,7 @@ def journal_get_first(session, adaptorId=None):
     a first entry to return.
 
     Args:
-        adaptorId (str): Id of adaptor.
+        adapterId (str): Id of adapter.
 
     Returns:
         dict: Response object.
@@ -130,8 +130,8 @@ def journal_get_first(session, adaptorId=None):
         "function": "journal_get_first"
     }
 
-    if adaptorId != None:
-        action['adaptorId'] = adaptorId
+    if adapterId != None:
+        action['adapterId'] = adapterId
 
     request.add_action(action)
 
@@ -141,7 +141,7 @@ def journal_get_first(session, adaptorId=None):
 
     return response['actions'][0]['result']
 
-def journal_get_next_after_cursor(session, cursor, adaptorId=None):
+def journal_get_next_after_cursor(session, cursor, adapterId=None):
     """
     Get next journal entry after cursor
 
@@ -152,7 +152,7 @@ def journal_get_next_after_cursor(session, cursor, adaptorId=None):
     a next entry to retrieve.
 
     Args:
-        adaptorId (str): Id of adaptor.
+        adapterId (str): Id of adapter.
 
         cursor (str): Journal entry cursor.
 
@@ -167,8 +167,8 @@ def journal_get_next_after_cursor(session, cursor, adaptorId=None):
         "cursor": cursor
     }
 
-    if adaptorId != None:
-        action['adaptorId'] = adaptorId
+    if adapterId != None:
+        action['adapterId'] = adapterId
 
     request.add_action(action)
 
@@ -178,7 +178,7 @@ def journal_get_next_after_cursor(session, cursor, adaptorId=None):
 
     return response['actions'][0]['result']
 
-def journal_get_next_for_consumer(session, consumerId, adaptorId=None, limit=None):
+def journal_get_next_for_consumer(session, consumerId, adapterId=None, limit=None):
     """
     Get next journal entry for consumer
 
@@ -213,7 +213,7 @@ def journal_get_next_for_consumer(session, consumerId, adaptorId=None, limit=Non
     scanned.
 
     Args:
-        adaptorId (str): Id of adaptor.
+        adapterId (str): Id of adapter.
 
         consumerId (str): The consumerId property value of the associated
         _AdaptiveProvisioningPeer_ object.
@@ -233,8 +233,8 @@ def journal_get_next_for_consumer(session, consumerId, adaptorId=None, limit=Non
         "consumerId": consumerId
     }
 
-    if adaptorId != None:
-        action['adaptorId'] = adaptorId
+    if adapterId != None:
+        action['adapterId'] = adapterId
 
     if limit != None:
         action['limit'] = limit
@@ -247,7 +247,7 @@ def journal_get_next_for_consumer(session, consumerId, adaptorId=None, limit=Non
 
     return response['actions'][0]['result']
 
-def journal_get_next_for_consumer_after_cursor(session, consumerId, cursor, adaptorId=None, limit=None):
+def journal_get_next_for_consumer_after_cursor(session, consumerId, cursor, adapterId=None, limit=None):
     """
     Get next journal entry for consumer after cursor
 
@@ -269,7 +269,7 @@ def journal_get_next_for_consumer_after_cursor(session, consumerId, cursor, adap
     modified.
 
     Args:
-        adaptorId (str): Id of adaptor.
+        adapterId (str): Id of adapter.
 
         consumerId (str): The consumerId property value of the associated
         _AdaptiveProvisioningPeer_ object.
@@ -292,8 +292,8 @@ def journal_get_next_for_consumer_after_cursor(session, consumerId, cursor, adap
         "cursor": cursor
     }
 
-    if adaptorId != None:
-        action['adaptorId'] = adaptorId
+    if adapterId != None:
+        action['adapterId'] = adapterId
 
     if limit != None:
         action['limit'] = limit
@@ -306,14 +306,14 @@ def journal_get_next_for_consumer_after_cursor(session, consumerId, cursor, adap
 
     return response['actions'][0]['result']
 
-def journal_mark_consumed(session, consumerId, cursor, adaptorId=None):
+def journal_mark_consumed(session, consumerId, cursor, adapterId=None):
     """
     Mark journal entry consumed
 
     Mark a journal entry returned by get_next_for_consumer() as consumed.
 
     Args:
-        adaptorId (str): Id of adaptor.
+        adapterId (str): Id of adapter.
 
         consumerId (str): The consumerId property value of the associated
         _AdaptiveProvisioningPeer_ object.
@@ -332,8 +332,8 @@ def journal_mark_consumed(session, consumerId, cursor, adaptorId=None):
         "cursor": cursor
     }
 
-    if adaptorId != None:
-        action['adaptorId'] = adaptorId
+    if adapterId != None:
+        action['adapterId'] = adapterId
 
     request.add_action(action)
 

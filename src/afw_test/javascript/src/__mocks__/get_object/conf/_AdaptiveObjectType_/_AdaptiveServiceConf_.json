@@ -33,7 +33,7 @@
                 "allowQuery": true,
                 "brief": "The unique service id",
                 "dataType": "string",
-                "description": "Service id.  This is the type and type specific id property separated with a '-'.  For example, for conf type=adaptor, adaptorId=x, the serviceId must be \"adaptor-x\".",
+                "description": "Service id.  This is the type and type specific id property separated with a '-'.  For example, for conf type=adapter, adapterId=x, the serviceId must be \"adapter-x\".",
                 "label": "Service Id"
             },
             "startup": {

@@ -19,13 +19,13 @@ describe("Objects Tests", () => {
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());    
         await waitForSpinner();                    
 
-        await waitFor(() => expect(screen.getByLabelText("Adaptor")).toHaveTextContent("afw"));        
+        await waitFor(() => expect(screen.getByLabelText("Adapter")).toHaveTextContent("afw"));        
         await waitFor(() => expect(screen.getByLabelText("Object Type")).not.toBeDisabled());
         await waitFor(() => expect(screen.getByLabelText("Retrieve")).not.toBeDisabled());
 
     });
 
-    test("Objects page shows adaptors and object types", async () => {
+    test("Objects page shows adapters and object types", async () => {
         const history = createMemoryHistory();
         history.push("/Objects");
 
@@ -38,13 +38,13 @@ describe("Objects Tests", () => {
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());    
         await waitForSpinner();
         
-        await waitFor(() => expect(screen.getByLabelText("Adaptor")).toHaveTextContent("afw"));
+        await waitFor(() => expect(screen.getByLabelText("Adapter")).toHaveTextContent("afw"));
         await waitFor(() => expect(screen.getByLabelText("Object Type")).toBeInTheDocument());               
         await waitFor(() => expect(screen.getByLabelText("Retrieve")).not.toBeDisabled());
         await waitFor(() => expect(screen.getByLabelText("Object Type")).not.toBeDisabled());
 
 
-        fireEvent.mouseDown(screen.getByRole("button", { name: /adaptor /i }));
+        fireEvent.mouseDown(screen.getByRole("button", { name: /adapter /i }));
 
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalled()); 
         await waitForSpinner();

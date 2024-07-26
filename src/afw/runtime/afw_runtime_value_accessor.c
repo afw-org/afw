@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * Implementation of afw_adaptor_factory interface for afw_runtime
+ * Implementation of afw_adapter_factory interface for afw_runtime
  *
  * Copyright (c) 2010-2024 Clemson University
  *
@@ -8,7 +8,7 @@
 
 /**
  * @file afw_runtime_value_accessor.c
- * @brief Implementation of afw_adaptor_factory interface for afw_runtime.
+ * @brief Implementation of afw_adapter_factory interface for afw_runtime.
  */
 
 #include "afw_internal.h"
@@ -43,8 +43,8 @@ void afw_runtime_register_core_value_accessors(afw_xctx_t *xctx)
     );
 
     afw_environment_register_runtime_value_accessor(
-        afw_s_stopping_adaptor_instances,
-        afw_runtime_value_accessor_stopping_adaptor_instances,
+        afw_s_stopping_adapter_instances,
+        afw_runtime_value_accessor_stopping_adapter_instances,
         xctx
     );
 
@@ -61,8 +61,8 @@ void afw_runtime_register_core_value_accessors(afw_xctx_t *xctx)
     );
 
     afw_environment_register_runtime_value_accessor(
-        afw_s_adaptor_metrics,
-        afw_runtime_value_accessor_adaptor_metrics,
+        afw_s_adapter_metrics,
+        afw_runtime_value_accessor_adapter_metrics,
         xctx
     );
 
@@ -121,8 +121,8 @@ void afw_runtime_register_core_value_accessors(afw_xctx_t *xctx)
     );
 
     afw_environment_register_runtime_value_accessor(
-        afw_s_adaptor_additional_metrics,
-        afw_runtime_value_accessor_adaptor_additional_metrics,
+        afw_s_adapter_additional_metrics,
+        afw_runtime_value_accessor_adapter_additional_metrics,
         xctx
     );
 
@@ -229,26 +229,26 @@ afw_runtime_value_accessor_octet(
 }
 
 
-/* Runtime value accessor for stopping adaptor instances. */
+/* Runtime value accessor for stopping adapter instances. */
 const afw_value_t *
-afw_runtime_value_accessor_stopping_adaptor_instances(
+afw_runtime_value_accessor_stopping_adapter_instances(
     const afw_runtime_object_map_property_t * prop,
     const void *internal, const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    const afw_adaptor_id_anchor_t *anchor;
-    const afw_adaptor_id_anchor_t *stopping;
+    const afw_adapter_id_anchor_t *anchor;
+    const afw_adapter_id_anchor_t *stopping;
     afw_size_t count;
     const afw_value_t *result;
     afw_integer_t *entry;
-    const afw_utf8_t *adaptor_id;
+    const afw_utf8_t *adapter_id;
     const afw_array_t *list;
 
     /* A copy is required since it may change by a different thread. */
-    adaptor_id = *(const afw_utf8_t **)internal;
+    adapter_id = *(const afw_utf8_t **)internal;
     result = NULL;
-    AFW_LOCK_BEGIN(xctx->env->adaptor_id_anchor_lock) {
+    AFW_LOCK_BEGIN(xctx->env->adapter_id_anchor_lock) {
 
-        anchor = afw_environment_get_adaptor_id(adaptor_id, xctx);
+        anchor = afw_environment_get_adapter_id(adapter_id, xctx);
         if (!anchor) {
             break;
         }
@@ -403,17 +403,17 @@ afw_runtime_value_accessor_uint32(
 }
 
 
-/* Runtime value accessor for /afw/_AdaptiveAdaptorMetrics_/<adaptorId>. */
+/* Runtime value accessor for /afw/_AdaptiveAdapterMetrics_/<adapterId>. */
 const afw_value_t *
-afw_runtime_value_accessor_adaptor_metrics(
+afw_runtime_value_accessor_adapter_metrics(
     const afw_runtime_object_map_property_t * prop,
     const void *internal, const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    const afw_adaptor_t *adaptor = *(const afw_adaptor_t * const *)internal;
+    const afw_adapter_t *adapter = *(const afw_adapter_t * const *)internal;
    
-    return (adaptor)
+    return (adapter)
         ? afw_value_create_unmanaged_object(
-            adaptor->impl->metrics_object, p, xctx)
+            adapter->impl->metrics_object, p, xctx)
         : NULL;
 }
 
@@ -594,16 +594,16 @@ afw_runtime_value_accessor_null_terminated_array_of_values(
 }
 
 
-/* Runtime value accessor to call afw_adaptor_get_additional_metrics(). */
+/* Runtime value accessor to call afw_adapter_get_additional_metrics(). */
 const afw_value_t *
-afw_runtime_value_accessor_adaptor_additional_metrics(
+afw_runtime_value_accessor_adapter_additional_metrics(
     const afw_runtime_object_map_property_t * prop,
     const void *internal, const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    const afw_adaptor_impl_t *impl = internal;
+    const afw_adapter_impl_t *impl = internal;
     const afw_object_t *obj;
 
-    obj = afw_adaptor_get_additional_metrics(impl->adaptor, p, xctx);
+    obj = afw_adapter_get_additional_metrics(impl->adapter, p, xctx);
    
     return (obj)
         ? afw_value_create_unmanaged_object(obj, p, xctx)

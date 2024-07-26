@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * Adaptive Framework LMDB Adaptor Internal Header
+ * Adaptive Framework LMDB Adapter Internal Header
  *
  * Copyright (c) 2010-2024 Clemson University
  *
@@ -12,7 +12,7 @@
 
 /**
  * @file afw_lmdb_internal.h
- * @brief Adaptive Framework LMDB Adaptor Internal Header.
+ * @brief Adaptive Framework LMDB Adapter Internal Header.
  */
 
 #include "afw_minimal.h"
@@ -23,7 +23,7 @@
 
 AFW_BEGIN_DECLARES
 
-AFW_LMDB_DECLARE_INTERNAL_CONST_DATA(afw_adaptor_factory_t) afw_lmdb_adaptor_factory;
+AFW_LMDB_DECLARE_INTERNAL_CONST_DATA(afw_adapter_factory_t) afw_lmdb_adapter_factory;
 
 /* Defined in afw_lmdb_metadata.h */
 typedef struct afw_lmdb_metadata_s afw_lmdb_metadata_t;
@@ -44,8 +44,8 @@ typedef struct afw_lmdb_limits_s {
     int time_hard;
 } afw_lmdb_limits_t;
 
-typedef struct afw_lmdb_adaptor_s {
-    afw_adaptor_t pub;
+typedef struct afw_lmdb_adapter_s {
+    afw_adapter_t pub;
     const afw_content_type_t *ubjson;
     const afw_lmdb_limits_t *limits;
     const afw_lmdb_env_t *env; 
@@ -54,36 +54,36 @@ typedef struct afw_lmdb_adaptor_s {
     afw_lmdb_metadata_t *metadata;
     apr_hash_t *dbi_handles;
     apr_thread_rwlock_t *dbLock;
-} afw_lmdb_adaptor_t;
+} afw_lmdb_adapter_t;
 
 typedef struct afw_lmdb_journal_s {
-    afw_adaptor_journal_t pub;
-    afw_adaptor_session_t *session;
+    afw_adapter_journal_t pub;
+    afw_adapter_session_t *session;
 } afw_lmdb_journal_t;
 
 typedef struct afw_lmdb_key_value_s {
-    afw_adaptor_key_value_t pub;
-    afw_adaptor_session_t *session;
+    afw_adapter_key_value_t pub;
+    afw_adapter_session_t *session;
 } afw_lmdb_key_value_t;
 
 typedef struct afw_lmdb_transaction_s {
-    afw_adaptor_transaction_t pub;
-    afw_adaptor_session_t *session;
+    afw_adapter_transaction_t pub;
+    afw_adapter_session_t *session;
     MDB_txn *txn;
 } afw_lmdb_transaction_t;
 
 /* defines the data used to remember our open transaction handle */
 typedef struct {
-    const afw_lmdb_adaptor_t *adaptor;
+    const afw_lmdb_adapter_t *adapter;
     MDB_txn *txn;
     afw_boolean_t transCommitted;
 } afw_lmdb_txn_t;
 
-typedef struct afw_lmdb_adaptor_session_s {
-    afw_adaptor_session_t pub;
-    afw_lmdb_adaptor_t *adaptor;
-    afw_adaptor_session_t *metadata_session;
-    afw_adaptor_impl_index_t *indexer;      
+typedef struct afw_lmdb_adapter_session_s {
+    afw_adapter_session_t pub;
+    afw_lmdb_adapter_t *adapter;
+    afw_adapter_session_t *metadata_session;
+    afw_adapter_impl_index_t *indexer;      
     afw_lmdb_journal_t *journal;
     afw_lmdb_key_value_t *key_value;
     
@@ -93,20 +93,20 @@ typedef struct afw_lmdb_adaptor_session_s {
     /* storage for transaction interface */
     afw_lmdb_transaction_t *transaction;
     
-} afw_lmdb_adaptor_session_t;
+} afw_lmdb_adapter_session_t;
 
-typedef struct afw_lmdb_adaptor_impl_index_s {
-    afw_adaptor_impl_index_t pub;
-    const afw_lmdb_adaptor_session_t * session;
-    const afw_lmdb_adaptor_t * adaptor;
+typedef struct afw_lmdb_adapter_impl_index_s {
+    afw_adapter_impl_index_t pub;
+    const afw_lmdb_adapter_session_t * session;
+    const afw_lmdb_adapter_t * adapter;
     MDB_txn *txn;
-} afw_lmdb_adaptor_impl_index_t;
+} afw_lmdb_adapter_impl_index_t;
 
-typedef struct impl_afw_adaptor_impl_index_cursor_self_s {
-    afw_adaptor_impl_index_cursor_t pub;
+typedef struct impl_afw_adapter_impl_index_cursor_self_s {
+    afw_adapter_impl_index_cursor_t pub;
 
     /* Private implementation variables */
-    const afw_lmdb_adaptor_session_t *session;
+    const afw_lmdb_adapter_session_t *session;
     const afw_utf8_t *object_type_id;
     const afw_utf8_t *key_string;
     afw_boolean_t unique;
@@ -116,7 +116,7 @@ typedef struct impl_afw_adaptor_impl_index_cursor_self_s {
     MDB_val key;
     MDB_val data;
 
-} impl_afw_adaptor_impl_index_cursor_self_t;
+} impl_afw_adapter_impl_index_cursor_self_t;
 
 /* defines the data used to remember our open database handle */
 typedef struct {
@@ -137,65 +137,65 @@ afw_lmdb_dbi_t * afw_lmdb_internal_dbi_handle(
 
 
 /**
- * @brief Internal create an LMDB adaptor.
+ * @brief Internal create an LMDB adapter.
  * @param properties Parameters.
- * @param p to use for adaptor resources.
+ * @param p to use for adapter resources.
  * @param xctx of caller.
- * @return New instance of LMDB adaptor.
+ * @return New instance of LMDB adapter.
  */
-const afw_adaptor_t * afw_lmdb_adaptor_create_cede_p(
+const afw_adapter_t * afw_lmdb_adapter_create_cede_p(
     const afw_object_t *properties,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**
- * @brief Internal create a LMDB adaptor session.
- * @param adaptor Internal instance of adaptor.
+ * @brief Internal create a LMDB adapter session.
+ * @param adapter Internal instance of adapter.
  * @param xctx of caller.
- * @return New instance of LMDB adaptor session.
+ * @return New instance of LMDB adapter session.
  */
-afw_lmdb_adaptor_session_t *
-    afw_lmdb_adaptor_session_create(
-    afw_lmdb_adaptor_t * adaptor,
+afw_lmdb_adapter_session_t *
+    afw_lmdb_adapter_session_create(
+    afw_lmdb_adapter_t * adapter,
     afw_xctx_t *xctx);
 
 /**
- * @brief Internal create a LMDB adaptor journal.
- * @param session Internal instance of adaptor session.
+ * @brief Internal create a LMDB adapter journal.
+ * @param session Internal instance of adapter session.
  * @param xctx of caller.
- * @return New instance of LMDB adaptor journal.
+ * @return New instance of LMDB adapter journal.
  */
 afw_lmdb_journal_t *
     afw_lmdb_journal_create(
-    afw_lmdb_adaptor_session_t *session,
+    afw_lmdb_adapter_session_t *session,
     afw_xctx_t *xctx);
 
 /**
- * @brief Internal create a LMDB adaptor key/value.
- * @param session Internal instance of adaptor session.
+ * @brief Internal create a LMDB adapter key/value.
+ * @param session Internal instance of adapter session.
  * @param xctx of caller.
  * @return New instance of LMDB key/value.
  */
 afw_lmdb_key_value_t * 
     afw_lmdb_key_value_create(
-    afw_lmdb_adaptor_session_t *session,
+    afw_lmdb_adapter_session_t *session,
     afw_xctx_t *xctx);
 
 /**
- * @brief Internal create a LMDB adaptor transaction.
- * @param session Internal instance of adaptor session.
+ * @brief Internal create a LMDB adapter transaction.
+ * @param session Internal instance of adapter session.
  * @param xctx of caller.
- * @return New instance of LMDB adaptor transaction.
+ * @return New instance of LMDB adapter transaction.
  */
 afw_lmdb_transaction_t *
     afw_lmdb_transaction_create(
-    afw_lmdb_adaptor_session_t *session,
+    afw_lmdb_adapter_session_t *session,
     afw_xctx_t *xctx);
 
 
 afw_rc_t afw_lmdb_internal_cleanup_free_result(void *data);
 
 const afw_utf8_t * afw_lmdb_internal_get_object_id(
-    const afw_lmdb_adaptor_session_t *self,
+    const afw_lmdb_adapter_session_t *self,
     afw_xctx_t *xctx);
 
 afw_rc_t afw_lmdb_internal_close_database(void *val);
@@ -207,7 +207,7 @@ void afw_lmdb_internal_close_transaction(
     afw_xctx_t *xctx);
 
 MDB_dbi afw_lmdb_internal_open_database(
-    const afw_lmdb_adaptor_t * adaptor,
+    const afw_lmdb_adapter_t * adapter,
     MDB_txn                  * txn,
     const afw_utf8_t         * database,
     unsigned int               flags,
@@ -215,37 +215,37 @@ MDB_dbi afw_lmdb_internal_open_database(
     afw_xctx_t              * xctx);
 
 MDB_cursor * afw_lmdb_internal_open_cursor(
-    const afw_lmdb_adaptor_session_t *session,
+    const afw_lmdb_adapter_session_t *session,
     MDB_dbi dbi,
     afw_xctx_t *xctx);
 
 afw_lmdb_txn_t * afw_lmdb_internal_open_transaction(
-    const afw_lmdb_adaptor_session_t *session,
-    const afw_lmdb_adaptor_t *adaptor, 
+    const afw_lmdb_adapter_session_t *session,
+    const afw_lmdb_adapter_t *adapter, 
     unsigned int flags,
     afw_boolean_t exclusive,
     afw_xctx_t *xctx);
 
 int afw_lmdb_internal_commit_transaction(
-    const afw_lmdb_adaptor_session_t *session,
-    const afw_lmdb_adaptor_t *adaptor,
+    const afw_lmdb_adapter_session_t *session,
+    const afw_lmdb_adapter_t *adapter,
     afw_xctx_t *xctx);
 
 void afw_lmdb_internal_abort_transaction(
-    const afw_lmdb_adaptor_session_t *session,
-    const afw_lmdb_adaptor_t *adaptor,
+    const afw_lmdb_adapter_session_t *session,
+    const afw_lmdb_adapter_t *adapter,
     afw_xctx_t *xctx);
 
 int afw_lmdb_internal_index_object(
-    const afw_lmdb_adaptor_session_t * session,
-    const afw_lmdb_adaptor_t * adaptor,
+    const afw_lmdb_adapter_session_t * session,
+    const afw_lmdb_adapter_t * adapter,
     const afw_utf8_t * object_type_id,
     const afw_object_t * object,
     const afw_uuid_t *uuid,
     afw_xctx_t *xctx);
 
 int afw_lmdb_internal_index_property(
-    const afw_lmdb_adaptor_t * adaptor,
+    const afw_lmdb_adapter_t * adapter,
     MDB_txn *txn,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *property,
@@ -254,7 +254,7 @@ int afw_lmdb_internal_index_property(
     afw_xctx_t *xctx);
 
 int afw_lmdb_internal_delete_index(
-    const afw_lmdb_adaptor_session_t * session,
+    const afw_lmdb_adapter_session_t * session,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
     const afw_utf8_t *property,
@@ -262,27 +262,27 @@ int afw_lmdb_internal_delete_index(
     afw_xctx_t *xctx);
 
 afw_boolean_t afw_lmdb_internal_is_property_indexed(
-    const afw_lmdb_adaptor_t *adaptor,
+    const afw_lmdb_adapter_t *adapter,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *property_name,
     afw_xctx_t *xctx);
 
 const afw_object_t * afw_lmdb_internal_create_object_from_entry(
-    const afw_lmdb_adaptor_session_t *self,
+    const afw_lmdb_adapter_session_t *self,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
     MDB_dbi dbi,
     afw_xctx_t *xctx);
 
 const afw_value_t * afw_lmdb_internal_create_value_from_entry(
-    const afw_lmdb_adaptor_session_t *self,
+    const afw_lmdb_adapter_session_t *self,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
     MDB_dbi dbi,
     afw_xctx_t *xctx);
 
 void afw_lmdb_internal_create_entry_from_object(
-    const afw_lmdb_adaptor_session_t *self,
+    const afw_lmdb_adapter_session_t *self,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
     const afw_object_t *object,
@@ -290,15 +290,15 @@ void afw_lmdb_internal_create_entry_from_object(
     afw_xctx_t *xctx);
 
 void afw_lmdb_internal_replace_entry_from_object(
-    const afw_lmdb_adaptor_session_t *self,
+    const afw_lmdb_adapter_session_t *self,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
     const afw_object_t *object,
     MDB_dbi dbi,
     afw_xctx_t *xctx);
 
-afw_adaptor_impl_index_cursor_t * afw_lmdb_internal_cursor_create(
-    const afw_lmdb_adaptor_session_t *self,
+afw_adapter_impl_index_cursor_t * afw_lmdb_internal_cursor_create(
+    const afw_lmdb_adapter_session_t *self,
     const afw_utf8_t * database,
     const afw_utf8_t * object_type_id,
     const afw_utf8_t * value,
@@ -307,13 +307,13 @@ afw_adaptor_impl_index_cursor_t * afw_lmdb_internal_cursor_create(
     afw_xctx_t *xctx);
 
 const afw_object_t * afw_lmdb_internal_get_config(
-    afw_lmdb_adaptor_t * self,  
+    afw_lmdb_adapter_t * self,  
     MDB_txn *txn,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 void afw_lmdb_internal_save_config(
-    afw_lmdb_adaptor_t * self,
+    afw_lmdb_adapter_t * self,
     const afw_object_t * config,
     MDB_txn *txn,
     afw_xctx_t *xctx);
@@ -338,12 +338,12 @@ afw_rc_t afw_lmdb_internal_delete_entry(
     afw_xctx_t *xctx);
 
 int afw_lmdb_internal_reader_check(
-    const afw_adaptor_t * instance,
+    const afw_adapter_t * instance,
     int * deadReaders,
     afw_xctx_t *xctx);
 
 int afw_lmdb_internal_reader_list(
-    const afw_adaptor_t * instance,
+    const afw_adapter_t * instance,
     const afw_utf8_t ** list,
     const afw_pool_t * pool,
     afw_xctx_t *xctx);
@@ -361,7 +361,7 @@ int afw_lmdb_internal_reader_list(
  * to contain logic to handle both scenarios.
  */
 #define AFW_LMDB_BEGIN_TRANSACTION( \
-    adaptor,    \
+    adapter,    \
     session,    \
     flags,      \
     exclusive,  \
@@ -369,27 +369,27 @@ int afw_lmdb_internal_reader_list(
 do { \
     MDB_txn * this_txn = NULL; \
     bool this_txnHandled = false; \
-    const afw_lmdb_adaptor_t * this_adaptor = adaptor; \
-    const afw_lmdb_adaptor_session_t * this_session = session; \
+    const afw_lmdb_adapter_t * this_adapter = adapter; \
+    const afw_lmdb_adapter_session_t * this_session = session; \
     afw_xctx_t * this_xctx = xctx; \
     int this_rc; \
     AFW_TRY { \
         if (session && session->transaction) { \
-            ((afw_lmdb_adaptor_session_t *)session)->currTxn = session->transaction->txn; \
+            ((afw_lmdb_adapter_session_t *)session)->currTxn = session->transaction->txn; \
         } else { \
             if (exclusive) { \
-                apr_thread_rwlock_wrlock(adaptor->dbLock); \
+                apr_thread_rwlock_wrlock(adapter->dbLock); \
             } else { \
-                apr_thread_rwlock_rdlock(adaptor->dbLock); \
+                apr_thread_rwlock_rdlock(adapter->dbLock); \
             } \
-            this_rc = mdb_txn_begin(adaptor->dbEnv, NULL, flags, &this_txn); \
+            this_rc = mdb_txn_begin(adapter->dbEnv, NULL, flags, &this_txn); \
             if (this_rc) { \
-                apr_thread_rwlock_unlock(adaptor->dbLock); \
+                apr_thread_rwlock_unlock(adapter->dbLock); \
                 AFW_THROW_ERROR_RV_Z(general, lmdb, this_rc, \
                     "Unable to begin transaction.", this_xctx); \
             } \
             if (session) \
-                ((afw_lmdb_adaptor_session_t *)session)->currTxn = this_txn; \
+                ((afw_lmdb_adapter_session_t *)session)->currTxn = this_txn; \
         } \
         do {
 
@@ -440,7 +440,7 @@ do { \
                 mdb_txn_abort(this_txn); \
                 this_txnHandled = true; \
             } \
-            apr_thread_rwlock_unlock(this_adaptor->dbLock); \
+            apr_thread_rwlock_unlock(this_adapter->dbLock); \
         } \
         AFW_ERROR_RETHROW; \
     } \

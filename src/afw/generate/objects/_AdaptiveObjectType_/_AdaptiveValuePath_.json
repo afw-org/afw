@@ -6,11 +6,11 @@
     "description": "Adaptive value path.",
     "objectType": "_AdaptiveValuePath_",
     "propertyTypes": {
-        "adaptorId": {
-            "brief": "Adaptor id",
+        "adapterId": {
+            "brief": "Adapter id",
             "dataType": "string",
-            "description": "Adaptor id.",
-            "label": "Adaptor"
+            "description": "Adapter id.",
+            "label": "Adapter"
         },
         "containsUnresolvedSubstitutions": {
             "brief": "The path contains unresolved substitutions",
@@ -67,11 +67,11 @@
             "description": "Property names.",
             "label": "Property Names"
         },
-        "substitutedAdaptorId": {
-            "brief": "Adaptor id was substituted from current path",
+        "substitutedAdapterId": {
+            "brief": "Adapter id was substituted from current path",
             "dataType": "boolean",
-            "description": "Adaptor id was substituted from current path.",
-            "label": "Substituted Adaptor"
+            "description": "Adapter id was substituted from current path.",
+            "label": "Substituted Adapter"
         },
         "substitutedEntireObjectId": {
             "brief": "Entire object id was substituted from current path",

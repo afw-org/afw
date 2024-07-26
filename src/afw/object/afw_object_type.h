@@ -29,7 +29,7 @@ AFW_BEGIN_DECLARES
 /** @brief Struct for afw_object_type_t. */
 struct afw_object_type_s {
     const afw_object_type_t *next;
-    const afw_utf8_t *adaptor_id;
+    const afw_utf8_t *adapter_id;
     const afw_utf8_t *object_type_id;
     const afw_object_t *object_type_object;
     const afw_object_t *property_types_object;
@@ -76,7 +76,7 @@ struct afw_object_type_property_type_s {
 
 /**
  * @brief Create an object type.
- * @param adaptor
+ * @param adapter
  * @param object_type_object.
  * @param p for result.
  * @param xctx of caller.
@@ -84,7 +84,7 @@ struct afw_object_type_property_type_s {
  */
 const afw_object_type_t *
 afw_object_type_internal_create(
-    const afw_adaptor_t *adaptor,
+    const afw_adapter_t *adapter,
     const afw_object_t *object_type_object,
     const afw_pool_t *p,
     afw_xctx_t *xctx);

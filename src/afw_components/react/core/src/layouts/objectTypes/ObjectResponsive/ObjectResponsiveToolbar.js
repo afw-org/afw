@@ -191,7 +191,7 @@ export const ObjectResponsiveToolbar = (props) => {
             <ObjectResponsivePropertyOther
                 open={ObjectResponsivePropertyTypeOpen}
                 propertyType={selectedPropertyType}
-                adaptorId={object ? object.getAdaptorId() : undefined}
+                adapterId={object ? object.getAdapterId() : undefined}
                 onDismiss={() => setObjectResponsivePropertyTypeOpen(false)}
                 onSave={onSaveOtherProperty}
             />

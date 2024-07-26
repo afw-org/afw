@@ -22,9 +22,9 @@
             <literal>Request Handlers</literal> control how client requests are
             handled to by implementing the 
             <literal>afw_request_handler</literal> interface. Currently, the 
-            only Request Handler provided by Core is the Adaptor Request
+            only Request Handler provided by Core is the Adapter Request
             Handler, which allows clients to retrieve and store objects in
-            configured Adaptor(s). In time, additional request handlers may be
+            configured Adapter(s). In time, additional request handlers may be
             added to provide functionality, such as XACML.
         </paragraph>
     </section>
@@ -34,7 +34,7 @@
             Both core and extensions may register <literal>Content
             Types</literal>, which provide Adaptive Objects with an external
             representation. These Content Types are useful for translating
-            adaptive objects between adaptors and storing them in ways that are
+            adaptive objects between adapters and storing them in ways that are
             convenient and useful.  
             They allow you to encode and decode all properties of an Adaptive
             Object, including their Adaptive Values. The following content types
@@ -66,17 +66,17 @@
         </table>             
     </section> 
     <section>   
-        <title>Adaptors</title>    
+        <title>Adapters</title>    
         <paragraph>
-            <literal>Adaptors</literal> implement several
-            <literal>afw_adaptor_</literal> interfaces in order to provide your
+            <literal>Adapters</literal> implement several
+            <literal>afw_adapter_</literal> interfaces in order to provide your
             Adaptive Framework application with a way to store and retrieve
-            Adaptive Objects. There are several adaptors that are included with
+            Adaptive Objects. There are several adapters that are included with
             the Adaptive Framework:
         </paragraph>
         <table>
             <columns>
-                <column>Adaptor</column>
+                <column>Adapter</column>
                 <column>Description</column>
             </columns>
             <rows>
@@ -94,7 +94,7 @@
                 </row>
                 <row>
                     <column>Model</column>
-                    <column>Model Adaptor</column>
+                    <column>Model Adapter</column>
                 </row>
                 <row>
                     <column>VFS</column>
@@ -131,11 +131,11 @@
     <section>
         <title>Journals</title>
         <paragraph>
-            Journals implement the <literal>afw_adaptor_journal</literal>
+            Journals implement the <literal>afw_adapter_journal</literal>
             interface and allow for object events to be journaled into a
             persistent queue. Journals must maintain cursors into this queue to
             track clients (or <literal>Provisioning Peers</literal>) who are 
-            producing or consuming journal entries. Currently, two adaptors 
+            producing or consuming journal entries. Currently, two adapters 
             also support the Journal interface:
         </paragraph>
         <table>

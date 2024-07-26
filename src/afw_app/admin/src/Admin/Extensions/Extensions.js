@@ -346,11 +346,11 @@ const Extensions = () => {
             dispatch({ type: "LOADING_CONFIGURATION" });
 
             try {
-                const {applicationId, confAdaptorId} = application.getPropertyValues();    
+                const {applicationId, confAdapterId} = application.getPropertyValues();    
                 const response = model.getObject({
                     objectTypeId: "_AdaptiveConf_application", 
                     objectId: applicationId, 
-                    adaptorId: confAdaptorId
+                    adapterId: confAdapterId
                 });
                 controller = response.controller;
 

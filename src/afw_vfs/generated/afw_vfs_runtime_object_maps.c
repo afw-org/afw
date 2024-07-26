@@ -36,34 +36,34 @@
 
 
 
-/* Runtime object map properties for _AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects objects. */
+/* Runtime object map properties for _AdaptiveAdapterTypeSpecific_vfs_retrieve_objects objects. */
 
 static const afw_runtime_object_type_meta_t
-impl_runtime_meta__AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects = {
-    &afw_vfs_self_s__AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects,
+impl_runtime_meta__AdaptiveAdapterTypeSpecific_vfs_retrieve_objects = {
+    &afw_vfs_self_s__AdaptiveAdapterTypeSpecific_vfs_retrieve_objects,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
 };
 
 AFW_RUNTIME_OBJECT_INF( 
-    afw_runtime_inf__AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects, 
-    impl_runtime_meta__AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects);
+    afw_runtime_inf__AdaptiveAdapterTypeSpecific_vfs_retrieve_objects, 
+    impl_runtime_meta__AdaptiveAdapterTypeSpecific_vfs_retrieve_objects);
 
 
-/* Runtime object map properties for _AdaptiveConf_adaptor_vfs objects. */
+/* Runtime object map properties for _AdaptiveConf_adapter_vfs objects. */
 
 static const afw_runtime_object_type_meta_t
-impl_runtime_meta__AdaptiveConf_adaptor_vfs = {
-    &afw_vfs_self_s__AdaptiveConf_adaptor_vfs,
+impl_runtime_meta__AdaptiveConf_adapter_vfs = {
+    &afw_vfs_self_s__AdaptiveConf_adapter_vfs,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
 };
 
 AFW_RUNTIME_OBJECT_INF( 
-    afw_runtime_inf__AdaptiveConf_adaptor_vfs, 
-    impl_runtime_meta__AdaptiveConf_adaptor_vfs);
+    afw_runtime_inf__AdaptiveConf_adapter_vfs, 
+    impl_runtime_meta__AdaptiveConf_adapter_vfs);
 
 
 /* Runtime object map properties for _AdaptiveFile_vfs objects. */
@@ -82,8 +82,8 @@ AFW_RUNTIME_OBJECT_INF(
 
 /* NULL terminated list of inf pointers. */
 static const afw_object_inf_t * impl_inf[] = {
-    &afw_runtime_inf__AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects,
-    &afw_runtime_inf__AdaptiveConf_adaptor_vfs,
+    &afw_runtime_inf__AdaptiveAdapterTypeSpecific_vfs_retrieve_objects,
+    &afw_runtime_inf__AdaptiveConf_adapter_vfs,
     &afw_runtime_inf__AdaptiveFile_vfs,
     NULL
 };

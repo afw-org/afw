@@ -26,7 +26,7 @@ const ObjectTypesError = ({ error }) =>
     </>;
 
 /**
- * Displayed when the selected adaptorId has no Object Type definitions that can be stored.
+ * Displayed when the selected adapterId has no Object Type definitions that can be stored.
  */
 const ObjectTypesNone = () => {
 
@@ -39,7 +39,7 @@ const ObjectTypesNone = () => {
                     <div>
                         <Typography     
                             color="textSecondary"                          
-                            text="This adaptor contains no Object Types and user-defined Object Types cannot be created and stored directly in this adaptor type." 
+                            text="This adapter contains no Object Types and user-defined Object Types cannot be created and stored directly in this adapter type." 
                         />
                         <div style={{ height: theme.spacing(2) }} />
                         <Typography 
@@ -57,7 +57,7 @@ const ObjectTypesNone = () => {
                         <Typography 
                             style={{ display: "inline-block" }}
                             color="textSecondary"
-                            text="and map it onto this adaptor." 
+                            text="and map it onto this adapter." 
                         />
                     </div>
                 }
@@ -81,18 +81,18 @@ export const ObjectTypes = (props) => {
     const [allowChange, setAllowChange] = useState();
     const [allowDelete, setAllowDelete] = useState();
 
-    const {adaptorId} = props;
+    const {adapterId} = props;
     
-    /* use the useRetrieveObjects() hook to retrieve all Object Types from this adaptor */
+    /* use the useRetrieveObjects() hook to retrieve all Object Types from this adapter */
     const {objects, isLoading, error} = useRetrieveObjects({ 
-        adaptorId, 
+        adapterId, 
         objectTypeId: "_AdaptiveObjectType_", 
         objectOptions: objectOptions_objectId_objectType_path
     });
 
     /* 
      * Once the Object Type objects are retrieved, read the _AdaptiveObjectType_ object
-     * to determine if Object Types can be created or deleted in this adaptor.
+     * to determine if Object Types can be created or deleted in this adapter.
      */
     const objectTypeObjects = useMemo(() => {
         /* filter out the _AdaptiveObjectType_ object type */
@@ -124,7 +124,7 @@ export const ObjectTypes = (props) => {
         return <ObjectTypesError error={error} />;
     }
 
-    /* Some adaptors do not have Object Types, or even allow new ones to be created */
+    /* Some adapters do not have Object Types, or even allow new ones to be created */
     if ((allowAdd === false) && (allowDelete === false) && objectTypeObjects.length === 0) {
         return <ObjectTypesNone />;
     }
@@ -132,7 +132,7 @@ export const ObjectTypes = (props) => {
     /* Return the Table with routable links to manage these Object Types */
     return (
         <Switch>
-            <Route exact path="/Admin/Schema/:adaptorId" render={() => 
+            <Route exact path="/Admin/Schema/:adapterId" render={() => 
                 <div style={{ display: "flex", flexDirection: "column", padding: theme.spacing(1), height: "100%" }}>
                     { (allowAdd || allowDelete) ? (
                         <div>
@@ -160,7 +160,7 @@ export const ObjectTypes = (props) => {
                     ) : (
                         <div>
                             <Message 
-                                message="Object Types cannot be managed directly through this adaptor." 
+                                message="Object Types cannot be managed directly through this adapter." 
                             />
                             <div style={{ height: theme.spacing(2) }} />
                         </div>
@@ -183,7 +183,7 @@ export const ObjectTypes = (props) => {
                                         return (
                                             <Link 
                                                 text={objectTypeId}
-                                                uriComponents={["Admin", "Schema", adaptorId, objectTypeId]}
+                                                uriComponents={["Admin", "Schema", adapterId, objectTypeId]}
                                             />
                                         );
                                     }
@@ -207,7 +207,7 @@ export const ObjectTypes = (props) => {
                     <Typography size="1" color="textSecondary" text={objectTypeObjects.length + " Object Types found."} />
                 </div>
             } />
-            <Route path="/Admin/Schema/:adaptorId/:objectTypeId" render={(routeProps) => {
+            <Route path="/Admin/Schema/:adapterId/:objectTypeId" render={(routeProps) => {
                 let objectTypeObject;
                 const objectTypeId = routeProps.match.params.objectTypeId;
 

@@ -38,37 +38,37 @@
                         "label": "Description",
                         "required": false
                     },
-                    "defaultAdaptorId": {
+                    "defaultAdapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "allowQuery": true,
-                        "brief": "This is the adaptorId chosen by default for user interface select components",
+                        "brief": "This is the adapterId chosen by default for user interface select components",
                         "dataType": "string",
-                        "description": "This is the adaptorId chosen by default for user interface select components.",
-                        "label": "Default Adaptor",
+                        "description": "This is the adapterId chosen by default for user interface select components.",
+                        "label": "Default Adapter",
                         "required": false
                     },
-                    "defaultModelAdaptorId": {
+                    "defaultModelAdapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "allowQuery": true,
-                        "brief": "The default adaptorId to select for model storage",
+                        "brief": "The default adapterId to select for model storage",
                         "dataType": "string",
-                        "description": "When presented with multiple model adaptors, this is the default adaptorId to use.  This will be the default selected adaptor chosen by user interface components.",
-                        "label": "Default Model Adaptor",
+                        "description": "When presented with multiple model adapters, this is the default adapterId to use.  This will be the default selected adapter chosen by user interface components.",
+                        "label": "Default Model Adapter",
                         "required": false
                     },
-                    "layoutsAdaptorId": {
+                    "layoutsAdapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "allowQuery": true,
-                        "brief": "The default adaptorId to select for layout component objects",
+                        "brief": "The default adapterId to select for layout component objects",
                         "dataType": "string",
-                        "description": "This is the adaptorId that locates Adaptive Layout Component objects.",
-                        "label": "Layouts Adaptor",
+                        "description": "This is the adapterId that locates Adaptive Layout Component objects.",
+                        "label": "Layouts Adapter",
                         "required": false
                     },
                     "qualifiedVariables": {
@@ -113,16 +113,16 @@
                         "description": "This is id of the application.  The default applicationId is \"application\".  This property can only be specified in the type=application entry of the conf file.",
                         "label": "Application"
                     },
-                    "confAdaptorId": {
+                    "confAdapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "allowQuery": true,
                         "allowWrite": false,
-                        "brief": "Optional adaptorId of the running adaptor that contains configuration related objects",
+                        "brief": "Optional adapterId of the running adapter that contains configuration related objects",
                         "dataType": "string",
-                        "description": "This is the optional adaptorId of the running adaptor that contains configuration related objects.  This property can only be specified in the type=application entry of the conf file.\n\nThe runtime /afw/_AdaptiveApplication_/current object will consist of properties from the type=application entry of the conf file plus unique properties from the optional /<confAdaptorId>/_AdaptiveConf_application/<applicationId> object.\n\nAll services defined by _AdaptiveServiceConf_ objects in <confAdaptorId> with startup \"permanent\" or \"immediate\" will be started when the type=application conf entry is processed.",
-                        "label": "Conf Adaptor"
+                        "description": "This is the optional adapterId of the running adapter that contains configuration related objects.  This property can only be specified in the type=application entry of the conf file.\n\nThe runtime /afw/_AdaptiveApplication_/current object will consist of properties from the type=application entry of the conf file plus unique properties from the optional /<confAdapterId>/_AdaptiveConf_application/<applicationId> object.\n\nAll services defined by _AdaptiveServiceConf_ objects in <confAdapterId> with startup \"permanent\" or \"immediate\" will be started when the type=application conf entry is processed.",
+                        "label": "Conf Adapter"
                     },
                     "type": {
                         "_meta_": {
@@ -222,12 +222,12 @@
                         "label": "Mapped Object",
                         "dataType": "object"
                     },
-                    "mappedAdaptorId": {
+                    "mappedAdapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
-                        "description": "The adaptor id of the object being converted to object.",
-                        "label": "Mapped Adaptor Id",
+                        "description": "The adapter id of the object being converted to object.",
+                        "label": "Mapped Adapter Id",
                         "dataType": "string"
                     }
                 }
@@ -240,7 +240,7 @@
                 "objectId": "modelGetObject",
                 "objectType": "_AdaptiveContextType_"
             },
-            "description": "current:: variables available in _AdaptiveModelObjectType_ hybrid values related to objects coming from an adaptor",
+            "description": "current:: variables available in _AdaptiveModelObjectType_ hybrid values related to objects coming from an adapter",
             "qualifierDefinitions": {
                 "_meta_": {
                     "objectType": "_AdaptiveQualifierDefinitions_"
@@ -272,37 +272,37 @@
                         "label": "Description",
                         "required": false
                     },
-                    "defaultAdaptorId": {
+                    "defaultAdapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "allowQuery": true,
-                        "brief": "This is the adaptorId chosen by default for user interface select components",
+                        "brief": "This is the adapterId chosen by default for user interface select components",
                         "dataType": "string",
-                        "description": "This is the adaptorId chosen by default for user interface select components.",
-                        "label": "Default Adaptor",
+                        "description": "This is the adapterId chosen by default for user interface select components.",
+                        "label": "Default Adapter",
                         "required": false
                     },
-                    "defaultModelAdaptorId": {
+                    "defaultModelAdapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "allowQuery": true,
-                        "brief": "The default adaptorId to select for model storage",
+                        "brief": "The default adapterId to select for model storage",
                         "dataType": "string",
-                        "description": "When presented with multiple model adaptors, this is the default adaptorId to use.  This will be the default selected adaptor chosen by user interface components.",
-                        "label": "Default Model Adaptor",
+                        "description": "When presented with multiple model adapters, this is the default adapterId to use.  This will be the default selected adapter chosen by user interface components.",
+                        "label": "Default Model Adapter",
                         "required": false
                     },
-                    "layoutsAdaptorId": {
+                    "layoutsAdapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "allowQuery": true,
-                        "brief": "The default adaptorId to select for layout component objects",
+                        "brief": "The default adapterId to select for layout component objects",
                         "dataType": "string",
-                        "description": "This is the adaptorId that locates Adaptive Layout Component objects.",
-                        "label": "Layouts Adaptor",
+                        "description": "This is the adapterId that locates Adaptive Layout Component objects.",
+                        "label": "Layouts Adapter",
                         "required": false
                     },
                     "qualifiedVariables": {
@@ -347,16 +347,16 @@
                         "description": "This is id of the application.  The default applicationId is \"application\".  This property can only be specified in the type=application entry of the conf file.",
                         "label": "Application"
                     },
-                    "confAdaptorId": {
+                    "confAdapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "allowQuery": true,
                         "allowWrite": false,
-                        "brief": "Optional adaptorId of the running adaptor that contains configuration related objects",
+                        "brief": "Optional adapterId of the running adapter that contains configuration related objects",
                         "dataType": "string",
-                        "description": "This is the optional adaptorId of the running adaptor that contains configuration related objects.  This property can only be specified in the type=application entry of the conf file.\n\nThe runtime /afw/_AdaptiveApplication_/current object will consist of properties from the type=application entry of the conf file plus unique properties from the optional /<confAdaptorId>/_AdaptiveConf_application/<applicationId> object.\n\nAll services defined by _AdaptiveServiceConf_ objects in <confAdaptorId> with startup \"permanent\" or \"immediate\" will be started when the type=application conf entry is processed.",
-                        "label": "Conf Adaptor"
+                        "description": "This is the optional adapterId of the running adapter that contains configuration related objects.  This property can only be specified in the type=application entry of the conf file.\n\nThe runtime /afw/_AdaptiveApplication_/current object will consist of properties from the type=application entry of the conf file plus unique properties from the optional /<confAdapterId>/_AdaptiveConf_application/<applicationId> object.\n\nAll services defined by _AdaptiveServiceConf_ objects in <confAdapterId> with startup \"permanent\" or \"immediate\" will be started when the type=application conf entry is processed.",
+                        "label": "Conf Adapter"
                     },
                     "type": {
                         "_meta_": {
@@ -441,12 +441,12 @@
                         "label": "Mapped Object",
                         "dataType": "object"
                     },
-                    "mappedAdaptorId": {
+                    "mappedAdapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
-                        "description": "The adaptor id of the object being converted to object.",
-                        "label": "Mapped Adaptor Id",
+                        "description": "The adapter id of the object being converted to object.",
+                        "label": "Mapped Adapter Id",
                         "dataType": "string"
                     }
                 }
@@ -459,7 +459,7 @@
                 "objectId": "modelDeleteObject",
                 "objectType": "_AdaptiveContextType_"
             },
-            "description": "current:: variables available in delete object hybrid values related to objects going to an adaptor",
+            "description": "current:: variables available in delete object hybrid values related to objects going to an adapter",
             "qualifierDefinitions": {
                 "_meta_": {
                     "objectType": "_AdaptiveQualifierDefinitions_"
@@ -491,37 +491,37 @@
                         "label": "Description",
                         "required": false
                     },
-                    "defaultAdaptorId": {
+                    "defaultAdapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "allowQuery": true,
-                        "brief": "This is the adaptorId chosen by default for user interface select components",
+                        "brief": "This is the adapterId chosen by default for user interface select components",
                         "dataType": "string",
-                        "description": "This is the adaptorId chosen by default for user interface select components.",
-                        "label": "Default Adaptor",
+                        "description": "This is the adapterId chosen by default for user interface select components.",
+                        "label": "Default Adapter",
                         "required": false
                     },
-                    "defaultModelAdaptorId": {
+                    "defaultModelAdapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "allowQuery": true,
-                        "brief": "The default adaptorId to select for model storage",
+                        "brief": "The default adapterId to select for model storage",
                         "dataType": "string",
-                        "description": "When presented with multiple model adaptors, this is the default adaptorId to use.  This will be the default selected adaptor chosen by user interface components.",
-                        "label": "Default Model Adaptor",
+                        "description": "When presented with multiple model adapters, this is the default adapterId to use.  This will be the default selected adapter chosen by user interface components.",
+                        "label": "Default Model Adapter",
                         "required": false
                     },
-                    "layoutsAdaptorId": {
+                    "layoutsAdapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "allowQuery": true,
-                        "brief": "The default adaptorId to select for layout component objects",
+                        "brief": "The default adapterId to select for layout component objects",
                         "dataType": "string",
-                        "description": "This is the adaptorId that locates Adaptive Layout Component objects.",
-                        "label": "Layouts Adaptor",
+                        "description": "This is the adapterId that locates Adaptive Layout Component objects.",
+                        "label": "Layouts Adapter",
                         "required": false
                     },
                     "qualifiedVariables": {
@@ -566,16 +566,16 @@
                         "description": "This is id of the application.  The default applicationId is \"application\".  This property can only be specified in the type=application entry of the conf file.",
                         "label": "Application"
                     },
-                    "confAdaptorId": {
+                    "confAdapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "allowQuery": true,
                         "allowWrite": false,
-                        "brief": "Optional adaptorId of the running adaptor that contains configuration related objects",
+                        "brief": "Optional adapterId of the running adapter that contains configuration related objects",
                         "dataType": "string",
-                        "description": "This is the optional adaptorId of the running adaptor that contains configuration related objects.  This property can only be specified in the type=application entry of the conf file.\n\nThe runtime /afw/_AdaptiveApplication_/current object will consist of properties from the type=application entry of the conf file plus unique properties from the optional /<confAdaptorId>/_AdaptiveConf_application/<applicationId> object.\n\nAll services defined by _AdaptiveServiceConf_ objects in <confAdaptorId> with startup \"permanent\" or \"immediate\" will be started when the type=application conf entry is processed.",
-                        "label": "Conf Adaptor"
+                        "description": "This is the optional adapterId of the running adapter that contains configuration related objects.  This property can only be specified in the type=application entry of the conf file.\n\nThe runtime /afw/_AdaptiveApplication_/current object will consist of properties from the type=application entry of the conf file plus unique properties from the optional /<confAdapterId>/_AdaptiveConf_application/<applicationId> object.\n\nAll services defined by _AdaptiveServiceConf_ objects in <confAdapterId> with startup \"permanent\" or \"immediate\" will be started when the type=application conf entry is processed.",
+                        "label": "Conf Adapter"
                     },
                     "type": {
                         "_meta_": {
@@ -652,12 +652,12 @@
                         "label": "ObjectId",
                         "dataType": "string"
                     },
-                    "adaptorId": {
+                    "adapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
-                        "description": "The adaptor id of the object being converted to mapped object.",
-                        "label": "Adaptor Id",
+                        "description": "The adapter id of the object being converted to mapped object.",
+                        "label": "Adapter Id",
                         "dataType": "string"
                     }
                 }
@@ -701,37 +701,37 @@
                         "label": "Description",
                         "required": false
                     },
-                    "defaultAdaptorId": {
+                    "defaultAdapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "allowQuery": true,
-                        "brief": "This is the adaptorId chosen by default for user interface select components",
+                        "brief": "This is the adapterId chosen by default for user interface select components",
                         "dataType": "string",
-                        "description": "This is the adaptorId chosen by default for user interface select components.",
-                        "label": "Default Adaptor",
+                        "description": "This is the adapterId chosen by default for user interface select components.",
+                        "label": "Default Adapter",
                         "required": false
                     },
-                    "defaultModelAdaptorId": {
+                    "defaultModelAdapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "allowQuery": true,
-                        "brief": "The default adaptorId to select for model storage",
+                        "brief": "The default adapterId to select for model storage",
                         "dataType": "string",
-                        "description": "When presented with multiple model adaptors, this is the default adaptorId to use.  This will be the default selected adaptor chosen by user interface components.",
-                        "label": "Default Model Adaptor",
+                        "description": "When presented with multiple model adapters, this is the default adapterId to use.  This will be the default selected adapter chosen by user interface components.",
+                        "label": "Default Model Adapter",
                         "required": false
                     },
-                    "layoutsAdaptorId": {
+                    "layoutsAdapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "allowQuery": true,
-                        "brief": "The default adaptorId to select for layout component objects",
+                        "brief": "The default adapterId to select for layout component objects",
                         "dataType": "string",
-                        "description": "This is the adaptorId that locates Adaptive Layout Component objects.",
-                        "label": "Layouts Adaptor",
+                        "description": "This is the adapterId that locates Adaptive Layout Component objects.",
+                        "label": "Layouts Adapter",
                         "required": false
                     },
                     "qualifiedVariables": {
@@ -776,16 +776,16 @@
                         "description": "This is id of the application.  The default applicationId is \"application\".  This property can only be specified in the type=application entry of the conf file.",
                         "label": "Application"
                     },
-                    "confAdaptorId": {
+                    "confAdapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "allowQuery": true,
                         "allowWrite": false,
-                        "brief": "Optional adaptorId of the running adaptor that contains configuration related objects",
+                        "brief": "Optional adapterId of the running adapter that contains configuration related objects",
                         "dataType": "string",
-                        "description": "This is the optional adaptorId of the running adaptor that contains configuration related objects.  This property can only be specified in the type=application entry of the conf file.\n\nThe runtime /afw/_AdaptiveApplication_/current object will consist of properties from the type=application entry of the conf file plus unique properties from the optional /<confAdaptorId>/_AdaptiveConf_application/<applicationId> object.\n\nAll services defined by _AdaptiveServiceConf_ objects in <confAdaptorId> with startup \"permanent\" or \"immediate\" will be started when the type=application conf entry is processed.",
-                        "label": "Conf Adaptor"
+                        "description": "This is the optional adapterId of the running adapter that contains configuration related objects.  This property can only be specified in the type=application entry of the conf file.\n\nThe runtime /afw/_AdaptiveApplication_/current object will consist of properties from the type=application entry of the conf file plus unique properties from the optional /<confAdapterId>/_AdaptiveConf_application/<applicationId> object.\n\nAll services defined by _AdaptiveServiceConf_ objects in <confAdapterId> with startup \"permanent\" or \"immediate\" will be started when the type=application conf entry is processed.",
+                        "label": "Conf Adapter"
                     },
                     "type": {
                         "_meta_": {
@@ -1232,37 +1232,37 @@
                         "label": "Description",
                         "required": false
                     },
-                    "defaultAdaptorId": {
+                    "defaultAdapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "allowQuery": true,
-                        "brief": "This is the adaptorId chosen by default for user interface select components",
+                        "brief": "This is the adapterId chosen by default for user interface select components",
                         "dataType": "string",
-                        "description": "This is the adaptorId chosen by default for user interface select components.",
-                        "label": "Default Adaptor",
+                        "description": "This is the adapterId chosen by default for user interface select components.",
+                        "label": "Default Adapter",
                         "required": false
                     },
-                    "defaultModelAdaptorId": {
+                    "defaultModelAdapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "allowQuery": true,
-                        "brief": "The default adaptorId to select for model storage",
+                        "brief": "The default adapterId to select for model storage",
                         "dataType": "string",
-                        "description": "When presented with multiple model adaptors, this is the default adaptorId to use.  This will be the default selected adaptor chosen by user interface components.",
-                        "label": "Default Model Adaptor",
+                        "description": "When presented with multiple model adapters, this is the default adapterId to use.  This will be the default selected adapter chosen by user interface components.",
+                        "label": "Default Model Adapter",
                         "required": false
                     },
-                    "layoutsAdaptorId": {
+                    "layoutsAdapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "allowQuery": true,
-                        "brief": "The default adaptorId to select for layout component objects",
+                        "brief": "The default adapterId to select for layout component objects",
                         "dataType": "string",
-                        "description": "This is the adaptorId that locates Adaptive Layout Component objects.",
-                        "label": "Layouts Adaptor",
+                        "description": "This is the adapterId that locates Adaptive Layout Component objects.",
+                        "label": "Layouts Adapter",
                         "required": false
                     },
                     "qualifiedVariables": {
@@ -1307,16 +1307,16 @@
                         "description": "This is id of the application.  The default applicationId is \"application\".  This property can only be specified in the type=application entry of the conf file.",
                         "label": "Application"
                     },
-                    "confAdaptorId": {
+                    "confAdapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "allowQuery": true,
                         "allowWrite": false,
-                        "brief": "Optional adaptorId of the running adaptor that contains configuration related objects",
+                        "brief": "Optional adapterId of the running adapter that contains configuration related objects",
                         "dataType": "string",
-                        "description": "This is the optional adaptorId of the running adaptor that contains configuration related objects.  This property can only be specified in the type=application entry of the conf file.\n\nThe runtime /afw/_AdaptiveApplication_/current object will consist of properties from the type=application entry of the conf file plus unique properties from the optional /<confAdaptorId>/_AdaptiveConf_application/<applicationId> object.\n\nAll services defined by _AdaptiveServiceConf_ objects in <confAdaptorId> with startup \"permanent\" or \"immediate\" will be started when the type=application conf entry is processed.",
-                        "label": "Conf Adaptor"
+                        "description": "This is the optional adapterId of the running adapter that contains configuration related objects.  This property can only be specified in the type=application entry of the conf file.\n\nThe runtime /afw/_AdaptiveApplication_/current object will consist of properties from the type=application entry of the conf file plus unique properties from the optional /<confAdapterId>/_AdaptiveConf_application/<applicationId> object.\n\nAll services defined by _AdaptiveServiceConf_ objects in <confAdapterId> with startup \"permanent\" or \"immediate\" will be started when the type=application conf entry is processed.",
+                        "label": "Conf Adapter"
                     },
                     "type": {
                         "_meta_": {
@@ -1401,12 +1401,12 @@
                         "label": "Object",
                         "dataType": "object"
                     },
-                    "adaptorId": {
+                    "adapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
-                        "description": "The adaptor id of the object being converted to mapped object.",
-                        "label": "Adaptor Id",
+                        "description": "The adapter id of the object being converted to mapped object.",
+                        "label": "Adapter Id",
                         "dataType": "string"
                     },
                     "mappedObjectType": {
@@ -1433,12 +1433,12 @@
                         "label": "Mapped Object",
                         "dataType": "object"
                     },
-                    "mappedAdaptorId": {
+                    "mappedAdapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
-                        "description": "The adaptor id of the object being converted to object.",
-                        "label": "Mapped Adaptor Id",
+                        "description": "The adapter id of the object being converted to object.",
+                        "label": "Mapped Adapter Id",
                         "dataType": "string"
                     }
                 }
@@ -1483,37 +1483,37 @@
                         "label": "Description",
                         "required": false
                     },
-                    "defaultAdaptorId": {
+                    "defaultAdapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "allowQuery": true,
-                        "brief": "This is the adaptorId chosen by default for user interface select components",
+                        "brief": "This is the adapterId chosen by default for user interface select components",
                         "dataType": "string",
-                        "description": "This is the adaptorId chosen by default for user interface select components.",
-                        "label": "Default Adaptor",
+                        "description": "This is the adapterId chosen by default for user interface select components.",
+                        "label": "Default Adapter",
                         "required": false
                     },
-                    "defaultModelAdaptorId": {
+                    "defaultModelAdapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "allowQuery": true,
-                        "brief": "The default adaptorId to select for model storage",
+                        "brief": "The default adapterId to select for model storage",
                         "dataType": "string",
-                        "description": "When presented with multiple model adaptors, this is the default adaptorId to use.  This will be the default selected adaptor chosen by user interface components.",
-                        "label": "Default Model Adaptor",
+                        "description": "When presented with multiple model adapters, this is the default adapterId to use.  This will be the default selected adapter chosen by user interface components.",
+                        "label": "Default Model Adapter",
                         "required": false
                     },
-                    "layoutsAdaptorId": {
+                    "layoutsAdapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "allowQuery": true,
-                        "brief": "The default adaptorId to select for layout component objects",
+                        "brief": "The default adapterId to select for layout component objects",
                         "dataType": "string",
-                        "description": "This is the adaptorId that locates Adaptive Layout Component objects.",
-                        "label": "Layouts Adaptor",
+                        "description": "This is the adapterId that locates Adaptive Layout Component objects.",
+                        "label": "Layouts Adapter",
                         "required": false
                     },
                     "qualifiedVariables": {
@@ -1558,16 +1558,16 @@
                         "description": "This is id of the application.  The default applicationId is \"application\".  This property can only be specified in the type=application entry of the conf file.",
                         "label": "Application"
                     },
-                    "confAdaptorId": {
+                    "confAdapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "allowQuery": true,
                         "allowWrite": false,
-                        "brief": "Optional adaptorId of the running adaptor that contains configuration related objects",
+                        "brief": "Optional adapterId of the running adapter that contains configuration related objects",
                         "dataType": "string",
-                        "description": "This is the optional adaptorId of the running adaptor that contains configuration related objects.  This property can only be specified in the type=application entry of the conf file.\n\nThe runtime /afw/_AdaptiveApplication_/current object will consist of properties from the type=application entry of the conf file plus unique properties from the optional /<confAdaptorId>/_AdaptiveConf_application/<applicationId> object.\n\nAll services defined by _AdaptiveServiceConf_ objects in <confAdaptorId> with startup \"permanent\" or \"immediate\" will be started when the type=application conf entry is processed.",
-                        "label": "Conf Adaptor"
+                        "description": "This is the optional adapterId of the running adapter that contains configuration related objects.  This property can only be specified in the type=application entry of the conf file.\n\nThe runtime /afw/_AdaptiveApplication_/current object will consist of properties from the type=application entry of the conf file plus unique properties from the optional /<confAdapterId>/_AdaptiveConf_application/<applicationId> object.\n\nAll services defined by _AdaptiveServiceConf_ objects in <confAdapterId> with startup \"permanent\" or \"immediate\" will be started when the type=application conf entry is processed.",
+                        "label": "Conf Adapter"
                     },
                     "type": {
                         "_meta_": {
@@ -1662,7 +1662,7 @@
                 "objectId": "modelModifyObject",
                 "objectType": "_AdaptiveContextType_"
             },
-            "description": "current:: variables available in modify object hybrid values related to objects going to an adaptor",
+            "description": "current:: variables available in modify object hybrid values related to objects going to an adapter",
             "qualifierDefinitions": {
                 "_meta_": {
                     "objectType": "_AdaptiveQualifierDefinitions_"
@@ -1694,37 +1694,37 @@
                         "label": "Description",
                         "required": false
                     },
-                    "defaultAdaptorId": {
+                    "defaultAdapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "allowQuery": true,
-                        "brief": "This is the adaptorId chosen by default for user interface select components",
+                        "brief": "This is the adapterId chosen by default for user interface select components",
                         "dataType": "string",
-                        "description": "This is the adaptorId chosen by default for user interface select components.",
-                        "label": "Default Adaptor",
+                        "description": "This is the adapterId chosen by default for user interface select components.",
+                        "label": "Default Adapter",
                         "required": false
                     },
-                    "defaultModelAdaptorId": {
+                    "defaultModelAdapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "allowQuery": true,
-                        "brief": "The default adaptorId to select for model storage",
+                        "brief": "The default adapterId to select for model storage",
                         "dataType": "string",
-                        "description": "When presented with multiple model adaptors, this is the default adaptorId to use.  This will be the default selected adaptor chosen by user interface components.",
-                        "label": "Default Model Adaptor",
+                        "description": "When presented with multiple model adapters, this is the default adapterId to use.  This will be the default selected adapter chosen by user interface components.",
+                        "label": "Default Model Adapter",
                         "required": false
                     },
-                    "layoutsAdaptorId": {
+                    "layoutsAdapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "allowQuery": true,
-                        "brief": "The default adaptorId to select for layout component objects",
+                        "brief": "The default adapterId to select for layout component objects",
                         "dataType": "string",
-                        "description": "This is the adaptorId that locates Adaptive Layout Component objects.",
-                        "label": "Layouts Adaptor",
+                        "description": "This is the adapterId that locates Adaptive Layout Component objects.",
+                        "label": "Layouts Adapter",
                         "required": false
                     },
                     "qualifiedVariables": {
@@ -1769,16 +1769,16 @@
                         "description": "This is id of the application.  The default applicationId is \"application\".  This property can only be specified in the type=application entry of the conf file.",
                         "label": "Application"
                     },
-                    "confAdaptorId": {
+                    "confAdapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "allowQuery": true,
                         "allowWrite": false,
-                        "brief": "Optional adaptorId of the running adaptor that contains configuration related objects",
+                        "brief": "Optional adapterId of the running adapter that contains configuration related objects",
                         "dataType": "string",
-                        "description": "This is the optional adaptorId of the running adaptor that contains configuration related objects.  This property can only be specified in the type=application entry of the conf file.\n\nThe runtime /afw/_AdaptiveApplication_/current object will consist of properties from the type=application entry of the conf file plus unique properties from the optional /<confAdaptorId>/_AdaptiveConf_application/<applicationId> object.\n\nAll services defined by _AdaptiveServiceConf_ objects in <confAdaptorId> with startup \"permanent\" or \"immediate\" will be started when the type=application conf entry is processed.",
-                        "label": "Conf Adaptor"
+                        "description": "This is the optional adapterId of the running adapter that contains configuration related objects.  This property can only be specified in the type=application entry of the conf file.\n\nThe runtime /afw/_AdaptiveApplication_/current object will consist of properties from the type=application entry of the conf file plus unique properties from the optional /<confAdapterId>/_AdaptiveConf_application/<applicationId> object.\n\nAll services defined by _AdaptiveServiceConf_ objects in <confAdapterId> with startup \"permanent\" or \"immediate\" will be started when the type=application conf entry is processed.",
+                        "label": "Conf Adapter"
                     },
                     "type": {
                         "_meta_": {
@@ -1863,12 +1863,12 @@
                         "label": "Object",
                         "dataType": "object"
                     },
-                    "adaptorId": {
+                    "adapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
-                        "description": "The adaptor id of the object being converted to mapped object.",
-                        "label": "Adaptor Id",
+                        "description": "The adapter id of the object being converted to mapped object.",
+                        "label": "Adapter Id",
                         "dataType": "string"
                     },
                     "modifyEntries": {
@@ -1889,7 +1889,7 @@
                 "objectId": "modelRetrieveObjects",
                 "objectType": "_AdaptiveContextType_"
             },
-            "description": "current:: variables available in _AdaptiveModelObjectType_ hybrid values related to objects coming from an adaptor",
+            "description": "current:: variables available in _AdaptiveModelObjectType_ hybrid values related to objects coming from an adapter",
             "qualifierDefinitions": {
                 "_meta_": {
                     "objectType": "_AdaptiveQualifierDefinitions_"
@@ -1921,37 +1921,37 @@
                         "label": "Description",
                         "required": false
                     },
-                    "defaultAdaptorId": {
+                    "defaultAdapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "allowQuery": true,
-                        "brief": "This is the adaptorId chosen by default for user interface select components",
+                        "brief": "This is the adapterId chosen by default for user interface select components",
                         "dataType": "string",
-                        "description": "This is the adaptorId chosen by default for user interface select components.",
-                        "label": "Default Adaptor",
+                        "description": "This is the adapterId chosen by default for user interface select components.",
+                        "label": "Default Adapter",
                         "required": false
                     },
-                    "defaultModelAdaptorId": {
+                    "defaultModelAdapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "allowQuery": true,
-                        "brief": "The default adaptorId to select for model storage",
+                        "brief": "The default adapterId to select for model storage",
                         "dataType": "string",
-                        "description": "When presented with multiple model adaptors, this is the default adaptorId to use.  This will be the default selected adaptor chosen by user interface components.",
-                        "label": "Default Model Adaptor",
+                        "description": "When presented with multiple model adapters, this is the default adapterId to use.  This will be the default selected adapter chosen by user interface components.",
+                        "label": "Default Model Adapter",
                         "required": false
                     },
-                    "layoutsAdaptorId": {
+                    "layoutsAdapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "allowQuery": true,
-                        "brief": "The default adaptorId to select for layout component objects",
+                        "brief": "The default adapterId to select for layout component objects",
                         "dataType": "string",
-                        "description": "This is the adaptorId that locates Adaptive Layout Component objects.",
-                        "label": "Layouts Adaptor",
+                        "description": "This is the adapterId that locates Adaptive Layout Component objects.",
+                        "label": "Layouts Adapter",
                         "required": false
                     },
                     "qualifiedVariables": {
@@ -1996,16 +1996,16 @@
                         "description": "This is id of the application.  The default applicationId is \"application\".  This property can only be specified in the type=application entry of the conf file.",
                         "label": "Application"
                     },
-                    "confAdaptorId": {
+                    "confAdapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "allowQuery": true,
                         "allowWrite": false,
-                        "brief": "Optional adaptorId of the running adaptor that contains configuration related objects",
+                        "brief": "Optional adapterId of the running adapter that contains configuration related objects",
                         "dataType": "string",
-                        "description": "This is the optional adaptorId of the running adaptor that contains configuration related objects.  This property can only be specified in the type=application entry of the conf file.\n\nThe runtime /afw/_AdaptiveApplication_/current object will consist of properties from the type=application entry of the conf file plus unique properties from the optional /<confAdaptorId>/_AdaptiveConf_application/<applicationId> object.\n\nAll services defined by _AdaptiveServiceConf_ objects in <confAdaptorId> with startup \"permanent\" or \"immediate\" will be started when the type=application conf entry is processed.",
-                        "label": "Conf Adaptor"
+                        "description": "This is the optional adapterId of the running adapter that contains configuration related objects.  This property can only be specified in the type=application entry of the conf file.\n\nThe runtime /afw/_AdaptiveApplication_/current object will consist of properties from the type=application entry of the conf file plus unique properties from the optional /<confAdapterId>/_AdaptiveConf_application/<applicationId> object.\n\nAll services defined by _AdaptiveServiceConf_ objects in <confAdapterId> with startup \"permanent\" or \"immediate\" will be started when the type=application conf entry is processed.",
+                        "label": "Conf Adapter"
                     },
                     "type": {
                         "_meta_": {
@@ -2090,12 +2090,12 @@
                         "label": "Mapped Object",
                         "dataType": "object"
                     },
-                    "mappedAdaptorId": {
+                    "mappedAdapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
-                        "description": "The adaptor id of the object being converted to object.",
-                        "label": "Mapped Adaptor Id",
+                        "description": "The adapter id of the object being converted to object.",
+                        "label": "Mapped Adapter Id",
                         "dataType": "string"
                     }
                 }
@@ -2108,7 +2108,7 @@
                 "objectId": "modelAddObject",
                 "objectType": "_AdaptiveContextType_"
             },
-            "description": "current:: variables available in add object hybridvalues related to objects going to an adaptor",
+            "description": "current:: variables available in add object hybridvalues related to objects going to an adapter",
             "qualifierDefinitions": {
                 "_meta_": {
                     "objectType": "_AdaptiveQualifierDefinitions_"
@@ -2140,37 +2140,37 @@
                         "label": "Description",
                         "required": false
                     },
-                    "defaultAdaptorId": {
+                    "defaultAdapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "allowQuery": true,
-                        "brief": "This is the adaptorId chosen by default for user interface select components",
+                        "brief": "This is the adapterId chosen by default for user interface select components",
                         "dataType": "string",
-                        "description": "This is the adaptorId chosen by default for user interface select components.",
-                        "label": "Default Adaptor",
+                        "description": "This is the adapterId chosen by default for user interface select components.",
+                        "label": "Default Adapter",
                         "required": false
                     },
-                    "defaultModelAdaptorId": {
+                    "defaultModelAdapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "allowQuery": true,
-                        "brief": "The default adaptorId to select for model storage",
+                        "brief": "The default adapterId to select for model storage",
                         "dataType": "string",
-                        "description": "When presented with multiple model adaptors, this is the default adaptorId to use.  This will be the default selected adaptor chosen by user interface components.",
-                        "label": "Default Model Adaptor",
+                        "description": "When presented with multiple model adapters, this is the default adapterId to use.  This will be the default selected adapter chosen by user interface components.",
+                        "label": "Default Model Adapter",
                         "required": false
                     },
-                    "layoutsAdaptorId": {
+                    "layoutsAdapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "allowQuery": true,
-                        "brief": "The default adaptorId to select for layout component objects",
+                        "brief": "The default adapterId to select for layout component objects",
                         "dataType": "string",
-                        "description": "This is the adaptorId that locates Adaptive Layout Component objects.",
-                        "label": "Layouts Adaptor",
+                        "description": "This is the adapterId that locates Adaptive Layout Component objects.",
+                        "label": "Layouts Adapter",
                         "required": false
                     },
                     "qualifiedVariables": {
@@ -2215,16 +2215,16 @@
                         "description": "This is id of the application.  The default applicationId is \"application\".  This property can only be specified in the type=application entry of the conf file.",
                         "label": "Application"
                     },
-                    "confAdaptorId": {
+                    "confAdapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "allowQuery": true,
                         "allowWrite": false,
-                        "brief": "Optional adaptorId of the running adaptor that contains configuration related objects",
+                        "brief": "Optional adapterId of the running adapter that contains configuration related objects",
                         "dataType": "string",
-                        "description": "This is the optional adaptorId of the running adaptor that contains configuration related objects.  This property can only be specified in the type=application entry of the conf file.\n\nThe runtime /afw/_AdaptiveApplication_/current object will consist of properties from the type=application entry of the conf file plus unique properties from the optional /<confAdaptorId>/_AdaptiveConf_application/<applicationId> object.\n\nAll services defined by _AdaptiveServiceConf_ objects in <confAdaptorId> with startup \"permanent\" or \"immediate\" will be started when the type=application conf entry is processed.",
-                        "label": "Conf Adaptor"
+                        "description": "This is the optional adapterId of the running adapter that contains configuration related objects.  This property can only be specified in the type=application entry of the conf file.\n\nThe runtime /afw/_AdaptiveApplication_/current object will consist of properties from the type=application entry of the conf file plus unique properties from the optional /<confAdapterId>/_AdaptiveConf_application/<applicationId> object.\n\nAll services defined by _AdaptiveServiceConf_ objects in <confAdapterId> with startup \"permanent\" or \"immediate\" will be started when the type=application conf entry is processed.",
+                        "label": "Conf Adapter"
                     },
                     "type": {
                         "_meta_": {
@@ -2309,12 +2309,12 @@
                         "label": "Object",
                         "dataType": "object"
                     },
-                    "adaptorId": {
+                    "adapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
-                        "description": "The adaptor id of the object being converted to mapped object.",
-                        "label": "Adaptor Id",
+                        "description": "The adapter id of the object being converted to mapped object.",
+                        "label": "Adapter Id",
                         "dataType": "string"
                     }
                 }
@@ -2358,37 +2358,37 @@
                         "label": "Description",
                         "required": false
                     },
-                    "defaultAdaptorId": {
+                    "defaultAdapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "allowQuery": true,
-                        "brief": "This is the adaptorId chosen by default for user interface select components",
+                        "brief": "This is the adapterId chosen by default for user interface select components",
                         "dataType": "string",
-                        "description": "This is the adaptorId chosen by default for user interface select components.",
-                        "label": "Default Adaptor",
+                        "description": "This is the adapterId chosen by default for user interface select components.",
+                        "label": "Default Adapter",
                         "required": false
                     },
-                    "defaultModelAdaptorId": {
+                    "defaultModelAdapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "allowQuery": true,
-                        "brief": "The default adaptorId to select for model storage",
+                        "brief": "The default adapterId to select for model storage",
                         "dataType": "string",
-                        "description": "When presented with multiple model adaptors, this is the default adaptorId to use.  This will be the default selected adaptor chosen by user interface components.",
-                        "label": "Default Model Adaptor",
+                        "description": "When presented with multiple model adapters, this is the default adapterId to use.  This will be the default selected adapter chosen by user interface components.",
+                        "label": "Default Model Adapter",
                         "required": false
                     },
-                    "layoutsAdaptorId": {
+                    "layoutsAdapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "allowQuery": true,
-                        "brief": "The default adaptorId to select for layout component objects",
+                        "brief": "The default adapterId to select for layout component objects",
                         "dataType": "string",
-                        "description": "This is the adaptorId that locates Adaptive Layout Component objects.",
-                        "label": "Layouts Adaptor",
+                        "description": "This is the adapterId that locates Adaptive Layout Component objects.",
+                        "label": "Layouts Adapter",
                         "required": false
                     },
                     "qualifiedVariables": {
@@ -2433,16 +2433,16 @@
                         "description": "This is id of the application.  The default applicationId is \"application\".  This property can only be specified in the type=application entry of the conf file.",
                         "label": "Application"
                     },
-                    "confAdaptorId": {
+                    "confAdapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "allowQuery": true,
                         "allowWrite": false,
-                        "brief": "Optional adaptorId of the running adaptor that contains configuration related objects",
+                        "brief": "Optional adapterId of the running adapter that contains configuration related objects",
                         "dataType": "string",
-                        "description": "This is the optional adaptorId of the running adaptor that contains configuration related objects.  This property can only be specified in the type=application entry of the conf file.\n\nThe runtime /afw/_AdaptiveApplication_/current object will consist of properties from the type=application entry of the conf file plus unique properties from the optional /<confAdaptorId>/_AdaptiveConf_application/<applicationId> object.\n\nAll services defined by _AdaptiveServiceConf_ objects in <confAdaptorId> with startup \"permanent\" or \"immediate\" will be started when the type=application conf entry is processed.",
-                        "label": "Conf Adaptor"
+                        "description": "This is the optional adapterId of the running adapter that contains configuration related objects.  This property can only be specified in the type=application entry of the conf file.\n\nThe runtime /afw/_AdaptiveApplication_/current object will consist of properties from the type=application entry of the conf file plus unique properties from the optional /<confAdapterId>/_AdaptiveConf_application/<applicationId> object.\n\nAll services defined by _AdaptiveServiceConf_ objects in <confAdapterId> with startup \"permanent\" or \"immediate\" will be started when the type=application conf entry is processed.",
+                        "label": "Conf Adapter"
                     },
                     "type": {
                         "_meta_": {
@@ -2790,37 +2790,37 @@
                         "label": "Description",
                         "required": false
                     },
-                    "defaultAdaptorId": {
+                    "defaultAdapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "allowQuery": true,
-                        "brief": "This is the adaptorId chosen by default for user interface select components",
+                        "brief": "This is the adapterId chosen by default for user interface select components",
                         "dataType": "string",
-                        "description": "This is the adaptorId chosen by default for user interface select components.",
-                        "label": "Default Adaptor",
+                        "description": "This is the adapterId chosen by default for user interface select components.",
+                        "label": "Default Adapter",
                         "required": false
                     },
-                    "defaultModelAdaptorId": {
+                    "defaultModelAdapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "allowQuery": true,
-                        "brief": "The default adaptorId to select for model storage",
+                        "brief": "The default adapterId to select for model storage",
                         "dataType": "string",
-                        "description": "When presented with multiple model adaptors, this is the default adaptorId to use.  This will be the default selected adaptor chosen by user interface components.",
-                        "label": "Default Model Adaptor",
+                        "description": "When presented with multiple model adapters, this is the default adapterId to use.  This will be the default selected adapter chosen by user interface components.",
+                        "label": "Default Model Adapter",
                         "required": false
                     },
-                    "layoutsAdaptorId": {
+                    "layoutsAdapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "allowQuery": true,
-                        "brief": "The default adaptorId to select for layout component objects",
+                        "brief": "The default adapterId to select for layout component objects",
                         "dataType": "string",
-                        "description": "This is the adaptorId that locates Adaptive Layout Component objects.",
-                        "label": "Layouts Adaptor",
+                        "description": "This is the adapterId that locates Adaptive Layout Component objects.",
+                        "label": "Layouts Adapter",
                         "required": false
                     },
                     "qualifiedVariables": {
@@ -2865,16 +2865,16 @@
                         "description": "This is id of the application.  The default applicationId is \"application\".  This property can only be specified in the type=application entry of the conf file.",
                         "label": "Application"
                     },
-                    "confAdaptorId": {
+                    "confAdapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "allowQuery": true,
                         "allowWrite": false,
-                        "brief": "Optional adaptorId of the running adaptor that contains configuration related objects",
+                        "brief": "Optional adapterId of the running adapter that contains configuration related objects",
                         "dataType": "string",
-                        "description": "This is the optional adaptorId of the running adaptor that contains configuration related objects.  This property can only be specified in the type=application entry of the conf file.\n\nThe runtime /afw/_AdaptiveApplication_/current object will consist of properties from the type=application entry of the conf file plus unique properties from the optional /<confAdaptorId>/_AdaptiveConf_application/<applicationId> object.\n\nAll services defined by _AdaptiveServiceConf_ objects in <confAdaptorId> with startup \"permanent\" or \"immediate\" will be started when the type=application conf entry is processed.",
-                        "label": "Conf Adaptor"
+                        "description": "This is the optional adapterId of the running adapter that contains configuration related objects.  This property can only be specified in the type=application entry of the conf file.\n\nThe runtime /afw/_AdaptiveApplication_/current object will consist of properties from the type=application entry of the conf file plus unique properties from the optional /<confAdapterId>/_AdaptiveConf_application/<applicationId> object.\n\nAll services defined by _AdaptiveServiceConf_ objects in <confAdapterId> with startup \"permanent\" or \"immediate\" will be started when the type=application conf entry is processed.",
+                        "label": "Conf Adapter"
                     },
                     "type": {
                         "_meta_": {
@@ -2974,12 +2974,12 @@
                         "label": "Object",
                         "dataType": "object"
                     },
-                    "adaptorId": {
+                    "adapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
-                        "description": "The adaptor id of the object being converted to mapped object.",
-                        "label": "Adaptor Id",
+                        "description": "The adapter id of the object being converted to mapped object.",
+                        "label": "Adapter Id",
                         "dataType": "string"
                     }
                 }
@@ -3023,37 +3023,37 @@
                         "label": "Description",
                         "required": false
                     },
-                    "defaultAdaptorId": {
+                    "defaultAdapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "allowQuery": true,
-                        "brief": "This is the adaptorId chosen by default for user interface select components",
+                        "brief": "This is the adapterId chosen by default for user interface select components",
                         "dataType": "string",
-                        "description": "This is the adaptorId chosen by default for user interface select components.",
-                        "label": "Default Adaptor",
+                        "description": "This is the adapterId chosen by default for user interface select components.",
+                        "label": "Default Adapter",
                         "required": false
                     },
-                    "defaultModelAdaptorId": {
+                    "defaultModelAdapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "allowQuery": true,
-                        "brief": "The default adaptorId to select for model storage",
+                        "brief": "The default adapterId to select for model storage",
                         "dataType": "string",
-                        "description": "When presented with multiple model adaptors, this is the default adaptorId to use.  This will be the default selected adaptor chosen by user interface components.",
-                        "label": "Default Model Adaptor",
+                        "description": "When presented with multiple model adapters, this is the default adapterId to use.  This will be the default selected adapter chosen by user interface components.",
+                        "label": "Default Model Adapter",
                         "required": false
                     },
-                    "layoutsAdaptorId": {
+                    "layoutsAdapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "allowQuery": true,
-                        "brief": "The default adaptorId to select for layout component objects",
+                        "brief": "The default adapterId to select for layout component objects",
                         "dataType": "string",
-                        "description": "This is the adaptorId that locates Adaptive Layout Component objects.",
-                        "label": "Layouts Adaptor",
+                        "description": "This is the adapterId that locates Adaptive Layout Component objects.",
+                        "label": "Layouts Adapter",
                         "required": false
                     },
                     "qualifiedVariables": {
@@ -3098,16 +3098,16 @@
                         "description": "This is id of the application.  The default applicationId is \"application\".  This property can only be specified in the type=application entry of the conf file.",
                         "label": "Application"
                     },
-                    "confAdaptorId": {
+                    "confAdapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "allowQuery": true,
                         "allowWrite": false,
-                        "brief": "Optional adaptorId of the running adaptor that contains configuration related objects",
+                        "brief": "Optional adapterId of the running adapter that contains configuration related objects",
                         "dataType": "string",
-                        "description": "This is the optional adaptorId of the running adaptor that contains configuration related objects.  This property can only be specified in the type=application entry of the conf file.\n\nThe runtime /afw/_AdaptiveApplication_/current object will consist of properties from the type=application entry of the conf file plus unique properties from the optional /<confAdaptorId>/_AdaptiveConf_application/<applicationId> object.\n\nAll services defined by _AdaptiveServiceConf_ objects in <confAdaptorId> with startup \"permanent\" or \"immediate\" will be started when the type=application conf entry is processed.",
-                        "label": "Conf Adaptor"
+                        "description": "This is the optional adapterId of the running adapter that contains configuration related objects.  This property can only be specified in the type=application entry of the conf file.\n\nThe runtime /afw/_AdaptiveApplication_/current object will consist of properties from the type=application entry of the conf file plus unique properties from the optional /<confAdapterId>/_AdaptiveConf_application/<applicationId> object.\n\nAll services defined by _AdaptiveServiceConf_ objects in <confAdapterId> with startup \"permanent\" or \"immediate\" will be started when the type=application conf entry is processed.",
+                        "label": "Conf Adapter"
                     },
                     "type": {
                         "_meta_": {
@@ -3545,14 +3545,14 @@
                         "label": "Type",
                         "required": true
                     },
-                    "confAdaptorId": {
+                    "confAdapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
-                        "label": "Conf Adaptor",
-                        "description": "This is the optional adaptorId of the running adaptor that contains configuration related objects.  This property can only be specified in the type=application entry of the conf file.\n\nThe runtime /afw/_AdaptiveApplication_/current object will consist of properties from the type=application entry of the conf file plus unique properties from the optional /<confAdaptorId>/_AdaptiveConf_application/<applicationId> object.\n\nAll services defined by _AdaptiveServiceConf_ objects in <confAdaptorId> with startup \"permanent\" or \"immediate\" will be started when the type=application conf entry is processed.",
+                        "label": "Conf Adapter",
+                        "description": "This is the optional adapterId of the running adapter that contains configuration related objects.  This property can only be specified in the type=application entry of the conf file.\n\nThe runtime /afw/_AdaptiveApplication_/current object will consist of properties from the type=application entry of the conf file plus unique properties from the optional /<confAdapterId>/_AdaptiveConf_application/<applicationId> object.\n\nAll services defined by _AdaptiveServiceConf_ objects in <confAdapterId> with startup \"permanent\" or \"immediate\" will be started when the type=application conf entry is processed.",
                         "dataType": "string",
-                        "brief": "Optional adaptorId of the running adaptor that contains configuration related objects",
+                        "brief": "Optional adapterId of the running adapter that contains configuration related objects",
                         "allowWrite": false,
                         "allowQuery": true
                     },
@@ -3598,37 +3598,37 @@
                         "dataType": "object",
                         "brief": "Qualified set of variables"
                     },
-                    "layoutsAdaptorId": {
+                    "layoutsAdapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "required": false,
-                        "label": "Layouts Adaptor",
-                        "description": "This is the adaptorId that locates Adaptive Layout Component objects.",
+                        "label": "Layouts Adapter",
+                        "description": "This is the adapterId that locates Adaptive Layout Component objects.",
                         "dataType": "string",
-                        "brief": "The default adaptorId to select for layout component objects",
+                        "brief": "The default adapterId to select for layout component objects",
                         "allowQuery": true
                     },
-                    "defaultModelAdaptorId": {
+                    "defaultModelAdapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "required": false,
-                        "label": "Default Model Adaptor",
-                        "description": "When presented with multiple model adaptors, this is the default adaptorId to use.  This will be the default selected adaptor chosen by user interface components.",
+                        "label": "Default Model Adapter",
+                        "description": "When presented with multiple model adapters, this is the default adapterId to use.  This will be the default selected adapter chosen by user interface components.",
                         "dataType": "string",
-                        "brief": "The default adaptorId to select for model storage",
+                        "brief": "The default adapterId to select for model storage",
                         "allowQuery": true
                     },
-                    "defaultAdaptorId": {
+                    "defaultAdapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "required": false,
-                        "label": "Default Adaptor",
-                        "description": "This is the adaptorId chosen by default for user interface select components.",
+                        "label": "Default Adapter",
+                        "description": "This is the adapterId chosen by default for user interface select components.",
                         "dataType": "string",
-                        "brief": "This is the adaptorId chosen by default for user interface select components",
+                        "brief": "This is the adapterId chosen by default for user interface select components",
                         "allowQuery": true
                     },
                     "description": {
@@ -3701,7 +3701,7 @@
                 "objectId": "modelReplaceObject",
                 "objectType": "_AdaptiveContextType_"
             },
-            "description": "current:: variables available in replace object hybrid values related to objects going to an adaptor",
+            "description": "current:: variables available in replace object hybrid values related to objects going to an adapter",
             "qualifierDefinitions": {
                 "_meta_": {
                     "objectType": "_AdaptiveQualifierDefinitions_"
@@ -3733,37 +3733,37 @@
                         "label": "Description",
                         "required": false
                     },
-                    "defaultAdaptorId": {
+                    "defaultAdapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "allowQuery": true,
-                        "brief": "This is the adaptorId chosen by default for user interface select components",
+                        "brief": "This is the adapterId chosen by default for user interface select components",
                         "dataType": "string",
-                        "description": "This is the adaptorId chosen by default for user interface select components.",
-                        "label": "Default Adaptor",
+                        "description": "This is the adapterId chosen by default for user interface select components.",
+                        "label": "Default Adapter",
                         "required": false
                     },
-                    "defaultModelAdaptorId": {
+                    "defaultModelAdapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "allowQuery": true,
-                        "brief": "The default adaptorId to select for model storage",
+                        "brief": "The default adapterId to select for model storage",
                         "dataType": "string",
-                        "description": "When presented with multiple model adaptors, this is the default adaptorId to use.  This will be the default selected adaptor chosen by user interface components.",
-                        "label": "Default Model Adaptor",
+                        "description": "When presented with multiple model adapters, this is the default adapterId to use.  This will be the default selected adapter chosen by user interface components.",
+                        "label": "Default Model Adapter",
                         "required": false
                     },
-                    "layoutsAdaptorId": {
+                    "layoutsAdapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "allowQuery": true,
-                        "brief": "The default adaptorId to select for layout component objects",
+                        "brief": "The default adapterId to select for layout component objects",
                         "dataType": "string",
-                        "description": "This is the adaptorId that locates Adaptive Layout Component objects.",
-                        "label": "Layouts Adaptor",
+                        "description": "This is the adapterId that locates Adaptive Layout Component objects.",
+                        "label": "Layouts Adapter",
                         "required": false
                     },
                     "qualifiedVariables": {
@@ -3808,16 +3808,16 @@
                         "description": "This is id of the application.  The default applicationId is \"application\".  This property can only be specified in the type=application entry of the conf file.",
                         "label": "Application"
                     },
-                    "confAdaptorId": {
+                    "confAdapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
                         "allowQuery": true,
                         "allowWrite": false,
-                        "brief": "Optional adaptorId of the running adaptor that contains configuration related objects",
+                        "brief": "Optional adapterId of the running adapter that contains configuration related objects",
                         "dataType": "string",
-                        "description": "This is the optional adaptorId of the running adaptor that contains configuration related objects.  This property can only be specified in the type=application entry of the conf file.\n\nThe runtime /afw/_AdaptiveApplication_/current object will consist of properties from the type=application entry of the conf file plus unique properties from the optional /<confAdaptorId>/_AdaptiveConf_application/<applicationId> object.\n\nAll services defined by _AdaptiveServiceConf_ objects in <confAdaptorId> with startup \"permanent\" or \"immediate\" will be started when the type=application conf entry is processed.",
-                        "label": "Conf Adaptor"
+                        "description": "This is the optional adapterId of the running adapter that contains configuration related objects.  This property can only be specified in the type=application entry of the conf file.\n\nThe runtime /afw/_AdaptiveApplication_/current object will consist of properties from the type=application entry of the conf file plus unique properties from the optional /<confAdapterId>/_AdaptiveConf_application/<applicationId> object.\n\nAll services defined by _AdaptiveServiceConf_ objects in <confAdapterId> with startup \"permanent\" or \"immediate\" will be started when the type=application conf entry is processed.",
+                        "label": "Conf Adapter"
                     },
                     "type": {
                         "_meta_": {
@@ -3902,12 +3902,12 @@
                         "label": "Object",
                         "dataType": "object"
                     },
-                    "adaptorId": {
+                    "adapterId": {
                         "_meta_": {
                             "objectType": "_AdaptiveValueMeta_"
                         },
-                        "description": "The adaptor id of the object being converted to mapped object.",
-                        "label": "Adaptor Id",
+                        "description": "The adapter id of the object being converted to mapped object.",
+                        "label": "Adapter Id",
                         "dataType": "string"
                     }
                 }

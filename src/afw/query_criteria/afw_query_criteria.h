@@ -201,7 +201,7 @@ struct afw_query_criteria_filter_entry_s {
  * This struct represents a parsed query.
  * 
  * Member filter and tree represent the same query in two different
- * ways.  An implementation of afw_adaptor_session should use the one that
+ * ways.  An implementation of afw_adapter_session should use the one that
  * is easiest for it to process.
  * 
  * To process filter, evaluate the entry and iteratively follow the

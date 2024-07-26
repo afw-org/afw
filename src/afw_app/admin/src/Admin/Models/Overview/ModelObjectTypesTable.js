@@ -26,7 +26,7 @@ import {useAppCore, useTheme} from "../../../hooks";
  * 
  *  (a) Manually
  *  (b) Copy From Model
- *  (c) Map To Adaptor
+ *  (c) Map To Adapter
  */
 export const ModelObjectTypeChoice = (props) => {
 
@@ -56,7 +56,7 @@ export const ModelObjectTypeChoice = (props) => {
                         options={[
                             { key: "manual", text: "Create Manually" },
                             { key: "copy", text: "Copy From Another Model", disabled: !availableModels || availableModels.length === 0 },
-                            { key: "map", text: "Map To Another Adaptor" }
+                            { key: "map", text: "Map To Another Adapter" }
                         ]}
                         selectedKey={createOption}
                         onChanged={onSelectCreateOption}
@@ -309,8 +309,8 @@ export const ModelObjectTypeCopy = (props) => {
  * ModelObjectTypeMap
  * 
  * When the user requests to map  Object Types from 
- * another adaptor, this component will step them through the process
- * to select the adaptor and Object Type(s) they wish to map.
+ * another adapter, this component will step them through the process
+ * to select the adapter and Object Type(s) they wish to map.
  */
 export const ModelObjectTypeMap = (props) => {
 
@@ -318,7 +318,7 @@ export const ModelObjectTypeMap = (props) => {
     const [canMap, setCanMap] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [objectTypeObjects, setObjectTypeObjects] = useState();
-    const [selectedAdaptor, setSelectedAdaptor] = useState();
+    const [selectedAdapter, setSelectedAdapter] = useState();
 
     const theme = useTheme();
     const model = useModel();
@@ -328,14 +328,14 @@ export const ModelObjectTypeMap = (props) => {
     };
 
     /* When a Model is selected, display all of the available objectTypeObjects. */
-    const onSelectAdaptor = async (selectedAdaptor) => {    
-        const adaptorId = selectedAdaptor.key;    
+    const onSelectAdapter = async (selectedAdapter) => {    
+        const adapterId = selectedAdapter.key;    
 
         /* Load Object Types from this selected model*/
         setIsLoading(true);
         const {objects} = model.retrieveObjects({
             objectTypeId: "_AdaptiveObjectType_", 
-            adaptorId, 
+            adapterId, 
             objectOptions: {path: true, objectId: true, objectType: true},            
         });
         let objectTypeObjects = await objects;
@@ -345,7 +345,7 @@ export const ModelObjectTypeMap = (props) => {
         objectTypeObjects = objectTypeObjects.sort((A, B) => A.getObjectId().toLowerCase().localeCompare(B.getObjectId().toLowerCase()));
 
         setIsLoading(false);
-        setSelectedAdaptor(selectedAdaptor);
+        setSelectedAdapter(selectedAdapter);
         setObjectTypeObjects(objectTypeObjects);
     };
 
@@ -383,7 +383,7 @@ export const ModelObjectTypeMap = (props) => {
     };
 
     const models = props.models;
-    const {adaptors} = useAppCore();
+    const {adapters} = useAppCore();
 
     if (!models)
         return (
@@ -404,15 +404,15 @@ export const ModelObjectTypeMap = (props) => {
             contains={                    
                 <div style={{ padding: theme.spacing(2) }}>
                     <Dropdown 
-                        label="Select an Adaptor"
-                        description="Select the Adaptor you wish to Map Object Types from."
-                        options={adaptors.map(adaptor => ({
-                            key: adaptor.adaptorId,
-                            text: adaptor.adaptorId,
-                            adaptor
+                        label="Select an Adapter"
+                        description="Select the Adapter you wish to Map Object Types from."
+                        options={adapters.map(adapter => ({
+                            key: adapter.adapterId,
+                            text: adapter.adapterId,
+                            adapter
                         }))}
-                        onChanged={onSelectAdaptor}
-                        selectedKey={selectedAdaptor ? selectedAdaptor.key : undefined}
+                        onChanged={onSelectAdapter}
+                        selectedKey={selectedAdapter ? selectedAdapter.key : undefined}
                     />
                     {
                         isLoading && <Spinner size="large" label="Loading Object Types..." />
@@ -484,7 +484,7 @@ export const ModelObjectTypesTable = (props) => {
     const [showMapObjectTypes, setShowMapObjectTypes] = useState(false);
     const [createOption, setCreateOption] = useState();
 
-    const {adaptorId, model, objectTypes, models} = props;
+    const {adapterId, model, objectTypes, models} = props;
     const modelId = model.getPropertyValue("modelId");   
 
     const changed = useEventId({ object: objectTypes, eventId: "onChildChanged" });
@@ -631,7 +631,7 @@ export const ModelObjectTypesTable = (props) => {
                             return (
                                 <Link 
                                     uriComponents={[
-                                        "Admin", "Models", adaptorId, modelId, "objectTypes", 
+                                        "Admin", "Models", adapterId, modelId, "objectTypes", 
                                         objectType, hash
                                     ]}                                                                           
                                     text={objectType}

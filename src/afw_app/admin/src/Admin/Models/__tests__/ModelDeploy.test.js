@@ -39,9 +39,9 @@ describe("ModelDeploy Tests", () => {
         /* return a model for /models/_AdaptiveModel_/test */
         server.use(
             rest.post("/afw", (req, res, ctx) => {
-                const {function: functionId, adaptorId} = req.body;
+                const {function: functionId, adapterId} = req.body;
 
-                if (functionId === "retrieve_objects" && adaptorId === "models") { 
+                if (functionId === "retrieve_objects" && adapterId === "models") { 
                     mswPostCallback("/afw", req, res, ctx);
 
                     return res(
@@ -94,8 +94,8 @@ describe("ModelDeploy Tests", () => {
         const dialog = await screen.findByRole("dialog", { name: "Deploy Model" });
         within(dialog).getByRole("heading", { name: "Deploy Model" });
 
-        /* adaptorId should be filled out with "test" */
-        expect(within(dialog).getByRole("textbox", { name: "Adaptor" })).toHaveValue("test1");
+        /* adapterId should be filled out with "test" */
+        expect(within(dialog).getByRole("textbox", { name: "Adapter" })).toHaveValue("test1");
         expect(within(dialog).getByRole("textbox", { name: "Description" })).toHaveValue("This is a test model");
 
         const cancelBtn = within(dialog).getByRole("button", { name: "Cancel" });
@@ -112,9 +112,9 @@ describe("ModelDeploy Tests", () => {
         /* return a model for /models/_AdaptiveModel_/test */
         server.use(
             rest.post("/afw", (req, res, ctx) => {
-                const {function: functionId, adaptorId} = req.body;
+                const {function: functionId, adapterId} = req.body;
 
-                if (functionId === "retrieve_objects" && adaptorId === "models") { 
+                if (functionId === "retrieve_objects" && adapterId === "models") { 
                     mswPostCallback("/afw", req, res, ctx);
 
                     return res(
@@ -167,14 +167,14 @@ describe("ModelDeploy Tests", () => {
         const dialog = await screen.findByRole("dialog", { name: "Deploy Model" });
         within(dialog).getByRole("heading", { name: "Deploy Model" });
 
-        /* adaptorId should be filled out with "test" */
-        expect(within(dialog).getByRole("textbox", { name: "Adaptor" })).toHaveValue("test1");
+        /* adapterId should be filled out with "test" */
+        expect(within(dialog).getByRole("textbox", { name: "Adapter" })).toHaveValue("test1");
         expect(within(dialog).getByRole("textbox", { name: "Description" })).toHaveValue("This is a test model");
 
         let nextBtn = within(dialog).getByRole("button", { name: "Next" });
         fireEvent.click(nextBtn);
 
-        await screen.findByRole("button", { name: /journal adaptor/i });
+        await screen.findByRole("button", { name: /journal adapter/i });
 
         let deployBtn = within(dialog).getByRole("button", { name: "Deploy" });
         expect(deployBtn).toBeDisabled();

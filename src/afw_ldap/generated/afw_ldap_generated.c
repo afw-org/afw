@@ -52,8 +52,8 @@ void afw_ldap_generated_register(afw_xctx_t *xctx)
     /* Register const runtime objects. */
     afw_ldap_const_objects_register(xctx);
 
-    /* Register adaptor_type ldap */
-    afw_ldap_adaptor_type_ldap_register(xctx);
+    /* Register adapter_type ldap */
+    afw_ldap_adapter_type_ldap_register(xctx);
 
     /* Register error_rv_decoder ldap */
     afw_ldap_error_rv_decoder_ldap_register(xctx);

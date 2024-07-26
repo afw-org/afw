@@ -73,7 +73,7 @@ afw_array_create_with_options(
  * @return Pointer to interface pointer of new value array.
  *
  * Use this function to create a value array that is not associated with an
- * adaptor.
+ * adapter.
  * 
  * If only values of a single evaluated data type are added,
  * afw_array_get_data_type() will return that data type.

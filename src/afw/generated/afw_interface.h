@@ -122,7 +122,7 @@ struct afw_extension_inf_s {
 
 /**
  * @brief Call method release of interface afw_extension
- * @param instancePointer to this adaptor instance.
+ * @param instancePointer to this adapter instance.
  * @param xctxThis is the caller's xctx.
  */
 #define afw_extension_release( \
@@ -137,63 +137,63 @@ struct afw_extension_inf_s {
 /** @} */
 
 /**
- * @addtogroup afw_adaptor_factory_interface afw_adaptor_factory
+ * @addtogroup afw_adapter_factory_interface afw_adapter_factory
  *
- * Factory to create an instance of an afw_adaptor.
+ * Factory to create an instance of an afw_adapter.
  *
  * @{
  */
 
 
-/** @brief Interface afw_adaptor_factory public struct. */
-struct afw_adaptor_factory_s {
-    const afw_adaptor_factory_inf_t *inf;
+/** @brief Interface afw_adapter_factory public struct. */
+struct afw_adapter_factory_s {
+    const afw_adapter_factory_inf_t *inf;
 
     /**
-     * Type of adaptor this factory creates.
+     * Type of adapter this factory creates.
      */
-    afw_utf8_t adaptor_type;
+    afw_utf8_t adapter_type;
 
     /**
-     * Type of adaptor this factory creates.
+     * Type of adapter this factory creates.
      */
     const afw_utf8_t * description;
 };
 
-/** @brief define for interface afw_adaptor_factory name. */
-#define AFW_ADAPTOR_FACTORY_INTERFACE_NAME \
-"afw_adaptor_factory"
+/** @brief define for interface afw_adapter_factory name. */
+#define AFW_ADAPTER_FACTORY_INTERFACE_NAME \
+"afw_adapter_factory"
 
-/** @sa afw_adaptor_factory_create_adaptor_cede_p() */
-typedef const afw_adaptor_t *
-(*afw_adaptor_factory_create_adaptor_cede_p_t)(
-    const afw_adaptor_factory_t * instance,
+/** @sa afw_adapter_factory_create_adapter_cede_p() */
+typedef const afw_adapter_t *
+(*afw_adapter_factory_create_adapter_cede_p_t)(
+    const afw_adapter_factory_t * instance,
     const afw_object_t * properties,
     const afw_pool_t * p,
     afw_xctx_t * xctx);
 
-/** @brief Interface afw_adaptor_factory_inf_s struct. */
-struct afw_adaptor_factory_inf_s {
+/** @brief Interface afw_adapter_factory_inf_s struct. */
+struct afw_adapter_factory_inf_s {
     afw_interface_implementation_rti_t rti;
-    afw_adaptor_factory_create_adaptor_cede_p_t create_adaptor_cede_p;
+    afw_adapter_factory_create_adapter_cede_p_t create_adapter_cede_p;
 };
 
 /**
- * @brief Call method create_adaptor_cede_p of interface afw_adaptor_factory
- * @param instancePointer to this adaptor instance.
- * @param propertiesConfiguration parameters for the particular type of adaptor.
+ * @brief Call method create_adapter_cede_p of interface afw_adapter_factory
+ * @param instancePointer to this adapter instance.
+ * @param propertiesConfiguration parameters for the particular type of adapter.
  *     This
- *     will become the properties object for adaptor.
- * @param pThe pool that will be used for adaptor resources.
+ *     will become the properties object for adapter.
+ * @param pThe pool that will be used for adapter resources.
  * @param xctxThis is the caller's xctx.
  */
-#define afw_adaptor_factory_create_adaptor_cede_p( \
+#define afw_adapter_factory_create_adapter_cede_p( \
     instance, \
     properties, \
     p, \
     xctx \
 ) \
-(instance)->inf->create_adaptor_cede_p( \
+(instance)->inf->create_adapter_cede_p( \
     (instance), \
     (properties), \
     (p), \
@@ -203,32 +203,32 @@ struct afw_adaptor_factory_inf_s {
 /** @} */
 
 /**
- * @addtogroup afw_adaptor_interface afw_adaptor
+ * @addtogroup afw_adapter_interface afw_adapter
  *
- * Adaptor interface.
+ * Adapter interface.
  *
  * @{
  */
 
 
-/** @brief Interface afw_adaptor public struct. */
-struct afw_adaptor_s {
-    const afw_adaptor_inf_t *inf;
+/** @brief Interface afw_adapter public struct. */
+struct afw_adapter_s {
+    const afw_adapter_inf_t *inf;
 
     /**
-     * Adaptor's pool. This pool will exist for the life of the adaptor.
+     * Adapter's pool. This pool will exist for the life of the adapter.
      */
     const afw_pool_t * p;
 
     /**
-     * Id of adaptor.
+     * Id of adapter.
      */
-    afw_utf8_t adaptor_id;
+    afw_utf8_t adapter_id;
 
     /**
-     * Id of adaptor type.
+     * Id of adapter type.
      */
-    const afw_utf8_t * adaptor_type_id;
+    const afw_utf8_t * adapter_type_id;
 
     /**
      * This is the associated service id. The path of the service is
@@ -237,79 +237,79 @@ struct afw_adaptor_s {
     const afw_utf8_t * service_id;
 
     /**
-     * This adaptor's properties (configuration) object.
+     * This adapter's properties (configuration) object.
      */
     const afw_object_t * properties;
 
     /**
-     * This is the source location to help determine how this adaptor was
+     * This is the source location to help determine how this adapter was
      * defined.
      */
     const afw_utf8_t * source_location;
 
     /**
-     * This is the basic trace flag id for this adaptor's adaptor id.
+     * This is the basic trace flag id for this adapter's adapter id.
      */
     const afw_utf8_t * trace_flag_id;
 
     /**
-     * This is the basic trace flag index for this adaptor's adaptor id.
+     * This is the basic trace flag index for this adapter's adapter id.
      */
     afw_size_t trace_flag_index;
 
     /**
-     * This is the detail trace flag id for this adaptor's adaptor id.
+     * This is the detail trace flag id for this adapter's adapter id.
      */
     const afw_utf8_t * detail_flag_id;
 
     /**
-     * This is the detail trace flag index for this adaptor's adaptor id.
+     * This is the detail trace flag index for this adapter's adapter id.
      */
     afw_size_t detail_flag_index;
 
     /**
-     * Used by adaptor common code.
+     * Used by adapter common code.
      */
-    const afw_adaptor_impl_t * impl;
+    const afw_adapter_impl_t * impl;
 };
 
-/** @brief define for interface afw_adaptor name. */
-#define AFW_ADAPTOR_INTERFACE_NAME \
-"afw_adaptor"
+/** @brief define for interface afw_adapter name. */
+#define AFW_ADAPTER_INTERFACE_NAME \
+"afw_adapter"
 
-/** @sa afw_adaptor_destroy() */
+/** @sa afw_adapter_destroy() */
 typedef void
-(*afw_adaptor_destroy_t)(
-    const afw_adaptor_t * instance,
+(*afw_adapter_destroy_t)(
+    const afw_adapter_t * instance,
     afw_xctx_t * xctx);
 
-/** @sa afw_adaptor_create_adaptor_session() */
-typedef const afw_adaptor_session_t *
-(*afw_adaptor_create_adaptor_session_t)(
-    const afw_adaptor_t * instance,
+/** @sa afw_adapter_create_adapter_session() */
+typedef const afw_adapter_session_t *
+(*afw_adapter_create_adapter_session_t)(
+    const afw_adapter_t * instance,
     afw_xctx_t * xctx);
 
-/** @sa afw_adaptor_get_additional_metrics() */
+/** @sa afw_adapter_get_additional_metrics() */
 typedef const afw_object_t *
-(*afw_adaptor_get_additional_metrics_t)(
-    const afw_adaptor_t * instance,
+(*afw_adapter_get_additional_metrics_t)(
+    const afw_adapter_t * instance,
     const afw_pool_t * p,
     afw_xctx_t * xctx);
 
-/** @brief Interface afw_adaptor_inf_s struct. */
-struct afw_adaptor_inf_s {
+/** @brief Interface afw_adapter_inf_s struct. */
+struct afw_adapter_inf_s {
     afw_interface_implementation_rti_t rti;
-    afw_adaptor_destroy_t destroy;
-    afw_adaptor_create_adaptor_session_t create_adaptor_session;
-    afw_adaptor_get_additional_metrics_t get_additional_metrics;
+    afw_adapter_destroy_t destroy;
+    afw_adapter_create_adapter_session_t create_adapter_session;
+    afw_adapter_get_additional_metrics_t get_additional_metrics;
 };
 
 /**
- * @brief Call method destroy of interface afw_adaptor
- * @param instancePointer to this adaptor instance.
+ * @brief Call method destroy of interface afw_adapter
+ * @param instancePointer to this adapter instance.
  * @param xctxThis is the caller's xctx.
  */
-#define afw_adaptor_destroy( \
+#define afw_adapter_destroy( \
     instance, \
     xctx \
 ) \
@@ -319,26 +319,26 @@ struct afw_adaptor_inf_s {
 )
 
 /**
- * @brief Call method create_adaptor_session of interface afw_adaptor
- * @param instancePointer to this adaptor instance.
+ * @brief Call method create_adapter_session of interface afw_adapter
+ * @param instancePointer to this adapter instance.
  * @param xctxThe execution context (xctx) of caller.
  */
-#define afw_adaptor_create_adaptor_session( \
+#define afw_adapter_create_adapter_session( \
     instance, \
     xctx \
 ) \
-(instance)->inf->create_adaptor_session( \
+(instance)->inf->create_adapter_session( \
     (instance), \
     (xctx) \
 )
 
 /**
- * @brief Call method get_additional_metrics of interface afw_adaptor
- * @param instancePointer to this adaptor instance.
+ * @brief Call method get_additional_metrics of interface afw_adapter
+ * @param instancePointer to this adapter instance.
  * @param pPool used for results.
  * @param xctxThe execution context (xctx) of caller.
  */
-#define afw_adaptor_get_additional_metrics( \
+#define afw_adapter_get_additional_metrics( \
     instance, \
     p, \
     xctx \
@@ -352,78 +352,78 @@ struct afw_adaptor_inf_s {
 /** @} */
 
 /**
- * @addtogroup afw_adaptor_object_type_cache_interface afw_adaptor_object_type_cache
+ * @addtogroup afw_adapter_object_type_cache_interface afw_adapter_object_type_cache
  *
- * Adaptor object type cache interface. This interface is used by
- * afw_adaptor_get_object_type().
+ * Adapter object type cache interface. This interface is used by
+ * afw_adapter_get_object_type().
  *
  * @{
  */
 
 
-/** @brief Interface afw_adaptor_object_type_cache public struct. */
-struct afw_adaptor_object_type_cache_s {
-    const afw_adaptor_object_type_cache_inf_t *inf;
+/** @brief Interface afw_adapter_object_type_cache public struct. */
+struct afw_adapter_object_type_cache_s {
+    const afw_adapter_object_type_cache_inf_t *inf;
 
     /**
-     * Associated adaptor session.
+     * Associated adapter session.
      */
-    const afw_adaptor_session_t * session;
+    const afw_adapter_session_t * session;
 
     /**
-     * All object types for associated adaptor are immutable.
+     * All object types for associated adapter are immutable.
      * 
-     * If true, afw_adaptor_get_object_type() will call the set()
+     * If true, afw_adapter_get_object_type() will call the set()
      * method when new object types are created.
      * 
-     * If false, afw_adaptor_get_object_type() will only cache object
+     * If false, afw_adapter_get_object_type() will only cache object
      * type for session.
      */
     afw_boolean_t all_object_types_immutable;
 };
 
-/** @brief define for interface afw_adaptor_object_type_cache name. */
-#define AFW_ADAPTOR_OBJECT_TYPE_CACHE_INTERFACE_NAME \
-"afw_adaptor_object_type_cache"
+/** @brief define for interface afw_adapter_object_type_cache name. */
+#define AFW_ADAPTER_OBJECT_TYPE_CACHE_INTERFACE_NAME \
+"afw_adapter_object_type_cache"
 
-/** @sa afw_adaptor_object_type_cache_get() */
+/** @sa afw_adapter_object_type_cache_get() */
 typedef const afw_object_type_t *
-(*afw_adaptor_object_type_cache_get_t)(
-    const afw_adaptor_object_type_cache_t * instance,
+(*afw_adapter_object_type_cache_get_t)(
+    const afw_adapter_object_type_cache_t * instance,
     const afw_utf8_t * object_type_id,
     afw_boolean_t * final_result,
     afw_xctx_t * xctx);
 
-/** @sa afw_adaptor_object_type_cache_set() */
+/** @sa afw_adapter_object_type_cache_set() */
 typedef void
-(*afw_adaptor_object_type_cache_set_t)(
-    const afw_adaptor_object_type_cache_t * instance,
+(*afw_adapter_object_type_cache_set_t)(
+    const afw_adapter_object_type_cache_t * instance,
     const afw_object_type_t * object_type,
     afw_xctx_t * xctx);
 
-/** @brief Interface afw_adaptor_object_type_cache_inf_s struct. */
-struct afw_adaptor_object_type_cache_inf_s {
+/** @brief Interface afw_adapter_object_type_cache_inf_s struct. */
+struct afw_adapter_object_type_cache_inf_s {
     afw_interface_implementation_rti_t rti;
-    afw_adaptor_object_type_cache_get_t get;
-    afw_adaptor_object_type_cache_set_t set;
+    afw_adapter_object_type_cache_get_t get;
+    afw_adapter_object_type_cache_set_t set;
 };
 
 /**
- * @brief Call method get of interface afw_adaptor_object_type_cache
- * @param instancePointer to this adaptor object type cache instance.
+ * @brief Call method get of interface afw_adapter_object_type_cache
+ * @param instancePointer to this adapter object type cache instance.
  * @param object_type_idObject type id of object type to get from cache.
  * @param final_resultPointer to place to return flag.
  * 
- *     If true, afw_adaptor_get_object_type() will always return the
+ *     If true, afw_adapter_get_object_type() will always return the
  *     result of calling the get() method.
  * 
- *     If false and get() returns NULL, afw_adaptor_get_object_type()
+ *     If false and get() returns NULL, afw_adapter_get_object_type()
  *     will try to create and return a new object_type and return.
  *     The set() method will be called if all_object_types_immutable is
  *     true.
  * @param xctxThis is the caller's xctx.
  */
-#define afw_adaptor_object_type_cache_get( \
+#define afw_adapter_object_type_cache_get( \
     instance, \
     object_type_id, \
     final_result, \
@@ -437,12 +437,12 @@ struct afw_adaptor_object_type_cache_inf_s {
 )
 
 /**
- * @brief Call method set of interface afw_adaptor_object_type_cache
- * @param instancePointer to this adaptor object type cache instance.
+ * @brief Call method set of interface afw_adapter_object_type_cache
+ * @param instancePointer to this adapter object type cache instance.
  * @param object_typeObject type to set in cache.
  * @param xctxThis is the caller's xctx.
  */
-#define afw_adaptor_object_type_cache_set( \
+#define afw_adapter_object_type_cache_set( \
     instance, \
     object_type, \
     xctx \
@@ -456,163 +456,163 @@ struct afw_adaptor_object_type_cache_inf_s {
 /** @} */
 
 /**
- * @addtogroup afw_adaptor_session_interface afw_adaptor_session
+ * @addtogroup afw_adapter_session_interface afw_adapter_session
  *
- * Adaptor session interface.
+ * Adapter session interface.
  *
  * @{
  */
 
 
-/** @brief Interface afw_adaptor_session public struct. */
-struct afw_adaptor_session_s {
-    const afw_adaptor_session_inf_t *inf;
+/** @brief Interface afw_adapter_session public struct. */
+struct afw_adapter_session_s {
+    const afw_adapter_session_inf_t *inf;
 
     /**
-     * Adaptor sessions's associated adaptor.
+     * Adapter sessions's associated adapter.
      */
-    const afw_adaptor_t * adaptor;
+    const afw_adapter_t * adapter;
 
     /**
-     * Adaptor sessions's pool. This pool will exist for the life of the adaptor
+     * Adapter sessions's pool. This pool will exist for the life of the adapter
      * session.
      */
     const afw_pool_t * p;
 };
 
-/** @brief define for interface afw_adaptor_session name. */
-#define AFW_ADAPTOR_SESSION_INTERFACE_NAME \
-"afw_adaptor_session"
+/** @brief define for interface afw_adapter_session name. */
+#define AFW_ADAPTER_SESSION_INTERFACE_NAME \
+"afw_adapter_session"
 
-/** @sa afw_adaptor_session_destroy() */
+/** @sa afw_adapter_session_destroy() */
 typedef void
-(*afw_adaptor_session_destroy_t)(
-    const afw_adaptor_session_t * instance,
+(*afw_adapter_session_destroy_t)(
+    const afw_adapter_session_t * instance,
     afw_xctx_t * xctx);
 
-/** @sa afw_adaptor_session_retrieve_objects() */
+/** @sa afw_adapter_session_retrieve_objects() */
 typedef void
-(*afw_adaptor_session_retrieve_objects_t)(
-    const afw_adaptor_session_t * instance,
-    const afw_adaptor_impl_request_t * impl_request,
+(*afw_adapter_session_retrieve_objects_t)(
+    const afw_adapter_session_t * instance,
+    const afw_adapter_impl_request_t * impl_request,
     const afw_utf8_t * object_type_id,
     const afw_query_criteria_t * criteria,
     void * context,
     afw_object_cb_t callback,
-    const afw_object_t * adaptor_type_specific,
+    const afw_object_t * adapter_type_specific,
     const afw_pool_t * p,
     afw_xctx_t * xctx);
 
-/** @sa afw_adaptor_session_get_object() */
+/** @sa afw_adapter_session_get_object() */
 typedef void
-(*afw_adaptor_session_get_object_t)(
-    const afw_adaptor_session_t * instance,
-    const afw_adaptor_impl_request_t * impl_request,
+(*afw_adapter_session_get_object_t)(
+    const afw_adapter_session_t * instance,
+    const afw_adapter_impl_request_t * impl_request,
     const afw_utf8_t * object_type_id,
     const afw_utf8_t * object_id,
     void * context,
     afw_object_cb_t callback,
-    const afw_object_t * adaptor_type_specific,
+    const afw_object_t * adapter_type_specific,
     const afw_pool_t * p,
     afw_xctx_t * xctx);
 
-/** @sa afw_adaptor_session_add_object() */
+/** @sa afw_adapter_session_add_object() */
 typedef const afw_utf8_t *
-(*afw_adaptor_session_add_object_t)(
-    const afw_adaptor_session_t * instance,
-    const afw_adaptor_impl_request_t * impl_request,
+(*afw_adapter_session_add_object_t)(
+    const afw_adapter_session_t * instance,
+    const afw_adapter_impl_request_t * impl_request,
     const afw_utf8_t * object_type_id,
     const afw_utf8_t * suggested_object_id,
     const afw_object_t * object,
-    const afw_object_t * adaptor_type_specific,
+    const afw_object_t * adapter_type_specific,
     afw_xctx_t * xctx);
 
-/** @sa afw_adaptor_session_modify_object() */
+/** @sa afw_adapter_session_modify_object() */
 typedef void
-(*afw_adaptor_session_modify_object_t)(
-    const afw_adaptor_session_t * instance,
-    const afw_adaptor_impl_request_t * impl_request,
+(*afw_adapter_session_modify_object_t)(
+    const afw_adapter_session_t * instance,
+    const afw_adapter_impl_request_t * impl_request,
     const afw_utf8_t * object_type_id,
     const afw_utf8_t * object_id,
-    const afw_adaptor_modify_entry_t * const * entry,
-    const afw_object_t * adaptor_type_specific,
+    const afw_adapter_modify_entry_t * const * entry,
+    const afw_object_t * adapter_type_specific,
     afw_xctx_t * xctx);
 
-/** @sa afw_adaptor_session_replace_object() */
+/** @sa afw_adapter_session_replace_object() */
 typedef void
-(*afw_adaptor_session_replace_object_t)(
-    const afw_adaptor_session_t * instance,
-    const afw_adaptor_impl_request_t * impl_request,
+(*afw_adapter_session_replace_object_t)(
+    const afw_adapter_session_t * instance,
+    const afw_adapter_impl_request_t * impl_request,
     const afw_utf8_t * object_type_id,
     const afw_utf8_t * object_id,
     const afw_object_t * replacement_object,
-    const afw_object_t * adaptor_type_specific,
+    const afw_object_t * adapter_type_specific,
     afw_xctx_t * xctx);
 
-/** @sa afw_adaptor_session_delete_object() */
+/** @sa afw_adapter_session_delete_object() */
 typedef void
-(*afw_adaptor_session_delete_object_t)(
-    const afw_adaptor_session_t * instance,
-    const afw_adaptor_impl_request_t * impl_request,
+(*afw_adapter_session_delete_object_t)(
+    const afw_adapter_session_t * instance,
+    const afw_adapter_impl_request_t * impl_request,
     const afw_utf8_t * object_type_id,
     const afw_utf8_t * object_id,
-    const afw_object_t * adaptor_type_specific,
+    const afw_object_t * adapter_type_specific,
     afw_xctx_t * xctx);
 
-/** @sa afw_adaptor_session_begin_transaction() */
-typedef const afw_adaptor_transaction_t *
-(*afw_adaptor_session_begin_transaction_t)(
-    const afw_adaptor_session_t * instance,
+/** @sa afw_adapter_session_begin_transaction() */
+typedef const afw_adapter_transaction_t *
+(*afw_adapter_session_begin_transaction_t)(
+    const afw_adapter_session_t * instance,
     afw_xctx_t * xctx);
 
-/** @sa afw_adaptor_session_get_journal_interface() */
-typedef const afw_adaptor_journal_t *
-(*afw_adaptor_session_get_journal_interface_t)(
-    const afw_adaptor_session_t * instance,
+/** @sa afw_adapter_session_get_journal_interface() */
+typedef const afw_adapter_journal_t *
+(*afw_adapter_session_get_journal_interface_t)(
+    const afw_adapter_session_t * instance,
     afw_xctx_t * xctx);
 
-/** @sa afw_adaptor_session_get_key_value_interface() */
-typedef const afw_adaptor_key_value_t *
-(*afw_adaptor_session_get_key_value_interface_t)(
-    const afw_adaptor_session_t * instance,
+/** @sa afw_adapter_session_get_key_value_interface() */
+typedef const afw_adapter_key_value_t *
+(*afw_adapter_session_get_key_value_interface_t)(
+    const afw_adapter_session_t * instance,
     afw_xctx_t * xctx);
 
-/** @sa afw_adaptor_session_get_index_interface() */
-typedef const afw_adaptor_impl_index_t *
-(*afw_adaptor_session_get_index_interface_t)(
-    const afw_adaptor_session_t * instance,
+/** @sa afw_adapter_session_get_index_interface() */
+typedef const afw_adapter_impl_index_t *
+(*afw_adapter_session_get_index_interface_t)(
+    const afw_adapter_session_t * instance,
     afw_xctx_t * xctx);
 
-/** @sa afw_adaptor_session_get_object_type_cache_interface() */
-typedef const afw_adaptor_object_type_cache_t *
-(*afw_adaptor_session_get_object_type_cache_interface_t)(
-    const afw_adaptor_session_t * instance,
+/** @sa afw_adapter_session_get_object_type_cache_interface() */
+typedef const afw_adapter_object_type_cache_t *
+(*afw_adapter_session_get_object_type_cache_interface_t)(
+    const afw_adapter_session_t * instance,
     afw_xctx_t * xctx);
 
-/** @brief Interface afw_adaptor_session_inf_s struct. */
-struct afw_adaptor_session_inf_s {
+/** @brief Interface afw_adapter_session_inf_s struct. */
+struct afw_adapter_session_inf_s {
     afw_interface_implementation_rti_t rti;
-    afw_adaptor_session_destroy_t destroy;
-    afw_adaptor_session_retrieve_objects_t retrieve_objects;
-    afw_adaptor_session_get_object_t get_object;
-    afw_adaptor_session_add_object_t add_object;
-    afw_adaptor_session_modify_object_t modify_object;
-    afw_adaptor_session_replace_object_t replace_object;
-    afw_adaptor_session_delete_object_t delete_object;
-    afw_adaptor_session_begin_transaction_t begin_transaction;
-    afw_adaptor_session_get_journal_interface_t get_journal_interface;
-    afw_adaptor_session_get_key_value_interface_t get_key_value_interface;
-    afw_adaptor_session_get_index_interface_t get_index_interface;
-    afw_adaptor_session_get_object_type_cache_interface_t get_object_type_cache_interface;
+    afw_adapter_session_destroy_t destroy;
+    afw_adapter_session_retrieve_objects_t retrieve_objects;
+    afw_adapter_session_get_object_t get_object;
+    afw_adapter_session_add_object_t add_object;
+    afw_adapter_session_modify_object_t modify_object;
+    afw_adapter_session_replace_object_t replace_object;
+    afw_adapter_session_delete_object_t delete_object;
+    afw_adapter_session_begin_transaction_t begin_transaction;
+    afw_adapter_session_get_journal_interface_t get_journal_interface;
+    afw_adapter_session_get_key_value_interface_t get_key_value_interface;
+    afw_adapter_session_get_index_interface_t get_index_interface;
+    afw_adapter_session_get_object_type_cache_interface_t get_object_type_cache_interface;
 };
 
 /**
- * @brief Call method destroy of interface afw_adaptor_session
- * @param instancePointer to this adaptor session instance.
+ * @brief Call method destroy of interface afw_adapter_session
+ * @param instancePointer to this adapter session instance.
  *     Make sure to call commit or changes will be lost.
  * @param xctxThis is the caller's xctx.
  */
-#define afw_adaptor_session_destroy( \
+#define afw_adapter_session_destroy( \
     instance, \
     xctx \
 ) \
@@ -622,11 +622,11 @@ struct afw_adaptor_session_inf_s {
 )
 
 /**
- * @brief Call method retrieve_objects of interface afw_adaptor_session
- * @param instancePointer to this adaptor session instance.
+ * @brief Call method retrieve_objects of interface afw_adapter_session
+ * @param instancePointer to this adapter session instance.
  * @param impl_requestPass this as first parameter of
- *     afw_adaptor_impl_request_*() functions.
- *     See afw_adaptor_impl.h for more information.
+ *     afw_adapter_impl_request_*() functions.
+ *     See afw_adapter_impl.h for more information.
  * @param object_type_idThe object type of objects to be retrieved.
  * @param criteriaQuery criteria. Use member filter or normalized, whichever is
  *     easier,
@@ -642,26 +642,26 @@ struct afw_adaptor_session_inf_s {
  *     when finished with it. If you want to have the object last past the
  *     callback, call afw_object_get_reference() on the object before calling
  *     the callback.
- * @param adaptor_type_specificThis is an adaptor type specific object parameter
+ * @param adapter_type_specificThis is an adapter type specific object parameter
  *     or NULL.
  * 
- *     If the adaptor type supports this parameter, the object type of the
- *     object is available via the afw adaptor with an object type id of:
+ *     If the adapter type supports this parameter, the object type of the
+ *     object is available via the afw adapter with an object type id of:
  * 
- *     _AdaptiveAdaptorTypeSpecific_${adaptorType}_retrieve_objects
+ *     _AdaptiveAdapterTypeSpecific_${adapterType}_retrieve_objects
  * 
- *     where ${adaptorType} is the adaptor type id.
+ *     where ${adapterType} is the adapter type id.
  * @param pPool used for objects passed to callback.
  * @param xctxThis is the caller's xctx.
  */
-#define afw_adaptor_session_retrieve_objects( \
+#define afw_adapter_session_retrieve_objects( \
     instance, \
     impl_request, \
     object_type_id, \
     criteria, \
     context, \
     callback, \
-    adaptor_type_specific, \
+    adapter_type_specific, \
     p, \
     xctx \
 ) \
@@ -672,17 +672,17 @@ struct afw_adaptor_session_inf_s {
     (criteria), \
     (context), \
     (callback), \
-    (adaptor_type_specific), \
+    (adapter_type_specific), \
     (p), \
     (xctx) \
 )
 
 /**
- * @brief Call method get_object of interface afw_adaptor_session
- * @param instancePointer to this adaptor session instance.
+ * @brief Call method get_object of interface afw_adapter_session
+ * @param instancePointer to this adapter session instance.
  * @param impl_requestPass this as first parameter of
- *     afw_adaptor_impl_request_*() functions.
- *     See afw_adaptor_impl.h for more information.
+ *     afw_adapter_impl_request_*() functions.
+ *     See afw_adapter_impl.h for more information.
  * @param object_type_idObject type of object to get.
  * @param object_idObject id of object to get.
  * @param contextPointer passed to callback routine.
@@ -694,26 +694,26 @@ struct afw_adaptor_session_inf_s {
  *     when finished with it. If you want to have the object last past the
  *     callback, call afw_object_get_reference() on the object before calling
  *     the callback.
- * @param adaptor_type_specificThis is an adaptor type specific object parameter
+ * @param adapter_type_specificThis is an adapter type specific object parameter
  *     or NULL.
  * 
- *     If the adaptor type supports this parameter, the object type of the
- *     object is available via the afw adaptor with an object type id of:
+ *     If the adapter type supports this parameter, the object type of the
+ *     object is available via the afw adapter with an object type id of:
  * 
- *     _AdaptiveAdaptorTypeSpecific_${adaptorType}_get_object
+ *     _AdaptiveAdapterTypeSpecific_${adapterType}_get_object
  * 
- *     where ${adaptorType} is the adaptor type id.
+ *     where ${adapterType} is the adapter type id.
  * @param pPool used for object passed to callback.
  * @param xctxThis is the caller's xctx.
  */
-#define afw_adaptor_session_get_object( \
+#define afw_adapter_session_get_object( \
     instance, \
     impl_request, \
     object_type_id, \
     object_id, \
     context, \
     callback, \
-    adaptor_type_specific, \
+    adapter_type_specific, \
     p, \
     xctx \
 ) \
@@ -724,55 +724,55 @@ struct afw_adaptor_session_inf_s {
     (object_id), \
     (context), \
     (callback), \
-    (adaptor_type_specific), \
+    (adapter_type_specific), \
     (p), \
     (xctx) \
 )
 
 /**
- * @brief Call method add_object of interface afw_adaptor_session
- * @param instancePointer to this adaptor session instance.
+ * @brief Call method add_object of interface afw_adapter_session
+ * @param instancePointer to this adapter session instance.
  * @param impl_requestPass this as first parameter of
- *     afw_adaptor_impl_request_*() functions.
- *     See afw_adaptor_impl.h for more information.
+ *     afw_adapter_impl_request_*() functions.
+ *     See afw_adapter_impl.h for more information.
  * @param object_type_idObject type of object to add.
  * @param suggested_object_idThe suggested object id of the added object. This
  *     object id must be
- *     unique within the object type. If NULL or at the adaptor's option,
- *     the adaptor will generate a unique object id.
+ *     unique within the object type. If NULL or at the adapter's option,
+ *     the adapter will generate a unique object id.
  * @param objectObject to add.
  * 
  *     Unless documented otherwise by non-default options, this object only
  *     needs
- *     to exist for the life of the add_object() call. Some adaptors have
+ *     to exist for the life of the add_object() call. Some adapters have
  *     options
  *     that require longer lifetimes for these objects. For example, a memory
- *     adaptor can be created with the option to not clone an object when added
+ *     adapter can be created with the option to not clone an object when added
  *     to memory store. In this case, it's the caller responsibility to create
- *     the object in a pool that has the minimal lifetime of the memory adaptor
- *     itself. For instance, the adaptor's pool can be used during object
+ *     the object in a pool that has the minimal lifetime of the memory adapter
+ *     itself. For instance, the adapter's pool can be used during object
  *     create.
- *     The memory adaptor then uses the object's pool's get_reference() and
+ *     The memory adapter then uses the object's pool's get_reference() and
  *     release()
  *     methods to manage the lifetime of the object.
- * @param adaptor_type_specificThis is an adaptor type specific object parameter
+ * @param adapter_type_specificThis is an adapter type specific object parameter
  *     or NULL.
  * 
- *     If the adaptor type supports this parameter, the object type of the
- *     object is available via the afw adaptor with an object type id of:
+ *     If the adapter type supports this parameter, the object type of the
+ *     object is available via the afw adapter with an object type id of:
  * 
- *     _AdaptiveAdaptorTypeSpecific_${adaptorType}_add_object
+ *     _AdaptiveAdapterTypeSpecific_${adapterType}_add_object
  * 
- *     where ${adaptorType} is the adaptor type id.
+ *     where ${adapterType} is the adapter type id.
  * @param xctxThis is the caller's xctx.
  */
-#define afw_adaptor_session_add_object( \
+#define afw_adapter_session_add_object( \
     instance, \
     impl_request, \
     object_type_id, \
     suggested_object_id, \
     object, \
-    adaptor_type_specific, \
+    adapter_type_specific, \
     xctx \
 ) \
 (instance)->inf->add_object( \
@@ -781,37 +781,37 @@ struct afw_adaptor_session_inf_s {
     (object_type_id), \
     (suggested_object_id), \
     (object), \
-    (adaptor_type_specific), \
+    (adapter_type_specific), \
     (xctx) \
 )
 
 /**
- * @brief Call method modify_object of interface afw_adaptor_session
- * @param instancePointer to this adaptor session instance.
+ * @brief Call method modify_object of interface afw_adapter_session
+ * @param instancePointer to this adapter session instance.
  * @param impl_requestPass this as first parameter of
- *     afw_adaptor_impl_request_*() functions.
- *     See afw_adaptor_impl.h for more information.
+ *     afw_adapter_impl_request_*() functions.
+ *     See afw_adapter_impl.h for more information.
  * @param object_type_idObject type of object to modify.
  * @param object_idObject id of object to modify.
- * @param entryNULL terminated array of pointers to adaptor modify entries.
- * @param adaptor_type_specificThis is an adaptor type specific object parameter
+ * @param entryNULL terminated array of pointers to adapter modify entries.
+ * @param adapter_type_specificThis is an adapter type specific object parameter
  *     or NULL.
  * 
- *     If the adaptor type supports this parameter, the object type of the
- *     object is available via the afw adaptor with an object type id of:
+ *     If the adapter type supports this parameter, the object type of the
+ *     object is available via the afw adapter with an object type id of:
  * 
- *     _AdaptiveAdaptorTypeSpecific_${adaptorType}_modify_object
+ *     _AdaptiveAdapterTypeSpecific_${adapterType}_modify_object
  * 
- *     where ${adaptorType} is the adaptor type id.
+ *     where ${adapterType} is the adapter type id.
  * @param xctxThis is the caller's xctx.
  */
-#define afw_adaptor_session_modify_object( \
+#define afw_adapter_session_modify_object( \
     instance, \
     impl_request, \
     object_type_id, \
     object_id, \
     entry, \
-    adaptor_type_specific, \
+    adapter_type_specific, \
     xctx \
 ) \
 (instance)->inf->modify_object( \
@@ -820,37 +820,37 @@ struct afw_adaptor_session_inf_s {
     (object_type_id), \
     (object_id), \
     (entry), \
-    (adaptor_type_specific), \
+    (adapter_type_specific), \
     (xctx) \
 )
 
 /**
- * @brief Call method replace_object of interface afw_adaptor_session
- * @param instancePointer to this adaptor session instance.
+ * @brief Call method replace_object of interface afw_adapter_session
+ * @param instancePointer to this adapter session instance.
  * @param impl_requestPass this as first parameter of
- *     afw_adaptor_impl_request_*() functions.
- *     See afw_adaptor_impl.h for more information.
+ *     afw_adapter_impl_request_*() functions.
+ *     See afw_adapter_impl.h for more information.
  * @param object_type_idObject type of object to update.
  * @param object_idObject id of object to update.
  * @param replacement_objectReplacement object.
- * @param adaptor_type_specificThis is an adaptor type specific object parameter
+ * @param adapter_type_specificThis is an adapter type specific object parameter
  *     or NULL.
  * 
- *     If the adaptor type supports this parameter, the object type of the
- *     object is available via the afw adaptor with an object type id of:
+ *     If the adapter type supports this parameter, the object type of the
+ *     object is available via the afw adapter with an object type id of:
  * 
- *     _AdaptiveAdaptorTypeSpecific_${adaptorType}_replace_object
+ *     _AdaptiveAdapterTypeSpecific_${adapterType}_replace_object
  * 
- *     where ${adaptorType} is the adaptor type id.
+ *     where ${adapterType} is the adapter type id.
  * @param xctxThis is the caller's xctx.
  */
-#define afw_adaptor_session_replace_object( \
+#define afw_adapter_session_replace_object( \
     instance, \
     impl_request, \
     object_type_id, \
     object_id, \
     replacement_object, \
-    adaptor_type_specific, \
+    adapter_type_specific, \
     xctx \
 ) \
 (instance)->inf->replace_object( \
@@ -859,35 +859,35 @@ struct afw_adaptor_session_inf_s {
     (object_type_id), \
     (object_id), \
     (replacement_object), \
-    (adaptor_type_specific), \
+    (adapter_type_specific), \
     (xctx) \
 )
 
 /**
- * @brief Call method delete_object of interface afw_adaptor_session
- * @param instancePointer to this adaptor session instance.
+ * @brief Call method delete_object of interface afw_adapter_session
+ * @param instancePointer to this adapter session instance.
  * @param impl_requestPass this as first parameter of
- *     afw_adaptor_impl_request_*() functions.
- *     See afw_adaptor_impl.h for more information.
+ *     afw_adapter_impl_request_*() functions.
+ *     See afw_adapter_impl.h for more information.
  * @param object_type_idObject type of object to delete.
  * @param object_idObject id of object to delete.
- * @param adaptor_type_specificThis is an adaptor type specific object parameter
+ * @param adapter_type_specificThis is an adapter type specific object parameter
  *     or NULL.
  * 
- *     If the adaptor type supports this parameter, the object type of the
- *     object is available via the afw adaptor with an object type id of:
+ *     If the adapter type supports this parameter, the object type of the
+ *     object is available via the afw adapter with an object type id of:
  * 
- *     _AdaptiveAdaptorTypeSpecific_${adaptorType}_delete_object
+ *     _AdaptiveAdapterTypeSpecific_${adapterType}_delete_object
  * 
- *     where ${adaptorType} is the adaptor type id.
+ *     where ${adapterType} is the adapter type id.
  * @param xctxThis is the caller's xctx.
  */
-#define afw_adaptor_session_delete_object( \
+#define afw_adapter_session_delete_object( \
     instance, \
     impl_request, \
     object_type_id, \
     object_id, \
-    adaptor_type_specific, \
+    adapter_type_specific, \
     xctx \
 ) \
 (instance)->inf->delete_object( \
@@ -895,16 +895,16 @@ struct afw_adaptor_session_inf_s {
     (impl_request), \
     (object_type_id), \
     (object_id), \
-    (adaptor_type_specific), \
+    (adapter_type_specific), \
     (xctx) \
 )
 
 /**
- * @brief Call method begin_transaction of interface afw_adaptor_session
- * @param instancePointer to this adaptor session instance.
+ * @brief Call method begin_transaction of interface afw_adapter_session
+ * @param instancePointer to this adapter session instance.
  * @param xctxThis is the caller's xctx.
  */
-#define afw_adaptor_session_begin_transaction( \
+#define afw_adapter_session_begin_transaction( \
     instance, \
     xctx \
 ) \
@@ -914,11 +914,11 @@ struct afw_adaptor_session_inf_s {
 )
 
 /**
- * @brief Call method get_journal_interface of interface afw_adaptor_session
- * @param instancePointer to this adaptor session instance.
+ * @brief Call method get_journal_interface of interface afw_adapter_session
+ * @param instancePointer to this adapter session instance.
  * @param xctxThis is the caller's xctx.
  */
-#define afw_adaptor_session_get_journal_interface( \
+#define afw_adapter_session_get_journal_interface( \
     instance, \
     xctx \
 ) \
@@ -928,11 +928,11 @@ struct afw_adaptor_session_inf_s {
 )
 
 /**
- * @brief Call method get_key_value_interface of interface afw_adaptor_session
- * @param instancePointer to this adaptor session instance.
+ * @brief Call method get_key_value_interface of interface afw_adapter_session
+ * @param instancePointer to this adapter session instance.
  * @param xctxThis is the caller's xctx.
  */
-#define afw_adaptor_session_get_key_value_interface( \
+#define afw_adapter_session_get_key_value_interface( \
     instance, \
     xctx \
 ) \
@@ -942,11 +942,11 @@ struct afw_adaptor_session_inf_s {
 )
 
 /**
- * @brief Call method get_index_interface of interface afw_adaptor_session
- * @param instancePointer to this adaptor session instance.
+ * @brief Call method get_index_interface of interface afw_adapter_session
+ * @param instancePointer to this adapter session instance.
  * @param xctxThis is the caller's xctx.
  */
-#define afw_adaptor_session_get_index_interface( \
+#define afw_adapter_session_get_index_interface( \
     instance, \
     xctx \
 ) \
@@ -957,11 +957,11 @@ struct afw_adaptor_session_inf_s {
 
 /**
  * @brief Call method get_object_type_cache_interface of interface
- *     afw_adaptor_session
- * @param instancePointer to this adaptor session instance.
+ *     afw_adapter_session
+ * @param instancePointer to this adapter session instance.
  * @param xctxThis is the caller's xctx.
  */
-#define afw_adaptor_session_get_object_type_cache_interface( \
+#define afw_adapter_session_get_object_type_cache_interface( \
     instance, \
     xctx \
 ) \
@@ -973,48 +973,48 @@ struct afw_adaptor_session_inf_s {
 /** @} */
 
 /**
- * @addtogroup afw_adaptor_transaction_interface afw_adaptor_transaction
+ * @addtogroup afw_adapter_transaction_interface afw_adapter_transaction
  *
- * Adaptor session transaction interface.
+ * Adapter session transaction interface.
  *
  * @{
  */
 
 
-/** @brief Interface afw_adaptor_transaction public struct. */
-struct afw_adaptor_transaction_s {
-    const afw_adaptor_transaction_inf_t *inf;
+/** @brief Interface afw_adapter_transaction public struct. */
+struct afw_adapter_transaction_s {
+    const afw_adapter_transaction_inf_t *inf;
 };
 
-/** @brief define for interface afw_adaptor_transaction name. */
-#define AFW_ADAPTOR_TRANSACTION_INTERFACE_NAME \
-"afw_adaptor_transaction"
+/** @brief define for interface afw_adapter_transaction name. */
+#define AFW_ADAPTER_TRANSACTION_INTERFACE_NAME \
+"afw_adapter_transaction"
 
-/** @sa afw_adaptor_transaction_release() */
+/** @sa afw_adapter_transaction_release() */
 typedef void
-(*afw_adaptor_transaction_release_t)(
-    const afw_adaptor_transaction_t * instance,
+(*afw_adapter_transaction_release_t)(
+    const afw_adapter_transaction_t * instance,
     afw_xctx_t * xctx);
 
-/** @sa afw_adaptor_transaction_commit() */
+/** @sa afw_adapter_transaction_commit() */
 typedef void
-(*afw_adaptor_transaction_commit_t)(
-    const afw_adaptor_transaction_t * instance,
+(*afw_adapter_transaction_commit_t)(
+    const afw_adapter_transaction_t * instance,
     afw_xctx_t * xctx);
 
-/** @brief Interface afw_adaptor_transaction_inf_s struct. */
-struct afw_adaptor_transaction_inf_s {
+/** @brief Interface afw_adapter_transaction_inf_s struct. */
+struct afw_adapter_transaction_inf_s {
     afw_interface_implementation_rti_t rti;
-    afw_adaptor_transaction_release_t release;
-    afw_adaptor_transaction_commit_t commit;
+    afw_adapter_transaction_release_t release;
+    afw_adapter_transaction_commit_t commit;
 };
 
 /**
- * @brief Call method release of interface afw_adaptor_transaction
- * @param instancePointer to this adaptor session transaction instance.
+ * @brief Call method release of interface afw_adapter_transaction
+ * @param instancePointer to this adapter session transaction instance.
  * @param xctxThis is the caller's xctx.
  */
-#define afw_adaptor_transaction_release( \
+#define afw_adapter_transaction_release( \
     instance, \
     xctx \
 ) \
@@ -1024,11 +1024,11 @@ struct afw_adaptor_transaction_inf_s {
 )
 
 /**
- * @brief Call method commit of interface afw_adaptor_transaction
- * @param instancePointer to this adaptor session transaction instance.
+ * @brief Call method commit of interface afw_adapter_transaction
+ * @param instancePointer to this adapter session transaction instance.
  * @param xctxThis is the caller's xctx.
  */
-#define afw_adaptor_transaction_commit( \
+#define afw_adapter_transaction_commit( \
     instance, \
     xctx \
 ) \
@@ -1040,17 +1040,17 @@ struct afw_adaptor_transaction_inf_s {
 /** @} */
 
 /**
- * @addtogroup afw_adaptor_impl_index_cursor_interface afw_adaptor_impl_index_cursor
+ * @addtogroup afw_adapter_impl_index_cursor_interface afw_adapter_impl_index_cursor
  *
- * Adaptor implementation index cursor interface.
+ * Adapter implementation index cursor interface.
  *
  * @{
  */
 
 
-/** @brief Interface afw_adaptor_impl_index_cursor public struct. */
-struct afw_adaptor_impl_index_cursor_s {
-    const afw_adaptor_impl_index_cursor_inf_t *inf;
+/** @brief Interface afw_adapter_impl_index_cursor public struct. */
+struct afw_adapter_impl_index_cursor_s {
+    const afw_adapter_impl_index_cursor_inf_t *inf;
 
     /**
      * The query criteria associated with this cursor.
@@ -1065,60 +1065,60 @@ struct afw_adaptor_impl_index_cursor_s {
     afw_boolean_t inner_join;
 };
 
-/** @brief define for interface afw_adaptor_impl_index_cursor name. */
-#define AFW_ADAPTOR_IMPL_INDEX_CURSOR_INTERFACE_NAME \
-"afw_adaptor_impl_index_cursor"
+/** @brief define for interface afw_adapter_impl_index_cursor name. */
+#define AFW_ADAPTER_IMPL_INDEX_CURSOR_INTERFACE_NAME \
+"afw_adapter_impl_index_cursor"
 
-/** @sa afw_adaptor_impl_index_cursor_release() */
+/** @sa afw_adapter_impl_index_cursor_release() */
 typedef void
-(*afw_adaptor_impl_index_cursor_release_t)(
-    const afw_adaptor_impl_index_cursor_t * instance,
+(*afw_adapter_impl_index_cursor_release_t)(
+    const afw_adapter_impl_index_cursor_t * instance,
     afw_xctx_t * xctx);
 
-/** @sa afw_adaptor_impl_index_cursor_get_next_object() */
+/** @sa afw_adapter_impl_index_cursor_get_next_object() */
 typedef const afw_object_t *
-(*afw_adaptor_impl_index_cursor_get_next_object_t)(
-    const afw_adaptor_impl_index_cursor_t * instance,
+(*afw_adapter_impl_index_cursor_get_next_object_t)(
+    const afw_adapter_impl_index_cursor_t * instance,
     const afw_pool_t * pool,
     afw_xctx_t * xctx);
 
-/** @sa afw_adaptor_impl_index_cursor_contains_object() */
+/** @sa afw_adapter_impl_index_cursor_contains_object() */
 typedef afw_boolean_t
-(*afw_adaptor_impl_index_cursor_contains_object_t)(
-    const afw_adaptor_impl_index_cursor_t * instance,
+(*afw_adapter_impl_index_cursor_contains_object_t)(
+    const afw_adapter_impl_index_cursor_t * instance,
     const afw_object_t * object,
     afw_xctx_t * xctx);
 
-/** @sa afw_adaptor_impl_index_cursor_inner_join() */
-typedef const afw_adaptor_impl_index_cursor_t *
-(*afw_adaptor_impl_index_cursor_inner_join_t)(
-    const afw_adaptor_impl_index_cursor_t * instance,
-    const afw_adaptor_impl_index_cursor_t * cursor,
+/** @sa afw_adapter_impl_index_cursor_inner_join() */
+typedef const afw_adapter_impl_index_cursor_t *
+(*afw_adapter_impl_index_cursor_inner_join_t)(
+    const afw_adapter_impl_index_cursor_t * instance,
+    const afw_adapter_impl_index_cursor_t * cursor,
     afw_xctx_t * xctx);
 
-/** @sa afw_adaptor_impl_index_cursor_get_count() */
+/** @sa afw_adapter_impl_index_cursor_get_count() */
 typedef afw_boolean_t
-(*afw_adaptor_impl_index_cursor_get_count_t)(
-    const afw_adaptor_impl_index_cursor_t * instance,
+(*afw_adapter_impl_index_cursor_get_count_t)(
+    const afw_adapter_impl_index_cursor_t * instance,
     size_t * count,
     afw_xctx_t * xctx);
 
-/** @brief Interface afw_adaptor_impl_index_cursor_inf_s struct. */
-struct afw_adaptor_impl_index_cursor_inf_s {
+/** @brief Interface afw_adapter_impl_index_cursor_inf_s struct. */
+struct afw_adapter_impl_index_cursor_inf_s {
     afw_interface_implementation_rti_t rti;
-    afw_adaptor_impl_index_cursor_release_t release;
-    afw_adaptor_impl_index_cursor_get_next_object_t get_next_object;
-    afw_adaptor_impl_index_cursor_contains_object_t contains_object;
-    afw_adaptor_impl_index_cursor_inner_join_t inner_join;
-    afw_adaptor_impl_index_cursor_get_count_t get_count;
+    afw_adapter_impl_index_cursor_release_t release;
+    afw_adapter_impl_index_cursor_get_next_object_t get_next_object;
+    afw_adapter_impl_index_cursor_contains_object_t contains_object;
+    afw_adapter_impl_index_cursor_inner_join_t inner_join;
+    afw_adapter_impl_index_cursor_get_count_t get_count;
 };
 
 /**
- * @brief Call method release of interface afw_adaptor_impl_index_cursor
- * @param instancePointer to this adaptor impl index cursor instance.
+ * @brief Call method release of interface afw_adapter_impl_index_cursor
+ * @param instancePointer to this adapter impl index cursor instance.
  * @param xctxThis is the caller's xctx.
  */
-#define afw_adaptor_impl_index_cursor_release( \
+#define afw_adapter_impl_index_cursor_release( \
     instance, \
     xctx \
 ) \
@@ -1128,12 +1128,12 @@ struct afw_adaptor_impl_index_cursor_inf_s {
 )
 
 /**
- * @brief Call method get_next_object of interface afw_adaptor_impl_index_cursor
- * @param instancePointer to this adaptor impl index cursor instance.
+ * @brief Call method get_next_object of interface afw_adapter_impl_index_cursor
+ * @param instancePointer to this adapter impl index cursor instance.
  * @param poolMemory pool to allocate resources in.
  * @param xctxThis is the caller's xctx.
  */
-#define afw_adaptor_impl_index_cursor_get_next_object( \
+#define afw_adapter_impl_index_cursor_get_next_object( \
     instance, \
     pool, \
     xctx \
@@ -1145,12 +1145,12 @@ struct afw_adaptor_impl_index_cursor_inf_s {
 )
 
 /**
- * @brief Call method contains_object of interface afw_adaptor_impl_index_cursor
- * @param instancePointer to this adaptor impl index cursor instance.
+ * @brief Call method contains_object of interface afw_adapter_impl_index_cursor
+ * @param instancePointer to this adapter impl index cursor instance.
  * @param objectPointer to object we need to determine is in this cursor.
  * @param xctxThis is the caller's xctx.
  */
-#define afw_adaptor_impl_index_cursor_contains_object( \
+#define afw_adapter_impl_index_cursor_contains_object( \
     instance, \
     object, \
     xctx \
@@ -1162,12 +1162,12 @@ struct afw_adaptor_impl_index_cursor_inf_s {
 )
 
 /**
- * @brief Call method inner_join of interface afw_adaptor_impl_index_cursor
- * @param instancePointer to this adaptor impl index cursor instance.
+ * @brief Call method inner_join of interface afw_adapter_impl_index_cursor
+ * @param instancePointer to this adapter impl index cursor instance.
  * @param cursorPointer to the cursor we need to join with.
  * @param xctxThis is the caller's xctx.
  */
-#define afw_adaptor_impl_index_cursor_inner_join( \
+#define afw_adapter_impl_index_cursor_inner_join( \
     instance, \
     cursor, \
     xctx \
@@ -1179,12 +1179,12 @@ struct afw_adaptor_impl_index_cursor_inf_s {
 )
 
 /**
- * @brief Call method get_count of interface afw_adaptor_impl_index_cursor
- * @param instancePointer to this adaptor impl index cursor instance.
+ * @brief Call method get_count of interface afw_adapter_impl_index_cursor
+ * @param instancePointer to this adapter impl index cursor instance.
  * @param countPointer to the count, where the caller should return the value.
  * @param xctxThis is the caller's xctx.
  */
-#define afw_adaptor_impl_index_cursor_get_count( \
+#define afw_adapter_impl_index_cursor_get_count( \
     instance, \
     count, \
     xctx \
@@ -1198,78 +1198,78 @@ struct afw_adaptor_impl_index_cursor_inf_s {
 /** @} */
 
 /**
- * @addtogroup afw_adaptor_key_value_interface afw_adaptor_key_value
+ * @addtogroup afw_adapter_key_value_interface afw_adapter_key_value
  *
- * Adaptor implementation of key value interface.
+ * Adapter implementation of key value interface.
  *
  * @{
  */
 
 
-/** @brief Interface afw_adaptor_key_value public struct. */
-struct afw_adaptor_key_value_s {
-    const afw_adaptor_key_value_inf_t *inf;
+/** @brief Interface afw_adapter_key_value public struct. */
+struct afw_adapter_key_value_s {
+    const afw_adapter_key_value_inf_t *inf;
 };
 
-/** @brief define for interface afw_adaptor_key_value name. */
-#define AFW_ADAPTOR_KEY_VALUE_INTERFACE_NAME \
-"afw_adaptor_key_value"
+/** @brief define for interface afw_adapter_key_value name. */
+#define AFW_ADAPTER_KEY_VALUE_INTERFACE_NAME \
+"afw_adapter_key_value"
 
-/** @sa afw_adaptor_key_value_add() */
+/** @sa afw_adapter_key_value_add() */
 typedef void
-(*afw_adaptor_key_value_add_t)(
-    const afw_adaptor_key_value_t * instance,
+(*afw_adapter_key_value_add_t)(
+    const afw_adapter_key_value_t * instance,
     const afw_utf8_t * namespace,
     const afw_memory_t * key,
     const afw_memory_t * value,
     afw_xctx_t * xctx);
 
-/** @sa afw_adaptor_key_value_delete() */
+/** @sa afw_adapter_key_value_delete() */
 typedef void
-(*afw_adaptor_key_value_delete_t)(
-    const afw_adaptor_key_value_t * instance,
-    const afw_utf8_t * namespace,
-    const afw_memory_t * key,
-    const afw_memory_t * value,
-    afw_boolean_t must_exist,
-    afw_xctx_t * xctx);
-
-/** @sa afw_adaptor_key_value_replace() */
-typedef void
-(*afw_adaptor_key_value_replace_t)(
-    const afw_adaptor_key_value_t * instance,
+(*afw_adapter_key_value_delete_t)(
+    const afw_adapter_key_value_t * instance,
     const afw_utf8_t * namespace,
     const afw_memory_t * key,
     const afw_memory_t * value,
     afw_boolean_t must_exist,
     afw_xctx_t * xctx);
 
-/** @sa afw_adaptor_key_value_get() */
+/** @sa afw_adapter_key_value_replace() */
+typedef void
+(*afw_adapter_key_value_replace_t)(
+    const afw_adapter_key_value_t * instance,
+    const afw_utf8_t * namespace,
+    const afw_memory_t * key,
+    const afw_memory_t * value,
+    afw_boolean_t must_exist,
+    afw_xctx_t * xctx);
+
+/** @sa afw_adapter_key_value_get() */
 typedef const afw_memory_t *
-(*afw_adaptor_key_value_get_t)(
-    const afw_adaptor_key_value_t * instance,
+(*afw_adapter_key_value_get_t)(
+    const afw_adapter_key_value_t * instance,
     const afw_utf8_t * namespace,
     const afw_memory_t * key,
     afw_xctx_t * xctx);
 
-/** @brief Interface afw_adaptor_key_value_inf_s struct. */
-struct afw_adaptor_key_value_inf_s {
+/** @brief Interface afw_adapter_key_value_inf_s struct. */
+struct afw_adapter_key_value_inf_s {
     afw_interface_implementation_rti_t rti;
-    afw_adaptor_key_value_add_t add;
-    afw_adaptor_key_value_delete_t delete;
-    afw_adaptor_key_value_replace_t replace;
-    afw_adaptor_key_value_get_t get;
+    afw_adapter_key_value_add_t add;
+    afw_adapter_key_value_delete_t delete;
+    afw_adapter_key_value_replace_t replace;
+    afw_adapter_key_value_get_t get;
 };
 
 /**
- * @brief Call method add of interface afw_adaptor_key_value
- * @param instancePointer to this adaptor key value instance.
+ * @brief Call method add of interface afw_adapter_key_value
+ * @param instancePointer to this adapter key value instance.
  * @param namespaceNamespace for key.
  * @param keyKey.
  * @param valueValue.
  * @param xctxThis is the caller's xctx.
  */
-#define afw_adaptor_key_value_add( \
+#define afw_adapter_key_value_add( \
     instance, \
     namespace, \
     key, \
@@ -1285,15 +1285,15 @@ struct afw_adaptor_key_value_inf_s {
 )
 
 /**
- * @brief Call method delete of interface afw_adaptor_key_value
- * @param instancePointer to this adaptor key value instance.
+ * @brief Call method delete of interface afw_adapter_key_value
+ * @param instancePointer to this adapter key value instance.
  * @param namespaceNamespace for key.
  * @param keyKey.
  * @param valueValue the key must have or NULL if it doesn't matter.
  * @param must_existIt is an error if value does not exist.
  * @param xctxThis is the caller's xctx.
  */
-#define afw_adaptor_key_value_delete( \
+#define afw_adapter_key_value_delete( \
     instance, \
     namespace, \
     key, \
@@ -1311,8 +1311,8 @@ struct afw_adaptor_key_value_inf_s {
 )
 
 /**
- * @brief Call method replace of interface afw_adaptor_key_value
- * @param instancePointer to this adaptor key value instance.
+ * @brief Call method replace of interface afw_adapter_key_value
+ * @param instancePointer to this adapter key value instance.
  * @param namespaceNamespace for key.
  * @param keyKey.
  * @param valueValue the key must have or NULL if it doesn't matter.
@@ -1320,7 +1320,7 @@ struct afw_adaptor_key_value_inf_s {
  *     false, the keyed value will be added if it doesn't exist.
  * @param xctxThis is the caller's xctx.
  */
-#define afw_adaptor_key_value_replace( \
+#define afw_adapter_key_value_replace( \
     instance, \
     namespace, \
     key, \
@@ -1338,13 +1338,13 @@ struct afw_adaptor_key_value_inf_s {
 )
 
 /**
- * @brief Call method get of interface afw_adaptor_key_value
- * @param instancePointer to this adaptor key value instance.
+ * @brief Call method get of interface afw_adapter_key_value
+ * @param instancePointer to this adapter key value instance.
  * @param namespaceNamespace for key.
  * @param keyKey.
  * @param xctxThis is the caller's xctx.
  */
-#define afw_adaptor_key_value_get( \
+#define afw_adapter_key_value_get( \
     instance, \
     namespace, \
     key, \
@@ -1360,17 +1360,17 @@ struct afw_adaptor_key_value_inf_s {
 /** @} */
 
 /**
- * @addtogroup afw_adaptor_impl_index_interface afw_adaptor_impl_index
+ * @addtogroup afw_adapter_impl_index_interface afw_adapter_impl_index
  *
- * Adaptor implementation index interface.
+ * Adapter implementation index interface.
  *
  * @{
  */
 
 
-/** @brief Interface afw_adaptor_impl_index public struct. */
-struct afw_adaptor_impl_index_s {
-    const afw_adaptor_impl_index_inf_t *inf;
+/** @brief Interface afw_adapter_impl_index public struct. */
+struct afw_adapter_impl_index_s {
+    const afw_adapter_impl_index_inf_t *inf;
 
     /**
      * The index definitions.
@@ -1378,14 +1378,14 @@ struct afw_adaptor_impl_index_s {
     const afw_object_t * indexDefinitions;
 };
 
-/** @brief define for interface afw_adaptor_impl_index name. */
-#define AFW_ADAPTOR_IMPL_INDEX_INTERFACE_NAME \
-"afw_adaptor_impl_index"
+/** @brief define for interface afw_adapter_impl_index name. */
+#define AFW_ADAPTER_IMPL_INDEX_INTERFACE_NAME \
+"afw_adapter_impl_index"
 
-/** @sa afw_adaptor_impl_index_open() */
+/** @sa afw_adapter_impl_index_open() */
 typedef void
-(*afw_adaptor_impl_index_open_t)(
-    const afw_adaptor_impl_index_t * instance,
+(*afw_adapter_impl_index_open_t)(
+    const afw_adapter_impl_index_t * instance,
     const afw_utf8_t * object_type_id,
     const afw_utf8_t * key,
     afw_boolean_t integer,
@@ -1394,29 +1394,29 @@ typedef void
     const afw_pool_t * pool,
     afw_xctx_t * xctx);
 
-/** @sa afw_adaptor_impl_index_release() */
+/** @sa afw_adapter_impl_index_release() */
 typedef void
-(*afw_adaptor_impl_index_release_t)(
-    const afw_adaptor_impl_index_t * instance,
+(*afw_adapter_impl_index_release_t)(
+    const afw_adapter_impl_index_t * instance,
     afw_xctx_t * xctx);
 
-/** @sa afw_adaptor_impl_index_get_index_definitions() */
+/** @sa afw_adapter_impl_index_get_index_definitions() */
 typedef const afw_object_t *
-(*afw_adaptor_impl_index_get_index_definitions_t)(
-    const afw_adaptor_impl_index_t * instance,
+(*afw_adapter_impl_index_get_index_definitions_t)(
+    const afw_adapter_impl_index_t * instance,
     afw_xctx_t * xctx);
 
-/** @sa afw_adaptor_impl_index_update_index_definitions() */
+/** @sa afw_adapter_impl_index_update_index_definitions() */
 typedef void
-(*afw_adaptor_impl_index_update_index_definitions_t)(
-    const afw_adaptor_impl_index_t * instance,
+(*afw_adapter_impl_index_update_index_definitions_t)(
+    const afw_adapter_impl_index_t * instance,
     const afw_object_t * indexDefinitions,
     afw_xctx_t * xctx);
 
-/** @sa afw_adaptor_impl_index_add() */
+/** @sa afw_adapter_impl_index_add() */
 typedef afw_rc_t
-(*afw_adaptor_impl_index_add_t)(
-    const afw_adaptor_impl_index_t * instance,
+(*afw_adapter_impl_index_add_t)(
+    const afw_adapter_impl_index_t * instance,
     const afw_utf8_t * object_type_id,
     const afw_utf8_t * object_id,
     const afw_utf8_t * key,
@@ -1425,10 +1425,10 @@ typedef afw_rc_t
     const afw_pool_t * pool,
     afw_xctx_t * xctx);
 
-/** @sa afw_adaptor_impl_index_delete() */
+/** @sa afw_adapter_impl_index_delete() */
 typedef afw_rc_t
-(*afw_adaptor_impl_index_delete_t)(
-    const afw_adaptor_impl_index_t * instance,
+(*afw_adapter_impl_index_delete_t)(
+    const afw_adapter_impl_index_t * instance,
     const afw_utf8_t * object_type_id,
     const afw_utf8_t * object_id,
     const afw_utf8_t * key,
@@ -1436,10 +1436,10 @@ typedef afw_rc_t
     const afw_pool_t * pool,
     afw_xctx_t * xctx);
 
-/** @sa afw_adaptor_impl_index_replace() */
+/** @sa afw_adapter_impl_index_replace() */
 typedef afw_rc_t
-(*afw_adaptor_impl_index_replace_t)(
-    const afw_adaptor_impl_index_t * instance,
+(*afw_adapter_impl_index_replace_t)(
+    const afw_adapter_impl_index_t * instance,
     const afw_utf8_t * object_type_id,
     const afw_utf8_t * object_id,
     const afw_utf8_t * key,
@@ -1448,19 +1448,19 @@ typedef afw_rc_t
     const afw_pool_t * pool,
     afw_xctx_t * xctx);
 
-/** @sa afw_adaptor_impl_index_drop() */
+/** @sa afw_adapter_impl_index_drop() */
 typedef afw_rc_t
-(*afw_adaptor_impl_index_drop_t)(
-    const afw_adaptor_impl_index_t * instance,
+(*afw_adapter_impl_index_drop_t)(
+    const afw_adapter_impl_index_t * instance,
     const afw_utf8_t * object_type_id,
     const afw_utf8_t * key,
     const afw_pool_t * pool,
     afw_xctx_t * xctx);
 
-/** @sa afw_adaptor_impl_index_open_cursor() */
-typedef afw_adaptor_impl_index_cursor_t *
-(*afw_adaptor_impl_index_open_cursor_t)(
-    const afw_adaptor_impl_index_t * instance,
+/** @sa afw_adapter_impl_index_open_cursor() */
+typedef afw_adapter_impl_index_cursor_t *
+(*afw_adapter_impl_index_open_cursor_t)(
+    const afw_adapter_impl_index_t * instance,
     const afw_utf8_t * object_type_id,
     const afw_utf8_t * index_key,
     int operator,
@@ -1469,32 +1469,32 @@ typedef afw_adaptor_impl_index_cursor_t *
     const afw_pool_t * pool,
     afw_xctx_t * xctx);
 
-/** @sa afw_adaptor_impl_index_get_session() */
-typedef const afw_adaptor_session_t *
-(*afw_adaptor_impl_index_get_session_t)(
-    const afw_adaptor_impl_index_t * instance,
+/** @sa afw_adapter_impl_index_get_session() */
+typedef const afw_adapter_session_t *
+(*afw_adapter_impl_index_get_session_t)(
+    const afw_adapter_impl_index_t * instance,
     afw_xctx_t * xctx);
 
-/** @brief Interface afw_adaptor_impl_index_inf_s struct. */
-struct afw_adaptor_impl_index_inf_s {
+/** @brief Interface afw_adapter_impl_index_inf_s struct. */
+struct afw_adapter_impl_index_inf_s {
     afw_interface_implementation_rti_t rti;
-    afw_adaptor_impl_index_open_t open;
-    afw_adaptor_impl_index_release_t release;
-    afw_adaptor_impl_index_get_index_definitions_t get_index_definitions;
-    afw_adaptor_impl_index_update_index_definitions_t update_index_definitions;
-    afw_adaptor_impl_index_add_t add;
-    afw_adaptor_impl_index_delete_t delete;
-    afw_adaptor_impl_index_replace_t replace;
-    afw_adaptor_impl_index_drop_t drop;
-    afw_adaptor_impl_index_open_cursor_t open_cursor;
-    afw_adaptor_impl_index_get_session_t get_session;
+    afw_adapter_impl_index_open_t open;
+    afw_adapter_impl_index_release_t release;
+    afw_adapter_impl_index_get_index_definitions_t get_index_definitions;
+    afw_adapter_impl_index_update_index_definitions_t update_index_definitions;
+    afw_adapter_impl_index_add_t add;
+    afw_adapter_impl_index_delete_t delete;
+    afw_adapter_impl_index_replace_t replace;
+    afw_adapter_impl_index_drop_t drop;
+    afw_adapter_impl_index_open_cursor_t open_cursor;
+    afw_adapter_impl_index_get_session_t get_session;
 };
 
 /**
- * @brief Call method open of interface afw_adaptor_impl_index
- * @param instancePointer to this adaptor impl index instance.
+ * @brief Call method open of interface afw_adapter_impl_index
+ * @param instancePointer to this adapter impl index instance.
  * @param object_type_idObject type id associated with the property and value
- *     that we are indexing. This may be useful for the adaptor to determine the
+ *     that we are indexing. This may be useful for the adapter to determine the
  *     target table or database to store the index. NULL means all objectTypes
  *     are applicable.
  * @param keyIndex key associated with the index value we are creating.
@@ -1504,7 +1504,7 @@ struct afw_adaptor_impl_index_inf_s {
  * @param poolCaller's pool.
  * @param xctxThis is the caller's xctx.
  */
-#define afw_adaptor_impl_index_open( \
+#define afw_adapter_impl_index_open( \
     instance, \
     object_type_id, \
     key, \
@@ -1526,11 +1526,11 @@ struct afw_adaptor_impl_index_inf_s {
 )
 
 /**
- * @brief Call method release of interface afw_adaptor_impl_index
- * @param instancePointer to this adaptor impl index instance.
+ * @brief Call method release of interface afw_adapter_impl_index
+ * @param instancePointer to this adapter impl index instance.
  * @param xctxThis is the caller's xctx.
  */
-#define afw_adaptor_impl_index_release( \
+#define afw_adapter_impl_index_release( \
     instance, \
     xctx \
 ) \
@@ -1540,11 +1540,11 @@ struct afw_adaptor_impl_index_inf_s {
 )
 
 /**
- * @brief Call method get_index_definitions of interface afw_adaptor_impl_index
- * @param instancePointer to this adaptor impl index instance.
+ * @brief Call method get_index_definitions of interface afw_adapter_impl_index
+ * @param instancePointer to this adapter impl index instance.
  * @param xctxThis is the caller's xctx.
  */
-#define afw_adaptor_impl_index_get_index_definitions( \
+#define afw_adapter_impl_index_get_index_definitions( \
     instance, \
     xctx \
 ) \
@@ -1555,12 +1555,12 @@ struct afw_adaptor_impl_index_inf_s {
 
 /**
  * @brief Call method update_index_definitions of interface
- *     afw_adaptor_impl_index
- * @param instancePointer to this adaptor impl index instance.
+ *     afw_adapter_impl_index
+ * @param instancePointer to this adapter impl index instance.
  * @param indexDefinitionsUpdated indexes definitions.
  * @param xctxThis is the caller's xctx.
  */
-#define afw_adaptor_impl_index_update_index_definitions( \
+#define afw_adapter_impl_index_update_index_definitions( \
     instance, \
     indexDefinitions, \
     xctx \
@@ -1572,22 +1572,22 @@ struct afw_adaptor_impl_index_inf_s {
 )
 
 /**
- * @brief Call method add of interface afw_adaptor_impl_index
- * @param instancePointer to this adaptor impl index instance.
+ * @brief Call method add of interface afw_adapter_impl_index
+ * @param instancePointer to this adapter impl index instance.
  * @param object_type_idObject type id associated with the property and value
- *     that we are indexing. This may be useful for the adaptor to determine the
+ *     that we are indexing. This may be useful for the adapter to determine the
  *     target table or database to store the index.
  * @param object_idObject id for the object associated with the property and
- *     value that we are indexing. This should be used by the adaptor as a
+ *     value that we are indexing. This should be used by the adapter as a
  *     reference to the primary entry.
  * @param keyIndex key associated with the index value we are creating.
  * @param valueIndex value associated with the index we are creating. This
- *     should be used by the adaptor as the key to the index entry.
+ *     should be used by the adapter as the key to the index entry.
  * @param uniqueFlag indicating that the index being added should be unique.
  * @param poolCaller's pool.
  * @param xctxThis is the caller's xctx.
  */
-#define afw_adaptor_impl_index_add( \
+#define afw_adapter_impl_index_add( \
     instance, \
     object_type_id, \
     object_id, \
@@ -1609,21 +1609,21 @@ struct afw_adaptor_impl_index_inf_s {
 )
 
 /**
- * @brief Call method delete of interface afw_adaptor_impl_index
- * @param instancePointer to this adaptor impl index instance.
+ * @brief Call method delete of interface afw_adapter_impl_index
+ * @param instancePointer to this adapter impl index instance.
  * @param object_type_idObject type id associated with the property and value of
- *     the index we are removing. This may be useful for the adaptor to
+ *     the index we are removing. This may be useful for the adapter to
  *     determine the target table or database to store the index.
  * @param object_idObject id for the object associated with the property and
- *     value of the index we are removing. This should be used by the adaptor as
+ *     value of the index we are removing. This should be used by the adapter as
  *     a reference to the primary entry.
  * @param keyIndex key associated with the index value we are deleting.
  * @param valueIndex value associated with the index we are deleting. This
- *     should be used by the adaptor as the key to the index entry.
+ *     should be used by the adapter as the key to the index entry.
  * @param poolCaller's pool.
  * @param xctxThis is the caller's xctx.
  */
-#define afw_adaptor_impl_index_delete( \
+#define afw_adapter_impl_index_delete( \
     instance, \
     object_type_id, \
     object_id, \
@@ -1643,23 +1643,23 @@ struct afw_adaptor_impl_index_inf_s {
 )
 
 /**
- * @brief Call method replace of interface afw_adaptor_impl_index
- * @param instancePointer to this adaptor impl index instance.
+ * @brief Call method replace of interface afw_adapter_impl_index
+ * @param instancePointer to this adapter impl index instance.
  * @param object_type_idObject type id associated with the property and value
- *     that we are indexing. This may be useful for the adaptor to determine the
+ *     that we are indexing. This may be useful for the adapter to determine the
  *     target table or database to store the index.
  * @param object_idObject id for the object associated with the property and
- *     value that we are indexing. This should be used by the adaptor as a
+ *     value that we are indexing. This should be used by the adapter as a
  *     reference to the primary entry.
  * @param keyIndex key associated with the index value we are replacing.
  * @param old_valueOld index value associated with the index we are replacing.
- *     This should be used by the adaptor as the key to the index entry.
+ *     This should be used by the adapter as the key to the index entry.
  * @param new_valueNew index value associated with the index we are replacing.
- *     This should be used by the adaptor as the key to the index entry.
+ *     This should be used by the adapter as the key to the index entry.
  * @param poolCaller's pool.
  * @param xctxThis is the caller's xctx.
  */
-#define afw_adaptor_impl_index_replace( \
+#define afw_adapter_impl_index_replace( \
     instance, \
     object_type_id, \
     object_id, \
@@ -1681,16 +1681,16 @@ struct afw_adaptor_impl_index_inf_s {
 )
 
 /**
- * @brief Call method drop of interface afw_adaptor_impl_index
- * @param instancePointer to this adaptor impl index instance.
+ * @brief Call method drop of interface afw_adapter_impl_index
+ * @param instancePointer to this adapter impl index instance.
  * @param object_type_idObject type id associated with the index. This may be
- *     useful for the adaptor to determine the target table or database for the
+ *     useful for the adapter to determine the target table or database for the
  *     index.
  * @param keyIndex key.
  * @param poolCaller's pool.
  * @param xctxThis is the caller's xctx.
  */
-#define afw_adaptor_impl_index_drop( \
+#define afw_adapter_impl_index_drop( \
     instance, \
     object_type_id, \
     key, \
@@ -1706,20 +1706,20 @@ struct afw_adaptor_impl_index_inf_s {
 )
 
 /**
- * @brief Call method open_cursor of interface afw_adaptor_impl_index
- * @param instancePointer to this adaptor impl index instance.
+ * @brief Call method open_cursor of interface afw_adapter_impl_index
+ * @param instancePointer to this adapter impl index instance.
  * @param object_type_idObject type id associated with the property and value
- *     that we are indexing. This may be useful for the adaptor to determine the
+ *     that we are indexing. This may be useful for the adapter to determine the
  *     target table or database to find the index.
  * @param index_keyKey associated with the index we are replacing.
  * @param operatorQuery criteria operator.
  * @param valueIndex value associated with the index we are querying. This
- *     should be used by the adaptor as the key to the index entry.
+ *     should be used by the adapter as the key to the index entry.
  * @param uniqueIndex values are unique.
  * @param poolCaller's pool.
  * @param xctxThis is the caller's xctx.
  */
-#define afw_adaptor_impl_index_open_cursor( \
+#define afw_adapter_impl_index_open_cursor( \
     instance, \
     object_type_id, \
     index_key, \
@@ -1741,11 +1741,11 @@ struct afw_adaptor_impl_index_inf_s {
 )
 
 /**
- * @brief Call method get_session of interface afw_adaptor_impl_index
- * @param instancePointer to this adaptor impl index instance.
+ * @brief Call method get_session of interface afw_adapter_impl_index
+ * @param instancePointer to this adapter impl index instance.
  * @param xctxThis is the caller's xctx.
  */
-#define afw_adaptor_impl_index_get_session( \
+#define afw_adapter_impl_index_get_session( \
     instance, \
     xctx \
 ) \
@@ -1775,7 +1775,7 @@ struct afw_authorization_handler_factory_s {
     afw_utf8_t authorization_handler_type;
 
     /**
-     * Type of adaptor this factory creates.
+     * Type of adapter this factory creates.
      */
     const afw_utf8_t * description;
 };
@@ -2051,7 +2051,7 @@ typedef const afw_object_t *
     const afw_content_type_t * instance,
     const afw_memory_t * raw,
     const afw_utf8_t * source_location,
-    const afw_utf8_t * adaptor_id,
+    const afw_utf8_t * adapter_id,
     const afw_utf8_t * object_type_id,
     const afw_utf8_t * object_id,
     afw_boolean_t cede_p,
@@ -2116,7 +2116,7 @@ struct afw_content_type_inf_s {
  * @param instancePointer to this content type instance.
  * @param rawRaw encoded object representation of this content type.
  * @param source_locationSource location or NULL.
- * @param adaptor_idAdaptor id for created object.
+ * @param adapter_idAdapter id for created object.
  * @param object_type_idObject type id for created object.
  * @param object_idObject id for created object.
  * @param cede_pIf true, cede control of p to the created object.
@@ -2128,7 +2128,7 @@ struct afw_content_type_inf_s {
     instance, \
     raw, \
     source_location, \
-    adaptor_id, \
+    adapter_id, \
     object_type_id, \
     object_id, \
     cede_p, \
@@ -2139,7 +2139,7 @@ struct afw_content_type_inf_s {
     (instance), \
     (raw), \
     (source_location), \
-    (adaptor_id), \
+    (adapter_id), \
     (object_type_id), \
     (object_id), \
     (cede_p), \
@@ -3298,7 +3298,7 @@ struct afw_log_factory_s {
     afw_utf8_t log_type;
 
     /**
-     * Type of adaptor this factory creates.
+     * Type of adapter this factory creates.
      */
     const afw_utf8_t * description;
 };
@@ -4371,7 +4371,7 @@ struct afw_request_handler_factory_s {
     afw_utf8_t request_handler_type;
 
     /**
-     * Type of adaptor this factory creates.
+     * Type of adapter this factory creates.
      */
     const afw_utf8_t * description;
 };
@@ -5355,75 +5355,75 @@ struct afw_pool_inf_s {
 /** @} */
 
 /**
- * @addtogroup afw_adaptor_journal_interface afw_adaptor_journal
+ * @addtogroup afw_adapter_journal_interface afw_adapter_journal
  *
- * Adaptor journal interface.
+ * Adapter journal interface.
  *
  * @{
  */
 
 
-/** @brief Interface afw_adaptor_journal public struct. */
-struct afw_adaptor_journal_s {
-    const afw_adaptor_journal_inf_t *inf;
+/** @brief Interface afw_adapter_journal public struct. */
+struct afw_adapter_journal_s {
+    const afw_adapter_journal_inf_t *inf;
 
     /**
-     * Associated adaptor session.
+     * Associated adapter session.
      */
-    const afw_adaptor_session_t * session;
+    const afw_adapter_session_t * session;
 };
 
-/** @brief define for interface afw_adaptor_journal name. */
-#define AFW_ADAPTOR_JOURNAL_INTERFACE_NAME \
-"afw_adaptor_journal"
+/** @brief define for interface afw_adapter_journal name. */
+#define AFW_ADAPTER_JOURNAL_INTERFACE_NAME \
+"afw_adapter_journal"
 
-/** @sa afw_adaptor_journal_add_entry() */
+/** @sa afw_adapter_journal_add_entry() */
 typedef const afw_utf8_t *
-(*afw_adaptor_journal_add_entry_t)(
-    const afw_adaptor_journal_t * instance,
-    const afw_adaptor_impl_request_t * impl_request,
+(*afw_adapter_journal_add_entry_t)(
+    const afw_adapter_journal_t * instance,
+    const afw_adapter_impl_request_t * impl_request,
     const afw_object_t * entry,
     afw_xctx_t * xctx);
 
-/** @sa afw_adaptor_journal_get_entry() */
+/** @sa afw_adapter_journal_get_entry() */
 typedef void
-(*afw_adaptor_journal_get_entry_t)(
-    const afw_adaptor_journal_t * instance,
-    const afw_adaptor_impl_request_t * impl_request,
-    afw_adaptor_journal_option_t option,
+(*afw_adapter_journal_get_entry_t)(
+    const afw_adapter_journal_t * instance,
+    const afw_adapter_impl_request_t * impl_request,
+    afw_adapter_journal_option_t option,
     const afw_utf8_t * consumer_id,
     const afw_utf8_t * entry_cursor,
     afw_size_t limit,
     const afw_object_t * response,
     afw_xctx_t * xctx);
 
-/** @sa afw_adaptor_journal_mark_entry_consumed() */
+/** @sa afw_adapter_journal_mark_entry_consumed() */
 typedef void
-(*afw_adaptor_journal_mark_entry_consumed_t)(
-    const afw_adaptor_journal_t * instance,
-    const afw_adaptor_impl_request_t * impl_request,
+(*afw_adapter_journal_mark_entry_consumed_t)(
+    const afw_adapter_journal_t * instance,
+    const afw_adapter_impl_request_t * impl_request,
     const afw_utf8_t * consumer_id,
     const afw_utf8_t * entry_cursor,
     afw_xctx_t * xctx);
 
-/** @brief Interface afw_adaptor_journal_inf_s struct. */
-struct afw_adaptor_journal_inf_s {
+/** @brief Interface afw_adapter_journal_inf_s struct. */
+struct afw_adapter_journal_inf_s {
     afw_interface_implementation_rti_t rti;
-    afw_adaptor_journal_add_entry_t add_entry;
-    afw_adaptor_journal_get_entry_t get_entry;
-    afw_adaptor_journal_mark_entry_consumed_t mark_entry_consumed;
+    afw_adapter_journal_add_entry_t add_entry;
+    afw_adapter_journal_get_entry_t get_entry;
+    afw_adapter_journal_mark_entry_consumed_t mark_entry_consumed;
 };
 
 /**
- * @brief Call method add_entry of interface afw_adaptor_journal
+ * @brief Call method add_entry of interface afw_adapter_journal
  * @param instancePointer to this adaptive event journal instance.
  * @param impl_requestPass this as first parameter of
- *     afw_adaptor_impl_request_*() functions.
- *     See afw_adaptor_impl.h for more information.
+ *     afw_adapter_impl_request_*() functions.
+ *     See afw_adapter_impl.h for more information.
  * @param entryPointer to the event to be logged in the journal.
  * @param xctxThis is the caller's xctx.
  */
-#define afw_adaptor_journal_add_entry( \
+#define afw_adapter_journal_add_entry( \
     instance, \
     impl_request, \
     entry, \
@@ -5437,30 +5437,30 @@ struct afw_adaptor_journal_inf_s {
 )
 
 /**
- * @brief Call method get_entry of interface afw_adaptor_journal
+ * @brief Call method get_entry of interface afw_adapter_journal
  * @param instancePointer to this adaptive event journal instance.
  * @param impl_requestPass this as first parameter of
- *     afw_adaptor_impl_request_*() functions.
- *     See afw_adaptor_impl.h for more information.
- * @param optionGet entry option. See afw_adaptor_journal_option_t for
+ *     afw_adapter_impl_request_*() functions.
+ *     See afw_adapter_impl.h for more information.
+ * @param optionGet entry option. See afw_adapter_journal_option_t for
  *     more information.
  * @param consumer_idPeer id of consumer of event of NULL. See
- *     afw_adaptor_journal_option_t for information on how this
+ *     afw_adapter_journal_option_t for information on how this
  *     parameter is used or ignored.
  * @param entry_cursorJournal entry cursor or NULL. See
- *     afw_adaptor_journal_option_t for information on how this
+ *     afw_adapter_journal_option_t for information on how this
  *     parameter is used or ignored.
  * @param limitLimit or 0. See
- *     afw_adaptor_journal_option_t for information on how this
+ *     afw_adapter_journal_option_t for information on how this
  *     parameter is used or ignored.
  * @param responseThis is an existing response object that can have properties
  *     already
  *     set. Depending on the option specified, get_entry() will set
- *     additional properties. See afw_adaptor_journal_option_t
+ *     additional properties. See afw_adapter_journal_option_t
  *     for information on which properties are set and under what condition.
  * @param xctxThis is the caller's xctx.
  */
-#define afw_adaptor_journal_get_entry( \
+#define afw_adapter_journal_get_entry( \
     instance, \
     impl_request, \
     option, \
@@ -5482,17 +5482,17 @@ struct afw_adaptor_journal_inf_s {
 )
 
 /**
- * @brief Call method mark_entry_consumed of interface afw_adaptor_journal
+ * @brief Call method mark_entry_consumed of interface afw_adapter_journal
  * @param instancePointer to this adaptive event journal instance.
  * @param impl_requestPass this as first parameter of
- *     afw_adaptor_impl_request_*() functions.
- *     See afw_adaptor_impl.h for more information.
- * @param consumer_idGet entry option. See afw_adaptor_journal_option_t for
+ *     afw_adapter_impl_request_*() functions.
+ *     See afw_adapter_impl.h for more information.
+ * @param consumer_idGet entry option. See afw_adapter_journal_option_t for
  *     more information.
  * @param entry_cursorToken of the event to mark consumed.
  * @param xctxThis is the caller's xctx.
  */
-#define afw_adaptor_journal_mark_entry_consumed( \
+#define afw_adapter_journal_mark_entry_consumed( \
     instance, \
     impl_request, \
     consumer_id, \

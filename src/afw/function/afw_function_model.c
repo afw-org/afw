@@ -42,31 +42,31 @@ impl_value_replace_object = {
 
 static void
 impl_get_self_and_model(
-    afw_model_internal_adaptor_session_self_t * *self,
+    afw_model_internal_adapter_session_self_t * *self,
     const afw_model_t * *model,
-    const afw_value_string_t *adaptorId_value,
+    const afw_value_string_t *adapterId_value,
     const afw_value_string_t *modelId_value,
     afw_xctx_t *xctx)
 {
-    const afw_adaptor_session_t *session;
+    const afw_adapter_session_t *session;
 
-    session = afw_adaptor_session_get_cached(&adaptorId_value->internal,
+    session = afw_adapter_session_get_cached(&adapterId_value->internal,
         false, xctx);
     if (afw_utf8_equal_utf8_z(
         &session->inf->rti.implementation_id,
-        "adaptor_impl"))
+        "adapter_impl"))
     {
         session =
-            ((afw_adaptor_impl_session_t *)session)->wrapped_session;
+            ((afw_adapter_impl_session_t *)session)->wrapped_session;
     }
-    *self = (afw_model_internal_adaptor_session_self_t *)session;
+    *self = (afw_model_internal_adapter_session_self_t *)session;
     if (!afw_utf8_equal(
         &(*self)->pub.inf->rti.implementation_id,
         afw_s_model))
     {
         AFW_THROW_ERROR_FZ(general, xctx,
-            AFW_UTF8_FMT_Q " is not a model adaptor",
-            AFW_UTF8_FMT_ARG(&adaptorId_value->internal));
+            AFW_UTF8_FMT_Q " is not a model adapter",
+            AFW_UTF8_FMT_ARG(&adapterId_value->internal));
     }
 
     *model = (*self)->model;
@@ -100,7 +100,7 @@ impl_get_self_and_model(
  *
  * ```
  *   function model_default_add_object_action(
- *       adaptorId: string,
+ *       adapterId: string,
  *       objectType: string,
  *       object: object,
  *       objectId?: string,
@@ -111,8 +111,8 @@ impl_get_self_and_model(
  *
  * Parameters:
  *
- *   adaptorId - (string) This is the adaptorId of a model adaptor. Variable
- *       custom::adaptorId can be used to access this value in model
+ *   adapterId - (string) This is the adapterId of a model adapter. Variable
+ *       custom::adapterId can be used to access this value in model
  *       expressions.
  *
  *   objectType - (string) This is the adaptive object type of object being
@@ -123,11 +123,11 @@ impl_get_self_and_model(
  *       used to access this value in model expressions.
  *
  *   objectId - (optional string) This is the optional preferred objectId of
- *       object to add. The adaptor may ignore this. Variable custom::objectId
+ *       object to add. The adapter may ignore this. Variable custom::objectId
  *       can be used to access this value in model expressions.
  *
  *   modelId - (optional string) This specifics a modelId of model to use for
- *       producing results. If not specified, the adaptor's current model will
+ *       producing results. If not specified, the adapter's current model will
  *       be used.
  *
  *   context - (optional object _AdaptiveContextType_) This specifies additional
@@ -142,11 +142,11 @@ afw_function_execute_model_default_add_object_action(
     afw_function_execute_t *x)
 {
     afw_xctx_t *xctx = x->xctx;
-    afw_model_internal_adaptor_session_self_t *self;
+    afw_model_internal_adapter_session_self_t *self;
     afw_model_internal_context_t *ctx;
     const afw_utf8_t *object_id;
     const afw_object_t *context;
-    const afw_value_string_t *adaptorId_value;
+    const afw_value_string_t *adapterId_value;
     const afw_value_string_t *objectType_value;
     const afw_value_string_t *string_value;
     const afw_value_string_t *modelId_value;
@@ -155,7 +155,7 @@ afw_function_execute_model_default_add_object_action(
     const afw_model_t *model;
     int top;
 
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(adaptorId_value, 1, string);
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(adapterId_value, 1, string);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(objectType_value, 2, string);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(object_value, 3, object);
 
@@ -176,7 +176,7 @@ afw_function_execute_model_default_add_object_action(
         context = object_value->internal;
     }
 
-    /* _AdaptiveObjectType_ objects are immutable in model adaptor. */
+    /* _AdaptiveObjectType_ objects are immutable in model adapter. */
     if (afw_utf8_equal(&objectType_value->internal, afw_s__AdaptiveObjectType_)) {
         AFW_OBJECT_ERROR_OBJECT_IMMUTABLE;
     }
@@ -192,12 +192,12 @@ afw_function_execute_model_default_add_object_action(
         }
 
         /* Get session self and model. */
-        impl_get_self_and_model(&self, &model, adaptorId_value, modelId_value, xctx);
+        impl_get_self_and_model(&self, &model, adapterId_value, modelId_value, xctx);
 
-        /* Prime context for "to adaptor". */
-        ctx = afw_model_internal_create_to_adaptor_skeleton_context(
+        /* Prime context for "to adapter". */
+        ctx = afw_model_internal_create_to_adapter_skeleton_context(
             self,
-            &self->adaptor->instance_skeleton__AdaptiveModelCurrentOnAddObject_,
+            &self->adapter->instance_skeleton__AdaptiveModelCurrentOnAddObject_,
             model,
             NULL,
             &objectType_value->internal,
@@ -220,8 +220,8 @@ afw_function_execute_model_default_add_object_action(
     result = afw_object_create_unmanaged(x->p, xctx);
     afw_object_set_property(result, afw_s_function,
         &impl_value_add_object.pub, xctx);
-    afw_object_set_property_as_string(result, afw_s_adaptorId,
-        self->adaptor->mapped_adaptor_id, xctx);
+    afw_object_set_property_as_string(result, afw_s_adapterId,
+        self->adapter->mapped_adapter_id, xctx);
     afw_object_set_property_as_string(result, afw_s_objectType,
         ctx->mapped_object_type_id, xctx);
     if (ctx->mapped_object_id) {
@@ -257,7 +257,7 @@ afw_function_execute_model_default_add_object_action(
  *
  * ```
  *   function model_default_delete_object_action(
- *       adaptorId: string,
+ *       adapterId: string,
  *       objectType: string,
  *       objectId: string,
  *       modelId?: string,
@@ -267,8 +267,8 @@ afw_function_execute_model_default_add_object_action(
  *
  * Parameters:
  *
- *   adaptorId - (string) This is the adaptorId of a model adaptor. Variable
- *       custom::adaptorId can be used to access this value in model
+ *   adapterId - (string) This is the adapterId of a model adapter. Variable
+ *       custom::adapterId can be used to access this value in model
  *       expressions.
  *
  *   objectType - (string) This is the adaptive object type of object being
@@ -279,7 +279,7 @@ afw_function_execute_model_default_add_object_action(
  *       custom::object can be used to access this value in model expressions.
  *
  *   modelId - (optional string) This specifics a modelId of model to use for
- *       producing results. If not specified, the adaptor's current model will
+ *       producing results. If not specified, the adapter's current model will
  *       be used.
  *
  *   context - (optional object _AdaptiveContextType_) This specifies additional
@@ -294,10 +294,10 @@ afw_function_execute_model_default_delete_object_action(
     afw_function_execute_t *x)
 {
     afw_xctx_t *xctx = x->xctx;
-    afw_model_internal_adaptor_session_self_t *self;
+    afw_model_internal_adapter_session_self_t *self;
     afw_model_internal_context_t *ctx;
     const afw_object_t *context;
-    const afw_value_string_t *adaptorId_value;
+    const afw_value_string_t *adapterId_value;
     const afw_value_string_t *objectType_value;
     const afw_value_string_t *objectId_value;
     const afw_value_string_t *modelId_value;
@@ -306,7 +306,7 @@ afw_function_execute_model_default_delete_object_action(
     const afw_model_t *model;
     int top;
 
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(adaptorId_value, 1, string);
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(adapterId_value, 1, string);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(objectType_value, 2, string);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(objectId_value, 3, string);
 
@@ -322,7 +322,7 @@ afw_function_execute_model_default_delete_object_action(
         context = context_value->internal;
     }
 
-    /* _AdaptiveObjectType_ objects are immutable in model adaptor. */
+    /* _AdaptiveObjectType_ objects are immutable in model adapter. */
     if (afw_utf8_equal(&objectType_value->internal, afw_s__AdaptiveObjectType_)) {
         AFW_OBJECT_ERROR_OBJECT_IMMUTABLE;
     }
@@ -338,12 +338,12 @@ afw_function_execute_model_default_delete_object_action(
         }
 
         /* Get session self and model. */
-        impl_get_self_and_model(&self, &model, adaptorId_value, modelId_value, xctx);
+        impl_get_self_and_model(&self, &model, adapterId_value, modelId_value, xctx);
 
-        /* Prime context for "to adaptor". */
-        ctx = afw_model_internal_create_to_adaptor_skeleton_context(
+        /* Prime context for "to adapter". */
+        ctx = afw_model_internal_create_to_adapter_skeleton_context(
             self,
-            &self->adaptor->instance_skeleton__AdaptiveModelCurrentOnDeleteObject_,
+            &self->adapter->instance_skeleton__AdaptiveModelCurrentOnDeleteObject_,
             model,
             NULL,
             &objectType_value->internal,
@@ -364,8 +364,8 @@ afw_function_execute_model_default_delete_object_action(
     result = afw_object_create_unmanaged(x->p, xctx);
     afw_object_set_property(result, afw_s_function,
         &impl_value_delete_object.pub, xctx);
-    afw_object_set_property_as_string(result, afw_s_adaptorId,
-        self->adaptor->mapped_adaptor_id, xctx);
+    afw_object_set_property_as_string(result, afw_s_adapterId,
+        self->adapter->mapped_adapter_id, xctx);
     afw_object_set_property_as_string(result, afw_s_objectType,
         ctx->mapped_object_type_id, xctx);
     afw_object_set_property_as_string(result, afw_s_objectId,
@@ -397,7 +397,7 @@ afw_function_execute_model_default_delete_object_action(
  *
  * ```
  *   function model_default_modify_object_action(
- *       adaptorId: string,
+ *       adapterId: string,
  *       objectType: string,
  *       objectId: string,
  *       entries: array,
@@ -408,8 +408,8 @@ afw_function_execute_model_default_delete_object_action(
  *
  * Parameters:
  *
- *   adaptorId - (string) This is the adaptorId of a model adaptor. Variable
- *       custom::adaptorId can be used to access this value in model
+ *   adapterId - (string) This is the adapterId of a model adapter. Variable
+ *       custom::adapterId can be used to access this value in model
  *       expressions.
  *
  *   objectType - (string) This is the adaptive object type of object being
@@ -447,7 +447,7 @@ afw_function_execute_model_default_delete_object_action(
  *           ].
  *
  *   modelId - (optional string) This specifics a modelId of model to use for
- *       producing results. If not specified, the adaptor's current model will
+ *       producing results. If not specified, the adapter's current model will
  *       be used.
  *
  *   context - (optional object _AdaptiveContextType_) This specifies additional
@@ -462,10 +462,10 @@ afw_function_execute_model_default_modify_object_action(
     afw_function_execute_t *x)
 {
     afw_xctx_t *xctx = x->xctx;
-    afw_model_internal_adaptor_session_self_t *self;
+    afw_model_internal_adapter_session_self_t *self;
     afw_model_internal_context_t *ctx;
     const afw_object_t *context;
-    const afw_value_string_t *adaptorId_value;
+    const afw_value_string_t *adapterId_value;
     const afw_value_string_t *objectType_value;
     const afw_value_string_t *objectId_value;
     const afw_value_array_t *entries_value;
@@ -475,7 +475,7 @@ afw_function_execute_model_default_modify_object_action(
     const afw_model_t *model;
     int top;
 
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(adaptorId_value, 1, string);
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(adapterId_value, 1, string);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(objectType_value, 2, string);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(objectId_value, 3, string);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(entries_value, 4, array);
@@ -491,7 +491,7 @@ afw_function_execute_model_default_modify_object_action(
         context = context_value->internal;
     }
 
-    /* _AdaptiveObjectType_ objects are immutable in model adaptor. */
+    /* _AdaptiveObjectType_ objects are immutable in model adapter. */
     if (afw_utf8_equal(&objectType_value->internal, afw_s__AdaptiveObjectType_)) {
         AFW_OBJECT_ERROR_OBJECT_IMMUTABLE;
     }
@@ -507,12 +507,12 @@ afw_function_execute_model_default_modify_object_action(
         }
 
         /* Get session self and model. */
-        impl_get_self_and_model(&self, &model, adaptorId_value, modelId_value, xctx);
+        impl_get_self_and_model(&self, &model, adapterId_value, modelId_value, xctx);
 
-        /* Prime context for "to adaptor". */
-        ctx = afw_model_internal_create_to_adaptor_skeleton_context(
+        /* Prime context for "to adapter". */
+        ctx = afw_model_internal_create_to_adapter_skeleton_context(
             self,
-            &self->adaptor->instance_skeleton__AdaptiveModelCurrentOnModifyObject_,
+            &self->adapter->instance_skeleton__AdaptiveModelCurrentOnModifyObject_,
             model,
             NULL,
             &objectType_value->internal,
@@ -536,8 +536,8 @@ afw_function_execute_model_default_modify_object_action(
     result = afw_object_create_unmanaged(x->p, xctx);
     afw_object_set_property(result, afw_s_function,
         &impl_value_modify_object.pub, xctx);
-    afw_object_set_property_as_string(result, afw_s_adaptorId,
-        self->adaptor->mapped_adaptor_id, xctx);
+    afw_object_set_property_as_string(result, afw_s_adapterId,
+        self->adapter->mapped_adapter_id, xctx);
     afw_object_set_property_as_string(result, afw_s_objectType,
         ctx->mapped_object_type_id, xctx);
     afw_object_set_property_as_string(result, afw_s_objectId,
@@ -571,7 +571,7 @@ afw_function_execute_model_default_modify_object_action(
  *
  * ```
  *   function model_default_replace_object_action(
- *       adaptorId: string,
+ *       adapterId: string,
  *       objectType: string,
  *       objectId: string,
  *       object: object,
@@ -582,8 +582,8 @@ afw_function_execute_model_default_modify_object_action(
  *
  * Parameters:
  *
- *   adaptorId - (string) This is the adaptorId of a model adaptor. Variable
- *       custom::adaptorId can be used to access this value in model
+ *   adapterId - (string) This is the adapterId of a model adapter. Variable
+ *       custom::adapterId can be used to access this value in model
  *       expressions.
  *
  *   objectType - (string) This is the adaptive object type of object being
@@ -597,7 +597,7 @@ afw_function_execute_model_default_modify_object_action(
  *       can be used to access this value in model expressions.
  *
  *   modelId - (optional string) This specifics a modelId of model to use for
- *       producing results. If not specified, the adaptor's current model will
+ *       producing results. If not specified, the adapter's current model will
  *       be used.
  *
  *   context - (optional object _AdaptiveContextType_) This specifies additional
@@ -612,10 +612,10 @@ afw_function_execute_model_default_replace_object_action(
     afw_function_execute_t *x)
 {
     afw_xctx_t *xctx = x->xctx;
-    afw_model_internal_adaptor_session_self_t *self;
+    afw_model_internal_adapter_session_self_t *self;
     afw_model_internal_context_t *ctx;
     const afw_object_t *context;
-    const afw_value_string_t *adaptorId_value;
+    const afw_value_string_t *adapterId_value;
     const afw_value_string_t *objectType_value;
     const afw_value_string_t *objectId_value;
     const afw_value_object_t *object_value;
@@ -625,7 +625,7 @@ afw_function_execute_model_default_replace_object_action(
     const afw_model_t *model;
     int top;
 
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(adaptorId_value, 1, string);
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(adapterId_value, 1, string);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(objectType_value, 2, string);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(objectId_value, 3, string);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(object_value, 4, object);
@@ -641,7 +641,7 @@ afw_function_execute_model_default_replace_object_action(
         context = context_value->internal;
     }
 
-    /* _AdaptiveObjectType_ objects are immutable in model adaptor. */
+    /* _AdaptiveObjectType_ objects are immutable in model adapter. */
     if (afw_utf8_equal(&objectType_value->internal, afw_s__AdaptiveObjectType_)) {
         AFW_OBJECT_ERROR_OBJECT_IMMUTABLE;
     }
@@ -657,12 +657,12 @@ afw_function_execute_model_default_replace_object_action(
         }
 
         /* Get session self and model. */
-        impl_get_self_and_model(&self, &model, adaptorId_value, modelId_value, xctx);
+        impl_get_self_and_model(&self, &model, adapterId_value, modelId_value, xctx);
 
-        /* Prime context for "to adaptor". */
-        ctx = afw_model_internal_create_to_adaptor_skeleton_context(
+        /* Prime context for "to adapter". */
+        ctx = afw_model_internal_create_to_adapter_skeleton_context(
             self,
-            &self->adaptor->instance_skeleton__AdaptiveModelCurrentOnReplaceObject_,
+            &self->adapter->instance_skeleton__AdaptiveModelCurrentOnReplaceObject_,
             model,
             NULL,
             &objectType_value->internal,
@@ -686,8 +686,8 @@ afw_function_execute_model_default_replace_object_action(
     result = afw_object_create_unmanaged(x->p, xctx);
     afw_object_set_property(result, afw_s_function,
         &impl_value_replace_object.pub, xctx);
-    afw_object_set_property_as_string(result, afw_s_adaptorId,
-        self->adaptor->mapped_adaptor_id, xctx);
+    afw_object_set_property_as_string(result, afw_s_adapterId,
+        self->adapter->mapped_adapter_id, xctx);
     afw_object_set_property_as_string(result, afw_s_objectType,
         ctx->mapped_object_type_id, xctx);
     afw_object_set_property_as_string(result, afw_s_objectId,
@@ -728,7 +728,7 @@ afw_function_execute_model_default_replace_object_action(
  *
  * Returns:
  *
- *   (object) This is the mappedObject mapped back from mapped adaptor object.
+ *   (object) This is the mappedObject mapped back from mapped adapter object.
  */
 const afw_value_t *
 afw_function_execute_model_mapBackObject_signature(
@@ -767,7 +767,7 @@ afw_function_execute_model_mapBackObject_signature(
  *
  * Returns:
  *
- *   (object) This is the object mapped to mappedAdaptor object.
+ *   (object) This is the object mapped to mappedAdapter object.
  */
 const afw_value_t *
 afw_function_execute_model_mapObject_signature(
@@ -806,7 +806,7 @@ afw_function_execute_model_mapObject_signature(
  *   object - (object) This is the object to return.
  *
  *   userData - (optional boolean) If this is present and true, the object will
- *       be mapped its mapped adaptor's object type to the model adaptor's
+ *       be mapped its mapped adapter's object type to the model adapter's
  *       object type.
  *
  * Returns:

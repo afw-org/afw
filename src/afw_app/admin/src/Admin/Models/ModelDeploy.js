@@ -26,15 +26,15 @@ export const ModelDeploy = (props) => {
     const dataModel = useModel();
     const isMounted = useIsMounted();
 
-    const { model, mappedAdaptorId, open } = props;
+    const { model, mappedAdapterId, open } = props;
 
     useEffect(() => {
 
         const createConf = async () => {
 
             const newConf = dataModel.newObject({ 
-                adaptorId: "afw", 
-                objectTypeId: "_AdaptiveConf_adaptor_model"
+                adapterId: "afw", 
+                objectTypeId: "_AdaptiveConf_adapter_model"
             });            
 
             await newConf.initialize();
@@ -43,13 +43,13 @@ export const ModelDeploy = (props) => {
 
             const {modelId, description} = model.getPropertyValues();
     
-            newConf.setPropertyValue("type", "adaptor");
-            newConf.setPropertyValue("adaptorType", "model");
-            newConf.setPropertyValue("adaptorId", modelId);
+            newConf.setPropertyValue("type", "adapter");
+            newConf.setPropertyValue("adapterType", "model");
+            newConf.setPropertyValue("adapterId", modelId);
             newConf.setPropertyValue("description", description);
-            newConf.setPropertyValue("modelLocationAdaptorId", model.getAdaptorId());
+            newConf.setPropertyValue("modelLocationAdapterId", model.getAdapterId());
             newConf.setPropertyValue("modelId", modelId);
-            newConf.setPropertyValue("mappedAdaptorId", mappedAdaptorId);
+            newConf.setPropertyValue("mappedAdapterId", mappedAdapterId);
     
             setConfObject(newConf);
         };
@@ -57,7 +57,7 @@ export const ModelDeploy = (props) => {
         if (dataModel && model)
             createConf();
 
-    }, [model, mappedAdaptorId, dataModel, isMounted]);
+    }, [model, mappedAdapterId, dataModel, isMounted]);
 
     const onDismiss = () => {
         setStep(0);
@@ -65,12 +65,12 @@ export const ModelDeploy = (props) => {
     };
 
     const onDeploy = async () => {
-        const confAdaptorId = application.getPropertyValue("confAdaptorId");
-        const serviceId = "adaptor-" + confObject.getPropertyValue("adaptorId");
+        const confAdapterId = application.getPropertyValue("confAdapterId");
+        const serviceId = "adapter-" + confObject.getPropertyValue("adapterId");
 
         /* create a new service configuration object */
         const newService = dataModel.newObject({
-            adaptorId: confAdaptorId, 
+            adapterId: confAdapterId, 
             objectTypeId: "_AdaptiveServiceConf_"
         });      
         await newService.initialize();  
@@ -78,7 +78,7 @@ export const ModelDeploy = (props) => {
         newService.setPropertyValue("serviceId", serviceId);
         newService.setPropertyValue("startup", startup);
         newService.setPropertyValue("conf", confObject);
-        newService.setPath("/" + confAdaptorId + "/_AdaptiveServiceConf_/" + serviceId);
+        newService.setPath("/" + confAdapterId + "/_AdaptiveServiceConf_/" + serviceId);
 
         try {
             const response = newService.add();
@@ -106,7 +106,7 @@ export const ModelDeploy = (props) => {
                 <OperationalContext.Provider value={OperationalMode.Editable}>         
                     { (step === 0) &&               
                         <ServiceStepDescription 
-                            idProperty="adaptorId"
+                            idProperty="adapterId"
                             confObject={confObject}   
                             startupKey={startup}        
                             onStartupConditionChanged={startup => setStartup(startup.key)}             
@@ -122,7 +122,7 @@ export const ModelDeploy = (props) => {
                         (step === 2) &&
                             <ServiceStepDetailed 
                                 confObject={confObject}
-                                serviceType="adaptor"
+                                serviceType="adapter"
                                 serviceSubtype="model"
                             />
                     }    

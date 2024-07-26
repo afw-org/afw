@@ -23,8 +23,8 @@
  */
 
 #include "afw_action.h"
-#include "afw_adaptor.h"
-#include "afw_adaptor_impl.h"
+#include "afw_adapter.h"
+#include "afw_adapter_impl.h"
 #include "afw_ascii.h"
 #include "afw_associative_array.h"
 #include "afw_array_impl.h"

@@ -141,18 +141,18 @@ const Step1Footer = ({ modelId, onCreate, onNext, onDismiss }) => {
 
 const Step2Contains = ({ dispatch }) => {
 
-    const [selectedAdaptor, setSelectedAdaptor] = useState();
-    const {adaptors} = useAppCore();
+    const [selectedAdapter, setSelectedAdapter] = useState();
+    const {adapters} = useAppCore();
     const theme = useTheme();
 
     let mappedOptions = [];
-    if (adaptors)
-        mappedOptions = adaptors.map(adaptor => 
+    if (adapters)
+        mappedOptions = adapters.map(adapter => 
             ({ 
-                key: adaptor.adaptorId,
-                text: adaptor.adaptorId,                
-                description: adaptor.description,
-                adaptor
+                key: adapter.adapterId,
+                text: adapter.adapterId,                
+                description: adapter.description,
+                adapter
             })
         );
 
@@ -160,24 +160,24 @@ const Step2Contains = ({ dispatch }) => {
         <div>
             <div> 
                 <Dropdown 
-                    id="AdaptorMapDropdown"
-                    label="Select Adaptor to Map"
-                    description="Select an Adaptor to map the Object and Property Types to.  If this Model is intended to be used with a back end adaptor that has no schema, select None."
+                    id="AdapterMapDropdown"
+                    label="Select Adapter to Map"
+                    description="Select an Adapter to map the Object and Property Types to.  If this Model is intended to be used with a back end adapter that has no schema, select None."
                     options={[
                         { key: "None", text: "None (No Mapping)" },
                         { key: "divider2", type: "divider" },
                         ...mappedOptions,                            
                     ]}
-                    selectedKey={selectedAdaptor?.key || "None"}
-                    onChanged={setSelectedAdaptor}
+                    selectedKey={selectedAdapter?.key || "None"}
+                    onChanged={setSelectedAdapter}
                 /> 
                 <div style={{ height: theme.spacing(5) }} />
                 <div style={{ height: "30vh", minHeight: "400px", overflow: "auto" }}>
-                    { (selectedAdaptor && selectedAdaptor.key !== "None") && (
+                    { (selectedAdapter && selectedAdapter.key !== "None") && (
                         <>
                             <Typography size="4" text="Select the Object and Property Types to Map:" />
                             <ModelObjectTypeSelector                         
-                                adaptorId={selectedAdaptor ? selectedAdaptor.key : undefined}
+                                adapterId={selectedAdapter ? selectedAdapter.key : undefined}
                                 onSelect={(mappedObjectTypes, selectedTypes) =>{
                                     dispatch({ type: "SELECT_OBJECT_TYPES", mappedObjectTypes, selectedTypes });                                
                                 }}
@@ -271,7 +271,7 @@ const Step3Footer = ({ modelId, onCreate, onPrevious, onDismiss }) => {
     );
 };
 
-export const ModelsNew = ({ open, adaptorId, onCreate, onDismiss }) => {
+export const ModelsNew = ({ open, adapterId, onCreate, onDismiss }) => {
 
     const [state, dispatch] = useReducer(reducer, initialState);
     const dataModel = useModel();
@@ -334,7 +334,7 @@ export const ModelsNew = ({ open, adaptorId, onCreate, onDismiss }) => {
         });
 
         const model = dataModel.newObject({
-            adaptorId,
+            adapterId,
             objectTypeId: "_AdaptiveModel_",
         });
         await model.initialize();

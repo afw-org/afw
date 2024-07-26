@@ -23,7 +23,7 @@ impl_get_model_object_types_cb(
     void *context,
     afw_xctx_t *xctx)
 {
-    const afw_adaptor_t *model_location_adaptor;
+    const afw_adapter_t *model_location_adapter;
     afw_model_location_t *model_location;
     const afw_pool_t *p;
     afw_model_t *model;
@@ -32,16 +32,16 @@ impl_get_model_object_types_cb(
         AFW_THROW_ERROR_Z(general, "Map not found", xctx);
     }
 
-    model_location_adaptor = context;
-    p = model_location_adaptor->p;
+    model_location_adapter = context;
+    p = model_location_adapter->p;
 
     /* Compile model and add to object types associative array. */
-    model = afw_model_compile(&model_location_adaptor->adaptor_id,
+    model = afw_model_compile(&model_location_adapter->adapter_id,
         object, p, xctx);
 
     /* Add model to loaded models. */
     model_location = (afw_model_location_t *)
-        model_location_adaptor->impl->model_location;
+        model_location_adapter->impl->model_location;
     model->next_model = model_location->first_model;
     model_location->first_model = model;
 
@@ -53,45 +53,45 @@ impl_get_model_object_types_cb(
 
 static const afw_model_t *
 impl_load_model(
-    const afw_adaptor_t *model_location_adaptor,
+    const afw_adapter_t *model_location_adapter,
     const afw_utf8_t *model_id,
     afw_xctx_t *xctx)
 {
-    const afw_adaptor_session_t *session;
+    const afw_adapter_session_t *session;
 
-    session = afw_adaptor_create_adaptor_session(
-        model_location_adaptor, xctx);
+    session = afw_adapter_create_adapter_session(
+        model_location_adapter, xctx);
     AFW_TRY {
 
-        afw_adaptor_session_get_object(session, NULL,
+        afw_adapter_session_get_object(session, NULL,
             afw_s__AdaptiveModel_, model_id,
-            (void *)model_location_adaptor,
+            (void *)model_location_adapter,
             impl_get_model_object_types_cb, NULL,
-            model_location_adaptor->p, xctx);
+            model_location_adapter->p, xctx);
 
     }
 
     AFW_FINALLY{
-        afw_adaptor_session_destroy(session, xctx);
+        afw_adapter_session_destroy(session, xctx);
     }
 
     AFW_ENDTRY;
 
-    return model_location_adaptor->impl->model_location->first_model;
+    return model_location_adapter->impl->model_location->first_model;
 }
 
 
 /* Create model location. */
 AFW_DEFINE(const afw_model_location_t *)
 afw_model_location_create(
-    const afw_adaptor_t *adaptor,
+    const afw_adapter_t *adapter,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
     afw_model_location_t *model_location;
     apr_status_t rv;
 
     model_location = afw_pool_calloc_type(p, afw_model_location_t, xctx);
-    model_location->model_location_adaptor = adaptor;
+    model_location->model_location_adapter = adapter;
     rv = apr_thread_mutex_create(&model_location->mutex,
         APR_THREAD_MUTEX_UNNESTED, afw_pool_get_apr_pool(p));
     if (rv != APR_SUCCESS) {
@@ -106,7 +106,7 @@ afw_model_location_create(
 
 AFW_DEFINE(const afw_model_t *)
 afw_model_location_get_model(
-    const afw_adaptor_t *model_location_adaptor,
+    const afw_adapter_t *model_location_adapter,
     const afw_utf8_t *model_id,
     afw_xctx_t *xctx)
 {
@@ -116,9 +116,9 @@ afw_model_location_get_model(
     model = NULL;
     model_location = NULL;
 
-    if (model_location_adaptor->impl) {
+    if (model_location_adapter->impl) {
         model_location = (afw_model_location_t *)
-            model_location_adaptor->impl->model_location;
+            model_location_adapter->impl->model_location;
     }
 
     if (model_location) {
@@ -130,7 +130,7 @@ afw_model_location_get_model(
                     model = (afw_model_t *)model->next_model);
 
                 if (!model) {
-                    model = impl_load_model(model_location_adaptor, model_id,
+                    model = impl_load_model(model_location_adapter, model_id,
                         xctx);
                 }
             }

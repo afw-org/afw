@@ -57,7 +57,7 @@ impl_afw_log_factory_create_log_cede_p(
         
     /** @todo If needed, add/modify the following code to implement method. */
 
-    /* Return adaptor instance. */
+    /* Return adapter instance. */
     return <afwdev {prefixed_interface_name.replace('_factory','')}>_create_cede_p(properties, p, xctx);
       
       

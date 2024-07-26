@@ -1,4 +1,4 @@
-# Additional strings used by ldap adaptor
+# Additional strings used by ldap adapter
 
 a_NO_USER_MODIFICATION=NO-USER-MODIFICATION
 a_X_NDS_SYNTAX=X-NDS_SYNTAX

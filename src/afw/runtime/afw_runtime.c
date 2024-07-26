@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * Implementation of afw_adaptor_factory interface for afw_runtime
+ * Implementation of afw_adapter_factory interface for afw_runtime
  *
  * Copyright (c) 2010-2024 Clemson University
  *
@@ -8,18 +8,18 @@
 
 /**
  * @file afw_runtime.c
- * @brief Implementation of afw_adaptor_factory interface for afw_runtime.
+ * @brief Implementation of afw_adapter_factory interface for afw_runtime.
  */
 
 #include "afw_internal.h"
 
 
 
-/* Declares and rti/inf defines for interface afw_adaptor_factory */
+/* Declares and rti/inf defines for interface afw_adapter_factory */
 #define AFW_IMPLEMENTATION_ID "afw_runtime"
-#include "afw_adaptor_factory_impl_declares.h"
-#include "afw_adaptor_impl_declares.h"
-#include "afw_adaptor_session_impl_declares.h"
+#include "afw_adapter_factory_impl_declares.h"
+#include "afw_adapter_impl_declares.h"
+#include "afw_adapter_session_impl_declares.h"
 
 typedef struct {
     void *always_NULL;
@@ -92,30 +92,30 @@ struct afw_runtime_objects_s {
     apr_hash_t *types_ht;
 };
 
-typedef struct impl_afw_adaptor_self_s {
-    afw_adaptor_t pub;
+typedef struct impl_afw_adapter_self_s {
+    afw_adapter_t pub;
 
     /* Private implementation variables */
 
-} impl_afw_adaptor_self_t;
+} impl_afw_adapter_self_t;
 
-typedef struct impl_afw_adaptor_session_self_s {
-    afw_adaptor_session_t pub;
+typedef struct impl_afw_adapter_session_self_s {
+    afw_adapter_session_t pub;
 
     /* Private implementation variables */
 
-    afw_adaptor_object_type_cache_t object_type_cache;
+    afw_adapter_object_type_cache_t object_type_cache;
 
-} impl_afw_adaptor_session_self_t;
+} impl_afw_adapter_session_self_t;
 
 
 static const afw_utf8_t impl_factory_description =
-AFW_UTF8_LITERAL("Adaptor type for accessing runtime objects.");
+AFW_UTF8_LITERAL("Adapter type for accessing runtime objects.");
 
-static const afw_adaptor_factory_t
+static const afw_adapter_factory_t
 impl_factory =
 {
-    &impl_afw_adaptor_factory_inf,
+    &impl_afw_adapter_factory_inf,
     AFW_UTF8_LITERAL("afw_runtime"),
     &impl_factory_description
 };
@@ -582,52 +582,52 @@ afw_runtime_foreach(
     afw_xctx_t *xctx)
 {
     /*
-     * Function impl_afw_adaptor_session_retrieve_objects() can accept NULL
+     * Function impl_afw_adapter_session_retrieve_objects() can accept NULL
      * session instance for a session-less retrieve.
      */
-    impl_afw_adaptor_session_retrieve_objects(NULL, NULL,
+    impl_afw_adapter_session_retrieve_objects(NULL, NULL,
         object_type_id, NULL, context, callback, NULL, xctx->p, xctx);
 }
 
 
-AFW_DEFINE(const afw_adaptor_factory_t *)
-afw_runtime_get_adaptor_factory()
+AFW_DEFINE(const afw_adapter_factory_t *)
+afw_runtime_get_adapter_factory()
 {
     return &impl_factory;
 }
 
 
 /*
- * Implementation of method create_adaptor_cede_p of interface afw_adaptor_factory.
+ * Implementation of method create_adapter_cede_p of interface afw_adapter_factory.
  */
-const afw_adaptor_t *
-impl_afw_adaptor_factory_create_adaptor_cede_p (
-    const afw_adaptor_factory_t * instance,
+const afw_adapter_t *
+impl_afw_adapter_factory_create_adapter_cede_p (
+    const afw_adapter_factory_t * instance,
     const afw_object_t * properties,
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
-    afw_adaptor_t *adaptor;
+    afw_adapter_t *adapter;
 
-    adaptor = afw_adaptor_impl_create_cede_p(
-        &impl_afw_adaptor_inf,
-        sizeof(impl_afw_adaptor_self_t), properties, p, xctx);
+    adapter = afw_adapter_impl_create_cede_p(
+        &impl_afw_adapter_inf,
+        sizeof(impl_afw_adapter_self_t), properties, p, xctx);
 
-    /* If this is afw adaptor, remember it in environment. */
-    if (afw_utf8_equal(&adaptor->adaptor_id, afw_s_afw)) {
-        ((afw_environment_t*)xctx->env)->afw_adaptor = adaptor;
+    /* If this is afw adapter, remember it in environment. */
+    if (afw_utf8_equal(&adapter->adapter_id, afw_s_afw)) {
+        ((afw_environment_t*)xctx->env)->afw_adapter = adapter;
     }
 
-    return adaptor;
+    return adapter;
 }
 
 
 /*
- * Implementation of method destroy of interface afw_adaptor.
+ * Implementation of method destroy of interface afw_adapter.
  */
 void
-impl_afw_adaptor_destroy (
-    const afw_adaptor_t * instance,
+impl_afw_adapter_destroy (
+    const afw_adapter_t * instance,
     afw_xctx_t *xctx)
 {
     /* Release pool. */
@@ -636,61 +636,61 @@ impl_afw_adaptor_destroy (
 
 
 /* Get an internal session for runtime objects. */
-AFW_DEFINE(const afw_adaptor_session_t *)
+AFW_DEFINE(const afw_adapter_session_t *)
 afw_runtime_get_internal_session(afw_xctx_t *xctx)
 {
-    return impl_afw_adaptor_create_adaptor_session(NULL, xctx);
+    return impl_afw_adapter_create_adapter_session(NULL, xctx);
 }
 
 
 /*
- * Implementation of method create_adaptor_session of interface afw_adaptor.
+ * Implementation of method create_adapter_session of interface afw_adapter.
  */
-const afw_adaptor_session_t *
-impl_afw_adaptor_create_adaptor_session (
-    const afw_adaptor_t * instance,
+const afw_adapter_session_t *
+impl_afw_adapter_create_adapter_session (
+    const afw_adapter_t * instance,
     afw_xctx_t *xctx)
 {
-    impl_afw_adaptor_session_self_t *self;
+    impl_afw_adapter_session_self_t *self;
     const afw_pool_t *session_p;
 
     session_p = afw_pool_create(xctx->p, xctx);;
-    self = afw_pool_calloc_type(session_p, impl_afw_adaptor_session_self_t, xctx);
-    self->pub.inf = &impl_afw_adaptor_session_inf;
-    self->pub.adaptor = instance;
+    self = afw_pool_calloc_type(session_p, impl_afw_adapter_session_self_t, xctx);
+    self->pub.inf = &impl_afw_adapter_session_inf;
+    self->pub.adapter = instance;
     self->pub.p = session_p;
 
-    return (const afw_adaptor_session_t *)self;
+    return (const afw_adapter_session_t *)self;
 }
 
 
 /*
- * Implementation of method get_additional_metrics of interface afw_adaptor.
+ * Implementation of method get_additional_metrics of interface afw_adapter.
  */
 const afw_object_t *
-impl_afw_adaptor_get_additional_metrics (
-    const afw_adaptor_t * instance,
+impl_afw_adapter_get_additional_metrics (
+    const afw_adapter_t * instance,
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
-    /* There are no adaptor specific metrics. */
+    /* There are no adapter specific metrics. */
     return NULL;
 }
 
 
-/* ----------------- Runtime adaptor session implementation ---------------- */
+/* ----------------- Runtime adapter session implementation ---------------- */
 
 /*
- * Implementation of method destroy of interface afw_adaptor_session.
+ * Implementation of method destroy of interface afw_adapter_session.
  */
 void
-impl_afw_adaptor_session_destroy (
-    const afw_adaptor_session_t * instance,
+impl_afw_adapter_session_destroy (
+    const afw_adapter_session_t * instance,
     afw_xctx_t *xctx)
 {
     /* Assign instance pointer to self. */
-    impl_afw_adaptor_session_self_t * self = 
-        (impl_afw_adaptor_session_self_t *)instance;
+    impl_afw_adapter_session_self_t * self = 
+        (impl_afw_adapter_session_self_t *)instance;
 
     /* Release pool. */
     afw_pool_release(self->pub.p, xctx);
@@ -699,20 +699,20 @@ impl_afw_adaptor_session_destroy (
 
 
 /*
- * Implementation of method retrieve_objects of interface afw_adaptor_session.
+ * Implementation of method retrieve_objects of interface afw_adapter_session.
  *
  * This function is also called by afw_runtime_foreach() with a NULL session
  * instance.  In this case, custom handled object types are not supported.
  */
 void
-impl_afw_adaptor_session_retrieve_objects(
-    const afw_adaptor_session_t *instance,
-    const afw_adaptor_impl_request_t *impl_request,
+impl_afw_adapter_session_retrieve_objects(
+    const afw_adapter_session_t *instance,
+    const afw_adapter_impl_request_t *impl_request,
     const afw_utf8_t *object_type_id,
     const afw_query_criteria_t *criteria,
     void *context,
     afw_object_cb_t callback,
-    const afw_object_t *adaptor_type_specific,
+    const afw_object_t *adapter_type_specific,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
@@ -767,17 +767,17 @@ impl_afw_adaptor_session_retrieve_objects(
 
 
 /*
- * Implementation of method get_object for interface afw_adaptor_session.
+ * Implementation of method get_object for interface afw_adapter_session.
  */
 void
-impl_afw_adaptor_session_get_object(
-    const afw_adaptor_session_t *instance,
-    const afw_adaptor_impl_request_t *impl_request,
+impl_afw_adapter_session_get_object(
+    const afw_adapter_session_t *instance,
+    const afw_adapter_impl_request_t *impl_request,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
     void *context,
     afw_object_cb_t callback,
-    const afw_object_t *adaptor_type_specific,
+    const afw_object_t *adapter_type_specific,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
@@ -789,7 +789,7 @@ impl_afw_adaptor_session_get_object(
     if (custom) {
         custom->get_object(instance, impl_request,
             object_type_id, object_id,
-            context, callback, adaptor_type_specific, p, xctx);
+            context, callback, adapter_type_specific, p, xctx);
         return;
     }
 
@@ -803,83 +803,83 @@ impl_afw_adaptor_session_get_object(
 
 
 /*
- * Implementation of method add_object for interface afw_adaptor_session.
+ * Implementation of method add_object for interface afw_adapter_session.
  */
 const afw_utf8_t *
-impl_afw_adaptor_session_add_object(
-    const afw_adaptor_session_t *instance,
-    const afw_adaptor_impl_request_t *impl_request,
+impl_afw_adapter_session_add_object(
+    const afw_adapter_session_t *instance,
+    const afw_adapter_impl_request_t *impl_request,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *suggested_object_id,
     const afw_object_t *object,
-    const afw_object_t *adaptor_type_specific,
+    const afw_object_t *adapter_type_specific,
     afw_xctx_t *xctx)
 {
-    AFW_ADAPTOR_IMPL_ERROR_ADAPTOR_IMMUTABLE;
+    AFW_ADAPTER_IMPL_ERROR_ADAPTER_IMMUTABLE;
 }
 
 
 
 /*
- * Implementation of method modify_object for interface afw_adaptor_session.
+ * Implementation of method modify_object for interface afw_adapter_session.
  */
 void
-impl_afw_adaptor_session_modify_object(
-    const afw_adaptor_session_t *instance,
-    const afw_adaptor_impl_request_t *impl_request,
+impl_afw_adapter_session_modify_object(
+    const afw_adapter_session_t *instance,
+    const afw_adapter_impl_request_t *impl_request,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
-    const afw_adaptor_modify_entry_t *const *entry,
-    const afw_object_t *adaptor_type_specific,
+    const afw_adapter_modify_entry_t *const *entry,
+    const afw_object_t *adapter_type_specific,
     afw_xctx_t *xctx)
 {
-    AFW_ADAPTOR_IMPL_ERROR_ADAPTOR_IMMUTABLE;
+    AFW_ADAPTER_IMPL_ERROR_ADAPTER_IMMUTABLE;
 }
 
 
 
 /*
- * Implementation of method replace_object for interface afw_adaptor_session.
+ * Implementation of method replace_object for interface afw_adapter_session.
  */
 void
-impl_afw_adaptor_session_replace_object(
-    const afw_adaptor_session_t *instance,
-    const afw_adaptor_impl_request_t *impl_request,
+impl_afw_adapter_session_replace_object(
+    const afw_adapter_session_t *instance,
+    const afw_adapter_impl_request_t *impl_request,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
     const afw_object_t *replacement_object,
-    const afw_object_t *adaptor_type_specific,
+    const afw_object_t *adapter_type_specific,
     afw_xctx_t *xctx)
 {
-    AFW_ADAPTOR_IMPL_ERROR_ADAPTOR_IMMUTABLE;
+    AFW_ADAPTER_IMPL_ERROR_ADAPTER_IMMUTABLE;
 }
 
 
 
 /*
- * Implementation of method delete_object for interface afw_adaptor_session.
+ * Implementation of method delete_object for interface afw_adapter_session.
  */
 void
-impl_afw_adaptor_session_delete_object(
-    const afw_adaptor_session_t *instance,
-    const afw_adaptor_impl_request_t *impl_request,
+impl_afw_adapter_session_delete_object(
+    const afw_adapter_session_t *instance,
+    const afw_adapter_impl_request_t *impl_request,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
-    const afw_object_t *adaptor_type_specific,
+    const afw_object_t *adapter_type_specific,
     afw_xctx_t *xctx)
 {
 
-    AFW_ADAPTOR_IMPL_ERROR_ADAPTOR_IMMUTABLE;
+    AFW_ADAPTER_IMPL_ERROR_ADAPTER_IMMUTABLE;
 }
 
 
 
 /*
- * Implementation of method begin_transaction of interface afw_adaptor_session.
+ * Implementation of method begin_transaction of interface afw_adapter_session.
  */
-const afw_adaptor_transaction_t *
-impl_afw_adaptor_session_begin_transaction (
-    const afw_adaptor_session_t * instance,
+const afw_adapter_transaction_t *
+impl_afw_adapter_session_begin_transaction (
+    const afw_adapter_session_t * instance,
     afw_xctx_t *xctx)
 {
     /* No transaction support. */
@@ -889,11 +889,11 @@ impl_afw_adaptor_session_begin_transaction (
 
 
 /*
- * Implementation of method get_journal_interface of interface afw_adaptor_session.
+ * Implementation of method get_journal_interface of interface afw_adapter_session.
  */
-const afw_adaptor_journal_t *
-impl_afw_adaptor_session_get_journal_interface (
-    const afw_adaptor_session_t * instance,
+const afw_adapter_journal_t *
+impl_afw_adapter_session_get_journal_interface (
+    const afw_adapter_session_t * instance,
     afw_xctx_t *xctx)
 {
     /* No journal support. */
@@ -903,11 +903,11 @@ impl_afw_adaptor_session_get_journal_interface (
 
 
 /*
- * Implementation of method get_key_value_interface of interface afw_adaptor_session.
+ * Implementation of method get_key_value_interface of interface afw_adapter_session.
  */
-const afw_adaptor_key_value_t *
-impl_afw_adaptor_session_get_key_value_interface (
-    const afw_adaptor_session_t * instance,
+const afw_adapter_key_value_t *
+impl_afw_adapter_session_get_key_value_interface (
+    const afw_adapter_session_t * instance,
     afw_xctx_t *xctx)
 {
     /* No key support. */
@@ -917,11 +917,11 @@ impl_afw_adaptor_session_get_key_value_interface (
 
 
 /*
- * Implementation of method get_index_interface of interface afw_adaptor_session.
+ * Implementation of method get_index_interface of interface afw_adapter_session.
  */
-const afw_adaptor_impl_index_t *
-impl_afw_adaptor_session_get_index_interface (
-    const afw_adaptor_session_t * instance,
+const afw_adapter_impl_index_t *
+impl_afw_adapter_session_get_index_interface (
+    const afw_adapter_session_t * instance,
     afw_xctx_t *xctx)
 {
     /* No index support. */
@@ -931,19 +931,19 @@ impl_afw_adaptor_session_get_index_interface (
 
 /*
  * Implementation of method get_object_type_cache_interface for interface
- * afw_adaptor_session.
+ * afw_adapter_session.
  */
-const afw_adaptor_object_type_cache_t *
-impl_afw_adaptor_session_get_object_type_cache_interface(
-    const afw_adaptor_session_t * instance,
+const afw_adapter_object_type_cache_t *
+impl_afw_adapter_session_get_object_type_cache_interface(
+    const afw_adapter_session_t * instance,
     afw_xctx_t *xctx)
 {
-    impl_afw_adaptor_session_self_t *self =
-        (impl_afw_adaptor_session_self_t *)instance;
+    impl_afw_adapter_session_self_t *self =
+        (impl_afw_adapter_session_self_t *)instance;
 
-    afw_adaptor_impl_object_type_cache_initialize(
+    afw_adapter_impl_object_type_cache_initialize(
         &self->object_type_cache,
-        &afw_adaptor_impl_object_type_cache_inf,
+        &afw_adapter_impl_object_type_cache_inf,
         instance, true, xctx);
 
     return &self->object_type_cache;

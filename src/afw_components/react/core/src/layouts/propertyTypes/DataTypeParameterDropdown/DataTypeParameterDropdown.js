@@ -22,7 +22,7 @@ const binaryOptions = [
     { key: "video/mpeg",    text: "video/mpeg"      },
 ];
 
-// fixme requires a hook/query and appropriate adaptorId
+// fixme requires a hook/query and appropriate adapterId
 const objectOptions = [];
 
 export const DataTypeParameterDropdown = (props) => {

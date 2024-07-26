@@ -115,7 +115,7 @@ const Home = () => {
                                 contains:
                                     <HomeSection 
                                         title="Administration"
-                                        description="Customize this instance of Adaptive Framework server by adding extensions to provide adaptor, log or authorization services.  Create and manage data models and authorization policies."
+                                        description="Customize this instance of Adaptive Framework server by adding extensions to provide adapter, log or authorization services.  Create and manage data models and authorization policies."
                                         iconName="settings"
                                         linkText="Administration"
                                         linkUrl="/Admin"

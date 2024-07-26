@@ -25,14 +25,14 @@ AFW_BEGIN_DECLARES
 
 
 /**
- * @brief Struct used by adaptor referenced by modelLocationAdaptorId.
+ * @brief Struct used by adapter referenced by modelLocationAdapterId.
  *
  *
  */
 struct afw_model_location_s {
 
-    /** @brief Model location adaptor. */
-    const afw_adaptor_t *model_location_adaptor;
+    /** @brief Model location adapter. */
+    const afw_adapter_t *model_location_adapter;
 
     /** @brief Mutex for locking access to this struct. */
     afw_thread_mutex_t *mutex;
@@ -46,12 +46,12 @@ struct afw_model_location_s {
 /* @brief Create model location. */
 AFW_DECLARE(const afw_model_location_t *)
 afw_model_location_create(
-    const afw_adaptor_t *adaptor,
+    const afw_adapter_t *adapter,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
 AFW_DECLARE(const afw_model_t *)
 afw_model_location_get_model(
-    const afw_adaptor_t *model_location_adaptor,
+    const afw_adapter_t *model_location_adapter,
     const afw_utf8_t *model_id,
     afw_xctx_t *xctx);
 

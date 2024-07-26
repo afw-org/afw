@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * Indexing routines for LMDB Adaptor
+ * Indexing routines for LMDB Adapter
  *
  * Copyright (c) 2010-2024 Clemson University
  *
@@ -8,46 +8,46 @@
 
 /**
  * @file afw_lmdb_index.c
- * @brief Indexing routines for the LMDB Adaptor
+ * @brief Indexing routines for the LMDB Adapter
  */
 
 #include "afw.h"
 #include "afw_uuid.h"
-#include "afw_adaptor_impl.h"
-#include "afw_adaptor_impl_index.h"
+#include "afw_adapter_impl.h"
+#include "afw_adapter_impl_index.h"
 
 #include "afw_lmdb_index.h"
 #include "afw_lmdb_internal.h"
 #include "generated/afw_lmdb_generated.h"
 
 #define AFW_IMPLEMENTATION_ID "lmdb_index"
-#include "afw_adaptor_impl_index_impl_declares.h"
+#include "afw_adapter_impl_index_impl_declares.h"
 
 
 
-afw_adaptor_impl_index_t * afw_lmdb_adaptor_impl_index_create(
-    const afw_lmdb_adaptor_session_t * session,
-    const afw_lmdb_adaptor_t         * adaptor,
+afw_adapter_impl_index_t * afw_lmdb_adapter_impl_index_create(
+    const afw_lmdb_adapter_session_t * session,
+    const afw_lmdb_adapter_t         * adapter,
     MDB_txn                          * txn,
     afw_xctx_t                      * xctx)
 {
-    afw_lmdb_adaptor_impl_index_t *self;
+    afw_lmdb_adapter_impl_index_t *self;
 
     /*
      * You may want to create a new pool for instance, but will just use
      * xctx's pool in this example.
      */
-    self = afw_xctx_calloc_type(afw_lmdb_adaptor_impl_index_t, xctx);
+    self = afw_xctx_calloc_type(afw_lmdb_adapter_impl_index_t, xctx);
 
-    self->pub.inf = &impl_afw_adaptor_impl_index_inf;
+    self->pub.inf = &impl_afw_adapter_impl_index_inf;
     self->session = session;
-    self->adaptor = adaptor;
+    self->adapter = adapter;
     self->txn = txn;
-    self->pub.indexDefinitions = impl_afw_adaptor_impl_index_get_index_definitions(
-        (afw_adaptor_impl_index_t*)self, xctx);
+    self->pub.indexDefinitions = impl_afw_adapter_impl_index_get_index_definitions(
+        (afw_adapter_impl_index_t*)self, xctx);
 
     /* Return new instance. */
-    return (afw_adaptor_impl_index_t*)self;
+    return (afw_adapter_impl_index_t*)self;
 }
 
 
@@ -88,32 +88,32 @@ const afw_utf8_t * afw_lmdb_index_database(
 
 
 /*
- * Implementation of method release of interface afw_adaptor_impl_index.
+ * Implementation of method release of interface afw_adapter_impl_index.
  */
-void impl_afw_adaptor_impl_index_release(
-    const afw_adaptor_impl_index_t * instance,
+void impl_afw_adapter_impl_index_release(
+    const afw_adapter_impl_index_t * instance,
     afw_xctx_t *xctx)
 {
 
 }
 
 /*
- * Implementation of method get_index_definitions of interface afw_adaptor_impl_index.
+ * Implementation of method get_index_definitions of interface afw_adapter_impl_index.
  */
 const afw_object_t *
-impl_afw_adaptor_impl_index_get_index_definitions (
-    const afw_adaptor_impl_index_t * instance,
+impl_afw_adapter_impl_index_get_index_definitions (
+    const afw_adapter_impl_index_t * instance,
     afw_xctx_t *xctx)
 {
-    afw_lmdb_adaptor_impl_index_t *self = 
-        (afw_lmdb_adaptor_impl_index_t *) instance;
-    const afw_adaptor_t *adaptor = (afw_adaptor_t *)self->adaptor;
+    afw_lmdb_adapter_impl_index_t *self = 
+        (afw_lmdb_adapter_impl_index_t *) instance;
+    const afw_adapter_t *adapter = (afw_adapter_t *)self->adapter;
     const afw_object_t *indexes;
 
-    /* lock the adaptor pool to fetch the indexes */
-    AFW_ADAPTOR_IMPL_LOCK_READ_BEGIN(adaptor) {
+    /* lock the adapter pool to fetch the indexes */
+    AFW_ADAPTER_IMPL_LOCK_READ_BEGIN(adapter) {
         indexes = afw_object_old_get_property_as_object(
-            self->adaptor->internalConfig, afw_lmdb_s_indexDefinitions, xctx);
+            self->adapter->internalConfig, afw_lmdb_s_indexDefinitions, xctx);
         if (indexes) {
             indexes = afw_object_create_clone(indexes,
                 xctx->p, xctx);
@@ -123,52 +123,52 @@ impl_afw_adaptor_impl_index_get_index_definitions (
         }
     }
     /* unlock, we have our own copy now */
-    AFW_ADAPTOR_IMPL_LOCK_READ_END;
+    AFW_ADAPTER_IMPL_LOCK_READ_END;
 
     return indexes;
 }
 
 /*
- * Implementation of method update_index_definitions of interface afw_adaptor_impl_index.
+ * Implementation of method update_index_definitions of interface afw_adapter_impl_index.
  */
 void
-impl_afw_adaptor_impl_index_update_index_definitions (
-    const afw_adaptor_impl_index_t * instance,
+impl_afw_adapter_impl_index_update_index_definitions (
+    const afw_adapter_impl_index_t * instance,
     const afw_object_t * indexDefinitions,
     afw_xctx_t *xctx)
 {
-    afw_lmdb_adaptor_impl_index_t *self = 
-        (afw_lmdb_adaptor_impl_index_t *) instance;
-    const afw_lmdb_adaptor_session_t *session = self->session;
-    const afw_adaptor_t *adaptor = (afw_adaptor_t *)self->session->adaptor;    
+    afw_lmdb_adapter_impl_index_t *self = 
+        (afw_lmdb_adapter_impl_index_t *) instance;
+    const afw_lmdb_adapter_session_t *session = self->session;
+    const afw_adapter_t *adapter = (afw_adapter_t *)self->session->adapter;    
     const afw_pool_t *pool;
     MDB_txn *txn = self->txn;
 
-    /* clone this object with our adaptor's memory pool */
-    pool = adaptor->p;
+    /* clone this object with our adapter's memory pool */
+    pool = adapter->p;
 
-    /* lock the adaptor */
-    AFW_ADAPTOR_IMPL_LOCK_WRITE_BEGIN(adaptor) {
+    /* lock the adapter */
+    AFW_ADAPTER_IMPL_LOCK_WRITE_BEGIN(adapter) {
         afw_object_set_property_as_object(
-            session->adaptor->internalConfig, afw_lmdb_s_indexDefinitions, 
+            session->adapter->internalConfig, afw_lmdb_s_indexDefinitions, 
             afw_object_create_clone(
                 indexDefinitions, pool, xctx),
             xctx);
 
         /* now write out our new config */
-        afw_lmdb_internal_save_config(session->adaptor, 
-            session->adaptor->internalConfig, txn, xctx);
+        afw_lmdb_internal_save_config(session->adapter, 
+            session->adapter->internalConfig, txn, xctx);
     }
    
-    AFW_ADAPTOR_IMPL_LOCK_WRITE_END;
+    AFW_ADAPTER_IMPL_LOCK_WRITE_END;
 }
 
 /*
- * Implementation of method create of interface afw_adaptor_impl_index.
+ * Implementation of method create of interface afw_adapter_impl_index.
  */
 void
-impl_afw_adaptor_impl_index_open(
-    const afw_adaptor_impl_index_t * instance,
+impl_afw_adapter_impl_index_open(
+    const afw_adapter_impl_index_t * instance,
     const afw_utf8_t * object_type_id,
     const afw_utf8_t * key,
     afw_boolean_t integer,
@@ -177,10 +177,10 @@ impl_afw_adaptor_impl_index_open(
     const afw_pool_t * pool,
     afw_xctx_t *xctx)
 {
-    afw_lmdb_adaptor_impl_index_t *self = 
-        (afw_lmdb_adaptor_impl_index_t *) instance;
-    const afw_lmdb_adaptor_t *adaptor = self->adaptor;   
-    const afw_lmdb_adaptor_session_t * session = NULL;     
+    afw_lmdb_adapter_impl_index_t *self = 
+        (afw_lmdb_adapter_impl_index_t *) instance;
+    const afw_lmdb_adapter_t *adapter = self->adapter;   
+    const afw_lmdb_adapter_session_t * session = NULL;     
     const afw_utf8_t *database;
     unsigned int flags;
 
@@ -198,10 +198,10 @@ impl_afw_adaptor_impl_index_open(
 
     /* open up our exclusive transaction, if we haven't already */
     if (self->txn == NULL) {
-        AFW_LMDB_BEGIN_TRANSACTION(adaptor, session, 0, true, xctx) {        
+        AFW_LMDB_BEGIN_TRANSACTION(adapter, session, 0, true, xctx) {        
 
             /* now open up the new index database */
-            afw_lmdb_internal_open_database(adaptor, 
+            afw_lmdb_internal_open_database(adapter, 
                 AFW_LMDB_GET_TRANSACTION(), 
                 database, flags, pool, xctx);
 
@@ -210,17 +210,17 @@ impl_afw_adaptor_impl_index_open(
         }        
         AFW_LMDB_END_TRANSACTION();
     } else {
-        afw_lmdb_internal_open_database(adaptor, 
+        afw_lmdb_internal_open_database(adapter, 
             self->txn, database, flags, pool, xctx);
     }
 }
 
 
 /*
- * Implementation of method add of interface afw_adaptor_impl_index.
+ * Implementation of method add of interface afw_adapter_impl_index.
  */
-afw_rc_t impl_afw_adaptor_impl_index_add(
-    const afw_adaptor_impl_index_t * instance,
+afw_rc_t impl_afw_adapter_impl_index_add(
+    const afw_adapter_impl_index_t * instance,
     const afw_utf8_t * object_type_id,
     const afw_utf8_t * object_id,
     const afw_utf8_t * indexKey,
@@ -229,9 +229,9 @@ afw_rc_t impl_afw_adaptor_impl_index_add(
     const afw_pool_t * pool,
     afw_xctx_t *xctx)
 {
-    afw_lmdb_adaptor_impl_index_t *self = 
-        (afw_lmdb_adaptor_impl_index_t *) instance;
-    const afw_lmdb_adaptor_session_t *session = self->session;
+    afw_lmdb_adapter_impl_index_t *self = 
+        (afw_lmdb_adapter_impl_index_t *) instance;
+    const afw_lmdb_adapter_session_t *session = self->session;
     afw_rc_t rc;
     MDB_txn * txn;
     MDB_dbi dbi;
@@ -254,7 +254,7 @@ afw_rc_t impl_afw_adaptor_impl_index_add(
     /* use the transaction on our session interface */
     txn = self->txn;
 
-    dbi = afw_lmdb_internal_open_database(session->adaptor, 
+    dbi = afw_lmdb_internal_open_database(session->adapter, 
         txn, database, MDB_DUPSORT|MDB_CREATE, pool, xctx);
 
     uuid = afw_uuid_from_utf8(object_id, pool, xctx);
@@ -286,10 +286,10 @@ afw_rc_t impl_afw_adaptor_impl_index_add(
 }
 
 /*
- * Implementation of method delete of interface afw_adaptor_impl_index.
+ * Implementation of method delete of interface afw_adapter_impl_index.
  */
-afw_rc_t impl_afw_adaptor_impl_index_delete(
-    const afw_adaptor_impl_index_t * instance,
+afw_rc_t impl_afw_adapter_impl_index_delete(
+    const afw_adapter_impl_index_t * instance,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
     const afw_utf8_t *indexKey,
@@ -297,9 +297,9 @@ afw_rc_t impl_afw_adaptor_impl_index_delete(
     const afw_pool_t *pool,
     afw_xctx_t *xctx)
 {
-    afw_lmdb_adaptor_impl_index_t *self = 
-        (afw_lmdb_adaptor_impl_index_t *) instance;
-    const afw_lmdb_adaptor_session_t *session = self->session;
+    afw_lmdb_adapter_impl_index_t *self = 
+        (afw_lmdb_adapter_impl_index_t *) instance;
+    const afw_lmdb_adapter_session_t *session = self->session;
     MDB_val key, data;
     MDB_dbi dbi;
     MDB_txn *txn = self->txn;
@@ -319,7 +319,7 @@ afw_rc_t impl_afw_adaptor_impl_index_delete(
     database = afw_lmdb_index_database(
         object_type_id, indexKey, pool, xctx);
    
-    dbi = afw_lmdb_internal_open_database(session->adaptor, 
+    dbi = afw_lmdb_internal_open_database(session->adapter, 
         txn, database, MDB_DUPSORT, pool, xctx);
 
     uuid = afw_uuid_from_utf8(object_id, pool, xctx);
@@ -344,10 +344,10 @@ afw_rc_t impl_afw_adaptor_impl_index_delete(
 }
 
 /*
- * Implementation of method replace of interface afw_adaptor_impl_index.
+ * Implementation of method replace of interface afw_adapter_impl_index.
  */
-afw_rc_t impl_afw_adaptor_impl_index_replace(
-    const afw_adaptor_impl_index_t * instance,
+afw_rc_t impl_afw_adapter_impl_index_replace(
+    const afw_adapter_impl_index_t * instance,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
     const afw_utf8_t *indexKey,
@@ -356,9 +356,9 @@ afw_rc_t impl_afw_adaptor_impl_index_replace(
     const afw_pool_t *pool,
     afw_xctx_t *xctx)
 {
-    afw_lmdb_adaptor_impl_index_t *self = 
-        (afw_lmdb_adaptor_impl_index_t *) instance;
-    const afw_lmdb_adaptor_session_t *session = self->session;
+    afw_lmdb_adapter_impl_index_t *self = 
+        (afw_lmdb_adapter_impl_index_t *) instance;
+    const afw_lmdb_adapter_session_t *session = self->session;
     MDB_val key, data;
     MDB_dbi dbi;
     MDB_txn *txn = self->txn;
@@ -370,7 +370,7 @@ afw_rc_t impl_afw_adaptor_impl_index_replace(
     database = afw_lmdb_index_database(
         object_type_id, indexKey, pool, xctx);
     
-    dbi = afw_lmdb_internal_open_database(session->adaptor, 
+    dbi = afw_lmdb_internal_open_database(session->adapter, 
         txn, database, MDB_DUPSORT, pool, xctx);
 
     memset(&key, 0, sizeof(MDB_val));
@@ -411,19 +411,19 @@ afw_rc_t impl_afw_adaptor_impl_index_replace(
 }
 
 /*
- * Implementation of method drop of interface afw_adaptor_impl_index.
+ * Implementation of method drop of interface afw_adapter_impl_index.
  */
 afw_rc_t
-impl_afw_adaptor_impl_index_drop (
-    const afw_adaptor_impl_index_t * instance,
+impl_afw_adapter_impl_index_drop (
+    const afw_adapter_impl_index_t * instance,
     const afw_utf8_t  * object_type_id,
     const afw_utf8_t  * key,
     const afw_pool_t  * pool,
     afw_xctx_t       * xctx)
 {
-    afw_lmdb_adaptor_impl_index_t *self = 
-        (afw_lmdb_adaptor_impl_index_t *) instance;
-    const afw_lmdb_adaptor_session_t *session = self->session;
+    afw_lmdb_adapter_impl_index_t *self = 
+        (afw_lmdb_adapter_impl_index_t *) instance;
+    const afw_lmdb_adapter_session_t *session = self->session;
     const afw_utf8_t *database;
     MDB_dbi dbi;
     MDB_txn *txn = self->txn;
@@ -432,7 +432,7 @@ impl_afw_adaptor_impl_index_drop (
     database = afw_lmdb_index_database(
         object_type_id, key, pool, xctx);
 
-    dbi = afw_lmdb_internal_open_database(session->adaptor, 
+    dbi = afw_lmdb_internal_open_database(session->adapter, 
         txn, database, MDB_DUPSORT|MDB_CREATE, pool, xctx);
 
     /* (1) means delete it from the environment and close the DB handle */
@@ -442,11 +442,11 @@ impl_afw_adaptor_impl_index_drop (
 }
 
 /*
- * Implementation of method open_cursor of interface afw_adaptor_impl_index.
+ * Implementation of method open_cursor of interface afw_adapter_impl_index.
  */
-afw_adaptor_impl_index_cursor_t *
-impl_afw_adaptor_impl_index_open_cursor (
-    const afw_adaptor_impl_index_t * instance,
+afw_adapter_impl_index_cursor_t *
+impl_afw_adapter_impl_index_open_cursor (
+    const afw_adapter_impl_index_t * instance,
     const afw_utf8_t * object_type_id,
     const afw_utf8_t * key,
     int                operator,
@@ -455,9 +455,9 @@ impl_afw_adaptor_impl_index_open_cursor (
     const afw_pool_t * pool,
     afw_xctx_t      * xctx)
 {
-    afw_lmdb_adaptor_impl_index_t *self = 
-        (afw_lmdb_adaptor_impl_index_t *) instance;
-    afw_adaptor_impl_index_cursor_t *cursor;
+    afw_lmdb_adapter_impl_index_t *self = 
+        (afw_lmdb_adapter_impl_index_t *) instance;
+    afw_adapter_impl_index_cursor_t *cursor;
     const afw_utf8_t * database;
 
     database = afw_lmdb_index_database(
@@ -470,16 +470,16 @@ impl_afw_adaptor_impl_index_open_cursor (
 }
 
 /*
- * Implementation of method get_session of interface afw_adaptor_impl_index.
+ * Implementation of method get_session of interface afw_adapter_impl_index.
  */
-const afw_adaptor_session_t *
-impl_afw_adaptor_impl_index_get_session (
-    const afw_adaptor_impl_index_t * instance,
+const afw_adapter_session_t *
+impl_afw_adapter_impl_index_get_session (
+    const afw_adapter_impl_index_t * instance,
     afw_xctx_t *xctx)
 {
     /* Assign instance pointer to self. */
-    afw_lmdb_adaptor_impl_index_t * self =
-        (afw_lmdb_adaptor_impl_index_t*)instance;
+    afw_lmdb_adapter_impl_index_t * self =
+        (afw_lmdb_adapter_impl_index_t*)instance;
 
-    return (const afw_adaptor_session_t *) self->session;
+    return (const afw_adapter_session_t *) self->session;
 }

@@ -2,7 +2,7 @@
 //?
 //? testScript: object_options.as
 //? customPurpose: Part of object category tests
-//? description: Make calls using object options on afw adaptor objects (no verification)
+//? description: Make calls using object options on afw adapter objects (no verification)
 //? sourceType: script
 //?
 //? test: checkRequired

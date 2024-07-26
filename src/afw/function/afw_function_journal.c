@@ -49,7 +49,7 @@
  *
  * ```
  *   function journal_advance_cursor_for_consumer(
- *       adaptorId: string,
+ *       adapterId: string,
  *       consumerId: string,
  *       limit?: integer
  *   ): object;
@@ -57,7 +57,7 @@
  *
  * Parameters:
  *
- *   adaptorId - (string) Id of adaptor.
+ *   adapterId - (string) Id of adapter.
  *
  *   consumerId - (string) The consumerId property value of the associated
  *       _AdaptiveProvisioningPeer_ object.
@@ -74,13 +74,13 @@ const afw_value_t *
 afw_function_execute_journal_advance_cursor_for_consumer(
     afw_function_execute_t *x)
 {
-    const afw_value_string_t *adaptorId;
+    const afw_value_string_t *adapterId;
     const afw_value_string_t *consumerId;
     const afw_value_integer_t *limit_arg;
     afw_size_t limit;
     const afw_object_t *result;
 
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(adaptorId, 1, string);
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(adapterId, 1, string);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(consumerId, 2, string);
     limit = 0;
     if (AFW_FUNCTION_PARAMETER_IS_PRESENT(3)) {
@@ -88,8 +88,8 @@ afw_function_execute_journal_advance_cursor_for_consumer(
         limit = (afw_size_t)limit_arg->internal;
     }
     
-    result = afw_adaptor_journal_advance_cursor_for_consumer(
-        &adaptorId->internal, &consumerId->internal, limit, x->p, x->xctx);
+    result = afw_adapter_journal_advance_cursor_for_consumer(
+        &adapterId->internal, &consumerId->internal, limit, x->p, x->xctx);
     return afw_value_create_unmanaged_object(result, x->p, x->xctx);
 }
 
@@ -115,14 +115,14 @@ afw_function_execute_journal_advance_cursor_for_consumer(
  *
  * ```
  *   function journal_get_by_cursor(
- *       adaptorId: string,
+ *       adapterId: string,
  *       cursor: string
  *   ): object;
  * ```
  *
  * Parameters:
  *
- *   adaptorId - (string) Id of adaptor.
+ *   adapterId - (string) Id of adapter.
  *
  *   cursor - (string) Journal entry cursor.
  *
@@ -134,15 +134,15 @@ const afw_value_t *
 afw_function_execute_journal_get_by_cursor(
     afw_function_execute_t *x)
 {
-    const afw_value_string_t *adaptorId;
+    const afw_value_string_t *adapterId;
     const afw_value_string_t *cursor;
     const afw_object_t *result;
 
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(adaptorId, 1, string);
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(adapterId, 1, string);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(cursor, 2, string);
     
-    result = afw_adaptor_journal_get_by_cursor(
-        &adaptorId->internal, &cursor->internal, x->p, x->xctx);
+    result = afw_adapter_journal_get_by_cursor(
+        &adapterId->internal, &cursor->internal, x->p, x->xctx);
     return afw_value_create_unmanaged_object(result, x->p, x->xctx);
 }
 
@@ -167,13 +167,13 @@ afw_function_execute_journal_get_by_cursor(
  *
  * ```
  *   function journal_get_first(
- *       adaptorId: string
+ *       adapterId: string
  *   ): object;
  * ```
  *
  * Parameters:
  *
- *   adaptorId - (string) Id of adaptor.
+ *   adapterId - (string) Id of adapter.
  *
  * Returns:
  *
@@ -183,13 +183,13 @@ const afw_value_t *
 afw_function_execute_journal_get_first(
     afw_function_execute_t *x)
 {
-    const afw_value_string_t *adaptorId;
+    const afw_value_string_t *adapterId;
     const afw_object_t *result;
 
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(adaptorId, 1, string);
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(adapterId, 1, string);
    
-    result = afw_adaptor_journal_get_first(
-        &adaptorId->internal, x->p, x->xctx);
+    result = afw_adapter_journal_get_first(
+        &adapterId->internal, x->p, x->xctx);
     return afw_value_create_unmanaged_object(result, x->p, x->xctx);
 }
 
@@ -215,14 +215,14 @@ afw_function_execute_journal_get_first(
  *
  * ```
  *   function journal_get_next_after_cursor(
- *       adaptorId: string,
+ *       adapterId: string,
  *       cursor: string
  *   ): object;
  * ```
  *
  * Parameters:
  *
- *   adaptorId - (string) Id of adaptor.
+ *   adapterId - (string) Id of adapter.
  *
  *   cursor - (string) Journal entry cursor.
  *
@@ -234,15 +234,15 @@ const afw_value_t *
 afw_function_execute_journal_get_next_after_cursor(
     afw_function_execute_t *x)
 {
-    const afw_value_string_t *adaptorId;
+    const afw_value_string_t *adapterId;
     const afw_value_string_t *cursor;
     const afw_object_t *result;
 
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(adaptorId, 1, string);
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(adapterId, 1, string);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(cursor, 2, string);
     
-    result = afw_adaptor_journal_get_next_after_cursor(
-        &adaptorId->internal, &cursor->internal, x->p, x->xctx);
+    result = afw_adapter_journal_get_next_after_cursor(
+        &adapterId->internal, &cursor->internal, x->p, x->xctx);
     return afw_value_create_unmanaged_object(result, x->p, x->xctx);
 }
 
@@ -291,7 +291,7 @@ afw_function_execute_journal_get_next_after_cursor(
  *
  * ```
  *   function journal_get_next_for_consumer(
- *       adaptorId: string,
+ *       adapterId: string,
  *       consumerId: string,
  *       limit?: integer
  *   ): object;
@@ -299,7 +299,7 @@ afw_function_execute_journal_get_next_after_cursor(
  *
  * Parameters:
  *
- *   adaptorId - (string) Id of adaptor.
+ *   adapterId - (string) Id of adapter.
  *
  *   consumerId - (string) The consumerId property value of the associated
  *       _AdaptiveProvisioningPeer_ object.
@@ -316,13 +316,13 @@ const afw_value_t *
 afw_function_execute_journal_get_next_for_consumer(
     afw_function_execute_t *x)
 {
-    const afw_value_string_t *adaptorId;
+    const afw_value_string_t *adapterId;
     const afw_value_string_t *consumerId;
     const afw_value_integer_t *limit_arg;
     afw_size_t limit;
     const afw_object_t *result;
 
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(adaptorId, 1, string);
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(adapterId, 1, string);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(consumerId, 2, string);
     limit = 0;
     if (AFW_FUNCTION_PARAMETER_IS_PRESENT(3)) {
@@ -330,8 +330,8 @@ afw_function_execute_journal_get_next_for_consumer(
         limit = (afw_size_t)limit_arg->internal;
     }
     
-    result = afw_adaptor_journal_get_next_for_consumer(
-        &adaptorId->internal, &consumerId->internal, limit, x->p, x->xctx);
+    result = afw_adapter_journal_get_next_for_consumer(
+        &adapterId->internal, &consumerId->internal, limit, x->p, x->xctx);
     return afw_value_create_unmanaged_object(result, x->p, x->xctx);
 }
 
@@ -367,7 +367,7 @@ afw_function_execute_journal_get_next_for_consumer(
  *
  * ```
  *   function journal_get_next_for_consumer_after_cursor(
- *       adaptorId: string,
+ *       adapterId: string,
  *       consumerId: string,
  *       cursor: string,
  *       limit?: integer
@@ -376,7 +376,7 @@ afw_function_execute_journal_get_next_for_consumer(
  *
  * Parameters:
  *
- *   adaptorId - (string) Id of adaptor.
+ *   adapterId - (string) Id of adapter.
  *
  *   consumerId - (string) The consumerId property value of the associated
  *       _AdaptiveProvisioningPeer_ object.
@@ -395,14 +395,14 @@ const afw_value_t *
 afw_function_execute_journal_get_next_for_consumer_after_cursor(
     afw_function_execute_t *x)
 {
-    const afw_value_string_t *adaptorId;
+    const afw_value_string_t *adapterId;
     const afw_value_string_t *consumerId;
     const afw_value_string_t *cursor;
     const afw_value_integer_t *limit_arg;
     afw_size_t limit;
     const afw_object_t *result;
 
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(adaptorId, 1, string);
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(adapterId, 1, string);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(consumerId, 2, string);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(cursor, 3, string);
     limit = 0;
@@ -411,8 +411,8 @@ afw_function_execute_journal_get_next_for_consumer_after_cursor(
         limit = (afw_size_t)limit_arg->internal;
     }
     
-    result = afw_adaptor_journal_get_next_for_consumer_after_cursor(
-        &adaptorId->internal, &consumerId->internal, &cursor->internal,
+    result = afw_adapter_journal_get_next_for_consumer_after_cursor(
+        &adapterId->internal, &consumerId->internal, &cursor->internal,
         limit, x->p, x->xctx);
     return afw_value_create_unmanaged_object(result, x->p, x->xctx);
 }
@@ -435,7 +435,7 @@ afw_function_execute_journal_get_next_for_consumer_after_cursor(
  *
  * ```
  *   function journal_mark_consumed(
- *       adaptorId: string,
+ *       adapterId: string,
  *       consumerId: string,
  *       cursor: string
  *   ): void;
@@ -443,7 +443,7 @@ afw_function_execute_journal_get_next_for_consumer_after_cursor(
  *
  * Parameters:
  *
- *   adaptorId - (string) Id of adaptor.
+ *   adapterId - (string) Id of adapter.
  *
  *   consumerId - (string) The consumerId property value of the associated
  *       _AdaptiveProvisioningPeer_ object.
@@ -458,16 +458,16 @@ const afw_value_t *
 afw_function_execute_journal_mark_consumed(
     afw_function_execute_t *x)
 {
-    const afw_value_string_t *adaptorId;
+    const afw_value_string_t *adapterId;
     const afw_value_string_t *consumerId;
     const afw_value_string_t *cursor;
 
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(adaptorId, 1, string);
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(adapterId, 1, string);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(consumerId, 2, string);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(cursor, 3, string);
     
-    afw_adaptor_journal_mark_consumed(
-        &adaptorId->internal, &consumerId->internal, &cursor->internal,
+    afw_adapter_journal_mark_consumed(
+        &adapterId->internal, &consumerId->internal, &cursor->internal,
         x->p, x->xctx);
 
     /* Return undefined for void. */

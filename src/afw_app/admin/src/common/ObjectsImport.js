@@ -19,7 +19,7 @@ export const ObjectsImportModal = (props) => {
     const [error, setError] = useState();
 
     const model = useModel();
-    const {open, onImport, onDismiss, adaptorId, objectTypeId, prompt, title} = props;
+    const {open, onImport, onDismiss, adapterId, objectTypeId, prompt, title} = props;
     
     const onReaderLoad = async (event) => {
         let content;
@@ -31,11 +31,11 @@ export const ObjectsImportModal = (props) => {
             //! \fixme await initialize() on objects
             if (typeof(content) === "object" && content.constructor === Array) {
                 content.forEach(obj => {
-                    objects.push( new AfwObject({ model, adaptorId, objectTypeId, object: obj }) );
+                    objects.push( new AfwObject({ model, adapterId, objectTypeId, object: obj }) );
                 });
             } else if (typeof(content) === "object") {
                 /* single object */
-                objects.push( new AfwObject({ model, adaptorId, objectTypeId, object: content }) );
+                objects.push( new AfwObject({ model, adapterId, objectTypeId, object: content }) );
             }
         } catch (error) {
             /* invalid JSON */

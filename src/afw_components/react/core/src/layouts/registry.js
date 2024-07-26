@@ -43,7 +43,7 @@ import {
 
 /* propertyTypes */
 import {
-    AdaptorDropdown,
+    AdapterDropdown,
     CustomVariables,
     DataTypeDropdown,
     ObjectTypeDropdown,
@@ -127,12 +127,12 @@ const isAdaptiveObjectType = (objectTypeId) => {
  */
 const propertyLayoutRegistry = [
 
-    /* properties whose value references an adaptorId */
+    /* properties whose value references an adapterId */
     {
-        component: AdaptorDropdown,
+        component: AdapterDropdown,
         objectTypeId: isAdaptiveObjectType,
-        //propertyName: [ "adaptorId", "layoutsAdaptorId", "defaultModelAdaptorId", "defaultAdaptorId" ],
-        propertyName: "adaptorId",
+        //propertyName: [ "adapterId", "layoutsAdapterId", "defaultModelAdapterId", "defaultAdapterId" ],
+        propertyName: "adapterId",
         operational: OperationalMode.Editable,
         dataType: "string"
     },

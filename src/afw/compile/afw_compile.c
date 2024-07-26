@@ -283,7 +283,7 @@ AFW_DEFINE(const afw_object_t *)
 afw_compile_to_object(
     const afw_utf8_t *string,
     const afw_utf8_t *source_location,
-    const afw_utf8_t *adaptor_id,
+    const afw_utf8_t *adapter_id,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
     afw_boolean_t cede_p,
@@ -298,19 +298,19 @@ afw_compile_to_object(
     /* Create parser. */
     parser_p = (cede_p) ? p : afw_pool_create(p, xctx);
 
-    if ((adaptor_id || object_type_id || object_id) &&
-        (!adaptor_id || !object_type_id || !object_id))
+    if ((adapter_id || object_type_id || object_id) &&
+        (!adapter_id || !object_type_id || !object_id))
     {
         AFW_THROW_ERROR_Z(general,
-            "If adaptor_id, object_type_id, or object_id is not NULL, all must "
+            "If adapter_id, object_type_id, or object_id is not NULL, all must "
             "not be NULL",
             xctx);
     }
 
-    /* Default source location to path if adaptor_id supplied. */
-    if (!source_location && adaptor_id) {
+    /* Default source location to path if adapter_id supplied. */
+    if (!source_location && adapter_id) {
         source_location = afw_object_path_make(
-            adaptor_id, object_type_id, object_id, parser_p, xctx);
+            adapter_id, object_type_id, object_id, parser_p, xctx);
     }
 
     /* Create parser. */
@@ -326,9 +326,9 @@ afw_compile_to_object(
         afw_compile_check_for_residual(parser);
         if (value) {
             result = afw_value_as_object(value, xctx);
-            if (adaptor_id) {
+            if (adapter_id) {
                 afw_object_meta_set_ids(result,
-                    adaptor_id, object_type_id, object_id, xctx);
+                    adapter_id, object_type_id, object_id, xctx);
             }
         }
     }

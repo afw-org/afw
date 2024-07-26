@@ -26,16 +26,16 @@ afwdev --noprompt make-extension myextension
 # And another line.
 afwdev build
 
-# Add adaptor type myadaptor1 to myextension.
-afwdev --noprompt add-adaptor-type --srcdir myextension myadaptor1
+# Add adapter type myadapter1 to myextension.
+afwdev --noprompt add-adapter-type --srcdir myextension myadapter1
 
-# Build AFW package with myadaptor1 added.
+# Build AFW package with myadapter1 added.
 afwdev build
 
-# Add adaptor type myadaptor2 to myextension.
-afwdev --noprompt add-adaptor-type --srcdir myextension myadaptor2
+# Add adapter type myadapter2 to myextension.
+afwdev --noprompt add-adapter-type --srcdir myextension myadapter2
 
-# Build AFW package with myadaptor2 added.
+# Build AFW package with myadapter2 added.
 afwdev build
 
 # Make a command1 command
@@ -47,25 +47,25 @@ afwdev build
 # Make a testall extension where all interface will be added.
 afwdev --noprompt make-extension testall
 
-# Add adaptor1 to testall
-afwdev --noprompt add-adaptor-type --srcdir testall adaptor1
+# Add adapter1 to testall
+afwdev --noprompt add-adapter-type --srcdir testall adapter1
 
-# Add a transaction interface to adaptor1
-afwdev --noprompt add-core-interface --srcdir testall afw_adaptor_transaction adaptor1 
+# Add a transaction interface to adapter1
+afwdev --noprompt add-core-interface --srcdir testall afw_adapter_transaction adapter1 
 
-# Add a journal interface to adaptor1
-afwdev --noprompt add-core-interface --srcdir testall afw_adaptor_journal adaptor1 
+# Add a journal interface to adapter1
+afwdev --noprompt add-core-interface --srcdir testall afw_adapter_journal adapter1 
 
-# Add a index cursor interface to adaptor1
-afwdev --noprompt add-core-interface --srcdir testall afw_adaptor_impl_index_cursor adaptor1 
+# Add a index cursor interface to adapter1
+afwdev --noprompt add-core-interface --srcdir testall afw_adapter_impl_index_cursor adapter1 
 
-# Add a key value interface to adaptor1
-afwdev --noprompt add-core-interface --srcdir testall afw_adaptor_key_value adaptor1 
+# Add a key value interface to adapter1
+afwdev --noprompt add-core-interface --srcdir testall afw_adapter_key_value adapter1 
 
-# Add a impl index interface to adaptor1
-afwdev --noprompt add-core-interface --srcdir testall afw_adaptor_impl_index adaptor1 
+# Add a impl index interface to adapter1
+afwdev --noprompt add-core-interface --srcdir testall afw_adapter_impl_index adapter1 
 
-# Build AFW package with extra interfaces added to adaptor1.
+# Build AFW package with extra interfaces added to adapter1.
 afwdev build --generate
 
 # Add authorization_handler_factory for handler ah1

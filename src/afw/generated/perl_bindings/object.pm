@@ -204,9 +204,9 @@ Set ids in a local mutable object
 
 Object to set ids in.
 
-    $adaptorId
+    $adapterId
 
-Adaptor id for object.
+Adapter id for object.
 
     $objectType
 
@@ -494,7 +494,7 @@ sub le_object {
 }
 
 sub local_object_meta_set_ids {
-    my ($object, $adaptorId, $objectType, $objectId) = @_;
+    my ($object, $adapterId, $objectType, $objectId) = @_;
 
     my $request = $session->request()
 
@@ -503,8 +503,8 @@ sub local_object_meta_set_ids {
     $request->set("objectType", $objectType);
     $request->set("objectId", $objectId);
 
-    if (defined $adaptorId)
-        $request->set("adaptorId", $adaptorId);
+    if (defined $adapterId)
+        $request->set("adapterId", $adapterId);
 
     return $request->getResult();
 }

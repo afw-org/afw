@@ -17,7 +17,7 @@ ORNOT: application/xml
 
 {
     "function": "get_object",
-    "adaptorId": "afw",
+    "adapterId": "afw",
     "objectType": "_AdaptiveRequestProperties_",
     "objectId": "current"
 }0
@@ -37,7 +37,7 @@ get_object('afw','_AdaptiveServer_','current')
 124
 {
     "function": "get_object",
-    "adaptorId": "afw",
+    "adapterId": "afw",
     "objectType": "_AdaptiveDataType_",
     "objectId": "integer"
 }
@@ -70,7 +70,7 @@ get_object('afw','_AdaptiveServer_','current')
 124
 {
     "function": "get_object",
-    "adaptorId": "afw",
+    "adapterId": "afw",
     "objectType": "_AdaptiveDataType_",
     "objectId": "integer"
 }

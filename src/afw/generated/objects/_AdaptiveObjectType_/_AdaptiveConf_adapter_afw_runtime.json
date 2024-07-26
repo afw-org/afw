@@ -1,0 +1,19 @@
+{
+    "allowAdd": false,
+    "allowChange": false,
+    "allowDelete": false,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Framework configuration component for type=adapter adapterType=afw_runtime conf entries. The component is automatically define with an adapterId of 'afw' and can only be redefined to add common adapter properties such as access control.",
+    "objectType": "_AdaptiveConf_adapter_afw_runtime",
+    "propertyTypes": {
+        "_meta_": {
+            "label": " Meta ",
+            "parentPaths": [
+                "/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter/propertyTypes"
+            ]
+        }
+    }
+}

@@ -34,9 +34,9 @@
                     "type": "string"
                 },
                 "providesObjects": {
-                    "description": "Each entry is the path of an afw adaptor object supplied by this extension. This extension will be loaded by function afw_runtime_get_object() if needed.",
+                    "description": "Each entry is the path of an afw adapter object supplied by this extension. This extension will be loaded by function afw_runtime_get_object() if needed.",
                     "items": {
-                        "description": "Each entry is the path of an afw adaptor object supplied by this extension. This extension will be loaded by function afw_runtime_get_object() if needed.",
+                        "description": "Each entry is the path of an afw adapter object supplied by this extension. This extension will be loaded by function afw_runtime_get_object() if needed.",
                         "title": "List of object paths provided by this extension",
                         "type": "string"
                     },

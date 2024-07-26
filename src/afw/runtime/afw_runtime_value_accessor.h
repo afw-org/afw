@@ -108,16 +108,16 @@ afw_runtime_value_accessor_octet(
 
 
 /**
- * @brief Runtime value accessor for stopping adaptor instance reference
+ * @brief Runtime value accessor for stopping adapter instance reference
  *    counts.
  * @param prop is associated afw_runtime_object_map_property_t.
- * @param internal is adaptor_id afw_utf8_t **.
+ * @param internal is adapter_id afw_utf8_t **.
  * @param p is pool to use.
  * @param xctx of caller.
  * @return afw_value_t representing value.
  */
 const afw_value_t *
-afw_runtime_value_accessor_stopping_adaptor_instances(
+afw_runtime_value_accessor_stopping_adapter_instances(
     const afw_runtime_object_map_property_t * prop,
     const void *internal, const afw_pool_t *p, afw_xctx_t *xctx);
 
@@ -295,39 +295,39 @@ afw_runtime_value_accessor_uint32(
     const void *internal, const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**
- * @brief Runtime value accessor for `/afw/_AdaptiveAdaptorMetrics_/<adaptorId>`.
+ * @brief Runtime value accessor for `/afw/_AdaptiveAdapterMetrics_/<adapterId>`.
  * @param prop is associated afw_runtime_object_map_property_t.
- * @param internal is pointer const afw_utf8_t *adaptor_id.
+ * @param internal is pointer const afw_utf8_t *adapter_id.
  * @param p is pool to use.
  * @param xctx of caller.
  * @return afw_value_t representing value.
  *
  * The data_type in prop must be object.
  *
- * Parameter internal is mapped afw_utf8_t *adaptor_id. The value will be the
- * result of getting the runtime `/afw/_AdaptiveAdaptorMetrics_/<adaptorId>`.
+ * Parameter internal is mapped afw_utf8_t *adapter_id. The value will be the
+ * result of getting the runtime `/afw/_AdaptiveAdapterMetrics_/<adapterId>`.
  */
 const afw_value_t *
-afw_runtime_value_accessor_adaptor_metrics(
+afw_runtime_value_accessor_adapter_metrics(
     const afw_runtime_object_map_property_t * prop,
     const void *internal, const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**
- * @brief Runtime value accessor to call afw_adaptor_get_additional_metrics().
+ * @brief Runtime value accessor to call afw_adapter_get_additional_metrics().
  * @param prop is associated afw_runtime_object_map_property_t.
- * @param internal is pointer start of afw_adaptor_impl_t.
+ * @param internal is pointer start of afw_adapter_impl_t.
  * @param p is pool to use.
  * @param xctx of caller.
  * @return afw_value_t representing value.
  *
  * The data_type in prop must be object.
  *
- * Parameter internal is mapped by afw_adaptor_impl_t. The value will be the
- * result of calling afw_adaptor_get_additional_metrics() with the adaptor
- * pointed to by afw_adaptor_impl_t.
+ * Parameter internal is mapped by afw_adapter_impl_t. The value will be the
+ * result of calling afw_adapter_get_additional_metrics() with the adapter
+ * pointed to by afw_adapter_impl_t.
  */
 const afw_value_t *
-afw_runtime_value_accessor_adaptor_additional_metrics(
+afw_runtime_value_accessor_adapter_additional_metrics(
     const afw_runtime_object_map_property_t * prop,
     const void *internal, const afw_pool_t *p, afw_xctx_t *xctx);
 
@@ -341,7 +341,7 @@ afw_runtime_value_accessor_adaptor_additional_metrics(
  *
  * The data_type in prop must be object.
  *
- * Parameter internal is mapped by afw_adaptor_impl_t object_id member.
+ * Parameter internal is mapped by afw_adapter_impl_t object_id member.
  */
 const afw_value_t *
 afw_runtime_value_accessor_ensure_afw_components_extension_loaded(
@@ -372,7 +372,7 @@ afw_runtime_value_accessor_applicable_flags(
 /**
  * @brief Runtime value accessor for an afw_value_t.
  * @param prop is associated afw_runtime_object_map_property_t.
- * @param internal is pointer start of afw_adaptor_impl_t.
+ * @param internal is pointer start of afw_adapter_impl_t.
  * @param p is pool to use.
  * @param xctx of caller.
  * @return afw_value_t representing value.

@@ -14,10 +14,10 @@ const objectOptions = {
 };
 
 /**
- * The ObjectTypeDropdown component read Object Types from an adaptor and
+ * The ObjectTypeDropdown component read Object Types from an adapter and
  * presents them in Dropdown component, so one can be selected.
  * 
- * @param {string} adaptorId
+ * @param {string} adapterId
  * @param {string} value
  * @param {boolean} requireEntity
  * @param {function} onChanged
@@ -34,7 +34,7 @@ export const ObjectTypeDropdown = (props) => {
     const {
         id,
         "data-testid": dataTestid,
-        adaptorId, 
+        adapterId, 
         value, 
         requireEntity, 
         onChanged, 
@@ -48,7 +48,7 @@ export const ObjectTypeDropdown = (props) => {
     } = props;
 
     const {objects, isLoading, error} = useRetrieveObjects({ 
-        adaptorId,
+        adapterId,
         objectTypeId, 
         objectOptions
     });
@@ -201,7 +201,7 @@ ObjectTypeDropdown.propTypes = {
     label:                  PropTypes.string,
     onChanged:              PropTypes.func,
     value:                  PropTypes.string,
-    adaptorId:              PropTypes.string,
+    adapterId:              PropTypes.string,
     requireEntity:          PropTypes.bool,
 };
 

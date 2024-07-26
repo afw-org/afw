@@ -1,0 +1,28 @@
+{
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/lmdb_extension"
+    ],
+    "description": "Object type for type=adapter adapter_type=lmdb limit conf entries.",
+    "objectType": "_AdaptiveConf_adapter_lmdb_limits",
+    "propertyTypes": {
+        "size": {
+            "allowQuery": true,
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveConf_adapter_lmdb_limits_size",
+            "description": "Size limits for requests.",
+            "label": "Size Limits",
+            "required": true,
+            "unique": false
+        },
+        "time": {
+            "allowQuery": true,
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveConf_adapter_lmdb_limits_time",
+            "description": "Time limits for requests.",
+            "label": "Time Limits",
+            "required": true,
+            "unique": false
+        }
+    }
+}

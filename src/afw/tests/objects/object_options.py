@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from python_bindings.adaptor import get_object_with_uri
+from python_bindings.adapter import get_object_with_uri
 from afw import Session
 
 response = {

@@ -85,9 +85,9 @@ export class AfwProperty extends AfwValue {
 
         if (this.parent && (dataType === "object") && objectTypeId) {
             const model = this.parent.getModel();
-            const adaptorId = this.parent.getAdaptorId();
+            const adapterId = this.parent.getAdapterId();
 
-            return model.getObjectTypeObject({ adaptorId, objectTypeId });
+            return model.getObjectTypeObject({ adapterId, objectTypeId });
         }
     }
 

@@ -2,7 +2,7 @@
 
 #### A ReactJS based Web Application front end for Adaptive Framework.
 
-AFW App is a collection of adaptive layouts and components, implemented in ReactJS, to provide an administrative front-end to managing an Adaptive Framework application.  Out of the box, it provides a UI to help you setup and configure Services, Adaptors, and Logs to get your Adaptive Application up and running.  Once configured, it provides an Object editor, built-in layouts for managing Authorization, Models and Provisioning.  In addition, it provides a mechanism to define new layouts tailored to a specific application.
+AFW App is a collection of adaptive layouts and components, implemented in ReactJS, to provide an administrative front-end to managing an Adaptive Framework application.  Out of the box, it provides a UI to help you setup and configure Services, Adapters, and Logs to get your Adaptive Application up and running.  Once configured, it provides an Object editor, built-in layouts for managing Authorization, Models and Provisioning.  In addition, it provides a mechanism to define new layouts tailored to a specific application.
 
 Although, ReactJS was the Javascript technology used throughout this implementation, many of the design practices we used throughout Adaptive Framework were used here in order to create a sustainable way to implement these Adaptive Layouts in any UI framework that may be better suited in the future.
 
@@ -24,7 +24,7 @@ In order to build the web application, you must have NodeJS and NPM installed on
 
 ReactJS is a Javascript-based framework that also supports ES6 (ECMAScript 6).  This app was created using the create-react-app, which handles many of the underlying web packaging complexities for us, such as Babel (a Javascript transpiler), webpack (a bundling tool), along with a default browser service worker in order to create a modern Progressive Web App (PWA).
 
-The app itself may be compiled with a prefix (defaulted to "/apps/afw/admin/"), which allows a web server to identify requests for the app to separate it's URI from the RESTful ones provided by the adaptors.  Using this prefix, the app leverages React Router to break apart its major layouts into the following URI's:
+The app itself may be compiled with a prefix (defaulted to "/apps/afw/admin/"), which allows a web server to identify requests for the app to separate it's URI from the RESTful ones provided by the adapters.  Using this prefix, the app leverages React Router to break apart its major layouts into the following URI's:
 
   * /apps/afw/admin/Home
   * /apps/afw/admin/Objects
@@ -32,7 +32,7 @@ The app itself may be compiled with a prefix (defaulted to "/apps/afw/admin/"), 
   * /apps/afw/admin/Documentation
   * /apps/afw/admin/Tools
 
-Another way to architect this, without "reserving" the /apps/afw/admin prefix would be for the web application to listen on a TCP port, separate from the RESTful interfaces provided by the adaptors, or separate them out via Virtual Hosts.  This, of course, would result in the Web App and RESTful Web Services to be separated by different hosts.
+Another way to architect this, without "reserving" the /apps/afw/admin prefix would be for the web application to listen on a TCP port, separate from the RESTful interfaces provided by the adapters, or separate them out via Virtual Hosts.  This, of course, would result in the Web App and RESTful Web Services to be separated by different hosts.
 
 #### Style
 

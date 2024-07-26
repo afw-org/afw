@@ -60,7 +60,7 @@ const objects = retrieve_objects("afw", "_AdaptiveObjectType_", {
     "filter": {
         "op": "in",
         "property": "objectType",
-        "value": ["_AdaptiveAdaptor_"]
+        "value": ["_AdaptiveAdapter_"]
     }
 });
 
@@ -97,7 +97,7 @@ const objects = retrieve_objects("afw", "_AdaptiveObjectType_", {
     "filter": {
         "op": "in",
         "property": "objectType",
-        "value": ["abc","_AdaptiveAdaptor_","xyz"]
+        "value": ["abc","_AdaptiveAdapter_","xyz"]
     }
 });
 
@@ -116,7 +116,7 @@ const objects = retrieve_objects("afw", "_AdaptiveObjectType_", {
     "filter": {
         "op": "in",
         "property": "objectType",
-        "value": ["_AdaptiveAdaptorType_","_AdaptiveAdaptor_","xyz"]
+        "value": ["_AdaptiveAdapterType_","_AdaptiveAdapter_","xyz"]
     }
 });
 

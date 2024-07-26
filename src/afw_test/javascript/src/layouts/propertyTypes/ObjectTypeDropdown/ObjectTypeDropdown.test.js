@@ -28,7 +28,7 @@ const Test = (wrapper) => {
                 id="ObjectTypeDropdown"
                 label="Select Object Type"
                 description="Select an Object Type from the list."
-                adaptorId="afw"
+                adapterId="afw"
                 value="_AdaptiveObjectType_"
                 required
             />,
@@ -57,7 +57,7 @@ const Test = (wrapper) => {
                 id="ObjectTypeDropdown"
                 label="Select Object Type"
                 description="Select an Object Type from the list."
-                adaptorId="afw"         
+                adapterId="afw"         
                 value="_AdaptiveObjectType_"
                 onChanged={onChanged}       
             />,

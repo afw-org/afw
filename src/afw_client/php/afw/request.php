@@ -9,7 +9,7 @@
             $this->session = $session;
             $this->payload = [];
 
-            $this->payload["adaptorId"] = $this->session->get("adaptorId");
+            $this->payload["adapterId"] = $this->session->get("adapterId");
         }
 
         public function add_action($action) {

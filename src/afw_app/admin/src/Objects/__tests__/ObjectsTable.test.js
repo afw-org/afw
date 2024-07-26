@@ -10,7 +10,7 @@ import Objects from "../Objects";
 
 describe("ObjectsTable Tests", () => { 
 
-    // \fixme There is a timing issue here that needs investigation.  Sometimes selecting adaptorId doesn't work
+    // \fixme There is a timing issue here that needs investigation.  Sometimes selecting adapterId doesn't work
     test.skip("Retrieve _AdaptiveObjectType_ objects", async () => {
         const history = createMemoryHistory();
         history.push("/Objects");
@@ -24,10 +24,10 @@ describe("ObjectsTable Tests", () => {
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());    
         await waitForSpinner();        
                
-        await waitFor(() => expect(screen.getByLabelText("Adaptor")).toHaveTextContent("afw"));
+        await waitFor(() => expect(screen.getByLabelText("Adapter")).toHaveTextContent("afw"));
         await waitFor(() => expect(screen.getByLabelText("Object Type")).toBeInTheDocument());       
         
-        fireEvent.mouseDown(screen.getByRole("button", { name: /adaptor /i }));
+        fireEvent.mouseDown(screen.getByRole("button", { name: /adapter /i }));
 
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalled()); 
         await waitForSpinner();
@@ -42,10 +42,10 @@ describe("ObjectsTable Tests", () => {
         
         // wait options to disappear
         await waitFor(() => expect(screen.queryAllByRole("option")).toHaveLength(0));       
-        await waitFor(() => expect(screen.getByLabelText("Adaptor")).toHaveTextContent("files"));
+        await waitFor(() => expect(screen.getByLabelText("Adapter")).toHaveTextContent("files"));
 
         await waitFor(() => expect(mswPostCallback).toHaveCalledAdaptiveFunction("retrieve_objects"));         
-        await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWithObjectContainingDeep("adaptorId", "files"));
+        await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWithObjectContainingDeep("adapterId", "files"));
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWithObjectContainingDeep("objectType", "_AdaptiveObjectType_"));
         await waitForSpinner();
 
@@ -73,7 +73,7 @@ describe("ObjectsTable Tests", () => {
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());
 
         await waitFor(() => expect(mswPostCallback).toHaveCalledAdaptiveFunction("retrieve_objects_to_response"));        
-        await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWithObjectContainingDeep("adaptorId", "files"));
+        await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWithObjectContainingDeep("adapterId", "files"));
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWithObjectContainingDeep("objectType", "_AdaptiveObjectType_"));
 
         await waitForSpinner();
@@ -109,7 +109,7 @@ describe("ObjectsTable Tests", () => {
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());
 
         await waitFor(() => expect(mswPostCallback).toHaveCalledAdaptiveFunction("retrieve_objects_to_response"));
-        await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWithObjectContainingDeep("adaptorId", "files"));
+        await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWithObjectContainingDeep("adapterId", "files"));
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWithObjectContainingDeep("objectType", "_AdaptiveObjectType_"));    
 
         await waitForSpinner();        

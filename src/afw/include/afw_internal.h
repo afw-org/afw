@@ -22,7 +22,7 @@
 
 #include "afw.h"
 #include "afw_generated.h"
-#include "afw_adaptor_internal.h"
+#include "afw_adapter_internal.h"
 #include "afw_application_internal.h"
 #include "afw_authorization_internal.h"
 #include "afw_compile_internal.h"

@@ -23,7 +23,7 @@
 
 /**
  * @file afw_object_view_internal.h
- * @brief Internal header file for Adaptive Framework view adaptor
+ * @brief Internal header file for Adaptive Framework view adapter
  */
 
 AFW_BEGIN_DECLARES
@@ -152,7 +152,7 @@ struct afw_object_view_internal_view_s {
     const afw_uri_parsed_t *uri_parsed;
 
     /** @brief Parsed URI for view entity. */
-    const afw_utf8_t *adaptor_id;
+    const afw_utf8_t *adapter_id;
 
     /** @brief Journal entry used during path resolution. */
     const afw_object_t *journal_entry;

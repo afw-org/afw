@@ -220,7 +220,7 @@ const AppNav = (props) => {
 
             if (pathname.startsWith("/Admin/Services"))
                 adminOpen = servicesOpen = true;
-            else if (pathname.startsWith("/Admin/Adaptors") || pathname.startsWith("/Admin/Logs") || pathname.startsWith("/Admin/AuthHandlers"))
+            else if (pathname.startsWith("/Admin/Adapters") || pathname.startsWith("/Admin/Logs") || pathname.startsWith("/Admin/AuthHandlers"))
                 adminOpen = servicesOpen = true;
             else if (pathname.startsWith("/Admin"))
                 adminOpen = true;
@@ -320,8 +320,8 @@ const AppNav = (props) => {
                                     isExpanded: servicesOpen,
                                     items: [
                                         {
-                                            label: "Adaptors",
-                                            url: "/Admin/Adaptors",
+                                            label: "Adapters",
+                                            url: "/Admin/Adapters",
                                         },
                                         {
                                             label: "Logs",

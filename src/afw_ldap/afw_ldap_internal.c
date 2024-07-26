@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * Internal LDAP Adaptive Framework Adaptor functions
+ * Internal LDAP Adaptive Framework Adapter functions
  *
  * Copyright (c) 2010-2024 Clemson University
  *
@@ -9,7 +9,7 @@
 
 /**
  * @file afw_ldap_internal.c
- * @brief  Internal LDAP Adaptive Framework Adaptor functions
+ * @brief  Internal LDAP Adaptive Framework Adapter functions
  */
 
 
@@ -24,7 +24,7 @@ static const int impl_zero = 0;
 
 LDAPMessage *
 afw_ldap_internal_search_s(
-    afw_ldap_internal_adaptor_session_t *session, const afw_utf8_z_t *dn,
+    afw_ldap_internal_adapter_session_t *session, const afw_utf8_z_t *dn,
     int ldap_scope, const afw_utf8_z_t *filter, afw_xctx_t *xctx)
 {
     int rv;
@@ -69,7 +69,7 @@ afw_ldap_internal_cleanup_ldap_memfree(
 
 const afw_utf8_t *
 afw_ldap_internal_get_object_id(
-    afw_ldap_internal_adaptor_session_t *self,
+    afw_ldap_internal_adapter_session_t *self,
     LDAPMessage *e, afw_boolean_t check_base, afw_xctx_t *xctx)
 {
     afw_utf8_z_t *dn_z;
@@ -104,11 +104,11 @@ BOOLEAN impl_prevent_verify_server_cert(
 
 void
 afw_ldap_internal_session_begin(
-    afw_ldap_internal_adaptor_session_t *self,
+    afw_ldap_internal_adapter_session_t *self,
     afw_xctx_t *xctx)
 {
-    afw_ldap_internal_adaptor_t *adaptor =
-        (afw_ldap_internal_adaptor_t *)self->pub.adaptor;
+    afw_ldap_internal_adapter_t *adapter =
+        (afw_ldap_internal_adapter_t *)self->pub.adapter;
     const afw_pool_t *p = self->pub.p;
     const afw_value_t *bind_parameters_value;
     const afw_object_t *bind_parameters;
@@ -123,15 +123,15 @@ afw_ldap_internal_session_begin(
     }*/
 
     /* Create an LDAP handle */
-    if (self->adaptor->lud->lud_scheme && 
-        strcmp(self->adaptor->lud->lud_scheme, "ldaps") == 0) 
+    if (self->adapter->lud->lud_scheme && 
+        strcmp(self->adapter->lud->lud_scheme, "ldaps") == 0) 
     {
         secure = APR_LDAP_SSL;
     } else
         secure = APR_LDAP_NONE;
 
     rv = apr_ldap_init(afw_pool_get_apr_pool(p), &(self->ld),
-        self->adaptor->lud->lud_host, self->adaptor->lud->lud_port,
+        self->adapter->lud->lud_host, self->adapter->lud->lud_port,
         secure, &err);
     if (rv != LDAP_SUCCESS) {
         AFW_THROW_ERROR_RV_Z(general, ldap, rv,
@@ -148,7 +148,7 @@ afw_ldap_internal_session_begin(
     }
 
     /* Set prevent verify cert if requested.*/
-    if (adaptor->prevent_verify_cert) {
+    if (adapter->prevent_verify_cert) {
         /*
          * apr_ldap_set_option() doesn't support APR_LDAP_OPT_VERIFY_CERT for
          * windows.
@@ -180,11 +180,11 @@ afw_ldap_internal_session_begin(
 
     /* Get bind dn and password */
     bind_parameters_value = afw_value_evaluate(
-        self->adaptor->bind_parameters, p, xctx);
+        self->adapter->bind_parameters, p, xctx);
     if (!afw_value_is_object(bind_parameters_value)) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "Invalid bindParameters for adaptorId " AFW_UTF8_FMT_Q,
-            AFW_UTF8_FMT_ARG(&adaptor->pub.adaptor_id));
+            "Invalid bindParameters for adapterId " AFW_UTF8_FMT_Q,
+            AFW_UTF8_FMT_ARG(&adapter->pub.adapter_id));
     }
     bind_parameters = ((const afw_value_object_t *)bind_parameters_value)
         ->internal;
@@ -194,8 +194,8 @@ afw_ldap_internal_session_begin(
         afw_ldap_s_password, p, xctx);
     if (!self->bind_dn_z || !self->bind_password_z) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "Invalid bindParameters for adaptorId " AFW_UTF8_FMT_Q,
-            AFW_UTF8_FMT_ARG(&adaptor->pub.adaptor_id));
+            "Invalid bindParameters for adapterId " AFW_UTF8_FMT_Q,
+            AFW_UTF8_FMT_ARG(&adapter->pub.adapter_id));
     }
 
 
@@ -216,7 +216,7 @@ afw_ldap_internal_session_begin(
 }
 
 void
-afw_ldap_internal_session_end(afw_ldap_internal_adaptor_session_t *self)
+afw_ldap_internal_session_end(afw_ldap_internal_adapter_session_t *self)
 {
     /* Free stuff .... */
 
@@ -230,7 +230,7 @@ afw_ldap_internal_session_end(afw_ldap_internal_adaptor_session_t *self)
 /* Internal create an adaptive object from an LDAPMessage. */
 const afw_object_t *
 afw_ldap_internal_create_object_from_entry(
-    afw_ldap_internal_adaptor_session_t *self,
+    afw_ldap_internal_adapter_session_t *self,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
     LDAPMessage *e,
@@ -255,11 +255,11 @@ afw_ldap_internal_create_object_from_entry(
      * early on.
      */
     first_attribute = NULL;
-    if (self->adaptor->metadata &&
-        self->adaptor->metadata->object_type_attributes)
+    if (self->adapter->metadata &&
+        self->adapter->metadata->object_type_attributes)
     {
         first_attribute = apr_hash_get
-            (self->adaptor->metadata->object_type_attributes,
+            (self->adapter->metadata->object_type_attributes,
                 object_type_id->s, object_type_id->len);
     }
 
@@ -314,7 +314,7 @@ afw_ldap_internal_create_object_from_entry(
     }
     AFW_ENDTRY;
 
-    afw_object_meta_set_ids(o, &self->adaptor->pub.adaptor_id,
+    afw_object_meta_set_ids(o, &self->adapter->pub.adapter_id,
         object_type_id, object_id, xctx);
 
     return o;
@@ -333,7 +333,7 @@ afw_ldap_internal_create_object_from_entry(
  */
 const afw_utf8_t *
 afw_ldap_internal_expression_from_filter_entry(
-    afw_ldap_internal_adaptor_session_t *session,
+    afw_ldap_internal_adapter_session_t *session,
     const afw_query_criteria_filter_entry_t * entry,
     afw_xctx_t *xctx)
 {
@@ -411,7 +411,7 @@ afw_ldap_internal_expression_from_filter_entry(
  */
 const afw_utf8_t *
 afw_ldap_internal_expression_from_query_criteria(
-    afw_ldap_internal_adaptor_session_t *session,
+    afw_ldap_internal_adapter_session_t *session,
     const afw_query_criteria_filter_entry_t * entry,
     afw_xctx_t *xctx)
 {

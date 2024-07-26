@@ -6,7 +6,7 @@
             "objectType": "_AdaptiveApplication_"
         },
         "type": "application",
-        "confAdaptorId": "conf",
+        "confAdapterId": "conf",
         "applicationId": "AFWDev",
         "sourceLocation": "/workspace/docker/dev/afw.conf entry 3",
         "defaultFlags": [
@@ -45,9 +45,9 @@
                 "subjectId": "${variable_get(\"request::REMOTE_USER\", null)}"
             }
         },
-        "layoutsAdaptorId": "layouts",
-        "defaultModelAdaptorId": "models",
-        "defaultAdaptorId": "afw",
+        "layoutsAdapterId": "layouts",
+        "defaultModelAdapterId": "models",
+        "defaultAdapterId": "afw",
         "description": "Adaptive Framework Dev Container.",
         "title": "AFWDev"
     },

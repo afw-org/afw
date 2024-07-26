@@ -30,7 +30,7 @@ interface IAnyObject {
  * @param {boolean} isValuePath - The URIs are adaptive value paths. If one of
  *     the URIs begins with a single slash '/', both must, and each URI will
  *     be parsed as an adaptive value path (example:
- *     /adaptorId/objectType/objectId.propertyNames).
+ *     /adapterId/objectType/objectId.propertyNames).
  * 
  * @param {string} currentPath - If isValuePath is true, this is the current
  *     path that is used to resolve a relative path in the URIs. If
@@ -213,7 +213,7 @@ export function afwNowUtc(client : any) : any {
  * @param {boolean} isValuePath - The URI is an adaptive value path. If the
  *     path begins with a single slash '/', the URI will be parsed as an
  *     adaptive value path (example:
- *     /adaptorId/objectType/objectId.propertyNames)
+ *     /adapterId/objectType/objectId.propertyNames)
  * 
  * @param {string} currentPath - If isValuePath is true, this is the current
  *     path that is used to resolve relative paths. If isValuePath is not

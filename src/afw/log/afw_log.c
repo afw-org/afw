@@ -790,7 +790,7 @@ afw_log_impl_create_cede_p(
     self->properties = afw_environment_prepare_conf_type_properties(
         properties, xctx);
 
-    /* Get source location.  Default it to adaptor. */
+    /* Get source location.  Default it to adapter. */
     self->source_location = afw_object_old_get_property_as_string(
         properties, afw_s_sourceLocation, xctx);
     if (!self->source_location) {

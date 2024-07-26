@@ -158,7 +158,7 @@ afw_server_fcgi_internal_create_request(
             xctx->p, xctx);
     }
 
-    /* Return new adaptor. */
+    /* Return new adapter. */
     return self;
 }
 

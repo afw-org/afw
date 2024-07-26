@@ -449,7 +449,7 @@
             "jsonImpliesDataType": false,
             "evaluated": false,
             "directReturn": false,
-            "description": "Data type objectId holds an adaptive object's object id.  This is an association with another adaptive object by objectId that has the same adaptor id and object type id.",
+            "description": "Data type objectId holds an adaptive object's object id.  This is an association with another adaptive object by objectId that has the same adapter id and object type id.",
             "dataTypeParameterType": "objectType",
             "dataType": "objectId",
             "cType": "afw_utf8_t",
@@ -468,7 +468,7 @@
             "jsonImpliesDataType": false,
             "evaluated": false,
             "directReturn": false,
-            "description": "Data type objectPath is the path within the same instance of Adaptive Framework of an object.  Its for is /<adaptorId>/<objectType>/<objectId> where <adaptorId> is an adaptor id, <objectType> is the object id of an object type, and <objectId> is the id of an object.",
+            "description": "Data type objectPath is the path within the same instance of Adaptive Framework of an object.  Its for is /<adapterId>/<objectType>/<objectId> where <adapterId> is an adapter id, <objectType> is the object id of an object type, and <objectId> is the id of an object.",
             "dataType": "objectPath",
             "cType": "afw_utf8_t",
             "brief": "An adaptive object's object path"

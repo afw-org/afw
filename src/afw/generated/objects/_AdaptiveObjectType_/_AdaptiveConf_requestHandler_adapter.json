@@ -1,0 +1,38 @@
+{
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Framework configuration component for type=requestHandler handlerType=adapter.",
+    "objectType": "_AdaptiveConf_requestHandler_adapter",
+    "propertyTypes": {
+        "_meta_": {
+            "label": " Meta ",
+            "parentPaths": [
+                "/afw/_AdaptiveObjectType_/_AdaptiveConf_requestHandler/propertyTypes"
+            ]
+        },
+        "adapterId": {
+            "allowQuery": true,
+            "brief": "If specified, this adapterId is prepended to the path",
+            "dataType": "string",
+            "description": "If this property is specified, a '/' followed by adapterId is prepended to the path passed to process request if it does not already have that prefix.",
+            "label": "Adapter"
+        },
+        "objectType": {
+            "allowQuery": true,
+            "brief": "If specified, this objectType is prepended to the path",
+            "dataType": "string",
+            "description": "If this property is specified, a '/' followed by adapterId followed by a '/' followed by objectType is prepended to the path passed to process request if it does not already have that prefix. If this property is specified, adapterId is required.",
+            "label": "Object Type"
+        },
+        "defaultOptions": {
+            "allowQuery": false,
+            "brief": "Default object options for method GET requests through this request handler",
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveObjectOptions_",
+            "description": "This is the default object options for method GET requests though this request handler.",
+            "label": "Default Options"
+        }
+    }
+}

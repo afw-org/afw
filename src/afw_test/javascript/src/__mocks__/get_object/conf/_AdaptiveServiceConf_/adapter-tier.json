@@ -1,0 +1,25 @@
+{
+    "result": {
+        "_meta_": {
+            "path": "/conf/_AdaptiveServiceConf_/adapter-tier",
+            "objectId": "adapter-tier",
+            "objectType": "_AdaptiveServiceConf_",
+            "reconcilable": "{\"_meta_\":{\"path\":\"/conf/_AdaptiveServiceConf_/adapter-tier\"},\"conf\":{\"_meta_\":{\"objectType\":\"_AdaptiveConf_adapter_model\"},\"mappedAdapterId\":\"lmdb\",\"modelId\":\"TIER Core Schema\",\"modelLocationAdapterId\":\"models\",\"description\":\"TIER model using LMDB as a backend.\",\"type\":\"adapter\",\"adapterType\":\"model\",\"adapterId\":\"tier\"},\"serviceId\":\"adapter-tier\",\"startup\":\"immediate\"}"
+        },
+        "conf": {
+            "_meta_": {
+                "objectType": "_AdaptiveConf_adapter_model"
+            },
+            "mappedAdapterId": "lmdb",
+            "modelId": "TIER Core Schema",
+            "modelLocationAdapterId": "models",
+            "description": "TIER model using LMDB as a backend.",
+            "type": "adapter",
+            "adapterType": "model",
+            "adapterId": "tier"
+        },
+        "serviceId": "adapter-tier",
+        "startup": "immediate"
+    },
+    "status": "success"
+}

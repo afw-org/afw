@@ -27,20 +27,20 @@
     # libdw for ELF symbols
     sudo apt-get install elfutils libdw-dev
 
-## AdaptiveFramework Adaptor dependencies
+## AdaptiveFramework Adapter dependencies
 
-Eventually, these adaptors will not be required, but rather enabled/disabled via the configure script.
+Eventually, these adapters will not be required, but rather enabled/disabled via the configure script.
 
-    # MySQL Adaptor
+    # MySQL Adapter
     sudo apt-get install libmysqlclient-dev
 
-    # BerkeleyDB Adaptor
+    # BerkeleyDB Adapter
     sudo apt-get install libdb-dev
 
-    # LightningDB Adaptor
+    # LightningDB Adapter
     sudo apt-get install liblmdb-dev
 
-    # need OpenSSL and CURL for DynamoDB adaptor dependencies
+    # need OpenSSL and CURL for DynamoDB adapter dependencies
     sudo apt-get install libcurl4-openssl-dev libssl-dev
 
     # Drivers for APR DBD interface

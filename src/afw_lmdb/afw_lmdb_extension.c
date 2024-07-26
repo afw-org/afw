@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * Implementation of afw_extension interface LMDB Adaptor
+ * Implementation of afw_extension interface LMDB Adapter
  *
  * Copyright (c) 2010-2024 Clemson University
  *
@@ -9,7 +9,7 @@
 
 /**
  * @file afw_lmdb_extension.c
- * @brief Implementation of afw_extension interface for LMDB Adaptor
+ * @brief Implementation of afw_extension interface for LMDB Adapter
  */
 
 #include "afw.h"

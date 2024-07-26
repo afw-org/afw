@@ -31,7 +31,7 @@ describe("ObjectsQueryBuilder Tests", () => {
         await waitFor(() => expect(screen.getByLabelText("Apply")).toBeInTheDocument()); 
         await waitFor(() => expect(screen.getByLabelText("Cancel")).toBeInTheDocument()); 
 
-        await waitFor(() => expect(screen.getByLabelText("Adaptor")).toHaveTextContent("afw"));
+        await waitFor(() => expect(screen.getByLabelText("Adapter")).toHaveTextContent("afw"));
 
 
     });
@@ -52,7 +52,7 @@ describe("ObjectsQueryBuilder Tests", () => {
         
         await waitFor(() => expect(screen.getByLabelText("Build Query Criteria")).toBeInTheDocument());         
 
-        await waitFor(() => expect(screen.getByLabelText("Adaptor")).toHaveTextContent("afw"));
+        await waitFor(() => expect(screen.getByLabelText("Adapter")).toHaveTextContent("afw"));
         await waitFor(() => expect(screen.getByLabelText("Object Type")).not.toBeDisabled());
 
         const textbox = screen.getByRole("combobox", { name: "Object Type" });
@@ -60,13 +60,13 @@ describe("ObjectsQueryBuilder Tests", () => {
         fireEvent.click(textbox);
 
         await waitFor(() => expect(screen.queryAllByRole("option")).not.toHaveLength(0));
-        const typeOpt = screen.getByRole("option", { name: "_AdaptiveAdaptor_" });        
-        // select '_AdaptiveAdaptor_'
+        const typeOpt = screen.getByRole("option", { name: "_AdaptiveAdapter_" });        
+        // select '_AdaptiveAdapter_'
         typeOpt.click();
         // wait options to disappear
         await waitFor(() => expect(screen.queryAllByRole("option")).toHaveLength(0)); 
 
-        expect(await screen.findByLabelText("Object Type")).toHaveValue("_AdaptiveAdaptor_");
+        expect(await screen.findByLabelText("Object Type")).toHaveValue("_AdaptiveAdapter_");
         fireEvent.click(screen.getByLabelText("Build Query Criteria"));
 
         await waitFor(() => expect(screen.getByLabelText("Apply")).toBeInTheDocument()); 

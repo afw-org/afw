@@ -71,8 +71,8 @@ export class AfwArrayEntry extends AfwValue {
                 let objectTypeObject : IMetaObject | undefined;
                 if (embeddingObject) {
                     const model = embeddingObject.getModel();
-                    const adaptorId = embeddingObject.getAdaptorId();
-                    objectTypeObject = model.getObjectTypeObject({ adaptorId, objectTypeId: dataTypeParameter });
+                    const adapterId = embeddingObject.getAdapterId();
+                    objectTypeObject = model.getObjectTypeObject({ adapterId, objectTypeId: dataTypeParameter });
                 }
 
                 this.adaptiveValue = new AfwObject({

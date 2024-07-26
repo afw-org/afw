@@ -16,12 +16,12 @@ const objectOptions = { path: true, objectId: true, objectType: true };
 /*
  * ModelObjectTypeSelector
  *
- * Given an adaptorId and, this provides a list of selectable
+ * Given an adapterId and, this provides a list of selectable
  * Object Type / Property Types to choose from,
  * presented as a Tree.
  * 
  */
-export const ModelObjectTypeSelector = ({ adaptorId, onSelect }) => {
+export const ModelObjectTypeSelector = ({ adapterId, onSelect }) => {
 
     const [selectedKeys, setSelectedKeys] = useState([]);
 
@@ -30,7 +30,7 @@ export const ModelObjectTypeSelector = ({ adaptorId, onSelect }) => {
         isLoading,
         error,
     } = useRetrieveObjects({
-        adaptorId,
+        adapterId,
         objectTypeId: "_AdaptiveObjectType_",
         objectOptions,
     });

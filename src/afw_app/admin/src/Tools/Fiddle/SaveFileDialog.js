@@ -18,7 +18,7 @@ import {
 import {useApplication, useTheme} from "../../hooks";
 
 
-export const SaveFileDialog = ({ open, onDismiss, vfsAdaptors, storage, onSaveLocal, onSaveVfs }) => {
+export const SaveFileDialog = ({ open, onDismiss, vfsAdapters, storage, onSaveLocal, onSaveVfs }) => {
 
     const [fileName, setFileName] = useState();
     const [selectedLocalFiles, setSelectedLocalFiles] = useState([]);
@@ -39,7 +39,7 @@ export const SaveFileDialog = ({ open, onDismiss, vfsAdaptors, storage, onSaveLo
             await afwAddObject(client, 
                 "_AdaptiveFile_vfs",
                 {},
-                selectedVfsNode.adaptorId,
+                selectedVfsNode.adapterId,
                 selectedVfsNode.vfsPath + "/" + folder + "/",                
             ).result();
             setNewFolder({ node: selectedVfsNode, folder });
@@ -80,7 +80,7 @@ export const SaveFileDialog = ({ open, onDismiss, vfsAdaptors, storage, onSaveLo
                             }}
                         />
                         <VfsTree 
-                            vfsAdaptors={vfsAdaptors}
+                            vfsAdapters={vfsAdapters}
                             allowSelectDirectories={true}
                             selectedFiles={selectedVfsFiles}
                             newFolder={newFolder}

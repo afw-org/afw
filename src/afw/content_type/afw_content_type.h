@@ -42,7 +42,7 @@ AFW_DEFINE_STATIC_INLINE(const afw_value_t *)
 afw_content_type_x_to_object_value_with_ids(
     const afw_content_type_t * instance,
     const afw_utf8_t * string,
-    const afw_utf8_t *adaptor_id,
+    const afw_utf8_t *adapter_id,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
     afw_xctx_t *xctx)

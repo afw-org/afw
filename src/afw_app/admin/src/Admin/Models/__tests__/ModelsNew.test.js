@@ -107,7 +107,7 @@ describe("ModelsNew Tests", () => {
         /* Click next */
         fireEvent.click(nextBtn);
 
-        await screen.findByLabelText("Select Adaptor to Map");
+        await screen.findByLabelText("Select Adapter to Map");
 
         const dialog = await screen.findByRole("dialog", { name: "New Model" });
         const cancelBtn = within(dialog).getByRole("button", { name: "Cancel" });
@@ -132,7 +132,7 @@ describe("ModelsNew Tests", () => {
         /* Click next */
         fireEvent.click(nextBtn);
 
-        await screen.findByLabelText("Select Adaptor to Map");
+        await screen.findByLabelText("Select Adapter to Map");
 
         const dialog = await screen.findByRole("dialog", { name: "New Model" });
         const createBtn = within(dialog).getByRole("button", { name: "Create" });

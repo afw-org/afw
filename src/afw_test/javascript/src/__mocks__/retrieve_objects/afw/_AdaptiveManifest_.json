@@ -7,15 +7,15 @@
                 "objectType": "_AdaptiveManifest_"
             },
             "registers": [
-                "adaptor_type/bdb"
+                "adapter_type/bdb"
             ],
             "providesObjects": [
                 "/afw/_AdaptiveCollection_/bdb_extension",
-                "/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_bdb"
+                "/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_bdb"
             ],
             "modulePath": "libafwbdb",
             "extensionId": "afw_bdb",
-            "description": "This extension registers an adaptor for retrieving and storing Adaptive Objects in BerkeleyDB, a key-value database.",
+            "description": "This extension registers an adapter for retrieving and storing Adaptive Objects in BerkeleyDB, a key-value database.",
             "brief": "Extension for BerkeleyDB"
         },
         {
@@ -25,22 +25,22 @@
                 "objectType": "_AdaptiveManifest_"
             },
             "registers": [
-                "adaptor_type/dbd_freetds",
-                "adaptor_type/dbd_mysql",
-                "adaptor_type/dbd_odbc",
-                "adaptor_type/dbd_oracle",
-                "adaptor_type/dbd_postgresql",
-                "adaptor_type/dbd_sqlite3",
+                "adapter_type/dbd_freetds",
+                "adapter_type/dbd_mysql",
+                "adapter_type/dbd_odbc",
+                "adapter_type/dbd_oracle",
+                "adapter_type/dbd_postgresql",
+                "adapter_type/dbd_sqlite3",
                 "error_rv_decoder/dbd"
             ],
             "providesObjects": [
                 "/afw/_AdaptiveCollection_/dbd_extension",
-                "/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_dbd_freetds",
-                "/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_dbd_mysql",
-                "/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_dbd_odbc",
-                "/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_dbd_oracle",
-                "/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_dbd_postgresql",
-                "/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_dbd_sqlite3"
+                "/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_dbd_freetds",
+                "/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_dbd_mysql",
+                "/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_dbd_odbc",
+                "/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_dbd_oracle",
+                "/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_dbd_postgresql",
+                "/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_dbd_sqlite3"
             ],
             "modulePath": "libafwdbd",
             "extensionId": "afw_dbd",
@@ -54,15 +54,15 @@
                 "objectType": "_AdaptiveManifest_"
             },
             "registers": [
-                "adaptor_type/dynamo_db"
+                "adapter_type/dynamo_db"
             ],
             "providesObjects": [
                 "/afw/_AdaptiveCollection_/dynamo_db_extension",
-                "/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_dynamo_db"
+                "/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_dynamo_db"
             ],
             "modulePath": "libafwdynamodb",
             "extensionId": "afw_dynamo_db",
-            "description": "This extension registers an adaptor for storing Adaptive Objects in Amazon's DynamoDB, a cloud-based NoSQL storage solution.",
+            "description": "This extension registers an adapter for storing Adaptive Objects in Amazon's DynamoDB, a cloud-based NoSQL storage solution.",
             "brief": "Extension for Amazon DynamoDB"
         },
         {
@@ -94,26 +94,26 @@
                 "objectType": "_AdaptiveManifest_"
             },
             "registers": [
-                "adaptor_type/lmdb",
+                "adapter_type/lmdb",
                 "error_rv_decoder/lmdb"
             ],
             "providesObjects": [
                 "/afw/_AdaptiveCollection_/lmdb_extension",
                 "/afw/_AdaptiveFunctionCategory_/lmdb",
-                "/afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb",
-                "/afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_information",
-                "/afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_statistic",
-                "/afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_statistics",
-                "/afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_version",
-                "/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb",
-                "/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb_env",
-                "/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb_limits",
-                "/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb_limits_size",
-                "/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb_limits_time"
+                "/afw/_AdaptiveObjectType_/_AdaptiveAdapterMetrics_adapter_lmdb",
+                "/afw/_AdaptiveObjectType_/_AdaptiveAdapterMetrics_adapter_lmdb_information",
+                "/afw/_AdaptiveObjectType_/_AdaptiveAdapterMetrics_adapter_lmdb_statistic",
+                "/afw/_AdaptiveObjectType_/_AdaptiveAdapterMetrics_adapter_lmdb_statistics",
+                "/afw/_AdaptiveObjectType_/_AdaptiveAdapterMetrics_adapter_lmdb_version",
+                "/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb",
+                "/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_env",
+                "/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits",
+                "/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits_size",
+                "/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits_time"
             ],
             "modulePath": "libafwlmdb",
             "extensionId": "afw_lmdb",
-            "description": "This extension provides an adaptor for retrieving and storing Adaptive Objects in Lightning Memory-Mapped Database (LMDB), an in-memory database that allows for arbitrary key-value pairs to be stored in its database.",
+            "description": "This extension provides an adapter for retrieving and storing Adaptive Objects in Lightning Memory-Mapped Database (LMDB), an in-memory database that allows for arbitrary key-value pairs to be stored in its database.",
             "brief": "Extension for Lightning Memory-Mapped Database (LMDB)"
         },
         {
@@ -153,14 +153,14 @@
                 "objectType": "_AdaptiveManifest_"
             },
             "registers": [
-                "adaptor_type/sql"
+                "adapter_type/sql"
             ],
             "providesObjects": [
                 "/afw/_AdaptiveManifest_/afw_sql"
             ],
             "modulePath": "libafwsql",
             "extensionId": "afw_sql",
-            "description": "This extension uses libmsql to register an adaptor for retrieving and storing Adaptive Objects in a MySQL/MariaDB database.",
+            "description": "This extension uses libmsql to register an adapter for retrieving and storing Adaptive Objects in a MySQL/MariaDB database.",
             "brief": "Extension for MySQL"
         },
         {
@@ -170,14 +170,14 @@
                 "objectType": "_AdaptiveManifest_"
             },
             "registers": [
-                "adaptor_type/ldap",
+                "adapter_type/ldap",
                 "error_rv_decoder/ldap"
             ],
             "providesObjects": [
                 "/afw/_AdaptiveCollection_/ldap_extension",
-                "/afw/_AdaptiveObjectType_/_AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects",
-                "/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_ldap",
-                "/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_ldap_bind",
+                "/afw/_AdaptiveObjectType_/_AdaptiveAdapterTypeSpecific_ldap_retrieve_objects",
+                "/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_ldap",
+                "/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_ldap_bind",
                 "/afw/_AdaptiveObjectType_/_AdaptiveLdapAttributeType_",
                 "/afw/_AdaptiveObjectType_/_AdaptiveLdapMatchingRuleUse_",
                 "/afw/_AdaptiveObjectType_/_AdaptiveLdapMatchingRule_",
@@ -188,7 +188,7 @@
             ],
             "modulePath": "libafwldap",
             "extensionId": "afw_ldap",
-            "description": "This extension provides support for Lightweight Directory Access Protocol (LDAP).  This includes an adaptor that allows Adaptive Objects to be retrieved and stored in a LDAP directory.",
+            "description": "This extension provides support for Lightweight Directory Access Protocol (LDAP).  This includes an adapter that allows Adaptive Objects to be retrieved and stored in a LDAP directory.",
             "brief": "Extension for LDAP"
         },
         {
@@ -442,11 +442,11 @@
                 "objectType": "_AdaptiveManifest_"
             },
             "registers": [
-                "adaptor_type/oracle"
+                "adapter_type/oracle"
             ],
             "providesObjects": [
                 "/afw/_AdaptiveFunctionCategory_/oracle",
-                "/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_oracle",
+                "/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_oracle",
                 "/afw/_AdaptiveObjectType_/_AdaptiveOracleAll_",
                 "/afw/_AdaptiveObjectType_/_AdaptiveOracleArgument_",
                 "/afw/_AdaptiveObjectType_/_AdaptiveOracleColumn_",
@@ -473,7 +473,7 @@
             ],
             "modulePath": "libafworacle",
             "extensionId": "afw_oracle",
-            "description": "This extension provides support for Oracle databases by registering an adaptor to retrieve and store Adaptive Objects in an Oracle database, along with adaptive functions for performing Oracle operations and allowing them to be executed from expressions.",
+            "description": "This extension provides support for Oracle databases by registering an adapter to retrieve and store Adaptive Objects in an Oracle database, along with adaptive functions for performing Oracle operations and allowing them to be executed from expressions.",
             "brief": "Extension for Oracle"
         }
     ],

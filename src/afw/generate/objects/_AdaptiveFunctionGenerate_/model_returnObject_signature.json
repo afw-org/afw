@@ -14,7 +14,7 @@
         {
             "brief": "User data",
             "dataType": "boolean",
-            "description": "If this is present and true, the object will be mapped its mapped adaptor's object type to the model adaptor's object type.",
+            "description": "If this is present and true, the object will be mapped its mapped adapter's object type to the model adapter's object type.",
             "name": "userData",
             "optional": true
         }

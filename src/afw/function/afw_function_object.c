@@ -161,7 +161,7 @@ afw_function_execute_apply_object_options(
  * ```
  *   function local_object_meta_set_ids(
  *       object: object,
- *       adaptorId: string,
+ *       adapterId: string,
  *       objectType: string,
  *       objectId: string
  *   ): void;
@@ -171,7 +171,7 @@ afw_function_execute_apply_object_options(
  *
  *   object - (object) Object to set ids in.
  *
- *   adaptorId - (string) Adaptor id for object.
+ *   adapterId - (string) Adapter id for object.
  *
  *   objectType - (string) Object type id for object.
  *
@@ -186,17 +186,17 @@ afw_function_execute_local_object_meta_set_ids(
     afw_function_execute_t *x)
 {
     const afw_value_object_t *object;
-    const afw_value_string_t *adaptorId;
+    const afw_value_string_t *adapterId;
     const afw_value_string_t *objectType;
     const afw_value_string_t *objectId;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(object, 1, object);
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(adaptorId, 2, string);
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(adapterId, 2, string);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(objectType, 3, string);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(objectId, 4, string);
 
     afw_object_meta_set_ids(object->internal,
-        &adaptorId->internal, &objectType->internal, &objectId->internal,
+        &adapterId->internal, &objectType->internal, &objectId->internal,
         x->xctx);
 
     /* Return undefined for void. */

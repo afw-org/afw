@@ -132,7 +132,7 @@ impl_afw_content_type_raw_to_object (
     const afw_content_type_t * instance,
     const afw_memory_t * raw,
     const afw_utf8_t * source_location,
-    const afw_utf8_t * adaptor_id,
+    const afw_utf8_t * adapter_id,
     const afw_utf8_t * object_type_id,
     const afw_utf8_t * object_id,
     afw_boolean_t cede_p,
@@ -140,7 +140,7 @@ impl_afw_content_type_raw_to_object (
     afw_xctx_t *xctx)
 {
     return afw_ubjson_to_object(raw, source_location,
-        adaptor_id, object_type_id, object_id, cede_p, p, xctx);
+        adapter_id, object_type_id, object_id, cede_p, p, xctx);
 }
 
 

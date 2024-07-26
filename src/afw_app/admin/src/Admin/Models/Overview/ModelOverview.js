@@ -94,7 +94,7 @@ export const ModelOverviewEditable = (props) => {
  */
 export const ModelOverviewReadonly = (props) => {
     
-    const {adaptorId, model, models} = props;
+    const {adapterId, model, models} = props;
 
     const theme = useTheme();
     const {custom, modelId, objectTypes, description} = useValues(model);
@@ -137,7 +137,7 @@ export const ModelOverviewReadonly = (props) => {
                     else
                         return (
                             <Link 
-                                url={"/Admin/Models/" + model.getAdaptorId() + "/" + paths[paths.length - 1]} 
+                                url={"/Admin/Models/" + model.getAdapterId() + "/" + paths[paths.length - 1]} 
                                 text={decodeURIComponent(paths[paths.length - 1])} 
                             />
                         );
@@ -173,7 +173,7 @@ export const ModelOverviewReadonly = (props) => {
                                     maxWidth: 200,
                                     isResizable: true,
                                     onRender: (objectType) => 
-                                        <Link url={"/Admin/Models/" + adaptorId + "/" + modelId + "/objectTypes/" + objectType + "#overview"} text={objectType} />                            
+                                        <Link url={"/Admin/Models/" + adapterId + "/" + modelId + "/objectTypes/" + objectType + "#overview"} text={objectType} />                            
                                 },
                                 {
                                     key: "Description",

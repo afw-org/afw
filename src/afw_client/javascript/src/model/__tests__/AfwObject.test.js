@@ -413,11 +413,11 @@ describe("AfwObject Tests", () => {
         expect(obj.getObjectTypeObject()).toBe(objectTypeObject);
     });
 
-    test("Test getAdaptorId()", async () => {
+    test("Test getAdapterId()", async () => {
 
         const obj = new AfwObject({
             model,
-            adaptorId: "afw",
+            adapterId: "afw",
             objectTypeId: "_AdaptiveObject_",
             objectId: "test",
             object: {}
@@ -425,14 +425,14 @@ describe("AfwObject Tests", () => {
 
         await obj.initialize();
 
-        expect(obj.getAdaptorId()).toBe("afw");
+        expect(obj.getAdapterId()).toBe("afw");
     });
 
     test("Test getMetaProperty()", async () => {
 
         const obj = new AfwObject({
             model,
-            adaptorId: "afw",
+            adapterId: "afw",
             objectTypeId: "_AdaptiveObject_",
             objectId: "test",
             object: {
@@ -458,7 +458,7 @@ describe("AfwObject Tests", () => {
 
         const obj = new AfwObject({
             model,
-            adaptorId: "afw",
+            adapterId: "afw",
             objectTypeId: "_AdaptiveObject_",
             objectId: "test",
             object: {
@@ -539,7 +539,7 @@ describe("AfwObject Tests", () => {
         expect(obj.getMetaProperty("allowChange")).toBe(false);
     });
 
-    test("Test setAdaptorId()", async () => {
+    test("Test setAdapterId()", async () => {
         const object = {
             _meta_: {
                 path: "/afw/_AdaptiveObject_/test"
@@ -551,10 +551,10 @@ describe("AfwObject Tests", () => {
 
         await obj.initialize();
 
-        expect(obj.getAdaptorId()).toBe("afw");
+        expect(obj.getAdapterId()).toBe("afw");
 
-        obj.setAdaptorId("test");
-        expect(obj.getAdaptorId()).toBe("test");
+        obj.setAdapterId("test");
+        expect(obj.getAdapterId()).toBe("test");
     });
 
     test("Test setObjectTypeId()", async () => {
@@ -857,7 +857,7 @@ describe("AfwObject Tests", () => {
 
         const obj = new AfwObject({
             model,
-            adaptorId: "afw",
+            adapterId: "afw",
             objectTypeId: "_AdaptiveObject_",
             objectId: "test",
             object: {
@@ -899,7 +899,7 @@ describe("AfwObject Tests", () => {
     test("Test hasErrors()", async () => {
         const obj = new AfwObject({
             model,
-            adaptorId: "afw",
+            adapterId: "afw",
             objectTypeId: "_AdaptiveObject_",
             objectId: "test",
             object: {
@@ -1082,7 +1082,7 @@ describe("AfwObject Tests", () => {
 
         const obj = new AfwObject({
             model,
-            adaptorId: "afw",
+            adapterId: "afw",
             objectTypeId: "_AdaptiveObject_",
             objectId: "test",
             object: {
@@ -1103,7 +1103,7 @@ describe("AfwObject Tests", () => {
     test("Test reconcile()", async () => {
         const obj = new AfwObject({
             model,
-            adaptorId: "afw",
+            adapterId: "afw",
             objectTypeId: "_AdaptiveObject_",
             objectId: "test",
             object: {
@@ -1125,7 +1125,7 @@ describe("AfwObject Tests", () => {
     test("Test replace()", async () => {
         const obj = new AfwObject({
             model,
-            adaptorId: "afw",
+            adapterId: "afw",
             objectTypeId: "_AdaptiveObject_",
             objectId: "test",
             object: {
@@ -1147,7 +1147,7 @@ describe("AfwObject Tests", () => {
     test("Test modify()", async () => {
         const obj = new AfwObject({
             model,
-            adaptorId: "afw",
+            adapterId: "afw",
             objectTypeId: "_AdaptiveObject_",
             objectId: "test",
             object: {
@@ -1168,7 +1168,7 @@ describe("AfwObject Tests", () => {
     test("Test add()", async () => {
         const obj = new AfwObject({
             model,
-            adaptorId: "afw",
+            adapterId: "afw",
             objectTypeId: "_AdaptiveObject_",
             objectId: "test",
             object: {
@@ -1193,7 +1193,7 @@ describe("AfwObject Tests", () => {
 
         const obj = new AfwObject({
             model,
-            adaptorId: "afw",
+            adapterId: "afw",
             objectTypeId: "_AdaptiveObject_",
             objectId: "test",
             object: {
@@ -1221,7 +1221,7 @@ describe("AfwObject Tests", () => {
 
         const obj = new AfwObject({
             model,
-            adaptorId: "afw",
+            adapterId: "afw",
             objectTypeId: "_AdaptiveObject_",
             objectId: "test",
             object: {
@@ -1247,7 +1247,7 @@ describe("AfwObject Tests", () => {
 
         const obj = new AfwObject({
             model,
-            adaptorId: "afw",
+            adapterId: "afw",
             objectTypeId: "_AdaptiveObject_",
             objectId: "test",
             object: {
@@ -1271,7 +1271,7 @@ describe("AfwObject Tests", () => {
 
         const obj = new AfwObject({
             model,
-            adaptorId: "afw",
+            adapterId: "afw",
             objectTypeId: "_AdaptiveObject_",
             objectId: "test",
             object: {

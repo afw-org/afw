@@ -32,7 +32,7 @@ const objectOptions = {
  * ObjectTypes
  * 
  * This component is responsible for the "Object Types" section of the 
- * generated Reference.  It pulls the Object Type objects from an adaptor
+ * generated Reference.  It pulls the Object Type objects from an adapter
  * and creates tables for Object Types and Property Types, which allows the 
  * user to explore the hierarchy, diagrams, data types, descriptions, and 
  * other constraints.
@@ -43,11 +43,11 @@ export const ObjectTypes = () => {
     const [objectTypesHash, setObjectTypesHash] = useState();
     const match = useRouteMatch();
 
-    const {adaptorId} = match.params;
-    const {adaptors} = useAppCore();
+    const {adapterId} = match.params;
+    const {adapters} = useAppCore();
 
     const {objects: objectTypeObjects, isLoading} = useRetrieveObjects({ 
-        adaptorId, 
+        adapterId, 
         objectTypeId, 
         objectOptions
     });
@@ -78,25 +78,25 @@ export const ObjectTypes = () => {
                 return (
                     <>            
                         <Message 
-                            message="Adaptors provide Object Type and Property Type definitions, used to create Adaptive Object instances from.  Select an adaptor
+                            message="Adapters provide Object Type and Property Type definitions, used to create Adaptive Object instances from.  Select an adapter
                             to view the Object Type references."
                         />
                         <div style={{ height: theme.spacing(4) }} />
                         <Table 
                             columns={[
                                 {
-                                    key: "Adaptor",
-                                    name: "Adaptor",
+                                    key: "Adapter",
+                                    name: "Adapter",
                                     minWidth: 100,
                                     maxWidth: 200,
                                     isResizable: true,
                                     style: { wordWrap: "break-word" },
-                                    onRender: (adaptor) => {
-                                        const adaptorId = adaptor.adaptorId;
+                                    onRender: (adapter) => {
+                                        const adapterId = adapter.adapterId;
                                         return (
                                             <Link 
-                                                url={"/Documentation/Reference/Schema/" + encodeURIComponent(adaptorId)}
-                                                text={adaptorId}
+                                                url={"/Documentation/Reference/Schema/" + encodeURIComponent(adapterId)}
+                                                text={adapterId}
                                             />
                                         );
                                     }
@@ -109,20 +109,20 @@ export const ObjectTypes = () => {
                                     isResizable: true,      
                                     isMultiline: true,            
                                     style: { wordWrap: "break-word" },                        
-                                    onRender: (adaptor) => {
-                                        return (adaptor.properties.description);
+                                    onRender: (adapter) => {
+                                        return (adapter.properties.description);
                                     }
                                 }
                             ]}
-                            rows={adaptors}
+                            rows={adapters}
                             selectionMode="none"                                    
                         />
                     </>
                 ); 
             }} />
-            <Route exact path="/Documentation/Reference/Schema/:adaptorId" render={() => {
+            <Route exact path="/Documentation/Reference/Schema/:adapterId" render={() => {
 
-                if (!adaptorId || !objectTypeObjects || !objectTypesHash)
+                if (!adapterId || !objectTypeObjects || !objectTypesHash)
                     return null;
                 
                 return (
@@ -147,7 +147,7 @@ export const ObjectTypes = () => {
                                                     onRender: (item) => {
                                                         return (
                                                             <Link 
-                                                                url={"/Documentation/Reference/Schema/" + encodeURIComponent(adaptorId) + "/" + encodeURIComponent(item.objectType)} 
+                                                                url={"/Documentation/Reference/Schema/" + encodeURIComponent(adapterId) + "/" + encodeURIComponent(item.objectType)} 
                                                                 text={item.objectType} 
                                                             />
                                                         );
@@ -185,7 +185,7 @@ export const ObjectTypes = () => {
                                 style: {height: "100%"},
                                 contains: 
                                     <SchemaDiagram 
-                                        adaptorId={adaptorId}
+                                        adapterId={adapterId}
                                         objectTypeObjects={objectTypesHash}                                            
                                     />
                                     
@@ -194,7 +194,7 @@ export const ObjectTypes = () => {
                                 text: "API",
                                 contains:
                                     <SchemaApi 
-                                        adaptorId={adaptorId}
+                                        adapterId={adapterId}
                                         objectTypeObjects={objectTypesHash}
                                     />
                             }
@@ -202,18 +202,18 @@ export const ObjectTypes = () => {
                     />
                 );
             }} />
-            <Route exact path="/Documentation/Reference/Schema/:adaptorId/:objectType" render={(props) => {
+            <Route exact path="/Documentation/Reference/Schema/:adapterId/:objectType" render={(props) => {
                 const objectType = decodeURIComponent(props.match.params["objectType"]);
-                const adaptorId = decodeURIComponent(props.match.params["adaptorId"]);                 
+                const adapterId = decodeURIComponent(props.match.params["adapterId"]);                 
 
-                if (!adaptorId || !objectTypeObjects)
+                if (!adapterId || !objectTypeObjects)
                     return null;
 
                 for (const objectTypeObject of objectTypeObjects) {
                     if (objectTypeObject.getObjectId() === objectType) {
                         return (
                             <ObjectType 
-                                adaptorId={adaptorId}
+                                adapterId={adapterId}
                                 objectTypeObjects={objectTypeObjects}
                                 objectTypeObject={objectTypeObject}
                             />
@@ -224,12 +224,12 @@ export const ObjectTypes = () => {
                 return <Typography text={"Object Type " + objectType + " not found."} />;
 
             }} />
-            <Route exact path="/Documentation/Reference/Schema/:adaptorId/:objectType/:propertyName" render={(props) => {
+            <Route exact path="/Documentation/Reference/Schema/:adapterId/:objectType/:propertyName" render={(props) => {
                 const objectType = decodeURIComponent(props.match.params.objectType);
-                const adaptorId = decodeURIComponent(props.match.params.adaptorId);
+                const adapterId = decodeURIComponent(props.match.params.adapterId);
                 const propertyName = decodeURIComponent(props.match.params.propertyName);                   
 
-                if (!adaptorId || !objectTypeObjects || !propertyName)
+                if (!adapterId || !objectTypeObjects || !propertyName)
                     return null;
 
                 for (let objectTypeObject of objectTypeObjects) {
@@ -238,7 +238,7 @@ export const ObjectTypes = () => {
                         if (propertyTypes && propertyTypes.getPropertyValue(propertyName)) {
                             return (
                                 <PropertyType 
-                                    adaptorId={adaptorId}
+                                    adapterId={adapterId}
                                     objectTypeObject={objectTypeObject}
                                     propertyName={propertyName}
                                     propertyType={propertyTypes.getPropertyValue(propertyName)}

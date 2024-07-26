@@ -2,35 +2,35 @@
 <doc>
     <title>Provisioning</title>
     <paragraph>
-        When Adaptive Objects are committed to an adaptor store, a record of 
+        When Adaptive Objects are committed to an adapter store, a record of 
         the event, may optionally be recorded by a <literal>Journal 
-        Adaptor</literal> in order to maintain a chronological ordering of 
+        Adapter</literal> in order to maintain a chronological ordering of 
         events, which may be used to notify external clients. 
         <literal>Provisioning</literal> describes the process by which Adaptive 
-        Objects may be synchronized between an adaptor and one or more clients, 
+        Objects may be synchronized between an adapter and one or more clients, 
         or <literal>Provisioning Peers</literal>.
     </paragraph>  
     <section>
         <title>Journal</title>
         <paragraph>
-            Any adaptor may be configured with an optional 
-            <literal>journalAdaptorId</literal>, which references an adaptor 
+            Any adapter may be configured with an optional 
+            <literal>journalAdapterId</literal>, which references an adapter 
             that supports the Journaling of object events. When an object is
-            modified through the adaptor interface methods (add, delete, modify,
+            modified through the adapter interface methods (add, delete, modify,
             replace, update), a <literal>Journal Entry</literal> of the event is 
-            created and sent to the provided Journal Adaptor. This Journal
+            created and sent to the provided Journal Adapter. This Journal
             Entry contains information about the event, including the Request
             and Source information about the entry. The Journal Entry is added
             to an event queue, and each entry is referenced by a 
             <literal>Journal Cursor</literal>. Cursors are used to uniquely 
             identify an Journal Entry and entries may be fetched from the queue 
             in chronological order, using these chain of cursors. The cursors
-            may be used by both the Provisioning Peer and Journal Adaptor to
+            may be used by both the Provisioning Peer and Journal Adapter to
             replay a series of events that have occurred from any range within
             the Journal.
         </paragraph>
         <paragraph>
-            A Journal Entry is produced for the Journal Adaptor, by a single 
+            A Journal Entry is produced for the Journal Adapter, by a single 
             Provisioning Peer. The Journal Entry may then be consumed by one or 
             more Provisioning Peers. The Journal Interface routines provide all
             of the necessary functions to provision in and out of the Journal.
@@ -41,8 +41,8 @@
             A <literal>Producer</literal> is anything that produces an event 
             that will be journaled. In the following diagram, we illustrate how
             a Provisioning Peer may produce an event simply by calling the
-            <literal>add_object()</literal> routine to an adaptor. The adaptor, 
-            in turn, is configured with a Journal Adaptor, which knows to take
+            <literal>add_object()</literal> routine to an adapter. The adapter, 
+            in turn, is configured with a Journal Adapter, which knows to take
             the object and add it to its queue of Journal Entries.
         </paragraph>           
         <image 
@@ -53,7 +53,7 @@
         <paragraph>
             By contrast, an <literal>Consumer</literal> is a client that 
             consumes events from the Journal. These clients interact directly 
-            with the Journal Adaptor itself by calling Journal routines that 
+            with the Journal Adapter itself by calling Journal routines that 
             can fetch the first event, or an event after a positional cursor. 
             When consumed, the event is removed from the Journal through a 
             request to mark it consumed.

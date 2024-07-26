@@ -16,7 +16,7 @@ class HttpRequest(object):
             'actions': []
         }
         
-        self._payload['adaptorId'] = self._session._config_vars.get('adaptorId')
+        self._payload['adapterId'] = self._session._config_vars.get('adapterId')
         
 
     def perform(self):
@@ -30,7 +30,7 @@ class HttpRequest(object):
         execute by the server.  It looks like:
 
         {
-            "adaptorId": <adaptorId>,
+            "adapterId": <adapterId>,
             "actions": [
                 {
                     "function": <function_to_execute>,
@@ -108,7 +108,7 @@ class LocalRequest(object):
             'actions': []
         }
         
-        self._payload['adaptorId'] = self._session._config_vars.get('adaptorId')
+        self._payload['adapterId'] = self._session._config_vars.get('adapterId')
         
 
     def perform(self):        

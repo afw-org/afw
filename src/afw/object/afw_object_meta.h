@@ -473,7 +473,7 @@ afw_object_meta_set_empty(
 /**
  * @brief Set object's ids.
  * @param instance of object.
- * @param adaptor_id
+ * @param adapter_id
  * @param object_type_id
  * @param object_id
  * @param xctx of caller.
@@ -485,7 +485,7 @@ afw_object_meta_set_empty(
 AFW_DECLARE(void)
 afw_object_meta_set_ids(
     const afw_object_t *instance,
-    const afw_utf8_t *adaptor_id,
+    const afw_utf8_t *adapter_id,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
     afw_xctx_t *xctx);

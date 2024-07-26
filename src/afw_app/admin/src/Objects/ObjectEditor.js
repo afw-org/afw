@@ -42,13 +42,13 @@ const ObjectEditor = ({ onNextObject, onPreviousObject, onSelectObject }) => {
     const [objectDifferences, setObjectDifferences] = useState();
     const [showObjectDifferencesModal, setShowObjectDifferencesModal] = useState(false);
     const [editMode, setEditMode] = useState();
-    const [adaptorId, setAdaptorId] = useState();
+    const [adapterId, setAdapterId] = useState();
     const [objectTypeId, setObjectTypeId] = useState();
     const [objectId, setObjectId] = useState();
     const [isProcessing, setIsProcessing] = useState();
     const [embeddedObject, setEmbeddedObject] = useState();
     
-    const {object, isLoading, error, savable} = useGetObject({ adaptorId, objectTypeId, objectId, objectOptions });
+    const {object, isLoading, error, savable} = useGetObject({ adapterId, objectTypeId, objectId, objectOptions });
     const {notification} = useApplication();
     const match = useRouteMatch();
     const location = useLocation();
@@ -58,15 +58,15 @@ const ObjectEditor = ({ onNextObject, onPreviousObject, onSelectObject }) => {
 
     useEffect(() => {
         if (match.params) {
-            const {adaptorId, objectTypeId, objectId} = match.params;
+            const {adapterId, objectTypeId, objectId} = match.params;
 
-            setAdaptorId( decodeURIComponent(adaptorId) );
+            setAdapterId( decodeURIComponent(adapterId) );
             setObjectTypeId( decodeURIComponent(objectTypeId) );
             setObjectId( decodeURIComponent(objectId) );
 
             if (!match.isExact) {
                 /* we must have requested an embeddedObject */
-                const embeddedObject = location.pathname.split("/" + adaptorId + "/" + objectTypeId + "/" + objectId + "/")[1];
+                const embeddedObject = location.pathname.split("/" + adapterId + "/" + objectTypeId + "/" + objectId + "/")[1];
                 setEmbeddedObject(embeddedObject.split("/"));
             } else {
                 setEmbeddedObject();
@@ -138,7 +138,7 @@ const ObjectEditor = ({ onNextObject, onPreviousObject, onSelectObject }) => {
     /*
      * onReplace()
      *
-     * The replace() operation allows the user to ignore the object state in the current adaptor and go ahead
+     * The replace() operation allows the user to ignore the object state in the current adapter and go ahead
      * and replace its contents with the contents of the current object.
      */
     const onReplace = useCallback( async () => {
@@ -168,7 +168,7 @@ const ObjectEditor = ({ onNextObject, onPreviousObject, onSelectObject }) => {
      * onReconcile()
      *
      * The reconcile() operation allows the user to leverage the reconcilable metadata and save changes back out
-     * to the adaptor.  If the object has been updated since it was last retrieved, it undergoes a reconcile process
+     * to the adapter.  If the object has been updated since it was last retrieved, it undergoes a reconcile process
      * to attempt to merge our changes back in with the others.
      */
     const onReconcile = useCallback( async () => {
@@ -348,7 +348,7 @@ const ObjectEditor = ({ onNextObject, onPreviousObject, onSelectObject }) => {
             <Prompt
                 when={(savable || sourceChanged) ? true : false}
                 message={location => 
-                    location.pathname.startsWith("/Objects/" + adaptorId + "/" + objectTypeId + "/" + objectId) ? true : 
+                    location.pathname.startsWith("/Objects/" + adapterId + "/" + objectTypeId + "/" + objectId) ? true : 
                         "This Object has unsaved changes.  Are you sure you want to leave?" }
             />            
         </>

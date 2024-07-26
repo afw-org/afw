@@ -115,10 +115,10 @@ Examples
     cd ~/mypackage
     afwdev make-extension myextension
 
-3) Add an adaptor type with id "myadaptor" to "myextension":
+3) Add an adapter type with id "myadapter" to "myextension":
 
     cd ~/mypackage
-    afwdev add-adaptor-type myadaptor --srcdir myextension
+    afwdev add-adapter-type myadapter --srcdir myextension
 
 4) Make command "mycommand" srcdir in "mypackage":
 
@@ -307,18 +307,18 @@ _info_srcdir_pattern = {
 }
 
 
-# subcommand add-adaptor-type
+# subcommand add-adapter-type
 
-_info_add_adaptor_type = {
-    "subcommand": "add-adaptor-type",
-    "help": "Add a new adaptor type",
+_info_add_adapter_type = {
+    "subcommand": "add-adapter-type",
+    "help": "Add a new adapter type",
     "description":  \
-        "This will add skeletons for the basic interfaces afw_adaptor_factory, "
-        "afw_adaptor, and "
-        "afw_adaptor_session for a new adaptor type to an existing srcdir. "
-        "The implementation_id specified will be the adaptor type. " 
+        "This will add skeletons for the basic interfaces afw_adapter_factory, "
+        "afw_adapter, and "
+        "afw_adapter_session for a new adapter type to an existing srcdir. "
+        "The implementation_id specified will be the adapter type. " 
         "If additional interfaces are needed, use subcommand add-core-interface.",
-    "thing": "adaptor type",
+    "thing": "adapter type",
     "args": [
         _info_implementation_id,
         _info_srcdir,
@@ -1010,7 +1010,7 @@ be used.
 
 # List of all subcommand infos in order displayed in --help
 _subcommand_infos = [
-    _info_add_adaptor_type,
+    _info_add_adapter_type,
     _info_add_content_type,
     _info_add_core_interface,
     _info_add_log_type,
@@ -1202,41 +1202,41 @@ def _generate_register(options, registry_type, registry_key, registry_value):
 
 
 ##
-# @brief Subcommand add-adaptor-type
+# @brief Subcommand add-adapter-type
 # @param args The command line arguments
 # @param options The options dictionary
 #
-def _subcommand_add_adaptor_type(args, options):
+def _subcommand_add_adapter_type(args, options):
     package.set_options_from_existing_package_srcdir(options, options['srcdir'])
-    msg.highlighted_info("Adding adaptor type " + options['implementation_id'] + ' using prefix ' + options['prefix'] + ' to ' + options['srcdir_path'], empty_before=True)
+    msg.highlighted_info("Adding adapter type " + options['implementation_id'] + ' using prefix ' + options['prefix'] + ' to ' + options['srcdir_path'], empty_before=True)
     options['added_files'] = []
     options['registry_key'] = options['implementation_id']
 
-    options['interface_name'] = 'afw_adaptor_factory'
+    options['interface_name'] = 'afw_adapter_factory'
     _add_interface(options)
 
-    options['interface_name'] = 'afw_adaptor'
+    options['interface_name'] = 'afw_adapter'
     _add_interface(options)
 
-    options['interface_name'] = 'afw_adaptor_session'
+    options['interface_name'] = 'afw_adapter_session'
     _add_interface(options)
 
-    msg.info('Adding generate/objects/_AdaptiveObjectType_/_AdaptiveConf_adaptor_' + options['implementation_id'] + '.json')
-    skeleton = resources.load_skeleton(options, '_AdaptiveConf_adaptor.json', substitution=True)
+    msg.info('Adding generate/objects/_AdaptiveObjectType_/_AdaptiveConf_adapter_' + options['implementation_id'] + '.json')
+    skeleton = resources.load_skeleton(options, '_AdaptiveConf_adapter.json', substitution=True)
     dir_path = options['srcdir_path'] + 'generate/objects/_AdaptiveObjectType_/'
     os.makedirs(dir_path, exist_ok=True)
-    with nfc.open(dir_path + '_AdaptiveConf_adaptor_' + options['implementation_id'] + '.json', mode='w') as fd:
+    with nfc.open(dir_path + '_AdaptiveConf_adapter_' + options['implementation_id'] + '.json', mode='w') as fd:
         fd.write(skeleton)
 
-    _generate_register(options, 'adaptor_type', options['implementation_id'], '&' + options['prefix'] + 'adaptor_factory' )
+    _generate_register(options, 'adapter_type', options['implementation_id'], '&' + options['prefix'] + 'adapter_factory' )
   
-    # Generate new adaptor type and primary
+    # Generate new adapter type and primary
     msg.info("Generating " + options['srcdir'])
     _call_generated_generate(options)
     _generate_primary(options)
 
     # Success
-    msg.success('Skeleton adaptor type '  + options['implementation_id'] + ' added to ' + options['srcdir_relpath'] + '.')
+    msg.success('Skeleton adapter type '  + options['implementation_id'] + ' added to ' + options['srcdir_relpath'] + '.')
     _msg_added_files(options)
 
 ##

@@ -27,7 +27,7 @@ export const ObjectResponsivePropertyOther = (props) => {
     const [name, setName] = useState();    
     const theme = useTheme();
 
-    const {open, adaptorId, propertyType, onDismiss, onSave} = props;    
+    const {open, adapterId, propertyType, onDismiss, onSave} = props;    
     
     useEffect(() => {
         if (open) {
@@ -87,7 +87,7 @@ export const ObjectResponsivePropertyOther = (props) => {
                                 <div style={{ height: theme.spacing(2) }} />
                                 <ObjectTypeDropdown 
                                     id="NewPropertyObjectTypeDropdown"
-                                    adaptorId={adaptorId}
+                                    adapterId={adapterId}
                                     label="Object Type"
                                     description="Select an Object Type to describe this object."                                
                                     value={dataTypeParameter}

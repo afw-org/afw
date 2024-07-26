@@ -9,8 +9,8 @@ if [ ! -e /afw/afw.conf ]; then
 
   cp -r .devcontainer/afw/* /afw
 
-  # change the directory path for the 'dev' adaptor
-  sed -i "s/\/workspace/$workspaceRootPattern/" /afw/config/_AdaptiveServiceConf_/adaptor-dev.json 
+  # change the directory path for the 'dev' adapter
+  sed -i "s/\/workspace/$workspaceRootPattern/" /afw/config/_AdaptiveServiceConf_/adapter-dev.json 
 fi
 
 # If user persisted any custom container instructions, run them here

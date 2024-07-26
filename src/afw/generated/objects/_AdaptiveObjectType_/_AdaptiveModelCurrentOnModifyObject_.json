@@ -5,31 +5,31 @@
     "description": "Qualifier current:: for model onModifyObject.",
     "objectType": "_AdaptiveModelCurrentOnModifyObject_",
     "propertyTypes": {
-        "adaptorId": {
-            "brief": "Adaptor Id",
+        "adapterId": {
+            "brief": "Adapter Id",
             "dataType": "string",
-            "description": "The adaptor id of the object being converted to mapped object.",
-            "label": "Adaptor Id",
+            "description": "The adapter id of the object being converted to mapped object.",
+            "label": "Adapter Id",
             "runtime": {
-                "onGetValueCFunctionName": "afw_model_internal_get_current_adaptorId"
+                "onGetValueCFunctionName": "afw_model_internal_get_current_adapterId"
             }
         },
-        "adaptorTypeSpecific": {
-            "brief": "Adaptor specific",
+        "adapterTypeSpecific": {
+            "brief": "Adapter specific",
             "dataType": "object",
-            "description": "This is the adaptorTypeSpecific parameter value.",
-            "label": "Adaptor Specific",
+            "description": "This is the adapterTypeSpecific parameter value.",
+            "label": "Adapter Specific",
             "runtime": {
-                "onGetValueCFunctionName": "afw_model_internal_get_current_adaptorTypeSpecific"
+                "onGetValueCFunctionName": "afw_model_internal_get_current_adapterTypeSpecific"
             }
         },
-        "mappedAdaptorId": {
-            "brief": "Mapped Adaptor Id",
+        "mappedAdapterId": {
+            "brief": "Mapped Adapter Id",
             "dataType": "string",
-            "description": "The adaptor id of the object being converted to object.",
-            "label": "Mapped Adaptor Id",
+            "description": "The adapter id of the object being converted to object.",
+            "label": "Mapped Adapter Id",
             "runtime": {
-                "onGetValueCFunctionName": "afw_model_internal_get_current_mappedAdaptorId"
+                "onGetValueCFunctionName": "afw_model_internal_get_current_mappedAdapterId"
             }
         },
         "mappedObjectType": {

@@ -27,8 +27,8 @@ return 0;
 //? expect: 0
 //? source: ...
 
-let service: object = service_get("adaptor-afw");
+let service: object = service_get("adapter-afw");
 
-assert(service.serviceId === "adaptor-afw", "serviceId should be 'adaptor-afw'");
+assert(service.serviceId === "adapter-afw", "serviceId should be 'adapter-afw'");
 
 return 0;

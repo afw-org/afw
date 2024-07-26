@@ -27,15 +27,15 @@
 
 AFW_BEGIN_DECLARES
 
-typedef struct afw_file_internal_adaptor_s
-afw_file_internal_adaptor_t;
+typedef struct afw_file_internal_adapter_s
+afw_file_internal_adapter_t;
 
-typedef struct afw_file_internal_adaptor_session_s
-afw_file_internal_adaptor_session_t;
+typedef struct afw_file_internal_adapter_session_s
+afw_file_internal_adapter_session_t;
 
-/* afw_adaptor self. */
-struct afw_file_internal_adaptor_s {
-    afw_adaptor_t pub;
+/* afw_adapter self. */
+struct afw_file_internal_adapter_s {
+    afw_adapter_t pub;
     const afw_content_type_t *content_type;
     const afw_utf8_t *root;
     const afw_utf8_t *filename_suffix;
@@ -44,14 +44,14 @@ struct afw_file_internal_adaptor_s {
 };
 
 
-/* afw_adaptor_session self. */
-struct afw_file_internal_adaptor_session_s {
-    afw_adaptor_session_t pub;
-    afw_file_internal_adaptor_t *adaptor;
-    afw_adaptor_journal_t journal;
+/* afw_adapter_session self. */
+struct afw_file_internal_adapter_session_s {
+    afw_adapter_session_t pub;
+    afw_file_internal_adapter_t *adapter;
+    afw_adapter_journal_t journal;
 };
 
-const afw_adaptor_journal_inf_t * afw_file_internal_get_journal_inf();
+const afw_adapter_journal_inf_t * afw_file_internal_get_journal_inf();
 
 AFW_END_DECLARES
 

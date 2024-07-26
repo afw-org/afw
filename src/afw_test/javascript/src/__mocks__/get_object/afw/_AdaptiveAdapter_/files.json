@@ -1,0 +1,40 @@
+{
+    "result": {
+        "_meta_": {
+            "path": "/afw/_AdaptiveAdapter_/files",
+            "objectId": "files",
+            "objectType": "_AdaptiveAdapter_"
+        },
+        "serviceId": "adapter-files",
+        "referenceCount": 1,
+        "properties": {
+            "_meta_": {
+                "path": "/afw/_AdaptiveConf_adapter_file/files",
+                "objectType": "_AdaptiveConf_adapter_file"
+            },
+            "type": "adapter",
+            "adapterType": "file",
+            "root": "/afw/files/",
+            "contentType": "json",
+            "filenameSuffix": ".json",
+            "description": "Stores objects in files.",
+            "isDevelopmentInput": true,
+            "adapterId": "files",
+            "sourceLocation": "/conf/_AdaptiveServiceConf_/adapter-files/conf"
+        },
+        "metrics": {
+            "_meta_": {
+                "objectType": "_AdaptiveAdapterMetrics_"
+            },
+            "updateObjectCount": 0,
+            "retrieveObjectsCount": 0,
+            "replaceObjectCount": 0,
+            "modifyObjectCount": 0,
+            "getObjectCount": 0,
+            "deleteObjectCount": 0,
+            "addObjectCount": 0
+        },
+        "adapterId": "files"
+    },
+    "status": "success"
+}

@@ -201,7 +201,7 @@ const PropertyMetadata = ({ open, property, onDismiss }) => {
         const fetchMeta = async() => {
             const metadata = model.newObject({
                 model,
-                adaptorId: property.getEmbeddingObject().getAdaptorId(),
+                adapterId: property.getEmbeddingObject().getAdapterId(),
                 objectTypeId: "_AdaptiveValueMeta_",
                 object: property.getMeta()
             });
@@ -848,7 +848,7 @@ const ObjectEditorLayout = (props, ref) => {
         const setInitialLayoutParameters = async () => {
 
             const layoutParameters = model.newObject({
-                adaptorId: "afw",
+                adapterId: "afw",
                 objectTypeId: "_AdaptiveLayout_ObjectResponsive",
                 object: defaultLayoutParameters(false, addMode, isMobile)
             });
@@ -862,7 +862,7 @@ const ObjectEditorLayout = (props, ref) => {
         const setInitialEditLayoutParameters = async () => {
 
             const editLayoutParameters = model.newObject({
-                adaptorId: "afw",
+                adapterId: "afw",
                 objectTypeId: "_AdaptiveLayout_ObjectResponsive",
                 object: defaultLayoutParameters(true, addMode, isMobile)
             });

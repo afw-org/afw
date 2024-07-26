@@ -347,7 +347,7 @@ export const ModelPropertyTypesTable = (props) => {
 
     const {objectTypeObject, propertyTypes, model} = props;
     const modelId = model.getPropertyValue("modelId");
-    const adaptorId = props.adaptorId;
+    const adapterId = props.adapterId;
     const objectType = props.objectType;
 
     const changed = useEventId({ object: objectTypeObject, eventId: "onChildChanged" });
@@ -480,7 +480,7 @@ export const ModelPropertyTypesTable = (props) => {
                             return (
                                 <Link      
                                     uriComponents={[
-                                        "Admin", "Models", adaptorId, modelId, "objectTypes", 
+                                        "Admin", "Models", adapterId, modelId, "objectTypes", 
                                         objectType, "propertyTypes", propertyType, hash
                                     ]}                             
                                     text={propertyType}

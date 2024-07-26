@@ -20,24 +20,24 @@ import {ContextualHelpRoutes} from "./ContextualHelp";
  *
  * Main component for routing Schema parts of the App.  It 
  * parses the React Router pathname and generates the Breadcrumb
- * items, then displays a Table of adaptors to select from.  Object 
+ * items, then displays a Table of adapters to select from.  Object 
  * Type requests are routed to ObjectTypes component.
  */
 const Schema = () => {
 
     const [breadcrumbItems, setBreadcrumbItems] = useState([]);
     const [showHelp, setShowHelp] = useState(false);
-    const [adaptorId, setAdaptorId] = useState();
-    const [adaptor, setAdaptor] = useState();
+    const [adapterId, setAdapterId] = useState();
+    const [adapter, setAdapter] = useState();
     const [error, setError] = useState();
 
     const theme = useTheme();
     const {pathname} = useLocation();
-    const {adaptors} = useAppCore();
+    const {adapters} = useAppCore();
 
     /* parse the pathname and break it into Breadcrumbs */
     useEffect(() => {
-        let [, adaptorId, objectType, propertyType] = pathname.split("/").splice(2); // eslint-disable-line
+        let [, adapterId, objectType, propertyType] = pathname.split("/").splice(2); // eslint-disable-line
 
         let breadcrumbItems = [
             { text: "Admin", key: "Admin", link: "/Admin" },
@@ -45,42 +45,42 @@ const Schema = () => {
         ];
 
         /* construct our breadcrumb trail from the matching path */
-        if (adaptorId)
+        if (adapterId)
             breadcrumbItems.push({ 
-                text: adaptorId, key: adaptorId, 
-                link: "/Admin/Schema/" + adaptorId 
+                text: adapterId, key: adapterId, 
+                link: "/Admin/Schema/" + adapterId 
             });
 
         if (objectType) 
             breadcrumbItems.push({ 
                 text: objectType, key: objectType, 
-                link: "/Admin/Schema/" + adaptorId + "/" + objectType 
+                link: "/Admin/Schema/" + adapterId + "/" + objectType 
             });
 
         if (propertyType) 
             breadcrumbItems.push({ 
                 text: propertyType, key: propertyType, 
-                link: "/Admin/Schema/" + adaptorId + "/" + objectType + "/" + propertyType
+                link: "/Admin/Schema/" + adapterId + "/" + objectType + "/" + propertyType
             });
 
-        setAdaptorId(adaptorId);
+        setAdapterId(adapterId);
         setBreadcrumbItems(breadcrumbItems);
     }, [pathname]);
 
     useEffect(() => {
-        if (adaptors && adaptorId) {
+        if (adapters && adapterId) {
             let found = false;
-            adaptors.forEach(a => {
-                if (a.adaptorId === adaptorId) {
-                    setAdaptor(a);
+            adapters.forEach(a => {
+                if (a.adapterId === adapterId) {
+                    setAdapter(a);
                     found = true;
                 }
             });
 
             if (!found)
-                setError("AdaptorId not found");
+                setError("AdapterId not found");
         }
-    }, [adaptorId, adaptors]);
+    }, [adapterId, adapters]);
 
     /* Report any errors */
     if (error) {
@@ -101,18 +101,18 @@ const Schema = () => {
                 <Switch>
                     <Route exact path="/Admin/Schema/" render={() => 
                         <Table 
-                            rows={adaptors ? adaptors : []}
+                            rows={adapters ? adapters : []}
                             columns={[
                                 {
-                                    key: "adaptorId", 
-                                    name: "Adaptor Id", 
+                                    key: "adapterId", 
+                                    name: "Adapter Id", 
                                     minWidth: 100, 
                                     maxWidth: 200,
                                     isResizable: true,
                                     width: "20%", 
-                                    onRender: adaptor => {
-                                        const adaptorId = adaptor.adaptorId;
-                                        return <Link text={adaptorId} uriComponents={["Admin", "Schema", adaptorId]} />;
+                                    onRender: adapter => {
+                                        const adapterId = adapter.adapterId;
+                                        return <Link text={adapterId} uriComponents={["Admin", "Schema", adapterId]} />;
                                     
                                     }
                                 },
@@ -124,19 +124,19 @@ const Schema = () => {
                                     minWidth: 100, 
                                     maxWidth: 400,
                                     width: "80%", 
-                                    onRender: adaptor => adaptor.properties.description
+                                    onRender: adapter => adapter.properties.description
                                 }
                             ]}
                             selectionMode="none"
                         />
                     } />
 
-                    <Route path="/Admin/Schema/:adaptorId" render={() => {
-                        if (adaptorId && adaptor) {
+                    <Route path="/Admin/Schema/:adapterId" render={() => {
+                        if (adapterId && adapter) {
                             return (
                                 <ObjectTypes 
-                                    adaptorId={adaptorId}
-                                    adaptor={adaptor}                            
+                                    adapterId={adapterId}
+                                    adapter={adapter}                            
                                 />
                             );
                         } else return null;

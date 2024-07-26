@@ -77,9 +77,9 @@ let generalSearchTopics = [
     },
     {
         category: "General",
-        text: "Adaptors",
-        url: "/Admin/Adaptors",
-        description: "View or Edit Adaptor Services."    
+        text: "Adapters",
+        url: "/Admin/Adapters",
+        description: "View or Edit Adapter Services."    
     },
     {
         category: "General",
@@ -414,7 +414,7 @@ const AppSearch = () => {
 
                 return ({
                     text: objectTypeId,
-                    url: "/Documentation/Reference/Schema/" + objectTypeObject.getAdaptorId() + "/" + objectTypeId,
+                    url: "/Documentation/Reference/Schema/" + objectTypeObject.getAdapterId() + "/" + objectTypeId,
                     description: "Reference manual for Object Type " + objectTypeId
                 });
             });

@@ -52,7 +52,7 @@ const StatusSection = ({ route, title, content }) => {
 
 const Status = () => {
 
-    const {application, extensions, adaptors, services, logs} = useAppCore();
+    const {application, extensions, adapters, services, logs} = useAppCore();
     const {server} = useServer();
     const {systemInfo} = useSystemInfo();
     const history = useHistory();
@@ -335,13 +335,13 @@ const Status = () => {
                                         <div
                                             role="button"
                                             tabIndex="0"
-                                            onKeyPress={() => history.push("/Admin/Adaptors")}
-                                            onClick={() => history.push("/Admin/Adaptors")}
+                                            onKeyPress={() => history.push("/Admin/Adapters")}
+                                            onClick={() => history.push("/Admin/Adapters")}
                                             style={{ display: "flex", justifyContent: "space-between", minWidth: "150px", cursor: "pointer" }}
                                         >
                                             <div>
-                                                <Typography color="primary" size="9" text={adaptors ? adaptors.length : ""} />
-                                                <Typography color="primary" size="6" text="Adaptors" />
+                                                <Typography color="primary" size="9" text={adapters ? adapters.length : ""} />
+                                                <Typography color="primary" size="6" text="Adapters" />
                                             </div>
                                             <div>
                                                 <Database color="primary" />
@@ -350,11 +350,11 @@ const Status = () => {
                                         <Divider />
                                         <div style={{ height: "350px", overflow: "auto" }}>
                                             {
-                                                adaptors && adaptors.map(adaptor =>
-                                                    <div key={adaptor.adaptorId} style={{ padding:  theme.spacing(0.5) }}>
+                                                adapters && adapters.map(adapter =>
+                                                    <div key={adapter.adapterId} style={{ padding:  theme.spacing(0.5) }}>
                                                         <Link
-                                                            text={adaptor.adaptorId}
-                                                            url={"/Admin/Adaptors/" + adaptor.adaptorId}
+                                                            text={adapter.adapterId}
+                                                            url={"/Admin/Adapters/" + adapter.adapterId}
                                                         />
                                                     </div>
                                                 )
@@ -364,8 +364,8 @@ const Status = () => {
                                         <Button 
                                             color="primary"
                                             variant="text" 
-                                            label="Adaptors" 
-                                            onClick={() => history.push("/Admin/Adaptors")} 
+                                            label="Adapters" 
+                                            onClick={() => history.push("/Admin/Adapters")} 
                                             endIcon="chevron_right"
                                         />
                                     </div>

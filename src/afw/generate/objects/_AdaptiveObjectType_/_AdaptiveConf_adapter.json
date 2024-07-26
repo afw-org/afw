@@ -1,0 +1,53 @@
+{
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Framework configuration component for type=adapter. This object type is the parent of an _AdaptiveObjectType_ that contains adapterType specific properties.",
+    "objectType": "_AdaptiveConf_adapter",
+    "propertyTypes": {
+        "_meta_": {
+            "label": " Meta ",
+            "parentPaths": [
+                "/afw/_AdaptiveObjectType_/_AdaptiveConf_/propertyTypes"
+            ]
+        },
+        "adapterId": {
+            "allowQuery": true,
+            "brief": "Adapter id",
+            "dataType": "string",
+            "description": "A unique identifier for this adapter instance.",
+            "label": "Adapter"
+        },
+        "adapterType": {
+            "allowQuery": true,
+            "brief": "Adapter type",
+            "dataType": "string",
+            "description": "This specifies the type of adapter to use. The value of this field must match an adapterType that is registered by core or by an extension.",
+            "label": "Adapter Type",
+            "required": true
+        },
+        "authorizationHandlerId": {
+            "allowQuery": true,
+            "brief": "Authorization Handler Id",
+            "dataType": "string",
+            "description": "Id of authorization handler used to control access to resources in this adapter.",
+            "label": "Authorization Handler"
+        },
+        "checkIndividualObjectReadAccess": {
+            "brief": "Check individual object read access",
+            "dataType": "boolean",
+            "defaultValue": false,
+            "description": "Adapter requests to get and retrieve objects always do an action 'query' authorization check before any objects are retrieved. If this property is 'true', an additional action 'read' authorization check is made for each individual object. This is useful if the properties of an object are needed to make an authorization decision.",
+            "label": "Check Individual Object Access",
+            "required": false
+        },
+        "journalAdapterId": {
+            "allowQuery": true,
+            "brief": "The adapterId that provides journal service for this adapter",
+            "dataType": "string",
+            "description": "This is the id of an adapter that provides journal service for this adapter. This can be this adapter's own id or a previously defined adapter's id. If not specified, no journaling will be performed.",
+            "label": "Journal Adapter"
+        }
+    }
+}

@@ -387,7 +387,7 @@ const afw_value_t * afw_yaml_to_value(
 const afw_object_t * afw_yaml_to_object(
     const afw_memory_t  * yaml,
     const afw_utf8_t * source_location,
-    const afw_utf8_t * adaptor_id,
+    const afw_utf8_t * adapter_id,
     const afw_utf8_t * object_type_id,
     const afw_utf8_t * object_id,
     afw_boolean_t      cede_p,
@@ -401,7 +401,7 @@ const afw_object_t * afw_yaml_to_object(
     parser.property_name = NULL;
     parser.p = (cede_p) ? p : afw_pool_create(p, xctx);
     parser.cede_p = afw_object_path_make(
-        adaptor_id, object_type_id, object_id, parser.p, xctx); 
+        adapter_id, object_type_id, object_id, parser.p, xctx); 
    
     /* Parse and return object. */
     return afw_yaml_parse_object(&parser, xctx); 

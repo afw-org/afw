@@ -38,7 +38,7 @@ const objects = retrieve_objects("afw", "_AdaptiveObjectType_", {
     "filter": {
         "op": "gte",
         "property": "objectType",
-        "value": "_AdaptiveAdaptor_"
+        "value": "_AdaptiveAdapter_"
     }
 });
 
@@ -49,10 +49,10 @@ const found = false;
 
 // verify they all match
 for (const obj of objects) {
-    if (obj.objectType === "_AdaptiveAdaptor_")
+    if (obj.objectType === "_AdaptiveAdapter_")
         found = true;
 
-    assert(obj.objectType >= "_AdaptiveAdaptor_");
+    assert(obj.objectType >= "_AdaptiveAdapter_");
 }
 
 assert(found);

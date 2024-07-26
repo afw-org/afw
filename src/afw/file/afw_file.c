@@ -16,20 +16,20 @@
 #include <apr_strings.h>
 
 
-/* Declares and rti/inf defines for interface afw_adaptor_factory */
+/* Declares and rti/inf defines for interface afw_adapter_factory */
 #define AFW_IMPLEMENTATION_ID "file"
-#include "afw_adaptor_factory_impl_declares.h"
-#include "afw_adaptor_impl_declares.h"
-#include "afw_adaptor_session_impl_declares.h"
+#include "afw_adapter_factory_impl_declares.h"
+#include "afw_adapter_impl_declares.h"
+#include "afw_adapter_session_impl_declares.h"
 
 
 static const afw_utf8_t impl_factory_description =
-AFW_UTF8_LITERAL("Adaptor type for accessing objects contained in files.");
+AFW_UTF8_LITERAL("Adapter type for accessing objects contained in files.");
 
-/* File adaptor factory instance. */
-static const afw_adaptor_factory_t impl_adaptor_factory =
+/* File adapter factory instance. */
+static const afw_adapter_factory_t impl_adapter_factory =
 {
-    &impl_afw_adaptor_factory_inf,
+    &impl_afw_adapter_factory_inf,
     AFW_UTF8_LITERAL(AFW_IMPLEMENTATION_ID),
     &impl_factory_description
 };
@@ -256,48 +256,48 @@ AFW_DEFINE(void) afw_file_delete(
 }
 
 
-/* Get the factory for file adaptor .*/
-AFW_DEFINE(const afw_adaptor_factory_t *)
-afw_file_adaptor_factory_get()
+/* Get the factory for file adapter .*/
+AFW_DEFINE(const afw_adapter_factory_t *)
+afw_file_adapter_factory_get()
 {
-    return &impl_adaptor_factory;
+    return &impl_adapter_factory;
 }
 
 
 /*
- * Implementation of method create_adaptor_cede_p of interface afw_adaptor_factory.
+ * Implementation of method create_adapter_cede_p of interface afw_adapter_factory.
  */
-const afw_adaptor_t *
-impl_afw_adaptor_factory_create_adaptor_cede_p (
-    const afw_adaptor_factory_t * instance,
+const afw_adapter_t *
+impl_afw_adapter_factory_create_adapter_cede_p (
+    const afw_adapter_factory_t * instance,
     const afw_object_t * properties,
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
-    /* Create file adaptor. */
-    return afw_file_adaptor_create_cede_p(properties, p, xctx);
+    /* Create file adapter. */
+    return afw_file_adapter_create_cede_p(properties, p, xctx);
 }
 
 
 
-/* Create function for file adaptor. */
-AFW_DEFINE(const afw_adaptor_t *)
-afw_file_adaptor_create_cede_p(
+/* Create function for file adapter. */
+AFW_DEFINE(const afw_adapter_t *)
+afw_file_adapter_create_cede_p(
     const afw_object_t *properties,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    afw_file_internal_adaptor_t *self;
-    afw_adaptor_t *adaptor;
+    afw_file_internal_adapter_t *self;
+    afw_adapter_t *adapter;
     const afw_utf8_t *content_type;
     const afw_value_t *value;
     afw_boolean_t b;
 
-    /* Create adaptor and process common properties.  */
-    adaptor = afw_adaptor_impl_create_cede_p(
-        &impl_afw_adaptor_inf,
-        sizeof(afw_file_internal_adaptor_t),
+    /* Create adapter and process common properties.  */
+    adapter = afw_adapter_impl_create_cede_p(
+        &impl_afw_adapter_inf,
+        sizeof(afw_file_internal_adapter_t),
         properties, p, xctx);
-    self = (afw_file_internal_adaptor_t *)adaptor;
+    self = (afw_file_internal_adapter_t *)adapter;
     p = self->pub.p;
 
     /* Get content_type parameters. */
@@ -307,7 +307,7 @@ afw_file_adaptor_create_cede_p(
         xctx);
     if (!self->content_type)
     {
-        afw_adaptor_impl_throw_property_invalid(adaptor,
+        afw_adapter_impl_throw_property_invalid(adapter,
             afw_s_contentType, xctx);
     }
 
@@ -320,10 +320,10 @@ afw_file_adaptor_create_cede_p(
 
     /* Get root from parameters and make it full path. */
     value = afw_object_get_property_compile_and_evaluate_as(
-        properties,  afw_s_root, adaptor->source_location,
+        properties,  afw_s_root, adapter->source_location,
         afw_compile_type_template, p, xctx);
     if (!afw_value_is_string(value)) {
-        afw_adaptor_impl_throw_property_invalid(adaptor,
+        afw_adapter_impl_throw_property_invalid(adapter,
             afw_s_root, xctx);
     }
     self->root = afw_file_insure_full_path(
@@ -344,31 +344,31 @@ afw_file_adaptor_create_cede_p(
     b = afw_object_old_get_property_as_boolean_deprecated(properties,
         afw_s_isDevelopmentInput, xctx);
     if (b) {
-        afw_adaptor_impl_set_supported_core_object_type(adaptor,
+        afw_adapter_impl_set_supported_core_object_type(adapter,
             afw_s__AdaptiveCollection_, true, true, xctx);
-        afw_adaptor_impl_set_supported_core_object_type(adaptor,
+        afw_adapter_impl_set_supported_core_object_type(adapter,
             afw_s__AdaptiveDataTypeGenerate_, true, true, xctx);
-        afw_adaptor_impl_set_supported_core_object_type(adaptor,
+        afw_adapter_impl_set_supported_core_object_type(adapter,
             afw_s__AdaptiveManifest_, true, true, xctx);
-        afw_adaptor_impl_set_supported_core_object_type(adaptor,
+        afw_adapter_impl_set_supported_core_object_type(adapter,
             afw_s__AdaptiveFunctionGenerate_, true, true, xctx);
-        afw_adaptor_impl_set_supported_core_object_type(adaptor,
+        afw_adapter_impl_set_supported_core_object_type(adapter,
             afw_s__AdaptiveObjectType_, true, true, xctx);
-        afw_adaptor_impl_set_supported_core_object_type(adaptor,
+        afw_adapter_impl_set_supported_core_object_type(adapter,
             afw_s__AdaptiveValueMeta_, true, true, xctx);
     }
 
-    /* Return adaptor. */
-    return adaptor;
+    /* Return adapter. */
+    return adapter;
 }
 
 
 /*
- * Implementation of method destroy of interface afw_adaptor.
+ * Implementation of method destroy of interface afw_adapter.
  */
 void
-impl_afw_adaptor_destroy(
-    const afw_adaptor_t * instance,
+impl_afw_adapter_destroy(
+    const afw_adapter_t * instance,
     afw_xctx_t *xctx)
 {
     /* Release pool. */
@@ -377,42 +377,42 @@ impl_afw_adaptor_destroy(
 
 
 /*
- * Implementation of method create_adaptor_session of interface afw_adaptor.
+ * Implementation of method create_adapter_session of interface afw_adapter.
  */
-const afw_adaptor_session_t *
-impl_afw_adaptor_create_adaptor_session (
-    const afw_adaptor_t * instance,
+const afw_adapter_session_t *
+impl_afw_adapter_create_adapter_session (
+    const afw_adapter_t * instance,
     afw_xctx_t *xctx)
 {
-    afw_file_internal_adaptor_t *self = (afw_file_internal_adaptor_t *)instance;
-    afw_file_internal_adaptor_session_t *session;
+    afw_file_internal_adapter_t *self = (afw_file_internal_adapter_t *)instance;
+    afw_file_internal_adapter_session_t *session;
 
-    session = afw_xctx_calloc_type(afw_file_internal_adaptor_session_t, xctx);
-    session->pub.inf = &impl_afw_adaptor_session_inf;
-    session->pub.adaptor = (afw_adaptor_t *)self;
+    session = afw_xctx_calloc_type(afw_file_internal_adapter_session_t, xctx);
+    session->pub.inf = &impl_afw_adapter_session_inf;
+    session->pub.adapter = (afw_adapter_t *)self;
     session->pub.p = xctx->p;
-    session->adaptor = self;
+    session->adapter = self;
 
-    /* Adaptor session instance holds event journal instance. */
+    /* Adapter session instance holds event journal instance. */
     session->journal.inf = afw_file_internal_get_journal_inf();
-    session->journal.session = (afw_adaptor_session_t *)session;
+    session->journal.session = (afw_adapter_session_t *)session;
 
     /* Return session. */
-    return (const afw_adaptor_session_t *)session;
+    return (const afw_adapter_session_t *)session;
 }
 
 
 
 /*
- * Implementation of method get_additional_metrics of interface afw_adaptor.
+ * Implementation of method get_additional_metrics of interface afw_adapter.
  */
 const afw_object_t *
-impl_afw_adaptor_get_additional_metrics(
-    const afw_adaptor_t * instance,
+impl_afw_adapter_get_additional_metrics(
+    const afw_adapter_t * instance,
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
-    /* There are no adaptor specific metrics. */
+    /* There are no adapter specific metrics. */
     return NULL;
 }
 
@@ -420,26 +420,26 @@ impl_afw_adaptor_get_additional_metrics(
 /* Helper to get full path. */
 AFW_DEFINE_STATIC_INLINE(const afw_utf8_t *)
 impl_get_full_path(
-    afw_file_internal_adaptor_t *adaptor,
+    afw_file_internal_adapter_t *adapter,
     const afw_utf8_t * object_type_id,
     const afw_utf8_t * object_id,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
     return afw_utf8_printf(p, xctx,
         AFW_UTF8_FMT AFW_UTF8_FMT "/" AFW_UTF8_FMT AFW_UTF8_FMT,
-        AFW_UTF8_FMT_ARG(adaptor->root),
+        AFW_UTF8_FMT_ARG(adapter->root),
         AFW_UTF8_FMT_ARG(object_type_id),
         AFW_UTF8_FMT_ARG(object_id),
-        AFW_UTF8_FMT_ARG(adaptor->filename_suffix));
+        AFW_UTF8_FMT_ARG(adapter->filename_suffix));
 }
 
 
 /*
- * Implementation of method destroy of interface afw_adaptor_session.
+ * Implementation of method destroy of interface afw_adapter_session.
  */
 void
-impl_afw_adaptor_session_destroy(
-    const afw_adaptor_session_t * instance,
+impl_afw_adapter_session_destroy(
+    const afw_adapter_session_t * instance,
     afw_xctx_t *xctx)
 {
     /* Nothing to do. */
@@ -448,22 +448,22 @@ impl_afw_adaptor_session_destroy(
 
 /*
  * Implementation of method retrieve_objects for interface
- * afw_adaptor_session.
+ * afw_adapter_session.
  */
 void
-impl_afw_adaptor_session_retrieve_objects(
-    const afw_adaptor_session_t *instance,
-    const afw_adaptor_impl_request_t *impl_request,
+impl_afw_adapter_session_retrieve_objects(
+    const afw_adapter_session_t *instance,
+    const afw_adapter_impl_request_t *impl_request,
     const afw_utf8_t *object_type_id,
     const afw_query_criteria_t *criteria,
     void *context,
     afw_object_cb_t callback,
-    const afw_object_t *adaptor_type_specific,
+    const afw_object_t *adapter_type_specific,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    afw_file_internal_adaptor_session_t * self = (afw_file_internal_adaptor_session_t *)instance;
-    afw_file_internal_adaptor_t *adaptor = (afw_file_internal_adaptor_t *)self->adaptor;
+    afw_file_internal_adapter_session_t * self = (afw_file_internal_adapter_session_t *)instance;
+    afw_file_internal_adapter_t *adapter = (afw_file_internal_adapter_t *)self->adapter;
     const char *dirname_z;
     const afw_utf8_t *full_path;
     apr_dir_t *dir;
@@ -479,7 +479,7 @@ impl_afw_adaptor_session_retrieve_objects(
     /* Open ObjectType's directory. */
     dirname_z = apr_psprintf(afw_pool_get_apr_pool(p),
         AFW_UTF8_FMT AFW_UTF8_FMT "/",
-        AFW_UTF8_FMT_ARG(adaptor->root),
+        AFW_UTF8_FMT_ARG(adapter->root),
         AFW_UTF8_FMT_ARG(object_type_id));
     rv = apr_dir_open(&dir, dirname_z, afw_pool_get_apr_pool(p));
 
@@ -515,15 +515,15 @@ impl_afw_adaptor_session_retrieve_objects(
 
         /* Create object from corresponding file. */
         len = strlen(finfo.name);
-        if (adaptor->filename_suffix) {
-            if (len <= adaptor->filename_suffix->len ||
-                memcmp(finfo.name + (len - adaptor->filename_suffix->len),
-                    adaptor->filename_suffix->s,
-                    adaptor->filename_suffix->len) != 0)
+        if (adapter->filename_suffix) {
+            if (len <= adapter->filename_suffix->len ||
+                memcmp(finfo.name + (len - adapter->filename_suffix->len),
+                    adapter->filename_suffix->s,
+                    adapter->filename_suffix->len) != 0)
             {
                 continue;
             }
-            len -= adaptor->filename_suffix->len;
+            len -= adapter->filename_suffix->len;
         }
 
 
@@ -536,10 +536,10 @@ impl_afw_adaptor_session_retrieve_objects(
         /** @fixme: Mike filename_suffix could be NULL here */
         full_path = afw_utf8_printf(obj_p, xctx,
             AFW_UTF8_FMT AFW_UTF8_FMT "/" AFW_UTF8_FMT AFW_UTF8_FMT,
-            AFW_UTF8_FMT_ARG(adaptor->root),
+            AFW_UTF8_FMT_ARG(adapter->root),
             AFW_UTF8_FMT_ARG(object_type_id),
             AFW_UTF8_FMT_ARG(object_id),
-            AFW_UTF8_FMT_OPTIONAL_ARG(adaptor->filename_suffix));
+            AFW_UTF8_FMT_OPTIONAL_ARG(adapter->filename_suffix));
 
         /*
          * Load file to memory and convert to object instance.  Ceed control
@@ -548,7 +548,7 @@ impl_afw_adaptor_session_retrieve_objects(
         raw = afw_file_to_memory(full_path, (apr_size_t)finfo.size,
             obj_p, xctx);
         obj = afw_content_type_raw_to_object(
-            adaptor->content_type, raw, full_path, &adaptor->pub.adaptor_id,
+            adapter->content_type, raw, full_path, &adapter->pub.adapter_id,
             object_type_id, object_id, true, obj_p, xctx);
 
         /*
@@ -580,22 +580,22 @@ impl_afw_adaptor_session_retrieve_objects(
 
 
 /*
- * Implementation of method get_object for interface afw_adaptor_session.
+ * Implementation of method get_object for interface afw_adapter_session.
  */
 void
-impl_afw_adaptor_session_get_object(
-    const afw_adaptor_session_t *instance,
-    const afw_adaptor_impl_request_t *impl_request,
+impl_afw_adapter_session_get_object(
+    const afw_adapter_session_t *instance,
+    const afw_adapter_impl_request_t *impl_request,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
     void *context,
     afw_object_cb_t callback,
-    const afw_object_t *adaptor_type_specific,
+    const afw_object_t *adapter_type_specific,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    afw_file_internal_adaptor_session_t * self = (afw_file_internal_adaptor_session_t *)instance;
-    afw_file_internal_adaptor_t *adaptor = (afw_file_internal_adaptor_t *)self->adaptor;
+    afw_file_internal_adapter_session_t * self = (afw_file_internal_adapter_session_t *)instance;
+    afw_file_internal_adapter_t *adapter = (afw_file_internal_adapter_t *)self->adapter;
     const afw_utf8_t *full_path;
     const afw_memory_t *raw;
     const afw_object_t *object;
@@ -605,7 +605,7 @@ impl_afw_adaptor_session_get_object(
     obj_p = afw_pool_create(p, xctx);
 
     /* Determine full path. */
-    full_path = impl_get_full_path(adaptor, object_type_id, object_id,
+    full_path = impl_get_full_path(adapter, object_type_id, object_id,
         obj_p, xctx);
 
     /*
@@ -614,8 +614,8 @@ impl_afw_adaptor_session_get_object(
      */
     raw = afw_file_to_memory(full_path, 0, obj_p, xctx);
     object = afw_content_type_raw_to_object(
-        adaptor->content_type, raw, full_path,
-        &adaptor->pub.adaptor_id, object_type_id, object_id,
+        adapter->content_type, raw, full_path,
+        &adapter->pub.adapter_id, object_type_id, object_id,
         true, obj_p, xctx);
 
     /* Pass object to callback.  Callback will release object. */
@@ -624,20 +624,20 @@ impl_afw_adaptor_session_get_object(
 
 
 /*
- * Implementation of method add_object for interface afw_adaptor_session.
+ * Implementation of method add_object for interface afw_adapter_session.
  */
 const afw_utf8_t *
-impl_afw_adaptor_session_add_object(
-    const afw_adaptor_session_t *instance,
-    const afw_adaptor_impl_request_t *impl_request,
+impl_afw_adapter_session_add_object(
+    const afw_adapter_session_t *instance,
+    const afw_adapter_impl_request_t *impl_request,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *suggested_object_id,
     const afw_object_t *object,
-    const afw_object_t *adaptor_type_specific,
+    const afw_object_t *adapter_type_specific,
     afw_xctx_t *xctx)
 {
-    afw_file_internal_adaptor_session_t * self = (afw_file_internal_adaptor_session_t *)instance;
-    afw_file_internal_adaptor_t *adaptor = (afw_file_internal_adaptor_t *)self->adaptor;
+    afw_file_internal_adapter_session_t * self = (afw_file_internal_adapter_session_t *)instance;
+    afw_file_internal_adapter_t *adapter = (afw_file_internal_adapter_t *)self->adapter;
     const afw_utf8_t *full_path;
     const afw_memory_t *raw;
     const afw_utf8_t *object_id;
@@ -646,9 +646,9 @@ impl_afw_adaptor_session_add_object(
         ? suggested_object_id
         : afw_uuid_create_utf8(xctx->p, xctx);
 
-    full_path = impl_get_full_path(adaptor, object_type_id, object_id,
+    full_path = impl_get_full_path(adapter, object_type_id, object_id,
         xctx->p, xctx);
-    raw = afw_content_type_object_to_raw(adaptor->content_type,
+    raw = afw_content_type_object_to_raw(adapter->content_type,
         object, &afw_object_options_essential_with_whitespace,
         xctx->p, xctx);
     afw_file_from_memory(full_path, raw, afw_file_mode_write_new, xctx);
@@ -658,22 +658,22 @@ impl_afw_adaptor_session_add_object(
 
 
 /*
- * Implementation of method modify_object for interface afw_adaptor_session.
+ * Implementation of method modify_object for interface afw_adapter_session.
  */
 void
-impl_afw_adaptor_session_modify_object(
-    const afw_adaptor_session_t *instance,
-    const afw_adaptor_impl_request_t *impl_request,
+impl_afw_adapter_session_modify_object(
+    const afw_adapter_session_t *instance,
+    const afw_adapter_impl_request_t *impl_request,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
-    const afw_adaptor_modify_entry_t *const *entry,
-    const afw_object_t *adaptor_type_specific,
+    const afw_adapter_modify_entry_t *const *entry,
+    const afw_object_t *adapter_type_specific,
     afw_xctx_t *xctx)
 {
-    afw_file_internal_adaptor_session_t * self =
-        (afw_file_internal_adaptor_session_t *)instance;
-    afw_file_internal_adaptor_t *adaptor =
-        (afw_file_internal_adaptor_t *)self->adaptor;
+    afw_file_internal_adapter_session_t * self =
+        (afw_file_internal_adapter_session_t *)instance;
+    afw_file_internal_adapter_t *adapter =
+        (afw_file_internal_adapter_t *)self->adapter;
     const afw_object_t *object;
     const afw_utf8_t *full_path;
     const afw_memory_t *raw;
@@ -692,22 +692,22 @@ impl_afw_adaptor_session_modify_object(
             " objects are read-only", xctx);
     }
 
-    full_path = impl_get_full_path(adaptor, object_type_id, object_id,
+    full_path = impl_get_full_path(adapter, object_type_id, object_id,
         xctx->p, xctx);
 
     /* Get object to modify. */
     raw = afw_file_to_memory(full_path, 0, xctx->p, xctx);
     object = afw_content_type_raw_to_object(
-        adaptor->content_type, raw, full_path,
-        &adaptor->pub.adaptor_id,
+        adapter->content_type, raw, full_path,
+        &adapter->pub.adapter_id,
         object_type_id, object_id, false, xctx->p, xctx);
 
     /* Apply modifications. */
-    afw_adaptor_modify_entries_apply_to_unnormalized_object(
+    afw_adapter_modify_entries_apply_to_unnormalized_object(
         entry, object, xctx);
 
     /* Write modified object. */
-    raw = afw_content_type_object_to_raw(adaptor->content_type,
+    raw = afw_content_type_object_to_raw(adapter->content_type,
         object, &afw_object_options_essential_with_whitespace,
         xctx->p, xctx);
     afw_file_from_memory(full_path, raw, afw_file_mode_write_existing,
@@ -716,20 +716,20 @@ impl_afw_adaptor_session_modify_object(
 
 
 /*
- * Implementation of method replace_object for interface afw_adaptor_session.
+ * Implementation of method replace_object for interface afw_adapter_session.
  */
 void
-impl_afw_adaptor_session_replace_object(
-    const afw_adaptor_session_t *instance,
-    const afw_adaptor_impl_request_t *impl_request,
+impl_afw_adapter_session_replace_object(
+    const afw_adapter_session_t *instance,
+    const afw_adapter_impl_request_t *impl_request,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
     const afw_object_t *replacement_object,
-    const afw_object_t *adaptor_type_specific,
+    const afw_object_t *adapter_type_specific,
     afw_xctx_t *xctx)
 {
-    afw_file_internal_adaptor_session_t * self = (afw_file_internal_adaptor_session_t *)instance;
-    afw_file_internal_adaptor_t *adaptor = (afw_file_internal_adaptor_t *)self->adaptor;
+    afw_file_internal_adapter_session_t * self = (afw_file_internal_adapter_session_t *)instance;
+    afw_file_internal_adapter_t *adapter = (afw_file_internal_adapter_t *)self->adapter;
     const afw_utf8_t *full_path;
     const afw_memory_t *raw;
 
@@ -738,11 +738,11 @@ impl_afw_adaptor_session_replace_object(
             "Updated object missing id or object_type.", xctx);
     }
 
-    full_path = impl_get_full_path(adaptor, object_type_id,
+    full_path = impl_get_full_path(adapter, object_type_id,
         object_id, xctx->p, xctx);
 
     /* Write updated object. */
-    raw = afw_content_type_object_to_raw(adaptor->content_type,
+    raw = afw_content_type_object_to_raw(adapter->content_type,
         replacement_object, &afw_object_options_essential_with_whitespace,
         xctx->p, xctx);
     afw_file_from_memory(full_path, raw, afw_file_mode_write_existing,
@@ -751,91 +751,91 @@ impl_afw_adaptor_session_replace_object(
 
 
 /*
- * Implementation of method delete_object for interface afw_adaptor_session.
+ * Implementation of method delete_object for interface afw_adapter_session.
  */
 void
-impl_afw_adaptor_session_delete_object(
-    const afw_adaptor_session_t *instance,
-    const afw_adaptor_impl_request_t *impl_request,
+impl_afw_adapter_session_delete_object(
+    const afw_adapter_session_t *instance,
+    const afw_adapter_impl_request_t *impl_request,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
-    const afw_object_t *adaptor_type_specific,
+    const afw_object_t *adapter_type_specific,
     afw_xctx_t *xctx)
 {
-    afw_file_internal_adaptor_session_t * self = (afw_file_internal_adaptor_session_t *)instance;
-    afw_file_internal_adaptor_t *adaptor = (afw_file_internal_adaptor_t *)self->adaptor;
+    afw_file_internal_adapter_session_t * self = (afw_file_internal_adapter_session_t *)instance;
+    afw_file_internal_adapter_t *adapter = (afw_file_internal_adapter_t *)self->adapter;
     const afw_utf8_t *full_path;
 
-    full_path = impl_get_full_path(adaptor, object_type_id, object_id,
+    full_path = impl_get_full_path(adapter, object_type_id, object_id,
         xctx->p, xctx);
     afw_file_delete(full_path, xctx);
 }
 
 
 /*
- * Implementation of method begin_transaction of interface afw_adaptor_session.
+ * Implementation of method begin_transaction of interface afw_adapter_session.
  */
-const afw_adaptor_transaction_t *
-impl_afw_adaptor_session_begin_transaction(
-    const afw_adaptor_session_t * instance,
+const afw_adapter_transaction_t *
+impl_afw_adapter_session_begin_transaction(
+    const afw_adapter_session_t * instance,
     afw_xctx_t *xctx)
 {
-    /* This adaptor does not support transactions. */
+    /* This adapter does not support transactions. */
     return NULL;
 }
 
 
 /*
- * Implementation of method get_journal of interface afw_adaptor_session.
+ * Implementation of method get_journal of interface afw_adapter_session.
  */
-const afw_adaptor_journal_t *
-impl_afw_adaptor_session_get_journal_interface(
-    const afw_adaptor_session_t * instance,
+const afw_adapter_journal_t *
+impl_afw_adapter_session_get_journal_interface(
+    const afw_adapter_session_t * instance,
     afw_xctx_t *xctx)
 {
-    afw_file_internal_adaptor_session_t * self = (afw_file_internal_adaptor_session_t *)instance;
+    afw_file_internal_adapter_session_t * self = (afw_file_internal_adapter_session_t *)instance;
 
     /* Return event journal instance. */
-    return (afw_adaptor_journal_t *)&self->journal;
+    return (afw_adapter_journal_t *)&self->journal;
 }
 
 
 
 /*
  * Implementation of method get_key_value_interface of interface
- * afw_adaptor_session.
+ * afw_adapter_session.
  */
-const afw_adaptor_key_value_t *
-impl_afw_adaptor_session_get_key_value_interface (
-    const afw_adaptor_session_t * instance,
+const afw_adapter_key_value_t *
+impl_afw_adapter_session_get_key_value_interface (
+    const afw_adapter_session_t * instance,
     afw_xctx_t *xctx)
 {
-    /* Key value interface is not supported by this adaptor. */
+    /* Key value interface is not supported by this adapter. */
     return NULL;
 }
 
 /*
- * Implementation of method get_index_interface of interface afw_adaptor_session.
+ * Implementation of method get_index_interface of interface afw_adapter_session.
  */
-const afw_adaptor_impl_index_t *
-impl_afw_adaptor_session_get_index_interface (
-    const afw_adaptor_session_t * instance,
+const afw_adapter_impl_index_t *
+impl_afw_adapter_session_get_index_interface (
+    const afw_adapter_session_t * instance,
     afw_xctx_t *xctx)
 {
-    /* Key value interface is not supported by this adaptor. */
+    /* Key value interface is not supported by this adapter. */
     return NULL;
 }
 
 
 /*
  * Implementation of method get_object_type_cache_interface for interface
- * afw_adaptor_session.
+ * afw_adapter_session.
  */
-const afw_adaptor_object_type_cache_t *
-impl_afw_adaptor_session_get_object_type_cache_interface(
-    const afw_adaptor_session_t * instance,
+const afw_adapter_object_type_cache_t *
+impl_afw_adapter_session_get_object_type_cache_interface(
+    const afw_adapter_session_t * instance,
     afw_xctx_t *xctx)
 {
-    /* There is on adaptor cache. */
+    /* There is on adapter cache. */
     return NULL;
 }

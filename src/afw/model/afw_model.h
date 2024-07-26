@@ -28,29 +28,29 @@
 AFW_BEGIN_DECLARES
 
 
-/** Model adaptor factory instance. */
-AFW_DECLARE_CONST_DATA(afw_adaptor_factory_t)
-afw_adaptor_factory_model;
+/** Model adapter factory instance. */
+AFW_DECLARE_CONST_DATA(afw_adapter_factory_t)
+afw_adapter_factory_model;
 
 
 /** @brief Typedef for model adapt type enum.  */
 typedef enum afw_model_adapt_e {
-    afw_model_adapt_to_adaptor,
-    afw_model_adapt_from_adaptor,
+    afw_model_adapt_to_adapter,
+    afw_model_adapt_from_adapter,
     afw_model_adapt_to_requestor,
     afw_model_adapt_from_requestor
 } afw_model_adapt_t;
 
 
 /**
- * @brief Create a model adaptor.
+ * @brief Create a model adapter.
  * @param properties configuration.
- * @param p to use for adaptor resources.
- * @param xctx The execution context (xctx) adaptor will use.
- * @return New instance of model adaptor.
+ * @param p to use for adapter resources.
+ * @param xctx The execution context (xctx) adapter will use.
+ * @return New instance of model adapter.
  */
-AFW_DECLARE(const afw_adaptor_t *)
-afw_model_adaptor_create_cede_p(
+AFW_DECLARE(const afw_adapter_t *)
+afw_model_adapter_create_cede_p(
     const afw_object_t *properties,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
@@ -58,7 +58,7 @@ afw_model_adaptor_create_cede_p(
 
 /**
  * @brief Compile a model and add object types to associative array.
- * @param adaptor_id to use for object type paths.
+ * @param adapter_id to use for object type paths.
  * @param model_object.
  * @param p to use.
  * @param xctx of caller.
@@ -66,7 +66,7 @@ afw_model_adaptor_create_cede_p(
  */
 AFW_DECLARE(afw_model_t *)
 afw_model_compile(
-    const afw_utf8_t *adaptor_id,
+    const afw_utf8_t *adapter_id,
     const afw_object_t *model_object,
     const afw_pool_t *p, afw_xctx_t *xctx);
 

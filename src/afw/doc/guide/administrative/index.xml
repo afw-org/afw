@@ -8,7 +8,7 @@
     <section href="introduction.xml" label="Introduction" content-type="xml"/>
     <section href="installation.xml" label="Installation" content-type="xml"/>
     <section href="configuration.xml" label="Configuration" content-type="xml"/>
-    <section href="adaptors.xml" label="Adaptors" content-type="xml"/>
+    <section href="adapters.xml" label="Adapters" content-type="xml"/>
     <section href="authorization_handlers.xml" label="Authorization" content-type="xml"/>
     <section href="admin_app.xml" label="Admin Web App" content-type="xml"/>
     <section href="tools.xml" label="Tools" content-type="xml"/>

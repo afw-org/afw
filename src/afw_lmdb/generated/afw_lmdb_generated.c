@@ -56,8 +56,8 @@ void afw_lmdb_generated_register(afw_xctx_t *xctx)
     /* Register const runtime objects. */
     afw_lmdb_const_objects_register(xctx);
 
-    /* Register adaptor_type lmdb */
-    afw_lmdb_adaptor_type_lmdb_register(xctx);
+    /* Register adapter_type lmdb */
+    afw_lmdb_adapter_type_lmdb_register(xctx);
 
     /* Register error_rv_decoder lmdb */
     afw_lmdb_error_rv_decoder_lmdb_register(xctx);

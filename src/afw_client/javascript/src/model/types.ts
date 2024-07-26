@@ -3,7 +3,7 @@
 import AfwObject from "./AfwObject";
 
 export interface IObjectParam {
-    adaptorId?:     string;
+    adapterId?:     string;
     objectTypeId?:  string;
     path?:          string;
     object?:        AfwObject|object;    

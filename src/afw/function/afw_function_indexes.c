@@ -12,7 +12,7 @@
  */
 
 #include "afw_internal.h"
-#include "afw_adaptor_impl_index.h"
+#include "afw_adapter_impl_index.h"
 
 
 /*
@@ -31,7 +31,7 @@
  *
  * ```
  *   function index_create(
- *       adaptorId: string,
+ *       adapterId: string,
  *       key: string,
  *       value?: string,
  *       objectType?: string,
@@ -44,7 +44,7 @@
  *
  * Parameters:
  *
- *   adaptorId - (string) Id of adaptor.
+ *   adapterId - (string) Id of adapter.
  *
  *   key - (string) Name of the property index to be created.
  *
@@ -71,7 +71,7 @@ afw_function_execute_index_create(
     afw_function_execute_t *x)
 {
     afw_xctx_t *xctx = x->xctx;
-    const afw_value_string_t *adaptorId;
+    const afw_value_string_t *adapterId;
     const afw_value_string_t *key;
     const afw_value_string_t *value = NULL;
     const afw_value_array_t *objectType = NULL;
@@ -82,7 +82,7 @@ afw_function_execute_index_create(
     const afw_value_t *parsedFilter;
     const afw_object_t *result;
 
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(adaptorId, 1, string);
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(adapterId, 1, string);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(key, 2, string);
 
     if (value) {
@@ -135,8 +135,8 @@ afw_function_execute_index_create(
         AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(test, 8, boolean);
     }
 
-    result = afw_adaptor_impl_index_create(
-        &adaptorId->internal, &key->internal, 
+    result = afw_adapter_impl_index_create(
+        &adapterId->internal, &key->internal, 
         (value ? &value->internal : NULL),
         (objectType ? objectType->internal : NULL),
         (filter ? &filter->internal : NULL), 
@@ -165,14 +165,14 @@ afw_function_execute_index_create(
  *
  * ```
  *   function index_list(
- *       adaptorId: string,
+ *       adapterId: string,
  *       objectType?: string
  *   ): object;
  * ```
  *
  * Parameters:
  *
- *   adaptorId - (string) Id of adaptor.
+ *   adapterId - (string) Id of adapter.
  *
  *   objectType - (optional string) Id of adaptive object type indexes.
  *
@@ -184,18 +184,18 @@ const afw_value_t *
 afw_function_execute_index_list(
     afw_function_execute_t *x)
 {
-    const afw_value_string_t *adaptorId;
+    const afw_value_string_t *adapterId;
     const afw_value_string_t *objectType = NULL;
     const afw_object_t *result;
 
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(adaptorId, 1, string);
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(adapterId, 1, string);
     if (AFW_FUNCTION_PARAMETER_IS_PRESENT(2)) {
         AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(objectType,
             2, string);
     }
 
-    result = afw_adaptor_impl_index_list(
-        &adaptorId->internal, (objectType) ? &objectType->internal : NULL,
+    result = afw_adapter_impl_index_list(
+        &adapterId->internal, (objectType) ? &objectType->internal : NULL,
             x->p, x->xctx);
 
     return afw_value_create_unmanaged_object(result, x->p, x->xctx);
@@ -219,14 +219,14 @@ afw_function_execute_index_list(
  *
  * ```
  *   function index_remove(
- *       adaptorId: string,
+ *       adapterId: string,
  *       key: string
  *   ): object;
  * ```
  *
  * Parameters:
  *
- *   adaptorId - (string) Id of adaptor.
+ *   adapterId - (string) Id of adapter.
  *
  *   key - (string) The index key to be removed.
  *
@@ -238,15 +238,15 @@ const afw_value_t *
 afw_function_execute_index_remove(
     afw_function_execute_t *x)
 {
-    const afw_value_string_t *adaptorId;
+    const afw_value_string_t *adapterId;
     const afw_value_string_t *key;
     const afw_object_t *result;
 
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(adaptorId, 1, string);
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(adapterId, 1, string);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(key, 2, string);
 
-    result = afw_adaptor_impl_index_remove(
-        &adaptorId->internal, &key->internal, x->p, x->xctx);
+    result = afw_adapter_impl_index_remove(
+        &adapterId->internal, &key->internal, x->p, x->xctx);
 
     return afw_value_create_unmanaged_object(result, x->p, x->xctx);
 }

@@ -28,7 +28,7 @@ describe("ObjectsBatchEdit Tests", () => {
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());
         
         await waitFor(() => expect(mswPostCallback).toHaveCalledAdaptiveFunction("retrieve_objects"));
-        await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWithObjectContainingDeep("adaptorId", "files"));
+        await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWithObjectContainingDeep("adapterId", "files"));
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWithObjectContainingDeep("objectType", "_AdaptiveObjectType_"));  
         
         await waitForSpinner();

@@ -45,9 +45,9 @@ set(AFWDEV_GENERATED_INCLUDE_DIRECTORIES_LIST
 
 # Source files to compile.
 set(AFWDEV_GENERATED_SOURCE_LIST 
-    afw_lmdb_adaptor.c
-    afw_lmdb_adaptor_factory.c
-    afw_lmdb_adaptor_session.c
+    afw_lmdb_adapter.c
+    afw_lmdb_adapter_factory.c
+    afw_lmdb_adapter_session.c
     afw_lmdb_extension.c
     afw_lmdb_function_lmdb.c
     afw_lmdb_index.c
@@ -57,7 +57,7 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     generated/afw_lmdb_const_objects.c
     generated/afw_lmdb_function_bindings.c
     generated/afw_lmdb_generated.c
-    generated/afw_lmdb_register_adaptor_type_lmdb.c
+    generated/afw_lmdb_register_adapter_type_lmdb.c
     generated/afw_lmdb_register_error_rv_decoder_lmdb.c
     generated/afw_lmdb_runtime_object_maps.c
     generated/afw_lmdb_strings.c

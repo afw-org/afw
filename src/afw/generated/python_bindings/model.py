@@ -11,9 +11,9 @@
 import requests
 import json
 
-def model_default_add_object_action(session, objectType, object, adaptorId=None, objectId=None, modelId=None, context=None):
+def model_default_add_object_action(session, objectType, object, adapterId=None, objectId=None, modelId=None, context=None):
     """
-    Produce a default _AdaptiveAction_ object for an add object request to a model adaptor.
+    Produce a default _AdaptiveAction_ object for an add object request to a model adapter.
 
     This function returns a _AdaptiveAction_ object for the default action
     performed if a onAdd parameter is not specified on the associated
@@ -23,8 +23,8 @@ def model_default_add_object_action(session, objectType, object, adaptorId=None,
     for testing.
 
     Args:
-        adaptorId (str): This is the adaptorId of a model adaptor. Variable
-        custom::adaptorId can be used to access this value in model
+        adapterId (str): This is the adapterId of a model adapter. Variable
+        custom::adapterId can be used to access this value in model
         expressions.
 
         objectType (str): This is the adaptive object type of object being
@@ -35,11 +35,11 @@ def model_default_add_object_action(session, objectType, object, adaptorId=None,
         be used to access this value in model expressions.
 
         objectId (str): This is the optional preferred objectId of object to
-        add. The adaptor may ignore this. Variable custom::objectId can be
+        add. The adapter may ignore this. Variable custom::objectId can be
         used to access this value in model expressions.
 
         modelId (str): This specifics a modelId of model to use for producing
-        results. If not specified, the adaptor's current model will be used.
+        results. If not specified, the adapter's current model will be used.
 
         context (dict): This specifies additional context information
         available to model expressions.
@@ -56,8 +56,8 @@ def model_default_add_object_action(session, objectType, object, adaptorId=None,
         "object": object
     }
 
-    if adaptorId != None:
-        action['adaptorId'] = adaptorId
+    if adapterId != None:
+        action['adapterId'] = adapterId
 
     if objectId != None:
         action['objectId'] = objectId
@@ -76,9 +76,9 @@ def model_default_add_object_action(session, objectType, object, adaptorId=None,
 
     return response['actions'][0]['result']
 
-def model_default_delete_object_action(session, objectType, objectId, adaptorId=None, modelId=None, context=None):
+def model_default_delete_object_action(session, objectType, objectId, adapterId=None, modelId=None, context=None):
     """
-    Produce a default _AdaptiveAction_ object for an delete object request to a model adaptor.
+    Produce a default _AdaptiveAction_ object for an delete object request to a model adapter.
 
     This function returns a _AdaptiveAction_ object for the default action
     performed if a onDeleteObject parameter is not specified on the associated
@@ -88,8 +88,8 @@ def model_default_delete_object_action(session, objectType, objectId, adaptorId=
     or for testing.
 
     Args:
-        adaptorId (str): This is the adaptorId of a model adaptor. Variable
-        custom::adaptorId can be used to access this value in model
+        adapterId (str): This is the adapterId of a model adapter. Variable
+        custom::adapterId can be used to access this value in model
         expressions.
 
         objectType (str): This is the adaptive object type of object being
@@ -100,7 +100,7 @@ def model_default_delete_object_action(session, objectType, objectId, adaptorId=
         custom::object can be used to access this value in model expressions.
 
         modelId (str): This specifics a modelId of model to use for producing
-        results. If not specified, the adaptor's current model will be used.
+        results. If not specified, the adapter's current model will be used.
 
         context (dict): This specifies additional context information
         available to model expressions.
@@ -117,8 +117,8 @@ def model_default_delete_object_action(session, objectType, objectId, adaptorId=
         "objectId": objectId
     }
 
-    if adaptorId != None:
-        action['adaptorId'] = adaptorId
+    if adapterId != None:
+        action['adapterId'] = adapterId
 
     if modelId != None:
         action['modelId'] = modelId
@@ -134,9 +134,9 @@ def model_default_delete_object_action(session, objectType, objectId, adaptorId=
 
     return response['actions'][0]['result']
 
-def model_default_modify_object_action(session, objectType, objectId, entries, adaptorId=None, modelId=None, context=None):
+def model_default_modify_object_action(session, objectType, objectId, entries, adapterId=None, modelId=None, context=None):
     """
-    Produce a default _AdaptiveAction_ object for an modify object request to a model adaptor.
+    Produce a default _AdaptiveAction_ object for an modify object request to a model adapter.
 
     This function returns a _AdaptiveAction_ object for the default action
     performed if a onModifyObject parameter is not specified on the associated
@@ -146,8 +146,8 @@ def model_default_modify_object_action(session, objectType, objectId, entries, a
     or for testing.
 
     Args:
-        adaptorId (str): This is the adaptorId of a model adaptor. Variable
-        custom::adaptorId can be used to access this value in model
+        adapterId (str): This is the adapterId of a model adapter. Variable
+        custom::adapterId can be used to access this value in model
         expressions.
 
         objectType (str): This is the adaptive object type of object being
@@ -175,7 +175,7 @@ def model_default_modify_object_action(session, objectType, objectId, entries, a
         name', ... ],         value     ]
 
         modelId (str): This specifics a modelId of model to use for producing
-        results. If not specified, the adaptor's current model will be used.
+        results. If not specified, the adapter's current model will be used.
 
         context (dict): This specifies additional context information
         available to model expressions.
@@ -193,8 +193,8 @@ def model_default_modify_object_action(session, objectType, objectId, entries, a
         "entries": entries
     }
 
-    if adaptorId != None:
-        action['adaptorId'] = adaptorId
+    if adapterId != None:
+        action['adapterId'] = adapterId
 
     if modelId != None:
         action['modelId'] = modelId
@@ -210,9 +210,9 @@ def model_default_modify_object_action(session, objectType, objectId, entries, a
 
     return response['actions'][0]['result']
 
-def model_default_replace_object_action(session, objectType, objectId, object, adaptorId=None, modelId=None, context=None):
+def model_default_replace_object_action(session, objectType, objectId, object, adapterId=None, modelId=None, context=None):
     """
-    Produce a default _AdaptiveAction_ object for an replace object request to a model adaptor.
+    Produce a default _AdaptiveAction_ object for an replace object request to a model adapter.
 
     This function returns a _AdaptiveAction_ object for the default action
     performed if a onReplaceObject parameter is not specified on the
@@ -222,8 +222,8 @@ def model_default_replace_object_action(session, objectType, objectId, object, a
     expression or for testing.
 
     Args:
-        adaptorId (str): This is the adaptorId of a model adaptor. Variable
-        custom::adaptorId can be used to access this value in model
+        adapterId (str): This is the adapterId of a model adapter. Variable
+        custom::adapterId can be used to access this value in model
         expressions.
 
         objectType (str): This is the adaptive object type of object being
@@ -238,7 +238,7 @@ def model_default_replace_object_action(session, objectType, objectId, object, a
         can be used to access this value in model expressions.
 
         modelId (str): This specifics a modelId of model to use for producing
-        results. If not specified, the adaptor's current model will be used.
+        results. If not specified, the adapter's current model will be used.
 
         context (dict): This specifies additional context information
         available to model expressions.
@@ -256,8 +256,8 @@ def model_default_replace_object_action(session, objectType, objectId, object, a
         "object": object
     }
 
-    if adaptorId != None:
-        action['adaptorId'] = adaptorId
+    if adapterId != None:
+        action['adapterId'] = adapterId
 
     if modelId != None:
         action['modelId'] = modelId
@@ -285,7 +285,7 @@ def model_mapBackObject_signature(session, mappedObject):
         mappedObject (dict): This is the object to map back.
 
     Returns:
-        dict: This is the mappedObject mapped back from mapped adaptor object.
+        dict: This is the mappedObject mapped back from mapped adapter object.
     """
 
     request = session.Request()
@@ -315,7 +315,7 @@ def model_mapObject_signature(session, object):
         object (dict): This is the object to map.
 
     Returns:
-        dict: This is the object mapped to mappedAdaptor object.
+        dict: This is the object mapped to mappedAdapter object.
     """
 
     request = session.Request()
@@ -345,7 +345,7 @@ def model_returnObject_signature(session, object, userData=None):
         object (dict): This is the object to return.
 
         userData (bool): If this is present and true, the object will be
-        mapped its mapped adaptor's object type to the model adaptor's object
+        mapped its mapped adapter's object type to the model adapter's object
         type.
 
     Returns:

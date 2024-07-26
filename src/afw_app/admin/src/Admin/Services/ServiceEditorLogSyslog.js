@@ -20,7 +20,7 @@ import {
  * ServiceNewLogSyslog
  * 
  * This is a common component, used by the ServiceNew stepper.  It provides a
- * layout for the General configuration for type=adaptor services.
+ * layout for the General configuration for type=adapter services.
  */
 export const ServiceNewLogSyslog = (props) => {
 

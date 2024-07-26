@@ -2,7 +2,7 @@
 import {useReducer, useEffect} from "react";
 
 import {
-    AdaptorDropdown,
+    AdapterDropdown,
     Button,
     Dialog,
     Link,
@@ -130,7 +130,7 @@ const reducer = (state, action) => {
     }
 };
 
-const ModelsTableTable = ({ adaptorId, models, onSelectModels }) => {
+const ModelsTableTable = ({ adapterId, models, onSelectModels }) => {
 
     return (
         <>
@@ -144,7 +144,7 @@ const ModelsTableTable = ({ adaptorId, models, onSelectModels }) => {
                             return (
                                 <Link 
                                     text={modelId}
-                                    uriComponents={["Admin", "Models", adaptorId, modelId]}
+                                    uriComponents={["Admin", "Models", adapterId, modelId]}
                                 />
                             );
                         }
@@ -172,14 +172,14 @@ const ModelsTableTable = ({ adaptorId, models, onSelectModels }) => {
 
 export const ModelsTable = (props) => {
 
-    const {adaptors} = useAppCore();
+    const {adapters} = useAppCore();
     const {notification} = useApplication();
     const theme = useTheme();
     const dataModel = useModel();
 
     const [state, dispatch] = useReducer(reducer, initialState);
 
-    const {adaptorId, onSelectAdaptorId, reloadModels} = props;
+    const {adapterId, onSelectAdapterId, reloadModels} = props;
 
     /* When we have an error in our state, use the app notifications to alert them */
     useEffect(() => {
@@ -197,7 +197,7 @@ export const ModelsTable = (props) => {
     const onCreateModel = async (modelId, description, objectTypes) => {
 
         const model = dataModel.newObject({
-            adaptorId, 
+            adapterId, 
             objectTypeId: "_AdaptiveModel_"
         });
         await model.initialize();
@@ -264,13 +264,13 @@ export const ModelsTable = (props) => {
     };
 
 
-    /* Only show adaptors that can store models (isModelLocation) */
-    const modelLocationAdaptors = 
-        adaptors?.filter(adaptor => 
-            adaptor.properties.isModelLocation).map(adaptor =>
+    /* Only show adapters that can store models (isModelLocation) */
+    const modelLocationAdapters = 
+        adapters?.filter(adapter => 
+            adapter.properties.isModelLocation).map(adapter =>
             ({
-                key: adaptor.adaptorId,
-                text: adaptor.adaptorId,
+                key: adapter.adapterId,
+                text: adapter.adapterId,
             })
         ) || [];    
 
@@ -321,13 +321,13 @@ export const ModelsTable = (props) => {
                 />
             </div>
             {
-                (modelLocationAdaptors.length > 1) ?
+                (modelLocationAdapters.length > 1) ?
                     <div style={{ maxWidth: "300px", marginBottom: theme.spacing(2) }}>                    
-                        <AdaptorDropdown 
-                            id="model-adaptor-dropdown"
-                            value={adaptorId}
+                        <AdapterDropdown 
+                            id="model-adapter-dropdown"
+                            value={adapterId}
                             isModelLocation={true}
-                            onChanged={onSelectAdaptorId}                        
+                            onChanged={onSelectAdapterId}                        
                         />
                     </div> : null
             }
@@ -346,7 +346,7 @@ export const ModelsTable = (props) => {
                 title="Import Model"
                 prompt="Select a file containing the Adaptive Model to import."
                 onDismiss={() => dispatch({ type: "MODEL_IMPORT_CANCEL" })}
-                adaptorId={adaptorId}
+                adapterId={adapterId}
                 objectTypeId="_AdaptiveModel_"
                 onImport={onImportModel}
             />

@@ -39,7 +39,7 @@ const Section = ({ title, children }) => {
 
 const buildRequestSyntax = (functionId, parameters) => {
     let requestSyntax = {
-        adaptorId: "afw",
+        adapterId: "afw",
         function: functionId,
     };
 

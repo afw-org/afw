@@ -75,7 +75,7 @@ import ObjectFlattened from "./layouts/objectTypes/ObjectFlattened/ObjectFlatten
 import ObjectEditor from "./layouts/objectTypes/ObjectEditor/ObjectEditor.test";
 import ObjectTree from "./layouts/objectTypes/ObjectTree/ObjectTree.test";
 
-import AdaptorDropdown from "./layouts/propertyTypes/AdaptorDropdown/AdaptorDropdown.test";
+import AdapterDropdown from "./layouts/propertyTypes/AdapterDropdown/AdapterDropdown.test";
 import ObjectTypeDropdown from "./layouts/propertyTypes/ObjectTypeDropdown/ObjectTypeDropdown.test";
 import PropertyTypeDropdown from "./layouts/propertyTypes/PropertyTypeDropdown/PropertyTypeDropdown.test";
 import DataTypeDropdown from "./layouts/propertyTypes/DataTypeDropdown/DataTypeDropdown.test";
@@ -145,7 +145,7 @@ export const LayoutTestRunners = {
     ObjectFlattened,      
     ObjectEditor,  
     ObjectTree,
-    AdaptorDropdown,
+    AdapterDropdown,
     ObjectTypeDropdown,
     PropertyTypeDropdown,
     DataTypeDropdown,    
@@ -258,7 +258,7 @@ export {
     ObjectFlattened,      
     ObjectEditor,  
     ObjectTree,
-    AdaptorDropdown,
+    AdapterDropdown,
     ObjectTypeDropdown,
     PropertyTypeDropdown,
     DataTypeDropdown,    

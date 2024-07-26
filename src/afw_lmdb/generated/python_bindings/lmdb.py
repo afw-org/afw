@@ -11,14 +11,14 @@
 import requests
 import json
 
-def reader_check(session, adaptorId=None):
+def reader_check(session, adapterId=None):
     """
     
 
     Check for stale entries in the reader lock table.
 
     Args:
-        adaptorId (str): Adaptor Id.
+        adapterId (str): Adapter Id.
 
     Returns:
         int: Number of stale slots that were cleared.
@@ -30,8 +30,8 @@ def reader_check(session, adaptorId=None):
         "function": "reader_check"
     }
 
-    if adaptorId != None:
-        action['adaptorId'] = adaptorId
+    if adapterId != None:
+        action['adapterId'] = adapterId
 
     request.add_action(action)
 
@@ -41,14 +41,14 @@ def reader_check(session, adaptorId=None):
 
     return response['actions'][0]['result']
 
-def reader_list(session, adaptorId=None):
+def reader_list(session, adapterId=None):
     """
     
 
     Dump the entries in the reader lock table.
 
     Args:
-        adaptorId (str): Adaptor Id.
+        adapterId (str): Adapter Id.
 
     Returns:
         str: Reader entries.
@@ -60,8 +60,8 @@ def reader_list(session, adaptorId=None):
         "function": "reader_list"
     }
 
-    if adaptorId != None:
-        action['adaptorId'] = adaptorId
+    if adapterId != None:
+        action['adapterId'] = adapterId
 
     request.add_action(action)
 

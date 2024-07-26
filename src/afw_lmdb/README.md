@@ -1,4 +1,4 @@
-Lightning Memory-Mapped Database (LMDB) Adaptor
+Lightning Memory-Mapped Database (LMDB) Adapter
 ===============================================
 
 Description
@@ -8,7 +8,7 @@ LMDB is a pure in-memory, key/value database, maintained by OpenLDAP.
 Doxygen Documentation: http://lmdb.tech/doc/
 Source:  http://www.openldap.org/
 
-This extension implements the Adaptor Factory, Adaptor, Adaptor Session, and Transaction interfaces to allow objects to be stored and retrieved in the LMDB Database.
+This extension implements the Adapter Factory, Adapter, Adapter Session, and Transaction interfaces to allow objects to be stored and retrieved in the LMDB Database.
 
 
 Advantages
@@ -29,10 +29,10 @@ Disadvantages
 Configuration
 -------------
 
-Add the following to your configuration to use the LMDB adaptor:
+Add the following to your configuration to use the LMDB adapter:
 
 ````
-/* UBJSON is a required content-type for the adaptor */
+/* UBJSON is a required content-type for the adapter */
 {
     type            : "extension",
     extension_id    : "ubjson"
@@ -41,14 +41,14 @@ Add the following to your configuration to use the LMDB adaptor:
 /* register the LMDB extension. */
 {
     type            : "extension",
-    extension_id    : "afw_lmdb_adaptor"
+    extension_id    : "afw_lmdb_adapter"
 },
 
-/* configure the LMDB adaptor with uri of "lmdb" */
+/* configure the LMDB adapter with uri of "lmdb" */
 {
-    type            : "adaptor",
-    adaptor_type    : "lmdb",
-    adaptor_id      : "lmdb",
+    type            : "adapter",
+    adapter_type    : "lmdb",
+    adapter_id      : "lmdb",
     // properties related to the LMDB environment
     env             : {
                           path             : "/home/ubuntu/afw_lmdb",
@@ -68,7 +68,7 @@ Add the following to your configuration to use the LMDB adaptor:
                               hard : "14400"
                           }
                       },
-    event_journal_adaptor_id : "lmdb"
+    event_journal_adapter_id : "lmdb"
 }
 
 ````
@@ -84,7 +84,7 @@ Indexes will increase the efficiency of retrieve_objects() queries.  The first r
 Where:
 
 * ```` afw.conf ```` refers to your afw server configuration file.
-* ```` lmdb ```` refers to the adaptor-id for the LMDB database you are adding an index for
+* ```` lmdb ```` refers to the adapter-id for the LMDB database you are adding an index for
 * ```` VaultIdentityData ```` refers to the objectType.
 * ```` surname ```` refers to the property you are indexing.
 

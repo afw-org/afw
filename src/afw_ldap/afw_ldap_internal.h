@@ -63,7 +63,7 @@ typedef struct berval **
 
 /* Note: A register function might be added to register these callbacks */
 
-AFW_LDAP_DECLARE_INTERNAL_CONST_DATA(afw_adaptor_factory_t) afw_ldap_adaptor_factory;
+AFW_LDAP_DECLARE_INTERNAL_CONST_DATA(afw_adapter_factory_t) afw_ldap_adapter_factory;
 
 #ifdef WIN32
 #define AFW_LDAP_TIMEVAL LDAP_TIMEVAL
@@ -72,52 +72,52 @@ AFW_LDAP_DECLARE_INTERNAL_CONST_DATA(afw_adaptor_factory_t) afw_ldap_adaptor_fac
 #endif
 
 
-typedef struct afw_ldap_internal_adaptor_s {
-    afw_adaptor_t pub;
+typedef struct afw_ldap_internal_adapter_s {
+    afw_adapter_t pub;
     const afw_utf8_z_t *url_z;
     const afw_value_t *bind_parameters;
     apr_ldap_url_desc_t *lud;
     afw_ldap_metadata_t *metadata;
     AFW_LDAP_TIMEVAL timeout;
     afw_boolean_t prevent_verify_cert;
-} afw_ldap_internal_adaptor_t;
+} afw_ldap_internal_adapter_t;
 
-typedef struct afw_ldap_internal_adaptor_session_s {
-    afw_adaptor_session_t pub;
-    afw_ldap_internal_adaptor_t *adaptor;
-    afw_adaptor_session_t *metadata_session;
+typedef struct afw_ldap_internal_adapter_session_s {
+    afw_adapter_session_t pub;
+    afw_ldap_internal_adapter_t *adapter;
+    afw_adapter_session_t *metadata_session;
     const afw_utf8_z_t * bind_dn_z;
     const afw_utf8_z_t * bind_password_z;
-    afw_adaptor_object_type_cache_t object_type_cache;
+    afw_adapter_object_type_cache_t object_type_cache;
     afw_boolean_t release_called_from_cleanup;
     LDAP *ld;
-} afw_ldap_internal_adaptor_session_t;
+} afw_ldap_internal_adapter_session_t;
 
 extern char * afw_ldap_internal_allattrs[];
 
 
 /**
- * @brief Internal create an LDAP adaptor.
+ * @brief Internal create an LDAP adapter.
  * @param properties Parameters.
- * @param p to use for adaptor resources.
+ * @param p to use for adapter resources.
  * @param xctx of caller.
- * @return New instance of LDAP adaptor.
+ * @return New instance of LDAP adapter.
  */
-const afw_adaptor_t *
-afw_ldap_internal_adaptor_create_cede_p(
+const afw_adapter_t *
+afw_ldap_internal_adapter_create_cede_p(
     const afw_object_t *properties,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
 
 /**
- * @brief Internal create an LDAP adaptor session.
- * @param adaptor Internal instance of adaptor.
+ * @brief Internal create an LDAP adapter session.
+ * @param adapter Internal instance of adapter.
  * @param xctx of caller.
- * @return New instance of LDAP adaptor session.
+ * @return New instance of LDAP adapter session.
  */
-afw_ldap_internal_adaptor_session_t *
-afw_ldap_internal_adaptor_session_create(
-    afw_ldap_internal_adaptor_t * adaptor,
+afw_ldap_internal_adapter_session_t *
+afw_ldap_internal_adapter_session_create(
+    afw_ldap_internal_adapter_t * adapter,
     afw_xctx_t *xctx);
 
 void
@@ -134,26 +134,26 @@ afw_ldap_internal_cleanup_ldap_memfree(
 
 LDAPMessage *
 afw_ldap_internal_search_s(
-    afw_ldap_internal_adaptor_session_t *session, const afw_utf8_z_t *dn,
+    afw_ldap_internal_adapter_session_t *session, const afw_utf8_z_t *dn,
     int ldap_scope, const afw_utf8_z_t *filter, afw_xctx_t *xctx);
 
 const afw_utf8_t *
 afw_ldap_internal_get_object_id(
-    afw_ldap_internal_adaptor_session_t *self,
+    afw_ldap_internal_adapter_session_t *self,
     LDAPMessage *e, afw_boolean_t check_base, afw_xctx_t *xctx);
 
 void
 afw_ldap_internal_session_begin(
-    afw_ldap_internal_adaptor_session_t *self,
+    afw_ldap_internal_adapter_session_t *self,
     afw_xctx_t *xctx);
 
 void
-afw_ldap_internal_session_end(afw_ldap_internal_adaptor_session_t *self);
+afw_ldap_internal_session_end(afw_ldap_internal_adapter_session_t *self);
 
 /* Internal create an adaptive object from an LDAPMessage. */
 const afw_object_t *
 afw_ldap_internal_create_object_from_entry(
-    afw_ldap_internal_adaptor_session_t *self,
+    afw_ldap_internal_adapter_session_t *self,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
     LDAPMessage *e,
@@ -162,7 +162,7 @@ afw_ldap_internal_create_object_from_entry(
 
 const afw_utf8_t *
 afw_ldap_internal_expression_from_query_criteria(
-    afw_ldap_internal_adaptor_session_t *session,
+    afw_ldap_internal_adapter_session_t *session,
     const afw_query_criteria_filter_entry_t * entry,
     afw_xctx_t *xctx);
 

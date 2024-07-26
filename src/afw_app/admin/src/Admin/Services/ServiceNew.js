@@ -25,11 +25,11 @@ import {
 
 import {AfwObject} from "@afw/client";
 
-import {ServiceNewAdaptor} from "./ServiceEditorAdaptor";
-import {ServiceNewAdaptorFile} from "./ServiceEditorAdaptorFile";
-import {ServiceNewAdaptorLmdb} from "./ServiceEditorAdaptorLmdb";
-import {ServiceNewAdaptorModel} from "./ServiceEditorAdaptorModel";
-import {ServiceNewAdaptorLdap} from "./ServiceEditorAdaptorLdap";
+import {ServiceNewAdapter} from "./ServiceEditorAdapter";
+import {ServiceNewAdapterFile} from "./ServiceEditorAdapterFile";
+import {ServiceNewAdapterLmdb} from "./ServiceEditorAdapterLmdb";
+import {ServiceNewAdapterModel} from "./ServiceEditorAdapterModel";
+import {ServiceNewAdapterLdap} from "./ServiceEditorAdapterLdap";
 
 import {ServiceNewLog} from "./ServiceEditorLog";
 import {ServiceNewLogSyslog} from "./ServiceEditorLogSyslog";
@@ -222,7 +222,7 @@ export const ServiceStepDescription = (props) => {
  * 
  * This component is the second step in configuring a new service.
  * It displays general configuration properties that are common to
- * all Service types that the user has selected (i.e., adaptor, log).
+ * all Service types that the user has selected (i.e., adapter, log).
  * 
  */
 export const ServiceStepGeneral = (props) => {
@@ -233,8 +233,8 @@ export const ServiceStepGeneral = (props) => {
 
     const serviceType = confObject.getPropertyValue("type");
 
-    if (serviceType === "adaptor")
-        return <ServiceNewAdaptor confObject={confObject} />;
+    if (serviceType === "adapter")
+        return <ServiceNewAdapter confObject={confObject} />;
 
     else if (serviceType === "log")
         return <ServiceNewLog confObject={confObject} />;
@@ -271,26 +271,26 @@ export const ServiceStepDetailed = (props) => {
         else if (serviceSubtype === "standard")
             return <ServiceNewLogStandard confObject={confObject} />;
 
-    } else if (serviceType === "adaptor") {
+    } else if (serviceType === "adapter") {
 
         if (serviceSubtype === "lmdb") 
-            return <ServiceNewAdaptorLmdb confObject={confObject} />;
+            return <ServiceNewAdapterLmdb confObject={confObject} />;
 
         else if (serviceSubtype === "model")
-            return <ServiceNewAdaptorModel confObject={confObject} />;
+            return <ServiceNewAdapterModel confObject={confObject} />;
 
         else if (serviceSubtype === "file") 
-            return <ServiceNewAdaptorFile confObject={confObject} />;
+            return <ServiceNewAdapterFile confObject={confObject} />;
 
         else if (serviceSubtype === "ldap")
-            return <ServiceNewAdaptorLdap confObject={confObject} />;
+            return <ServiceNewAdapterLdap confObject={confObject} />;
 
     } else if (serviceType === "authorizationHandler") {
         //eslint-disable-next-line
     }
 
     /*
-        In order to figure out the adaptor subtype-specific properties to display, we do a quick "diff" of the 
+        In order to figure out the adapter subtype-specific properties to display, we do a quick "diff" of the 
         type Object Type and subtype Object and only display the subtype-specific properties.
      */
     const typeObjectTypeConf = "/afw/_AdaptiveObjectType_/_AdaptiveConf_" + serviceType;
@@ -409,12 +409,12 @@ export const ServiceNew = (props) => {
     };
 
     const onCreateService = async () => {
-        const confAdaptorId = application.getPropertyValue("confAdaptorId");
+        const confAdapterId = application.getPropertyValue("confAdapterId");
         const idPropertyValue = confObject.getPropertyValue(idProperty);
         
         /* create a new service configuration object */
         const newService = model.newObject({
-            adaptorId: confAdaptorId,
+            adapterId: confAdapterId,
             objectTypeId: "_AdaptiveServiceConf_",            
         });
         await newService.initialize();
@@ -425,7 +425,7 @@ export const ServiceNew = (props) => {
         newService.setPropertyValue("serviceId", objectId);        
         newService.setPropertyValue("startup", startupKey);
         newService.setPropertyValue("conf", confObject);
-        newService.setPath("/" + confAdaptorId + "/_AdaptiveServiceConf_/" + objectId);
+        newService.setPath("/" + confAdapterId + "/_AdaptiveServiceConf_/" + objectId);
 
         try {
             const response = newService.add();
@@ -453,7 +453,7 @@ export const ServiceNew = (props) => {
 
             try {
                 const confObject = model.newObject({
-                    adaptorId: "afw", 
+                    adapterId: "afw", 
                     objectTypeId: confObjectTypeId
                 }); 
 

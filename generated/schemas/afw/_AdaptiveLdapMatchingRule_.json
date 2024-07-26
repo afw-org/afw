@@ -2,14 +2,14 @@
     "$defs": {
         "_AdaptiveLdapMatchingRule_": {
             "additionalProperties": {
-                "description": "Object type for type=adaptor adaptor_type=ldap synthetic matching rule object."
+                "description": "Object type for type=adapter adapter_type=ldap synthetic matching rule object."
             },
             "anyOf": [
                 {
                     "$ref": "#/$defs/_AdaptiveLdapMatchingRule_.propertyTypes"
                 }
             ],
-            "description": "Object type for type=adaptor adaptor_type=ldap synthetic matching rule object.",
+            "description": "Object type for type=adapter adapter_type=ldap synthetic matching rule object.",
             "type": "object"
         },
         "_AdaptiveLdapMatchingRule_.propertyTypes": {

@@ -21,7 +21,7 @@ export const PropertiesTable = (props) => {
     const [selected, setSelected] = useState([]);
     useAfwObject(props);
 
-    const {allowChange, adaptorId, editable, objectTypeId, properties} = props;
+    const {allowChange, adapterId, editable, objectTypeId, properties} = props;
 
     return (
         <div>
@@ -68,7 +68,7 @@ export const PropertiesTable = (props) => {
                                 return (
                                     <Link 
                                         text={propertyName}
-                                        uriComponents={["Admin", "Schema", adaptorId, objectTypeId, propertyName]}
+                                        uriComponents={["Admin", "Schema", adapterId, objectTypeId, propertyName]}
                                     />
                                 );
                             }
@@ -95,7 +95,7 @@ export const PropertiesTable = (props) => {
 
 export const ObjectType = (props) => {
 
-    const {adaptorId, objectTypeId, objectTypeObject, allowChange} = props;
+    const {adapterId, objectTypeId, objectTypeObject, allowChange} = props;
 
     let properties;
     if (objectTypeObject && objectTypeObject.getPropertyValue("propertyTypes"))
@@ -112,7 +112,7 @@ export const ObjectType = (props) => {
             displayHeader={allowChange}
             layout={
                 <Switch>
-                    <Route exact path="/Admin/Schema/:adaptorId/:objectTypeId" render={() => 
+                    <Route exact path="/Admin/Schema/:adapterId/:objectTypeId" render={() => 
                         <Tabs 
                             gapSpace={20}
                             tabs={[
@@ -133,7 +133,7 @@ export const ObjectType = (props) => {
                                     contains: 
                                         <PropertiesTable 
                                             allowChange={allowChange}
-                                            adaptorId={adaptorId}
+                                            adapterId={adapterId}
                                             objectTypeId={objectTypeId}
                                             properties={properties}
                                         />
@@ -141,7 +141,7 @@ export const ObjectType = (props) => {
                             ]}
                         />
                     } />
-                    <Route path="/Admin/Schema/:adaptorId/:objectTypeId/:propertyName" render={(routeProps) => {
+                    <Route path="/Admin/Schema/:adapterId/:objectTypeId/:propertyName" render={(routeProps) => {
                         const propertyName = routeProps.match.params.propertyName;
                         let propertyTypeObject;
 

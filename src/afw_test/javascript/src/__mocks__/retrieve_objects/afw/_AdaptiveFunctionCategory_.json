@@ -212,13 +212,13 @@
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveFunctionCategory_/adaptor",
-                "objectId": "adaptor",
+                "path": "/afw/_AdaptiveFunctionCategory_/adapter",
+                "objectId": "adapter",
                 "objectType": "_AdaptiveFunctionCategory_"
             },
-            "description": "These functions access adaptive objects via an Adaptive Framework adaptor.",
-            "category": "adaptor",
-            "brief": "Adaptor related functions"
+            "description": "These functions access adaptive objects via an Adaptive Framework adapter.",
+            "category": "adapter",
+            "brief": "Adapter related functions"
         },
         {
             "_meta_": {

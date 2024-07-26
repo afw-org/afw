@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * Index routines for LMDB Adaptor
+ * Index routines for LMDB Adapter
  *
  * Copyright (c) 2010-2024 Clemson University
  *
@@ -12,7 +12,7 @@
 
 /**
  * @file afw_lmdb_index.h
- * @brief  Helpers for afw_adaptor implementation index development
+ * @brief  Helpers for afw_adapter implementation index development
  */
 
 #include "afw_interface.h"
@@ -21,9 +21,9 @@
 AFW_BEGIN_DECLARES
 
 
-afw_adaptor_impl_index_t * afw_lmdb_adaptor_impl_index_create(
-    const afw_lmdb_adaptor_session_t * session,
-    const afw_lmdb_adaptor_t         * adaptor,
+afw_adapter_impl_index_t * afw_lmdb_adapter_impl_index_create(
+    const afw_lmdb_adapter_session_t * session,
+    const afw_lmdb_adapter_t         * adapter,
     MDB_txn                          * txn,
     afw_xctx_t                      * xctx);
 

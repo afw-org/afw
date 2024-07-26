@@ -135,7 +135,7 @@ const afw_memory_t * afw_ubjson_from_value(
 *
  * The path parameter is only used if the UBJSON being parsed is an object entity.
 *
- * The path must be of the form `/<adaptor id>/<object type>/<id>`.  This path
+ * The path must be of the form `/<adapter id>/<object type>/<id>`.  This path
  * is parsed to provide return values for the object's
  * afw_object_meta_get_object_id(), afw_object_meta_get_path(), and
  * afw_object_get_object_type() methods.
@@ -150,7 +150,7 @@ const afw_value_t * afw_ubjson_to_value(
  * @brief Convert from UBJSON to adaptive object.
  * @param raw UBJSON to convert.
  * @param source_location or NULL.
- * @param adaptor_id to use for created object.
+ * @param adapter_id to use for created object.
  * @param object_type_id to use for created object.
  * @param object_id to use for created object.
  * @param cede_p if true, cede control of p to the created object.
@@ -163,7 +163,7 @@ const afw_object_t *
 afw_ubjson_to_object(
     const afw_memory_t *ubjson,
     const afw_utf8_t *source_location,
-    const afw_utf8_t * adaptor_id,
+    const afw_utf8_t * adapter_id,
     const afw_utf8_t * object_type_id,
     const afw_utf8_t * object_id,
     afw_boolean_t cede_p,

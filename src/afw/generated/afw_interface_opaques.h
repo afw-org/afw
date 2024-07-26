@@ -37,53 +37,53 @@ afw_extension_t;
 typedef struct afw_extension_inf_s
 afw_extension_inf_t;
 
-typedef struct afw_adaptor_factory_s
-afw_adaptor_factory_t;
+typedef struct afw_adapter_factory_s
+afw_adapter_factory_t;
 
-typedef struct afw_adaptor_factory_inf_s
-afw_adaptor_factory_inf_t;
+typedef struct afw_adapter_factory_inf_s
+afw_adapter_factory_inf_t;
 
-typedef struct afw_adaptor_s
-afw_adaptor_t;
+typedef struct afw_adapter_s
+afw_adapter_t;
 
-typedef struct afw_adaptor_inf_s
-afw_adaptor_inf_t;
+typedef struct afw_adapter_inf_s
+afw_adapter_inf_t;
 
-typedef struct afw_adaptor_object_type_cache_s
-afw_adaptor_object_type_cache_t;
+typedef struct afw_adapter_object_type_cache_s
+afw_adapter_object_type_cache_t;
 
-typedef struct afw_adaptor_object_type_cache_inf_s
-afw_adaptor_object_type_cache_inf_t;
+typedef struct afw_adapter_object_type_cache_inf_s
+afw_adapter_object_type_cache_inf_t;
 
-typedef struct afw_adaptor_session_s
-afw_adaptor_session_t;
+typedef struct afw_adapter_session_s
+afw_adapter_session_t;
 
-typedef struct afw_adaptor_session_inf_s
-afw_adaptor_session_inf_t;
+typedef struct afw_adapter_session_inf_s
+afw_adapter_session_inf_t;
 
-typedef struct afw_adaptor_transaction_s
-afw_adaptor_transaction_t;
+typedef struct afw_adapter_transaction_s
+afw_adapter_transaction_t;
 
-typedef struct afw_adaptor_transaction_inf_s
-afw_adaptor_transaction_inf_t;
+typedef struct afw_adapter_transaction_inf_s
+afw_adapter_transaction_inf_t;
 
-typedef struct afw_adaptor_impl_index_cursor_s
-afw_adaptor_impl_index_cursor_t;
+typedef struct afw_adapter_impl_index_cursor_s
+afw_adapter_impl_index_cursor_t;
 
-typedef struct afw_adaptor_impl_index_cursor_inf_s
-afw_adaptor_impl_index_cursor_inf_t;
+typedef struct afw_adapter_impl_index_cursor_inf_s
+afw_adapter_impl_index_cursor_inf_t;
 
-typedef struct afw_adaptor_key_value_s
-afw_adaptor_key_value_t;
+typedef struct afw_adapter_key_value_s
+afw_adapter_key_value_t;
 
-typedef struct afw_adaptor_key_value_inf_s
-afw_adaptor_key_value_inf_t;
+typedef struct afw_adapter_key_value_inf_s
+afw_adapter_key_value_inf_t;
 
-typedef struct afw_adaptor_impl_index_s
-afw_adaptor_impl_index_t;
+typedef struct afw_adapter_impl_index_s
+afw_adapter_impl_index_t;
 
-typedef struct afw_adaptor_impl_index_inf_s
-afw_adaptor_impl_index_inf_t;
+typedef struct afw_adapter_impl_index_inf_s
+afw_adapter_impl_index_inf_t;
 
 typedef struct afw_authorization_handler_factory_s
 afw_authorization_handler_factory_t;
@@ -211,11 +211,11 @@ afw_pool_t;
 typedef struct afw_pool_inf_s
 afw_pool_inf_t;
 
-typedef struct afw_adaptor_journal_s
-afw_adaptor_journal_t;
+typedef struct afw_adapter_journal_s
+afw_adapter_journal_t;
 
-typedef struct afw_adaptor_journal_inf_s
-afw_adaptor_journal_inf_t;
+typedef struct afw_adapter_journal_inf_s
+afw_adapter_journal_inf_t;
 
 typedef struct afw_value_s
 afw_value_t;

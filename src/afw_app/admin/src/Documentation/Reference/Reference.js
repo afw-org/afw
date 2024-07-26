@@ -74,7 +74,7 @@ const getBreadcrumbs = (pathname) => {
                 });
             }
         } else if (topic === "Schema") {
-            const [,,,adaptorId, objectType, objectId] = pathname.split("/");
+            const [,,,adapterId, objectType, objectId] = pathname.split("/");
 
             breadcrumbItems.push({
                 key: "Schema",
@@ -82,11 +82,11 @@ const getBreadcrumbs = (pathname) => {
                 link: "/Documentation/Reference/Schema/"
             });
 
-            if (adaptorId) {
+            if (adapterId) {
                 breadcrumbItems.push({
-                    key: adaptorId,
-                    text: adaptorId,
-                    link: "/Documentation/Reference/Schema/" + adaptorId
+                    key: adapterId,
+                    text: adapterId,
+                    link: "/Documentation/Reference/Schema/" + adapterId
                 });
             }
 
@@ -94,7 +94,7 @@ const getBreadcrumbs = (pathname) => {
                 breadcrumbItems.push({
                     key: objectType,
                     text: objectType,
-                    link: "/Documentation/Reference/Schema/" + adaptorId + "/" + objectType
+                    link: "/Documentation/Reference/Schema/" + adapterId + "/" + objectType
                 });
             }
 
@@ -102,7 +102,7 @@ const getBreadcrumbs = (pathname) => {
                 breadcrumbItems.push({
                     key: objectId,
                     text: objectId,
-                    link: "/Documentation/Reference/Schema/" + adaptorId + "/" + objectType + "/" + objectId
+                    link: "/Documentation/Reference/Schema/" + adapterId + "/" + objectType + "/" + objectId
                 });
             }
         } else if (topic === "Components") {
@@ -236,7 +236,7 @@ export const Reference = () => {
                                                             <div style={{ paddingBottom: theme.spacing(1) }}>
                                                                 <Link url="/Documentation/Reference/Schema/" text="Schema"/>
                                                             </div>
-                                                            <Typography text="An Adaptive Schema may be provided by an adaptor, or created through a model.  They
+                                                            <Typography text="An Adaptive Schema may be provided by an adapter, or created through a model.  They
                                                                 provide a sets of properties which are used to describe Adaptive Objects.  Object Types may use
                                                                 inheritance to factor common properties and provide data validation and computed values." />                                                                
                                                         </div> 
@@ -269,9 +269,9 @@ export const Reference = () => {
                 <Route exact path="/Documentation/Reference/DataTypes" component={DataTypes} />                        
                 <Route path="/Documentation/Reference/DataTypes/:dataTypeId" component={DataType} />                        
                 <Route exact path="/Documentation/Reference/Schema" component={ObjectTypes} />
-                <Route exact path="/Documentation/Reference/Schema/:adaptorId" component={ObjectTypes} />
-                <Route exact path="/Documentation/Reference/Schema/:adaptorId/:objectType" component={ObjectTypes} />
-                <Route exact path="/Documentation/Reference/Schema/:adaptorId/:objectType/:propertyName" component={ObjectTypes} />
+                <Route exact path="/Documentation/Reference/Schema/:adapterId" component={ObjectTypes} />
+                <Route exact path="/Documentation/Reference/Schema/:adapterId/:objectType" component={ObjectTypes} />
+                <Route exact path="/Documentation/Reference/Schema/:adapterId/:objectType/:propertyName" component={ObjectTypes} />
                 <Route path="/Documentation/Reference/Components" component={Components} />
                 <Route path="/Documentation/Reference/Functions" component={Functions} />
             </Switch>

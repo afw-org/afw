@@ -17,7 +17,7 @@ describe("AfwModel Tests", () => {
     test("Retrieve objects", async () => {
         const model = new AfwModel({ client });
 
-        const response = model.retrieveObjects({ adaptorId: "afw", objectTypeId: "_AdaptiveObjectType_" });
+        const response = model.retrieveObjects({ adapterId: "afw", objectTypeId: "_AdaptiveObjectType_" });
         const objects = await response.objects;
 
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());     
@@ -30,7 +30,7 @@ describe("AfwModel Tests", () => {
     test("Get object", async () => {
         const model = new AfwModel({ client });
 
-        const response = model.getObject({ adaptorId: "afw", objectTypeId: "_AdaptiveObjectType_", objectId: "_AdaptiveObject_" });
+        const response = model.getObject({ adapterId: "afw", objectTypeId: "_AdaptiveObjectType_", objectId: "_AdaptiveObject_" });
         const obj = await response.object;
 
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());     
@@ -53,7 +53,7 @@ describe("AfwModel Tests", () => {
         const model = new AfwModel({ client });
 
         const obj = model.newObject({ 
-            adaptorId: "myAdaptor", 
+            adapterId: "myAdapter", 
             objectTypeId: "MyObjectType", 
             objectId: "myObjectId",
             object: {
@@ -68,7 +68,7 @@ describe("AfwModel Tests", () => {
 
         const model = new AfwModel({ client });
 
-        const objects = await model.loadObjectTypes({ adaptorId: "afw" });
+        const objects = await model.loadObjectTypes({ adapterId: "afw" });
 
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalled());     
 

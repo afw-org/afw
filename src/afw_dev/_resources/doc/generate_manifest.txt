@@ -4,7 +4,7 @@ generate/manifest/
 AdaptiveFramework environment registry has the following structure:
 
 <AdaptiveFramework runtime environment registry>
-|-- adaptor_type
+|-- adapter_type
 |   |-- A registry <KEY>
 |   ... More <KEY>s
 |-- log_type
@@ -33,23 +33,23 @@ The definition for the function must be of this form:
 void <PREFIX><REGISTRY_TYPE>_<KEY>_register(afw_xctx_t *xctx)
 
 Development tool afwdev can be used to add these <KEY>.c files using
-subcommands like add-adaptor-type and add-log-type or they can be added
+subcommands like add-adapter-type and add-log-type or they can be added
 manually.
 
-For example, to register adaptor_type my_type with a factory struct define in
-<SRCSUBDIR> my whose const struct is my_adaptor_factory, either manually put
-this in <SRCSUBDIR>/generate/adaptor_type/my_type.c or let afwdev to do it.
+For example, to register adapter_type my_type with a factory struct define in
+<SRCSUBDIR> my whose const struct is my_adapter_factory, either manually put
+this in <SRCSUBDIR>/generate/adapter_type/my_type.c or let afwdev to do it.
 
 #include "afw.h"
 
-extern const afw_adaptor_factory_t
-my_adaptor_factory;
+extern const afw_adapter_factory_t
+my_adapter_factory;
 
 void
-my_adaptor_type_my_type_register(afw_xctx_t *xctx)
+my_adapter_type_my_type_register(afw_xctx_t *xctx)
 {
-	afw_environment_register_adaptor_type(
-		my_adaptor_factory.adaptor_type,
-		&my_adaptor_factory,
+	afw_environment_register_adapter_type(
+		my_adapter_factory.adapter_type,
+		&my_adapter_factory,
 		xctx);
 }

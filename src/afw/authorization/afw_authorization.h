@@ -149,7 +149,7 @@ afw_authorization_mode_id_user_value;
  *
  * The xctx qualifiers used by authorization checking should be set before
  * this call.  The context qualifiers should be prepared before this call.
- * For example, see afw_adaptor_context_prepare() and
+ * For example, see afw_adapter_context_prepare() and
  * afw_service_context_prepare().
  *
  * This function also handles obligations.
@@ -204,7 +204,7 @@ afw_authorization_handler_release(
  * This macro is used to temporarily change the authorization mode to
  * 'intermediate' if the current mode is not 'core'. This is useful when core or
  * extention code needs to access resources that a user would not normally have
- * access to. For example, the 'mapping' adaptor may need to access objects that
+ * access to. For example, the 'mapping' adapter may need to access objects that
  * are not normally accessible by the user to produce the objects returned to
  * the user.
  *

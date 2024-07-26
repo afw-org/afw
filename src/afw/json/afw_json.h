@@ -141,7 +141,7 @@ afw_json_from_value(
  * @brief Compile json string to adaptive object with meta.
  * @param string to compile.
  * @param source_location or NULL.
- * @param adaptor_id to use for created object.
+ * @param adapter_id to use for created object.
  * @param object_type_id to use for created object.
  * @param object_id to use for created object.
  * @param cede_p if true, cede control of p to the created object.
@@ -149,19 +149,19 @@ afw_json_from_value(
  * @param xctx of caller.
  * @return object instance.
  *
- * If source_location is NULL and path is specified, adaptor_id,
+ * If source_location is NULL and path is specified, adapter_id,
  * object_type_id, and object_id will be used to produce a path that will
  * be used as the source location.
  * 
- * If adaptor_id is NULL, object_type_id and object_id must be NULL. If they're
+ * If adapter_id is NULL, object_type_id and object_id must be NULL. If they're
  * NULL, the object's meta will not be set.
  *
  */
 #define afw_json_to_object_with_meta(string, source_location, \
-    adaptor_id, object_type_id, object_id, \
+    adapter_id, object_type_id, object_id, \
     cede_p, p, xctx) \
     afw_compile_to_object(string, source_location, \
-        adaptor_id, object_type_id, object_id, \
+        adapter_id, object_type_id, object_id, \
         cede_p, p, xctx)
 
 

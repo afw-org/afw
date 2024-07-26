@@ -27,49 +27,49 @@
 
 
 
-/* Runtime object map properties for _AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects objects. */
+/* Runtime object map properties for _AdaptiveAdapterTypeSpecific_ldap_retrieve_objects objects. */
 
 static const afw_runtime_object_type_meta_t
-impl_runtime_meta__AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects = {
-    &afw_ldap_self_s__AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects,
+impl_runtime_meta__AdaptiveAdapterTypeSpecific_ldap_retrieve_objects = {
+    &afw_ldap_self_s__AdaptiveAdapterTypeSpecific_ldap_retrieve_objects,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
 };
 
 AFW_RUNTIME_OBJECT_INF( 
-    afw_runtime_inf__AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects, 
-    impl_runtime_meta__AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects);
+    afw_runtime_inf__AdaptiveAdapterTypeSpecific_ldap_retrieve_objects, 
+    impl_runtime_meta__AdaptiveAdapterTypeSpecific_ldap_retrieve_objects);
 
 
-/* Runtime object map properties for _AdaptiveConf_adaptor_ldap objects. */
+/* Runtime object map properties for _AdaptiveConf_adapter_ldap objects. */
 
 static const afw_runtime_object_type_meta_t
-impl_runtime_meta__AdaptiveConf_adaptor_ldap = {
-    &afw_ldap_self_s__AdaptiveConf_adaptor_ldap,
+impl_runtime_meta__AdaptiveConf_adapter_ldap = {
+    &afw_ldap_self_s__AdaptiveConf_adapter_ldap,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
 };
 
 AFW_RUNTIME_OBJECT_INF( 
-    afw_runtime_inf__AdaptiveConf_adaptor_ldap, 
-    impl_runtime_meta__AdaptiveConf_adaptor_ldap);
+    afw_runtime_inf__AdaptiveConf_adapter_ldap, 
+    impl_runtime_meta__AdaptiveConf_adapter_ldap);
 
 
-/* Runtime object map properties for _AdaptiveConf_adaptor_ldap_bind objects. */
+/* Runtime object map properties for _AdaptiveConf_adapter_ldap_bind objects. */
 
 static const afw_runtime_object_type_meta_t
-impl_runtime_meta__AdaptiveConf_adaptor_ldap_bind = {
-    &afw_ldap_self_s__AdaptiveConf_adaptor_ldap_bind,
+impl_runtime_meta__AdaptiveConf_adapter_ldap_bind = {
+    &afw_ldap_self_s__AdaptiveConf_adapter_ldap_bind,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
 };
 
 AFW_RUNTIME_OBJECT_INF( 
-    afw_runtime_inf__AdaptiveConf_adaptor_ldap_bind, 
-    impl_runtime_meta__AdaptiveConf_adaptor_ldap_bind);
+    afw_runtime_inf__AdaptiveConf_adapter_ldap_bind, 
+    impl_runtime_meta__AdaptiveConf_adapter_ldap_bind);
 
 
 /* Runtime object map properties for _AdaptiveLdapAttributeType_ objects. */
@@ -178,9 +178,9 @@ AFW_RUNTIME_OBJECT_INF(
 
 /* NULL terminated list of inf pointers. */
 static const afw_object_inf_t * impl_inf[] = {
-    &afw_runtime_inf__AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects,
-    &afw_runtime_inf__AdaptiveConf_adaptor_ldap,
-    &afw_runtime_inf__AdaptiveConf_adaptor_ldap_bind,
+    &afw_runtime_inf__AdaptiveAdapterTypeSpecific_ldap_retrieve_objects,
+    &afw_runtime_inf__AdaptiveConf_adapter_ldap,
+    &afw_runtime_inf__AdaptiveConf_adapter_ldap_bind,
     &afw_runtime_inf__AdaptiveLdapAttributeType_,
     &afw_runtime_inf__AdaptiveLdapMatchingRuleUse_,
     &afw_runtime_inf__AdaptiveLdapMatchingRule_,

@@ -6,7 +6,7 @@
                     "$ref": "#/$defs/_AdaptiveFile_vfs.propertyTypes"
                 }
             ],
-            "description": "This is the single object type of objects in a vfs adaptor.",
+            "description": "This is the single object type of objects in a vfs adapter.",
             "type": "object",
             "unevaluatedProperties": false
         },

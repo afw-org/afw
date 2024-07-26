@@ -33,9 +33,9 @@ Create index definition
 
 =head4 Parameters
 
-    $adaptorId
+    $adapterId
 
-Id of adaptor.
+Id of adapter.
 
     $key
 
@@ -72,9 +72,9 @@ List property indexes
 
 =head4 Parameters
 
-    $adaptorId
+    $adapterId
 
-Id of adaptor.
+Id of adapter.
 
     $objectType
 
@@ -87,9 +87,9 @@ Remove index definition
 
 =head4 Parameters
 
-    $adaptorId
+    $adapterId
 
-Id of adaptor.
+Id of adapter.
 
     $key
 
@@ -98,15 +98,15 @@ The index key to be removed.
 =cut
 
 sub index_create {
-    my ($adaptorId, $key, $value, $objectType, $filter, $options, $retroactive, $test) = @_;
+    my ($adapterId, $key, $value, $objectType, $filter, $options, $retroactive, $test) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "index_create");
     $request->set("key", $key);
 
-    if (defined $adaptorId)
-        $request->set("adaptorId", $adaptorId);
+    if (defined $adapterId)
+        $request->set("adapterId", $adapterId);
 
     if (defined $value)
         $request->set("value", $value);
@@ -130,14 +130,14 @@ sub index_create {
 }
 
 sub index_list {
-    my ($adaptorId, $objectType) = @_;
+    my ($adapterId, $objectType) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "index_list");
 
-    if (defined $adaptorId)
-        $request->set("adaptorId", $adaptorId);
+    if (defined $adapterId)
+        $request->set("adapterId", $adapterId);
 
     if (defined $objectType)
         $request->set("objectType", $objectType);
@@ -146,15 +146,15 @@ sub index_list {
 }
 
 sub index_remove {
-    my ($adaptorId, $key) = @_;
+    my ($adapterId, $key) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "index_remove");
     $request->set("key", $key);
 
-    if (defined $adaptorId)
-        $request->set("adaptorId", $adaptorId);
+    if (defined $adapterId)
+        $request->set("adapterId", $adapterId);
 
     return $request->getResult();
 }

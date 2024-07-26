@@ -24,11 +24,11 @@ export const ModelEditorContextMenu = (props) => {
         model,
         target, 
         onClose, 
-        adaptors, 
-        mappedAdaptorId,
-        onSelectMappedAdaptorId,
+        adapters, 
+        mappedAdapterId,
+        onSelectMappedAdapterId,
         onDeploy,
-        onRestartModelAdaptor,
+        onRestartModelAdapter,
         onEditable,
         onReloadView,
         onRefresh,
@@ -37,7 +37,7 @@ export const ModelEditorContextMenu = (props) => {
     } = props;
 
     const {modelId, objectTypes} = model.getPropertyValues();
-    const adaptorId = model.getAdaptorId();
+    const adapterId = model.getAdapterId();
 
     /* use the current path to determine which actions are appropriate */
     const {
@@ -69,43 +69,43 @@ export const ModelEditorContextMenu = (props) => {
             onClick: () => setShowAddCustom(true),
         };
 
-        if (matchPath(pathname, { path: "/Admin/Models/:adaptorId/:modelId", exact: true })) 
+        if (matchPath(pathname, { path: "/Admin/Models/:adapterId/:modelId", exact: true })) 
         {
             propertyTypes = model.getPropertyValue("propertyTypes");
             custom = model.getPropertyValue([ "custom" ]);
             newOptions = [ newObjectTypeItem, newPropertyTypeItem, newCustomItem ];
         }
 
-        else if (matchPath(pathname, { path: "/Admin/Models/:adaptorId/:modelId/objectTypes", exact: true })) 
+        else if (matchPath(pathname, { path: "/Admin/Models/:adapterId/:modelId/objectTypes", exact: true })) 
         {
             newOptions = [ newObjectTypeItem ];
         }
 
-        else if (matchPath(pathname, { path: "/Admin/Models/:adaptorId/:modelId/propertyTypes", exact: true })) 
+        else if (matchPath(pathname, { path: "/Admin/Models/:adapterId/:modelId/propertyTypes", exact: true })) 
         {
             propertyTypes = model.getPropertyValue("propertyTypes");
             newOptions = [ newPropertyTypeItem ];
         }
 
-        else if (matchPath(pathname, { path: "/Admin/Models/:adaptorId/:modelId/propertyTypes/:propertyType", exact: true })) 
+        else if (matchPath(pathname, { path: "/Admin/Models/:adapterId/:modelId/propertyTypes/:propertyType", exact: true })) 
         {
-            const match = matchPath(pathname, { path: "/Admin/Models/:adaptorId/:modelId/propertyTypes/:propertyType" });
+            const match = matchPath(pathname, { path: "/Admin/Models/:adapterId/:modelId/propertyTypes/:propertyType" });
             custom = model.getPropertyValue([ "propertyTypes", match.params.propertyType, "custom" ]);
             currentLabel = propertyType = match.params.propertyType;
             newOptions = [ newCustomItem ];
         }
 
-        else if (matchPath(pathname, { path: "/Admin/Models/:adaptorId/:modelId/custom", exact: true })) 
+        else if (matchPath(pathname, { path: "/Admin/Models/:adapterId/:modelId/custom", exact: true })) 
         {
             custom = model.getPropertyValue([ "custom" ]);
             newOptions = [ newCustomItem ];
         }
 
         else if (
-            matchPath(pathname, { path: "/Admin/Models/:adaptorId/:modelId/objectTypes/:objectType", exact: true }) 
+            matchPath(pathname, { path: "/Admin/Models/:adapterId/:modelId/objectTypes/:objectType", exact: true }) 
         ) 
         {
-            const match = matchPath(pathname, { path: "/Admin/Models/:adaptorId/:modelId/objectTypes/:objectType" });
+            const match = matchPath(pathname, { path: "/Admin/Models/:adapterId/:modelId/objectTypes/:objectType" });
             propertyTypes = model.getPropertyValue([ "objectTypes", match.params.objectType, "propertyTypes" ]);
             custom = model.getPropertyValue([ "objectTypes", match.params.objectType, "custom" ]);
             currentLabel = objectType = match.params.objectType;
@@ -113,19 +113,19 @@ export const ModelEditorContextMenu = (props) => {
         }
 
         else if (
-            matchPath(pathname, { path: "/Admin/Models/:adaptorId/:modelId/objectTypes/:objectType/propertyTypes", exact: true }) 
+            matchPath(pathname, { path: "/Admin/Models/:adapterId/:modelId/objectTypes/:objectType/propertyTypes", exact: true }) 
         ) 
         {
-            const match = matchPath(pathname, { path: "/Admin/Models/:adaptorId/:modelId/objectTypes/:objectType" });
+            const match = matchPath(pathname, { path: "/Admin/Models/:adapterId/:modelId/objectTypes/:objectType" });
             propertyTypes = model.getPropertyValue([ "objectTypes", match.params.objectType, "propertyTypes" ]);
             objectType = match.params.objectType;
             propertyType = match.params.propertyType;
             newOptions = [ newPropertyTypeItem ];
         }
 
-        else if (matchPath(pathname, { path: "/Admin/Models/:adaptorId/:modelId/objectTypes/:objectType/propertyTypes/:propertyType", exact: true })) 
+        else if (matchPath(pathname, { path: "/Admin/Models/:adapterId/:modelId/objectTypes/:objectType/propertyTypes/:propertyType", exact: true })) 
         {
-            const match = matchPath(pathname, { path: "/Admin/Models/:adaptorId/:modelId/objectTypes/:objectType/propertyTypes/:propertyType" });
+            const match = matchPath(pathname, { path: "/Admin/Models/:adapterId/:modelId/objectTypes/:objectType/propertyTypes/:propertyType" });
             propertyTypes = model.getPropertyValue([ "objectTypes", match.params.objectType, "propertyTypes" ]);
             custom = model.getPropertyValue([ "objectTypes", match.params.objectType, "propertyTypes", match.params.propertyType, "custom" ]);
             objectType = match.params.objectType;
@@ -133,18 +133,18 @@ export const ModelEditorContextMenu = (props) => {
             newOptions = [ newCustomItem ];
         }
 
-        else if (matchPath(pathname, { path: "/Admin/Models/:adaptorId/:modelId/objectTypes/:objectType/custom", exact: true })) 
+        else if (matchPath(pathname, { path: "/Admin/Models/:adapterId/:modelId/objectTypes/:objectType/custom", exact: true })) 
         {
-            const match = matchPath(pathname, { path: "/Admin/Models/:adaptorId/:modelId/objectTypes/:objectType/custom" });
+            const match = matchPath(pathname, { path: "/Admin/Models/:adapterId/:modelId/objectTypes/:objectType/custom" });
             propertyTypes = model.getPropertyValue([ "objectTypes", match.params.objectType, "propertyTypes" ]);
             custom = model.getPropertyValue([ "objectTypes", match.params.objectType, "propertyTypes", match.params.propertyType, "custom" ]);
             objectType = match.params.objectType;
             newOptions = [ newCustomItem ];
         }
 
-        else if (matchPath(pathname, { path: "/Admin/Models/:adaptorId/:modelId/objectTypes/:objectType/propertyTypes/:propertyType/custom", exact: true })) 
+        else if (matchPath(pathname, { path: "/Admin/Models/:adapterId/:modelId/objectTypes/:objectType/propertyTypes/:propertyType/custom", exact: true })) 
         {
-            const match = matchPath(pathname, { path: "/Admin/Models/:adaptorId/:modelId/objectTypes/:objectType/propertyTypes/:propertyType/custom" });
+            const match = matchPath(pathname, { path: "/Admin/Models/:adapterId/:modelId/objectTypes/:objectType/propertyTypes/:propertyType/custom" });
             propertyTypes = model.getPropertyValue([ "objectTypes", match.params.objectType, "propertyTypes" ]);
             custom = model.getPropertyValue([ "objectTypes", match.params.objectType, "propertyTypes", match.params.propertyType, "custom" ]);
             objectType = match.params.objectType;
@@ -163,15 +163,15 @@ export const ModelEditorContextMenu = (props) => {
 
     }, [pathname, model]);
 
-    const mappedAdaptorOptions = useMemo(() => {
-        let mappedAdaptorOptions = [
+    const mappedAdapterOptions = useMemo(() => {
+        let mappedAdapterOptions = [
             {
                 key: "None",
                 label: "(None)",
                 onClick: () => {
-                    onSelectMappedAdaptorId();               
+                    onSelectMappedAdapterId();               
                 },
-                checked: (!mappedAdaptorId),
+                checked: (!mappedAdapterId),
                 canCheck: true
             },
             {
@@ -180,25 +180,25 @@ export const ModelEditorContextMenu = (props) => {
             }
         ];
 
-        if (adaptors) {
-            adaptors.sort((A, B) => 
-                A.adaptorId.toLowerCase().localeCompare(B.adaptorId.toLowerCase())
+        if (adapters) {
+            adapters.sort((A, B) => 
+                A.adapterId.toLowerCase().localeCompare(B.adapterId.toLowerCase())
             );
 
-            adaptors.forEach(adaptor => {
-                const adaptorId = adaptor.adaptorId;
-                mappedAdaptorOptions.push({
-                    key: adaptorId,
-                    label: adaptorId,
-                    onClick: () => onSelectMappedAdaptorId(adaptor),
-                    checked: adaptorId === mappedAdaptorId,
+            adapters.forEach(adapter => {
+                const adapterId = adapter.adapterId;
+                mappedAdapterOptions.push({
+                    key: adapterId,
+                    label: adapterId,
+                    onClick: () => onSelectMappedAdapterId(adapter),
+                    checked: adapterId === mappedAdapterId,
                     canCheck: true,
                 });
             });
         }
 
-        return mappedAdaptorOptions; 
-    }, [adaptors, mappedAdaptorId, onSelectMappedAdaptorId]);
+        return mappedAdapterOptions; 
+    }, [adapters, mappedAdapterId, onSelectMappedAdapterId]);
 
     return (
         <>
@@ -255,15 +255,15 @@ export const ModelEditorContextMenu = (props) => {
                         type: "divider"
                     },
                     {
-                        key: "RestartModelAdaptor",
-                        label: "Restart Model Adaptor",
-                        onClick: () => onRestartModelAdaptor()
+                        key: "RestartModelAdapter",
+                        label: "Restart Model Adapter",
+                        onClick: () => onRestartModelAdapter()
                     },
                     {
-                        key: "MappedAdaptor",
-                        label: "Set Mapped Adaptor",
+                        key: "MappedAdapter",
+                        label: "Set Mapped Adapter",
                         subMenu: {
-                            items: mappedAdaptorOptions
+                            items: mappedAdapterOptions
                         }                                
                     },
                     {
@@ -324,7 +324,7 @@ export const ModelEditorContextMenu = (props) => {
                     setShowAddObjectType(false);
                     onReloadView();
 
-                    onRoute("/Admin/Models/" + adaptorId + "/" + modelId + "/objectTypes/" + objectTypeId);
+                    onRoute("/Admin/Models/" + adapterId + "/" + modelId + "/objectTypes/" + objectTypeId);
                 }}
             />
             { (showAddPropertyType && propertyTypes) &&
@@ -342,9 +342,9 @@ export const ModelEditorContextMenu = (props) => {
                         onReloadView();
                         
                         if (objectType)
-                            onRoute("/Admin/Models/" + adaptorId + "/" + modelId + "/objectTypes/" + objectType + "/propertyTypes/" + propertyName);
+                            onRoute("/Admin/Models/" + adapterId + "/" + modelId + "/objectTypes/" + objectType + "/propertyTypes/" + propertyName);
                         else
-                            onRoute("/Admin/Models/" + adaptorId + "/" + modelId + "/propertyTypes/" + propertyName);
+                            onRoute("/Admin/Models/" + adapterId + "/" + modelId + "/propertyTypes/" + propertyName);
                     }}
                 />
             }
@@ -379,7 +379,7 @@ export const ModelEditorContextMenu = (props) => {
                             setShowAddCustom(false);
                             onReloadView(false);
 
-                            let uri = "/Admin/Models/" + adaptorId + "/" + modelId;
+                            let uri = "/Admin/Models/" + adapterId + "/" + modelId;
                             if (objectType)
                                 uri += "/objectTypes/" + objectType;
                             if (propertyType)

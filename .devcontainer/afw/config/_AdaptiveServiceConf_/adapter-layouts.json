@@ -1,0 +1,13 @@
+{
+    "serviceId":"adapter-layouts",
+    "startup":"immediate",
+    "conf":{
+        "type":"adapter",
+        "adapterType":"file",
+        "root":"/afw/layouts/",
+        "contentType":"json",
+        "filenameSuffix":".json",
+        "description":"Stores adaptive layouts.",
+        "adapterId":"layouts"
+    }
+}

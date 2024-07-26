@@ -52,7 +52,7 @@ struct afw_ldap_object_type_attribute_s {
 };
 
 
-/** @fixme metadata_adaptor needs usecount are something for release. */
+/** @fixme metadata_adapter needs usecount are something for release. */
 struct afw_ldap_metadata_s {
 
     /* Use count.  FIXME Start using. */
@@ -148,13 +148,13 @@ struct afw_ldap_metadata_attribute_type_s {
 
 
 /**
- * @brief Load LDAP adaptors Metadata .
- * @param adaptor  Internal ldap adaptor.
+ * @brief Load LDAP adapters Metadata .
+ * @param adapter  Internal ldap adapter.
  * @param xctx of caller.
 *
  * This function loads ldap metadata and sets the metadata variable of the
- * afw_ldap_internal_adaptor_t struct passed.  This should only be called
- * once per adaptor create.  Restart the adaptor to reload meta data.
+ * afw_ldap_internal_adapter_t struct passed.  This should only be called
+ * once per adapter create.  Restart the adapter to reload meta data.
 *
  * The information in the metadata variable is rootdse and schema
  * related.
@@ -163,9 +163,9 @@ struct afw_ldap_metadata_attribute_type_s {
 *
  *  1) Gets a fresh copy of the rootdse and schema.
  *  2) Parses these into memory objects.
- *  3) Creates a memory adaptor.
+ *  3) Creates a memory adapter.
  *  4) Adds ObjectType, DataType and other type of objects to this memory
- *     adaptor using information this metadata and the LDAP adaptor
+ *     adapter using information this metadata and the LDAP adapter
  *     configuration.
 *
  * A very simple LDAP schema entry parser is used based on information from
@@ -191,15 +191,15 @@ struct afw_ldap_metadata_attribute_type_s {
  */
 void
 afw_ldap_metadata_load(
-    afw_ldap_internal_adaptor_t *adaptor,
+    afw_ldap_internal_adapter_t *adapter,
     afw_xctx_t *xctx);
 
 /**
- * @brief Called by afw_ldap_adaptor_session() to retrieve metadata objects.
+ * @brief Called by afw_ldap_adapter_session() to retrieve metadata objects.
  */
 void
 afw_ldap_metadata_retrieve_objects(
-    afw_ldap_internal_adaptor_session_t * self,
+    afw_ldap_internal_adapter_session_t * self,
     const afw_utf8_t * object_type_id,
     const afw_query_criteria_t * criteria,
     void * context,
@@ -207,11 +207,11 @@ afw_ldap_metadata_retrieve_objects(
     afw_xctx_t *xctx);
 
 /**
- * @brief Called by afw_ldap_adaptor_session() to get a metadata object.
+ * @brief Called by afw_ldap_adapter_session() to get a metadata object.
  */
 void
 afw_ldap_metadata_get_object(
-    afw_ldap_internal_adaptor_session_t * self,
+    afw_ldap_internal_adapter_session_t * self,
     const afw_utf8_t * object_type,
     const afw_utf8_t * object_id,
     void * context,
@@ -237,7 +237,7 @@ afw_ldap_metadata_handles(
 
 const afw_value_t *
 afw_ldap_metadata_bv_to_value(
-    afw_ldap_internal_adaptor_session_t *session,
+    afw_ldap_internal_adapter_session_t *session,
     afw_ldap_object_type_attribute_t *attribute,
     const afw_utf8_t *attribute_name, struct berval * *bv,
     const afw_pool_t *p,
@@ -245,7 +245,7 @@ afw_ldap_metadata_bv_to_value(
 
 struct berval **
 afw_ldap_metadata_value_to_bv(
-    afw_ldap_internal_adaptor_session_t *session,
+    afw_ldap_internal_adapter_session_t *session,
     const afw_utf8_t *attribute_name, const afw_value_t *value,
     afw_xctx_t *xctx);
 

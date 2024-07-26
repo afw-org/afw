@@ -100,7 +100,7 @@ impl_afw_content_type_raw_to_object(
     const afw_content_type_t * instance,
     const afw_memory_t * raw,
     const afw_utf8_t * source_location,
-    const afw_utf8_t * adaptor_id,
+    const afw_utf8_t * adapter_id,
     const afw_utf8_t * object_type_id,
     const afw_utf8_t * object_id,
     afw_boolean_t cede_p,
@@ -124,7 +124,7 @@ impl_afw_content_type_raw_to_object(
      * since subpool has already been created.  Return result.
      */
     return afw_json_to_object_with_meta(string, source_location,
-        adaptor_id, object_type_id, object_id, true, p, xctx);
+        adapter_id, object_type_id, object_id, true, p, xctx);
 }
 
 

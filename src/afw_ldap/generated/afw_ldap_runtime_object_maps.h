@@ -27,22 +27,22 @@
 
 
 /**
- * @brief Runtime object inf for object type _AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects
+ * @brief Runtime object inf for object type _AdaptiveAdapterTypeSpecific_ldap_retrieve_objects
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_runtime_inf__AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects;
+afw_runtime_inf__AdaptiveAdapterTypeSpecific_ldap_retrieve_objects;
 
 /**
- * @brief Runtime object inf for object type _AdaptiveConf_adaptor_ldap
+ * @brief Runtime object inf for object type _AdaptiveConf_adapter_ldap
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_runtime_inf__AdaptiveConf_adaptor_ldap;
+afw_runtime_inf__AdaptiveConf_adapter_ldap;
 
 /**
- * @brief Runtime object inf for object type _AdaptiveConf_adaptor_ldap_bind
+ * @brief Runtime object inf for object type _AdaptiveConf_adapter_ldap_bind
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_runtime_inf__AdaptiveConf_adaptor_ldap_bind;
+afw_runtime_inf__AdaptiveConf_adapter_ldap_bind;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveLdapAttributeType_

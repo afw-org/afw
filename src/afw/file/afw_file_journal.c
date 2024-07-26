@@ -15,13 +15,13 @@
 
 
 
-/* Declares and rti/inf defines for interface afw_adaptor_factory */
+/* Declares and rti/inf defines for interface afw_adapter_factory */
 #define AFW_IMPLEMENTATION_ID "file"
-#include "afw_adaptor_journal_impl_declares.h"
+#include "afw_adapter_journal_impl_declares.h"
 
 
-/* afw_adaptor_journal lock holds UTC time of last use. */
-typedef struct afw_adaptor_journal_lock_s {
+/* afw_adapter_journal lock holds UTC time of last use. */
+typedef struct afw_adapter_journal_lock_s {
     afw_endian_big_uint32_t usec;  /* (0-999999) microseconds past min */
     unsigned char sec;             /* (0-61) seconds past min          */
     unsigned char min;             /* (0-59) minutes past hour         */
@@ -31,12 +31,12 @@ typedef struct afw_adaptor_journal_lock_s {
     unsigned char year;            /* (0-99) year past century         */
     unsigned char century;         /* (19-*) century                   */
     unsigned char filler;          /* filler - ignore                  */
-} afw_adaptor_journal_lock_t;
+} afw_adapter_journal_lock_t;
 
 
-const afw_adaptor_journal_inf_t * afw_file_internal_get_journal_inf()
+const afw_adapter_journal_inf_t * afw_file_internal_get_journal_inf()
 {
-    return &impl_afw_adaptor_journal_inf;
+    return &impl_afw_adapter_journal_inf;
 }
 
 /*
@@ -134,15 +134,15 @@ impl_relative_entry_path_to_object_id(
 
 static const afw_object_t *
 impl_open_and_retrieve_peer_object(
-    const afw_adaptor_journal_t *journal,
+    const afw_adapter_journal_t *journal,
     const afw_utf8_t *consumer_id,
     apr_file_t * *peer_f,
     const afw_utf8_z_t * *full_peer_path_z,
     afw_xctx_t *xctx)
 {
-    afw_file_internal_adaptor_session_t * session =
-        (afw_file_internal_adaptor_session_t *)journal->session;
-    afw_file_internal_adaptor_t *adaptor = session->adaptor;
+    afw_file_internal_adapter_session_t * session =
+        (afw_file_internal_adapter_session_t *)journal->session;
+    afw_file_internal_adapter_t *adapter = session->adapter;
     const afw_pool_t *p = xctx->p;
     apr_pool_t * apr_p = afw_pool_get_apr_pool(p);
     void *memory;
@@ -156,9 +156,9 @@ impl_open_and_retrieve_peer_object(
     *full_peer_path_z = afw_utf8_z_printf(p, xctx,
         AFW_UTF8_FMT AFW_OBJECT_Q_OBJECT_TYPE_ID_PROVISIONING_PEER
         "/" AFW_UTF8_FMT AFW_UTF8_FMT,
-        AFW_UTF8_FMT_ARG(adaptor->root),
+        AFW_UTF8_FMT_ARG(adapter->root),
         AFW_UTF8_FMT_ARG(consumer_id),
-        AFW_UTF8_FMT_OPTIONAL_ARG(adaptor->filename_suffix));
+        AFW_UTF8_FMT_OPTIONAL_ARG(adapter->filename_suffix));
 
     AFW_ERROR_FOOTPRINT("apr_stat()");
     rv = apr_stat(&finfo, *full_peer_path_z, APR_FINFO_SIZE,
@@ -181,7 +181,7 @@ impl_open_and_retrieve_peer_object(
     if (len != finfo.size) goto error_peer;
 
     AFW_ERROR_FOOTPRINT("afw_content_type_raw_to_value()");
-    value = afw_content_type_raw_to_value(adaptor->content_type, &buffer,
+    value = afw_content_type_raw_to_value(adapter->content_type, &buffer,
         consumer_id, xctx->p, xctx);
     if (!value || !afw_value_is_object(value)) goto error_peer;
 
@@ -190,33 +190,33 @@ impl_open_and_retrieve_peer_object(
 
 error_peer:
     AFW_THROW_ERROR_FOOTPRINT_FZ(general, xctx,
-        "Error detected processing adaptor " AFW_UTF8_FMT_Q " "
+        "Error detected processing adapter " AFW_UTF8_FMT_Q " "
         AFW_OBJECT_Q_OBJECT_TYPE_ID_PROVISIONING_PEER
         " file %s - %s",
-        AFW_UTF8_FMT_ARG(&adaptor->pub.adaptor_id),
+        AFW_UTF8_FMT_ARG(&adapter->pub.adapter_id),
         *full_peer_path_z, footprint.z);
 
 error_peer_apr:
     AFW_THROW_ERROR_FOOTPRINT_RV_FZ(general, apr, rv, xctx,
-        "Error detected processing adaptor " AFW_UTF8_FMT_Q " "
+        "Error detected processing adapter " AFW_UTF8_FMT_Q " "
         AFW_OBJECT_Q_OBJECT_TYPE_ID_PROVISIONING_PEER
         " file %s - %s",
-        AFW_UTF8_FMT_ARG(&adaptor->pub.adaptor_id),
+        AFW_UTF8_FMT_ARG(&adapter->pub.adapter_id),
         *full_peer_path_z, footprint.z);
 }
 
 
 static void
 impl_write_and_close_peer_object(
-    const afw_adaptor_journal_t *journal,
+    const afw_adapter_journal_t *journal,
     const afw_object_t * peer,
     apr_file_t *peer_f,
     const afw_utf8_z_t *full_peer_path_z,
     afw_xctx_t *xctx)
 {
-    afw_file_internal_adaptor_session_t * session =
-        (afw_file_internal_adaptor_session_t *)journal->session;
-    afw_file_internal_adaptor_t *adaptor = session->adaptor;
+    afw_file_internal_adapter_session_t * session =
+        (afw_file_internal_adapter_session_t *)journal->session;
+    afw_file_internal_adapter_t *adapter = session->adapter;
     afw_error_footprint_t footprint;
     apr_status_t rv;
     const afw_memory_t *encoded;
@@ -225,7 +225,7 @@ impl_write_and_close_peer_object(
 
     /* Encode peer object. */
     encoded = afw_content_type_object_to_raw(
-        adaptor->content_type, peer, NULL, xctx->p, xctx);
+        adapter->content_type, peer, NULL, xctx->p, xctx);
 
     /* Seek to start of peer file. */
     AFW_ERROR_FOOTPRINT("apr_file_seek()");
@@ -258,27 +258,27 @@ impl_write_and_close_peer_object(
 
 error_peer_apr:
     AFW_THROW_ERROR_FOOTPRINT_RV_FZ(general, apr, rv, xctx,
-        "Error detected processing adaptor " AFW_UTF8_FMT_Q " "
+        "Error detected processing adapter " AFW_UTF8_FMT_Q " "
         AFW_OBJECT_Q_OBJECT_TYPE_ID_PROVISIONING_PEER
         " file %s - %s",
-        AFW_UTF8_FMT_ARG(&adaptor->pub.adaptor_id),
+        AFW_UTF8_FMT_ARG(&adapter->pub.adapter_id),
         full_peer_path_z, footprint.z);
 }
 
 
 /*
- * Implementation of method add_entry of interface afw_adaptor_journal.
+ * Implementation of method add_entry of interface afw_adapter_journal.
  */
 const afw_utf8_t *
-impl_afw_adaptor_journal_add_entry(
-    const afw_adaptor_journal_t * instance,
-    const afw_adaptor_impl_request_t * impl_request,
+impl_afw_adapter_journal_add_entry(
+    const afw_adapter_journal_t * instance,
+    const afw_adapter_impl_request_t * impl_request,
     const afw_object_t * entry,
     afw_xctx_t *xctx)
 {
-    afw_file_internal_adaptor_session_t * session = 
-        (afw_file_internal_adaptor_session_t *)instance->session;
-    afw_file_internal_adaptor_t *adaptor = session->adaptor;
+    afw_file_internal_adapter_session_t * session = 
+        (afw_file_internal_adapter_session_t *)instance->session;
+    afw_file_internal_adapter_t *adapter = session->adapter;
     const afw_memory_t *encoded;
     afw_memory_t temp_raw;
     apr_status_t rv;
@@ -291,7 +291,7 @@ impl_afw_adaptor_journal_add_entry(
     const afw_utf8_t *cursor;
     apr_file_t *lock_f;
     apr_file_t *entry_f;
-    afw_adaptor_journal_lock_t lock;
+    afw_adapter_journal_lock_t lock;
     apr_size_t lock_len;
     apr_off_t offset;
     afw_endian_big_uint64_t encoded_len_be;
@@ -303,10 +303,10 @@ impl_afw_adaptor_journal_add_entry(
 
     /** @fixme add in registers for cleanup. */
 
-    /* Encode object using content type of adaptor. */
+    /* Encode object using content type of adapter. */
     /** @fixme is this the right options to use?  Probably not. */
     encoded = afw_content_type_object_to_raw(
-        adaptor->content_type, entry, NULL, xctx->p, xctx);
+        adapter->content_type, entry, NULL, xctx->p, xctx);
     encoded_len_be = afw_endian_native_to_big_uint64(encoded->size);
 
     /* Determine relative path from root for this entry. */
@@ -322,18 +322,18 @@ impl_afw_adaptor_journal_add_entry(
 
     /* Open lock file creating it if needed. */
     AFW_ERROR_FOOTPRINT("apr_file_open()");
-    rv = apr_file_open(&lock_f, adaptor->journal_lock_file_path_z,
+    rv = apr_file_open(&lock_f, adapter->journal_lock_file_path_z,
         APR_FOPEN_READ + APR_FOPEN_CREATE + APR_FOPEN_WRITE + 
         APR_FOPEN_BINARY,  APR_FPROT_OS_DEFAULT, apr_p);
     if (APR_STATUS_IS_ENOENT(rv)) {
         /* Create parent directories and try again. */
         AFW_ERROR_FOOTPRINT("apr_dir_make_recursive()");
-        rv = apr_dir_make_recursive(adaptor->journal_dir_path_z,
+        rv = apr_dir_make_recursive(adapter->journal_dir_path_z,
             APR_FPROT_OS_DEFAULT, apr_p);
         if (rv == APR_SUCCESS) {
             /* Try again. */
             AFW_ERROR_FOOTPRINT("apr_file_open()");
-            rv = apr_file_open(&lock_f, adaptor->journal_lock_file_path_z,
+            rv = apr_file_open(&lock_f, adapter->journal_lock_file_path_z,
                 APR_FOPEN_READ + APR_FOPEN_CREATE + APR_FOPEN_WRITE +
                 APR_FOPEN_BINARY, APR_FPROT_OS_DEFAULT, apr_p);
         }
@@ -345,7 +345,7 @@ impl_afw_adaptor_journal_add_entry(
      * save the first relative_entry_path in path_to_first_entry.
      */
     AFW_ERROR_FOOTPRINT("apr_file_read()");
-    lock_len = sizeof(afw_adaptor_journal_lock_t);
+    lock_len = sizeof(afw_adapter_journal_lock_t);
     rv = apr_file_read(lock_f, &lock, &lock_len);
     first_entry = rv == APR_EOF;
     if (!first_entry && rv != APR_SUCCESS) goto error_lock_apr;
@@ -353,7 +353,7 @@ impl_afw_adaptor_journal_add_entry(
         first_entry_save_path = afw_utf8_printf(xctx->p, xctx,
             AFW_UTF8_FMT AFW_OBJECT_Q_OBJECT_TYPE_ID_JOURNAL_ENTRY
             "/path_to_first_journal_file",
-            AFW_UTF8_FMT_ARG(adaptor->root));
+            AFW_UTF8_FMT_ARG(adapter->root));
         temp_raw.ptr = (const afw_byte_t *)relative_entry_path_z;
         temp_raw.size = strlen(relative_entry_path_z);
         afw_file_from_memory(first_entry_save_path, &temp_raw,
@@ -362,7 +362,7 @@ impl_afw_adaptor_journal_add_entry(
     
     /* Make sure lock record was completely read. */
     AFW_ERROR_FOOTPRINT("check lock record");
-    if (rv == APR_SUCCESS && lock_len != sizeof(afw_adaptor_journal_lock_t))
+    if (rv == APR_SUCCESS && lock_len != sizeof(afw_adapter_journal_lock_t))
         goto error_lock;
 
     /*
@@ -381,7 +381,7 @@ impl_afw_adaptor_journal_add_entry(
         old_full_entry_path_z = afw_utf8_z_printf(p, xctx,
             AFW_UTF8_FMT AFW_OBJECT_Q_OBJECT_TYPE_ID_JOURNAL_ENTRY
             "/y%02d%02d/m%02d/d%02d/h%02d",
-            AFW_UTF8_FMT_ARG(adaptor->root),
+            AFW_UTF8_FMT_ARG(adapter->root),
             lock.century, lock.year, lock.month, lock.day, lock.hour);
     }
 
@@ -399,7 +399,7 @@ impl_afw_adaptor_journal_add_entry(
     /* Path to file that will hold event. */
     full_entry_path_z = afw_utf8_z_printf(p, xctx,
         AFW_UTF8_FMT AFW_OBJECT_Q_OBJECT_TYPE_ID_JOURNAL_ENTRY "/%s",
-        AFW_UTF8_FMT_ARG(adaptor->root), relative_entry_path_z);
+        AFW_UTF8_FMT_ARG(adapter->root), relative_entry_path_z);
 
     /*
      * If switching journal file or first entry, make sure all directories
@@ -409,7 +409,7 @@ impl_afw_adaptor_journal_add_entry(
         full_entry_dir_path_z = afw_utf8_z_printf(p, xctx,
             AFW_UTF8_FMT AFW_OBJECT_Q_OBJECT_TYPE_ID_JOURNAL_ENTRY
             "/y%02d%02d/m%02d/d%02d/",
-            AFW_UTF8_FMT_ARG(adaptor->root),
+            AFW_UTF8_FMT_ARG(adapter->root),
             lock.century, lock.year, lock.month, lock.day);
         AFW_ERROR_FOOTPRINT("apr_dir_make_recursive()");
         rv = apr_dir_make_recursive(full_entry_dir_path_z,
@@ -512,51 +512,51 @@ impl_afw_adaptor_journal_add_entry(
 
 error_lock_apr:
     AFW_THROW_ERROR_FOOTPRINT_RV_FZ(general, apr, rv, xctx,
-        "Error detected processing adaptor " AFW_UTF8_FMT_Q
+        "Error detected processing adapter " AFW_UTF8_FMT_Q
         " journal lock file '%s' - %s",
-        AFW_UTF8_FMT_ARG(&adaptor->pub.adaptor_id),
-        adaptor->journal_lock_file_path_z, footprint.z);
+        AFW_UTF8_FMT_ARG(&adapter->pub.adapter_id),
+        adapter->journal_lock_file_path_z, footprint.z);
 
 error_lock:
     AFW_THROW_ERROR_FOOTPRINT_FZ(general, xctx,
         "Error detected while processing  "
-        "adaptor " AFW_UTF8_FMT_Q " journal lock file '%s' - %s",
-        AFW_UTF8_FMT_ARG(&adaptor->pub.adaptor_id),
-        adaptor->journal_lock_file_path_z, footprint.z);
+        "adapter " AFW_UTF8_FMT_Q " journal lock file '%s' - %s",
+        AFW_UTF8_FMT_ARG(&adapter->pub.adapter_id),
+        adapter->journal_lock_file_path_z, footprint.z);
 
 error_journal_apr:
     AFW_THROW_ERROR_FOOTPRINT_RV_FZ(general, apr, rv, xctx,
-        "Error detected processing adaptor " AFW_UTF8_FMT_Q
+        "Error detected processing adapter " AFW_UTF8_FMT_Q
         " journal file '%s' - %s",
-        AFW_UTF8_FMT_ARG(&adaptor->pub.adaptor_id),
+        AFW_UTF8_FMT_ARG(&adapter->pub.adapter_id),
         full_entry_path_z, footprint.z);
 
 error_old_journal_apr:
     AFW_THROW_ERROR_FOOTPRINT_RV_FZ(general, apr, rv, xctx,
-        "Error detected processing adaptor " AFW_UTF8_FMT_Q
+        "Error detected processing adapter " AFW_UTF8_FMT_Q
         " journal file '%s' - %s",
-        AFW_UTF8_FMT_ARG(&adaptor->pub.adaptor_id),
+        AFW_UTF8_FMT_ARG(&adapter->pub.adapter_id),
         old_full_entry_path_z, footprint.z);
 }
 
 
 /*
- * Implementation of method get_entry of interface afw_adaptor_journal.
+ * Implementation of method get_entry of interface afw_adapter_journal.
  */
 void
-impl_afw_adaptor_journal_get_entry(
-    const afw_adaptor_journal_t * instance,
-    const afw_adaptor_impl_request_t * impl_request,
-    afw_adaptor_journal_option_t option,
+impl_afw_adapter_journal_get_entry(
+    const afw_adapter_journal_t * instance,
+    const afw_adapter_impl_request_t * impl_request,
+    afw_adapter_journal_option_t option,
     const afw_utf8_t * consumer_id,
     const afw_utf8_t * entry_cursor,
     afw_size_t limit,
     const afw_object_t * response,
     afw_xctx_t *xctx)
 {
-    afw_file_internal_adaptor_session_t * session =
-        (afw_file_internal_adaptor_session_t *)instance->session;
-    afw_file_internal_adaptor_t *adaptor = session->adaptor;
+    afw_file_internal_adapter_session_t * session =
+        (afw_file_internal_adapter_session_t *)instance->session;
+    afw_file_internal_adapter_t *adapter = session->adapter;
     const afw_pool_t *p = xctx->p;
     apr_pool_t *apr_p = afw_pool_get_apr_pool(p);
 
@@ -615,41 +615,41 @@ impl_afw_adaptor_journal_get_entry(
     /* Set variables based on options */
     switch (option) {
 
-    case afw_adaptor_journal_option_get_first:
+    case afw_adapter_journal_option_get_first:
         get_first = true;
         break;
 
-    case afw_adaptor_journal_option_get_next_after_cursor:
+    case afw_adapter_journal_option_get_next_after_cursor:
         skip_first_entry = true;
         entry_object_id = entry_cursor;
         break;
 
-    case afw_adaptor_journal_option_get_next_for_consumer:
+    case afw_adapter_journal_option_get_next_for_consumer:
         use_consumer = true;
         use_consumer_cursors = true;
         check_filter = true;
         break;
 
-    case afw_adaptor_journal_option_get_next_for_consumer_after_cursor:
+    case afw_adapter_journal_option_get_next_for_consumer_after_cursor:
         skip_first_entry = true;
         entry_object_id = entry_cursor;
         use_consumer = true;
         check_filter = true;
         break;
 
-    case afw_adaptor_journal_option_advance_cursor_for_consumer:
+    case afw_adapter_journal_option_advance_cursor_for_consumer:
         use_consumer = true;
         check_filter = true;
         advance_consumer_cursor = true;
         break;
 
-    case afw_adaptor_journal_option_get_by_cursor:
+    case afw_adapter_journal_option_get_by_cursor:
         entry_object_id = entry_cursor;
         break;
 
     default:
         AFW_THROW_ERROR_FZ(general, xctx,
-            "Invalid option %d passed to afw_adaptor_journal_get_entry()",
+            "Invalid option %d passed to afw_adapter_journal_get_entry()",
             option);
     };
 
@@ -692,7 +692,7 @@ impl_afw_adaptor_journal_get_entry(
         first_entry_save_path = afw_utf8_printf(xctx->p, xctx,
             AFW_UTF8_FMT AFW_OBJECT_Q_OBJECT_TYPE_ID_JOURNAL_ENTRY
             "/path_to_first_journal_file",
-            AFW_UTF8_FMT_ARG(adaptor->root));
+            AFW_UTF8_FMT_ARG(adapter->root));
         relative_entry_path_z = afw_utf8_to_utf8_z(
             afw_utf8_from_raw(
                 afw_file_to_memory(first_entry_save_path, 0, p, xctx),
@@ -726,7 +726,7 @@ impl_afw_adaptor_journal_get_entry(
         if (open_journal) {
             open_journal = false;
             full_entry_path_z = afw_utf8_z_concat(p, xctx,
-                adaptor->journal_dir_path_z,
+                adapter->journal_dir_path_z,
                 relative_entry_path_z, NULL);
             AFW_ERROR_FOOTPRINT("apr_file_open()");
             rv = apr_file_open(&entry_f, full_entry_path_z,
@@ -777,7 +777,7 @@ impl_afw_adaptor_journal_get_entry(
             if (rv != APR_SUCCESS) goto error_journal_apr;
             AFW_ERROR_FOOTPRINT("check that all of encoded entry read");
             if (len != buffer.size) goto error_journal;
-            value = afw_content_type_raw_to_value(adaptor->content_type, &buffer,
+            value = afw_content_type_raw_to_value(adapter->content_type, &buffer,
                 consumer_id, p, xctx);
             AFW_ERROR_FOOTPRINT("check that converted entry is an object");
             if (!afw_value_is_object(value)) goto error_journal;
@@ -792,7 +792,7 @@ impl_afw_adaptor_journal_get_entry(
 
             /* Else if check_filter, set applicable using filter. */
             else if (check_filter) {
-                applicable = afw_adaptor_impl_is_journal_entry_applicable(
+                applicable = afw_adapter_impl_is_journal_entry_applicable(
                     instance, entry, peer, &filter, xctx);
             }
 
@@ -877,28 +877,28 @@ impl_afw_adaptor_journal_get_entry(
 
 error_journal_apr:
     AFW_THROW_ERROR_FOOTPRINT_RV_FZ(general, apr, rv, xctx,
-        "Error detected processing adaptor " AFW_UTF8_FMT_Q
+        "Error detected processing adapter " AFW_UTF8_FMT_Q
             " journal file '%s' - %s",
-        adaptor->pub.adaptor_id.len, adaptor->pub.adaptor_id.s,
+        adapter->pub.adapter_id.len, adapter->pub.adapter_id.s,
         full_entry_path_z, footprint.z);
 
 error_journal:
     AFW_THROW_ERROR_FOOTPRINT_FZ(general, xctx,
         "Error detected while processing  "
-        "adaptor " AFW_UTF8_FMT_Q " journal file '%s' - %s",
-        AFW_UTF8_FMT_ARG(&adaptor->pub.adaptor_id),
+        "adapter " AFW_UTF8_FMT_Q " journal file '%s' - %s",
+        AFW_UTF8_FMT_ARG(&adapter->pub.adapter_id),
         full_entry_path_z, footprint.z);
 
 }
 
 
 /*
- * Implementation of method mark_entry_consumed of interface afw_adaptor_journal.
+ * Implementation of method mark_entry_consumed of interface afw_adapter_journal.
  */
 void
-impl_afw_adaptor_journal_mark_entry_consumed(
-    const afw_adaptor_journal_t * instance,
-    const afw_adaptor_impl_request_t * impl_request,
+impl_afw_adapter_journal_mark_entry_consumed(
+    const afw_adapter_journal_t * instance,
+    const afw_adapter_impl_request_t * impl_request,
     const afw_utf8_t * consumer_id,
     const afw_utf8_t * entry_cursor,
     afw_xctx_t *xctx)

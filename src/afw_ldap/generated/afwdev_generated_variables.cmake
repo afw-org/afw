@@ -43,16 +43,16 @@ set(AFWDEV_GENERATED_INCLUDE_DIRECTORIES_LIST
 
 # Source files to compile.
 set(AFWDEV_GENERATED_SOURCE_LIST 
-    afw_ldap_adaptor.c
-    afw_ldap_adaptor_factory.c
-    afw_ldap_adaptor_session.c
+    afw_ldap_adapter.c
+    afw_ldap_adapter_factory.c
+    afw_ldap_adapter_session.c
     afw_ldap_extension.c
     afw_ldap_internal.c
     afw_ldap_metadata.c
     afw_ldap_syntax_handler.c
     generated/afw_ldap_const_objects.c
     generated/afw_ldap_generated.c
-    generated/afw_ldap_register_adaptor_type_ldap.c
+    generated/afw_ldap_register_adapter_type_ldap.c
     generated/afw_ldap_register_error_rv_decoder_ldap.c
     generated/afw_ldap_runtime_object_maps.c
     generated/afw_ldap_strings.c

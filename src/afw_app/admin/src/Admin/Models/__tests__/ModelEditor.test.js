@@ -40,9 +40,9 @@ describe("ModelEditor Tests", () => {
         /* return a model for /models/_AdaptiveModel_/test */
         server.use(
             rest.post("/afw", (req, res, ctx) => {
-                const {function: functionId, adaptorId} = req.body;
+                const {function: functionId, adapterId} = req.body;
 
-                if (functionId === "retrieve_objects" && adaptorId === "models") { 
+                if (functionId === "retrieve_objects" && adapterId === "models") { 
                     mswPostCallback("/afw", req, res, ctx);
 
                     return res(
@@ -102,8 +102,8 @@ describe("ModelEditor Tests", () => {
         within(menu).getByRole("menuitem", { name: "Edit Model" });
         within(menu).getByRole("menuitem", { name: "Save Model" });
         within(menu).getByRole("menuitem", { name: "Refresh Model" });
-        within(menu).getByRole("menuitem", { name: "Restart Model Adaptor" });
-        within(menu).getByRole("menuitem", { name: "Set Mapped Adaptor" });
+        within(menu).getByRole("menuitem", { name: "Restart Model Adapter" });
+        within(menu).getByRole("menuitem", { name: "Set Mapped Adapter" });
         within(menu).getByRole("menuitem", { name: "Simulate" });
         within(menu).getByRole("menuitem", { name: "Deploy to Service" });
 
@@ -160,9 +160,9 @@ describe("ModelEditor Tests", () => {
         /* return a model for /models/_AdaptiveModel_/test */
         server.use(
             rest.post("/afw", (req, res, ctx) => {
-                const {function: functionId, adaptorId} = req.body;
+                const {function: functionId, adapterId} = req.body;
 
-                if (functionId === "retrieve_objects" && adaptorId === "models") { 
+                if (functionId === "retrieve_objects" && adapterId === "models") { 
                     mswPostCallback("/afw", req, res, ctx);
 
                     return res(
@@ -232,9 +232,9 @@ describe("ModelEditor Tests", () => {
         /* return a model for /models/_AdaptiveModel_/test */
         server.use(
             rest.post("/afw", (req, res, ctx) => {
-                const {function: functionId, adaptorId} = req.body;
+                const {function: functionId, adapterId} = req.body;
 
-                if (functionId === "retrieve_objects" && adaptorId === "models") { 
+                if (functionId === "retrieve_objects" && adapterId === "models") { 
                     mswPostCallback("/afw", req, res, ctx);
 
                     return res(

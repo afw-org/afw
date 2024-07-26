@@ -85,7 +85,7 @@ const PropertyTypeModelMapValue = ({ editable, propertyTypes, propertyType }) =>
  * Provides a UI for rendering the mapping between Model Properties
  * and the Mapped Properties, using a table to arrange Model and Mapped
  * in separate columns.  If Property Types are available from the Mapped
- * Adaptor, then we can use Dropdowns instead of TextField's.
+ * Adapter, then we can use Dropdowns instead of TextField's.
  */
 export const PropertyTypeModelMapping = (props) => {
             
@@ -226,7 +226,7 @@ const modelOptions = {
  */
 export const ModelMapping = (props) => {
 
-    const {mappedAdaptorId, modelObjectTypeObjects} = props;
+    const {mappedAdapterId, modelObjectTypeObjects} = props;
     const [expandedKeys, setExpandedKeys] = useState([]);
     
     const {editable} = useOperational(props);
@@ -240,7 +240,7 @@ export const ModelMapping = (props) => {
         isLoading,
         error,
     } = useRetrieveObjects({
-        adaptorId: mappedAdaptorId,
+        adapterId: mappedAdapterId,
         objectTypeId: "_AdaptiveObjectType_",
         objectOptions, 
         modelOptions,
@@ -373,7 +373,7 @@ export const ModelMapping = (props) => {
                                                                 xl: 3
                                                             },
                                                             contains: 
-                                                                mappedAdaptorId ? 
+                                                                mappedAdapterId ? 
                                                                     <Dropdown 
                                                                         id={"models-mapping-to-" + objectType + "-dropdown"}
                                                                         options={mappedObjectTypesDropdownOptions}

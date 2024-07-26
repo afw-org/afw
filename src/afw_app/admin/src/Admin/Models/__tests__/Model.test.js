@@ -37,9 +37,9 @@ describe("Model Tests", () => {
         /* return a model for /models/_AdaptiveModel_/test */
         server.use(
             rest.post("/afw", (req, res, ctx) => {
-                const {function: functionId, adaptorId} = req.body;
+                const {function: functionId, adapterId} = req.body;
 
-                if (functionId === "retrieve_objects" && adaptorId === "models") { 
+                if (functionId === "retrieve_objects" && adapterId === "models") { 
                     mswPostCallback("/afw", req, res, ctx);
 
                     return res(

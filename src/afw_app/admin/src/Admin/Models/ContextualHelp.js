@@ -21,7 +21,7 @@ export const ModelsHelp = () => {
             <HelpText text={` \
                 Adaptive Models allow you to define Object Types and Property 
                 Types that will be used to map or transform values from other 
-                adaptors and even run scripts when objects are accessed by the 
+                adapters and even run scripts when objects are accessed by the 
                 model.
 
                 Select a model from the list, or create a new model.
@@ -70,17 +70,17 @@ export const ModelEditorPropertyTypesHelp = () => {
 export const ContextualHelpRoutes = [
 
     { 
-        path: "/Admin/Models/:adaptorId/:modelId/objectTypes/:objectTypeId/propertyTypes/:propertyType",    
+        path: "/Admin/Models/:adapterId/:modelId/objectTypes/:objectTypeId/propertyTypes/:propertyType",    
         title: "Model Editor Help", 
         Component: ModelEditorPropertyTypesHelp  
     },
     { 
-        path: "/Admin/Models/:adaptorId/:modelId/objectTypes/:objectTypeId",    
+        path: "/Admin/Models/:adapterId/:modelId/objectTypes/:objectTypeId",    
         title: "Model Editor Help", 
         Component: ModelEditorObjectTypesHelp  
     },
     { 
-        path: "/Admin/Models/:adaptorId/:modelId",    
+        path: "/Admin/Models/:adapterId/:modelId",    
         title: "Model Editor Help", 
         Component: ModelEditorHelp  
     },

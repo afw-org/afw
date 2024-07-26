@@ -35,8 +35,8 @@ class model
      * cause side effects. This function can be called as part of a onAdd
      * expression or for testing.
      *
-     * @param string $adaptorId This is the adaptorId of a model adaptor.
-     *                          Variable custom::adaptorId can be used to
+     * @param string $adapterId This is the adapterId of a model adapter.
+     *                          Variable custom::adapterId can be used to
      *                          access this value in model expressions.
      * @param string $objectType This is the adaptive object type of object
      *                           being added. Variable custom::objectType can
@@ -46,18 +46,18 @@ class model
      *                       custom::object can be used to access this value
      *                       in model expressions.
      * @param string $objectId This is the optional preferred objectId of
-     *                         object to add. The adaptor may ignore this.
+     *                         object to add. The adapter may ignore this.
      *                         Variable custom::objectId can be used to access
      *                         this value in model expressions.
      * @param string $modelId This specifics a modelId of model to use for
      *                        producing results. If not specified, the
-     *                        adaptor's current model will be used.
+     *                        adapter's current model will be used.
      * @param object $context This specifies additional context information
      *                        available to model expressions.
      *
      * @return object The default action object.
      */
-    public function model_default_add_object_action(, $objectType, $object, $adaptorId = null, $objectId = null, $modelId = null, $context = null)
+    public function model_default_add_object_action(, $objectType, $object, $adapterId = null, $objectId = null, $modelId = null, $context = null)
     {
         $request = $this->$session->request();
 
@@ -68,8 +68,8 @@ class model
         $request->set("object", $object);
 
         /* pass along any optional parameters to the request payload */
-        if ($adaptorId != null)
-            $request->set('adaptorId', $adaptorId);
+        if ($adapterId != null)
+            $request->set('adapterId', $adapterId);
 
         if ($objectId != null)
             $request->set('objectId', $objectId);
@@ -93,8 +93,8 @@ class model
      * object may cause side effects. This function can be called as part of a
      * onDelete expression or for testing.
      *
-     * @param string $adaptorId This is the adaptorId of a model adaptor.
-     *                          Variable custom::adaptorId can be used to
+     * @param string $adapterId This is the adapterId of a model adapter.
+     *                          Variable custom::adapterId can be used to
      *                          access this value in model expressions.
      * @param string $objectType This is the adaptive object type of object
      *                           being deleted. Variable custom::objectType
@@ -105,13 +105,13 @@ class model
      *                         this value in model expressions.
      * @param string $modelId This specifics a modelId of model to use for
      *                        producing results. If not specified, the
-     *                        adaptor's current model will be used.
+     *                        adapter's current model will be used.
      * @param object $context This specifies additional context information
      *                        available to model expressions.
      *
      * @return object The default action object.
      */
-    public function model_default_delete_object_action(, $objectType, $objectId, $adaptorId = null, $modelId = null, $context = null)
+    public function model_default_delete_object_action(, $objectType, $objectId, $adapterId = null, $modelId = null, $context = null)
     {
         $request = $this->$session->request();
 
@@ -122,8 +122,8 @@ class model
         $request->set("objectId", $objectId);
 
         /* pass along any optional parameters to the request payload */
-        if ($adaptorId != null)
-            $request->set('adaptorId', $adaptorId);
+        if ($adapterId != null)
+            $request->set('adapterId', $adapterId);
 
         if ($modelId != null)
             $request->set('modelId', $modelId);
@@ -144,8 +144,8 @@ class model
      * object may cause side effects. This function can be called as part of a
      * onModify expression or for testing.
      *
-     * @param string $adaptorId This is the adaptorId of a model adaptor.
-     *                          Variable custom::adaptorId can be used to
+     * @param string $adapterId This is the adapterId of a model adapter.
+     *                          Variable custom::adapterId can be used to
      *                          access this value in model expressions.
      * @param string $objectType This is the adaptive object type of object
      *                           being modified. Variable custom::objectType
@@ -174,13 +174,13 @@ class model
      *                         ]
      * @param string $modelId This specifics a modelId of model to use for
      *                        producing results. If not specified, the
-     *                        adaptor's current model will be used.
+     *                        adapter's current model will be used.
      * @param object $context This specifies additional context information
      *                        available to model expressions.
      *
      * @return object The default action object.
      */
-    public function model_default_modify_object_action(, $objectType, $objectId, $entries, $adaptorId = null, $modelId = null, $context = null)
+    public function model_default_modify_object_action(, $objectType, $objectId, $entries, $adapterId = null, $modelId = null, $context = null)
     {
         $request = $this->$session->request();
 
@@ -192,8 +192,8 @@ class model
         $request->set("entries", $entries);
 
         /* pass along any optional parameters to the request payload */
-        if ($adaptorId != null)
-            $request->set('adaptorId', $adaptorId);
+        if ($adapterId != null)
+            $request->set('adapterId', $adapterId);
 
         if ($modelId != null)
             $request->set('modelId', $modelId);
@@ -214,8 +214,8 @@ class model
      * object may cause side effects. This function can be called as part of a
      * onReplace expression or for testing.
      *
-     * @param string $adaptorId This is the adaptorId of a model adaptor.
-     *                          Variable custom::adaptorId can be used to
+     * @param string $adapterId This is the adapterId of a model adapter.
+     *                          Variable custom::adapterId can be used to
      *                          access this value in model expressions.
      * @param string $objectType This is the adaptive object type of object
      *                           being replaced. Variable custom::objectType
@@ -229,13 +229,13 @@ class model
      *                       in model expressions.
      * @param string $modelId This specifics a modelId of model to use for
      *                        producing results. If not specified, the
-     *                        adaptor's current model will be used.
+     *                        adapter's current model will be used.
      * @param object $context This specifies additional context information
      *                        available to model expressions.
      *
      * @return object The default action object.
      */
-    public function model_default_replace_object_action(, $objectType, $objectId, $object, $adaptorId = null, $modelId = null, $context = null)
+    public function model_default_replace_object_action(, $objectType, $objectId, $object, $adapterId = null, $modelId = null, $context = null)
     {
         $request = $this->$session->request();
 
@@ -247,8 +247,8 @@ class model
         $request->set("object", $object);
 
         /* pass along any optional parameters to the request payload */
-        if ($adaptorId != null)
-            $request->set('adaptorId', $adaptorId);
+        if ($adapterId != null)
+            $request->set('adapterId', $adapterId);
 
         if ($modelId != null)
             $request->set('modelId', $modelId);
@@ -268,7 +268,7 @@ class model
      *
      * @param object $mappedObject This is the object to map back.
      *
-     * @return object This is the mappedObject mapped back from mapped adaptor
+     * @return object This is the mappedObject mapped back from mapped adapter
      *                object.
      */
     public function model_mapBackObject_signature(, $mappedObject)
@@ -293,7 +293,7 @@ class model
      *
      * @param object $object This is the object to map.
      *
-     * @return object This is the object mapped to mappedAdaptor object.
+     * @return object This is the object mapped to mappedAdapter object.
      */
     public function model_mapObject_signature(, $object)
     {
@@ -317,8 +317,8 @@ class model
      *
      * @param object $object This is the object to return.
      * @param boolean $userData If this is present and true, the object will
-     *                          be mapped its mapped adaptor's object type to
-     *                          the model adaptor's object type.
+     *                          be mapped its mapped adapter's object type to
+     *                          the model adapter's object type.
      *
      * @return boolean This will return true if no more objects can be
      *                 returned for any reason including a limit exceeded,

@@ -430,10 +430,10 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "adaptorId",
+                    "name": "adapterId",
                     "minArgs": -1,
                     "details": "This parameter is a string value.",
-                    "description": "Id of adaptor.",
+                    "description": "Id of adapter.",
                     "dataType": "string"
                 },
                 {
@@ -1681,10 +1681,10 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "adaptorId",
+                    "name": "adapterId",
                     "minArgs": -1,
                     "details": "This parameter is a string value.",
-                    "description": "This is the adaptorId of a model adaptor.  Variable custom::adaptorId can be used to access this value in model expressions.",
+                    "description": "This is the adapterId of a model adapter.  Variable custom::adapterId can be used to access this value in model expressions.",
                     "dataType": "string"
                 },
                 {
@@ -1723,7 +1723,7 @@
                     "name": "modelId",
                     "minArgs": -1,
                     "details": "This parameter is a string value that is optional.",
-                    "description": "This specifics a modelId of model to use for producing results.  If not specified, the adaptor's current model will be used.",
+                    "description": "This specifics a modelId of model to use for producing results.  If not specified, the adapter's current model will be used.",
                     "dataType": "string"
                 },
                 {
@@ -1749,7 +1749,7 @@
             "dataTypeMethodNumber": 0,
             "category": "model",
             "camelCaseFunctionLabel": "modelDefaultDeleteObjectAction",
-            "brief": "Produce a default _AdaptiveAction_ object for an delete object request to a model adaptor.",
+            "brief": "Produce a default _AdaptiveAction_ object for an delete object request to a model adapter.",
             "afwCamelCaseFunctionLabel": "afwModelDefaultDeleteObjectAction"
         },
         {
@@ -3348,10 +3348,10 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "adaptorId",
+                    "name": "adapterId",
                     "minArgs": -1,
                     "details": "This parameter is a string value.",
-                    "description": "Id of adaptor.",
+                    "description": "Id of adapter.",
                     "dataType": "string"
                 },
                 {
@@ -3995,10 +3995,10 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "adaptorId",
+                    "name": "adapterId",
                     "minArgs": -1,
                     "details": "This parameter is a string value.",
-                    "description": "Id of adaptor containing objects to print.",
+                    "description": "Id of adapter containing objects to print.",
                     "dataType": "string"
                 },
                 {
@@ -4048,7 +4048,7 @@
             "description": "Print adaptive objects as their to_string() value.  Each object will be preceded with a line containing the decimal length of the object's string.",
             "deprecated": false,
             "dataTypeMethodNumber": 0,
-            "category": "adaptor",
+            "category": "adapter",
             "camelCaseFunctionLabel": "printObjects",
             "brief": "Print adaptive objects",
             "afwCamelCaseFunctionLabel": "afwPrintObjects"
@@ -4154,10 +4154,10 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "adaptorId",
+                    "name": "adapterId",
                     "minArgs": -1,
                     "details": "This parameter is a string value.",
-                    "description": "Id of adaptor.",
+                    "description": "Id of adapter.",
                     "dataType": "string"
                 },
                 {
@@ -4214,7 +4214,7 @@
                 "optional": false,
                 "minArgs": -1,
                 "details": "This function returns an object _AdaptiveJournalEntry_ value.",
-                "description": "Resulting journal entry.  Property \"objectId\" is the objectId assigned by the adaptor.",
+                "description": "Resulting journal entry.  Property \"objectId\" is the objectId assigned by the adapter.",
                 "dataTypeParameter": "_AdaptiveJournalEntry_",
                 "dataType": "object"
             },
@@ -4228,10 +4228,10 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "adaptorId",
+                    "name": "adapterId",
                     "minArgs": -1,
                     "details": "This parameter is a string value.",
-                    "description": "Id of adaptor.",
+                    "description": "Id of adapter.",
                     "dataType": "string"
                 },
                 {
@@ -4270,7 +4270,7 @@
                     "name": "objectId",
                     "minArgs": -1,
                     "details": "This parameter is a string value that is optional.",
-                    "description": "Optional preferred objectId of object to add.  The adaptor may ignore this.",
+                    "description": "Optional preferred objectId of object to add.  The adapter may ignore this.",
                     "dataType": "string"
                 },
                 {
@@ -4293,20 +4293,20 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": true,
-                    "name": "adaptorTypeSpecific",
+                    "name": "adapterTypeSpecific",
                     "minArgs": -1,
                     "details": "This parameter is an object value that is optional.",
-                    "description": "This is an optional object parameter with an objectType determined by the adaptorType associated with the adaptorId parameter.  If the adaptorType supports this parameter, adaptor afw will have an adaptive object type with an id of:\n\n_AdaptiveAdaptorTypeSpecific_${adaptorType}_add_object\n\nwhere ${adaptorType} is the adaptor type id.",
+                    "description": "This is an optional object parameter with an objectType determined by the adapterType associated with the adapterId parameter.  If the adapterType supports this parameter, adapter afw will have an adaptive object type with an id of:\n\n_AdaptiveAdapterTypeSpecific_${adapterType}_add_object\n\nwhere ${adapterType} is the adapter type id.",
                     "dataType": "object"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
             "functionLabel": "add_object",
             "functionId": "add_object",
-            "description": "Add an adaptive object to an adaptor, specified by the adaptorId, with a specified objectType.  You may supply an optional objectId, if the underlying adaptorId allows it.",
+            "description": "Add an adaptive object to an adapter, specified by the adapterId, with a specified objectType.  You may supply an optional objectId, if the underlying adapterId allows it.",
             "deprecated": false,
             "dataTypeMethodNumber": 0,
-            "category": "adaptor",
+            "category": "adapter",
             "camelCaseFunctionLabel": "addObject",
             "brief": "Add adaptive object",
             "afwCamelCaseFunctionLabel": "afwAddObject"
@@ -4739,10 +4739,10 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "adaptorId",
+                    "name": "adapterId",
                     "minArgs": -1,
                     "details": "This parameter is a string value.",
-                    "description": "Adaptor Id.",
+                    "description": "Adapter Id.",
                     "dataType": "string"
                 }
             ],
@@ -6433,10 +6433,10 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "adaptorId",
+                    "name": "adapterId",
                     "minArgs": -1,
                     "details": "This parameter is a string value.",
-                    "description": "Id of adaptor.",
+                    "description": "Id of adapter.",
                     "dataType": "string"
                 },
                 {
@@ -6601,10 +6601,10 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "adaptorId",
+                    "name": "adapterId",
                     "minArgs": -1,
                     "details": "This parameter is a string value.",
-                    "description": "This is the adaptorId of a model adaptor.  Variable custom::adaptorId can be used to access this value in model expressions.",
+                    "description": "This is the adapterId of a model adapter.  Variable custom::adapterId can be used to access this value in model expressions.",
                     "dataType": "string"
                 },
                 {
@@ -6643,7 +6643,7 @@
                     "name": "objectId",
                     "minArgs": -1,
                     "details": "This parameter is a string value that is optional.",
-                    "description": "This is the optional preferred objectId of object to add.  The adaptor may ignore this.  Variable custom::objectId can be used to access this value in model expressions.",
+                    "description": "This is the optional preferred objectId of object to add.  The adapter may ignore this.  Variable custom::objectId can be used to access this value in model expressions.",
                     "dataType": "string"
                 },
                 {
@@ -6656,7 +6656,7 @@
                     "name": "modelId",
                     "minArgs": -1,
                     "details": "This parameter is a string value that is optional.",
-                    "description": "This specifics a modelId of model to use for producing results.  If not specified, the adaptor's current model will be used.",
+                    "description": "This specifics a modelId of model to use for producing results.  If not specified, the adapter's current model will be used.",
                     "dataType": "string"
                 },
                 {
@@ -6682,7 +6682,7 @@
             "dataTypeMethodNumber": 0,
             "category": "model",
             "camelCaseFunctionLabel": "modelDefaultAddObjectAction",
-            "brief": "Produce a default _AdaptiveAction_ object for an add object request to a model adaptor.",
+            "brief": "Produce a default _AdaptiveAction_ object for an add object request to a model adapter.",
             "afwCamelCaseFunctionLabel": "afwModelDefaultAddObjectAction"
         },
         {
@@ -7427,10 +7427,10 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "adaptorId",
+                    "name": "adapterId",
                     "minArgs": -1,
                     "details": "This parameter is a string value.",
-                    "description": "Id of adaptor containing objects to retrieve.",
+                    "description": "Id of adapter containing objects to retrieve.",
                     "dataType": "string"
                 },
                 {
@@ -7480,20 +7480,20 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": true,
-                    "name": "adaptorTypeSpecific",
+                    "name": "adapterTypeSpecific",
                     "minArgs": -1,
                     "details": "This parameter is an object value that is optional.",
-                    "description": "This is an optional object parameter with an objectType determined by the adaptorType associated with the adaptorId parameter.  If the adaptorType supports this parameter, adaptor afw will have an adaptive object type with an id of:\n\n_AdaptiveAdaptorTypeSpecific_${adaptorType}_retrieve_objects\n\nWhere ${adaptorType} is the adaptor type id.",
+                    "description": "This is an optional object parameter with an objectType determined by the adapterType associated with the adapterId parameter.  If the adapterType supports this parameter, adapter afw will have an adaptive object type with an id of:\n\n_AdaptiveAdapterTypeSpecific_${adapterType}_retrieve_objects\n\nWhere ${adapterType} is the adapter type id.",
                     "dataType": "object"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
             "functionLabel": "retrieve_objects",
             "functionId": "retrieve_objects",
-            "description": "This function Retrieves adaptive objects from an adaptor, specified by adaptorId, which match the type specified by objectType.  The optional queryString is used to filter the adaptive object list, which match the filter expression.  Use the objectOptions parameter to influence how the objects are viewed.  Options, specific to the adaptorId, may be optionally supplied to this retrieve as well.",
+            "description": "This function Retrieves adaptive objects from an adapter, specified by adapterId, which match the type specified by objectType.  The optional queryString is used to filter the adaptive object list, which match the filter expression.  Use the objectOptions parameter to influence how the objects are viewed.  Options, specific to the adapterId, may be optionally supplied to this retrieve as well.",
             "deprecated": false,
             "dataTypeMethodNumber": 0,
-            "category": "adaptor",
+            "category": "adapter",
             "camelCaseFunctionLabel": "retrieveObjects",
             "brief": "Retrieve adaptive objects",
             "afwCamelCaseFunctionLabel": "afwRetrieveObjects"
@@ -7602,10 +7602,10 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": true,
-                    "name": "adaptorTypeSpecific",
+                    "name": "adapterTypeSpecific",
                     "minArgs": -1,
                     "details": "This parameter is an object value that is optional.",
-                    "description": "This is an optional object parameter with an objectType determined by the adaptorType associated with the adaptorId parameter.  If the adaptorType supports this parameter, adaptor afw will have an adaptive object type with an id of:\n\n_AdaptiveAdaptorTypeSpecific_${adaptorType}_delete_object\n\nwhere ${adaptorType} is the adaptor type id.",
+                    "description": "This is an optional object parameter with an objectType determined by the adapterType associated with the adapterId parameter.  If the adapterType supports this parameter, adapter afw will have an adaptive object type with an id of:\n\n_AdaptiveAdapterTypeSpecific_${adapterType}_delete_object\n\nwhere ${adapterType} is the adapter type id.",
                     "dataType": "object"
                 }
             ],
@@ -7615,7 +7615,7 @@
             "description": "Delete an adaptive object with a given URI.",
             "deprecated": false,
             "dataTypeMethodNumber": 0,
-            "category": "adaptor",
+            "category": "adapter",
             "camelCaseFunctionLabel": "deleteObjectWithUri",
             "afwCamelCaseFunctionLabel": "afwDeleteObjectWithUri"
         },
@@ -7816,10 +7816,10 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": true,
-                    "name": "adaptorTypeSpecific",
+                    "name": "adapterTypeSpecific",
                     "minArgs": -1,
                     "details": "This parameter is an object value that is optional.",
-                    "description": "This is an optional object parameter with an objectType determined by the adaptorType associated with the adaptorId parameter.  If the adaptorType supports this parameter, adaptor afw will have an adaptive object type with an id of:\n\n_AdaptiveAdaptorTypeSpecific_${adaptorType}_retrieve_objects\n\nWhere ${adaptorType} is the adaptor type id.",
+                    "description": "This is an optional object parameter with an objectType determined by the adapterType associated with the adapterId parameter.  If the adapterType supports this parameter, adapter afw will have an adaptive object type with an id of:\n\n_AdaptiveAdapterTypeSpecific_${adapterType}_retrieve_objects\n\nWhere ${adapterType} is the adapter type id.",
                     "dataType": "object"
                 }
             ],
@@ -7829,7 +7829,7 @@
             "description": "Retrieve adaptive objects with a given URI.",
             "deprecated": false,
             "dataTypeMethodNumber": 0,
-            "category": "adaptor",
+            "category": "adapter",
             "camelCaseFunctionLabel": "retrieveObjectsWithUri",
             "brief": "Retrieve adaptive object with URI",
             "afwCamelCaseFunctionLabel": "afwRetrieveObjectsWithUri"
@@ -7958,10 +7958,10 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "adaptorId",
+                    "name": "adapterId",
                     "minArgs": -1,
                     "details": "This parameter is a string value.",
-                    "description": "Id of adaptor containing object to modify.",
+                    "description": "Id of adapter containing object to modify.",
                     "dataType": "string"
                 },
                 {
@@ -8023,10 +8023,10 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": true,
-                    "name": "adaptorTypeSpecific",
+                    "name": "adapterTypeSpecific",
                     "minArgs": -1,
                     "details": "This parameter is an object value that is optional.",
-                    "description": "This is an optional object parameter with an objectType determined by the adaptorType associated with the adaptorId parameter.  If the adaptorType supports this parameter, adaptor afw will have an adaptive object type with an id of:\n\n_AdaptiveAdaptorTypeSpecific_${adaptorType}_modify_object\n\nWhere ${adaptorType} is the adaptor type id.",
+                    "description": "This is an optional object parameter with an objectType determined by the adapterType associated with the adapterId parameter.  If the adapterType supports this parameter, adapter afw will have an adaptive object type with an id of:\n\n_AdaptiveAdapterTypeSpecific_${adapterType}_modify_object\n\nWhere ${adapterType} is the adapter type id.",
                     "dataType": "object"
                 }
             ],
@@ -8036,7 +8036,7 @@
             "description": "Modify an adaptive object.",
             "deprecated": false,
             "dataTypeMethodNumber": 0,
-            "category": "adaptor",
+            "category": "adapter",
             "camelCaseFunctionLabel": "modifyObject",
             "brief": "Modify adaptive object",
             "afwCamelCaseFunctionLabel": "afwModifyObject"
@@ -9659,10 +9659,10 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": true,
-                    "name": "adaptorTypeSpecific",
+                    "name": "adapterTypeSpecific",
                     "minArgs": -1,
                     "details": "This parameter is an object value that is optional.",
-                    "description": "This is an optional object parameter with an objectType determined by the adaptorType associated with the adaptorId parameter.  If the adaptorType supports this parameter, adaptor afw will have an adaptive object type with an id of:\n\n_AdaptiveAdaptorTypeSpecific_${adaptorType}_modify_object\n\nWhere ${adaptorType} is the adaptor type id.",
+                    "description": "This is an optional object parameter with an objectType determined by the adapterType associated with the adapterId parameter.  If the adapterType supports this parameter, adapter afw will have an adaptive object type with an id of:\n\n_AdaptiveAdapterTypeSpecific_${adapterType}_modify_object\n\nWhere ${adapterType} is the adapter type id.",
                     "dataType": "object"
                 }
             ],
@@ -9672,7 +9672,7 @@
             "description": "Update an adaptive object with a given URI.",
             "deprecated": false,
             "dataTypeMethodNumber": 0,
-            "category": "adaptor",
+            "category": "adapter",
             "camelCaseFunctionLabel": "updateObjectWithUri",
             "brief": "Update adaptive object with URI",
             "afwCamelCaseFunctionLabel": "afwUpdateObjectWithUri"
@@ -12396,10 +12396,10 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "adaptorId",
+                    "name": "adapterId",
                     "minArgs": -1,
                     "details": "This parameter is a string value.",
-                    "description": "Id of adaptor.",
+                    "description": "Id of adapter.",
                     "dataType": "string"
                 }
             ],
@@ -13421,7 +13421,7 @@
                     "name": "isValuePath",
                     "minArgs": -1,
                     "details": "This parameter is a boolean value that is optional.",
-                    "description": "The URIs are adaptive value paths.  If one of the URIs begins with a single slash \"/\", both must, and each URI will be parsed as an adaptive value path (example: /adaptorId/objectType/objectId.propertyNames).",
+                    "description": "The URIs are adaptive value paths.  If one of the URIs begins with a single slash \"/\", both must, and each URI will be parsed as an adaptive value path (example: /adapterId/objectType/objectId.propertyNames).",
                     "dataType": "boolean"
                 },
                 {
@@ -14115,7 +14115,7 @@
                     "name": "isValuePath",
                     "minArgs": -1,
                     "details": "This parameter is a boolean value that is optional.",
-                    "description": "The URI is an adaptive value path.  If the path begins with a single slash \"/\", the URI will be parsed as an adaptive value path (example: /adaptorId/objectType/objectId.propertyNames)",
+                    "description": "The URI is an adaptive value path.  If the path begins with a single slash \"/\", the URI will be parsed as an adaptive value path (example: /adapterId/objectType/objectId.propertyNames)",
                     "dataType": "boolean"
                 },
                 {
@@ -15141,10 +15141,10 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "adaptorId",
+                    "name": "adapterId",
                     "minArgs": -1,
                     "details": "This parameter is a string value.",
-                    "description": "Id of adaptor.",
+                    "description": "Id of adapter.",
                     "dataType": "string"
                 },
                 {
@@ -15532,10 +15532,10 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "adaptorId",
+                    "name": "adapterId",
                     "minArgs": -1,
                     "details": "This parameter is a string value.",
-                    "description": "Id of adaptor containing object to update.",
+                    "description": "Id of adapter containing object to update.",
                     "dataType": "string"
                 },
                 {
@@ -15597,10 +15597,10 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": true,
-                    "name": "adaptorTypeSpecific",
+                    "name": "adapterTypeSpecific",
                     "minArgs": -1,
                     "details": "This parameter is an object value that is optional.",
-                    "description": "This is an optional object parameter with an objectType determined by the adaptorType associated with the adaptorId parameter.  If the adaptorType supports this parameter, adaptor afw will have an adaptive object type with an id of:\n\n_AdaptiveAdaptorTypeSpecific_${adaptorType}_modify_object\n\nWhere ${adaptorType} is the adaptor type id.",
+                    "description": "This is an optional object parameter with an objectType determined by the adapterType associated with the adapterId parameter.  If the adapterType supports this parameter, adapter afw will have an adaptive object type with an id of:\n\n_AdaptiveAdapterTypeSpecific_${adapterType}_modify_object\n\nWhere ${adapterType} is the adapter type id.",
                     "dataType": "object"
                 }
             ],
@@ -15610,7 +15610,7 @@
             "description": "Update an adaptive object.",
             "deprecated": false,
             "dataTypeMethodNumber": 0,
-            "category": "adaptor",
+            "category": "adapter",
             "camelCaseFunctionLabel": "updateObject",
             "brief": "Update adaptive object",
             "afwCamelCaseFunctionLabel": "afwUpdateObject"
@@ -16195,10 +16195,10 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": true,
-                    "name": "adaptorTypeSpecific",
+                    "name": "adapterTypeSpecific",
                     "minArgs": -1,
                     "details": "This parameter is an object value that is optional.",
-                    "description": "This is an optional object parameter with an objectType determined by the adaptorType associated with the adaptorId parameter.  If the adaptorType supports this parameter, adaptor afw will have an adaptive object type with an id of:\n\n_AdaptiveAdaptorTypeSpecific_${adaptorType}_modify_object\n\nWhere ${adaptorType} is the adaptor type id.",
+                    "description": "This is an optional object parameter with an objectType determined by the adapterType associated with the adapterId parameter.  If the adapterType supports this parameter, adapter afw will have an adaptive object type with an id of:\n\n_AdaptiveAdapterTypeSpecific_${adapterType}_modify_object\n\nWhere ${adapterType} is the adapter type id.",
                     "dataType": "object"
                 }
             ],
@@ -16208,7 +16208,7 @@
             "description": "Modify an adaptive object with a given URI.",
             "deprecated": false,
             "dataTypeMethodNumber": 0,
-            "category": "adaptor",
+            "category": "adapter",
             "camelCaseFunctionLabel": "modifyObjectWithUri",
             "brief": "Modify adaptive object with URI",
             "afwCamelCaseFunctionLabel": "afwModifyObjectWithUri"
@@ -18420,10 +18420,10 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": true,
-                    "name": "adaptorTypeSpecific",
+                    "name": "adapterTypeSpecific",
                     "minArgs": -1,
                     "details": "This parameter is an object value that is optional.",
-                    "description": "This is an optional object parameter with an objectType determined by the adaptorType associated with the adaptorId parameter.  If the adaptorType supports this parameter, adaptor afw will have an adaptive object type with an id of:\n\n_AdaptiveAdaptorTypeSpecific_${adaptorType}_get_object\n\nwhere ${adaptorType} is the adaptor type id.",
+                    "description": "This is an optional object parameter with an objectType determined by the adapterType associated with the adapterId parameter.  If the adapterType supports this parameter, adapter afw will have an adaptive object type with an id of:\n\n_AdaptiveAdapterTypeSpecific_${adapterType}_get_object\n\nwhere ${adapterType} is the adapter type id.",
                     "dataType": "object"
                 }
             ],
@@ -18433,7 +18433,7 @@
             "description": "Get an object with a given URI.",
             "deprecated": false,
             "dataTypeMethodNumber": 0,
-            "category": "adaptor",
+            "category": "adapter",
             "camelCaseFunctionLabel": "getObjectWithUri",
             "brief": "Get adaptive object with URI",
             "afwCamelCaseFunctionLabel": "afwGetObjectWithUri"
@@ -18577,10 +18577,10 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "adaptorId",
+                    "name": "adapterId",
                     "minArgs": -1,
                     "details": "This parameter is a string value.",
-                    "description": "This is the adaptorId of a model adaptor.  Variable custom::adaptorId can be used to access this value in model expressions.",
+                    "description": "This is the adapterId of a model adapter.  Variable custom::adapterId can be used to access this value in model expressions.",
                     "dataType": "string"
                 },
                 {
@@ -18632,7 +18632,7 @@
                     "name": "modelId",
                     "minArgs": -1,
                     "details": "This parameter is a string value that is optional.",
-                    "description": "This specifics a modelId of model to use for producing results.  If not specified, the adaptor's current model will be used.",
+                    "description": "This specifics a modelId of model to use for producing results.  If not specified, the adapter's current model will be used.",
                     "dataType": "string"
                 },
                 {
@@ -18658,7 +18658,7 @@
             "dataTypeMethodNumber": 0,
             "category": "model",
             "camelCaseFunctionLabel": "modelDefaultReplaceObjectAction",
-            "brief": "Produce a default _AdaptiveAction_ object for an replace object request to a model adaptor.",
+            "brief": "Produce a default _AdaptiveAction_ object for an replace object request to a model adapter.",
             "afwCamelCaseFunctionLabel": "afwModelDefaultReplaceObjectAction"
         },
         {
@@ -19339,10 +19339,10 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "adaptorId",
+                    "name": "adapterId",
                     "minArgs": -1,
                     "details": "This parameter is a string value.",
-                    "description": "Id of adaptor containing object to retrieve.",
+                    "description": "Id of adapter containing object to retrieve.",
                     "dataType": "string"
                 },
                 {
@@ -19392,20 +19392,20 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": true,
-                    "name": "adaptorTypeSpecific",
+                    "name": "adapterTypeSpecific",
                     "minArgs": -1,
                     "details": "This parameter is an object value that is optional.",
-                    "description": "This is an optional object parameter with an objectType determined by the adaptorType associated with the adaptorId parameter.  If the adaptorType supports this parameter, adaptor afw will have an adaptive object type with an id of:\n\n_AdaptiveAdaptorTypeSpecific_${adaptorType}_get_object\n\nWhere ${adaptorType} is the adaptor type id.",
+                    "description": "This is an optional object parameter with an objectType determined by the adapterType associated with the adapterId parameter.  If the adapterType supports this parameter, adapter afw will have an adaptive object type with an id of:\n\n_AdaptiveAdapterTypeSpecific_${adapterType}_get_object\n\nWhere ${adapterType} is the adapter type id.",
                     "dataType": "object"
                 }
             ],
             "functionPrototype": "*** coming soon ***",
             "functionLabel": "get_object",
             "functionId": "get_object",
-            "description": "Get an adaptive object from the adaptor, specified by adaptorId, objectType and objectId.  Optional view options and adaptor-specific options may be supplied to influence how the object is returned.",
+            "description": "Get an adaptive object from the adapter, specified by adapterId, objectType and objectId.  Optional view options and adapter-specific options may be supplied to influence how the object is returned.",
             "deprecated": false,
             "dataTypeMethodNumber": 0,
-            "category": "adaptor",
+            "category": "adapter",
             "camelCaseFunctionLabel": "getObject",
             "brief": "Get adaptive object",
             "afwCamelCaseFunctionLabel": "afwGetObject"
@@ -21280,7 +21280,7 @@
                 "optional": false,
                 "minArgs": -1,
                 "details": "This function returns an object _AdaptiveJournalEntry_ value.",
-                "description": "Resulting journal entry.  Property \"objectId\" is the objectId assigned by the adaptor.",
+                "description": "Resulting journal entry.  Property \"objectId\" is the objectId assigned by the adapter.",
                 "dataTypeParameter": "_AdaptiveJournalEntry_",
                 "dataType": "object"
             },
@@ -21297,7 +21297,7 @@
                     "name": "uri",
                     "minArgs": -1,
                     "details": "This parameter is an anyURI value.",
-                    "description": "URI of object to add.  If a URI begins with a single slash ('/'), it is the local object path.  In the case of a local path, an optional preferred objectId of object can be including in URI which the adaptor may ignore.",
+                    "description": "URI of object to add.  If a URI begins with a single slash ('/'), it is the local object path.  In the case of a local path, an optional preferred objectId of object can be including in URI which the adapter may ignore.",
                     "dataType": "anyURI"
                 },
                 {
@@ -21333,10 +21333,10 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": true,
-                    "name": "adaptorTypeSpecific",
+                    "name": "adapterTypeSpecific",
                     "minArgs": -1,
                     "details": "This parameter is an object value that is optional.",
-                    "description": "This is an optional object parameter with an objectType determined by the adaptorType associated with the adaptorId parameter.  If the adaptorType supports this parameter, adaptor afw will have an adaptive object type with an id of:\n\n_AdaptiveAdaptorTypeSpecific_${adaptorType}_add_object\n\nWhere ${adaptorType} is the adaptor type id.",
+                    "description": "This is an optional object parameter with an objectType determined by the adapterType associated with the adapterId parameter.  If the adapterType supports this parameter, adapter afw will have an adaptive object type with an id of:\n\n_AdaptiveAdapterTypeSpecific_${adapterType}_add_object\n\nWhere ${adapterType} is the adapter type id.",
                     "dataType": "object"
                 }
             ],
@@ -21346,7 +21346,7 @@
             "description": "Add an adaptive object with a given URI.",
             "deprecated": false,
             "dataTypeMethodNumber": 0,
-            "category": "adaptor",
+            "category": "adapter",
             "camelCaseFunctionLabel": "addObjectWithUri",
             "brief": "Add adaptive object with URI",
             "afwCamelCaseFunctionLabel": "afwAddObjectWithUri"
@@ -22365,10 +22365,10 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "adaptorId",
+                    "name": "adapterId",
                     "minArgs": -1,
                     "details": "This parameter is a string value.",
-                    "description": "Id of adaptor.",
+                    "description": "Id of adapter.",
                     "dataType": "string"
                 },
                 {
@@ -23067,10 +23067,10 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": true,
-                    "name": "adaptorTypeSpecific",
+                    "name": "adapterTypeSpecific",
                     "minArgs": -1,
                     "details": "This parameter is an object value that is optional.",
-                    "description": "This is an optional object parameter with an objectType determined by the adaptorType associated with the adaptorId parameter.  If the adaptorType supports this parameter, adaptor afw will have an adaptive object type with an id of:\n\n_AdaptiveAdaptorTypeSpecific_${adaptorType}_replace_object\n\nWhere ${adaptorType} is the adaptor type id.",
+                    "description": "This is an optional object parameter with an objectType determined by the adapterType associated with the adapterId parameter.  If the adapterType supports this parameter, adapter afw will have an adaptive object type with an id of:\n\n_AdaptiveAdapterTypeSpecific_${adapterType}_replace_object\n\nWhere ${adapterType} is the adapter type id.",
                     "dataType": "object"
                 }
             ],
@@ -23080,7 +23080,7 @@
             "description": "Replace an adaptive object with a given URI.",
             "deprecated": false,
             "dataTypeMethodNumber": 0,
-            "category": "adaptor",
+            "category": "adapter",
             "camelCaseFunctionLabel": "replaceObjectWithUri",
             "brief": "Replace adaptive object with URI",
             "afwCamelCaseFunctionLabel": "afwReplaceObjectWithUri"
@@ -23809,10 +23809,10 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "adaptorId",
+                    "name": "adapterId",
                     "minArgs": -1,
                     "details": "This parameter is a string value.",
-                    "description": "Id of adaptor.",
+                    "description": "Id of adapter.",
                     "dataType": "string"
                 },
                 {
@@ -24169,10 +24169,10 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "adaptorId",
+                    "name": "adapterId",
                     "minArgs": -1,
                     "details": "This parameter is a string value.",
-                    "description": "Id of adaptor.",
+                    "description": "Id of adapter.",
                     "dataType": "string"
                 },
                 {
@@ -25251,10 +25251,10 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "adaptorId",
+                    "name": "adapterId",
                     "minArgs": -1,
                     "details": "This parameter is a string value.",
-                    "description": "Adaptor Id.",
+                    "description": "Adapter Id.",
                     "dataType": "string"
                 }
             ],
@@ -26296,7 +26296,7 @@
             "description": "Reconcile an adaptive object.",
             "deprecated": false,
             "dataTypeMethodNumber": 0,
-            "category": "adaptor",
+            "category": "adapter",
             "camelCaseFunctionLabel": "reconcileObject",
             "brief": "Reconcile adaptive object",
             "afwCamelCaseFunctionLabel": "afwReconcileObject"
@@ -28262,10 +28262,10 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "adaptorId",
+                    "name": "adapterId",
                     "minArgs": -1,
                     "details": "This parameter is a string value.",
-                    "description": "Id of adaptor.",
+                    "description": "Id of adapter.",
                     "dataType": "string"
                 },
                 {
@@ -28792,10 +28792,10 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "adaptorId",
+                    "name": "adapterId",
                     "minArgs": -1,
                     "details": "This parameter is a string value.",
-                    "description": "Id of adaptor containing object to replace.",
+                    "description": "Id of adapter containing object to replace.",
                     "dataType": "string"
                 },
                 {
@@ -28857,10 +28857,10 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": true,
-                    "name": "adaptorTypeSpecific",
+                    "name": "adapterTypeSpecific",
                     "minArgs": -1,
                     "details": "This parameter is an object value that is optional.",
-                    "description": "This is an optional object parameter with an objectType determined by the adaptorType associated with the adaptorId parameter.  If the adaptorType supports this parameter, adaptor afw will have an adaptive object type with an id of:\n\n_AdaptiveAdaptorTypeSpecific_${adaptorType}_replace_object\n\nWhere ${adaptorType} is the adaptor type id.",
+                    "description": "This is an optional object parameter with an objectType determined by the adapterType associated with the adapterId parameter.  If the adapterType supports this parameter, adapter afw will have an adaptive object type with an id of:\n\n_AdaptiveAdapterTypeSpecific_${adapterType}_replace_object\n\nWhere ${adapterType} is the adapter type id.",
                     "dataType": "object"
                 }
             ],
@@ -28870,7 +28870,7 @@
             "description": "Replace an adaptive object.",
             "deprecated": false,
             "dataTypeMethodNumber": 0,
-            "category": "adaptor",
+            "category": "adapter",
             "camelCaseFunctionLabel": "replaceObject",
             "brief": "Replace adaptive object",
             "afwCamelCaseFunctionLabel": "afwReplaceObject"
@@ -31725,10 +31725,10 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "adaptorId",
+                    "name": "adapterId",
                     "minArgs": -1,
                     "details": "This parameter is a string value.",
-                    "description": "Id of adaptor containing object to delete.",
+                    "description": "Id of adapter containing object to delete.",
                     "dataType": "string"
                 },
                 {
@@ -31777,10 +31777,10 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": true,
-                    "name": "adaptorTypeSpecific",
+                    "name": "adapterTypeSpecific",
                     "minArgs": -1,
                     "details": "This parameter is an object value that is optional.",
-                    "description": "This is an optional object parameter with an objectType determined by the adaptorType associated with the adaptorId parameter.  If the adaptorType supports this parameter, adaptor afw will have an adaptive object type with an id of:\n\n_AdaptiveAdaptorTypeSpecific_${adaptorType}_delete_object\n\nwhere ${adaptorType} is the adaptor type id.",
+                    "description": "This is an optional object parameter with an objectType determined by the adapterType associated with the adapterId parameter.  If the adapterType supports this parameter, adapter afw will have an adaptive object type with an id of:\n\n_AdaptiveAdapterTypeSpecific_${adapterType}_delete_object\n\nwhere ${adapterType} is the adapter type id.",
                     "dataType": "object"
                 }
             ],
@@ -31790,7 +31790,7 @@
             "description": "Delete an adaptive object.",
             "deprecated": false,
             "dataTypeMethodNumber": 0,
-            "category": "adaptor",
+            "category": "adapter",
             "camelCaseFunctionLabel": "deleteObject",
             "brief": "Delete adaptive object",
             "afwCamelCaseFunctionLabel": "afwDeleteObject"
@@ -33592,10 +33592,10 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "adaptorId",
+                    "name": "adapterId",
                     "minArgs": -1,
                     "details": "This parameter is a string value.",
-                    "description": "This is the adaptorId of a model adaptor.  Variable custom::adaptorId can be used to access this value in model expressions.",
+                    "description": "This is the adapterId of a model adapter.  Variable custom::adapterId can be used to access this value in model expressions.",
                     "dataType": "string"
                 },
                 {
@@ -33647,7 +33647,7 @@
                     "name": "modelId",
                     "minArgs": -1,
                     "details": "This parameter is a string value that is optional.",
-                    "description": "This specifics a modelId of model to use for producing results.  If not specified, the adaptor's current model will be used.",
+                    "description": "This specifics a modelId of model to use for producing results.  If not specified, the adapter's current model will be used.",
                     "dataType": "string"
                 },
                 {
@@ -33673,7 +33673,7 @@
             "dataTypeMethodNumber": 0,
             "category": "model",
             "camelCaseFunctionLabel": "modelDefaultModifyObjectAction",
-            "brief": "Produce a default _AdaptiveAction_ object for an modify object request to a model adaptor.",
+            "brief": "Produce a default _AdaptiveAction_ object for an modify object request to a model adapter.",
             "afwCamelCaseFunctionLabel": "afwModelDefaultModifyObjectAction"
         },
         {
@@ -33717,10 +33717,10 @@
                     "polymorphicDataTypeParameter": false,
                     "polymorphicDataType": false,
                     "optional": false,
-                    "name": "adaptorId",
+                    "name": "adapterId",
                     "minArgs": -1,
                     "details": "This parameter is a string value.",
-                    "description": "Adaptor id for object.",
+                    "description": "Adapter id for object.",
                     "dataType": "string"
                 },
                 {

@@ -45,7 +45,7 @@ export const _Object = (props) => {
             const parent = property.getEmbeddingObject();
 
             const object = model.newObject({
-                adaptorId: parent ? parent.getAdaptorId() : undefined,
+                adapterId: parent ? parent.getAdapterId() : undefined,
                 objectTypeId: property.getDataTypeParameter(),
                 object: {}
             });

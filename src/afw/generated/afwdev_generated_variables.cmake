@@ -25,17 +25,17 @@
 # Header files that are installed for public use.
 set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST 
     action/afw_action.h
-    adaptor/afw_adaptor.h
-    adaptor/afw_adaptor_add.h
-    adaptor/afw_adaptor_delete.h
-    adaptor/afw_adaptor_get.h
-    adaptor/afw_adaptor_impl.h
-    adaptor/afw_adaptor_impl_index.h
-    adaptor/afw_adaptor_internal.h
-    adaptor/afw_adaptor_journal.h
-    adaptor/afw_adaptor_modify.h
-    adaptor/afw_adaptor_replace.h
-    adaptor/afw_adaptor_retrieve.h
+    adapter/afw_adapter.h
+    adapter/afw_adapter_add.h
+    adapter/afw_adapter_delete.h
+    adapter/afw_adapter_get.h
+    adapter/afw_adapter_impl.h
+    adapter/afw_adapter_impl_index.h
+    adapter/afw_adapter_internal.h
+    adapter/afw_adapter_journal.h
+    adapter/afw_adapter_modify.h
+    adapter/afw_adapter_replace.h
+    adapter/afw_adapter_retrieve.h
     application/afw_application_internal.h
     array/afw_array.h
     array/afw_array_impl.h
@@ -65,15 +65,15 @@ set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST
     file/afw_file_internal.h
     flag/afw_flag.h
     function/afw_function.h
-    generated/afw_adaptor_factory_impl_declares.h
-    generated/afw_adaptor_impl_declares.h
-    generated/afw_adaptor_impl_index_cursor_impl_declares.h
-    generated/afw_adaptor_impl_index_impl_declares.h
-    generated/afw_adaptor_journal_impl_declares.h
-    generated/afw_adaptor_key_value_impl_declares.h
-    generated/afw_adaptor_object_type_cache_impl_declares.h
-    generated/afw_adaptor_session_impl_declares.h
-    generated/afw_adaptor_transaction_impl_declares.h
+    generated/afw_adapter_factory_impl_declares.h
+    generated/afw_adapter_impl_declares.h
+    generated/afw_adapter_impl_index_cursor_impl_declares.h
+    generated/afw_adapter_impl_index_impl_declares.h
+    generated/afw_adapter_journal_impl_declares.h
+    generated/afw_adapter_key_value_impl_declares.h
+    generated/afw_adapter_object_type_cache_impl_declares.h
+    generated/afw_adapter_session_impl_declares.h
+    generated/afw_adapter_transaction_impl_declares.h
     generated/afw_array_impl_declares.h
     generated/afw_array_setter_impl_declares.h
     generated/afw_authorization_handler_factory_impl_declares.h
@@ -207,7 +207,7 @@ set(AFWDEV_GENERATED_PUBLIC_HEADERS_LIST
 set(AFWDEV_GENERATED_INCLUDE_DIRECTORIES_LIST 
     ${CMAKE_CURRENT_SOURCE_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}/action
-    ${CMAKE_CURRENT_SOURCE_DIR}/adaptor
+    ${CMAKE_CURRENT_SOURCE_DIR}/adapter
     ${CMAKE_CURRENT_SOURCE_DIR}/application
     ${CMAKE_CURRENT_SOURCE_DIR}/array
     ${CMAKE_CURRENT_SOURCE_DIR}/array_template
@@ -260,17 +260,17 @@ set(AFWDEV_GENERATED_INCLUDE_DIRECTORIES_LIST
 # Source files to compile.
 set(AFWDEV_GENERATED_SOURCE_LIST 
     action/afw_action.c
-    adaptor/afw_adaptor.c
-    adaptor/afw_adaptor_add.c
-    adaptor/afw_adaptor_context.c
-    adaptor/afw_adaptor_delete.c
-    adaptor/afw_adaptor_get.c
-    adaptor/afw_adaptor_impl.c
-    adaptor/afw_adaptor_impl_index.c
-    adaptor/afw_adaptor_journal.c
-    adaptor/afw_adaptor_modify.c
-    adaptor/afw_adaptor_replace.c
-    adaptor/afw_adaptor_retrieve.c
+    adapter/afw_adapter.c
+    adapter/afw_adapter_add.c
+    adapter/afw_adapter_context.c
+    adapter/afw_adapter_delete.c
+    adapter/afw_adapter_get.c
+    adapter/afw_adapter_impl.c
+    adapter/afw_adapter_impl_index.c
+    adapter/afw_adapter_journal.c
+    adapter/afw_adapter_modify.c
+    adapter/afw_adapter_replace.c
+    adapter/afw_adapter_retrieve.c
     application/afw_application.c
     array/afw_array.c
     array/afw_array_const_array.c
@@ -307,7 +307,7 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     file/afw_file_journal.c
     flag/afw_flag.c
     function/afw_function.c
-    function/afw_function_adaptor.c
+    function/afw_function_adapter.c
     function/afw_function_administrative.c
     function/afw_function_anyURI.c
     function/afw_function_array.c
@@ -393,7 +393,7 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     log/afw_log_standard.c
     memory/afw_memory.c
     model/afw_model.c
-    model/afw_model_adaptor.c
+    model/afw_model_adapter.c
     model/afw_model_compile.c
     model/afw_model_context.c
     model/afw_model_internal.c
@@ -426,9 +426,9 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     query_criteria/afw_query_criteria.c
     request/afw_request.c
     request/afw_request_handler.c
-    request/afw_request_handler_adaptor.c
+    request/afw_request_handler_adapter.c
     request/afw_request_handler_director.c
-    request/afw_request_handler_factory_adaptor.c
+    request/afw_request_handler_factory_adapter.c
     request/afw_request_impl.c
     runtime/afw_runtime.c
     runtime/afw_runtime_const_meta.c

@@ -18,7 +18,7 @@ const useErrorObject = ({ error }) => {
     useEffect(() => {
         const setError = async() => {
             const obj = model.newObject({
-                adaptorId: "afw",
+                adapterId: "afw",
                 objectTypeId: "_AdaptiveError_",
                 object: error,
             });

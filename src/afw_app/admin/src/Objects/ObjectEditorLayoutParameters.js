@@ -107,7 +107,7 @@ export const ObjectEditorLayoutParameters = (props) => {
             
             if (application) {                        
                 let layoutParameters = model.newObject({
-                    adaptorId: "afw", 
+                    adapterId: "afw", 
                     objectTypeId: "_AdaptiveLayout_ObjectResponsive", 
                     object: props.layoutParameters.toJSON()
                 });

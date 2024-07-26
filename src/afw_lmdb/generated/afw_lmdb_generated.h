@@ -43,11 +43,11 @@ afw_lmdb_generated_register(afw_xctx_t *xctx);
 
 
 /**
- * @brief Register function for adaptor_type lmdb
+ * @brief Register function for adapter_type lmdb
  * @param xctx of caller.
  */
 AFW_LMDB_DECLARE_INTERNAL(void)
-afw_lmdb_adaptor_type_lmdb_register(
+afw_lmdb_adapter_type_lmdb_register(
     afw_xctx_t *xctx);
 
 

@@ -24,7 +24,7 @@
             "allowQuery": true,
             "brief": "The id property name for instances of this conf type",
             "dataType": "string",
-            "description": "This is the id property name for instances of this conf type. For adaptor, this is 'adaptorId'.",
+            "description": "This is the id property name for instances of this conf type. For adapter, this is 'adapterId'.",
             "label": "Id Property Name",
             "runtime": {
                 "memberName": "id_property_name",
@@ -35,7 +35,7 @@
             "allowQuery": true,
             "brief": "Registry type for instances of this conf type",
             "dataType": "string",
-            "description": "This is the registry type for instances of this conf type. For adaptor, this is 'adaptor_id'.",
+            "description": "This is the registry type for instances of this conf type. For adapter, this is 'adapter_id'.",
             "label": "Id Registry Type",
             "runtime": {
                 "memberName": "id_registry_type_id",
@@ -46,7 +46,7 @@
             "allowQuery": true,
             "brief": "Runtime object type for instances of this conf type",
             "dataType": "string",
-            "description": "This is the runtime object type for instances of this conf type. For adaptor, this is '_AdaptiveAdaptor_'.",
+            "description": "This is the runtime object type for instances of this conf type. For adapter, this is '_AdaptiveAdapter_'.",
             "label": "Id Runtime Object Type",
             "runtime": {
                 "memberName": "id_runtime_object_type_id",
@@ -67,7 +67,7 @@
             "allowQuery": true,
             "brief": "The subtype property name for instances of this conf type",
             "dataType": "string",
-            "description": "This is the subtype property name for instances of this conf type.  For adaptor, this is 'adaptorType'.",
+            "description": "This is the subtype property name for instances of this conf type.  For adapter, this is 'adapterType'.",
             "label": "Subtype Property Name",
             "runtime": {
                 "memberName": "subtype_property_name",
@@ -78,7 +78,7 @@
             "allowQuery": true,
             "brief": "The subtype registry type for instances of this conf type",
             "dataType": "string",
-            "description": "This is the subtype registry type for instances of this conf type. For adaptor, this is 'adaptor_type'.",
+            "description": "This is the subtype registry type for instances of this conf type. For adapter, this is 'adapter_type'.",
             "label": "Subtype Registry Type",
             "runtime": {
                 "memberName": "subtype_registry_type_id",
@@ -89,7 +89,7 @@
             "allowQuery": true,
             "brief": "The subtype runtime object type for instances of this conf type",
             "dataType": "string",
-            "description": "This is the subtype runtime object type for instances of this conf type. For adaptor, this is '_AdaptiveAdaptorType_'.",
+            "description": "This is the subtype runtime object type for instances of this conf type. For adapter, this is '_AdaptiveAdapterType_'.",
             "label": "Subtype Runtime Object Type",
             "runtime": {
                 "memberName": "subtype_runtime_object_type_id",

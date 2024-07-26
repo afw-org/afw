@@ -52,8 +52,8 @@ void afw_vfs_generated_register(afw_xctx_t *xctx)
     /* Register const runtime objects. */
     afw_vfs_const_objects_register(xctx);
 
-    /* Register adaptor_type vfs */
-    afw_vfs_adaptor_type_vfs_register(xctx);
+    /* Register adapter_type vfs */
+    afw_vfs_adapter_type_vfs_register(xctx);
 
     /* Register version info object. */
     afw_runtime_env_set_object(

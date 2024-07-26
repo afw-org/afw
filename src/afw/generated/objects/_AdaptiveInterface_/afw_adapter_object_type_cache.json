@@ -1,0 +1,4 @@
+{
+    "name": "afw_adapter_object_type_cache",
+    "description": "Adapter object type cache interface. This interface is used by\n      afw_adapter_get_object_type()."
+}

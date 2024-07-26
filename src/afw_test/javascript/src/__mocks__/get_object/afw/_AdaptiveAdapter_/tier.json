@@ -1,0 +1,39 @@
+{
+    "result": {
+        "_meta_": {
+            "path": "/afw/_AdaptiveAdapter_/tier",
+            "objectId": "tier",
+            "objectType": "_AdaptiveAdapter_"
+        },
+        "serviceId": "adapter-tier",
+        "referenceCount": 1,
+        "properties": {
+            "_meta_": {
+                "path": "/afw/_AdaptiveConf_adapter_model/tier",
+                "objectType": "_AdaptiveConf_adapter_model"
+            },
+            "adapterId": "tier",
+            "adapterType": "model",
+            "type": "adapter",
+            "description": "TIER model using LMDB as a backend.",
+            "modelLocationAdapterId": "models",
+            "modelId": "TIER Core Schema",
+            "mappedAdapterId": "lmdb",
+            "sourceLocation": "/conf/_AdaptiveServiceConf_/adapter-tier/conf"
+        },
+        "metrics": {
+            "_meta_": {
+                "objectType": "_AdaptiveAdapterMetrics_"
+            },
+            "updateObjectCount": 0,
+            "retrieveObjectsCount": 0,
+            "replaceObjectCount": 0,
+            "modifyObjectCount": 0,
+            "getObjectCount": 0,
+            "deleteObjectCount": 0,
+            "addObjectCount": 0
+        },
+        "adapterId": "tier"
+    },
+    "status": "success"
+}

@@ -1,0 +1,83 @@
+{
+    "allowAdd": false,
+    "allowChange": false,
+    "allowDelete": false,
+    "allowEntity": true,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Runtime adapter information.",
+    "objectType": "_AdaptiveAdapter_",
+    "propertyTypes": {
+        "adapterId": {
+            "allowQuery": true,
+            "brief": "Unique adapter id",
+            "dataType": "string",
+            "description": "The adapter id uniquely identifies an adapter instance.",
+            "label": "Adapter Id",
+            "runtime": {
+                "memberName": "adapter_id",
+                "valueAccessor": "indirect"
+            }
+        },
+        "metrics": {
+            "allowQuery": true,
+            "brief": "Adapter metrics",
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveAdapterMetrics_",
+            "description": "An adapter may provide metrics to describe the current state of this adapter instance.",
+            "label": "Metrics",
+            "runtime": {
+                "memberName": "adapter",
+                "valueAccessor": "adapter_metrics"
+            }
+        },
+        "properties": {
+            "brief": "Properties associated with adapter",
+            "dataType": "object",
+            "description": "This object contains some of properties from the associated conf object plus other runtime properties.",
+            "label": "Properties"
+        },
+        "referenceCount": {
+            "allowQuery": true,
+            "brief": "Adapter's reference count",
+            "dataType": "integer",
+            "description": "The reference count is the total number of references that are currently being used for this adapter.",
+            "label": "Reference Count",
+            "runtime": {
+                "memberName": "reference_count"
+            }
+        },
+        "serviceId": {
+            "allowQuery": true,
+            "brief": "The id of the associated service",
+            "dataType": "string",
+            "description": "The id of the associated service. The URI of the service is '/afw/_AdaptiveService_/' followed by this id.",
+            "label": "Service Id",
+            "runtime": {
+                "memberName": "service_id",
+                "valueAccessor": "indirect"
+            }
+        },
+        "stopping": {
+            "allowQuery": true,
+            "brief": "Reference counts of stopping instances",
+            "dataType": "array",
+            "dataTypeParameter": "integer",
+            "description": "Reference counts of stopping instances.",
+            "label": "Stopping Instances",
+            "runtime": {
+                "memberName": "adapter_id",
+                "valueAccessor": "stopping_adapter_instances"
+            }
+        }
+    },
+    "runtime": {
+        "indirect": true,
+        "labels": {
+            "indirectObjectId": true,
+            "objectId": "adapter_id"
+        },
+        "typedef": "afw_adapter_id_anchor_t"
+    }
+}

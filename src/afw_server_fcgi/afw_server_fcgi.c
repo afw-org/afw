@@ -147,7 +147,7 @@ afw_server_fcgi_internal_create(const char *path,
 
     /* Get flag_index for request trace. */
 
-    /* Return new adaptor. */
+    /* Return new adapter. */
     return (afw_server_t *)self;
 }
 

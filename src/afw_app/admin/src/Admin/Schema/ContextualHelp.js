@@ -19,24 +19,24 @@ const SchemaHelp = () => {
     return (
         <>
             <HelpText text={` \
-                An Adaptive Schema is a set of Object Types and Property Types that are produced by an adaptor.
+                An Adaptive Schema is a set of Object Types and Property Types that are produced by an adapter.
 
-                For some adaptors, the Adaptive Schema may be read-only, or only editable by using external tools, \
-                specifically designed for that specific adaptor.  For other adaptors, you may be able to manage the \
-                Adaptive Schema by saving the Object Types and Property Types directly into the adaptor store.
+                For some adapters, the Adaptive Schema may be read-only, or only editable by using external tools, \
+                specifically designed for that specific adapter.  For other adapters, you may be able to manage the \
+                Adaptive Schema by saving the Object Types and Property Types directly into the adapter store.
 
-                Choose an adaptor from the table by clicking on its link.
+                Choose an adapter from the table by clicking on its link.
             `} />
         </>
     );
 };
 
-const SchemaAdaptorHelp = () => {
+const SchemaAdapterHelp = () => {
 
     return (
         <>
             <HelpText text={` \
-                If this adaptor allows for the Adaptive Schema to be managed here, you will be presented with \
+                If this adapter allows for the Adaptive Schema to be managed here, you will be presented with \
                 a table of Object Types.  Select an Object Type to edit, or click the "New" or "Remove" buttons \
                 to add a new Object Type or remove an existing one.
             `} />
@@ -68,9 +68,9 @@ const SchemaPropertyTypeHelp = () => {
 
 export const ContextualHelpRoutes = [
 
-    { path: "/Admin/schema/:adaptorId/:objectTypeId/:propertyType", title: "Schema Editor Help",    Component: SchemaPropertyTypeHelp     },
-    { path: "/Admin/schema/:adaptorId/:objectTypeId",               title: "Schema Editor Help",    Component: SchemaObjectTypeHelp     },
-    { path: "/Admin/schema/:adaptorId",                             title: "Schema Editor Help",    Component: SchemaAdaptorHelp        },
+    { path: "/Admin/schema/:adapterId/:objectTypeId/:propertyType", title: "Schema Editor Help",    Component: SchemaPropertyTypeHelp     },
+    { path: "/Admin/schema/:adapterId/:objectTypeId",               title: "Schema Editor Help",    Component: SchemaObjectTypeHelp     },
+    { path: "/Admin/schema/:adapterId",                             title: "Schema Editor Help",    Component: SchemaAdapterHelp        },
     { path: "/Admin/Schema",                                        title: "Schema Help",           Component: SchemaHelp               },
 
 ];

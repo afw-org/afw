@@ -60,7 +60,7 @@ impl_create_property_type(
 
 const afw_object_type_t *
 afw_object_type_internal_create(
-    const afw_adaptor_t *adaptor,
+    const afw_adapter_t *adapter,
     const afw_object_t *object_type_object,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
@@ -72,7 +72,7 @@ afw_object_type_internal_create(
     const afw_utf8_t *property_name;
 
     self = afw_pool_calloc_type(p, afw_object_type_t, xctx);
-    self->adaptor_id = &adaptor->adaptor_id;
+    self->adapter_id = &adapter->adapter_id;
     self->object_type_object = object_type_object;
     self->object_type_id = object_type_object->meta.id;
 

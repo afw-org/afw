@@ -86,11 +86,11 @@ const PropertyScriptReturnsHelp = ({ propertyType, objectTypeObject }) => {
 const PropertyScriptHelp = ({ object, property }) => {
 
     const [, scriptObjectType] = property.getDataTypeParameter().split(" ");
-    const adaptorId = object.getAdaptorId();
+    const adapterId = object.getAdapterId();
     const model = object.getModel();
     const theme = useTheme();
 
-    const objectTypeObject = model.getObjectTypeObject({ adaptorId, objectTypeId: scriptObjectType });
+    const objectTypeObject = model.getObjectTypeObject({ adapterId, objectTypeId: scriptObjectType });
 
     return (
         <div key={property.getName()} style={{ marginTop: theme.spacing(2) }}>                            
@@ -133,12 +133,12 @@ const PropertyObjectHelp = ({ object, property }) => {
 
                     if (_propertyType.dataType === "script" && _propertyType.dataTypeParameter) {
                         const [, scriptObjectType] = _propertyType.dataTypeParameter.split(" ");
-                        const adaptorId = object.getAdaptorId();
+                        const adapterId = object.getAdapterId();
                         const model = object.getModel();
 
                         if (scriptObjectType) {
                             const scriptObjectTypeObject = model.getObjectTypeObject({ 
-                                adaptorId, objectTypeId: scriptObjectType 
+                                adapterId, objectTypeId: scriptObjectType 
                             });
                             if (scriptObjectTypeObject) {
                                 return (
@@ -240,7 +240,7 @@ export const ApplicationHelp = (props) => {
             <HelpText text={` \
                 Define your Adaptive Application here, which instructs the Adaptive Framework Core which configurations and \
                 extensions to load.  You may also define active flags, variables and authorization rules, which will are accessible from  \
-                all Adaptive Expressions throughout the Application, including Models, Adaptors, Logs and Authorization Policies.  The Adaptive Application \
+                all Adaptive Expressions throughout the Application, including Models, Adapters, Logs and Authorization Policies.  The Adaptive Application \
                 is your anchor for everything related to this instance of Adaptive Framework.
                 
                 The Adaptive Application is simply an Adaptive Object, which can be edited here using the provided UI layout, or you may choose \
@@ -311,7 +311,7 @@ export const ApplicationHelp = (props) => {
                 isLoading={isLoading} 
                 header="General Tab" 
                 filterProperties={[
-                    "title", "description", "applicationId", "confAdaptorId", "defaultAdaptorId", "defaultModelAdaptorId", "layoutsAdaptorId", "rootFilePaths"
+                    "title", "description", "applicationId", "confAdapterId", "defaultAdapterId", "defaultModelAdapterId", "layoutsAdapterId", "rootFilePaths"
                 ]} 
             />
 

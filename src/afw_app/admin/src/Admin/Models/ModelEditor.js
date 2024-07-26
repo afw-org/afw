@@ -150,15 +150,15 @@ const reducer = (state, action) => {
             optionsTarget: undefined,
         };
 
-    case "MODEL_ADAPTOR_RESTARTING":
+    case "MODEL_ADAPTER_RESTARTING":
         return {
             ...state,
-            spinnerMessage: "Restarting Model Adaptor...",
+            spinnerMessage: "Restarting Model Adapter...",
             error: undefined,
             optionsTarget: undefined,
         };
 
-    case "MODEL_ADAPTOR_RESTARTED":
+    case "MODEL_ADAPTER_RESTARTED":
         return {
             ...state,
             spinnerMessage: undefined,
@@ -166,10 +166,10 @@ const reducer = (state, action) => {
             optionsTarget: undefined,
         };
 
-    case "SELECT_MAPPED_ADAPTOR":
+    case "SELECT_MAPPED_ADAPTER":
         return {
             ...state,
-            mappedAdaptorId: action.adaptor?.adaptorId,
+            mappedAdapterId: action.adapter?.adapterId,
             optionsTarget: undefined,
             error: undefined,
         };
@@ -286,7 +286,7 @@ export const ModelEditor = (props) => {
 
     const savable = useEventId({ object: props.model, eventId: "onSavable" });
     const {notification, isMobile, client} = useApplication();
-    const {adaptors} = useAppCore();
+    const {adapters} = useAppCore();
     const {pathname, hash} = useLocation();
     const history = useHistory();
     const theme = useTheme();
@@ -299,7 +299,7 @@ export const ModelEditor = (props) => {
         deploy,
         spinnerMessage,
         optionsTarget,
-        mappedAdaptorId,
+        mappedAdapterId,
         showConfirm,
         error,
         reload,
@@ -409,20 +409,20 @@ export const ModelEditor = (props) => {
         }    
     };
 
-    const onRestartModelAdaptor = async (modelAdaptorId) => {
+    const onRestartModelAdapter = async (modelAdapterId) => {
         try {            
-            dispatch({ type: "MODEL_ADAPTOR_RESTARTING" });
+            dispatch({ type: "MODEL_ADAPTER_RESTARTING" });
 
-            await afwServiceRestart(client, "adaptor-" + modelAdaptorId).result();            
+            await afwServiceRestart(client, "adapter-" + modelAdapterId).result();            
             
-            dispatch({ type: "MODEL_ADAPTOR_RESTARTED" });
-            notification({ message: "Model Adaptor Service has been restarted.", type: "success", duration: 3000 });
+            dispatch({ type: "MODEL_ADAPTER_RESTARTED" });
+            notification({ message: "Model Adapter Service has been restarted.", type: "success", duration: 3000 });
         } catch (error) {
             dispatch({ type: "ERROR", error });
         }      
     };
 
-    const {models, model, adaptorId, objectType, propertyType} = props;
+    const {models, model, adapterId, objectType, propertyType} = props;
     if (!model)
         return null;
     
@@ -468,18 +468,18 @@ export const ModelEditor = (props) => {
                 <div style={{ flex: 1, overflow: "auto" }}>
                     <Switch>
                         <Route exact path={[ 
-                            "/Admin/Models/:adaptorId/:modelId", 
-                            "/Admin/Models/:adaptorId/:modelId/custom", 
-                            "/Admin/Models/:adaptorId/:modelId/custom/:variable", 
-                            "/Admin/Models/:adaptorId/:modelId/objectTypes", 
-                            "/Admin/Models/:adaptorId/:modelId/propertyTypes" 
+                            "/Admin/Models/:adapterId/:modelId", 
+                            "/Admin/Models/:adapterId/:modelId/custom", 
+                            "/Admin/Models/:adapterId/:modelId/custom/:variable", 
+                            "/Admin/Models/:adapterId/:modelId/objectTypes", 
+                            "/Admin/Models/:adapterId/:modelId/propertyTypes" 
                         ]} render={(props) => 
                             <Model 
                                 {...props}                                 
                                 perspective={perspective}
                                 hash={hash}
-                                mappedAdaptorId={mappedAdaptorId}
-                                adaptorId={adaptorId}
+                                mappedAdapterId={mappedAdapterId}
+                                adapterId={adapterId}
                                 models={models}
                                 model={model}
                                 reload={reload}
@@ -487,20 +487,20 @@ export const ModelEditor = (props) => {
                         } />
 
                         <Route exact path={[ 
-                            "/Admin/Models/:adaptorId/:modelId/objectTypes/:objectType",
-                            "/Admin/Models/:adaptorId/:modelId/objectTypes/:objectType/onFunctions",
-                            "/Admin/Models/:adaptorId/:modelId/objectTypes/:objectType/onFunctions/:onFunctionId",
-                            "/Admin/Models/:adaptorId/:modelId/objectTypes/:objectType/propertyTypes",
-                            "/Admin/Models/:adaptorId/:modelId/objectTypes/:objectType/custom",
-                            "/Admin/Models/:adaptorId/:modelId/objectTypes/:objectType/custom/:variable",
-                            "/Admin/Models/:adaptorId/:modelId/objectTypes/:objectType/methods",                            
+                            "/Admin/Models/:adapterId/:modelId/objectTypes/:objectType",
+                            "/Admin/Models/:adapterId/:modelId/objectTypes/:objectType/onFunctions",
+                            "/Admin/Models/:adapterId/:modelId/objectTypes/:objectType/onFunctions/:onFunctionId",
+                            "/Admin/Models/:adapterId/:modelId/objectTypes/:objectType/propertyTypes",
+                            "/Admin/Models/:adapterId/:modelId/objectTypes/:objectType/custom",
+                            "/Admin/Models/:adapterId/:modelId/objectTypes/:objectType/custom/:variable",
+                            "/Admin/Models/:adapterId/:modelId/objectTypes/:objectType/methods",                            
                         ]} render={(props) => 
                             <ModelObjectTypes
                                 {...props}
                                 perspective={perspective}
                                 hash={hash}
-                                mappedAdaptorId={mappedAdaptorId}
-                                adaptorId={adaptorId}
+                                mappedAdapterId={mappedAdapterId}
+                                adapterId={adapterId}
                                 models={models}
                                 model={model}
                                 objectType={objectType}
@@ -509,18 +509,18 @@ export const ModelEditor = (props) => {
                         } />
 
                         <Route exact path={[
-                            "/Admin/Models/:adaptorId/:modelId/objectTypes/:objectType/propertyTypes/:propertyType",
-                            "/Admin/Models/:adaptorId/:modelId/objectTypes/:objectType/propertyTypes/:propertyType/onFunctions",
-                            "/Admin/Models/:adaptorId/:modelId/objectTypes/:objectType/propertyTypes/:propertyType/onFunctions/:onFunctions",
-                            "/Admin/Models/:adaptorId/:modelId/objectTypes/:objectType/propertyTypes/:propertyType/custom",
-                            "/Admin/Models/:adaptorId/:modelId/objectTypes/:objectType/propertyTypes/:propertyType/custom/:variable",
+                            "/Admin/Models/:adapterId/:modelId/objectTypes/:objectType/propertyTypes/:propertyType",
+                            "/Admin/Models/:adapterId/:modelId/objectTypes/:objectType/propertyTypes/:propertyType/onFunctions",
+                            "/Admin/Models/:adapterId/:modelId/objectTypes/:objectType/propertyTypes/:propertyType/onFunctions/:onFunctions",
+                            "/Admin/Models/:adapterId/:modelId/objectTypes/:objectType/propertyTypes/:propertyType/custom",
+                            "/Admin/Models/:adapterId/:modelId/objectTypes/:objectType/propertyTypes/:propertyType/custom/:variable",
                         ]} render={(props) => 
                             <ModelPropertyTypes 
                                 {...props}
                                 perspective={perspective}
                                 hash={hash}
-                                mappedAdaptorId={mappedAdaptorId}
-                                adaptorId={adaptorId}
+                                mappedAdapterId={mappedAdapterId}
+                                adapterId={adapterId}
                                 models={models}
                                 model={model}
                                 objectType={objectType}
@@ -590,11 +590,11 @@ export const ModelEditor = (props) => {
                 model={model}
                 target={optionsTarget}
                 onClose={() => dispatch({ type: "NO_OPTIONS" })}
-                adaptors={adaptors}
-                mappedAdaptorId={mappedAdaptorId}
-                onSelectMappedAdaptorId={adaptor => dispatch({ type: "SELECT_MAPPED_ADAPTOR", adaptor })}
+                adapters={adapters}
+                mappedAdapterId={mappedAdapterId}
+                onSelectMappedAdapterId={adapter => dispatch({ type: "SELECT_MAPPED_ADAPTER", adapter })}
                 onDeploy={() => dispatch({ type: "DEPLOY" })}
-                onRestartModelAdaptor={() => onRestartModelAdaptor(adaptorId)}
+                onRestartModelAdapter={() => onRestartModelAdapter(adapterId)}
                 onReloadView={() => {
                     return null;
                 }}
@@ -618,7 +618,7 @@ export const ModelEditor = (props) => {
             />          
             <ModelDeploy                 
                 open={deploy}
-                mappedAdaptorId={mappedAdaptorId}
+                mappedAdapterId={mappedAdapterId}
                 onDismiss={() => dispatch({ type: "DEPLOY_DISMISS" })}
                 model={model}
             />
@@ -656,7 +656,7 @@ export const ModelEditor = (props) => {
                 when={(savable && savable.value) ? true : false}
                 message={(location) => {                    
                     return (
-                        location.pathname.startsWith("/Admin/Models/" + adaptorId + "/") ? true : 
+                        location.pathname.startsWith("/Admin/Models/" + adapterId + "/") ? true : 
                             "This Model has unsaved changes.  Are you sure you want to leave?"
                     );
                 }}

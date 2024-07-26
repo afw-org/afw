@@ -1,0 +1,29 @@
+{
+    "allowAdd": false,
+    "allowChange": false,
+    "allowDelete": false,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/ldap_extension"
+    ],
+    "description": "Object type for type=adapter adapter_type=ldap bind parameter object type.",
+    "objectType": "_AdaptiveConf_adapter_ldap_bind",
+    "propertyTypes": {
+        "dn": {
+            "allowQuery": true,
+            "dataType": "string",
+            "description": "Distinguished Name (DN) to bind with.",
+            "label": "Bind DN",
+            "required": true,
+            "unique": false
+        },
+        "password": {
+            "allowQuery": true,
+            "dataType": "password",
+            "description": "Password to bind with.",
+            "label": "Bind Password",
+            "required": true,
+            "unique": false
+        }
+    }
+}

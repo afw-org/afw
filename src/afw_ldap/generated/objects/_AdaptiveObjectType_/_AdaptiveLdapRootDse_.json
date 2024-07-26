@@ -6,7 +6,7 @@
     "collectionURIs": [
         "/afw/_AdaptiveCollection_/ldap_extension"
     ],
-    "description": "Object type for type=adaptor adaptor_type=ldap synthetic root dse object.",
+    "description": "Object type for type=adapter adapter_type=ldap synthetic root dse object.",
     "objectType": "_AdaptiveLdapRootDse_",
     "otherProperties": {
     }

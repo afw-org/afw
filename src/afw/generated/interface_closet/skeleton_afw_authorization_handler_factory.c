@@ -58,7 +58,7 @@ impl_afw_authorization_handler_factory_create_authorization_handler_cede_p(
         
     /** @todo If needed, add/modify the following code to implement method. */
 
-    /* Return adaptor instance. */
+    /* Return adapter instance. */
     return <afwdev {prefixed_interface_name.replace('_factory','')}>_create_cede_p(properties, p, xctx);
       
       

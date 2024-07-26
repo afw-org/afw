@@ -1,0 +1,20 @@
+{
+    "allowAdd": false,
+    "allowChange": false,
+    "allowDelete": false,
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/ldap_extension"
+    ],
+    "description": "This is the object type for the optional adapterTypeSpecific parameter of the retrieve_objects() adaptive function when the adapterType of the adapterId is ldap.",
+    "objectType": "_AdaptiveAdapterTypeSpecific_ldap_retrieve_objects",
+    "propertyTypes": {
+        "base": {
+            "allowQuery": true,
+            "dataType": "string",
+            "description": "This is used as the base for ldap_search().",
+            "label": "Base Override",
+            "required": false
+        }
+    }
+}

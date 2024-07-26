@@ -425,7 +425,7 @@ impl_object_type_related_object_option_processing(
     }
 
     /* Get object type object. */
-    object_type = afw_adaptor_get_object_type(view->adaptor_id,
+    object_type = afw_adapter_get_object_type(view->adapter_id,
         object_type_id, view->journal_entry, xctx);
     if (!object_type) {
         afw_object_meta_add_error_fz(instance, xctx,
@@ -996,10 +996,10 @@ impl_get_object_by_uri(
     /* If entity not already loaded, try to load it. */
     if (!entity) {
 
-        /* If local path, call adaptor directly. */
+        /* If local path, call adapter directly. */
         if (path_parsed) {
-            object = afw_adaptor_get_object(
-                &path_parsed->adaptor_id,
+            object = afw_adapter_get_object(
+                &path_parsed->adapter_id,
                 &path_parsed->object_type_id,
                 &path_parsed->entity_object_id,
                 NULL,
@@ -1362,7 +1362,7 @@ afw_object_view_create(
     view->reference_count = 1;
     view->options = afw_object_options_create(NULL, options, p, xctx);
 
-    /* Parse entity path and adaptor id. */
+    /* Parse entity path and adapter id. */
     if (!entity_path) {
         entity_path = afw_object_meta_get_path(instance, xctx);
     }
@@ -1370,13 +1370,13 @@ afw_object_view_create(
         view->uri_parsed = afw_uri_parse(entity_path, true, NULL, p, xctx);
     }
     if (!entity_path || !view->uri_parsed || !view->uri_parsed->path_parsed ||
-        view->uri_parsed->path_parsed->adaptor_id.len == 0)
+        view->uri_parsed->path_parsed->adapter_id.len == 0)
     {
         AFW_THROW_ERROR_Z(general,
             "Entity path required for afw_object_view_create()",
             xctx);
     }
-    view->adaptor_id = &view->uri_parsed->path_parsed->adaptor_id;
+    view->adapter_id = &view->uri_parsed->path_parsed->adapter_id;
 
     /** @fixme Should probably come in as parameter. */
     view->journal_entry = afw_object_create_managed(p, xctx);

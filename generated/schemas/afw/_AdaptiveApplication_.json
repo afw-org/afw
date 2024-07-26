@@ -74,15 +74,15 @@
                     "title": "Authorization",
                     "type": "object"
                 },
-                "confAdaptorId": {
-                    "description": "This is the optional adaptorId of the running adaptor that contains configuration related objects. This property can only be specified in the type=application entry of the conf file.\n\nThe runtime /afw/_AdaptiveApplication_/current object will consist of properties from the type=application entry of the conf file plus unique properties from the optional /<confAdaptorId>/_AdaptiveConf_application/<applicationId> object.\n\nAll services defined by _AdaptiveServiceConf_ objects in <confAdaptorId> with startup 'permanent' or 'immediate' will be started when the type=application conf entry is processed.",
+                "confAdapterId": {
+                    "description": "This is the optional adapterId of the running adapter that contains configuration related objects. This property can only be specified in the type=application entry of the conf file.\n\nThe runtime /afw/_AdaptiveApplication_/current object will consist of properties from the type=application entry of the conf file plus unique properties from the optional /<confAdapterId>/_AdaptiveConf_application/<applicationId> object.\n\nAll services defined by _AdaptiveServiceConf_ objects in <confAdapterId> with startup 'permanent' or 'immediate' will be started when the type=application conf entry is processed.",
                     "readOnly": true,
-                    "title": "Conf Adaptor",
+                    "title": "Conf Adapter",
                     "type": "string"
                 },
-                "defaultAdaptorId": {
-                    "description": "This is the adaptorId chosen by default for user interface select components.",
-                    "title": "Default Adaptor",
+                "defaultAdapterId": {
+                    "description": "This is the adapterId chosen by default for user interface select components.",
+                    "title": "Default Adapter",
                     "type": "string"
                 },
                 "defaultFlags": {
@@ -95,9 +95,9 @@
                     "title": "Default Flags",
                     "type": "array"
                 },
-                "defaultModelAdaptorId": {
-                    "description": "When presented with multiple model adaptors, this is the default adaptorId to use. This will be the default selected adaptor chosen by user interface components.",
-                    "title": "Default Model Adaptor",
+                "defaultModelAdapterId": {
+                    "description": "When presented with multiple model adapters, this is the default adapterId to use. This will be the default selected adapter chosen by user interface components.",
+                    "title": "Default Model Adapter",
                     "type": "string"
                 },
                 "description": {
@@ -126,9 +126,9 @@
                     "title": "Extensions",
                     "type": "array"
                 },
-                "layoutsAdaptorId": {
-                    "description": "This is the adaptorId that locates Adaptive Layout Component objects.",
-                    "title": "Layouts Adaptor",
+                "layoutsAdapterId": {
+                    "description": "This is the adapterId that locates Adaptive Layout Component objects.",
+                    "title": "Layouts Adapter",
                     "type": "string"
                 },
                 "onApplicationStartupComplete": {

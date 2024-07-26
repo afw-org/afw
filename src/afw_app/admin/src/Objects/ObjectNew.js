@@ -2,7 +2,7 @@
 import {useState, useEffect, useCallback, useRef} from "react";
 
 import {
-    AdaptorDropdown,
+    AdapterDropdown,
     Button,
     Checkbox,
     Dialog,
@@ -22,12 +22,12 @@ import {useApplication, useTheme} from "../hooks";
  *
  * This layout presents the user with a way to create a new object from the 
  * Objects route.  It accomplishes this by presenting a two-step Modal popup
- * that allows the user to select the adaptorId and Object Type Id, along wit
+ * that allows the user to select the adapterId and Object Type Id, along wit
  * an optional Object Id and followed by the required and optional properties.
  */
 const ObjectNew = (props) => {
     
-    const [adaptorId, setAdaptorId] = useState(props.adaptorId);
+    const [adapterId, setAdapterId] = useState(props.adapterId);
     const [objectTypeId, setObjectTypeId] = useState(props.objectTypeId);
     const [editNewObjectModal, setEditNewObjectModal] = useState(false);
     const [objectId, setObjectId] = useState();
@@ -49,9 +49,9 @@ const ObjectNew = (props) => {
     const {notification} = useApplication();
     
     useEffect(() => {
-        setAdaptorId(props.adaptorId);
+        setAdapterId(props.adapterId);
         setObjectTypeId(props.objectTypeId);
-    }, [props.adaptorId, props.objectTypeId]);
+    }, [props.adapterId, props.objectTypeId]);
 
     /**
      * canNext()
@@ -62,8 +62,8 @@ const ObjectNew = (props) => {
     useEffect(() => {
         let canNext = true;
 
-        /* "afw" adaptor is always read-only */
-        if (adaptorId === "afw")
+        /* "afw" adapter is always read-only */
+        if (adapterId === "afw")
             canNext = false;
 
         if (!objectTypeId)
@@ -73,7 +73,7 @@ const ObjectNew = (props) => {
             canNext = false;
 
         setCanNext(canNext);
-    }, [adaptorId, objectTypeId, objectTypeObject]);
+    }, [adapterId, objectTypeId, objectTypeObject]);
 
     /**
      * onSourceChanged()
@@ -100,17 +100,17 @@ const ObjectNew = (props) => {
     /*
      * onNext()
      *
-     * After the user chooses an Adaptor Id, Object Type Id and (optionally) Object Id, they may 
+     * After the user chooses an Adapter Id, Object Type Id and (optionally) Object Id, they may 
      * click the "Next" button, which prompts us to prepare a new object which may be edited.
      * The new object is set in the state and a ObjectEditorLayout modal is presented to fill out
      * the remaining properties.
      */
     const onNext = async () => {
 
-        const object = model.newObject({ adaptorId, objectTypeId });
+        const object = model.newObject({ adapterId, objectTypeId });
         if (objectId) {
             object.setObjectId(objectId);
-            object.setPath("/" + adaptorId + "/" + objectTypeId + "/" + objectId);
+            object.setPath("/" + adapterId + "/" + objectTypeId + "/" + objectId);
         }
         setIsInitializing(true);
         await object.initialize();
@@ -177,7 +177,7 @@ const ObjectNew = (props) => {
     /*
      * This component displays two separate Modals in two steps.  
      *
-     *   First, we setup the adaptor/objectType/objectId.  
+     *   First, we setup the adapter/objectType/objectId.  
      *   Next, we display the Object Editor Layout to begin editing properties.
      * 
      */
@@ -197,7 +197,7 @@ const ObjectNew = (props) => {
                 open={open ? open : false}
                 onDismiss={onDismiss}
                 isBlocking={true}
-                title={"New /" + adaptorId + "/" + objectTypeId + "/" + (objectId ? objectId : " Object")}
+                title={"New /" + adapterId + "/" + objectTypeId + "/" + (objectId ? objectId : " Object")}
                 maxWidth="xl"
                 contains={    
                     <div style={{ height: "calc(100vh - 300px)" }}>                        
@@ -252,18 +252,18 @@ const ObjectNew = (props) => {
                 contains={
                     <div style={{ padding: theme.spacing(2) }}>          
                         <div style={{ paddingTop: theme.spacing(1) }}>  
-                            <AdaptorDropdown 
-                                id="objects-new-adaptor-dropdown"
-                                label="Adaptor" 
-                                description="Enter the Adaptor Id to store this new Object."
-                                value={adaptorId}
-                                onChanged={adaptorId => setAdaptorId(adaptorId)}
+                            <AdapterDropdown 
+                                id="objects-new-adapter-dropdown"
+                                label="Adapter" 
+                                description="Enter the Adapter Id to store this new Object."
+                                value={adapterId}
+                                onChanged={adapterId => setAdapterId(adapterId)}
                             />                                     
                         </div>
                         <div style={{ marginTop: theme.spacing(1) }}>   
                             <ObjectTypeDropdown 
                                 id="objects-new-objectType-dropdown"
-                                adaptorId={adaptorId}
+                                adapterId={adapterId}
                                 label="Object Type"
                                 description="Select an Object Type for this new Object."                                
                                 value={objectTypeId}
@@ -274,7 +274,7 @@ const ObjectNew = (props) => {
                         <div style={{ marginTop: theme.spacing(1) }}>   
                             <TextField
                                 label="Object Id" 
-                                description="Enter an optional, suggested Object Id.  If omitted, one will be assigned by the target adaptor."
+                                description="Enter an optional, suggested Object Id.  If omitted, one will be assigned by the target adapter."
                                 onChanged={onObjectIdChanged}
                                 value={objectId}
                             />

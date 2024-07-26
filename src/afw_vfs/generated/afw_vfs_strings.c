@@ -50,15 +50,15 @@ afw_vfs_self_v_Subdirectory = {
 };
 
 const afw_value_string_t
-afw_vfs_self_v__AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects = {
+afw_vfs_self_v__AdaptiveAdapterTypeSpecific_vfs_retrieve_objects = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_VFS_Q__AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects)
+    AFW_UTF8_LITERAL(AFW_VFS_Q__AdaptiveAdapterTypeSpecific_vfs_retrieve_objects)
 };
 
 const afw_value_string_t
-afw_vfs_self_v__AdaptiveConf_adaptor_vfs = {
+afw_vfs_self_v__AdaptiveConf_adapter_vfs = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_VFS_Q__AdaptiveConf_adaptor_vfs)
+    AFW_UTF8_LITERAL(AFW_VFS_Q__AdaptiveConf_adapter_vfs)
 };
 
 const afw_value_string_t
@@ -464,9 +464,9 @@ afw_vfs_self_v_zz__Recursively_traverse_directories = {
 };
 
 const afw_value_string_t
-afw_vfs_self_v_zz__This_is_the_single_object_type_of_objects_in_a_vfs_adaptor_ = {
+afw_vfs_self_v_zz__This_is_the_single_object_type_of_objects_in_a_vfs_adapter_ = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__This_is_the_single_object_type_of_objects_in_a_vfs_adaptor_)
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__This_is_the_single_object_type_of_objects_in_a_vfs_adapter_)
 };
 
 const afw_value_string_t

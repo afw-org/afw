@@ -33,7 +33,7 @@ const breadcrumbsRoot = { text: "Admin", link: "/Admin" };
 
 const initialState = {
     showServiceName:    false,
-    showAdaptors:       true,
+    showAdapters:       true,
     showLogs:           true,
     showAuthHandlers:   true,
     filter:             "",
@@ -65,10 +65,10 @@ const reducer = (state, action) => {
             showStartService: action.newService.getPropertyValue("startup") === "immediate" ? true : false,
         };
 
-    case "TOGGLE_ADAPTORS":
+    case "TOGGLE_ADAPTERS":
         return {
             ...state,
-            showAdaptors: action.showAdaptors,
+            showAdapters: action.showAdapters,
         };
 
     case "TOGGLE_LOGS":
@@ -232,7 +232,7 @@ export const Services = () => {
     const {
         showServiceNew,
         newService,
-        showAdaptors,
+        showAdapters,
         showLogs,
         showAuthHandlers,
         filter,
@@ -247,12 +247,12 @@ export const Services = () => {
     const theme = useTheme();
     const {client, notification} = useApplication();
     const {application, reloadServices, services, environment} = useAppCore();    
-    const {confAdaptorId} = useValues(application);    
+    const {confAdapterId} = useValues(application);    
     const {
         serviceConfigs, isLoading, 
         onRefresh : reloadServiceConfigs, 
         error : serviceConfigError
-    } = useServiceConfigurations({ adaptorId: confAdaptorId });
+    } = useServiceConfigurations({ adapterId: confAdapterId });
     const history = useHistory();
     const {serviceId, canStart, canStop, canRestart, uriServiceConf} = useValues(selectedService);    
     const breadcrumbItems = useBreadcrumbs(breadcrumbsRoot);
@@ -265,7 +265,7 @@ export const Services = () => {
                 if (filter && confId.toLowerCase().indexOf(filter.toLowerCase()) < 0)
                     return false;
 
-                if (showAdaptors && serviceType === "adaptor")
+                if (showAdapters && serviceType === "adapter")
                     return true;
                 else if (showLogs && serviceType === "log")
                     return true;
@@ -284,7 +284,7 @@ export const Services = () => {
                     return type1.toLowerCase().localeCompare(type2.toLowerCase());
             });
         } else return [];
-    }, [services, filter, showAdaptors, showLogs, showAuthHandlers]);
+    }, [services, filter, showAdapters, showLogs, showAuthHandlers]);
     
     const onReloadServices = async () => {       
         await reloadServiceConfigs();
@@ -461,9 +461,9 @@ export const Services = () => {
                                 <div style={{ display: "flex", marginRight: theme.spacing(1) }}>
                                     <div style={{ marginRight: theme.spacing(1) }}>
                                         <Toggle 
-                                            label="Adaptors" 
-                                            value={showAdaptors} 
-                                            onChanged={showAdaptors => dispatch({ type: "TOGGLE_ADAPTORS", showAdaptors })}
+                                            label="Adapters" 
+                                            value={showAdapters} 
+                                            onChanged={showAdapters => dispatch({ type: "TOGGLE_ADAPTERS", showAdapters })}
                                         />
                                     </div>
                                     <div style={{ marginRight: theme.spacing(1) }}>
@@ -530,8 +530,8 @@ export const Services = () => {
                                                         const id = uriRelated ? uriRelated.split("/")[3] : undefined;
 
                                                         if (id && status === "running") {
-                                                            if (serviceType === "adaptor")
-                                                                return <Link url={"/Admin/Adaptors/" + encodeURIComponent(id)} text={status}/>;
+                                                            if (serviceType === "adapter")
+                                                                return <Link url={"/Admin/Adapters/" + encodeURIComponent(id)} text={status}/>;
                                                             else if (serviceType === "log")
                                                                 return <Link url={"/Admin/Logs/" + encodeURIComponent(id)} text={status}/>;
                                                             else if (serviceType === "authorizationHandler")

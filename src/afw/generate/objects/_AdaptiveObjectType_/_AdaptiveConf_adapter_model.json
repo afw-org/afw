@@ -1,0 +1,48 @@
+{
+    "allowEntity": false,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/core"
+    ],
+    "description": "Adaptive Framework configuration component for type=adapter adapterType=model.",
+    "objectType": "_AdaptiveConf_adapter_model",
+    "propertyTypes": {
+        "_meta_": {
+            "label": "Meta",
+            "parentPaths": [
+                "/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter/propertyTypes"
+            ]
+        },
+        "custom": {
+            "allowQuery": true,
+            "brief": "Qualifier custom:: variables available to model expressions",
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveTemplateProperties_",
+            "description": "Qualifier custom:: variables available to model expressions.",
+            "label": "Custom"
+        },
+        "mappedAdapterId": {
+            "allowQuery": true,
+            "brief": "This is the default mappedAdapterId value",
+            "dataType": "template",
+            "description": "This is the default mappedAdapterId value.",
+            "label": "Mapped Adapter",
+            "required": true
+        },
+        "modelId": {
+            "allowQuery": true,
+            "brief": "The objectId of the _AdaptiveModel_ object in the modelLocationAdapterId adapter",
+            "dataType": "template",
+            "description": "The objectId of the _AdaptiveModel_ object in the modelLocationAdapterId adapter.",
+            "label": "Model",
+            "required": true
+        },
+        "modelLocationAdapterId": {
+            "allowQuery": true,
+            "brief": "This is the id of the adapter that contains object type _AdaptiveModel_ and related objects",
+            "dataType": "template",
+            "description": "This is the id of the adapter that contains object type _AdaptiveModel_ and related objects.",
+            "label": "Model Adapter",
+            "required": true
+        }
+    }
+}

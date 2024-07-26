@@ -1,8 +1,8 @@
 {
     "title":"AFWDev",
     "description":"Adaptive Framework Dev Container.",
-    "defaultAdaptorId":"afw",
-    "defaultModelAdaptorId":"models",
-    "layoutsAdaptorId":"layouts",
+    "defaultAdapterId":"afw",
+    "defaultModelAdapterId":"models",
+    "layoutsAdapterId":"layouts",
     "extensions":["afw_yaml","afw_ldap","afw_lmdb","afw_vfs"]
 }

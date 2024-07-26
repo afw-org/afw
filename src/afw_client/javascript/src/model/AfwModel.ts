@@ -15,7 +15,7 @@ import {
 
 interface IGetObjectParams {
     uri?:           string;
-    adaptorId?:     string;
+    adapterId?:     string;
     objectTypeId?:  string;
     objectId?:      string;
     path?:          string;
@@ -26,7 +26,7 @@ interface IGetObjectParams {
 
 interface IRetrieveObjectsParams {
     uri?:           string;
-    adaptorId?:     string;
+    adapterId?:     string;
     objectTypeId?:  string;
     objectId?:      string;
     queryCriteria?: string;
@@ -36,14 +36,14 @@ interface IRetrieveObjectsParams {
 
 interface IConfig {
     client:     AfwClient;
-    adaptorId:  string;
+    adapterId:  string;
     debounce?:  boolean;
 }
 
 interface IfindDependencies {
     objectTypeObject?:  IObjectTypeObject;
     object?:            IAnyObject;
-    adaptorId?:         string;
+    adapterId?:         string;
     objectTypeId?:      string;
     dependencies?:      any[];
 }
@@ -80,7 +80,7 @@ import {isObject} from "../utils";
 export class AfwModel {
 
     private client:         AfwClient;
-    private adaptorId:      string;    
+    private adapterId:      string;    
     private debounce?:      boolean;
     private cachedPromises: {
         [prop: string]:     IGetObjectResponse;
@@ -101,7 +101,7 @@ export class AfwModel {
      */
     constructor(config: IConfig) {
         this.client         = config.client;
-        this.adaptorId      = config.adaptorId;        
+        this.adapterId      = config.adapterId;        
         this.debounce       = config.debounce;
         this.cachedPromises = {};
         this.cachedObjects  = {};        
@@ -268,12 +268,12 @@ export class AfwModel {
      * This method constructs the Object Type URI from the adaptive object, fetches
      * its reference and caches the result for later.
      * 
-     * @param {string} adaptorId 
+     * @param {string} adapterId 
      * @param {string} objectTypeId 
      * @param {string} path
      */
-    async loadObjectTypeDependency({ adaptorId, objectTypeId, path }: IGetObjectParams) : Promise<IAnyObject> {
-        const uri: string = path ? path : ("/" + adaptorId + "/_AdaptiveObjectType_/" + objectTypeId);
+    async loadObjectTypeDependency({ adapterId, objectTypeId, path }: IGetObjectParams) : Promise<IAnyObject> {
+        const uri: string = path ? path : ("/" + adapterId + "/_AdaptiveObjectType_/" + objectTypeId);
        
         /* check cache first */
         let objectTypeObject: AfwOrObject = this.getCachedObject(uri);
@@ -313,12 +313,12 @@ export class AfwModel {
      * that it may need to load for embedded objects.
      * 
      * @param {object}   objectTypeObject 
-     * @param {string}   adaptorId 
+     * @param {string}   adapterId 
      * @param {string[]} dependencies
      */
     async findObjectTypeDependencies({ 
         objectTypeObject, 
-        adaptorId, 
+        adapterId, 
         dependencies = [] 
     } : IfindDependencies) {
 
@@ -328,26 +328,26 @@ export class AfwModel {
                 const {dataType, dataTypeParameter} = propertyType;
 
                 if (dataType === "object" && dataTypeParameter) {
-                    const objectTypePath = "/" + adaptorId + "/_AdaptiveObjectType_/" + dataTypeParameter;    
+                    const objectTypePath = "/" + adapterId + "/_AdaptiveObjectType_/" + dataTypeParameter;    
                     if (!dependencies.includes(objectTypePath)) {
                         const embeddedObjectType: IObjectTypeObject = await this.loadObjectTypeDependency({ path: objectTypePath });                                                
                         dependencies.push(objectTypePath);       
                         
                         /* The embedded objectType may also have dependencies */
-                        dependencies = await this.findObjectTypeDependencies({ objectTypeObject: embeddedObjectType, adaptorId, dependencies });
+                        dependencies = await this.findObjectTypeDependencies({ objectTypeObject: embeddedObjectType, adapterId, dependencies });
                     }             
                 }
 
                 else if (dataType === "array" && dataTypeParameter && (dataTypeParameter.indexOf("object ") >= 0)) {
                     const parts = dataTypeParameter.split(" ");
-                    const objectTypePath = "/" + adaptorId + "/_AdaptiveObjectType_/" + parts[parts.length - 1];                    
+                    const objectTypePath = "/" + adapterId + "/_AdaptiveObjectType_/" + parts[parts.length - 1];                    
                     if (!dependencies.includes(objectTypePath))                
                         dependencies.push(objectTypePath);
                 }
 
                 else if (dataType === "script" && dataTypeParameter && (dataTypeParameter.indexOf("object ") >= 0)) {
                     const parts = dataTypeParameter.split(" ");
-                    const objectTypePath = "/" + adaptorId + "/_AdaptiveObjectType_/" + parts[parts.length - 1];                                                                 
+                    const objectTypePath = "/" + adapterId + "/_AdaptiveObjectType_/" + parts[parts.length - 1];                                                                 
                     if (!dependencies.includes(objectTypePath))
                         dependencies.push(objectTypePath);                    
                 }
@@ -358,21 +358,21 @@ export class AfwModel {
             const {dataType, dataTypeParameter} = objectTypeObject["otherProperties"];
 
             if (dataType === "object" && dataTypeParameter) {
-                const objectTypePath = "/" + adaptorId + "/_AdaptiveObjectType_/" + dataTypeParameter;
+                const objectTypePath = "/" + adapterId + "/_AdaptiveObjectType_/" + dataTypeParameter;
                 if (!dependencies.includes(objectTypePath))                
                     dependencies.push(objectTypePath);
             }
 
             else if (dataType === "array" && dataTypeParameter && (dataTypeParameter.indexOf("object ") >= 0)) {
                 const parts = dataTypeParameter.split(" ");
-                const objectTypePath = "/" + adaptorId + "/_AdaptiveObjectType_/" + parts[parts.length - 1];                
+                const objectTypePath = "/" + adapterId + "/_AdaptiveObjectType_/" + parts[parts.length - 1];                
                 if (!dependencies.includes(objectTypePath))                
                     dependencies.push(objectTypePath);
             }
 
             else if (dataType === "script" && dataTypeParameter && (dataTypeParameter.indexOf("object ") >= 0)) {
                 const parts = dataTypeParameter.split(" ");
-                const objectTypePath = "/" + adaptorId + "/_AdaptiveObjectType_/" + parts[parts.length - 1];                                                
+                const objectTypePath = "/" + adapterId + "/_AdaptiveObjectType_/" + parts[parts.length - 1];                                                
                 if (!dependencies.includes(objectTypePath))
                     dependencies.push(objectTypePath);
                 
@@ -386,12 +386,12 @@ export class AfwModel {
      * Takes an object and searches the object, recursively, for any instance meta objectType 
      * dependencies that may not have been available in the compiled objectType dependencies.
      * 
-     * @param {string}   adaptorId
+     * @param {string}   adapterId
      * @param {object}   object
      * @param {string[]} dependencies
      */
     findObjectDependencies({ 
-        adaptorId, 
+        adapterId, 
         object, 
         dependencies = [] 
     } : IfindDependencies) {
@@ -400,13 +400,13 @@ export class AfwModel {
             Object.entries(object).forEach(([, value]: [string, IAnyObject]) => {
 
                 if (value && value._meta_ && value._meta_.objectType) {
-                    const path = "/" + adaptorId + "/_AdaptiveObjectType_/" + value._meta_.objectType;
+                    const path = "/" + adapterId + "/_AdaptiveObjectType_/" + value._meta_.objectType;
                     if (!dependencies.includes(path))
                         dependencies.push(path);
                 }                    
 
                 /* recursively look for dependencies */
-                this.findObjectDependencies({ adaptorId, object: value, dependencies });                
+                this.findObjectDependencies({ adapterId, object: value, dependencies });                
             });
         }
 
@@ -415,24 +415,24 @@ export class AfwModel {
 
     /**
      * 
-     * @param adaptorId
+     * @param adapterId
      * @param objectTypeId
      * @param object
      */
-    async loadDependencies({ adaptorId, objectTypeId, object }: IGetObjectParams ) {
+    async loadDependencies({ adapterId, objectTypeId, object }: IGetObjectParams ) {
         let dependencies = [
-            "/" + adaptorId + "/_AdaptiveObjectType_/_AdaptiveObject_",
-            "/" + adaptorId + "/_AdaptiveObjectType_/_AdaptiveMeta_"
+            "/" + adapterId + "/_AdaptiveObjectType_/_AdaptiveObject_",
+            "/" + adapterId + "/_AdaptiveObjectType_/_AdaptiveMeta_"
         ];
 
         /* We need to synchronously load the ObjectType definition first, in order to know what else to load */
-        const objectTypeObject = await this.loadObjectTypeDependency({ adaptorId, objectTypeId });
+        const objectTypeObject = await this.loadObjectTypeDependency({ adapterId, objectTypeId });
 
         /* look for objectType related dependencies */
-        dependencies = await this.findObjectTypeDependencies({ adaptorId, objectTypeId, objectTypeObject, dependencies });
+        dependencies = await this.findObjectTypeDependencies({ adapterId, objectTypeId, objectTypeObject, dependencies });
 
         /* find all object dependencies */
-        dependencies = this.findObjectDependencies({ adaptorId, object, dependencies });     
+        dependencies = this.findObjectDependencies({ adapterId, object, dependencies });     
 
         /* resolve all promises at once */ 
         /*! \fixme these could be pooled into a single transaction with multiple actions */       
@@ -441,14 +441,14 @@ export class AfwModel {
 
     /**
      * 
-     * @param {string} adaptorId
+     * @param {string} adapterId
      * @param {string} objectTypeId
      */
     getObjectTypeObject({ 
-        adaptorId = this.adaptorId, 
+        adapterId = this.adapterId, 
         objectTypeId 
     } : IGetObjectParams) {
-        const uri = "/" + adaptorId + "/_AdaptiveObjectType_/" + objectTypeId;
+        const uri = "/" + adapterId + "/_AdaptiveObjectType_/" + objectTypeId;
 
         /* look in cache first */
         const objectTypeObject = this.getCachedObject(uri);
@@ -457,15 +457,15 @@ export class AfwModel {
     }
 
     /**
-     * Fetches and caches objectTypes from the given adaptorId.
+     * Fetches and caches objectTypes from the given adapterId.
      * 
-     * @param {string} adaptorId
+     * @param {string} adapterId
      */
     async loadObjectTypes({ 
-        adaptorId = this.adaptorId, 
+        adapterId = this.adapterId, 
         objectOptions = {} 
     } : IGetObjectParams) {
-        if (adaptorId) {
+        if (adapterId) {
             const objectTypeId = "_AdaptiveObjectType_";
 
             let options = { ...objectOptions };
@@ -481,7 +481,7 @@ export class AfwModel {
             */
             const action: IJSONObject = { 
                 "function": "retrieve_objects", 
-                adaptorId, objectType: objectTypeId,
+                adapterId, objectType: objectTypeId,
                 options: <IJSONObject>options,             
             };      
             
@@ -490,7 +490,7 @@ export class AfwModel {
             objectTypeObjects.forEach( (object: IAnyObject) => this.cacheObject({ object }) );
             
             return objectTypeObjects.map( (object: IAnyObject) => new AfwObject({ 
-                model: this, object, objectTypeId, adaptorId
+                model: this, object, objectTypeId, adapterId
             }));
         }
     }
@@ -541,25 +541,25 @@ export class AfwModel {
     }
 
     /**
-     * Gets an adaptive object using an adaptorId, objectTypeId and objectId.
+     * Gets an adaptive object using an adapterId, objectTypeId and objectId.
      * 
      * @param {string} objectTypeId
      * @param {string} objectId
-     * @param {string} adaptorId
+     * @param {string} adapterId
      * @param {object} objectOptions
      * @param {object} modelOptions 
      */
     getObject({ 
         objectTypeId, 
         objectId, 
-        adaptorId, 
+        adapterId, 
         objectOptions = {}, 
         modelOptions = { adaptiveObject: true } 
     } : IGetObjectParams) : IGetObjectResponse
     {
 
-        if (!adaptorId)
-            throw new Error("This operation requires an adaptorId.");
+        if (!adapterId)
+            throw new Error("This operation requires an adapterId.");
 
         if (!objectTypeId)
             throw new Error("This operation requires an objectTypeId.");
@@ -567,7 +567,7 @@ export class AfwModel {
         if (!objectId)
             throw new Error("This operation requires an objectId.");
 
-        const uri = "/" + encodeURIComponent(adaptorId) + "/" + encodeURIComponent(objectTypeId) + "/" + encodeURIComponent(objectId);
+        const uri = "/" + encodeURIComponent(adapterId) + "/" + encodeURIComponent(objectTypeId) + "/" + encodeURIComponent(objectId);
 
         return this.getObjectWithUri({ uri, objectOptions, modelOptions });
     }
@@ -576,37 +576,37 @@ export class AfwModel {
      * Creates a new AfwObject instance.     
      */
     newObject({ 
-        adaptorId, 
+        adapterId, 
         objectTypeId, 
         objectId,
         object 
     } : IGetObjectParams) 
     {
         return new AfwObject({ 
-            model: this, adaptorId, objectTypeId, objectId, object
+            model: this, adapterId, objectTypeId, objectId, object
         });
     }
 
     /**
-     * Retrieves adaptive objects using an adaptorId and objectTypeId.
+     * Retrieves adaptive objects using an adapterId and objectTypeId.
      * 
      * @param {string} objectTypeId
-     * @param {string} adaptorId
+     * @param {string} adapterId
      * @param {string} queryCriteria
      * @param {object} objectOptions  
      * @param {object} modelOptions
      */
     retrieveObjects({ 
         objectTypeId, 
-        adaptorId, 
+        adapterId, 
         queryCriteria, 
         objectOptions = {}, 
         modelOptions = { adaptiveObject: true, initialize: true }
     } : IRetrieveObjectsParams) : IRetrieveObjectsResponse
     {
 
-        if (!adaptorId)
-            throw new Error("This operation requires an adaptorId.");
+        if (!adapterId)
+            throw new Error("This operation requires an adapterId.");
 
         if (!objectTypeId)
             throw new Error("This operation requires an objectTypeId.");        
@@ -623,7 +623,7 @@ export class AfwModel {
         */
         const action: IJSONObject = { 
             "function": "retrieve_objects", 
-            adaptorId, objectType: objectTypeId, queryCriteria,
+            adapterId, objectType: objectTypeId, queryCriteria,
             options: <IJSONObject>options,             
         };      
         
@@ -633,7 +633,7 @@ export class AfwModel {
             result().then((res : IAnyObject[]) => {
                 if (modelOptions.adaptiveObject) {                                        
                     let resolvedObjects = res.map(object => new AfwObject({ 
-                        model: this, object, objectTypeId, adaptorId
+                        model: this, object, objectTypeId, adapterId
                     }));
                     if (modelOptions.initialize) {
                         Promise.all(resolvedObjects.map(obj => obj.initialize())).then(

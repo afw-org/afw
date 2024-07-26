@@ -17,7 +17,7 @@
         later in this document. Adaptive Layouts understand how to take data 
         and map, or translate them, into meaningful component parameters.  
         Adaptive Layouts also understand how to take changes from the 
-        components and store them back into the corresponding object adaptor.  
+        components and store them back into the corresponding object adapter.  
         Some layouts are built into the core library and are used by default 
         when no other layout is applicable. Some layouts can be created, 
         stored and retrieved to augment the core with additional, registered 
@@ -634,7 +634,7 @@
             These aren't as obvious, but some of the common ones are:
         </paragraph>
         <list>
-            <item>AdaptorDropdown</item>
+            <item>AdapterDropdown</item>
             <item>DataTypeDropdown</item>
             <item>PropertyTypeDropdown</item>
             <item>ObjectTypeDropdown</item>

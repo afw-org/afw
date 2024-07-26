@@ -32,9 +32,9 @@ Check for stale entries in the reader lock table.
 
 =head4 Parameters
 
-    $adaptorId
+    $adapterId
 
-Adaptor Id.
+Adapter Id.
 
 =head3 reader_list
 
@@ -43,34 +43,34 @@ Dump the entries in the reader lock table.
 
 =head4 Parameters
 
-    $adaptorId
+    $adapterId
 
-Adaptor Id.
+Adapter Id.
 
 =cut
 
 sub reader_check {
-    my ($adaptorId) = @_;
+    my ($adapterId) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "reader_check");
 
-    if (defined $adaptorId)
-        $request->set("adaptorId", $adaptorId);
+    if (defined $adapterId)
+        $request->set("adapterId", $adapterId);
 
     return $request->getResult();
 }
 
 sub reader_list {
-    my ($adaptorId) = @_;
+    my ($adapterId) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "reader_list");
 
-    if (defined $adaptorId)
-        $request->set("adaptorId", $adaptorId);
+    if (defined $adapterId)
+        $request->set("adapterId", $adapterId);
 
     return $request->getResult();
 }

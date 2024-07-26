@@ -13,7 +13,7 @@ import {
     QualifiersProvider,
     Spinner,
     Typography,   
-    useAdaptors, 
+    useAdapters, 
     useFunctions,
     useContextTypes,
     useClipboard,
@@ -607,7 +607,7 @@ export const Fiddle = () => {
 
     const theme                                         = useTheme();
     const {functions, error: errorFunctions}            = useFunctions();
-    const {adaptors : vfsAdaptors = []}                 = useAdaptors("vfs");
+    const {adapters : vfsAdapters = []}                 = useAdapters("vfs");
     const {contextTypes}                                = useContextTypes();
     const {notification}                                = useApplication();    
     const {onCopy}                                      = useClipboard();
@@ -1181,14 +1181,14 @@ export const Fiddle = () => {
             <OpenFileDialog 
                 open={Boolean(state.showOpen)}
                 onDismiss={() => dispatch({ type: "DISMISS_FILE_OPEN" })}
-                vfsAdaptors={vfsAdaptors}
+                vfsAdapters={vfsAdapters}
                 storage={storage}
                 onOpen={onOpenFile}
             />
             <SaveFileDialog 
                 open={Boolean(state.showSaveAs)}
                 onDismiss={() => dispatch({ type: "DISMISS_SAVE_AS" })}
-                vfsAdaptors={vfsAdaptors}
+                vfsAdapters={vfsAdapters}
                 storage={storage}
                 onSaveLocal={(fileName) => {
                     onSaveLocalFile(fileName);

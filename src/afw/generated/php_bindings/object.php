@@ -305,13 +305,13 @@ class object
      * to construct a local path.
      *
      * @param object $object Object to set ids in.
-     * @param string $adaptorId Adaptor id for object.
+     * @param string $adapterId Adapter id for object.
      * @param string $objectType Object type id for object.
      * @param string $objectId Object id for object.
      *
      * @return void
      */
-    public function local_object_meta_set_ids(, $object, $objectType, $objectId, $adaptorId = null)
+    public function local_object_meta_set_ids(, $object, $objectType, $objectId, $adapterId = null)
     {
         $request = $this->$session->request();
 
@@ -323,8 +323,8 @@ class object
         $request->set("objectId", $objectId);
 
         /* pass along any optional parameters to the request payload */
-        if ($adaptorId != null)
-            $request->set('adaptorId', $adaptorId);
+        if ($adapterId != null)
+            $request->set('adapterId', $adapterId);
 
         return $request->get_result();
     }

@@ -1,4 +1,4 @@
-export * from "./adaptor";
+export * from "./adapter";
 export * from "./administrative";
 export * from "./anyURI";
 export * from "./array";

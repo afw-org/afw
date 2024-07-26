@@ -16,7 +16,7 @@
             "brief": "This property is read-only",
             "dataType": "boolean",
             "defaultValue": true,
-            "description": "If false, this property is read only. If true, the property can be changed unless denied by authorization policy, constraint checking, or the adaptor.",
+            "description": "If false, this property is read only. If true, the property can be changed unless denied by authorization policy, constraint checking, or the adapter.",
             "label": "Allow Write"
         },
         "errors": {

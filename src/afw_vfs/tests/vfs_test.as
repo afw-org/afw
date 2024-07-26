@@ -2,11 +2,11 @@
 //?
 //? testScript: vfs_test.as
 //? customPurpose: Part of core function tests
-//? description: Test vfs adaptor.
+//? description: Test vfs adapter.
 //? sourceType: script
 //?
 //? test: vfs_test-1
-//? description: Script to test vfs adaptor.
+//? description: Script to test vfs adapter.
 //? skip: false
 //? expect: 0
 //? source: ...

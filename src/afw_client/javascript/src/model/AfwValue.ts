@@ -241,9 +241,9 @@ export class AfwValue extends AfwEvent {
                 const embeddingObject = this.getEmbeddingObject();
                 if (embeddingObject) {
                     const model = embeddingObject.getModel();
-                    const adaptorId = embeddingObject.getAdaptorId();
+                    const adapterId = embeddingObject.getAdapterId();
                     objectTypeObject = dataTypeParameter ? 
-                        model.getObjectTypeObject({ adaptorId, objectTypeId: dataTypeParameter }) :
+                        model.getObjectTypeObject({ adapterId, objectTypeId: dataTypeParameter }) :
                         undefined;
                 }
 

@@ -470,24 +470,24 @@ afw_flag_internal_early_register_core(afw_xctx_t *xctx)
         afw_s_a_flag_trace_detail,
         xctx);
 
-    /* Register flag trace:adaptor:detail */
+    /* Register flag trace:adapter:detail */
     afw_flag_environment_register_flag(
-        afw_s_a_flag_trace_adaptor_detail,
-        afw_s_a_flag_trace_adaptor_detail_brief,
-        afw_s_a_flag_trace_adaptor_detail_description,
+        afw_s_a_flag_trace_adapter_detail,
+        afw_s_a_flag_trace_adapter_detail_brief,
+        afw_s_a_flag_trace_adapter_detail_description,
         afw_s_a_flag_trace_detail,
         xctx);
 
-    /* Register flag trace:adaptor */
+    /* Register flag trace:adapter */
     afw_flag_environment_register_flag(
-        afw_s_a_flag_trace_adaptor,
-        afw_s_a_flag_trace_adaptor_brief,
-        afw_s_a_flag_trace_adaptor_description,
+        afw_s_a_flag_trace_adapter,
+        afw_s_a_flag_trace_adapter_brief,
+        afw_s_a_flag_trace_adapter_description,
         afw_s_a_flag_trace,
         xctx);
     afw_flag_add_included_by(
-        afw_s_a_flag_trace_adaptor,
-        afw_s_a_flag_trace_adaptor_detail,
+        afw_s_a_flag_trace_adapter,
+        afw_s_a_flag_trace_adapter_detail,
         xctx);
 
     /* Register flag trace:authorizationHandler:detail */

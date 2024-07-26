@@ -12,10 +12,10 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_file File Adaptor
+ * @defgroup afw_file File Adapter
  * @ingroup afw_c_api_public
  *
- * Adaptive Framework adaptor for storing objects in file system.
+ * Adaptive Framework adapter for storing objects in file system.
  * 
  * @{
  */
@@ -39,7 +39,7 @@ typedef enum afw_file_mode_e {
 /**
  * @brief Return full file path.
  * @param path is a full or relative path.
- * @param p to use for adaptor resources.
+ * @param p to use for adapter resources.
  * @param xctx of caller.
  * @return full path.
  * 
@@ -53,21 +53,21 @@ afw_file_insure_full_path(const afw_utf8_t *path,
 
 
 /**
- * @brief Get the factory for file adaptor.
+ * @brief Get the factory for file adapter.
  * @return factory singleton instance.
  */
-AFW_DECLARE(const afw_adaptor_factory_t *)
-afw_file_adaptor_factory_get();
+AFW_DECLARE(const afw_adapter_factory_t *)
+afw_file_adapter_factory_get();
 
 /**
- * @brief Create a file adaptor.
+ * @brief Create a file adapter.
  * @param properties configuration.
- * @param p to use for adaptor resources.
+ * @param p to use for adapter resources.
  * @param xctx of caller.
- * @return New instance of file adaptor.
+ * @return New instance of file adapter.
  */
-AFW_DECLARE(const afw_adaptor_t *)
-afw_file_adaptor_create_cede_p(
+AFW_DECLARE(const afw_adapter_t *)
+afw_file_adapter_create_cede_p(
     const afw_object_t *properties,
     const afw_pool_t *p, afw_xctx_t *xctx);
 

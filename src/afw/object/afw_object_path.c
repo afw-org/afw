@@ -15,9 +15,9 @@
 
 typedef enum {
     impl_state_end,
-    impl_state_slash_before_adaptor_id,
-    impl_state_adaptor_id,
-    impl_state_after_adaptor_id,
+    impl_state_slash_before_adapter_id,
+    impl_state_adapter_id,
+    impl_state_after_adapter_id,
     impl_state_object_type_id,
     impl_state_after_object_type_id,
     impl_state_option_name,
@@ -43,9 +43,9 @@ impl_set_result_paths(
     afw_utf8_octet_t *s;
 
     /*
-     * If adaptor id,  object type id, or object id are missing, just return.
+     * If adapter id,  object type id, or object id are missing, just return.
      */
-    if (parsed->adaptor_id.len == 0 ||
+    if (parsed->adapter_id.len == 0 ||
         parsed->object_type_id.len == 0 ||
         parsed->entity_object_id.len == 0)
     {
@@ -57,7 +57,7 @@ impl_set_result_paths(
      * and will use the same memory.
      */
     path_len = 3 /* Slashes. */ +
-        afw_uri_encode_len(&parsed->adaptor_id,
+        afw_uri_encode_len(&parsed->adapter_id,
             AFW_URI_OCTET_UNRESERVED, xctx) +
         afw_uri_encode_len(&parsed->object_type_id,
             AFW_URI_OCTET_UNRESERVED, xctx) +
@@ -76,7 +76,7 @@ impl_set_result_paths(
 
     *s++ = '/';
     path_len--;
-    len = afw_uri_encode_to_preallocated(s, path_len, &parsed->adaptor_id,
+    len = afw_uri_encode_to_preallocated(s, path_len, &parsed->adapter_id,
         AFW_URI_OCTET_UNRESERVED, p, xctx);
     path_len -= len;
     s += len;
@@ -169,9 +169,9 @@ impl_object_path_parse(
         }
     }
 
-    /* If starts with '/', set state to slash before adaptor id. */
+    /* If starts with '/', set state to slash before adapter id. */
     if (*(parser.c) == '/') {
-        state = impl_state_slash_before_adaptor_id;
+        state = impl_state_slash_before_adapter_id;
     }
 
     /*
@@ -180,9 +180,9 @@ impl_object_path_parse(
      */
     else {
         if (current_parsed) {
-            afw_memory_copy(&parsed->adaptor_id, &current_parsed->adaptor_id);
+            afw_memory_copy(&parsed->adapter_id, &current_parsed->adapter_id);
             afw_memory_copy(&parsed->object_type_id, &current_parsed->object_type_id);
-            if (afw_utf8_equal(&parsed->adaptor_id, afw_s_a_asterisk) ||
+            if (afw_utf8_equal(&parsed->adapter_id, afw_s_a_asterisk) ||
                 afw_utf8_equal(&parsed->object_type_id, afw_s_a_asterisk))
             {
                 parsed->contains_unresolved_substitutions = true;
@@ -190,7 +190,7 @@ impl_object_path_parse(
         }
         else {
             parsed->contains_unresolved_substitutions = true;
-            afw_memory_copy(&parsed->adaptor_id, afw_s_a_asterisk);
+            afw_memory_copy(&parsed->adapter_id, afw_s_a_asterisk);
             afw_memory_copy(&parsed->object_type_id, afw_s_a_asterisk);
         }
         state = impl_state_entity_object_id;
@@ -210,14 +210,14 @@ impl_object_path_parse(
         switch (state) {
 
 
-        /* Initial state where token is a slash before adaptor id. */
-        case impl_state_slash_before_adaptor_id:
-            state = impl_state_adaptor_id;
+        /* Initial state where token is a slash before adapter id. */
+        case impl_state_slash_before_adapter_id:
+            state = impl_state_adapter_id;
             break;
 
 
-        /* Token should be an adaptor id, '*', or end. */
-        case impl_state_adaptor_id:
+        /* Token should be an adapter id, '*', or end. */
+        case impl_state_adapter_id:
 
             if (at_end) {
                 state = impl_state_end;
@@ -230,32 +230,32 @@ impl_object_path_parse(
                 }
 
                 if (!current_parsed ||
-                    afw_utf8_equal(&current_parsed->adaptor_id,
+                    afw_utf8_equal(&current_parsed->adapter_id,
                         afw_s_a_asterisk))
                 {
                     parsed->contains_unresolved_substitutions = true;
-                    parsed->adaptor_id.s = afw_self_s_a_asterisk.s;
-                    parsed->adaptor_id.len = afw_self_s_a_asterisk.len;
+                    parsed->adapter_id.s = afw_self_s_a_asterisk.s;
+                    parsed->adapter_id.len = afw_self_s_a_asterisk.len;
                 }
                 else {
-                    parsed->substituted_adaptor_id = true;
+                    parsed->substituted_adapter_id = true;
                     parsed->substitution_occurred = true;
-                    afw_memory_copy(&parsed->adaptor_id,
-                        &current_parsed->adaptor_id);
+                    afw_memory_copy(&parsed->adapter_id,
+                        &current_parsed->adapter_id);
                 }
             }
 
             else {
-                parsed->adaptor_id.s = token->s;
-                parsed->adaptor_id.len = token->len;
+                parsed->adapter_id.s = token->s;
+                parsed->adapter_id.len = token->len;
             }
 
-            state = impl_state_after_adaptor_id;
+            state = impl_state_after_adapter_id;
             break;
 
 
-        /* After adaptor id is either '/' or end. */
-        case impl_state_after_adaptor_id:
+        /* After adapter id is either '/' or end. */
+        case impl_state_after_adapter_id:
 
             if (at_end) {
                 state = impl_state_end;
@@ -668,7 +668,7 @@ afw_object_path_parse(
 AFW_DEFINE(void)
 afw_object_path_parse_simple(
     const afw_utf8_t *path,
-    const afw_utf8_t * *adaptor_id,
+    const afw_utf8_t * *adapter_id,
     const afw_utf8_t * *object_type_id,
     const afw_utf8_t * *object_id,
     const afw_pool_t *p,
@@ -678,7 +678,7 @@ afw_object_path_parse_simple(
     const afw_utf8_octet_t *s;
     afw_size_t len;
 
-    *adaptor_id = NULL;
+    *adapter_id = NULL;
     *object_type_id = NULL;
     *object_id = NULL;
 
@@ -693,7 +693,7 @@ afw_object_path_parse_simple(
     if (len <= 0 || s == c) {
         goto error;
     }
-    *adaptor_id = afw_uri_decode_create(s, c - s, p, xctx);
+    *adapter_id = afw_uri_decode_create(s, c - s, p, xctx);
     len--;
     c++;
 
@@ -749,9 +749,9 @@ afw_object_path_parsed_to_object(
             afw_s_entityPath, &parsed->entity_path, xctx);
     }
 
-    if (parsed->adaptor_id.len > 0) {
+    if (parsed->adapter_id.len > 0) {
         afw_object_set_property_as_string(result,
-            afw_s_adaptorId, &parsed->adaptor_id, xctx);
+            afw_s_adapterId, &parsed->adapter_id, xctx);
     }
 
     if (parsed->object_type_id.len > 0) {
@@ -791,9 +791,9 @@ afw_object_path_parsed_to_object(
             afw_s_substitutionOccurred, afw_boolean_v_true, xctx);
     }
 
-    if (parsed->substituted_adaptor_id) {
+    if (parsed->substituted_adapter_id) {
         afw_object_set_property(result,
-            afw_s_substitutedAdaptorId, afw_boolean_v_true, xctx);
+            afw_s_substitutedAdapterId, afw_boolean_v_true, xctx);
     }
 
     if (parsed->substituted_object_type_id) {
@@ -834,9 +834,9 @@ afw_object_path_parsed_are_equivalent(
     const afw_object_path_property_name_entry_t *name1;
     const afw_object_path_property_name_entry_t *name2;
 
-    if (parsed1->adaptor_id.len != parsed2->adaptor_id.len ||
-        (parsed1->adaptor_id.len != 0 &&
-        !afw_utf8_equal(&parsed1->adaptor_id, &parsed2->adaptor_id)))
+    if (parsed1->adapter_id.len != parsed2->adapter_id.len ||
+        (parsed1->adapter_id.len != 0 &&
+        !afw_utf8_equal(&parsed1->adapter_id, &parsed2->adapter_id)))
     {
         goto not_equal;
     }
@@ -904,7 +904,7 @@ afw_object_path_are_equivalent(
 /* Construct an object path. */
 AFW_DEFINE(const afw_utf8_t *)
 afw_object_path_make(
-    const afw_utf8_t *adaptor_id,
+    const afw_utf8_t *adapter_id,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
     const afw_pool_t *p,
@@ -913,8 +913,8 @@ afw_object_path_make(
     const afw_utf8_t *path;
 
     /* URL encode each parameter if they are on asterisk. */
-    if (!afw_utf8_equal(adaptor_id, afw_s_a_asterisk)) {
-        adaptor_id = afw_uri_encode(adaptor_id,
+    if (!afw_utf8_equal(adapter_id, afw_s_a_asterisk)) {
+        adapter_id = afw_uri_encode(adapter_id,
             AFW_URI_OCTET_UNRESERVED, p, xctx);
     }
 
@@ -929,14 +929,14 @@ afw_object_path_make(
                 AFW_URI_OCTET_UNRESERVED, p, xctx);
         }
         path = afw_utf8_concat(p, xctx,
-            afw_s_a_slash, adaptor_id,
+            afw_s_a_slash, adapter_id,
             afw_s_a_slash, object_type_id,
             afw_s_a_slash, object_id,
             NULL);
     }
     else {
         path = afw_utf8_concat(p, xctx,
-            afw_s_a_slash, adaptor_id,
+            afw_s_a_slash, adapter_id,
             afw_s_a_slash, object_type_id,
             NULL);
     }

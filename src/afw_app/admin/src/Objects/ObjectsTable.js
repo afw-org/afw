@@ -41,7 +41,7 @@ const client = new AfwClient({
  */
 const onRetrieveObjects = async ({ 
     model, 
-    adaptorId, 
+    adapterId, 
     objectTypeId, 
     queryCriteria, 
     onStatus, 
@@ -59,7 +59,7 @@ const onRetrieveObjects = async ({
             queryCriteria = queryCriteria.substring(1);
                 
         const response = afwRetrieveObjectsToResponse(
-            client, objectTypeId, adaptorId, 
+            client, objectTypeId, adapterId, 
             { urlEncodedRQLString: queryCriteria }, 
             { objectId: true }
         );
@@ -73,7 +73,7 @@ const onRetrieveObjects = async ({
         /* if we don't get an array back, then we may only have a result */
         if (isArray(streams.response)) {
             objects = streams.response.filter(response => response.intermediate).map(response =>
-                new AfwObject({ model, object: response.result, objectTypeId, adaptorId })                    
+                new AfwObject({ model, object: response.result, objectTypeId, adapterId })                    
             );        
             status = streams.response[ streams.response.length - 1];
         } else if (streams.response)
@@ -213,7 +213,7 @@ const reducer = (state, action) => {
     case "RETRIEVING":
         return {
             ...state,
-            adaptorId: action.adaptorId,
+            adapterId: action.adapterId,
             objectTypeId: action.objectTypeId,
             queryCriteria: action.queryCriteria,
         };
@@ -263,7 +263,7 @@ const ObjectsTable = ({ onSelectObject }) => {
         showBatchEdit,
         showUpload,
         spinnerText,
-        adaptorId,
+        adapterId,
         objectTypeId,
         queryCriteria,
         columns,
@@ -278,7 +278,7 @@ const ObjectsTable = ({ onSelectObject }) => {
     const model = useModel();
     const {notification} = useApplication();    
     const {object: objectTypeObject, isLoading: objectTypeLoading} = useGetObject({ 
-        adaptorId, objectTypeId: "_AdaptiveObjectType_", objectId: objectTypeId 
+        adapterId, objectTypeId: "_AdaptiveObjectType_", objectId: objectTypeId 
     });
 
     /* abort controller for retrieve */
@@ -293,7 +293,7 @@ const ObjectsTable = ({ onSelectObject }) => {
 
     /* when the component initially mounts up, retrieve the needed objects to display. */
     useEffect(() => {
-        const retrieve = async (adaptorId, objectTypeId, queryCriteria) => {
+        const retrieve = async (adapterId, objectTypeId, queryCriteria) => {
             const onReturn = (objects) => {
                 if (!hasAborted())
                     dispatch({ type: "OBJECTS", objects });
@@ -317,7 +317,7 @@ const ObjectsTable = ({ onSelectObject }) => {
 
             await onRetrieveObjects({
                 model, 
-                adaptorId, 
+                adapterId, 
                 objectTypeId, 
                 queryCriteria, 
                 onStatus,
@@ -330,18 +330,18 @@ const ObjectsTable = ({ onSelectObject }) => {
 
         /* only retrieve objects, if we're on the URI that requests them.  otherwise, we're looking for a specific object */
         if (model && match.isExact && !retrieved) {     
-            let adaptorId = match.params.adaptorId;
+            let adapterId = match.params.adapterId;
             let objectTypeId = match.params.objectTypeId;            
             let queryCriteria = location.search;
 
-            adaptorId = decodeURIComponent(adaptorId);
+            adapterId = decodeURIComponent(adapterId);
             objectTypeId = decodeURIComponent(objectTypeId);
 
-            dispatch({ type: "RETRIEVING", adaptorId, objectTypeId, queryCriteria });            
+            dispatch({ type: "RETRIEVING", adapterId, objectTypeId, queryCriteria });            
 
-            retrieve(adaptorId, objectTypeId, queryCriteria);            
+            retrieve(adapterId, objectTypeId, queryCriteria);            
         }
-    }, [model, location.search, match.isExact, match.params.adaptorId, match.params.objectTypeId, notification, retrieved]);
+    }, [model, location.search, match.isExact, match.params.adapterId, match.params.objectTypeId, notification, retrieved]);
 
     let sortableProperties = [];
     if (objectTypeObject) {
@@ -446,8 +446,8 @@ const ObjectsTable = ({ onSelectObject }) => {
     const onObjectInvoked = useCallback((item) => {
         const objectId = item.getObjectId();        
 
-        history.push("/Objects/" + adaptorId + "/" + objectTypeId + "/" + objectId);
-    }, [adaptorId, history, objectTypeId]);
+        history.push("/Objects/" + adapterId + "/" + objectTypeId + "/" + objectId);
+    }, [adapterId, history, objectTypeId]);
 
     /**
      * onDelete()
@@ -521,7 +521,7 @@ const ObjectsTable = ({ onSelectObject }) => {
 
         await onRetrieveObjects({
             model, 
-            adaptorId, 
+            adapterId, 
             objectTypeId, 
             queryCriteria, 
             onStatus,
@@ -613,7 +613,7 @@ const ObjectsTable = ({ onSelectObject }) => {
             for (let i = 0; i < objects.length; i++) {                
                 if (objects[i].getObjectId() === objectId) {                    
                     let nextObject = objects[(i + 1) % objects.length];
-                    history.push("/Objects/" + adaptorId + "/" + objectTypeId + "/" + nextObject.getObjectId());
+                    history.push("/Objects/" + adapterId + "/" + objectTypeId + "/" + nextObject.getObjectId());
                 }
             }
         }
@@ -633,7 +633,7 @@ const ObjectsTable = ({ onSelectObject }) => {
                 if (objects[i].getObjectId() === objectId) {
                     let prev = (i - 1) < 0 ? objects.length - 1 : (i - 1);
                     let nextObject = objects[prev];
-                    history.push("/Objects/" + adaptorId + "/" + objectTypeId + "/" + nextObject.getObjectId());
+                    history.push("/Objects/" + adapterId + "/" + objectTypeId + "/" + nextObject.getObjectId());
                 }
             }
 
@@ -706,16 +706,16 @@ const ObjectsTable = ({ onSelectObject }) => {
     return (
         <OperationalContext.Provider value={OperationalMode.NotEditable}>
             <Switch>
-                <Route path="/Objects/:adaptorId/:objectTypeId/:objectId" render={routerProps => {
-                    let {adaptorId, objectTypeId, objectId} = routerProps.match.params;
+                <Route path="/Objects/:adapterId/:objectTypeId/:objectId" render={routerProps => {
+                    let {adapterId, objectTypeId, objectId} = routerProps.match.params;
                     
-                    adaptorId = decodeURIComponent(adaptorId);
+                    adapterId = decodeURIComponent(adapterId);
                     objectTypeId = decodeURIComponent(objectTypeId);
                     objectId = decodeURIComponent(objectId);
 
                     return (
                         <ObjectEditor 
-                            adaptorId={adaptorId}
+                            adapterId={adapterId}
                             objectTypeId={objectTypeId}
                             objectId={objectId}
                             onNextObject={objects?.length ? onNextObject : undefined}
@@ -724,7 +724,7 @@ const ObjectsTable = ({ onSelectObject }) => {
                         />
                     );
                 }} />
-                <Route path="/Objects/:adaptorId/:objectTypeId" render={() => {
+                <Route path="/Objects/:adapterId/:objectTypeId" render={() => {
                     return (
                         <div style={{ display: "flex", flexDirection: "column", height: "100%", marginRight: theme.spacing(1) }}>
                             <ObjectsTableToolbar 
@@ -756,7 +756,7 @@ const ObjectsTable = ({ onSelectObject }) => {
                                                     onRender: (item) => {
                                                         return (
                                                             <Link 
-                                                                uriComponents={[ "Objects", item.getAdaptorId(), item.getObjectTypeId(), item.getObjectId() ]}                            
+                                                                uriComponents={[ "Objects", item.getAdapterId(), item.getObjectTypeId(), item.getObjectId() ]}                            
                                                                 text={item.getObjectId()}
                                                             />
                                                         );
@@ -799,14 +799,14 @@ const ObjectsTable = ({ onSelectObject }) => {
                             </div>
                             <ObjectNew                         
                                 open={showNewObject}
-                                adaptorId={adaptorId}
+                                adapterId={adapterId}
                                 objectTypeId={objectTypeId}
                                 objectTypeObject={objectTypeObject}
                                 onAddObject={onAdd}
                                 onDismiss={() => dispatch({ type: "CANCEL_ADD" })}
                             />  
                             <ObjectUploadModal 
-                                adaptorId={adaptorId}
+                                adapterId={adapterId}
                                 objectTypeId={objectTypeId}
                                 objectTypeObject={objectTypeObject}                    
                                 open={showUpload}

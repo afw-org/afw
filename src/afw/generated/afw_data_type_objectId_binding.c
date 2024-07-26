@@ -177,7 +177,7 @@ afw_data_type_objectId_direct = {
     (const afw_object_t *)&impl_data_type_object_objectId,
     AFW_UTF8_LITERAL("objectId"),
     AFW_UTF8_LITERAL("An adaptive object's object id"),
-    AFW_UTF8_LITERAL("Data type 'objectId' holds an adaptive object's object id. This is an association with another adaptive object by objectId that has the same adaptor id and object type id."),
+    AFW_UTF8_LITERAL("Data type 'objectId' holds an adaptive object's object id. This is an association with another adaptive object by objectId that has the same adapter id and object type id."),
     AFW_UTF8_LITERAL("ObjectType"),
     afw_data_type_number_objectId,
     AFW_UTF8_LITERAL("1.3.6.1.4.1.1466.115.121.1.15{64512}"),

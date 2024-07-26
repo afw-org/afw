@@ -1,24 +1,24 @@
 {
     "brief": "Extension for Lightning Memory-Mapped Database (LMDB)",
-    "description": "This extension provides an adaptor for retrieving and storing Adaptive Objects in Lightning Memory-Mapped Database (LMDB), an in-memory database that allows for arbitrary key-value pairs to be stored in its database.",
+    "description": "This extension provides an adapter for retrieving and storing Adaptive Objects in Lightning Memory-Mapped Database (LMDB), an in-memory database that allows for arbitrary key-value pairs to be stored in its database.",
     "extensionId": "afw_lmdb",
     "modulePath": "libafwlmdb",
     "providesObjects": [
         "/afw/_AdaptiveCollection_/lmdb_extension",
         "/afw/_AdaptiveFunctionCategory_/lmdb",
-        "/afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb",
-        "/afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_information",
-        "/afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_statistic",
-        "/afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_statistics",
-        "/afw/_AdaptiveObjectType_/_AdaptiveAdaptorMetrics_adaptor_lmdb_version",
-        "/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb",
-        "/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb_env",
-        "/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb_limits",
-        "/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb_limits_size",
-        "/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_lmdb_limits_time"
+        "/afw/_AdaptiveObjectType_/_AdaptiveAdapterMetrics_adapter_lmdb",
+        "/afw/_AdaptiveObjectType_/_AdaptiveAdapterMetrics_adapter_lmdb_information",
+        "/afw/_AdaptiveObjectType_/_AdaptiveAdapterMetrics_adapter_lmdb_statistic",
+        "/afw/_AdaptiveObjectType_/_AdaptiveAdapterMetrics_adapter_lmdb_statistics",
+        "/afw/_AdaptiveObjectType_/_AdaptiveAdapterMetrics_adapter_lmdb_version",
+        "/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb",
+        "/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_env",
+        "/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits",
+        "/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits_size",
+        "/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_lmdb_limits_time"
     ],
     "registers": [
-        "adaptor_type/lmdb",
+        "adapter_type/lmdb",
         "error_rv_decoder/lmdb"
     ]
 }

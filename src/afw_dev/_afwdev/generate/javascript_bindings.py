@@ -69,7 +69,7 @@ def generate(generated_by, data_type_list, objects_dir_path, generated_dir_path,
     list = direct.retrieve_objects_direct(objects_dir_path + '_AdaptiveFunctionGenerate_/')
     list.sort(key=sort_category_functionLabel_cb)
 
-    action_params = ['adaptorId']
+    action_params = ['adapterId']
     categories = []
     category = None
 

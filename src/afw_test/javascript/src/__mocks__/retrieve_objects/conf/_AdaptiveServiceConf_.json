@@ -2,67 +2,67 @@
     "result": [
         {
             "_meta_": {
-                "path": "/conf/_AdaptiveServiceConf_/adaptor-models",
-                "objectId": "adaptor-models",
+                "path": "/conf/_AdaptiveServiceConf_/adapter-models",
+                "objectId": "adapter-models",
                 "objectType": "_AdaptiveServiceConf_"
             },
             "conf": {
                 "_meta_": {
-                    "objectType": "_AdaptiveConf_adaptor_file"
+                    "objectType": "_AdaptiveConf_adapter_file"
                 },
-                "adaptorId": "models",
+                "adapterId": "models",
                 "description": "Stores adaptive models.",
                 "filenameSuffix": ".json",
                 "contentType": "json",
                 "root": "/afw/models/",
                 "isModelLocation": true,
-                "adaptorType": "file",
-                "type": "adaptor"
+                "adapterType": "file",
+                "type": "adapter"
             },
             "startup": "immediate",
-            "serviceId": "adaptor-models"
+            "serviceId": "adapter-models"
         },
         {
             "_meta_": {
-                "path": "/conf/_AdaptiveServiceConf_/adaptor-auth",
-                "objectId": "adaptor-auth",
+                "path": "/conf/_AdaptiveServiceConf_/adapter-auth",
+                "objectId": "adapter-auth",
                 "objectType": "_AdaptiveServiceConf_"
             },
             "conf": {
                 "_meta_": {
-                    "objectType": "_AdaptiveConf_adaptor_file"
+                    "objectType": "_AdaptiveConf_adapter_file"
                 },
-                "adaptorId": "auth",
+                "adapterId": "auth",
                 "description": "Stores adaptive authorization policies.",
                 "filenameSuffix": ".json",
                 "contentType": "json",
                 "root": "/afw/auth/",
                 "isPolicyLocation": true,
-                "adaptorType": "file",
-                "type": "adaptor"
+                "adapterType": "file",
+                "type": "adapter"
             },
             "startup": "immediate",
-            "serviceId": "adaptor-auth"
+            "serviceId": "adapter-auth"
         },
         {
             "_meta_": {
-                "path": "/conf/_AdaptiveServiceConf_/adaptor-tier",
-                "objectId": "adaptor-tier",
+                "path": "/conf/_AdaptiveServiceConf_/adapter-tier",
+                "objectId": "adapter-tier",
                 "objectType": "_AdaptiveServiceConf_"
             },
             "conf": {
                 "_meta_": {
-                    "objectType": "_AdaptiveConf_adaptor_model"
+                    "objectType": "_AdaptiveConf_adapter_model"
                 },
-                "mappedAdaptorId": "lmdb",
+                "mappedAdapterId": "lmdb",
                 "modelId": "TIER Core Schema",
-                "modelLocationAdaptorId": "models",
+                "modelLocationAdapterId": "models",
                 "description": "TIER model using LMDB as a backend.",
-                "type": "adaptor",
-                "adaptorType": "model",
-                "adaptorId": "tier"
+                "type": "adapter",
+                "adapterType": "model",
+                "adapterId": "tier"
             },
-            "serviceId": "adaptor-tier",
+            "serviceId": "adapter-tier",
             "startup": "immediate"
         },
         {
@@ -97,25 +97,25 @@
         },
         {
             "_meta_": {
-                "path": "/conf/_AdaptiveServiceConf_/adaptor-files",
-                "objectId": "adaptor-files",
+                "path": "/conf/_AdaptiveServiceConf_/adapter-files",
+                "objectId": "adapter-files",
                 "objectType": "_AdaptiveServiceConf_"
             },
             "conf": {
                 "_meta_": {
-                    "objectType": "_AdaptiveConf_adaptor_file"
+                    "objectType": "_AdaptiveConf_adapter_file"
                 },
-                "adaptorId": "files",
+                "adapterId": "files",
                 "isDevelopmentInput": true,
                 "description": "Stores objects in files.",
                 "filenameSuffix": ".json",
                 "contentType": "json",
                 "root": "/afw/files/",
-                "adaptorType": "file",
-                "type": "adaptor"
+                "adapterType": "file",
+                "type": "adapter"
             },
             "startup": "immediate",
-            "serviceId": "adaptor-files"
+            "serviceId": "adapter-files"
         },
         {
             "_meta_": {
@@ -145,17 +145,17 @@
         },
         {
             "_meta_": {
-                "path": "/conf/_AdaptiveServiceConf_/adaptor-lmdb",
-                "objectId": "adaptor-lmdb",
+                "path": "/conf/_AdaptiveServiceConf_/adapter-lmdb",
+                "objectId": "adapter-lmdb",
                 "objectType": "_AdaptiveServiceConf_"
             },
             "conf": {
                 "_meta_": {
-                    "objectType": "_AdaptiveConf_adaptor_lmdb"
+                    "objectType": "_AdaptiveConf_adapter_lmdb"
                 },
                 "env": {
                     "_meta_": {
-                        "objectType": "_AdaptiveConf_adaptor_lmdb_env"
+                        "objectType": "_AdaptiveConf_adapter_lmdb_env"
                     },
                     "path": "/afw/lmdb",
                     "mode": 384,
@@ -165,94 +165,94 @@
                 },
                 "limits": {
                     "_meta_": {
-                        "objectType": "_AdaptiveConf_adaptor_lmdb_limits"
+                        "objectType": "_AdaptiveConf_adapter_lmdb_limits"
                     },
                     "size": {
                         "_meta_": {
-                            "objectType": "_AdaptiveConf_adaptor_lmdb_limits_size"
+                            "objectType": "_AdaptiveConf_adapter_lmdb_limits_size"
                         },
                         "soft": 500,
                         "hard": 1000
                     },
                     "time": {
                         "_meta_": {
-                            "objectType": "_AdaptiveConf_adaptor_lmdb_limits_time"
+                            "objectType": "_AdaptiveConf_adapter_lmdb_limits_time"
                         },
                         "soft": 3600,
                         "hard": 14400
                     }
                 },
                 "description": "A LMDB (Lightning Memory-Mapped Database).",
-                "adaptorId": "lmdb",
-                "adaptorType": "lmdb",
-                "type": "adaptor"
+                "adapterId": "lmdb",
+                "adapterType": "lmdb",
+                "type": "adapter"
             },
             "startup": "immediate",
-            "serviceId": "adaptor-lmdb"
+            "serviceId": "adapter-lmdb"
         },
         {
             "_meta_": {
-                "path": "/conf/_AdaptiveServiceConf_/adaptor-dev",
-                "objectId": "adaptor-dev",
+                "path": "/conf/_AdaptiveServiceConf_/adapter-dev",
+                "objectId": "adapter-dev",
                 "objectType": "_AdaptiveServiceConf_"
             },
             "conf": {
                 "_meta_": {
-                    "objectType": "_AdaptiveConf_adaptor_file"
+                    "objectType": "_AdaptiveConf_adapter_file"
                 },
                 "contentType": "json",
                 "filenameSuffix": ".json",
                 "isDevelopmentInput": true,
                 "root": "/workspace/src/afw/generate/objects/",
-                "description": "File adaptor for development input strings and objects.",
-                "type": "adaptor",
-                "adaptorType": "file",
-                "adaptorId": "dev"
+                "description": "File adapter for development input strings and objects.",
+                "type": "adapter",
+                "adapterType": "file",
+                "adapterId": "dev"
             },
-            "serviceId": "adaptor-dev",
+            "serviceId": "adapter-dev",
             "startup": "immediate"
         },
         {
             "_meta_": {
-                "path": "/conf/_AdaptiveServiceConf_/adaptor-layouts",
-                "objectId": "adaptor-layouts",
+                "path": "/conf/_AdaptiveServiceConf_/adapter-layouts",
+                "objectId": "adapter-layouts",
                 "objectType": "_AdaptiveServiceConf_"
             },
             "conf": {
                 "_meta_": {
-                    "objectType": "_AdaptiveConf_adaptor_file"
+                    "objectType": "_AdaptiveConf_adapter_file"
                 },
-                "adaptorId": "layouts",
+                "adapterId": "layouts",
                 "description": "Stores adaptive layouts.",
                 "filenameSuffix": ".json",
                 "contentType": "json",
                 "root": "/afw/layouts/",
-                "adaptorType": "file",
-                "type": "adaptor"
+                "adapterType": "file",
+                "type": "adapter"
             },
             "startup": "immediate",
-            "serviceId": "adaptor-layouts"
+            "serviceId": "adapter-layouts"
         },
         {
             "_meta_": {
-                "path": "/conf/_AdaptiveServiceConf_/adaptor-test1",
-                "objectId": "adaptor-test1",
+                "path": "/conf/_AdaptiveServiceConf_/adapter-test1",
+                "objectId": "adapter-test1",
                 "objectType": "_AdaptiveServiceConf_"
             },
             "conf": {
                 "_meta_": {
-                    "objectType": "_AdaptiveConf_adaptor_file"
+                    "objectType": "_AdaptiveConf_adapter_file"
                 },
-                "adaptorId": "test1",
+                "adapterId": "test1",
                 "description": "Service config for testing.",
                 "filenameSuffix": ".json",
                 "contentType": "json",
                 "root": "/afw/test1/",
-                "adaptorType": "file",
-                "type": "adaptor"
+                "adapterType": "file",
+                "type": "adapter"
             },
             "startup": "immediate",
-            "serviceId": "adaptor-test1"
+            "serviceId": "adapter-test1"
         }
     ],
     "status": "success"

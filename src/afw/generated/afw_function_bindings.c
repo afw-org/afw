@@ -29,41 +29,41 @@
 #include "afw_strings.h"
 
 
-/* ---------- adaptor_objectCallback_signature ---------- */
+/* ---------- adapter_objectCallback_signature ---------- */
 
 static const afw_utf8_t
-impl_object_path__adaptor_objectCallback_signature =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/adaptor_objectCallback_signature");
+impl_object_path__adapter_objectCallback_signature =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/adapter_objectCallback_signature");
 
 static const afw_value_object_t
-impl_object__adaptor_objectCallback_signature__value;
+impl_object__adapter_objectCallback_signature__value;
 
 static const afw_runtime_object_indirect_t
-impl_object__adaptor_objectCallback_signature = {
+impl_object__adapter_objectCallback_signature = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__adaptor_objectCallback_signature__value,
+        (const afw_value_t *)&impl_object__adapter_objectCallback_signature__value,
         {
             NULL,
             NULL,
-            &afw_self_s_adaptor_objectCallback_signature,
+            &afw_self_s_adapter_objectCallback_signature,
             &afw_self_s__AdaptiveFunction_,
-            &impl_object_path__adaptor_objectCallback_signature
+            &impl_object_path__adapter_objectCallback_signature
         }
     },
-    (void *)&afw_function_definition_adaptor_objectCallback_signature
+    (void *)&afw_function_definition_adapter_objectCallback_signature
 };
 
 static const afw_value_object_t
-impl_adaptor_objectCallback_signature_returns__value;
+impl_adapter_objectCallback_signature_returns__value;
 
 static const afw_value_function_parameter_t
-impl_adaptor_objectCallback_signature_returns = {
+impl_adapter_objectCallback_signature_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_adaptor_objectCallback_signature_returns__value,
+        (const afw_value_t *)&impl_adapter_objectCallback_signature_returns__value,
         {
             NULL,
             NULL,
@@ -86,20 +86,20 @@ impl_adaptor_objectCallback_signature_returns = {
 };
 
 static const afw_value_object_t
-impl_adaptor_objectCallback_signature_returns__value = {
+impl_adapter_objectCallback_signature_returns__value = {
     {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_adaptor_objectCallback_signature_returns
+    (const afw_object_t *)&impl_adapter_objectCallback_signature_returns
 };
 
 static const afw_value_object_t
-impl_adaptor_objectCallback_signature_parameter_1__value;
+impl_adapter_objectCallback_signature_parameter_1__value;
 
 static const afw_value_function_parameter_t
-impl_adaptor_objectCallback_signature_parameter_1 = {
+impl_adapter_objectCallback_signature_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_adaptor_objectCallback_signature_parameter_1__value,
+        (const afw_value_t *)&impl_adapter_objectCallback_signature_parameter_1__value,
         {
             NULL,
             NULL,
@@ -112,7 +112,7 @@ impl_adaptor_objectCallback_signature_parameter_1 = {
     &afw_self_v_object,
     NULL,
     &afw_self_v_object,
-    &afw_self_v_zz__The_object_from_adaptor,
+    &afw_self_v_zz__The_object_from_adapter,
     &afw_self_v_zz__2,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
@@ -122,20 +122,20 @@ impl_adaptor_objectCallback_signature_parameter_1 = {
 };
 
 static const afw_value_object_t
-impl_adaptor_objectCallback_signature_parameter_1__value = {
+impl_adapter_objectCallback_signature_parameter_1__value = {
     {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_adaptor_objectCallback_signature_parameter_1
+    (const afw_object_t *)&impl_adapter_objectCallback_signature_parameter_1
 };
 
 static const afw_value_object_t
-impl_adaptor_objectCallback_signature_parameter_2__value;
+impl_adapter_objectCallback_signature_parameter_2__value;
 
 static const afw_value_function_parameter_t
-impl_adaptor_objectCallback_signature_parameter_2 = {
+impl_adapter_objectCallback_signature_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_adaptor_objectCallback_signature_parameter_2__value,
+        (const afw_value_t *)&impl_adapter_objectCallback_signature_parameter_2__value,
         {
             NULL,
             NULL,
@@ -158,40 +158,40 @@ impl_adaptor_objectCallback_signature_parameter_2 = {
 };
 
 static const afw_value_object_t
-impl_adaptor_objectCallback_signature_parameter_2__value = {
+impl_adapter_objectCallback_signature_parameter_2__value = {
     {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_adaptor_objectCallback_signature_parameter_2
+    (const afw_object_t *)&impl_adapter_objectCallback_signature_parameter_2
 };
 
 static const afw_value_function_parameter_t *
-impl_adaptor_objectCallback_signature_parameters[] = {
-    &impl_adaptor_objectCallback_signature_parameter_1,
-    &impl_adaptor_objectCallback_signature_parameter_2,
+impl_adapter_objectCallback_signature_parameters[] = {
+    &impl_adapter_objectCallback_signature_parameter_1,
+    &impl_adapter_objectCallback_signature_parameter_2,
     NULL
 };
 
 AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_adaptor_objectCallback_signature = {
+afw_function_definition_adapter_objectCallback_signature = {
     {&afw_value_function_definition_inf},
-    (const afw_object_t *)&impl_object__adaptor_objectCallback_signature,
-    &afw_self_v_adaptor,
-    &afw_self_v_adaptor_objectCallback_signature,
-    &afw_self_v_adaptor_objectCallback_signature,
-    &afw_self_v_adaptor_objectCallback_signature,
-    &afw_self_v_adaptorObjectCallbackSignature,
-    &afw_self_v_afwAdaptorObjectCallbackSignature,
-    &afw_self_v_zz__Signature_used_for_adaptor_objectCallback,
+    (const afw_object_t *)&impl_object__adapter_objectCallback_signature,
+    &afw_self_v_adapter,
+    &afw_self_v_adapter_objectCallback_signature,
+    &afw_self_v_adapter_objectCallback_signature,
+    &afw_self_v_adapter_objectCallback_signature,
+    &afw_self_v_adapterObjectCallbackSignature,
+    &afw_self_v_afwAdapterObjectCallbackSignature,
+    &afw_self_v_zz__Signature_used_for_adapter_objectCallback,
     &afw_self_v_zz__4,
     &afw_self_v_zz___object__object__userData___any___boolean,
     &afw_self_v_zz__5,
     NULL,
-    afw_function_execute_adaptor_objectCallback_signature,
+    afw_function_execute_adapter_objectCallback_signature,
     NULL,
     &afw_integer_self_v_1,
     &afw_integer_self_v_2,
-    &impl_adaptor_objectCallback_signature_parameters[0],
+    &impl_adapter_objectCallback_signature_parameters[0],
     2,
-    &impl_adaptor_objectCallback_signature_returns,
+    &impl_adapter_objectCallback_signature_returns,
     NULL,
     NULL,
     &afw_self_v_zz__,
@@ -206,9 +206,9 @@ afw_function_definition_adaptor_objectCallback_signature = {
 };
 
 static const afw_value_object_t
-impl_object__adaptor_objectCallback_signature__value = {
+impl_object__adapter_objectCallback_signature__value = {
     {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_object__adaptor_objectCallback_signature
+    (const afw_object_t *)&impl_object__adapter_objectCallback_signature
 };
 
 /* ---------- add_object ---------- */
@@ -293,9 +293,9 @@ impl_add_object_parameter_1 = {
     &afw_data_type_string_direct,
     &afw_self_v_string,
     NULL,
-    &afw_self_v_adaptorId,
+    &afw_self_v_adapterId,
     NULL,
-    &afw_self_v_zz__Id_of_adaptor_,
+    &afw_self_v_zz__Id_of_adapter_,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -473,7 +473,7 @@ impl_add_object_parameter_6 = {
     &afw_data_type_object_direct,
     &afw_self_v_object,
     NULL,
-    &afw_self_v_adaptorTypeSpecific,
+    &afw_self_v_adapterTypeSpecific,
     NULL,
     &afw_self_v_zz__9,
     &afw_integer_self_v_zz___1,
@@ -510,7 +510,7 @@ AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_add_object = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__add_object,
-    &afw_self_v_adaptor,
+    &afw_self_v_adapter,
     &afw_self_v_add_object,
     &afw_self_v_add_object,
     &afw_self_v_add_object,
@@ -737,7 +737,7 @@ impl_add_object_with_uri_parameter_4 = {
     &afw_data_type_object_direct,
     &afw_self_v_object,
     NULL,
-    &afw_self_v_adaptorTypeSpecific,
+    &afw_self_v_adapterTypeSpecific,
     NULL,
     &afw_self_v_zz__14,
     &afw_integer_self_v_zz___1,
@@ -772,7 +772,7 @@ AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_add_object_with_uri = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__add_object_with_uri,
-    &afw_self_v_adaptor,
+    &afw_self_v_adapter,
     &afw_self_v_add_object_with_uri,
     &afw_self_v_add_object_with_uri,
     &afw_self_v_add_object_with_uri,
@@ -927,7 +927,7 @@ impl_convert_AdaptiveQueryCriteria_to_query_string_parameter_2 = {
     &afw_data_type_string_direct,
     &afw_self_v_string,
     NULL,
-    &afw_self_v_adaptorId,
+    &afw_self_v_adapterId,
     NULL,
     &afw_self_v_zz__17,
     &afw_integer_self_v_zz___1,
@@ -1028,7 +1028,7 @@ AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_convert_AdaptiveQueryCriteria_to_query_string = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__convert_AdaptiveQueryCriteria_to_query_string,
-    &afw_self_v_adaptor,
+    &afw_self_v_adapter,
     &afw_self_v_convert_AdaptiveQueryCriteria_to_query_string,
     &afw_self_v_convert_AdaptiveQueryCriteria_to_query_string,
     &afw_self_v_convert_AdaptiveQueryCriteria_to_query_string,
@@ -1183,7 +1183,7 @@ impl_convert_query_string_to_AdaptiveQueryCriteria_parameter_2 = {
     &afw_data_type_string_direct,
     &afw_self_v_string,
     NULL,
-    &afw_self_v_adaptorId,
+    &afw_self_v_adapterId,
     NULL,
     &afw_self_v_zz__17,
     &afw_integer_self_v_zz___1,
@@ -1247,7 +1247,7 @@ AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_convert_query_string_to_AdaptiveQueryCriteria = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__convert_query_string_to_AdaptiveQueryCriteria,
-    &afw_self_v_adaptor,
+    &afw_self_v_adapter,
     &afw_self_v_convert_query_string_to_AdaptiveQueryCriteria,
     &afw_self_v_convert_query_string_to_AdaptiveQueryCriteria,
     &afw_self_v_convert_query_string_to_AdaptiveQueryCriteria,
@@ -1366,9 +1366,9 @@ impl_delete_object_parameter_1 = {
     &afw_data_type_string_direct,
     &afw_self_v_string,
     NULL,
-    &afw_self_v_adaptorId,
+    &afw_self_v_adapterId,
     NULL,
-    &afw_self_v_zz__Id_of_adaptor_containing_object_to_delete_,
+    &afw_self_v_zz__Id_of_adapter_containing_object_to_delete_,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -1510,7 +1510,7 @@ impl_delete_object_parameter_5 = {
     &afw_data_type_object_direct,
     &afw_self_v_object,
     NULL,
-    &afw_self_v_adaptorTypeSpecific,
+    &afw_self_v_adapterTypeSpecific,
     NULL,
     &afw_self_v_zz__27,
     &afw_integer_self_v_zz___1,
@@ -1546,7 +1546,7 @@ AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_delete_object = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__delete_object,
-    &afw_self_v_adaptor,
+    &afw_self_v_adapter,
     &afw_self_v_delete_object,
     &afw_self_v_delete_object,
     &afw_self_v_delete_object,
@@ -1737,7 +1737,7 @@ impl_delete_object_with_uri_parameter_3 = {
     &afw_data_type_object_direct,
     &afw_self_v_object,
     NULL,
-    &afw_self_v_adaptorTypeSpecific,
+    &afw_self_v_adapterTypeSpecific,
     NULL,
     &afw_self_v_zz__27,
     &afw_integer_self_v_zz___1,
@@ -1771,7 +1771,7 @@ AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_delete_object_with_uri = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__delete_object_with_uri,
-    &afw_self_v_adaptor,
+    &afw_self_v_adapter,
     &afw_self_v_delete_object_with_uri,
     &afw_self_v_delete_object_with_uri,
     &afw_self_v_delete_object_with_uri,
@@ -1890,9 +1890,9 @@ impl_get_object_parameter_1 = {
     &afw_data_type_string_direct,
     &afw_self_v_string,
     NULL,
-    &afw_self_v_adaptorId,
+    &afw_self_v_adapterId,
     NULL,
-    &afw_self_v_zz__Id_of_adaptor_containing_object_to_retrieve_,
+    &afw_self_v_zz__Id_of_adapter_containing_object_to_retrieve_,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -2034,7 +2034,7 @@ impl_get_object_parameter_5 = {
     &afw_data_type_object_direct,
     &afw_self_v_object,
     NULL,
-    &afw_self_v_adaptorTypeSpecific,
+    &afw_self_v_adapterTypeSpecific,
     NULL,
     &afw_self_v_zz__34,
     &afw_integer_self_v_zz___1,
@@ -2064,7 +2064,7 @@ AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_get_object = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__get_object,
-    &afw_self_v_adaptor,
+    &afw_self_v_adapter,
     &afw_self_v_get_object,
     &afw_self_v_get_object,
     &afw_self_v_get_object,
@@ -2255,7 +2255,7 @@ impl_get_object_with_uri_parameter_3 = {
     &afw_data_type_object_direct,
     &afw_self_v_object,
     NULL,
-    &afw_self_v_adaptorTypeSpecific,
+    &afw_self_v_adapterTypeSpecific,
     NULL,
     &afw_self_v_zz__39,
     &afw_integer_self_v_zz___1,
@@ -2283,7 +2283,7 @@ AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_get_object_with_uri = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__get_object_with_uri,
-    &afw_self_v_adaptor,
+    &afw_self_v_adapter,
     &afw_self_v_get_object_with_uri,
     &afw_self_v_get_object_with_uri,
     &afw_self_v_get_object_with_uri,
@@ -2402,9 +2402,9 @@ impl_modify_object_parameter_1 = {
     &afw_data_type_string_direct,
     &afw_self_v_string,
     NULL,
-    &afw_self_v_adaptorId,
+    &afw_self_v_adapterId,
     NULL,
-    &afw_self_v_zz__Id_of_adaptor_containing_object_to_modify_,
+    &afw_self_v_zz__Id_of_adapter_containing_object_to_modify_,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -2582,7 +2582,7 @@ impl_modify_object_parameter_6 = {
     &afw_data_type_object_direct,
     &afw_self_v_object,
     NULL,
-    &afw_self_v_adaptorTypeSpecific,
+    &afw_self_v_adapterTypeSpecific,
     NULL,
     &afw_self_v_zz__43,
     &afw_integer_self_v_zz___1,
@@ -2619,7 +2619,7 @@ AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_modify_object = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__modify_object,
-    &afw_self_v_adaptor,
+    &afw_self_v_adapter,
     &afw_self_v_modify_object,
     &afw_self_v_modify_object,
     &afw_self_v_modify_object,
@@ -2846,7 +2846,7 @@ impl_modify_object_with_uri_parameter_4 = {
     &afw_data_type_object_direct,
     &afw_self_v_object,
     NULL,
-    &afw_self_v_adaptorTypeSpecific,
+    &afw_self_v_adapterTypeSpecific,
     NULL,
     &afw_self_v_zz__43,
     &afw_integer_self_v_zz___1,
@@ -2881,7 +2881,7 @@ AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_modify_object_with_uri = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__modify_object_with_uri,
-    &afw_self_v_adaptor,
+    &afw_self_v_adapter,
     &afw_self_v_modify_object_with_uri,
     &afw_self_v_modify_object_with_uri,
     &afw_self_v_modify_object_with_uri,
@@ -3069,7 +3069,7 @@ AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_reconcile_object = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__reconcile_object,
-    &afw_self_v_adaptor,
+    &afw_self_v_adapter,
     &afw_self_v_reconcile_object,
     &afw_self_v_reconcile_object,
     &afw_self_v_reconcile_object,
@@ -3188,9 +3188,9 @@ impl_replace_object_parameter_1 = {
     &afw_data_type_string_direct,
     &afw_self_v_string,
     NULL,
-    &afw_self_v_adaptorId,
+    &afw_self_v_adapterId,
     NULL,
-    &afw_self_v_zz__Id_of_adaptor_containing_object_to_replace_,
+    &afw_self_v_zz__Id_of_adapter_containing_object_to_replace_,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -3368,7 +3368,7 @@ impl_replace_object_parameter_6 = {
     &afw_data_type_object_direct,
     &afw_self_v_object,
     NULL,
-    &afw_self_v_adaptorTypeSpecific,
+    &afw_self_v_adapterTypeSpecific,
     NULL,
     &afw_self_v_zz__54,
     &afw_integer_self_v_zz___1,
@@ -3405,7 +3405,7 @@ AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_replace_object = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__replace_object,
-    &afw_self_v_adaptor,
+    &afw_self_v_adapter,
     &afw_self_v_replace_object,
     &afw_self_v_replace_object,
     &afw_self_v_replace_object,
@@ -3632,7 +3632,7 @@ impl_replace_object_with_uri_parameter_4 = {
     &afw_data_type_object_direct,
     &afw_self_v_object,
     NULL,
-    &afw_self_v_adaptorTypeSpecific,
+    &afw_self_v_adapterTypeSpecific,
     NULL,
     &afw_self_v_zz__54,
     &afw_integer_self_v_zz___1,
@@ -3667,7 +3667,7 @@ AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_replace_object_with_uri = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__replace_object_with_uri,
-    &afw_self_v_adaptor,
+    &afw_self_v_adapter,
     &afw_self_v_replace_object_with_uri,
     &afw_self_v_replace_object_with_uri,
     &afw_self_v_replace_object_with_uri,
@@ -3786,9 +3786,9 @@ impl_retrieve_objects_parameter_1 = {
     &afw_data_type_string_direct,
     &afw_self_v_string,
     NULL,
-    &afw_self_v_adaptorId,
-    &afw_self_v_zz__Id_of_adaptor,
-    &afw_self_v_zz__Id_of_adaptor_containing_objects_to_retrieve_,
+    &afw_self_v_adapterId,
+    &afw_self_v_zz__Id_of_adapter,
+    &afw_self_v_zz__Id_of_adapter_containing_objects_to_retrieve_,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -3930,8 +3930,8 @@ impl_retrieve_objects_parameter_5 = {
     &afw_data_type_object_direct,
     &afw_self_v_object,
     NULL,
-    &afw_self_v_adaptorTypeSpecific,
-    &afw_self_v_zz__Adaptor_specific,
+    &afw_self_v_adapterTypeSpecific,
+    &afw_self_v_zz__Adapter_specific,
     &afw_self_v_zz__60,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_true,
@@ -3960,7 +3960,7 @@ AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_retrieve_objects = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__retrieve_objects,
-    &afw_self_v_adaptor,
+    &afw_self_v_adapter,
     &afw_self_v_retrieve_objects,
     &afw_self_v_retrieve_objects,
     &afw_self_v_retrieve_objects,
@@ -4151,9 +4151,9 @@ impl_retrieve_objects_to_callback_parameter_3 = {
     &afw_data_type_string_direct,
     &afw_self_v_string,
     NULL,
-    &afw_self_v_adaptorId,
-    &afw_self_v_zz__Id_of_adaptor,
-    &afw_self_v_zz__Id_of_adaptor_containing_objects_to_retrieve_,
+    &afw_self_v_adapterId,
+    &afw_self_v_zz__Id_of_adapter,
+    &afw_self_v_zz__Id_of_adapter_containing_objects_to_retrieve_,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -4295,8 +4295,8 @@ impl_retrieve_objects_to_callback_parameter_7 = {
     &afw_data_type_object_direct,
     &afw_self_v_object,
     NULL,
-    &afw_self_v_adaptorTypeSpecific,
-    &afw_self_v_zz__Adaptor_specific,
+    &afw_self_v_adapterTypeSpecific,
+    &afw_self_v_zz__Adapter_specific,
     &afw_self_v_zz__66,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_true,
@@ -4327,7 +4327,7 @@ AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_retrieve_objects_to_callback = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__retrieve_objects_to_callback,
-    &afw_self_v_adaptor,
+    &afw_self_v_adapter,
     &afw_self_v_retrieve_objects_to_callback,
     &afw_self_v_retrieve_objects_to_callback,
     &afw_self_v_retrieve_objects_to_callback,
@@ -4446,9 +4446,9 @@ impl_retrieve_objects_to_response_parameter_1 = {
     &afw_data_type_string_direct,
     &afw_self_v_string,
     NULL,
-    &afw_self_v_adaptorId,
-    &afw_self_v_zz__Id_of_adaptor,
-    &afw_self_v_zz__Id_of_adaptor_containing_objects_to_retrieve_,
+    &afw_self_v_adapterId,
+    &afw_self_v_zz__Id_of_adapter,
+    &afw_self_v_zz__Id_of_adapter_containing_objects_to_retrieve_,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -4590,8 +4590,8 @@ impl_retrieve_objects_to_response_parameter_5 = {
     &afw_data_type_object_direct,
     &afw_self_v_object,
     NULL,
-    &afw_self_v_adaptorTypeSpecific,
-    &afw_self_v_zz__Adaptor_specific,
+    &afw_self_v_adapterTypeSpecific,
+    &afw_self_v_zz__Adapter_specific,
     &afw_self_v_zz__60,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_true,
@@ -4620,7 +4620,7 @@ AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_retrieve_objects_to_response = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__retrieve_objects_to_response,
-    &afw_self_v_adaptor,
+    &afw_self_v_adapter,
     &afw_self_v_retrieve_objects_to_response,
     &afw_self_v_retrieve_objects_to_response,
     &afw_self_v_retrieve_objects_to_response,
@@ -4775,9 +4775,9 @@ impl_retrieve_objects_to_stream_parameter_2 = {
     &afw_data_type_string_direct,
     &afw_self_v_string,
     NULL,
-    &afw_self_v_adaptorId,
-    &afw_self_v_zz__Id_of_adaptor,
-    &afw_self_v_zz__Id_of_adaptor_containing_objects_to_retrieve_,
+    &afw_self_v_adapterId,
+    &afw_self_v_zz__Id_of_adapter,
+    &afw_self_v_zz__Id_of_adapter_containing_objects_to_retrieve_,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -4919,8 +4919,8 @@ impl_retrieve_objects_to_stream_parameter_6 = {
     &afw_data_type_object_direct,
     &afw_self_v_object,
     NULL,
-    &afw_self_v_adaptorTypeSpecific,
-    &afw_self_v_zz__Adaptor_specific,
+    &afw_self_v_adapterTypeSpecific,
+    &afw_self_v_zz__Adapter_specific,
     &afw_self_v_zz__60,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_true,
@@ -4950,7 +4950,7 @@ AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_retrieve_objects_to_stream = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__retrieve_objects_to_stream,
-    &afw_self_v_adaptor,
+    &afw_self_v_adapter,
     &afw_self_v_retrieve_objects_to_stream,
     &afw_self_v_retrieve_objects_to_stream,
     &afw_self_v_retrieve_objects_to_stream,
@@ -5141,8 +5141,8 @@ impl_retrieve_objects_with_uri_parameter_3 = {
     &afw_data_type_object_direct,
     &afw_self_v_object,
     NULL,
-    &afw_self_v_adaptorTypeSpecific,
-    &afw_self_v_zz__Adaptor_specific,
+    &afw_self_v_adapterTypeSpecific,
+    &afw_self_v_zz__Adapter_specific,
     &afw_self_v_zz__60,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_true,
@@ -5169,7 +5169,7 @@ AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_retrieve_objects_with_uri = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__retrieve_objects_with_uri,
-    &afw_self_v_adaptor,
+    &afw_self_v_adapter,
     &afw_self_v_retrieve_objects_with_uri,
     &afw_self_v_retrieve_objects_with_uri,
     &afw_self_v_retrieve_objects_with_uri,
@@ -5432,8 +5432,8 @@ impl_retrieve_objects_with_uri_to_callback_parameter_5 = {
     &afw_data_type_object_direct,
     &afw_self_v_object,
     NULL,
-    &afw_self_v_adaptorTypeSpecific,
-    &afw_self_v_zz__Adaptor_specific,
+    &afw_self_v_adapterTypeSpecific,
+    &afw_self_v_zz__Adapter_specific,
     &afw_self_v_zz__60,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_true,
@@ -5462,7 +5462,7 @@ AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_retrieve_objects_with_uri_to_callback = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__retrieve_objects_with_uri_to_callback,
-    &afw_self_v_adaptor,
+    &afw_self_v_adapter,
     &afw_self_v_retrieve_objects_with_uri_to_callback,
     &afw_self_v_retrieve_objects_with_uri_to_callback,
     &afw_self_v_retrieve_objects_with_uri_to_callback,
@@ -5653,8 +5653,8 @@ impl_retrieve_objects_with_uri_to_response_parameter_3 = {
     &afw_data_type_object_direct,
     &afw_self_v_object,
     NULL,
-    &afw_self_v_adaptorTypeSpecific,
-    &afw_self_v_zz__Adaptor_specific,
+    &afw_self_v_adapterTypeSpecific,
+    &afw_self_v_zz__Adapter_specific,
     &afw_self_v_zz__60,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_true,
@@ -5681,7 +5681,7 @@ AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_retrieve_objects_with_uri_to_response = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__retrieve_objects_with_uri_to_response,
-    &afw_self_v_adaptor,
+    &afw_self_v_adapter,
     &afw_self_v_retrieve_objects_with_uri_to_response,
     &afw_self_v_retrieve_objects_with_uri_to_response,
     &afw_self_v_retrieve_objects_with_uri_to_response,
@@ -5908,8 +5908,8 @@ impl_retrieve_objects_with_uri_to_stream_parameter_4 = {
     &afw_data_type_object_direct,
     &afw_self_v_object,
     NULL,
-    &afw_self_v_adaptorTypeSpecific,
-    &afw_self_v_zz__Adaptor_specific,
+    &afw_self_v_adapterTypeSpecific,
+    &afw_self_v_zz__Adapter_specific,
     &afw_self_v_zz__60,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_true,
@@ -5937,7 +5937,7 @@ AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_retrieve_objects_with_uri_to_stream = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__retrieve_objects_with_uri_to_stream,
-    &afw_self_v_adaptor,
+    &afw_self_v_adapter,
     &afw_self_v_retrieve_objects_with_uri_to_stream,
     &afw_self_v_retrieve_objects_with_uri_to_stream,
     &afw_self_v_retrieve_objects_with_uri_to_stream,
@@ -6056,9 +6056,9 @@ impl_update_object_parameter_1 = {
     &afw_data_type_string_direct,
     &afw_self_v_string,
     NULL,
-    &afw_self_v_adaptorId,
+    &afw_self_v_adapterId,
     NULL,
-    &afw_self_v_zz__Id_of_adaptor_containing_object_to_update_,
+    &afw_self_v_zz__Id_of_adapter_containing_object_to_update_,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -6236,7 +6236,7 @@ impl_update_object_parameter_6 = {
     &afw_data_type_object_direct,
     &afw_self_v_object,
     NULL,
-    &afw_self_v_adaptorTypeSpecific,
+    &afw_self_v_adapterTypeSpecific,
     NULL,
     &afw_self_v_zz__43,
     &afw_integer_self_v_zz___1,
@@ -6273,7 +6273,7 @@ AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_update_object = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__update_object,
-    &afw_self_v_adaptor,
+    &afw_self_v_adapter,
     &afw_self_v_update_object,
     &afw_self_v_update_object,
     &afw_self_v_update_object,
@@ -6500,7 +6500,7 @@ impl_update_object_with_uri_parameter_4 = {
     &afw_data_type_object_direct,
     &afw_self_v_object,
     NULL,
-    &afw_self_v_adaptorTypeSpecific,
+    &afw_self_v_adapterTypeSpecific,
     NULL,
     &afw_self_v_zz__43,
     &afw_integer_self_v_zz___1,
@@ -6535,7 +6535,7 @@ AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_update_object_with_uri = {
     {&afw_value_function_definition_inf},
     (const afw_object_t *)&impl_object__update_object_with_uri,
-    &afw_self_v_adaptor,
+    &afw_self_v_adapter,
     &afw_self_v_update_object_with_uri,
     &afw_self_v_update_object_with_uri,
     &afw_self_v_update_object_with_uri,
@@ -61548,9 +61548,9 @@ impl_index_create_parameter_1 = {
     &afw_data_type_string_direct,
     &afw_self_v_string,
     NULL,
-    &afw_self_v_adaptorId,
+    &afw_self_v_adapterId,
     NULL,
-    &afw_self_v_zz__Id_of_adaptor_,
+    &afw_self_v_zz__Id_of_adapter_,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -61958,9 +61958,9 @@ impl_index_list_parameter_1 = {
     &afw_data_type_string_direct,
     &afw_self_v_string,
     NULL,
-    &afw_self_v_adaptorId,
+    &afw_self_v_adapterId,
     NULL,
-    &afw_self_v_zz__Id_of_adaptor_,
+    &afw_self_v_zz__Id_of_adapter_,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -62029,7 +62029,7 @@ afw_function_definition_index_list = {
     &afw_self_v_afwIndexList,
     &afw_self_v_zz__List_property_indexes,
     &afw_self_v_zz__List_property_indexes,
-    &afw_self_v_zz___adaptorId__string__objectType___string___object,
+    &afw_self_v_zz___adapterId__string__objectType___string___object,
     &afw_self_v_zz__833,
     NULL,
     afw_function_execute_index_list,
@@ -62140,9 +62140,9 @@ impl_index_remove_parameter_1 = {
     &afw_data_type_string_direct,
     &afw_self_v_string,
     NULL,
-    &afw_self_v_adaptorId,
+    &afw_self_v_adapterId,
     NULL,
-    &afw_self_v_zz__Id_of_adaptor_,
+    &afw_self_v_zz__Id_of_adapter_,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -62217,7 +62217,7 @@ afw_function_definition_index_remove = {
     &afw_self_v_afwIndexRemove,
     &afw_self_v_zz__Remove_index_definition,
     &afw_self_v_zz__Remove_an_index_definition_,
-    &afw_self_v_zz___adaptorId__string__key__string___object,
+    &afw_self_v_zz___adapterId__string__key__string___object,
     &afw_self_v_zz__834,
     NULL,
     afw_function_execute_index_remove,
@@ -70032,9 +70032,9 @@ impl_journal_advance_cursor_for_consumer_parameter_1 = {
     &afw_data_type_string_direct,
     &afw_self_v_string,
     NULL,
-    &afw_self_v_adaptorId,
+    &afw_self_v_adapterId,
     NULL,
-    &afw_self_v_zz__Id_of_adaptor_,
+    &afw_self_v_zz__Id_of_adapter_,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -70257,9 +70257,9 @@ impl_journal_get_by_cursor_parameter_1 = {
     &afw_data_type_string_direct,
     &afw_self_v_string,
     NULL,
-    &afw_self_v_adaptorId,
+    &afw_self_v_adapterId,
     NULL,
-    &afw_self_v_zz__Id_of_adaptor_,
+    &afw_self_v_zz__Id_of_adapter_,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -70328,7 +70328,7 @@ afw_function_definition_journal_get_by_cursor = {
     &afw_self_v_afwJournalGetByCursor,
     &afw_self_v_zz__Get_journal_entry_at_cursor,
     &afw_self_v_zz__931,
-    &afw_self_v_zz___adaptorId__string__cursor__string___object,
+    &afw_self_v_zz___adapterId__string__cursor__string___object,
     &afw_self_v_zz__932,
     NULL,
     afw_function_execute_journal_get_by_cursor,
@@ -70439,9 +70439,9 @@ impl_journal_get_first_parameter_1 = {
     &afw_data_type_string_direct,
     &afw_self_v_string,
     NULL,
-    &afw_self_v_adaptorId,
+    &afw_self_v_adapterId,
     NULL,
-    &afw_self_v_zz__Id_of_adaptor_,
+    &afw_self_v_zz__Id_of_adapter_,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -70473,7 +70473,7 @@ afw_function_definition_journal_get_first = {
     &afw_self_v_afwJournalGetFirst,
     &afw_self_v_zz__Get_first_journal_entry,
     &afw_self_v_zz__933,
-    &afw_self_v_zz___adaptorId__string___object,
+    &afw_self_v_zz___adapterId__string___object,
     &afw_self_v_zz__934,
     NULL,
     afw_function_execute_journal_get_first,
@@ -70584,9 +70584,9 @@ impl_journal_get_next_after_cursor_parameter_1 = {
     &afw_data_type_string_direct,
     &afw_self_v_string,
     NULL,
-    &afw_self_v_adaptorId,
+    &afw_self_v_adapterId,
     NULL,
-    &afw_self_v_zz__Id_of_adaptor_,
+    &afw_self_v_zz__Id_of_adapter_,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -70655,7 +70655,7 @@ afw_function_definition_journal_get_next_after_cursor = {
     &afw_self_v_afwJournalGetNextAfterCursor,
     &afw_self_v_zz__Get_next_journal_entry_after_cursor,
     &afw_self_v_zz__935,
-    &afw_self_v_zz___adaptorId__string__cursor__string___object,
+    &afw_self_v_zz___adapterId__string__cursor__string___object,
     &afw_self_v_zz__936,
     NULL,
     afw_function_execute_journal_get_next_after_cursor,
@@ -70766,9 +70766,9 @@ impl_journal_get_next_for_consumer_parameter_1 = {
     &afw_data_type_string_direct,
     &afw_self_v_string,
     NULL,
-    &afw_self_v_adaptorId,
+    &afw_self_v_adapterId,
     NULL,
-    &afw_self_v_zz__Id_of_adaptor_,
+    &afw_self_v_zz__Id_of_adapter_,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -70985,9 +70985,9 @@ impl_journal_get_next_for_consumer_after_cursor_parameter_1 = {
     &afw_data_type_string_direct,
     &afw_self_v_string,
     NULL,
-    &afw_self_v_adaptorId,
+    &afw_self_v_adapterId,
     NULL,
-    &afw_self_v_zz__Id_of_adaptor_,
+    &afw_self_v_zz__Id_of_adapter_,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -71241,9 +71241,9 @@ impl_journal_mark_consumed_parameter_1 = {
     &afw_data_type_string_direct,
     &afw_self_v_string,
     NULL,
-    &afw_self_v_adaptorId,
+    &afw_self_v_adapterId,
     NULL,
-    &afw_self_v_zz__Id_of_adaptor_,
+    &afw_self_v_zz__Id_of_adapter_,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -74912,7 +74912,7 @@ impl_model_default_add_object_action_parameter_1 = {
     &afw_data_type_string_direct,
     &afw_self_v_string,
     NULL,
-    &afw_self_v_adaptorId,
+    &afw_self_v_adapterId,
     NULL,
     &afw_self_v_zz__993,
     &afw_integer_self_v_zz___1,
@@ -75242,7 +75242,7 @@ impl_model_default_delete_object_action_parameter_1 = {
     &afw_data_type_string_direct,
     &afw_self_v_string,
     NULL,
-    &afw_self_v_adaptorId,
+    &afw_self_v_adapterId,
     NULL,
     &afw_self_v_zz__993,
     &afw_integer_self_v_zz___1,
@@ -75535,7 +75535,7 @@ impl_model_default_modify_object_action_parameter_1 = {
     &afw_data_type_string_direct,
     &afw_self_v_string,
     NULL,
-    &afw_self_v_adaptorId,
+    &afw_self_v_adapterId,
     NULL,
     &afw_self_v_zz__993,
     &afw_integer_self_v_zz___1,
@@ -75865,7 +75865,7 @@ impl_model_default_replace_object_action_parameter_1 = {
     &afw_data_type_string_direct,
     &afw_self_v_string,
     NULL,
-    &afw_self_v_adaptorId,
+    &afw_self_v_adapterId,
     NULL,
     &afw_self_v_zz__993,
     &afw_integer_self_v_zz___1,
@@ -76306,7 +76306,7 @@ impl_model_mapObject_signature_returns = {
     NULL,
     NULL,
     &afw_self_v_zz__The_mapped_object,
-    &afw_self_v_zz__This_is_the_object_mapped_to_mappedAdaptor_object_,
+    &afw_self_v_zz__This_is_the_object_mapped_to_mappedAdapter_object_,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -83714,9 +83714,9 @@ impl_local_object_meta_set_ids_parameter_2 = {
     &afw_data_type_string_direct,
     &afw_self_v_string,
     NULL,
-    &afw_self_v_adaptorId,
+    &afw_self_v_adapterId,
     NULL,
-    &afw_self_v_zz__Adaptor_id_for_object_,
+    &afw_self_v_zz__Adapter_id_for_object_,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -140287,7 +140287,7 @@ impl_object__yearMonthDuration__value = {
 
 static const afw_value_function_definition_t * 
 impl_function_bindings[] = {
-    &afw_function_definition_adaptor_objectCallback_signature,
+    &afw_function_definition_adapter_objectCallback_signature,
     &afw_function_definition_add_object,
     &afw_function_definition_add_object_with_uri,
     &afw_function_definition_convert_AdaptiveQueryCriteria_to_query_string,

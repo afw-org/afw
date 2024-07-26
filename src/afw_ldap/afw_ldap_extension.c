@@ -9,7 +9,7 @@
 
 /**
  * @file afw_ldap_extension.c
- * @brief Implementation of afw_extension interface for ldap adaptor.
+ * @brief Implementation of afw_extension interface for ldap adapter.
  */
 
 #include "afw.h"

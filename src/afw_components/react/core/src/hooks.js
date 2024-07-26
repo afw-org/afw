@@ -326,12 +326,12 @@ const getObjectReducer = (state, action) => {
  * is loading, or if an error occurred.  Additionally, it will
  * automatically trigger re-renders when the object has changed.
  */
-export const useGetObject = ({ objectUri, adaptorId, objectTypeId, objectId, objectOptions, modelOptions, cache = false }) => {
+export const useGetObject = ({ objectUri, adapterId, objectTypeId, objectId, objectOptions, modelOptions, cache = false }) => {
 
     const [state, dispatch] = useReducer(getObjectReducer, getObject_initialState);    
     const model = useModel();      
 
-    const key = (objectUri ? objectUri : ("/" + adaptorId + "/" + objectTypeId + "/" + objectId));
+    const key = (objectUri ? objectUri : ("/" + adapterId + "/" + objectTypeId + "/" + objectId));
     useDebugValue(key);
 
     const onRefresh = () => dispatch({ type: "refresh" });
@@ -382,7 +382,7 @@ export const useGetObject = ({ objectUri, adaptorId, objectTypeId, objectId, obj
                 if (objectUri) {
                     response = model.getObjectWithUri({ uri: objectUri, objectOptions, modelOptions });
                 } else {
-                    response = model.getObject({ objectTypeId, objectId, adaptorId, objectOptions, modelOptions });
+                    response = model.getObject({ objectTypeId, objectId, adapterId, objectOptions, modelOptions });
                 }
 
                 object = await response.object;                
@@ -400,10 +400,10 @@ export const useGetObject = ({ objectUri, adaptorId, objectTypeId, objectId, obj
 
         if (model && key && cache && model.cacheGet(key)) {            
             dispatch({ type: "got", object: model.cacheGet(key) });            
-        } else if (model && (objectUri || (adaptorId && objectTypeId && objectId))) {                
+        } else if (model && (objectUri || (adapterId && objectTypeId && objectId))) {                
             getObject();
         } else {
-            /* If we no longer have an adaptorId/objectTypeId/objectId, reset the state */
+            /* If we no longer have an adapterId/objectTypeId/objectId, reset the state */
             dispatch({ type: "reset" });
         }
 
@@ -414,7 +414,7 @@ export const useGetObject = ({ objectUri, adaptorId, objectTypeId, objectId, obj
         };
         
 
-    }, [model, key, cache, objectUri, adaptorId, objectTypeId, objectId, objectOptions, modelOptions, state.refresh]);
+    }, [model, key, cache, objectUri, adapterId, objectTypeId, objectId, objectOptions, modelOptions, state.refresh]);
 
     return { ...state, onRefresh };
 };
@@ -469,11 +469,11 @@ const retrieveObjectsReducer = (state, action) => {
     }
 };
 
-const calcKey = ({ adaptorId, objectTypeId, objectOptions, modelOptions, queryCriteria }) => {
-    if (!adaptorId || !objectTypeId)
+const calcKey = ({ adapterId, objectTypeId, objectOptions, modelOptions, queryCriteria }) => {
+    if (!adapterId || !objectTypeId)
         return null;
 
-    let key = "/" + adaptorId + "/" + objectTypeId + "/";
+    let key = "/" + adapterId + "/" + objectTypeId + "/";
     if (objectOptions)
         key = key + ";" + JSON.stringify(objectOptions);
     if (modelOptions)
@@ -490,7 +490,7 @@ const calcKey = ({ adaptorId, objectTypeId, objectOptions, modelOptions, queryCr
  * This hook retrieves adaptive objects, returning the objects, whether
  * they are loading, or if an error has occurred.
  */
-export const useRetrieveObjects = ({ adaptorId, objectTypeId, queryCriteria, objectOptions, modelOptions, cache = false }) => {
+export const useRetrieveObjects = ({ adapterId, objectTypeId, queryCriteria, objectOptions, modelOptions, cache = false }) => {
     
     const [state, dispatch] = useReducer(retrieveObjectsReducer, retrieveObjects_initialState);    
     
@@ -500,7 +500,7 @@ export const useRetrieveObjects = ({ adaptorId, objectTypeId, queryCriteria, obj
     
     const onRefresh = () => dispatch({ type: "refresh" });
 
-    const key = calcKey({ adaptorId, objectTypeId, queryCriteria, objectOptions, modelOptions });
+    const key = calcKey({ adapterId, objectTypeId, queryCriteria, objectOptions, modelOptions });
 
     useEffect(() => {
         let response;
@@ -511,7 +511,7 @@ export const useRetrieveObjects = ({ adaptorId, objectTypeId, queryCriteria, obj
             
             try {
                 response = model.retrieveObjects({
-                    objectTypeId, adaptorId, queryCriteria, objectOptions, modelOptions
+                    objectTypeId, adapterId, queryCriteria, objectOptions, modelOptions
                 });
 
                 const objects = await response.objects;
@@ -531,10 +531,10 @@ export const useRetrieveObjects = ({ adaptorId, objectTypeId, queryCriteria, obj
 
         if (cache && key && model.cacheGet(key) && !state.refresh) {
             dispatch({ type: "retrieved_cache", objects: model.cacheGet(key) });
-        } else if (model && adaptorId && objectTypeId) {                 
+        } else if (model && adapterId && objectTypeId) {                 
             retrieveObjects();
         } else {
-            /* If we no longer have an adaptorId/objectTypeId, reset the state */
+            /* If we no longer have an adapterId/objectTypeId, reset the state */
             dispatch({ type: "reset" });
         }
 
@@ -547,7 +547,7 @@ export const useRetrieveObjects = ({ adaptorId, objectTypeId, queryCriteria, obj
             }
         };
 
-    }, [model, cache, key, adaptorId, objectTypeId, queryCriteria, objectOptions, modelOptions, state.refresh]);
+    }, [model, cache, key, adapterId, objectTypeId, queryCriteria, objectOptions, modelOptions, state.refresh]);
 
     useEffect(() => {
         let onInvalidate;
@@ -616,7 +616,7 @@ export const useDataTypes = () => {
  */
 export const useFunctionCategories = () => {
     const {objects, ...rest} = useRetrieveObjects({
-        adaptorId: "afw", objectTypeId: "_AdaptiveFunctionCategory_",
+        adapterId: "afw", objectTypeId: "_AdaptiveFunctionCategory_",
         objectOptions: objectOptions_objectId, cache: true,
         modelOptions: modelOptions_noAdaptiveObject,
     });
@@ -663,7 +663,7 @@ export const useFunctions = () => {
 export const useObjectTypes = () => {
 
     const {objects: objectTypes, ...rest} = useRetrieveObjects({
-        adaptorId: "afw", objectTypeId: "_AdaptiveObjectType_",
+        adapterId: "afw", objectTypeId: "_AdaptiveObjectType_",
         objectOptions: objectOptions_objectId_path_composite,
         cache: true
     });
@@ -693,26 +693,26 @@ export const useObjectType = (objectTypeId) => {
 };
 
 /**
- * useAdaptors()
+ * useAdapters()
  *
- * A hook that fetches adaptor objects.
+ * A hook that fetches adapter objects.
  */
-export const useAdaptors = (adaptorType) => {    
+export const useAdapters = (adapterType) => {    
 
     const {registry, ...rest} = useEnvironmentRegistry();
 
-    const adaptors = useMemo(() => {
-        let adaptors;
+    const adapters = useMemo(() => {
+        let adapters;
         if (registry) {
-            adaptors = Object.values(registry.adaptor_id);
-            if (adaptorType)
-                adaptors = adaptors.filter(a => a.properties?.adaptorType === adaptorType);
+            adapters = Object.values(registry.adapter_id);
+            if (adapterType)
+                adapters = adapters.filter(a => a.properties?.adapterType === adapterType);
         }
 
-        return adaptors;
-    }, [registry, adaptorType]);
+        return adapters;
+    }, [registry, adapterType]);
     
-    return { adaptors, ...rest };
+    return { adapters, ...rest };
 };
 
 /**
@@ -723,7 +723,7 @@ export const useAdaptors = (adaptorType) => {
 export const useServices = () => {
   
     const {objects: services, ...rest} = useRetrieveObjects({
-        adaptorId: "afw", objectTypeId: "_AdaptiveService_",
+        adapterId: "afw", objectTypeId: "_AdaptiveService_",
         objectOptions: objectOptions_objectId,
         cache: true
     });
@@ -753,7 +753,7 @@ export const useExtensions = () => {
 export const useExtensionManifests = () => {
 
     const {objects: manifests, ...rest} = useRetrieveObjects({
-        adaptorId: "afw", objectTypeId: "_AdaptiveManifest_",
+        adapterId: "afw", objectTypeId: "_AdaptiveManifest_",
         cache: true
     });
 
@@ -763,7 +763,7 @@ export const useExtensionManifests = () => {
 /**
  * useRequestHandlers()
  *
- * A hook that fetches adaptor objects.
+ * A hook that fetches adapter objects.
  */
 export const useRequestHandlers = () => {    
 
@@ -825,7 +825,7 @@ export const useFlags = () => {
  */
 export const useLayoutComponentTypes = () => {
     const {objects: layoutComponentTypes, ...rest} = useRetrieveObjects({
-        adaptorId: "afw", objectTypeId: "_AdaptiveLayoutComponentType_",
+        adapterId: "afw", objectTypeId: "_AdaptiveLayoutComponentType_",
         modelOptions: modelOptions_noAdaptiveObject,
         objectOptions: objectOptions_objectId_composite, cache: true
     });
@@ -840,7 +840,7 @@ export const useLayoutComponentTypes = () => {
  */
 export const useLayoutComponentTypeCategories = () => {
     const {objects: layoutComponentTypeCategories, ...rest} = useRetrieveObjects({
-        adaptorId: "afw", objectTypeId: "_AdaptiveLayoutComponentTypeCategory_",
+        adapterId: "afw", objectTypeId: "_AdaptiveLayoutComponentTypeCategory_",
         modelOptions: modelOptions_noAdaptiveObject,
         objectOptions: objectOptions_objectId_composite, cache: true
     });
@@ -866,7 +866,7 @@ export const useObjectOptions = () => {
  */
 export const useVersionInfo = () => {
     const {objects: versions, ...rest} = useRetrieveObjects({
-        adaptorId: "afw", objectTypeId: "_AdaptiveVersionInfo_",
+        adapterId: "afw", objectTypeId: "_AdaptiveVersionInfo_",
         objectOptions: objectOptions_objectId_composite, cache: true
     });
 
@@ -876,9 +876,9 @@ export const useVersionInfo = () => {
 /**
  * A hook that fetches the _AdaptiveServiceConf_ objects.
  */
-export const useServiceConfigurations = ({ adaptorId }) => {
+export const useServiceConfigurations = ({ adapterId }) => {
     const {objects: serviceConfigs, ...rest} = useRetrieveObjects({
-        adaptorId, objectTypeId: "_AdaptiveServiceConf_",
+        adapterId, objectTypeId: "_AdaptiveServiceConf_",
         objectOptions: objectOptions_objectId_path_composite, cache: true
     });
 
@@ -890,7 +890,7 @@ export const useServiceConfigurations = ({ adaptorId }) => {
  */
 export const useSystemInfo = () => {
     const {objects: systemInfo, ...rest} = useRetrieveObjects({
-        adaptorId: "afw", objectTypeId: "_AdaptiveSystemInfo_",
+        adapterId: "afw", objectTypeId: "_AdaptiveSystemInfo_",
         modelOptions: modelOptions_noAdaptiveObject,
         objectOptions: objectOptions_objectId_composite, cache: true
     });
@@ -1135,7 +1135,7 @@ export const useLoadApplicationData = () => {
 
         const preloadObjectTypes = async (model) => {
             try {
-                const objectTypes = await model.loadObjectTypes({ adaptorId: "afw" });
+                const objectTypes = await model.loadObjectTypes({ adapterId: "afw" });
                 
                 for (const objectType of objectTypes) {
                     if (isMounted())
@@ -1169,7 +1169,7 @@ export const useLoadApplicationData = () => {
         let functions = Object.values(environment.function);
         let dataTypes = Object.values(environment.data_type);
         const extensions = Object.values(environment.extension);
-        const adaptors = Object.values(environment.adaptor_id);
+        const adapters = Object.values(environment.adapter_id);
         const logs = Object.values(environment.log);
         const requestHandlers = Object.values(environment.request_handler);
         const authHandlers = Object.values(environment.authorization_handler_id);
@@ -1205,7 +1205,7 @@ export const useLoadApplicationData = () => {
             functions, 
             dataTypes, 
             extensions, 
-            adaptors, 
+            adapters, 
             logs, 
             requestHandlers, 
             authHandlers, 
@@ -1262,7 +1262,7 @@ export const useLoadApplicationData = () => {
         const loadServices = async (model) => {
             try {
                 response = model.retrieveObjects({
-                    adaptorId: "afw", objectTypeId: "_AdaptiveService_",                
+                    adapterId: "afw", objectTypeId: "_AdaptiveService_",                
                 });
 
                 const services = await response.objects;
@@ -1338,7 +1338,7 @@ export const useLoadApplicationData = () => {
             }
 
             response = model.retrieveObjects({
-                adaptorId: "afw", objectTypeId: "_AdaptiveService_",                
+                adapterId: "afw", objectTypeId: "_AdaptiveService_",                
             });
 
             const services = await response.objects;

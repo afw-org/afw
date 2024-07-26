@@ -1,6 +1,6 @@
 {
     "brief": "Reconcile adaptive object",
-    "category": "adaptor",
+    "category": "adapter",
     "description": "Reconcile an adaptive object.",
     "functionId": "reconcile_object",
     "functionLabel": "reconcile_object",

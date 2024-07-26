@@ -548,30 +548,30 @@ void
 afw_service_internal_start_initial_services(
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    const afw_adaptor_session_t *session;
+    const afw_adapter_session_t *session;
     impl_start_context_t ctx;
 
     /* Clear ctx and set p. */
     afw_memory_clear(&ctx);
 
-    /* If there is not a conf adaptor, nothing to start, so return. */
-    if (!xctx->env->conf_adaptor ||
-        xctx->env->conf_adaptor->adaptor_id.len == 0)
+    /* If there is not a conf adapter, nothing to start, so return. */
+    if (!xctx->env->conf_adapter ||
+        xctx->env->conf_adapter->adapter_id.len == 0)
     {
         return;
     }
 
     /* Start immediate and permanent services. */
-    session = afw_adaptor_session_create(
-        &xctx->env->conf_adaptor->adaptor_id, xctx);
+    session = afw_adapter_session_create(
+        &xctx->env->conf_adapter->adapter_id, xctx);
     AFW_TRY {
-        afw_adaptor_session_retrieve_objects(session, NULL,
+        afw_adapter_session_retrieve_objects(session, NULL,
             afw_s__AdaptiveServiceConf_, NULL,
             &ctx, impl_start_cb, NULL, p, xctx);
     }
 
     AFW_FINALLY{
-        afw_adaptor_session_release(session, xctx);
+        afw_adapter_session_release(session, xctx);
     }
 
     AFW_ENDTRY;
@@ -966,18 +966,18 @@ impl_retrieve_from_registry_cb(
 /* Special routine for _AdaptiveService_ session retrieve_objects(). */
 void
 afw_service_internal_AdaptiveService_retrieve_objects (
-    const afw_adaptor_session_t * instance,
-    const afw_adaptor_impl_request_t * impl_request,
+    const afw_adapter_session_t * instance,
+    const afw_adapter_impl_request_t * impl_request,
     const afw_utf8_t * object_type_id,
     const afw_query_criteria_t * criteria,
     void * context,
     afw_object_cb_t callback,
-    const afw_object_t *adaptor_type_specific,
+    const afw_object_t *adapter_type_specific,
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
     impl_AdaptiveService_context_t ctx;
-    const afw_adaptor_session_t *session;
+    const afw_adapter_session_t *session;
 
     memset(&ctx, 0, sizeof(ctx));
     ctx.p = p;
@@ -985,12 +985,12 @@ afw_service_internal_AdaptiveService_retrieve_objects (
     ctx.original_context = context;
     ctx.criteria = criteria;
 
-    if (xctx->env->conf_adaptor) {
-        session = afw_adaptor_session_create(
-            &xctx->env->conf_adaptor->adaptor_id, xctx);
+    if (xctx->env->conf_adapter) {
+        session = afw_adapter_session_create(
+            &xctx->env->conf_adapter->adapter_id, xctx);
         AFW_TRY {
             ctx.service_ids = apr_hash_make(afw_pool_get_apr_pool(p));
-            afw_adaptor_session_retrieve_objects(
+            afw_adapter_session_retrieve_objects(
                 session, NULL, afw_s__AdaptiveServiceConf_,
                 NULL /* Callback checks criteria. */,
                 &ctx, impl_AdaptiveService_cb,
@@ -998,7 +998,7 @@ afw_service_internal_AdaptiveService_retrieve_objects (
         }
 
         AFW_FINALLY {
-            afw_adaptor_session_release(session, xctx);
+            afw_adapter_session_release(session, xctx);
         }
 
         AFW_ENDTRY;
@@ -1022,13 +1022,13 @@ afw_service_internal_AdaptiveService_retrieve_objects (
 /* Special routine for _AdaptiveService_ session get_object(). */
 void
 afw_service_internal_AdaptiveService_get_object (
-    const afw_adaptor_session_t * instance,
-    const afw_adaptor_impl_request_t * impl_request,
+    const afw_adapter_session_t * instance,
+    const afw_adapter_impl_request_t * impl_request,
     const afw_utf8_t * object_type_id,
     const afw_utf8_t * object_id,
     void * context,
     afw_object_cb_t callback,
-    const afw_object_t *adaptor_type_specific,
+    const afw_object_t *adapter_type_specific,
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
@@ -1051,7 +1051,7 @@ afw_service_get_object(
     afw_xctx_t *xctx)
 {
     impl_AdaptiveService_context_t ctx;
-    const afw_adaptor_session_t *session;
+    const afw_adapter_session_t *session;
     const afw_object_t *result = NULL;
     const afw_service_t *service;
     const afw_utf8_t *error_message;
@@ -1065,14 +1065,14 @@ afw_service_get_object(
 
     /*
      * If no service yet or is existing service that has a service conf, try
-     * getting object via services conf adaptor.
+     * getting object via services conf adapter.
      */
-    if ((!service || service->has_service_conf) && xctx->env->conf_adaptor)
+    if ((!service || service->has_service_conf) && xctx->env->conf_adapter)
     {
-        session = afw_adaptor_session_create(
-            &xctx->env->conf_adaptor->adaptor_id, xctx);
+        session = afw_adapter_session_create(
+            &xctx->env->conf_adapter->adapter_id, xctx);
         AFW_TRY {
-            afw_adaptor_session_get_object(
+            afw_adapter_session_get_object(
                 session, NULL, afw_s__AdaptiveServiceConf_, service_id,
                 &ctx, impl_AdaptiveService_cb,
                 NULL, p, xctx);
@@ -1109,7 +1109,7 @@ afw_service_get_object(
         }
 
         AFW_FINALLY {
-            afw_adaptor_session_release(session, xctx);
+            afw_adapter_session_release(session, xctx);
         }
 
         AFW_ENDTRY;
@@ -1195,7 +1195,7 @@ afw_service_start(
 {
     const afw_service_t *service;
     const afw_utf8_t *description;
-    const afw_adaptor_session_t *session;
+    const afw_adapter_session_t *session;
     const afw_pool_t *p;
     impl_start_context_t ctx;
 
@@ -1220,18 +1220,18 @@ afw_service_start(
     }
 
     /* Should not get this condition, but fuss anyways. */
-    if (!xctx->env->conf_adaptor) {
+    if (!xctx->env->conf_adapter) {
         AFW_THROW_ERROR_FZ(general, xctx,
             "Can not start service " AFW_UTF8_FMT_Q,
             AFW_UTF8_FMT_ARG(service_id));
     }
 
-    /* If there is a conf adaptor, try to start. */
-    session = afw_adaptor_session_create(
-        &xctx->env->conf_adaptor->adaptor_id, xctx);
+    /* If there is a conf adapter, try to start. */
+    session = afw_adapter_session_create(
+        &xctx->env->conf_adapter->adapter_id, xctx);
     AFW_TRY {
         p = afw_pool_create(xctx->env->p, xctx);
-        afw_adaptor_session_get_object(session, NULL,
+        afw_adapter_session_get_object(session, NULL,
             afw_s__AdaptiveServiceConf_, service_id,
             &ctx, impl_start_cb, NULL, p, xctx);
     }
@@ -1242,7 +1242,7 @@ afw_service_start(
     }
 
     AFW_FINALLY {
-        afw_adaptor_session_release(session, xctx);
+        afw_adapter_session_release(session, xctx);
     }
     AFW_ENDTRY;
 
@@ -1457,7 +1457,7 @@ afw_service_restart(
     afw_xctx_t *xctx)
 {
     const afw_service_t *service;
-    const afw_adaptor_session_t *session;
+    const afw_adapter_session_t *session;
     afw_boolean_t error;
     const afw_pool_t *p;
     impl_start_context_t ctx;
@@ -1476,17 +1476,17 @@ afw_service_restart(
             AFW_UTF8_FMT_ARG(service_id));
     }
 
-    /* If there is a conf adaptor, try to start. */
-    if (!xctx->env->conf_adaptor) {
+    /* If there is a conf adapter, try to start. */
+    if (!xctx->env->conf_adapter) {
         goto error;
     }
 
     error = false;
-    session = afw_adaptor_session_create(
-        &xctx->env->conf_adaptor->adaptor_id, xctx);
+    session = afw_adapter_session_create(
+        &xctx->env->conf_adapter->adapter_id, xctx);
     AFW_TRY {
         p = afw_pool_create(xctx->env->p, xctx);
-        afw_adaptor_session_get_object(session, NULL,
+        afw_adapter_session_get_object(session, NULL,
             afw_s__AdaptiveServiceConf_, service_id,
             &ctx, impl_restart_get_cb, NULL, p, xctx);
     }
@@ -1497,7 +1497,7 @@ afw_service_restart(
     }
 
     AFW_FINALLY {
-        afw_adaptor_session_release(session, xctx);
+        afw_adapter_session_release(session, xctx);
     }
     AFW_ENDTRY;
     if (error) {

@@ -39,9 +39,9 @@ describe("ModelEditorContextMenu Tests", () => {
         /* return a model for /models/_AdaptiveModel_/test */
         server.use(
             rest.post("/afw", (req, res, ctx) => {
-                const {function: functionId, adaptorId} = req.body;
+                const {function: functionId, adapterId} = req.body;
 
-                if (functionId === "retrieve_objects" && adaptorId === "models") { 
+                if (functionId === "retrieve_objects" && adapterId === "models") { 
                     mswPostCallback("/afw", req, res, ctx);
 
                     return res(
@@ -91,14 +91,14 @@ describe("ModelEditorContextMenu Tests", () => {
         within(menu).getByRole("menuitem", { name: "Edit Model" });        
         within(menu).getByRole("menuitem", { name: "Save Model" });        
         within(menu).getByRole("menuitem", { name: "Refresh Model" });        
-        within(menu).getByRole("menuitem", { name: "Restart Model Adaptor" });        
-        within(menu).getByRole("menuitem", { name: "Set Mapped Adaptor" });        
+        within(menu).getByRole("menuitem", { name: "Restart Model Adapter" });        
+        within(menu).getByRole("menuitem", { name: "Set Mapped Adapter" });        
         within(menu).getByRole("menuitem", { name: "Simulate" });
         within(menu).getByRole("menuitem", { name: "Deploy to Service" });                
 
     });
 
-    test("Select Mapped Adaptor (None)", async () => {
+    test("Select Mapped Adapter (None)", async () => {
 
         const history = createMemoryHistory();
         history.push("/Admin/Models/models/test1");
@@ -106,9 +106,9 @@ describe("ModelEditorContextMenu Tests", () => {
         /* return a model for /models/_AdaptiveModel_/test */
         server.use(
             rest.post("/afw", (req, res, ctx) => {
-                const {function: functionId, adaptorId} = req.body;
+                const {function: functionId, adapterId} = req.body;
 
-                if (functionId === "retrieve_objects" && adaptorId === "models") { 
+                if (functionId === "retrieve_objects" && adapterId === "models") { 
                     mswPostCallback("/afw", req, res, ctx);
 
                     return res(
@@ -155,9 +155,9 @@ describe("ModelEditorContextMenu Tests", () => {
         fireEvent.click(moreOptionsBtn);
         const menu = await screen.findByRole("menu");
 
-        const setMappedAdaptor = within(menu).getByRole("menuitem", { name: "Set Mapped Adaptor" });        
+        const setMappedAdapter = within(menu).getByRole("menuitem", { name: "Set Mapped Adapter" });        
 
-        fireEvent.click(setMappedAdaptor);       
+        fireEvent.click(setMappedAdapter);       
         const none = screen.getByRole("menuitem", { name: "(None)" });
 
         fireEvent.click(none);
@@ -189,11 +189,11 @@ describe("ModelEditorContextMenu Tests", () => {
 
     });
 
-    test.skip("Restart Model Adaptor", async () => {
+    test.skip("Restart Model Adapter", async () => {
 
     });
 
-    test.skip("Set Mapped Adaptor", async () => {
+    test.skip("Set Mapped Adapter", async () => {
 
     });
 

@@ -33,7 +33,7 @@
             "brief": "Polymorphic Function",
             "dataType": "string",
             "description": "Polymorphic Function.",
-            "label": "Adaptor"
+            "label": "Adapter"
         },
         "polymorphicExecuteFunctionEvaluatesFirstParameter": {
             "allowQuery": true,

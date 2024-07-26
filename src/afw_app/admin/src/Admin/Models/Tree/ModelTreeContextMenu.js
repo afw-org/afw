@@ -112,7 +112,7 @@ export const ModelTreeContextMenu = (props) => {
         
     const {custom, modelId, objectTypes, propertyTypes} = useValues(model);
 
-    const adaptorId = model.getAdaptorId();
+    const adapterId = model.getAdapterId();
     const {
         addItemObject,
         deleteItemObject,        
@@ -364,7 +364,7 @@ export const ModelTreeContextMenu = (props) => {
                         dispatch({ type: "NEW_CUSTOM_SAVE" });
                         onReloadTree();
 
-                        let uri = "/Admin/Models/" + adaptorId + "/" + modelId;
+                        let uri = "/Admin/Models/" + adapterId + "/" + modelId;
                         if (node.objectType)
                             uri += "/objectTypes/" + node.objectType;
                         if (node.propertyType)
@@ -389,7 +389,7 @@ export const ModelTreeContextMenu = (props) => {
                             dispatch({ type: "NEW_OBJECT_TYPE_SAVE" });
                             onReloadTree();
 
-                            let uri = "/Admin/Models/" + adaptorId + "/" + modelId;
+                            let uri = "/Admin/Models/" + adapterId + "/" + modelId;
 
                             history.push(uri + "/objectTypes/" + objectTypeId + treeHash);
                         }}
@@ -410,7 +410,7 @@ export const ModelTreeContextMenu = (props) => {
                             dispatch({ type: "NEW_PROPERTY_TYPE_SAVE" });
                             onReloadTree();
 
-                            let uri = "/Admin/Models/" + adaptorId + "/" + modelId;
+                            let uri = "/Admin/Models/" + adapterId + "/" + modelId;
                             if (node.objectType)
                                 uri += "/objectTypes/" + node.objectType;
 

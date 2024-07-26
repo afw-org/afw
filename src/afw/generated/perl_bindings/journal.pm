@@ -55,9 +55,9 @@ Advance journal cursor for consumer
 
 =head4 Parameters
 
-    $adaptorId
+    $adapterId
 
-Id of adaptor.
+Id of adapter.
 
     $consumerId
 
@@ -81,9 +81,9 @@ Get journal entry at cursor
 
 =head4 Parameters
 
-    $adaptorId
+    $adapterId
 
-Id of adaptor.
+Id of adapter.
 
     $cursor
 
@@ -99,9 +99,9 @@ Get first journal entry
 
 =head4 Parameters
 
-    $adaptorId
+    $adapterId
 
-Id of adaptor.
+Id of adapter.
 
 =head3 journal_get_next_after_cursor
 
@@ -114,9 +114,9 @@ Get next journal entry after cursor
 
 =head4 Parameters
 
-    $adaptorId
+    $adapterId
 
-Id of adaptor.
+Id of adapter.
 
     $cursor
 
@@ -156,9 +156,9 @@ Get next journal entry for consumer
 
 =head4 Parameters
 
-    $adaptorId
+    $adapterId
 
-Id of adaptor.
+Id of adapter.
 
     $consumerId
 
@@ -192,9 +192,9 @@ Get next journal entry for consumer after cursor
 
 =head4 Parameters
 
-    $adaptorId
+    $adapterId
 
-Id of adaptor.
+Id of adapter.
 
     $consumerId
 
@@ -218,9 +218,9 @@ Mark journal entry consumed
 
 =head4 Parameters
 
-    $adaptorId
+    $adapterId
 
-Id of adaptor.
+Id of adapter.
 
     $consumerId
 
@@ -234,15 +234,15 @@ Journal entry cursor.
 =cut
 
 sub journal_advance_cursor_for_consumer {
-    my ($adaptorId, $consumerId, $limit) = @_;
+    my ($adapterId, $consumerId, $limit) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "journal_advance_cursor_for_consumer");
     $request->set("consumerId", $consumerId);
 
-    if (defined $adaptorId)
-        $request->set("adaptorId", $adaptorId);
+    if (defined $adapterId)
+        $request->set("adapterId", $adapterId);
 
     if (defined $limit)
         $request->set("limit", $limit);
@@ -251,56 +251,56 @@ sub journal_advance_cursor_for_consumer {
 }
 
 sub journal_get_by_cursor {
-    my ($adaptorId, $cursor) = @_;
+    my ($adapterId, $cursor) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "journal_get_by_cursor");
     $request->set("cursor", $cursor);
 
-    if (defined $adaptorId)
-        $request->set("adaptorId", $adaptorId);
+    if (defined $adapterId)
+        $request->set("adapterId", $adapterId);
 
     return $request->getResult();
 }
 
 sub journal_get_first {
-    my ($adaptorId) = @_;
+    my ($adapterId) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "journal_get_first");
 
-    if (defined $adaptorId)
-        $request->set("adaptorId", $adaptorId);
+    if (defined $adapterId)
+        $request->set("adapterId", $adapterId);
 
     return $request->getResult();
 }
 
 sub journal_get_next_after_cursor {
-    my ($adaptorId, $cursor) = @_;
+    my ($adapterId, $cursor) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "journal_get_next_after_cursor");
     $request->set("cursor", $cursor);
 
-    if (defined $adaptorId)
-        $request->set("adaptorId", $adaptorId);
+    if (defined $adapterId)
+        $request->set("adapterId", $adapterId);
 
     return $request->getResult();
 }
 
 sub journal_get_next_for_consumer {
-    my ($adaptorId, $consumerId, $limit) = @_;
+    my ($adapterId, $consumerId, $limit) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "journal_get_next_for_consumer");
     $request->set("consumerId", $consumerId);
 
-    if (defined $adaptorId)
-        $request->set("adaptorId", $adaptorId);
+    if (defined $adapterId)
+        $request->set("adapterId", $adapterId);
 
     if (defined $limit)
         $request->set("limit", $limit);
@@ -309,7 +309,7 @@ sub journal_get_next_for_consumer {
 }
 
 sub journal_get_next_for_consumer_after_cursor {
-    my ($adaptorId, $consumerId, $cursor, $limit) = @_;
+    my ($adapterId, $consumerId, $cursor, $limit) = @_;
 
     my $request = $session->request()
 
@@ -317,8 +317,8 @@ sub journal_get_next_for_consumer_after_cursor {
     $request->set("consumerId", $consumerId);
     $request->set("cursor", $cursor);
 
-    if (defined $adaptorId)
-        $request->set("adaptorId", $adaptorId);
+    if (defined $adapterId)
+        $request->set("adapterId", $adapterId);
 
     if (defined $limit)
         $request->set("limit", $limit);
@@ -327,7 +327,7 @@ sub journal_get_next_for_consumer_after_cursor {
 }
 
 sub journal_mark_consumed {
-    my ($adaptorId, $consumerId, $cursor) = @_;
+    my ($adapterId, $consumerId, $cursor) = @_;
 
     my $request = $session->request()
 
@@ -335,8 +335,8 @@ sub journal_mark_consumed {
     $request->set("consumerId", $consumerId);
     $request->set("cursor", $cursor);
 
-    if (defined $adaptorId)
-        $request->set("adaptorId", $adaptorId);
+    if (defined $adapterId)
+        $request->set("adapterId", $adapterId);
 
     return $request->getResult();
 }

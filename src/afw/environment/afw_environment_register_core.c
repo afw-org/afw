@@ -69,7 +69,7 @@ impl_AdaptiveLayoutComponentType_retrieve_cb(
                     "/" AFW_UTF8_FMT
                     "/_AdaptiveLayoutComponentType_/" AFW_UTF8_FMT
                     " ignored because AFW core or an extension supplies it",
-                    AFW_UTF8_FMT_ARG(xctx->env->layout_adaptor_id),
+                    AFW_UTF8_FMT_ARG(xctx->env->layout_adapter_id),
                     AFW_UTF8_FMT_ARG(object->meta.id));
                 return false;
             }
@@ -84,18 +84,18 @@ impl_AdaptiveLayoutComponentType_retrieve_cb(
 /* /afw/_AdaptiveLayoutComponentType_ retrieve_objects(). */
 static void
 impl_AdaptiveLayoutComponentType_retrieve_objects(
-    const afw_adaptor_session_t * instance,
-    const afw_adaptor_impl_request_t * impl_request,
+    const afw_adapter_session_t * instance,
+    const afw_adapter_impl_request_t * impl_request,
     const afw_utf8_t * object_type_id,
     const afw_query_criteria_t * criteria,
     void * context,
     afw_object_cb_t callback,
-    const afw_object_t *adaptor_type_specific,
+    const afw_object_t *adapter_type_specific,
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
     impl_AdaptiveLayoutComponentType_context_t ctx;
-    const afw_adaptor_session_t *session;
+    const afw_adapter_session_t *session;
 
     ctx.original_callback = callback;
     ctx.original_context = context;
@@ -105,12 +105,12 @@ impl_AdaptiveLayoutComponentType_retrieve_objects(
     afw_runtime_foreach(object_type_id, (void *)&ctx,
         impl_AdaptiveLayoutComponentType_retrieve_cb, xctx);
 
-    /* If there is a layout adaptor, check it too. */
-    if (xctx->env->layout_adaptor_id) {
+    /* If there is a layout adapter, check it too. */
+    if (xctx->env->layout_adapter_id) {
         ctx.skip_runtime = true;
-        session = afw_adaptor_session_get_cached(xctx->env->layout_adaptor_id,
+        session = afw_adapter_session_get_cached(xctx->env->layout_adapter_id,
             false, xctx);
-        afw_adaptor_session_retrieve_objects(session, impl_request,
+        afw_adapter_session_retrieve_objects(session, impl_request,
             object_type_id, criteria, (void *)&ctx,
             impl_AdaptiveLayoutComponentType_retrieve_cb,
             NULL, p, xctx);
@@ -125,18 +125,18 @@ impl_AdaptiveLayoutComponentType_retrieve_objects(
 /* /afw/_AdaptiveLayoutComponentType_ get_object(). */
 static void
 impl_AdaptiveLayoutComponentType_get_object(
-    const afw_adaptor_session_t * instance,
-    const afw_adaptor_impl_request_t * impl_request,
+    const afw_adapter_session_t * instance,
+    const afw_adapter_impl_request_t * impl_request,
     const afw_utf8_t * object_type_id,
     const afw_utf8_t * object_id,
     void * context,
     afw_object_cb_t callback,
-    const afw_object_t *adaptor_type_specific,
+    const afw_object_t *adapter_type_specific,
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
     const afw_object_t *object;
-    const afw_adaptor_session_t *session;
+    const afw_adapter_session_t *session;
 
     /* Check for runtime object first. */
     object = afw_runtime_get_object(object_type_id, object_id, xctx);
@@ -144,14 +144,14 @@ impl_AdaptiveLayoutComponentType_get_object(
         callback(object, context, xctx);
     }
 
-    /* Check in layout adaptor next. */
-    else if (xctx->env->layout_adaptor_id) {
-        session = afw_adaptor_session_get_cached(xctx->env->layout_adaptor_id,
+    /* Check in layout adapter next. */
+    else if (xctx->env->layout_adapter_id) {
+        session = afw_adapter_session_get_cached(xctx->env->layout_adapter_id,
             false, xctx);
-        afw_adaptor_session_get_object(session, impl_request,
+        afw_adapter_session_get_object(session, impl_request,
             object_type_id, object_id,
             context, callback,
-            adaptor_type_specific,
+            adapter_type_specific,
             p, xctx);
     }
 
@@ -205,7 +205,7 @@ impl_create_environment_variables_object(
 void afw_environment_internal_register_core(afw_xctx_t *xctx)
 {
     afw_request_handler_head_t *head;
-    const afw_adaptor_factory_t *adaptor_factory;
+    const afw_adapter_factory_t *adapter_factory;
     const afw_log_factory_t *log_factory;
     afw_environment_internal_t *env;
     afw_runtime_custom_t *runtime_custom;
@@ -265,18 +265,18 @@ void afw_environment_internal_register_core(afw_xctx_t *xctx)
     afw_application_internal_register_basic_application_context_type(
         xctx);
 
-    /* Register conf type "adaptor" configuration entry handler. */
+    /* Register conf type "adapter" configuration entry handler. */
     afw_environment_create_and_register_conf_type(
-        afw_s_adaptor,
-        afw_adaptor_internal_conf_type_create_cede_p,
-        afw_s_a_adaptor_title,
-        afw_s_a_adaptor_description,
-        afw_s_adaptorId,
-        afw_s_adaptor_id,
-        afw_s__AdaptiveAdaptor_,
-        afw_s_adaptorType,
-        afw_s_adaptor_type,
-        afw_s__AdaptiveAdaptorType_,
+        afw_s_adapter,
+        afw_adapter_internal_conf_type_create_cede_p,
+        afw_s_a_adapter_title,
+        afw_s_a_adapter_description,
+        afw_s_adapterId,
+        afw_s_adapter_id,
+        afw_s__AdaptiveAdapter_,
+        afw_s_adapterType,
+        afw_s_adapter_type,
+        afw_s__AdaptiveAdapterType_,
         true,
         xctx);
 
@@ -285,8 +285,8 @@ void afw_environment_internal_register_core(afw_xctx_t *xctx)
         afw_environment_registry_object_get_current(xctx),
         false, xctx);
 
-    /* Register service type "adaptor". */
-    afw_adaptor_internal_register_service_type(xctx);
+    /* Register service type "adapter". */
+    afw_adapter_internal_register_service_type(xctx);
 
     /* Register type "application" configuration entry handler. */
     afw_environment_create_and_register_conf_type(
@@ -351,14 +351,14 @@ void afw_environment_internal_register_core(afw_xctx_t *xctx)
         false,
         xctx);
 
-    /* Register runtime adaptor. */
-    adaptor_factory = afw_runtime_get_adaptor_factory();
-    afw_environment_register_adaptor_type(
-        &adaptor_factory->adaptor_type,
-        adaptor_factory, xctx);
+    /* Register runtime adapter. */
+    adapter_factory = afw_runtime_get_adapter_factory();
+    afw_environment_register_adapter_type(
+        &adapter_factory->adapter_type,
+        adapter_factory, xctx);
 
-    /* Register afw adaptor. */
-    afw_adaptor_internal_register_afw_adaptor(xctx);
+    /* Register afw adapter. */
+    afw_adapter_internal_register_afw_adapter(xctx);
 
     /* Register factory for log_type=standard. */
     log_factory = afw_log_standard_factory_get();
@@ -386,24 +386,24 @@ void afw_environment_internal_register_core(afw_xctx_t *xctx)
         afw_s__AdaptiveLayoutComponentType_,
         runtime_custom, xctx);
 
-    /* Register factory for adaptor_type=file. */
-    adaptor_factory = afw_file_adaptor_factory_get();
-    afw_environment_register_adaptor_type(
-        &adaptor_factory->adaptor_type,
-        adaptor_factory, xctx);
+    /* Register factory for adapter_type=file. */
+    adapter_factory = afw_file_adapter_factory_get();
+    afw_environment_register_adapter_type(
+        &adapter_factory->adapter_type,
+        adapter_factory, xctx);
 
-    /* Register model adaptor factory. */
-    afw_environment_register_adaptor_type(
-        &afw_adaptor_factory_model.adaptor_type,
-        &afw_adaptor_factory_model, xctx);
+    /* Register model adapter factory. */
+    afw_environment_register_adapter_type(
+        &afw_adapter_factory_model.adapter_type,
+        &afw_adapter_factory_model, xctx);
 
     /* Register context_type for model. */
     afw_model_internal_register_context_type_model(xctx);
 
-    /* Register request handler factory for handler type "adaptor". */
+    /* Register request handler factory for handler type "adapter". */
     afw_environment_register_request_handler_type(
-        &afw_request_handler_factory_adaptor.request_handler_type,
-        &afw_request_handler_factory_adaptor, xctx);
+        &afw_request_handler_factory_adapter.request_handler_type,
+        &afw_request_handler_factory_adapter, xctx);
 
     /* Register service type authorizationHandler and default handler. */
     afw_authorization_internal_register(xctx);

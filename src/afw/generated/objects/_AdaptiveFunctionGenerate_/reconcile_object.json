@@ -2,7 +2,7 @@
     "afwCamelCaseFunctionLabel": "afwReconcileObject",
     "brief": "Reconcile adaptive object",
     "camelCaseFunctionLabel": "reconcileObject",
-    "category": "adaptor",
+    "category": "adapter",
     "description": "Reconcile an adaptive object.",
     "functionId": "reconcile_object",
     "functionLabel": "reconcile_object",

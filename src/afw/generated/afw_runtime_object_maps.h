@@ -39,22 +39,22 @@ AFW_DECLARE_CONST_DATA(afw_object_inf_t)
 afw_runtime_inf__AdaptiveActions_;
 
 /**
- * @brief Runtime object inf for object type _AdaptiveAdaptorMetrics_
+ * @brief Runtime object inf for object type _AdaptiveAdapterMetrics_
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_runtime_inf__AdaptiveAdaptorMetrics_;
+afw_runtime_inf__AdaptiveAdapterMetrics_;
 
 /**
- * @brief Runtime object inf for object type _AdaptiveAdaptorType_
+ * @brief Runtime object inf for object type _AdaptiveAdapterType_
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_runtime_inf__AdaptiveAdaptorType_;
+afw_runtime_inf__AdaptiveAdapterType_;
 
 /**
- * @brief Runtime object inf for object type _AdaptiveAdaptor_
+ * @brief Runtime object inf for object type _AdaptiveAdapter_
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_runtime_inf__AdaptiveAdaptor_;
+afw_runtime_inf__AdaptiveAdapter_;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveApplicationComponents_
@@ -123,28 +123,28 @@ AFW_DECLARE_CONST_DATA(afw_object_inf_t)
 afw_runtime_inf__AdaptiveConf_;
 
 /**
- * @brief Runtime object inf for object type _AdaptiveConf_adaptor
+ * @brief Runtime object inf for object type _AdaptiveConf_adapter
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_runtime_inf__AdaptiveConf_adaptor;
+afw_runtime_inf__AdaptiveConf_adapter;
 
 /**
- * @brief Runtime object inf for object type _AdaptiveConf_adaptor_afw_runtime
+ * @brief Runtime object inf for object type _AdaptiveConf_adapter_afw_runtime
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_runtime_inf__AdaptiveConf_adaptor_afw_runtime;
+afw_runtime_inf__AdaptiveConf_adapter_afw_runtime;
 
 /**
- * @brief Runtime object inf for object type _AdaptiveConf_adaptor_file
+ * @brief Runtime object inf for object type _AdaptiveConf_adapter_file
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_runtime_inf__AdaptiveConf_adaptor_file;
+afw_runtime_inf__AdaptiveConf_adapter_file;
 
 /**
- * @brief Runtime object inf for object type _AdaptiveConf_adaptor_model
+ * @brief Runtime object inf for object type _AdaptiveConf_adapter_model
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_runtime_inf__AdaptiveConf_adaptor_model;
+afw_runtime_inf__AdaptiveConf_adapter_model;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveConf_application
@@ -201,10 +201,10 @@ AFW_DECLARE_CONST_DATA(afw_object_inf_t)
 afw_runtime_inf__AdaptiveConf_requestHandler;
 
 /**
- * @brief Runtime object inf for object type _AdaptiveConf_requestHandler_adaptor
+ * @brief Runtime object inf for object type _AdaptiveConf_requestHandler_adapter
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)
-afw_runtime_inf__AdaptiveConf_requestHandler_adaptor;
+afw_runtime_inf__AdaptiveConf_requestHandler_adapter;
 
 /**
  * @brief Runtime object inf for object type _AdaptiveContentType_
@@ -753,17 +753,17 @@ afw_runtime_inf__AdaptiveVersionInfo_;
 void afw_register_runtime_object_maps(
     afw_xctx_t *xctx);
 
-/* @brief Value accessor afw_model_internal_get_current_adaptorId. */
+/* @brief Value accessor afw_model_internal_get_current_adapterId. */
 AFW_DECLARE_INTERNAL(const afw_value_t *)
-afw_model_internal_get_current_adaptorId(
+afw_model_internal_get_current_adapterId(
     const afw_runtime_object_map_property_t *prop,
     const void *internal,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
-/* @brief Value accessor afw_model_internal_get_current_adaptorTypeSpecific. */
+/* @brief Value accessor afw_model_internal_get_current_adapterTypeSpecific. */
 AFW_DECLARE_INTERNAL(const afw_value_t *)
-afw_model_internal_get_current_adaptorTypeSpecific(
+afw_model_internal_get_current_adapterTypeSpecific(
     const afw_runtime_object_map_property_t *prop,
     const void *internal,
     const afw_pool_t *p,
@@ -777,9 +777,9 @@ afw_model_internal_get_current_mapBackObject(
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
-/* @brief Value accessor afw_model_internal_get_current_mappedAdaptorId. */
+/* @brief Value accessor afw_model_internal_get_current_mappedAdapterId. */
 AFW_DECLARE_INTERNAL(const afw_value_t *)
-afw_model_internal_get_current_mappedAdaptorId(
+afw_model_internal_get_current_mappedAdapterId(
     const afw_runtime_object_map_property_t *prop,
     const void *internal,
     const afw_pool_t *p,

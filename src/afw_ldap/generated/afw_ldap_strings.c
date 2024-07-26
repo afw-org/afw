@@ -146,9 +146,9 @@ afw_ldap_self_v_Url = {
 };
 
 const afw_value_string_t
-afw_ldap_self_v__AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects = {
+afw_ldap_self_v__AdaptiveAdapterTypeSpecific_ldap_retrieve_objects = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LDAP_Q__AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects)
+    AFW_UTF8_LITERAL(AFW_LDAP_Q__AdaptiveAdapterTypeSpecific_ldap_retrieve_objects)
 };
 
 const afw_value_string_t
@@ -158,15 +158,15 @@ afw_ldap_self_v__AdaptiveCollection_ = {
 };
 
 const afw_value_string_t
-afw_ldap_self_v__AdaptiveConf_adaptor_ldap = {
+afw_ldap_self_v__AdaptiveConf_adapter_ldap = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LDAP_Q__AdaptiveConf_adaptor_ldap)
+    AFW_UTF8_LITERAL(AFW_LDAP_Q__AdaptiveConf_adapter_ldap)
 };
 
 const afw_value_string_t
-afw_ldap_self_v__AdaptiveConf_adaptor_ldap_bind = {
+afw_ldap_self_v__AdaptiveConf_adapter_ldap_bind = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LDAP_Q__AdaptiveConf_adaptor_ldap_bind)
+    AFW_UTF8_LITERAL(AFW_LDAP_Q__AdaptiveConf_adapter_ldap_bind)
 };
 
 const afw_value_string_t
@@ -656,9 +656,9 @@ afw_ldap_self_v_zz__Bind_Password = {
 };
 
 const afw_value_string_t
-afw_ldap_self_v_zz__Bind_parameters_for_this_LDAP_adaptor_ = {
+afw_ldap_self_v_zz__Bind_parameters_for_this_LDAP_adapter_ = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__Bind_parameters_for_this_LDAP_adaptor_)
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__Bind_parameters_for_this_LDAP_adapter_)
 };
 
 const afw_value_string_t
@@ -686,9 +686,9 @@ afw_ldap_self_v_zz__Numeric_OID = {
 };
 
 const afw_value_string_t
-afw_ldap_self_v_zz__Object_type_for_type_adaptor_adaptor_type_ldap_conf_entries_ = {
+afw_ldap_self_v_zz__Object_type_for_type_adapter_adapter_type_ldap_conf_entries_ = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__Object_type_for_type_adaptor_adaptor_type_ldap_conf_entries_)
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__Object_type_for_type_adapter_adapter_type_ldap_conf_entries_)
 };
 
 const afw_value_string_t
@@ -740,7 +740,7 @@ afw_ldap_self_v_zz__URL_of_LDAP_Server__For_example__ldaps___ldap_server_636 = {
 };
 
 const afw_value_string_t
-afw_ldap_self_v_zz__object__AdaptiveConf_adaptor_ldap_bind = {
+afw_ldap_self_v_zz__object__AdaptiveConf_adapter_ldap_bind = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__object__AdaptiveConf_adaptor_ldap_bind)
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__object__AdaptiveConf_adapter_ldap_bind)
 };

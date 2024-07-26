@@ -70,10 +70,10 @@ export const LocalStorageTree = ({ storage, selectedFiles, allowSelectDirectorie
 };
 
 /**
- * VfsTree component displays the VFS adaptors and their recursive
+ * VfsTree component displays the VFS adapters and their recursive
  * file system in a array of Trees.
  */
-export const VfsTree = ({ vfsAdaptors, selectedFiles, onSelectFiles, allowSelectDirectories = false, newFolder }) => {
+export const VfsTree = ({ vfsAdapters, selectedFiles, onSelectFiles, allowSelectDirectories = false, newFolder }) => {
 
     const [expandedKeys, setExpandedKeys] = useState([]);
     const [tree, setTree] = useState([]);
@@ -84,11 +84,11 @@ export const VfsTree = ({ vfsAdaptors, selectedFiles, onSelectFiles, allowSelect
 
     useEffect(() => {        
 
-        const fetchFiles = async (adaptorId, treeItem, keyNodeMap) => {
+        const fetchFiles = async (adapterId, treeItem, keyNodeMap) => {
             
             const response = afwRetrieveObjects(client, 
                 "_AdaptiveFile_vfs", 
-                adaptorId, 
+                adapterId, 
                 undefined, 
                 { objectId: true, path: true },
             );
@@ -102,7 +102,7 @@ export const VfsTree = ({ vfsAdaptors, selectedFiles, onSelectFiles, allowSelect
                     label: objectId,
                     path,
                     isDirectory,                   
-                    adaptorId,
+                    adapterId,
                     isLoading: true,
                     vfsPath,
                     children: isDirectory ? [
@@ -123,32 +123,32 @@ export const VfsTree = ({ vfsAdaptors, selectedFiles, onSelectFiles, allowSelect
             setKeyNodeMap(keyNodeMap);
         };
 
-        if (vfsAdaptors && client) {
-            vfsAdaptors.forEach( ({ adaptorId }) => {
+        if (vfsAdapters && client) {
+            vfsAdapters.forEach( ({ adapterId }) => {
                 const treeItem = {
-                    key: "/" + adaptorId + "/_AdaptiveFile_vfs/",
-                    label: adaptorId,
-                    path: "/" + adaptorId + "/_AdaptiveFile_vfs/",
+                    key: "/" + adapterId + "/_AdaptiveFile_vfs/",
+                    label: adapterId,
+                    path: "/" + adapterId + "/_AdaptiveFile_vfs/",
                     vfsPath: "",
                     contains: 
                         <div style={{ display: "flex" }}>
-                            <Typography style={{ marginRight: theme.spacing(3) }} text={adaptorId} />
+                            <Typography style={{ marginRight: theme.spacing(3) }} text={adapterId} />
                             <Button type="icon" icon="refresh" size="small" />
                         </div>,
-                    adaptorId: adaptorId,
+                    adapterId: adapterId,
                     children: [],
                     collapseIcon: "expand_more",                    
                     expandIcon: "chevron_right",
                     isDirectory: true
                 };      
                 let keyNodeMap = {};
-                keyNodeMap["/" + adaptorId] = treeItem;
+                keyNodeMap["/" + adapterId] = treeItem;
 
-                fetchFiles(adaptorId, treeItem, keyNodeMap);
+                fetchFiles(adapterId, treeItem, keyNodeMap);
             });            
         }
 
-    }, [client, vfsAdaptors, theme]);
+    }, [client, vfsAdapters, theme]);
 
     useEffect(() => {
         if (newFolder) {
@@ -163,7 +163,7 @@ export const VfsTree = ({ vfsAdaptors, selectedFiles, onSelectFiles, allowSelect
                 label: folder,
                 isDirectory: true,
                 vfsPath: node.vfsPath + "%2F" + folder,
-                adaptorId: node.adaptorId,
+                adapterId: node.adapterId,
                 isLoading: false,
                 children: [],
                 icon: "folder"
@@ -195,7 +195,7 @@ export const VfsTree = ({ vfsAdaptors, selectedFiles, onSelectFiles, allowSelect
                 path: node.path + objectId + (isDirectory ? "%2F" : ""),
                 vfsPath: node.vfsPath + "%2F" + objectId,
                 isDirectory,
-                adaptorId: node.adaptorId,
+                adapterId: node.adapterId,
                 isLoading: true,
                 children: isDirectory ? [
                     {
@@ -257,9 +257,9 @@ export const VfsTree = ({ vfsAdaptors, selectedFiles, onSelectFiles, allowSelect
 };
 
 /**
- * This component is used to browse VFS file adaptor to open up files for Fiddle.
+ * This component is used to browse VFS file adapter to open up files for Fiddle.
  */
-export const OpenFileDialog = ({ open, onDismiss, vfsAdaptors, onOpen, storage }) => {
+export const OpenFileDialog = ({ open, onDismiss, vfsAdapters, onOpen, storage }) => {
 
     const [selectedLocalFiles, setSelectedLocalFiles] = useState([]);
     const [selectedVfsFiles, setSelectedVfsFiles] = useState([]);
@@ -300,7 +300,7 @@ export const OpenFileDialog = ({ open, onDismiss, vfsAdaptors, onOpen, storage }
                             }}
                         />
                         <VfsTree 
-                            vfsAdaptors={vfsAdaptors} 
+                            vfsAdapters={vfsAdapters} 
                             selectedFiles={selectedVfsFiles}
                             onSelectFiles={(selectedFiles, selectedNode) => {
                                 setSelectedVfsFiles(selectedFiles);

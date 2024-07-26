@@ -134,54 +134,54 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_VFS_Q__AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects \
-    "_AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects"
+#define AFW_VFS_Q__AdaptiveAdapterTypeSpecific_vfs_retrieve_objects \
+    "_AdaptiveAdapterTypeSpecific_vfs_retrieve_objects"
 
-/** @brief 'afw_utf8_t' for AFW_VFS_Q__AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects */
-#define afw_vfs_s__AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects \
-    (&afw_vfs_self_v__AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects.internal)
+/** @brief 'afw_utf8_t' for AFW_VFS_Q__AdaptiveAdapterTypeSpecific_vfs_retrieve_objects */
+#define afw_vfs_s__AdaptiveAdapterTypeSpecific_vfs_retrieve_objects \
+    (&afw_vfs_self_v__AdaptiveAdapterTypeSpecific_vfs_retrieve_objects.internal)
 
-/** @brief 'afw_utf8_t' for AFW_VFS_Q__AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects */
-#define afw_vfs_self_s__AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects \
-    (afw_vfs_self_v__AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects.internal)
+/** @brief 'afw_utf8_t' for AFW_VFS_Q__AdaptiveAdapterTypeSpecific_vfs_retrieve_objects */
+#define afw_vfs_self_s__AdaptiveAdapterTypeSpecific_vfs_retrieve_objects \
+    (afw_vfs_self_v__AdaptiveAdapterTypeSpecific_vfs_retrieve_objects.internal)
 
-/** @brief 'afw_value_string_t' for AFW_VFS_Q__AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects */
+/** @brief 'afw_value_string_t' for AFW_VFS_Q__AdaptiveAdapterTypeSpecific_vfs_retrieve_objects */
 extern const afw_value_string_t \
-    afw_vfs_self_v__AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects;
+    afw_vfs_self_v__AdaptiveAdapterTypeSpecific_vfs_retrieve_objects;
 
-/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q__AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects */
-#define afw_vfs_z__AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects \
-    (afw_vfs_self_v__AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q__AdaptiveAdapterTypeSpecific_vfs_retrieve_objects */
+#define afw_vfs_z__AdaptiveAdapterTypeSpecific_vfs_retrieve_objects \
+    (afw_vfs_self_v__AdaptiveAdapterTypeSpecific_vfs_retrieve_objects.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_VFS_Q__AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects */
-#define afw_vfs_v__AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects \
-    (&afw_vfs_self_v__AdaptiveAdaptorTypeSpecific_vfs_retrieve_objects.pub)
+/** @brief 'const afw_value_t *' for AFW_VFS_Q__AdaptiveAdapterTypeSpecific_vfs_retrieve_objects */
+#define afw_vfs_v__AdaptiveAdapterTypeSpecific_vfs_retrieve_objects \
+    (&afw_vfs_self_v__AdaptiveAdapterTypeSpecific_vfs_retrieve_objects.pub)
 
 
 
 /** @brief #define for string in quotes */
-#define AFW_VFS_Q__AdaptiveConf_adaptor_vfs \
-    "_AdaptiveConf_adaptor_vfs"
+#define AFW_VFS_Q__AdaptiveConf_adapter_vfs \
+    "_AdaptiveConf_adapter_vfs"
 
-/** @brief 'afw_utf8_t' for AFW_VFS_Q__AdaptiveConf_adaptor_vfs */
-#define afw_vfs_s__AdaptiveConf_adaptor_vfs \
-    (&afw_vfs_self_v__AdaptiveConf_adaptor_vfs.internal)
+/** @brief 'afw_utf8_t' for AFW_VFS_Q__AdaptiveConf_adapter_vfs */
+#define afw_vfs_s__AdaptiveConf_adapter_vfs \
+    (&afw_vfs_self_v__AdaptiveConf_adapter_vfs.internal)
 
-/** @brief 'afw_utf8_t' for AFW_VFS_Q__AdaptiveConf_adaptor_vfs */
-#define afw_vfs_self_s__AdaptiveConf_adaptor_vfs \
-    (afw_vfs_self_v__AdaptiveConf_adaptor_vfs.internal)
+/** @brief 'afw_utf8_t' for AFW_VFS_Q__AdaptiveConf_adapter_vfs */
+#define afw_vfs_self_s__AdaptiveConf_adapter_vfs \
+    (afw_vfs_self_v__AdaptiveConf_adapter_vfs.internal)
 
-/** @brief 'afw_value_string_t' for AFW_VFS_Q__AdaptiveConf_adaptor_vfs */
+/** @brief 'afw_value_string_t' for AFW_VFS_Q__AdaptiveConf_adapter_vfs */
 extern const afw_value_string_t \
-    afw_vfs_self_v__AdaptiveConf_adaptor_vfs;
+    afw_vfs_self_v__AdaptiveConf_adapter_vfs;
 
-/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q__AdaptiveConf_adaptor_vfs */
-#define afw_vfs_z__AdaptiveConf_adaptor_vfs \
-    (afw_vfs_self_v__AdaptiveConf_adaptor_vfs.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q__AdaptiveConf_adapter_vfs */
+#define afw_vfs_z__AdaptiveConf_adapter_vfs \
+    (afw_vfs_self_v__AdaptiveConf_adapter_vfs.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_VFS_Q__AdaptiveConf_adaptor_vfs */
-#define afw_vfs_v__AdaptiveConf_adaptor_vfs \
-    (&afw_vfs_self_v__AdaptiveConf_adaptor_vfs.pub)
+/** @brief 'const afw_value_t *' for AFW_VFS_Q__AdaptiveConf_adapter_vfs */
+#define afw_vfs_v__AdaptiveConf_adapter_vfs \
+    (&afw_vfs_self_v__AdaptiveConf_adapter_vfs.pub)
 
 
 
@@ -1461,7 +1461,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_VFS_Q_zz__2538 \
-    "This is the object type for the optional adaptorTypeSpecific parameter of the retrieve_objects() adaptive function when the adaptorType of the adaptorId is vfs."
+    "This is the object type for the optional adapterTypeSpecific parameter of the retrieve_objects() adaptive function when the adapterType of the adapterId is vfs."
 
 /** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2538 */
 #define afw_vfs_s_zz__2538 \
@@ -1513,7 +1513,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_VFS_Q_zz__2540 \
-    "This property is a list of vfs map entries.\n\nThe vfsPath of objects in this vfs adaptor is of the form:\n\n/<adaptorId>/<objectId>\n\nWhere <adaptorId> is the id of this adaptor and where <objectId> is the relative path from the vfs root directory ('<adaptorId>/') to the associated file or directory. An <objectId> of a directory ends with a slash ('/').\n\nEach vfsMap entry is a string of the form:\n\n<objectId_prefix>=<host file system directory path>\n\n<objectId_prefix> can be empty if the entry applies to files and directories in the vfs root directory or the objectId of a directory within the vfs.\n\nThe <host file system directory path> must end in a slash ('/'). A backslash is tolerated on a Windows host. The host system file path is the <objectId> with <objectId_prefix> removed appended to the associated <host file system directory path>.\n\nThe map entry with the longest matching <objectId_prefix> is the one used for any adaptor functions objectId parameter.\n\nFor retrieve_objects*() the entries are processed in longest to shortest <objectId_prefix> order. If 'subdirectory' is supplied in the retrieve_objects*() adaptorSpecific parameter, only matching entries are used. Note, that depending on the vfsMap, a single physical file or directory can appear multiple times with different vfsPaths."
+    "This property is a list of vfs map entries.\n\nThe vfsPath of objects in this vfs adapter is of the form:\n\n/<adapterId>/<objectId>\n\nWhere <adapterId> is the id of this adapter and where <objectId> is the relative path from the vfs root directory ('<adapterId>/') to the associated file or directory. An <objectId> of a directory ends with a slash ('/').\n\nEach vfsMap entry is a string of the form:\n\n<objectId_prefix>=<host file system directory path>\n\n<objectId_prefix> can be empty if the entry applies to files and directories in the vfs root directory or the objectId of a directory within the vfs.\n\nThe <host file system directory path> must end in a slash ('/'). A backslash is tolerated on a Windows host. The host system file path is the <objectId> with <objectId_prefix> removed appended to the associated <host file system directory path>.\n\nThe map entry with the longest matching <objectId_prefix> is the one used for any adapter functions objectId parameter.\n\nFor retrieve_objects*() the entries are processed in longest to shortest <objectId_prefix> order. If 'subdirectory' is supplied in the retrieve_objects*() adapterSpecific parameter, only matching entries are used. Note, that depending on the vfsMap, a single physical file or directory can appear multiple times with different vfsPaths."
 
 /** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2540 */
 #define afw_vfs_s_zz__2540 \
@@ -1539,7 +1539,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_VFS_Q_zz__2541 \
-    "Adaptive Framework configuration component for type=adaptor adaptorType=vfs. This is a virtual file system adaptor that allows files to be accessed as objects that have a 'data' property and additional file stats properties. The vfs path to files begins with '/', the adaptor name, '/_AdaptiveFile_vfs'. The path of the operating system directory as well as the paths to subdirectories are defined in the 'vfsMap' property."
+    "Adaptive Framework configuration component for type=adapter adapterType=vfs. This is a virtual file system adapter that allows files to be accessed as objects that have a 'data' property and additional file stats properties. The vfs path to files begins with '/', the adapter name, '/_AdaptiveFile_vfs'. The path of the operating system directory as well as the paths to subdirectories are defined in the 'vfsMap' property."
 
 /** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2541 */
 #define afw_vfs_s_zz__2541 \
@@ -1928,28 +1928,28 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_VFS_Q_zz__This_is_the_single_object_type_of_objects_in_a_vfs_adaptor_ \
-    "This is the single object type of objects in a vfs adaptor."
+#define AFW_VFS_Q_zz__This_is_the_single_object_type_of_objects_in_a_vfs_adapter_ \
+    "This is the single object type of objects in a vfs adapter."
 
-/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__This_is_the_single_object_type_of_objects_in_a_vfs_adaptor_ */
-#define afw_vfs_s_zz__This_is_the_single_object_type_of_objects_in_a_vfs_adaptor_ \
-    (&afw_vfs_self_v_zz__This_is_the_single_object_type_of_objects_in_a_vfs_adaptor_.internal)
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__This_is_the_single_object_type_of_objects_in_a_vfs_adapter_ */
+#define afw_vfs_s_zz__This_is_the_single_object_type_of_objects_in_a_vfs_adapter_ \
+    (&afw_vfs_self_v_zz__This_is_the_single_object_type_of_objects_in_a_vfs_adapter_.internal)
 
-/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__This_is_the_single_object_type_of_objects_in_a_vfs_adaptor_ */
-#define afw_vfs_self_s_zz__This_is_the_single_object_type_of_objects_in_a_vfs_adaptor_ \
-    (afw_vfs_self_v_zz__This_is_the_single_object_type_of_objects_in_a_vfs_adaptor_.internal)
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__This_is_the_single_object_type_of_objects_in_a_vfs_adapter_ */
+#define afw_vfs_self_s_zz__This_is_the_single_object_type_of_objects_in_a_vfs_adapter_ \
+    (afw_vfs_self_v_zz__This_is_the_single_object_type_of_objects_in_a_vfs_adapter_.internal)
 
-/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__This_is_the_single_object_type_of_objects_in_a_vfs_adaptor_ */
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__This_is_the_single_object_type_of_objects_in_a_vfs_adapter_ */
 extern const afw_value_string_t \
-    afw_vfs_self_v_zz__This_is_the_single_object_type_of_objects_in_a_vfs_adaptor_;
+    afw_vfs_self_v_zz__This_is_the_single_object_type_of_objects_in_a_vfs_adapter_;
 
-/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__This_is_the_single_object_type_of_objects_in_a_vfs_adaptor_ */
-#define afw_vfs_z_zz__This_is_the_single_object_type_of_objects_in_a_vfs_adaptor_ \
-    (afw_vfs_self_v_zz__This_is_the_single_object_type_of_objects_in_a_vfs_adaptor_.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__This_is_the_single_object_type_of_objects_in_a_vfs_adapter_ */
+#define afw_vfs_z_zz__This_is_the_single_object_type_of_objects_in_a_vfs_adapter_ \
+    (afw_vfs_self_v_zz__This_is_the_single_object_type_of_objects_in_a_vfs_adapter_.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__This_is_the_single_object_type_of_objects_in_a_vfs_adaptor_ */
-#define afw_vfs_v_zz__This_is_the_single_object_type_of_objects_in_a_vfs_adaptor_ \
-    (&afw_vfs_self_v_zz__This_is_the_single_object_type_of_objects_in_a_vfs_adaptor_.pub)
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__This_is_the_single_object_type_of_objects_in_a_vfs_adapter_ */
+#define afw_vfs_v_zz__This_is_the_single_object_type_of_objects_in_a_vfs_adapter_ \
+    (&afw_vfs_self_v_zz__This_is_the_single_object_type_of_objects_in_a_vfs_adapter_.pub)
 
 
 

@@ -82,9 +82,9 @@
         },
         {
             "fileMatch": [
-                "/src/*/generate*/objects/_AdaptiveAdaptor_/*.json"
+                "/src/*/generate*/objects/_AdaptiveAdapter_/*.json"
             ],
-            "url": "./generated/schemas/afw/_AdaptiveAdaptor_.json"
+            "url": "./generated/schemas/afw/_AdaptiveAdapter_.json"
         },
         {
             "fileMatch": [
@@ -352,9 +352,9 @@
         },
         {
             "fileMatch": [
-                "/src/*/generate*/objects/_AdaptiveAdaptorType_/*.json"
+                "/src/*/generate*/objects/_AdaptiveAdapterType_/*.json"
             ],
-            "url": "./generated/schemas/afw/_AdaptiveAdaptorType_.json"
+            "url": "./generated/schemas/afw/_AdaptiveAdapterType_.json"
         },
         {
             "fileMatch": [

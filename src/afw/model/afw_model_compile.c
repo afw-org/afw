@@ -32,7 +32,7 @@ impl_compile_property_type(
 static const afw_model_object_type_t *
 impl_object_type_compile(
     afw_model_t *model,
-    const afw_utf8_t *adaptor_id,
+    const afw_utf8_t *adapter_id,
     const afw_utf8_t *object_type_id,
     const afw_object_t *object,
     afw_xctx_t *xctx);
@@ -383,7 +383,7 @@ static const afw_object_t *
 impl_harvest_object_type(
     afw_model_t *model,
     afw_boolean_t composite,
-    const afw_utf8_t *adaptor_id,
+    const afw_utf8_t *adapter_id,
     const afw_utf8_t *object_type_id,
     const afw_object_t *object,
     const afw_pool_t *p, afw_xctx_t *xctx)
@@ -404,7 +404,7 @@ impl_harvest_object_type(
 
     result = afw_object_create_unmanaged(p, xctx);
     afw_object_meta_set_ids(result,
-        adaptor_id,
+        adapter_id,
         afw_s__AdaptiveObjectType_,
         object_type_id, xctx);
     afw_object_meta_set_property(result,
@@ -583,7 +583,7 @@ impl_harvest_object_type(
 const afw_model_object_type_t *
 impl_object_type_compile(
     afw_model_t *model,
-    const afw_utf8_t *adaptor_id,
+    const afw_utf8_t *adapter_id,
     const afw_utf8_t *object_type_id,
     const afw_object_t *object,
     afw_xctx_t *xctx)
@@ -606,7 +606,7 @@ impl_object_type_compile(
     ot = afw_pool_calloc_type(p, afw_model_object_type_t, xctx);
     ot->model = model;
     ot->object_type_object = impl_harvest_object_type(model, false,
-        adaptor_id, object_type_id, object,
+        adapter_id, object_type_id, object,
         p, xctx);
     ot->object_type_object_value = afw_value_create_unmanaged_object(
         ot->object_type_object, p, xctx);
@@ -779,7 +779,7 @@ impl_object_type_compile(
 
 AFW_DEFINE(afw_model_t *)
 afw_model_compile(
-    const afw_utf8_t *adaptor_id,
+    const afw_utf8_t *adapter_id,
     const afw_object_t *model_object,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
@@ -833,7 +833,7 @@ afw_model_compile(
             objectTypes, &iterator, &property_name, xctx);
         if (!object_type) break;
         model_object_type = impl_object_type_compile(model,
-            adaptor_id, property_name, object_type, xctx);
+            adapter_id, property_name, object_type, xctx);
         apr_hash_set(model->model_object_types,
             property_name->s, property_name->len, model_object_type);
     }

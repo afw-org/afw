@@ -42,11 +42,11 @@ afw_ldap_generated_register(afw_xctx_t *xctx);
 
 
 /**
- * @brief Register function for adaptor_type ldap
+ * @brief Register function for adapter_type ldap
  * @param xctx of caller.
  */
 AFW_LDAP_DECLARE_INTERNAL(void)
-afw_ldap_adaptor_type_ldap_register(
+afw_ldap_adapter_type_ldap_register(
     afw_xctx_t *xctx);
 
 

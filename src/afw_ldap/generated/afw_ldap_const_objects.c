@@ -36,7 +36,7 @@ static const afw_runtime_const_object_instance_t
 impl_3;
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects/propertyTypes/base
+ * /afw/_AdaptiveObjectType_/_AdaptiveAdapterTypeSpecific_ldap_retrieve_objects/propertyTypes/base
  */
 
 static const afw_value_boolean_t
@@ -113,7 +113,7 @@ impl_3_meta_object__value = {
 
 static const afw_utf8_t
 impl_3_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects/propertyTypes/base");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdapterTypeSpecific_ldap_retrieve_objects/propertyTypes/base");
 
 static const afw_value_object_t
 impl_3__value;
@@ -142,7 +142,7 @@ impl_3__value = {
 };
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects/propertyTypes
+ * /afw/_AdaptiveObjectType_/_AdaptiveAdapterTypeSpecific_ldap_retrieve_objects/propertyTypes
  */
 
 static const afw_value_object_t
@@ -185,7 +185,7 @@ impl_2_meta_object__value = {
 
 static const afw_utf8_t
 impl_2_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects/propertyTypes");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdapterTypeSpecific_ldap_retrieve_objects/propertyTypes");
 
 static const afw_value_object_t
 impl_2__value;
@@ -214,7 +214,7 @@ impl_2__value = {
 };
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects
+ * /afw/_AdaptiveObjectType_/_AdaptiveAdapterTypeSpecific_ldap_retrieve_objects
  */
 
 static const afw_value_boolean_t
@@ -312,7 +312,7 @@ impl_1_property_description = {
 static const afw_runtime_property_t
 impl_1_property_objectType = {
     &afw_ldap_self_s_objectType,
-    &afw_ldap_self_v__AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects.pub
+    &afw_ldap_self_v__AdaptiveAdapterTypeSpecific_ldap_retrieve_objects.pub
 };
 
 static const afw_value_object_t
@@ -362,7 +362,7 @@ impl_1_meta_object__value = {
 
 static const afw_utf8_t
 impl_1_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveAdapterTypeSpecific_ldap_retrieve_objects");
 
 static const afw_value_object_t
 impl_1__value;
@@ -376,7 +376,7 @@ impl_1 = {
         {
             (const afw_object_t *)&impl_1_meta_object,
             NULL,
-            &afw_ldap_self_s__AdaptiveAdaptorTypeSpecific_ldap_retrieve_objects,
+            &afw_ldap_self_s__AdaptiveAdapterTypeSpecific_ldap_retrieve_objects,
             &afw_ldap_self_s__AdaptiveObjectType_,
             &impl_1_meta_path
         }
@@ -400,7 +400,7 @@ static const afw_runtime_const_object_instance_t
 impl_6;
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_ldap/propertyTypes/bindParameters
+ * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_ldap/propertyTypes/bindParameters
  */
 
 static const afw_runtime_property_t
@@ -412,13 +412,13 @@ impl_6_property_dataType = {
 static const afw_runtime_property_t
 impl_6_property_dataTypeParameter = {
     &afw_ldap_self_s_dataTypeParameter,
-    &afw_ldap_self_v_zz__object__AdaptiveConf_adaptor_ldap_bind.pub
+    &afw_ldap_self_v_zz__object__AdaptiveConf_adapter_ldap_bind.pub
 };
 
 static const afw_runtime_property_t
 impl_6_property_description = {
     &afw_ldap_self_s_description,
-    &afw_ldap_self_v_zz__Bind_parameters_for_this_LDAP_adaptor_.pub
+    &afw_ldap_self_v_zz__Bind_parameters_for_this_LDAP_adapter_.pub
 };
 
 static const afw_runtime_property_t
@@ -484,7 +484,7 @@ impl_6_meta_object__value = {
 
 static const afw_utf8_t
 impl_6_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_ldap/propertyTypes/bindParameters");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_ldap/propertyTypes/bindParameters");
 
 static const afw_value_object_t
 impl_6__value;
@@ -516,7 +516,7 @@ static const afw_runtime_const_object_instance_t
 impl_7;
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_ldap/propertyTypes/preventVerifyCert
+ * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_ldap/propertyTypes/preventVerifyCert
  */
 
 static const afw_value_boolean_t
@@ -606,7 +606,7 @@ impl_7_meta_object__value = {
 
 static const afw_utf8_t
 impl_7_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_ldap/propertyTypes/preventVerifyCert");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_ldap/propertyTypes/preventVerifyCert");
 
 static const afw_value_object_t
 impl_7__value;
@@ -638,7 +638,7 @@ static const afw_runtime_const_object_instance_t
 impl_8;
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_ldap/propertyTypes/url
+ * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_ldap/propertyTypes/url
  */
 
 static const afw_value_boolean_t
@@ -728,7 +728,7 @@ impl_8_meta_object__value = {
 
 static const afw_utf8_t
 impl_8_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_ldap/propertyTypes/url");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_ldap/propertyTypes/url");
 
 static const afw_value_object_t
 impl_8__value;
@@ -757,7 +757,7 @@ impl_8__value = {
 };
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_ldap/propertyTypes
+ * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_ldap/propertyTypes
  */
 
 static const afw_value_object_t
@@ -806,7 +806,7 @@ impl_5_properties[] = {
 
 static const afw_utf8_t
 impl_5_parentPaths_array[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor/propertyTypes")
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter/propertyTypes")
 };
 
 static const afw_array_wrapper_for_array_self_t
@@ -845,7 +845,7 @@ impl_5_meta_object__value = {
 
 static const afw_utf8_t
 impl_5_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_ldap/propertyTypes");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_ldap/propertyTypes");
 
 static const afw_value_object_t
 impl_5__value;
@@ -874,7 +874,7 @@ impl_5__value = {
 };
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_ldap
+ * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_ldap
  */
 
 static const afw_value_boolean_t
@@ -930,13 +930,13 @@ impl_4_property_collectionURIs = {
 static const afw_runtime_property_t
 impl_4_property_description = {
     &afw_ldap_self_s_description,
-    &afw_ldap_self_v_zz__Object_type_for_type_adaptor_adaptor_type_ldap_conf_entries_.pub
+    &afw_ldap_self_v_zz__Object_type_for_type_adapter_adapter_type_ldap_conf_entries_.pub
 };
 
 static const afw_runtime_property_t
 impl_4_property_objectType = {
     &afw_ldap_self_s_objectType,
-    &afw_ldap_self_v__AdaptiveConf_adaptor_ldap.pub
+    &afw_ldap_self_v__AdaptiveConf_adapter_ldap.pub
 };
 
 static const afw_value_object_t
@@ -983,7 +983,7 @@ impl_4_meta_object__value = {
 
 static const afw_utf8_t
 impl_4_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_ldap");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_ldap");
 
 static const afw_value_object_t
 impl_4__value;
@@ -997,7 +997,7 @@ impl_4 = {
         {
             (const afw_object_t *)&impl_4_meta_object,
             NULL,
-            &afw_ldap_self_s__AdaptiveConf_adaptor_ldap,
+            &afw_ldap_self_s__AdaptiveConf_adapter_ldap,
             &afw_ldap_self_s__AdaptiveObjectType_,
             &impl_4_meta_path
         }
@@ -1021,7 +1021,7 @@ static const afw_runtime_const_object_instance_t
 impl_11;
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_ldap_bind/propertyTypes/dn
+ * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_ldap_bind/propertyTypes/dn
  */
 
 static const afw_value_boolean_t
@@ -1111,7 +1111,7 @@ impl_11_meta_object__value = {
 
 static const afw_utf8_t
 impl_11_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_ldap_bind/propertyTypes/dn");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_ldap_bind/propertyTypes/dn");
 
 static const afw_value_object_t
 impl_11__value;
@@ -1143,7 +1143,7 @@ static const afw_runtime_const_object_instance_t
 impl_12;
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_ldap_bind/propertyTypes/password
+ * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_ldap_bind/propertyTypes/password
  */
 
 static const afw_value_boolean_t
@@ -1233,7 +1233,7 @@ impl_12_meta_object__value = {
 
 static const afw_utf8_t
 impl_12_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_ldap_bind/propertyTypes/password");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_ldap_bind/propertyTypes/password");
 
 static const afw_value_object_t
 impl_12__value;
@@ -1262,7 +1262,7 @@ impl_12__value = {
 };
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_ldap_bind/propertyTypes
+ * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_ldap_bind/propertyTypes
  */
 
 static const afw_value_object_t
@@ -1318,7 +1318,7 @@ impl_10_meta_object__value = {
 
 static const afw_utf8_t
 impl_10_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_ldap_bind/propertyTypes");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_ldap_bind/propertyTypes");
 
 static const afw_value_object_t
 impl_10__value;
@@ -1347,7 +1347,7 @@ impl_10__value = {
 };
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_ldap_bind
+ * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_ldap_bind
  */
 
 static const afw_value_boolean_t
@@ -1445,7 +1445,7 @@ impl_9_property_description = {
 static const afw_runtime_property_t
 impl_9_property_objectType = {
     &afw_ldap_self_s_objectType,
-    &afw_ldap_self_v__AdaptiveConf_adaptor_ldap_bind.pub
+    &afw_ldap_self_v__AdaptiveConf_adapter_ldap_bind.pub
 };
 
 static const afw_value_object_t
@@ -1495,7 +1495,7 @@ impl_9_meta_object__value = {
 
 static const afw_utf8_t
 impl_9_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adaptor_ldap_bind");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_ldap_bind");
 
 static const afw_value_object_t
 impl_9__value;
@@ -1509,7 +1509,7 @@ impl_9 = {
         {
             (const afw_object_t *)&impl_9_meta_object,
             NULL,
-            &afw_ldap_self_s__AdaptiveConf_adaptor_ldap_bind,
+            &afw_ldap_self_s__AdaptiveConf_adapter_ldap_bind,
             &afw_ldap_self_s__AdaptiveObjectType_,
             &impl_9_meta_path
         }

@@ -6,61 +6,61 @@
         The traditional RESTful way allows you to send standard HTTP operations to 
         the server and get status and results back with the appropriate content-type.  
         This method is uri-based, like a typical RESTful service and the HTTP 
-        operations map onto the adaptor_session interface methods. Using the RESTful 
+        operations map onto the adapter_session interface methods. Using the RESTful 
         interface is particularly useful for web-based applications that are 
         accustomed to RESTful ways to interact with object data.
     </paragraph>
     <section>
         <title>REST</title>
         <paragraph>
-            The following table describes each HTTP Request and its corresponding adaptor 
+            The following table describes each HTTP Request and its corresponding adapter 
             session method that is invoked:
         </paragraph>
         <table>
             <columns>
                 <column>Method</column>
                 <column>URI</column>
-                <column>Adaptor Function</column>
+                <column>Adapter Function</column>
             </columns>
             <rows>
                 <row>
                     <column>GET</column>
-                    <column>/adaptorId/objectType[;options]/objectId</column>
+                    <column>/adapterId/objectType[;options]/objectId</column>
                     <column>get_object()</column>
                 </row>
                 <row>
                     <column>GET</column>
-                    <column>/adaptorId/objectType[;options]/[queryCriteria]</column>
+                    <column>/adapterId/objectType[;options]/[queryCriteria]</column>
                     <column>retrieve_objects()</column>
                 </row>
                 <row>
                     <column>PUT</column>
-                    <column>/adaptorId/objectType/objectId</column>
+                    <column>/adapterId/objectType/objectId</column>
                     <column>replace_object()</column>
                 </row>
                 <row>
                     <column>POST</column>
-                    <column>/adaptorId/objectType/</column>
+                    <column>/adapterId/objectType/</column>
                     <column>add_object()</column>
                 </row>
                 <row>
                     <column>POST</column>
-                    <column>/adaptorId/objectType/objectId</column>
+                    <column>/adapterId/objectType/objectId</column>
                     <column>modify_object()</column>
                 </row>
                 <row>
                     <column>DELETE</column>
-                    <column>/adaptorId/objectType/objectId</column>
+                    <column>/adapterId/objectType/objectId</column>
                     <column>delete_object()</column>
                 </row>
             </rows>
         </table>
         <paragraph>
             HTTP GET requests act as both <literal>get_object()</literal> and 
-            <literal>retrieve_objects()</literal> adaptor session calls, depending on the HTTP URI 
-            that is specified. All HTTP URIs must specify an adaptorId. When an Object Type and 
+            <literal>retrieve_objects()</literal> adapter session calls, depending on the HTTP URI 
+            that is specified. All HTTP URIs must specify an adapterId. When an Object Type and 
             Object Id are also supplied, the GET is treated as a <literal>get_object()</literal>.  
-            When just the adaptorId and Object Type are specified, the GET request is treated as a 
+            When just the adapterId and Object Type are specified, the GET request is treated as a 
             <literal>retrieve_objects()</literal> call.  
         </paragraph>
         <header>Query Criteria</header>
@@ -86,12 +86,12 @@
             It's very easy to demonstrate how to use the RESTful API, using the command-line tool, curl.  
             If you are running afwfcgi and have Apache or Nginx setup on the 
             traditional Secure HTTP port 443, and you wanted to get the object <literal>afw</literal> of type 
-            <literal>_AdaptiveAdaptor_</literal>, from the core adaptor, <literal>afw</literal>, 
+            <literal>_AdaptiveAdapter_</literal>, from the core adapter, <literal>afw</literal>, 
             and you wanted it to be formatted with whitespace, you could run the following:
         </paragraph>
-        <code>curl https://localhost/afw/_AdaptiveAdaptor_;whitespace/afw
+        <code>curl https://localhost/afw/_AdaptiveAdapter_;whitespace/afw
 {
-    "adaptorId": "afw",
+    "adapterId": "afw",
     "metrics": {
         "addObjectCount" : 0,
         "deleteObjectCount": 0,
@@ -102,25 +102,25 @@
         "updateObjectCount": 0
     },
     "properties":{
-        "contextualLabel": "Core afw adaptor",
-        "adaptorId": "afw",
-        "adaptorType": "afw_runtime",
-        "type": "adaptor"
+        "contextualLabel": "Core afw adapter",
+        "adapterId": "afw",
+        "adapterType": "afw_runtime",
+        "type": "adapter"
     },
     "referenceCount": 3,
-    "serviceId": "adaptor-afw"    
+    "serviceId": "adapter-afw"    
 }</code>
     </section>
     <section>
         <title>Perform Actions</title>
         <paragraph>
             The second way to interact with Adaptive Framework remotely is to send 
-            HTTP POST payloads to the core adaptor and specify which adaptive functions 
+            HTTP POST payloads to the core adapter and specify which adaptive functions 
             and parameters you'd like to interact with. This method requires clients 
             to generate and receive payloads, but it offers some 
             functionality that's not available through traditional REST. For example, 
-            you can invoke any adaptive function through, not just adaptor session ones.  
-            To use this technique, simply use HTTP POST actions to the Core adaptor, 
+            you can invoke any adaptive function through, not just adapter session ones.  
+            To use this technique, simply use HTTP POST actions to the Core adapter, 
             <literal>afw</literal>, along with a payload to instruct the server which 
             adaptive function to invoke and all of its parameters.
         </paragraph>
@@ -128,7 +128,7 @@
         <code>{
     "actions": [
         {
-            "adaptorId": &lt;adaptorId&gt;,
+            "adapterId": &lt;adapterId&gt;,
             "function": &lt;adaptive_function_id&gt;
             &lt;parameters...&gt;
         },

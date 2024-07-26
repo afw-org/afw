@@ -63,15 +63,15 @@ struct afw_model_internal_context_s {
 
     /* Next 6 set in afw_model_internal_create_skeleton_context() */
     const afw_pool_t *p;
-    afw_model_internal_adaptor_session_self_t *session_self;
-    const afw_adaptor_impl_request_t *impl_request;
+    afw_model_internal_adapter_session_self_t *session_self;
+    const afw_adapter_impl_request_t *impl_request;
     const afw_context_cb_variable_t * const *current_variables;
     const afw_model_object_type_t *model_object_type;
     const afw_query_criteria_t *criteria;
-    const afw_object_t *adaptorTypeSpecific;
+    const afw_object_t *adapterTypeSpecific;
     afw_runtime_object_indirect_t runtime_object_level;
     afw_runtime_object_indirect_t runtime_property_level;
-    afw_boolean_t from_adaptor;
+    afw_boolean_t from_adapter;
     afw_boolean_t process_initial_values;
 
     const afw_object_t *object;
@@ -82,13 +82,13 @@ struct afw_model_internal_context_s {
 
     /*
      * Next two set in context by
-     * afw_model_internal_create_to_adaptor_skeleton_context().
+     * afw_model_internal_create_to_adapter_skeleton_context().
      */
     const afw_utf8_t *mapped_object_type_id;
     const afw_utf8_t *mapped_object_id;
  
     const afw_value_t *object_value;
-    const afw_value_t *adaptor_id_value;
+    const afw_value_t *adapter_id_value;
     const afw_value_t *object_type_id_value;
     const afw_value_t *object_id_value;
 
@@ -96,7 +96,7 @@ struct afw_model_internal_context_s {
     const afw_value_t *mapped_object_type_id_value;
     const afw_value_t *mapped_object_id_value;
 
-    const afw_value_t *adaptorTypeSpecific_value;  /* From adaptorTypeSpecific. */
+    const afw_value_t *adapterTypeSpecific_value;  /* From adapterTypeSpecific. */
     const afw_value_t *mapObject_value;            /* mapObject function. */
     const afw_value_t *mapBackObject_value;        /* mapBackObject function. */
     const afw_value_t *queryCriteria_value;        /* From criteria. */
@@ -105,7 +105,7 @@ struct afw_model_internal_context_s {
 
 
     /** @brief Original entries for modify. */
-    const afw_adaptor_modify_entry_t * const *modify_entries;
+    const afw_adapter_modify_entry_t * const *modify_entries;
 
     /** @brief Original entries for modify as list value. */
     const afw_value_t *modify_entries_value;
@@ -339,19 +339,19 @@ struct afw_model_internal_property_type_s {
      *
      * This is an optional additional uniqueness boolean test expression
      * that can be used to test if a value is unique.  If not specified,
-     * it up to the adaptor to determine if value is unique.
+     * it up to the adapter to determine if value is unique.
      *
      */
     const afw_value_t *uniqueness_test;
 };
 
 
-struct afw_model_internal_adaptor_self_s {
-    afw_adaptor_t pub;
+struct afw_model_internal_adapter_self_s {
+    afw_adapter_t pub;
 
-    const afw_utf8_t *model_location_adaptor_id;
+    const afw_utf8_t *model_location_adapter_id;
 
-    const afw_utf8_t *mapped_adaptor_id;
+    const afw_utf8_t *mapped_adapter_id;
 
     const afw_utf8_t *model_id;
 
@@ -361,7 +361,7 @@ struct afw_model_internal_adaptor_self_s {
     /** @brief mappedPropertyName or NULL. */
     const afw_value_t *mapped_property_name;
 
-    const afw_value_t *mappedAdaptorId_value;
+    const afw_value_t *mappedAdapterId_value;
 
     const afw_value_t *mapBackObject_signature;
 
@@ -382,20 +382,20 @@ struct afw_model_internal_adaptor_self_s {
 };
 
 
-struct afw_model_internal_adaptor_session_self_s {
-    afw_adaptor_session_t pub;
-    afw_model_internal_adaptor_self_t *adaptor;
-    const afw_adaptor_t *model_location_adaptor;
+struct afw_model_internal_adapter_session_self_s {
+    afw_adapter_session_t pub;
+    afw_model_internal_adapter_self_t *adapter;
+    const afw_adapter_t *model_location_adapter;
     const afw_model_t *model;   
-    afw_adaptor_object_type_cache_t object_type_cache;
+    afw_adapter_object_type_cache_t object_type_cache;
 };
 
 
 /* Object callback context. */
 typedef struct afw_model_internal_object_cb_context_s {
     const afw_pool_t *p;
-    afw_model_internal_adaptor_session_self_t *session;
-    const afw_adaptor_impl_request_t *impl_request;
+    afw_model_internal_adapter_session_self_t *session;
+    const afw_adapter_impl_request_t *impl_request;
     void * original_context;
     afw_object_cb_t original_callback;
     const afw_value_t *original_callback_mode;
@@ -414,7 +414,7 @@ afw_model_internal_register_context_type_model(afw_xctx_t *xctx);
  * initialized before call.
  */
 AFW_DECLARE_INTERNAL(const afw_object_t *)
-afw_model_internal_create_basic_to_adaptor_mapped_object(
+afw_model_internal_create_basic_to_adapter_mapped_object(
     afw_model_internal_context_t *ctx,
     afw_xctx_t *xctx);
     
@@ -422,19 +422,19 @@ AFW_DECLARE_INTERNAL(afw_model_internal_context_t *)
 afw_model_internal_create_skeleton_context(
     afw_runtime_object_indirect_t *runtime_object_level_skeleton,
     const afw_context_cb_variable_t * const *current_variables,
-    afw_model_internal_adaptor_session_self_t *self_session,
-    const afw_adaptor_impl_request_t *impl_request,
+    afw_model_internal_adapter_session_self_t *self_session,
+    const afw_adapter_impl_request_t *impl_request,
     const afw_model_object_type_t *model_object_type,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 
 AFW_DECLARE_INTERNAL(afw_model_internal_context_t *)
-afw_model_internal_create_to_adaptor_skeleton_context(
-    afw_model_internal_adaptor_session_self_t *self,
+afw_model_internal_create_to_adapter_skeleton_context(
+    afw_model_internal_adapter_session_self_t *self,
     afw_runtime_object_indirect_t *runtime_object_level_skeleton,
     const afw_model_t *model,
-    const afw_adaptor_impl_request_t *impl_request,
+    const afw_adapter_impl_request_t *impl_request,
     const afw_utf8_t *object_type_id,
     const afw_utf8_t *object_id,
     afw_xctx_t *xctx);

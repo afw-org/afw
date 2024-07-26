@@ -8,7 +8,7 @@ import {AppError} from "./AppError";
  * AppCoreProvider
  * 
  * This component loads and provides all core objects, data types, functions, 
- * extensions, adaptors, services and other pieces of Adaptive Framework that 
+ * extensions, adapters, services and other pieces of Adaptive Framework that 
  * will be used throughout the administrative app.
  * 
  */
@@ -32,7 +32,7 @@ export const AppCoreProvider = ({ children }) => {
         refresh();
     };
 
-    const reloadAdaptors = async () => {
+    const reloadAdapters = async () => {
         refresh();
     };
 
@@ -46,7 +46,7 @@ export const AppCoreProvider = ({ children }) => {
         error, 
         reloadApp, 
         reloadServices, 
-        reloadAdaptors 
+        reloadAdapters 
     };
 
     /* wait for appData to load before loading anything else */

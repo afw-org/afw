@@ -47,22 +47,22 @@ AFW_DECLARE(const afw_value_function_definition_t **)
 afw_function_bindings_get();
 
 
-/** @addtogroup afw_functions_adaptor adaptor functions
+/** @addtogroup afw_functions_adapter adapter functions
  *
- * adaptor adaptive functions.
+ * adapter adaptive functions.
  *
  * @{
  */
 
-/** @brief Function definition adaptor_objectCallback_signature */
+/** @brief Function definition adapter_objectCallback_signature */
 AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_adaptor_objectCallback_signature;
+afw_function_definition_adapter_objectCallback_signature;
 
 /**
- * @brief Adaptive Function `adaptor_objectCallback_signature`
+ * @brief Adaptive Function `adapter_objectCallback_signature`
  * @param x function execute parameter.
  *
- * This is the function signature for the objectCallback parameter in adaptor
+ * This is the function signature for the objectCallback parameter in adapter
  * functions. Calling this directly will throw a 'Do not call directly' error.
  *
  * This function is not pure, so it may return a different result
@@ -71,7 +71,7 @@ afw_function_definition_adaptor_objectCallback_signature;
  * Declaration:
  *
  * ```
- *   function adaptor_objectCallback_signature(
+ *   function adapter_objectCallback_signature(
  *       object: object,
  *       userData?: any
  *   ): boolean;
@@ -79,7 +79,7 @@ afw_function_definition_adaptor_objectCallback_signature;
  *
  * Parameters:
  *
- *   object - (object) This is the object from adaptor or undefined if there are
+ *   object - (object) This is the object from adapter or undefined if there are
  *       no more objects to return.
  *
  *   userData - (optional any) This is the value of the userData parameter when
@@ -91,7 +91,7 @@ afw_function_definition_adaptor_objectCallback_signature;
  *       reason such a limit exceeded or the desired object being found.
  */
 const afw_value_t *
-afw_function_execute_adaptor_objectCallback_signature(
+afw_function_execute_adapter_objectCallback_signature(
     afw_function_execute_t *x);
 
 /** @brief Function definition add_object */
@@ -102,9 +102,9 @@ afw_function_definition_add_object;
  * @brief Adaptive Function `add_object`
  * @param x function execute parameter.
  *
- * Add an adaptive object to an adaptor, specified by the adaptorId, with a
+ * Add an adaptive object to an adapter, specified by the adapterId, with a
  * specified objectType. You may supply an optional objectId, if the underlying
- * adaptorId allows it.
+ * adapterId allows it.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
@@ -113,44 +113,44 @@ afw_function_definition_add_object;
  *
  * ```
  *   function add_object(
- *       adaptorId: string,
+ *       adapterId: string,
  *       objectType: string,
  *       object: object,
  *       objectId?: string,
  *       journal?: object,
- *       adaptorTypeSpecific?: object
+ *       adapterTypeSpecific?: object
  *   ): (object _AdaptiveJournalEntry_);
  * ```
  *
  * Parameters:
  *
- *   adaptorId - (string) Id of adaptor.
+ *   adapterId - (string) Id of adapter.
  *
  *   objectType - (string) Id of adaptive object type of object being added.
  *
  *   object - (object) Object to add.
  *
  *   objectId - (optional string) Optional preferred objectId of object to add.
- *       The adaptor may ignore this.
+ *       The adapter may ignore this.
  *
  *   journal - (optional object) The properties of this object will be added to
  *       the associated journal entry. Refer to
  *       /afw/_AdaptiveObjectType_/_AdaptiveJournalEntry_ for property names to
  *       avoid and for ones that have specific semantics.
  *
- *   adaptorTypeSpecific - (optional object) This is an optional object
- *       parameter with an objectType determined by the adaptorType associated
- *       with the adaptorId parameter. If the adaptorType supports this
- *       parameter, adaptor afw will have an adaptive object type with an id of:
+ *   adapterTypeSpecific - (optional object) This is an optional object
+ *       parameter with an objectType determined by the adapterType associated
+ *       with the adapterId parameter. If the adapterType supports this
+ *       parameter, adapter afw will have an adaptive object type with an id of:
  * 
- *       _AdaptiveAdaptorTypeSpecific_${adaptorType}_add_object
+ *       _AdaptiveAdapterTypeSpecific_${adapterType}_add_object
  * 
- *       where ${adaptorType} is the adaptor type id.
+ *       where ${adapterType} is the adapter type id.
  *
  * Returns:
  *
  *   (object _AdaptiveJournalEntry_) Resulting journal entry. Property
- *       'objectId' is the objectId assigned by the adaptor.
+ *       'objectId' is the objectId assigned by the adapter.
  */
 const afw_value_t *
 afw_function_execute_add_object(
@@ -176,7 +176,7 @@ afw_function_definition_add_object_with_uri;
  *       uri: anyURI,
  *       object: object,
  *       journal?: object,
- *       adaptorTypeSpecific?: object
+ *       adapterTypeSpecific?: object
  *   ): (object _AdaptiveJournalEntry_);
  * ```
  *
@@ -185,7 +185,7 @@ afw_function_definition_add_object_with_uri;
  *   uri - (anyURI) URI of object to add. If a URI begins with a single slash
  *       ('/'), it is the local object path. In the case of a local path, an
  *       optional preferred objectId of object can be including in URI which the
- *       adaptor may ignore.
+ *       adapter may ignore.
  *
  *   object - (object) Object to add.
  *
@@ -194,19 +194,19 @@ afw_function_definition_add_object_with_uri;
  *       /afw/_AdaptiveObjectType_/_AdaptiveJournalEntry_ for property names to
  *       avoid and for ones that have specific semantics.
  *
- *   adaptorTypeSpecific - (optional object) This is an optional object
- *       parameter with an objectType determined by the adaptorType associated
- *       with the adaptorId parameter. If the adaptorType supports this
- *       parameter, adaptor afw will have an adaptive object type with an id of:
+ *   adapterTypeSpecific - (optional object) This is an optional object
+ *       parameter with an objectType determined by the adapterType associated
+ *       with the adapterId parameter. If the adapterType supports this
+ *       parameter, adapter afw will have an adaptive object type with an id of:
  * 
- *       _AdaptiveAdaptorTypeSpecific_${adaptorType}_add_object
+ *       _AdaptiveAdapterTypeSpecific_${adapterType}_add_object
  * 
- *       Where ${adaptorType} is the adaptor type id.
+ *       Where ${adapterType} is the adapter type id.
  *
  * Returns:
  *
  *   (object _AdaptiveJournalEntry_) Resulting journal entry. Property
- *       'objectId' is the objectId assigned by the adaptor.
+ *       'objectId' is the objectId assigned by the adapter.
  */
 const afw_value_t *
 afw_function_execute_add_object_with_uri(
@@ -230,7 +230,7 @@ afw_function_definition_convert_AdaptiveQueryCriteria_to_query_string;
  * ```
  *   function convert_AdaptiveQueryCriteria_to_query_string(
  *       queryCriteria: (object _AdaptiveQueryCriteria_),
- *       adaptorId?: string,
+ *       adapterId?: string,
  *       objectType?: string,
  *       style?: integer
  *   ): string;
@@ -241,13 +241,13 @@ afw_function_definition_convert_AdaptiveQueryCriteria_to_query_string;
  *   queryCriteria - (object _AdaptiveQueryCriteria_) An object type
  *       _AdaptiveQueryCriteria_ object.
  *
- *   adaptorId - (optional string) This is the adaptorId of adaptor containing
+ *   adapterId - (optional string) This is the adapterId of adapter containing
  *       the objectType for validating and mapping this query. If not specified,
  *       no validation or mapping will occur.
  *
  *   objectType - (optional string) This is the objectType used in conjunction
- *       with the adaptorId parameter. This parameter is only allowed and is
- *       required if the adaptorId parameter is specified.
+ *       with the adapterId parameter. This parameter is only allowed and is
+ *       required if the adapterId parameter is specified.
  *
  *   style - (optional integer) The style of the query string produced. All of
  *       the styles are appropriately url encoded.
@@ -291,7 +291,7 @@ afw_function_definition_convert_query_string_to_AdaptiveQueryCriteria;
  * ```
  *   function convert_query_string_to_AdaptiveQueryCriteria(
  *       queryString: string,
- *       adaptorId?: string,
+ *       adapterId?: string,
  *       objectType?: string
  *   ): (object _AdaptiveQueryCriteria_);
  * ```
@@ -300,13 +300,13 @@ afw_function_definition_convert_query_string_to_AdaptiveQueryCriteria;
  *
  *   queryString - (string) The query string to convert.
  *
- *   adaptorId - (optional string) This is the adaptorId of adaptor containing
+ *   adapterId - (optional string) This is the adapterId of adapter containing
  *       the objectType for validating and mapping this query. If not specified,
  *       no validation or mapping will occur.
  *
  *   objectType - (optional string) This is the objectType used in conjunction
- *       with the adaptorId parameter. This parameter is only allowed and is
- *       required if the adaptorId parameter is specified.
+ *       with the adapterId parameter. This parameter is only allowed and is
+ *       required if the adapterId parameter is specified.
  *
  * Returns:
  *
@@ -334,17 +334,17 @@ afw_function_definition_delete_object;
  *
  * ```
  *   function delete_object(
- *       adaptorId: string,
+ *       adapterId: string,
  *       objectType: string,
  *       objectId: string,
  *       journal?: object,
- *       adaptorTypeSpecific?: object
+ *       adapterTypeSpecific?: object
  *   ): (object _AdaptiveJournalEntry_);
  * ```
  *
  * Parameters:
  *
- *   adaptorId - (string) Id of adaptor containing object to delete.
+ *   adapterId - (string) Id of adapter containing object to delete.
  *
  *   objectType - (string) Id of adaptive object type of object to delete.
  *
@@ -355,14 +355,14 @@ afw_function_definition_delete_object;
  *       /afw/_AdaptiveObjectType_/_AdaptiveJournalEntry_ for property names to
  *       avoid and for ones that have specific semantics.
  *
- *   adaptorTypeSpecific - (optional object) This is an optional object
- *       parameter with an objectType determined by the adaptorType associated
- *       with the adaptorId parameter. If the adaptorType supports this
- *       parameter, adaptor afw will have an adaptive object type with an id of:
+ *   adapterTypeSpecific - (optional object) This is an optional object
+ *       parameter with an objectType determined by the adapterType associated
+ *       with the adapterId parameter. If the adapterType supports this
+ *       parameter, adapter afw will have an adaptive object type with an id of:
  * 
- *       _AdaptiveAdaptorTypeSpecific_${adaptorType}_delete_object
+ *       _AdaptiveAdapterTypeSpecific_${adapterType}_delete_object
  * 
- *       where ${adaptorType} is the adaptor type id.
+ *       where ${adapterType} is the adapter type id.
  *
  * Returns:
  *
@@ -391,7 +391,7 @@ afw_function_definition_delete_object_with_uri;
  *   function delete_object_with_uri(
  *       uri: anyURI,
  *       journal?: object,
- *       adaptorTypeSpecific?: object
+ *       adapterTypeSpecific?: object
  *   ): (object _AdaptiveJournalEntry_);
  * ```
  *
@@ -405,14 +405,14 @@ afw_function_definition_delete_object_with_uri;
  *       /afw/_AdaptiveObjectType_/_AdaptiveJournalEntry_ for property names to
  *       avoid and for ones that have specific semantics.
  *
- *   adaptorTypeSpecific - (optional object) This is an optional object
- *       parameter with an objectType determined by the adaptorType associated
- *       with the adaptorId parameter. If the adaptorType supports this
- *       parameter, adaptor afw will have an adaptive object type with an id of:
+ *   adapterTypeSpecific - (optional object) This is an optional object
+ *       parameter with an objectType determined by the adapterType associated
+ *       with the adapterId parameter. If the adapterType supports this
+ *       parameter, adapter afw will have an adaptive object type with an id of:
  * 
- *       _AdaptiveAdaptorTypeSpecific_${adaptorType}_delete_object
+ *       _AdaptiveAdapterTypeSpecific_${adapterType}_delete_object
  * 
- *       where ${adaptorType} is the adaptor type id.
+ *       where ${adapterType} is the adapter type id.
  *
  * Returns:
  *
@@ -430,8 +430,8 @@ afw_function_definition_get_object;
  * @brief Adaptive Function `get_object`
  * @param x function execute parameter.
  *
- * Get an adaptive object from the adaptor, specified by adaptorId, objectType
- * and objectId. Optional view options and adaptor-specific options may be
+ * Get an adaptive object from the adapter, specified by adapterId, objectType
+ * and objectId. Optional view options and adapter-specific options may be
  * supplied to influence how the object is returned.
  *
  * This function is not pure, so it may return a different result
@@ -441,17 +441,17 @@ afw_function_definition_get_object;
  *
  * ```
  *   function get_object(
- *       adaptorId: string,
+ *       adapterId: string,
  *       objectType: string,
  *       objectId: string,
  *       options?: (object _AdaptiveObjectOptions_),
- *       adaptorTypeSpecific?: object
+ *       adapterTypeSpecific?: object
  *   ): object;
  * ```
  *
  * Parameters:
  *
- *   adaptorId - (string) Id of adaptor containing object to retrieve.
+ *   adapterId - (string) Id of adapter containing object to retrieve.
  *
  *   objectType - (string) Id of adaptive object type of object to retrieve.
  *
@@ -461,14 +461,14 @@ afw_function_definition_get_object;
  *       See /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for more
  *       information.
  *
- *   adaptorTypeSpecific - (optional object) This is an optional object
- *       parameter with an objectType determined by the adaptorType associated
- *       with the adaptorId parameter. If the adaptorType supports this
- *       parameter, adaptor afw will have an adaptive object type with an id of:
+ *   adapterTypeSpecific - (optional object) This is an optional object
+ *       parameter with an objectType determined by the adapterType associated
+ *       with the adapterId parameter. If the adapterType supports this
+ *       parameter, adapter afw will have an adaptive object type with an id of:
  * 
- *       _AdaptiveAdaptorTypeSpecific_${adaptorType}_get_object
+ *       _AdaptiveAdapterTypeSpecific_${adapterType}_get_object
  * 
- *       Where ${adaptorType} is the adaptor type id.
+ *       Where ${adapterType} is the adapter type id.
  *
  * Returns:
  *
@@ -497,7 +497,7 @@ afw_function_definition_get_object_with_uri;
  *   function get_object_with_uri(
  *       uri: anyURI,
  *       options?: (object _AdaptiveObjectOptions_),
- *       adaptorTypeSpecific?: object
+ *       adapterTypeSpecific?: object
  *   ): object;
  * ```
  *
@@ -510,14 +510,14 @@ afw_function_definition_get_object_with_uri;
  *       See /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for more
  *       information.
  *
- *   adaptorTypeSpecific - (optional object) This is an optional object
- *       parameter with an objectType determined by the adaptorType associated
- *       with the adaptorId parameter. If the adaptorType supports this
- *       parameter, adaptor afw will have an adaptive object type with an id of:
+ *   adapterTypeSpecific - (optional object) This is an optional object
+ *       parameter with an objectType determined by the adapterType associated
+ *       with the adapterId parameter. If the adapterType supports this
+ *       parameter, adapter afw will have an adaptive object type with an id of:
  * 
- *       _AdaptiveAdaptorTypeSpecific_${adaptorType}_get_object
+ *       _AdaptiveAdapterTypeSpecific_${adapterType}_get_object
  * 
- *       where ${adaptorType} is the adaptor type id.
+ *       where ${adapterType} is the adapter type id.
  *
  * Returns:
  *
@@ -544,18 +544,18 @@ afw_function_definition_modify_object;
  *
  * ```
  *   function modify_object(
- *       adaptorId: string,
+ *       adapterId: string,
  *       objectType: string,
  *       objectId: string,
  *       entries: array,
  *       journal?: object,
- *       adaptorTypeSpecific?: object
+ *       adapterTypeSpecific?: object
  *   ): (object _AdaptiveJournalEntry_);
  * ```
  *
  * Parameters:
  *
- *   adaptorId - (string) Id of adaptor containing object to modify.
+ *   adapterId - (string) Id of adapter containing object to modify.
  *
  *   objectType - (string) Id of adaptive object type of object to modify.
  *
@@ -591,14 +591,14 @@ afw_function_definition_modify_object;
  *       /afw/_AdaptiveObjectType_/_AdaptiveJournalEntry_ for property names to
  *       avoid and for ones that have specific semantics.
  *
- *   adaptorTypeSpecific - (optional object) This is an optional object
- *       parameter with an objectType determined by the adaptorType associated
- *       with the adaptorId parameter. If the adaptorType supports this
- *       parameter, adaptor afw will have an adaptive object type with an id of:
+ *   adapterTypeSpecific - (optional object) This is an optional object
+ *       parameter with an objectType determined by the adapterType associated
+ *       with the adapterId parameter. If the adapterType supports this
+ *       parameter, adapter afw will have an adaptive object type with an id of:
  * 
- *       _AdaptiveAdaptorTypeSpecific_${adaptorType}_modify_object
+ *       _AdaptiveAdapterTypeSpecific_${adapterType}_modify_object
  * 
- *       Where ${adaptorType} is the adaptor type id.
+ *       Where ${adapterType} is the adapter type id.
  *
  * Returns:
  *
@@ -628,7 +628,7 @@ afw_function_definition_modify_object_with_uri;
  *       uri: anyURI,
  *       entries: array,
  *       journal?: object,
- *       adaptorTypeSpecific?: object
+ *       adapterTypeSpecific?: object
  *   ): (object _AdaptiveJournalEntry_);
  * ```
  *
@@ -668,14 +668,14 @@ afw_function_definition_modify_object_with_uri;
  *       /afw/_AdaptiveObjectType_/_AdaptiveJournalEntry_ for property names to
  *       avoid and for ones that have specific semantics.
  *
- *   adaptorTypeSpecific - (optional object) This is an optional object
- *       parameter with an objectType determined by the adaptorType associated
- *       with the adaptorId parameter. If the adaptorType supports this
- *       parameter, adaptor afw will have an adaptive object type with an id of:
+ *   adapterTypeSpecific - (optional object) This is an optional object
+ *       parameter with an objectType determined by the adapterType associated
+ *       with the adapterId parameter. If the adapterType supports this
+ *       parameter, adapter afw will have an adaptive object type with an id of:
  * 
- *       _AdaptiveAdaptorTypeSpecific_${adaptorType}_modify_object
+ *       _AdaptiveAdapterTypeSpecific_${adapterType}_modify_object
  * 
- *       Where ${adaptorType} is the adaptor type id.
+ *       Where ${adapterType} is the adapter type id.
  *
  * Returns:
  *
@@ -743,18 +743,18 @@ afw_function_definition_replace_object;
  *
  * ```
  *   function replace_object(
- *       adaptorId: string,
+ *       adapterId: string,
  *       objectType: string,
  *       objectId: string,
  *       object: object,
  *       journal?: object,
- *       adaptorTypeSpecific?: object
+ *       adapterTypeSpecific?: object
  *   ): (object _AdaptiveJournalEntry_);
  * ```
  *
  * Parameters:
  *
- *   adaptorId - (string) Id of adaptor containing object to replace.
+ *   adapterId - (string) Id of adapter containing object to replace.
  *
  *   objectType - (string) Id of adaptive object type of object to replace.
  *
@@ -767,14 +767,14 @@ afw_function_definition_replace_object;
  *       /afw/_AdaptiveObjectType_/_AdaptiveJournalEntry_ for property names to
  *       avoid and for ones that have specific semantics.
  *
- *   adaptorTypeSpecific - (optional object) This is an optional object
- *       parameter with an objectType determined by the adaptorType associated
- *       with the adaptorId parameter. If the adaptorType supports this
- *       parameter, adaptor afw will have an adaptive object type with an id of:
+ *   adapterTypeSpecific - (optional object) This is an optional object
+ *       parameter with an objectType determined by the adapterType associated
+ *       with the adapterId parameter. If the adapterType supports this
+ *       parameter, adapter afw will have an adaptive object type with an id of:
  * 
- *       _AdaptiveAdaptorTypeSpecific_${adaptorType}_replace_object
+ *       _AdaptiveAdapterTypeSpecific_${adapterType}_replace_object
  * 
- *       Where ${adaptorType} is the adaptor type id.
+ *       Where ${adapterType} is the adapter type id.
  *
  * Returns:
  *
@@ -804,7 +804,7 @@ afw_function_definition_replace_object_with_uri;
  *       uri: anyURI,
  *       object: object,
  *       journal?: object,
- *       adaptorTypeSpecific?: object
+ *       adapterTypeSpecific?: object
  *   ): (object _AdaptiveJournalEntry_);
  * ```
  *
@@ -820,14 +820,14 @@ afw_function_definition_replace_object_with_uri;
  *       /afw/_AdaptiveObjectType_/_AdaptiveJournalEntry_ for property names to
  *       avoid and for ones that have specific semantics.
  *
- *   adaptorTypeSpecific - (optional object) This is an optional object
- *       parameter with an objectType determined by the adaptorType associated
- *       with the adaptorId parameter. If the adaptorType supports this
- *       parameter, adaptor afw will have an adaptive object type with an id of:
+ *   adapterTypeSpecific - (optional object) This is an optional object
+ *       parameter with an objectType determined by the adapterType associated
+ *       with the adapterId parameter. If the adapterType supports this
+ *       parameter, adapter afw will have an adaptive object type with an id of:
  * 
- *       _AdaptiveAdaptorTypeSpecific_${adaptorType}_replace_object
+ *       _AdaptiveAdapterTypeSpecific_${adapterType}_replace_object
  * 
- *       Where ${adaptorType} is the adaptor type id.
+ *       Where ${adapterType} is the adapter type id.
  *
  * Returns:
  *
@@ -845,13 +845,13 @@ afw_function_definition_retrieve_objects;
  * @brief Adaptive Function `retrieve_objects`
  * @param x function execute parameter.
  *
- * This function retrieves adaptive objects from an adaptor, specified by
- * adaptorId, which match the type specified by objectType.
+ * This function retrieves adaptive objects from an adapter, specified by
+ * adapterId, which match the type specified by objectType.
  * 
  * The optional queryCriteria is used to filter the adaptive objects returned.
  * Use the objectOptions parameter to influence how the objects are viewed.
  * 
- * Options, specific to the adaptorId, can be optionally supplied.
+ * Options, specific to the adapterId, can be optionally supplied.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -860,17 +860,17 @@ afw_function_definition_retrieve_objects;
  *
  * ```
  *   function retrieve_objects(
- *       adaptorId: string,
+ *       adapterId: string,
  *       objectType: string,
  *       queryCriteria?: (object _AdaptiveQueryCriteria_),
  *       options?: (object _AdaptiveObjectOptions_),
- *       adaptorTypeSpecific?: object
+ *       adapterTypeSpecific?: object
  *   ): array;
  * ```
  *
  * Parameters:
  *
- *   adaptorId - (string) Id of adaptor containing objects to retrieve.
+ *   adapterId - (string) Id of adapter containing objects to retrieve.
  *
  *   objectType - (string) Id of adaptive object type of objects to retrieve.
  *
@@ -882,14 +882,14 @@ afw_function_definition_retrieve_objects;
  *       See /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for more
  *       information.
  *
- *   adaptorTypeSpecific - (optional object) This is an optional object
- *       parameter with an objectType determined by the adaptorType associated
- *       with the adaptorId parameter. If the adaptorType supports this
- *       parameter, adaptor afw will have an adaptive object type with an id of:
+ *   adapterTypeSpecific - (optional object) This is an optional object
+ *       parameter with an objectType determined by the adapterType associated
+ *       with the adapterId parameter. If the adapterType supports this
+ *       parameter, adapter afw will have an adaptive object type with an id of:
  * 
- *       _AdaptiveAdaptorTypeSpecific_${adaptorType}_retrieve_objects
+ *       _AdaptiveAdapterTypeSpecific_${adapterType}_retrieve_objects
  * 
- *       Where ${adaptorType} is the adaptor type id.
+ *       Where ${adapterType} is the adapter type id.
  *
  * Returns:
  *
@@ -907,15 +907,15 @@ afw_function_definition_retrieve_objects_to_callback;
  * @brief Adaptive Function `retrieve_objects_to_callback`
  * @param x function execute parameter.
  *
- * This function retrieves adaptive objects from an adaptor, specified by
- * adaptorId, which match the type specified by objectType.
+ * This function retrieves adaptive objects from an adapter, specified by
+ * adapterId, which match the type specified by objectType.
  * 
  * Each object is passed to the callback as it's retrieved.
  * 
  * The optional queryCriteria is used to filter the adaptive objects returned.
  * Use the objectOptions parameter to influence how the objects are viewed.
  * 
- * Options, specific to the adaptorId, can be optionally supplied.
+ * Options, specific to the adapterId, can be optionally supplied.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -926,11 +926,11 @@ afw_function_definition_retrieve_objects_to_callback;
  *   function retrieve_objects_to_callback(
  *       objectCallback: (function (object: object, userData: any): boolean),
  *       userData: any,
- *       adaptorId: string,
+ *       adapterId: string,
  *       objectType: string,
  *       queryCriteria?: (object _AdaptiveQueryCriteria_),
  *       options?: (object _AdaptiveObjectOptions_),
- *       adaptorTypeSpecific?: object
+ *       adapterTypeSpecific?: object
  *   ): void;
  * ```
  *
@@ -946,7 +946,7 @@ afw_function_definition_retrieve_objects_to_callback;
  *   userData - (any dataType) This value is passed to the objectCallback
  *       function in the userData parameter.
  *
- *   adaptorId - (string) Id of adaptor containing objects to retrieve.
+ *   adapterId - (string) Id of adapter containing objects to retrieve.
  *
  *   objectType - (string) Id of adaptive object type of objects to retrieve.
  *
@@ -958,15 +958,15 @@ afw_function_definition_retrieve_objects_to_callback;
  *       See /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for more
  *       information.
  *
- *   adaptorTypeSpecific - (optional object) This is an optional object
- *       parameter with an objectType determined by the adaptorType associated
- *       with the adaptorId parameter. If the adaptorType supports this
- *       parameter, adaptor afw will have an adaptive object type with an id of:
+ *   adapterTypeSpecific - (optional object) This is an optional object
+ *       parameter with an objectType determined by the adapterType associated
+ *       with the adapterId parameter. If the adapterType supports this
+ *       parameter, adapter afw will have an adaptive object type with an id of:
  * 
  *       
- *       _AdaptiveAdaptorTypeSpecific_${adaptorType}_retrieve_objects_to_callback
+ *       _AdaptiveAdapterTypeSpecific_${adapterType}_retrieve_objects_to_callback
  * 
- *       Where ${adaptorType} is the adaptor type id.
+ *       Where ${adapterType} is the adapter type id.
  *
  * Returns:
  *
@@ -984,8 +984,8 @@ afw_function_definition_retrieve_objects_to_response;
  * @brief Adaptive Function `retrieve_objects_to_response`
  * @param x function execute parameter.
  *
- * This function retrieves adaptive objects from an adaptor, specified by
- * adaptorId, which match the type specified by objectType.
+ * This function retrieves adaptive objects from an adapter, specified by
+ * adapterId, which match the type specified by objectType.
  * 
  * This function is only allowed when called during a request with content type
  * 'application/x-afw'. An '_AdaptiveResponse_' object is written to the
@@ -996,7 +996,7 @@ afw_function_definition_retrieve_objects_to_response;
  * The optional queryCriteria is used to filter the adaptive objects returned.
  * Use the objectOptions parameter to influence how the objects are viewed.
  * 
- * Options, specific to the adaptorId, can be optionally supplied.
+ * Options, specific to the adapterId, can be optionally supplied.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -1005,17 +1005,17 @@ afw_function_definition_retrieve_objects_to_response;
  *
  * ```
  *   function retrieve_objects_to_response(
- *       adaptorId: string,
+ *       adapterId: string,
  *       objectType: string,
  *       queryCriteria?: (object _AdaptiveQueryCriteria_),
  *       options?: (object _AdaptiveObjectOptions_),
- *       adaptorTypeSpecific?: object
+ *       adapterTypeSpecific?: object
  *   ): void;
  * ```
  *
  * Parameters:
  *
- *   adaptorId - (string) Id of adaptor containing objects to retrieve.
+ *   adapterId - (string) Id of adapter containing objects to retrieve.
  *
  *   objectType - (string) Id of adaptive object type of objects to retrieve.
  *
@@ -1027,14 +1027,14 @@ afw_function_definition_retrieve_objects_to_response;
  *       See /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for more
  *       information.
  *
- *   adaptorTypeSpecific - (optional object) This is an optional object
- *       parameter with an objectType determined by the adaptorType associated
- *       with the adaptorId parameter. If the adaptorType supports this
- *       parameter, adaptor afw will have an adaptive object type with an id of:
+ *   adapterTypeSpecific - (optional object) This is an optional object
+ *       parameter with an objectType determined by the adapterType associated
+ *       with the adapterId parameter. If the adapterType supports this
+ *       parameter, adapter afw will have an adaptive object type with an id of:
  * 
- *       _AdaptiveAdaptorTypeSpecific_${adaptorType}_retrieve_objects
+ *       _AdaptiveAdapterTypeSpecific_${adapterType}_retrieve_objects
  * 
- *       Where ${adaptorType} is the adaptor type id.
+ *       Where ${adapterType} is the adapter type id.
  *
  * Returns:
  *
@@ -1052,15 +1052,15 @@ afw_function_definition_retrieve_objects_to_stream;
  * @brief Adaptive Function `retrieve_objects_to_stream`
  * @param x function execute parameter.
  *
- * This function retrieves adaptive objects from an adaptor, specified by
- * adaptorId, which match the type specified by objectType.
+ * This function retrieves adaptive objects from an adapter, specified by
+ * adapterId, which match the type specified by objectType.
  * 
  * Each object is written to the 'streamId' stream as it's retrieved.
  * 
  * The optional queryCriteria is used to filter the adaptive objects returned.
  * Use the objectOptions parameter to influence how the objects are viewed.
  * 
- * Options, specific to the adaptorId, can be optionally supplied.
+ * Options, specific to the adapterId, can be optionally supplied.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -1070,11 +1070,11 @@ afw_function_definition_retrieve_objects_to_stream;
  * ```
  *   function retrieve_objects_to_stream(
  *       streamNumber: integer,
- *       adaptorId: string,
+ *       adapterId: string,
  *       objectType: string,
  *       queryCriteria?: (object _AdaptiveQueryCriteria_),
  *       options?: (object _AdaptiveObjectOptions_),
- *       adaptorTypeSpecific?: object
+ *       adapterTypeSpecific?: object
  *   ): void;
  * ```
  *
@@ -1083,7 +1083,7 @@ afw_function_definition_retrieve_objects_to_stream;
  *   streamNumber - (integer) Stream number objects will be written to as they
  *       are retrieved.
  *
- *   adaptorId - (string) Id of adaptor containing objects to retrieve.
+ *   adapterId - (string) Id of adapter containing objects to retrieve.
  *
  *   objectType - (string) Id of adaptive object type of objects to retrieve.
  *
@@ -1095,14 +1095,14 @@ afw_function_definition_retrieve_objects_to_stream;
  *       See /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for more
  *       information.
  *
- *   adaptorTypeSpecific - (optional object) This is an optional object
- *       parameter with an objectType determined by the adaptorType associated
- *       with the adaptorId parameter. If the adaptorType supports this
- *       parameter, adaptor afw will have an adaptive object type with an id of:
+ *   adapterTypeSpecific - (optional object) This is an optional object
+ *       parameter with an objectType determined by the adapterType associated
+ *       with the adapterId parameter. If the adapterType supports this
+ *       parameter, adapter afw will have an adaptive object type with an id of:
  * 
- *       _AdaptiveAdaptorTypeSpecific_${adaptorType}_retrieve_objects
+ *       _AdaptiveAdapterTypeSpecific_${adapterType}_retrieve_objects
  * 
- *       Where ${adaptorType} is the adaptor type id.
+ *       Where ${adapterType} is the adapter type id.
  *
  * Returns:
  *
@@ -1125,7 +1125,7 @@ afw_function_definition_retrieve_objects_with_uri;
  * The optional queryCriteria is used to filter the adaptive objects returned.
  * Use the objectOptions parameter to influence how the objects are viewed.
  * 
- * Options, specific to the adaptorId, can be optionally supplied.
+ * Options, specific to the adapterId, can be optionally supplied.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -1136,7 +1136,7 @@ afw_function_definition_retrieve_objects_with_uri;
  *   function retrieve_objects_with_uri(
  *       uri: anyURI,
  *       options?: (object _AdaptiveObjectOptions_),
- *       adaptorTypeSpecific?: object
+ *       adapterTypeSpecific?: object
  *   ): array;
  * ```
  *
@@ -1150,14 +1150,14 @@ afw_function_definition_retrieve_objects_with_uri;
  *       See /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for more
  *       information.
  *
- *   adaptorTypeSpecific - (optional object) This is an optional object
- *       parameter with an objectType determined by the adaptorType associated
- *       with the adaptorId parameter. If the adaptorType supports this
- *       parameter, adaptor afw will have an adaptive object type with an id of:
+ *   adapterTypeSpecific - (optional object) This is an optional object
+ *       parameter with an objectType determined by the adapterType associated
+ *       with the adapterId parameter. If the adapterType supports this
+ *       parameter, adapter afw will have an adaptive object type with an id of:
  * 
- *       _AdaptiveAdaptorTypeSpecific_${adaptorType}_retrieve_objects
+ *       _AdaptiveAdapterTypeSpecific_${adapterType}_retrieve_objects
  * 
- *       Where ${adaptorType} is the adaptor type id.
+ *       Where ${adapterType} is the adapter type id.
  *
  * Returns:
  *
@@ -1182,7 +1182,7 @@ afw_function_definition_retrieve_objects_with_uri_to_callback;
  * The optional queryCriteria is used to filter the adaptive objects returned.
  * Use the objectOptions parameter to influence how the objects are viewed.
  * 
- * Options, specific to the adaptorId, can be optionally supplied.
+ * Options, specific to the adapterId, can be optionally supplied.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -1195,7 +1195,7 @@ afw_function_definition_retrieve_objects_with_uri_to_callback;
  *       userData: any,
  *       uri: anyURI,
  *       options?: (object _AdaptiveObjectOptions_),
- *       adaptorTypeSpecific?: object
+ *       adapterTypeSpecific?: object
  *   ): void;
  * ```
  *
@@ -1219,14 +1219,14 @@ afw_function_definition_retrieve_objects_with_uri_to_callback;
  *       See /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for more
  *       information.
  *
- *   adaptorTypeSpecific - (optional object) This is an optional object
- *       parameter with an objectType determined by the adaptorType associated
- *       with the adaptorId parameter. If the adaptorType supports this
- *       parameter, adaptor afw will have an adaptive object type with an id of:
+ *   adapterTypeSpecific - (optional object) This is an optional object
+ *       parameter with an objectType determined by the adapterType associated
+ *       with the adapterId parameter. If the adapterType supports this
+ *       parameter, adapter afw will have an adaptive object type with an id of:
  * 
- *       _AdaptiveAdaptorTypeSpecific_${adaptorType}_retrieve_objects
+ *       _AdaptiveAdapterTypeSpecific_${adapterType}_retrieve_objects
  * 
- *       Where ${adaptorType} is the adaptor type id.
+ *       Where ${adapterType} is the adapter type id.
  *
  * Returns:
  *
@@ -1255,7 +1255,7 @@ afw_function_definition_retrieve_objects_with_uri_to_response;
  * The optional queryCriteria is used to filter the adaptive objects returned.
  * Use the objectOptions parameter to influence how the objects are viewed.
  * 
- * Options, specific to the adaptorId, can be optionally supplied.
+ * Options, specific to the adapterId, can be optionally supplied.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -1266,7 +1266,7 @@ afw_function_definition_retrieve_objects_with_uri_to_response;
  *   function retrieve_objects_with_uri_to_response(
  *       uri: anyURI,
  *       options?: (object _AdaptiveObjectOptions_),
- *       adaptorTypeSpecific?: object
+ *       adapterTypeSpecific?: object
  *   ): void;
  * ```
  *
@@ -1280,14 +1280,14 @@ afw_function_definition_retrieve_objects_with_uri_to_response;
  *       See /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for more
  *       information.
  *
- *   adaptorTypeSpecific - (optional object) This is an optional object
- *       parameter with an objectType determined by the adaptorType associated
- *       with the adaptorId parameter. If the adaptorType supports this
- *       parameter, adaptor afw will have an adaptive object type with an id of:
+ *   adapterTypeSpecific - (optional object) This is an optional object
+ *       parameter with an objectType determined by the adapterType associated
+ *       with the adapterId parameter. If the adapterType supports this
+ *       parameter, adapter afw will have an adaptive object type with an id of:
  * 
- *       _AdaptiveAdaptorTypeSpecific_${adaptorType}_retrieve_objects
+ *       _AdaptiveAdapterTypeSpecific_${adapterType}_retrieve_objects
  * 
- *       Where ${adaptorType} is the adaptor type id.
+ *       Where ${adapterType} is the adapter type id.
  *
  * Returns:
  *
@@ -1312,7 +1312,7 @@ afw_function_definition_retrieve_objects_with_uri_to_stream;
  * The optional queryCriteria is used to filter the adaptive objects returned.
  * Use the objectOptions parameter to influence how the objects are viewed.
  * 
- * Options, specific to the adaptorId, can be optionally supplied.
+ * Options, specific to the adapterId, can be optionally supplied.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -1324,7 +1324,7 @@ afw_function_definition_retrieve_objects_with_uri_to_stream;
  *       streamNumber: integer,
  *       uri: anyURI,
  *       options?: (object _AdaptiveObjectOptions_),
- *       adaptorTypeSpecific?: object
+ *       adapterTypeSpecific?: object
  *   ): void;
  * ```
  *
@@ -1341,14 +1341,14 @@ afw_function_definition_retrieve_objects_with_uri_to_stream;
  *       See /afw/_AdaptiveObjectType_/_AdaptiveObjectOptions_ for more
  *       information.
  *
- *   adaptorTypeSpecific - (optional object) This is an optional object
- *       parameter with an objectType determined by the adaptorType associated
- *       with the adaptorId parameter. If the adaptorType supports this
- *       parameter, adaptor afw will have an adaptive object type with an id of:
+ *   adapterTypeSpecific - (optional object) This is an optional object
+ *       parameter with an objectType determined by the adapterType associated
+ *       with the adapterId parameter. If the adapterType supports this
+ *       parameter, adapter afw will have an adaptive object type with an id of:
  * 
- *       _AdaptiveAdaptorTypeSpecific_${adaptorType}_retrieve_objects
+ *       _AdaptiveAdapterTypeSpecific_${adapterType}_retrieve_objects
  * 
- *       Where ${adaptorType} is the adaptor type id.
+ *       Where ${adapterType} is the adapter type id.
  *
  * Returns:
  *
@@ -1375,18 +1375,18 @@ afw_function_definition_update_object;
  *
  * ```
  *   function update_object(
- *       adaptorId: string,
+ *       adapterId: string,
  *       objectType: string,
  *       objectId: string,
  *       object: object,
  *       journal?: object,
- *       adaptorTypeSpecific?: object
+ *       adapterTypeSpecific?: object
  *   ): (object _AdaptiveJournalEntry_);
  * ```
  *
  * Parameters:
  *
- *   adaptorId - (string) Id of adaptor containing object to update.
+ *   adapterId - (string) Id of adapter containing object to update.
  *
  *   objectType - (string) Id of adaptive object type of object to update.
  *
@@ -1402,14 +1402,14 @@ afw_function_definition_update_object;
  *       /afw/_AdaptiveObjectType_/_AdaptiveJournalEntry_ for property names to
  *       avoid and for ones that have specific semantics.
  *
- *   adaptorTypeSpecific - (optional object) This is an optional object
- *       parameter with an objectType determined by the adaptorType associated
- *       with the adaptorId parameter. If the adaptorType supports this
- *       parameter, adaptor afw will have an adaptive object type with an id of:
+ *   adapterTypeSpecific - (optional object) This is an optional object
+ *       parameter with an objectType determined by the adapterType associated
+ *       with the adapterId parameter. If the adapterType supports this
+ *       parameter, adapter afw will have an adaptive object type with an id of:
  * 
- *       _AdaptiveAdaptorTypeSpecific_${adaptorType}_modify_object
+ *       _AdaptiveAdapterTypeSpecific_${adapterType}_modify_object
  * 
- *       Where ${adaptorType} is the adaptor type id.
+ *       Where ${adapterType} is the adapter type id.
  *
  * Returns:
  *
@@ -1439,7 +1439,7 @@ afw_function_definition_update_object_with_uri;
  *       uri: anyURI,
  *       object: object,
  *       journal?: object,
- *       adaptorTypeSpecific?: object
+ *       adapterTypeSpecific?: object
  *   ): (object _AdaptiveJournalEntry_);
  * ```
  *
@@ -1458,14 +1458,14 @@ afw_function_definition_update_object_with_uri;
  *       /afw/_AdaptiveObjectType_/_AdaptiveJournalEntry_ for property names to
  *       avoid and for ones that have specific semantics.
  *
- *   adaptorTypeSpecific - (optional object) This is an optional object
- *       parameter with an objectType determined by the adaptorType associated
- *       with the adaptorId parameter. If the adaptorType supports this
- *       parameter, adaptor afw will have an adaptive object type with an id of:
+ *   adapterTypeSpecific - (optional object) This is an optional object
+ *       parameter with an objectType determined by the adapterType associated
+ *       with the adapterId parameter. If the adapterType supports this
+ *       parameter, adapter afw will have an adaptive object type with an id of:
  * 
- *       _AdaptiveAdaptorTypeSpecific_${adaptorType}_modify_object
+ *       _AdaptiveAdapterTypeSpecific_${adapterType}_modify_object
  * 
- *       Where ${adaptorType} is the adaptor type id.
+ *       Where ${adapterType} is the adapter type id.
  *
  * Returns:
  *
@@ -13844,7 +13844,7 @@ afw_function_definition_index_create;
  *
  * ```
  *   function index_create(
- *       adaptorId: string,
+ *       adapterId: string,
  *       key: string,
  *       value?: string,
  *       objectType?: string,
@@ -13857,7 +13857,7 @@ afw_function_definition_index_create;
  *
  * Parameters:
  *
- *   adaptorId - (string) Id of adaptor.
+ *   adapterId - (string) Id of adapter.
  *
  *   key - (string) Name of the property index to be created.
  *
@@ -13900,14 +13900,14 @@ afw_function_definition_index_list;
  *
  * ```
  *   function index_list(
- *       adaptorId: string,
+ *       adapterId: string,
  *       objectType?: string
  *   ): object;
  * ```
  *
  * Parameters:
  *
- *   adaptorId - (string) Id of adaptor.
+ *   adapterId - (string) Id of adapter.
  *
  *   objectType - (optional string) Id of adaptive object type indexes.
  *
@@ -13936,14 +13936,14 @@ afw_function_definition_index_remove;
  *
  * ```
  *   function index_remove(
- *       adaptorId: string,
+ *       adapterId: string,
  *       key: string
  *   ): object;
  * ```
  *
  * Parameters:
  *
- *   adaptorId - (string) Id of adaptor.
+ *   adapterId - (string) Id of adapter.
  *
  *   key - (string) The index key to be removed.
  *
@@ -15737,7 +15737,7 @@ afw_function_definition_journal_advance_cursor_for_consumer;
  *
  * ```
  *   function journal_advance_cursor_for_consumer(
- *       adaptorId: string,
+ *       adapterId: string,
  *       consumerId: string,
  *       limit?: integer
  *   ): object;
@@ -15745,7 +15745,7 @@ afw_function_definition_journal_advance_cursor_for_consumer;
  *
  * Parameters:
  *
- *   adaptorId - (string) Id of adaptor.
+ *   adapterId - (string) Id of adapter.
  *
  *   consumerId - (string) The consumerId property value of the associated
  *       _AdaptiveProvisioningPeer_ object.
@@ -15783,14 +15783,14 @@ afw_function_definition_journal_get_by_cursor;
  *
  * ```
  *   function journal_get_by_cursor(
- *       adaptorId: string,
+ *       adapterId: string,
  *       cursor: string
  *   ): object;
  * ```
  *
  * Parameters:
  *
- *   adaptorId - (string) Id of adaptor.
+ *   adapterId - (string) Id of adapter.
  *
  *   cursor - (string) Journal entry cursor.
  *
@@ -15822,13 +15822,13 @@ afw_function_definition_journal_get_first;
  *
  * ```
  *   function journal_get_first(
- *       adaptorId: string
+ *       adapterId: string
  *   ): object;
  * ```
  *
  * Parameters:
  *
- *   adaptorId - (string) Id of adaptor.
+ *   adapterId - (string) Id of adapter.
  *
  * Returns:
  *
@@ -15859,14 +15859,14 @@ afw_function_definition_journal_get_next_after_cursor;
  *
  * ```
  *   function journal_get_next_after_cursor(
- *       adaptorId: string,
+ *       adapterId: string,
  *       cursor: string
  *   ): object;
  * ```
  *
  * Parameters:
  *
- *   adaptorId - (string) Id of adaptor.
+ *   adapterId - (string) Id of adapter.
  *
  *   cursor - (string) Journal entry cursor.
  *
@@ -15922,7 +15922,7 @@ afw_function_definition_journal_get_next_for_consumer;
  *
  * ```
  *   function journal_get_next_for_consumer(
- *       adaptorId: string,
+ *       adapterId: string,
  *       consumerId: string,
  *       limit?: integer
  *   ): object;
@@ -15930,7 +15930,7 @@ afw_function_definition_journal_get_next_for_consumer;
  *
  * Parameters:
  *
- *   adaptorId - (string) Id of adaptor.
+ *   adapterId - (string) Id of adapter.
  *
  *   consumerId - (string) The consumerId property value of the associated
  *       _AdaptiveProvisioningPeer_ object.
@@ -15978,7 +15978,7 @@ afw_function_definition_journal_get_next_for_consumer_after_cursor;
  *
  * ```
  *   function journal_get_next_for_consumer_after_cursor(
- *       adaptorId: string,
+ *       adapterId: string,
  *       consumerId: string,
  *       cursor: string,
  *       limit?: integer
@@ -15987,7 +15987,7 @@ afw_function_definition_journal_get_next_for_consumer_after_cursor;
  *
  * Parameters:
  *
- *   adaptorId - (string) Id of adaptor.
+ *   adapterId - (string) Id of adapter.
  *
  *   consumerId - (string) The consumerId property value of the associated
  *       _AdaptiveProvisioningPeer_ object.
@@ -16023,7 +16023,7 @@ afw_function_definition_journal_mark_consumed;
  *
  * ```
  *   function journal_mark_consumed(
- *       adaptorId: string,
+ *       adapterId: string,
  *       consumerId: string,
  *       cursor: string
  *   ): void;
@@ -16031,7 +16031,7 @@ afw_function_definition_journal_mark_consumed;
  *
  * Parameters:
  *
- *   adaptorId - (string) Id of adaptor.
+ *   adapterId - (string) Id of adapter.
  *
  *   consumerId - (string) The consumerId property value of the associated
  *       _AdaptiveProvisioningPeer_ object.
@@ -16339,7 +16339,7 @@ afw_function_definition_compare_uri;
  *   isValuePath - (optional boolean) The URIs are adaptive value paths. If one
  *       of the URIs begins with a single slash '/', both must, and each URI
  *       will be parsed as an adaptive value path (example:
- *       /adaptorId/objectType/objectId.propertyNames).
+ *       /adapterId/objectType/objectId.propertyNames).
  *
  *   currentPath - (optional string) If isValuePath is true, this is the current
  *       path that is used to resolve a relative path in the URIs. If
@@ -16680,7 +16680,7 @@ afw_function_definition_parse_uri;
  *   isValuePath - (optional boolean) The URI is an adaptive value path. If the
  *       path begins with a single slash '/', the URI will be parsed as an
  *       adaptive value path (example:
- *       /adaptorId/objectType/objectId.propertyNames).
+ *       /adapterId/objectType/objectId.propertyNames).
  *
  *   currentPath - (optional string) If isValuePath is true, this is the current
  *       path that is used to resolve relative paths. If isValuePath is not
@@ -16910,7 +16910,7 @@ afw_function_definition_model_default_add_object_action;
  *
  * ```
  *   function model_default_add_object_action(
- *       adaptorId: string,
+ *       adapterId: string,
  *       objectType: string,
  *       object: object,
  *       objectId?: string,
@@ -16921,8 +16921,8 @@ afw_function_definition_model_default_add_object_action;
  *
  * Parameters:
  *
- *   adaptorId - (string) This is the adaptorId of a model adaptor. Variable
- *       custom::adaptorId can be used to access this value in model
+ *   adapterId - (string) This is the adapterId of a model adapter. Variable
+ *       custom::adapterId can be used to access this value in model
  *       expressions.
  *
  *   objectType - (string) This is the adaptive object type of object being
@@ -16933,11 +16933,11 @@ afw_function_definition_model_default_add_object_action;
  *       used to access this value in model expressions.
  *
  *   objectId - (optional string) This is the optional preferred objectId of
- *       object to add. The adaptor may ignore this. Variable custom::objectId
+ *       object to add. The adapter may ignore this. Variable custom::objectId
  *       can be used to access this value in model expressions.
  *
  *   modelId - (optional string) This specifics a modelId of model to use for
- *       producing results. If not specified, the adaptor's current model will
+ *       producing results. If not specified, the adapter's current model will
  *       be used.
  *
  *   context - (optional object _AdaptiveContextType_) This specifies additional
@@ -16973,7 +16973,7 @@ afw_function_definition_model_default_delete_object_action;
  *
  * ```
  *   function model_default_delete_object_action(
- *       adaptorId: string,
+ *       adapterId: string,
  *       objectType: string,
  *       objectId: string,
  *       modelId?: string,
@@ -16983,8 +16983,8 @@ afw_function_definition_model_default_delete_object_action;
  *
  * Parameters:
  *
- *   adaptorId - (string) This is the adaptorId of a model adaptor. Variable
- *       custom::adaptorId can be used to access this value in model
+ *   adapterId - (string) This is the adapterId of a model adapter. Variable
+ *       custom::adapterId can be used to access this value in model
  *       expressions.
  *
  *   objectType - (string) This is the adaptive object type of object being
@@ -16995,7 +16995,7 @@ afw_function_definition_model_default_delete_object_action;
  *       custom::object can be used to access this value in model expressions.
  *
  *   modelId - (optional string) This specifics a modelId of model to use for
- *       producing results. If not specified, the adaptor's current model will
+ *       producing results. If not specified, the adapter's current model will
  *       be used.
  *
  *   context - (optional object _AdaptiveContextType_) This specifies additional
@@ -17031,7 +17031,7 @@ afw_function_definition_model_default_modify_object_action;
  *
  * ```
  *   function model_default_modify_object_action(
- *       adaptorId: string,
+ *       adapterId: string,
  *       objectType: string,
  *       objectId: string,
  *       entries: array,
@@ -17042,8 +17042,8 @@ afw_function_definition_model_default_modify_object_action;
  *
  * Parameters:
  *
- *   adaptorId - (string) This is the adaptorId of a model adaptor. Variable
- *       custom::adaptorId can be used to access this value in model
+ *   adapterId - (string) This is the adapterId of a model adapter. Variable
+ *       custom::adapterId can be used to access this value in model
  *       expressions.
  *
  *   objectType - (string) This is the adaptive object type of object being
@@ -17081,7 +17081,7 @@ afw_function_definition_model_default_modify_object_action;
  *           ].
  *
  *   modelId - (optional string) This specifics a modelId of model to use for
- *       producing results. If not specified, the adaptor's current model will
+ *       producing results. If not specified, the adapter's current model will
  *       be used.
  *
  *   context - (optional object _AdaptiveContextType_) This specifies additional
@@ -17117,7 +17117,7 @@ afw_function_definition_model_default_replace_object_action;
  *
  * ```
  *   function model_default_replace_object_action(
- *       adaptorId: string,
+ *       adapterId: string,
  *       objectType: string,
  *       objectId: string,
  *       object: object,
@@ -17128,8 +17128,8 @@ afw_function_definition_model_default_replace_object_action;
  *
  * Parameters:
  *
- *   adaptorId - (string) This is the adaptorId of a model adaptor. Variable
- *       custom::adaptorId can be used to access this value in model
+ *   adapterId - (string) This is the adapterId of a model adapter. Variable
+ *       custom::adapterId can be used to access this value in model
  *       expressions.
  *
  *   objectType - (string) This is the adaptive object type of object being
@@ -17143,7 +17143,7 @@ afw_function_definition_model_default_replace_object_action;
  *       can be used to access this value in model expressions.
  *
  *   modelId - (optional string) This specifics a modelId of model to use for
- *       producing results. If not specified, the adaptor's current model will
+ *       producing results. If not specified, the adapter's current model will
  *       be used.
  *
  *   context - (optional object _AdaptiveContextType_) This specifies additional
@@ -17186,7 +17186,7 @@ afw_function_definition_model_mapBackObject_signature;
  *
  * Returns:
  *
- *   (object) This is the mappedObject mapped back from mapped adaptor object.
+ *   (object) This is the mappedObject mapped back from mapped adapter object.
  */
 const afw_value_t *
 afw_function_execute_model_mapBackObject_signature(
@@ -17221,7 +17221,7 @@ afw_function_definition_model_mapObject_signature;
  *
  * Returns:
  *
- *   (object) This is the object mapped to mappedAdaptor object.
+ *   (object) This is the object mapped to mappedAdapter object.
  */
 const afw_value_t *
 afw_function_execute_model_mapObject_signature(
@@ -17256,7 +17256,7 @@ afw_function_definition_model_returnObject_signature;
  *   object - (object) This is the object to return.
  *
  *   userData - (optional boolean) If this is present and true, the object will
- *       be mapped its mapped adaptor's object type to the model adaptor's
+ *       be mapped its mapped adapter's object type to the model adapter's
  *       object type.
  *
  * Returns:
@@ -18895,7 +18895,7 @@ afw_function_definition_local_object_meta_set_ids;
  * ```
  *   function local_object_meta_set_ids(
  *       object: object,
- *       adaptorId: string,
+ *       adapterId: string,
  *       objectType: string,
  *       objectId: string
  *   ): void;
@@ -18905,7 +18905,7 @@ afw_function_definition_local_object_meta_set_ids;
  *
  *   object - (object) Object to set ids in.
  *
- *   adaptorId - (string) Adaptor id for object.
+ *   adapterId - (string) Adapter id for object.
  *
  *   objectType - (string) Object type id for object.
  *

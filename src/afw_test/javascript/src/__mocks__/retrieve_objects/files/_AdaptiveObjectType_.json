@@ -212,7 +212,7 @@
                 },
                 "runtime": {
                     "label": "Runtime",
-                    "description": "This is only valid for runtime object types.  These are objects that are accessed with adaptorId afw.  See afw_runtime.h for more information.",
+                    "description": "This is only valid for runtime object types.  These are objects that are accessed with adapterId afw.  See afw_runtime.h for more information.",
                     "dataTypeParameter": "_AdaptiveRuntimeObject_",
                     "dataType": "object",
                     "brief": "Runtime information, available to runtime objects"
@@ -256,7 +256,7 @@
                 },
                 "objectIdPropertyName": {
                     "label": "Object Id Property Name",
-                    "description": "The name of the property in an instance that is used as the \"objectId\" property in the meta for instances of this object type.  If not specified, the internal adaptor objectId for an object is used.",
+                    "description": "The name of the property in an instance that is used as the \"objectId\" property in the meta for instances of this object type.  If not specified, the internal adapter objectId for an object is used.",
                     "dataType": "string",
                     "brief": "The name of the property that is used as the \"objectId\" meta property",
                     "allowQuery": true
@@ -285,7 +285,7 @@
                 },
                 "collectionURIs": {
                     "label": "Collection URIs",
-                    "description": "This is the URIs of the collections this object type is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections.  If a collection is used outside of the local instance, it should be a full URI.  The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adaptor.",
+                    "description": "This is the URIs of the collections this object type is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections.  If a collection is used outside of the local instance, it should be a full URI.  The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adapter.",
                     "dataTypeParameter": "anyURI",
                     "dataType": "array",
                     "brief": "The URIs of the collections this object type is a part of",
@@ -327,7 +327,7 @@
                         }
                     },
                     "label": "Allow Delete",
-                    "description": "If false, objects of this type can NEVER be deleted via an adaptor.  If true, objects of this type can be deleted via an adaptor as long as allowed by authorization policy and the adaptor.",
+                    "description": "If false, objects of this type can NEVER be deleted via an adapter.  If true, objects of this type can be deleted via an adapter as long as allowed by authorization policy and the adapter.",
                     "defaultValue": true,
                     "dataType": "boolean",
                     "brief": "Objects of this type can be deleted",
@@ -348,7 +348,7 @@
                         }
                     },
                     "label": "Allow Change",
-                    "description": "If false, objects of this type can NEVER be changed via an adaptor.  If true, objects of this type can be changed via an adaptor as long as allowed by authorization policy and the adaptor.",
+                    "description": "If false, objects of this type can NEVER be changed via an adapter.  If true, objects of this type can be changed via an adapter as long as allowed by authorization policy and the adapter.",
                     "defaultValue": true,
                     "dataType": "boolean",
                     "brief": "Objects of this type can be changed",
@@ -369,7 +369,7 @@
                         }
                     },
                     "label": "Allow Add",
-                    "description": "If false, objects of this type can NEVER be added via an adaptor.  If true, objects of this type can be added via an adaptor as long as allowed by authorization policy and the adaptor.",
+                    "description": "If false, objects of this type can NEVER be added via an adapter.  If true, objects of this type can be added via an adapter as long as allowed by authorization policy and the adapter.",
                     "defaultValue": true,
                     "dataType": "boolean",
                     "brief": "Objects of this type can be created",
@@ -725,7 +725,7 @@
                 },
                 "runtime": {
                     "label": "Runtime",
-                    "description": "This is only valid for runtime object types.  These are objects that are accessed with adaptorId afw.  See afw_runtime.h for more information.",
+                    "description": "This is only valid for runtime object types.  These are objects that are accessed with adapterId afw.  See afw_runtime.h for more information.",
                     "dataTypeParameter": "_AdaptiveRuntimeProperty_",
                     "dataType": "object",
                     "brief": "Runtime information for runtime values",
@@ -844,7 +844,7 @@
                 },
                 "collectionURIs": {
                     "label": "Collection URIs",
-                    "description": "This is the URIs of the collections this value meta is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections.  If a collection is used outside of the local instance, it should be a full URI.  The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adaptor.",
+                    "description": "This is the URIs of the collections this value meta is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections.  If a collection is used outside of the local instance, it should be a full URI.  The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adapter.",
                     "dataTypeParameter": "anyURI",
                     "dataType": "array",
                     "brief": "The URIs of the collection this value meta is a part of",

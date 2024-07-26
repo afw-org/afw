@@ -20,7 +20,7 @@
  */
 
 /**
- * @file afw_adaptor.h
+ * @file afw_adapter.h
  * @brief Header for interface afw_writer* helpers.
  */
 

@@ -27,167 +27,167 @@
 
 
 
-/* Runtime object map properties for _AdaptiveAdaptorMetrics_adaptor_lmdb objects. */
+/* Runtime object map properties for _AdaptiveAdapterMetrics_adapter_lmdb objects. */
 
 static const afw_runtime_object_type_meta_t
-impl_runtime_meta__AdaptiveAdaptorMetrics_adaptor_lmdb = {
-    &afw_lmdb_self_s__AdaptiveAdaptorMetrics_adaptor_lmdb,
+impl_runtime_meta__AdaptiveAdapterMetrics_adapter_lmdb = {
+    &afw_lmdb_self_s__AdaptiveAdapterMetrics_adapter_lmdb,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
 };
 
 AFW_RUNTIME_OBJECT_INF( 
-    afw_runtime_inf__AdaptiveAdaptorMetrics_adaptor_lmdb, 
-    impl_runtime_meta__AdaptiveAdaptorMetrics_adaptor_lmdb);
+    afw_runtime_inf__AdaptiveAdapterMetrics_adapter_lmdb, 
+    impl_runtime_meta__AdaptiveAdapterMetrics_adapter_lmdb);
 
 
-/* Runtime object map properties for _AdaptiveAdaptorMetrics_adaptor_lmdb_information objects. */
+/* Runtime object map properties for _AdaptiveAdapterMetrics_adapter_lmdb_information objects. */
 
 static const afw_runtime_object_type_meta_t
-impl_runtime_meta__AdaptiveAdaptorMetrics_adaptor_lmdb_information = {
-    &afw_lmdb_self_s__AdaptiveAdaptorMetrics_adaptor_lmdb_information,
+impl_runtime_meta__AdaptiveAdapterMetrics_adapter_lmdb_information = {
+    &afw_lmdb_self_s__AdaptiveAdapterMetrics_adapter_lmdb_information,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
 };
 
 AFW_RUNTIME_OBJECT_INF( 
-    afw_runtime_inf__AdaptiveAdaptorMetrics_adaptor_lmdb_information, 
-    impl_runtime_meta__AdaptiveAdaptorMetrics_adaptor_lmdb_information);
+    afw_runtime_inf__AdaptiveAdapterMetrics_adapter_lmdb_information, 
+    impl_runtime_meta__AdaptiveAdapterMetrics_adapter_lmdb_information);
 
 
-/* Runtime object map properties for _AdaptiveAdaptorMetrics_adaptor_lmdb_statistic objects. */
+/* Runtime object map properties for _AdaptiveAdapterMetrics_adapter_lmdb_statistic objects. */
 
 static const afw_runtime_object_type_meta_t
-impl_runtime_meta__AdaptiveAdaptorMetrics_adaptor_lmdb_statistic = {
-    &afw_lmdb_self_s__AdaptiveAdaptorMetrics_adaptor_lmdb_statistic,
+impl_runtime_meta__AdaptiveAdapterMetrics_adapter_lmdb_statistic = {
+    &afw_lmdb_self_s__AdaptiveAdapterMetrics_adapter_lmdb_statistic,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
 };
 
 AFW_RUNTIME_OBJECT_INF( 
-    afw_runtime_inf__AdaptiveAdaptorMetrics_adaptor_lmdb_statistic, 
-    impl_runtime_meta__AdaptiveAdaptorMetrics_adaptor_lmdb_statistic);
+    afw_runtime_inf__AdaptiveAdapterMetrics_adapter_lmdb_statistic, 
+    impl_runtime_meta__AdaptiveAdapterMetrics_adapter_lmdb_statistic);
 
 
-/* Runtime object map properties for _AdaptiveAdaptorMetrics_adaptor_lmdb_statistics objects. */
+/* Runtime object map properties for _AdaptiveAdapterMetrics_adapter_lmdb_statistics objects. */
 
 static const afw_runtime_object_type_meta_t
-impl_runtime_meta__AdaptiveAdaptorMetrics_adaptor_lmdb_statistics = {
-    &afw_lmdb_self_s__AdaptiveAdaptorMetrics_adaptor_lmdb_statistics,
+impl_runtime_meta__AdaptiveAdapterMetrics_adapter_lmdb_statistics = {
+    &afw_lmdb_self_s__AdaptiveAdapterMetrics_adapter_lmdb_statistics,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
 };
 
 AFW_RUNTIME_OBJECT_INF( 
-    afw_runtime_inf__AdaptiveAdaptorMetrics_adaptor_lmdb_statistics, 
-    impl_runtime_meta__AdaptiveAdaptorMetrics_adaptor_lmdb_statistics);
+    afw_runtime_inf__AdaptiveAdapterMetrics_adapter_lmdb_statistics, 
+    impl_runtime_meta__AdaptiveAdapterMetrics_adapter_lmdb_statistics);
 
 
-/* Runtime object map properties for _AdaptiveAdaptorMetrics_adaptor_lmdb_version objects. */
+/* Runtime object map properties for _AdaptiveAdapterMetrics_adapter_lmdb_version objects. */
 
 static const afw_runtime_object_type_meta_t
-impl_runtime_meta__AdaptiveAdaptorMetrics_adaptor_lmdb_version = {
-    &afw_lmdb_self_s__AdaptiveAdaptorMetrics_adaptor_lmdb_version,
+impl_runtime_meta__AdaptiveAdapterMetrics_adapter_lmdb_version = {
+    &afw_lmdb_self_s__AdaptiveAdapterMetrics_adapter_lmdb_version,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
 };
 
 AFW_RUNTIME_OBJECT_INF( 
-    afw_runtime_inf__AdaptiveAdaptorMetrics_adaptor_lmdb_version, 
-    impl_runtime_meta__AdaptiveAdaptorMetrics_adaptor_lmdb_version);
+    afw_runtime_inf__AdaptiveAdapterMetrics_adapter_lmdb_version, 
+    impl_runtime_meta__AdaptiveAdapterMetrics_adapter_lmdb_version);
 
 
-/* Runtime object map properties for _AdaptiveConf_adaptor_lmdb objects. */
+/* Runtime object map properties for _AdaptiveConf_adapter_lmdb objects. */
 
 static const afw_runtime_object_type_meta_t
-impl_runtime_meta__AdaptiveConf_adaptor_lmdb = {
-    &afw_lmdb_self_s__AdaptiveConf_adaptor_lmdb,
+impl_runtime_meta__AdaptiveConf_adapter_lmdb = {
+    &afw_lmdb_self_s__AdaptiveConf_adapter_lmdb,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
 };
 
 AFW_RUNTIME_OBJECT_INF( 
-    afw_runtime_inf__AdaptiveConf_adaptor_lmdb, 
-    impl_runtime_meta__AdaptiveConf_adaptor_lmdb);
+    afw_runtime_inf__AdaptiveConf_adapter_lmdb, 
+    impl_runtime_meta__AdaptiveConf_adapter_lmdb);
 
 
-/* Runtime object map properties for _AdaptiveConf_adaptor_lmdb_env objects. */
+/* Runtime object map properties for _AdaptiveConf_adapter_lmdb_env objects. */
 
 static const afw_runtime_object_type_meta_t
-impl_runtime_meta__AdaptiveConf_adaptor_lmdb_env = {
-    &afw_lmdb_self_s__AdaptiveConf_adaptor_lmdb_env,
+impl_runtime_meta__AdaptiveConf_adapter_lmdb_env = {
+    &afw_lmdb_self_s__AdaptiveConf_adapter_lmdb_env,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
 };
 
 AFW_RUNTIME_OBJECT_INF( 
-    afw_runtime_inf__AdaptiveConf_adaptor_lmdb_env, 
-    impl_runtime_meta__AdaptiveConf_adaptor_lmdb_env);
+    afw_runtime_inf__AdaptiveConf_adapter_lmdb_env, 
+    impl_runtime_meta__AdaptiveConf_adapter_lmdb_env);
 
 
-/* Runtime object map properties for _AdaptiveConf_adaptor_lmdb_limits objects. */
+/* Runtime object map properties for _AdaptiveConf_adapter_lmdb_limits objects. */
 
 static const afw_runtime_object_type_meta_t
-impl_runtime_meta__AdaptiveConf_adaptor_lmdb_limits = {
-    &afw_lmdb_self_s__AdaptiveConf_adaptor_lmdb_limits,
+impl_runtime_meta__AdaptiveConf_adapter_lmdb_limits = {
+    &afw_lmdb_self_s__AdaptiveConf_adapter_lmdb_limits,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
 };
 
 AFW_RUNTIME_OBJECT_INF( 
-    afw_runtime_inf__AdaptiveConf_adaptor_lmdb_limits, 
-    impl_runtime_meta__AdaptiveConf_adaptor_lmdb_limits);
+    afw_runtime_inf__AdaptiveConf_adapter_lmdb_limits, 
+    impl_runtime_meta__AdaptiveConf_adapter_lmdb_limits);
 
 
-/* Runtime object map properties for _AdaptiveConf_adaptor_lmdb_limits_size objects. */
+/* Runtime object map properties for _AdaptiveConf_adapter_lmdb_limits_size objects. */
 
 static const afw_runtime_object_type_meta_t
-impl_runtime_meta__AdaptiveConf_adaptor_lmdb_limits_size = {
-    &afw_lmdb_self_s__AdaptiveConf_adaptor_lmdb_limits_size,
+impl_runtime_meta__AdaptiveConf_adapter_lmdb_limits_size = {
+    &afw_lmdb_self_s__AdaptiveConf_adapter_lmdb_limits_size,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
 };
 
 AFW_RUNTIME_OBJECT_INF( 
-    afw_runtime_inf__AdaptiveConf_adaptor_lmdb_limits_size, 
-    impl_runtime_meta__AdaptiveConf_adaptor_lmdb_limits_size);
+    afw_runtime_inf__AdaptiveConf_adapter_lmdb_limits_size, 
+    impl_runtime_meta__AdaptiveConf_adapter_lmdb_limits_size);
 
 
-/* Runtime object map properties for _AdaptiveConf_adaptor_lmdb_limits_time objects. */
+/* Runtime object map properties for _AdaptiveConf_adapter_lmdb_limits_time objects. */
 
 static const afw_runtime_object_type_meta_t
-impl_runtime_meta__AdaptiveConf_adaptor_lmdb_limits_time = {
-    &afw_lmdb_self_s__AdaptiveConf_adaptor_lmdb_limits_time,
+impl_runtime_meta__AdaptiveConf_adapter_lmdb_limits_time = {
+    &afw_lmdb_self_s__AdaptiveConf_adapter_lmdb_limits_time,
     NULL,
     offsetof(afw_runtime_const_object_instance_t, properties),
     false,
 };
 
 AFW_RUNTIME_OBJECT_INF( 
-    afw_runtime_inf__AdaptiveConf_adaptor_lmdb_limits_time, 
-    impl_runtime_meta__AdaptiveConf_adaptor_lmdb_limits_time);
+    afw_runtime_inf__AdaptiveConf_adapter_lmdb_limits_time, 
+    impl_runtime_meta__AdaptiveConf_adapter_lmdb_limits_time);
 
 /* NULL terminated list of inf pointers. */
 static const afw_object_inf_t * impl_inf[] = {
-    &afw_runtime_inf__AdaptiveAdaptorMetrics_adaptor_lmdb,
-    &afw_runtime_inf__AdaptiveAdaptorMetrics_adaptor_lmdb_information,
-    &afw_runtime_inf__AdaptiveAdaptorMetrics_adaptor_lmdb_statistic,
-    &afw_runtime_inf__AdaptiveAdaptorMetrics_adaptor_lmdb_statistics,
-    &afw_runtime_inf__AdaptiveAdaptorMetrics_adaptor_lmdb_version,
-    &afw_runtime_inf__AdaptiveConf_adaptor_lmdb,
-    &afw_runtime_inf__AdaptiveConf_adaptor_lmdb_env,
-    &afw_runtime_inf__AdaptiveConf_adaptor_lmdb_limits,
-    &afw_runtime_inf__AdaptiveConf_adaptor_lmdb_limits_size,
-    &afw_runtime_inf__AdaptiveConf_adaptor_lmdb_limits_time,
+    &afw_runtime_inf__AdaptiveAdapterMetrics_adapter_lmdb,
+    &afw_runtime_inf__AdaptiveAdapterMetrics_adapter_lmdb_information,
+    &afw_runtime_inf__AdaptiveAdapterMetrics_adapter_lmdb_statistic,
+    &afw_runtime_inf__AdaptiveAdapterMetrics_adapter_lmdb_statistics,
+    &afw_runtime_inf__AdaptiveAdapterMetrics_adapter_lmdb_version,
+    &afw_runtime_inf__AdaptiveConf_adapter_lmdb,
+    &afw_runtime_inf__AdaptiveConf_adapter_lmdb_env,
+    &afw_runtime_inf__AdaptiveConf_adapter_lmdb_limits,
+    &afw_runtime_inf__AdaptiveConf_adapter_lmdb_limits_size,
+    &afw_runtime_inf__AdaptiveConf_adapter_lmdb_limits_time,
     NULL
 };
 

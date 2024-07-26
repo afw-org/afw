@@ -83,7 +83,7 @@ export const Undefined = (props) => {
                             return (
                                 <ObjectTypeDropdown                                    
                                     key={index}
-                                    adaptorId={property.getEmbeddingObject().getAdaptorId()}
+                                    adapterId={property.getEmbeddingObject().getAdapterId()}
                                     label="Object Type"
                                     description={"Select an Object Type for " + label}
                                     value={parameter}

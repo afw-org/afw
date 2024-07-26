@@ -10,9 +10,9 @@ describe("Application Tests", () => {
         defaultFlags, 
         extensions,
         qualifiedVariables,
-        layoutsAdaptorId,
-        defaultModelAdaptorId,
-        defaultAdaptorId,
+        layoutsAdapterId,
+        defaultModelAdapterId,
+        defaultAdapterId,
         description,
         title
     } = applicationConf.result;
@@ -28,9 +28,9 @@ describe("Application Tests", () => {
         
         expect(await screen.findByLabelText("Title")).toHaveTextContent(title);
         expect(await screen.findByLabelText("Description")).toHaveTextContent(description);
-        expect(await screen.findByLabelText("Default Adaptor")).toHaveTextContent(defaultAdaptorId);
-        expect(await screen.findByLabelText("Default Model Adaptor")).toHaveTextContent(defaultModelAdaptorId);
-        expect(await screen.findByLabelText("Layouts Adaptor")).toHaveTextContent(layoutsAdaptorId);
+        expect(await screen.findByLabelText("Default Adapter")).toHaveTextContent(defaultAdapterId);
+        expect(await screen.findByLabelText("Default Model Adapter")).toHaveTextContent(defaultModelAdapterId);
+        expect(await screen.findByLabelText("Layouts Adapter")).toHaveTextContent(layoutsAdapterId);
         
         fireEvent.click(screen.getByLabelText("Startup"));        
         for (const ext of extensions) {
@@ -151,14 +151,14 @@ describe("Application Tests", () => {
         const description = screen.getByLabelText("Description");
         fireEvent.change(description, { target: { value: "New Description" }});
 
-        const defaultAdaptorId = screen.getByLabelText("Default Adaptor");
-        fireEvent.change(defaultAdaptorId, { target: { value: "newAdaptorId" }});
+        const defaultAdapterId = screen.getByLabelText("Default Adapter");
+        fireEvent.change(defaultAdapterId, { target: { value: "newAdapterId" }});
 
-        const defaultModelAdaptorId = screen.getByLabelText("Default Model Adaptor");
-        fireEvent.change(defaultModelAdaptorId, { target: { value: "newAdaptorId" }});
+        const defaultModelAdapterId = screen.getByLabelText("Default Model Adapter");
+        fireEvent.change(defaultModelAdapterId, { target: { value: "newAdapterId" }});
 
-        const layoutsAdaptorId = screen.getByLabelText("Layouts Adaptor");
-        fireEvent.change(layoutsAdaptorId, { target: { value: "newAdaptorId" }});
+        const layoutsAdapterId = screen.getByLabelText("Layouts Adapter");
+        fireEvent.change(layoutsAdapterId, { target: { value: "newAdapterId" }});
 
         fireEvent.click(saveBtn);        
 
@@ -168,14 +168,14 @@ describe("Application Tests", () => {
         await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWithObjectContainingDeep("description", "New Description"));        
         expect(await screen.findByLabelText("Description")).toHaveTextContent("New Description");    
 
-        await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWithObjectContainingDeep("defaultAdaptorId", "newAdaptorId"));        
-        expect(await screen.findByLabelText("Default Adaptor")).toHaveTextContent("newAdaptorId");
+        await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWithObjectContainingDeep("defaultAdapterId", "newAdapterId"));        
+        expect(await screen.findByLabelText("Default Adapter")).toHaveTextContent("newAdapterId");
 
-        await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWithObjectContainingDeep("defaultModelAdaptorId", "newAdaptorId"));                
-        expect(await screen.findByLabelText("Default Model Adaptor")).toHaveTextContent("newAdaptorId");
+        await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWithObjectContainingDeep("defaultModelAdapterId", "newAdapterId"));                
+        expect(await screen.findByLabelText("Default Model Adapter")).toHaveTextContent("newAdapterId");
 
-        await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWithObjectContainingDeep("layoutsAdaptorId", "newAdaptorId"));        
-        expect(await screen.findByLabelText("Layouts Adaptor")).toHaveTextContent("newAdaptorId");
+        await waitFor(() => expect(mswPostCallback).toHaveBeenCalledWithObjectContainingDeep("layoutsAdapterId", "newAdapterId"));        
+        expect(await screen.findByLabelText("Layouts Adapter")).toHaveTextContent("newAdapterId");
 
         await waitForSpinner();
  

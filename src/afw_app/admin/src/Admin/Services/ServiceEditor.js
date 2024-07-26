@@ -22,11 +22,11 @@ import {afwServiceStart, afwServiceRestart, afwServiceStop} from "@afw/core";
 
 import {useAppCore, useApplication, useTheme} from "../../hooks";
 
-import ServiceEditorAdaptor from "./ServiceEditorAdaptor";
-import ServiceEditorAdaptorLmdb from "./ServiceEditorAdaptorLmdb";
-import ServiceEditorAdaptorFile from "./ServiceEditorAdaptorFile";
-import ServiceEditorAdaptorLdap from "./ServiceEditorAdaptorLdap";
-import ServiceEditorAdaptorModel from "./ServiceEditorAdaptorModel";
+import ServiceEditorAdapter from "./ServiceEditorAdapter";
+import ServiceEditorAdapterLmdb from "./ServiceEditorAdapterLmdb";
+import ServiceEditorAdapterFile from "./ServiceEditorAdapterFile";
+import ServiceEditorAdapterLdap from "./ServiceEditorAdapterLdap";
+import ServiceEditorAdapterModel from "./ServiceEditorAdapterModel";
 
 import ServiceEditorAuthorizationHandler from "./ServiceEditorAuthorizationHandler";
 
@@ -465,20 +465,20 @@ const ServiceEditor = (props) => {
         confTypes
     };
  
-    if (serviceType === "adaptor" && confSubtype === "lmdb")
-        serviceEditor = <ServiceEditorAdaptorLmdb  {...serviceProps} />;
+    if (serviceType === "adapter" && confSubtype === "lmdb")
+        serviceEditor = <ServiceEditorAdapterLmdb  {...serviceProps} />;
  
-    else if (serviceType === "adaptor" && confSubtype === "file")
-        serviceEditor = <ServiceEditorAdaptorFile {...serviceProps} />;
+    else if (serviceType === "adapter" && confSubtype === "file")
+        serviceEditor = <ServiceEditorAdapterFile {...serviceProps} />;
  
-    else if (serviceType === "adaptor" && confSubtype === "ldap")
-        serviceEditor = <ServiceEditorAdaptorLdap {...serviceProps} />;
+    else if (serviceType === "adapter" && confSubtype === "ldap")
+        serviceEditor = <ServiceEditorAdapterLdap {...serviceProps} />;
  
-    else if (serviceType === "adaptor" && confSubtype === "model")
-        serviceEditor = <ServiceEditorAdaptorModel {...serviceProps} />;
+    else if (serviceType === "adapter" && confSubtype === "model")
+        serviceEditor = <ServiceEditorAdapterModel {...serviceProps} />;
  
-    else if (serviceType === "adaptor")
-        serviceEditor = <ServiceEditorAdaptor {...serviceProps} />;
+    else if (serviceType === "adapter")
+        serviceEditor = <ServiceEditorAdapter {...serviceProps} />;
  
     else if (serviceType === "log" && confSubtype === "syslog")
         serviceEditor = <ServiceEditorLogSyslog {...serviceProps} />;
