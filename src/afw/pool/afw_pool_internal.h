@@ -27,6 +27,11 @@
 
 AFW_BEGIN_DECLARES
 
+typedef struct afw_pool_internal_inf_implementation_specific_s {
+    afw_boolean_t is_multithreaded;
+    afw_boolean_t is_subpool;
+} afw_pool_internal_inf_implementation_specific_t;
+
 typedef struct afw_pool_internal_memory_prefix_s
 afw_pool_internal_memory_prefix_t;
 

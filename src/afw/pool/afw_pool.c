@@ -45,8 +45,19 @@ AFW_LOCK_END;
 #define AFW_POOL_SELF_T afw_pool_internal_self_t
 
 #define AFW_IMPLEMENTATION_ID "pool"
+
+static const afw_pool_internal_inf_implementation_specific_t
+impl_pool_implementation_specific =
+    {
+        /* multithreaded */ false,
+        /* subpool */ false
+    };
+
+#define AFW_IMPLEMENTATION_SPECIFIC &impl_pool_implementation_specific
+
 #include "afw_pool_impl_declares.h"
 #undef AFW_IMPLEMENTATION_ID
+#undef AFW_IMPLEMENTATION_SPECIFIC
 
 #define AFW_POOL_INF_ONLY 1
 
@@ -99,9 +110,19 @@ impl_subpool_afw_pool_free_memory_internal(
 #define impl_afw_pool_free_memory_internal \
     impl_subpool_afw_pool_free_memory_internal
 
+static const afw_pool_internal_inf_implementation_specific_t
+impl_subpool_implementation_specific =
+    {
+        /* multithreaded */ false,
+        /* subpool */ true
+    };
+
+#define AFW_IMPLEMENTATION_SPECIFIC &impl_subpool_implementation_specific
+
 #include "afw_pool_impl_declares.h"
 #undef AFW_IMPLEMENTATION_ID
 #undef AFW_IMPLEMENTATION_INF_LABEL
+#undef AFW_IMPLEMENTATION_SPECIFIC
 #undef impl_afw_pool_destroy
 #undef impl_afw_pool_get_apr_pool
 #undef impl_afw_pool_calloc
@@ -197,10 +218,20 @@ impl_multithreaded_afw_pool_deregister_cleanup(
 #define impl_afw_pool_deregister_cleanup \
     impl_multithreaded_afw_pool_deregister_cleanup
     
+static const afw_pool_internal_inf_implementation_specific_t
+impl_multithreaded_implementation_specific =
+    {
+        /* multithreaded */ true,
+        /* subpool */ false
+    };
+
+#define AFW_IMPLEMENTATION_SPECIFIC &impl_multithreaded_implementation_specific
+
 #include "afw_pool_impl_declares.h"
 
 #undef AFW_IMPLEMENTATION_ID
 #undef AFW_IMPLEMENTATION_INF_LABEL
+#undef AFW_IMPLEMENTATION_SPECIFIC
 #undef impl_afw_pool_release
 #undef impl_afw_pool_get_reference
 #undef impl_afw_pool_destroy
@@ -300,10 +331,21 @@ impl_multithreaded_subpool_afw_pool_deregister_cleanup(
 #define impl_afw_pool_deregister_cleanup \
     impl_multithreaded_subpool_afw_pool_deregister_cleanup
     
+static const afw_pool_internal_inf_implementation_specific_t
+impl_multithreaded_subpool_implementation_specific =
+    {
+        /* multithreaded */ true,
+        /* subpool */ true
+    };
+
+#define AFW_IMPLEMENTATION_SPECIFIC \
+    &impl_multithreaded_subpool_implementation_specific
+
 #include "afw_pool_impl_declares.h"
 
 #undef AFW_IMPLEMENTATION_ID
 #undef AFW_IMPLEMENTATION_INF_LABEL
+#undef AFW_IMPLEMENTATION_SPECIFIC
 #undef impl_afw_pool_release
 #undef impl_afw_pool_get_reference
 #undef impl_afw_pool_destroy
@@ -440,8 +482,6 @@ static afw_pool_internal_self_t *
 impl_create(
     afw_pool_internal_self_t *parent,
     const afw_pool_inf_t *inf,
-    afw_boolean_t prefix_with_links,
-    afw_boolean_t allocate_from_parent,
     afw_xctx_t *xctx)
 {
     apr_pool_t *apr_p;
@@ -449,8 +489,12 @@ impl_create(
     afw_size_t size;
     afw_byte_t *mem;
     afw_pool_internal_memory_prefix_t *block;
+    const afw_pool_internal_inf_implementation_specific_t *impl;
 
-    if (allocate_from_parent) {
+    impl = (afw_pool_internal_inf_implementation_specific_t *)
+        inf->rti.implementation_specific;
+
+    if (impl->is_subpool) {
         if (!parent) {
             AFW_THROW_ERROR_Z(general, "Parent required", xctx);
         }
@@ -465,7 +509,7 @@ impl_create(
         }
     }
 
-    size += (prefix_with_links)
+    size += (impl->is_subpool)
         ? sizeof(afw_pool_internal_memory_prefix_with_links_t)
         : sizeof(afw_pool_internal_memory_prefix_t);
     size = APR_ALIGN_DEFAULT(size);
@@ -475,7 +519,7 @@ impl_create(
         AFW_THROW_ERROR_Z(memory, "Unable to allocate memory for pool", xctx);
     }
 
-    if (prefix_with_links) {
+    if (impl->is_subpool) {
         self = (afw_pool_internal_self_t *)(mem +
             sizeof(afw_pool_internal_memory_prefix_with_links_t));
         self->first_allocated_memory =
@@ -496,7 +540,7 @@ impl_create(
     self->reference_count = 1;
 
     /* Subpools allocate from parent. */
-    if (allocate_from_parent) {
+    if (impl->is_subpool) {
          self->free_memory_head = parent->free_memory_head;
     }
     else {
@@ -1307,11 +1351,7 @@ afw_pool_create(
         : &impl_afw_pool_multithreaded_inf;
 
     /* Create skeleton pool stuct. */
-    self = impl_create(
-        (afw_pool_internal_self_t *)parent, inf,
-        false, /* prefix_with_links */
-        false, /* allocate_from_parent */
-        xctx);
+    self = impl_create((afw_pool_internal_self_t *)parent, inf, xctx);
 
     IMPL_PRINT_DEBUG_INFO_FZ(minimal,
         "afw_pool_create " AFW_INTEGER_FMT,
@@ -1339,11 +1379,7 @@ afw_pool_create_subpool(
         : &impl_afw_pool_multithreaded_subpool_inf;
 
     /* Create skeleton pool stuct. */
-    self = impl_create(
-        (afw_pool_internal_self_t *)parent, inf,
-        true, /* prefix_with_links */
-        true, /* allocate_from_parent */
-        xctx);
+    self = impl_create((afw_pool_internal_self_t *)parent, inf, xctx);
 
     IMPL_PRINT_DEBUG_INFO_FZ(minimal,
         "afw_pool_create " AFW_INTEGER_FMT,
@@ -1368,11 +1404,7 @@ afw_pool_create_thread(
     }
 
     /* Create skeleton pool stuct. */
-    self = impl_create(
-        NULL, &impl_afw_pool_inf,
-        false, /* prefix_with_links */
-        false, /* allocate_from_parent */
-        xctx);
+    self = impl_create(NULL, &impl_afw_pool_inf, xctx);
     thread = apr_pcalloc(self->apr_p, size);
     self->thread = thread;
     thread->p = (const afw_pool_t *)self;
