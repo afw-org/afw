@@ -872,6 +872,7 @@ impl_afw_pool_deregister_cleanup(
     {
         if (e->data == data && e->data2 == data2 && e->cleanup == cleanup) {
             prev->next_cleanup = e->next_cleanup;
+            afw_pool_free_memory(e, xctx);
             break;
         }
     }
