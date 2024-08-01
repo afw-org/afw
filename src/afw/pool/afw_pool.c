@@ -551,7 +551,7 @@ impl_create_for_subpool(
     afw_pool_internal_memory_prefix_t *block;
 
     if (!parent) {
-        AFW_THROW_ERROR_Z(general, "Parent required", xctx);
+        AFW_THROW_ERROR_Z(general, "Parent required for subpool", xctx);
     }
     size = sizeof(afw_pool_internal_self_t) +
         sizeof(afw_pool_internal_memory_prefix_with_links_t);
@@ -969,6 +969,11 @@ impl_subpool_afw_pool_destroy(
 
     IMPL_PRINT_DEBUG_INFO_Z(minimal, "afw_pool_destroy");
 
+    /* Subpool always have a parent. (needed to suppress valgrind error) */
+    if (!self->parent) {
+        AFW_THROW_ERROR_Z(general, "Subpool has no parent", xctx);
+    }
+
     /*
      * Call all of the cleanup routines for this pool before releasing children.
      */
@@ -976,11 +981,7 @@ impl_subpool_afw_pool_destroy(
         e->cleanup(e->data, e->data2, &self->pub, xctx);
     }
 
-    /*
-     * Release children.
-     *
-     * Release of child sets self->first_child to its next sibling.
-     */
+    /* Release all of the children of this subpool. */
     for (child = self->first_child;
         child;
         child = self->first_child)
@@ -988,11 +989,23 @@ impl_subpool_afw_pool_destroy(
         afw_pool_release(&child->pub, xctx);
     }
 
-    /* If parent, removed self as child. */
-    if (self->parent) {
-        impl_remove_as_child(self->parent, self, xctx);
+    /*
+     * If any child pools are still referenced after this, add them to the
+     * parent's list of children.
+     *
+     * This is special behavior for subpools to work well when used with
+     * scopes where a child pool might have been referenced by a different
+     * scope because of variable assignment.
+     */
+    for (child = self->first_child;
+        child;
+        child = self->first_child)
+    {
+        child->parent = self->parent;
+        child->next_sibling = NULL;
+        impl_add_child(self->parent, child, xctx);
     }
-   
+
     /* If public apr pool made for this subpool, destroy it. */
     if (self->public_apr_p) {
         apr_pool_destroy(self->public_apr_p);
@@ -1006,6 +1019,9 @@ impl_subpool_afw_pool_destroy(
         next = memory->next;
         impl_free_memory(self, memory, memory->common.size, xctx);
     }
+
+    /* Removed self as child of parent. */
+    impl_remove_as_child(self->parent, self, xctx);
 }
 
 

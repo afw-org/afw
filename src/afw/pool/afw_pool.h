@@ -69,8 +69,8 @@ struct afw_pool_cleanup_s {
  * If the parent is a multithread pool, the created pool will also be a
  * multithreaded pool.
  *
- * The base pool (xctx->env->p) for the environment is created when the
- * AFW environment is created and is a multithreaded pool.
+ * The base pool (xctx->env->p) for the environment is created when the AFW
+ * environment is created and is a multithreaded pool.
  */
 AFW_DECLARE(const afw_pool_t *)
 afw_pool_create(
@@ -84,15 +84,27 @@ afw_pool_create(
  * @param xctx of caller.
  * @return new pool.
  *
- * This creates a subpool of a parent pool. Memory is allocated from the parent
- * pool. When memory is freed in the subpool or the subpool is destroyed, the
- * freed memory is returned to the parent pool.
- * 
+ * This creates a subpool of a parent pool.
+ *
+ * When memory is allocated from the subpool, it is allocated from the parent
+ * pool. The memory is tracked in the subpool and when the subpool is destroyed
+ * or subpool memory is freed, the memory is returned to the parent.
+
+ * When memory is freed in the subpool or the subpool is destroyed, the memory
+ * is returned to the parent pool where it can be reused.
+ *
+ * When a subpool is destroyed, all of it's children pools are released. If
+ * there are any children that remain after being released, their parent is
+ * changed to the subpool's parent. This makes subpools useful for scopes where
+ * the children pools might still be needed because variables accessing them are
+ * still in scope. To be clear, all the children pools will be destroyed when
+ * the subpool is destroyed unless they have a reference count greater than 1.
+ *
  * Subpool's have a small amount of overhead per allocation as well as overhead
- * when the subpool is destroyed but they can be useful in situations where
- * the subpool will most often hold a small number of allocations that will
- * usually total less than 4k. Externally, subpool are used the same as a pool.
- * 
+ * when the subpool is destroyed but they can be useful in situations where the
+ * subpool will most often hold a small number of allocations that will usually
+ * total less than 4k. Externally, subpool are used the same as a pool.
+ *
  * This function is used by afw_xctx_scope_create() to create a unique subpool
  * for each xctx scope with a parent pool of xctx->p.
  */
