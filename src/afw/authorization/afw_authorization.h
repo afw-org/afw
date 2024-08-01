@@ -219,10 +219,11 @@ afw_authorization_handler_release(
  * AFW_AUTHORIZATION_INTERMEDIATE_ACCESS_END;
  */
 #define AFW_AUTHORIZATION_INTERMEDIATE_ACCESS_BEGIN \
+{ \
     const afw_value_t *_previous_mode; \
+    _previous_mode = xctx->mode; \
     AFW_TRY { \
-        _previous_mode = xctx->mode; \
-        if (xctx->mode != afw_authorization_mode_id_core_value) { \
+         if (xctx->mode != afw_authorization_mode_id_core_value) { \
             ((afw_xctx_t *)xctx)->mode = \
                 afw_authorization_mode_id_intermediate_value; \
         }
@@ -238,6 +239,7 @@ afw_authorization_handler_release(
         ((afw_xctx_t *)xctx)->mode = _previous_mode; \
     } \
     AFW_ENDTRY; \
+}
 
 
 AFW_END_DECLARES

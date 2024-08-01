@@ -1040,9 +1040,9 @@ impl_model_object_cb(
      * 
      * Note: It's the callbacks responsibility to release this view.
      */
+    result = false;
+    current_mode = xctx->mode;
     AFW_TRY{
-        result = false;
-        current_mode = xctx->mode;
         ((afw_xctx_t *)xctx)->mode = ctx->original_callback_mode;
         result = ctx->original_callback(object, ctx->original_context, xctx);
     }
