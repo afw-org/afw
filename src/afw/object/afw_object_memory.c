@@ -37,7 +37,7 @@ afw_object_create_with_options(
     /* If managed, create subpool for object. */
     if (options == AFW_OBJECT_MEMORY_OPTION_managed)
     {
-        p = afw_pool_create(p, xctx);
+        p = afw_pool_create_subpool(p, xctx);
     }
 
     /* Allocate memory for self and initialize. */
