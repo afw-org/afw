@@ -67,9 +67,6 @@ struct afw_object_internal_memory_object_s {
     afw_boolean_t clone_on_set;
     afw_boolean_t unmanaged;
     afw_boolean_t managed_by_entity;
-
-    /* Reference_count starting at 1 on create. */
-    AFW_ATOMIC afw_integer_t reference_count;
 };
 
 

@@ -34,10 +34,8 @@ afw_object_create_with_options(
 {
     afw_object_internal_memory_object_t *self;
 
-    /* If neither unmanaged or cede_p, create subpool for object. */
-    if (options &
-        (AFW_OBJECT_MEMORY_OPTION_unmanaged |
-        AFW_OBJECT_MEMORY_OPTION_managed_cede_p))
+    /* If managed, create subpool for object. */
+    if (options == AFW_OBJECT_MEMORY_OPTION_managed)
     {
         p = afw_pool_create(p, xctx);
     }
@@ -51,7 +49,6 @@ afw_object_create_with_options(
     self->pub.value = (const afw_value_t *)&self->value;
     self->unmanaged = AFW_OBJECT_MEMORY_OPTION_IS(options, unmanaged);
     //FIXME self->clone_on_set = AFW_OBJECT_MEMORY_OPTION_IS(options, clone_on_set);
-    self->reference_count = (self->unmanaged) ? 0 : 1;
     self->setter.inf = &impl_afw_object_setter_inf;
     self->setter.object = (const afw_object_t *)self;
 
@@ -90,7 +87,6 @@ afw_object_create_embedded(
     self->pub.meta.embedding_object = embedding_object;
     self->pub.meta.id = property_name;
     self->managed_by_entity = true;
-    self->reference_count = 1;
     self->setter.inf = &impl_afw_object_setter_inf;
     self->setter.object = (const afw_object_t *)self;
     self->clone_on_set = embedder->clone_on_set;
@@ -140,7 +136,9 @@ impl_afw_object_release(
     const afw_object_t *entity;
 
     /* If unmanaged, just return. */
-    if (self->unmanaged) return;
+    if (self->unmanaged) {
+        return;
+    }
 
     /*
      * If embedded object managed by parent, call parent's release and
@@ -152,13 +150,8 @@ impl_afw_object_release(
         return;
     }
 
-    /*
-     * If managing self, decrement reference count.  If count is zero, release
-     * pool.
-     */
-    if (afw_atomic_integer_decrement(&self->reference_count) == 0) {
-        afw_pool_release(instance->p, xctx);
-    }
+    /* Release pool holding managed object. */
+    afw_pool_release(instance->p, xctx);
 }
 
 
@@ -187,8 +180,8 @@ impl_afw_object_get_reference(
         return;
     }
 
-    /* If managing self, increment reference count.  */
-    afw_atomic_integer_increment(&self->reference_count);
+    /* Increment reference count of pool holding this managed object.  */
+    afw_pool_get_reference(instance->p, xctx);
 }
 
 /*

@@ -89,9 +89,6 @@ afw_pool_create(
  * When memory is allocated from the subpool, it is allocated from the parent
  * pool. The memory is tracked in the subpool and when the subpool is destroyed
  * or subpool memory is freed, the memory is returned to the parent.
-
- * When memory is freed in the subpool or the subpool is destroyed, the memory
- * is returned to the parent pool where it can be reused.
  *
  * When a subpool is destroyed, all of it's children pools are released. If
  * there are any children that remain after being released, their parent is

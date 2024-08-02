@@ -415,7 +415,8 @@ afw_object_set_property_as_string_from_utf8_z(
  * @param path is path to parse.
  */
 AFW_DEFINE_STATIC_INLINE(void)
-afw_object_parse_entity_path_from_path(afw_utf8_t *entity_path,
+afw_object_parse_entity_path_from_path(
+    afw_utf8_t *entity_path,
     const afw_utf8_t *path)
 {
     const afw_utf8_octet_t *s;
