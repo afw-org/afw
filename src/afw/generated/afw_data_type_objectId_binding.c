@@ -266,24 +266,6 @@ afw_value_as_objectId(const afw_value_t *value, afw_xctx_t *xctx)
     return &(((const afw_value_objectId_t *)value)->internal);
 }
 
-/* Allocate function for managed data type objectId value. */
-AFW_DEFINE(const afw_value_t *)
-afw_value_allocate_managed_objectId(
-    afw_utf8_octet_t **s,
-    afw_size_t len,
-    afw_xctx_t *xctx)
-{
-    afw_value_objectId_managed_t *result;
-
-    result = afw_xctx_malloc(sizeof(afw_value_objectId_managed_t) + len, xctx);
-    result->inf = &afw_value_managed_objectId_inf;
-    result->internal.len = len;
-    result->internal.s = (const afw_utf8_octet_t *)result + sizeof(afw_value_objectId_managed_t);
-    *s = (afw_utf8_octet_t *)result->internal.s;
-    result->reference_count = 0;
-    return &result->pub;
-}
-
 /* Allocate function for data type objectId values. */
 AFW_DEFINE(afw_value_objectId_t *)
 afw_value_allocate_unmanaged_objectId(const afw_pool_t *p, afw_xctx_t *xctx)

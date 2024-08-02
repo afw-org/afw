@@ -266,22 +266,6 @@ afw_value_as_null(const afw_value_t *value, afw_xctx_t *xctx)
     return (((const afw_value_null_t *)value)->internal);
 }
 
-/* Allocate function for managed data type null value. */
-AFW_DEFINE(const afw_value_t *)
-afw_value_allocate_managed_null(
-    void * **internal,
-    afw_xctx_t *xctx)
-{
-    afw_value_null_managed_t *result;
-
-    result = afw_xctx_malloc(sizeof(afw_value_null_managed_t), xctx);
-    result->inf = &afw_value_managed_null_inf;
-    afw_memory_clear(&result->internal);
-    *internal = &result->internal;
-    result->reference_count = 0;
-    return &result->pub;
-}
-
 /* Allocate function for data type null values. */
 AFW_DEFINE(afw_value_null_t *)
 afw_value_allocate_unmanaged_null(const afw_pool_t *p, afw_xctx_t *xctx)

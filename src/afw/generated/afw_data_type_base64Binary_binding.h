@@ -187,29 +187,6 @@ afw_value_as_base64Binary(
     const afw_value_t *value,
     afw_xctx_t *xctx);
 
-/* FIXME: The allocates for managed will probably go away. */
-
-/**
- * @brief Allocate function for reference data type base64Binary value.
- * @param ptr place to put pointer to allocated memory for internal->s.
- * @param size of memory to allocate for internal->s.
- * @param xctx of caller.
- * @return Allocated afw_value_t with appropriate inf set.
- *
- * This allocates both the memory for the value and the memory for the internal
- * afw_memory_t for the 'size' specified. A non-const pointer 'ptr' is/
- * returned in the 'ptr' parameter, where its storage should be modified. This
- * can be a little more efficient than using the corresponding create since the
- * create makes a copy.
- *
- * The memory is allocated in xctx->p and its lifetime is managed by reference count.
- */
-AFW_DECLARE(const afw_value_t *)
-afw_value_allocate_managed_base64Binary(
-    const afw_byte_t **ptr,
-    afw_size_t size,
-    afw_xctx_t *xctx);
-
 /**
  * @brief Allocate function for data type base64Binary value.
  * @param p to use for returned value.

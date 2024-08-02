@@ -266,24 +266,6 @@ afw_value_as_rfc822Name(const afw_value_t *value, afw_xctx_t *xctx)
     return &(((const afw_value_rfc822Name_t *)value)->internal);
 }
 
-/* Allocate function for managed data type rfc822Name value. */
-AFW_DEFINE(const afw_value_t *)
-afw_value_allocate_managed_rfc822Name(
-    afw_utf8_octet_t **s,
-    afw_size_t len,
-    afw_xctx_t *xctx)
-{
-    afw_value_rfc822Name_managed_t *result;
-
-    result = afw_xctx_malloc(sizeof(afw_value_rfc822Name_managed_t) + len, xctx);
-    result->inf = &afw_value_managed_rfc822Name_inf;
-    result->internal.len = len;
-    result->internal.s = (const afw_utf8_octet_t *)result + sizeof(afw_value_rfc822Name_managed_t);
-    *s = (afw_utf8_octet_t *)result->internal.s;
-    result->reference_count = 0;
-    return &result->pub;
-}
-
 /* Allocate function for data type rfc822Name values. */
 AFW_DEFINE(afw_value_rfc822Name_t *)
 afw_value_allocate_unmanaged_rfc822Name(const afw_pool_t *p, afw_xctx_t *xctx)

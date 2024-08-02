@@ -266,22 +266,6 @@ afw_value_as_array(const afw_value_t *value, afw_xctx_t *xctx)
     return (((const afw_value_array_t *)value)->internal);
 }
 
-/* Allocate function for managed data type array value. */
-AFW_DEFINE(const afw_value_t *)
-afw_value_allocate_managed_array(
-    const afw_array_t * **internal,
-    afw_xctx_t *xctx)
-{
-    afw_value_array_managed_t *result;
-
-    result = afw_xctx_malloc(sizeof(afw_value_array_managed_t), xctx);
-    result->inf = &afw_value_managed_array_inf;
-    afw_memory_clear(&result->internal);
-    *internal = &result->internal;
-    result->reference_count = 0;
-    return &result->pub;
-}
-
 /* Allocate function for data type array values. */
 AFW_DEFINE(afw_value_array_t *)
 afw_value_allocate_unmanaged_array(const afw_pool_t *p, afw_xctx_t *xctx)

@@ -187,29 +187,6 @@ afw_value_as_relaxed_json(
     const afw_value_t *value,
     afw_xctx_t *xctx);
 
-/* FIXME: The allocates for managed will probably go away. */
-
-/**
- * @brief Allocate function for managed data type relaxed_json value.
- * @param s place to put pointer to allocated memory for internal->s.
- * @param len of memory to allocate for internal->s.
- * @param xctx of caller.
- * @return Allocated afw_value_relaxed_json_t with appropriate inf set.
- *
- * This allocates both the memory for the value and the memory for the internal
- * afw_utf8_t for the 'len' specified. A non-const pointer to 's' is/
- * returned in the 's' parameter, where its storage should be modified. This
- * can be a little more efficient than using the corresponding create since the
- * create makes a copy.
- *
- * The memory is allocated in xctx->p and its lifetime is managed by reference count.
- */
-AFW_DECLARE(const afw_value_t *)
-afw_value_allocate_managed_relaxed_json(
-    afw_utf8_octet_t **s,
-    afw_size_t len,
-    afw_xctx_t *xctx);
-
 /**
  * @brief Allocate function for data type relaxed_json value.
  * @param p to use for returned value.

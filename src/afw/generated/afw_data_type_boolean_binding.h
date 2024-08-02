@@ -187,25 +187,6 @@ afw_value_as_boolean(
     const afw_value_t *value,
     afw_xctx_t *xctx);
 
-/* FIXME: The allocates for managed will probably go away. */
-
-/**
- * @brief Allocate function for managed data type boolean value.
- * @param internal place to put pointer to internal of value.
- * @param xctx of caller.
- * @return Allocated afw_value_t with appropriate inf set.
- *
- * This allocates memory for the value in xctx->p. Set *internal to the 
- * 'afw_boolean_t' internal value before using. The corresponding create is
- * often more appropriate to use.
- *
- * The value's lifetime is managed by reference count.
- */
-AFW_DECLARE(const afw_value_t *)
-afw_value_allocate_managed_boolean(
-    afw_boolean_t **internal,
-    afw_xctx_t *xctx);
-
 /**
  * @brief Allocate function for data type boolean value.
  * @param p to use for returned value.

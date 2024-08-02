@@ -266,22 +266,6 @@ afw_value_as_date(const afw_value_t *value, afw_xctx_t *xctx)
     return &(((const afw_value_date_t *)value)->internal);
 }
 
-/* Allocate function for managed data type date value. */
-AFW_DEFINE(const afw_value_t *)
-afw_value_allocate_managed_date(
-    afw_date_t **internal,
-    afw_xctx_t *xctx)
-{
-    afw_value_date_managed_t *result;
-
-    result = afw_xctx_malloc(sizeof(afw_value_date_managed_t), xctx);
-    result->inf = &afw_value_managed_date_inf;
-    afw_memory_clear(&result->internal);
-    *internal = &result->internal;
-    result->reference_count = 0;
-    return &result->pub;
-}
-
 /* Allocate function for data type date values. */
 AFW_DEFINE(afw_value_date_t *)
 afw_value_allocate_unmanaged_date(const afw_pool_t *p, afw_xctx_t *xctx)
