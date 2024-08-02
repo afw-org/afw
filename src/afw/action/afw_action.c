@@ -249,7 +249,7 @@ afw_action_perform(
 
     /* If existing response not passed, make a new one. */
     if (!response) {
-        response = afw_object_create_managed(p, xctx);
+        response = afw_object_create(p, xctx);
     }
 
     contextual = afw_pool_calloc_type(response->p,
@@ -330,7 +330,7 @@ afw_action_perform(
 
             /* Create action result entry. */
             if (afw_content_type_is_application_afw(response_content_type)) {
-                action_response_entry = afw_object_create_managed(
+                action_response_entry = afw_object_create(
                     response->p, xctx);
             }
             else {

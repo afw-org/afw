@@ -511,7 +511,7 @@ afw_function_execute_test_script(
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(expression, 3, string);
     AFW_FUNCTION_EVALUATE_PARAMETER(expected, 4);
 
-    result = afw_object_create_managed(x->p, xctx);
+    result = afw_object_create(x->p, xctx);
     afw_object_set_property(result, afw_s_passed, afw_boolean_v_true, xctx);
     afw_object_set_property_as_string(result,
         afw_s_id, &id->internal, xctx);
@@ -639,7 +639,7 @@ afw_function_execute_test_template(
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(template, 3, string);
     AFW_FUNCTION_EVALUATE_PARAMETER(expected, 4);
 
-    result = afw_object_create_managed(x->p, xctx);
+    result = afw_object_create(x->p, xctx);
     afw_object_set_property(result, afw_s_passed, afw_boolean_v_true, xctx);
     afw_object_set_property_as_string(result,
         afw_s_id, &id->internal, xctx);
@@ -766,7 +766,7 @@ afw_function_execute_test_value(
     AFW_FUNCTION_EVALUATE_REQUIRED_PARAMETER(value, 3);
     AFW_FUNCTION_EVALUATE_PARAMETER(expected, 4);
 
-    result = afw_object_create_managed(x->p, xctx);
+    result = afw_object_create(x->p, xctx);
     afw_object_set_property(result, afw_s_passed, afw_boolean_v_true, xctx);
     afw_object_set_property_as_string(result,
         afw_s_id, &id->internal, xctx);

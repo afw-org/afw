@@ -190,7 +190,7 @@ impl_object_destructure(
 
     /* Add other properties to rest. */
     if (od->rest) {
-        rest = afw_object_create_managed(p, xctx);
+        rest = afw_object_create(p, xctx);
         for (iterator = NULL;;) {
             v = afw_object_get_next_property(object, &iterator, &property_name,
                 xctx);

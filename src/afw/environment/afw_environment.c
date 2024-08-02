@@ -995,7 +995,7 @@ afw_environment_load_extension(
             if (!properties)
             {
                 extension_id = afw_utf8_clone(extension_id, p, xctx);
-                properties = afw_object_create_managed(p, xctx);
+                properties = afw_object_create(p, xctx);
                 afw_object_set_property_as_string(properties,
                     afw_s_extensionId, extension_id, xctx);
             }
@@ -1036,7 +1036,7 @@ afw_environment_load_extension(
             /* If there is not a properties object, make one. */
             if (!properties)
             {
-                properties = afw_object_create_managed(p, xctx);
+                properties = afw_object_create(p, xctx);
                 afw_object_set_property_as_string(properties,
                     afw_s_modulePath, module_path, xctx);                
             }

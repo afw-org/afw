@@ -940,7 +940,7 @@ impl_retrieve_from_registry_cb(
 
     is_complete = false;
     if (!ctx->service_ids || !apr_hash_get(ctx->service_ids, key_s, key_len)) {
-        object = afw_object_create_managed(p, xctx);
+        object = afw_object_create(p, xctx);
 
         impl_add_runtime_service_info_to_object(object, service,
             NULL, service->properties, &service->service_id,
@@ -1119,7 +1119,7 @@ afw_service_get_object(
     /* If not available in services conf, return result based on registered service. */
     if (!result) {
         if (service) {
-            result = afw_object_create_managed(p, xctx);
+            result = afw_object_create(p, xctx);
             impl_add_runtime_service_info_to_object(result, 
                 service, NULL, service->properties,
                 service_id, service->type, service->conf_id,

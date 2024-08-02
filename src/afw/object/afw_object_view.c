@@ -1379,7 +1379,7 @@ afw_object_view_create(
     view->adapter_id = &view->uri_parsed->path_parsed->adapter_id;
 
     /** @fixme Should probably come in as parameter. */
-    view->journal_entry = afw_object_create_managed(p, xctx);
+    view->journal_entry = afw_object_create(p, xctx);
 
     /* Create view object. */
     self = impl_object_create_entity(view, instance, view->uri_parsed, xctx);

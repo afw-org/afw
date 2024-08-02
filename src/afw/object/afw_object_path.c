@@ -732,7 +732,7 @@ afw_object_path_parsed_to_object(
     const afw_value_t *value;
     const afw_object_path_property_name_entry_t *name;
 
-    result = afw_object_create_managed(p, xctx);
+    result = afw_object_create(p, xctx);
 
     if (parsed->original_path.len > 0) {
         afw_object_set_property_as_string(result,

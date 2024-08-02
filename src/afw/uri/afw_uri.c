@@ -1902,7 +1902,7 @@ afw_uri_parsed_to_object(
     const afw_value_t *value;
     const afw_object_t *object;
 
-    result = afw_object_create_managed(p, xctx);
+    result = afw_object_create(p, xctx);
 
     if (parsed->original_uri) {
         afw_object_set_property_as_string(result,

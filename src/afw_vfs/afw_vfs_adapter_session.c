@@ -113,7 +113,7 @@ impl_read_file_object(
         }
 
         /* Process each file in directory. */
-        object = afw_object_create_managed_cede_p(p, xctx);
+        object = afw_object_create_cede_p(p, xctx);
         afw_object_meta_set_ids(object,
             &self->pub.adapter->adapter_id,
             afw_vfs_s__AdaptiveFile_vfs,
@@ -196,7 +196,7 @@ impl_read_file_object(
             AFW_THROW_ERROR_FZ(general, xctx,
                 "Error reading %s.", file_path_z);
         }
-        object = afw_object_create_managed_cede_p(p, xctx);
+        object = afw_object_create_cede_p(p, xctx);
         afw_object_meta_set_ids(object,
             &self->pub.adapter->adapter_id,
             afw_vfs_s__AdaptiveFile_vfs,

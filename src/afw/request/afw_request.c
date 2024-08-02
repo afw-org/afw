@@ -233,7 +233,7 @@ afw_request_write_error_to_response_body(
 
     response = instance->error_info;
     if (!response) {
-        response = afw_object_create_managed(xctx->p, xctx);
+        response = afw_object_create(xctx->p, xctx);
     }
     afw_object_set_property_as_string(response, afw_s_status, afw_s_error, xctx);
     err = afw_object_create_embedded(response, afw_s_error, xctx);
@@ -257,7 +257,7 @@ afw_request_write_success_response(
 
     /* If response is NULL, make empty one. */
     if (!response) {
-        response = afw_object_create_managed(xctx->p, xctx);
+        response = afw_object_create(xctx->p, xctx);
     }
 
     /* Default status to success. */

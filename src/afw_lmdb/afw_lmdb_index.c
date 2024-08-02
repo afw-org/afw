@@ -119,7 +119,7 @@ impl_afw_adapter_impl_index_get_index_definitions (
                 xctx->p, xctx);
         } else {
             /* if we don't have one, just create one in our own pool */
-            indexes = afw_object_create_managed(xctx->p, xctx);
+            indexes = afw_object_create(xctx->p, xctx);
         }
     }
     /* unlock, we have our own copy now */

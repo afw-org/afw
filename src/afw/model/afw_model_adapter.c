@@ -261,7 +261,7 @@ impl_adapt_object_from_adapter(
 
     /* Add a variable qualifier and remove it when finished. */
     top = afw_xctx_qualifier_stack_top_get(xctx);
-    object = afw_object_create_managed_cede_p(
+    object = afw_object_create_cede_p(
         p, xctx);
     AFW_TRY {
 
@@ -1170,7 +1170,7 @@ impl_afw_adapter_session_retrieve_objects(
             afw_adapter_retrieve_objects(self->adapter->mapped_adapter_id,
                 cb_ctx.model_object_type->mapped_object_type_id,
                 impl_request->options, cb_ctx.criteria,
-                afw_object_create_managed(p, xctx),
+                afw_object_create(p, xctx),
                 &cb_ctx, impl_model_object_cb,
                 adapter_type_specific,
                 p, xctx);
@@ -1294,7 +1294,7 @@ impl_afw_adapter_session_get_object(
                 self->adapter->mapped_adapter_id,
                 cb_ctx.model_object_type->mapped_object_type_id,
                 object_id, NULL, NULL,
-                afw_object_create_managed(p, xctx),
+                afw_object_create(p, xctx),
                 adapter_type_specific, p, xctx);
             cb_ctx.p = p;
             cb_ctx.session = self;
@@ -1485,7 +1485,7 @@ impl_afw_adapter_session_add_object(
             /* If no onAddObject or it returned undefined, do default processing. */
             if (use_default_processing) {
                 afw_model_internal_complete_ctx_default_add_object(ctx, xctx);
-                journal_entry = afw_object_create_managed(ctx->p, xctx);
+                journal_entry = afw_object_create(ctx->p, xctx);
                 mapped_object_id = afw_adapter_add_object(
                     self->adapter->mapped_adapter_id,
                     ctx->mapped_object_type_id,
@@ -1650,7 +1650,7 @@ impl_afw_adapter_session_modify_object(
             /* If no onModifyObject or it returned undefined, do default processing. */
             if(use_default_processing) {
                 afw_model_internal_complete_ctx_default_modify_object(ctx, xctx);
-                journal_entry = afw_object_create_managed(ctx->p, xctx);
+                journal_entry = afw_object_create(ctx->p, xctx);
                 afw_adapter_modify_object(
                     self->adapter->mapped_adapter_id,
                     ctx->mapped_object_type_id,
@@ -1743,7 +1743,7 @@ impl_afw_adapter_session_replace_object(
 
             /* If no onReplaceObject or it returned undefined, do default processing. */
             if (use_default_processing) {
-                journal_entry = afw_object_create_managed(ctx->p, xctx);
+                journal_entry = afw_object_create(ctx->p, xctx);
                 afw_model_internal_complete_ctx_default_replace_object(ctx, xctx);
                 afw_adapter_replace_object(
                     self->adapter->mapped_adapter_id,

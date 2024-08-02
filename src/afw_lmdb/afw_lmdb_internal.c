@@ -565,7 +565,7 @@ const afw_object_t * afw_lmdb_internal_get_config(
     rc = mdb_get(txn, dbi, &key, &data);
     if (rc == MDB_NOTFOUND) {
         /* first time running?  create a new internal config */
-        config = afw_object_create_managed(p, xctx);
+        config = afw_object_create(p, xctx);
 
         /* get the current time for timestamps */
         now = afw_value_create_dateTime_now_utc(p, xctx);

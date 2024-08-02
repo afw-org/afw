@@ -52,7 +52,7 @@ impl_compile_custom(
     const afw_utf8_t *source_location;
     const afw_utf8_t *path;
 
-    result = afw_object_create_managed(model->p, xctx);
+    result = afw_object_create(model->p, xctx);
     path = afw_object_meta_get_path(custom, xctx);
 
     for (iterator = NULL;;) {

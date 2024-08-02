@@ -139,7 +139,7 @@ afw_adapter_journal_get_first(
     afw_adapter_impl_request_t impl_request;
 
     /* Create memory object for result. */
-    result = afw_object_create_managed(p, xctx);
+    result = afw_object_create(p, xctx);
 
     /* Get journal interface. */
     journal = impl_get_journal_interface(adapter_id, false, xctx);
@@ -169,7 +169,7 @@ afw_adapter_journal_get_by_cursor(
     afw_adapter_impl_request_t impl_request;
 
     /* Create memory object for result. */
-    result = afw_object_create_managed(p, xctx);
+    result = afw_object_create(p, xctx);
 
     /* Get journal interface. */
     journal = impl_get_journal_interface(adapter_id, false, xctx);
@@ -200,7 +200,7 @@ afw_adapter_journal_get_next_after_cursor(
     afw_adapter_impl_request_t impl_request;
 
     /* Create memory object for result. */
-    result = afw_object_create_managed(p, xctx);
+    result = afw_object_create(p, xctx);
 
     /* Get journal interface. */
     journal = impl_get_journal_interface(adapter_id, false, xctx);
@@ -233,7 +233,7 @@ afw_adapter_journal_get_next_for_consumer(
     afw_adapter_impl_request_t impl_request;
 
     /* Create memory object for result. */
-    result = afw_object_create_managed(p, xctx);
+    result = afw_object_create(p, xctx);
 
     /* Get journal interface. */
     journal = impl_get_journal_interface(adapter_id, true, xctx);
@@ -267,7 +267,7 @@ afw_adapter_journal_get_next_for_consumer_after_cursor(
     afw_adapter_impl_request_t impl_request;
 
     /* Create memory object for result. */
-    result = afw_object_create_managed(p, xctx);
+    result = afw_object_create(p, xctx);
 
     /* Get journal interface. */
     journal = impl_get_journal_interface(adapter_id, true, xctx);
@@ -300,7 +300,7 @@ afw_adapter_journal_advance_cursor_for_consumer(
     afw_adapter_impl_request_t impl_request;
 
     /* Create memory object for result. */
-    result = afw_object_create_managed(p, xctx);
+    result = afw_object_create(p, xctx);
 
     /* Get journal interface. */
     journal = impl_get_journal_interface(adapter_id, true, xctx);

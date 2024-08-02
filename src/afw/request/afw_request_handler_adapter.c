@@ -134,7 +134,7 @@ impl_afw_request_handler_process(
     }
 
     /* Create journal entry memory object. */
-    journal_entry = afw_object_create_managed(xctx->p, xctx);
+    journal_entry = afw_object_create(xctx->p, xctx);
 
     /* Allow journal entry to be used as additional error info. */
     afw_request_set_error_info(request, journal_entry, xctx);

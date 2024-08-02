@@ -52,7 +52,7 @@ if (!AFW_DATA_TYPE_EQUAL(A_DATATYPE_1_,A_DATATYPE_2_)) { \
  * @param xctx of caller.
  * @return cloned object.
  *
- * This will use afw_object_create_managed() to create the
+ * This will use afw_object_create() to create the
  * cloned object.
  */
 AFW_DECLARE(const afw_object_t *)
@@ -69,7 +69,7 @@ afw_data_type_object_create_clone_to_managed_object(
  * @param scalar_only true if only scalar properties should be listed.
  * @param xctx of caller.
  *
- * This will use afw_object_create_managed() to create the
+ * This will use afw_object_create() to create the
  * cloned object.
  */
 AFW_DECLARE(void)

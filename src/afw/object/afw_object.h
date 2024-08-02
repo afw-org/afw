@@ -156,12 +156,12 @@ afw_object_property_count(
  * @return boolean result.
  */
 #define afw_object_is_immutable(instance, xctx) \
-(afw_object_get_setter(instance, xctx) == NULL)
+    (afw_object_get_setter(instance, xctx) == NULL)
 
 
 
 #define AFW_OBJECT_IMPL_ERROR_OBJECT_NOT_ENTITY \
-AFW_THROW_ERROR_Z(general, "Object is not an entity", xctx)
+    AFW_THROW_ERROR_Z(general, "Object is not an entity", xctx)
 
 
 /**
@@ -178,7 +178,7 @@ while (0)
 
 
 #define AFW_OBJECT_ERROR_OBJECT_IMMUTABLE \
-AFW_THROW_ERROR_Z(read_only, "Object immutable", xctx)
+    AFW_THROW_ERROR_Z(read_only, "Object immutable", xctx)
 
 
 /**
@@ -892,13 +892,13 @@ afw_object_create_properties_callback(
  *
  * ... allocate memory and register cleanup using new_p ...
  *
- * object = afw_object_create_managed_cede_p(new_p, xctx);
+ * object = afw_object_create_cede_p(new_p, xctx);
  *
  * ... set properties and use object ...
  *
  * afw_object_release(object, xctx);
  */
-#define afw_object_create_managed_cede_p(p, xctx) \
+#define afw_object_create_cede_p(p, xctx) \
     afw_object_create_with_options( \
         AFW_OBJECT_MEMORY_OPTION_managed_cede_p, p, xctx)
 
@@ -909,11 +909,12 @@ afw_object_create_properties_callback(
  * @param xctx of caller.
  * @return instance of new object.
  *
- * This function creates a subpool of the pool specified to hold the object
- * and it's properties.  A call to afw_object_release() for this object will
- * release this subpool.
+ * This function creates a subpool of the pool specified to hold the object and
+ * it's properties.
+ *
+ * A call to afw_object_release() for this object will release this subpool.
  */
-#define afw_object_create_managed(p, xctx) \
+#define afw_object_create(p, xctx) \
     afw_object_create_with_options( \
         AFW_OBJECT_MEMORY_OPTION_managed, p, xctx)
 
@@ -981,8 +982,8 @@ afw_object_insure_embedded_exists(
  * @param entity_p to use for entity object.  Ignored for embedded object.
  * @param xctx of caller.
  *
- * This macro will call afw_object_create_managed,
- * afw_object_create_managed_cede_p() or
+ * This macro will call afw_object_create,
+ * afw_object_create_cede_p() or
  * afw_object_create_embedded() depending on whether embedding_object
  * is NULL and cede_p is true.
  *
@@ -1039,7 +1040,7 @@ afw_object_create_clone(
  * @param xctx of caller.
  * @return cloned object.
  *
- * This will use afw_object_create_managed() to create the
+ * This will use afw_object_create() to create the
  * cloned object.
  */
 #define afw_object_create_clone_to_managed_object( \

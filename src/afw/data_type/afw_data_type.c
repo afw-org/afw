@@ -1569,7 +1569,7 @@ afw_data_type_object_create_clone_to_managed_object(
 {
     const afw_object_t *result;
 
-    result = afw_object_create_managed(p, xctx);
+    result = afw_object_create(p, xctx);
     impl_object_clone_properties_and_meta(result, object, NULL, xctx);
 
     return result;

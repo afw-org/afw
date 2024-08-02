@@ -134,7 +134,7 @@ impl_make_registry_type_value(
 {
     const afw_object_t *entries;
 
-    entries = afw_object_create_managed(xctx->p, xctx);
+    entries = afw_object_create(xctx->p, xctx);
 
     afw_runtime_foreach(object_type_id, (void *)entries,
         impl_entry_cb, xctx);

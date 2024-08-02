@@ -2267,7 +2267,7 @@ afw_query_criteria_to_AdaptiveQueryCriteria_object(
     const afw_array_t *sort;
 
     /* Create object for result. */
-    object = afw_object_create_managed(p, xctx);
+    object = afw_object_create(p, xctx);
     afw_object_meta_set_object_type_id(object, afw_s__AdaptiveQueryCriteria_,
         xctx);
 

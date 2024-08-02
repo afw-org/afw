@@ -405,7 +405,7 @@ impl_afw_adapter_get_additional_metrics (
     int rc;
 
     /* Create additional metrics object and set object type. */
-    metrics = afw_object_create_managed(p, xctx);
+    metrics = afw_object_create(p, xctx);
     afw_object_meta_set_object_type_id(metrics, 
         afw_lmdb_s__AdaptiveAdapterMetrics_adapter_lmdb,
         xctx);
@@ -426,7 +426,7 @@ impl_afw_adapter_get_additional_metrics (
     of these embedded objects.
 
     Use afw_object_create_embedded() instead of
-    afw_object_create_managed() for the embedded ones. This creates the
+    afw_object_create() for the embedded ones. This creates the
     object and sets the property in the embedding object. So the
     afw_object_set_property_as_object() for each at the end
     can be removed.

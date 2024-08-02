@@ -981,7 +981,7 @@ afw_error_to_object(
 {
     const afw_object_t *result;
 
-    result = afw_object_create_managed(p, xctx);
+    result = afw_object_create(p, xctx);
     afw_error_add_to_object(result, error, xctx);
 
     return result;
