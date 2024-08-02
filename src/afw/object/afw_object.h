@@ -1032,24 +1032,6 @@ afw_object_create_clone(
 
 
 
-
-/**
- * @brief Clone an object to a managed object.
- * @param object to clone.
- * @param p used for cloned object.
- * @param xctx of caller.
- * @return cloned object.
- *
- * This will use afw_object_create() to create the
- * cloned object.
- */
-#define afw_object_create_clone_to_managed_object( \
-    object, p, xctx) \
-    afw_data_type_object_create_clone_to_managed_object( \
-        object, p, xctx)
-
-
-
 /**
  * @brief Create a memory object with properties from two other objects.
  * @param primary object.  Properties take precedence.
