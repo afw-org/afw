@@ -78,10 +78,8 @@
 # Functions are generated to allocate and create adaptive values.
 #
 #   afw_value_allocate_unmanaged_<dataType>()
-#   afw_value_allocate_permanent_<dataType>()
 #   afw_value_create_managed_<dataType>()
 #   afw_value_create_unmanaged_<dataType>()
-#   afw_value_create_permanent_<dataType>()
 #
 # There are functions to create slices of values if appropriate:
 #
@@ -393,20 +391,6 @@ def write_h_section(fd, prefix, obj):
         fd.write(declare + '(const afw_value_t *)\n')
         fd.write('afw_value_create_unmanaged_' + id + '(' + return_type + ' internal,\n')
         fd.write('    const afw_pool_t *p, afw_xctx_t *xctx);\n')
-
-        fd.write('\n/**\n')
-        fd.write(' * @brief Create function for permanent data type ' + id + ' value.\n')
-        fd.write(' * @param internal.\n')
-        fd.write(' * @param p to use for returned value.\n')
-        fd.write(' * @param xctx of caller.\n')
-        fd.write(' * @return Created const afw_value_t *.\n')
-        fd.write(' */\n')
-        fd.write(declare + '(const afw_value_t *)\n')
-        fd.write('afw_value_create_permanent_' + id + '(' + return_type + ' internal,\n')
-        fd.write('    const afw_pool_t *p, afw_xctx_t *xctx);\n')
-
-        if needs_found:
-            fd.write('\n/* Data type ' + id + ' not yet supported for some functions. */\n')
 
         fd.write('\n/**\n')
         fd.write(' * @brief Get property function for data type ' + id + ' value.\n')

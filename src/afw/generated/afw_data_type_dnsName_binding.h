@@ -245,17 +245,6 @@ afw_value_create_unmanaged_dnsName(const afw_utf8_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx);
 
 /**
- * @brief Create function for permanent data type dnsName value.
- * @param internal.
- * @param p to use for returned value.
- * @param xctx of caller.
- * @return Created const afw_value_t *.
- */
-AFW_DECLARE(const afw_value_t *)
-afw_value_create_permanent_dnsName(const afw_utf8_t * internal,
-    const afw_pool_t *p, afw_xctx_t *xctx);
-
-/**
  * @brief Get property function for data type dnsName value.
  * @deprecated
  * @param object of property to get.
