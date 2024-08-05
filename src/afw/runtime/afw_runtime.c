@@ -351,6 +351,7 @@ afw_runtime_object_create_indirect_using_inf(
 {
     const afw_runtime_object_type_meta_t *meta;
     afw_runtime_object_indirect_t *obj;
+    afw_value_object_t *value;
         
     /* Get object id. */
     meta = inf->rti.implementation_specific;
@@ -360,6 +361,10 @@ afw_runtime_object_create_indirect_using_inf(
         xctx);
     obj->pub.inf = inf;
     obj->pub.p = p;
+    value = afw_pool_calloc_type(p, afw_value_object_t, xctx);
+    value->inf = &afw_value_unmanaged_object_inf;
+    value->internal = (const afw_object_t *)obj;
+    obj->pub.value = (const afw_value_t *)&value;
     obj->pub.meta.id = object_id;
     obj->pub.meta.object_type_uri = meta->object_type_id;
     obj->pub.meta.object_uri = afw_object_path_make(
