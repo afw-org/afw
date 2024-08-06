@@ -409,10 +409,6 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     object/afw_object_memory_associative_array.c
     object/afw_object_meta.c
     object/afw_object_meta_accessor.c
-    object/afw_object_meta_properties.c
-    object/afw_object_meta_property.c
-    object/afw_object_meta_propertyType.c
-    object/afw_object_meta_propertyTypes.c
     object/afw_object_options.c
     object/afw_object_path.c
     object/afw_object_properties_callback.c
