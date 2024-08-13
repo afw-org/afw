@@ -1020,11 +1020,10 @@ def write_c_section(fd, prefix, obj):
         fd.write('afw_value_create_managed_' + id + '(\n    ' + return_type + ' internal,\n')
         fd.write('    afw_xctx_t *xctx)\n')
         fd.write('{\n')
-        #FIXME Remove 'False and' when value set correctly in all places
-        if False and ctype == 'const afw_object_t *':
+        if ctype == 'const afw_object_t *':
             fd.write('    /* Just return object\'s value. */;\n')
             fd.write('    if (!internal->value || !internal->value->inf) {\n')
-            fd.write('        return internal->value;\n')
+            fd.write('        AFW_THROW_ERROR_Z(general, "Missing object value", xctx);\n')
             fd.write('    }\n')
             fd.write('    return internal->value;\n')
         else:
@@ -1102,11 +1101,10 @@ def write_c_section(fd, prefix, obj):
         fd.write('afw_value_create_unmanaged_' + id + '(' + return_type + ' internal,\n')
         fd.write('    const afw_pool_t *p, afw_xctx_t *xctx)\n')
         fd.write('{\n')
-        #FIXME Remove 'False and' when value set correctly in all places
-        if False and ctype == 'const afw_object_t *':
+        if ctype == 'const afw_object_t *':
             fd.write('    /* Just return object\'s value. */;\n')
             fd.write('    if (!internal->value || !internal->value->inf) {\n')
-            fd.write('        return internal->value;\n')
+            fd.write('        AFW_THROW_ERROR_Z(general, "Missing object value", xctx);\n')
             fd.write('    }\n')
             fd.write('    return internal->value;\n')
         else:
@@ -1289,17 +1287,20 @@ def write_c_section(fd, prefix, obj):
         fd.write('    const afw_value_t *instance,\n')
         fd.write('    afw_xctx_t *xctx)\n')
         fd.write('{\n')
-        fd.write('    afw_value_' + id + '_managed_t *self =\n')
-        fd.write('        (afw_value_' + id + '_managed_t *)instance;\n')
-        fd.write('\n')
-        fd.write('    /* If reference count is 1 or less, free value\'s memory. */\n')    
-        fd.write('    if (self->reference_count <= 1) {\n')
-        fd.write('        afw_pool_free_memory((void *)instance, xctx);\n')
-        fd.write('    }\n')
-        fd.write('    \n    /* If not freeing memory, decrement reference count. */\n')    
-        fd.write('    else {\n')
-        fd.write('        self->reference_count--;\n')
-        fd.write('    }\n')
+        if ctype == 'const afw_object_t *':
+            fd.write('    afw_object_release(((afw_value_object_t *)instance)->internal, xctx);\n')
+        else:
+            fd.write('    afw_value_' + id + '_managed_t *self =\n')
+            fd.write('        (afw_value_' + id + '_managed_t *)instance;\n')
+            fd.write('\n')
+            fd.write('    /* If reference count is 1 or less, free value\'s memory. */\n')    
+            fd.write('    if (self->reference_count <= 1) {\n')
+            fd.write('        afw_pool_free_memory((void *)instance, xctx);\n')
+            fd.write('    }\n')
+            fd.write('    \n    /* If not freeing memory, decrement reference count. */\n')    
+            fd.write('    else {\n')
+            fd.write('        self->reference_count--;\n')
+            fd.write('    }\n')
         fd.write('}\n')
         
         fd.write('\n')
@@ -1323,11 +1324,14 @@ def write_c_section(fd, prefix, obj):
         fd.write('    const afw_pool_t *p,\n')
         fd.write('    afw_xctx_t *xctx)\n')
         fd.write('{\n')
-        fd.write('    afw_value_' + id + '_managed_t *self =\n')
-        fd.write('        (afw_value_' + id + '_managed_t *)instance;\n')
-        fd.write('\n')
-        fd.write('    /* Increment reference count and return instance. */\n')    
-        fd.write('    self->reference_count++;\n')
+        if ctype == 'const afw_object_t *':
+            fd.write('    afw_pool_get_reference(((afw_value_object_t *)instance)->internal->p, xctx);\n')
+        else:
+            fd.write('    afw_value_' + id + '_managed_t *self =\n')
+            fd.write('        (afw_value_' + id + '_managed_t *)instance;\n')
+            fd.write('\n')
+            fd.write('    /* Increment reference count and return instance. */\n')    
+            fd.write('    self->reference_count++;\n')
         fd.write('    return instance;\n')
         fd.write('}\n')
         fd.write('\n')

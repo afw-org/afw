@@ -284,15 +284,11 @@ afw_value_create_managed_object(
     const afw_object_t * internal,
     afw_xctx_t *xctx)
 {
-    afw_value_object_managed_t *v;
-
-    v = afw_xctx_malloc(
-        sizeof(afw_value_object_managed_t), xctx);
-    v->inf = &afw_value_managed_object_inf;
-    v->internal = internal;
-    v->reference_count = 0;
-
-    return &v->pub;
+    /* Just return object's value. */;
+    if (!internal->value || !internal->value->inf) {
+        AFW_THROW_ERROR_Z(general, "Missing object value", xctx);
+    }
+    return internal->value;
 }
 
 /* Create function for data type object value. */
@@ -300,13 +296,11 @@ AFW_DEFINE(const afw_value_t *)
 afw_value_create_unmanaged_object(const afw_object_t * internal,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    afw_value_object_t *v;
-
-    v = afw_pool_calloc(p, sizeof(afw_value_object_t),
-        xctx);
-    v->inf = &afw_value_unmanaged_object_inf;
-    v->internal = internal;
-    return &v->pub;
+    /* Just return object's value. */;
+    if (!internal->value || !internal->value->inf) {
+        AFW_THROW_ERROR_Z(general, "Missing object value", xctx);
+    }
+    return internal->value;
 }
 
 /* Convert data type object string to const afw_object_t * *. */
@@ -398,18 +392,7 @@ impl_afw_value_managed_optional_release(
     const afw_value_t *instance,
     afw_xctx_t *xctx)
 {
-    afw_value_object_managed_t *self =
-        (afw_value_object_managed_t *)instance;
-
-    /* If reference count is 1 or less, free value's memory. */
-    if (self->reference_count <= 1) {
-        afw_pool_free_memory((void *)instance, xctx);
-    }
-    
-    /* If not freeing memory, decrement reference count. */
-    else {
-        self->reference_count--;
-    }
+    afw_object_release(((afw_value_object_t *)instance)->internal, xctx);
 }
 
 /* Implementation of method get_reference for unmanaged value. */
@@ -431,11 +414,7 @@ impl_afw_value_managed_get_reference(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    afw_value_object_managed_t *self =
-        (afw_value_object_managed_t *)instance;
-
-    /* Increment reference count and return instance. */
-    self->reference_count++;
+    afw_pool_get_reference(((afw_value_object_t *)instance)->internal->p, xctx);
     return instance;
 }
 

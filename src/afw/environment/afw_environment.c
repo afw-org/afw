@@ -1216,6 +1216,7 @@ impl_resolve_function_parameter(
 {
     const afw_pool_t *p = xctx->env->p;
     afw_value_function_parameter_t *result;
+    afw_value_object_t *value;
 
     if (!parameter) {
         return NULL;
@@ -1226,6 +1227,10 @@ impl_resolve_function_parameter(
         p, xctx);
 
     result->meta.inf = &afw_runtime_inf__AdaptiveFunctionParameter_;
+    value = afw_pool_calloc_type(p, afw_value_object_t, xctx);
+    value->inf = &afw_value_permanent_object_inf;
+    value->internal = (const afw_object_t *)&result->meta;
+    result->meta.value = (const afw_value_t *)value;
 
     if (parameter->dataType && parameter->dataType->internal.s) {
         result->data_type = afw_environment_get_data_type(
@@ -1249,6 +1254,7 @@ impl_resolve_function(
     afw_size_t count;
     const afw_value_function_parameter_t **parameters;
     afw_runtime_object_indirect_t *object;
+    afw_value_object_t *value;
 
     result = afw_memory_dup(function, sizeof(afw_value_function_definition_t),
         p, xctx);
@@ -1258,6 +1264,10 @@ impl_resolve_function(
     object = afw_memory_dup(function->object,
         sizeof(afw_runtime_object_indirect_t), p, xctx);
     object->pub.inf = &afw_runtime_inf__AdaptiveFunction_;
+    value = afw_pool_calloc_type(p, afw_value_object_t, xctx);
+    value->inf = &afw_value_permanent_object_inf;
+    value->internal = (const afw_object_t *)object;
+    object->pub.value = (const afw_value_t *)value;
     object->internal = result;
     result->object = (const afw_object_t *)object;
     if (result->dataType && result->dataType->internal.len > 0) {
