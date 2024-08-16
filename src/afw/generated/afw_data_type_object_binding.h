@@ -188,19 +188,6 @@ afw_value_as_object(
     afw_xctx_t *xctx);
 
 /**
- * @brief Allocate function for data type object value.
- * @param p to use for returned value.
- * @param xctx of caller.
- * @return Allocated afw_value_object_t with appropriate inf set.
- *
- * The value's lifetime is not managed so it will last for the life of the pool.
- */
-AFW_DECLARE(afw_value_object_t *)
-afw_value_allocate_unmanaged_object(
-    const afw_pool_t *p,
-    afw_xctx_t *xctx);
-
-/**
  * @brief Create function for managed data type object value.
  * @param internal.
  * @param xctx of caller.

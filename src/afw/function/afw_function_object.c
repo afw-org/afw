@@ -63,9 +63,8 @@ afw_function_execute_add_properties(
 
     AFW_FUNCTION_EVALUATE_DATA_TYPE_PARAMETER(target, 1, object);
     if (!target) {
-        target = afw_value_allocate_unmanaged_object(x->p, x->xctx);
-        ((afw_value_object_t *)target)->internal =
-            afw_object_create_unmanaged(x->p, x->xctx);
+        target = (const afw_value_object_t *)
+            afw_object_create_unmanaged(x->p, x->xctx)->value;
     }
 
     for (count = 2; count <= x->argc; count++)

@@ -1511,6 +1511,7 @@ impl_clone_and_set_property(
     afw_xctx_t *xctx)
 {
     const afw_value_t *cloned_value;
+    const afw_object_t *embedded_object;
     const afw_pool_t *p = obj->p;
 
     /* Clone property name.*/
@@ -1518,12 +1519,11 @@ impl_clone_and_set_property(
 
     /* If object, handle special to support embedding object. */
     if (afw_value_is_object(value)) {
-        cloned_value = (const afw_value_t *)
-            afw_value_allocate_unmanaged_object(p, xctx);
         impl_clone_embedded_object(
-            &((afw_value_object_t *)cloned_value)->internal,
+            &embedded_object,
             ((const afw_value_object_t *)value)->internal,
             obj, property_name, xctx);
+        cloned_value = embedded_object->value;
     }
 
     /* Other cases, just use normal value clone. */
