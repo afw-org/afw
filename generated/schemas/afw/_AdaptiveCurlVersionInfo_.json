@@ -1,0 +1,75 @@
+{
+    "$defs": {
+        "_AdaptiveCurlVersionInfo_": {
+            "anyOf": [
+                {
+                    "$ref": "#/$defs/_AdaptiveCurlVersionInfo_.propertyTypes"
+                }
+            ],
+            "description": "Object type for cURL extension version info object.",
+            "type": "object",
+            "unevaluatedProperties": false
+        },
+        "_AdaptiveCurlVersionInfo_.propertyTypes": {
+            "properties": {
+                "age": {
+                    "title": "Age",
+                    "type": "string"
+                },
+                "brotli_version": {
+                    "title": "Brotli Version",
+                    "type": "string"
+                },
+                "features": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "title": "Features",
+                    "type": "array"
+                },
+                "host": {
+                    "title": "Host",
+                    "type": "string"
+                },
+                "libssh_version": {
+                    "title": "LibSSH Version",
+                    "type": "string"
+                },
+                "libz_version": {
+                    "title": "LibZ Version",
+                    "type": "string"
+                },
+                "protocols": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "title": "Protocols",
+                    "type": "array"
+                },
+                "ssl_version": {
+                    "title": "SSL Version",
+                    "type": "string"
+                },
+                "ssl_version_num": {
+                    "title": "SSL Version Number",
+                    "type": "integer"
+                },
+                "version": {
+                    "title": "Version",
+                    "type": "string"
+                },
+                "version_num": {
+                    "title": "Version Number",
+                    "type": "integer"
+                }
+            },
+            "type": "object"
+        }
+    },
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "anyOf": [
+        {
+            "$ref": "#/$defs/_AdaptiveCurlVersionInfo_"
+        }
+    ]
+}

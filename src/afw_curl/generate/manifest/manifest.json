@@ -1,0 +1,6 @@
+{
+  "brief": "Extension for cURL",
+  "description": "This extension uses libcURL to provide a variety of adaptive functions for use in expressions and rules.  These functions allow users to connect with services over HTTP, SMTP, FTP, and Telnet/SSH.",
+  "extensionId": "afw_curl",
+  "modulePath": "libafwcurl"
+}

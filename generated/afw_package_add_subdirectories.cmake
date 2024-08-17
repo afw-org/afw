@@ -27,6 +27,14 @@ add_subdirectory("${PROJECT_SOURCE_DIR}/src/afw_command/")
 set(AFW_CONFIG_HAS_AFW_COMPONENTS 1)
 add_subdirectory("${PROJECT_SOURCE_DIR}/src/afw_components/")
 
+option(BUILD_AFW_CURL "Enable making libafwcurl" ON)
+if (BUILD_AFW_CURL)
+    add_subdirectory("${PROJECT_SOURCE_DIR}/src/afw_curl/")
+    set(AFW_CONFIG_HAS_AFW_CURL 1)
+else()
+    set(AFW_CONFIG_HAS_AFW_CURL 0)
+endif()
+
 set(AFW_CONFIG_HAS_AFW_DEV 1)
 add_subdirectory("${PROJECT_SOURCE_DIR}/src/afw_dev/")
 

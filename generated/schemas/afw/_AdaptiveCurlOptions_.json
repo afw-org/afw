@@ -1,0 +1,120 @@
+{
+    "$defs": {
+        "_AdaptiveCurlOptions_": {
+            "anyOf": [
+                {
+                    "$ref": "#/$defs/_AdaptiveCurlOptions_.propertyTypes"
+                }
+            ],
+            "description": "Object type for cURL General Options.",
+            "type": "object",
+            "unevaluatedProperties": false
+        },
+        "_AdaptiveCurlOptions_.propertyTypes": {
+            "properties": {
+                "autoReferer": {
+                    "description": "When true, libcurl will automatically set the Referer: header field in HTTP requests where it follows a Location: redirect.",
+                    "title": "Auto Referer",
+                    "type": "boolean"
+                },
+                "cookies": {
+                    "description": "Cookie(s) to send.",
+                    "title": "Cookies",
+                    "type": "array"
+                },
+                "followLocation": {
+                    "description": "Follow HTTP redirects.",
+                    "title": "Follow Location",
+                    "type": "boolean"
+                },
+                "freshConnect": {
+                    "description": "Sets the next transfer to use a new (fresh) connection instead of trying to re-use an existing one.",
+                    "title": "Fresh Connect",
+                    "type": "boolean"
+                },
+                "httpProxyTunnel": {
+                    "description": "Set this parameter to true to make libcurl tunnel all operations through the HTTP proxy.",
+                    "title": "HTTP Proxy Tunnel",
+                    "type": "boolean"
+                },
+                "http_version": {
+                    "description": "HTTP version to use.",
+                    "title": "HTTP Version",
+                    "type": "string"
+                },
+                "interface": {
+                    "description": "This sets the interface name to use as outgoing network interface.  The name can be an interface name, an IP address, or host name.",
+                    "title": "Interface",
+                    "type": "string"
+                },
+                "keepAlive": {
+                    "description": "If true, TCP keepalive probes will be sent.",
+                    "title": "Keepalive",
+                    "type": "boolean"
+                },
+                "proxy": {
+                    "description": "Set the proxy to use for the upcoming request.  This parameter should be a string holding the host name or dotted numerical IP address.  A numerical IPv6 address must be written within [brackets].  To specify a port number in this string, append :[port] to the end of the host name.  The proxy string may be prefixed with the [scheme]:// to specify which kind of proxy is used.",
+                    "title": "Proxy",
+                    "type": "string"
+                },
+                "proxyServiceName": {
+                    "description": "Parameter specifies the name of the service.  The default service name is 'HTTP' for HTTP based proxies and 'rcmd' for SOCKS5.",
+                    "title": "Proxy Service Name",
+                    "type": "string"
+                },
+                "serviceName": {
+                    "description": "The name of teh service for DIGEST-MD5, SPNEGO and Kerberos 5 authentication mechanisms.  The default service names are 'ftp', 'HTTP', 'imap', 'pop' and 'smtp'.",
+                    "title": "Service Name",
+                    "type": "string"
+                },
+                "sslVerifyHost": {
+                    "description": "Verify the host name in the SSL certificate.",
+                    "title": "SSL Verify Host",
+                    "type": "boolean"
+                },
+                "sslVerifyPeer": {
+                    "description": "Verify the SSL certificate.",
+                    "title": "SSL Verify Peer",
+                    "type": "boolean"
+                },
+                "sslVerifyStatus": {
+                    "description": "Verify the SSL certificate's status.",
+                    "title": "SSL Verify Status",
+                    "type": "boolean"
+                },
+                "sslVersion": {
+                    "description": "SSL Version to use.",
+                    "title": "SSL Version",
+                    "type": "string"
+                },
+                "tcpNoDelay": {
+                    "description": "Specifies whether the TCP_NODELAY option is to be set or cleared.  Setting this to true will disable TCP's Nagle algorithm on this connection.  The purpose of this algorithm is to try to minimize the number of small packets on the network.",
+                    "title": "TCP No Delay",
+                    "type": "boolean"
+                },
+                "timeout": {
+                    "description": "Timeout (in milliseconds) for the entire request.",
+                    "title": "Timeout",
+                    "type": "integer"
+                },
+                "userPassword": {
+                    "description": "The user/password combination to use for authentication in the form user:password",
+                    "title": "User/Password",
+                    "type": "string"
+                },
+                "verbose": {
+                    "description": "Display verbose information.",
+                    "title": "Verbose",
+                    "type": "boolean"
+                }
+            },
+            "type": "object"
+        }
+    },
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "anyOf": [
+        {
+            "$ref": "#/$defs/_AdaptiveCurlOptions_"
+        }
+    ]
+}

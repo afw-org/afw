@@ -99,6 +99,16 @@
             "srcdirPath": "src/afw_components/react/monaco/",
             "version": "0.9.0"
         },
+        "afw_curl": {
+            "brief": "Library libafwcurl",
+            "buildType": "afwmake",
+            "description": "AFW shared object - libafwcurl.",
+            "optionalChoiceDefault": true,
+            "prefix": "afw_curl_",
+            "produces": "libafwcurl",
+            "srcdirPath": "src/afw_curl/",
+            "version": "0.9.0"
+        },
         "afw_dev": {
             "brief": "Command afwdev",
             "buildType": "afwmake:python",

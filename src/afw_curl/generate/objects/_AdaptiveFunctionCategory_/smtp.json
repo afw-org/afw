@@ -1,0 +1,5 @@
+{
+    "category": "smtp",
+    "brief": "SMTP Functions derived from cURL.",
+    "description": "This category provides adaptive functions that allow the user to interact with SMTP (Simple Mail Transfer Protocol) in order to send eMail."
+}

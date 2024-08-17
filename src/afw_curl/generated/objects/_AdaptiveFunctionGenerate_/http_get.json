@@ -1,0 +1,33 @@
+{
+    "afwCamelCaseFunctionLabel": "afwHttpGet",
+    "camelCaseFunctionLabel": "httpGet",
+    "category": "http",
+    "description": "Makes a HTTP GET Request.",
+    "functionId": "http_get",
+    "functionLabel": "http_get",
+    "parameters": [
+        {
+            "dataType": "string",
+            "description": "HTTP Url.",
+            "name": "url"
+        },
+        {
+            "dataType": "array",
+            "description": "HTTP Headers.",
+            "name": "headers",
+            "optional": true
+        },
+        {
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveCurlOptions_",
+            "description": "CURL Options",
+            "name": "options",
+            "optional": true
+        }
+    ],
+    "returns": {
+        "dataType": "object",
+        "dataTypeParameter": "_AdaptiveCurlHttpResponse_",
+        "description": "Returns an object describing the response from the HTTP GET request."
+    }
+}

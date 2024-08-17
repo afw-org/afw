@@ -1,0 +1,12 @@
+{
+    "category": "curl",
+    "description": "Returns run-time libcurl version info.",
+    "functionId": "curl_version_info",
+    "functionLabel": "curl_version_info",
+    "parameters": [],
+    "returns": {
+        "dataType": "object",
+        "description": "Returns an object describing the cURL version information.",
+        "dataTypeParameter": "_AdaptiveCurlVersionInfo_"
+    }
+}

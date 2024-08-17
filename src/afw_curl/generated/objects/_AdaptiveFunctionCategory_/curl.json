@@ -1,0 +1,5 @@
+{
+    "category": "curl",
+    "brief": "Functions derived from cURL library.",
+    "description": "Functions from this category use the cURL (Client URL) API's to provide functions for interacting with remote URL data over a variety of protocols."
+}

@@ -1,0 +1,14 @@
+{
+    "afwCamelCaseFunctionLabel": "afwCurlVersionInfo",
+    "camelCaseFunctionLabel": "curlVersionInfo",
+    "category": "curl",
+    "description": "Returns run-time libcurl version info.",
+    "functionId": "curl_version_info",
+    "functionLabel": "curl_version_info",
+    "parameters": [],
+    "returns": {
+        "dataType": "object",
+        "dataTypeParameter": "_AdaptiveCurlVersionInfo_",
+        "description": "Returns an object describing the cURL version information."
+    }
+}

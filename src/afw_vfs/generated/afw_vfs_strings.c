@@ -338,63 +338,63 @@ afw_vfs_self_v_zz__ = {
 };
 
 const afw_value_string_t
-afw_vfs_self_v_zz__2535 = {
+afw_vfs_self_v_zz__2557 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2535)
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2557)
 };
 
 const afw_value_string_t
-afw_vfs_self_v_zz__2536 = {
+afw_vfs_self_v_zz__2558 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2536)
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2558)
 };
 
 const afw_value_string_t
-afw_vfs_self_v_zz__2537 = {
+afw_vfs_self_v_zz__2559 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2537)
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2559)
 };
 
 const afw_value_string_t
-afw_vfs_self_v_zz__2538 = {
+afw_vfs_self_v_zz__2560 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2538)
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2560)
 };
 
 const afw_value_string_t
-afw_vfs_self_v_zz__2539 = {
+afw_vfs_self_v_zz__2561 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2539)
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2561)
 };
 
 const afw_value_string_t
-afw_vfs_self_v_zz__2540 = {
+afw_vfs_self_v_zz__2562 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2540)
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2562)
 };
 
 const afw_value_string_t
-afw_vfs_self_v_zz__2541 = {
+afw_vfs_self_v_zz__2563 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2541)
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2563)
 };
 
 const afw_value_string_t
-afw_vfs_self_v_zz__2542 = {
+afw_vfs_self_v_zz__2564 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2542)
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2564)
 };
 
 const afw_value_string_t
-afw_vfs_self_v_zz__2543 = {
+afw_vfs_self_v_zz__2565 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2543)
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2565)
 };
 
 const afw_value_string_t
-afw_vfs_self_v_zz__2544 = {
+afw_vfs_self_v_zz__2566 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2544)
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2566)
 };
 
 const afw_value_string_t

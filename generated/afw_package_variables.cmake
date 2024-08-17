@@ -62,6 +62,7 @@ set(afw_package_srcdirs
     "afw_components_react_core"
     "afw_components_react_material"
     "afw_components_react_monaco"
+    "afw_curl"
     "afw_dev"
     "afw_ldap"
     "afw_lmdb"
@@ -204,6 +205,24 @@ set(afw_package_srcdirs_afw_components_react_monaco_description "Javascript comp
 set(afw_package_srcdirs_afw_components_react_monaco_srcdirPath "src/afw_components/react/monaco/")
 set(afw_package_srcdirs_afw_components_react_monaco_prefix "afw_components_react_monaco_")
 set(afw_package_srcdirs_afw_components_react_monaco_version "0.9.0")
+set(afw_package_srcdirs_afw_curl 
+    "brief"
+    "buildType"
+    "description"
+    "optionalChoiceDefault"
+    "prefix"
+    "produces"
+    "srcdirPath"
+    "version"
+)
+set(afw_package_srcdirs_afw_curl_brief "Library libafwcurl")
+set(afw_package_srcdirs_afw_curl_buildType "afwmake")
+set(afw_package_srcdirs_afw_curl_description "AFW shared object - libafwcurl.")
+set(afw_package_srcdirs_afw_curl_optionalChoiceDefault ON)
+set(afw_package_srcdirs_afw_curl_prefix "afw_curl_")
+set(afw_package_srcdirs_afw_curl_produces "libafwcurl")
+set(afw_package_srcdirs_afw_curl_srcdirPath "src/afw_curl/")
+set(afw_package_srcdirs_afw_curl_version "0.9.0")
 set(afw_package_srcdirs_afw_dev 
     "brief"
     "buildType"

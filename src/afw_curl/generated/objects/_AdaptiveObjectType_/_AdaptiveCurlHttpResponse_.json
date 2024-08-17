@@ -1,0 +1,23 @@
+{
+    "allowAdd": false,
+    "allowChange": false,
+    "allowDelete": false,
+    "allowEntity": true,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/curl_extension"
+    ],
+    "description": "Object type for cURL HTTP Responses.",
+    "objectType": "_AdaptiveCurlHttpResponse_",
+    "propertyTypes": {
+        "response": {
+            "dataType": "string",
+            "description": "HTTP Response Data from the server.",
+            "label": "Response"
+        },
+        "response_code": {
+            "dataType": "integer",
+            "description": "HTTP Response Code from the server.",
+            "label": "Response Code"
+        }
+    }
+}

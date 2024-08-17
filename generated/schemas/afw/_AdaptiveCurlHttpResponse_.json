@@ -1,0 +1,35 @@
+{
+    "$defs": {
+        "_AdaptiveCurlHttpResponse_": {
+            "anyOf": [
+                {
+                    "$ref": "#/$defs/_AdaptiveCurlHttpResponse_.propertyTypes"
+                }
+            ],
+            "description": "Object type for cURL HTTP Responses.",
+            "type": "object",
+            "unevaluatedProperties": false
+        },
+        "_AdaptiveCurlHttpResponse_.propertyTypes": {
+            "properties": {
+                "response": {
+                    "description": "HTTP Response Data from the server.",
+                    "title": "Response",
+                    "type": "string"
+                },
+                "response_code": {
+                    "description": "HTTP Response Code from the server.",
+                    "title": "Response Code",
+                    "type": "integer"
+                }
+            },
+            "type": "object"
+        }
+    },
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "anyOf": [
+        {
+            "$ref": "#/$defs/_AdaptiveCurlHttpResponse_"
+        }
+    ]
+}

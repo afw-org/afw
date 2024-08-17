@@ -391,6 +391,24 @@
                 "/src/*/generate*/objects/_AdaptiveEnvironmentVariables_/*.json"
             ],
             "url": "./generated/schemas/afw/_AdaptiveEnvironmentVariables_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveCurlOptions_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveCurlOptions_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveCurlVersionInfo_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveCurlVersionInfo_.json"
+        },
+        {
+            "fileMatch": [
+                "/src/*/generate*/objects/_AdaptiveCurlHttpResponse_/*.json"
+            ],
+            "url": "./generated/schemas/afw/_AdaptiveCurlHttpResponse_.json"
         }
     ],
     "python.analysis.extraPaths": [

@@ -1,0 +1,59 @@
+{
+    "allowAdd": false,
+    "allowChange": false,
+    "allowDelete": false,
+    "allowEntity": true,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/curl_extension"
+    ],
+    "description": "Object type for cURL extension version info object.",
+    "objectType": "_AdaptiveCurlVersionInfo_",
+    "propertyTypes": {
+        "age": {
+            "dataType": "string",
+            "label": "Age"
+        },
+        "brotli_version": {
+            "dataType": "string",
+            "label": "Brotli Version"
+        },
+        "features": {
+            "dataType": "array",
+            "dataTypeParameter": "string",
+            "label": "Features"
+        },
+        "host": {
+            "dataType": "string",
+            "label": "Host"
+        },
+        "libssh_version": {
+            "dataType": "string",
+            "label": "LibSSH Version"
+        },
+        "libz_version": {
+            "dataType": "string",
+            "label": "LibZ Version"
+        },
+        "protocols": {
+            "dataType": "array",
+            "dataTypeParameter": "string",
+            "label": "Protocols"
+        },
+        "ssl_version": {
+            "dataType": "string",
+            "label": "SSL Version"
+        },
+        "ssl_version_num": {
+            "dataType": "integer",
+            "label": "SSL Version Number"
+        },
+        "version": {
+            "dataType": "string",
+            "label": "Version"
+        },
+        "version_num": {
+            "dataType": "integer",
+            "label": "Version Number"
+        }
+    }
+}

@@ -1,0 +1,51 @@
+{
+  "name": "@afw/curl",
+  "license": "UNLICENSED",
+  "version": "0.1.0",
+  "description": "Javascript curl language bindings for Adaptive Framework",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/OpenClemson/PrivateAdaptiveFramework.git"
+  },
+  "main": "lib/index.js",
+  "module": "esm/index.js",
+  "typings": "esm/index.d.ts",
+  "peerDependencies": {},
+  "scripts": {
+    "build": "npm run build:cjs && npm run build:esm && npm run build:types",
+    "build:cjs": "rimraf lib && cross-env NODE_ENV=production babel src -d lib --extensions '.js,.ts' -s",
+    "build:esm": "rimraf esm && cross-env NODE_ENV=production BABEL_ENV=esm babel src -d esm --extensions '.js,.ts' -s",
+    "build:types": "tsc --build --listEmittedFiles tsconfig.json"
+  },
+  "babel": {
+    "env": {
+      "esm": {
+        "presets": [
+          [ "@babel/env", { "modules": false, "bugfixes": true } ],
+          "@babel/preset-typescript"
+        ],
+        "plugins": [
+          [ "@babel/plugin-proposal-class-properties", { "loose": true } ],
+          [ "@babel/plugin-proposal-object-rest-spread", { "loose": true } ],
+          [ "@babel/plugin-proposal-private-methods", { "loose": true } ],
+          [ "@babel/plugin-transform-runtime", { "esModules": true } ]
+        ]
+      }
+    },
+    "ignore": [
+      "**/__tests__",
+      "**/*.test.js",
+      "__snapshots__"
+    ],
+    "presets": [
+        [ "@babel/env", { "modules": "commonjs" } ],
+        "@babel/preset-typescript"
+    ],
+    "plugins": [
+        [ "@babel/plugin-proposal-class-properties", { "loose": true } ],
+        [ "@babel/plugin-proposal-object-rest-spread", { "loose": true } ],
+        [ "@babel/plugin-proposal-private-methods", { "loose": true } ],
+        [ "@babel/plugin-transform-runtime", { "esModules": true } ]
+    ]
+  }
+}

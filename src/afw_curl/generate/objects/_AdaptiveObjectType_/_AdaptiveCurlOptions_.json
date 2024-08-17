@@ -1,0 +1,108 @@
+{
+    "allowAdd": false,
+    "allowChange": false,
+    "allowDelete": false,
+    "allowEntity": true,
+    "collectionURIs": [
+        "/afw/_AdaptiveCollection_/curl_extension"
+    ],
+    "description": "Object type for cURL General Options.",
+    "objectType": "_AdaptiveCurlOptions_",
+    "propertyTypes": {
+        "autoReferer": {
+            "dataType": "boolean",
+            "description": "When true, libcurl will automatically set the Referer: header field in HTTP requests where it follows a Location: redirect.",
+            "label": "Auto Referer"
+        },
+        "cookies": {
+            "dataType": "array",
+            "description": "Cookie(s) to send.",
+            "label": "Cookies"
+        },
+        "followLocation": {
+            "dataType": "boolean",
+            "description": "Follow HTTP redirects.",
+            "label": "Follow Location"
+        },
+        "freshConnect": {
+            "dataType": "boolean",
+            "description": "Sets the next transfer to use a new (fresh) connection instead of trying to re-use an existing one.",
+            "label": "Fresh Connect"
+        },
+        "httpProxyTunnel": {
+            "dataType": "boolean",
+            "description": "Set this parameter to true to make libcurl tunnel all operations through the HTTP proxy.",
+            "label": "HTTP Proxy Tunnel"
+        },
+        "http_version": {
+            "dataType": "string",
+            "description": "HTTP version to use.",
+            "label": "HTTP Version"
+        },
+        "interface": {
+            "dataType": "string",
+            "description": "This sets the interface name to use as outgoing network interface.  The name can be an interface name, an IP address, or host name.",
+            "label": "Interface"
+        },
+        "keepAlive": {
+            "dataType": "boolean",
+            "description": "If true, TCP keepalive probes will be sent.",
+            "label": "Keepalive"
+        },
+        "proxy": {
+            "dataType": "string",
+            "description": "Set the proxy to use for the upcoming request.  This parameter should be a string holding the host name or dotted numerical IP address.  A numerical IPv6 address must be written within [brackets].  To specify a port number in this string, append :[port] to the end of the host name.  The proxy string may be prefixed with the [scheme]:// to specify which kind of proxy is used.",
+            "label": "Proxy"
+        },
+        "proxyServiceName": {
+            "dataType": "string",
+            "description": "Parameter specifies the name of the service.  The default service name is 'HTTP' for HTTP based proxies and 'rcmd' for SOCKS5.",
+            "label": "Proxy Service Name"
+        },
+        "serviceName": {
+            "dataType": "string",
+            "description": "The name of teh service for DIGEST-MD5, SPNEGO and Kerberos 5 authentication mechanisms.  The default service names are 'ftp', 'HTTP', 'imap', 'pop' and 'smtp'.",
+            "label": "Service Name"
+        },
+        "sslVerifyHost": {
+            "dataType": "boolean",
+            "description": "Verify the host name in the SSL certificate.",
+            "label": "SSL Verify Host"
+        },
+        "sslVerifyPeer": {
+            "dataType": "boolean",
+            "description": "Verify the SSL certificate.",
+            "label": "SSL Verify Peer"
+        },
+        "sslVerifyStatus": {
+            "dataType": "boolean",
+            "description": "Verify the SSL certificate's status.",
+            "label": "SSL Verify Status"
+        },
+        "sslVersion": {
+            "dataType": "string",
+            "description": "SSL Version to use.",
+            "label": "SSL Version"
+        },
+        "tcpNoDelay": {
+            "dataType": "boolean",
+            "description": "Specifies whether the TCP_NODELAY option is to be set or cleared.  Setting this to true will disable TCP's Nagle algorithm on this connection.  The purpose of this algorithm is to try to minimize the number of small packets on the network.",
+            "label": "TCP No Delay"
+        },
+        "timeout": {
+            "dataType": "integer",
+            "description": "Timeout (in milliseconds) for the entire request.",
+            "label": "Timeout"
+        },
+        "userPassword": {
+            "dataType": "string",
+            "description": "The user/password combination to use for authentication in the form user:password",
+            "label": "User/Password"
+        },
+        "verbose": {
+            "dataType": "boolean",
+            "description": "Display verbose information.",
+            "label": "Verbose"
+        }
+    }
+}

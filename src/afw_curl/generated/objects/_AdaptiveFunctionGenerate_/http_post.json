@@ -1,0 +1,39 @@
+{
+    "afwCamelCaseFunctionLabel": "afwHttpPost",
+    "camelCaseFunctionLabel": "httpPost",
+    "category": "http",
+    "description": "Makes a HTTP Post Request.",
+    "functionId": "http_post",
+    "functionLabel": "http_post",
+    "parameters": [
+        {
+            "dataType": "string",
+            "description": "HTTP Url.",
+            "name": "url"
+        },
+        {
+            "dataType": "string",
+            "description": "Data payload to POST to the url.",
+            "name": "payload",
+            "optional": true
+        },
+        {
+            "dataType": "array",
+            "description": "HTTP Headers.",
+            "name": "headers",
+            "optional": true
+        },
+        {
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveCurlOptions_",
+            "description": "CURL Options",
+            "name": "options",
+            "optional": true
+        }
+    ],
+    "returns": {
+        "dataType": "object",
+        "dataTypeParameter": "_AdaptiveCurlHttpResponse_",
+        "description": "Returns an object describing the response from the HTTP POST request."
+    }
+}

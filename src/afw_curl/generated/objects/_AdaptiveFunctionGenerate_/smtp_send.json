@@ -1,0 +1,40 @@
+{
+    "afwCamelCaseFunctionLabel": "afwSmtpSend",
+    "camelCaseFunctionLabel": "smtpSend",
+    "category": "smtp",
+    "description": "Sends an eMail using SMTP protocol with cURL.",
+    "functionId": "smtp_send",
+    "functionLabel": "smtp_send",
+    "parameters": [
+        {
+            "dataType": "string",
+            "description": "SMTP Server Url.",
+            "name": "url"
+        },
+        {
+            "dataType": "string",
+            "description": "From Address.",
+            "name": "mail_from"
+        },
+        {
+            "dataType": "array",
+            "description": "To Addresses.",
+            "name": "mail_recipients"
+        },
+        {
+            "dataType": "string",
+            "description": "Email Payload, or body of the message.",
+            "name": "payload"
+        },
+        {
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveCurlOptions_",
+            "description": "CURL Options",
+            "name": "options",
+            "optional": true
+        }
+    ],
+    "returns": {
+        "dataType": "void"
+    }
+}
