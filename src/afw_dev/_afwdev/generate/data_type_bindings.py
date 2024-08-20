@@ -1022,10 +1022,11 @@ def write_c_section(fd, prefix, obj):
         fd.write('    afw_xctx_t *xctx)\n')
         fd.write('{\n')
         if ctype == 'const afw_object_t *':
-            fd.write('    /* Just return object\'s value. */;\n')
+            fd.write('    /* Add reference to object and return object\'s value. */;\n')
             fd.write('    if (!internal->value || !internal->value->inf) {\n')
             fd.write('        AFW_THROW_ERROR_Z(general, "Missing object value", xctx);\n')
             fd.write('    }\n')
+            fd.write('    afw_object_get_reference(internal, xctx);\n')
             fd.write('    return internal->value;\n')
         else:
             fd.write('    afw_value_' + id + '_managed_t *v;\n')

@@ -272,10 +272,11 @@ afw_value_create_managed_object(
     const afw_object_t * internal,
     afw_xctx_t *xctx)
 {
-    /* Just return object's value. */;
+    /* Add reference to object and return object's value. */;
     if (!internal->value || !internal->value->inf) {
         AFW_THROW_ERROR_Z(general, "Missing object value", xctx);
     }
+    afw_object_get_reference(internal, xctx);
     return internal->value;
 }
 
