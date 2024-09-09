@@ -8,7 +8,7 @@ RUN chmod +x /builder.sh && /builder.sh
 
 FROM ghcr.io/afw-org/afw-base:alpine
 
-LABEL org.opencontainers.image.source https://github.com/afw-org/afw
+LABEL org.opencontainers.image.source=https://github.com/afw-org/afw
 
 # builder images must already be created to grab artifacts
 COPY --from=build-stage-c /afw-*alpine*.tar /

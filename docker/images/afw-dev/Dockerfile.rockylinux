@@ -27,7 +27,7 @@ COPY --from=build-stage-js /*.tar /
 # create a final output image
 FROM ghcr.io/afw-org/afw-dev-base:rockylinux
 
-LABEL org.opencontainers.image.source https://github.com/afw-org/afw
+LABEL org.opencontainers.image.source=https://github.com/afw-org/afw
 
 # obtain the artifacts from build-stage
 COPY --from=build-stage /afw-*.rpm /

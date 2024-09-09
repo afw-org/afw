@@ -27,7 +27,7 @@ COPY --from=build-stage-js /*.tar /
 # create a final output image
 FROM ghcr.io/afw-org/afw-base:alpine
 
-LABEL org.opencontainers.image.source https://github.com/afw-org/afw
+LABEL org.opencontainers.image.source=https://github.com/afw-org/afw
 
 # add supervisor package for managing startup services
 RUN apk add --no-cache nginx supervisor

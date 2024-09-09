@@ -1,6 +1,6 @@
 FROM opensuse/leap:15.5
 
-LABEL org.opencontainers.image.source https://github.com/afw-org/afw
+LABEL org.opencontainers.image.source=https://github.com/afw-org/afw
 
 # Install packages
 RUN zypper ref -s && \
