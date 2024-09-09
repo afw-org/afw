@@ -1,6 +1,6 @@
 FROM ubuntu:22.04
 
-LABEL org.opencontainers.image.source https://github.com/afw-org/afw
+LABEL org.opencontainers.image.source=https://github.com/afw-org/afw
 
 ENV DEBIAN_FRONTEND=noninteractive
 

@@ -1,6 +1,6 @@
 FROM rockylinux:8.9.20231119
 
-LABEL org.opencontainers.image.source https://github.com/afw-org/afw
+LABEL org.opencontainers.image.source=https://github.com/afw-org/afw
 
 # Install packages
 RUN dnf install -y epel-release && \

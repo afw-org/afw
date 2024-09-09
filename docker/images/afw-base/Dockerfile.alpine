@@ -1,6 +1,6 @@
 FROM alpine:3.16.8
 
-LABEL org.opencontainers.image.source https://github.com/afw-org/afw
+LABEL org.opencontainers.image.source=https://github.com/afw-org/afw
 
 RUN apk add --no-cache apr apr-util apr-util-ldap \
     apr-util-dbd_mysql apr-util-dbd_pgsql icu-libs fcgi \
