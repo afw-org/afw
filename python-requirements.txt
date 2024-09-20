@@ -1,7 +1,7 @@
 build
 inflection
 jsonschema
-lxml
+lxml == 4.8.0
 marko
 requests
 watchdog
