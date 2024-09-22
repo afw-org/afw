@@ -364,11 +364,11 @@ afw_curl_internal_http_post(
  */
 const afw_object_t *
 afw_curl_internal_http_get(
-    const afw_utf8_t        * url,
-    const afw_array_t        * headers,
-    const afw_object_t      * options,
-    const afw_pool_t        * pool,
-    afw_xctx_t             * xctx)
+    const afw_utf8_t    * url,
+    const afw_array_t   * headers,
+    const afw_object_t  * options,
+    const afw_pool_t    * pool,
+    afw_xctx_t          * xctx)
 {
     CURL *curl;
     CURLcode res;
