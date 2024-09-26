@@ -170,6 +170,10 @@ afw_curl_internal_options(
             res = curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
             if (res != CURLE_OK)
                 AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_setopt() setting verbose.", xctx);
+        } else {
+            res = curl_easy_setopt(curl, CURLOPT_VERBOSE, 0L);
+            if (res != CURLE_OK)
+                AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_setopt() setting verbose.", xctx);
         }
 
         sslVerifyPeer = afw_object_old_get_property_as_boolean(options, afw_curl_s_sslVerifyPeer, &found, xctx);
@@ -311,11 +315,6 @@ afw_curl_internal_http_post(
         if (res != CURLE_OK)
             AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_setopt()", xctx);
     }
-
-    /* send the message */
-    res = curl_easy_perform(curl);
-    if (res != CURLE_OK)
-        AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_perform()", xctx);
 
     /* set any options, that may have been specified */
     afw_curl_internal_options(curl, options, pool, xctx);
