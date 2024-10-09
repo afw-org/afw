@@ -1112,13 +1112,13 @@ impl_afw_data_type_object_internal_to_utf8(
     const afw_pool_t * p,
     afw_xctx_t *xctx)
 {
-    afw_value_object_t obj;
-
-    obj.inf = &afw_value_unmanaged_object_inf;
-    obj.internal = *(const afw_object_t **)from_internal;
+    if (!from_internal || !*(const afw_object_t **)from_internal) {
+        return NULL;
+    }
 
     return afw_json_from_value(
-        &obj.pub, &afw_object_options_useNonStandardTokens,
+        (*(const afw_object_t **)from_internal)->value,
+        &afw_object_options_useNonStandardTokens,
         p, xctx);
 }
 
@@ -1552,27 +1552,9 @@ impl_afw_data_type_object_clone_internal(
     const afw_object_t *to;
 
     from = *(const afw_object_t * *)from_internal;
-    to = afw_object_create_unmanaged(p, xctx);
+    to = afw_object_create(p, xctx);
     memcpy(to_internal, &to, sizeof(const afw_object_t *));
     impl_object_clone_properties_and_meta(to, from, NULL, xctx);
-}
-
-
-
-
-/* Clone an object to a managed object. */
-AFW_DEFINE(const afw_object_t *)
-afw_data_type_object_create_clone_to_managed_object(
-    const afw_object_t * object,
-    const afw_pool_t *p,
-    afw_xctx_t *xctx)
-{
-    const afw_object_t *result;
-
-    result = afw_object_create(p, xctx);
-    impl_object_clone_properties_and_meta(result, object, NULL, xctx);
-
-    return result;
 }
 
 
