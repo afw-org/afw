@@ -14,6 +14,36 @@
             "description": "When true, libcurl will automatically set the Referer: header field in HTTP requests where it follows a Location: redirect.",
             "label": "Auto Referer"
         },
+        "awsSigv4": {
+            "dataType": "string",
+            "description": "When specified, libcurl will use AWS Signature Version 4 for authentication.",
+            "label": "V4 Signature"
+        },
+        "caInfo": {
+            "dataType": "string",
+            "description": "Path to Certificate Authority (CA) bundle.",
+            "label": "CA Info"
+        },
+        "caBlob": {
+            "dataType": "string",
+            "description": "Certificate Authority (CA) bundle in PEM format.",
+            "label": "CA Blob"
+        },
+        "caPath": {
+            "dataType": "string",
+            "description": "Directory holding CA certificates",
+            "label": "CA Path"
+        },
+        "certInfo": {
+            "dataType": "boolean",
+            "description": "Request SSL certificate information.",
+            "label": "Cert Info"
+        },
+        "connectTimeout": {
+            "dataType": "integer",
+            "description": "Timeout (in milliseconds) for the connection phase.",
+            "label": "Connect Timeout"
+        },
         "cookies": {
             "dataType": "array",
             "description": "Cookie(s) to send.",

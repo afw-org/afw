@@ -58,7 +58,7 @@ afw_curl_function_execute_http_post(
 {
     const afw_value_string_t     * url;
     const afw_value_string_t     * payload;
-    const afw_value_array_t       * headers;
+    const afw_value_array_t      * headers;
     const afw_value_object_t     * options;
     const afw_object_t           * result;
 

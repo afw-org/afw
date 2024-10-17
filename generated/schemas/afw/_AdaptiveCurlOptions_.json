@@ -17,6 +17,36 @@
                     "title": "Auto Referer",
                     "type": "boolean"
                 },
+                "awsSigv4": {
+                    "description": "When specified, libcurl will use AWS Signature Version 4 for authentication.",
+                    "title": "V4 Signature",
+                    "type": "string"
+                },
+                "caBlob": {
+                    "description": "Certificate Authority (CA) bundle in PEM format.",
+                    "title": "CA Blob",
+                    "type": "string"
+                },
+                "caInfo": {
+                    "description": "Path to Certificate Authority (CA) bundle.",
+                    "title": "CA Info",
+                    "type": "string"
+                },
+                "caPath": {
+                    "description": "Directory holding CA certificates",
+                    "title": "CA Path",
+                    "type": "string"
+                },
+                "certInfo": {
+                    "description": "Request SSL certificate information.",
+                    "title": "Cert Info",
+                    "type": "boolean"
+                },
+                "connectTimeout": {
+                    "description": "Timeout (in milliseconds) for the connection phase.",
+                    "title": "Connect Timeout",
+                    "type": "integer"
+                },
                 "cookies": {
                     "description": "Cookie(s) to send.",
                     "title": "Cookies",
