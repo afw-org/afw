@@ -225,9 +225,13 @@ afw_curl_internal_options(
 
         awsSigv4 = afw_object_old_get_property_as_string(options, afw_curl_s_awsSigv4, xctx);
         if (awsSigv4) {
+#ifdef CURLOPT_AWS_SIGV4
             res = curl_easy_setopt(curl, CURLOPT_AWS_SIGV4, afw_utf8_to_utf8_z(awsSigv4, xctx->p, xctx));
             if (res != CURLE_OK)
                 AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_setopt() setting awsSigv4.", xctx);
+#else
+            AFW_THROW_ERROR_Z(general, "libcurl was not compiled with support for awsSigv4.", xctx);
+#endif
         }
 
         caInfo = afw_object_old_get_property_as_string(options, afw_curl_s_caInfo, xctx);
@@ -239,9 +243,13 @@ afw_curl_internal_options(
 
         caBlob = afw_object_old_get_property_as_string(options, afw_curl_s_caBlob, xctx);
         if (caBlob) {
+#ifdef CURLOPT_CAINFO_BLOB
             res = curl_easy_setopt(curl, CURLOPT_CAINFO_BLOB, afw_utf8_to_utf8_z(caBlob, xctx->p, xctx));
             if (res != CURLE_OK)
                 AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_setopt() setting caBlob.", xctx);
+#else
+            AFW_THROW_ERROR_Z(general, "libcurl was not compiled with support for caBlob.", xctx);
+#endif
         }
 
         caPath = afw_object_old_get_property_as_string(options, afw_curl_s_caPath, xctx);
