@@ -21,6 +21,7 @@ our @EXPORT_OK = qw(
     for 
     for_of 
     if 
+    include 
     let 
     rethrow 
     return 
@@ -204,6 +205,23 @@ This is the body of a structured block that is evaluated if 'condition' is
 false. If not specified and condition is false, a null value is returned. See
 the 'body' parameter of the 'block' function for information on how the body
 is processed.
+
+=head3 include
+
+Include an external adaptive script, json, or template to be compiled and
+returned.
+Include an external file
+
+=head4 Parameters
+
+    $file
+
+The path of the file to include, which will be resolved using rootFilePaths.
+
+    $compileType
+
+The compile type, used by the parser to determine how to compile the data.
+For example, 'json', 'relaxed_json', 'script', 'template'
 
 =head3 let
 
@@ -474,6 +492,20 @@ sub if_ {
 
     if (defined $else)
         $request->set("else", $else);
+
+    return $request->getResult();
+}
+
+sub include {
+    my ($file, $compileType) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "include");
+    $request->set("file", $file);
+
+    if (defined $compileType)
+        $request->set("compileType", $compileType);
 
     return $request->getResult();
 }

@@ -329,6 +329,43 @@ def if_(session, condition, then, _else=None):
 
     return response['actions'][0]['result']
 
+def include(session, file, compileType=None):
+    """
+    Include an external file
+
+    Include an external adaptive script, json, or template to be compiled and
+    returned.
+
+    Args:
+        file (str): The path of the file to include, which will be resolved
+        using rootFilePaths.
+
+        compileType (str): The compile type, used by the parser to determine
+        how to compile the data. For example, 'json', 'relaxed_json',
+        'script', 'template'
+
+    Returns:
+        object:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "include",
+        "file": file
+    }
+
+    if compileType != None:
+        action['compileType'] = compileType
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def let(session, name, value=None, type=None):
     """
     Declare one or more variables in the current block

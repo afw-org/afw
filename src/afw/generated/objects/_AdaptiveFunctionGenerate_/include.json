@@ -1,0 +1,27 @@
+{
+    "afwCamelCaseFunctionLabel": "afwInclude",
+    "brief": "Include an external file",
+    "camelCaseFunctionLabel": "include",
+    "category": "compiler_script",
+    "description": "Include an external adaptive script, json, or template to be compiled and returned.",
+    "functionId": "include",
+    "functionLabel": "include",
+    "parameters": [
+        {
+            "dataType": "string",
+            "description": "The path of the file to include, which will be resolved using rootFilePaths.",
+            "name": "file"
+        },
+        {
+            "dataType": "string",
+            "description": "The compile type, used by the parser to determine how to compile the data.\nFor example, 'json', 'relaxed_json', 'script', 'template'",
+            "name": "compileType",
+            "optional": true
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "any"
+    },
+    "scriptSupport": true
+}

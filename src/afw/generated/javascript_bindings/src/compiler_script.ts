@@ -248,6 +248,32 @@ export function afwIf(client : any, condition : boolean, then : any[], _else? : 
 }
 
 /**
+ * Include an external adaptive script, json, or template to be compiled and
+ * returned.
+ * 
+ * @param {string} file - The path of the file to include, which will be
+ *     resolved using rootFilePaths.
+ * 
+ * @param {string} compileType - The compile type, used by the parser to
+ *     determine how to compile the data. For example, 'json', 'relaxed_json',
+ *     'script', 'template'
+ * 
+ * @returns {any}
+ */
+export function afwInclude(client : any, file : string, compileType? : string) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "include";
+    _action["file"] = file;
+
+    if (compileType !== undefined)
+        _action["compileType"] = compileType;
+
+    return client.perform(_action);
+}
+
+/**
  * Declare one or more statically scoped variable locations local to the
  * current script block and optionally assign them an initial value. These
  * variables can be accessed and assigned different values from the current

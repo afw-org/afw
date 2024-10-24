@@ -80,7 +80,7 @@ def is_test_file(file):
 # @param dir The directory to check.
 #
 def is_test_group(dir):
-
+    
     # just check of a config.py exists
     if exists(dir + '/config.py'):
         return True
@@ -215,8 +215,8 @@ def find_test_groups(srcdir, tests_dir):
     testGroups = []
 
     for root, dirs, files in os.walk(tests_dir):
-        # exclude subdirectory environments 
-        dirs[:] = [d for d in dirs if d != 'environments']
+        # exclude subdirectory environments and any directories that start with an underscore
+        dirs[:] = [d for d in dirs if d != 'environments' and not d.startswith('_')]
 
         if is_test_group(root):
             pass
