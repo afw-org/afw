@@ -329,14 +329,16 @@ def if_(session, condition, then, _else=None):
 
     return response['actions'][0]['result']
 
-def include(session, script, compileType=None):
+def include(session, file, compileType=None):
     """
-    Include an external script
+    Include an external file
 
-    Include an external adaptive script to be executed in the current context.
+    Include an external adaptive script, json, or template to be compiled and
+    returned.
 
     Args:
-        script (str): The name of the script to include
+        file (str): The path of the file to include, which will be resolved
+        using rootFilePaths.
 
         compileType (str): The compile type, used by the parser to determine
         how to compile the data. For example, 'json', 'relaxed_json',
@@ -350,7 +352,7 @@ def include(session, script, compileType=None):
 
     action = {
         "function": "include",
-        "script": script
+        "file": file
     }
 
     if compileType != None:

@@ -297,10 +297,11 @@ class compiler_script
     /**
      * include()
      *
-     * Include an external adaptive script to be executed in the current
-     * context.
+     * Include an external adaptive script, json, or template to be compiled
+     * and returned.
      *
-     * @param string $script The name of the script to include
+     * @param string $file The path of the file to include, which will be
+     *                     resolved using rootFilePaths.
      * @param string $compileType The compile type, used by the parser to
      *                            determine how to compile the data. For
      *                            example, 'json', 'relaxed_json', 'script',
@@ -308,14 +309,14 @@ class compiler_script
      *
      * @return any
      */
-    public function include(, $script, $compileType = null)
+    public function include(, $file, $compileType = null)
     {
         $request = $this->$session->request();
 
         $request->set("function", "include");
 
         /* pass along required parameters to the request payload */
-        $request->set("script", $script);
+        $request->set("file", $file);
 
         /* pass along any optional parameters to the request payload */
         if ($compileType != null)

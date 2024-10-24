@@ -208,14 +208,15 @@ is processed.
 
 =head3 include
 
-Include an external adaptive script to be executed in the current context.
-Include an external script
+Include an external adaptive script, json, or template to be compiled and
+returned.
+Include an external file
 
 =head4 Parameters
 
-    $script
+    $file
 
-The name of the script to include
+The path of the file to include, which will be resolved using rootFilePaths.
 
     $compileType
 
@@ -496,12 +497,12 @@ sub if_ {
 }
 
 sub include {
-    my ($script, $compileType) = @_;
+    my ($file, $compileType) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "include");
-    $request->set("script", $script);
+    $request->set("file", $file);
 
     if (defined $compileType)
         $request->set("compileType", $compileType);

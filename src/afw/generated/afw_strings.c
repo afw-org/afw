@@ -12782,6 +12782,12 @@ afw_self_v_fatal = {
 };
 
 const afw_value_string_t
+afw_self_v_file = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_file)
+};
+
+const afw_value_string_t
 afw_self_v_filenameSuffix = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_filenameSuffix)
@@ -30674,6 +30680,12 @@ afw_self_v_zz__2258 = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__2259 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__2259)
+};
+
+const afw_value_string_t
 afw_self_v_zz__226 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__226)
@@ -40724,9 +40736,9 @@ afw_self_v_zz__Include_all_objectType_objects = {
 };
 
 const afw_value_string_t
-afw_self_v_zz__Include_an_external_script = {
+afw_self_v_zz__Include_an_external_file = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__Include_an_external_script)
+    AFW_UTF8_LITERAL(AFW_Q_zz__Include_an_external_file)
 };
 
 const afw_value_string_t
@@ -45632,12 +45644,6 @@ afw_self_v_zz__The_name_of_member_in_the_struct_that_contains_the_objectId_ = {
 };
 
 const afw_value_string_t
-afw_self_v_zz__The_name_of_the_script_to_include = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__The_name_of_the_script_to_include)
-};
-
-const afw_value_string_t
 afw_self_v_zz__The_name_of_this_parameter = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__The_name_of_this_parameter)
@@ -48686,6 +48692,12 @@ afw_self_v_zz___extension_id__string___boolean = {
 };
 
 const afw_value_string_t
+afw_self_v_zz___file__string__compileType___string___any = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz___file__string__compileType___string___any)
+};
+
+const afw_value_string_t
 afw_self_v_zz___flagId___array_string____void = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz___flagId___array_string____void)
@@ -48857,12 +48869,6 @@ const afw_value_string_t
 afw_self_v_zz___reference__any___boolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz___reference__any___boolean)
-};
-
-const afw_value_string_t
-afw_self_v_zz___script__string__compileType___string___any = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz___script__string__compileType___string___any)
 };
 
 const afw_value_string_t

@@ -6184,7 +6184,8 @@ afw_function_definition_include;
  * @brief Adaptive Function `include`
  * @param x function execute parameter.
  *
- * Include an external adaptive script to be executed in the current context.
+ * Include an external adaptive script, json, or template to be compiled and
+ * returned.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -6193,14 +6194,15 @@ afw_function_definition_include;
  *
  * ```
  *   function include(
- *       script: string,
+ *       file: string,
  *       compileType?: string
  *   ): any;
  * ```
  *
  * Parameters:
  *
- *   script - (string) The name of the script to include.
+ *   file - (string) The path of the file to include, which will be resolved
+ *       using rootFilePaths.
  *
  *   compileType - (optional string) The compile type, used by the parser to
  *       determine how to compile the data.

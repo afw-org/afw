@@ -1,14 +1,14 @@
 {
-    "brief": "Include an external script",
+    "brief": "Include an external file",
     "category": "compiler_script",
-    "description": "Include an external adaptive script to be executed in the current context.",
+    "description": "Include an external adaptive script, json, or template to be compiled and returned.",
     "functionId": "include",
     "functionLabel": "include",
     "parameters": [
         {
             "dataType": "string",
-            "description": "The name of the script to include",
-            "name": "script"
+            "description": "The path of the file to include, which will be resolved using rootFilePaths.",
+            "name": "file"
         },
         {
             "dataType": "string",

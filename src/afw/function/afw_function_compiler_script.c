@@ -1612,14 +1612,15 @@ afw_function_execute_while(
     return result;
 }
 
+/* holds context data for the callback routine */
 typedef struct {
-    const char *script_name_z;
+    const char *file_z;
     apr_file_t *f;
     apr_finfo_t finfo;
 } afw_include_self_t;
 
-int
-impl_octet_get_cb(afw_utf8_octet_t *octet, void *data, afw_xctx_t *xctx)
+/* callback routine for the parser to read the file octet by octet */
+int impl_octet_get_cb(afw_utf8_octet_t *octet, void *data, afw_xctx_t *xctx)
 {
     afw_include_self_t *self = (afw_include_self_t *)data;
     char c;
@@ -1646,7 +1647,8 @@ impl_octet_get_cb(afw_utf8_octet_t *octet, void *data, afw_xctx_t *xctx)
  *
  * See afw_function_bindings.h for more information.
  *
- * Include an external adaptive script to be executed in the current context.
+ * Include an external adaptive script, json, or template to be compiled and
+ * returned.
  *
  * This function is pure, so it will always return the same result
  * given exactly the same parameters and has no side effects.
@@ -1655,14 +1657,15 @@ impl_octet_get_cb(afw_utf8_octet_t *octet, void *data, afw_xctx_t *xctx)
  *
  * ```
  *   function include(
- *       script: string,
+ *       file: string,
  *       compileType?: string
  *   ): any;
  * ```
  *
  * Parameters:
  *
- *   script - (string) The name of the script to include.
+ *   file - (string) The path of the file to include, which will be resolved
+ *       using rootFilePaths.
  *
  *   compileType - (optional string) The compile type, used by the parser to
  *       determine how to compile the data.
@@ -1679,22 +1682,21 @@ afw_function_execute_include(
     afw_xctx_t *xctx = x->xctx;
     const afw_pool_t *p = x->p;
     const afw_value_t *result;
-    const afw_value_string_t *script_value;
+    const afw_value_string_t *file_value;
     const afw_value_string_t *compile_type_value;
     afw_compile_type_t compile_type = afw_compile_type_script;
-    const afw_utf8_t *script_name;
+    const afw_utf8_t *file;
     const afw_utf8_t *compile_type_string;
     afw_include_self_t *self;
     apr_pool_t *apr_p = afw_pool_get_apr_pool(xctx->p);
     apr_status_t rv;
+    const afw_iterator_t *iterator;
+    const afw_utf8_t *property_name, *property_value;
 
-    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(script_value, 1, string);
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(file_value, 1, string);
     AFW_FUNCTION_EVALUATE_DATA_TYPE_PARAMETER(compile_type_value, 2, string);
 
-    self = afw_xctx_calloc_type(afw_include_self_t, xctx);
-
-    script_name = &script_value->internal;
-    self->script_name_z = afw_utf8_to_utf8_z(script_name, p, xctx);
+    self = afw_xctx_calloc_type(afw_include_self_t, xctx);    
 
     if (compile_type_value) {
         compile_type_string = &compile_type_value->internal;
@@ -1712,25 +1714,49 @@ afw_function_execute_include(
         }
     }
 
-    /* first stat() our include file to get info about it's size */
-    rv = apr_stat(&self->finfo, self->script_name_z, APR_FINFO_SIZE, apr_p);
-    if (rv != APR_SUCCESS) {
-        AFW_THROW_ERROR_RV_FZ(not_found, apr, rv, xctx,
-            "Failed to stat script file '%s'.", self->script_name_z);
+    file = &file_value->internal;
+
+    /* use the root_file_paths to resolve the location of our include file */
+    if (x->xctx->env->root_file_paths) {
+        iterator = NULL;
+        self->file_z = NULL;
+        property_value = afw_object_get_next_property_as_string(x->xctx->env->root_file_paths,
+            &iterator, &property_name, p, x->xctx);
+        while (property_value) {
+            /* check if the file path starts with this root */
+            if (afw_utf8_starts_with(file, property_name)) {
+                afw_utf8_t new_file;
+                /* parse off the prefix in file */
+                new_file.s = file->s + property_name->len;
+                new_file.len = file->len - property_name->len;
+
+                self->file_z = afw_utf8_to_utf8_z(
+                    afw_utf8_concat(p, xctx, property_value, &new_file, NULL),
+                    p, xctx);
+            }
+
+            property_value = afw_object_get_next_property_as_string(x->xctx->env->root_file_paths,
+                &iterator, &property_name, p, x->xctx);
+        }
+    } 
+
+    if (!self->file_z) {
+        AFW_THROW_ERROR_FZ(not_found, xctx,
+            "Failed to resolve include file location '%.*s'.", file->len, file->s);
     }
 
-    /* now open the file (\fixme get this path prefix from configuration) */
-    rv = apr_file_open(&self->f, self->script_name_z, 
+    /* now open the file */
+    rv = apr_file_open(&self->f, self->file_z, 
         APR_FOPEN_READ | APR_BUFFERED, APR_OS_DEFAULT, apr_p);
     if (rv != APR_SUCCESS) {
         AFW_THROW_ERROR_RV_FZ(not_found, apr, rv, xctx,
-            "Failed to open script file '%s'.", self->script_name_z);
+            "Failed to open include file '%s'.", self->file_z);
     }
 
     /* read it using a callback and let it convert to an adaptive value */
     AFW_TRY {
         result = afw_compile_to_value_with_callback(NULL,
-            impl_octet_get_cb, self, script_name, compile_type, 
+            impl_octet_get_cb, self, file, compile_type, 
             afw_compile_residual_check_to_full,
             NULL, NULL, x->p, xctx
         );
