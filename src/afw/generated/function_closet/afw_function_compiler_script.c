@@ -399,6 +399,49 @@ afw_function_execute_if(
 
 
 /*
+ * Adaptive function: include
+ *
+ * afw_function_execute_include
+ *
+ * See afw_function_bindings.h for more information.
+ *
+ * Include an external adaptive script to be executed in the current context.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function include(
+ *       script: string,
+ *       compileType?: string
+ *   ): any;
+ * ```
+ *
+ * Parameters:
+ *
+ *   script - (string) The name of the script to include.
+ *
+ *   compileType - (optional string) The compile type, used by the parser to
+ *       determine how to compile the data.
+ *       For example, 'json', 'relaxed_json', 'script', 'template'.
+ *
+ * Returns:
+ *
+ *   (any)
+ */
+const afw_value_t *
+afw_function_execute_include(
+    afw_function_execute_t *x)
+{
+    /** @todo Add code. */
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
+}
+
+
+
+/*
  * Adaptive function: let
  *
  * afw_function_execute_let

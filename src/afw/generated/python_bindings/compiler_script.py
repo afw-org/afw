@@ -329,6 +329,41 @@ def if_(session, condition, then, _else=None):
 
     return response['actions'][0]['result']
 
+def include(session, script, compileType=None):
+    """
+    Include an external script
+
+    Include an external adaptive script to be executed in the current context.
+
+    Args:
+        script (str): The name of the script to include
+
+        compileType (str): The compile type, used by the parser to determine
+        how to compile the data. For example, 'json', 'relaxed_json',
+        'script', 'template'
+
+    Returns:
+        object:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "include",
+        "script": script
+    }
+
+    if compileType != None:
+        action['compileType'] = compileType
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def let(session, name, value=None, type=None):
     """
     Declare one or more variables in the current block

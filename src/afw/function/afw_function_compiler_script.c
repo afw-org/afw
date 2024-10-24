@@ -1611,3 +1611,134 @@ afw_function_execute_while(
 
     return result;
 }
+
+typedef struct {
+    const char *script_name_z;
+    apr_file_t *f;
+    apr_finfo_t finfo;
+} afw_include_self_t;
+
+int
+impl_octet_get_cb(afw_utf8_octet_t *octet, void *data, afw_xctx_t *xctx)
+{
+    afw_include_self_t *self = (afw_include_self_t *)data;
+    char c;
+    apr_size_t len = 1;
+    int rv;
+
+    /* Get an octet. */
+    rv = apr_file_read(self->f, &c, &len);
+    
+    /* if error return -1 */
+    if (rv != APR_SUCCESS) {
+        *octet = 0;
+        return -1;
+    }
+
+    *octet = (afw_utf8_octet_t)c;
+    return 0;
+}
+
+/*
+ * Adaptive function: include
+ *
+ * afw_function_execute_include
+ *
+ * See afw_function_bindings.h for more information.
+ *
+ * Include an external adaptive script to be executed in the current context.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function include(
+ *       script: string,
+ *       compileType?: string
+ *   ): any;
+ * ```
+ *
+ * Parameters:
+ *
+ *   script - (string) The name of the script to include.
+ *
+ *   compileType - (optional string) The compile type, used by the parser to
+ *       determine how to compile the data.
+ *       For example, 'json', 'relaxed_json', 'script', 'template'.
+ *
+ * Returns:
+ *
+ *   (any)
+ */
+const afw_value_t *
+afw_function_execute_include(
+    afw_function_execute_t *x)
+{
+    afw_xctx_t *xctx = x->xctx;
+    const afw_pool_t *p = x->p;
+    const afw_value_t *result;
+    const afw_value_string_t *script_value;
+    const afw_value_string_t *compile_type_value;
+    afw_compile_type_t compile_type = afw_compile_type_script;
+    const afw_utf8_t *script_name;
+    const afw_utf8_t *compile_type_string;
+    afw_include_self_t *self;
+    apr_pool_t *apr_p = afw_pool_get_apr_pool(xctx->p);
+    apr_status_t rv;
+
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(script_value, 1, string);
+    AFW_FUNCTION_EVALUATE_DATA_TYPE_PARAMETER(compile_type_value, 2, string);
+
+    self = afw_xctx_calloc_type(afw_include_self_t, xctx);
+
+    script_name = &script_value->internal;
+    self->script_name_z = afw_utf8_to_utf8_z(script_name, p, xctx);
+
+    if (compile_type_value) {
+        compile_type_string = &compile_type_value->internal;
+        if (afw_utf8_compare(compile_type_string, afw_s_json) == 0)
+            compile_type = afw_compile_type_json;
+        else if (afw_utf8_compare(compile_type_string, afw_s_relaxed_json) == 0)
+            compile_type = afw_compile_type_relaxed_json;
+        else if (afw_utf8_compare(compile_type_string, afw_s_script) == 0)
+            compile_type = afw_compile_type_script;
+        else if (afw_utf8_compare(compile_type_string, afw_s_template) == 0)
+            compile_type = afw_compile_type_template;
+        else {
+            AFW_THROW_ERROR_FZ(bad_request, xctx,
+                "Invalid compile type '%s'.", compile_type_string);
+        }
+    }
+
+    /* first stat() our include file to get info about it's size */
+    rv = apr_stat(&self->finfo, self->script_name_z, APR_FINFO_SIZE, apr_p);
+    if (rv != APR_SUCCESS) {
+        AFW_THROW_ERROR_RV_FZ(not_found, apr, rv, xctx,
+            "Failed to stat script file '%s'.", self->script_name_z);
+    }
+
+    /* now open the file (\fixme get this path prefix from configuration) */
+    rv = apr_file_open(&self->f, self->script_name_z, 
+        APR_FOPEN_READ | APR_BUFFERED, APR_OS_DEFAULT, apr_p);
+    if (rv != APR_SUCCESS) {
+        AFW_THROW_ERROR_RV_FZ(not_found, apr, rv, xctx,
+            "Failed to open script file '%s'.", self->script_name_z);
+    }
+
+    /* read it using a callback and let it convert to an adaptive value */
+    AFW_TRY {
+        result = afw_compile_to_value_with_callback(NULL,
+            impl_octet_get_cb, self, script_name, compile_type, 
+            afw_compile_residual_check_to_full,
+            NULL, NULL, x->p, xctx
+        );
+    }
+    AFW_FINALLY {
+        apr_file_close(self->f);
+    }
+    AFW_ENDTRY;
+
+    return result;
+}

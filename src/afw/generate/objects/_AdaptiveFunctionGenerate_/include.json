@@ -1,0 +1,25 @@
+{
+    "brief": "Include an external script",
+    "category": "compiler_script",
+    "description": "Include an external adaptive script to be executed in the current context.",
+    "functionId": "include",
+    "functionLabel": "include",
+    "parameters": [
+        {
+            "dataType": "string",
+            "description": "The name of the script to include",
+            "name": "script"
+        },
+        {
+            "dataType": "string",
+            "description": "The compile type, used by the parser to determine how to compile the data.\nFor example, 'json', 'relaxed_json', 'script', 'template'",
+            "name": "compileType",
+            "optional": true
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "any"
+    },
+    "scriptSupport": true
+}

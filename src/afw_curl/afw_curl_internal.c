@@ -364,6 +364,8 @@ afw_curl_internal_http_post(
 
         /* set handling of more detailed error messages */
         res = curl_easy_setopt(curl, CURLOPT_ERRORBUFFER, errbuf);
+        if (res != CURLE_OK)
+            AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_setopt()", xctx);
 
         /* setup our response callbacks to handle data send back from the server */
         response = afw_curl_internal_response(curl, pool, xctx);
@@ -478,6 +480,9 @@ afw_curl_internal_http_get(
 
         /* set handling of more detailed error messages */
         res = curl_easy_setopt(curl, CURLOPT_ERRORBUFFER, errbuf);
+        if (res != CURLE_OK) {
+            AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_setopt()", xctx);
+        }
 
         /* setup our response callbacks to handle data send back from the server */
         response = afw_curl_internal_response(curl, pool, xctx);
