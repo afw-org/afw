@@ -1,11 +1,9 @@
 {
-    "afwCamelCaseFunctionLabel": "afwInclude",
-    "brief": "Include an external file",
-    "camelCaseFunctionLabel": "include",
-    "category": "compiler_script",
-    "description": "Include an external adaptive script, json, or template to be compiled and returned.",
-    "functionId": "include",
-    "functionLabel": "include",
+    "brief": "Compile an external file",
+    "category": "compiler",
+    "description": "Load an external adaptive script, json, or template to be compiled and returned.",
+    "functionId": "compile_from_file",
+    "functionLabel": "compile_from_file",
     "parameters": [
         {
             "dataType": "string",
@@ -22,6 +20,5 @@
     "pure": true,
     "returns": {
         "dataType": "any"
-    },
-    "scriptSupport": true
+    }
 }

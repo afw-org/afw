@@ -27478,188 +27478,6 @@ impl_object__if__value = {
     (const afw_object_t *)&impl_object__if
 };
 
-/* ---------- include ---------- */
-
-static const afw_utf8_t
-impl_object_path__include =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/include");
-
-static const afw_value_object_t
-impl_object__include__value;
-
-static const afw_runtime_object_indirect_t
-impl_object__include = {
-    {
-        &afw_runtime_inf__AdaptiveFunction_,
-        NULL,
-        (const afw_value_t *)&impl_object__include__value,
-        {
-            NULL,
-            NULL,
-            &afw_self_s_include,
-            &afw_self_s__AdaptiveFunction_,
-            &impl_object_path__include
-        }
-    },
-    (void *)&afw_function_definition_include
-};
-
-static const afw_value_object_t
-impl_include_returns__value;
-
-static const afw_value_function_parameter_t
-impl_include_returns = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        (const afw_value_t *)&impl_include_returns__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_any_direct,
-    &afw_self_v_any,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-};
-
-static const afw_value_object_t
-impl_include_returns__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_include_returns
-};
-
-static const afw_value_object_t
-impl_include_parameter_1__value;
-
-static const afw_value_function_parameter_t
-impl_include_parameter_1 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        (const afw_value_t *)&impl_include_parameter_1__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_string_direct,
-    &afw_self_v_string,
-    NULL,
-    &afw_self_v_file,
-    NULL,
-    &afw_self_v_zz__385,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-};
-
-static const afw_value_object_t
-impl_include_parameter_1__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_include_parameter_1
-};
-
-static const afw_value_object_t
-impl_include_parameter_2__value;
-
-static const afw_value_function_parameter_t
-impl_include_parameter_2 = {
-    {
-        &afw_runtime_inf__AdaptiveFunctionParameter_,
-        NULL,
-        (const afw_value_t *)&impl_include_parameter_2__value,
-        {
-            NULL,
-            NULL,
-            NULL,
-            &afw_self_s__AdaptiveFunctionParameter_,
-            NULL,
-        }
-    },
-    &afw_data_type_string_direct,
-    &afw_self_v_string,
-    NULL,
-    &afw_self_v_compileType,
-    NULL,
-    &afw_self_v_zz__386,
-    &afw_integer_self_v_zz___1,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-};
-
-static const afw_value_object_t
-impl_include_parameter_2__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_include_parameter_2
-};
-
-static const afw_value_function_parameter_t *
-impl_include_parameters[] = {
-    &impl_include_parameter_1,
-    &impl_include_parameter_2,
-    NULL
-};
-
-AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_include = {
-    {&afw_value_function_definition_inf},
-    (const afw_object_t *)&impl_object__include,
-    &afw_self_v_compiler_script,
-    &afw_self_v_include,
-    &afw_self_v_include,
-    &afw_self_v_include,
-    &afw_self_v_include,
-    &afw_self_v_afwInclude,
-    &afw_self_v_zz__Include_an_external_file,
-    &afw_self_v_zz__387,
-    &afw_self_v_zz___file__string__compileType___string___any,
-    &afw_self_v_zz__388,
-    NULL,
-    afw_function_execute_include,
-    NULL,
-    &afw_integer_self_v_1,
-    &afw_integer_self_v_2,
-    &impl_include_parameters[0],
-    2,
-    &impl_include_returns,
-    NULL,
-    NULL,
-    &afw_self_v_zz__,
-    NULL,
-    NULL,
-    0, /* Not a data type method. */
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
-    &afw_boolean_self_v_true,
-    &afw_boolean_self_v_false,
-};
-
-static const afw_value_object_t
-impl_object__include__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_object__include
-};
-
 /* ---------- let ---------- */
 
 static const afw_utf8_t
@@ -27744,7 +27562,7 @@ impl_let_parameter_1 = {
     &afw_self_v_string,
     &afw_self_v_name,
     NULL,
-    &afw_self_v_zz__389,
+    &afw_self_v_zz__385,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -27780,7 +27598,7 @@ impl_let_parameter_2 = {
     NULL,
     &afw_self_v_value,
     NULL,
-    &afw_self_v_zz__390,
+    &afw_self_v_zz__386,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_true,
@@ -27849,9 +27667,9 @@ afw_function_definition_let = {
     &afw_self_v_let,
     &afw_self_v_afwLet,
     &afw_self_v_zz__Declare_one_or_more_variables_in_the_current_block,
-    &afw_self_v_zz__391,
-    &afw_self_v_zz__392,
-    &afw_self_v_zz__393,
+    &afw_self_v_zz__387,
+    &afw_self_v_zz__388,
+    &afw_self_v_zz__389,
     NULL,
     afw_function_execute_let,
     NULL,
@@ -27957,9 +27775,9 @@ afw_function_definition_rethrow = {
     &afw_self_v_rethrow,
     &afw_self_v_afwRethrow,
     &afw_self_v_zz__rethrow_error_from_inside_case_block,
-    &afw_self_v_zz__394,
+    &afw_self_v_zz__390,
     &afw_self_v_zz______any,
-    &afw_self_v_zz__395,
+    &afw_self_v_zz__391,
     NULL,
     afw_function_execute_rethrow,
     NULL,
@@ -28035,7 +27853,7 @@ impl_return_returns = {
     NULL,
     NULL,
     NULL,
-    &afw_self_v_zz__396,
+    &afw_self_v_zz__392,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -28071,7 +27889,7 @@ impl_return_parameter_1 = {
     NULL,
     &afw_self_v_value,
     NULL,
-    &afw_self_v_zz__397,
+    &afw_self_v_zz__393,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
@@ -28102,9 +27920,9 @@ afw_function_definition_return = {
     &afw_self_v_return,
     &afw_self_v_afwReturn,
     &afw_self_v_zz__Return_from_the_outermost_structured_block,
-    &afw_self_v_zz__398,
+    &afw_self_v_zz__394,
     &afw_self_v_zz___value___any___any,
-    &afw_self_v_zz__399,
+    &afw_self_v_zz__395,
     NULL,
     afw_function_execute_return,
     NULL,
@@ -28216,7 +28034,7 @@ impl_switch_parameter_1 = {
     &afw_self_v_zz___any_value1__any__value2__any___boolean,
     &afw_self_v_predicate,
     &afw_self_v_zz__Predicate_function,
-    &afw_self_v_zz__400,
+    &afw_self_v_zz__396,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -28288,7 +28106,7 @@ impl_switch_parameter_3 = {
     NULL,
     &afw_self_v_case_clause,
     &afw_self_v_zz__One_or_more_value2_and_statement_list_pairs,
-    &afw_self_v_zz__401,
+    &afw_self_v_zz__397,
     &afw_integer_self_v_2,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -28322,8 +28140,8 @@ afw_function_definition_switch = {
     &afw_self_v_afwSwitch,
     &afw_self_v_zz__All_combinations_true,
     &afw_self_v_zz__Support_for_switch_statement_,
-    &afw_self_v_zz__402,
-    &afw_self_v_zz__403,
+    &afw_self_v_zz__398,
+    &afw_self_v_zz__399,
     NULL,
     afw_function_execute_switch,
     NULL,
@@ -28435,7 +28253,7 @@ impl_throw_parameter_1 = {
     NULL,
     &afw_self_v_message,
     &afw_self_v_zz__Error_message,
-    &afw_self_v_zz__404,
+    &afw_self_v_zz__400,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -28471,7 +28289,7 @@ impl_throw_parameter_2 = {
     NULL,
     &afw_self_v_additional,
     &afw_self_v_zz__Optional_additional_information,
-    &afw_self_v_zz__405,
+    &afw_self_v_zz__401,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
@@ -28503,9 +28321,9 @@ afw_function_definition_throw = {
     &afw_self_v_throw,
     &afw_self_v_afwThrow,
     &afw_self_v_zz__Throws_an_error,
-    &afw_self_v_zz__406,
+    &afw_self_v_zz__402,
     &afw_self_v_zz___message__string__additional___any___void,
-    &afw_self_v_zz__407,
+    &afw_self_v_zz__403,
     NULL,
     afw_function_execute_throw,
     NULL,
@@ -28617,7 +28435,7 @@ impl_try_parameter_1 = {
     NULL,
     &afw_self_v_body,
     NULL,
-    &afw_self_v_zz__408,
+    &afw_self_v_zz__404,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -28653,7 +28471,7 @@ impl_try_parameter_2 = {
     NULL,
     &afw_self_v_finally,
     NULL,
-    &afw_self_v_zz__409,
+    &afw_self_v_zz__405,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
@@ -28689,7 +28507,7 @@ impl_try_parameter_3 = {
     NULL,
     &afw_self_v_catch,
     NULL,
-    &afw_self_v_zz__410,
+    &afw_self_v_zz__406,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
@@ -28725,7 +28543,7 @@ impl_try_parameter_4 = {
     &afw_self_v__AdaptiveObjectType_,
     &afw_self_v_error,
     NULL,
-    &afw_self_v_zz__411,
+    &afw_self_v_zz__407,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
@@ -28758,10 +28576,10 @@ afw_function_definition_try = {
     &afw_self_v_try,
     &afw_self_v_try,
     &afw_self_v_afwTry,
-    &afw_self_v_zz__412,
-    &afw_self_v_zz__413,
-    &afw_self_v_zz__414,
-    &afw_self_v_zz__415,
+    &afw_self_v_zz__408,
+    &afw_self_v_zz__409,
+    &afw_self_v_zz__410,
+    &afw_self_v_zz__411,
     NULL,
     afw_function_execute_try,
     NULL,
@@ -28909,7 +28727,7 @@ impl_while_parameter_2 = {
     NULL,
     &afw_self_v_body,
     NULL,
-    &afw_self_v_zz__416,
+    &afw_self_v_zz__412,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -28940,10 +28758,10 @@ afw_function_definition_while = {
     &afw_self_v_while,
     &afw_self_v_while,
     &afw_self_v_afwWhile,
-    &afw_self_v_zz__417,
-    &afw_self_v_zz__418,
+    &afw_self_v_zz__413,
+    &afw_self_v_zz__414,
     &afw_self_v_zz___condition__boolean__body__array___any,
-    &afw_self_v_zz__419,
+    &afw_self_v_zz__415,
     NULL,
     afw_function_execute_while,
     NULL,
@@ -29055,7 +28873,7 @@ impl_assert_parameter_1 = {
     NULL,
     &afw_self_v_assertion,
     &afw_self_v_Assertion,
-    &afw_self_v_zz__420,
+    &afw_self_v_zz__416,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -29091,7 +28909,7 @@ impl_assert_parameter_2 = {
     NULL,
     &afw_self_v_reason,
     &afw_self_v_Reason,
-    &afw_self_v_zz__421,
+    &afw_self_v_zz__417,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
@@ -29123,9 +28941,9 @@ afw_function_definition_assert = {
     &afw_self_v_assert,
     &afw_self_v_afwAssert,
     &afw_self_v_zz__Assert_a_value,
-    &afw_self_v_zz__422,
+    &afw_self_v_zz__418,
     &afw_self_v_zz___assertion__boolean__reason___string___void,
-    &afw_self_v_zz__423,
+    &afw_self_v_zz__419,
     NULL,
     afw_function_execute_assert,
     NULL,
@@ -29151,6 +28969,188 @@ static const afw_value_object_t
 impl_object__assert__value = {
     {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_object__assert
+};
+
+/* ---------- compile_from_file ---------- */
+
+static const afw_utf8_t
+impl_object_path__compile_from_file =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/compile_from_file");
+
+static const afw_value_object_t
+impl_object__compile_from_file__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__compile_from_file = {
+    {
+        &afw_runtime_inf__AdaptiveFunction_,
+        NULL,
+        (const afw_value_t *)&impl_object__compile_from_file__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_compile_from_file,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__compile_from_file
+        }
+    },
+    (void *)&afw_function_definition_compile_from_file
+};
+
+static const afw_value_object_t
+impl_compile_from_file_returns__value;
+
+static const afw_value_function_parameter_t
+impl_compile_from_file_returns = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        (const afw_value_t *)&impl_compile_from_file_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_any_direct,
+    &afw_self_v_any,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_compile_from_file_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_compile_from_file_returns
+};
+
+static const afw_value_object_t
+impl_compile_from_file_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_compile_from_file_parameter_1 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        (const afw_value_t *)&impl_compile_from_file_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_string_direct,
+    &afw_self_v_string,
+    NULL,
+    &afw_self_v_file,
+    NULL,
+    &afw_self_v_zz__420,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_compile_from_file_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_compile_from_file_parameter_1
+};
+
+static const afw_value_object_t
+impl_compile_from_file_parameter_2__value;
+
+static const afw_value_function_parameter_t
+impl_compile_from_file_parameter_2 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        (const afw_value_t *)&impl_compile_from_file_parameter_2__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_string_direct,
+    &afw_self_v_string,
+    NULL,
+    &afw_self_v_compileType,
+    NULL,
+    &afw_self_v_zz__421,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_compile_from_file_parameter_2__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_compile_from_file_parameter_2
+};
+
+static const afw_value_function_parameter_t *
+impl_compile_from_file_parameters[] = {
+    &impl_compile_from_file_parameter_1,
+    &impl_compile_from_file_parameter_2,
+    NULL
+};
+
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_compile_from_file = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__compile_from_file,
+    &afw_self_v_compiler,
+    &afw_self_v_compile_from_file,
+    &afw_self_v_compile_from_file,
+    &afw_self_v_compile_from_file,
+    &afw_self_v_compileFromFile,
+    &afw_self_v_afwCompileFromFile,
+    &afw_self_v_zz__Compile_an_external_file,
+    &afw_self_v_zz__422,
+    &afw_self_v_zz___file__string__compileType___string___any,
+    &afw_self_v_zz__423,
+    NULL,
+    afw_function_execute_compile_from_file,
+    NULL,
+    &afw_integer_self_v_1,
+    &afw_integer_self_v_2,
+    &impl_compile_from_file_parameters[0],
+    2,
+    &impl_compile_from_file_returns,
+    NULL,
+    NULL,
+    &afw_self_v_zz__,
+    NULL,
+    NULL,
+    0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__compile_from_file__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__compile_from_file
 };
 
 /* ---------- decompile ---------- */
@@ -140613,7 +140613,6 @@ impl_function_bindings[] = {
     &afw_function_definition_for,
     &afw_function_definition_for_of,
     &afw_function_definition_if,
-    &afw_function_definition_include,
     &afw_function_definition_let,
     &afw_function_definition_rethrow,
     &afw_function_definition_return,
@@ -140622,6 +140621,7 @@ impl_function_bindings[] = {
     &afw_function_definition_try,
     &afw_function_definition_while,
     &afw_function_definition_assert,
+    &afw_function_definition_compile_from_file,
     &afw_function_definition_decompile,
     &afw_function_definition_evaluate_value,
     &afw_function_definition_evaluate_with_retry,

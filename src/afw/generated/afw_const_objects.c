@@ -11596,7 +11596,7 @@ impl_109_property_dataType = {
 static const afw_runtime_property_t
 impl_109_property_dataTypeParameter = {
     &afw_self_s_dataTypeParameter,
-    &afw_self_v__AdaptiveError_.pub
+    &afw_self_v_zz__object__AdaptiveError_.pub
 };
 
 static const afw_runtime_property_t
@@ -55243,7 +55243,7 @@ impl_499_property_dataType = {
 static const afw_runtime_property_t
 impl_499_property_dataTypeParameter = {
     &afw_self_s_dataTypeParameter,
-    &afw_self_v__AdaptiveAuthorizationResult_.pub
+    &afw_self_v_zz__object__AdaptiveAuthorizationResult_.pub
 };
 
 static const afw_runtime_property_t

@@ -18906,6 +18906,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_afwCompileFromFile \
+    "afwCompileFromFile"
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwCompileFromFile */
+#define afw_s_afwCompileFromFile \
+    (&afw_self_v_afwCompileFromFile.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_afwCompileFromFile */
+#define afw_self_s_afwCompileFromFile \
+    (afw_self_v_afwCompileFromFile.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_afwCompileFromFile */
+extern const afw_value_string_t \
+    afw_self_v_afwCompileFromFile;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_afwCompileFromFile */
+#define afw_z_afwCompileFromFile \
+    (afw_self_v_afwCompileFromFile.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_afwCompileFromFile */
+#define afw_v_afwCompileFromFile \
+    (&afw_self_v_afwCompileFromFile.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_afwCompileJson \
     "afwCompileJson"
 
@@ -23634,32 +23660,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_afwInRangeTime */
 #define afw_v_afwInRangeTime \
     (&afw_self_v_afwInRangeTime.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_afwInclude \
-    "afwInclude"
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwInclude */
-#define afw_s_afwInclude \
-    (&afw_self_v_afwInclude.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_afwInclude */
-#define afw_self_s_afwInclude \
-    (afw_self_v_afwInclude.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_afwInclude */
-extern const afw_value_string_t \
-    afw_self_v_afwInclude;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_afwInclude */
-#define afw_z_afwInclude \
-    (afw_self_v_afwInclude.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_afwInclude */
-#define afw_v_afwInclude \
-    (&afw_self_v_afwInclude.pub)
 
 
 
@@ -46882,6 +46882,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_compileFromFile \
+    "compileFromFile"
+
+/** @brief 'afw_utf8_t' for AFW_Q_compileFromFile */
+#define afw_s_compileFromFile \
+    (&afw_self_v_compileFromFile.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_compileFromFile */
+#define afw_self_s_compileFromFile \
+    (afw_self_v_compileFromFile.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_compileFromFile */
+extern const afw_value_string_t \
+    afw_self_v_compileFromFile;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_compileFromFile */
+#define afw_z_compileFromFile \
+    (afw_self_v_compileFromFile.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_compileFromFile */
+#define afw_v_compileFromFile \
+    (&afw_self_v_compileFromFile.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_compileJson \
     "compileJson"
 
@@ -47112,6 +47138,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_compileXpathExpression */
 #define afw_v_compileXpathExpression \
     (&afw_self_v_compileXpathExpression.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_compile_from_file \
+    "compile_from_file"
+
+/** @brief 'afw_utf8_t' for AFW_Q_compile_from_file */
+#define afw_s_compile_from_file \
+    (&afw_self_v_compile_from_file.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_compile_from_file */
+#define afw_self_s_compile_from_file \
+    (afw_self_v_compile_from_file.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_compile_from_file */
+extern const afw_value_string_t \
+    afw_self_v_compile_from_file;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_compile_from_file */
+#define afw_z_compile_from_file \
+    (afw_self_v_compile_from_file.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_compile_from_file */
+#define afw_v_compile_from_file \
+    (&afw_self_v_compile_from_file.pub)
 
 
 
@@ -60450,32 +60502,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_in_range_time */
 #define afw_v_in_range_time \
     (&afw_self_v_in_range_time.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_include \
-    "include"
-
-/** @brief 'afw_utf8_t' for AFW_Q_include */
-#define afw_s_include \
-    (&afw_self_v_include.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_include */
-#define afw_self_s_include \
-    (afw_self_v_include.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_include */
-extern const afw_value_string_t \
-    afw_self_v_include;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_include */
-#define afw_z_include \
-    (afw_self_v_include.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_include */
-#define afw_v_include \
-    (&afw_self_v_include.pub)
 
 
 
@@ -137467,7 +137493,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__385 \
-    "The path of the file to include, which will be resolved using rootFilePaths."
+    "The name of one or more variables to declared in the current block."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__385 */
 #define afw_s_zz__385 \
@@ -137493,7 +137519,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__386 \
-    "The compile type, used by the parser to determine how to compile the data.\nFor example, 'json', 'relaxed_json', 'script', 'template'"
+    "This is the initial value of the variable(s). If not specified, the variable will have a value of undefined."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__386 */
 #define afw_s_zz__386 \
@@ -137519,7 +137545,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__387 \
-    "Include an external adaptive script, json, or template to be compiled and returned."
+    "Declare one or more statically scoped variable locations local to the current script block and optionally assign them an initial value. These variables can be accessed and assigned different values from the current block and inner blocks."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__387 */
 #define afw_s_zz__387 \
@@ -137545,7 +137571,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__388 \
-    "/* Include an external file */\nfunction include (\n    file: string,\n    compileType?: string\n): any;\n"
+    "(name: (array string), value?: any, type?: (object _AdaptiveValueMeta_)): any"
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__388 */
 #define afw_s_zz__388 \
@@ -137571,7 +137597,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__389 \
-    "The name of one or more variables to declared in the current block."
+    "/* Declare one or more variables in the current block */\nfunction let (\n    name: (array string),\n    value?: any,\n    type?: (object _AdaptiveValueMeta_)\n): any;\n"
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__389 */
 #define afw_s_zz__389 \
@@ -137623,7 +137649,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__390 \
-    "This is the initial value of the variable(s). If not specified, the variable will have a value of undefined."
+    "This is a special function that can be called to rethrow an error inside of a catch block. If called outside of a catch body, an error is thrown."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__390 */
 #define afw_s_zz__390 \
@@ -137649,7 +137675,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__391 \
-    "Declare one or more statically scoped variable locations local to the current script block and optionally assign them an initial value. These variables can be accessed and assigned different values from the current block and inner blocks."
+    "/* rethrow error from inside case block */\nfunction rethrow (\n\n): any;\n"
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__391 */
 #define afw_s_zz__391 \
@@ -137675,7 +137701,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__392 \
-    "(name: (array string), value?: any, type?: (object _AdaptiveValueMeta_)): any"
+    "This function returns from the outermost structured block with the last evaluated value."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__392 */
 #define afw_s_zz__392 \
@@ -137701,7 +137727,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__393 \
-    "/* Declare one or more variables in the current block */\nfunction let (\n    name: (array string),\n    value?: any,\n    type?: (object _AdaptiveValueMeta_)\n): any;\n"
+    "The value to evaluate that the outermost block will return. If not specified, the last evaluated value or a null value will be returned."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__393 */
 #define afw_s_zz__393 \
@@ -137727,7 +137753,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__394 \
-    "This is a special function that can be called to rethrow an error inside of a catch block. If called outside of a catch body, an error is thrown."
+    "Return from the outermost structured block. If the expression of a lambda function is a block function, this will effectively return from the lambda function. If called outside of a structured block, an error is thrown."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__394 */
 #define afw_s_zz__394 \
@@ -137753,7 +137779,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__395 \
-    "/* rethrow error from inside case block */\nfunction rethrow (\n\n): any;\n"
+    "/* Return from the outermost structured block */\nfunction return (\n    value?: any\n): any;\n"
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__395 */
 #define afw_s_zz__395 \
@@ -137779,7 +137805,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__396 \
-    "This function returns from the outermost structured block with the last evaluated value."
+    "The predicate is passed two parameters and must return a boolean. The first parameter passed is the evaluated value of the value1 parameter and the second is the value2 from a case clause. This predicate will often be 'eqx' to use the exactly equal function but can also be any other function such as 'regexp_match' or a lambda function."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__396 */
 #define afw_s_zz__396 \
@@ -137805,7 +137831,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__397 \
-    "The value to evaluate that the outermost block will return. If not specified, the last evaluated value or a null value will be returned."
+    "This is one or more case clauses which are pairs of a value2 parameter followed by a statement list or undefined parameter. One value2 can be undefined to indicate the default case clause.\n\nFor the first value2 that is undefined or calling the predicate returns true, the statement list followed by any statement lists of subsequent case clauses are executed until a break or return is encountered. The predicate is called with value1 and the case clause's value2."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__397 */
 #define afw_s_zz__397 \
@@ -137831,7 +137857,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__398 \
-    "Return from the outermost structured block. If the expression of a lambda function is a block function, this will effectively return from the lambda function. If called outside of a structured block, an error is thrown."
+    "(predicate: (function (any value1: any, value2: any): boolean), value1: any, case_clause_1: any, case_clause_2: any, ...case_clause_rest: (array of any)): any"
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__398 */
 #define afw_s_zz__398 \
@@ -137857,7 +137883,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__399 \
-    "/* Return from the outermost structured block */\nfunction return (\n    value?: any\n): any;\n"
+    "/* All combinations true */\nfunction switch (\n    predicate: (function (any value1: any, value2: any): boolean) /* Predicate function */,\n    value1: any                                                   /* First predicate parameter */,\n    case_clause_1: any,\n    case_clause_2: any,\n    ...case_clause_rest: (array of any) /* One or more value2 and statement list pairs */\n): any;\n"
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__399 */
 #define afw_s_zz__399 \
@@ -137935,7 +137961,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__400 \
-    "The predicate is passed two parameters and must return a boolean. The first parameter passed is the evaluated value of the value1 parameter and the second is the value2 from a case clause. This predicate will often be 'eqx' to use the exactly equal function but can also be any other function such as 'regexp_match' or a lambda function."
+    "This is the message that will be included in the _AdaptiveError_ error object available in the catch block."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__400 */
 #define afw_s_zz__400 \
@@ -137961,7 +137987,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__401 \
-    "This is one or more case clauses which are pairs of a value2 parameter followed by a statement list or undefined parameter. One value2 can be undefined to indicate the default case clause.\n\nFor the first value2 that is undefined or calling the predicate returns true, the statement list followed by any statement lists of subsequent case clauses are executed until a break or return is encountered. The predicate is called with value1 and the case clause's value2."
+    "Optional additional information that will be available as a 'additional' property in the error object."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__401 */
 #define afw_s_zz__401 \
@@ -137987,7 +138013,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__402 \
-    "(predicate: (function (any value1: any, value2: any): boolean), value1: any, case_clause_1: any, case_clause_2: any, ...case_clause_rest: (array of any)): any"
+    "This throws an error that can be caught by a try/catch block. An error object of object type _AdaptiveError_ will be available in the catch block. Its 'id' property will be set to 'throw'. The other properties set based on the parameters specified and where this function is called."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__402 */
 #define afw_s_zz__402 \
@@ -138013,7 +138039,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__403 \
-    "/* All combinations true */\nfunction switch (\n    predicate: (function (any value1: any, value2: any): boolean) /* Predicate function */,\n    value1: any                                                   /* First predicate parameter */,\n    case_clause_1: any,\n    case_clause_2: any,\n    ...case_clause_rest: (array of any) /* One or more value2 and statement list pairs */\n): any;\n"
+    "/* Throws an error */\nfunction throw (\n    message: string  /* Error message */,\n    additional?: any /* Optional additional information */\n): void;\n"
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__403 */
 #define afw_s_zz__403 \
@@ -138039,7 +138065,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__404 \
-    "This is the message that will be included in the _AdaptiveError_ error object available in the catch block."
+    "This is an array of values (statements) that are evaluated. Each value in body is evaluated in order until the end of the list or until a 'break', 'continue', 'return' or 'throw' function is encountered."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__404 */
 #define afw_s_zz__404 \
@@ -138065,7 +138091,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__405 \
-    "Optional additional information that will be available as a 'additional' property in the error object."
+    "This is an array of values (statements) that are evaluated after the try and catch statements even if an error occurs. Each value in body is evaluated in order until the end of the list or until a 'break', 'continue', 'return' or 'throw' function is encountered."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__405 */
 #define afw_s_zz__405 \
@@ -138091,7 +138117,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__406 \
-    "This throws an error that can be caught by a try/catch block. An error object of object type _AdaptiveError_ will be available in the catch block. Its 'id' property will be set to 'throw'. The other properties set based on the parameters specified and where this function is called."
+    "This is an array of values (statements) that are evaluated when an error is thrown while evaluating the body. Each value in body is evaluated in order until the end of the list or until a 'break', 'continue', 'return' or 'throw' function is encountered."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__406 */
 #define afw_s_zz__406 \
@@ -138117,7 +138143,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__407 \
-    "/* Throws an error */\nfunction throw (\n    message: string  /* Error message */,\n    additional?: any /* Optional additional information */\n): void;\n"
+    "The error object thrown. This is only available in the catch block. See adaptive object type _AdaptiveObjectType_ for details."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__407 */
 #define afw_s_zz__407 \
@@ -138143,7 +138169,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__408 \
-    "This is an array of values (statements) that are evaluated. Each value in body is evaluated in order until the end of the list or until a 'break', 'continue', 'return' or 'throw' function is encountered."
+    "Evaluate an array of values (statements) as a try block with optional catch and finally statements"
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__408 */
 #define afw_s_zz__408 \
@@ -138169,7 +138195,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__409 \
-    "This is an array of values (statements) that are evaluated after the try and catch statements even if an error occurs. Each value in body is evaluated in order until the end of the list or until a 'break', 'continue', 'return' or 'throw' function is encountered."
+    "This creates a new structured block with a new nested variable scope.\n\nThis function will evaluate the body statements. If an error is thrown and there is an optional catch, the error will be 'caught' and the associated statements will be evaluated. The optional finally statements are always evaluated after the body and catch statements. See the related functions 'break', 'continue', 'return' and 'throw'."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__409 */
 #define afw_s_zz__409 \
@@ -138221,7 +138247,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__410 \
-    "This is an array of values (statements) that are evaluated when an error is thrown while evaluating the body. Each value in body is evaluated in order until the end of the list or until a 'break', 'continue', 'return' or 'throw' function is encountered."
+    "(body: array, finally?: array, catch?: array, error?: (object _AdaptiveObjectType_)): any"
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__410 */
 #define afw_s_zz__410 \
@@ -138247,7 +138273,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__411 \
-    "The error object thrown. This is only available in the catch block. See adaptive object type _AdaptiveObjectType_ for details."
+    "/* Evaluate an array of values (statements) as a try block with optional catch and finally statements */\nfunction try (\n    body: array,\n    finally?: array,\n    catch?: array,\n    error?: (object _AdaptiveObjectType_)\n): any;\n"
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__411 */
 #define afw_s_zz__411 \
@@ -138273,7 +138299,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__412 \
-    "Evaluate an array of values (statements) as a try block with optional catch and finally statements"
+    "This is an array of values (statements) that are evaluated for each iteration of the loop. Each value in body is evaluated in order until the end of the list or until a 'break', 'continue', 'return' or 'throw' function is encountered."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__412 */
 #define afw_s_zz__412 \
@@ -138299,7 +138325,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__413 \
-    "This creates a new structured block with a new nested variable scope.\n\nThis function will evaluate the body statements. If an error is thrown and there is an optional catch, the error will be 'caught' and the associated statements will be evaluated. The optional finally statements are always evaluated after the body and catch statements. See the related functions 'break', 'continue', 'return' and 'throw'."
+    "Evaluate an array of values (statements) while a condition is true"
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__413 */
 #define afw_s_zz__413 \
@@ -138325,7 +138351,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__414 \
-    "(body: array, finally?: array, catch?: array, error?: (object _AdaptiveObjectType_)): any"
+    "This creates a new structured block with a new nested variable scope.\n\nThis function will evaluate an array of values (statements) while a condition is true. The condition is tested at the beginning of the loop. If the condition is false for the first iteration, the loop returns a null value. See the related functions 'break', 'continue', 'return' and 'throw'."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__414 */
 #define afw_s_zz__414 \
@@ -138351,7 +138377,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__415 \
-    "/* Evaluate an array of values (statements) as a try block with optional catch and finally statements */\nfunction try (\n    body: array,\n    finally?: array,\n    catch?: array,\n    error?: (object _AdaptiveObjectType_)\n): any;\n"
+    "/* Evaluate an array of values (statements) while a condition is true */\nfunction while (\n    condition: boolean,\n    body: array\n): any;\n"
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__415 */
 #define afw_s_zz__415 \
@@ -138377,7 +138403,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__416 \
-    "This is an array of values (statements) that are evaluated for each iteration of the loop. Each value in body is evaluated in order until the end of the list or until a 'break', 'continue', 'return' or 'throw' function is encountered."
+    "This is the assertion to make. If not true, an assertion_failed error is thrown."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__416 */
 #define afw_s_zz__416 \
@@ -138403,7 +138429,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__417 \
-    "Evaluate an array of values (statements) while a condition is true"
+    "This is an optional reason to include in the assertion_failed message."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__417 */
 #define afw_s_zz__417 \
@@ -138429,7 +138455,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__418 \
-    "This creates a new structured block with a new nested variable scope.\n\nThis function will evaluate an array of values (statements) while a condition is true. The condition is tested at the beginning of the loop. If the condition is false for the first iteration, the loop returns a null value. See the related functions 'break', 'continue', 'return' and 'throw'."
+    "Assert that a value is true. If not, an assertion_failed error is thrown."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__418 */
 #define afw_s_zz__418 \
@@ -138455,7 +138481,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__419 \
-    "/* Evaluate an array of values (statements) while a condition is true */\nfunction while (\n    condition: boolean,\n    body: array\n): any;\n"
+    "/* Assert a value */\nfunction assert (\n    assertion: boolean /* Assertion */,\n    reason?: string    /* Reason */\n): void;\n"
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__419 */
 #define afw_s_zz__419 \
@@ -138507,7 +138533,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__420 \
-    "This is the assertion to make. If not true, an assertion_failed error is thrown."
+    "The path of the file to include, which will be resolved using rootFilePaths."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__420 */
 #define afw_s_zz__420 \
@@ -138533,7 +138559,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__421 \
-    "This is an optional reason to include in the assertion_failed message."
+    "The compile type, used by the parser to determine how to compile the data.\nFor example, 'json', 'relaxed_json', 'script', 'template'"
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__421 */
 #define afw_s_zz__421 \
@@ -138559,7 +138585,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__422 \
-    "Assert that a value is true. If not, an assertion_failed error is thrown."
+    "Load an external adaptive script, json, or template to be compiled and returned."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__422 */
 #define afw_s_zz__422 \
@@ -138585,7 +138611,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__423 \
-    "/* Assert a value */\nfunction assert (\n    assertion: boolean /* Assertion */,\n    reason?: string    /* Reason */\n): void;\n"
+    "/* Compile an external file */\nfunction compile_from_file (\n    file: string,\n    compileType?: string\n): any;\n"
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__423 */
 #define afw_s_zz__423 \
@@ -163804,6 +163830,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__Compile_an_external_file \
+    "Compile an external file"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Compile_an_external_file */
+#define afw_s_zz__Compile_an_external_file \
+    (&afw_self_v_zz__Compile_an_external_file.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Compile_an_external_file */
+#define afw_self_s_zz__Compile_an_external_file \
+    (afw_self_v_zz__Compile_an_external_file.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Compile_an_external_file */
+extern const afw_value_string_t \
+    afw_self_v_zz__Compile_an_external_file;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Compile_an_external_file */
+#define afw_z_zz__Compile_an_external_file \
+    (afw_self_v_zz__Compile_an_external_file.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Compile_an_external_file */
+#define afw_v_zz__Compile_an_external_file \
+    (&afw_self_v_zz__Compile_an_external_file.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__Compile_and_evaluate__dataType__value_ \
     "Compile and evaluate <dataType> value."
 
@@ -176436,32 +176488,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__Include_all_objectType_objects */
 #define afw_v_zz__Include_all_objectType_objects \
     (&afw_self_v_zz__Include_all_objectType_objects.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__Include_an_external_file \
-    "Include an external file"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Include_an_external_file */
-#define afw_s_zz__Include_an_external_file \
-    (&afw_self_v_zz__Include_an_external_file.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Include_an_external_file */
-#define afw_self_s_zz__Include_an_external_file \
-    (afw_self_v_zz__Include_an_external_file.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Include_an_external_file */
-extern const afw_value_string_t \
-    afw_self_v_zz__Include_an_external_file;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Include_an_external_file */
-#define afw_z_zz__Include_an_external_file \
-    (afw_self_v_zz__Include_an_external_file.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Include_an_external_file */
-#define afw_v_zz__Include_an_external_file \
-    (&afw_self_v_zz__Include_an_external_file.pub)
 
 
 
@@ -227084,6 +227110,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__object__AdaptiveAuthorizationResult_ */
 #define afw_v_zz__object__AdaptiveAuthorizationResult_ \
     (&afw_self_v_zz__object__AdaptiveAuthorizationResult_.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__object__AdaptiveError_ \
+    "object _AdaptiveError_"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__object__AdaptiveError_ */
+#define afw_s_zz__object__AdaptiveError_ \
+    (&afw_self_v_zz__object__AdaptiveError_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__object__AdaptiveError_ */
+#define afw_self_s_zz__object__AdaptiveError_ \
+    (afw_self_v_zz__object__AdaptiveError_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__object__AdaptiveError_ */
+extern const afw_value_string_t \
+    afw_self_v_zz__object__AdaptiveError_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__object__AdaptiveError_ */
+#define afw_z_zz__object__AdaptiveError_ \
+    (afw_self_v_zz__object__AdaptiveError_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__object__AdaptiveError_ */
+#define afw_v_zz__object__AdaptiveError_ \
+    (&afw_self_v_zz__object__AdaptiveError_.pub)
 
 
 

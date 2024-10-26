@@ -34,7 +34,7 @@
         "errors": {
             "brief": "Errors that occurred",
             "dataType": "array",
-            "dataTypeParameter": "_AdaptiveError_",
+            "dataTypeParameter": "object _AdaptiveError_",
             "description": "Error that occurred.",
             "label": "Errors",
             "required": false
