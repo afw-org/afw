@@ -14,6 +14,7 @@ use Exporter qw(import);
 
 our @EXPORT_OK = qw(
     assert 
+    compile_from_file 
     decompile 
     evaluate_value 
     evaluate_with_retry 
@@ -49,6 +50,23 @@ thrown.
     $reason
 
 This is an optional reason to include in the assertion_failed message.
+
+=head3 compile_from_file
+
+Load an external adaptive script, json, or template to be compiled and
+returned.
+Compile an external file
+
+=head4 Parameters
+
+    $file
+
+The path of the file to include, which will be resolved using rootFilePaths.
+
+    $compileType
+
+The compile type, used by the parser to determine how to compile the data.
+For example, 'json', 'relaxed_json', 'script', 'template'
 
 =head3 decompile
 
@@ -283,6 +301,20 @@ sub assert_ {
 
     if (defined $reason)
         $request->set("reason", $reason);
+
+    return $request->getResult();
+}
+
+sub compile_from_file {
+    my ($file, $compileType) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "compile_from_file");
+    $request->set("file", $file);
+
+    if (defined $compileType)
+        $request->set("compileType", $compileType);
 
     return $request->getResult();
 }

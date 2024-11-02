@@ -10,7 +10,7 @@
         "authorizationResults": {
             "brief": "Authorization result",
             "dataType": "array",
-            "dataTypeParameter": "_AdaptiveAuthorizationResult_",
+            "dataTypeParameter": "object _AdaptiveAuthorizationResult_",
             "description": "Authorization result.",
             "label": "Authorization Results"
         },
