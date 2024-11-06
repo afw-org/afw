@@ -22,42 +22,55 @@ http_get();
 
 http_get("http://xyz");
 
-//? test: http_get_google
-//? description: Call http_get with google.com
+//? test: http_get
+//? description: Call http_get
 //? expect: 200
 //? source: ...
 #!/usr/bin/env afw
 
-const test_curl_http_get = environment::TEST_CURL_HTTP_GET;
 
-// only test if environment variable is defined
-if (test_curl_http_get === undefined) {
+// only do live HTTP requests, if configured to do so
+if (environment::TEST_CURL_HTTPBIN === undefined) {
     return 200;
 }
 
-const response = http_get("http://www.google.com");
+const response = http_get("http://www.httpbin.org/get");
 
 return response.response_code;
 
 
-//? test: http_get_google_secure
-//? description: Call http_get with https://google.com
+//? test: http_get_secure
+//? description: Call http_get secure
 //? expect: 200
 //? source: ...
 #!/usr/bin/env afw
 
-const test_curl_http_get = environment::TEST_CURL_HTTP_GET;
-
-// only test if environment variable is defined
-if (test_curl_http_get === undefined) {
+// only do live HTTP requests, if configured to do so
+if (environment::TEST_CURL_HTTPBIN === undefined) {
     return 200;
 }
 
-const response = http_get("https://www.google.com", 
+const response = http_get("https://www.httpbin.org/get", 
     undefined,
     { 
         "sslVerifyPeer": true, 
         "sslVerifyHost": true
     });
+
+return response.response_code;
+
+
+//? test: http_get_400
+//? description: Call http_get secure
+//? expect: 400
+//? source: ...
+#!/usr/bin/env afw
+
+// only do live HTTP requests, if configured to do so
+if (environment::TEST_CURL_HTTPBIN === undefined) {
+    return 400;
+}
+
+const response = http_get("https://www.httpbin.org/status/400");
 
 return response.response_code;
