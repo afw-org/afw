@@ -13,8 +13,11 @@ use warnings;
 use Exporter qw(import);
 
 our @EXPORT_OK = qw(
+    http_delete 
     http_get 
+    http_patch 
     http_post 
+    http_put 
 );
 
 =head1 NAME
@@ -24,6 +27,25 @@ afw::http - Perl module for http functions
 =head2 Functions
 
 The following functions are exported by default
+
+=head3 http_delete
+
+Makes a HTTP DELETE Request.
+
+
+=head4 Parameters
+
+    $url
+
+HTTP Url.
+
+    $headers
+
+HTTP Headers.
+
+    $options
+
+CURL Options
 
 =head3 http_get
 
@@ -44,9 +66,32 @@ HTTP Headers.
 
 CURL Options
 
+=head3 http_patch
+
+Makes a HTTP PATCH Request.
+
+
+=head4 Parameters
+
+    $url
+
+HTTP Url.
+
+    $payload
+
+Data payload for PATCH.
+
+    $headers
+
+HTTP Headers.
+
+    $options
+
+CURL Options
+
 =head3 http_post
 
-Makes a HTTP Post Request.
+Makes a HTTP POST Request.
 
 
 =head4 Parameters
@@ -67,7 +112,47 @@ HTTP Headers.
 
 CURL Options
 
+=head3 http_put
+
+Makes a HTTP PUT Request.
+
+
+=head4 Parameters
+
+    $url
+
+HTTP Url.
+
+    $payload
+
+Data payload for PUT.
+
+    $headers
+
+HTTP Headers.
+
+    $options
+
+CURL Options
+
 =cut
+
+sub http_delete {
+    my ($url, $headers, $options) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "http_delete");
+    $request->set("url", $url);
+
+    if (defined $headers)
+        $request->set("headers", $headers);
+
+    if (defined $options)
+        $request->set("options", $options);
+
+    return $request->getResult();
+}
 
 sub http_get {
     my ($url, $headers, $options) = @_;
@@ -86,12 +171,52 @@ sub http_get {
     return $request->getResult();
 }
 
+sub http_patch {
+    my ($url, $payload, $headers, $options) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "http_patch");
+    $request->set("url", $url);
+
+    if (defined $payload)
+        $request->set("payload", $payload);
+
+    if (defined $headers)
+        $request->set("headers", $headers);
+
+    if (defined $options)
+        $request->set("options", $options);
+
+    return $request->getResult();
+}
+
 sub http_post {
     my ($url, $payload, $headers, $options) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "http_post");
+    $request->set("url", $url);
+
+    if (defined $payload)
+        $request->set("payload", $payload);
+
+    if (defined $headers)
+        $request->set("headers", $headers);
+
+    if (defined $options)
+        $request->set("options", $options);
+
+    return $request->getResult();
+}
+
+sub http_put {
+    my ($url, $payload, $headers, $options) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "http_put");
     $request->set("url", $url);
 
     if (defined $payload)

@@ -1,8 +1,8 @@
 {
     "category": "http",
-    "description": "Makes a HTTP POST Request.",
-    "functionId": "http_post",
-    "functionLabel": "http_post",
+    "description": "Makes a HTTP PUT Request.",
+    "functionId": "http_put",
+    "functionLabel": "http_put",
     "parameters": [
         {
             "dataType": "string",
@@ -11,7 +11,7 @@
         },
         {
             "dataType": "string",
-            "description": "Data payload to POST to the url.",
+            "description": "Data payload for PUT.",
             "name": "payload",
             "optional": true
         },
@@ -31,7 +31,7 @@
     ],
     "returns": {
         "dataType": "object",
-        "description": "Returns an object describing the response from the HTTP POST request.",
+        "description": "Returns an object describing the response from the HTTP PUT request.",
         "dataTypeParameter": "_AdaptiveCurlHttpResponse_"
     }
 }

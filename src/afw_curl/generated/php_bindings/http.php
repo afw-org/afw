@@ -26,6 +26,37 @@ class http
     }
 
     /**
+     * http_delete()
+     *
+     * Makes a HTTP DELETE Request.
+     *
+     * @param string $url HTTP Url.
+     * @param array $headers HTTP Headers.
+     * @param object $options CURL Options
+     *
+     * @return object Returns an object describing the response from the HTTP
+     *                delete request.
+     */
+    public function http_delete(, $url, $headers = null, $options = null)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "http_delete");
+
+        /* pass along required parameters to the request payload */
+        $request->set("url", $url);
+
+        /* pass along any optional parameters to the request payload */
+        if ($headers != null)
+            $request->set('headers', $headers);
+
+        if ($options != null)
+            $request->set('options', $options);
+
+        return $request->get_result();
+    }
+
+    /**
      * http_get()
      *
      * Makes a HTTP GET Request.
@@ -57,9 +88,44 @@ class http
     }
 
     /**
+     * http_patch()
+     *
+     * Makes a HTTP PATCH Request.
+     *
+     * @param string $url HTTP Url.
+     * @param string $payload Data payload for PATCH.
+     * @param array $headers HTTP Headers.
+     * @param object $options CURL Options
+     *
+     * @return object Returns an object describing the response from the HTTP
+     *                PATCH request.
+     */
+    public function http_patch(, $url, $payload = null, $headers = null, $options = null)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "http_patch");
+
+        /* pass along required parameters to the request payload */
+        $request->set("url", $url);
+
+        /* pass along any optional parameters to the request payload */
+        if ($payload != null)
+            $request->set('payload', $payload);
+
+        if ($headers != null)
+            $request->set('headers', $headers);
+
+        if ($options != null)
+            $request->set('options', $options);
+
+        return $request->get_result();
+    }
+
+    /**
      * http_post()
      *
-     * Makes a HTTP Post Request.
+     * Makes a HTTP POST Request.
      *
      * @param string $url HTTP Url.
      * @param string $payload Data payload to POST to the url.
@@ -74,6 +140,41 @@ class http
         $request = $this->$session->request();
 
         $request->set("function", "http_post");
+
+        /* pass along required parameters to the request payload */
+        $request->set("url", $url);
+
+        /* pass along any optional parameters to the request payload */
+        if ($payload != null)
+            $request->set('payload', $payload);
+
+        if ($headers != null)
+            $request->set('headers', $headers);
+
+        if ($options != null)
+            $request->set('options', $options);
+
+        return $request->get_result();
+    }
+
+    /**
+     * http_put()
+     *
+     * Makes a HTTP PUT Request.
+     *
+     * @param string $url HTTP Url.
+     * @param string $payload Data payload for PUT.
+     * @param array $headers HTTP Headers.
+     * @param object $options CURL Options
+     *
+     * @return object Returns an object describing the response from the HTTP
+     *                PUT request.
+     */
+    public function http_put(, $url, $payload = null, $headers = null, $options = null)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "http_put");
 
         /* pass along required parameters to the request payload */
         $request->set("url", $url);

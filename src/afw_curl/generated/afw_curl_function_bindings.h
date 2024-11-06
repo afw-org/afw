@@ -93,6 +93,42 @@ afw_curl_function_execute_curl_version_info(
  */
 
 /**
+ * @brief Adaptive Function `http_delete`
+ * @param x function execute parameter.
+ *
+ * Makes a HTTP DELETE Request.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function http_delete(
+ *       url: string,
+ *       headers?: array,
+ *       options?: (object _AdaptiveCurlOptions_)
+ *   ): (object _AdaptiveCurlHttpResponse_);
+ * ```
+ *
+ * Parameters:
+ *
+ *   url - (string) HTTP Url.
+ *
+ *   headers - (optional array) HTTP Headers.
+ *
+ *   options - (optional object _AdaptiveCurlOptions_) CURL Options.
+ *
+ * Returns:
+ *
+ *   (object _AdaptiveCurlHttpResponse_) Returns an object describing the
+ *       response from the HTTP delete request.
+ */
+const afw_value_t *
+afw_curl_function_execute_http_delete(
+    afw_function_execute_t *x);
+
+/**
  * @brief Adaptive Function `http_get`
  * @param x function execute parameter.
  *
@@ -129,10 +165,49 @@ afw_curl_function_execute_http_get(
     afw_function_execute_t *x);
 
 /**
+ * @brief Adaptive Function `http_patch`
+ * @param x function execute parameter.
+ *
+ * Makes a HTTP PATCH Request.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function http_patch(
+ *       url: string,
+ *       payload?: string,
+ *       headers?: array,
+ *       options?: (object _AdaptiveCurlOptions_)
+ *   ): (object _AdaptiveCurlHttpResponse_);
+ * ```
+ *
+ * Parameters:
+ *
+ *   url - (string) HTTP Url.
+ *
+ *   payload - (optional string) Data payload for PATCH.
+ *
+ *   headers - (optional array) HTTP Headers.
+ *
+ *   options - (optional object _AdaptiveCurlOptions_) CURL Options.
+ *
+ * Returns:
+ *
+ *   (object _AdaptiveCurlHttpResponse_) Returns an object describing the
+ *       response from the HTTP PATCH request.
+ */
+const afw_value_t *
+afw_curl_function_execute_http_patch(
+    afw_function_execute_t *x);
+
+/**
  * @brief Adaptive Function `http_post`
  * @param x function execute parameter.
  *
- * Makes a HTTP Post Request.
+ * Makes a HTTP POST Request.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -165,6 +240,45 @@ afw_curl_function_execute_http_get(
  */
 const afw_value_t *
 afw_curl_function_execute_http_post(
+    afw_function_execute_t *x);
+
+/**
+ * @brief Adaptive Function `http_put`
+ * @param x function execute parameter.
+ *
+ * Makes a HTTP PUT Request.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function http_put(
+ *       url: string,
+ *       payload?: string,
+ *       headers?: array,
+ *       options?: (object _AdaptiveCurlOptions_)
+ *   ): (object _AdaptiveCurlHttpResponse_);
+ * ```
+ *
+ * Parameters:
+ *
+ *   url - (string) HTTP Url.
+ *
+ *   payload - (optional string) Data payload for PUT.
+ *
+ *   headers - (optional array) HTTP Headers.
+ *
+ *   options - (optional object _AdaptiveCurlOptions_) CURL Options.
+ *
+ * Returns:
+ *
+ *   (object _AdaptiveCurlHttpResponse_) Returns an object describing the
+ *       response from the HTTP PUT request.
+ */
+const afw_value_t *
+afw_curl_function_execute_http_put(
     afw_function_execute_t *x);
 
 /** @} */

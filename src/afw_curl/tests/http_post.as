@@ -30,39 +30,35 @@ http_post("http://xyz");
 
 http_post("http://xyz", "");
 
-//? test: http_post_google
-//? description: Call http_post with google.com
+//? test: http_post_http_cleartext
+//? description: Call http_post over cleartext
 //? expect: 200
 //? source: ...
 #!/usr/bin/env afw
 
-const test_curl_http_post = environment::TEST_CURL_HTTP_POST;
-
-// only test if environment variable is defined
-if (test_curl_http_post === undefined) {
+// only do live HTTP requests, if configured to do so
+if (environment::TEST_CURL_HTTPBIN === undefined) {
     return 200;
 }
 
-const response = http_post("http://www.google.com", "");
+const response = http_post("http://www.httpbin.org/post", "");
 
 return response.response_code;
 
 
 //? test: http_post_google_secure
-//? description: Call http_post with https://google.com
+//? description: Call http_post with 200 rc
 //? expect: 200
 //? source: ...
 #!/usr/bin/env afw
 
-const test_curl_http_post = environment::TEST_CURL_HTTP_POST;
-
-// only test if environment variable is defined
-if (test_curl_http_post === undefined) {
+// only do live HTTP requests, if configured to do so
+if (environment::TEST_CURL_HTTPBIN === undefined) {
     return 200;
 }
 
-const response = http_post("https://www.google.com", 
-    "",
+const response = http_post("https://www.httpbin.org/post", 
+    "xyz",
     undefined,
     { 
         "sslVerifyPeer": true, 

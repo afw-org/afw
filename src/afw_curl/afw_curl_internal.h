@@ -46,7 +46,7 @@ const afw_object_t *
 afw_curl_internal_http_post(
     const afw_utf8_t        * url,
     const afw_utf8_t        * payload,
-    const afw_array_t        * headers,
+    const afw_array_t       * headers,
     const afw_object_t      * options,
     const afw_pool_t        * pool,
     afw_xctx_t              * xctx);
@@ -54,7 +54,33 @@ afw_curl_internal_http_post(
 const afw_object_t *
 afw_curl_internal_http_get(
     const afw_utf8_t        * url,
-    const afw_array_t        * headers,
+    const afw_array_t       * headers,
+    const afw_object_t      * options,
+    const afw_pool_t        * pool,
+    afw_xctx_t              * xctx);
+
+const afw_object_t *
+afw_curl_internal_http_delete(
+    const afw_utf8_t        * url,
+    const afw_array_t       * headers,
+    const afw_object_t      * options,
+    const afw_pool_t        * pool,
+    afw_xctx_t              * xctx);
+
+const afw_object_t *
+afw_curl_internal_http_put(
+    const afw_utf8_t        * url,
+    const afw_utf8_t        * payload,
+    const afw_array_t       * headers,
+    const afw_object_t      * options,
+    const afw_pool_t        * pool,
+    afw_xctx_t              * xctx);
+
+const afw_object_t *
+afw_curl_internal_http_patch(
+    const afw_utf8_t        * url,
+    const afw_utf8_t        * payload,
+    const afw_array_t       * headers,
     const afw_object_t      * options,
     const afw_pool_t        * pool,
     afw_xctx_t              * xctx);
@@ -63,7 +89,7 @@ void
 afw_curl_internal_smtp_send(
     const afw_utf8_t        * url,
     const afw_utf8_t        * mail_from,
-    const afw_array_t        * mail_recipients,
+    const afw_array_t       * mail_recipients,
     const afw_utf8_t        * payload,
     const afw_object_t      * options,
     const afw_pool_t        * pool,

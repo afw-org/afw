@@ -2,7 +2,7 @@
     "afwCamelCaseFunctionLabel": "afwHttpPost",
     "camelCaseFunctionLabel": "httpPost",
     "category": "http",
-    "description": "Makes a HTTP Post Request.",
+    "description": "Makes a HTTP POST Request.",
     "functionId": "http_post",
     "functionLabel": "http_post",
     "parameters": [

@@ -1,20 +1,14 @@
 {
     "category": "http",
-    "description": "Makes a HTTP POST Request.",
-    "functionId": "http_post",
-    "functionLabel": "http_post",
+    "description": "Makes a HTTP DELETE Request.",
+    "functionId": "http_delete",
+    "functionLabel": "http_delete",
     "parameters": [
         {
             "dataType": "string",
             "description": "HTTP Url.",
             "name": "url"
-        },
-        {
-            "dataType": "string",
-            "description": "Data payload to POST to the url.",
-            "name": "payload",
-            "optional": true
-        },
+        },        
         {
             "dataType": "array",
             "description": "HTTP Headers.",
@@ -31,7 +25,7 @@
     ],
     "returns": {
         "dataType": "object",
-        "description": "Returns an object describing the response from the HTTP POST request.",
+        "description": "Returns an object describing the response from the HTTP delete request.",
         "dataTypeParameter": "_AdaptiveCurlHttpResponse_"
     }
 }

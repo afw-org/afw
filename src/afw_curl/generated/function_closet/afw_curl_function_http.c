@@ -16,6 +16,51 @@
 
 
 /*
+ * Adaptive function: http_delete
+ *
+ * afw_curl_function_execute_http_delete
+ *
+ * See afw_curl_function_bindings.h for more information.
+ *
+ * Makes a HTTP DELETE Request.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function http_delete(
+ *       url: string,
+ *       headers?: array,
+ *       options?: (object _AdaptiveCurlOptions_)
+ *   ): (object _AdaptiveCurlHttpResponse_);
+ * ```
+ *
+ * Parameters:
+ *
+ *   url - (string) HTTP Url.
+ *
+ *   headers - (optional array) HTTP Headers.
+ *
+ *   options - (optional object _AdaptiveCurlOptions_) CURL Options.
+ *
+ * Returns:
+ *
+ *   (object _AdaptiveCurlHttpResponse_) Returns an object describing the
+ *       response from the HTTP delete request.
+ */
+const afw_value_t *
+afw_curl_function_execute_http_delete(
+    afw_function_execute_t *x)
+{
+    /** @todo Add code. */
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
+}
+
+
+
+/*
  * Adaptive function: http_get
  *
  * afw_curl_function_execute_http_get
@@ -61,13 +106,61 @@ afw_curl_function_execute_http_get(
 
 
 /*
+ * Adaptive function: http_patch
+ *
+ * afw_curl_function_execute_http_patch
+ *
+ * See afw_curl_function_bindings.h for more information.
+ *
+ * Makes a HTTP PATCH Request.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function http_patch(
+ *       url: string,
+ *       payload?: string,
+ *       headers?: array,
+ *       options?: (object _AdaptiveCurlOptions_)
+ *   ): (object _AdaptiveCurlHttpResponse_);
+ * ```
+ *
+ * Parameters:
+ *
+ *   url - (string) HTTP Url.
+ *
+ *   payload - (optional string) Data payload for PATCH.
+ *
+ *   headers - (optional array) HTTP Headers.
+ *
+ *   options - (optional object _AdaptiveCurlOptions_) CURL Options.
+ *
+ * Returns:
+ *
+ *   (object _AdaptiveCurlHttpResponse_) Returns an object describing the
+ *       response from the HTTP PATCH request.
+ */
+const afw_value_t *
+afw_curl_function_execute_http_patch(
+    afw_function_execute_t *x)
+{
+    /** @todo Add code. */
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
+}
+
+
+
+/*
  * Adaptive function: http_post
  *
  * afw_curl_function_execute_http_post
  *
  * See afw_curl_function_bindings.h for more information.
  *
- * Makes a HTTP Post Request.
+ * Makes a HTTP POST Request.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -100,6 +193,54 @@ afw_curl_function_execute_http_get(
  */
 const afw_value_t *
 afw_curl_function_execute_http_post(
+    afw_function_execute_t *x)
+{
+    /** @todo Add code. */
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
+}
+
+
+
+/*
+ * Adaptive function: http_put
+ *
+ * afw_curl_function_execute_http_put
+ *
+ * See afw_curl_function_bindings.h for more information.
+ *
+ * Makes a HTTP PUT Request.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function http_put(
+ *       url: string,
+ *       payload?: string,
+ *       headers?: array,
+ *       options?: (object _AdaptiveCurlOptions_)
+ *   ): (object _AdaptiveCurlHttpResponse_);
+ * ```
+ *
+ * Parameters:
+ *
+ *   url - (string) HTTP Url.
+ *
+ *   payload - (optional string) Data payload for PUT.
+ *
+ *   headers - (optional array) HTTP Headers.
+ *
+ *   options - (optional object _AdaptiveCurlOptions_) CURL Options.
+ *
+ * Returns:
+ *
+ *   (object _AdaptiveCurlHttpResponse_) Returns an object describing the
+ *       response from the HTTP PUT request.
+ */
+const afw_value_t *
+afw_curl_function_execute_http_put(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */

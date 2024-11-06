@@ -11,6 +11,45 @@
 import requests
 import json
 
+def http_delete(session, url, headers=None, options=None):
+    """
+    
+
+    Makes a HTTP DELETE Request.
+
+    Args:
+        url (str): HTTP Url.
+
+        headers (list): HTTP Headers.
+
+        options (dict): CURL Options
+
+    Returns:
+        dict: Returns an object describing the response from the HTTP delete
+        request.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "http_delete",
+        "url": url
+    }
+
+    if headers != None:
+        action['headers'] = headers
+
+    if options != None:
+        action['options'] = options
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def http_get(session, url, headers=None, options=None):
     """
     
@@ -50,11 +89,55 @@ def http_get(session, url, headers=None, options=None):
 
     return response['actions'][0]['result']
 
+def http_patch(session, url, payload=None, headers=None, options=None):
+    """
+    
+
+    Makes a HTTP PATCH Request.
+
+    Args:
+        url (str): HTTP Url.
+
+        payload (str): Data payload for PATCH.
+
+        headers (list): HTTP Headers.
+
+        options (dict): CURL Options
+
+    Returns:
+        dict: Returns an object describing the response from the HTTP PATCH
+        request.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "http_patch",
+        "url": url
+    }
+
+    if payload != None:
+        action['payload'] = payload
+
+    if headers != None:
+        action['headers'] = headers
+
+    if options != None:
+        action['options'] = options
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def http_post(session, url, payload=None, headers=None, options=None):
     """
     
 
-    Makes a HTTP Post Request.
+    Makes a HTTP POST Request.
 
     Args:
         url (str): HTTP Url.
@@ -74,6 +157,50 @@ def http_post(session, url, payload=None, headers=None, options=None):
 
     action = {
         "function": "http_post",
+        "url": url
+    }
+
+    if payload != None:
+        action['payload'] = payload
+
+    if headers != None:
+        action['headers'] = headers
+
+    if options != None:
+        action['options'] = options
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def http_put(session, url, payload=None, headers=None, options=None):
+    """
+    
+
+    Makes a HTTP PUT Request.
+
+    Args:
+        url (str): HTTP Url.
+
+        payload (str): Data payload for PUT.
+
+        headers (list): HTTP Headers.
+
+        options (dict): CURL Options
+
+    Returns:
+        dict: Returns an object describing the response from the HTTP PUT
+        request.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "http_put",
         "url": url
     }
 

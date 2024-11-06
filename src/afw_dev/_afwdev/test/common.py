@@ -320,6 +320,7 @@ def format_source_code(source, title = None, highlightOffset = 0, maxLines = 10,
         if title:
             msg.error("    {}\n".format(title))
 
+        highlightLine = None
         sourceLines = source.split("\n")
         if highlightOffset:
             cursor = 0           
@@ -348,8 +349,13 @@ def format_source_code(source, title = None, highlightOffset = 0, maxLines = 10,
             numLines = len(outputLines)
             if numLines > maxLines:
                 cut = int(maxLines / 2)
-                start = highlightLine - cut
-                end = highlightLine + cut + 2
+                
+                if highlightLine is not None:                    
+                    start = highlightLine - cut
+                    end = highlightLine + cut + 2
+                else:
+                    start = 0
+                    end = maxLines
                 if message:
                     # adjust for the error message
                     end = end + 3
