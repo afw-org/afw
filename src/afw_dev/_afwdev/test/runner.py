@@ -35,19 +35,27 @@ def run_test_group(testGroup, options, testEnvironments, work_dir_prefix):
     skipped = 0
     passed = 0    
 
+    # save the current environment variables
+    prevEnvVars = os.environ.copy()
+
+    # remember the current working directory
+    pwd = os.getcwd()
+
     _, root, tests = testGroup       
 
     testGroupConfig = load_test_group_config(root)
     if testGroupConfig:        
         msg.debug("Loaded test group configuration from " + root)
 
+        # check to see if any environment variables need to be set
+        if testGroupConfig.get('EnvVars'):
+            for key, value in testGroupConfig.get('EnvVars').items():
+                os.environ[key] = value
+
     # if tags were specified, make sure this test group matches
-    if options.get("tags"):
+    if options.get("tags") and testGroupConfig:
         if not any(tag in testGroupConfig.get("Tags", []) for tag in options.get("tags")):
             msg.debug("  Skipping test group because it doesn't match the specified tags")
-
-    # remember the current working directory
-    pwd = os.getcwd()
 
     # get the test environment for this test group
     testEnvironment = get_test_environment(testGroup, testEnvironments, testGroupConfig, work_dir_prefix)    
@@ -143,6 +151,10 @@ def run_test_group(testGroup, options, testEnvironments, work_dir_prefix):
         # always switch back to original working directory        
         os.chdir(pwd)
 
+        # and restore environment variables
+        os.environ.clear()
+        os.environ.update(prevEnvVars)
+
     test_group_end = time.time()
 
     if msg.is_debug_mode():
@@ -206,7 +218,7 @@ def run(options, srcdirs):
         srcDirTestGroups = []
 
         if os.path.exists(manual_tests):
-            testGroups = find_test_groups(srcdir, manual_tests)
+            testGroups = find_test_groups(options, srcdir, manual_tests)
             srcDirTestGroups += testGroups
 
         # if this source directory has python bindings, include them for tests

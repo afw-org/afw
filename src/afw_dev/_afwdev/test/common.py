@@ -199,10 +199,16 @@ def load_test_group_config(root):
         return groupConfig
 
 # For a given folder, find all tests 
-def find_tests(root, files):
+def find_tests(options, root, files):
     tests = []
 
     for f in files:
+        # check options to filter out tests
+        if options.get("test-pattern"):
+            if not re.match(options.get("test-pattern"), f):
+                msg.debug("Skipping test (does not match): " + f)
+                continue
+
         if is_test_file(f):
             tests.append(os.path.join(root, f))
 
@@ -211,7 +217,7 @@ def find_tests(root, files):
 # Within a <srcdir>/tests/ directory, this routine will find all test groups
 # and return a list of test groups. Each test group is a tuple containing
 # the source directory, the test group directory, and a list of test files
-def find_test_groups(srcdir, tests_dir):
+def find_test_groups(options, srcdir, tests_dir):
     testGroups = []
 
     for root, dirs, files in os.walk(tests_dir):
@@ -221,7 +227,7 @@ def find_test_groups(srcdir, tests_dir):
         if is_test_group(root):
             pass
 
-        tests = find_tests(root, files)
+        tests = find_tests(options, root, files)
         if len(tests) > 0:
             testGroups.append(
                 (srcdir, root, tests)

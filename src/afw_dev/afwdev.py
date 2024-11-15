@@ -914,6 +914,14 @@ _info_test_output = {
     "help": "Where to send test output (default is stdout)."
 }
 
+_info_test_pattern = {
+    "optionName": "test-pattern",
+    "arg": "--test-pattern",
+    "default": ".*",
+    "noprompt": True,
+    "help": "Test filename pattern to match and run."
+}
+
 _info_test_js = {
     "optionName": "javascript",
     "arg": "--js",    
@@ -938,6 +946,7 @@ _info_test = {
         _info_test_jobs,
         _info_test_env_mode,
         _info_test_output,
+        _info_test_pattern,
         _info_test_js,
         _info_tmpdir
     ]
