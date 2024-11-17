@@ -74,8 +74,8 @@ def run_test(test, options, testEnvironment=None, testGroupConfig=None):
                 '--show-possibly-lost=no'
                 ] + afw_cmd + [test], cwd=work_dir, stdout = subprocess.PIPE, stderr=subprocess.PIPE)
         else:
-            msg.debug("Running test: %s" % test)            
-            p = subprocess.run(afw_cmd + [test], cwd=work_dir, stdout = subprocess.PIPE, stderr=subprocess.PIPE)
+            msg.debug("Skipping test script (not adaptive script): %s" % test)
+            return None, None, None
 
         if p.returncode < 0:
             raise Exception("Process was terminated with return code {}".format(p.returncode))
