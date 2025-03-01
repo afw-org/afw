@@ -11,6 +11,7 @@
             "name": "module_path"
         }
     ],
+    "requiresExecuteAccess": true,
     "returns": {
         "dataType": "string",
         "description": "The extension id of the extension loaded."

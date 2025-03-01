@@ -4,9 +4,10 @@
     "functionId": "curl_version_info",
     "functionLabel": "curl_version_info",
     "parameters": [],
+    "requiresExecuteAccess": true,
     "returns": {
         "dataType": "object",
-        "description": "Returns an object describing the cURL version information.",
-        "dataTypeParameter": "_AdaptiveCurlVersionInfo_"
+        "dataTypeParameter": "_AdaptiveCurlVersionInfo_",
+        "description": "Returns an object describing the cURL version information."
     }
 }

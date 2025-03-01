@@ -119,6 +119,7 @@ impl_curl_version_info = {
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_true,
 };
 
 /* ---------- http_delete ---------- */
@@ -296,6 +297,7 @@ impl_http_delete = {
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_true,
 };
 
 /* ---------- http_get ---------- */
@@ -473,6 +475,7 @@ impl_http_get = {
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_true,
 };
 
 /* ---------- http_patch ---------- */
@@ -678,6 +681,7 @@ impl_http_patch = {
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_true,
 };
 
 /* ---------- http_post ---------- */
@@ -883,6 +887,7 @@ impl_http_post = {
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_true,
 };
 
 /* ---------- http_put ---------- */
@@ -1088,6 +1093,7 @@ impl_http_put = {
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_true,
 };
 
 /* ---------- smtp_send ---------- */
@@ -1321,6 +1327,7 @@ impl_smtp_send = {
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_true,
 };
 
 static const afw_value_function_definition_t * 

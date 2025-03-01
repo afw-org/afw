@@ -7,6 +7,7 @@
     "functionId": "flag_get_defaults",
     "functionLabel": "flag_get_defaults",
     "parameters": [],
+    "requiresExecuteAccess": true,
     "returns": {
         "dataType": "array",
         "dataTypeParameter": "string",

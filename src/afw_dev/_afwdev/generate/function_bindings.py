@@ -198,6 +198,10 @@ def function_comment(fd, obj):
         else:
             fd.write(' * given exactly the same parameters and has side effects.\n')
 
+    if obj.get('requiresExecuteAccess', False):
+        fd.write(' *\n')
+        fd.write(' * This function requires \'execute\' access.\n')
+
     if obj.get('polymorphic', False) != False:
         fd.write(' *\n')
         fd.write(' * Supported `<dataType>`:\n')
@@ -823,6 +827,10 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
             # signatureOnly
             signatureOnly = 'false' if obj.get('signatureOnly', False) == False else 'true'
             fd.write('    &' + get_string_label(options, signatureOnly, 'self_v', dataType='boolean') + ',\n')
+
+            # requiresExecuteAccess
+            requiresExecuteAccess = 'false' if obj.get('requiresExecuteAccess', False) == False else 'true'
+            fd.write('    &' + get_string_label(options, requiresExecuteAccess, 'self_v', dataType='boolean') + ',\n')
 
             fd.write('};\n')
 

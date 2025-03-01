@@ -26,12 +26,13 @@
         },
         {
             "dataType": "object",
+            "dataTypeParameter": "_AdaptiveCurlOptions_",
             "description": "CURL Options",
             "name": "options",
-            "dataTypeParameter": "_AdaptiveCurlOptions_",
             "optional": true
         }
     ],
+    "requiresExecuteAccess": true,
     "returns": {
         "dataType": "void"
     }

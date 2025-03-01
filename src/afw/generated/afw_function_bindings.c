@@ -203,6 +203,7 @@ afw_function_definition_adapter_objectCallback_signature = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -539,6 +540,7 @@ afw_function_definition_add_object = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -801,6 +803,7 @@ afw_function_definition_add_object_with_uri = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -1057,6 +1060,7 @@ afw_function_definition_convert_AdaptiveQueryCriteria_to_query_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -1271,6 +1275,7 @@ afw_function_definition_convert_query_string_to_AdaptiveQueryCriteria = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -1575,6 +1580,7 @@ afw_function_definition_delete_object = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -1795,6 +1801,7 @@ afw_function_definition_delete_object_with_uri = {
     NULL,
     &impl_delete_object_with_uri_sideEffects[0],
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -2093,6 +2100,7 @@ afw_function_definition_get_object = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -2307,6 +2315,7 @@ afw_function_definition_get_object_with_uri = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -2648,6 +2657,7 @@ afw_function_definition_modify_object = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -2910,6 +2920,7 @@ afw_function_definition_modify_object_with_uri = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -3093,6 +3104,7 @@ afw_function_definition_reconcile_object = {
     NULL,
     &impl_reconcile_object_sideEffects[0],
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -3434,6 +3446,7 @@ afw_function_definition_replace_object = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -3691,6 +3704,7 @@ afw_function_definition_replace_object_with_uri = {
     NULL,
     &impl_replace_object_with_uri_sideEffects[0],
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -3984,6 +3998,7 @@ afw_function_definition_retrieve_objects = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -4356,6 +4371,7 @@ afw_function_definition_retrieve_objects_to_callback = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -4644,6 +4660,7 @@ afw_function_definition_retrieve_objects_to_response = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -4979,6 +4996,7 @@ afw_function_definition_retrieve_objects_to_stream = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -5193,6 +5211,7 @@ afw_function_definition_retrieve_objects_with_uri = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -5491,6 +5510,7 @@ afw_function_definition_retrieve_objects_with_uri_to_callback = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -5705,6 +5725,7 @@ afw_function_definition_retrieve_objects_with_uri_to_response = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -5961,6 +5982,7 @@ afw_function_definition_retrieve_objects_with_uri_to_stream = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -6302,6 +6324,7 @@ afw_function_definition_update_object = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -6564,6 +6587,7 @@ afw_function_definition_update_object_with_uri = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -6715,6 +6739,7 @@ afw_function_definition_extension_load = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
 };
 
 static const afw_value_object_t
@@ -6866,6 +6891,7 @@ afw_function_definition_extension_load_by_module_path = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
 };
 
 static const afw_value_object_t
@@ -6974,6 +7000,7 @@ afw_function_definition_flag_get_active = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
 };
 
 static const afw_value_object_t
@@ -7077,6 +7104,7 @@ afw_function_definition_flag_get_active_defaults = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -7190,6 +7218,7 @@ afw_function_definition_flag_get_defaults = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
 };
 
 static const afw_value_object_t
@@ -7372,6 +7401,7 @@ afw_function_definition_flag_modify_defaults = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
 };
 
 static const afw_value_object_t
@@ -7517,6 +7547,7 @@ afw_function_definition_flag_replace_defaults = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
 };
 
 static const afw_value_object_t
@@ -7699,6 +7730,7 @@ afw_function_definition_flag_set = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
 };
 
 static const afw_value_object_t
@@ -7924,6 +7956,7 @@ afw_function_definition_registry_key_check = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
 };
 
 static const afw_value_object_t
@@ -8069,6 +8102,7 @@ afw_function_definition_service_get = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
 };
 
 static const afw_value_object_t
@@ -8220,6 +8254,7 @@ afw_function_definition_service_restart = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
 };
 
 static const afw_value_object_t
@@ -8371,6 +8406,7 @@ afw_function_definition_service_start = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
 };
 
 static const afw_value_object_t
@@ -8522,6 +8558,7 @@ afw_function_definition_service_stop = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
 };
 
 static const afw_value_object_t
@@ -8674,6 +8711,7 @@ afw_function_definition_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -8857,6 +8895,7 @@ afw_function_definition_at_least_one_member_of_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -9002,6 +9041,7 @@ afw_function_definition_bag_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -9146,6 +9186,7 @@ afw_function_definition_bag_size_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -9328,6 +9369,7 @@ afw_function_definition_ends_with_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -9519,6 +9561,7 @@ afw_function_definition_eq_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -9700,6 +9743,7 @@ afw_function_definition_eqx_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -9883,6 +9927,7 @@ afw_function_definition_ge_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -10064,6 +10109,7 @@ afw_function_definition_gt_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -10284,6 +10330,7 @@ afw_function_definition_includes_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -10503,6 +10550,7 @@ afw_function_definition_index_of_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -10685,6 +10733,7 @@ afw_function_definition_intersection_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -10829,6 +10878,7 @@ afw_function_definition_is_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -11011,6 +11061,7 @@ afw_function_definition_is_in_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -11231,6 +11282,7 @@ afw_function_definition_last_index_of_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -11413,6 +11465,7 @@ afw_function_definition_le_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -11557,6 +11610,7 @@ afw_function_definition_length_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -11739,6 +11793,7 @@ afw_function_definition_lt_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -11930,6 +11985,7 @@ afw_function_definition_ne_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -12112,6 +12168,7 @@ afw_function_definition_nex_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -12264,6 +12321,7 @@ afw_function_definition_one_and_only_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -12447,6 +12505,7 @@ afw_function_definition_regexp_index_of_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -12628,6 +12687,7 @@ afw_function_definition_regexp_match_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -12885,6 +12945,7 @@ afw_function_definition_regexp_replace_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -13066,6 +13127,7 @@ afw_function_definition_repeat_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -13323,6 +13385,7 @@ afw_function_definition_replace_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -13504,6 +13567,7 @@ afw_function_definition_set_equals_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -13724,6 +13788,7 @@ afw_function_definition_split_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -13906,6 +13971,7 @@ afw_function_definition_starts_with_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -14087,6 +14153,7 @@ afw_function_definition_subset_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -14315,6 +14382,7 @@ afw_function_definition_substring_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -14459,6 +14527,7 @@ afw_function_definition_to_string_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -14605,6 +14674,7 @@ afw_function_definition_union_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -14749,6 +14819,7 @@ afw_function_definition_url_encode_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -14938,6 +15009,7 @@ afw_function_definition_add_entries = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -15091,6 +15163,7 @@ afw_function_definition_array = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -15235,6 +15308,7 @@ afw_function_definition_bag_array = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -15381,6 +15455,7 @@ afw_function_definition_bag_size_array = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -15525,6 +15600,7 @@ afw_function_definition_clone_array = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -15716,6 +15792,7 @@ afw_function_definition_eq_array = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -15897,6 +15974,7 @@ afw_function_definition_eqx_array = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -16080,6 +16158,7 @@ afw_function_definition_ge_array = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -16261,6 +16340,7 @@ afw_function_definition_gt_array = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -16481,6 +16561,7 @@ afw_function_definition_includes_array = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -16625,6 +16706,7 @@ afw_function_definition_is_array = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -16808,6 +16890,7 @@ afw_function_definition_join = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -16990,6 +17073,7 @@ afw_function_definition_le_array = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -17134,6 +17218,7 @@ afw_function_definition_length_array = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -17316,6 +17401,7 @@ afw_function_definition_lt_array = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -17507,6 +17593,7 @@ afw_function_definition_ne_array = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -17689,6 +17776,7 @@ afw_function_definition_nex_array = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -17833,6 +17921,7 @@ afw_function_definition_reverse = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -18053,6 +18142,7 @@ afw_function_definition_slice = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -18197,6 +18287,7 @@ afw_function_definition_to_string_array = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -18491,6 +18582,7 @@ afw_function_definition_authorization_check = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -18673,6 +18765,7 @@ afw_function_definition_at_least_one_member_of_base64Binary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -18818,6 +18911,7 @@ afw_function_definition_bag_base64Binary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -18962,6 +19056,7 @@ afw_function_definition_bag_size_base64Binary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -19116,6 +19211,7 @@ afw_function_definition_base64Binary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -19260,6 +19356,7 @@ afw_function_definition_decode_to_string_base64Binary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -19451,6 +19548,7 @@ afw_function_definition_eq_base64Binary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -19632,6 +19730,7 @@ afw_function_definition_eqx_base64Binary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -19815,6 +19914,7 @@ afw_function_definition_ge_base64Binary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -19996,6 +20096,7 @@ afw_function_definition_gt_base64Binary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -20179,6 +20280,7 @@ afw_function_definition_intersection_base64Binary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -20323,6 +20425,7 @@ afw_function_definition_is_base64Binary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -20506,6 +20609,7 @@ afw_function_definition_is_in_base64Binary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -20688,6 +20792,7 @@ afw_function_definition_le_base64Binary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -20869,6 +20974,7 @@ afw_function_definition_lt_base64Binary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -21060,6 +21166,7 @@ afw_function_definition_ne_base64Binary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -21242,6 +21349,7 @@ afw_function_definition_nex_base64Binary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -21394,6 +21502,7 @@ afw_function_definition_one_and_only_base64Binary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -21577,6 +21686,7 @@ afw_function_definition_set_equals_base64Binary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -21759,6 +21869,7 @@ afw_function_definition_subset_base64Binary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -21904,6 +22015,7 @@ afw_function_definition_to_string_base64Binary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -22048,6 +22160,7 @@ afw_function_definition_union_base64Binary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -22231,6 +22344,7 @@ afw_function_definition_at_least_one_member_of_boolean = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -22376,6 +22490,7 @@ afw_function_definition_bag_boolean = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -22520,6 +22635,7 @@ afw_function_definition_bag_size_boolean = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -22673,6 +22789,7 @@ afw_function_definition_boolean = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -22864,6 +22981,7 @@ afw_function_definition_eq_boolean = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -23045,6 +23163,7 @@ afw_function_definition_eqx_boolean = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -23228,6 +23347,7 @@ afw_function_definition_ge_boolean = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -23409,6 +23529,7 @@ afw_function_definition_gt_boolean = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -23592,6 +23713,7 @@ afw_function_definition_intersection_boolean = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -23736,6 +23858,7 @@ afw_function_definition_is_boolean = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -23919,6 +24042,7 @@ afw_function_definition_is_in_boolean = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -24101,6 +24225,7 @@ afw_function_definition_le_boolean = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -24282,6 +24407,7 @@ afw_function_definition_lt_boolean = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -24473,6 +24599,7 @@ afw_function_definition_ne_boolean = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -24655,6 +24782,7 @@ afw_function_definition_nex_boolean = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -24807,6 +24935,7 @@ afw_function_definition_one_and_only_boolean = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -24990,6 +25119,7 @@ afw_function_definition_set_equals_boolean = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -25172,6 +25302,7 @@ afw_function_definition_subset_boolean = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -25316,6 +25447,7 @@ afw_function_definition_to_string_boolean = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -25462,6 +25594,7 @@ afw_function_definition_union_boolean = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -25606,6 +25739,7 @@ afw_function_definition_nullish_coalescing = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -25789,6 +25923,7 @@ afw_function_definition_optional_chaining = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -25929,6 +26064,7 @@ afw_function_definition_void_operator = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -26122,6 +26258,7 @@ afw_function_definition_assign = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -26266,6 +26403,7 @@ afw_function_definition_break = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -26486,6 +26624,7 @@ afw_function_definition_const = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -26593,6 +26732,7 @@ afw_function_definition_continue = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -26775,6 +26915,7 @@ afw_function_definition_do_while = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -27032,6 +27173,7 @@ afw_function_definition_for = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -27250,6 +27392,7 @@ afw_function_definition_for_of = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -27470,6 +27613,7 @@ afw_function_definition_if = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -27689,6 +27833,7 @@ afw_function_definition_let = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -27796,6 +27941,7 @@ afw_function_definition_rethrow = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -27941,6 +28087,7 @@ afw_function_definition_return = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -28161,6 +28308,7 @@ afw_function_definition_switch = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -28342,6 +28490,7 @@ afw_function_definition_throw = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -28599,6 +28748,7 @@ afw_function_definition_try = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -28781,6 +28931,7 @@ afw_function_definition_while = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -28958,6 +29109,7 @@ afw_function_definition_assert = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -29145,6 +29297,7 @@ afw_function_definition_compile_from_file = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -29327,6 +29480,7 @@ afw_function_definition_decompile = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -29504,6 +29658,7 @@ afw_function_definition_evaluate_value = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -29691,6 +29846,7 @@ afw_function_definition_evaluate_with_retry = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -29873,6 +30029,7 @@ afw_function_definition_qualifier = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -30013,6 +30170,7 @@ afw_function_definition_qualifiers = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -30195,6 +30353,7 @@ afw_function_definition_safe_evaluate = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -30418,6 +30577,7 @@ afw_function_definition_stringify = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -30707,6 +30867,7 @@ afw_function_definition_test_script = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -31005,6 +31166,7 @@ afw_function_definition_test_template = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -31298,6 +31460,7 @@ afw_function_definition_test_value = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -31479,6 +31642,7 @@ afw_function_definition_add_dayTimeDuration_dateTime = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -31662,6 +31826,7 @@ afw_function_definition_add_yearMonthDuration_dateTime = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -31844,6 +32009,7 @@ afw_function_definition_at_least_one_member_of_dateTime = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -31989,6 +32155,7 @@ afw_function_definition_bag_dateTime = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -32133,6 +32300,7 @@ afw_function_definition_bag_size_dateTime = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -32286,6 +32454,7 @@ afw_function_definition_dateTime = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -32477,6 +32646,7 @@ afw_function_definition_eq_dateTime = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -32658,6 +32828,7 @@ afw_function_definition_eqx_dateTime = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -32841,6 +33012,7 @@ afw_function_definition_ge_dateTime = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -33022,6 +33194,7 @@ afw_function_definition_gt_dateTime = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -33205,6 +33378,7 @@ afw_function_definition_intersection_dateTime = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -33349,6 +33523,7 @@ afw_function_definition_is_dateTime = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -33532,6 +33707,7 @@ afw_function_definition_is_in_dateTime = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -33713,6 +33889,7 @@ afw_function_definition_le_dateTime = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -33896,6 +34073,7 @@ afw_function_definition_lt_dateTime = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -34041,6 +34219,7 @@ afw_function_definition_max_dateTime = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -34185,6 +34364,7 @@ afw_function_definition_min_dateTime = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -34376,6 +34556,7 @@ afw_function_definition_ne_dateTime = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -34558,6 +34739,7 @@ afw_function_definition_nex_dateTime = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -34710,6 +34892,7 @@ afw_function_definition_one_and_only_dateTime = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -34893,6 +35076,7 @@ afw_function_definition_set_equals_dateTime = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -35074,6 +35258,7 @@ afw_function_definition_subset_dateTime = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -35257,6 +35442,7 @@ afw_function_definition_subtract_dayTimeDuration_dateTime = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -35439,6 +35625,7 @@ afw_function_definition_subtract_yearMonthDuration_dateTime = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -35584,6 +35771,7 @@ afw_function_definition_to_string_dateTime = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -35728,6 +35916,7 @@ afw_function_definition_union_dateTime = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -35911,6 +36100,7 @@ afw_function_definition_add_yearMonthDuration_date = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -36093,6 +36283,7 @@ afw_function_definition_at_least_one_member_of_date = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -36238,6 +36429,7 @@ afw_function_definition_bag_date = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -36382,6 +36574,7 @@ afw_function_definition_bag_size_date = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -36535,6 +36728,7 @@ afw_function_definition_date = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -36726,6 +36920,7 @@ afw_function_definition_eq_date = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -36907,6 +37102,7 @@ afw_function_definition_eqx_date = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -37090,6 +37286,7 @@ afw_function_definition_ge_date = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -37271,6 +37468,7 @@ afw_function_definition_gt_date = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -37454,6 +37652,7 @@ afw_function_definition_intersection_date = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -37598,6 +37797,7 @@ afw_function_definition_is_date = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -37781,6 +37981,7 @@ afw_function_definition_is_in_date = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -37962,6 +38163,7 @@ afw_function_definition_le_date = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -38145,6 +38347,7 @@ afw_function_definition_lt_date = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -38290,6 +38493,7 @@ afw_function_definition_max_date = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -38434,6 +38638,7 @@ afw_function_definition_min_date = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -38625,6 +38830,7 @@ afw_function_definition_ne_date = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -38807,6 +39013,7 @@ afw_function_definition_nex_date = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -38959,6 +39166,7 @@ afw_function_definition_one_and_only_date = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -39142,6 +39350,7 @@ afw_function_definition_set_equals_date = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -39323,6 +39532,7 @@ afw_function_definition_subset_date = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -39506,6 +39716,7 @@ afw_function_definition_subtract_yearMonthDuration_date = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -39651,6 +39862,7 @@ afw_function_definition_to_string_date = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -39795,6 +40007,7 @@ afw_function_definition_union_date = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -39978,6 +40191,7 @@ afw_function_definition_at_least_one_member_of_dayTimeDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -40123,6 +40337,7 @@ afw_function_definition_bag_dayTimeDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -40267,6 +40482,7 @@ afw_function_definition_bag_size_dayTimeDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -40420,6 +40636,7 @@ afw_function_definition_dayTimeDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -40611,6 +40828,7 @@ afw_function_definition_eq_dayTimeDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -40792,6 +41010,7 @@ afw_function_definition_eqx_dayTimeDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -40975,6 +41194,7 @@ afw_function_definition_ge_dayTimeDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -41156,6 +41376,7 @@ afw_function_definition_gt_dayTimeDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -41339,6 +41560,7 @@ afw_function_definition_intersection_dayTimeDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -41483,6 +41705,7 @@ afw_function_definition_is_dayTimeDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -41666,6 +41889,7 @@ afw_function_definition_is_in_dayTimeDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -41848,6 +42072,7 @@ afw_function_definition_le_dayTimeDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -42029,6 +42254,7 @@ afw_function_definition_lt_dayTimeDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -42220,6 +42446,7 @@ afw_function_definition_ne_dayTimeDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -42402,6 +42629,7 @@ afw_function_definition_nex_dayTimeDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -42554,6 +42782,7 @@ afw_function_definition_one_and_only_dayTimeDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -42737,6 +42966,7 @@ afw_function_definition_set_equals_dayTimeDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -42919,6 +43149,7 @@ afw_function_definition_subset_dayTimeDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -43063,6 +43294,7 @@ afw_function_definition_to_string_dayTimeDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -43209,6 +43441,7 @@ afw_function_definition_union_dayTimeDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -43354,6 +43587,7 @@ afw_function_definition_bag_dnsName = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -43498,6 +43732,7 @@ afw_function_definition_bag_size_dnsName = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -43651,6 +43886,7 @@ afw_function_definition_dnsName = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -43842,6 +44078,7 @@ afw_function_definition_eq_dnsName = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -44023,6 +44260,7 @@ afw_function_definition_eqx_dnsName = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -44206,6 +44444,7 @@ afw_function_definition_ge_dnsName = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -44388,6 +44627,7 @@ afw_function_definition_gt_dnsName = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -44532,6 +44772,7 @@ afw_function_definition_is_dnsName = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -44715,6 +44956,7 @@ afw_function_definition_is_in_dnsName = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -44897,6 +45139,7 @@ afw_function_definition_le_dnsName = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -45078,6 +45321,7 @@ afw_function_definition_lt_dnsName = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -45269,6 +45513,7 @@ afw_function_definition_ne_dnsName = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -45451,6 +45696,7 @@ afw_function_definition_nex_dnsName = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -45603,6 +45849,7 @@ afw_function_definition_one_and_only_dnsName = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -45786,6 +46033,7 @@ afw_function_definition_regexp_match_dnsName = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -45930,6 +46178,7 @@ afw_function_definition_to_string_dnsName = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -46076,6 +46325,7 @@ afw_function_definition_abs_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -46220,6 +46470,7 @@ afw_function_definition_add_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -46403,6 +46654,7 @@ afw_function_definition_at_least_one_member_of_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -46547,6 +46799,7 @@ afw_function_definition_bag_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -46693,6 +46946,7 @@ afw_function_definition_bag_size_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -46837,6 +47091,7 @@ afw_function_definition_ceil_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -47020,6 +47275,7 @@ afw_function_definition_divide_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -47172,6 +47428,7 @@ afw_function_definition_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -47363,6 +47620,7 @@ afw_function_definition_eq_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -47545,6 +47803,7 @@ afw_function_definition_eqx_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -47689,6 +47948,7 @@ afw_function_definition_floor_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -47872,6 +48132,7 @@ afw_function_definition_ge_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -48053,6 +48314,7 @@ afw_function_definition_gt_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -48236,6 +48498,7 @@ afw_function_definition_intersection_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -48380,6 +48643,7 @@ afw_function_definition_is_NaN = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -48526,6 +48790,7 @@ afw_function_definition_is_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -48670,6 +48935,7 @@ afw_function_definition_is_finite = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -48853,6 +49119,7 @@ afw_function_definition_is_in_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -49034,6 +49301,7 @@ afw_function_definition_le_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -49217,6 +49485,7 @@ afw_function_definition_lt_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -49361,6 +49630,7 @@ afw_function_definition_max_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -49507,6 +49777,7 @@ afw_function_definition_min_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -49651,6 +49922,7 @@ afw_function_definition_multiply_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -49842,6 +50114,7 @@ afw_function_definition_ne_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -49986,6 +50259,7 @@ afw_function_definition_negative_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -50169,6 +50443,7 @@ afw_function_definition_nex_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -50321,6 +50596,7 @@ afw_function_definition_one_and_only_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -50504,6 +50780,7 @@ afw_function_definition_pow_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -50648,6 +50925,7 @@ afw_function_definition_round_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -50831,6 +51109,7 @@ afw_function_definition_set_equals_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -51012,6 +51291,7 @@ afw_function_definition_subset_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -51195,6 +51475,7 @@ afw_function_definition_subtract_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -51339,6 +51620,7 @@ afw_function_definition_to_integer_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -51485,6 +51767,7 @@ afw_function_definition_to_string_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -51629,6 +51912,7 @@ afw_function_definition_union_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -51775,6 +52059,7 @@ afw_function_definition_bag_function = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -51919,6 +52204,7 @@ afw_function_definition_bag_size_function = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -52110,6 +52396,7 @@ afw_function_definition_eq_function = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -52292,6 +52579,7 @@ afw_function_definition_eqx_function = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -52444,6 +52732,7 @@ afw_function_definition_function = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -52627,6 +52916,7 @@ afw_function_definition_ge_function = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -52809,6 +53099,7 @@ afw_function_definition_gt_function = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -52953,6 +53244,7 @@ afw_function_definition_is_function = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -53136,6 +53428,7 @@ afw_function_definition_le_function = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -53317,6 +53610,7 @@ afw_function_definition_lt_function = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -53508,6 +53802,7 @@ afw_function_definition_ne_function = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -53689,6 +53984,7 @@ afw_function_definition_nex_function = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -53872,6 +54168,7 @@ afw_function_definition_at_least_one_member_of_hexBinary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -54016,6 +54313,7 @@ afw_function_definition_bag_hexBinary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -54162,6 +54460,7 @@ afw_function_definition_bag_size_hexBinary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -54306,6 +54605,7 @@ afw_function_definition_decode_to_string_hexBinary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -54497,6 +54797,7 @@ afw_function_definition_eq_hexBinary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -54678,6 +54979,7 @@ afw_function_definition_eqx_hexBinary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -54861,6 +55163,7 @@ afw_function_definition_ge_hexBinary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -55043,6 +55346,7 @@ afw_function_definition_gt_hexBinary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -55195,6 +55499,7 @@ afw_function_definition_hexBinary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -55378,6 +55683,7 @@ afw_function_definition_intersection_hexBinary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -55522,6 +55828,7 @@ afw_function_definition_is_hexBinary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -55705,6 +56012,7 @@ afw_function_definition_is_in_hexBinary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -55887,6 +56195,7 @@ afw_function_definition_le_hexBinary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -56068,6 +56377,7 @@ afw_function_definition_lt_hexBinary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -56259,6 +56569,7 @@ afw_function_definition_ne_hexBinary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -56441,6 +56752,7 @@ afw_function_definition_nex_hexBinary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -56593,6 +56905,7 @@ afw_function_definition_one_and_only_hexBinary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -56776,6 +57089,7 @@ afw_function_definition_set_equals_hexBinary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -56958,6 +57272,7 @@ afw_function_definition_subset_hexBinary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -57103,6 +57418,7 @@ afw_function_definition_to_string_hexBinary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -57247,6 +57563,7 @@ afw_function_definition_union_hexBinary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -57429,6 +57746,7 @@ afw_function_definition_all_of = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -57649,6 +57967,7 @@ afw_function_definition_all_of_all = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -57868,6 +58187,7 @@ afw_function_definition_all_of_any = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -58049,6 +58369,7 @@ afw_function_definition_any_of = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -58269,6 +58590,7 @@ afw_function_definition_any_of_all = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -58488,6 +58810,7 @@ afw_function_definition_any_of_any = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -58669,6 +58992,7 @@ afw_function_definition_filter = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -58852,6 +59176,7 @@ afw_function_definition_find = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -59033,6 +59358,7 @@ afw_function_definition_map = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -59253,6 +59579,7 @@ afw_function_definition_reduce = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -59435,6 +59762,7 @@ afw_function_definition_sort = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -59580,6 +59908,7 @@ afw_function_definition_bag_ia5String = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -59724,6 +60053,7 @@ afw_function_definition_bag_size_ia5String = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -59915,6 +60245,7 @@ afw_function_definition_eq_ia5String = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -60096,6 +60427,7 @@ afw_function_definition_eqx_ia5String = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -60279,6 +60611,7 @@ afw_function_definition_ge_ia5String = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -60461,6 +60794,7 @@ afw_function_definition_gt_ia5String = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -60614,6 +60948,7 @@ afw_function_definition_ia5String = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -60758,6 +61093,7 @@ afw_function_definition_is_ia5String = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -60941,6 +61277,7 @@ afw_function_definition_le_ia5String = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -61122,6 +61459,7 @@ afw_function_definition_lt_ia5String = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -61313,6 +61651,7 @@ afw_function_definition_ne_ia5String = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -61495,6 +61834,7 @@ afw_function_definition_nex_ia5String = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -61639,6 +61979,7 @@ afw_function_definition_to_string_ia5String = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -62050,6 +62391,7 @@ afw_function_definition_index_create = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -62227,6 +62569,7 @@ afw_function_definition_index_list = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -62420,6 +62763,7 @@ afw_function_definition_index_remove = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -62565,6 +62909,7 @@ afw_function_definition_abs_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -62709,6 +63054,7 @@ afw_function_definition_add_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -62892,6 +63238,7 @@ afw_function_definition_at_least_one_member_of_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -63037,6 +63384,7 @@ afw_function_definition_bag_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -63181,6 +63529,7 @@ afw_function_definition_bag_size_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -63363,6 +63712,7 @@ afw_function_definition_divide_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -63554,6 +63904,7 @@ afw_function_definition_eq_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -63735,6 +64086,7 @@ afw_function_definition_eqx_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -63918,6 +64270,7 @@ afw_function_definition_ge_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -64100,6 +64453,7 @@ afw_function_definition_gt_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -64252,6 +64606,7 @@ afw_function_definition_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -64435,6 +64790,7 @@ afw_function_definition_intersection_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -64617,6 +64973,7 @@ afw_function_definition_is_in_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -64761,6 +65118,7 @@ afw_function_definition_is_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -64944,6 +65302,7 @@ afw_function_definition_le_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -65126,6 +65485,7 @@ afw_function_definition_lt_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -65271,6 +65631,7 @@ afw_function_definition_max_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -65415,6 +65776,7 @@ afw_function_definition_min_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -65598,6 +65960,7 @@ afw_function_definition_mod_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -65742,6 +66105,7 @@ afw_function_definition_multiply_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -65933,6 +66297,7 @@ afw_function_definition_ne_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -66077,6 +66442,7 @@ afw_function_definition_negative_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -66260,6 +66626,7 @@ afw_function_definition_nex_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -66412,6 +66779,7 @@ afw_function_definition_one_and_only_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -66595,6 +66963,7 @@ afw_function_definition_set_equals_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -66776,6 +67145,7 @@ afw_function_definition_subset_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -66959,6 +67329,7 @@ afw_function_definition_subtract_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -67112,6 +67483,7 @@ afw_function_definition_to_double_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -67256,6 +67628,7 @@ afw_function_definition_to_string_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -67402,6 +67775,7 @@ afw_function_definition_union_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -67547,6 +67921,7 @@ afw_function_definition_bag_ipAddress = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -67691,6 +68066,7 @@ afw_function_definition_bag_size_ipAddress = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -67882,6 +68258,7 @@ afw_function_definition_eq_ipAddress = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -68063,6 +68440,7 @@ afw_function_definition_eqx_ipAddress = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -68246,6 +68624,7 @@ afw_function_definition_ge_ipAddress = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -68428,6 +68807,7 @@ afw_function_definition_gt_ipAddress = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -68580,6 +68960,7 @@ afw_function_definition_ipAddress = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -68763,6 +69144,7 @@ afw_function_definition_is_in_ipAddress = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -68907,6 +69289,7 @@ afw_function_definition_is_ipAddress = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -69090,6 +69473,7 @@ afw_function_definition_le_ipAddress = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -69271,6 +69655,7 @@ afw_function_definition_lt_ipAddress = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -69462,6 +69847,7 @@ afw_function_definition_ne_ipAddress = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -69644,6 +70030,7 @@ afw_function_definition_nex_ipAddress = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -69796,6 +70183,7 @@ afw_function_definition_one_and_only_ipAddress = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -69979,6 +70367,7 @@ afw_function_definition_regexp_match_ipAddress = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -70123,6 +70512,7 @@ afw_function_definition_to_string_ipAddress = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -70349,6 +70739,7 @@ afw_function_definition_journal_advance_cursor_for_consumer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -70531,6 +70922,7 @@ afw_function_definition_journal_get_by_cursor = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -70671,6 +71063,7 @@ afw_function_definition_journal_get_first = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -70853,6 +71246,7 @@ afw_function_definition_journal_get_next_after_cursor = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -71072,6 +71466,7 @@ afw_function_definition_journal_get_next_for_consumer = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -71333,6 +71728,7 @@ afw_function_definition_journal_get_next_for_consumer_after_cursor = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -71558,6 +71954,7 @@ afw_function_definition_journal_mark_consumed = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -71740,6 +72137,7 @@ afw_function_definition_compile_json = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -71893,6 +72291,7 @@ afw_function_definition_json = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -72037,6 +72436,7 @@ afw_function_definition_and = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -72228,6 +72628,7 @@ afw_function_definition_n_of = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -72373,6 +72774,7 @@ afw_function_definition_not = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -72517,6 +72919,7 @@ afw_function_definition_or = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -72774,6 +73177,7 @@ afw_function_definition_compare_uri = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -72962,6 +73366,7 @@ afw_function_definition_debug = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -73065,6 +73470,7 @@ afw_function_definition_execution_start_time_local = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -73178,6 +73584,7 @@ afw_function_definition_execution_start_time_utc = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -73281,6 +73688,7 @@ afw_function_definition_generate_uuid = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -73431,6 +73839,7 @@ afw_function_definition_is_defined = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -73575,6 +73984,7 @@ afw_function_definition_is_nullish = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -73727,6 +74137,7 @@ afw_function_definition_log = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -73835,6 +74246,7 @@ afw_function_definition_now_local = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -73938,6 +74350,7 @@ afw_function_definition_now_utc = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -74162,6 +74575,7 @@ afw_function_definition_parse_uri = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -74302,6 +74716,7 @@ afw_function_definition_perform = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -74532,6 +74947,7 @@ afw_function_definition_trace = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -74672,6 +75088,7 @@ afw_function_definition_variable_exists = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -74859,6 +75276,7 @@ afw_function_definition_variable_get = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -74999,6 +75417,7 @@ afw_function_definition_variable_is_not_null = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -75334,6 +75753,7 @@ afw_function_definition_model_default_add_object_action = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -75622,6 +76042,7 @@ afw_function_definition_model_default_delete_object_action = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -75957,6 +76378,7 @@ afw_function_definition_model_default_modify_object_action = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -76287,6 +76709,7 @@ afw_function_definition_model_default_replace_object_action = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -76432,6 +76855,7 @@ afw_function_definition_model_mapBackObject_signature = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -76577,6 +77001,7 @@ afw_function_definition_model_mapObject_signature = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -76759,6 +77184,7 @@ afw_function_definition_model_returnObject_signature = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -76903,6 +77329,7 @@ afw_function_definition_bag_null = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -77049,6 +77476,7 @@ afw_function_definition_bag_size_null = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -77193,6 +77621,7 @@ afw_function_definition_is_null = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -77347,6 +77776,7 @@ afw_function_definition_null = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -77491,6 +77921,7 @@ afw_function_definition_to_string_null = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -77637,6 +78068,7 @@ afw_function_definition_bag_objectId = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -77781,6 +78213,7 @@ afw_function_definition_bag_size_objectId = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -77972,6 +78405,7 @@ afw_function_definition_eq_objectId = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -78153,6 +78587,7 @@ afw_function_definition_eqx_objectId = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -78336,6 +78771,7 @@ afw_function_definition_ge_objectId = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -78518,6 +78954,7 @@ afw_function_definition_gt_objectId = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -78662,6 +79099,7 @@ afw_function_definition_is_objectId = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -78845,6 +79283,7 @@ afw_function_definition_le_objectId = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -79026,6 +79465,7 @@ afw_function_definition_lt_objectId = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -79217,6 +79657,7 @@ afw_function_definition_ne_objectId = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -79399,6 +79840,7 @@ afw_function_definition_nex_objectId = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -79552,6 +79994,7 @@ afw_function_definition_objectId = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -79696,6 +80139,7 @@ afw_function_definition_to_string_objectId = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -79842,6 +80286,7 @@ afw_function_definition_bag_objectPath = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -79986,6 +80431,7 @@ afw_function_definition_bag_size_objectPath = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -80177,6 +80623,7 @@ afw_function_definition_eq_objectPath = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -80358,6 +80805,7 @@ afw_function_definition_eqx_objectPath = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -80541,6 +80989,7 @@ afw_function_definition_ge_objectPath = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -80723,6 +81172,7 @@ afw_function_definition_gt_objectPath = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -80867,6 +81317,7 @@ afw_function_definition_is_objectPath = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -81050,6 +81501,7 @@ afw_function_definition_le_objectPath = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -81231,6 +81683,7 @@ afw_function_definition_lt_objectPath = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -81422,6 +81875,7 @@ afw_function_definition_ne_objectPath = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -81604,6 +82058,7 @@ afw_function_definition_nex_objectPath = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -81757,6 +82212,7 @@ afw_function_definition_objectPath = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -81901,6 +82357,7 @@ afw_function_definition_to_string_objectPath = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -82090,6 +82547,7 @@ afw_function_definition_add_properties = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -82272,6 +82730,7 @@ afw_function_definition_apply_object_options = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -82416,6 +82875,7 @@ afw_function_definition_bag_object = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -82562,6 +83022,7 @@ afw_function_definition_bag_size_object = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -82706,6 +83167,7 @@ afw_function_definition_clone_object = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -82897,6 +83359,7 @@ afw_function_definition_eq_object = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -83078,6 +83541,7 @@ afw_function_definition_eqx_object = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -83261,6 +83725,7 @@ afw_function_definition_ge_object = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -83443,6 +83908,7 @@ afw_function_definition_gt_object = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -83587,6 +84053,7 @@ afw_function_definition_is_object = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -83769,6 +84236,7 @@ afw_function_definition_le_object = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -84032,6 +84500,7 @@ afw_function_definition_local_object_meta_set_ids = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -84213,6 +84682,7 @@ afw_function_definition_lt_object = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -84404,6 +84874,7 @@ afw_function_definition_ne_object = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -84586,6 +85057,7 @@ afw_function_definition_nex_object = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -84738,6 +85210,7 @@ afw_function_definition_object = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -84921,6 +85394,7 @@ afw_function_definition_property_delete = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -85061,6 +85535,7 @@ afw_function_definition_property_delete_by_reference = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -85243,6 +85718,7 @@ afw_function_definition_property_exists = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -85467,6 +85943,7 @@ afw_function_definition_property_get = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -85649,6 +86126,7 @@ afw_function_definition_property_is_not_null = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -85793,6 +86271,7 @@ afw_function_definition_to_string_object = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -85939,6 +86418,7 @@ afw_function_definition_bag_password = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -86083,6 +86563,7 @@ afw_function_definition_bag_size_password = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -86274,6 +86755,7 @@ afw_function_definition_eq_password = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -86455,6 +86937,7 @@ afw_function_definition_eqx_password = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -86638,6 +87121,7 @@ afw_function_definition_ge_password = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -86820,6 +87304,7 @@ afw_function_definition_gt_password = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -86964,6 +87449,7 @@ afw_function_definition_is_password = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -87147,6 +87633,7 @@ afw_function_definition_le_password = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -87328,6 +87815,7 @@ afw_function_definition_lt_password = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -87519,6 +88007,7 @@ afw_function_definition_ne_password = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -87701,6 +88190,7 @@ afw_function_definition_nex_password = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -87854,6 +88344,7 @@ afw_function_definition_password = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -87998,6 +88489,7 @@ afw_function_definition_to_string_password = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -88151,6 +88643,7 @@ afw_function_definition_abs = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -88303,6 +88796,7 @@ afw_function_definition_add = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -88492,6 +88986,7 @@ afw_function_definition_add_dayTimeDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -88680,6 +89175,7 @@ afw_function_definition_add_yearMonthDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -88882,6 +89378,7 @@ afw_function_definition_at_least_one_member_of = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -89058,6 +89555,7 @@ afw_function_definition_bag = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -89236,6 +89734,7 @@ afw_function_definition_bag_size = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -89386,6 +89885,7 @@ afw_function_definition_ceil = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -89538,6 +90038,7 @@ afw_function_definition_clone = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -89732,6 +90233,7 @@ afw_function_definition_compile = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -89883,6 +90385,7 @@ afw_function_definition_decode_to_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -90073,6 +90576,7 @@ afw_function_definition_divide = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -90224,6 +90728,7 @@ afw_function_definition_encode_as_base64Binary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -90374,6 +90879,7 @@ afw_function_definition_encode_as_hexBinary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -90563,6 +91069,7 @@ afw_function_definition_ends_with = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -90786,6 +91293,7 @@ afw_function_definition_eq = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -90973,6 +91481,7 @@ afw_function_definition_eq_ignore_case = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -91188,6 +91697,7 @@ afw_function_definition_eqx = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -91378,6 +91888,7 @@ afw_function_definition_evaluate = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -91528,6 +92039,7 @@ afw_function_definition_floor = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -91743,6 +92255,7 @@ afw_function_definition_ge = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -91956,6 +92469,7 @@ afw_function_definition_gt = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -92181,6 +92695,7 @@ afw_function_definition_in_range = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -92409,6 +92924,7 @@ afw_function_definition_includes = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -92635,6 +93151,7 @@ afw_function_definition_index_of = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -92836,6 +93353,7 @@ afw_function_definition_intersection = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -93013,6 +93531,7 @@ afw_function_definition_is = {
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -93216,6 +93735,7 @@ afw_function_definition_is_in = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -93443,6 +93963,7 @@ afw_function_definition_last_index_of = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -93657,6 +94178,7 @@ afw_function_definition_le = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -93809,6 +94331,7 @@ afw_function_definition_length = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -94024,6 +94547,7 @@ afw_function_definition_lt = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -94213,6 +94737,7 @@ afw_function_definition_match = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -94369,6 +94894,7 @@ afw_function_definition_max = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -94524,6 +95050,7 @@ afw_function_definition_min = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -94713,6 +95240,7 @@ afw_function_definition_mod = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -94864,6 +95392,7 @@ afw_function_definition_multiply = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -95087,6 +95616,7 @@ afw_function_definition_ne = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -95238,6 +95768,7 @@ afw_function_definition_negative = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -95453,6 +95984,7 @@ afw_function_definition_nex = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -95604,6 +96136,7 @@ afw_function_definition_normalize_space = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -95754,6 +96287,7 @@ afw_function_definition_normalize_to_lower_case = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -95928,6 +96462,7 @@ afw_function_definition_one_and_only = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -96117,6 +96652,7 @@ afw_function_definition_pow = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -96305,6 +96841,7 @@ afw_function_definition_regexp_index_of = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -96498,6 +97035,7 @@ afw_function_definition_regexp_match = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -96762,6 +97300,7 @@ afw_function_definition_regexp_replace = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -96950,6 +97489,7 @@ afw_function_definition_repeat = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -97214,6 +97754,7 @@ afw_function_definition_replace = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -97364,6 +97905,7 @@ afw_function_definition_round = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -97565,6 +98107,7 @@ afw_function_definition_set_equals = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -97792,6 +98335,7 @@ afw_function_definition_split = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -97980,6 +98524,7 @@ afw_function_definition_starts_with = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -98181,6 +98726,7 @@ afw_function_definition_subset = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -98416,6 +98962,7 @@ afw_function_definition_substring = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -98605,6 +99152,7 @@ afw_function_definition_subtract = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -98792,6 +99340,7 @@ afw_function_definition_subtract_dayTimeDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -98982,6 +99531,7 @@ afw_function_definition_subtract_yearMonthDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -99140,6 +99690,7 @@ afw_function_definition_to_anyURI = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -99300,6 +99851,7 @@ afw_function_definition_to_boolean = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -99458,6 +100010,7 @@ afw_function_definition_to_date = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -99618,6 +100171,7 @@ afw_function_definition_to_dateTime = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -99777,6 +100331,7 @@ afw_function_definition_to_dayTimeDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -99935,6 +100490,7 @@ afw_function_definition_to_dnsName = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -100096,6 +100652,7 @@ afw_function_definition_to_double = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -100247,6 +100804,7 @@ afw_function_definition_to_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -100407,6 +100965,7 @@ afw_function_definition_to_ipAddress = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -100565,6 +101124,7 @@ afw_function_definition_to_rfc822Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -100741,6 +101301,7 @@ afw_function_definition_to_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -100899,6 +101460,7 @@ afw_function_definition_to_time = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -101059,6 +101621,7 @@ afw_function_definition_to_x500Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -101217,6 +101780,7 @@ afw_function_definition_to_yearMonthDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -101382,6 +101946,7 @@ afw_function_definition_union = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -101534,6 +102099,7 @@ afw_function_definition_url_encode = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -101674,6 +102240,7 @@ afw_function_definition_random_base64Binary = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -101824,6 +102391,7 @@ afw_function_definition_random_digits = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -101964,6 +102532,7 @@ afw_function_definition_random_hexBinary = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -102151,6 +102720,7 @@ afw_function_definition_random_integer = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -102328,6 +102898,7 @@ afw_function_definition_random_number = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -102514,6 +103085,7 @@ afw_function_definition_compile_regexp = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -102705,6 +103277,7 @@ afw_function_definition_eq_regexp = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -102886,6 +103459,7 @@ afw_function_definition_eqx_regexp = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -103069,6 +103643,7 @@ afw_function_definition_ge_regexp = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -103250,6 +103825,7 @@ afw_function_definition_gt_regexp = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -103433,6 +104009,7 @@ afw_function_definition_le_regexp = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -103614,6 +104191,7 @@ afw_function_definition_lt_regexp = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -103805,6 +104383,7 @@ afw_function_definition_ne_regexp = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -103987,6 +104566,7 @@ afw_function_definition_nex_regexp = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -104139,6 +104719,7 @@ afw_function_definition_regexp = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -104322,6 +104903,7 @@ afw_function_definition_compile_relaxed_json = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -104474,6 +105056,7 @@ afw_function_definition_relaxed_json = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -104657,6 +105240,7 @@ afw_function_definition_at_least_one_member_of_rfc822Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -104802,6 +105386,7 @@ afw_function_definition_bag_rfc822Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -104946,6 +105531,7 @@ afw_function_definition_bag_size_rfc822Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -105137,6 +105723,7 @@ afw_function_definition_eq_rfc822Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -105318,6 +105905,7 @@ afw_function_definition_eqx_rfc822Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -105501,6 +106089,7 @@ afw_function_definition_ge_rfc822Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -105682,6 +106271,7 @@ afw_function_definition_gt_rfc822Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -105865,6 +106455,7 @@ afw_function_definition_intersection_rfc822Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -106047,6 +106638,7 @@ afw_function_definition_is_in_rfc822Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -106191,6 +106783,7 @@ afw_function_definition_is_rfc822Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -106374,6 +106967,7 @@ afw_function_definition_le_rfc822Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -106556,6 +107150,7 @@ afw_function_definition_lt_rfc822Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -106737,6 +107332,7 @@ afw_function_definition_match_rfc822Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -106928,6 +107524,7 @@ afw_function_definition_ne_rfc822Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -107110,6 +107707,7 @@ afw_function_definition_nex_rfc822Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -107262,6 +107860,7 @@ afw_function_definition_one_and_only_rfc822Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -107445,6 +108044,7 @@ afw_function_definition_regexp_match_rfc822Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -107597,6 +108197,7 @@ afw_function_definition_rfc822Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -107780,6 +108381,7 @@ afw_function_definition_set_equals_rfc822Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -107962,6 +108564,7 @@ afw_function_definition_subset_rfc822Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -108106,6 +108709,7 @@ afw_function_definition_to_string_rfc822Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -108252,6 +108856,7 @@ afw_function_definition_union_rfc822Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -108397,6 +109002,7 @@ afw_function_definition_bag_script = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -108541,6 +109147,7 @@ afw_function_definition_bag_size_script = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -108723,6 +109330,7 @@ afw_function_definition_compile_script = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -108914,6 +109522,7 @@ afw_function_definition_eq_script = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -109096,6 +109705,7 @@ afw_function_definition_eqx_script = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -109273,6 +109883,7 @@ afw_function_definition_evaluate_script = {
     NULL,
     NULL,
     afw_data_type_method_number_evaluate,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -109460,6 +110071,7 @@ afw_function_definition_ge_script = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -109642,6 +110254,7 @@ afw_function_definition_gt_script = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -109786,6 +110399,7 @@ afw_function_definition_is_script = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -109969,6 +110583,7 @@ afw_function_definition_le_script = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -110150,6 +110765,7 @@ afw_function_definition_lt_script = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -110341,6 +110957,7 @@ afw_function_definition_ne_script = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -110523,6 +111140,7 @@ afw_function_definition_nex_script = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -110676,6 +111294,7 @@ afw_function_definition_script = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -110822,6 +111441,7 @@ afw_function_definition_close = {
     NULL,
     &impl_close_sideEffects[0],
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -110978,6 +111598,7 @@ afw_function_definition_flush = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -111081,6 +111702,7 @@ afw_function_definition_get_stream_error = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -111348,6 +111970,7 @@ afw_function_definition_open_file = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -111531,6 +112154,7 @@ afw_function_definition_open_response = {
     NULL,
     &impl_open_response_sideEffects[0],
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -111798,6 +112422,7 @@ afw_function_definition_open_uri = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -111949,6 +112574,7 @@ afw_function_definition_print = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -112095,6 +112721,7 @@ afw_function_definition_println = {
     NULL,
     &impl_println_sideEffects[0],
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -112288,6 +112915,7 @@ afw_function_definition_read = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -112471,6 +113099,7 @@ afw_function_definition_read_to_base64Binary = {
     NULL,
     &impl_read_to_base64Binary_sideEffects[0],
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -112664,6 +113293,7 @@ afw_function_definition_read_to_hexBinary = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -112815,6 +113445,7 @@ afw_function_definition_readln = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -112955,6 +113586,7 @@ afw_function_definition_stream = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -113148,6 +113780,7 @@ afw_function_definition_write = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -113331,6 +113964,7 @@ afw_function_definition_write_internal = {
     NULL,
     &impl_write_internal_sideEffects[0],
     0, /* Not a data type method. */
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -113524,6 +114158,7 @@ afw_function_definition_writeln = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -113705,6 +114340,7 @@ afw_function_definition_add_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -113888,6 +114524,7 @@ afw_function_definition_at_least_one_member_of_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -114033,6 +114670,7 @@ afw_function_definition_bag_size_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -114177,6 +114815,7 @@ afw_function_definition_bag_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -114331,6 +114970,7 @@ afw_function_definition_concat = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -114476,6 +115116,7 @@ afw_function_definition_encode_as_base64Binary_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -114620,6 +115261,7 @@ afw_function_definition_encode_as_hexBinary_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -114803,6 +115445,7 @@ afw_function_definition_ends_with_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -114984,6 +115627,7 @@ afw_function_definition_eq_ignore_case_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -115175,6 +115819,7 @@ afw_function_definition_eq_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -115356,6 +116001,7 @@ afw_function_definition_eqx_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -115539,6 +116185,7 @@ afw_function_definition_ge_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -115720,6 +116367,7 @@ afw_function_definition_gt_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -115940,6 +116588,7 @@ afw_function_definition_includes_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -116159,6 +116808,7 @@ afw_function_definition_index_of_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -116340,6 +116990,7 @@ afw_function_definition_intersection_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -116523,6 +117174,7 @@ afw_function_definition_is_in_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -116667,6 +117319,7 @@ afw_function_definition_is_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -116887,6 +117540,7 @@ afw_function_definition_last_index_of_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -117069,6 +117723,7 @@ afw_function_definition_le_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -117213,6 +117868,7 @@ afw_function_definition_length_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -117396,6 +118052,7 @@ afw_function_definition_lt_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -117541,6 +118198,7 @@ afw_function_definition_max_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -117685,6 +118343,7 @@ afw_function_definition_min_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -117876,6 +118535,7 @@ afw_function_definition_ne_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -118058,6 +118718,7 @@ afw_function_definition_nex_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -118203,6 +118864,7 @@ afw_function_definition_normalize_space_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -118347,6 +119009,7 @@ afw_function_definition_normalize_to_lower_case_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -118500,6 +119163,7 @@ afw_function_definition_one_and_only_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -118683,6 +119347,7 @@ afw_function_definition_regexp_index_of_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -118864,6 +119529,7 @@ afw_function_definition_regexp_match_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -119121,6 +119787,7 @@ afw_function_definition_regexp_replace_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -119302,6 +119969,7 @@ afw_function_definition_repeat_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -119559,6 +120227,7 @@ afw_function_definition_replace_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -119740,6 +120409,7 @@ afw_function_definition_set_equals_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -119960,6 +120630,7 @@ afw_function_definition_split_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -120142,6 +120813,7 @@ afw_function_definition_starts_with_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -120294,6 +120966,7 @@ afw_function_definition_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -120476,6 +121149,7 @@ afw_function_definition_subset_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -120704,6 +121378,7 @@ afw_function_definition_substring_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -120856,6 +121531,7 @@ afw_function_definition_to_anyURI_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -121010,6 +121686,7 @@ afw_function_definition_to_boolean_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -121162,6 +121839,7 @@ afw_function_definition_to_dateTime_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -121316,6 +121994,7 @@ afw_function_definition_to_date_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -121468,6 +122147,7 @@ afw_function_definition_to_dayTimeDuration_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -121622,6 +122302,7 @@ afw_function_definition_to_dnsName_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -121775,6 +122456,7 @@ afw_function_definition_to_double_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -121919,6 +122601,7 @@ afw_function_definition_to_integer_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -122073,6 +122756,7 @@ afw_function_definition_to_ipAddress_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -122226,6 +122910,7 @@ afw_function_definition_to_rfc822Name_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -122370,6 +123055,7 @@ afw_function_definition_to_string_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -122524,6 +123210,7 @@ afw_function_definition_to_time_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -122676,6 +123363,7 @@ afw_function_definition_to_x500Name_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -122830,6 +123518,7 @@ afw_function_definition_to_yearMonthDuration_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -122974,6 +123663,7 @@ afw_function_definition_union_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -123120,6 +123810,7 @@ afw_function_definition_url_decode = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -123264,6 +123955,7 @@ afw_function_definition_url_encode_string = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -123410,6 +124102,7 @@ afw_function_definition_bag_size_template = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -123554,6 +124247,7 @@ afw_function_definition_bag_template = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -123736,6 +124430,7 @@ afw_function_definition_compile_template = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -123927,6 +124622,7 @@ afw_function_definition_eq_template = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -124109,6 +124805,7 @@ afw_function_definition_eqx_template = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -124286,6 +124983,7 @@ afw_function_definition_evaluate_template = {
     NULL,
     NULL,
     afw_data_type_method_number_evaluate,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -124473,6 +125171,7 @@ afw_function_definition_ge_template = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -124655,6 +125354,7 @@ afw_function_definition_gt_template = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -124799,6 +125499,7 @@ afw_function_definition_is_template = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -124982,6 +125683,7 @@ afw_function_definition_le_template = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -125163,6 +125865,7 @@ afw_function_definition_lt_template = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -125354,6 +126057,7 @@ afw_function_definition_ne_template = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -125536,6 +126240,7 @@ afw_function_definition_nex_template = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -125689,6 +126394,7 @@ afw_function_definition_template = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -125833,6 +126539,7 @@ afw_function_definition_to_string_template = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -126016,6 +126723,7 @@ afw_function_definition_at_least_one_member_of_time = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -126161,6 +126869,7 @@ afw_function_definition_bag_size_time = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -126305,6 +127014,7 @@ afw_function_definition_bag_time = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -126496,6 +127206,7 @@ afw_function_definition_eq_time = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -126677,6 +127388,7 @@ afw_function_definition_eqx_time = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -126860,6 +127572,7 @@ afw_function_definition_ge_time = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -127041,6 +127754,7 @@ afw_function_definition_gt_time = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -127261,6 +127975,7 @@ afw_function_definition_in_range_time = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -127442,6 +128157,7 @@ afw_function_definition_intersection_time = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -127625,6 +128341,7 @@ afw_function_definition_is_in_time = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -127769,6 +128486,7 @@ afw_function_definition_is_time = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -127952,6 +128670,7 @@ afw_function_definition_le_time = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -128134,6 +128853,7 @@ afw_function_definition_lt_time = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -128279,6 +128999,7 @@ afw_function_definition_max_time = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -128423,6 +129144,7 @@ afw_function_definition_min_time = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -128614,6 +129336,7 @@ afw_function_definition_ne_time = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -128796,6 +129519,7 @@ afw_function_definition_nex_time = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -128948,6 +129672,7 @@ afw_function_definition_one_and_only_time = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -129131,6 +129856,7 @@ afw_function_definition_set_equals_time = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -129313,6 +130039,7 @@ afw_function_definition_subset_time = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -129466,6 +130193,7 @@ afw_function_definition_time = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -129610,6 +130338,7 @@ afw_function_definition_to_string_time = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -129756,6 +130485,7 @@ afw_function_definition_union_time = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -129900,6 +130630,7 @@ afw_function_definition_is_unevaluated = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -130046,6 +130777,7 @@ afw_function_definition_meta = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -130190,6 +130922,7 @@ afw_function_definition_metas = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -130373,6 +131106,7 @@ afw_function_definition_at_least_one_member_of_x500Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -130518,6 +131252,7 @@ afw_function_definition_bag_size_x500Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -130662,6 +131397,7 @@ afw_function_definition_bag_x500Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -130853,6 +131589,7 @@ afw_function_definition_eq_x500Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -131034,6 +131771,7 @@ afw_function_definition_eqx_x500Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -131217,6 +131955,7 @@ afw_function_definition_ge_x500Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -131398,6 +132137,7 @@ afw_function_definition_gt_x500Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -131581,6 +132321,7 @@ afw_function_definition_intersection_x500Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -131763,6 +132504,7 @@ afw_function_definition_is_in_x500Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -131907,6 +132649,7 @@ afw_function_definition_is_x500Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -132090,6 +132833,7 @@ afw_function_definition_le_x500Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -132272,6 +133016,7 @@ afw_function_definition_lt_x500Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -132453,6 +133198,7 @@ afw_function_definition_match_x500Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -132644,6 +133390,7 @@ afw_function_definition_ne_x500Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -132826,6 +133573,7 @@ afw_function_definition_nex_x500Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -132978,6 +133726,7 @@ afw_function_definition_one_and_only_x500Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -133161,6 +133910,7 @@ afw_function_definition_regexp_match_x500Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -133342,6 +134092,7 @@ afw_function_definition_set_equals_x500Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -133525,6 +134276,7 @@ afw_function_definition_subset_x500Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -133670,6 +134422,7 @@ afw_function_definition_to_string_x500Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -133814,6 +134567,7 @@ afw_function_definition_union_x500Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -133968,6 +134722,7 @@ afw_function_definition_x500Name = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -134113,6 +134868,7 @@ afw_function_definition_bag_size_xpathExpression = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -134257,6 +135013,7 @@ afw_function_definition_bag_xpathExpression = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -134439,6 +135196,7 @@ afw_function_definition_compile_xpathExpression = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -134630,6 +135388,7 @@ afw_function_definition_eq_xpathExpression = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -134812,6 +135571,7 @@ afw_function_definition_eqx_xpathExpression = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -134989,6 +135749,7 @@ afw_function_definition_evaluate_xpathExpression = {
     NULL,
     NULL,
     afw_data_type_method_number_evaluate,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -135176,6 +135937,7 @@ afw_function_definition_ge_xpathExpression = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -135358,6 +136120,7 @@ afw_function_definition_gt_xpathExpression = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -135502,6 +136265,7 @@ afw_function_definition_is_xpathExpression = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -135685,6 +136449,7 @@ afw_function_definition_le_xpathExpression = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -135866,6 +136631,7 @@ afw_function_definition_lt_xpathExpression = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -136057,6 +136823,7 @@ afw_function_definition_ne_xpathExpression = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -136239,6 +137006,7 @@ afw_function_definition_nex_xpathExpression = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -136383,6 +137151,7 @@ afw_function_definition_to_string_xpathExpression = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -136537,6 +137306,7 @@ afw_function_definition_xpathExpression = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -136681,6 +137451,7 @@ afw_function_definition_xpath_node_count = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -136864,6 +137635,7 @@ afw_function_definition_xpath_node_eq = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -137045,6 +137817,7 @@ afw_function_definition_xpath_node_match = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -137228,6 +138001,7 @@ afw_function_definition_at_least_one_member_of_yearMonthDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -137373,6 +138147,7 @@ afw_function_definition_bag_size_yearMonthDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -137517,6 +138292,7 @@ afw_function_definition_bag_yearMonthDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -137708,6 +138484,7 @@ afw_function_definition_eq_yearMonthDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -137889,6 +138666,7 @@ afw_function_definition_eqx_yearMonthDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -138072,6 +138850,7 @@ afw_function_definition_ge_yearMonthDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -138253,6 +139032,7 @@ afw_function_definition_gt_yearMonthDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -138436,6 +139216,7 @@ afw_function_definition_intersection_yearMonthDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -138618,6 +139399,7 @@ afw_function_definition_is_in_yearMonthDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -138762,6 +139544,7 @@ afw_function_definition_is_yearMonthDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -138945,6 +139728,7 @@ afw_function_definition_le_yearMonthDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -139126,6 +139910,7 @@ afw_function_definition_lt_yearMonthDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -139317,6 +140102,7 @@ afw_function_definition_ne_yearMonthDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -139499,6 +140285,7 @@ afw_function_definition_nex_yearMonthDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -139651,6 +140438,7 @@ afw_function_definition_one_and_only_yearMonthDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -139834,6 +140622,7 @@ afw_function_definition_set_equals_yearMonthDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -140016,6 +140805,7 @@ afw_function_definition_subset_yearMonthDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -140161,6 +140951,7 @@ afw_function_definition_to_string_yearMonthDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
 };
 
 static const afw_value_object_t
@@ -140305,6 +141096,7 @@ afw_function_definition_union_yearMonthDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 
@@ -140458,6 +141250,7 @@ afw_function_definition_yearMonthDuration = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
 };
 

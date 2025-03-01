@@ -23,15 +23,16 @@
         },
         {
             "dataType": "object",
+            "dataTypeParameter": "_AdaptiveCurlOptions_",
             "description": "CURL Options",
             "name": "options",
-            "dataTypeParameter": "_AdaptiveCurlOptions_",
             "optional": true
         }
     ],
+    "requiresExecuteAccess": true,
     "returns": {
         "dataType": "object",
-        "description": "Returns an object describing the response from the HTTP PATCH request.",
-        "dataTypeParameter": "_AdaptiveCurlHttpResponse_"
+        "dataTypeParameter": "_AdaptiveCurlHttpResponse_",
+        "description": "Returns an object describing the response from the HTTP PATCH request."
     }
 }

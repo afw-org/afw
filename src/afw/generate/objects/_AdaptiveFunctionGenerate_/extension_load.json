@@ -11,6 +11,7 @@
             "name": "extension_id"
         }
     ],
+    "requiresExecuteAccess": true,
     "returns": {
         "dataType": "boolean",
         "description": "If false the extension was already loaded. If true, the extension was successfully loaded which might have caused side effects such as environment registry changes. An error is thrown if there is a problem."

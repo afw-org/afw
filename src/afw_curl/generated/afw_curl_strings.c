@@ -596,6 +596,12 @@ afw_curl_self_v_proxyServiceName = {
 };
 
 const afw_value_string_t
+afw_curl_self_v_requiresExecuteAccess = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_CURL_Q_requiresExecuteAccess)
+};
+
+const afw_value_string_t
 afw_curl_self_v_response = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_CURL_Q_response)

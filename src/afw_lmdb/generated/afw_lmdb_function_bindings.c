@@ -147,6 +147,7 @@ impl_reader_check = {
     &afw_lmdb_boolean_self_v_false,
     &afw_lmdb_boolean_self_v_false,
     &afw_lmdb_boolean_self_v_false,
+    &afw_lmdb_boolean_self_v_false,
 };
 
 /* ---------- reader_list ---------- */
@@ -263,6 +264,7 @@ impl_reader_list = {
     NULL,
     NULL,
     0, /* Not a data type method. */
+    &afw_lmdb_boolean_self_v_false,
     &afw_lmdb_boolean_self_v_false,
     &afw_lmdb_boolean_self_v_false,
     &afw_lmdb_boolean_self_v_false,

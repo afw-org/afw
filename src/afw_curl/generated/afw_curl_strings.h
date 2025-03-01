@@ -2500,6 +2500,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_CURL_Q_requiresExecuteAccess \
+    "requiresExecuteAccess"
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_requiresExecuteAccess */
+#define afw_curl_s_requiresExecuteAccess \
+    (&afw_curl_self_v_requiresExecuteAccess.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_requiresExecuteAccess */
+#define afw_curl_self_s_requiresExecuteAccess \
+    (afw_curl_self_v_requiresExecuteAccess.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CURL_Q_requiresExecuteAccess */
+extern const afw_value_string_t \
+    afw_curl_self_v_requiresExecuteAccess;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CURL_Q_requiresExecuteAccess */
+#define afw_curl_z_requiresExecuteAccess \
+    (afw_curl_self_v_requiresExecuteAccess.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CURL_Q_requiresExecuteAccess */
+#define afw_curl_v_requiresExecuteAccess \
+    (&afw_curl_self_v_requiresExecuteAccess.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_CURL_Q_response \
     "response"
 
