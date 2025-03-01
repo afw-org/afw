@@ -19322,6 +19322,12 @@ afw_self_v_required = {
 };
 
 const afw_value_string_t
+afw_self_v_requiresExecuteAccess = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_requiresExecuteAccess)
+};
+
+const afw_value_string_t
 afw_self_v_resolvedParentPaths = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_resolvedParentPaths)
@@ -30695,6 +30701,12 @@ const afw_value_string_t
 afw_self_v_zz__226 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__226)
+};
+
+const afw_value_string_t
+afw_self_v_zz__2260 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__2260)
 };
 
 const afw_value_string_t
@@ -43691,6 +43703,18 @@ const afw_value_string_t
 afw_self_v_zz__Required_Parameters = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Required_Parameters)
+};
+
+const afw_value_string_t
+afw_self_v_zz__Requires_Execute_Access = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Requires_Execute_Access)
+};
+
+const afw_value_string_t
+afw_self_v_zz__Requires__execute__access_to_function = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Requires__execute__access_to_function)
 };
 
 const afw_value_string_t

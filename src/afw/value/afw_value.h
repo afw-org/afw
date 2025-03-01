@@ -229,6 +229,11 @@ struct afw_value_function_definition_s {
      * @brief This is only a signature with an unimplemented execute function.
      */
     const afw_value_boolean_t *signatureOnly;
+
+    /**
+     * @brief Requires 'execute' access to function.
+     */
+    const afw_value_boolean_t *requiresExecuteAccess;
 };
 
 
