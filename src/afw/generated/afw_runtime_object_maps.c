@@ -1853,8 +1853,8 @@ impl_properties__AdaptiveFunction_[] = {
         &afw_data_type_boolean_direct,
         AFW_UTF8_LITERAL(""),
         NULL,
-        &afw_self_s_default,
-        afw_runtime_value_accessor_default
+        &afw_self_s_value,
+        afw_runtime_value_accessor_value
     },
     {
         &afw_self_s_returns,

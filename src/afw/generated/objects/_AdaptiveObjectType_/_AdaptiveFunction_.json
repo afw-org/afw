@@ -230,7 +230,10 @@
             "dataType": "boolean",
             "description": "If true, this function requires 'execute' access to be called. The 'resourceId' for the authorization check is the function object path, the 'actionId' is 'execute', and the 'object' is object type '_AdaptiveFunctionArguments_' which contains the function object and the arguments to the called function.",
             "label": "Requires Execute Access",
-            "required": false
+            "required": false,
+            "runtime": {
+                "valueAccessor": "value"
+            }
         },
         "returns": {
             "allowQuery": true,
