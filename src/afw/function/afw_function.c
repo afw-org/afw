@@ -106,7 +106,21 @@ afw_function_execute_requiresExecuteAccess_wrapper(
     afw_size_t argc;
 
     AFW_TRY {
+        /* Make an object to pass to authorization check. */
         obj = afw_object_create(x->p, xctx);
+
+        /*
+         * Use the object's pool for a temporary copy of x and an evaluated
+         * version of argv. These evaluated args will be place in the object
+         * passed to the authorization check and also passed to
+         * x->function->execute_implementation. This is done so that the args
+         * are evaluated only once.
+         *
+         * This is not compatible with functions that only evaluate args when
+         * needed link and/or and for polymorphic functions that need to
+         * evaluate the first arg to determine the correct function to call.
+         * afwdev generate should throw an error if this is attempted.
+         */
         temp_p = obj->p;
         temp_x = afw_pool_calloc_type(temp_p, afw_function_execute_t, xctx);
         afw_memory_copy(temp_x, x);
@@ -120,17 +134,31 @@ afw_function_execute_requiresExecuteAccess_wrapper(
             argv[argc] = afw_value_evaluate(x->argv[argc], x->p, xctx);
         }
 
-        /*FIXME Auth check */
+        /* Set properties in object to be available in authorization check. */
 
+        /* Auth check FIXME Fill out obj and make resourceId path. */
+        afw_authorization_check(
+            true,
+            NULL,
+            (const afw_value_t *)x->function->functionId,
+            obj->value,
+            afw_authorization_action_id_execute,
+            temp_p,
+            xctx);
+
+        /* Call function implementation with temp_x. */
         result = x->function->execute_implementation(temp_x);
     }
     AFW_FINALLY {
+
+        /* If obj was create, release which will also release its pool. */
         if (obj) {
             afw_object_release(obj, xctx);
         }
     }
     AFW_ENDTRY;
 
+    /* Return result if error was not thrown. */
     return result;
 }
 

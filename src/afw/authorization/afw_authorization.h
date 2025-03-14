@@ -26,10 +26,6 @@
 
 AFW_BEGIN_DECLARES
 
-/** @brief actionId value control. */
-AFW_DECLARE_CONST_DATA(afw_value_t *)
-afw_authorization_action_id_control;
-
 /** @brief actionId value create. */
 AFW_DECLARE_CONST_DATA(afw_value_t *)
 afw_authorization_action_id_create;
@@ -37,6 +33,10 @@ afw_authorization_action_id_create;
 /** @brief actionId value delete. */
 AFW_DECLARE_CONST_DATA(afw_value_t *)
 afw_authorization_action_id_delete;
+
+/** @brief actionId value execute. */
+AFW_DECLARE_CONST_DATA(afw_value_t *)
+afw_authorization_action_id_execute;
 
 /** @brief actionId value modify. */
 AFW_DECLARE_CONST_DATA(afw_value_t *)
