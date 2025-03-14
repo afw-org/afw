@@ -9506,6 +9506,12 @@ afw_self_v_argument = {
 };
 
 const afw_value_string_t
+afw_self_v_arguments = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_arguments)
+};
+
+const afw_value_string_t
 afw_self_v_array = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_array)

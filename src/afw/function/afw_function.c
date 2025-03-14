@@ -104,6 +104,7 @@ afw_function_execute_requiresExecuteAccess_wrapper(
     afw_function_execute_t *temp_x;
     const afw_value_t **argv;
     afw_size_t argc;
+    const afw_array_t *argv_array;
 
     AFW_TRY {
         /* Make an object to pass to authorization check. */
@@ -135,7 +136,13 @@ afw_function_execute_requiresExecuteAccess_wrapper(
         }
 
         /* Set properties in object to be available in authorization check. */
-        /*FIXME*/
+        /*FIXME add named arguments */
+        afw_object_set_property_as_object(
+            obj, afw_s_function, x->function->object, xctx);
+        argv_array = afw_array_const_create_array_of_values(
+            &argv[1], x->argc - 1, temp_p, xctx);
+        afw_object_set_property_as_array(
+            obj, afw_s_arguments, argv_array, xctx);
 
         /* Check authorization and throw error if not allowed. */
         afw_authorization_check(

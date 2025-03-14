@@ -41110,6 +41110,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_arguments \
+    "arguments"
+
+/** @brief 'afw_utf8_t' for AFW_Q_arguments */
+#define afw_s_arguments \
+    (&afw_self_v_arguments.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_arguments */
+#define afw_self_s_arguments \
+    (afw_self_v_arguments.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_arguments */
+extern const afw_value_string_t \
+    afw_self_v_arguments;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_arguments */
+#define afw_z_arguments \
+    (afw_self_v_arguments.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_arguments */
+#define afw_v_arguments \
+    (&afw_self_v_arguments.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_array \
     "array"
 
