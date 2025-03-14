@@ -586,6 +586,14 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
             else:
                 fd.write('    &' + get_string_label(options, functionId, 'self_v') + ',\n')
 
+            # functionResourceId
+            functionResourceId = obj.get('functionId')
+            if functionResourceId is None:
+                fd.write('    NULL,\n')
+            else:
+                functionResourceId = '/afw/_AdaptiveFunction_/' + functionResourceId
+                fd.write('    &' + get_string_label(options, functionResourceId, 'self_v') + ',\n')
+
             # untypedFunctionId
             untypedFunctionId = functionId
             if untypedFunctionId is None:

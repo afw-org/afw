@@ -165,6 +165,11 @@
                     "title": "Function Label",
                     "type": "string"
                 },
+                "functionResourceId": {
+                    "description": "This is the function's resource id.",
+                    "title": "Function Resource Id",
+                    "type": "string"
+                },
                 "functionSignature": {
                     "description": "This is the function's signature.",
                     "title": "Signature",
@@ -252,6 +257,7 @@
                 "category",
                 "functionId",
                 "functionLabel",
+                "functionResourceId",
                 "returns"
             ],
             "type": "object"

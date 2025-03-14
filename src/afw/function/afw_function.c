@@ -135,12 +135,13 @@ afw_function_execute_requiresExecuteAccess_wrapper(
         }
 
         /* Set properties in object to be available in authorization check. */
+        /*FIXME*/
 
-        /* Auth check FIXME Fill out obj and make resourceId path. */
+        /* Check authorization and throw error if not allowed. */
         afw_authorization_check(
             true,
             NULL,
-            (const afw_value_t *)x->function->functionId,
+            (const afw_value_t *)x->function->functionResourceId,
             obj->value,
             afw_authorization_action_id_execute,
             temp_p,

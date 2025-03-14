@@ -740,48 +740,6 @@ afw_curl_self_v_zz__ = {
 };
 
 const afw_value_string_t
-afw_curl_self_v_zz__2519 = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_CURL_Q_zz__2519)
-};
-
-const afw_value_string_t
-afw_curl_self_v_zz__2520 = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_CURL_Q_zz__2520)
-};
-
-const afw_value_string_t
-afw_curl_self_v_zz__2521 = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_CURL_Q_zz__2521)
-};
-
-const afw_value_string_t
-afw_curl_self_v_zz__2522 = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_CURL_Q_zz__2522)
-};
-
-const afw_value_string_t
-afw_curl_self_v_zz__2523 = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_CURL_Q_zz__2523)
-};
-
-const afw_value_string_t
-afw_curl_self_v_zz__2524 = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_CURL_Q_zz__2524)
-};
-
-const afw_value_string_t
-afw_curl_self_v_zz__2525 = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_CURL_Q_zz__2525)
-};
-
-const afw_value_string_t
 afw_curl_self_v_zz__2526 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_CURL_Q_zz__2526)
@@ -905,6 +863,48 @@ const afw_value_string_t
 afw_curl_self_v_zz__2546 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_CURL_Q_zz__2546)
+};
+
+const afw_value_string_t
+afw_curl_self_v_zz__2547 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_CURL_Q_zz__2547)
+};
+
+const afw_value_string_t
+afw_curl_self_v_zz__2548 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_CURL_Q_zz__2548)
+};
+
+const afw_value_string_t
+afw_curl_self_v_zz__2549 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_CURL_Q_zz__2549)
+};
+
+const afw_value_string_t
+afw_curl_self_v_zz__2550 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_CURL_Q_zz__2550)
+};
+
+const afw_value_string_t
+afw_curl_self_v_zz__2551 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_CURL_Q_zz__2551)
+};
+
+const afw_value_string_t
+afw_curl_self_v_zz__2552 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_CURL_Q_zz__2552)
+};
+
+const afw_value_string_t
+afw_curl_self_v_zz__2553 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_CURL_Q_zz__2553)
 };
 
 const afw_value_string_t
@@ -1307,6 +1307,48 @@ const afw_value_string_t
 afw_curl_self_v_zz_______object__AdaptiveCurlVersionInfo__ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_CURL_Q_zz_______object__AdaptiveCurlVersionInfo__)
+};
+
+const afw_value_string_t
+afw_curl_self_v_zz___afw__AdaptiveFunction__curl_version_info = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_CURL_Q_zz___afw__AdaptiveFunction__curl_version_info)
+};
+
+const afw_value_string_t
+afw_curl_self_v_zz___afw__AdaptiveFunction__http_delete = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_CURL_Q_zz___afw__AdaptiveFunction__http_delete)
+};
+
+const afw_value_string_t
+afw_curl_self_v_zz___afw__AdaptiveFunction__http_get = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_CURL_Q_zz___afw__AdaptiveFunction__http_get)
+};
+
+const afw_value_string_t
+afw_curl_self_v_zz___afw__AdaptiveFunction__http_patch = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_CURL_Q_zz___afw__AdaptiveFunction__http_patch)
+};
+
+const afw_value_string_t
+afw_curl_self_v_zz___afw__AdaptiveFunction__http_post = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_CURL_Q_zz___afw__AdaptiveFunction__http_post)
+};
+
+const afw_value_string_t
+afw_curl_self_v_zz___afw__AdaptiveFunction__http_put = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_CURL_Q_zz___afw__AdaptiveFunction__http_put)
+};
+
+const afw_value_string_t
+afw_curl_self_v_zz___afw__AdaptiveFunction__smtp_send = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_CURL_Q_zz___afw__AdaptiveFunction__smtp_send)
 };
 
 const afw_value_integer_t

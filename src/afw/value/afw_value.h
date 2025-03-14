@@ -132,6 +132,9 @@ struct afw_value_function_definition_s {
     /** @brief Function id of function. */
     const afw_value_string_t *functionId;
 
+    /** @brief Function id of function resource id. */
+    const afw_value_string_t *functionResourceId;
+
     /** @brief Function id without `<dataType>`.
      * 
      *  This is only different from functionId if polymorphic.

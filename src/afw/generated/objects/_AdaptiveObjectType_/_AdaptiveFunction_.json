@@ -137,6 +137,17 @@
                 "valueAccessor": "value"
             }
         },
+        "functionResourceId": {
+            "allowQuery": true,
+            "brief": "The function's resource id",
+            "dataType": "string",
+            "description": "This is the function's resource id.",
+            "label": "Function Resource Id",
+            "required": true,
+            "runtime": {
+                "valueAccessor": "value"
+            }
+        },
         "functionSignature": {
             "allowQuery": true,
             "brief": "Function's signature",
