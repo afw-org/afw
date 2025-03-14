@@ -1,0 +1,12 @@
+{
+    "title": "AFWDev",
+    "description": "Adaptive Framework Dev Container.",
+    "defaultAdapterId": "afw",
+    "authorizationControl": {
+        "_meta_": {
+            "objectType": "_AdaptiveAuthorizationControl_"
+        },
+        "initialAuthorizationCheck": "return {'decisionId': 'permit'};",
+        "denyIfNotApplicable": true
+    }
+}
