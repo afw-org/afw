@@ -742,11 +742,16 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
             else:
                 fd.write('    &' + get_string_label(options, op, 'self_v') + ',\n')
 
-            # execute
+            # execute and execute_implementation
             if obj.get('useExecuteFunction') is None:
-                fd.write('    ' + prefix + 'function_execute_' + label + ',\n')
+                execute_implementation = prefix + 'function_execute_' + label
             else:
-                fd.write('    ' + obj.get('useExecuteFunction') + ',\n')
+                execute_implementation = obj.get('useExecuteFunction')
+            if obj.get('requiresExecuteAccess', False):
+                fd.write('    afw_function_execute_requiresExecuteAccess_wrapper,\n')
+            else:
+                fd.write('    ' + execute_implementation + ',\n')
+            fd.write('    ' + execute_implementation + ',\n')
 
             # arg_check
             fd.write('    NULL,\n') #@todo

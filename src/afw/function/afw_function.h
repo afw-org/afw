@@ -344,6 +344,16 @@ afw_compile_source_location_of_value( \
     (const afw_value_t *)x->self, x->p, x->xctx)
 
 
+/**
+ * @brief Execute function if caller has 'execute' access.
+ * 
+ * This is an execute function that wraps the actual function implementation
+ * when the caller is required to have 'execute' access.
+ */
+extern const afw_value_t *
+afw_function_execute_requiresExecuteAccess_wrapper(
+    afw_function_execute_t *x);
+
 
 /*
  * @brief Evaluate function parameter.

@@ -92,6 +92,48 @@ afw_function_execute_convert(
 }
 
 
+/* Execute function if caller has 'execute' access. */
+const afw_value_t *
+afw_function_execute_requiresExecuteAccess_wrapper(
+    afw_function_execute_t *x)
+{
+    const afw_value_t *result = NULL;
+    afw_xctx_t *xctx = x->xctx;
+    const afw_object_t *obj = NULL;
+    const afw_pool_t *temp_p;
+    afw_function_execute_t *temp_x;
+    const afw_value_t **argv;
+    afw_size_t argc;
+
+    AFW_TRY {
+        obj = afw_object_create(x->p, xctx);
+        temp_p = obj->p;
+        temp_x = afw_pool_calloc_type(temp_p, afw_function_execute_t, xctx);
+        afw_memory_copy(temp_x, x);
+        argv = afw_pool_malloc(
+            temp_p,
+            x->argc * sizeof(afw_value_t *) + sizeof(afw_value_t *),
+            xctx);
+        temp_x->argv = argv;
+        argv[0] = x->argv[0];
+        for (argc = 1; argc <= x->argc; argc++) {
+            argv[argc] = afw_value_evaluate(x->argv[argc], x->p, xctx);
+        }
+
+        /*FIXME Auth check */
+
+        result = x->function->execute_implementation(temp_x);
+    }
+    AFW_FINALLY {
+        if (obj) {
+            afw_object_release(obj, xctx);
+        }
+    }
+    AFW_ENDTRY;
+
+    return result;
+}
+
 
 /* Evaluate function parameter. */
 /* Note: only called by higher_order_array at the moment */
