@@ -510,6 +510,8 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
             # parameters
             parametersCount = 0
             for parameter in obj.get('parameters'):
+                if parameter.get('name','') in ['arguments', 'function']:
+                    msg.error_exit(obj.get('functionId') + ': parameter name "' + parameter.get('name') + '" is reserved')
                 parametersCount += 1
                 write_parameter(fd, prefix, options, 'impl_' + label + '_parameter_' + str(parametersCount), parameter, 'impl_' + label, "parameters")
             fd.write('\nstatic const afw_value_function_parameter_t *\n')

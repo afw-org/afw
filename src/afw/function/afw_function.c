@@ -100,11 +100,11 @@ afw_function_execute_requiresExecuteAccess_wrapper(
     const afw_value_t *result = NULL;
     afw_xctx_t *xctx = x->xctx;
     const afw_object_t *obj = NULL;
-    const afw_pool_t *temp_p;
     afw_function_execute_t *temp_x;
     const afw_value_t **argv;
     afw_size_t argc;
     const afw_array_t *argv_array;
+    const afw_value_function_parameter_t * const *parameter;
 
     AFW_TRY {
         /* Make an object to pass to authorization check. */
@@ -122,11 +122,10 @@ afw_function_execute_requiresExecuteAccess_wrapper(
          * evaluate the first arg to determine the correct function to call.
          * afwdev generate should throw an error if this is attempted.
          */
-        temp_p = obj->p;
-        temp_x = afw_pool_calloc_type(temp_p, afw_function_execute_t, xctx);
+        temp_x = afw_pool_calloc_type(obj->p, afw_function_execute_t, xctx);
         afw_memory_copy(temp_x, x);
         argv = afw_pool_malloc(
-            temp_p,
+            obj->p,
             x->argc * sizeof(afw_value_t *) + sizeof(afw_value_t *),
             xctx);
         temp_x->argv = argv;
@@ -136,14 +135,39 @@ afw_function_execute_requiresExecuteAccess_wrapper(
         }
 
         /* Set properties in object to be available in authorization check. */
-        /*FIXME add named arguments */
         afw_object_set_property_as_object(
             obj, afw_s_function, x->function->object, xctx);
         argv_array = afw_array_const_create_array_of_values(
-            &argv[1], x->argc - 1, temp_p, xctx);
+            &argv[1], x->argc, obj->p, xctx);
         afw_object_set_property_as_array(
             obj, afw_s_arguments, argv_array, xctx);
-
+        for (argc = 1, parameter = x->function->parameters;
+            argc <= x->function->parameters_count;
+            argc++, parameter++)
+        {
+            if (argc == x->function->parameters_count &&
+                (*parameter)->minArgs->internal != -1)
+            {
+                if (argc <= x->argc) {
+                    argv_array = afw_array_const_create_array_of_values(
+                        &argv[argc], x->argc - argc, obj->p, xctx);
+                }
+                else {
+                    argv_array = afw_array_const_create_array_of_values(
+                        &argv[1], 0, obj->p, xctx);
+                }
+                afw_object_set_property_as_array(
+                    obj, &(*parameter)->name->internal, argv_array, xctx);
+            }
+            else {
+                afw_object_set_property(
+                    obj,
+                    &(*parameter)->name->internal,
+                    (argc <= x->argc) ? argv[argc] : NULL,
+                    xctx);
+            }
+        }
+        
         /* Check authorization and throw error if not allowed. */
         afw_authorization_check(
             true,
@@ -151,7 +175,7 @@ afw_function_execute_requiresExecuteAccess_wrapper(
             (const afw_value_t *)x->function->functionResourceId,
             obj->value,
             afw_authorization_action_id_execute,
-            temp_p,
+            x->p,
             xctx);
 
         /* Call function implementation with temp_x. */
