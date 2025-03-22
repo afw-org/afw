@@ -33,6 +33,7 @@
             "optional": true
         }
     ],
+    "requiresExecuteAccess": true,
     "returns": {
         "brief": "streamNumber",
         "dataType": "integer",

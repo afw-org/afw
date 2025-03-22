@@ -13904,6 +13904,8 @@ afw_function_definition_index_create;
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
  *
+ * This function requires 'execute' access.
+ *
  * Declaration:
  *
  * ```
@@ -13960,6 +13962,8 @@ afw_function_definition_index_list;
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
  *
+ * This function requires 'execute' access.
+ *
  * Declaration:
  *
  * ```
@@ -13995,6 +13999,8 @@ afw_function_definition_index_remove;
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
+ *
+ * This function requires 'execute' access.
  *
  * Declaration:
  *
@@ -25214,6 +25220,8 @@ afw_function_definition_open_file;
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
  *
+ * This function requires 'execute' access.
+ *
  * Declaration:
  *
  * ```
@@ -25277,6 +25285,8 @@ afw_function_definition_open_response;
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
  *
+ * This function requires 'execute' access.
+ *
  * Declaration:
  *
  * ```
@@ -25315,6 +25325,8 @@ afw_function_definition_open_uri;
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
+ *
+ * This function requires 'execute' access.
  *
  * Declaration:
  *

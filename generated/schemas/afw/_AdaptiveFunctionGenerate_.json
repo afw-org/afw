@@ -170,7 +170,7 @@
                     "type": "boolean"
                 },
                 "requiresExecuteAccess": {
-                    "description": "If true, this function requires 'execute' access to be called. The 'resourceId' for the authorization check is the function object path, the 'actionId' is 'execute', and the 'object' is object type '_AdaptiveFunctionArguments_' which contains the function object and the arguments to the called function.",
+                    "description": "If true, this function requires 'execute' access to be called. The 'resourceId' for the authorization check is the function object path, the 'actionId' is 'execute', and the 'object' is object type '_AdaptiveFunctionArguments_' which contains the function object and the arguments to the called function.\nNote that the construction of the current::object during authorization check requires that parameters passed in will be evaluated ahead of time. Therefore, if your function is designed to short circuit its execution path based on the value of one of its parameters, understand that functions with this flag set will still undergo evaluations anyway.",
                     "title": "Requires Execute Access",
                     "type": "boolean"
                 },

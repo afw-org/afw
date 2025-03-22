@@ -63056,7 +63056,7 @@ afw_function_definition_index_create = {
     &afw_self_v_zz__840,
     &afw_self_v_zz__841,
     NULL,
-    afw_function_execute_index_create,
+    afw_function_execute_requiresExecuteAccess_wrapper,
     afw_function_execute_index_create,
     NULL,
     &afw_integer_self_v_2,
@@ -63075,7 +63075,7 @@ afw_function_definition_index_create = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
 };
 
 static const afw_value_object_t
@@ -63241,7 +63241,7 @@ afw_function_definition_index_list = {
     &afw_self_v_zz___adapterId__string__objectType___string___object,
     &afw_self_v_zz__842,
     NULL,
-    afw_function_execute_index_list,
+    afw_function_execute_requiresExecuteAccess_wrapper,
     afw_function_execute_index_list,
     NULL,
     &afw_integer_self_v_1,
@@ -63260,7 +63260,7 @@ afw_function_definition_index_list = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
 };
 
 static const afw_value_object_t
@@ -63432,7 +63432,7 @@ afw_function_definition_index_remove = {
     &afw_self_v_zz___adapterId__string__key__string___object,
     &afw_self_v_zz__843,
     NULL,
-    afw_function_execute_index_remove,
+    afw_function_execute_requiresExecuteAccess_wrapper,
     afw_function_execute_index_remove,
     NULL,
     &afw_integer_self_v_2,
@@ -63451,7 +63451,7 @@ afw_function_definition_index_remove = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
 };
 
 static const afw_value_object_t
@@ -113197,7 +113197,7 @@ afw_function_definition_open_file = {
     &afw_self_v_zz__1428,
     &afw_self_v_zz__1429,
     NULL,
-    afw_function_execute_open_file,
+    afw_function_execute_requiresExecuteAccess_wrapper,
     afw_function_execute_open_file,
     NULL,
     &afw_integer_self_v_3,
@@ -113216,7 +113216,7 @@ afw_function_definition_open_file = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
 };
 
 static const afw_value_object_t
@@ -113388,7 +113388,7 @@ afw_function_definition_open_response = {
     &afw_self_v_zz___streamId__string__autoFlush___boolean___integer,
     &afw_self_v_zz__1432,
     NULL,
-    afw_function_execute_open_response,
+    afw_function_execute_requiresExecuteAccess_wrapper,
     afw_function_execute_open_response,
     NULL,
     &afw_integer_self_v_1,
@@ -113407,7 +113407,7 @@ afw_function_definition_open_response = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
 };
 
 static const afw_value_object_t
@@ -113653,7 +113653,7 @@ afw_function_definition_open_uri = {
     &afw_self_v_zz__1435,
     &afw_self_v_zz__1436,
     NULL,
-    afw_function_execute_open_uri,
+    afw_function_execute_requiresExecuteAccess_wrapper,
     afw_function_execute_open_uri,
     NULL,
     &afw_integer_self_v_3,
@@ -113672,7 +113672,7 @@ afw_function_definition_open_uri = {
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
-    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_true,
 };
 
 static const afw_value_object_t

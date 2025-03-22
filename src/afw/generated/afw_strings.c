@@ -30764,6 +30764,12 @@ afw_self_v_zz__2267 = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__2268 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__2268)
+};
+
+const afw_value_string_t
 afw_self_v_zz__227 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__227)
