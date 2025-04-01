@@ -603,13 +603,24 @@ TestSource ::= TestScriptLineStart 'source:' TestScriptValue
 
 /* From afw_compile_parse_template.c                                          */
 
-Substitution ::= '${' Script '}'
+CompileTimeSubstitution ::= '#{' Script '}'
+
+/* From afw_compile_parse_template.c                                          */
+
+EvaluationTimeSubstitution ::= '${' Script '}'
+
+/* From afw_compile_parse_template.c                                          */
+
+Substitution ::= CompileTimeSubstitution | EvaluationTimeSubstitution
 
 /* From afw_compile_parse_template.c                                          */
 
 Template ::=
    (
-       (Char - '$') | ( '\$' ) | '$' (Char - '{') | Substitution
+       ( Char - ['$' '#'] ) |
+       ( ['$' '#'] ) |
+       ( ['$' '#'] (Char - '{') ) |
+       Substitution
    )*
 
 /* From afw_compile_parse_template.c                                          */
@@ -722,7 +733,8 @@ Value ::= ListValue |
         ScalarLiteral |
         Evaluation |
         ParenthesizedExpression |
-        TemplateString
+        TemplateString |
+        CompileTimeSubstitution
 
 /* From afw_compile_lexical.c                                                 */
 

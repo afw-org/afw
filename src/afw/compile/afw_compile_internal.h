@@ -63,7 +63,9 @@ typedef enum {
     afw_compile_token_type_caret,                        /* ^ */
     afw_compile_token_type_colon,                        /* : */
     afw_compile_token_type_comma,                        /* , */
-    afw_compile_token_type_dollar_sign,                  /* $ */
+    afw_compile_token_type_compile_time_substitute_start,    /* #{ */
+    afw_compile_token_type_dollar_sign,                      /* $ */
+    afw_compile_token_type_evaluation_time_substitute_start, /* ${ */
     afw_compile_token_type_ellipsis,                     /* ... */
     afw_compile_token_type_fat_arrow,                    /* => */
     afw_compile_token_type_grave,                        /* ` */
@@ -72,12 +74,12 @@ typedef enum {
     afw_compile_token_type_optional_chaining_thin_arrow, /* ?-> */
     afw_compile_token_type_percent,                      /* % */
     afw_compile_token_type_period,                       /* . */
+    afw_compile_token_type_pound_sign,                   /* # */
     afw_compile_token_type_question_mark,                /* ? */
     afw_compile_token_type_semicolon,                    /* ; */
     afw_compile_token_type_slash,                        /* / */
     afw_compile_token_type_thin_arrow,                   /* -> */
     afw_compile_token_type_tilde,                        /* ~ */
-    afw_compile_token_type_substitute_start,             /* ${ */
     afw_compile_token_type_vertical_bar,                 /* | */
 
     /* Unary operators */
@@ -1032,6 +1034,11 @@ afw_compile_parse_Comparison(afw_compile_parser_t *parser);
 
 
 AFW_DECLARE_INTERNAL(const afw_value_t *)
+afw_compile_parse_CompileTimeSubstitution(afw_compile_parser_t *parser);
+
+
+
+AFW_DECLARE_INTERNAL(const afw_value_t *)
 afw_compile_parse_EntryFunctionLambdaOrVariableReference(
     afw_compile_parser_t *parser);
 
@@ -1049,6 +1056,11 @@ afw_compile_parse_Exponentiation(afw_compile_parser_t *parser);
 
 AFW_DECLARE_INTERNAL(const afw_value_t *)
 afw_compile_parse_Evaluation(afw_compile_parser_t *parser);
+
+
+
+AFW_DECLARE_INTERNAL(const afw_value_t *)
+afw_compile_parse_EvaluationTimeSubstitution(afw_compile_parser_t *parser);
 
 
 

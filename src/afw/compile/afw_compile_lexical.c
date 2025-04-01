@@ -1732,13 +1732,27 @@ afw_compile_get_token_impl(afw_compile_parser_t *parser)
         };
         break;
 
+    /* # and #{ */
+    case '#':
+        afw_compile_save_cursor(temp_cursor);
+        cp2 = afw_compile_get_code_point();
+        if (cp2 == '{') {
+            parser->token->type =
+                afw_compile_token_type_compile_time_substitute_start;
+        }
+        else {
+            afw_compile_restore_cursor(temp_cursor);
+            parser->token->type = afw_compile_token_type_pound_sign;
+        }
+        break;
+
     /* $ and ${ */
     case '$':
         afw_compile_save_cursor(temp_cursor);
         cp2 = afw_compile_get_code_point();
         if (cp2 == '{') {
             parser->token->type =
-                afw_compile_token_type_substitute_start;
+                afw_compile_token_type_evaluation_time_substitute_start;
         }
         else {
             afw_compile_restore_cursor(temp_cursor);
