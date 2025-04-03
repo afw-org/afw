@@ -206,10 +206,13 @@ afw_compile_to_value_with_callback(
                 block = afw_compile_parse_link_new_value_block(parser, 0);
             }
 
-            /* Process based on compile option. */
+            /* Process based on compile option and residual_check. */
             if (compile_type == afw_compile_type_script) {
                 parser->compiled_value->full_source_type = afw_s_script;
-                *interim = afw_compile_parse_Script(parser, false);
+                *interim = afw_compile_parse_Script(
+                    parser,
+                    residual_check == afw_compile_residual_check_to_close_brace
+                    );
             }
 
             else if (compile_type == afw_compile_type_template) {

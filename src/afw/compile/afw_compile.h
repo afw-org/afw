@@ -42,7 +42,8 @@ struct afw_compile_type_info_s {
 typedef enum afw_compile_residual_check_e {
     afw_compile_residual_check_none,
     afw_compile_residual_check_to_newline,
-    afw_compile_residual_check_to_full
+    afw_compile_residual_check_to_full,
+    afw_compile_residual_check_to_close_brace,
 } afw_compile_residual_check_t;
 
 

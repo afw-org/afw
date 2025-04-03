@@ -17,9 +17,6 @@ typedef void (*impl_lexical_cb_t) (afw_compile_parser_t *parser);
 
 /* Static declarations. */
 
-static afw_octet_t
-impl_get_octet(afw_compile_parser_t *parser);
-
 static afw_boolean_t
 impl_consume_matching_octets_z(afw_compile_parser_t *parser,
     const afw_utf8_z_t *s);
@@ -56,8 +53,8 @@ impl_parse_u(afw_compile_parser_t *parser);
 /* Static functions. */
 
 /* Get a utf-8 octet.  Set cursor_eof to cursor + 1 if at end. */
-static afw_octet_t
-impl_get_octet(afw_compile_parser_t *parser)
+AFW_DEFINE_INTERNAL(afw_octet_t)
+afw_compile_get_octet(afw_compile_parser_t *parser)
 {
     afw_utf8_octet_t result;
     const afw_utf8_octet_t *s;
@@ -66,7 +63,7 @@ impl_get_octet(afw_compile_parser_t *parser)
 
     /* If eof already, this is an error. */
     if (parser->last_octet_eof) {
-        AFW_COMPILE_THROW_ERROR_Z("impl_get_octet() called after eof");
+        AFW_COMPILE_THROW_ERROR_Z("afw_compile_get_octet() called after eof");
     }
 
     if (parser->all_eof && (parser->cursor == parser->cursor_eof)) {
@@ -186,7 +183,7 @@ impl_consume_matching_octets_z(afw_compile_parser_t *parser,
     afw_compile_save_cursor(save);
 
     for (; *s; s++) {
-        if (impl_get_octet(parser) != *s) {
+        if (afw_compile_get_octet(parser) != *s) {
             afw_compile_restore_cursor(save);
             result = false;
             break;
@@ -206,7 +203,7 @@ impl_get_required_HexDigit(afw_compile_parser_t *parser)
 {
     afw_utf8_octet_t o;
 
-    o = impl_get_octet(parser);
+    o = afw_compile_get_octet(parser);
     if (afw_compile_is_at_eof()) {
         goto error;
     }
@@ -234,7 +231,7 @@ impl_get_HexDigit(afw_compile_parser_t *parser)
 {
     afw_utf8_octet_t o;
 
-    o = impl_get_octet(parser);
+    o = afw_compile_get_octet(parser);
     if (afw_compile_is_at_eof()) {
         return -1;
     }
@@ -267,7 +264,7 @@ impl_get_BinaryDigit(afw_compile_parser_t *parser)
 {
     afw_utf8_octet_t o;
 
-    o = impl_get_octet(parser);
+    o = afw_compile_get_octet(parser);
 
     if (afw_compile_is_at_eof()) {
         return -1;
@@ -293,7 +290,7 @@ impl_get_OctalDigit(afw_compile_parser_t *parser)
 {
     afw_utf8_octet_t o;
 
-    o = impl_get_octet(parser);
+    o = afw_compile_get_octet(parser);
 
     if (afw_compile_is_at_eof()) {
         return -1;
@@ -539,7 +536,7 @@ impl_parse_u(afw_compile_parser_t *parser)
     int digit;
 
     /* Code point from /u{x...}. */
-    o = impl_get_octet(parser);
+    o = afw_compile_get_octet(parser);
     if (afw_compile_is_at_eof()) {
         AFW_COMPILE_THROW_ERROR_Z("Expecting hex digit or '{'");
     }
@@ -560,7 +557,7 @@ impl_parse_u(afw_compile_parser_t *parser)
                 AFW_COMPILE_THROW_ERROR_Z("Expecting hex digit or '}'");
             }
             if (digit < 0) {
-                o = impl_get_octet(parser);
+                o = afw_compile_get_octet(parser);
                 if (afw_compile_is_at_eof() || o != '}') {
                     AFW_COMPILE_THROW_ERROR_Z("Expecting hex digit or '}'");
                 }
@@ -586,12 +583,12 @@ impl_parse_u(afw_compile_parser_t *parser)
             {
                 goto error;
             }
-            o = impl_get_octet(parser);
+            o = afw_compile_get_octet(parser);
             if (o != '\\')
             {
                 goto error;
             }
-            o = impl_get_octet(parser);
+            o = afw_compile_get_octet(parser);
             if (o != 'u')
             {
                 goto error;
@@ -657,7 +654,7 @@ impl_parse_String(afw_compile_parser_t *parser)
     apr_array_clear(parser->s);
 
     /* First octet is quote to use. */
-    quot = impl_get_octet(parser);
+    quot = afw_compile_get_octet(parser);
     parser->token->string_quote_character = quot;
 
     /* Set token type to utf8_string. */
@@ -667,7 +664,7 @@ impl_parse_String(afw_compile_parser_t *parser)
 
     /* Keep going until last quote located or input exhausted. */
     for (;;) {
-        o = impl_get_octet(parser);
+        o = afw_compile_get_octet(parser);
         if (afw_compile_is_at_eof()) break;
         if (o == quot) break;
 
@@ -675,7 +672,7 @@ impl_parse_String(afw_compile_parser_t *parser)
         if (o == '\\') {
 
             /* If escape, get next octet and break if eof.*/
-            o = impl_get_octet(parser);
+            o = afw_compile_get_octet(parser);
             if (afw_compile_is_at_eof()) break;
 
             /* Process based on octet after \. */
@@ -884,7 +881,7 @@ impl_parse_number(afw_compile_parser_t *parser)
     is_zero = true;
 
     /* Determine if negative and handle reserved identifiers. */
-    o = impl_get_octet(parser);
+    o = afw_compile_get_octet(parser);
 
     /* Error if '+' and strict, otherwise just ignore it. */
     if (o == '+') {
@@ -919,7 +916,7 @@ impl_parse_number(afw_compile_parser_t *parser)
 
     /* Parse integer part and prescan floating point part. */
     do {
-        o = impl_get_octet(parser);
+        o = afw_compile_get_octet(parser);
 
         /* Number can't end here. */
         if (afw_compile_is_at_eof()) {
@@ -932,7 +929,7 @@ impl_parse_number(afw_compile_parser_t *parser)
             /* Sum digits as a negative number.  Negative is one larger. */
             negative = -(o - '0');
             for (;;) {
-                o = impl_get_octet(parser);
+                o = afw_compile_get_octet(parser);
                 if (afw_compile_is_at_eof()) {
                     break;
                 }
@@ -953,7 +950,7 @@ impl_parse_number(afw_compile_parser_t *parser)
             }
         }
         else if (o == '0') {
-            o = impl_get_octet(parser);
+            o = afw_compile_get_octet(parser);
             if (afw_compile_is_at_eof()) {
                 break;
             }
@@ -1007,7 +1004,7 @@ impl_parse_number(afw_compile_parser_t *parser)
         }
 
         /* Next can be an optional period followed by digits '0'-'9'. */
-        o = impl_get_octet(parser);
+        o = afw_compile_get_octet(parser);
         if (afw_compile_is_at_eof()) {
             break;
         }
@@ -1016,7 +1013,7 @@ impl_parse_number(afw_compile_parser_t *parser)
         }
         else {
             is_integer = false;
-            o = impl_get_octet(parser);
+            o = afw_compile_get_octet(parser);
             /* Number can't end here. */
             if (afw_compile_is_at_eof() || o < '0' || o > '9') {
                 goto error;
@@ -1025,7 +1022,7 @@ impl_parse_number(afw_compile_parser_t *parser)
                 is_zero = false;
             }
             for (;;) {
-                o = impl_get_octet(parser);
+                o = afw_compile_get_octet(parser);
                 if (afw_compile_is_at_eof()) {
                     break;
                 }
@@ -1048,13 +1045,13 @@ impl_parse_number(afw_compile_parser_t *parser)
          * Next can be an 'e' or 'E' followed by optional '-' or '+' followed
          * by digits '0' - '9'.
          */
-        o = impl_get_octet(parser);
+        o = afw_compile_get_octet(parser);
         if (o != 'e' && o != 'E') {
             parser->cursor--;
         }
         else {
             is_integer = false;
-            o = impl_get_octet(parser);
+            o = afw_compile_get_octet(parser);
 
             /* Number can't end here. */
             if (afw_compile_is_at_eof()) {
@@ -1063,7 +1060,7 @@ impl_parse_number(afw_compile_parser_t *parser)
 
             /* Skip '+' or '-'. */
             if (o == '+' || o == '-') {
-                o = impl_get_octet(parser);
+                o = afw_compile_get_octet(parser);
             }
 
             /* Number can't end here. */
@@ -1071,7 +1068,7 @@ impl_parse_number(afw_compile_parser_t *parser)
 
             /* Skip digits. */
             for (;;) {
-                o = impl_get_octet(parser);
+                o = afw_compile_get_octet(parser);
                 if (afw_compile_is_at_eof()) {
                     break;
                 }
@@ -1386,7 +1383,7 @@ afw_compile_get_code_point_impl(afw_compile_parser_t *parser)
     afw_code_point_t result;
     afw_octet_t o;
 
-    o = impl_get_octet(parser);
+    o = afw_compile_get_octet(parser);
     if (afw_compile_is_at_eof()) return -1;
 
     if (o <= 127) {
@@ -1398,21 +1395,21 @@ afw_compile_get_code_point_impl(afw_compile_parser_t *parser)
         if (o > 0x07) goto error;
         result = o << 18;
 
-        o = impl_get_octet(parser);
+        o = afw_compile_get_octet(parser);
         if (afw_compile_is_at_eof()) goto error;
         if (o < 0x80) goto error;
         o &= 0x7f;
         if (o > 0x3f) goto error;
         result += o << 12;
 
-        o = impl_get_octet(parser);
+        o = afw_compile_get_octet(parser);
         if (afw_compile_is_at_eof()) goto error;
         if (o < 0x80) goto error;
         o &= 0x7f;
         if (o > 0x3f) goto error;
         result += o << 6;
 
-        o = impl_get_octet(parser);
+        o = afw_compile_get_octet(parser);
         if (afw_compile_is_at_eof()) goto error;
         if (o < 0x80) goto error;
         o &= 0x7f;
@@ -1425,14 +1422,14 @@ afw_compile_get_code_point_impl(afw_compile_parser_t *parser)
         if (o > 0x0f) goto error;
         result = o << 12;
 
-        o = impl_get_octet(parser);
+        o = afw_compile_get_octet(parser);
         if (afw_compile_is_at_eof()) goto error;
         if (o < 0x80) goto error;
         o &= 0x7f;
         if (o > 0x3f) goto error;
         result += o << 6;
 
-        o = impl_get_octet(parser);
+        o = afw_compile_get_octet(parser);
         if (afw_compile_is_at_eof()) goto error;
         if (o < 0x80) goto error;
         o &= 0x7f;
@@ -1445,7 +1442,7 @@ afw_compile_get_code_point_impl(afw_compile_parser_t *parser)
         if (o > 0x1f) goto error;
         result = o << 6;
 
-        o = impl_get_octet(parser);
+        o = afw_compile_get_octet(parser);
         if (afw_compile_is_at_eof()) goto error;
         if (o < 0x80) goto error;
         o &= 0x7f;
@@ -1468,7 +1465,7 @@ impl_unescaped(afw_compile_parser_t *parser)
     afw_code_point_t cp, cp2;
 
     /* If escape, get next octet and break if eof.*/
-    o = impl_get_octet(parser);
+    o = afw_compile_get_octet(parser);
     if (afw_compile_is_at_eof()) {
         AFW_COMPILE_THROW_ERROR_Z("Invalid escape code");
     }
@@ -1519,9 +1516,9 @@ impl_unescaped(afw_compile_parser_t *parser)
         /* If code point is a utf-16 surrogate, it must be paired. */
         if (cp >= 0xD800 && cp <= 0xDFFF) {
             if (cp >= 0xDC00) goto error;
-            o = impl_get_octet(parser);
+            o = afw_compile_get_octet(parser);
             if (o != '\\') goto error;
-            o = impl_get_octet(parser);
+            o = afw_compile_get_octet(parser);
             if (o != 'u') goto error;
             cp2 =
                 impl_get_required_HexDigit(parser) * 0x1000 +
@@ -1573,7 +1570,7 @@ afw_compile_next_raw_starts_with_impl(
 
     afw_compile_save_cursor(cursor);
     for (result = true, i = 0; i < s->len; i++) {
-        o = impl_get_octet(parser);
+        o = afw_compile_get_octet(parser);
         if (afw_compile_is_at_eof() || o != s->s[i]) {
             result = false;
             break;
@@ -1629,7 +1626,7 @@ afw_compile_get_raw_line_impl(
 
 
     for (;;) {
-        o = impl_get_octet(parser);
+        o = afw_compile_get_octet(parser);
         if (afw_compile_is_at_eof() || o == '\n') {
             break;
         }
@@ -2159,11 +2156,12 @@ afw_compile_check_for_residual(afw_compile_parser_t *parser)
     switch (parser->residual_check) {
 
     case afw_compile_residual_check_none:
+    case afw_compile_residual_check_to_close_brace:
         break;
 
     case afw_compile_residual_check_to_newline:
         if (!afw_compile_is_at_eof()) for (;;) {
-            o = impl_get_octet(parser);
+            o = afw_compile_get_octet(parser);
             if (afw_compile_is_at_eof() || o == '\n') break;
             if (!afw_ascii_is_whitespace(o)) {
                 afw_compile_save_cursor(save);

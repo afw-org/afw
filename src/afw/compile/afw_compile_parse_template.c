@@ -14,6 +14,15 @@
 #include "afw_internal.h"
 
 
+static int
+impl_compile_time_template_get_cb(
+    afw_utf8_octet_t *octet,
+    void *data, afw_xctx_t *xctx)
+{
+    *octet = afw_compile_get_octet((afw_compile_parser_t *)data);
+    return 0;
+}
+
 
 /*ebnf>>>
  *
@@ -28,17 +37,30 @@ afw_compile_parse_CompileTimeSubstitution(afw_compile_parser_t *parser)
     afw_compile_get_token();
     if (afw_compile_token_is(compile_time_substitute_start))
     {
+        /* Include '{' of '#{' in compile time substitution parse. */
+        (parser->token->token_source_offset)--;
 
-//FIXME go into always optimize even if side effects to insure compile time eval
-        result = afw_compile_parse_Script(parser, true);
-//FIXME       result = afw_value_evaluate(result, parser->p, parser->xctx);
+        /* Parse '{' Script '}'. */
+        result = afw_compile_to_value_with_callback(
+            NULL,
+            impl_compile_time_template_get_cb,
+            parser,
+            afw_compile_create_source_location_impl(
+                parser,
+                parser->token->token_source_offset),
+            afw_compile_type_script,
+            afw_compile_residual_check_to_close_brace,
+            NULL,
+            NULL,
+            parser->p,
+            parser->xctx);
     }
-
     else {
         AFW_COMPILE_THROW_ERROR_Z("Internal error");
     }
 
-    /* Return result. */
+    /* Evaluate script at compile time and return result. */
+    result = afw_value_evaluate(result, parser->p, parser->xctx);
     return result;
 }
 

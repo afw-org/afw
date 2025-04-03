@@ -638,6 +638,8 @@ if (afw_compile_is_at_eof()) \
     AFW_COMPILE_THROW_ERROR_Z("Unexpected end")
 
 
+AFW_DECLARE_INTERNAL(afw_octet_t)
+afw_compile_get_octet(afw_compile_parser_t *parser);
 
 AFW_DECLARE_INTERNAL(afw_code_point_t)
 afw_compile_get_code_point_impl(afw_compile_parser_t *parser);
