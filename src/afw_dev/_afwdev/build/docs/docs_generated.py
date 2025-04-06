@@ -78,7 +78,7 @@ def generate_function_category(fp, src, breadcrumbs, nav_items, docsHtml, catego
 
     def map_function(f):       
         return [ 
-            docsHtml.link(f['functionId'], f['functionId'] + '.html'), 
+            docsHtml.link(f['functionId'], category + '/' + f['functionId'] + '.html'), 
             docsHtml.escape(f['description'])
         ]              
 

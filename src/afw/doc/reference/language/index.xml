@@ -11,4 +11,8 @@
     <section href="expressions.xml" label="Expressions" content-type="xml"/>
     <section href="statements.xml" label="Statements" content-type="xml"/>
     <section href="qualified-variables.xml" label="Qualified Variables" content-type="xml"/>
+    <paragraph>
+        For the complete grammar productions and diagrams,
+        please see the <link href="ebnf/syntax/index.html" text="Syntax EBNF"/>.
+    </paragraph>
 </doc>

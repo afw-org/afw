@@ -1,0 +1,12 @@
+{
+    "title": "AFWDev",
+    "description": "Adaptive Framework Dev Container.",
+    "defaultAdapterId": "afw",
+    "authorizationControl": {
+        "_meta_": {
+            "objectType": "_AdaptiveAuthorizationControl_"
+        },
+        "initialAuthorizationCheck": "if (current::actionId == 'execute') { \n    if (current::resourceId === '/afw/_AdaptiveFunction_/service_get') \n        return { 'decisionId': 'permit' }; \n    else if (current::resourceId == '/afw/_AdaptiveFunction_/service_restart') {\n        const funcObj = current::object;\n        assert(funcObj.function.functionLabel === 'service_restart');\n\n\tif (length(funcObj.arguments) === 1)\n            assert(funcObj.arguments[0] === 'adapter-files');\n\n        else if (length(funcObj.arguments) === 2) {\n            assert(funcObj.arguments[0] === 'adapter-files');\n            assert(funcObj.arguments[1] === 42);\n        }\n\n        return { 'decisionId': 'permit' }; \n    }\n} else {\n    return {'decisionId': 'permit'};\n}",
+        "denyIfNotApplicable": true
+    }
+}

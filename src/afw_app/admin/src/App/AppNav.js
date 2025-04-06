@@ -390,11 +390,13 @@ const AppNav = (props) => {
                                         },
                                         {
                                             label: "Language",
-                                            url: "/Documentation/Reference/Language",
+                                            url: "/docs/afw/html/reference/language/index.html",
+                                            external: true,
                                         },
                                         {
                                             label: "Glossary",
-                                            url: "/Documentation/Reference/Glossary",
+                                            url: "/docs/afw/html/reference/glossary/index.html",
+                                            external: true,
                                         }
                                     ]
                                 },
