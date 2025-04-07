@@ -96542,28 +96542,28 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__0_9_0 \
-    "0.9.0"
+#define AFW_Q_zz__0_10_0 \
+    "0.10.0"
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz__0_9_0 */
-#define afw_s_zz__0_9_0 \
-    (&afw_self_v_zz__0_9_0.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz__0_10_0 */
+#define afw_s_zz__0_10_0 \
+    (&afw_self_v_zz__0_10_0.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz__0_9_0 */
-#define afw_self_s_zz__0_9_0 \
-    (afw_self_v_zz__0_9_0.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz__0_10_0 */
+#define afw_self_s_zz__0_10_0 \
+    (afw_self_v_zz__0_10_0.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_zz__0_9_0 */
+/** @brief 'afw_value_string_t' for AFW_Q_zz__0_10_0 */
 extern const afw_value_string_t \
-    afw_self_v_zz__0_9_0;
+    afw_self_v_zz__0_10_0;
 
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__0_9_0 */
-#define afw_z_zz__0_9_0 \
-    (afw_self_v_zz__0_9_0.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__0_10_0 */
+#define afw_z_zz__0_10_0 \
+    (afw_self_v_zz__0_10_0.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_Q_zz__0_9_0 */
-#define afw_v_zz__0_9_0 \
-    (&afw_self_v_zz__0_9_0.pub)
+/** @brief 'const afw_value_t *' for AFW_Q_zz__0_10_0 */
+#define afw_v_zz__0_10_0 \
+    (&afw_self_v_zz__0_10_0.pub)
 
 
 
@@ -123505,7 +123505,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__1931 \
-    "If true, this function requires 'execute' access to be called. The 'resourceId' for the authorization check is the function object path, the 'actionId' is 'execute', and the 'object' is object type '_AdaptiveFunctionArguments_' which contains the function object and the arguments to the called function.\nNote that the construction of the current::object during authorization check requires that parameters passed in will be evaluated ahead of time. Therefore, if your function is designed to short circuit its execution path based on the value of one of its parameters, understand that functions with this flag set will still undergo evaluations anyway."
+    "If true, this function requires 'execute' authorization access to be called. The 'resourceId' for the authorization check is the function object path, the 'actionId' is 'execute', and the 'object' is object type '_AdaptiveFunctionArguments_' which contains the function object and the arguments to the called function.\nNote that the construction of the current::object during authorization check requires that parameters passed in will be evaluated ahead of time. Therefore, if your function is designed to short circuit its execution path based on the value of one of its parameters, understand that functions with this flag set will still undergo evaluations anyway. In addition, type checking will not be applied to the parameters at the time of authorization, so your authorization policy must consider any type of parameter value to be passed in."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__1931 */
 #define afw_s_zz__1931 \

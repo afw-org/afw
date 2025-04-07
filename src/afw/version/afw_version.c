@@ -38,6 +38,36 @@ AFW_DEFINE(const afw_utf8_z_t *) afw_version_string_z()
 /* Version check */
 AFW_DEFINE(const afw_utf8_z_t *) afw_version_check(unsigned int hex)
 {
-    /* Add checks and throw errors as needed. */
+    static const afw_utf8_z_t *impl_msg_pre_1_0_0 =
+        "Adaptive Framework pre-1.0.0 requires exact MAJOR.MINOR match";
+    static const afw_utf8_z_t *impl_msg_incompatible =
+        "Adaptive Framework version is incompatible";
+
+    unsigned int curr_major = (AFW_VERSION_HEX >> 24) & 0xFF;
+    unsigned int curr_minor = (AFW_VERSION_HEX >> 16) & 0xFF;
+    //unsigned int curr_patch = (AFW_VERSION_HEX >> 8) & 0xFF;
+
+    unsigned int comp_major = (hex >> 24) & 0xFF;
+    unsigned int comp_minor = (hex >> 16) & 0xFF;
+    //unsigned int comp_patch = (hex >> 8) & 0xFF;
+
+    /* Case 1: Compiled version has MAJOR = 0 (pre-1.0.0) */
+    if (comp_major == 0) {
+        if (curr_major != 0 || curr_minor != comp_minor) {
+            return impl_msg_pre_1_0_0;
+        }
+        /* PATCH can differ, no further check needed */
+        return NULL;
+    }
+
+    /* Case 2: Compiled version has MAJOR > 0 (stable API) */
+    if (curr_major != comp_major) {
+        return impl_msg_incompatible;
+    }
+    if (curr_minor < comp_minor) {
+        return impl_msg_incompatible;
+    }
+    /* PATCH can differ, no further check needed */
+
     return NULL;
 }

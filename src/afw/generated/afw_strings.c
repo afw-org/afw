@@ -22298,9 +22298,9 @@ afw_self_v_zz__ = {
 };
 
 const afw_value_string_t
-afw_self_v_zz__0_9_0 = {
+afw_self_v_zz__0_10_0 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__0_9_0)
+    AFW_UTF8_LITERAL(AFW_Q_zz__0_10_0)
 };
 
 const afw_value_string_t
