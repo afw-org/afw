@@ -43,13 +43,13 @@ AFW_DEFINE(const afw_utf8_z_t *) afw_version_check(unsigned int hex)
     static const afw_utf8_z_t *impl_msg_incompatible =
         "Adaptive Framework version is incompatible";
 
-    unsigned int curr_major = (AFW_VERSION_HEX >> 24) & 0xFF;
-    unsigned int curr_minor = (AFW_VERSION_HEX >> 16) & 0xFF;
-    //unsigned int curr_patch = (AFW_VERSION_HEX >> 8) & 0xFF;
+    unsigned int curr_major = (AFW_VERSION_HEX >> 16) & 0xFF;
+    unsigned int curr_minor = (AFW_VERSION_HEX >> 8) & 0xFF;
+    //unsigned int curr_patch = (AFW_VERSION_HEX) & 0xFF;
 
-    unsigned int comp_major = (hex >> 24) & 0xFF;
-    unsigned int comp_minor = (hex >> 16) & 0xFF;
-    //unsigned int comp_patch = (hex >> 8) & 0xFF;
+    unsigned int comp_major = (hex >> 16) & 0xFF;
+    unsigned int comp_minor = (hex >> 8) & 0xFF;
+    //unsigned int comp_patch = hex & 0xFF;
 
     /* Case 1: Compiled version has MAJOR = 0 (pre-1.0.0) */
     if (comp_major == 0) {
