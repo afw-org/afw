@@ -39,11 +39,11 @@ AFW_DEFINE(const afw_utf8_z_t *) afw_version_string_z()
 AFW_DEFINE(const afw_utf8_z_t *) afw_version_check(unsigned int hex)
 {
     static const afw_utf8_z_t *impl_msg_pre_1_0_0 =
-        "Built with a version of Adaptive Framework that is incompatible with "
+        "built with a version of Adaptive Framework that is incompatible with "
         AFW_VERSION_STRING ". "
         "MAJOR and MINOR version must be the same.";
     static const afw_utf8_z_t *impl_msg_incompatible =
-        "Built with a version of Adaptive Framework that is incompatible with "
+        "built with a version of Adaptive Framework that is incompatible with "
         AFW_VERSION_STRING ". "
         "MAJOR version must be the same and "
         "MINOR version must be the same or larger.";
