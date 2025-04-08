@@ -23,17 +23,6 @@ impl_s_a_notApplicable_policy_id =
 AFW_UTF8_LITERAL("/afw/_AdaptivePolicyId_/notApplicable");
 
 static const afw_value_string_t
-impl_authorization_decision_id_action_id_control = {
-    {&afw_value_unmanaged_string_inf},
-    AFW_UTF8_LITERAL("control")
-};
-
-AFW_DEFINE_CONST_DATA(afw_value_t *)
-afw_authorization_action_id_control =
-&impl_authorization_decision_id_action_id_control.pub;
-
-
-static const afw_value_string_t
 impl_authorization_decision_id_action_id_create = {
     {&afw_value_unmanaged_string_inf},
     AFW_UTF8_LITERAL("create")
@@ -54,6 +43,15 @@ AFW_DEFINE_CONST_DATA(afw_value_t *)
 afw_authorization_action_id_delete =
 &impl_authorization_decision_id_action_id_delete.pub;
 
+static const afw_value_string_t
+impl_authorization_decision_id_action_id_execute = {
+    {&afw_value_unmanaged_string_inf},
+    AFW_UTF8_LITERAL("execute")
+};
+
+AFW_DEFINE_CONST_DATA(afw_value_t *)
+afw_authorization_action_id_execute =
+&impl_authorization_decision_id_action_id_execute.pub;
 
 static const afw_value_string_t
 impl_authorization_decision_id_action_id_modify = {

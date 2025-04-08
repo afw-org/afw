@@ -6,6 +6,7 @@
     "functionId": "curl_version_info",
     "functionLabel": "curl_version_info",
     "parameters": [],
+    "requiresExecuteAccess": true,
     "returns": {
         "dataType": "object",
         "dataTypeParameter": "_AdaptiveCurlVersionInfo_",

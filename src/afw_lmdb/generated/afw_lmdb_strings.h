@@ -2916,242 +2916,8 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_LMDB_Q_zz__2556 \
-    "Information about the LMDB environment, its collection of databases."
-
-/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__2556 */
-#define afw_lmdb_s_zz__2556 \
-    (&afw_lmdb_self_v_zz__2556.internal)
-
-/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__2556 */
-#define afw_lmdb_self_s_zz__2556 \
-    (afw_lmdb_self_v_zz__2556.internal)
-
-/** @brief 'afw_value_string_t' for AFW_LMDB_Q_zz__2556 */
-extern const afw_value_string_t \
-    afw_lmdb_self_v_zz__2556;
-
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_zz__2556 */
-#define afw_lmdb_z_zz__2556 \
-    (afw_lmdb_self_v_zz__2556.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_LMDB_Q_zz__2556 */
-#define afw_lmdb_v_zz__2556 \
-    (&afw_lmdb_self_v_zz__2556.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_LMDB_Q_zz__2557 \
-    "Maximum number of reader slots in simultaneous use since the lock file was initialized."
-
-/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__2557 */
-#define afw_lmdb_s_zz__2557 \
-    (&afw_lmdb_self_v_zz__2557.internal)
-
-/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__2557 */
-#define afw_lmdb_self_s_zz__2557 \
-    (afw_lmdb_self_v_zz__2557.internal)
-
-/** @brief 'afw_value_string_t' for AFW_LMDB_Q_zz__2557 */
-extern const afw_value_string_t \
-    afw_lmdb_self_v_zz__2557;
-
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_zz__2557 */
-#define afw_lmdb_z_zz__2557 \
-    (afw_lmdb_self_v_zz__2557.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_LMDB_Q_zz__2557 */
-#define afw_lmdb_v_zz__2557 \
-    (&afw_lmdb_self_v_zz__2557.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_LMDB_Q_zz__2558 \
-    "Number of reader slots allocated in the lock file. Equivalent to the value maxreaders specified by the first process opening the Environment."
-
-/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__2558 */
-#define afw_lmdb_s_zz__2558 \
-    (&afw_lmdb_self_v_zz__2558.internal)
-
-/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__2558 */
-#define afw_lmdb_self_s_zz__2558 \
-    (afw_lmdb_self_v_zz__2558.internal)
-
-/** @brief 'afw_value_string_t' for AFW_LMDB_Q_zz__2558 */
-extern const afw_value_string_t \
-    afw_lmdb_self_v_zz__2558;
-
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_zz__2558 */
-#define afw_lmdb_z_zz__2558 \
-    (afw_lmdb_self_v_zz__2558.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_LMDB_Q_zz__2558 */
-#define afw_lmdb_v_zz__2558 \
-    (&afw_lmdb_self_v_zz__2558.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_LMDB_Q_zz__2559 \
-    "Information about the LMDB environment, its collection of databases. Uses the mdb_env_info() routine."
-
-/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__2559 */
-#define afw_lmdb_s_zz__2559 \
-    (&afw_lmdb_self_v_zz__2559.internal)
-
-/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__2559 */
-#define afw_lmdb_self_s_zz__2559 \
-    (afw_lmdb_self_v_zz__2559.internal)
-
-/** @brief 'afw_value_string_t' for AFW_LMDB_Q_zz__2559 */
-extern const afw_value_string_t \
-    afw_lmdb_self_v_zz__2559;
-
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_zz__2559 */
-#define afw_lmdb_z_zz__2559 \
-    (afw_lmdb_self_v_zz__2559.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_LMDB_Q_zz__2559 */
-#define afw_lmdb_v_zz__2559 \
-    (&afw_lmdb_self_v_zz__2559.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_LMDB_Q_zz__2560 \
-    "Information about a LMDB database. Uses the mdb_env_stat() routine."
-
-/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__2560 */
-#define afw_lmdb_s_zz__2560 \
-    (&afw_lmdb_self_v_zz__2560.internal)
-
-/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__2560 */
-#define afw_lmdb_self_s_zz__2560 \
-    (afw_lmdb_self_v_zz__2560.internal)
-
-/** @brief 'afw_value_string_t' for AFW_LMDB_Q_zz__2560 */
-extern const afw_value_string_t \
-    afw_lmdb_self_v_zz__2560;
-
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_zz__2560 */
-#define afw_lmdb_z_zz__2560 \
-    (afw_lmdb_self_v_zz__2560.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_LMDB_Q_zz__2560 */
-#define afw_lmdb_v_zz__2560 \
-    (&afw_lmdb_self_v_zz__2560.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_LMDB_Q_zz__2561 \
-    "Information about each LMDB database. Uses the mdb_env_stat() routine."
-
-/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__2561 */
-#define afw_lmdb_s_zz__2561 \
-    (&afw_lmdb_self_v_zz__2561.internal)
-
-/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__2561 */
-#define afw_lmdb_self_s_zz__2561 \
-    (afw_lmdb_self_v_zz__2561.internal)
-
-/** @brief 'afw_value_string_t' for AFW_LMDB_Q_zz__2561 */
-extern const afw_value_string_t \
-    afw_lmdb_self_v_zz__2561;
-
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_zz__2561 */
-#define afw_lmdb_z_zz__2561 \
-    (afw_lmdb_self_v_zz__2561.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_LMDB_Q_zz__2561 */
-#define afw_lmdb_v_zz__2561 \
-    (&afw_lmdb_self_v_zz__2561.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_LMDB_Q_zz__2562 \
-    "Size of the memory map to use for the environment. The size should be a multiple of OS page size"
-
-/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__2562 */
-#define afw_lmdb_s_zz__2562 \
-    (&afw_lmdb_self_v_zz__2562.internal)
-
-/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__2562 */
-#define afw_lmdb_self_s_zz__2562 \
-    (afw_lmdb_self_v_zz__2562.internal)
-
-/** @brief 'afw_value_string_t' for AFW_LMDB_Q_zz__2562 */
-extern const afw_value_string_t \
-    afw_lmdb_self_v_zz__2562;
-
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_zz__2562 */
-#define afw_lmdb_z_zz__2562 \
-    (afw_lmdb_self_v_zz__2562.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_LMDB_Q_zz__2562 */
-#define afw_lmdb_v_zz__2562 \
-    (&afw_lmdb_self_v_zz__2562.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_LMDB_Q_zz__2563 \
-    "Object type for type=adapter adapter_type=lmdb env conf entries."
-
-/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__2563 */
-#define afw_lmdb_s_zz__2563 \
-    (&afw_lmdb_self_v_zz__2563.internal)
-
-/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__2563 */
-#define afw_lmdb_self_s_zz__2563 \
-    (afw_lmdb_self_v_zz__2563.internal)
-
-/** @brief 'afw_value_string_t' for AFW_LMDB_Q_zz__2563 */
-extern const afw_value_string_t \
-    afw_lmdb_self_v_zz__2563;
-
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_zz__2563 */
-#define afw_lmdb_z_zz__2563 \
-    (afw_lmdb_self_v_zz__2563.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_LMDB_Q_zz__2563 */
-#define afw_lmdb_v_zz__2563 \
-    (&afw_lmdb_self_v_zz__2563.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_LMDB_Q_zz__2564 \
-    "Object type for type=adapter adapter_type=lmdb limit conf entries."
-
-/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__2564 */
-#define afw_lmdb_s_zz__2564 \
-    (&afw_lmdb_self_v_zz__2564.internal)
-
-/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__2564 */
-#define afw_lmdb_self_s_zz__2564 \
-    (afw_lmdb_self_v_zz__2564.internal)
-
-/** @brief 'afw_value_string_t' for AFW_LMDB_Q_zz__2564 */
-extern const afw_value_string_t \
-    afw_lmdb_self_v_zz__2564;
-
-/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_zz__2564 */
-#define afw_lmdb_z_zz__2564 \
-    (afw_lmdb_self_v_zz__2564.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_LMDB_Q_zz__2564 */
-#define afw_lmdb_v_zz__2564 \
-    (&afw_lmdb_self_v_zz__2564.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_LMDB_Q_zz__2565 \
-    "Object type for type=adapter adapter_type=lmdb size limit conf entries."
+    "Information about the LMDB environment, its collection of databases."
 
 /** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__2565 */
 #define afw_lmdb_s_zz__2565 \
@@ -3177,7 +2943,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_LMDB_Q_zz__2566 \
-    "Object type for type=adapter adapter_type=lmdb time limit conf entries."
+    "Maximum number of reader slots in simultaneous use since the lock file was initialized."
 
 /** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__2566 */
 #define afw_lmdb_s_zz__2566 \
@@ -3203,7 +2969,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_LMDB_Q_zz__2567 \
-    "This category provides adaptive functions for interacting with a Lightning Memory-Mapped Database (LMDB)."
+    "Number of reader slots allocated in the lock file. Equivalent to the value maxreaders specified by the first process opening the Environment."
 
 /** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__2567 */
 #define afw_lmdb_s_zz__2567 \
@@ -3224,6 +2990,240 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_LMDB_Q_zz__2567 */
 #define afw_lmdb_v_zz__2567 \
     (&afw_lmdb_self_v_zz__2567.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_LMDB_Q_zz__2568 \
+    "Information about the LMDB environment, its collection of databases. Uses the mdb_env_info() routine."
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__2568 */
+#define afw_lmdb_s_zz__2568 \
+    (&afw_lmdb_self_v_zz__2568.internal)
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__2568 */
+#define afw_lmdb_self_s_zz__2568 \
+    (afw_lmdb_self_v_zz__2568.internal)
+
+/** @brief 'afw_value_string_t' for AFW_LMDB_Q_zz__2568 */
+extern const afw_value_string_t \
+    afw_lmdb_self_v_zz__2568;
+
+/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_zz__2568 */
+#define afw_lmdb_z_zz__2568 \
+    (afw_lmdb_self_v_zz__2568.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_zz__2568 */
+#define afw_lmdb_v_zz__2568 \
+    (&afw_lmdb_self_v_zz__2568.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_LMDB_Q_zz__2569 \
+    "Information about a LMDB database. Uses the mdb_env_stat() routine."
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__2569 */
+#define afw_lmdb_s_zz__2569 \
+    (&afw_lmdb_self_v_zz__2569.internal)
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__2569 */
+#define afw_lmdb_self_s_zz__2569 \
+    (afw_lmdb_self_v_zz__2569.internal)
+
+/** @brief 'afw_value_string_t' for AFW_LMDB_Q_zz__2569 */
+extern const afw_value_string_t \
+    afw_lmdb_self_v_zz__2569;
+
+/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_zz__2569 */
+#define afw_lmdb_z_zz__2569 \
+    (afw_lmdb_self_v_zz__2569.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_zz__2569 */
+#define afw_lmdb_v_zz__2569 \
+    (&afw_lmdb_self_v_zz__2569.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_LMDB_Q_zz__2570 \
+    "Information about each LMDB database. Uses the mdb_env_stat() routine."
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__2570 */
+#define afw_lmdb_s_zz__2570 \
+    (&afw_lmdb_self_v_zz__2570.internal)
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__2570 */
+#define afw_lmdb_self_s_zz__2570 \
+    (afw_lmdb_self_v_zz__2570.internal)
+
+/** @brief 'afw_value_string_t' for AFW_LMDB_Q_zz__2570 */
+extern const afw_value_string_t \
+    afw_lmdb_self_v_zz__2570;
+
+/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_zz__2570 */
+#define afw_lmdb_z_zz__2570 \
+    (afw_lmdb_self_v_zz__2570.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_zz__2570 */
+#define afw_lmdb_v_zz__2570 \
+    (&afw_lmdb_self_v_zz__2570.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_LMDB_Q_zz__2571 \
+    "Size of the memory map to use for the environment. The size should be a multiple of OS page size"
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__2571 */
+#define afw_lmdb_s_zz__2571 \
+    (&afw_lmdb_self_v_zz__2571.internal)
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__2571 */
+#define afw_lmdb_self_s_zz__2571 \
+    (afw_lmdb_self_v_zz__2571.internal)
+
+/** @brief 'afw_value_string_t' for AFW_LMDB_Q_zz__2571 */
+extern const afw_value_string_t \
+    afw_lmdb_self_v_zz__2571;
+
+/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_zz__2571 */
+#define afw_lmdb_z_zz__2571 \
+    (afw_lmdb_self_v_zz__2571.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_zz__2571 */
+#define afw_lmdb_v_zz__2571 \
+    (&afw_lmdb_self_v_zz__2571.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_LMDB_Q_zz__2572 \
+    "Object type for type=adapter adapter_type=lmdb env conf entries."
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__2572 */
+#define afw_lmdb_s_zz__2572 \
+    (&afw_lmdb_self_v_zz__2572.internal)
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__2572 */
+#define afw_lmdb_self_s_zz__2572 \
+    (afw_lmdb_self_v_zz__2572.internal)
+
+/** @brief 'afw_value_string_t' for AFW_LMDB_Q_zz__2572 */
+extern const afw_value_string_t \
+    afw_lmdb_self_v_zz__2572;
+
+/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_zz__2572 */
+#define afw_lmdb_z_zz__2572 \
+    (afw_lmdb_self_v_zz__2572.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_zz__2572 */
+#define afw_lmdb_v_zz__2572 \
+    (&afw_lmdb_self_v_zz__2572.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_LMDB_Q_zz__2573 \
+    "Object type for type=adapter adapter_type=lmdb limit conf entries."
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__2573 */
+#define afw_lmdb_s_zz__2573 \
+    (&afw_lmdb_self_v_zz__2573.internal)
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__2573 */
+#define afw_lmdb_self_s_zz__2573 \
+    (afw_lmdb_self_v_zz__2573.internal)
+
+/** @brief 'afw_value_string_t' for AFW_LMDB_Q_zz__2573 */
+extern const afw_value_string_t \
+    afw_lmdb_self_v_zz__2573;
+
+/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_zz__2573 */
+#define afw_lmdb_z_zz__2573 \
+    (afw_lmdb_self_v_zz__2573.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_zz__2573 */
+#define afw_lmdb_v_zz__2573 \
+    (&afw_lmdb_self_v_zz__2573.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_LMDB_Q_zz__2574 \
+    "Object type for type=adapter adapter_type=lmdb size limit conf entries."
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__2574 */
+#define afw_lmdb_s_zz__2574 \
+    (&afw_lmdb_self_v_zz__2574.internal)
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__2574 */
+#define afw_lmdb_self_s_zz__2574 \
+    (afw_lmdb_self_v_zz__2574.internal)
+
+/** @brief 'afw_value_string_t' for AFW_LMDB_Q_zz__2574 */
+extern const afw_value_string_t \
+    afw_lmdb_self_v_zz__2574;
+
+/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_zz__2574 */
+#define afw_lmdb_z_zz__2574 \
+    (afw_lmdb_self_v_zz__2574.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_zz__2574 */
+#define afw_lmdb_v_zz__2574 \
+    (&afw_lmdb_self_v_zz__2574.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_LMDB_Q_zz__2575 \
+    "Object type for type=adapter adapter_type=lmdb time limit conf entries."
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__2575 */
+#define afw_lmdb_s_zz__2575 \
+    (&afw_lmdb_self_v_zz__2575.internal)
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__2575 */
+#define afw_lmdb_self_s_zz__2575 \
+    (afw_lmdb_self_v_zz__2575.internal)
+
+/** @brief 'afw_value_string_t' for AFW_LMDB_Q_zz__2575 */
+extern const afw_value_string_t \
+    afw_lmdb_self_v_zz__2575;
+
+/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_zz__2575 */
+#define afw_lmdb_z_zz__2575 \
+    (afw_lmdb_self_v_zz__2575.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_zz__2575 */
+#define afw_lmdb_v_zz__2575 \
+    (&afw_lmdb_self_v_zz__2575.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_LMDB_Q_zz__2576 \
+    "This category provides adaptive functions for interacting with a Lightning Memory-Mapped Database (LMDB)."
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__2576 */
+#define afw_lmdb_s_zz__2576 \
+    (&afw_lmdb_self_v_zz__2576.internal)
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz__2576 */
+#define afw_lmdb_self_s_zz__2576 \
+    (afw_lmdb_self_v_zz__2576.internal)
+
+/** @brief 'afw_value_string_t' for AFW_LMDB_Q_zz__2576 */
+extern const afw_value_string_t \
+    afw_lmdb_self_v_zz__2576;
+
+/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_zz__2576 */
+#define afw_lmdb_z_zz__2576 \
+    (afw_lmdb_self_v_zz__2576.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_zz__2576 */
+#define afw_lmdb_v_zz__2576 \
+    (&afw_lmdb_self_v_zz__2576.pub)
 
 
 
@@ -4680,6 +4680,58 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_LMDB_Q_zz___adapterId__string___string */
 #define afw_lmdb_v_zz___adapterId__string___string \
     (&afw_lmdb_self_v_zz___adapterId__string___string.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_LMDB_Q_zz___afw__AdaptiveFunction__reader_check \
+    "/afw/_AdaptiveFunction_/reader_check"
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz___afw__AdaptiveFunction__reader_check */
+#define afw_lmdb_s_zz___afw__AdaptiveFunction__reader_check \
+    (&afw_lmdb_self_v_zz___afw__AdaptiveFunction__reader_check.internal)
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz___afw__AdaptiveFunction__reader_check */
+#define afw_lmdb_self_s_zz___afw__AdaptiveFunction__reader_check \
+    (afw_lmdb_self_v_zz___afw__AdaptiveFunction__reader_check.internal)
+
+/** @brief 'afw_value_string_t' for AFW_LMDB_Q_zz___afw__AdaptiveFunction__reader_check */
+extern const afw_value_string_t \
+    afw_lmdb_self_v_zz___afw__AdaptiveFunction__reader_check;
+
+/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_zz___afw__AdaptiveFunction__reader_check */
+#define afw_lmdb_z_zz___afw__AdaptiveFunction__reader_check \
+    (afw_lmdb_self_v_zz___afw__AdaptiveFunction__reader_check.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_zz___afw__AdaptiveFunction__reader_check */
+#define afw_lmdb_v_zz___afw__AdaptiveFunction__reader_check \
+    (&afw_lmdb_self_v_zz___afw__AdaptiveFunction__reader_check.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_LMDB_Q_zz___afw__AdaptiveFunction__reader_list \
+    "/afw/_AdaptiveFunction_/reader_list"
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz___afw__AdaptiveFunction__reader_list */
+#define afw_lmdb_s_zz___afw__AdaptiveFunction__reader_list \
+    (&afw_lmdb_self_v_zz___afw__AdaptiveFunction__reader_list.internal)
+
+/** @brief 'afw_utf8_t' for AFW_LMDB_Q_zz___afw__AdaptiveFunction__reader_list */
+#define afw_lmdb_self_s_zz___afw__AdaptiveFunction__reader_list \
+    (afw_lmdb_self_v_zz___afw__AdaptiveFunction__reader_list.internal)
+
+/** @brief 'afw_value_string_t' for AFW_LMDB_Q_zz___afw__AdaptiveFunction__reader_list */
+extern const afw_value_string_t \
+    afw_lmdb_self_v_zz___afw__AdaptiveFunction__reader_list;
+
+/** @brief 'afw_utf8_z_t *' for AFW_LMDB_Q_zz___afw__AdaptiveFunction__reader_list */
+#define afw_lmdb_z_zz___afw__AdaptiveFunction__reader_list \
+    (afw_lmdb_self_v_zz___afw__AdaptiveFunction__reader_list.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_LMDB_Q_zz___afw__AdaptiveFunction__reader_list */
+#define afw_lmdb_v_zz___afw__AdaptiveFunction__reader_list \
+    (&afw_lmdb_self_v_zz___afw__AdaptiveFunction__reader_list.pub)
 
 
 

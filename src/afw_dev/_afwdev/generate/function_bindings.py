@@ -198,6 +198,10 @@ def function_comment(fd, obj):
         else:
             fd.write(' * given exactly the same parameters and has side effects.\n')
 
+    if obj.get('requiresExecuteAccess', False):
+        fd.write(' *\n')
+        fd.write(' * This function requires \'execute\' access.\n')
+
     if obj.get('polymorphic', False) != False:
         fd.write(' *\n')
         fd.write(' * Supported `<dataType>`:\n')
@@ -506,6 +510,8 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
             # parameters
             parametersCount = 0
             for parameter in obj.get('parameters'):
+                if parameter.get('name','') in ['arguments', 'function']:
+                    msg.error_exit(obj.get('functionId') + ': parameter name "' + parameter.get('name') + '" is reserved')
                 parametersCount += 1
                 write_parameter(fd, prefix, options, 'impl_' + label + '_parameter_' + str(parametersCount), parameter, 'impl_' + label, "parameters")
             fd.write('\nstatic const afw_value_function_parameter_t *\n')
@@ -581,6 +587,14 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
                 fd.write('    NULL,\n')
             else:
                 fd.write('    &' + get_string_label(options, functionId, 'self_v') + ',\n')
+
+            # functionResourceId
+            functionResourceId = obj.get('functionId')
+            if functionResourceId is None:
+                fd.write('    NULL,\n')
+            else:
+                functionResourceId = '/afw/_AdaptiveFunction_/' + functionResourceId
+                fd.write('    &' + get_string_label(options, functionResourceId, 'self_v') + ',\n')
 
             # untypedFunctionId
             untypedFunctionId = functionId
@@ -738,11 +752,16 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
             else:
                 fd.write('    &' + get_string_label(options, op, 'self_v') + ',\n')
 
-            # execute
+            # execute and execute_implementation
             if obj.get('useExecuteFunction') is None:
-                fd.write('    ' + prefix + 'function_execute_' + label + ',\n')
+                execute_implementation = prefix + 'function_execute_' + label
             else:
-                fd.write('    ' + obj.get('useExecuteFunction') + ',\n')
+                execute_implementation = obj.get('useExecuteFunction')
+            if obj.get('requiresExecuteAccess', False):
+                fd.write('    afw_function_execute_requiresExecuteAccess_wrapper,\n')
+            else:
+                fd.write('    ' + execute_implementation + ',\n')
+            fd.write('    ' + execute_implementation + ',\n')
 
             # arg_check
             fd.write('    NULL,\n') #@todo
@@ -823,6 +842,10 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
             # signatureOnly
             signatureOnly = 'false' if obj.get('signatureOnly', False) == False else 'true'
             fd.write('    &' + get_string_label(options, signatureOnly, 'self_v', dataType='boolean') + ',\n')
+
+            # requiresExecuteAccess
+            requiresExecuteAccess = 'false' if obj.get('requiresExecuteAccess', False) == False else 'true'
+            fd.write('    &' + get_string_label(options, requiresExecuteAccess, 'self_v', dataType='boolean') + ',\n')
 
             fd.write('};\n')
 

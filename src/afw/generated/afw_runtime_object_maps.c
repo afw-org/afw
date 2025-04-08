@@ -1767,6 +1767,16 @@ impl_properties__AdaptiveFunction_[] = {
         afw_runtime_value_accessor_value
     },
     {
+        &afw_self_s_functionResourceId,
+        offsetof(afw_value_function_definition_t, functionResourceId),
+        -1,
+        &afw_data_type_string_direct,
+        AFW_UTF8_LITERAL(""),
+        NULL,
+        &afw_self_s_value,
+        afw_runtime_value_accessor_value
+    },
+    {
         &afw_self_s_functionSignature,
         offsetof(afw_value_function_definition_t, functionSignature),
         -1,
@@ -1847,6 +1857,16 @@ impl_properties__AdaptiveFunction_[] = {
         afw_runtime_value_accessor_value
     },
     {
+        &afw_self_s_requiresExecuteAccess,
+        offsetof(afw_value_function_definition_t, requiresExecuteAccess),
+        -1,
+        &afw_data_type_boolean_direct,
+        AFW_UTF8_LITERAL(""),
+        NULL,
+        &afw_self_s_value,
+        afw_runtime_value_accessor_value
+    },
+    {
         &afw_self_s_returns,
         offsetof(afw_value_function_definition_t, returns),
         -1,
@@ -1891,7 +1911,7 @@ impl_properties__AdaptiveFunction_[] = {
 static const afw_runtime_object_map_t
 impl_runtime_object_map__AdaptiveFunction_ = {
     &afw_self_s__AdaptiveFunction_,
-    24,
+    26,
     &impl_properties__AdaptiveFunction_[0]
 };
 

@@ -27,6 +27,8 @@
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
  *
+ * This function requires 'execute' access.
+ *
  * Declaration:
  *
  * ```

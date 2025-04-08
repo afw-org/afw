@@ -137,6 +137,17 @@
                 "valueAccessor": "value"
             }
         },
+        "functionResourceId": {
+            "allowQuery": true,
+            "brief": "The function's resource id",
+            "dataType": "string",
+            "description": "This is the function's resource id.",
+            "label": "Function Resource Id",
+            "required": true,
+            "runtime": {
+                "valueAccessor": "value"
+            }
+        },
         "functionSignature": {
             "allowQuery": true,
             "brief": "Function's signature",
@@ -220,6 +231,17 @@
             "defaultValue": false,
             "description": "This indicates that, given exactly the same parameter values, this function will always return the same result and will not cause any side effects.",
             "label": "Pure",
+            "runtime": {
+                "valueAccessor": "value"
+            }
+        },
+        "requiresExecuteAccess": {
+            "allowQuery": true,
+            "brief": "Requires 'execute' access to function",
+            "dataType": "boolean",
+            "description": "If true, this function requires 'execute' access to be called. The 'resourceId' for the authorization check is the function object path, the 'actionId' is 'execute', and the 'object' is object type '_AdaptiveFunctionArguments_' which contains the function object and the arguments to the called function.",
+            "label": "Requires Execute Access",
+            "required": false,
             "runtime": {
                 "valueAccessor": "value"
             }

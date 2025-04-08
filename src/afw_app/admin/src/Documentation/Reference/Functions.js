@@ -307,8 +307,8 @@ export const Function = (props) => {
     const {
         description, category, deprecated, op,
         polymorphic, polymorphicDataTypes, returns,
-        parameters, sideEffects, pure, 
-        functionDeclaration, errorsThrown
+        parameters, requiresExecuteAccess, sideEffects, 
+        pure, functionDeclaration, errorsThrown
     } = func;    
 
     return (
@@ -363,7 +363,13 @@ export const Function = (props) => {
                         sideEffects.map((effect, index) => <Typography key={index} size="5" text={effect} />)
                     ) : <Typography size="5" text="This function has no side effects." />
                 }
-            </Section>            
+            </Section>
+            {
+                requiresExecuteAccess &&
+                    <Section title="Requires Execute Access">
+                        <Typography size="5" text="This function requires authorization 'execute' access." />
+                    </Section>
+            }
             <Section title="Errors Thrown">                        
                 <Typography 
                     size="5" style={{ whiteSpace: "pre-wrap" }}

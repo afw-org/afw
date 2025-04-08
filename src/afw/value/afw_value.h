@@ -132,6 +132,9 @@ struct afw_value_function_definition_s {
     /** @brief Function id of function. */
     const afw_value_string_t *functionId;
 
+    /** @brief Function id of function resource id. */
+    const afw_value_string_t *functionResourceId;
+
     /** @brief Function id without `<dataType>`.
      * 
      *  This is only different from functionId if polymorphic.
@@ -162,8 +165,17 @@ struct afw_value_function_definition_s {
     /** @brief Optional operator for function. */
     const afw_value_string_t *op;
 
-    /** @brief Function called to execute this Adaptive function. */
+    /** @brief Function called to execute this Adaptive function.
+     * 
+     * This will be the same as execute_implementation or a wrapper around it.
+     * For instance, this will be a wrapper function for functions that requires
+     * 'execute' access which will check access then call execute_implementation
+     * if allowed.
+     */
     afw_function_execute_cb_t execute;
+
+    /** @brief The execute implementation for this function. */
+    afw_function_execute_cb_t execute_implementation;
 
     /** @brief Optional function called to check args. */
     afw_function_arg_check_t arg_check;
@@ -229,6 +241,11 @@ struct afw_value_function_definition_s {
      * @brief This is only a signature with an unimplemented execute function.
      */
     const afw_value_boolean_t *signatureOnly;
+
+    /**
+     * @brief Requires 'execute' access to function.
+     */
+    const afw_value_boolean_t *requiresExecuteAccess;
 };
 
 

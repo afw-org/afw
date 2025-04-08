@@ -26,6 +26,8 @@
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
  *
+ * This function requires 'execute' access.
+ *
  * Declaration:
  *
  * ```
@@ -102,6 +104,8 @@ afw_curl_function_execute_http_post(
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
  *
+ * This function requires 'execute' access.
+ *
  * Declaration:
  *
  * ```
@@ -172,6 +176,8 @@ afw_curl_function_execute_http_get(
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
  *
+ * This function requires 'execute' access.
+ *
  * Declaration:
  *
  * ```
@@ -241,6 +247,8 @@ afw_curl_function_execute_http_delete(
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
+ *
+ * This function requires 'execute' access.
  *
  * Declaration:
  *
@@ -317,6 +325,8 @@ afw_curl_function_execute_http_patch(
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
+ *
+ * This function requires 'execute' access.
  *
  * Declaration:
  *

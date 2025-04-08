@@ -12,6 +12,7 @@
             "name": "flagId"
         }
     ],
+    "requiresExecuteAccess": true,
     "returns": {
         "dataType": "void"
     }

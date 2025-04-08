@@ -139,6 +139,8 @@ afw_function_execute_get_stream_error(
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
  *
+ * This function requires 'execute' access.
+ *
  * Declaration:
  *
  * ```
@@ -207,6 +209,8 @@ afw_function_execute_open_file(
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
  *
+ * This function requires 'execute' access.
+ *
  * Declaration:
  *
  * ```
@@ -250,6 +254,8 @@ afw_function_execute_open_response(
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
+ *
+ * This function requires 'execute' access.
  *
  * Declaration:
  *

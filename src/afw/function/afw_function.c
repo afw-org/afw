@@ -92,6 +92,108 @@ afw_function_execute_convert(
 }
 
 
+/* Execute function if caller has 'execute' access. */
+const afw_value_t *
+afw_function_execute_requiresExecuteAccess_wrapper(
+    afw_function_execute_t *x)
+{
+    const afw_value_t *result = NULL;
+    afw_xctx_t *xctx = x->xctx;
+    const afw_object_t *obj = NULL;
+    afw_function_execute_t *temp_x;
+    const afw_value_t **argv;
+    afw_size_t argc;
+    const afw_array_t *argv_array;
+    const afw_value_function_parameter_t * const *parameter;
+
+    AFW_TRY {
+        /* Make an object to pass to authorization check. */
+        obj = afw_object_create(x->p, xctx);
+
+        /*
+         * Use the object's pool for a temporary copy of x and an evaluated
+         * version of argv. These evaluated args will be place in the object
+         * passed to the authorization check and also passed to
+         * x->function->execute_implementation. This is done so that the args
+         * are evaluated only once.
+         *
+         * This is not compatible with functions that only evaluate args when
+         * needed link and/or and for polymorphic functions that need to
+         * evaluate the first arg to determine the correct function to call.
+         * afwdev generate should throw an error if this is attempted.
+         */
+        temp_x = afw_pool_calloc_type(obj->p, afw_function_execute_t, xctx);
+        afw_memory_copy(temp_x, x);
+        argv = afw_pool_malloc(
+            obj->p,
+            x->argc * sizeof(afw_value_t *) + sizeof(afw_value_t *),
+            xctx);
+        temp_x->argv = argv;
+        argv[0] = x->argv[0];
+        for (argc = 1; argc <= x->argc; argc++) {
+            argv[argc] = afw_value_evaluate(x->argv[argc], x->p, xctx);
+        }
+
+        /* Set properties in object to be available in authorization check. */
+        afw_object_set_property_as_object(
+            obj, afw_s_function, x->function->object, xctx);
+        argv_array = afw_array_const_create_array_of_values(
+            &argv[1], x->argc, obj->p, xctx);
+        afw_object_set_property_as_array(
+            obj, afw_s_arguments, argv_array, xctx);
+        for (argc = 1, parameter = x->function->parameters;
+            argc <= x->function->parameters_count;
+            argc++, parameter++)
+        {
+            if (argc == x->function->parameters_count &&
+                (*parameter)->minArgs->internal != -1)
+            {
+                if (argc <= x->argc) {
+                    argv_array = afw_array_const_create_array_of_values(
+                        &argv[argc], x->argc - argc, obj->p, xctx);
+                }
+                else {
+                    argv_array = afw_array_const_create_array_of_values(
+                        &argv[1], 0, obj->p, xctx);
+                }
+                afw_object_set_property_as_array(
+                    obj, &(*parameter)->name->internal, argv_array, xctx);
+            }
+            else {
+                afw_object_set_property(
+                    obj,
+                    &(*parameter)->name->internal,
+                    (argc <= x->argc) ? argv[argc] : NULL,
+                    xctx);
+            }
+        }
+        
+        /* Check authorization and throw error if not allowed. */
+        afw_authorization_check(
+            true,
+            NULL,
+            (const afw_value_t *)x->function->functionResourceId,
+            obj->value,
+            afw_authorization_action_id_execute,
+            x->p,
+            xctx);
+
+        /* Call function implementation with temp_x. */
+        result = x->function->execute_implementation(temp_x);
+    }
+    AFW_FINALLY {
+
+        /* If obj was create, release which will also release its pool. */
+        if (obj) {
+            afw_object_release(obj, xctx);
+        }
+    }
+    AFW_ENDTRY;
+
+    /* Return result if error was not thrown. */
+    return result;
+}
+
 
 /* Evaluate function parameter. */
 /* Note: only called by higher_order_array at the moment */

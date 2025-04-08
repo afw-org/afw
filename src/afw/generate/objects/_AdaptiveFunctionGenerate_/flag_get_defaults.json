@@ -4,8 +4,8 @@
     "description": "Get the array of the flagId of flags that are used to determine the default active flags when an execution context (xctx) is created. This array can contain the flagId of flags that have not yet been registered. Each of these flags and the flags they include are set as the active default flags.",
     "functionId": "flag_get_defaults",
     "functionLabel": "flag_get_defaults",
-    "parameters": [
-    ],
+    "parameters": [],
+    "requiresExecuteAccess": true,
     "returns": {
         "dataType": "array",
         "dataTypeParameter": "string",

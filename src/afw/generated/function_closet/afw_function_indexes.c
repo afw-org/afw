@@ -27,6 +27,8 @@
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
  *
+ * This function requires 'execute' access.
+ *
  * Declaration:
  *
  * ```
@@ -88,6 +90,8 @@ afw_function_execute_index_create(
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
  *
+ * This function requires 'execute' access.
+ *
  * Declaration:
  *
  * ```
@@ -128,6 +132,8 @@ afw_function_execute_index_list(
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
+ *
+ * This function requires 'execute' access.
  *
  * Declaration:
  *

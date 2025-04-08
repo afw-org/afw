@@ -11,6 +11,7 @@
             "name": "serviceId"
         }
     ],
+    "requiresExecuteAccess": true,
     "returns": {
         "dataType": "object",
         "dataTypeParameter": "_AdaptiveService_",

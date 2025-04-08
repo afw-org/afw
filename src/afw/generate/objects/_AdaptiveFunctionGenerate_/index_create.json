@@ -52,6 +52,7 @@
             "optional": true
         }
     ],
+    "requiresExecuteAccess": true,
     "returns": {
         "dataType": "object",
         "description": "Object response from the indexing process"

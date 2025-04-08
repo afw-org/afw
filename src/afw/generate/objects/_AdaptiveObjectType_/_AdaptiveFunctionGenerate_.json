@@ -157,14 +157,6 @@
             "label": "Polymorphic Function Label",
             "required": false
         },
-        "polymorphicOverrides": {
-            "allowQuery": false,
-            "brief": "Polymorphic overrides",
-            "dataType": "object",
-            "description": "This allows overrides, for particular data types, of properties for this function.",
-            "label": "Polymorphic Function Label",
-            "required": false
-        },
         "polymorphicExecuteFunctionEvaluatesFirstParameter": {
             "allowQuery": true,
             "brief": "First parameter evaluate deferred to polymorphicExecuteFunction",
@@ -173,6 +165,14 @@
             "description": "If true, the first parameter evaluate is deferred to polymorphicExecuteFunction function. If false or not specified, standard polymorphic function processing evaluates the first parameter to determine the appropriate evaluate to call.",
             "label": "Defer Evaluate"
         },
+        "polymorphicOverrides": {
+            "allowQuery": false,
+            "brief": "Polymorphic overrides",
+            "dataType": "object",
+            "description": "This allows overrides, for particular data types, of properties for this function.",
+            "label": "Polymorphic Function Label",
+            "required": false
+        },
         "pure": {
             "allowQuery": true,
             "brief": "Given exactly the same parameter values, this function will always return the same result",
@@ -180,6 +180,14 @@
             "defaultValue": false,
             "description": "This indicates that, given exactly the same parameter values, this function will always return the same result and will not cause any side effects.",
             "label": "Pure"
+        },
+        "requiresExecuteAccess": {
+            "allowQuery": true,
+            "brief": "Requires 'execute' access to function",
+            "dataType": "boolean",
+            "description": "If true, this function requires 'execute' authorization access to be called. The 'resourceId' for the authorization check is the function object path, the 'actionId' is 'execute', and the 'object' is object type '_AdaptiveFunctionArguments_' which contains the function object and the arguments to the called function.\nNote that the construction of the current::object during authorization check requires that parameters passed in will be evaluated ahead of time. Therefore, if your function is designed to short circuit its execution path based on the value of one of its parameters, understand that functions with this flag set will still undergo evaluations anyway. In addition, type checking will not be applied to the parameters at the time of authorization, so your authorization policy must consider any type of parameter value to be passed in.",
+            "label": "Requires Execute Access",
+            "required": false
         },
         "returns": {
             "allowQuery": true,

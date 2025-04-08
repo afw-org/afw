@@ -17,6 +17,7 @@
             "optional": true
         }
     ],
+    "requiresExecuteAccess": true,
     "returns": {
         "dataType": "object",
         "description": "Object response from the index repair process"

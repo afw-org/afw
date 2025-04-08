@@ -28,6 +28,8 @@
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
  *
+ * This function requires 'execute' access.
+ *
  * Declaration:
  *
  * ```
@@ -136,6 +138,8 @@ afw_function_execute_flag_get_active_defaults(
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
  *
+ * This function requires 'execute' access.
+ *
  * Declaration:
  *
  * ```
@@ -201,6 +205,8 @@ afw_function_execute_flag_get_defaults(
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
+ *
+ * This function requires 'execute' access.
  *
  * Declaration:
  *
@@ -291,6 +297,8 @@ afw_function_execute_flag_modify_defaults(
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
  *
+ * This function requires 'execute' access.
+ *
  * Declaration:
  *
  * ```
@@ -335,6 +343,8 @@ afw_function_execute_flag_replace_defaults(
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
+ *
+ * This function requires 'execute' access.
  *
  * Declaration:
  *
@@ -419,6 +429,8 @@ afw_function_execute_flag_set(
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
  *
+ * This function requires 'execute' access.
+ *
  * Declaration:
  *
  * ```
@@ -476,6 +488,8 @@ afw_function_execute_extension_load(
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
  *
+ * This function requires 'execute' access.
+ *
  * Declaration:
  *
  * ```
@@ -528,6 +542,8 @@ afw_function_execute_extension_load_by_module_path(
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
+ *
+ * This function requires 'execute' access.
  *
  * Declaration:
  *
@@ -616,6 +632,8 @@ afw_function_execute_registry_key_check(
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
  *
+ * This function requires 'execute' access.
+ *
  * Declaration:
  *
  * ```
@@ -666,6 +684,8 @@ afw_function_execute_service_get(
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
+ *
+ * This function requires 'execute' access.
  *
  * Declaration:
  *
@@ -720,6 +740,8 @@ afw_function_execute_service_restart(
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
  *
+ * This function requires 'execute' access.
+ *
  * Declaration:
  *
  * ```
@@ -772,6 +794,8 @@ afw_function_execute_service_start(
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
+ *
+ * This function requires 'execute' access.
  *
  * Declaration:
  *

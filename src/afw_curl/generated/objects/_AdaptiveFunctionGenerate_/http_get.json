@@ -25,6 +25,7 @@
             "optional": true
         }
     ],
+    "requiresExecuteAccess": true,
     "returns": {
         "dataType": "object",
         "dataTypeParameter": "_AdaptiveCurlHttpResponse_",
