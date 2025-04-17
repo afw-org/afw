@@ -676,7 +676,8 @@ afw_compile_parse_Literal(
  *         ScalarLiteral |
  *         Evaluation |
  *         ParenthesizedExpression |
- *         TemplateString
+ *         TemplateString |
+ *         CompileTimeSubstitution
  *
  *<<<ebnf*/
 AFW_DEFINE_INTERNAL(const afw_value_t *)
@@ -718,6 +719,13 @@ afw_compile_parse_Value(afw_compile_parser_t *parser)
     /* If next is '`', parse TemplateString. */
     if (afw_compile_peek_next_token_is(grave)) {
         value = afw_compile_parse_TemplateString(parser);
+        return value;
+    }
+
+    /* If next is '#{}', parse CompileTimeSubstitution. */
+    if (afw_compile_peek_next_token_is(compile_time_substitute_start))
+    {
+        value = afw_compile_parse_CompileTimeSubstitution(parser);
         return value;
     }
 

@@ -14,10 +14,87 @@
 #include "afw_internal.h"
 
 
+static int
+impl_compile_time_template_get_cb(
+    afw_utf8_octet_t *octet,
+    void *data, afw_xctx_t *xctx)
+{
+    *octet = afw_compile_get_octet((afw_compile_parser_t *)data);
+    return 0;
+}
+
 
 /*ebnf>>>
  *
- * Substitution ::= '${' Script '}'
+ * CompileTimeSubstitution ::= '#{' Script '}'
+ *
+ *<<<ebnf*/
+AFW_DEFINE_INTERNAL(const afw_value_t *)
+afw_compile_parse_CompileTimeSubstitution(afw_compile_parser_t *parser)
+{
+    const afw_value_t *result;
+
+    afw_compile_get_token();
+    if (afw_compile_token_is(compile_time_substitute_start))
+    {
+        /* Include '{' of '#{' in compile time substitution parse. */
+        (parser->token->token_source_offset)--;
+
+        /* Parse '{' Script '}'. */
+        result = afw_compile_to_value_with_callback(
+            NULL,
+            impl_compile_time_template_get_cb,
+            parser,
+            afw_compile_create_source_location_impl(
+                parser,
+                parser->token->token_source_offset),
+            afw_compile_type_script,
+            afw_compile_residual_check_to_close_brace,
+            NULL,
+            NULL,
+            parser->p,
+            parser->xctx);
+    }
+    else {
+        AFW_COMPILE_THROW_ERROR_Z("Internal error");
+    }
+
+    /* Evaluate script at compile time and return result. */
+    result = afw_value_evaluate(result, parser->p, parser->xctx);
+    return result;
+}
+
+
+
+/*ebnf>>>
+ *
+ * EvaluationTimeSubstitution ::= '${' Script '}'
+ *
+ *<<<ebnf*/
+AFW_DEFINE_INTERNAL(const afw_value_t *)
+afw_compile_parse_EvaluationTimeSubstitution(afw_compile_parser_t *parser)
+{
+    const afw_value_t *result;
+
+    afw_compile_get_token();
+    if (afw_compile_token_is(evaluation_time_substitute_start))
+    {
+        result = afw_compile_parse_Script(parser, true);
+    }
+
+    else {
+        AFW_COMPILE_THROW_ERROR_Z("Internal error");
+    }
+
+    /* Return result. */
+    return result;
+}
+
+
+
+/*ebnf>>>
+ *
+ * Substitution ::= CompileTimeSubstitution | EvaluationTimeSubstitution
  *
  *<<<ebnf*/
 AFW_DEFINE_INTERNAL(const afw_value_t *)
@@ -27,8 +104,16 @@ afw_compile_parse_Substitution(afw_compile_parser_t *parser)
 
     afw_compile_get_token();
 
-    if (afw_compile_token_is(substitute_start)) {
-        result = afw_compile_parse_Script(parser, true);
+    if (afw_compile_token_is(compile_time_substitute_start))
+    {
+        afw_compile_reuse_token();
+        result = afw_compile_parse_CompileTimeSubstitution(parser);
+    }
+
+    else if (afw_compile_token_is(evaluation_time_substitute_start))
+    {
+        afw_compile_reuse_token();
+        result = afw_compile_parse_EvaluationTimeSubstitution(parser);
     }
 
     else {
@@ -45,7 +130,10 @@ afw_compile_parse_Substitution(afw_compile_parser_t *parser)
  *
  * Template ::=
  *    (
- *        (Char - '$') | ( '\$' ) | '$' (Char - '{') | Substitution
+ *        ( Char - ['$' '#'] ) |
+ *        ( ['$' '#'] ) |
+ *        ( ['$' '#'] (Char - '{') ) |
+ *        Substitution
  *    )*
  *
  *<<<ebnf*/
@@ -73,13 +161,13 @@ afw_compile_parse_Template(afw_compile_parser_t *parser)
         afw_compile_save_cursor(previous_cursor);
         cp = afw_compile_get_code_point();
 
-        /* If '\$' change to '$'. */
+        /* If '\$' or '\#' change to '$' or '#' respectively. */
         if (cp == '\\') {
             cp = afw_compile_get_code_point();
-            if (cp == '$') {
+            if (cp == '$' || cp == '#') {
                 len = afw_compile_source_buffer_length_from(string_cursor) - 1;
                 s = afw_pool_malloc(parser->p, len, parser->xctx);
-                s[len - 1] = '$';
+                s[len - 1] = (cp == '$') ? '$': '#';
                 if (len > 1) {
                     memcpy(s,
                         afw_compile_source_buffer_at(string_cursor),
@@ -96,8 +184,8 @@ afw_compile_parse_Template(afw_compile_parser_t *parser)
             cp = afw_compile_get_code_point();
         }
 
-        /* If '${', indicate substitution and restore cursor. */
-        if (cp == '$') {
+        /* If '${' or '#{'}, indicate substitution and restore cursor. */
+        if (cp == '$' || cp == '#') {
             cp = afw_compile_get_code_point();
             if (cp == '{') {
                 afw_compile_restore_cursor(previous_cursor);
@@ -187,8 +275,8 @@ afw_compile_parse_TemplateString(afw_compile_parser_t *parser)
         afw_compile_save_cursor(previous_cursor);
         cp = afw_compile_get_unescaped_code_point();
 
-        /* If '${', indicate substitution and restore cursor. */
-        if (cp == '$') {
+        /* If '${' or '#{'}, indicate substitution and restore cursor. */
+        if (cp == '$' || cp == '#') {
             afw_compile_save_cursor(previous_cursor2);
             cp2 = afw_compile_get_code_point();
             if (cp2 == '{') {
