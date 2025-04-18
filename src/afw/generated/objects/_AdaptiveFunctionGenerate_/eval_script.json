@@ -1,16 +1,18 @@
 {
-    "brief": "Evaluate <dataType> value",
-    "category": "polymorphic",
+    "afwCamelCaseFunctionLabel": "afwEvalScript",
+    "brief": "Compile and evaluate script value",
+    "camelCaseFunctionLabel": "evalScript",
+    "category": "script",
     "dataTypeMethod": true,
-    "description": "Compile and evaluate <dataType> value.",
-    "functionId": "evaluate",
-    "functionLabel": "evaluate",
+    "description": "Compile and evaluate script value.",
+    "functionId": "eval<script>",
+    "functionLabel": "eval_script",
     "parameters": [
         {
-            "brief": "Source to evaluate",
-            "description": "<dataType> string to compile and evaluate",
-            "name": "source",
-            "polymorphicDataType": true
+            "brief": "Source to eval",
+            "dataType": "script",
+            "description": "script to compile and evaluate",
+            "name": "source"
         },
         {
             "brief": "Additional untrusted qualified variables",
@@ -20,12 +22,6 @@
             "name": "additionalUntrustedQualifiedVariables",
             "optional": true
         }
-    ],
-    "polymorphic": true,
-    "polymorphicDataTypes": [
-        "script",
-        "template",
-        "xpathExpression"
     ],
     "returns": {
         "dataType": "unevaluated"

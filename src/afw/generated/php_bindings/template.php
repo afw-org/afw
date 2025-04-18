@@ -159,11 +159,11 @@ class template
     }
 
     /**
-     * evaluate_template()
+     * eval_template()
      *
      * Compile and evaluate template value.
      *
-     * @param template $source template string to compile and evaluate
+     * @param template $source template to compile and evaluate
      * @param object $additionalUntrustedQualifiedVariables This parameter
      *                                                      supplies
      *                                                      additional
@@ -191,11 +191,11 @@ class template
      *
      * @return unevaluated
      */
-    public function evaluate_template(, $source, $additionalUntrustedQualifiedVariables = null)
+    public function eval_template(, $source, $additionalUntrustedQualifiedVariables = null)
     {
         $request = $this->$session->request();
 
-        $request->set("function", "evaluate<template>");
+        $request->set("function", "eval<template>");
 
         /* pass along required parameters to the request payload */
         $request->set("source", $source);

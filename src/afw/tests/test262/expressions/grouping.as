@@ -10,43 +10,43 @@
 //? expect: undefined
 //? source: ...
 
-if (evaluate(script("(\u00091\u0009)")) != 1) {
+if (eval(script("(\u00091\u0009)")) != 1) {
     assert("#1: (\\u00091\\u0009) === 1");
 }
 
-if (evaluate(script("(\u000B1\u000B)")) != 1) {
+if (eval(script("(\u000B1\u000B)")) != 1) {
     assert("#2: (\\u000B1\\u000B) === 1");
 }
 
-if (evaluate(script("(\u000C1\u000C)")) != 1) {
+if (eval(script("(\u000C1\u000C)")) != 1) {
     assert("#3: (\\u000C1\\u000C) === 1");
 }
 
-if (evaluate(script("(\u00201\u0020)")) != 1) {
+if (eval(script("(\u00201\u0020)")) != 1) {
     assert("#4: (\\u00201\\u0020) === 1");
 }
 
-if (evaluate(script("(\u00A01\u00A0)")) != 1) {
+if (eval(script("(\u00A01\u00A0)")) != 1) {
     assert("#5: (\\u00A01\\u00A0) === 1");
 }
 
-if (evaluate(script("(\u000A1\u000A)")) != 1) {
+if (eval(script("(\u000A1\u000A)")) != 1) {
     assert("#6: (\\u000A1\\u000A) === 1");
 }
 
-if (evaluate(script("(\u000D1\u000D)")) != 1) {
+if (eval(script("(\u000D1\u000D)")) != 1) {
     assert("#7: (\\u000D1\\u000D) === 1");
 }
 
-if (evaluate(script("(\u20281\u2028)")) != 1) {
+if (eval(script("(\u20281\u2028)")) != 1) {
     assert("#8: (\\u20281\\u2028) === 1");
 }
 
-if (evaluate(script("(\u20291\u2029)")) != 1) {
+if (eval(script("(\u20291\u2029)")) != 1) {
     assert("#9: (\\u20291\\u2029) === 1");
 }
 
-if (evaluate(script("(\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u20291\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u2029)")) != 1) {
+if (eval(script("(\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u20291\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u2029)")) != 1) {
     assert("#10: (\\u0009\\u000B\\u000C\\u0020\\u00A0\\u000A\\u000D\\u2028\\u2029) === 1");
 }
 

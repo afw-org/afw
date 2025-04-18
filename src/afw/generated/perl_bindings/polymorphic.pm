@@ -31,7 +31,7 @@ our @EXPORT_OK = qw(
     eq 
     eq_ignore_case 
     eqx 
-    evaluate 
+    eval 
     floor 
     ge 
     gt 
@@ -333,16 +333,16 @@ Checks for equal and type
     $arg2
 
 
-=head3 evaluate
+=head3 eval
 
 Compile and evaluate `<dataType>` value.
-Evaluate <dataType> value
+Compile and evaluate <dataType> value
 
 =head4 Parameters
 
     $source
 
-`<dataType>` string to compile and evaluate
+`<dataType>` to compile and evaluate
 
     $additionalUntrustedQualifiedVariables
 
@@ -1307,12 +1307,12 @@ sub eqx {
     return $request->getResult();
 }
 
-sub evaluate {
+sub eval {
     my ($source, $additionalUntrustedQualifiedVariables) = @_;
 
     my $request = $session->request()
 
-    $request->set("function" => "evaluate");
+    $request->set("function" => "eval");
     $request->set("source", $source);
 
     if (defined $additionalUntrustedQualifiedVariables)

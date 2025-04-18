@@ -352,6 +352,44 @@ def eqx_string(session, arg1, arg2):
 
     return response['actions'][0]['result']
 
+def eval_string(session, source, additionalUntrustedQualifiedVariables=None):
+    """
+    Compile and evaluate string value as adaptive script
+
+    Compile and evaluate string value as adaptive script.
+
+    Args:
+        source (str): string to compile and evaluate
+
+        additionalUntrustedQualifiedVariables (dict): This parameter supplies
+        additional qualified variables that can be accessed during evaluation.
+        These variables will not be used by anything that needs to ensure its
+        qualified variables must come from a trusted source, such as
+        authorization. This parameter is intended to be used for testing only
+        and should not be used for anything running in production.
+
+    Returns:
+        object:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "eval<string>",
+        "source": source
+    }
+
+    if additionalUntrustedQualifiedVariables != None:
+        action['additionalUntrustedQualifiedVariables'] = additionalUntrustedQualifiedVariables
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def ge_string(session, arg1, arg2):
     """
     Checks for greater than or equal

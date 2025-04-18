@@ -35,7 +35,7 @@ a = 01;
 //? source: ...
 #!/usr/bin/env afw
 
-evaluate(script("let a = 0x1;a = 01;"));
+eval(script("let a = 0x1;a = 01;"));
 
 
 //? test: binary-invalid-digit

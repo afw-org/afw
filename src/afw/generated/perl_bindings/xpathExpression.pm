@@ -18,7 +18,7 @@ our @EXPORT_OK = qw(
     compile_xpathExpression 
     eq_xpathExpression 
     eqx_xpathExpression 
-    evaluate_xpathExpression 
+    eval_xpathExpression 
     ge_xpathExpression 
     gt_xpathExpression 
     is_xpathExpression 
@@ -113,16 +113,16 @@ Checks for equal and type
     $arg2
 
 
-=head3 evaluate_xpathExpression
+=head3 eval_xpathExpression
 
 Compile and evaluate xpathExpression value.
-Evaluate xpathExpression value
+Compile and evaluate xpathExpression value
 
 =head4 Parameters
 
     $source
 
-xpathExpression string to compile and evaluate
+xpathExpression to compile and evaluate
 
     $additionalUntrustedQualifiedVariables
 
@@ -356,12 +356,12 @@ sub eqx_xpathExpression {
     return $request->getResult();
 }
 
-sub evaluate_xpathExpression {
+sub eval_xpathExpression {
     my ($source, $additionalUntrustedQualifiedVariables) = @_;
 
     my $request = $session->request()
 
-    $request->set("function" => "evaluate<xpathExpression>");
+    $request->set("function" => "eval<xpathExpression>");
     $request->set("source", $source);
 
     if (defined $additionalUntrustedQualifiedVariables)

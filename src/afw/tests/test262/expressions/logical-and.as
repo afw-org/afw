@@ -11,7 +11,7 @@
 //? source: ...
 #!/usr/bin/env afw
 
-if (evaluate(script("true\u0009&&\u0009true")) !== true) {
+if (eval(script("true\u0009&&\u0009true")) !== true) {
     throw "#1: (true\\u0009&&\\u0009true) === true";
 }
 

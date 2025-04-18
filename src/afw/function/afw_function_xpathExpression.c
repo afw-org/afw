@@ -82,9 +82,9 @@ afw_function_execute_compile_xpathExpression(
 
 
 /*
- * Adaptive function: evaluate<xpathExpression>
+ * Adaptive function: eval<xpathExpression>
  *
- * afw_function_execute_evaluate_xpathExpression
+ * afw_function_execute_eval_xpathExpression
  *
  * See afw_function_bindings.h for more information.
  *
@@ -96,7 +96,7 @@ afw_function_execute_compile_xpathExpression(
  * Declaration:
  *
  * ```
- *   function evaluate<xpathExpression>(
+ *   function eval<xpathExpression>(
  *       source: xpathExpression,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_)
  *   ): unevaluated;
@@ -104,7 +104,7 @@ afw_function_execute_compile_xpathExpression(
  *
  * Parameters:
  *
- *   source - (xpathExpression) xpathExpression string to compile and evaluate.
+ *   source - (xpathExpression) xpathExpression to compile and evaluate.
  *
  *   additionalUntrustedQualifiedVariables - (optional object
  *       _AdaptiveTemplatePropertiesObjects_) This parameter supplies additional
@@ -119,10 +119,10 @@ afw_function_execute_compile_xpathExpression(
  *   (unevaluated)
  */
 const afw_value_t *
-afw_function_execute_evaluate_xpathExpression(
+afw_function_execute_eval_xpathExpression(
     afw_function_execute_t *x)
 {
-    /** @fixme Add code. */
+    /** @todo Add code. */
     AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
 }
 

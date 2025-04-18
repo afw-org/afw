@@ -161,12 +161,11 @@ class xpathExpression
     }
 
     /**
-     * evaluate_xpathExpression()
+     * eval_xpathExpression()
      *
      * Compile and evaluate xpathExpression value.
      *
-     * @param xpathExpression $source xpathExpression string to compile and
-     *                                evaluate
+     * @param xpathExpression $source xpathExpression to compile and evaluate
      * @param object $additionalUntrustedQualifiedVariables This parameter
      *                                                      supplies
      *                                                      additional
@@ -194,11 +193,11 @@ class xpathExpression
      *
      * @return unevaluated
      */
-    public function evaluate_xpathExpression(, $source, $additionalUntrustedQualifiedVariables = null)
+    public function eval_xpathExpression(, $source, $additionalUntrustedQualifiedVariables = null)
     {
         $request = $this->$session->request();
 
-        $request->set("function", "evaluate<xpathExpression>");
+        $request->set("function", "eval<xpathExpression>");
 
         /* pass along required parameters to the request payload */
         $request->set("source", $source);

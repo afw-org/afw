@@ -176,14 +176,14 @@ def eqx_xpathExpression(session, arg1, arg2):
 
     return response['actions'][0]['result']
 
-def evaluate_xpathExpression(session, source, additionalUntrustedQualifiedVariables=None):
+def eval_xpathExpression(session, source, additionalUntrustedQualifiedVariables=None):
     """
-    Evaluate xpathExpression value
+    Compile and evaluate xpathExpression value
 
     Compile and evaluate xpathExpression value.
 
     Args:
-        source (object): xpathExpression string to compile and evaluate
+        source (object): xpathExpression to compile and evaluate
 
         additionalUntrustedQualifiedVariables (dict): This parameter supplies
         additional qualified variables that can be accessed during evaluation.
@@ -199,7 +199,7 @@ def evaluate_xpathExpression(session, source, additionalUntrustedQualifiedVariab
     request = session.Request()
 
     action = {
-        "function": "evaluate<xpathExpression>",
+        "function": "eval<xpathExpression>",
         "source": source
     }
 

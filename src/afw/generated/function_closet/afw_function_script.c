@@ -64,9 +64,9 @@ afw_function_execute_compile_script(
 
 
 /*
- * Adaptive function: evaluate<script>
+ * Adaptive function: eval<script>
  *
- * afw_function_execute_evaluate_script
+ * afw_function_execute_eval_script
  *
  * See afw_function_bindings.h for more information.
  *
@@ -78,7 +78,7 @@ afw_function_execute_compile_script(
  * Declaration:
  *
  * ```
- *   function evaluate<script>(
+ *   function eval<script>(
  *       source: script,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_)
  *   ): unevaluated;
@@ -86,7 +86,7 @@ afw_function_execute_compile_script(
  *
  * Parameters:
  *
- *   source - (script) script string to compile and evaluate.
+ *   source - (script) script to compile and evaluate.
  *
  *   additionalUntrustedQualifiedVariables - (optional object
  *       _AdaptiveTemplatePropertiesObjects_) This parameter supplies additional
@@ -101,7 +101,7 @@ afw_function_execute_compile_script(
  *   (unevaluated)
  */
 const afw_value_t *
-afw_function_execute_evaluate_script(
+afw_function_execute_eval_script(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */

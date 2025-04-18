@@ -598,7 +598,7 @@ afw_xctx_scope_symbol_set_value_by_name(
  * @param xctx of caller.
  * 
  * This should be used at the end of script function evaluation, template
- * evaluation, and all evaluate() adaptive functions.
+ * evaluation, and all eval() adaptive functions.
  */
 #define afw_xctx_statement_flow_reset_all_except_rethrow(xctx) \
     if (!afw_xctx_statement_flow_is_type(rethrow, xctx)) { \

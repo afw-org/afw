@@ -10,43 +10,43 @@
 //? expect: undefined
 //? source: ...
 
-if (evaluate(script("!\u0009true")) !== false) {
+if (eval(script("!\u0009true")) !== false) {
     throw "#1 !\\u009true === false";
 }
 
-if (evaluate(script("!\u000Btrue")) !== false) {
+if (eval(script("!\u000Btrue")) !== false) {
     throw "#2 !\u000Btrue === false";
 }
 
-if (evaluate(script("!\u000Ctrue")) !== false) {
+if (eval(script("!\u000Ctrue")) !== false) {
     throw "#3 !\u000Ctrue === false";
 }
 
-if (evaluate(script("!\u0020true")) !== false) {
+if (eval(script("!\u0020true")) !== false) {
     throw "#4 !\u0020true === false";
 }
 
-if (evaluate(script("!\u00A0true")) !== false) {
+if (eval(script("!\u00A0true")) !== false) {
     throw "#5 !\u00A0true === false";
 }
 
-if (evaluate(script("!\u000Atrue")) !== false) {
+if (eval(script("!\u000Atrue")) !== false) {
     throw "#6 !\u000Atrue === false";
 }
 
-if (evaluate(script("!\u000Dtrue")) !== false) {
+if (eval(script("!\u000Dtrue")) !== false) {
     throw "#7 !\u000Dtrue === false";
 }
 
-if (evaluate(script("!\u2028true")) !== false) {
+if (eval(script("!\u2028true")) !== false) {
     throw "#8 !\u2028true === false";
 }
 
-if (evaluate(script("!\u2029true")) !== false) {
+if (eval(script("!\u2029true")) !== false) {
     throw "#9 !\u2029true === false";
 }
 
-if (evaluate(script("!\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u2029true")) !== false) {
+if (eval(script("!\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u2029true")) !== false) {
     throw "#10 !\\u009\\u000B\\u000C\\u0020\\u00A0\\u000A\\u000D\\u2028\\u2029true === false";
 }
 

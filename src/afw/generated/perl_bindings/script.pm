@@ -18,7 +18,7 @@ our @EXPORT_OK = qw(
     compile_script 
     eq_script 
     eqx_script 
-    evaluate_script 
+    eval_script 
     ge_script 
     gt_script 
     is_script 
@@ -108,16 +108,16 @@ Checks for equal and type
     $arg2
 
 
-=head3 evaluate_script
+=head3 eval_script
 
 Compile and evaluate script value.
-Evaluate script value
+Compile and evaluate script value
 
 =head4 Parameters
 
     $source
 
-script string to compile and evaluate
+script to compile and evaluate
 
     $additionalUntrustedQualifiedVariables
 
@@ -298,12 +298,12 @@ sub eqx_script {
     return $request->getResult();
 }
 
-sub evaluate_script {
+sub eval_script {
     my ($source, $additionalUntrustedQualifiedVariables) = @_;
 
     my $request = $session->request()
 
-    $request->set("function" => "evaluate<script>");
+    $request->set("function" => "eval<script>");
     $request->set("source", $source);
 
     if (defined $additionalUntrustedQualifiedVariables)

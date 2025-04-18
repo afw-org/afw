@@ -180,7 +180,7 @@ assert(string(y2) == '{"a":1,"b":2}'); //FIXME Need to support object ==
 
 // Test evaluate script  
 {
-    const hello: unevaluated = evaluate(script("return 'Hello ' + 'World!\n';"));
+    const hello: unevaluated = eval("return 'Hello ' + 'World!\n';");
     //FIXME Should pass
     //assert(evaluate_value(hello) == 'Hello World!');
 }

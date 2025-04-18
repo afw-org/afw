@@ -13,52 +13,52 @@
 
 
 //CHECK#1
-if (evaluate(script("0\u0009<\u00091")) !== true) {
+if (eval(script("0\u0009<\u00091")) !== true) {
   throw '#1: (0\\u0009<\\u00091) === true';
 }
 
 //CHECK#2
-if (evaluate(script("0\u000B<\u000B1")) !== true) {
+if (eval(script("0\u000B<\u000B1")) !== true) {
   throw '#2: (0\\u000B<\\u000B1) === true';
 }
 
 //CHECK#3
-if (evaluate(script("0\u000C<\u000C1")) !== true) {
+if (eval(script("0\u000C<\u000C1")) !== true) {
   throw '#3: (0\\u000C<\\u000C1) === true';
 }
 
 //CHECK#4
-if (evaluate(script("0\u0020<\u00201")) !== true) {
+if (eval(script("0\u0020<\u00201")) !== true) {
   throw '#4: (0\\u0020<\\u00201) === true';
 }
 
 //CHECK#5
-if (evaluate(script("0\u00A0<\u00A01")) !== true) {
+if (eval(script("0\u00A0<\u00A01")) !== true) {
   throw '#5: (0\\u00A0<\\u00A01) === true';
 }
 
 //CHECK#6
-if (evaluate(script("0\u000A<\u000A1")) !== true) {
+if (eval(script("0\u000A<\u000A1")) !== true) {
   throw '#6: (0\\u000A<\\u000A1) === true';
 }
 
 //CHECK#7
-if (evaluate(script("0\u000D<\u000D1")) !== true) {
+if (eval(script("0\u000D<\u000D1")) !== true) {
   throw '#7: (0\\u000D<\\u000D1) === true';
 }
 
 //CHECK#8
-if (evaluate(script("0\u2028<\u20281")) !== true) {
+if (eval(script("0\u2028<\u20281")) !== true) {
   throw '#8: (0\\u2028<\\u20281) === true';
 }
 
 //CHECK#9
-if (evaluate(script("0\u2029<\u20291")) !== true) {
+if (eval(script("0\u2029<\u20291")) !== true) {
   throw '#9: (0\\u2029<\\u20291) === true';
 }
 
 //CHECK#10
-if (evaluate(script("0\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u2029<\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u20291")) !== true) {
+if (eval(script("0\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u2029<\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u20291")) !== true) {
   throw '#10: (0\\u0009\\u000B\\u000C\\u0020\\u00A0\\u000A\\u000D\\u2028\\u2029<\\u0009\\u000B\\u000C\\u0020\\u00A0\\u000A\\u000D\\u2028\\u20291) === true';
 }
 

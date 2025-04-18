@@ -13,52 +13,52 @@
 
 
 //CHECK#1
-if (evaluate(script("+\u00091")) !== 1) {
+if (eval(script("+\u00091")) !== 1) {
   throw '#1: +\\u00091 === 1';
 }
 
 //CHECK#2
-if (evaluate(script("+\u000B1")) !== 1) {
+if (eval(script("+\u000B1")) !== 1) {
   throw '#2: +\\u000B1 === 1';
 }
 
 //CHECK#3
-if (evaluate(script("+\u000C1")) !== 1) {
+if (eval(script("+\u000C1")) !== 1) {
   throw '#3: +\\u000C1 === 1';
 }
 
 //CHECK#4
-if (evaluate(script("+\u00201")) !== 1) {
+if (eval(script("+\u00201")) !== 1) {
   throw '#4: +\\u0020 === 1';
 }
 
 //CHECK#5
-if (evaluate(script("+\u00A01")) !== 1) {
+if (eval(script("+\u00A01")) !== 1) {
   throw '#5: +\\u00A01 === 1';
 }
 
 //CHECK#6
-if (evaluate(script("+\u000A1")) !== 1) {
+if (eval(script("+\u000A1")) !== 1) {
   throw '#6: +\\u000A1 === 1';
 }
 
 //CHECK#7
-if (evaluate(script("+\u000D1")) !== 1) {
+if (eval(script("+\u000D1")) !== 1) {
   throw '#7: +\\u000D1 === 1';
 }
 
 //CHECK#8
-if (evaluate(script("+\u20281")) !== 1) {
+if (eval(script("+\u20281")) !== 1) {
   throw '#8: +\\u20281 === 1';
 }
 
 //CHECK#9
-if (evaluate(script("+\u20291")) !== 1) {
+if (eval(script("+\u20291")) !== 1) {
   throw '#9: +\\u20291 === 1';
 }
 
 //CHECK#10
-if (evaluate(script("+\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u20291")) !== 1) {
+if (eval(script("+\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u20291")) !== 1) {
   throw '#10: +\\u0009\\u000B\\u000C\\u0020\\u00A0\\u000A\\u000D\\u2028\\u20291 === 1';
 }
 
@@ -219,8 +219,8 @@ if (is_NaN(+(void 0)) !== true) {
 */
 
 // CHECK#3
-if (is_NaN(+(evaluate(script("let x;")))) !== true) {
-  throw '#3: +(evaluate(script("let x;")) === Not-a-Number. Actual: ' + (+(evaluate(script("let x;"))));
+if (is_NaN(+(eval(script("let x;")))) !== true) {
+  throw '#3: +(eval(script("let x;")) === Not-a-Number. Actual: ' + (+(eval(script("let x;"))));
 }
 
 

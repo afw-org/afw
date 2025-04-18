@@ -176,14 +176,14 @@ def eqx_script(session, arg1, arg2):
 
     return response['actions'][0]['result']
 
-def evaluate_script(session, source, additionalUntrustedQualifiedVariables=None):
+def eval_script(session, source, additionalUntrustedQualifiedVariables=None):
     """
-    Evaluate script value
+    Compile and evaluate script value
 
     Compile and evaluate script value.
 
     Args:
-        source (object): script string to compile and evaluate
+        source (object): script to compile and evaluate
 
         additionalUntrustedQualifiedVariables (dict): This parameter supplies
         additional qualified variables that can be accessed during evaluation.
@@ -199,7 +199,7 @@ def evaluate_script(session, source, additionalUntrustedQualifiedVariables=None)
     request = session.Request()
 
     action = {
-        "function": "evaluate<script>",
+        "function": "eval<script>",
         "source": source
     }
 

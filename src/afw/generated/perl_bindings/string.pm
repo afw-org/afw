@@ -24,6 +24,7 @@ our @EXPORT_OK = qw(
     eq_ignore_case_string 
     eq_string 
     eqx_string 
+    eval_string 
     ge_string 
     gt_string 
     includes_string 
@@ -223,6 +224,25 @@ Checks for equal and type
 
     $arg2
 
+
+=head3 eval_string
+
+Compile and evaluate string value as adaptive script.
+Compile and evaluate string value as adaptive script
+
+=head4 Parameters
+
+    $source
+
+string to compile and evaluate
+
+    $additionalUntrustedQualifiedVariables
+
+This parameter supplies additional qualified variables that can be accessed
+during evaluation. These variables will not be used by anything that needs to
+ensure its qualified variables must come from a trusted source, such as
+authorization. This parameter is intended to be used for testing only and
+should not be used for anything running in production.
 
 =head3 ge_string
 
@@ -966,6 +986,20 @@ sub eqx_string {
     $request->set("function" => "eqx<string>");
     $request->set("arg1", $arg1);
     $request->set("arg2", $arg2);
+
+    return $request->getResult();
+}
+
+sub eval_string {
+    my ($source, $additionalUntrustedQualifiedVariables) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "eval<string>");
+    $request->set("source", $source);
+
+    if (defined $additionalUntrustedQualifiedVariables)
+        $request->set("additionalUntrustedQualifiedVariables", $additionalUntrustedQualifiedVariables);
 
     return $request->getResult();
 }

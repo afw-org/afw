@@ -130,8 +130,7 @@ export function afwEqxXpathExpression(client : any, arg1 : any, arg2 : any) : an
 /**
  * Compile and evaluate xpathExpression value.
  * 
- * @param {xpathExpression} source - xpathExpression string to compile and
- *     evaluate
+ * @param {xpathExpression} source - xpathExpression to compile and evaluate
  * 
  * @param {object} additionalUntrustedQualifiedVariables - This parameter
  *     supplies additional qualified variables that can be accessed during
@@ -142,11 +141,11 @@ export function afwEqxXpathExpression(client : any, arg1 : any, arg2 : any) : an
  * 
  * @returns {unevaluated}
  */
-export function afwEvaluateXpathExpression(client : any, source : any, additionalUntrustedQualifiedVariables? : object) : any {
+export function afwEvalXpathExpression(client : any, source : any, additionalUntrustedQualifiedVariables? : object) : any {
 
     let _action : IAnyObject = {};
 
-    _action["function"] = "evaluate<xpathExpression>";
+    _action["function"] = "eval<xpathExpression>";
     _action["source"] = source;
 
     if (additionalUntrustedQualifiedVariables !== undefined)

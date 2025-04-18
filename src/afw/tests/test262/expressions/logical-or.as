@@ -13,53 +13,53 @@
 
 
 //CHECK#1
-if ((evaluate(script("false\u0009||\u0009true"))) !== true) {
+if ((eval(script("false\u0009||\u0009true"))) !== true) {
   throw '#1: (false\\u0009||\\u0009true) === true';
 }
 
 //CHECK#2
-if ((evaluate(script("false\u000B||\u000Btrue"))) !== true) {
+if ((eval(script("false\u000B||\u000Btrue"))) !== true) {
   throw '#2: (false\\u000B||\\u000Btrue) === true';
 }
 
 //CHECK#3
-if ((evaluate(script("false\u000C||\u000Ctrue"))) !== true) {
+if ((eval(script("false\u000C||\u000Ctrue"))) !== true) {
   throw '#3: (false\\u000C||\\u000Ctrue) === true';
 }
 
 //CHECK#4
-if ((evaluate(script("false\u0020||\u0020true"))) !== true) {
+if ((eval(script("false\u0020||\u0020true"))) !== true) {
   throw '#4: (false\\u0020||\\u0020true) === true';
 }
 
 //CHECK#5
-if ((evaluate(script("false\u00A0||\u00A0true"))) !== true) {
+if ((eval(script("false\u00A0||\u00A0true"))) !== true) {
   throw '#5: (false\\u00A0||\\u00A0true) === true';
 }
 
 //CHECK#6
-if ((evaluate(script("false\u000A||\u000Atrue"))) !== true) {
+if ((eval(script("false\u000A||\u000Atrue"))) !== true) {
   throw '#6: (false\\u000A||\\u000Atrue) === true';
 }
 
 //CHECK#7
-if ((evaluate(script("false\u000D||\u000Dtrue"))) !== true) {
+if ((eval(script("false\u000D||\u000Dtrue"))) !== true) {
   throw '#7: (false\\u000D||\\u000Dtrue) === true';
 }
 
 //CHECK#8
-if ((evaluate(script("false\u2028||\u2028true"))) !== true) {
+if ((eval(script("false\u2028||\u2028true"))) !== true) {
   throw '#8: (false\\u2028||\\u2028true) === true';
 }
 
 //CHECK#9
-if ((evaluate(script("false\u2029||\u2029true"))) !== true) {
+if ((eval(script("false\u2029||\u2029true"))) !== true) {
   throw '#9: (false\\u2029||\\u2029true) === true';
 }
 
 
 //CHECK#10
-if ((evaluate(script("false\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u2029||\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u2029true"))) !== true) {
+if ((eval(script("false\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u2029||\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u2029true"))) !== true) {
   throw '#10: (false\\u0009\\u000B\\u000C\\u0020\\u00A0\\u000A\\u000D\\u2028\\u2029||\\u0009\\u000B\\u000C\\u0020\\u00A0\\u000A\\u000D\\u2028\\u2029true) === true';
 }
 

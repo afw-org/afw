@@ -92726,41 +92726,41 @@ impl_object__eqx__value = {
     (const afw_object_t *)&impl_object__eqx
 };
 
-/* ---------- evaluate ---------- */
+/* ---------- eval ---------- */
 
 static const afw_utf8_t
-impl_object_path__evaluate =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/evaluate");
+impl_object_path__eval =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/eval");
 
 static const afw_value_object_t
-impl_object__evaluate__value;
+impl_object__eval__value;
 
 static const afw_runtime_object_indirect_t
-impl_object__evaluate = {
+impl_object__eval = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__evaluate__value,
+        (const afw_value_t *)&impl_object__eval__value,
         {
             NULL,
             NULL,
-            &afw_self_s_evaluate,
+            &afw_self_s_eval,
             &afw_self_s__AdaptiveFunction_,
-            &impl_object_path__evaluate
+            &impl_object_path__eval
         }
     },
-    (void *)&afw_function_definition_evaluate
+    (void *)&afw_function_definition_eval
 };
 
 static const afw_value_object_t
-impl_evaluate_returns__value;
+impl_eval_returns__value;
 
 static const afw_value_function_parameter_t
-impl_evaluate_returns = {
+impl_eval_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_evaluate_returns__value,
+        (const afw_value_t *)&impl_eval_returns__value,
         {
             NULL,
             NULL,
@@ -92783,20 +92783,20 @@ impl_evaluate_returns = {
 };
 
 static const afw_value_object_t
-impl_evaluate_returns__value = {
+impl_eval_returns__value = {
     {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_evaluate_returns
+    (const afw_object_t *)&impl_eval_returns
 };
 
 static const afw_value_object_t
-impl_evaluate_parameter_1__value;
+impl_eval_parameter_1__value;
 
 static const afw_value_function_parameter_t
-impl_evaluate_parameter_1 = {
+impl_eval_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_evaluate_parameter_1__value,
+        (const afw_value_t *)&impl_eval_parameter_1__value,
         {
             NULL,
             NULL,
@@ -92809,8 +92809,8 @@ impl_evaluate_parameter_1 = {
     NULL,
     NULL,
     &afw_self_v_source,
-    &afw_self_v_zz__Source_to_evaluate,
-    &afw_self_v_zz___dataType__string_to_compile_and_evaluate,
+    &afw_self_v_zz__Source_to_eval,
+    &afw_self_v_zz___dataType__to_compile_and_evaluate,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -92819,20 +92819,20 @@ impl_evaluate_parameter_1 = {
 };
 
 static const afw_value_object_t
-impl_evaluate_parameter_1__value = {
+impl_eval_parameter_1__value = {
     {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_evaluate_parameter_1
+    (const afw_object_t *)&impl_eval_parameter_1
 };
 
 static const afw_value_object_t
-impl_evaluate_parameter_2__value;
+impl_eval_parameter_2__value;
 
 static const afw_value_function_parameter_t
-impl_evaluate_parameter_2 = {
+impl_eval_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_evaluate_parameter_2__value,
+        (const afw_value_t *)&impl_eval_parameter_2__value,
         {
             NULL,
             NULL,
@@ -92855,38 +92855,39 @@ impl_evaluate_parameter_2 = {
 };
 
 static const afw_value_object_t
-impl_evaluate_parameter_2__value = {
+impl_eval_parameter_2__value = {
     {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_evaluate_parameter_2
+    (const afw_object_t *)&impl_eval_parameter_2
 };
 
 static const afw_value_function_parameter_t *
-impl_evaluate_parameters[] = {
-    &impl_evaluate_parameter_1,
-    &impl_evaluate_parameter_2,
+impl_eval_parameters[] = {
+    &impl_eval_parameter_1,
+    &impl_eval_parameter_2,
     NULL
 };
 
 static const afw_utf8_t
-impl_evaluate_polymorphicDataTypes[] = {
+impl_eval_polymorphicDataTypes[] = {
     AFW_UTF8_LITERAL("script"),
+    AFW_UTF8_LITERAL("string"),
     AFW_UTF8_LITERAL("template"),
     AFW_UTF8_LITERAL("xpathExpression"),
     { NULL }
 };
 
 AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_evaluate = {
+afw_function_definition_eval = {
     {&afw_value_function_definition_inf},
-    (const afw_object_t *)&impl_object__evaluate,
+    (const afw_object_t *)&impl_object__eval,
     &afw_self_v_polymorphic,
-    &afw_self_v_evaluate,
-    &afw_self_v_zz___afw__AdaptiveFunction__evaluate,
-    &afw_self_v_evaluate,
-    &afw_self_v_evaluate,
-    &afw_self_v_evaluate,
-    &afw_self_v_afwEvaluate,
-    &afw_self_v_zz__Evaluate__dataType__value,
+    &afw_self_v_eval,
+    &afw_self_v_zz___afw__AdaptiveFunction__eval,
+    &afw_self_v_eval,
+    &afw_self_v_eval,
+    &afw_self_v_eval,
+    &afw_self_v_afwEval,
+    &afw_self_v_zz__Compile_and_evaluate__dataType__value,
     &afw_self_v_zz__Compile_and_evaluate__dataType__value_,
     &afw_self_v_zz__1208,
     &afw_self_v_zz__1209,
@@ -92896,15 +92897,15 @@ afw_function_definition_evaluate = {
     NULL,
     &afw_integer_self_v_1,
     &afw_integer_self_v_2,
-    &impl_evaluate_parameters[0],
+    &impl_eval_parameters[0],
     2,
-    &impl_evaluate_returns,
-    &impl_evaluate_polymorphicDataTypes[0],
+    &impl_eval_returns,
+    &impl_eval_polymorphicDataTypes[0],
     NULL,
     &afw_self_v_zz__,
     NULL,
     NULL,
-    afw_data_type_method_number_evaluate,
+    afw_data_type_method_number_eval,
     &afw_boolean_self_v_true,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -92914,9 +92915,9 @@ afw_function_definition_evaluate = {
 };
 
 static const afw_value_object_t
-impl_object__evaluate__value = {
+impl_object__eval__value = {
     {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_object__evaluate
+    (const afw_object_t *)&impl_object__eval
 };
 
 /* ---------- floor ---------- */
@@ -110934,41 +110935,41 @@ impl_object__eqx_script__value = {
     (const afw_object_t *)&impl_object__eqx_script
 };
 
-/* ---------- evaluate<script> ---------- */
+/* ---------- eval<script> ---------- */
 
 static const afw_utf8_t
-impl_object_path__evaluate_script =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/evaluate_script");
+impl_object_path__eval_script =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/eval_script");
 
 static const afw_value_object_t
-impl_object__evaluate_script__value;
+impl_object__eval_script__value;
 
 static const afw_runtime_object_indirect_t
-impl_object__evaluate_script = {
+impl_object__eval_script = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__evaluate_script__value,
+        (const afw_value_t *)&impl_object__eval_script__value,
         {
             NULL,
             NULL,
-            &afw_self_s_evaluate_script,
+            &afw_self_s_eval_script,
             &afw_self_s__AdaptiveFunction_,
-            &impl_object_path__evaluate_script
+            &impl_object_path__eval_script
         }
     },
-    (void *)&afw_function_definition_evaluate_script
+    (void *)&afw_function_definition_eval_script
 };
 
 static const afw_value_object_t
-impl_evaluate_script_returns__value;
+impl_eval_script_returns__value;
 
 static const afw_value_function_parameter_t
-impl_evaluate_script_returns = {
+impl_eval_script_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_evaluate_script_returns__value,
+        (const afw_value_t *)&impl_eval_script_returns__value,
         {
             NULL,
             NULL,
@@ -110991,20 +110992,20 @@ impl_evaluate_script_returns = {
 };
 
 static const afw_value_object_t
-impl_evaluate_script_returns__value = {
+impl_eval_script_returns__value = {
     {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_evaluate_script_returns
+    (const afw_object_t *)&impl_eval_script_returns
 };
 
 static const afw_value_object_t
-impl_evaluate_script_parameter_1__value;
+impl_eval_script_parameter_1__value;
 
 static const afw_value_function_parameter_t
-impl_evaluate_script_parameter_1 = {
+impl_eval_script_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_evaluate_script_parameter_1__value,
+        (const afw_value_t *)&impl_eval_script_parameter_1__value,
         {
             NULL,
             NULL,
@@ -111017,8 +111018,8 @@ impl_evaluate_script_parameter_1 = {
     &afw_self_v_script,
     NULL,
     &afw_self_v_source,
-    &afw_self_v_zz__Source_to_evaluate,
-    &afw_self_v_zz__script_string_to_compile_and_evaluate,
+    &afw_self_v_zz__Source_to_eval,
+    &afw_self_v_zz__script_to_compile_and_evaluate,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -111027,20 +111028,20 @@ impl_evaluate_script_parameter_1 = {
 };
 
 static const afw_value_object_t
-impl_evaluate_script_parameter_1__value = {
+impl_eval_script_parameter_1__value = {
     {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_evaluate_script_parameter_1
+    (const afw_object_t *)&impl_eval_script_parameter_1
 };
 
 static const afw_value_object_t
-impl_evaluate_script_parameter_2__value;
+impl_eval_script_parameter_2__value;
 
 static const afw_value_function_parameter_t
-impl_evaluate_script_parameter_2 = {
+impl_eval_script_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_evaluate_script_parameter_2__value,
+        (const afw_value_t *)&impl_eval_script_parameter_2__value,
         {
             NULL,
             NULL,
@@ -111063,48 +111064,48 @@ impl_evaluate_script_parameter_2 = {
 };
 
 static const afw_value_object_t
-impl_evaluate_script_parameter_2__value = {
+impl_eval_script_parameter_2__value = {
     {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_evaluate_script_parameter_2
+    (const afw_object_t *)&impl_eval_script_parameter_2
 };
 
 static const afw_value_function_parameter_t *
-impl_evaluate_script_parameters[] = {
-    &impl_evaluate_script_parameter_1,
-    &impl_evaluate_script_parameter_2,
+impl_eval_script_parameters[] = {
+    &impl_eval_script_parameter_1,
+    &impl_eval_script_parameter_2,
     NULL
 };
 
 AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_evaluate_script = {
+afw_function_definition_eval_script = {
     {&afw_value_function_definition_inf},
-    (const afw_object_t *)&impl_object__evaluate_script,
+    (const afw_object_t *)&impl_object__eval_script,
     &afw_self_v_script,
-    &afw_self_v_zz__evaluate_script_,
-    &afw_self_v_zz___afw__AdaptiveFunction__evaluate_script_,
-    &afw_self_v_evaluate,
-    &afw_self_v_evaluate_script,
-    &afw_self_v_evaluateScript,
-    &afw_self_v_afwEvaluateScript,
-    &afw_self_v_zz__Evaluate_script_value,
+    &afw_self_v_zz__eval_script_,
+    &afw_self_v_zz___afw__AdaptiveFunction__eval_script_,
+    &afw_self_v_eval,
+    &afw_self_v_eval_script,
+    &afw_self_v_evalScript,
+    &afw_self_v_afwEvalScript,
+    &afw_self_v_zz__Compile_and_evaluate_script_value,
     &afw_self_v_zz__Compile_and_evaluate_script_value_,
     &afw_self_v_zz__1402,
     &afw_self_v_zz__1403,
     NULL,
-    afw_function_execute_evaluate_script,
-    afw_function_execute_evaluate_script,
+    afw_function_execute_eval_script,
+    afw_function_execute_eval_script,
     NULL,
     &afw_integer_self_v_1,
     &afw_integer_self_v_2,
-    &impl_evaluate_script_parameters[0],
+    &impl_eval_script_parameters[0],
     2,
-    &impl_evaluate_script_returns,
+    &impl_eval_script_returns,
     NULL,
     &afw_data_type_script_direct,
     &afw_self_v_script,
     NULL,
     NULL,
-    afw_data_type_method_number_evaluate,
+    afw_data_type_method_number_eval,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -111114,9 +111115,9 @@ afw_function_definition_evaluate_script = {
 };
 
 static const afw_value_object_t
-impl_object__evaluate_script__value = {
+impl_object__eval_script__value = {
     {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_object__evaluate_script
+    (const afw_object_t *)&impl_object__eval_script
 };
 
 /* ---------- ge<script> ---------- */
@@ -117303,6 +117304,191 @@ impl_object__eqx_string__value = {
     (const afw_object_t *)&impl_object__eqx_string
 };
 
+/* ---------- eval<string> ---------- */
+
+static const afw_utf8_t
+impl_object_path__eval_string =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/eval_string");
+
+static const afw_value_object_t
+impl_object__eval_string__value;
+
+static const afw_runtime_object_indirect_t
+impl_object__eval_string = {
+    {
+        &afw_runtime_inf__AdaptiveFunction_,
+        NULL,
+        (const afw_value_t *)&impl_object__eval_string__value,
+        {
+            NULL,
+            NULL,
+            &afw_self_s_eval_string,
+            &afw_self_s__AdaptiveFunction_,
+            &impl_object_path__eval_string
+        }
+    },
+    (void *)&afw_function_definition_eval_string
+};
+
+static const afw_value_object_t
+impl_eval_string_returns__value;
+
+static const afw_value_function_parameter_t
+impl_eval_string_returns = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        (const afw_value_t *)&impl_eval_string_returns__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_unevaluated_direct,
+    &afw_self_v_unevaluated,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_eval_string_returns__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_eval_string_returns
+};
+
+static const afw_value_object_t
+impl_eval_string_parameter_1__value;
+
+static const afw_value_function_parameter_t
+impl_eval_string_parameter_1 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        (const afw_value_t *)&impl_eval_string_parameter_1__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_string_direct,
+    &afw_self_v_string,
+    NULL,
+    &afw_self_v_source,
+    &afw_self_v_zz__Source_to_eval,
+    &afw_self_v_zz__string_to_compile_and_evaluate,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_eval_string_parameter_1__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_eval_string_parameter_1
+};
+
+static const afw_value_object_t
+impl_eval_string_parameter_2__value;
+
+static const afw_value_function_parameter_t
+impl_eval_string_parameter_2 = {
+    {
+        &afw_runtime_inf__AdaptiveFunctionParameter_,
+        NULL,
+        (const afw_value_t *)&impl_eval_string_parameter_2__value,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    &afw_data_type_object_direct,
+    &afw_self_v_object,
+    &afw_self_v__AdaptiveTemplatePropertiesObjects_,
+    &afw_self_v_additionalUntrustedQualifiedVariables,
+    &afw_self_v_zz__Additional_untrusted_qualified_variables,
+    &afw_self_v_zz__430,
+    &afw_integer_self_v_zz___1,
+    &afw_boolean_self_v_true,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_eval_string_parameter_2__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_eval_string_parameter_2
+};
+
+static const afw_value_function_parameter_t *
+impl_eval_string_parameters[] = {
+    &impl_eval_string_parameter_1,
+    &impl_eval_string_parameter_2,
+    NULL
+};
+
+AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_eval_string = {
+    {&afw_value_function_definition_inf},
+    (const afw_object_t *)&impl_object__eval_string,
+    &afw_self_v_string,
+    &afw_self_v_zz__eval_string_,
+    &afw_self_v_zz___afw__AdaptiveFunction__eval_string_,
+    &afw_self_v_eval,
+    &afw_self_v_eval_string,
+    &afw_self_v_evalString,
+    &afw_self_v_afwEvalString,
+    &afw_self_v_zz__Compile_and_evaluate_string_value_as_adaptive_script,
+    &afw_self_v_zz__Compile_and_evaluate_string_value_as_adaptive_script_,
+    &afw_self_v_zz__1480,
+    &afw_self_v_zz__1481,
+    NULL,
+    afw_function_execute_eval_string,
+    afw_function_execute_eval_string,
+    NULL,
+    &afw_integer_self_v_1,
+    &afw_integer_self_v_2,
+    &impl_eval_string_parameters[0],
+    2,
+    &impl_eval_string_returns,
+    NULL,
+    &afw_data_type_string_direct,
+    &afw_self_v_string,
+    NULL,
+    NULL,
+    afw_data_type_method_number_eval,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+    &afw_boolean_self_v_false,
+};
+
+static const afw_value_object_t
+impl_object__eval_string__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_object__eval_string
+};
+
 /* ---------- ge<string> ---------- */
 
 static const afw_utf8_t
@@ -117456,9 +117642,9 @@ afw_function_definition_ge_string = {
     &afw_self_v_geString,
     &afw_self_v_afwGeString,
     &afw_self_v_zz__Checks_for_greater_than_or_equal,
-    &afw_self_v_zz__1480,
+    &afw_self_v_zz__1482,
     &afw_self_v_zz___arg1__string__arg2__string___boolean,
-    &afw_self_v_zz__1481,
+    &afw_self_v_zz__1483,
     &afw_self_v_zz____,
     afw_function_execute_ge,
     afw_function_execute_ge,
@@ -117641,9 +117827,9 @@ afw_function_definition_gt_string = {
     &afw_self_v_gtString,
     &afw_self_v_afwGtString,
     &afw_self_v_zz__Checks_for_greater_than,
-    &afw_self_v_zz__1482,
+    &afw_self_v_zz__1484,
     &afw_self_v_zz___arg1__string__arg2__string___boolean,
-    &afw_self_v_zz__1483,
+    &afw_self_v_zz__1485,
     &afw_self_v_zz___,
     afw_function_execute_gt,
     afw_function_execute_gt,
@@ -117863,9 +118049,9 @@ afw_function_definition_includes_string = {
     &afw_self_v_includesString,
     &afw_self_v_afwIncludesString,
     &afw_self_v_zz__Checks_whether_the_string_value_includes_a_string,
-    &afw_self_v_zz__1484,
-    &afw_self_v_zz__1485,
     &afw_self_v_zz__1486,
+    &afw_self_v_zz__1487,
+    &afw_self_v_zz__1488,
     NULL,
     afw_function_execute_includes,
     afw_function_execute_includes,
@@ -118085,9 +118271,9 @@ afw_function_definition_index_of_string = {
     &afw_self_v_indexOfString,
     &afw_self_v_afwIndexOfString,
     &afw_self_v_zz__Returns_index_of_first_occurrence,
-    &afw_self_v_zz__1487,
-    &afw_self_v_zz__1488,
     &afw_self_v_zz__1489,
+    &afw_self_v_zz__1490,
+    &afw_self_v_zz__1491,
     NULL,
     afw_function_execute_index_of,
     afw_function_execute_index_of,
@@ -118270,9 +118456,9 @@ afw_function_definition_intersection_string = {
     &afw_self_v_intersectionString,
     &afw_self_v_afwIntersectionString,
     &afw_self_v_zz__Returns_intersection_of_two_arrays,
-    &afw_self_v_zz__1490,
-    &afw_self_v_zz__1491,
     &afw_self_v_zz__1492,
+    &afw_self_v_zz__1493,
+    &afw_self_v_zz__1494,
     NULL,
     afw_function_execute_intersection,
     afw_function_execute_intersection,
@@ -118455,9 +118641,9 @@ afw_function_definition_is_in_string = {
     &afw_self_v_isInString,
     &afw_self_v_afwIsInString,
     &afw_self_v_zz__Checks_whether_a_value_is_in_an_array,
-    &afw_self_v_zz__1493,
+    &afw_self_v_zz__1495,
     &afw_self_v_zz___value__string__array___array_string____boolean,
-    &afw_self_v_zz__1494,
+    &afw_self_v_zz__1496,
     NULL,
     afw_function_execute_is_in,
     afw_function_execute_is_in,
@@ -118603,9 +118789,9 @@ afw_function_definition_is_string = {
     &afw_self_v_isString,
     &afw_self_v_afwIsString,
     &afw_self_v_zz__Checks_whether_value_is_dataType_string,
-    &afw_self_v_zz__1495,
+    &afw_self_v_zz__1497,
     &afw_self_v_zz___value__any___boolean,
-    &afw_self_v_zz__1496,
+    &afw_self_v_zz__1498,
     NULL,
     afw_function_execute_is,
     afw_function_execute_is,
@@ -118825,9 +119011,9 @@ afw_function_definition_last_index_of_string = {
     &afw_self_v_lastIndexOfString,
     &afw_self_v_afwLastIndexOfString,
     &afw_self_v_zz__Returns_index_of_last_occurrence,
-    &afw_self_v_zz__1497,
-    &afw_self_v_zz__1488,
-    &afw_self_v_zz__1498,
+    &afw_self_v_zz__1499,
+    &afw_self_v_zz__1490,
+    &afw_self_v_zz__1500,
     NULL,
     afw_function_execute_last_index_of,
     afw_function_execute_last_index_of,
@@ -119010,9 +119196,9 @@ afw_function_definition_le_string = {
     &afw_self_v_leString,
     &afw_self_v_afwLeString,
     &afw_self_v_zz__Checks_for_less_than_or_equal,
-    &afw_self_v_zz__1499,
+    &afw_self_v_zz__1501,
     &afw_self_v_zz___arg1__string__arg2__any___boolean,
-    &afw_self_v_zz__1500,
+    &afw_self_v_zz__1502,
     &afw_self_v_zz____,
     afw_function_execute_le,
     afw_function_execute_le,
@@ -119158,9 +119344,9 @@ afw_function_definition_length_string = {
     &afw_self_v_lengthString,
     &afw_self_v_afwLengthString,
     &afw_self_v_zz__Returns_number_of_codepoints_or_entries_in_value,
-    &afw_self_v_zz__1501,
+    &afw_self_v_zz__1503,
     &afw_self_v_zz___value__string___integer,
-    &afw_self_v_zz__1502,
+    &afw_self_v_zz__1504,
     NULL,
     afw_function_execute_length,
     afw_function_execute_length,
@@ -119343,9 +119529,9 @@ afw_function_definition_lt_string = {
     &afw_self_v_ltString,
     &afw_self_v_afwLtString,
     &afw_self_v_zz__Checks_for_less_than,
-    &afw_self_v_zz__1503,
+    &afw_self_v_zz__1505,
     &afw_self_v_zz___arg1__string__arg2__string___boolean,
-    &afw_self_v_zz__1504,
+    &afw_self_v_zz__1506,
     &afw_self_v_zz___,
     afw_function_execute_lt,
     afw_function_execute_lt,
@@ -119491,9 +119677,9 @@ afw_function_definition_max_string = {
     &afw_self_v_maxString,
     &afw_self_v_afwMaxString,
     &afw_self_v_zz__Maximum_value,
-    &afw_self_v_zz__1505,
-    &afw_self_v_zz__1506,
     &afw_self_v_zz__1507,
+    &afw_self_v_zz__1508,
+    &afw_self_v_zz__1509,
     NULL,
     afw_function_execute_max,
     afw_function_execute_max,
@@ -119639,9 +119825,9 @@ afw_function_definition_min_string = {
     &afw_self_v_minString,
     &afw_self_v_afwMinString,
     &afw_self_v_zz__Minimum_value,
+    &afw_self_v_zz__1510,
     &afw_self_v_zz__1508,
-    &afw_self_v_zz__1506,
-    &afw_self_v_zz__1509,
+    &afw_self_v_zz__1511,
     NULL,
     afw_function_execute_min,
     afw_function_execute_min,
@@ -119832,9 +120018,9 @@ afw_function_definition_ne_string = {
     &afw_self_v_neString,
     &afw_self_v_afwNeString,
     &afw_self_v_zz__Checks_for_not_equal,
-    &afw_self_v_zz__1510,
+    &afw_self_v_zz__1512,
     &afw_self_v_zz___arg1__string__arg2__any___boolean,
-    &afw_self_v_zz__1511,
+    &afw_self_v_zz__1513,
     &afw_self_v_zz____,
     afw_function_execute_ne,
     afw_function_execute_ne,
@@ -120017,9 +120203,9 @@ afw_function_definition_nex_string = {
     &afw_self_v_nexString,
     &afw_self_v_afwNexString,
     &afw_self_v_zz__Checks_for_not_equal_value_or_type,
-    &afw_self_v_zz__1512,
+    &afw_self_v_zz__1514,
     &afw_self_v_zz___arg1__string__arg2__any___boolean,
-    &afw_self_v_zz__1513,
+    &afw_self_v_zz__1515,
     &afw_self_v_zz_____,
     afw_function_execute_nex,
     afw_function_execute_nex,
@@ -120165,9 +120351,9 @@ afw_function_definition_normalize_space_string = {
     &afw_self_v_normalizeSpaceString,
     &afw_self_v_afwNormalizeSpaceString,
     &afw_self_v_zz__Trims_whitespace_from_beginning_and_end,
-    &afw_self_v_zz__1514,
+    &afw_self_v_zz__1516,
     &afw_self_v_zz___string__string___string,
-    &afw_self_v_zz__1515,
+    &afw_self_v_zz__1517,
     NULL,
     afw_function_execute_normalize_space_string,
     afw_function_execute_normalize_space_string,
@@ -120313,9 +120499,9 @@ afw_function_definition_normalize_to_lower_case_string = {
     &afw_self_v_normalizeToLowerCaseString,
     &afw_self_v_afwNormalizeToLowerCaseString,
     &afw_self_v_zz__Converts_to_lower_case,
-    &afw_self_v_zz__1516,
+    &afw_self_v_zz__1518,
     &afw_self_v_zz___string__string___string,
-    &afw_self_v_zz__1517,
+    &afw_self_v_zz__1519,
     NULL,
     afw_function_execute_normalize_to_lower_case_string,
     afw_function_execute_normalize_to_lower_case_string,
@@ -120469,9 +120655,9 @@ afw_function_definition_one_and_only_string = {
     &afw_self_v_oneAndOnlyString,
     &afw_self_v_afwOneAndOnlyString,
     &afw_self_v_zz__Converts_a_one_value_array_to_a_string_value,
-    &afw_self_v_zz__1518,
+    &afw_self_v_zz__1520,
     &afw_self_v_zz___array___array_array____string,
-    &afw_self_v_zz__1519,
+    &afw_self_v_zz__1521,
     NULL,
     afw_function_execute_one_and_only,
     afw_function_execute_one_and_only,
@@ -120654,9 +120840,9 @@ afw_function_definition_regexp_index_of_string = {
     &afw_self_v_regexpIndexOfString,
     &afw_self_v_afwRegexpIndexOfString,
     &afw_self_v_zz__Returns_index_of_first_match_of_regular_expression,
-    &afw_self_v_zz__1520,
+    &afw_self_v_zz__1522,
     &afw_self_v_zz___value__string__regexp__string___integer,
-    &afw_self_v_zz__1521,
+    &afw_self_v_zz__1523,
     NULL,
     afw_function_execute_regexp_index_of,
     afw_function_execute_regexp_index_of,
@@ -120839,9 +121025,9 @@ afw_function_definition_regexp_match_string = {
     &afw_self_v_regexpMatchString,
     &afw_self_v_afwRegexpMatchString,
     &afw_self_v_zz__Search_for_a_match_using_a_regular_expression,
-    &afw_self_v_zz__1522,
+    &afw_self_v_zz__1524,
     &afw_self_v_zz___value__string__regexp__string___boolean,
-    &afw_self_v_zz__1523,
+    &afw_self_v_zz__1525,
     NULL,
     afw_function_execute_regexp_match,
     afw_function_execute_regexp_match,
@@ -121098,9 +121284,9 @@ afw_function_definition_regexp_replace_string = {
     &afw_self_v_regexpReplaceString,
     &afw_self_v_afwRegexpReplaceString,
     &afw_self_v_zz__Replace_strings_matching_a_regular_expression,
-    &afw_self_v_zz__1524,
-    &afw_self_v_zz__1525,
     &afw_self_v_zz__1526,
+    &afw_self_v_zz__1527,
+    &afw_self_v_zz__1528,
     NULL,
     afw_function_execute_regexp_replace,
     afw_function_execute_regexp_replace,
@@ -121285,7 +121471,7 @@ afw_function_definition_repeat_string = {
     &afw_self_v_zz__Returns_a_repeated_value,
     &afw_self_v_zz__Repeat_a_string_value_a_specified_number_of_times_,
     &afw_self_v_zz___value__string__times__integer___string,
-    &afw_self_v_zz__1527,
+    &afw_self_v_zz__1529,
     NULL,
     afw_function_execute_repeat,
     afw_function_execute_repeat,
@@ -121543,8 +121729,8 @@ afw_function_definition_replace_string = {
     &afw_self_v_afwReplaceString,
     &afw_self_v_zz__Replace_strings,
     &afw_self_v_zz__Replace_string_s__in_a_string_value_,
-    &afw_self_v_zz__1528,
-    &afw_self_v_zz__1529,
+    &afw_self_v_zz__1530,
+    &afw_self_v_zz__1531,
     NULL,
     afw_function_execute_replace,
     afw_function_execute_replace,
@@ -121727,9 +121913,9 @@ afw_function_definition_set_equals_string = {
     &afw_self_v_setEqualsString,
     &afw_self_v_afwSetEqualsString,
     &afw_self_v_zz__Checks_whether_two_arrays_are_subsets_of_each_other,
-    &afw_self_v_zz__1530,
+    &afw_self_v_zz__1532,
     &afw_self_v_zz___array1___array_string___array2___array_string____boolean,
-    &afw_self_v_zz__1531,
+    &afw_self_v_zz__1533,
     NULL,
     afw_function_execute_set_equals,
     afw_function_execute_set_equals,
@@ -121949,9 +122135,9 @@ afw_function_definition_split_string = {
     &afw_self_v_splitString,
     &afw_self_v_afwSplitString,
     &afw_self_v_zz__Split_at_a_separator,
-    &afw_self_v_zz__1532,
+    &afw_self_v_zz__1534,
     &afw_self_v_zz___value__string__separator___string__limit___integer___array,
-    &afw_self_v_zz__1533,
+    &afw_self_v_zz__1535,
     NULL,
     afw_function_execute_split,
     afw_function_execute_split,
@@ -122134,9 +122320,9 @@ afw_function_definition_starts_with_string = {
     &afw_self_v_startsWithString,
     &afw_self_v_afwStartsWithString,
     &afw_self_v_zz__Checks_whether_value_starts_with_a_string,
-    &afw_self_v_zz__1534,
+    &afw_self_v_zz__1536,
     &afw_self_v_zz___value__string__subString__string___boolean,
-    &afw_self_v_zz__1535,
+    &afw_self_v_zz__1537,
     NULL,
     afw_function_execute_starts_with,
     afw_function_execute_starts_with,
@@ -122290,9 +122476,9 @@ afw_function_definition_string = {
     &afw_self_v_string,
     &afw_self_v_afwString,
     &afw_self_v_zz__Convert_one_or_more_values_to_string_and_concatenate,
-    &afw_self_v_zz__1536,
+    &afw_self_v_zz__1538,
     &afw_self_v_zz___values_1__any_____values_rest___array_of_any____string,
-    &afw_self_v_zz__1537,
+    &afw_self_v_zz__1539,
     NULL,
     afw_function_execute_string,
     afw_function_execute_string,
@@ -122475,9 +122661,9 @@ afw_function_definition_subset_string = {
     &afw_self_v_subsetString,
     &afw_self_v_afwSubsetString,
     &afw_self_v_zz__Determines_if_the_first_array_is_a_subset_of_second_array,
-    &afw_self_v_zz__1538,
+    &afw_self_v_zz__1540,
     &afw_self_v_zz___array1___array_string___array2___array_string____boolean,
-    &afw_self_v_zz__1539,
+    &afw_self_v_zz__1541,
     NULL,
     afw_function_execute_subset,
     afw_function_execute_subset,
@@ -122705,9 +122891,9 @@ afw_function_definition_substring_string = {
     &afw_self_v_substringString,
     &afw_self_v_afwSubstringString,
     &afw_self_v_zz__Extract_a_substring,
-    &afw_self_v_zz__1540,
-    &afw_self_v_zz__1541,
     &afw_self_v_zz__1542,
+    &afw_self_v_zz__1543,
+    &afw_self_v_zz__1544,
     NULL,
     afw_function_execute_substring,
     afw_function_execute_substring,
@@ -122863,7 +123049,7 @@ afw_function_definition_to_anyURI_string = {
     &afw_self_v_zz__Converts_string_to_anyURI,
     &afw_self_v_zz__Converts_string_value_to_anyURI_,
     &afw_self_v_zz___value__string___anyURI,
-    &afw_self_v_zz__1543,
+    &afw_self_v_zz__1545,
     NULL,
     afw_function_execute_convert,
     afw_function_execute_convert,
@@ -123019,7 +123205,7 @@ afw_function_definition_to_boolean_string = {
     &afw_self_v_zz__Converts_string_to_boolean,
     &afw_self_v_zz__Converts_string_value_to_boolean_,
     &afw_self_v_zz___value__string___boolean,
-    &afw_self_v_zz__1544,
+    &afw_self_v_zz__1546,
     NULL,
     afw_function_execute_convert,
     afw_function_execute_convert,
@@ -123175,7 +123361,7 @@ afw_function_definition_to_dateTime_string = {
     &afw_self_v_zz__Converts_string_to_dateTime,
     &afw_self_v_zz__Converts_string_value_to_dateTime_,
     &afw_self_v_zz___value__string___dateTime,
-    &afw_self_v_zz__1545,
+    &afw_self_v_zz__1547,
     NULL,
     afw_function_execute_convert,
     afw_function_execute_convert,
@@ -123331,7 +123517,7 @@ afw_function_definition_to_date_string = {
     &afw_self_v_zz__Converts_string_to_date,
     &afw_self_v_zz__Converts_string_value_to_date_,
     &afw_self_v_zz___value__string___date,
-    &afw_self_v_zz__1546,
+    &afw_self_v_zz__1548,
     NULL,
     afw_function_execute_convert,
     afw_function_execute_convert,
@@ -123487,7 +123673,7 @@ afw_function_definition_to_dayTimeDuration_string = {
     &afw_self_v_zz__Converts_string_to_dayTimeDuration,
     &afw_self_v_zz__Converts_string_value_to_dayTimeDuration_,
     &afw_self_v_zz___value__string___dayTimeDuration,
-    &afw_self_v_zz__1547,
+    &afw_self_v_zz__1549,
     NULL,
     afw_function_execute_convert,
     afw_function_execute_convert,
@@ -123643,7 +123829,7 @@ afw_function_definition_to_dnsName_string = {
     &afw_self_v_zz__Converts_string_to_dnsName,
     &afw_self_v_zz__Converts_string_value_to_dnsName_,
     &afw_self_v_zz___value__string___dnsName,
-    &afw_self_v_zz__1548,
+    &afw_self_v_zz__1550,
     NULL,
     afw_function_execute_convert,
     afw_function_execute_convert,
@@ -123799,7 +123985,7 @@ afw_function_definition_to_double_string = {
     &afw_self_v_zz__Converts_to_double,
     &afw_self_v_zz__Converts_string_value_to_double_and_returns_double_result_,
     &afw_self_v_zz___value__string___double,
-    &afw_self_v_zz__1549,
+    &afw_self_v_zz__1551,
     NULL,
     afw_function_execute_convert,
     afw_function_execute_convert,
@@ -123945,9 +124131,9 @@ afw_function_definition_to_integer_string = {
     &afw_self_v_toIntegerString,
     &afw_self_v_afwToIntegerString,
     &afw_self_v_zz__Converts_to_integer,
-    &afw_self_v_zz__1550,
+    &afw_self_v_zz__1552,
     &afw_self_v_zz___value__string___integer,
-    &afw_self_v_zz__1551,
+    &afw_self_v_zz__1553,
     NULL,
     afw_function_execute_convert,
     afw_function_execute_convert,
@@ -124103,7 +124289,7 @@ afw_function_definition_to_ipAddress_string = {
     &afw_self_v_zz__Converts_string_to_ipAddress,
     &afw_self_v_zz__Converts_string_value_to_ipAddress_,
     &afw_self_v_zz___value__string___ipAddress,
-    &afw_self_v_zz__1552,
+    &afw_self_v_zz__1554,
     NULL,
     afw_function_execute_convert,
     afw_function_execute_convert,
@@ -124259,7 +124445,7 @@ afw_function_definition_to_rfc822Name_string = {
     &afw_self_v_zz__Converts_string_to_rfc822Name,
     &afw_self_v_zz__Converts_string_value_to_rfc822Name_,
     &afw_self_v_zz___value__string___rfc822Name,
-    &afw_self_v_zz__1553,
+    &afw_self_v_zz__1555,
     NULL,
     afw_function_execute_convert,
     afw_function_execute_convert,
@@ -124405,9 +124591,9 @@ afw_function_definition_to_string_string = {
     &afw_self_v_toStringString,
     &afw_self_v_afwToStringString,
     &afw_self_v_zz__Converts_value_to_string,
-    &afw_self_v_zz__1554,
+    &afw_self_v_zz__1556,
     &afw_self_v_zz___value__string___string,
-    &afw_self_v_zz__1555,
+    &afw_self_v_zz__1557,
     NULL,
     afw_function_execute_convert,
     afw_function_execute_convert,
@@ -124563,7 +124749,7 @@ afw_function_definition_to_time_string = {
     &afw_self_v_zz__Converts_string_to_time,
     &afw_self_v_zz__Converts_string_value_to_time_,
     &afw_self_v_zz___value__string___time,
-    &afw_self_v_zz__1556,
+    &afw_self_v_zz__1558,
     NULL,
     afw_function_execute_convert,
     afw_function_execute_convert,
@@ -124719,7 +124905,7 @@ afw_function_definition_to_x500Name_string = {
     &afw_self_v_zz__Converts_string_to_x500Name,
     &afw_self_v_zz__Converts_string_value_to_x500Name_,
     &afw_self_v_zz___value__string___x500Name,
-    &afw_self_v_zz__1557,
+    &afw_self_v_zz__1559,
     NULL,
     afw_function_execute_convert,
     afw_function_execute_convert,
@@ -124875,7 +125061,7 @@ afw_function_definition_to_yearMonthDuration_string = {
     &afw_self_v_zz__Converts_string_to_yearMonthDuration,
     &afw_self_v_zz__Converts_string_value_to_yearMonthDuration_,
     &afw_self_v_zz___value__string___yearMonthDuration,
-    &afw_self_v_zz__1558,
+    &afw_self_v_zz__1560,
     NULL,
     afw_function_execute_convert,
     afw_function_execute_convert,
@@ -125021,9 +125207,9 @@ afw_function_definition_union_string = {
     &afw_self_v_unionString,
     &afw_self_v_afwUnionString,
     &afw_self_v_zz__Returns_union_of_two_or_more_string_arrays,
-    &afw_self_v_zz__1559,
-    &afw_self_v_zz__1560,
     &afw_self_v_zz__1561,
+    &afw_self_v_zz__1562,
+    &afw_self_v_zz__1563,
     NULL,
     afw_function_execute_union,
     afw_function_execute_union,
@@ -125171,7 +125357,7 @@ afw_function_definition_url_decode = {
     &afw_self_v_zz__URL_decode,
     &afw_self_v_zz__URL_decode_a_value_or_bag_of_values_,
     &afw_self_v_zz___encoded__string___string,
-    &afw_self_v_zz__1562,
+    &afw_self_v_zz__1564,
     NULL,
     afw_function_execute_url_decode,
     afw_function_execute_url_decode,
@@ -125319,7 +125505,7 @@ afw_function_definition_url_encode_string = {
     &afw_self_v_zz__URI_encode,
     &afw_self_v_zz__URL_encode_a_value_or_bag_of_values_,
     &afw_self_v_zz___unencoded__string___string,
-    &afw_self_v_zz__1563,
+    &afw_self_v_zz__1565,
     NULL,
     afw_function_execute_url_encode,
     afw_function_execute_url_encode,
@@ -125467,7 +125653,7 @@ afw_function_definition_bag_size_template = {
     &afw_self_v_zz__Returns_the_number_of_values_in_a_bag,
     &afw_self_v_zz__This_returns_the_integer_number_of_values_in_array_,
     &afw_self_v_zz___value___array_template____integer,
-    &afw_self_v_zz__1564,
+    &afw_self_v_zz__1566,
     NULL,
     afw_function_execute_bag_size,
     afw_function_execute_bag_size,
@@ -125613,9 +125799,9 @@ afw_function_definition_bag_template = {
     &afw_self_v_bagTemplate,
     &afw_self_v_afwBagTemplate,
     &afw_self_v_zz__Makes_an_array_from_values,
-    &afw_self_v_zz__1565,
+    &afw_self_v_zz__1567,
     &afw_self_v_zz______values___array_of__array_template______array_template_,
-    &afw_self_v_zz__1566,
+    &afw_self_v_zz__1568,
     NULL,
     afw_function_execute_bag,
     afw_function_execute_bag,
@@ -125798,9 +125984,9 @@ afw_function_definition_compile_template = {
     &afw_self_v_compileTemplate,
     &afw_self_v_afwCompileTemplate,
     &afw_self_v_zz__Compile_template_value,
-    &afw_self_v_zz__1567,
+    &afw_self_v_zz__1569,
     &afw_self_v_zz___source__template__listing___any___unevaluated,
-    &afw_self_v_zz__1568,
+    &afw_self_v_zz__1570,
     NULL,
     afw_function_execute_compile_template,
     afw_function_execute_compile_template,
@@ -125991,9 +126177,9 @@ afw_function_definition_eq_template = {
     &afw_self_v_eqTemplate,
     &afw_self_v_afwEqTemplate,
     &afw_self_v_zz__Checks_for_equal,
-    &afw_self_v_zz__1569,
+    &afw_self_v_zz__1571,
     &afw_self_v_zz___arg1__template__arg2__any___boolean,
-    &afw_self_v_zz__1570,
+    &afw_self_v_zz__1572,
     &afw_self_v_zz____,
     afw_function_execute_eq,
     afw_function_execute_eq,
@@ -126176,9 +126362,9 @@ afw_function_definition_eqx_template = {
     &afw_self_v_eqxTemplate,
     &afw_self_v_afwEqxTemplate,
     &afw_self_v_zz__Checks_for_equal_and_type,
-    &afw_self_v_zz__1571,
+    &afw_self_v_zz__1573,
     &afw_self_v_zz___arg1__template__arg2__any___boolean,
-    &afw_self_v_zz__1572,
+    &afw_self_v_zz__1574,
     &afw_self_v_zz_____,
     afw_function_execute_eqx,
     afw_function_execute_eqx,
@@ -126208,41 +126394,41 @@ impl_object__eqx_template__value = {
     (const afw_object_t *)&impl_object__eqx_template
 };
 
-/* ---------- evaluate<template> ---------- */
+/* ---------- eval<template> ---------- */
 
 static const afw_utf8_t
-impl_object_path__evaluate_template =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/evaluate_template");
+impl_object_path__eval_template =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/eval_template");
 
 static const afw_value_object_t
-impl_object__evaluate_template__value;
+impl_object__eval_template__value;
 
 static const afw_runtime_object_indirect_t
-impl_object__evaluate_template = {
+impl_object__eval_template = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__evaluate_template__value,
+        (const afw_value_t *)&impl_object__eval_template__value,
         {
             NULL,
             NULL,
-            &afw_self_s_evaluate_template,
+            &afw_self_s_eval_template,
             &afw_self_s__AdaptiveFunction_,
-            &impl_object_path__evaluate_template
+            &impl_object_path__eval_template
         }
     },
-    (void *)&afw_function_definition_evaluate_template
+    (void *)&afw_function_definition_eval_template
 };
 
 static const afw_value_object_t
-impl_evaluate_template_returns__value;
+impl_eval_template_returns__value;
 
 static const afw_value_function_parameter_t
-impl_evaluate_template_returns = {
+impl_eval_template_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_evaluate_template_returns__value,
+        (const afw_value_t *)&impl_eval_template_returns__value,
         {
             NULL,
             NULL,
@@ -126265,20 +126451,20 @@ impl_evaluate_template_returns = {
 };
 
 static const afw_value_object_t
-impl_evaluate_template_returns__value = {
+impl_eval_template_returns__value = {
     {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_evaluate_template_returns
+    (const afw_object_t *)&impl_eval_template_returns
 };
 
 static const afw_value_object_t
-impl_evaluate_template_parameter_1__value;
+impl_eval_template_parameter_1__value;
 
 static const afw_value_function_parameter_t
-impl_evaluate_template_parameter_1 = {
+impl_eval_template_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_evaluate_template_parameter_1__value,
+        (const afw_value_t *)&impl_eval_template_parameter_1__value,
         {
             NULL,
             NULL,
@@ -126291,8 +126477,8 @@ impl_evaluate_template_parameter_1 = {
     &afw_self_v_template,
     NULL,
     &afw_self_v_source,
-    &afw_self_v_zz__Source_to_evaluate,
-    &afw_self_v_zz__template_string_to_compile_and_evaluate,
+    &afw_self_v_zz__Source_to_eval,
+    &afw_self_v_zz__template_to_compile_and_evaluate,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -126301,20 +126487,20 @@ impl_evaluate_template_parameter_1 = {
 };
 
 static const afw_value_object_t
-impl_evaluate_template_parameter_1__value = {
+impl_eval_template_parameter_1__value = {
     {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_evaluate_template_parameter_1
+    (const afw_object_t *)&impl_eval_template_parameter_1
 };
 
 static const afw_value_object_t
-impl_evaluate_template_parameter_2__value;
+impl_eval_template_parameter_2__value;
 
 static const afw_value_function_parameter_t
-impl_evaluate_template_parameter_2 = {
+impl_eval_template_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_evaluate_template_parameter_2__value,
+        (const afw_value_t *)&impl_eval_template_parameter_2__value,
         {
             NULL,
             NULL,
@@ -126337,48 +126523,48 @@ impl_evaluate_template_parameter_2 = {
 };
 
 static const afw_value_object_t
-impl_evaluate_template_parameter_2__value = {
+impl_eval_template_parameter_2__value = {
     {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_evaluate_template_parameter_2
+    (const afw_object_t *)&impl_eval_template_parameter_2
 };
 
 static const afw_value_function_parameter_t *
-impl_evaluate_template_parameters[] = {
-    &impl_evaluate_template_parameter_1,
-    &impl_evaluate_template_parameter_2,
+impl_eval_template_parameters[] = {
+    &impl_eval_template_parameter_1,
+    &impl_eval_template_parameter_2,
     NULL
 };
 
 AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_evaluate_template = {
+afw_function_definition_eval_template = {
     {&afw_value_function_definition_inf},
-    (const afw_object_t *)&impl_object__evaluate_template,
+    (const afw_object_t *)&impl_object__eval_template,
     &afw_self_v_template,
-    &afw_self_v_zz__evaluate_template_,
-    &afw_self_v_zz___afw__AdaptiveFunction__evaluate_template_,
-    &afw_self_v_evaluate,
-    &afw_self_v_evaluate_template,
-    &afw_self_v_evaluateTemplate,
-    &afw_self_v_afwEvaluateTemplate,
-    &afw_self_v_zz__Evaluate_template_value,
+    &afw_self_v_zz__eval_template_,
+    &afw_self_v_zz___afw__AdaptiveFunction__eval_template_,
+    &afw_self_v_eval,
+    &afw_self_v_eval_template,
+    &afw_self_v_evalTemplate,
+    &afw_self_v_afwEvalTemplate,
+    &afw_self_v_zz__Compile_and_evaluate_template_value,
     &afw_self_v_zz__Compile_and_evaluate_template_value_,
-    &afw_self_v_zz__1573,
-    &afw_self_v_zz__1574,
+    &afw_self_v_zz__1575,
+    &afw_self_v_zz__1576,
     NULL,
-    afw_function_execute_evaluate_template,
-    afw_function_execute_evaluate_template,
+    afw_function_execute_eval_template,
+    afw_function_execute_eval_template,
     NULL,
     &afw_integer_self_v_1,
     &afw_integer_self_v_2,
-    &impl_evaluate_template_parameters[0],
+    &impl_eval_template_parameters[0],
     2,
-    &impl_evaluate_template_returns,
+    &impl_eval_template_returns,
     NULL,
     &afw_data_type_template_direct,
     &afw_self_v_template,
     NULL,
     NULL,
-    afw_data_type_method_number_evaluate,
+    afw_data_type_method_number_eval,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -126388,9 +126574,9 @@ afw_function_definition_evaluate_template = {
 };
 
 static const afw_value_object_t
-impl_object__evaluate_template__value = {
+impl_object__eval_template__value = {
     {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_object__evaluate_template
+    (const afw_object_t *)&impl_object__eval_template
 };
 
 /* ---------- ge<template> ---------- */
@@ -126546,9 +126732,9 @@ afw_function_definition_ge_template = {
     &afw_self_v_geTemplate,
     &afw_self_v_afwGeTemplate,
     &afw_self_v_zz__Checks_for_greater_than_or_equal,
-    &afw_self_v_zz__1575,
+    &afw_self_v_zz__1577,
     &afw_self_v_zz___arg1__template__arg2__template___boolean,
-    &afw_self_v_zz__1576,
+    &afw_self_v_zz__1578,
     &afw_self_v_zz____,
     afw_function_execute_ge,
     afw_function_execute_ge,
@@ -126731,9 +126917,9 @@ afw_function_definition_gt_template = {
     &afw_self_v_gtTemplate,
     &afw_self_v_afwGtTemplate,
     &afw_self_v_zz__Checks_for_greater_than,
-    &afw_self_v_zz__1577,
+    &afw_self_v_zz__1579,
     &afw_self_v_zz___arg1__template__arg2__template___boolean,
-    &afw_self_v_zz__1578,
+    &afw_self_v_zz__1580,
     &afw_self_v_zz___,
     afw_function_execute_gt,
     afw_function_execute_gt,
@@ -126879,9 +127065,9 @@ afw_function_definition_is_template = {
     &afw_self_v_isTemplate,
     &afw_self_v_afwIsTemplate,
     &afw_self_v_zz__Checks_whether_value_is_dataType_template,
-    &afw_self_v_zz__1579,
+    &afw_self_v_zz__1581,
     &afw_self_v_zz___value__any___boolean,
-    &afw_self_v_zz__1580,
+    &afw_self_v_zz__1582,
     NULL,
     afw_function_execute_is,
     afw_function_execute_is,
@@ -127064,9 +127250,9 @@ afw_function_definition_le_template = {
     &afw_self_v_leTemplate,
     &afw_self_v_afwLeTemplate,
     &afw_self_v_zz__Checks_for_less_than_or_equal,
-    &afw_self_v_zz__1581,
+    &afw_self_v_zz__1583,
     &afw_self_v_zz___arg1__template__arg2__any___boolean,
-    &afw_self_v_zz__1582,
+    &afw_self_v_zz__1584,
     &afw_self_v_zz____,
     afw_function_execute_le,
     afw_function_execute_le,
@@ -127249,9 +127435,9 @@ afw_function_definition_lt_template = {
     &afw_self_v_ltTemplate,
     &afw_self_v_afwLtTemplate,
     &afw_self_v_zz__Checks_for_less_than,
-    &afw_self_v_zz__1583,
+    &afw_self_v_zz__1585,
     &afw_self_v_zz___arg1__template__arg2__template___boolean,
-    &afw_self_v_zz__1584,
+    &afw_self_v_zz__1586,
     &afw_self_v_zz___,
     afw_function_execute_lt,
     afw_function_execute_lt,
@@ -127442,9 +127628,9 @@ afw_function_definition_ne_template = {
     &afw_self_v_neTemplate,
     &afw_self_v_afwNeTemplate,
     &afw_self_v_zz__Checks_for_not_equal,
-    &afw_self_v_zz__1585,
+    &afw_self_v_zz__1587,
     &afw_self_v_zz___arg1__template__arg2__any___boolean,
-    &afw_self_v_zz__1586,
+    &afw_self_v_zz__1588,
     &afw_self_v_zz____,
     afw_function_execute_ne,
     afw_function_execute_ne,
@@ -127627,9 +127813,9 @@ afw_function_definition_nex_template = {
     &afw_self_v_nexTemplate,
     &afw_self_v_afwNexTemplate,
     &afw_self_v_zz__Checks_for_not_equal_value_or_type,
-    &afw_self_v_zz__1587,
+    &afw_self_v_zz__1589,
     &afw_self_v_zz___arg1__template__arg2__any___boolean,
-    &afw_self_v_zz__1588,
+    &afw_self_v_zz__1590,
     &afw_self_v_zz_____,
     afw_function_execute_nex,
     afw_function_execute_nex,
@@ -127783,9 +127969,9 @@ afw_function_definition_template = {
     &afw_self_v_template,
     &afw_self_v_afwTemplate,
     &afw_self_v_zz__Convert_to_data_type_template,
-    &afw_self_v_zz__1589,
+    &afw_self_v_zz__1591,
     &afw_self_v_zz___value__any___template,
-    &afw_self_v_zz__1590,
+    &afw_self_v_zz__1592,
     NULL,
     afw_function_execute_convert,
     afw_function_execute_convert,
@@ -127931,9 +128117,9 @@ afw_function_definition_to_string_template = {
     &afw_self_v_toStringTemplate,
     &afw_self_v_afwToStringTemplate,
     &afw_self_v_zz__Converts_value_to_string,
-    &afw_self_v_zz__1591,
+    &afw_self_v_zz__1593,
     &afw_self_v_zz___value__template___string,
-    &afw_self_v_zz__1592,
+    &afw_self_v_zz__1594,
     NULL,
     afw_function_execute_convert,
     afw_function_execute_convert,
@@ -128116,9 +128302,9 @@ afw_function_definition_at_least_one_member_of_time = {
     &afw_self_v_atLeastOneMemberOfTime,
     &afw_self_v_afwAtLeastOneMemberOfTime,
     &afw_self_v_zz__Checks_for_at_least_one_value_in_common,
-    &afw_self_v_zz__1593,
+    &afw_self_v_zz__1595,
     &afw_self_v_zz___array1___array_time___array2___array_time____boolean,
-    &afw_self_v_zz__1594,
+    &afw_self_v_zz__1596,
     NULL,
     afw_function_execute_at_least_one_member_of,
     afw_function_execute_at_least_one_member_of,
@@ -128266,7 +128452,7 @@ afw_function_definition_bag_size_time = {
     &afw_self_v_zz__Returns_the_number_of_values_in_a_bag,
     &afw_self_v_zz__This_returns_the_integer_number_of_values_in_array_,
     &afw_self_v_zz___value___array_time____integer,
-    &afw_self_v_zz__1595,
+    &afw_self_v_zz__1597,
     NULL,
     afw_function_execute_bag_size,
     afw_function_execute_bag_size,
@@ -128412,9 +128598,9 @@ afw_function_definition_bag_time = {
     &afw_self_v_bagTime,
     &afw_self_v_afwBagTime,
     &afw_self_v_zz__Makes_an_array_from_values,
-    &afw_self_v_zz__1596,
+    &afw_self_v_zz__1598,
     &afw_self_v_zz______values___array_of__array_time______array_time_,
-    &afw_self_v_zz__1597,
+    &afw_self_v_zz__1599,
     NULL,
     afw_function_execute_bag,
     afw_function_execute_bag,
@@ -128605,9 +128791,9 @@ afw_function_definition_eq_time = {
     &afw_self_v_eqTime,
     &afw_self_v_afwEqTime,
     &afw_self_v_zz__Checks_for_equal,
-    &afw_self_v_zz__1598,
+    &afw_self_v_zz__1600,
     &afw_self_v_zz___arg1__time__arg2__any___boolean,
-    &afw_self_v_zz__1599,
+    &afw_self_v_zz__1601,
     &afw_self_v_zz____,
     afw_function_execute_eq,
     afw_function_execute_eq,
@@ -128790,9 +128976,9 @@ afw_function_definition_eqx_time = {
     &afw_self_v_eqxTime,
     &afw_self_v_afwEqxTime,
     &afw_self_v_zz__Checks_for_equal_and_type,
-    &afw_self_v_zz__1600,
+    &afw_self_v_zz__1602,
     &afw_self_v_zz___arg1__time__arg2__any___boolean,
-    &afw_self_v_zz__1601,
+    &afw_self_v_zz__1603,
     &afw_self_v_zz_____,
     afw_function_execute_eqx,
     afw_function_execute_eqx,
@@ -128975,9 +129161,9 @@ afw_function_definition_ge_time = {
     &afw_self_v_geTime,
     &afw_self_v_afwGeTime,
     &afw_self_v_zz__Checks_for_greater_than_or_equal,
-    &afw_self_v_zz__1602,
+    &afw_self_v_zz__1604,
     &afw_self_v_zz___arg1__time__arg2__time___boolean,
-    &afw_self_v_zz__1603,
+    &afw_self_v_zz__1605,
     &afw_self_v_zz____,
     afw_function_execute_ge,
     afw_function_execute_ge,
@@ -129160,9 +129346,9 @@ afw_function_definition_gt_time = {
     &afw_self_v_gtTime,
     &afw_self_v_afwGtTime,
     &afw_self_v_zz__Checks_for_greater_than,
-    &afw_self_v_zz__1604,
+    &afw_self_v_zz__1606,
     &afw_self_v_zz___arg1__time__arg2__time___boolean,
-    &afw_self_v_zz__1605,
+    &afw_self_v_zz__1607,
     &afw_self_v_zz___,
     afw_function_execute_gt,
     afw_function_execute_gt,
@@ -129382,9 +129568,9 @@ afw_function_definition_in_range_time = {
     &afw_self_v_inRangeTime,
     &afw_self_v_afwInRangeTime,
     &afw_self_v_zz__Checks_if_time_in_range,
-    &afw_self_v_zz__1606,
+    &afw_self_v_zz__1608,
     &afw_self_v_zz___time__time__startTime__time__endTime__time___boolean,
-    &afw_self_v_zz__1607,
+    &afw_self_v_zz__1609,
     NULL,
     afw_function_execute_in_range_time,
     afw_function_execute_in_range_time,
@@ -129567,9 +129753,9 @@ afw_function_definition_intersection_time = {
     &afw_self_v_intersectionTime,
     &afw_self_v_afwIntersectionTime,
     &afw_self_v_zz__Returns_intersection_of_two_arrays,
-    &afw_self_v_zz__1608,
+    &afw_self_v_zz__1610,
     &afw_self_v_zz___array1___array_time___array2___array_time_____array_time_,
-    &afw_self_v_zz__1609,
+    &afw_self_v_zz__1611,
     NULL,
     afw_function_execute_intersection,
     afw_function_execute_intersection,
@@ -129752,9 +129938,9 @@ afw_function_definition_is_in_time = {
     &afw_self_v_isInTime,
     &afw_self_v_afwIsInTime,
     &afw_self_v_zz__Checks_whether_a_value_is_in_an_array,
-    &afw_self_v_zz__1610,
+    &afw_self_v_zz__1612,
     &afw_self_v_zz___value__time__array___array_time____boolean,
-    &afw_self_v_zz__1611,
+    &afw_self_v_zz__1613,
     NULL,
     afw_function_execute_is_in,
     afw_function_execute_is_in,
@@ -129900,9 +130086,9 @@ afw_function_definition_is_time = {
     &afw_self_v_isTime,
     &afw_self_v_afwIsTime,
     &afw_self_v_zz__Checks_whether_value_is_dataType_time,
-    &afw_self_v_zz__1612,
+    &afw_self_v_zz__1614,
     &afw_self_v_zz___value__any___boolean,
-    &afw_self_v_zz__1613,
+    &afw_self_v_zz__1615,
     NULL,
     afw_function_execute_is,
     afw_function_execute_is,
@@ -130085,9 +130271,9 @@ afw_function_definition_le_time = {
     &afw_self_v_leTime,
     &afw_self_v_afwLeTime,
     &afw_self_v_zz__Checks_for_less_than_or_equal,
-    &afw_self_v_zz__1614,
+    &afw_self_v_zz__1616,
     &afw_self_v_zz___arg1__time__arg2__any___boolean,
-    &afw_self_v_zz__1615,
+    &afw_self_v_zz__1617,
     &afw_self_v_zz____,
     afw_function_execute_le,
     afw_function_execute_le,
@@ -130270,9 +130456,9 @@ afw_function_definition_lt_time = {
     &afw_self_v_ltTime,
     &afw_self_v_afwLtTime,
     &afw_self_v_zz__Checks_for_less_than,
-    &afw_self_v_zz__1616,
+    &afw_self_v_zz__1618,
     &afw_self_v_zz___arg1__time__arg2__time___boolean,
-    &afw_self_v_zz__1617,
+    &afw_self_v_zz__1619,
     &afw_self_v_zz___,
     afw_function_execute_lt,
     afw_function_execute_lt,
@@ -130418,9 +130604,9 @@ afw_function_definition_max_time = {
     &afw_self_v_maxTime,
     &afw_self_v_afwMaxTime,
     &afw_self_v_zz__Maximum_value,
-    &afw_self_v_zz__1618,
+    &afw_self_v_zz__1620,
     &afw_self_v_zz___values_1__time_____values_rest___array_of_time____time,
-    &afw_self_v_zz__1619,
+    &afw_self_v_zz__1621,
     NULL,
     afw_function_execute_max,
     afw_function_execute_max,
@@ -130566,9 +130752,9 @@ afw_function_definition_min_time = {
     &afw_self_v_minTime,
     &afw_self_v_afwMinTime,
     &afw_self_v_zz__Minimum_value,
-    &afw_self_v_zz__1620,
+    &afw_self_v_zz__1622,
     &afw_self_v_zz___values_1__time_____values_rest___array_of_time____time,
-    &afw_self_v_zz__1621,
+    &afw_self_v_zz__1623,
     NULL,
     afw_function_execute_min,
     afw_function_execute_min,
@@ -130759,9 +130945,9 @@ afw_function_definition_ne_time = {
     &afw_self_v_neTime,
     &afw_self_v_afwNeTime,
     &afw_self_v_zz__Checks_for_not_equal,
-    &afw_self_v_zz__1622,
+    &afw_self_v_zz__1624,
     &afw_self_v_zz___arg1__time__arg2__any___boolean,
-    &afw_self_v_zz__1623,
+    &afw_self_v_zz__1625,
     &afw_self_v_zz____,
     afw_function_execute_ne,
     afw_function_execute_ne,
@@ -130944,9 +131130,9 @@ afw_function_definition_nex_time = {
     &afw_self_v_nexTime,
     &afw_self_v_afwNexTime,
     &afw_self_v_zz__Checks_for_not_equal_value_or_type,
-    &afw_self_v_zz__1624,
+    &afw_self_v_zz__1626,
     &afw_self_v_zz___arg1__time__arg2__any___boolean,
-    &afw_self_v_zz__1625,
+    &afw_self_v_zz__1627,
     &afw_self_v_zz_____,
     afw_function_execute_nex,
     afw_function_execute_nex,
@@ -131100,9 +131286,9 @@ afw_function_definition_one_and_only_time = {
     &afw_self_v_oneAndOnlyTime,
     &afw_self_v_afwOneAndOnlyTime,
     &afw_self_v_zz__Converts_a_one_value_array_to_a_time_value,
-    &afw_self_v_zz__1626,
+    &afw_self_v_zz__1628,
     &afw_self_v_zz___array___array_array____time,
-    &afw_self_v_zz__1627,
+    &afw_self_v_zz__1629,
     NULL,
     afw_function_execute_one_and_only,
     afw_function_execute_one_and_only,
@@ -131285,9 +131471,9 @@ afw_function_definition_set_equals_time = {
     &afw_self_v_setEqualsTime,
     &afw_self_v_afwSetEqualsTime,
     &afw_self_v_zz__Checks_whether_two_arrays_are_subsets_of_each_other,
-    &afw_self_v_zz__1628,
+    &afw_self_v_zz__1630,
     &afw_self_v_zz___array1___array_time___array2___array_time____boolean,
-    &afw_self_v_zz__1629,
+    &afw_self_v_zz__1631,
     NULL,
     afw_function_execute_set_equals,
     afw_function_execute_set_equals,
@@ -131470,9 +131656,9 @@ afw_function_definition_subset_time = {
     &afw_self_v_subsetTime,
     &afw_self_v_afwSubsetTime,
     &afw_self_v_zz__Determines_if_the_first_array_is_a_subset_of_second_array,
-    &afw_self_v_zz__1630,
+    &afw_self_v_zz__1632,
     &afw_self_v_zz___array1___array_time___array2___array_time____boolean,
-    &afw_self_v_zz__1631,
+    &afw_self_v_zz__1633,
     NULL,
     afw_function_execute_subset,
     afw_function_execute_subset,
@@ -131628,7 +131814,7 @@ afw_function_definition_time = {
     &afw_self_v_zz__Convert_to_data_type_time,
     &afw_self_v_zz__Converts_value_to_data_type_time_returning_time_result_,
     &afw_self_v_zz___value__any___time,
-    &afw_self_v_zz__1632,
+    &afw_self_v_zz__1634,
     NULL,
     afw_function_execute_convert,
     afw_function_execute_convert,
@@ -131774,9 +131960,9 @@ afw_function_definition_to_string_time = {
     &afw_self_v_toStringTime,
     &afw_self_v_afwToStringTime,
     &afw_self_v_zz__Converts_value_to_string,
-    &afw_self_v_zz__1633,
+    &afw_self_v_zz__1635,
     &afw_self_v_zz___value__time___string,
-    &afw_self_v_zz__1634,
+    &afw_self_v_zz__1636,
     NULL,
     afw_function_execute_convert,
     afw_function_execute_convert,
@@ -131922,9 +132108,9 @@ afw_function_definition_union_time = {
     &afw_self_v_unionTime,
     &afw_self_v_afwUnionTime,
     &afw_self_v_zz__Returns_union_of_two_or_more_string_arrays,
-    &afw_self_v_zz__1635,
-    &afw_self_v_zz__1636,
     &afw_self_v_zz__1637,
+    &afw_self_v_zz__1638,
+    &afw_self_v_zz__1639,
     NULL,
     afw_function_execute_union,
     afw_function_execute_union,
@@ -132070,9 +132256,9 @@ afw_function_definition_is_unevaluated = {
     &afw_self_v_isUnevaluated,
     &afw_self_v_afwIsUnevaluated,
     &afw_self_v_zz__Checks_whether_value_is_dataType_unevaluated,
-    &afw_self_v_zz__1638,
+    &afw_self_v_zz__1640,
     &afw_self_v_zz___value__any___boolean,
-    &afw_self_v_zz__1639,
+    &afw_self_v_zz__1641,
     NULL,
     afw_function_execute_is,
     afw_function_execute_is,
@@ -132150,7 +132336,7 @@ impl_meta_returns = {
     NULL,
     NULL,
     NULL,
-    &afw_self_v_zz__1640,
+    &afw_self_v_zz__1642,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -132186,7 +132372,7 @@ impl_meta_parameter_1 = {
     NULL,
     &afw_self_v_value,
     NULL,
-    &afw_self_v_zz__1641,
+    &afw_self_v_zz__1643,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -132218,9 +132404,9 @@ afw_function_definition_meta = {
     &afw_self_v_meta,
     &afw_self_v_afwMeta,
     &afw_self_v_zz__Return_the_meta_object_about_an_adaptive_value,
-    &afw_self_v_zz__1642,
+    &afw_self_v_zz__1644,
     &afw_self_v_zz___value__any___object,
-    &afw_self_v_zz__1643,
+    &afw_self_v_zz__1645,
     NULL,
     afw_function_execute_meta,
     afw_function_execute_meta,
@@ -132298,7 +132484,7 @@ impl_metas_returns = {
     NULL,
     NULL,
     NULL,
-    &afw_self_v_zz__1644,
+    &afw_self_v_zz__1646,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -132365,10 +132551,10 @@ afw_function_definition_metas = {
     &afw_self_v_metas,
     &afw_self_v_metas,
     &afw_self_v_afwMetas,
-    &afw_self_v_zz__1645,
-    &afw_self_v_zz__1646,
-    &afw_self_v_zz___value__any___object,
     &afw_self_v_zz__1647,
+    &afw_self_v_zz__1648,
+    &afw_self_v_zz___value__any___object,
+    &afw_self_v_zz__1649,
     NULL,
     afw_function_execute_metas,
     afw_function_execute_metas,
@@ -132551,9 +132737,9 @@ afw_function_definition_at_least_one_member_of_x500Name = {
     &afw_self_v_atLeastOneMemberOfX500Name,
     &afw_self_v_afwAtLeastOneMemberOfX500Name,
     &afw_self_v_zz__Checks_for_at_least_one_value_in_common,
-    &afw_self_v_zz__1648,
-    &afw_self_v_zz__1649,
     &afw_self_v_zz__1650,
+    &afw_self_v_zz__1651,
+    &afw_self_v_zz__1652,
     NULL,
     afw_function_execute_at_least_one_member_of,
     afw_function_execute_at_least_one_member_of,
@@ -132701,7 +132887,7 @@ afw_function_definition_bag_size_x500Name = {
     &afw_self_v_zz__Returns_the_number_of_values_in_a_bag,
     &afw_self_v_zz__This_returns_the_integer_number_of_values_in_array_,
     &afw_self_v_zz___value___array_x500Name____integer,
-    &afw_self_v_zz__1651,
+    &afw_self_v_zz__1653,
     NULL,
     afw_function_execute_bag_size,
     afw_function_execute_bag_size,
@@ -132847,9 +133033,9 @@ afw_function_definition_bag_x500Name = {
     &afw_self_v_bagX500Name,
     &afw_self_v_afwBagX500Name,
     &afw_self_v_zz__Makes_an_array_from_values,
-    &afw_self_v_zz__1652,
+    &afw_self_v_zz__1654,
     &afw_self_v_zz______values___array_of__array_x500Name______array_x500Name_,
-    &afw_self_v_zz__1653,
+    &afw_self_v_zz__1655,
     NULL,
     afw_function_execute_bag,
     afw_function_execute_bag,
@@ -133040,9 +133226,9 @@ afw_function_definition_eq_x500Name = {
     &afw_self_v_eqX500Name,
     &afw_self_v_afwEqX500Name,
     &afw_self_v_zz__Checks_for_equal,
-    &afw_self_v_zz__1654,
+    &afw_self_v_zz__1656,
     &afw_self_v_zz___arg1__x500Name__arg2__any___boolean,
-    &afw_self_v_zz__1655,
+    &afw_self_v_zz__1657,
     &afw_self_v_zz____,
     afw_function_execute_eq,
     afw_function_execute_eq,
@@ -133225,9 +133411,9 @@ afw_function_definition_eqx_x500Name = {
     &afw_self_v_eqxX500Name,
     &afw_self_v_afwEqxX500Name,
     &afw_self_v_zz__Checks_for_equal_and_type,
-    &afw_self_v_zz__1656,
+    &afw_self_v_zz__1658,
     &afw_self_v_zz___arg1__x500Name__arg2__any___boolean,
-    &afw_self_v_zz__1657,
+    &afw_self_v_zz__1659,
     &afw_self_v_zz_____,
     afw_function_execute_eqx,
     afw_function_execute_eqx,
@@ -133410,9 +133596,9 @@ afw_function_definition_ge_x500Name = {
     &afw_self_v_geX500Name,
     &afw_self_v_afwGeX500Name,
     &afw_self_v_zz__Checks_for_greater_than_or_equal,
-    &afw_self_v_zz__1658,
+    &afw_self_v_zz__1660,
     &afw_self_v_zz___arg1__x500Name__arg2__x500Name___boolean,
-    &afw_self_v_zz__1659,
+    &afw_self_v_zz__1661,
     &afw_self_v_zz____,
     afw_function_execute_ge,
     afw_function_execute_ge,
@@ -133595,9 +133781,9 @@ afw_function_definition_gt_x500Name = {
     &afw_self_v_gtX500Name,
     &afw_self_v_afwGtX500Name,
     &afw_self_v_zz__Checks_for_greater_than,
-    &afw_self_v_zz__1660,
+    &afw_self_v_zz__1662,
     &afw_self_v_zz___arg1__x500Name__arg2__x500Name___boolean,
-    &afw_self_v_zz__1661,
+    &afw_self_v_zz__1663,
     &afw_self_v_zz___,
     afw_function_execute_gt,
     afw_function_execute_gt,
@@ -133780,9 +133966,9 @@ afw_function_definition_intersection_x500Name = {
     &afw_self_v_intersectionX500Name,
     &afw_self_v_afwIntersectionX500Name,
     &afw_self_v_zz__Returns_intersection_of_two_arrays,
-    &afw_self_v_zz__1662,
-    &afw_self_v_zz__1663,
     &afw_self_v_zz__1664,
+    &afw_self_v_zz__1665,
+    &afw_self_v_zz__1666,
     NULL,
     afw_function_execute_intersection,
     afw_function_execute_intersection,
@@ -133965,9 +134151,9 @@ afw_function_definition_is_in_x500Name = {
     &afw_self_v_isInX500Name,
     &afw_self_v_afwIsInX500Name,
     &afw_self_v_zz__Checks_whether_a_value_is_in_an_array,
-    &afw_self_v_zz__1665,
+    &afw_self_v_zz__1667,
     &afw_self_v_zz___value__x500Name__array___array_x500Name____boolean,
-    &afw_self_v_zz__1666,
+    &afw_self_v_zz__1668,
     NULL,
     afw_function_execute_is_in,
     afw_function_execute_is_in,
@@ -134113,9 +134299,9 @@ afw_function_definition_is_x500Name = {
     &afw_self_v_isX500Name,
     &afw_self_v_afwIsX500Name,
     &afw_self_v_zz__Checks_whether_value_is_dataType_x500Name,
-    &afw_self_v_zz__1667,
+    &afw_self_v_zz__1669,
     &afw_self_v_zz___value__any___boolean,
-    &afw_self_v_zz__1668,
+    &afw_self_v_zz__1670,
     NULL,
     afw_function_execute_is,
     afw_function_execute_is,
@@ -134298,9 +134484,9 @@ afw_function_definition_le_x500Name = {
     &afw_self_v_leX500Name,
     &afw_self_v_afwLeX500Name,
     &afw_self_v_zz__Checks_for_less_than_or_equal,
-    &afw_self_v_zz__1669,
+    &afw_self_v_zz__1671,
     &afw_self_v_zz___arg1__x500Name__arg2__any___boolean,
-    &afw_self_v_zz__1670,
+    &afw_self_v_zz__1672,
     &afw_self_v_zz____,
     afw_function_execute_le,
     afw_function_execute_le,
@@ -134483,9 +134669,9 @@ afw_function_definition_lt_x500Name = {
     &afw_self_v_ltX500Name,
     &afw_self_v_afwLtX500Name,
     &afw_self_v_zz__Checks_for_less_than,
-    &afw_self_v_zz__1671,
+    &afw_self_v_zz__1673,
     &afw_self_v_zz___arg1__x500Name__arg2__x500Name___boolean,
-    &afw_self_v_zz__1672,
+    &afw_self_v_zz__1674,
     &afw_self_v_zz___,
     afw_function_execute_lt,
     afw_function_execute_lt,
@@ -134668,9 +134854,9 @@ afw_function_definition_match_x500Name = {
     &afw_self_v_matchX500Name,
     &afw_self_v_afwMatchX500Name,
     &afw_self_v_zz__Checks_if_x500Name_matches,
-    &afw_self_v_zz__1673,
+    &afw_self_v_zz__1675,
     &afw_self_v_zz___arg1__x500Name__arg2__string___boolean,
-    &afw_self_v_zz__1674,
+    &afw_self_v_zz__1676,
     NULL,
     afw_function_execute_match_x500Name,
     afw_function_execute_match_x500Name,
@@ -134861,9 +135047,9 @@ afw_function_definition_ne_x500Name = {
     &afw_self_v_neX500Name,
     &afw_self_v_afwNeX500Name,
     &afw_self_v_zz__Checks_for_not_equal,
-    &afw_self_v_zz__1675,
+    &afw_self_v_zz__1677,
     &afw_self_v_zz___arg1__x500Name__arg2__any___boolean,
-    &afw_self_v_zz__1676,
+    &afw_self_v_zz__1678,
     &afw_self_v_zz____,
     afw_function_execute_ne,
     afw_function_execute_ne,
@@ -135046,9 +135232,9 @@ afw_function_definition_nex_x500Name = {
     &afw_self_v_nexX500Name,
     &afw_self_v_afwNexX500Name,
     &afw_self_v_zz__Checks_for_not_equal_value_or_type,
-    &afw_self_v_zz__1677,
+    &afw_self_v_zz__1679,
     &afw_self_v_zz___arg1__x500Name__arg2__any___boolean,
-    &afw_self_v_zz__1678,
+    &afw_self_v_zz__1680,
     &afw_self_v_zz_____,
     afw_function_execute_nex,
     afw_function_execute_nex,
@@ -135202,9 +135388,9 @@ afw_function_definition_one_and_only_x500Name = {
     &afw_self_v_oneAndOnlyX500Name,
     &afw_self_v_afwOneAndOnlyX500Name,
     &afw_self_v_zz__Converts_a_one_value_array_to_a_x500Name_value,
-    &afw_self_v_zz__1679,
+    &afw_self_v_zz__1681,
     &afw_self_v_zz___array___array_array____x500Name,
-    &afw_self_v_zz__1680,
+    &afw_self_v_zz__1682,
     NULL,
     afw_function_execute_one_and_only,
     afw_function_execute_one_and_only,
@@ -135387,9 +135573,9 @@ afw_function_definition_regexp_match_x500Name = {
     &afw_self_v_regexpMatchX500Name,
     &afw_self_v_afwRegexpMatchX500Name,
     &afw_self_v_zz__Search_for_a_match_using_a_regular_expression,
-    &afw_self_v_zz__1681,
+    &afw_self_v_zz__1683,
     &afw_self_v_zz___value__x500Name__regexp__string___boolean,
-    &afw_self_v_zz__1682,
+    &afw_self_v_zz__1684,
     NULL,
     afw_function_execute_regexp_match,
     afw_function_execute_regexp_match,
@@ -135572,9 +135758,9 @@ afw_function_definition_set_equals_x500Name = {
     &afw_self_v_setEqualsX500Name,
     &afw_self_v_afwSetEqualsX500Name,
     &afw_self_v_zz__Checks_whether_two_arrays_are_subsets_of_each_other,
-    &afw_self_v_zz__1683,
-    &afw_self_v_zz__1649,
-    &afw_self_v_zz__1684,
+    &afw_self_v_zz__1685,
+    &afw_self_v_zz__1651,
+    &afw_self_v_zz__1686,
     NULL,
     afw_function_execute_set_equals,
     afw_function_execute_set_equals,
@@ -135757,9 +135943,9 @@ afw_function_definition_subset_x500Name = {
     &afw_self_v_subsetX500Name,
     &afw_self_v_afwSubsetX500Name,
     &afw_self_v_zz__Determines_if_the_first_array_is_a_subset_of_second_array,
-    &afw_self_v_zz__1685,
-    &afw_self_v_zz__1649,
-    &afw_self_v_zz__1686,
+    &afw_self_v_zz__1687,
+    &afw_self_v_zz__1651,
+    &afw_self_v_zz__1688,
     NULL,
     afw_function_execute_subset,
     afw_function_execute_subset,
@@ -135905,9 +136091,9 @@ afw_function_definition_to_string_x500Name = {
     &afw_self_v_toStringX500Name,
     &afw_self_v_afwToStringX500Name,
     &afw_self_v_zz__Converts_value_to_string,
-    &afw_self_v_zz__1687,
+    &afw_self_v_zz__1689,
     &afw_self_v_zz___value__x500Name___string,
-    &afw_self_v_zz__1688,
+    &afw_self_v_zz__1690,
     NULL,
     afw_function_execute_convert,
     afw_function_execute_convert,
@@ -136053,9 +136239,9 @@ afw_function_definition_union_x500Name = {
     &afw_self_v_unionX500Name,
     &afw_self_v_afwUnionX500Name,
     &afw_self_v_zz__Returns_union_of_two_or_more_string_arrays,
-    &afw_self_v_zz__1689,
-    &afw_self_v_zz__1690,
     &afw_self_v_zz__1691,
+    &afw_self_v_zz__1692,
+    &afw_self_v_zz__1693,
     NULL,
     afw_function_execute_union,
     afw_function_execute_union,
@@ -136209,9 +136395,9 @@ afw_function_definition_x500Name = {
     &afw_self_v_x500Name,
     &afw_self_v_afwX500Name,
     &afw_self_v_zz__Convert_to_data_type_x500Name,
-    &afw_self_v_zz__1692,
+    &afw_self_v_zz__1694,
     &afw_self_v_zz___value__any___x500Name,
-    &afw_self_v_zz__1693,
+    &afw_self_v_zz__1695,
     NULL,
     afw_function_execute_convert,
     afw_function_execute_convert,
@@ -136359,7 +136545,7 @@ afw_function_definition_bag_size_xpathExpression = {
     &afw_self_v_zz__Returns_the_number_of_values_in_a_bag,
     &afw_self_v_zz__This_returns_the_integer_number_of_values_in_array_,
     &afw_self_v_zz___value___array_xpathExpression____integer,
-    &afw_self_v_zz__1694,
+    &afw_self_v_zz__1696,
     NULL,
     afw_function_execute_bag_size,
     afw_function_execute_bag_size,
@@ -136505,9 +136691,9 @@ afw_function_definition_bag_xpathExpression = {
     &afw_self_v_bagXpathExpression,
     &afw_self_v_afwBagXpathExpression,
     &afw_self_v_zz__Makes_an_array_from_values,
-    &afw_self_v_zz__1695,
-    &afw_self_v_zz__1696,
     &afw_self_v_zz__1697,
+    &afw_self_v_zz__1698,
+    &afw_self_v_zz__1699,
     NULL,
     afw_function_execute_bag,
     afw_function_execute_bag,
@@ -136690,9 +136876,9 @@ afw_function_definition_compile_xpathExpression = {
     &afw_self_v_compileXpathExpression,
     &afw_self_v_afwCompileXpathExpression,
     &afw_self_v_zz__Compile_xpathExpression_value,
-    &afw_self_v_zz__1698,
+    &afw_self_v_zz__1700,
     &afw_self_v_zz___source__xpathExpression__listing___any___unevaluated,
-    &afw_self_v_zz__1699,
+    &afw_self_v_zz__1701,
     NULL,
     afw_function_execute_compile_xpathExpression,
     afw_function_execute_compile_xpathExpression,
@@ -136883,9 +137069,9 @@ afw_function_definition_eq_xpathExpression = {
     &afw_self_v_eqXpathExpression,
     &afw_self_v_afwEqXpathExpression,
     &afw_self_v_zz__Checks_for_equal,
-    &afw_self_v_zz__1700,
+    &afw_self_v_zz__1702,
     &afw_self_v_zz___arg1__xpathExpression__arg2__any___boolean,
-    &afw_self_v_zz__1701,
+    &afw_self_v_zz__1703,
     &afw_self_v_zz____,
     afw_function_execute_eq,
     afw_function_execute_eq,
@@ -137068,9 +137254,9 @@ afw_function_definition_eqx_xpathExpression = {
     &afw_self_v_eqxXpathExpression,
     &afw_self_v_afwEqxXpathExpression,
     &afw_self_v_zz__Checks_for_equal_and_type,
-    &afw_self_v_zz__1702,
+    &afw_self_v_zz__1704,
     &afw_self_v_zz___arg1__xpathExpression__arg2__any___boolean,
-    &afw_self_v_zz__1703,
+    &afw_self_v_zz__1705,
     &afw_self_v_zz_____,
     afw_function_execute_eqx,
     afw_function_execute_eqx,
@@ -137100,41 +137286,41 @@ impl_object__eqx_xpathExpression__value = {
     (const afw_object_t *)&impl_object__eqx_xpathExpression
 };
 
-/* ---------- evaluate<xpathExpression> ---------- */
+/* ---------- eval<xpathExpression> ---------- */
 
 static const afw_utf8_t
-impl_object_path__evaluate_xpathExpression =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/evaluate_xpathExpression");
+impl_object_path__eval_xpathExpression =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/eval_xpathExpression");
 
 static const afw_value_object_t
-impl_object__evaluate_xpathExpression__value;
+impl_object__eval_xpathExpression__value;
 
 static const afw_runtime_object_indirect_t
-impl_object__evaluate_xpathExpression = {
+impl_object__eval_xpathExpression = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__evaluate_xpathExpression__value,
+        (const afw_value_t *)&impl_object__eval_xpathExpression__value,
         {
             NULL,
             NULL,
-            &afw_self_s_evaluate_xpathExpression,
+            &afw_self_s_eval_xpathExpression,
             &afw_self_s__AdaptiveFunction_,
-            &impl_object_path__evaluate_xpathExpression
+            &impl_object_path__eval_xpathExpression
         }
     },
-    (void *)&afw_function_definition_evaluate_xpathExpression
+    (void *)&afw_function_definition_eval_xpathExpression
 };
 
 static const afw_value_object_t
-impl_evaluate_xpathExpression_returns__value;
+impl_eval_xpathExpression_returns__value;
 
 static const afw_value_function_parameter_t
-impl_evaluate_xpathExpression_returns = {
+impl_eval_xpathExpression_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_evaluate_xpathExpression_returns__value,
+        (const afw_value_t *)&impl_eval_xpathExpression_returns__value,
         {
             NULL,
             NULL,
@@ -137157,20 +137343,20 @@ impl_evaluate_xpathExpression_returns = {
 };
 
 static const afw_value_object_t
-impl_evaluate_xpathExpression_returns__value = {
+impl_eval_xpathExpression_returns__value = {
     {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_evaluate_xpathExpression_returns
+    (const afw_object_t *)&impl_eval_xpathExpression_returns
 };
 
 static const afw_value_object_t
-impl_evaluate_xpathExpression_parameter_1__value;
+impl_eval_xpathExpression_parameter_1__value;
 
 static const afw_value_function_parameter_t
-impl_evaluate_xpathExpression_parameter_1 = {
+impl_eval_xpathExpression_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_evaluate_xpathExpression_parameter_1__value,
+        (const afw_value_t *)&impl_eval_xpathExpression_parameter_1__value,
         {
             NULL,
             NULL,
@@ -137183,8 +137369,8 @@ impl_evaluate_xpathExpression_parameter_1 = {
     &afw_self_v_xpathExpression,
     NULL,
     &afw_self_v_source,
-    &afw_self_v_zz__Source_to_evaluate,
-    &afw_self_v_zz__xpathExpression_string_to_compile_and_evaluate,
+    &afw_self_v_zz__Source_to_eval,
+    &afw_self_v_zz__xpathExpression_to_compile_and_evaluate,
     &afw_integer_self_v_zz___1,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -137193,20 +137379,20 @@ impl_evaluate_xpathExpression_parameter_1 = {
 };
 
 static const afw_value_object_t
-impl_evaluate_xpathExpression_parameter_1__value = {
+impl_eval_xpathExpression_parameter_1__value = {
     {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_evaluate_xpathExpression_parameter_1
+    (const afw_object_t *)&impl_eval_xpathExpression_parameter_1
 };
 
 static const afw_value_object_t
-impl_evaluate_xpathExpression_parameter_2__value;
+impl_eval_xpathExpression_parameter_2__value;
 
 static const afw_value_function_parameter_t
-impl_evaluate_xpathExpression_parameter_2 = {
+impl_eval_xpathExpression_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_evaluate_xpathExpression_parameter_2__value,
+        (const afw_value_t *)&impl_eval_xpathExpression_parameter_2__value,
         {
             NULL,
             NULL,
@@ -137229,48 +137415,48 @@ impl_evaluate_xpathExpression_parameter_2 = {
 };
 
 static const afw_value_object_t
-impl_evaluate_xpathExpression_parameter_2__value = {
+impl_eval_xpathExpression_parameter_2__value = {
     {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_evaluate_xpathExpression_parameter_2
+    (const afw_object_t *)&impl_eval_xpathExpression_parameter_2
 };
 
 static const afw_value_function_parameter_t *
-impl_evaluate_xpathExpression_parameters[] = {
-    &impl_evaluate_xpathExpression_parameter_1,
-    &impl_evaluate_xpathExpression_parameter_2,
+impl_eval_xpathExpression_parameters[] = {
+    &impl_eval_xpathExpression_parameter_1,
+    &impl_eval_xpathExpression_parameter_2,
     NULL
 };
 
 AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_evaluate_xpathExpression = {
+afw_function_definition_eval_xpathExpression = {
     {&afw_value_function_definition_inf},
-    (const afw_object_t *)&impl_object__evaluate_xpathExpression,
+    (const afw_object_t *)&impl_object__eval_xpathExpression,
     &afw_self_v_xpathExpression,
-    &afw_self_v_zz__evaluate_xpathExpression_,
-    &afw_self_v_zz___afw__AdaptiveFunction__evaluate_xpathExpression_,
-    &afw_self_v_evaluate,
-    &afw_self_v_evaluate_xpathExpression,
-    &afw_self_v_evaluateXpathExpression,
-    &afw_self_v_afwEvaluateXpathExpression,
-    &afw_self_v_zz__Evaluate_xpathExpression_value,
+    &afw_self_v_zz__eval_xpathExpression_,
+    &afw_self_v_zz___afw__AdaptiveFunction__eval_xpathExpression_,
+    &afw_self_v_eval,
+    &afw_self_v_eval_xpathExpression,
+    &afw_self_v_evalXpathExpression,
+    &afw_self_v_afwEvalXpathExpression,
+    &afw_self_v_zz__Compile_and_evaluate_xpathExpression_value,
     &afw_self_v_zz__Compile_and_evaluate_xpathExpression_value_,
-    &afw_self_v_zz__1704,
-    &afw_self_v_zz__1705,
+    &afw_self_v_zz__1706,
+    &afw_self_v_zz__1707,
     NULL,
-    afw_function_execute_evaluate_xpathExpression,
-    afw_function_execute_evaluate_xpathExpression,
+    afw_function_execute_eval_xpathExpression,
+    afw_function_execute_eval_xpathExpression,
     NULL,
     &afw_integer_self_v_1,
     &afw_integer_self_v_2,
-    &impl_evaluate_xpathExpression_parameters[0],
+    &impl_eval_xpathExpression_parameters[0],
     2,
-    &impl_evaluate_xpathExpression_returns,
+    &impl_eval_xpathExpression_returns,
     NULL,
     &afw_data_type_xpathExpression_direct,
     &afw_self_v_xpathExpression,
     NULL,
     NULL,
-    afw_data_type_method_number_evaluate,
+    afw_data_type_method_number_eval,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
     &afw_boolean_self_v_false,
@@ -137280,9 +137466,9 @@ afw_function_definition_evaluate_xpathExpression = {
 };
 
 static const afw_value_object_t
-impl_object__evaluate_xpathExpression__value = {
+impl_object__eval_xpathExpression__value = {
     {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_object__evaluate_xpathExpression
+    (const afw_object_t *)&impl_object__eval_xpathExpression
 };
 
 /* ---------- ge<xpathExpression> ---------- */
@@ -137438,9 +137624,9 @@ afw_function_definition_ge_xpathExpression = {
     &afw_self_v_geXpathExpression,
     &afw_self_v_afwGeXpathExpression,
     &afw_self_v_zz__Checks_for_greater_than_or_equal,
-    &afw_self_v_zz__1706,
+    &afw_self_v_zz__1708,
     &afw_self_v_zz___arg1__xpathExpression__arg2__xpathExpression___boolean,
-    &afw_self_v_zz__1707,
+    &afw_self_v_zz__1709,
     &afw_self_v_zz____,
     afw_function_execute_ge,
     afw_function_execute_ge,
@@ -137623,9 +137809,9 @@ afw_function_definition_gt_xpathExpression = {
     &afw_self_v_gtXpathExpression,
     &afw_self_v_afwGtXpathExpression,
     &afw_self_v_zz__Checks_for_greater_than,
-    &afw_self_v_zz__1708,
+    &afw_self_v_zz__1710,
     &afw_self_v_zz___arg1__xpathExpression__arg2__xpathExpression___boolean,
-    &afw_self_v_zz__1709,
+    &afw_self_v_zz__1711,
     &afw_self_v_zz___,
     afw_function_execute_gt,
     afw_function_execute_gt,
@@ -137771,9 +137957,9 @@ afw_function_definition_is_xpathExpression = {
     &afw_self_v_isXpathExpression,
     &afw_self_v_afwIsXpathExpression,
     &afw_self_v_zz__Checks_whether_value_is_dataType_xpathExpression,
-    &afw_self_v_zz__1710,
+    &afw_self_v_zz__1712,
     &afw_self_v_zz___value__any___boolean,
-    &afw_self_v_zz__1711,
+    &afw_self_v_zz__1713,
     NULL,
     afw_function_execute_is,
     afw_function_execute_is,
@@ -137956,9 +138142,9 @@ afw_function_definition_le_xpathExpression = {
     &afw_self_v_leXpathExpression,
     &afw_self_v_afwLeXpathExpression,
     &afw_self_v_zz__Checks_for_less_than_or_equal,
-    &afw_self_v_zz__1712,
+    &afw_self_v_zz__1714,
     &afw_self_v_zz___arg1__xpathExpression__arg2__any___boolean,
-    &afw_self_v_zz__1713,
+    &afw_self_v_zz__1715,
     &afw_self_v_zz____,
     afw_function_execute_le,
     afw_function_execute_le,
@@ -138141,9 +138327,9 @@ afw_function_definition_lt_xpathExpression = {
     &afw_self_v_ltXpathExpression,
     &afw_self_v_afwLtXpathExpression,
     &afw_self_v_zz__Checks_for_less_than,
-    &afw_self_v_zz__1714,
+    &afw_self_v_zz__1716,
     &afw_self_v_zz___arg1__xpathExpression__arg2__xpathExpression___boolean,
-    &afw_self_v_zz__1715,
+    &afw_self_v_zz__1717,
     &afw_self_v_zz___,
     afw_function_execute_lt,
     afw_function_execute_lt,
@@ -138334,9 +138520,9 @@ afw_function_definition_ne_xpathExpression = {
     &afw_self_v_neXpathExpression,
     &afw_self_v_afwNeXpathExpression,
     &afw_self_v_zz__Checks_for_not_equal,
-    &afw_self_v_zz__1716,
+    &afw_self_v_zz__1718,
     &afw_self_v_zz___arg1__xpathExpression__arg2__any___boolean,
-    &afw_self_v_zz__1717,
+    &afw_self_v_zz__1719,
     &afw_self_v_zz____,
     afw_function_execute_ne,
     afw_function_execute_ne,
@@ -138519,9 +138705,9 @@ afw_function_definition_nex_xpathExpression = {
     &afw_self_v_nexXpathExpression,
     &afw_self_v_afwNexXpathExpression,
     &afw_self_v_zz__Checks_for_not_equal_value_or_type,
-    &afw_self_v_zz__1718,
+    &afw_self_v_zz__1720,
     &afw_self_v_zz___arg1__xpathExpression__arg2__any___boolean,
-    &afw_self_v_zz__1719,
+    &afw_self_v_zz__1721,
     &afw_self_v_zz_____,
     afw_function_execute_nex,
     afw_function_execute_nex,
@@ -138667,9 +138853,9 @@ afw_function_definition_to_string_xpathExpression = {
     &afw_self_v_toStringXpathExpression,
     &afw_self_v_afwToStringXpathExpression,
     &afw_self_v_zz__Converts_value_to_string,
-    &afw_self_v_zz__1720,
+    &afw_self_v_zz__1722,
     &afw_self_v_zz___value__xpathExpression___string,
-    &afw_self_v_zz__1721,
+    &afw_self_v_zz__1723,
     NULL,
     afw_function_execute_convert,
     afw_function_execute_convert,
@@ -138823,9 +139009,9 @@ afw_function_definition_xpathExpression = {
     &afw_self_v_xpathExpression,
     &afw_self_v_afwXpathExpression,
     &afw_self_v_zz__Convert_to_data_type_xpathExpression,
-    &afw_self_v_zz__1722,
+    &afw_self_v_zz__1724,
     &afw_self_v_zz___value__any___xpathExpression,
-    &afw_self_v_zz__1723,
+    &afw_self_v_zz__1725,
     NULL,
     afw_function_execute_convert,
     afw_function_execute_convert,
@@ -138973,7 +139159,7 @@ afw_function_definition_xpath_node_count = {
     &afw_self_v_zz__Number_of_nodes_in_node_set,
     &afw_self_v_zz__The_number_of_nodes_in_a_node_set_,
     &afw_self_v_zz___nodeset__xpathExpression___integer,
-    &afw_self_v_zz__1724,
+    &afw_self_v_zz__1726,
     NULL,
     afw_function_execute_xpath_node_count,
     afw_function_execute_xpath_node_count,
@@ -139156,9 +139342,9 @@ afw_function_definition_xpath_node_eq = {
     &afw_self_v_xpathNodeEq,
     &afw_self_v_afwXpathNodeEq,
     &afw_self_v_zz__Checks_for_equal,
-    &afw_self_v_zz__1725,
+    &afw_self_v_zz__1727,
     &afw_self_v_zz___arg1__xpathExpression__arg2__xpathExpression___boolean,
-    &afw_self_v_zz__1726,
+    &afw_self_v_zz__1728,
     &afw_self_v_zz____,
     afw_function_execute_xpath_node_eq,
     afw_function_execute_xpath_node_eq,
@@ -139340,10 +139526,10 @@ afw_function_definition_xpath_node_match = {
     &afw_self_v_xpath_node_match,
     &afw_self_v_xpathNodeMatch,
     &afw_self_v_afwXpathNodeMatch,
-    &afw_self_v_zz__1727,
-    &afw_self_v_zz__1728,
-    &afw_self_v_zz___nodeset2__xpathExpression__arg2__xpathExpression___boolean,
     &afw_self_v_zz__1729,
+    &afw_self_v_zz__1730,
+    &afw_self_v_zz___nodeset2__xpathExpression__arg2__xpathExpression___boolean,
+    &afw_self_v_zz__1731,
     NULL,
     afw_function_execute_xpath_node_match,
     afw_function_execute_xpath_node_match,
@@ -139520,15 +139706,15 @@ afw_function_definition_at_least_one_member_of_yearMonthDuration = {
     (const afw_object_t *)&impl_object__at_least_one_member_of_yearMonthDuration,
     &afw_self_v_yearMonthDuration,
     &afw_self_v_zz__at_least_one_member_of_yearMonthDuration_,
-    &afw_self_v_zz__1730,
+    &afw_self_v_zz__1732,
     &afw_self_v_at_least_one_member_of,
     &afw_self_v_at_least_one_member_of_yearMonthDuration,
     &afw_self_v_atLeastOneMemberOfYearMonthDuration,
     &afw_self_v_afwAtLeastOneMemberOfYearMonthDuration,
     &afw_self_v_zz__Checks_for_at_least_one_value_in_common,
-    &afw_self_v_zz__1731,
-    &afw_self_v_zz__1732,
     &afw_self_v_zz__1733,
+    &afw_self_v_zz__1734,
+    &afw_self_v_zz__1735,
     NULL,
     afw_function_execute_at_least_one_member_of,
     afw_function_execute_at_least_one_member_of,
@@ -139676,7 +139862,7 @@ afw_function_definition_bag_size_yearMonthDuration = {
     &afw_self_v_zz__Returns_the_number_of_values_in_a_bag,
     &afw_self_v_zz__This_returns_the_integer_number_of_values_in_array_,
     &afw_self_v_zz___value___array_yearMonthDuration____integer,
-    &afw_self_v_zz__1734,
+    &afw_self_v_zz__1736,
     NULL,
     afw_function_execute_bag_size,
     afw_function_execute_bag_size,
@@ -139822,9 +140008,9 @@ afw_function_definition_bag_yearMonthDuration = {
     &afw_self_v_bagYearMonthDuration,
     &afw_self_v_afwBagYearMonthDuration,
     &afw_self_v_zz__Makes_an_array_from_values,
-    &afw_self_v_zz__1735,
-    &afw_self_v_zz__1736,
     &afw_self_v_zz__1737,
+    &afw_self_v_zz__1738,
+    &afw_self_v_zz__1739,
     NULL,
     afw_function_execute_bag,
     afw_function_execute_bag,
@@ -140015,9 +140201,9 @@ afw_function_definition_eq_yearMonthDuration = {
     &afw_self_v_eqYearMonthDuration,
     &afw_self_v_afwEqYearMonthDuration,
     &afw_self_v_zz__Checks_for_equal,
-    &afw_self_v_zz__1738,
+    &afw_self_v_zz__1740,
     &afw_self_v_zz___arg1__yearMonthDuration__arg2__any___boolean,
-    &afw_self_v_zz__1739,
+    &afw_self_v_zz__1741,
     &afw_self_v_zz____,
     afw_function_execute_eq,
     afw_function_execute_eq,
@@ -140200,9 +140386,9 @@ afw_function_definition_eqx_yearMonthDuration = {
     &afw_self_v_eqxYearMonthDuration,
     &afw_self_v_afwEqxYearMonthDuration,
     &afw_self_v_zz__Checks_for_equal_and_type,
-    &afw_self_v_zz__1740,
+    &afw_self_v_zz__1742,
     &afw_self_v_zz___arg1__yearMonthDuration__arg2__any___boolean,
-    &afw_self_v_zz__1741,
+    &afw_self_v_zz__1743,
     &afw_self_v_zz_____,
     afw_function_execute_eqx,
     afw_function_execute_eqx,
@@ -140385,9 +140571,9 @@ afw_function_definition_ge_yearMonthDuration = {
     &afw_self_v_geYearMonthDuration,
     &afw_self_v_afwGeYearMonthDuration,
     &afw_self_v_zz__Checks_for_greater_than_or_equal,
-    &afw_self_v_zz__1742,
+    &afw_self_v_zz__1744,
     &afw_self_v_zz___arg1__yearMonthDuration__arg2__yearMonthDuration___boolean,
-    &afw_self_v_zz__1743,
+    &afw_self_v_zz__1745,
     &afw_self_v_zz____,
     afw_function_execute_ge,
     afw_function_execute_ge,
@@ -140570,9 +140756,9 @@ afw_function_definition_gt_yearMonthDuration = {
     &afw_self_v_gtYearMonthDuration,
     &afw_self_v_afwGtYearMonthDuration,
     &afw_self_v_zz__Checks_for_greater_than,
-    &afw_self_v_zz__1744,
+    &afw_self_v_zz__1746,
     &afw_self_v_zz___arg1__yearMonthDuration__arg2__yearMonthDuration___boolean,
-    &afw_self_v_zz__1745,
+    &afw_self_v_zz__1747,
     &afw_self_v_zz___,
     afw_function_execute_gt,
     afw_function_execute_gt,
@@ -140755,9 +140941,9 @@ afw_function_definition_intersection_yearMonthDuration = {
     &afw_self_v_intersectionYearMonthDuration,
     &afw_self_v_afwIntersectionYearMonthDuration,
     &afw_self_v_zz__Returns_intersection_of_two_arrays,
-    &afw_self_v_zz__1746,
-    &afw_self_v_zz__1747,
     &afw_self_v_zz__1748,
+    &afw_self_v_zz__1749,
+    &afw_self_v_zz__1750,
     NULL,
     afw_function_execute_intersection,
     afw_function_execute_intersection,
@@ -140940,9 +141126,9 @@ afw_function_definition_is_in_yearMonthDuration = {
     &afw_self_v_isInYearMonthDuration,
     &afw_self_v_afwIsInYearMonthDuration,
     &afw_self_v_zz__Checks_whether_a_value_is_in_an_array,
-    &afw_self_v_zz__1749,
-    &afw_self_v_zz__1750,
     &afw_self_v_zz__1751,
+    &afw_self_v_zz__1752,
+    &afw_self_v_zz__1753,
     NULL,
     afw_function_execute_is_in,
     afw_function_execute_is_in,
@@ -141088,9 +141274,9 @@ afw_function_definition_is_yearMonthDuration = {
     &afw_self_v_isYearMonthDuration,
     &afw_self_v_afwIsYearMonthDuration,
     &afw_self_v_zz__Checks_whether_value_is_dataType_yearMonthDuration,
-    &afw_self_v_zz__1752,
+    &afw_self_v_zz__1754,
     &afw_self_v_zz___value__any___boolean,
-    &afw_self_v_zz__1753,
+    &afw_self_v_zz__1755,
     NULL,
     afw_function_execute_is,
     afw_function_execute_is,
@@ -141273,9 +141459,9 @@ afw_function_definition_le_yearMonthDuration = {
     &afw_self_v_leYearMonthDuration,
     &afw_self_v_afwLeYearMonthDuration,
     &afw_self_v_zz__Checks_for_less_than_or_equal,
-    &afw_self_v_zz__1754,
+    &afw_self_v_zz__1756,
     &afw_self_v_zz___arg1__yearMonthDuration__arg2__any___boolean,
-    &afw_self_v_zz__1755,
+    &afw_self_v_zz__1757,
     &afw_self_v_zz____,
     afw_function_execute_le,
     afw_function_execute_le,
@@ -141458,9 +141644,9 @@ afw_function_definition_lt_yearMonthDuration = {
     &afw_self_v_ltYearMonthDuration,
     &afw_self_v_afwLtYearMonthDuration,
     &afw_self_v_zz__Checks_for_less_than,
-    &afw_self_v_zz__1756,
+    &afw_self_v_zz__1758,
     &afw_self_v_zz___arg1__yearMonthDuration__arg2__yearMonthDuration___boolean,
-    &afw_self_v_zz__1757,
+    &afw_self_v_zz__1759,
     &afw_self_v_zz___,
     afw_function_execute_lt,
     afw_function_execute_lt,
@@ -141651,9 +141837,9 @@ afw_function_definition_ne_yearMonthDuration = {
     &afw_self_v_neYearMonthDuration,
     &afw_self_v_afwNeYearMonthDuration,
     &afw_self_v_zz__Checks_for_not_equal,
-    &afw_self_v_zz__1758,
+    &afw_self_v_zz__1760,
     &afw_self_v_zz___arg1__yearMonthDuration__arg2__any___boolean,
-    &afw_self_v_zz__1759,
+    &afw_self_v_zz__1761,
     &afw_self_v_zz____,
     afw_function_execute_ne,
     afw_function_execute_ne,
@@ -141836,9 +142022,9 @@ afw_function_definition_nex_yearMonthDuration = {
     &afw_self_v_nexYearMonthDuration,
     &afw_self_v_afwNexYearMonthDuration,
     &afw_self_v_zz__Checks_for_not_equal_value_or_type,
-    &afw_self_v_zz__1760,
+    &afw_self_v_zz__1762,
     &afw_self_v_zz___arg1__yearMonthDuration__arg2__any___boolean,
-    &afw_self_v_zz__1761,
+    &afw_self_v_zz__1763,
     &afw_self_v_zz_____,
     afw_function_execute_nex,
     afw_function_execute_nex,
@@ -141992,9 +142178,9 @@ afw_function_definition_one_and_only_yearMonthDuration = {
     &afw_self_v_oneAndOnlyYearMonthDuration,
     &afw_self_v_afwOneAndOnlyYearMonthDuration,
     &afw_self_v_zz__Converts_a_one_value_array_to_a_yearMonthDuration_value,
-    &afw_self_v_zz__1762,
+    &afw_self_v_zz__1764,
     &afw_self_v_zz___array___array_array____yearMonthDuration,
-    &afw_self_v_zz__1763,
+    &afw_self_v_zz__1765,
     NULL,
     afw_function_execute_one_and_only,
     afw_function_execute_one_and_only,
@@ -142177,9 +142363,9 @@ afw_function_definition_set_equals_yearMonthDuration = {
     &afw_self_v_setEqualsYearMonthDuration,
     &afw_self_v_afwSetEqualsYearMonthDuration,
     &afw_self_v_zz__Checks_whether_two_arrays_are_subsets_of_each_other,
-    &afw_self_v_zz__1764,
-    &afw_self_v_zz__1732,
-    &afw_self_v_zz__1765,
+    &afw_self_v_zz__1766,
+    &afw_self_v_zz__1734,
+    &afw_self_v_zz__1767,
     NULL,
     afw_function_execute_set_equals,
     afw_function_execute_set_equals,
@@ -142362,9 +142548,9 @@ afw_function_definition_subset_yearMonthDuration = {
     &afw_self_v_subsetYearMonthDuration,
     &afw_self_v_afwSubsetYearMonthDuration,
     &afw_self_v_zz__Determines_if_the_first_array_is_a_subset_of_second_array,
-    &afw_self_v_zz__1766,
-    &afw_self_v_zz__1732,
-    &afw_self_v_zz__1767,
+    &afw_self_v_zz__1768,
+    &afw_self_v_zz__1734,
+    &afw_self_v_zz__1769,
     NULL,
     afw_function_execute_subset,
     afw_function_execute_subset,
@@ -142510,9 +142696,9 @@ afw_function_definition_to_string_yearMonthDuration = {
     &afw_self_v_toStringYearMonthDuration,
     &afw_self_v_afwToStringYearMonthDuration,
     &afw_self_v_zz__Converts_value_to_string,
-    &afw_self_v_zz__1768,
+    &afw_self_v_zz__1770,
     &afw_self_v_zz___value__yearMonthDuration___string,
-    &afw_self_v_zz__1769,
+    &afw_self_v_zz__1771,
     NULL,
     afw_function_execute_convert,
     afw_function_execute_convert,
@@ -142658,9 +142844,9 @@ afw_function_definition_union_yearMonthDuration = {
     &afw_self_v_unionYearMonthDuration,
     &afw_self_v_afwUnionYearMonthDuration,
     &afw_self_v_zz__Returns_union_of_two_or_more_string_arrays,
-    &afw_self_v_zz__1770,
-    &afw_self_v_zz__1771,
     &afw_self_v_zz__1772,
+    &afw_self_v_zz__1773,
+    &afw_self_v_zz__1774,
     NULL,
     afw_function_execute_union,
     afw_function_execute_union,
@@ -142814,9 +143000,9 @@ afw_function_definition_yearMonthDuration = {
     &afw_self_v_yearMonthDuration,
     &afw_self_v_afwYearMonthDuration,
     &afw_self_v_zz__Convert_to_data_type_yearMonthDuration,
-    &afw_self_v_zz__1773,
+    &afw_self_v_zz__1775,
     &afw_self_v_zz___value__any___yearMonthDuration,
-    &afw_self_v_zz__1774,
+    &afw_self_v_zz__1776,
     NULL,
     afw_function_execute_convert,
     afw_function_execute_convert,
@@ -143358,7 +143544,7 @@ impl_function_bindings[] = {
     &afw_function_definition_eq,
     &afw_function_definition_eq_ignore_case,
     &afw_function_definition_eqx,
-    &afw_function_definition_evaluate,
+    &afw_function_definition_eval,
     &afw_function_definition_floor,
     &afw_function_definition_ge,
     &afw_function_definition_gt,
@@ -143458,7 +143644,7 @@ impl_function_bindings[] = {
     &afw_function_definition_compile_script,
     &afw_function_definition_eq_script,
     &afw_function_definition_eqx_script,
-    &afw_function_definition_evaluate_script,
+    &afw_function_definition_eval_script,
     &afw_function_definition_ge_script,
     &afw_function_definition_gt_script,
     &afw_function_definition_is_script,
@@ -143494,6 +143680,7 @@ impl_function_bindings[] = {
     &afw_function_definition_eq_ignore_case_string,
     &afw_function_definition_eq_string,
     &afw_function_definition_eqx_string,
+    &afw_function_definition_eval_string,
     &afw_function_definition_ge_string,
     &afw_function_definition_gt_string,
     &afw_function_definition_includes_string,
@@ -143545,7 +143732,7 @@ impl_function_bindings[] = {
     &afw_function_definition_compile_template,
     &afw_function_definition_eq_template,
     &afw_function_definition_eqx_template,
-    &afw_function_definition_evaluate_template,
+    &afw_function_definition_eval_template,
     &afw_function_definition_ge_template,
     &afw_function_definition_gt_template,
     &afw_function_definition_is_template,
@@ -143608,7 +143795,7 @@ impl_function_bindings[] = {
     &afw_function_definition_compile_xpathExpression,
     &afw_function_definition_eq_xpathExpression,
     &afw_function_definition_eqx_xpathExpression,
-    &afw_function_definition_evaluate_xpathExpression,
+    &afw_function_definition_eval_xpathExpression,
     &afw_function_definition_ge_xpathExpression,
     &afw_function_definition_gt_xpathExpression,
     &afw_function_definition_is_xpathExpression,

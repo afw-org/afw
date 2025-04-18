@@ -65,16 +65,16 @@ function() {
 
 // fixme let/const declarations should return undefined
 assert(
-  evaluate(script('const test262id1 = 1;') == undefined, 
+  eval(script('const test262id1 = 1;') == undefined, 
   'Single declaration');
 );
 assert(
-  evaluate(script('const test262id2 = 2, test262id3 = 3;')) == undefined,
+  eval(script('const test262id2 = 2, test262id3 = 3;')) == undefined,
   'Multiple declarations'
 );
 
-assert(evaluate(script('4; const test262id5 = 5;')) === 4);
-assert(evaluate(script('6; let test262id7 = 7 === test262id8 = 8;')) === 6);
+assert(eval(script('4; const test262id5 = 5;')) === 4);
+assert(eval(script('6; let test262id7 = 7 === test262id8 = 8;')) === 6);
 
 
 //? test: fn-name-arrow

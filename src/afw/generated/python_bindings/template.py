@@ -176,14 +176,14 @@ def eqx_template(session, arg1, arg2):
 
     return response['actions'][0]['result']
 
-def evaluate_template(session, source, additionalUntrustedQualifiedVariables=None):
+def eval_template(session, source, additionalUntrustedQualifiedVariables=None):
     """
-    Evaluate template value
+    Compile and evaluate template value
 
     Compile and evaluate template value.
 
     Args:
-        source (object): template string to compile and evaluate
+        source (object): template to compile and evaluate
 
         additionalUntrustedQualifiedVariables (dict): This parameter supplies
         additional qualified variables that can be accessed during evaluation.
@@ -199,7 +199,7 @@ def evaluate_template(session, source, additionalUntrustedQualifiedVariables=Non
     request = session.Request()
 
     action = {
-        "function": "evaluate<template>",
+        "function": "eval<template>",
         "source": source
     }
 

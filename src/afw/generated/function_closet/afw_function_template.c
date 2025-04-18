@@ -64,9 +64,9 @@ afw_function_execute_compile_template(
 
 
 /*
- * Adaptive function: evaluate<template>
+ * Adaptive function: eval<template>
  *
- * afw_function_execute_evaluate_template
+ * afw_function_execute_eval_template
  *
  * See afw_function_bindings.h for more information.
  *
@@ -78,7 +78,7 @@ afw_function_execute_compile_template(
  * Declaration:
  *
  * ```
- *   function evaluate<template>(
+ *   function eval<template>(
  *       source: template,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_)
  *   ): unevaluated;
@@ -86,7 +86,7 @@ afw_function_execute_compile_template(
  *
  * Parameters:
  *
- *   source - (template) template string to compile and evaluate.
+ *   source - (template) template to compile and evaluate.
  *
  *   additionalUntrustedQualifiedVariables - (optional object
  *       _AdaptiveTemplatePropertiesObjects_) This parameter supplies additional
@@ -101,7 +101,7 @@ afw_function_execute_compile_template(
  *   (unevaluated)
  */
 const afw_value_t *
-afw_function_execute_evaluate_template(
+afw_function_execute_eval_template(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */

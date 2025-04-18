@@ -28,4 +28,4 @@ return #{"Hello World!"};
 
 const source = template("H#{'ello ' + 'Wor'}ld${'!'}");
 
-return evaluate(source);                                                                
+return eval(source);                                                                

@@ -295,6 +295,55 @@ class string
     }
 
     /**
+     * eval_string()
+     *
+     * Compile and evaluate string value as adaptive script.
+     *
+     * @param string $source string to compile and evaluate
+     * @param object $additionalUntrustedQualifiedVariables This parameter
+     *                                                      supplies
+     *                                                      additional
+     *                                                      qualified
+     *                                                      variables that can
+     *                                                      be accessed during
+     *                                                      evaluation. These
+     *                                                      variables will not
+     *                                                      be used by
+     *                                                      anything that
+     *                                                      needs to ensure
+     *                                                      its qualified
+     *                                                      variables must
+     *                                                      come from a
+     *                                                      trusted source,
+     *                                                      such as
+     *                                                      authorization.
+     *                                                      This parameter is
+     *                                                      intended to be
+     *                                                      used for testing
+     *                                                      only and should
+     *                                                      not be used for
+     *                                                      anything running
+     *                                                      in production.
+     *
+     * @return unevaluated
+     */
+    public function eval_string(, $source, $additionalUntrustedQualifiedVariables = null)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "eval<string>");
+
+        /* pass along required parameters to the request payload */
+        $request->set("source", $source);
+
+        /* pass along any optional parameters to the request payload */
+        if ($additionalUntrustedQualifiedVariables != null)
+            $request->set('additionalUntrustedQualifiedVariables', $additionalUntrustedQualifiedVariables);
+
+        return $request->get_result();
+    }
+
+    /**
      * ge_string()
      *
      * Checks for string arg1 is greater than or equal to string arg2 and

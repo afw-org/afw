@@ -18,7 +18,7 @@ our @EXPORT_OK = qw(
     compile_template 
     eq_template 
     eqx_template 
-    evaluate_template 
+    eval_template 
     ge_template 
     gt_template 
     is_template 
@@ -109,16 +109,16 @@ Checks for equal and type
     $arg2
 
 
-=head3 evaluate_template
+=head3 eval_template
 
 Compile and evaluate template value.
-Evaluate template value
+Compile and evaluate template value
 
 =head4 Parameters
 
     $source
 
-template string to compile and evaluate
+template to compile and evaluate
 
     $additionalUntrustedQualifiedVariables
 
@@ -312,12 +312,12 @@ sub eqx_template {
     return $request->getResult();
 }
 
-sub evaluate_template {
+sub eval_template {
     my ($source, $additionalUntrustedQualifiedVariables) = @_;
 
     my $request = $session->request()
 
-    $request->set("function" => "evaluate<template>");
+    $request->set("function" => "eval<template>");
     $request->set("source", $source);
 
     if (defined $additionalUntrustedQualifiedVariables)

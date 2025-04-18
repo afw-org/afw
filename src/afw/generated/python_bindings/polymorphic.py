@@ -569,14 +569,14 @@ def eqx(session, arg1, arg2):
 
     return response['actions'][0]['result']
 
-def evaluate(session, source, additionalUntrustedQualifiedVariables=None):
+def eval(session, source, additionalUntrustedQualifiedVariables=None):
     """
-    Evaluate <dataType> value
+    Compile and evaluate <dataType> value
 
     Compile and evaluate `<dataType>` value.
 
     Args:
-        source (object): `<dataType>` string to compile and evaluate
+        source (object): `<dataType>` to compile and evaluate
 
         additionalUntrustedQualifiedVariables (dict): This parameter supplies
         additional qualified variables that can be accessed during evaluation.
@@ -592,7 +592,7 @@ def evaluate(session, source, additionalUntrustedQualifiedVariables=None):
     request = session.Request()
 
     action = {
-        "function": "evaluate",
+        "function": "eval",
         "source": source
     }
 

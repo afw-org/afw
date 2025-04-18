@@ -204,11 +204,11 @@ for (let i1 = 0; i1 < 14; i1 = i1 + 1) {
         for (let i3 = 0; i3 < 16; i3 = i3 + 1) {
             for (let i4 = 0; i4 < 16; i4 = i4 + 1) {                
                 let uu = hex[i1] + hex[i2] + hex[i3] + hex[i4];                
-                let xx = evaluate<script>(script("\"\\u" + uu + "\""));
+                let xx = eval<script>(script("\"\\u" + uu + "\""));
                 let LineTerminators = ((uu === "000A") || (uu === "000D") || (uu === "2028") || (uu === "2029"));                
                 
                 let strToEval = script("let yy = 0;\n//let " + xx + "yy = -1;");                  
-                let e = evaluate<script>(strToEval);                
+                let e = eval<script>(strToEval);                
                 if (LineTerminators) {
                     assert(e === -1, "The value of 'e' is expected to equal -1");
                 } else {
@@ -231,9 +231,9 @@ for (let i1 = 0; i1 < 14; i1 = i1 + 1) {
         for (let i3 = 0; i3 < 16; i3 = i3 + 1) {
             for (let i4 = 0; i4 < 16; i4 = i4 + 1) {                
                 let uu = hex[i1] + hex[i2] + hex[i3] + hex[i4];                
-                let xx = evaluate<script>(script("\"\\u" + uu + "\""));
+                let xx = eval<script>(script("\"\\u" + uu + "\""));
 
-                let y = evaluate(script("/*let " + xx + "y = 1*/"));
+                let y = eval(script("/*let " + xx + "y = 1*/"));
                 if (y !== undefined) {
                     throw "Expected y to be undefined";
                 }

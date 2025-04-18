@@ -14,17 +14,17 @@
 #!/usr/bin/env afw
 
 assert(
-  evaluate(script('1; switch ("a") { case "a": break; default: }')) === undefined
+  eval(script('1; switch ("a") { case "a": break; default: }')) === undefined
 );
 assert(
-  evaluate(script('2; switch ("a") { case "a": { 3; break; } default: }')) === 3
+  eval(script('2; switch ("a") { case "a": { 3; break; } default: }')) === 3
 );
 
 assert(
-  evaluate(script('4; do { switch ("a") { case "a": continue; default: } } while (false)')) === undefined
+  eval(script('4; do { switch ("a") { case "a": continue; default: } } while (false)')) === undefined
 );
 assert(
-  evaluate(script('5; do { switch ("a") { case "a": { 6; continue; } default: } } while (false)')) === 6
+  eval(script('5; do { switch ("a") { case "a": { 6; continue; } default: } } while (false)')) === 6
 );
 
 
@@ -36,7 +36,7 @@ assert(
 #!/usr/bin/env afw
 
 
-assert(evaluate(script('1; switch(null) {}')) === undefined);
+assert(eval(script('1; switch(null) {}')) === undefined);
 
 
 //? test: cptn-a-fall-thru-abrupt-empty
@@ -48,28 +48,28 @@ assert(evaluate(script('1; switch(null) {}')) === undefined);
 #!/usr/bin/env afw
 
 assert(
-  evaluate(script('1; switch ("a") { case "a": 2; case "b": 3; break; default: }')) === 3,
+  eval(script('1; switch ("a") { case "a": 2; case "b": 3; break; default: }')) === 3,
   'Non-empty value replaces previous non-empty value'
 );
 assert(
-  evaluate(script('4; switch ("a") { case "a": case "b": 5; break; default: }')) === 5,
+  eval(script('4; switch ("a") { case "a": case "b": 5; break; default: }')) === 5,
   'Non-empty value replaces empty value'
 );
 assert(
-  evaluate(script('6; switch ("a") { case "a": 7; case "b": break; default: }')) === 7,
+  eval(script('6; switch ("a") { case "a": 7; case "b": break; default: }')) === 7,
   'Empty value does not replace previous non-empty value'
 );
 
 assert(
-  evaluate(script('8; do { switch ("a") { case "a": 9; case "b": 10; continue; default: } } while (false)')) === 10,
+  eval(script('8; do { switch ("a") { case "a": 9; case "b": 10; continue; default: } } while (false)')) === 10,
   'Non-empty value replaces previous non-empty value'
 );
 assert(
-  evaluate(script('11; do { switch ("a") { case "a": case "b": 12; continue; default: } } while (false)')) === 12,
+  eval(script('11; do { switch ("a") { case "a": case "b": 12; continue; default: } } while (false)')) === 12,
   'Non-empty value replaces empty value'
 );
 assert(
-  evaluate(script('13; do { switch ("a") { case "a": 14; case "b": continue; default: } } while (false)')) === 14,
+  eval(script('13; do { switch ("a") { case "a": 14; case "b": continue; default: } } while (false)')) === 14,
   'Empty value does not replace previous non-empty value'
 );
 
@@ -83,15 +83,15 @@ assert(
 #!/usr/bin/env afw
 
 assert(
-  evaluate(script('1; switch ("a") { case "a": 2; default: 3; }')) === 3,
+  eval(script('1; switch ("a") { case "a": 2; default: 3; }')) === 3,
   'Non-empty value replaces previous non-empty value'
 );
 assert(
-  evaluate(script('4; switch ("a") { case "a": default: 5; }')) === 5,
+  eval(script('4; switch ("a") { case "a": default: 5; }')) === 5,
   'Non-empty value replaces empty value'
 );
 assert(
-  evaluate(script('6; switch ("a") { case "a": 7; default: }')) === 7,
+  eval(script('6; switch ("a") { case "a": 7; default: }')) === 7,
   'Empty value does not replace previous non-empty value'
 );
 
@@ -105,17 +105,17 @@ assert(
 #!/usr/bin/env afw
 
 assert(
-  evaluate(script('1; switch ("a") { default: case "a": break; }')) === undefined
+  eval(script('1; switch ("a") { default: case "a": break; }')) === undefined
 );
 assert(
-  evaluate(script('2; switch ("a") { default: case "a": { 3; break; } }')) === 3
+  eval(script('2; switch ("a") { default: case "a": { 3; break; } }')) === 3
 );
 
 assert(
-  evaluate(script('4; do { switch ("a") { default: case "a": continue; } } while (false)')) === undefined
+  eval(script('4; do { switch ("a") { default: case "a": continue; } } while (false)')) === undefined
 );
 assert(
-  evaluate(script('5; do { switch ("a") { default: case "a": { 6; continue; } } } while (false)')) === 6
+  eval(script('5; do { switch ("a") { default: case "a": { 6; continue; } } } while (false)')) === 6
 );
 
 
@@ -128,28 +128,28 @@ assert(
 #!/usr/bin/env afw
 
 assert(
-  evaluate(script('1; switch ("a") { default: case "a": 2; case "b": 3; break; }')) === 3,
+  eval(script('1; switch ("a") { default: case "a": 2; case "b": 3; break; }')) === 3,
   'Non-empty value replaces previous non-empty value'
 );
 assert(
-  evaluate(script('4; switch ("a") { default: case "a": case "b": 5; break; }')) === 5,
+  eval(script('4; switch ("a") { default: case "a": case "b": 5; break; }')) === 5,
   'Non-empty value replaces empty value'
 );
 assert(
-  evaluate(script('6; switch ("a") { default: case "a": 7; case "b": break; }')) === 7,
+  eval(script('6; switch ("a") { default: case "a": 7; case "b": break; }')) === 7,
   'Empty value does not replace previous non-empty value'
 );
 
 assert(
-  evaluate(script('8; do { switch ("a") { default: case "a": 9; case "b": 10; continue; } } while (false)')) === 10,
+  eval(script('8; do { switch ("a") { default: case "a": 9; case "b": 10; continue; } } while (false)')) === 10,
   'Non-empty value replaces previous non-empty value'
 );
 assert(
-  evaluate(script('11; do { switch ("a") { default: case "a": case "b": 12; continue; } } while (false)')) === 12,
+  eval(script('11; do { switch ("a") { default: case "a": case "b": 12; continue; } } while (false)')) === 12,
   'Non-empty value replaces empty value'
 );
 assert(
-  evaluate(script('13; do { switch ("a") { default: case "a": 14; case "b": continue; } } while (false)')) === 14,
+  eval(script('13; do { switch ("a") { default: case "a": 14; case "b": continue; } } while (false)')) === 14,
   'Empty value does not replace previous non-empty value'
 );
 
@@ -163,15 +163,15 @@ assert(
 #!/usr/bin/env afw
 
 assert(
-  evaluate(script('1; switch ("a") { default: case "a": 2; case "b": 3; }')) === 3,
+  eval(script('1; switch ("a") { default: case "a": 2; case "b": 3; }')) === 3,
   'Non-empty value replaces previous non-empty value'
 );
 assert(
-  evaluate(script('4; switch ("a") { default: case "a": case "b": 5; }')) === 5,
+  eval(script('4; switch ("a") { default: case "a": case "b": 5; }')) === 5,
   'Non-empty value replaces empty value'
 );
 assert(
-  evaluate(script('6; switch ("a") { default: case "a": 7; case "b": }')) === 7,
+  eval(script('6; switch ("a") { default: case "a": 7; case "b": }')) === 7,
   'Empty value does not replace previous non-empty value'
 );
 
@@ -183,27 +183,27 @@ assert(
 #!/usr/bin/env afw
 
 assert(
-  evaluate(script('1; switch ("a") { default: case "a": }')) === undefined,
+  eval(script('1; switch ("a") { default: case "a": }')) === undefined,
   'empty StatementList (lone case)'
 );
 assert(
-  evaluate(script('2; switch ("a") { default: case "a": 3; }')) === 3,
+  eval(script('2; switch ("a") { default: case "a": 3; }')) === 3,
   'non-empy StatementList (lone case)'
 );
 assert(
-  evaluate(script('4; switch ("b") { default: case "a": case "b": }')) === undefined,
+  eval(script('4; switch ("b") { default: case "a": case "b": }')) === undefined,
   'empty StatementList (following an empty case)'
 );
 assert(
-  evaluate(script('5; switch ("b") { default: case "a": case "b": 6; }')) === 6,
+  eval(script('5; switch ("b") { default: case "a": case "b": 6; }')) === 6,
   'non-empty StatementList (following an empty case)'
 );
 assert(
-  evaluate(script('7; switch ("b") { default: case "a": 8; case "b": }')) === undefined,
+  eval(script('7; switch ("b") { default: case "a": 8; case "b": }')) === undefined,
   'empty StatementList (following a non-empty case)'
 );
 assert(
-  evaluate(script('9; switch ("b") { default: case "a": 10; case "b": 11; }')) === 11,
+  eval(script('9; switch ("b") { default: case "a": 10; case "b": 11; }')) === 11,
   'non-empty StatementList (following a non-empty case)'
 );
 
@@ -216,14 +216,14 @@ assert(
 //? source: ...
 #!/usr/bin/env afw
 
-assert(evaluate(script('1; switch ("a") { default: break; }')) === undefined);
-assert(evaluate(script('2; switch ("a") { default: { 3; break; } }')) === 3);
+assert(eval(script('1; switch ("a") { default: break; }')) === undefined);
+assert(eval(script('2; switch ("a") { default: { 3; break; } }')) === 3);
 
 assert(
-  evaluate(script('4; do { switch ("a") { default: { continue; } } } while (false)')) === undefined
+  eval(script('4; do { switch ("a") { default: { continue; } } } while (false)')) === undefined
 );
 assert(
-  evaluate(script('5; do { switch ("a") { default: { 6; continue; } } } while (false)')) === 6
+  eval(script('5; do { switch ("a") { default: { 6; continue; } } } while (false)')) === 6
 );
 
 
@@ -236,17 +236,17 @@ assert(
 #!/usr/bin/env afw
 
 assert(
-  evaluate(script('1; switch ("a") { default: case "b": break; }')) === undefined
+  eval(script('1; switch ("a") { default: case "b": break; }')) === undefined
 );
 assert(
-  evaluate(script('2; switch ("a") { default: case "b": { 3; break; } }')) === 3
+  eval(script('2; switch ("a") { default: case "b": { 3; break; } }')) === 3
 );
 
 assert(
-  evaluate(script('4; do { switch ("a") { default: case "b": continue; } } while (false)')) === undefined
+  eval(script('4; do { switch ("a") { default: case "b": continue; } } while (false)')) === undefined
 );
 assert(
-  evaluate(script('5; do { switch ("a") { default: case "b": { 6; continue; } } } while (false)')) === 6
+  eval(script('5; do { switch ("a") { default: case "b": { 6; continue; } } } while (false)')) === 6
 );
 
 
@@ -259,28 +259,28 @@ assert(
 #!/usr/bin/env afw
 
 assert(
-  evaluate(script('1; switch ("a") { default: case "b": 2; case "c": 3; break; }')) === 3,
+  eval(script('1; switch ("a") { default: case "b": 2; case "c": 3; break; }')) === 3,
   'Non-empty value replaces previous non-empty value'
 );
 assert(
-  evaluate(script('4; switch ("a") { default: case "b": case "c": 5; break; }')) === 5,
+  eval(script('4; switch ("a") { default: case "b": case "c": 5; break; }')) === 5,
   'Non-empty value replaces empty value'
 );
 assert(
-  evaluate(script('6; switch ("a") { default: case "b": 7; case "c": break; }')) === 7,
+  eval(script('6; switch ("a") { default: case "b": 7; case "c": break; }')) === 7,
   'Empty value does not replace previous non-empty value'
 );
 
 assert(
-  evaluate(script('8; do { switch ("a") { default: case "b": 9; case "c": 10; continue; } } while (false)')) === 10,
+  eval(script('8; do { switch ("a") { default: case "b": 9; case "c": 10; continue; } } while (false)')) === 10,
   'Non-empty value replaces previous non-empty value'
 );
 assert(
-  evaluate(script('11; do { switch ("a") { default: case "b": case "c": 12; continue; } } while (false)')) === 12,
+  eval(script('11; do { switch ("a") { default: case "b": case "c": 12; continue; } } while (false)')) === 12,
   'Non-empty value replaces empty value'
 );
 assert(
-  evaluate(script('13; do { switch ("a") { default: case "b": 14; case "c": continue; } } while (false)')) === 14,
+  eval(script('13; do { switch ("a") { default: case "b": 14; case "c": continue; } } while (false)')) === 14,
   'Empty value does not replace previous non-empty value'
 );
 
@@ -294,15 +294,15 @@ assert(
 #!/usr/bin/env afw
 
 assert(
-  evaluate(script('1; switch ("a") { default: case "b": 2; case "c": 3; }')) === 3,
+  eval(script('1; switch ("a") { default: case "b": 2; case "c": 3; }')) === 3,
   'Non-empty value replaces previous non-empty value'
 );
 assert(
-  evaluate(script('4; switch ("a") { default: case "b": case "c": 5; }')) === 5,
+  eval(script('4; switch ("a") { default: case "b": case "c": 5; }')) === 5,
   'Non-empty value replaces empty value'
 );
 assert(
-  evaluate(script('6; switch ("a") { default: case "b": 7; case "c": }')) === 7,
+  eval(script('6; switch ("a") { default: case "b": 7; case "c": }')) === 7,
   'Empty value does not replace previous non-empty value'
 );
 
@@ -314,27 +314,27 @@ assert(
 #!/usr/bin/env afw
 
 assert(
-  evaluate(script('1; switch ("a") { default: case "b": }')) === undefined,
+  eval(script('1; switch ("a") { default: case "b": }')) === undefined,
   'empty StatementList (lone case)'
 );
 assert(
-  evaluate(script('2; switch ("a") { default: case "b": 3; }')) === 3,
+  eval(script('2; switch ("a") { default: case "b": 3; }')) === 3,
   'non-empy StatementList (lone case)'
 );
 assert(
-  evaluate(script('4; switch ("a") { default: case "b": case "c": }')) === undefined,
+  eval(script('4; switch ("a") { default: case "b": case "c": }')) === undefined,
   'empty StatementList (following an empty case)'
 );
 assert(
-  evaluate(script('5; switch ("a") { default: case "b": case "c": 6; }')) === 6,
+  eval(script('5; switch ("a") { default: case "b": case "c": 6; }')) === 6,
   'non-empty StatementList (following an empty case)'
 );
 assert(
-  evaluate(script('7; switch ("a") { default: case "b": 8; case "c": }')) === 8,
+  eval(script('7; switch ("a") { default: case "b": 8; case "c": }')) === 8,
   'empty StatementList (following a non-empty case)'
 );
 assert(
-  evaluate(script('9; switch ("a") { default: case "b": 10; case "c": 11; }')) === 11,
+  eval(script('9; switch ("a") { default: case "b": 10; case "c": 11; }')) === 11,
   'non-empty StatementList (following a non-empty case)'
 );
 
@@ -348,28 +348,28 @@ assert(
 #!/usr/bin/env afw
 
 assert(
-  evaluate(script('1; switch ("a") { case "a": 2; default: 3; break; }')) === 3,
+  eval(script('1; switch ("a") { case "a": 2; default: 3; break; }')) === 3,
   'Non-empty value replaces previous non-empty value'
 );
 assert(
-  evaluate(script('4; switch ("a") { case "a": default: 5; break; }')) === 5,
+  eval(script('4; switch ("a") { case "a": default: 5; break; }')) === 5,
   'Non-empty value replaces empty value'
 );
 assert(
-  evaluate(script('6; switch ("a") { case "a": 7; default: break; }')) === 7,
+  eval(script('6; switch ("a") { case "a": 7; default: break; }')) === 7,
   'Empty value does not replace previous non-empty value'
 );
 
 assert(
-  evaluate(script('8; do { switch ("a") { case "a": 9; default: 10; continue; } } while (false)')) === 10,
+  eval(script('8; do { switch ("a") { case "a": 9; default: 10; continue; } } while (false)')) === 10,
   'Non-empty value replaces previous non-empty value'
 );
 assert(
-  evaluate(script('11; do { switch ("a") { case "a": default: 12; continue; } } while (false)')) === 12,
+  eval(script('11; do { switch ("a") { case "a": default: 12; continue; } } while (false)')) === 12,
   'Non-empty value replaces empty value'
 );
 assert(
-  evaluate(script('13; do { switch ("a") { case "a": 14; default: continue; } } while (false)')) === 14,
+  eval(script('13; do { switch ("a") { case "a": 14; default: continue; } } while (false)')) === 14,
   'Empty value does not replace previous non-empty value'
 );
 
@@ -383,15 +383,15 @@ assert(
 #!/usr/bin/env afw
 
 assert(
-  evaluate(script('1; switch ("a") { case "a": 2; default: 3; }')) === 3,
+  eval(script('1; switch ("a") { case "a": 2; default: 3; }')) === 3,
   'Non-empty value replaces previous non-empty value'
 );
 assert(
-  evaluate(script('4; switch ("a") { case "a": default: 5; }')) === 5,
+  eval(script('4; switch ("a") { case "a": default: 5; }')) === 5,
   'Non-empty value replaces empty value'
 );
 assert(
-  evaluate(script('6; switch ("a") { case "a": 7; default: }')) === 7,
+  eval(script('6; switch ("a") { case "a": 7; default: }')) === 7,
   'Empty value does not replace previous non-empty value'
 );
 
@@ -403,27 +403,27 @@ assert(
 #!/usr/bin/env afw
 
 assert(
-  evaluate(script('1; switch ("a") { default: }')) === undefined,
+  eval(script('1; switch ("a") { default: }')) === undefined,
   'empty StatementList (lone case)'
 );
 assert(
-  evaluate(script('2; switch ("a") { default: 3; }')) === 3,
+  eval(script('2; switch ("a") { default: 3; }')) === 3,
   'non-empy StatementList (lone case)'
 );
 assert(
-  evaluate(script('4; switch ("b") { case "a": default: }')) === undefined,
+  eval(script('4; switch ("b") { case "a": default: }')) === undefined,
   'empty StatementList (following an empty case)'
 );
 assert(
-  evaluate(script('5; switch ("b") { case "a": default: 6; }')) === 6,
+  eval(script('5; switch ("b") { case "a": default: 6; }')) === 6,
   'non-empty StatementList (following an empty case)'
 );
 assert(
-  evaluate(script('7; switch ("b") { case "a": 8; default: }')) === undefined,
+  eval(script('7; switch ("b") { case "a": 8; default: }')) === undefined,
   'empty StatementList (following a non-empty case)'
 );
 assert(
-  evaluate(script('9; switch ("b") { case "a": 10; default: 11; }')) === 11,
+  eval(script('9; switch ("b") { case "a": 10; default: 11; }')) === 11,
   'non-empty StatementList (following a non-empty case)'
 );
 
@@ -436,14 +436,14 @@ assert(
 //? source: ...
 #!/usr/bin/env afw
 
-assert(evaluate(script('1; switch ("a") { case "a": break; }')) === undefined);
-assert(evaluate(script('2; switch ("a") { case "a": { 3; break; } }')) === 3);
+assert(eval(script('1; switch ("a") { case "a": break; }')) === undefined);
+assert(eval(script('2; switch ("a") { case "a": { 3; break; } }')) === 3);
 
 assert(
-  evaluate(script('4; do { switch ("a") { case "a": continue; } } while (false)')) === undefined
+  eval(script('4; do { switch ("a") { case "a": continue; } } while (false)')) === undefined
 );
 assert(
-  evaluate(script('5; do { switch ("a") { case "a": { 6; continue; } } } while (false)')) === 6
+  eval(script('5; do { switch ("a") { case "a": { 6; continue; } } } while (false)')) === 6
 );
 
 
@@ -456,28 +456,28 @@ assert(
 #!/usr/bin/env afw
 
 assert(
-  evaluate(script('1; switch ("a") { case "a": 2; case "b": 3; break; }')) === 3,
+  eval(script('1; switch ("a") { case "a": 2; case "b": 3; break; }')) === 3,
   'Non-empty value replaces previous non-empty value'
 );
 assert(
-  evaluate(script('4; switch ("a") { case "a": case "b": 5; break; }')) === 5,
+  eval(script('4; switch ("a") { case "a": case "b": 5; break; }')) === 5,
   'Non-empty value replaces empty value'
 );
 assert(
-  evaluate(script('6; switch ("a") { case "a": 7; case "b": break; }')) === 7,
+  eval(script('6; switch ("a") { case "a": 7; case "b": break; }')) === 7,
   'Empty value does not replace previous non-empty value'
 );
 
 assert(
-  evaluate(script('8; do { switch ("a") { case "a": 9; case "b": 10; continue; } } while (false)')) === 10,
+  eval(script('8; do { switch ("a") { case "a": 9; case "b": 10; continue; } } while (false)')) === 10,
   'Non-empty value replaces previous non-empty value'
 );
 assert(
-  evaluate(script('11; do { switch ("a") { case "a": case "b": 12; continue; } } while (false)')) === 12,
+  eval(script('11; do { switch ("a") { case "a": case "b": 12; continue; } } while (false)')) === 12,
   'Non-empty value replaces empty value'
 );
 assert(
-  evaluate(script('13; do { switch ("a") { case "a": 14; case "b": continue; } } while (false)')) === 14,
+  eval(script('13; do { switch ("a") { case "a": 14; case "b": continue; } } while (false)')) === 14,
   'Empty value does not replace previous non-empty value'
 );
 
@@ -491,15 +491,15 @@ assert(
 #!/usr/bin/env afw
 
 assert(
-  evaluate(script('1; switch ("a") { case "a": 2; case "b": 3; }')) === 3,
+  eval(script('1; switch ("a") { case "a": 2; case "b": 3; }')) === 3,
   'Non-empty value replaces previous non-empty value'
 );
 assert(
-  evaluate(script('4; switch ("a") { case "a": case "b": 5; }')) === 5,
+  eval(script('4; switch ("a") { case "a": case "b": 5; }')) === 5,
   'Non-empty value replaces empty value'
 );
 assert(
-  evaluate(script('6; switch ("a") { case "a": 7; case "b": }')) === 7,
+  eval(script('6; switch ("a") { case "a": 7; case "b": }')) === 7,
   'Empty value does not replace previous non-empty value'
 );
 
@@ -512,43 +512,43 @@ assert(
 
 
 assert(
-  evaluate(script('1; switch ("a") { case "a": }')) === undefined,
+  eval(script('1; switch ("a") { case "a": }')) === undefined,
   'empty StatementList (lone case)'
 );
 assert(
-  evaluate(script('2; switch ("a") { case "a": 3; }')) === 3,
+  eval(script('2; switch ("a") { case "a": 3; }')) === 3,
   'non-empy StatementList (lone case)'
 );
 assert(
-  evaluate(script('4; switch ("b") { case "a": case "b": }')) === undefined,
+  eval(script('4; switch ("b") { case "a": case "b": }')) === undefined,
   'empty StatementList (following an empty case)'
 );
 assert(
-  evaluate(script('5; switch ("b") { case "a": case "b": 6; }')) === 6,
+  eval(script('5; switch ("b") { case "a": case "b": 6; }')) === 6,
   'non-empty StatementList (following an empty case)'
 );
 assert(
-  evaluate(script('7; switch ("b") { case "a": 8; case "b": }')) === undefined,
+  eval(script('7; switch ("b") { case "a": 8; case "b": }')) === undefined,
   'empty StatementList (following a non-empty case)'
 );
 assert(
-  evaluate(script('9; switch ("b") { case "a": 10; case "b": 11; }')) === 11,
+  eval(script('9; switch ("b") { case "a": 10; case "b": 11; }')) === 11,
   'non-empty StatementList (following a non-empty case)'
 );
 
 
 //? test: cptn-no-dflt-no-match
 //? description: Completion value when no cases match
-//? expect: error:'evaluate' is not a method of data type 'boolean'
+//? expect: error:'eval' is not a method of data type 'boolean'
 //? source: ...
 #!/usr/bin/env afw
 
 
 assert(
-  evaluate(script('1; switch ("a") { case null: }') === undefined, 'empty StatementList')
+  eval(script('1; switch ("a") { case null: }') === undefined, 'empty StatementList')
 );
 assert(
-  evaluate(script('2; switch ("a") { case null: 3; }')) === undefined,
+  eval(script('2; switch ("a") { case null: 3; }')) === undefined,
   'non-empty StatementList'
 );
 
@@ -1229,8 +1229,8 @@ let probeSelector;
 let probeStmt;
 let probeBefore = function() { return x; };
 
-switch (evaluate(script('let x = 1;')), probeExpr = function() { return x; }, null) {
-  case evaluate(script('let x = 2;')), probeSelector = function() { return x; }, null:
+switch (eval(script('let x = 1;')), probeExpr = function() { return x; }, null) {
+  case eval(script('let x = 2;')), probeSelector = function() { return x; }, null:
     probeStmt = function() { return x; };
     let x = 3;
 }
@@ -1253,7 +1253,7 @@ let probeExpr;
 let probeStmt;
 let probeBefore = function() { return x; };
 
-switch (evaluate(script('let x = 1;')), probeExpr = function() { return x; }) {
+switch (eval(script('let x = 1;')), probeExpr = function() { return x; }) {
   default:
     probeStmt = function() { return x; };
     let x = 2;

@@ -129,7 +129,7 @@ export function afwEqxScript(client : any, arg1 : any, arg2 : any) : any {
 /**
  * Compile and evaluate script value.
  * 
- * @param {script} source - script string to compile and evaluate
+ * @param {script} source - script to compile and evaluate
  * 
  * @param {object} additionalUntrustedQualifiedVariables - This parameter
  *     supplies additional qualified variables that can be accessed during
@@ -140,11 +140,11 @@ export function afwEqxScript(client : any, arg1 : any, arg2 : any) : any {
  * 
  * @returns {unevaluated}
  */
-export function afwEvaluateScript(client : any, source : any, additionalUntrustedQualifiedVariables? : object) : any {
+export function afwEvalScript(client : any, source : any, additionalUntrustedQualifiedVariables? : object) : any {
 
     let _action : IAnyObject = {};
 
-    _action["function"] = "evaluate<script>";
+    _action["function"] = "eval<script>";
     _action["source"] = source;
 
     if (additionalUntrustedQualifiedVariables !== undefined)

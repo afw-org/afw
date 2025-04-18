@@ -270,7 +270,7 @@ assert('\
 #!/usr/bin/env afw
 
 
-assert(evaluate(script("'\u2028'")) ===  "\u2028");
+assert(eval(script("'\u2028'")) ===  "\u2028");
 
 
 //? test: line-separator
@@ -291,7 +291,7 @@ assert(" " === "\u2028");
 #!/usr/bin/env afw
 
 
-assert(evaluate(script("'\u180E'")) ===  "\u180E");
+assert(eval(script("'\u180E'")) ===  "\u180E");
 
 
 //? test: mongolian-vowel-separator
@@ -312,7 +312,7 @@ assert("᠎" ===  "\u180E");
 #!/usr/bin/env afw
 
 
-assert(evaluate(script("'\u2029'")) ===  "\u2029");
+assert(eval(script("'\u2029'")) ===  "\u2029");
 
 
 //? test: paragraph-separator

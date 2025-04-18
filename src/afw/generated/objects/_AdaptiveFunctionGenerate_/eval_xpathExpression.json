@@ -1,17 +1,17 @@
 {
-    "afwCamelCaseFunctionLabel": "afwEvaluateTemplate",
-    "brief": "Evaluate template value",
-    "camelCaseFunctionLabel": "evaluateTemplate",
-    "category": "template",
+    "afwCamelCaseFunctionLabel": "afwEvalXpathExpression",
+    "brief": "Compile and evaluate xpathExpression value",
+    "camelCaseFunctionLabel": "evalXpathExpression",
+    "category": "xpathExpression",
     "dataTypeMethod": true,
-    "description": "Compile and evaluate template value.",
-    "functionId": "evaluate<template>",
-    "functionLabel": "evaluate_template",
+    "description": "Compile and evaluate xpathExpression value.",
+    "functionId": "eval<xpathExpression>",
+    "functionLabel": "eval_xpathExpression",
     "parameters": [
         {
-            "brief": "Source to evaluate",
-            "dataType": "template",
-            "description": "template string to compile and evaluate",
+            "brief": "Source to eval",
+            "dataType": "xpathExpression",
+            "description": "xpathExpression to compile and evaluate",
             "name": "source"
         },
         {
