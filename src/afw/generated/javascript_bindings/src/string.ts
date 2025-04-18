@@ -248,7 +248,7 @@ export function afwEqxString(client : any, arg1 : string, arg2 : any) : any {
  *     authorization. This parameter is intended to be used for testing only
  *     and should not be used for anything running in production.
  * 
- * @returns {unevaluated}
+ * @returns {any}
  */
 export function afwEvalString(client : any, source : string, additionalUntrustedQualifiedVariables? : object) : any {
 

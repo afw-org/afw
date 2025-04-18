@@ -139,7 +139,7 @@ export function afwEqxXpathExpression(client : any, arg1 : any, arg2 : any) : an
  *     authorization. This parameter is intended to be used for testing only
  *     and should not be used for anything running in production.
  * 
- * @returns {unevaluated}
+ * @returns {any}
  */
 export function afwEvalXpathExpression(client : any, source : any, additionalUntrustedQualifiedVariables? : object) : any {
 

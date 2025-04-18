@@ -81,7 +81,7 @@ afw_function_execute_compile_template(
  *   function eval<template>(
  *       source: template,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_)
- *   ): unevaluated;
+ *   ): any;
  * ```
  *
  * Parameters:
@@ -98,7 +98,7 @@ afw_function_execute_compile_template(
  *
  * Returns:
  *
- *   (unevaluated)
+ *   (any)
  */
 const afw_value_t *
 afw_function_execute_eval_template(

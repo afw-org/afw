@@ -163,7 +163,7 @@ afw_function_execute_eq_ignore_case_string(
  *   function eval<string>(
  *       source: string,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_)
- *   ): unevaluated;
+ *   ): any;
  * ```
  *
  * Parameters:
@@ -180,7 +180,7 @@ afw_function_execute_eq_ignore_case_string(
  *
  * Returns:
  *
- *   (unevaluated)
+ *   (any)
  */
 const afw_value_t *
 afw_function_execute_eval_string(

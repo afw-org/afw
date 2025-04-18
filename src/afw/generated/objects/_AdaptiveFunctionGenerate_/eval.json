@@ -37,7 +37,7 @@
         }
     },
     "returns": {
-        "dataType": "unevaluated"
+        "dataType": "any"
     },
     "useExecuteFunction": "AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING"
 }

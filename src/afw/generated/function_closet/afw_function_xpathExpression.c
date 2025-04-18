@@ -81,7 +81,7 @@ afw_function_execute_compile_xpathExpression(
  *   function eval<xpathExpression>(
  *       source: xpathExpression,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_)
- *   ): unevaluated;
+ *   ): any;
  * ```
  *
  * Parameters:
@@ -98,7 +98,7 @@ afw_function_execute_compile_xpathExpression(
  *
  * Returns:
  *
- *   (unevaluated)
+ *   (any)
  */
 const afw_value_t *
 afw_function_execute_eval_xpathExpression(

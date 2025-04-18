@@ -325,7 +325,7 @@ class string
      *                                                      anything running
      *                                                      in production.
      *
-     * @return unevaluated
+     * @return any
      */
     public function eval_string(, $source, $additionalUntrustedQualifiedVariables = null)
     {

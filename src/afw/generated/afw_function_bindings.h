@@ -20651,7 +20651,7 @@ afw_function_definition_eval;
  *   function eval <dataType>(
  *       source: dataType,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_)
- *   ): unevaluated;
+ *   ): any;
  * ```
  *
  * Parameters:
@@ -20668,7 +20668,7 @@ afw_function_definition_eval;
  *
  * Returns:
  *
- *   (unevaluated)
+ *   (any)
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -24771,7 +24771,7 @@ afw_function_definition_eval_script;
  *   function eval<script>(
  *       source: script,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_)
- *   ): unevaluated;
+ *   ): any;
  * ```
  *
  * Parameters:
@@ -24788,7 +24788,7 @@ afw_function_definition_eval_script;
  *
  * Returns:
  *
- *   (unevaluated)
+ *   (any)
  */
 const afw_value_t *
 afw_function_execute_eval_script(
@@ -26165,7 +26165,7 @@ afw_function_definition_eval_string;
  *   function eval<string>(
  *       source: string,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_)
- *   ): unevaluated;
+ *   ): any;
  * ```
  *
  * Parameters:
@@ -26182,7 +26182,7 @@ afw_function_definition_eval_string;
  *
  * Returns:
  *
- *   (unevaluated)
+ *   (any)
  */
 const afw_value_t *
 afw_function_execute_eval_string(
@@ -28166,7 +28166,7 @@ afw_function_definition_eval_template;
  *   function eval<template>(
  *       source: template,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_)
- *   ): unevaluated;
+ *   ): any;
  * ```
  *
  * Parameters:
@@ -28183,7 +28183,7 @@ afw_function_definition_eval_template;
  *
  * Returns:
  *
- *   (unevaluated)
+ *   (any)
  */
 const afw_value_t *
 afw_function_execute_eval_template(
@@ -30616,7 +30616,7 @@ afw_function_definition_eval_xpathExpression;
  *   function eval<xpathExpression>(
  *       source: xpathExpression,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_)
- *   ): unevaluated;
+ *   ): any;
  * ```
  *
  * Parameters:
@@ -30633,7 +30633,7 @@ afw_function_definition_eval_xpathExpression;
  *
  * Returns:
  *
- *   (unevaluated)
+ *   (any)
  */
 const afw_value_t *
 afw_function_execute_eval_xpathExpression(

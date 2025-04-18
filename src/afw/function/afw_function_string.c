@@ -438,7 +438,7 @@ afw_function_execute_url_decode(
  *   function eval<string>(
  *       source: string,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_)
- *   ): unevaluated;
+ *   ): any;
  * ```
  *
  * Parameters:
@@ -455,7 +455,7 @@ afw_function_execute_url_decode(
  *
  * Returns:
  *
- *   (unevaluated)
+ *   (any)
  */
 const afw_value_t *
 afw_function_execute_eval_string(

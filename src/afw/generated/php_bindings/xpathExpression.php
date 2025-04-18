@@ -191,7 +191,7 @@ class xpathExpression
      *                                                      anything running
      *                                                      in production.
      *
-     * @return unevaluated
+     * @return any
      */
     public function eval_xpathExpression(, $source, $additionalUntrustedQualifiedVariables = null)
     {

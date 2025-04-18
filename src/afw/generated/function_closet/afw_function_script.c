@@ -81,7 +81,7 @@ afw_function_execute_compile_script(
  *   function eval<script>(
  *       source: script,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_)
- *   ): unevaluated;
+ *   ): any;
  * ```
  *
  * Parameters:
@@ -98,7 +98,7 @@ afw_function_execute_compile_script(
  *
  * Returns:
  *
- *   (unevaluated)
+ *   (any)
  */
 const afw_value_t *
 afw_function_execute_eval_script(

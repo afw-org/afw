@@ -189,7 +189,7 @@ class template
      *                                                      anything running
      *                                                      in production.
      *
-     * @return unevaluated
+     * @return any
      */
     public function eval_template(, $source, $additionalUntrustedQualifiedVariables = null)
     {

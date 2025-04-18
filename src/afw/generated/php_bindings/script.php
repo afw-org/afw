@@ -189,7 +189,7 @@ class script
      *                                                      anything running
      *                                                      in production.
      *
-     * @return unevaluated
+     * @return any
      */
     public function eval_script(, $source, $additionalUntrustedQualifiedVariables = null)
     {

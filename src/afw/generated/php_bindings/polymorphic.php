@@ -498,7 +498,7 @@ class polymorphic
      *                                                      anything running
      *                                                      in production.
      *
-     * @return unevaluated
+     * @return any
      */
     public function eval(, $source, $additionalUntrustedQualifiedVariables = null)
     {

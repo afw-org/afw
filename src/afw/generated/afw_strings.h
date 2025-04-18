@@ -102705,7 +102705,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__1208 \
-    "`<dataType>`(source: dataType, additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_)): unevaluated"
+    "`<dataType>`(source: dataType, additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_)): any"
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__1208 */
 #define afw_s_zz__1208 \
@@ -102731,7 +102731,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__1209 \
-    "/* Compile and evaluate <dataType> value */\nfunction eval `<dataType>`(\n    source: dataType                                                                     /* Source to eval */,\n    additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_) /* Additional untrusted qualified variables */\n): unevaluated;\n"
+    "/* Compile and evaluate <dataType> value */\nfunction eval `<dataType>`(\n    source: dataType                                                                     /* Source to eval */,\n    additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_) /* Additional untrusted qualified variables */\n): any;\n"
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__1209 */
 #define afw_s_zz__1209 \
@@ -108321,7 +108321,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__1402 \
-    "(source: script, additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_)): unevaluated"
+    "(source: script, additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_)): any"
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__1402 */
 #define afw_s_zz__1402 \
@@ -108347,7 +108347,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__1403 \
-    "/* Compile and evaluate script value */\nfunction eval<script> (\n    source: script                                                                       /* Source to eval */,\n    additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_) /* Additional untrusted qualified variables */\n): unevaluated;\n"
+    "/* Compile and evaluate script value */\nfunction eval<script> (\n    source: script                                                                       /* Source to eval */,\n    additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_) /* Additional untrusted qualified variables */\n): any;\n"
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__1403 */
 #define afw_s_zz__1403 \
@@ -110557,7 +110557,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__1480 \
-    "(source: string, additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_)): unevaluated"
+    "(source: string, additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_)): any"
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__1480 */
 #define afw_s_zz__1480 \
@@ -110583,7 +110583,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__1481 \
-    "/* Compile and evaluate string value as adaptive script */\nfunction eval<string> (\n    source: string                                                                       /* Source to eval */,\n    additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_) /* Additional untrusted qualified variables */\n): unevaluated;\n"
+    "/* Compile and evaluate string value as adaptive script */\nfunction eval<string> (\n    source: string                                                                       /* Source to eval */,\n    additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_) /* Additional untrusted qualified variables */\n): any;\n"
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__1481 */
 #define afw_s_zz__1481 \
@@ -113287,7 +113287,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__1575 \
-    "(source: template, additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_)): unevaluated"
+    "(source: template, additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_)): any"
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__1575 */
 #define afw_s_zz__1575 \
@@ -113313,7 +113313,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__1576 \
-    "/* Compile and evaluate template value */\nfunction eval<template> (\n    source: template                                                                     /* Source to eval */,\n    additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_) /* Additional untrusted qualified variables */\n): unevaluated;\n"
+    "/* Compile and evaluate template value */\nfunction eval<template> (\n    source: template                                                                     /* Source to eval */,\n    additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_) /* Additional untrusted qualified variables */\n): any;\n"
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__1576 */
 #define afw_s_zz__1576 \
@@ -117083,7 +117083,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__1706 \
-    "(source: xpathExpression, additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_)): unevaluated"
+    "(source: xpathExpression, additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_)): any"
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__1706 */
 #define afw_s_zz__1706 \
@@ -117109,7 +117109,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__1707 \
-    "/* Compile and evaluate xpathExpression value */\nfunction eval<xpathExpression> (\n    source: xpathExpression                                                              /* Source to eval */,\n    additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_) /* Additional untrusted qualified variables */\n): unevaluated;\n"
+    "/* Compile and evaluate xpathExpression value */\nfunction eval<xpathExpression> (\n    source: xpathExpression                                                              /* Source to eval */,\n    additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_) /* Additional untrusted qualified variables */\n): any;\n"
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__1707 */
 #define afw_s_zz__1707 \

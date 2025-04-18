@@ -35,6 +35,6 @@
         }
     },
     "returns": {
-        "dataType": "unevaluated"
+        "dataType": "any"
     }
 }
