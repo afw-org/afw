@@ -396,47 +396,6 @@ afw_value_unique_default_case_value;
 
 
 /**
- * @brief Undecorated value in place.
- * @param value to undecorate.
- *
- * A value "decoration" is annotation and compile_unit values.
- */
-#define AFW_VALUE_UNDECORATE(a_value) \
-if (a_value) { \
-    if ((a_value)->inf == &afw_value_compiled_value_inf) { \
-        a_value = ((const afw_value_compiled_value_t *)a_value)->root_value; \
-    } \
-}
-
-
-
-/**
- * @brief Return undecorated value.
- * @param value to undecorate.
- * @return undecorated value.
- *
- * A value "decoration" is annotation and compile_unit values.
- */
-AFW_DECLARE(const afw_value_t *)
-afw_value_undecorate(
-    const afw_value_t *value);
-
-/**
- * @brief Determine if value's undecorated inf is the supplied one.
- * @param value
- * @param inf
- * @return true if undecorated value's inf is the supplied on.
- *
- * A value "decoration" is annotation and compile_unit values.
- */
-AFW_DECLARE(afw_boolean_t)
-afw_value_undecorated_inf_is(
-    const afw_value_t *value,
-    const afw_value_inf_t *inf);
-
-
-
-/**
  * @brief Determine if value is boolean true.
  * @param value to test.
  * @return boolean result.

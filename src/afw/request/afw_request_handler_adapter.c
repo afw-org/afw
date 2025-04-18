@@ -270,7 +270,6 @@ impl_afw_request_handler_process(
              * to produce a Replace request.
              */
             value = afw_request_body_to_value(request, xctx->p, xctx);
-            value = afw_value_undecorate(value);
             if (!value || !afw_value_is_object(value)) {
                 AFW_THROW_ERROR_Z(general, "Invalid post data", xctx);
             }
@@ -366,7 +365,6 @@ impl_afw_request_handler_process(
             if (!value) {
                 AFW_THROW_ERROR_Z(general, "Post data missing", xctx);
             }
-            value = afw_value_undecorate(value);
 
             /* If Modify ... */
             if (afw_value_is_array(value)) {

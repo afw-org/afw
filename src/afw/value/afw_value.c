@@ -161,36 +161,6 @@ afw_value_compile_and_evaluate_as(
 
 
 
-/* Return undecorated value. */
-AFW_DEFINE(const afw_value_t *)
-afw_value_undecorate(const afw_value_t *value)
-{
-    AFW_VALUE_UNDECORATE(value)
-
-    return value;
-}
-
-
-
-/* Determine if value's undecorated inf is the supplied one. */
-AFW_DEFINE(afw_boolean_t)
-afw_value_undecorated_inf_is(
-    const afw_value_t *value,
-    const afw_value_inf_t *inf)
-{
-    if (!value) {
-        return false;
-    }
-
-    if (value->inf == &afw_value_compiled_value_inf) {
-        value = ((const afw_value_compiled_value_t *)value)->root_value;
-    }
-
-    return value->inf == inf;
-}
-
-
-
 /* Determine if value and all of it contained values are evaluated. */
 AFW_DEFINE(afw_boolean_t)
 afw_value_is_fully_evaluated(
@@ -581,7 +551,6 @@ afw_value_convert(
 
     /* Evaluate value. */
     result = value;
-    AFW_VALUE_UNDECORATE(result);
     for (evaluate_count = 0;
         result && result->inf->optional_evaluate;
         evaluate_count++)
@@ -592,7 +561,6 @@ afw_value_convert(
                 20);
         }
         result = afw_value_evaluate(result, p, xctx);
-        AFW_VALUE_UNDECORATE(result);
     }
 
     if (!result) {
@@ -890,11 +858,6 @@ afw_value_compare(
 {
     int result;
     const void *i1, *i2;
-
-
-    /* Make sure value1 and value2 are undecorated. */
-    AFW_VALUE_UNDECORATE(value1);
-    AFW_VALUE_UNDECORATE(value2);
 
     if (afw_value_quick_data_type(value1) != afw_value_quick_data_type(value2))
     {

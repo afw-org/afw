@@ -356,9 +356,6 @@ afw_function_evaluate_parameter_with_type(
 {
     const afw_value_t *result;
 
-    /* Make sure value is undecorated. */
-    AFW_VALUE_UNDECORATE(value);
-
     /** @fixme add support for dataTypeParameter. */
 
     /* Just return if no evaluation or conversion needed. */
