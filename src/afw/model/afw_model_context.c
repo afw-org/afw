@@ -1057,6 +1057,7 @@ afw_model_internal_context_current_property_to_mapped[] = {
 AFW_DEFINE_INTERNAL_CONST_DATA(afw_context_cb_variable_t *)
 afw_model_internal_context_current_add_object[] = {
     &impl_current_variable_adapterId,
+    &impl_current_variable_adapterTypeSpecific,
     &impl_current_variable_object,
     &impl_current_variable_objectId,
     &impl_current_variable_objectType,
@@ -1068,6 +1069,8 @@ afw_model_internal_context_current_add_object[] = {
 AFW_DEFINE_INTERNAL_CONST_DATA(afw_context_cb_variable_t *)
 afw_model_internal_context_current_delete_object[] = {
     &impl_current_variable_adapterId,
+    &impl_current_variable_adapterTypeSpecific,
+    &impl_current_variable_adapterTypeSpecific,
     &impl_current_variable_objectId,
     &impl_current_variable_objectType,
     &impl_current_variable_useDefaultProcessing,
@@ -1093,6 +1096,7 @@ AFW_DEFINE_INTERNAL_CONST_DATA(afw_context_cb_variable_t *)
 afw_model_internal_context_current_modify_object[] = {
     &impl_current_variable_modifyEntries,
     &impl_current_variable_adapterId,
+    &impl_current_variable_adapterTypeSpecific,
     &impl_current_variable_object,
     &impl_current_variable_objectId,
     &impl_current_variable_objectType,
@@ -1104,6 +1108,7 @@ afw_model_internal_context_current_modify_object[] = {
 AFW_DEFINE_INTERNAL_CONST_DATA(afw_context_cb_variable_t *)
 afw_model_internal_context_current_replace_object[] = {
     &impl_current_variable_adapterId,
+    &impl_current_variable_adapterTypeSpecific,
     &impl_current_variable_object,
     &impl_current_variable_objectId,
     &impl_current_variable_objectType,

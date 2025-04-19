@@ -1142,6 +1142,7 @@ impl_afw_adapter_session_retrieve_objects(
                 ctx->mapped_object_type_id_value =
                     ctx->model_object_type->mapped_object_type_id_value;
                 ctx->criteria = criteria;
+                ctx->adapterTypeSpecific = adapter_type_specific;
 
                 result = afw_value_evaluate(
                     cb_ctx.model_object_type->onRetrieveObjects,
@@ -1258,6 +1259,7 @@ impl_afw_adapter_session_get_object(
                 ctx->mapped_object_type_id_value =
                     ctx->model_object_type->mapped_object_type_id_value;
                 ctx->object_id = object_id;
+                ctx->adapterTypeSpecific = adapter_type_specific;
 
                 object_value = afw_value_evaluate(
                     cb_ctx.model_object_type->onGetObject,
@@ -1464,6 +1466,7 @@ impl_afw_adapter_session_add_object(
                 xctx);
             ctx->object = object;
             ctx->process_initial_values = true;
+            ctx->adapterTypeSpecific = adapter_type_specific;
 
             /* If onAddObject, evaluate it. */
             use_default_processing = true;
@@ -1647,6 +1650,8 @@ impl_afw_adapter_session_modify_object(
                 }
             }
 
+            ctx->adapterTypeSpecific = adapter_type_specific;
+
             /* If no onModifyObject or it returned undefined, do default processing. */
             if(use_default_processing) {
                 afw_model_internal_complete_ctx_default_modify_object(ctx, xctx);
@@ -1741,6 +1746,8 @@ impl_afw_adapter_session_replace_object(
                 }
             }
 
+            ctx->adapterTypeSpecific = adapter_type_specific;
+
             /* If no onReplaceObject or it returned undefined, do default processing. */
             if (use_default_processing) {
                 journal_entry = afw_object_create(ctx->p, xctx);
@@ -1831,6 +1838,8 @@ impl_afw_adapter_session_delete_object(
                     use_default_processing = true;
                 }
             }
+
+            ctx->adapterTypeSpecific = adapter_type_specific;
 
             /* If no onDeleteObjector or it returned undefined, do default processing. */
             if (use_default_processing) {

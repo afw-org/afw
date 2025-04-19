@@ -63,6 +63,21 @@
                     "onSetProperty": "//let x = current::value[0];\nreturn \"x\";"
                 }
             }
+        },
+        "TestQualifiedVariables": {
+            "onRetrieveObjects": "compile_from_file('includes/onRetrieveObjects.as')",
+            "onAddObject": "compile_from_file('includes/onAddObject.as')",
+            "onDeleteObject": "compile_from_file('includes/onDeleteObject.as')",
+            "onGetInitialObjectId": "compile_from_file('includes/onGetInitialObjectId.as')",
+            "onGetObject": "compile_from_file('includes/onGetObject.as')",
+            "onModifyObject": "compile_from_file('includes/onModifyObject.as')",
+            "onReplaceObject": "compile_from_file('includes/onReplaceObject.as')",
+            "propertyTypes": {
+                "x": {
+                    "dataType": "boolean",
+                    "allowQuery": true
+                }
+            }
         }
     }
 }
