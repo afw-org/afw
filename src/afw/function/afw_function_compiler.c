@@ -225,9 +225,13 @@ afw_function_execute_evaluate(
                 x->argv[1], x->argv[2], x->p, x->xctx);
     }
     else {
-        value = afw_value_evaluate(x->argv[0], x->p, x->xctx);
+        value = afw_value_evaluate(x->argv[1], x->p, x->xctx);
     }
   
+    if (afw_value_is_compiled_value(value)) {
+        value = afw_value_evaluate(value, x->p, x->xctx);
+    }
+
     afw_xctx_statement_flow_reset_all_except_rethrow(x->xctx);
     return value;
 }

@@ -28,4 +28,83 @@ return #{"Hello World!"};
 
 const source = template("H#{'ello ' + 'Wor'}ld${'!'}");
 
-return eval(source);                                                                
+return eval(source);
+
+//?
+//? test: hello_world_return_app_helloWorld
+//? description: Return evaluated app::helloWorld string
+//? expect: "Hello World!"
+//? source: ...
+
+return evaluate(app::helloWorld);
+
+//?
+//? test: hello_world_return_app_compileTime
+//? description: Return evaluated app::compileTime string
+//? expect: "Hello World!"
+//? source: ...
+
+return evaluate(app::compileTime);
+
+//?
+//? test: hello_world_return_app_evalTime
+//? description: Return evaluated app::evalTime string
+//? expect: "Hello World!"
+//? source: ...
+
+return evaluate(app::evalTime);
+
+//?
+//? test: hello_world_assign_app_helloWorld
+//? description: Assign unevaluated app::helloWorld to x then return evaluated(x)
+//? expect: "Hello World!"
+//? source: ...
+
+const x = app::helloWorld;
+return evaluate(x);
+
+//?
+//? test: hello_world_assign_app_compileTime
+//? description: Assign unevaluated app::compileTime to x then return evaluated(x)
+//? expect: "Hello World!"
+//? source: ...
+
+const x = app::compileTime;
+return evaluate(x);
+
+//?
+//? test: hello_world_assign_app_evalTime
+//? description: Assign unevaluated app::evalTime to x then return evaluated(x)
+//? expect: "Hello World!"
+//? source: ...
+
+const x = app::evalTime;
+return evaluate(x);
+
+//?
+//? test: hello_world_call_app_helloWorldFunction
+//? description: Call function returned from app::helloWorldFunction
+//? expect: "Hello World!"
+//? source: ...
+
+const x = evaluate(app::helloWorldFunction);
+return x();
+
+//?
+//? test: hello_world_call_loaded_function
+//? description: Call function loaded from file
+//? expect: "Hello World!"
+//? source: ...
+
+const x = evaluate(compile_from_file('includes/a.as'));
+return x();
+
+//?
+//? test: hello_world_call_app_helloWorldLoadedFunction
+//? description: Call function returned from app::helloWorldLoadedFunction
+//? expect: "Hello World!"
+//? skip: true
+//? source: ...
+
+const x = evaluate(app::helloWorldLoadedFunction);
+return x();
