@@ -146,8 +146,8 @@ export const handlers = [
         case "service_stop":
             return res( ctx.status(200), ctx.json({ result: true, status: "success" }) );
 
-        case "script::evaluate":
-        case "evaluate_script":
+        case "script::eval":
+        case "eval_script":
             return res( ctx.status(200), ctx.json({ result: 2, status: "success" }) );
 
         case "compile_script":

@@ -6,7 +6,7 @@
 # @brief This file defines the run method for running tests through the "action"
 #        interface.
 # @details When a test is run under the "actions" interface, it is executed
-#          using the evaluate_script() Python binding function, which uses 
+#          using the eval_script() Python binding function, which uses 
 #          the same perform() adaptive function call that is used by the HTTP 
 #          POST method.
 #
@@ -16,7 +16,7 @@
 import os
 
 from afw import Session
-from python_bindings.script import evaluate_script
+from python_bindings.script import eval_script
 from _afwdev.common import msg
 
 ##
@@ -63,7 +63,7 @@ def run_test(test, options, testEnvironment=None, testGroupConfig=None):
 
         if not syntax or syntax == 'test_script':         
             msg.debug("Running test script: %s" % test)
-            result = evaluate_script(session, source)                    
+            result = eval_script(session, source)                    
 
     except Exception as e:
         msg.debug(str(e))
