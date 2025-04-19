@@ -6644,12 +6644,12 @@ const afw_value_t *
 afw_function_execute_decompile(
     afw_function_execute_t *x);
 
-/** @brief Function definition evaluate_value */
+/** @brief Function definition evaluate */
 AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_evaluate_value;
+afw_function_definition_evaluate;
 
 /**
- * @brief Adaptive Function `evaluate_value`
+ * @brief Adaptive Function `evaluate`
  * @param x function execute parameter.
  *
  * Evaluate an adaptive value.
@@ -6660,7 +6660,7 @@ afw_function_definition_evaluate_value;
  * Declaration:
  *
  * ```
- *   function evaluate_value(
+ *   function evaluate(
  *       value: any,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_)
  *   ): any;
@@ -6668,7 +6668,7 @@ afw_function_definition_evaluate_value;
  *
  * Parameters:
  *
- *   value - (any dataType)
+ *   value - (any)
  *
  *   additionalUntrustedQualifiedVariables - (optional object
  *       _AdaptiveTemplatePropertiesObjects_) This parameter supplies additional
@@ -6680,10 +6680,10 @@ afw_function_definition_evaluate_value;
  *
  * Returns:
  *
- *   (any dataType) Evaluated adaptive value.
+ *   (any) Evaluated adaptive value.
  */
 const afw_value_t *
-afw_function_execute_evaluate_value(
+afw_function_execute_evaluate(
     afw_function_execute_t *x);
 
 /** @brief Function definition evaluate_with_retry */

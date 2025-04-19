@@ -182,7 +182,7 @@ assert(string(y2) == '{"a":1,"b":2}'); //FIXME Need to support object ==
 {
     const hello: unevaluated = eval("return 'Hello ' + 'World!\n';");
     //FIXME Should pass
-    //assert(evaluate_value(hello) == 'Hello World!');
+    //assert(evaluate(hello) == 'Hello World!');
 }
 
 // Test produce a compile listing

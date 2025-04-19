@@ -120,7 +120,7 @@ def decompile(session, value, whitespace=None):
 
     return response['actions'][0]['result']
 
-def evaluate_value(session, value, additionalUntrustedQualifiedVariables=None):
+def evaluate(session, value, additionalUntrustedQualifiedVariables=None):
     """
     Evaluate value
 
@@ -143,7 +143,7 @@ def evaluate_value(session, value, additionalUntrustedQualifiedVariables=None):
     request = session.Request()
 
     action = {
-        "function": "evaluate_value",
+        "function": "evaluate",
         "value": value
     }
 

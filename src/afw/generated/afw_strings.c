@@ -4976,9 +4976,9 @@ afw_self_v_afwEvalXpathExpression = {
 };
 
 const afw_value_string_t
-afw_self_v_afwEvaluateValue = {
+afw_self_v_afwEvaluate = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_afwEvaluateValue)
+    AFW_UTF8_LITERAL(AFW_Q_afwEvaluate)
 };
 
 const afw_value_string_t
@@ -12572,21 +12572,15 @@ afw_self_v_eval_xpathExpression = {
 };
 
 const afw_value_string_t
-afw_self_v_evaluateValue = {
+afw_self_v_evaluate = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_evaluateValue)
+    AFW_UTF8_LITERAL(AFW_Q_evaluate)
 };
 
 const afw_value_string_t
 afw_self_v_evaluateWithRetry = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_evaluateWithRetry)
-};
-
-const afw_value_string_t
-afw_self_v_evaluate_value = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_evaluate_value)
 };
 
 const afw_value_string_t
@@ -49484,9 +49478,9 @@ afw_self_v_zz___afw__AdaptiveFunction__eval_xpathExpression_ = {
 };
 
 const afw_value_string_t
-afw_self_v_zz___afw__AdaptiveFunction__evaluate_value = {
+afw_self_v_zz___afw__AdaptiveFunction__evaluate = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz___afw__AdaptiveFunction__evaluate_value)
+    AFW_UTF8_LITERAL(AFW_Q_zz___afw__AdaptiveFunction__evaluate)
 };
 
 const afw_value_string_t

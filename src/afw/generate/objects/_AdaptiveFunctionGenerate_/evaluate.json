@@ -2,10 +2,11 @@
     "brief": "Evaluate value",
     "category": "compiler",
     "description": "Evaluate an adaptive value.",
-    "functionId": "evaluate_value",
-    "functionLabel": "evaluate_value",
+    "functionId": "evaluate",
+    "functionLabel": "evaluate",
     "parameters": [
         {
+            "dataType": "any",
             "name": "value"
         },
         {
@@ -18,6 +19,7 @@
         }
     ],
     "returns": {
+        "dataType": "any",
         "description": "Evaluated adaptive value."
     }
 }

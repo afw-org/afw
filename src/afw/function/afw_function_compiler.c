@@ -177,9 +177,9 @@ afw_function_execute_decompile(
 
 
 /*
- * Adaptive function: evaluate_value
+ * Adaptive function: evaluate
  *
- * afw_function_execute_evaluate_value
+ * afw_function_execute_evaluate
  *
  * See afw_function_bindings.h for more information.
  *
@@ -191,7 +191,7 @@ afw_function_execute_decompile(
  * Declaration:
  *
  * ```
- *   function evaluate_value(
+ *   function evaluate(
  *       value: any,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_)
  *   ): any;
@@ -199,7 +199,7 @@ afw_function_execute_decompile(
  *
  * Parameters:
  *
- *   value - (any dataType)
+ *   value - (any)
  *
  *   additionalUntrustedQualifiedVariables - (optional object
  *       _AdaptiveTemplatePropertiesObjects_) This parameter supplies additional
@@ -211,10 +211,10 @@ afw_function_execute_decompile(
  *
  * Returns:
  *
- *   (any dataType) Evaluated adaptive value.
+ *   (any) Evaluated adaptive value.
  */
 const afw_value_t *
-afw_function_execute_evaluate_value(
+afw_function_execute_evaluate(
     afw_function_execute_t *x)
 {
     const afw_value_t *value;

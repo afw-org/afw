@@ -29797,41 +29797,41 @@ impl_object__decompile__value = {
     (const afw_object_t *)&impl_object__decompile
 };
 
-/* ---------- evaluate_value ---------- */
+/* ---------- evaluate ---------- */
 
 static const afw_utf8_t
-impl_object_path__evaluate_value =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/evaluate_value");
+impl_object_path__evaluate =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/evaluate");
 
 static const afw_value_object_t
-impl_object__evaluate_value__value;
+impl_object__evaluate__value;
 
 static const afw_runtime_object_indirect_t
-impl_object__evaluate_value = {
+impl_object__evaluate = {
     {
         &afw_runtime_inf__AdaptiveFunction_,
         NULL,
-        (const afw_value_t *)&impl_object__evaluate_value__value,
+        (const afw_value_t *)&impl_object__evaluate__value,
         {
             NULL,
             NULL,
-            &afw_self_s_evaluate_value,
+            &afw_self_s_evaluate,
             &afw_self_s__AdaptiveFunction_,
-            &impl_object_path__evaluate_value
+            &impl_object_path__evaluate
         }
     },
-    (void *)&afw_function_definition_evaluate_value
+    (void *)&afw_function_definition_evaluate
 };
 
 static const afw_value_object_t
-impl_evaluate_value_returns__value;
+impl_evaluate_returns__value;
 
 static const afw_value_function_parameter_t
-impl_evaluate_value_returns = {
+impl_evaluate_returns = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_evaluate_value_returns__value,
+        (const afw_value_t *)&impl_evaluate_returns__value,
         {
             NULL,
             NULL,
@@ -29840,8 +29840,8 @@ impl_evaluate_value_returns = {
             NULL,
         }
     },
-    NULL,
-    NULL,
+    &afw_data_type_any_direct,
+    &afw_self_v_any,
     NULL,
     NULL,
     NULL,
@@ -29854,20 +29854,20 @@ impl_evaluate_value_returns = {
 };
 
 static const afw_value_object_t
-impl_evaluate_value_returns__value = {
+impl_evaluate_returns__value = {
     {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_evaluate_value_returns
+    (const afw_object_t *)&impl_evaluate_returns
 };
 
 static const afw_value_object_t
-impl_evaluate_value_parameter_1__value;
+impl_evaluate_parameter_1__value;
 
 static const afw_value_function_parameter_t
-impl_evaluate_value_parameter_1 = {
+impl_evaluate_parameter_1 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_evaluate_value_parameter_1__value,
+        (const afw_value_t *)&impl_evaluate_parameter_1__value,
         {
             NULL,
             NULL,
@@ -29876,8 +29876,8 @@ impl_evaluate_value_parameter_1 = {
             NULL,
         }
     },
-    NULL,
-    NULL,
+    &afw_data_type_any_direct,
+    &afw_self_v_any,
     NULL,
     &afw_self_v_value,
     NULL,
@@ -29890,20 +29890,20 @@ impl_evaluate_value_parameter_1 = {
 };
 
 static const afw_value_object_t
-impl_evaluate_value_parameter_1__value = {
+impl_evaluate_parameter_1__value = {
     {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_evaluate_value_parameter_1
+    (const afw_object_t *)&impl_evaluate_parameter_1
 };
 
 static const afw_value_object_t
-impl_evaluate_value_parameter_2__value;
+impl_evaluate_parameter_2__value;
 
 static const afw_value_function_parameter_t
-impl_evaluate_value_parameter_2 = {
+impl_evaluate_parameter_2 = {
     {
         &afw_runtime_inf__AdaptiveFunctionParameter_,
         NULL,
-        (const afw_value_t *)&impl_evaluate_value_parameter_2__value,
+        (const afw_value_t *)&impl_evaluate_parameter_2__value,
         {
             NULL,
             NULL,
@@ -29926,42 +29926,42 @@ impl_evaluate_value_parameter_2 = {
 };
 
 static const afw_value_object_t
-impl_evaluate_value_parameter_2__value = {
+impl_evaluate_parameter_2__value = {
     {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_evaluate_value_parameter_2
+    (const afw_object_t *)&impl_evaluate_parameter_2
 };
 
 static const afw_value_function_parameter_t *
-impl_evaluate_value_parameters[] = {
-    &impl_evaluate_value_parameter_1,
-    &impl_evaluate_value_parameter_2,
+impl_evaluate_parameters[] = {
+    &impl_evaluate_parameter_1,
+    &impl_evaluate_parameter_2,
     NULL
 };
 
 AFW_DEFINE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_evaluate_value = {
+afw_function_definition_evaluate = {
     {&afw_value_function_definition_inf},
-    (const afw_object_t *)&impl_object__evaluate_value,
+    (const afw_object_t *)&impl_object__evaluate,
     &afw_self_v_compiler,
-    &afw_self_v_evaluate_value,
-    &afw_self_v_zz___afw__AdaptiveFunction__evaluate_value,
-    &afw_self_v_evaluate_value,
-    &afw_self_v_evaluate_value,
-    &afw_self_v_evaluateValue,
-    &afw_self_v_afwEvaluateValue,
+    &afw_self_v_evaluate,
+    &afw_self_v_zz___afw__AdaptiveFunction__evaluate,
+    &afw_self_v_evaluate,
+    &afw_self_v_evaluate,
+    &afw_self_v_evaluate,
+    &afw_self_v_afwEvaluate,
     &afw_self_v_zz__Evaluate_value,
     &afw_self_v_zz__Evaluate_an_adaptive_value_,
     &afw_self_v_zz__431,
     &afw_self_v_zz__432,
     NULL,
-    afw_function_execute_evaluate_value,
-    afw_function_execute_evaluate_value,
+    afw_function_execute_evaluate,
+    afw_function_execute_evaluate,
     NULL,
     &afw_integer_self_v_1,
     &afw_integer_self_v_2,
-    &impl_evaluate_value_parameters[0],
+    &impl_evaluate_parameters[0],
     2,
-    &impl_evaluate_value_returns,
+    &impl_evaluate_returns,
     NULL,
     NULL,
     &afw_self_v_zz__,
@@ -29977,9 +29977,9 @@ afw_function_definition_evaluate_value = {
 };
 
 static const afw_value_object_t
-impl_object__evaluate_value__value = {
+impl_object__evaluate__value = {
     {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_object__evaluate_value
+    (const afw_object_t *)&impl_object__evaluate
 };
 
 /* ---------- evaluate_with_retry ---------- */
@@ -143188,7 +143188,7 @@ impl_function_bindings[] = {
     &afw_function_definition_assert,
     &afw_function_definition_compile_from_file,
     &afw_function_definition_decompile,
-    &afw_function_definition_evaluate_value,
+    &afw_function_definition_evaluate,
     &afw_function_definition_evaluate_with_retry,
     &afw_function_definition_qualifier,
     &afw_function_definition_qualifiers,

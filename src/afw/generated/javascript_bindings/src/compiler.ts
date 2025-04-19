@@ -96,7 +96,7 @@ export function afwDecompile(client : any, value : any, whitespace? : any) : any
 /**
  * Evaluate an adaptive value.
  * 
- * @param {} value -
+ * @param {any} value -
  * 
  * @param {object} additionalUntrustedQualifiedVariables - This parameter
  *     supplies additional qualified variables that can be accessed during
@@ -105,13 +105,13 @@ export function afwDecompile(client : any, value : any, whitespace? : any) : any
  *     authorization. This parameter is intended to be used for testing only
  *     and should not be used for anything running in production.
  * 
- * @returns {} Evaluated adaptive value.
+ * @returns {any} Evaluated adaptive value.
  */
-export function afwEvaluateValue(client : any, value : any, additionalUntrustedQualifiedVariables? : object) : any {
+export function afwEvaluate(client : any, value : any, additionalUntrustedQualifiedVariables? : object) : any {
 
     let _action : IAnyObject = {};
 
-    _action["function"] = "evaluate_value";
+    _action["function"] = "evaluate";
     _action["value"] = value;
 
     if (additionalUntrustedQualifiedVariables !== undefined)

@@ -117,11 +117,11 @@ class compiler
     }
 
     /**
-     * evaluate_value()
+     * evaluate()
      *
      * Evaluate an adaptive value.
      *
-     * @param  $value
+     * @param any $value
      * @param object $additionalUntrustedQualifiedVariables This parameter
      *                                                      supplies
      *                                                      additional
@@ -147,13 +147,13 @@ class compiler
      *                                                      anything running
      *                                                      in production.
      *
-     * @return  Evaluated adaptive value.
+     * @return any Evaluated adaptive value.
      */
-    public function evaluate_value(, $value, $additionalUntrustedQualifiedVariables = null)
+    public function evaluate(, $value, $additionalUntrustedQualifiedVariables = null)
     {
         $request = $this->$session->request();
 
-        $request->set("function", "evaluate_value");
+        $request->set("function", "evaluate");
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);

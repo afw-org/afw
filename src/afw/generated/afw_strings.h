@@ -21480,28 +21480,28 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_afwEvaluateValue \
-    "afwEvaluateValue"
+#define AFW_Q_afwEvaluate \
+    "afwEvaluate"
 
-/** @brief 'afw_utf8_t' for AFW_Q_afwEvaluateValue */
-#define afw_s_afwEvaluateValue \
-    (&afw_self_v_afwEvaluateValue.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_afwEvaluate */
+#define afw_s_afwEvaluate \
+    (&afw_self_v_afwEvaluate.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_afwEvaluateValue */
-#define afw_self_s_afwEvaluateValue \
-    (afw_self_v_afwEvaluateValue.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_afwEvaluate */
+#define afw_self_s_afwEvaluate \
+    (afw_self_v_afwEvaluate.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_afwEvaluateValue */
+/** @brief 'afw_value_string_t' for AFW_Q_afwEvaluate */
 extern const afw_value_string_t \
-    afw_self_v_afwEvaluateValue;
+    afw_self_v_afwEvaluate;
 
-/** @brief 'afw_utf8_z_t *' for AFW_Q_afwEvaluateValue */
-#define afw_z_afwEvaluateValue \
-    (afw_self_v_afwEvaluateValue.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_Q_afwEvaluate */
+#define afw_z_afwEvaluate \
+    (afw_self_v_afwEvaluate.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_Q_afwEvaluateValue */
-#define afw_v_afwEvaluateValue \
-    (&afw_self_v_afwEvaluateValue.pub)
+/** @brief 'const afw_value_t *' for AFW_Q_afwEvaluate */
+#define afw_v_afwEvaluate \
+    (&afw_self_v_afwEvaluate.pub)
 
 
 
@@ -54396,28 +54396,28 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_evaluateValue \
-    "evaluateValue"
+#define AFW_Q_evaluate \
+    "evaluate"
 
-/** @brief 'afw_utf8_t' for AFW_Q_evaluateValue */
-#define afw_s_evaluateValue \
-    (&afw_self_v_evaluateValue.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_evaluate */
+#define afw_s_evaluate \
+    (&afw_self_v_evaluate.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_evaluateValue */
-#define afw_self_s_evaluateValue \
-    (afw_self_v_evaluateValue.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_evaluate */
+#define afw_self_s_evaluate \
+    (afw_self_v_evaluate.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_evaluateValue */
+/** @brief 'afw_value_string_t' for AFW_Q_evaluate */
 extern const afw_value_string_t \
-    afw_self_v_evaluateValue;
+    afw_self_v_evaluate;
 
-/** @brief 'afw_utf8_z_t *' for AFW_Q_evaluateValue */
-#define afw_z_evaluateValue \
-    (afw_self_v_evaluateValue.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_Q_evaluate */
+#define afw_z_evaluate \
+    (afw_self_v_evaluate.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_Q_evaluateValue */
-#define afw_v_evaluateValue \
-    (&afw_self_v_evaluateValue.pub)
+/** @brief 'const afw_value_t *' for AFW_Q_evaluate */
+#define afw_v_evaluate \
+    (&afw_self_v_evaluate.pub)
 
 
 
@@ -54444,32 +54444,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_evaluateWithRetry */
 #define afw_v_evaluateWithRetry \
     (&afw_self_v_evaluateWithRetry.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_evaluate_value \
-    "evaluate_value"
-
-/** @brief 'afw_utf8_t' for AFW_Q_evaluate_value */
-#define afw_s_evaluate_value \
-    (&afw_self_v_evaluate_value.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_evaluate_value */
-#define afw_self_s_evaluate_value \
-    (afw_self_v_evaluate_value.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_evaluate_value */
-extern const afw_value_string_t \
-    afw_self_v_evaluate_value;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_evaluate_value */
-#define afw_z_evaluate_value \
-    (afw_self_v_evaluate_value.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_evaluate_value */
-#define afw_v_evaluate_value \
-    (&afw_self_v_evaluate_value.pub)
 
 
 
@@ -139313,7 +139287,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__432 \
-    "/* Evaluate value */\nfunction evaluate_value (\n    value: any,\n    additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_) /* Additional untrusted qualified variables */\n): any;\n"
+    "/* Evaluate value */\nfunction evaluate (\n    value: any,\n    additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_) /* Additional untrusted qualified variables */\n): any;\n"
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__432 */
 #define afw_s_zz__432 \
@@ -214348,28 +214322,28 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz___afw__AdaptiveFunction__evaluate_value \
-    "/afw/_AdaptiveFunction_/evaluate_value"
+#define AFW_Q_zz___afw__AdaptiveFunction__evaluate \
+    "/afw/_AdaptiveFunction_/evaluate"
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__evaluate_value */
-#define afw_s_zz___afw__AdaptiveFunction__evaluate_value \
-    (&afw_self_v_zz___afw__AdaptiveFunction__evaluate_value.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__evaluate */
+#define afw_s_zz___afw__AdaptiveFunction__evaluate \
+    (&afw_self_v_zz___afw__AdaptiveFunction__evaluate.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__evaluate_value */
-#define afw_self_s_zz___afw__AdaptiveFunction__evaluate_value \
-    (afw_self_v_zz___afw__AdaptiveFunction__evaluate_value.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz___afw__AdaptiveFunction__evaluate */
+#define afw_self_s_zz___afw__AdaptiveFunction__evaluate \
+    (afw_self_v_zz___afw__AdaptiveFunction__evaluate.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__evaluate_value */
+/** @brief 'afw_value_string_t' for AFW_Q_zz___afw__AdaptiveFunction__evaluate */
 extern const afw_value_string_t \
-    afw_self_v_zz___afw__AdaptiveFunction__evaluate_value;
+    afw_self_v_zz___afw__AdaptiveFunction__evaluate;
 
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__evaluate_value */
-#define afw_z_zz___afw__AdaptiveFunction__evaluate_value \
-    (afw_self_v_zz___afw__AdaptiveFunction__evaluate_value.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___afw__AdaptiveFunction__evaluate */
+#define afw_z_zz___afw__AdaptiveFunction__evaluate \
+    (afw_self_v_zz___afw__AdaptiveFunction__evaluate.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__evaluate_value */
-#define afw_v_zz___afw__AdaptiveFunction__evaluate_value \
-    (&afw_self_v_zz___afw__AdaptiveFunction__evaluate_value.pub)
+/** @brief 'const afw_value_t *' for AFW_Q_zz___afw__AdaptiveFunction__evaluate */
+#define afw_v_zz___afw__AdaptiveFunction__evaluate \
+    (&afw_self_v_zz___afw__AdaptiveFunction__evaluate.pub)
 
 
 

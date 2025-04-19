@@ -16,7 +16,7 @@ our @EXPORT_OK = qw(
     assert 
     compile_from_file 
     decompile 
-    evaluate_value 
+    evaluate 
     evaluate_with_retry 
     qualifier 
     qualifiers 
@@ -86,7 +86,7 @@ integer between 0 and 10 or a string that is used for indentation. If 0 is
 specified, no whitespace is added to the resulting string. If 1 through 10 is
 specified, that number of spaces is used.
 
-=head3 evaluate_value
+=head3 evaluate
 
 Evaluate an adaptive value.
 Evaluate value
@@ -333,12 +333,12 @@ sub decompile {
     return $request->getResult();
 }
 
-sub evaluate_value {
+sub evaluate {
     my ($value, $additionalUntrustedQualifiedVariables) = @_;
 
     my $request = $session->request()
 
-    $request->set("function" => "evaluate_value");
+    $request->set("function" => "evaluate");
     $request->set("value", $value);
 
     if (defined $additionalUntrustedQualifiedVariables)
