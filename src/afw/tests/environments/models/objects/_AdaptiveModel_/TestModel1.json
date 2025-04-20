@@ -78,6 +78,17 @@
                     "allowQuery": true
                 }
             }
+        },
+        "TestPropertyQualifiedVariables": {
+            "onGetInitialObjectId": "compile_from_file('includes/onGetInitialObjectId.as')",
+            "propertyTypes": {
+                "x": {
+                    "dataType": "boolean",
+                    "allowQuery": true,
+                    "onGetProperty": "compile_from_file('includes/onGetProperty.as')",
+                    "onSetProperty": "compile_from_file('includes/onSetProperty.as')"
+                }
+            }
         }
     }
 }

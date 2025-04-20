@@ -27,3 +27,22 @@ assert((result.objectId == uuid), "objectId was not created with uuid properly")
 delete_object("model", "MyObjectType1", uuid);
 
 return 0;
+
+//? test: Test onGetInitialObjectId Qualified Variables
+//? description: Test onGetInitialObjectId qualified variables
+//? expect: 0
+//? source: ...
+
+const result = add_object(
+    "model", 
+    "TestPropertyQualifiedVariables",
+    { "x": true },
+    "abc",
+    { "extra": "journal" },
+    { "func": "add_object" }
+);
+
+assert(result.objectId === 'abcdefg');
+assert(result.extra === "journal");
+
+return 0;
