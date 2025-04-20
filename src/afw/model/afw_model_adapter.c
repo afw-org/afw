@@ -1634,6 +1634,7 @@ impl_afw_adapter_session_modify_object(
                 object_id,
                 xctx);
             ctx->modify_entries = entry;
+            ctx->adapterTypeSpecific = adapter_type_specific;
 
             /* If onModifyObject, evaluate it to modify object. */
             use_default_processing = true;
@@ -1649,8 +1650,6 @@ impl_afw_adapter_session_modify_object(
                     use_default_processing = true;
                 }
             }
-
-            ctx->adapterTypeSpecific = adapter_type_specific;
 
             /* If no onModifyObject or it returned undefined, do default processing. */
             if(use_default_processing) {
@@ -1734,6 +1733,7 @@ impl_afw_adapter_session_replace_object(
                 object_id,
                 xctx);
             ctx->object = replacement_object;
+            ctx->adapterTypeSpecific = adapter_type_specific;
 
             /* If onReplaceObject, evaluate it. */
             use_default_processing = true;
@@ -1745,8 +1745,6 @@ impl_afw_adapter_session_replace_object(
                     use_default_processing = true;
                 }
             }
-
-            ctx->adapterTypeSpecific = adapter_type_specific;
 
             /* If no onReplaceObject or it returned undefined, do default processing. */
             if (use_default_processing) {
@@ -1827,6 +1825,7 @@ impl_afw_adapter_session_delete_object(
                 object_type_id,
                 object_id,
                 xctx);
+            ctx->adapterTypeSpecific = adapter_type_specific;
 
             /* If onDeleteObject, evaluate it. */
             use_default_processing = true;
@@ -1838,8 +1837,6 @@ impl_afw_adapter_session_delete_object(
                     use_default_processing = true;
                 }
             }
-
-            ctx->adapterTypeSpecific = adapter_type_specific;
 
             /* If no onDeleteObjector or it returned undefined, do default processing. */
             if (use_default_processing) {

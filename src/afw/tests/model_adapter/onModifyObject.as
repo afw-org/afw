@@ -50,3 +50,28 @@ assert(obj.MyTestString1 == "A new value", "Modify object failed");
 delete_object("model", "MyObjectType1", uuid);
 
 return 0;
+
+
+//? test: Test onModifyObject Qualified Variables
+//? description: Test onModifyObject qualified variables
+//? expect: 0
+//? source: ...
+
+const result = modify_object(
+    "model", 
+    "TestQualifiedVariables",
+    "xyz",
+    [
+        [
+            "set_property",
+            "x",
+            true
+        ]
+    ],
+    { "extra": "journal" },
+    { "func": "modify_object" }
+);
+
+assert(result.extra === "journal");
+
+return 0;

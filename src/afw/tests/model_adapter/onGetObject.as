@@ -19,3 +19,21 @@ assert(obj !== undefined);
 assert(obj.MyTestString1 === "This is a test string.");
 
 return 0;
+
+
+//? test: Test onGetObject Qualified Variables
+//? description: Test onGetObject qualified variables
+//? expect: 0
+//? source: ...
+
+const obj = get_object(
+    "model", 
+    "TestQualifiedVariables",
+    "abc",
+    { "objectId": true },
+    { "func": "get_object" }
+);
+
+assert(obj.x === true);
+
+return 0;

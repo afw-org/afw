@@ -47,3 +47,24 @@ assert(obj.MyTestString1 == "A new value", "replace_object failed");
 delete_object("model", "MyObjectType1", uuid);
 
 return 0;
+
+
+//? test: Test onReplaceObject Qualified Variables
+//? description: Test onReplaceObject qualified variables
+//? expect: 0
+//? source: ...
+
+const result = replace_object(
+    "model", 
+    "TestQualifiedVariables",
+    "xyz",
+    {
+        "new": "obj"
+    }
+    { "extra": "journal" },
+    { "func": "replace_object" }
+);
+
+assert(result.extra === "journal");
+
+return 0;

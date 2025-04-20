@@ -213,14 +213,7 @@ afw_model_internal_get_current_modifyEntries(
 {
     afw_model_internal_context_t *ctx = (afw_model_internal_context_t *)internal;
 
-    if (!ctx->adapter_id_value) {
-        ctx->adapter_id_value =
-            afw_value_create_unmanaged_string(
-                &ctx->session_self->adapter->pub.adapter_id,
-                ctx->p, xctx);
-    }
-
-    return ctx->adapter_id_value;
+    return ctx->modify_entries_value;
 }
 
 /* Value accessor afw_model_internal_get_current_object. */
