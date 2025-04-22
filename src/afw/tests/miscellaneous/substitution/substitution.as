@@ -109,6 +109,15 @@ const x = evaluate(app::helloWorldLoadedFunction);
 return x();
 
 //?
+//? test: hello_world_call_app_helloWorldLoadedFunction2
+//? description: Call function returned from app::helloWorldLoadedFunction
+//? expect: "Hello World!"
+//? source: ...
+
+const x = evaluate(app::helloWorldLoadedFunction2);
+return x();
+
+//?
 //? test: add_integers_from_qualified_variables
 //? description: Add integers from qualified variables (make app::one is string)
 //? expect: 6

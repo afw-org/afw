@@ -4952,6 +4952,12 @@ afw_self_v_afwEval = {
 };
 
 const afw_value_string_t
+afw_self_v_afwEvalFromFile = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_afwEvalFromFile)
+};
+
+const afw_value_string_t
 afw_self_v_afwEvalScript = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_afwEvalScript)
@@ -12524,6 +12530,12 @@ afw_self_v_eval = {
 };
 
 const afw_value_string_t
+afw_self_v_evalFromFile = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_evalFromFile)
+};
+
+const afw_value_string_t
 afw_self_v_evalScript = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_evalScript)
@@ -12545,6 +12557,12 @@ const afw_value_string_t
 afw_self_v_evalXpathExpression = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_evalXpathExpression)
+};
+
+const afw_value_string_t
+afw_self_v_eval_from_file = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_eval_from_file)
 };
 
 const afw_value_string_t
@@ -30800,6 +30818,18 @@ afw_self_v_zz__2270 = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__2271 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__2271)
+};
+
+const afw_value_string_t
+afw_self_v_zz__2272 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__2272)
+};
+
+const afw_value_string_t
 afw_self_v_zz__228 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__228)
@@ -37937,6 +37967,12 @@ const afw_value_string_t
 afw_self_v_zz__Compile_and_evaluate__dataType__value_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Compile_and_evaluate__dataType__value_)
+};
+
+const afw_value_string_t
+afw_self_v_zz__Compile_and_evaluate_an_external_file = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Compile_and_evaluate_an_external_file)
 };
 
 const afw_value_string_t
@@ -49451,6 +49487,12 @@ const afw_value_string_t
 afw_self_v_zz___afw__AdaptiveFunction__eval = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz___afw__AdaptiveFunction__eval)
+};
+
+const afw_value_string_t
+afw_self_v_zz___afw__AdaptiveFunction__eval_from_file = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz___afw__AdaptiveFunction__eval_from_file)
 };
 
 const afw_value_string_t

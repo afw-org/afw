@@ -16,6 +16,7 @@ our @EXPORT_OK = qw(
     assert 
     compile_from_file 
     decompile 
+    eval_from_file 
     evaluate 
     evaluate_with_retry 
     qualifier 
@@ -85,6 +86,23 @@ Add whitespace for readability if present and not 0. This parameter can be an
 integer between 0 and 10 or a string that is used for indentation. If 0 is
 specified, no whitespace is added to the resulting string. If 1 through 10 is
 specified, that number of spaces is used.
+
+=head3 eval_from_file
+
+Load an external adaptive script, json, or template to be compiled and
+evaluate.
+Compile and evaluate an external file
+
+=head4 Parameters
+
+    $file
+
+The path of the file to include, which will be resolved using rootFilePaths.
+
+    $compileType
+
+The compile type, used by the parser to determine how to compile the data.
+For example, 'json', 'relaxed_json', 'script', 'template'
 
 =head3 evaluate
 
@@ -329,6 +347,20 @@ sub decompile {
 
     if (defined $whitespace)
         $request->set("whitespace", $whitespace);
+
+    return $request->getResult();
+}
+
+sub eval_from_file {
+    my ($file, $compileType) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "eval_from_file");
+    $request->set("file", $file);
+
+    if (defined $compileType)
+        $request->set("compileType", $compileType);
 
     return $request->getResult();
 }

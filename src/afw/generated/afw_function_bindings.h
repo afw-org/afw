@@ -6644,6 +6644,46 @@ const afw_value_t *
 afw_function_execute_decompile(
     afw_function_execute_t *x);
 
+/** @brief Function definition eval_from_file */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_eval_from_file;
+
+/**
+ * @brief Adaptive Function `eval_from_file`
+ * @param x function execute parameter.
+ *
+ * Load an external adaptive script, json, or template to be compiled and
+ * evaluate.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function eval_from_file(
+ *       file: string,
+ *       compileType?: string
+ *   ): any;
+ * ```
+ *
+ * Parameters:
+ *
+ *   file - (string) The path of the file to include, which will be resolved
+ *       using rootFilePaths.
+ *
+ *   compileType - (optional string) The compile type, used by the parser to
+ *       determine how to compile the data.
+ *       For example, 'json', 'relaxed_json', 'script', 'template'.
+ *
+ * Returns:
+ *
+ *   (any)
+ */
+const afw_value_t *
+afw_function_execute_eval_from_file(
+    afw_function_execute_t *x);
+
 /** @brief Function definition evaluate */
 AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_evaluate;

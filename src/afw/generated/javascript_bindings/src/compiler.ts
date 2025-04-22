@@ -94,6 +94,32 @@ export function afwDecompile(client : any, value : any, whitespace? : any) : any
 }
 
 /**
+ * Load an external adaptive script, json, or template to be compiled and
+ * evaluate.
+ * 
+ * @param {string} file - The path of the file to include, which will be
+ *     resolved using rootFilePaths.
+ * 
+ * @param {string} compileType - The compile type, used by the parser to
+ *     determine how to compile the data. For example, 'json', 'relaxed_json',
+ *     'script', 'template'
+ * 
+ * @returns {any}
+ */
+export function afwEvalFromFile(client : any, file : string, compileType? : string) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "eval_from_file";
+    _action["file"] = file;
+
+    if (compileType !== undefined)
+        _action["compileType"] = compileType;
+
+    return client.perform(_action);
+}
+
+/**
  * Evaluate an adaptive value.
  * 
  * @param {any} value -
