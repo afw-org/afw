@@ -120,6 +120,26 @@ const x = evaluate(app::helloWorldLoadedFunction);
 return x();
 
 //?
+//? test: hello_world_call_app_helloWorldLoadedFunction2_no_evaluate
+//? description: Call function returned from app::helloWorldLoadedFunction with no evaluate
+//? expect: "Hello World!"
+//? source: ...
+
+// If no evaluate call it should work too because of special case handled by
+// value_call evaluate().
+const x = app::helloWorldLoadedFunction;
+return x();
+
+//?
+//? test: hello_world_call_app_helloWorldLoadedFunction_direct
+//? description: Call function returned from app::helloWorldLoadedFunction direct
+//? expect: "Hello World!"
+//? source: ...
+
+// Call app::helloWorldLoadedFunction directly.
+return app::helloWorldLoadedFunction();
+
+//?
 //? test: hello_world_call_app_helloWorldLoadedFunction2
 //? description: Call function returned from app::helloWorldLoadedFunction2
 //? expect: "Hello World!"

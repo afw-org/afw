@@ -257,7 +257,9 @@ afw_function_evaluate_parameter(
     /* Evaluate result if needed. */
     if (!afw_value_is_defined_and_evaluated(result)) {
         result = afw_value_evaluate(result, x->p, xctx);
-        if (afw_value_is_compiled_value(result)) {
+        if (afw_value_is_compiled_value(result) &&
+            data_type != afw_data_type_unevaluated)
+        {
             result = afw_value_evaluate(result, x->p, xctx);
         }
     }
