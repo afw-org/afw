@@ -582,7 +582,7 @@ afw_value_convert(
         /* Upconvert to one entry list. */
         if (to_data_type == afw_data_type_array) {
             list = afw_array_create_wrapper_for_array(
-                &((afw_value_common_t *)value)->internal, false,
+                &((afw_value_common_t *)result)->internal, false,
                 v_data_type, 1, p, xctx);
             result = afw_value_create_unmanaged_array(list, p, xctx);
         }
@@ -591,7 +591,7 @@ afw_value_convert(
         else if (v_data_type == afw_data_type_array &&
             !afw_data_type_is_string(to_data_type))
         {
-            list = ((const afw_value_array_t *)value)->internal;
+            list = ((const afw_value_array_t *)result)->internal;
             if (afw_array_get_count(list, xctx) != 1) {
                 AFW_THROW_ERROR_Z(general,
                     "Can't down convert an array with more than one entry",
@@ -621,7 +621,7 @@ afw_value_convert(
             afw_data_type_convert_internal(
                 v_data_type,
                 &single->internal,
-                &((const afw_value_common_t *)value)->internal,
+                &((const afw_value_common_t *)result)->internal,
                 to_data_type,
                 p, xctx);
             result = &single->pub;
