@@ -103,7 +103,6 @@ return x();
 //? test: hello_world_call_app_helloWorldLoadedFunction
 //? description: Call function returned from app::helloWorldLoadedFunction
 //? expect: "Hello World!"
-//? skip: true
 //? source: ...
 
 const x = evaluate(app::helloWorldLoadedFunction);
