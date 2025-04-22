@@ -204,3 +204,39 @@ return app::two + integer(app::one) + app::three;
 
 // This will be concat of string because app::one is string.
 return app::one + app::two + app::three;
+
+//?
+//? test: qualified_variable_compile_time_uuid
+//? description: Show that compile time substitution in template of qualified variable doesn't reevaluate
+//? expect: true
+//? source: ...
+
+return app::uuidCompileTime == app::uuidCompileTime;
+
+//?
+//? test: qualified_variable_eval_time_uuid
+//? description: Show that evaluation time substitution in template of qualified variable does reevaluate
+//? expect: false
+//? source: ...
+
+return app::uuidEvalTime == app::uuidEvalTime;
+
+//?
+//? test: qualified_variable_eval_time_uuid_assignment_no_evaluate
+//? description: Show that evaluation time substitution in template from qualified variable assigned to variable does reevaluate
+//? expect: false
+//? source: ...
+
+const x = app::uuidEvalTime;
+
+return x == x;
+
+//?
+//? test: qualified_variable_eval_time_uuid_assignment_with_evaluate
+//? description: Show that evaluation time substitution in template from qualified variable that is evaluated and assigned to variable does not reevaluate
+//? expect: true
+//? source: ...
+
+const x = evaluate(app::uuidEvalTime);
+
+return x == x;
