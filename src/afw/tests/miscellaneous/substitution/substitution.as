@@ -100,6 +100,15 @@ const x = evaluate(compile_from_file('includes/a.as'));
 return x();
 
 //?
+//? test: hello_world_call_loaded_function_using_eval
+//? description: Call function loaded from file using eval_from_file
+//? expect: "Hello World!"
+//? source: ...
+
+const x = eval_from_file('includes/a.as');
+return x();
+
+//?
 //? test: hello_world_call_app_helloWorldLoadedFunction
 //? description: Call function returned from app::helloWorldLoadedFunction
 //? expect: "Hello World!"
