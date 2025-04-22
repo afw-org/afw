@@ -108,3 +108,19 @@ return x();
 
 const x = evaluate(app::helloWorldLoadedFunction);
 return x();
+
+//?
+//? test: add_integers_from_qualified_variables
+//? description: Add integers from qualified variables (make app::one is string)
+//? expect: 6
+//? source: ...
+
+return integer(app::one) + app::two + app::three;
+
+//?
+//? test: add_integers_from_qualified_variables
+//? description: Add integers from qualified variables (make app::one integer)
+//? expect: 6
+//? source: ...
+
+return app::two + integer(app::one) + app::three;
