@@ -105,30 +105,73 @@ return x();
 //? expect: "Hello World!"
 //? source: ...
 
+// Evaluate is called so that x holds function reference instead of compiled
+// value of app::helloWorldLoadedFunction template.
 const x = evaluate(app::helloWorldLoadedFunction);
 return x();
 
 //?
 //? test: hello_world_call_app_helloWorldLoadedFunction2
-//? description: Call function returned from app::helloWorldLoadedFunction
+//? description: Call function returned from app::helloWorldLoadedFunction2
 //? expect: "Hello World!"
 //? source: ...
 
+// Evaluate is called so that x holds function reference instead of compiled
+// value of app::helloWorldLoadedFunction2 template.
 const x = evaluate(app::helloWorldLoadedFunction2);
 return x();
 
 //?
-//? test: add_integers_from_qualified_variables
-//? description: Add integers from qualified variables (make app::one is string)
+//? test: hello_world_call_app_helloWorldLoadedFunction2_no_evaluate
+//? description: Call function returned from app::helloWorldLoadedFunction2 with no evaluate
+//? expect: "Hello World!"
+//? source: ...
+
+// If no evaluate call it should work too because of special case handled by
+// value_call evaluate().
+const x = app::helloWorldLoadedFunction2;
+return x();
+
+//?
+//? test: hello_world_call_app_helloWorldLoadedFunction2_direct
+//? description: Call function returned from app::helloWorldLoadedFunction2 direct
+//? expect: "Hello World!"
+//? source: ...
+
+// Call app::helloWorldLoadedFunction2 directly.
+return app::helloWorldLoadedFunction2();
+
+//?
+//? test: hello_world_call_app_helloWorldLoadedFunction2_error
+//? description: Return compiled value of app::helloWorldLoadedFunction2 has to be skipped because unevaluated value in json test result causes error
+//? expect: error:Function 'eval<script>' returned a value that is not evaluated. (closure_binding )
+//? skip: true
+//? source: ...
+
+return app::helloWorldLoadedFunction2;
+
+//?
+//? test: add_integers_from_qualified_variables_1
+//? description: Add integers from qualified variables where first is a string
 //? expect: 6
 //? source: ...
 
+// Cast app::one to integer because a 1 as the body of a template is a string.
 return integer(app::one) + app::two + app::three;
 
 //?
-//? test: add_integers_from_qualified_variables
-//? description: Add integers from qualified variables (make app::one integer)
+//? test: add_integers_from_qualified_variables_2
+//? description: Add integers from qualified variables where first is an integer
 //? expect: 6
 //? source: ...
 
 return app::two + integer(app::one) + app::three;
+
+//?
+//? test: concat_integer_strings_from_qualified_variables
+//? description: Concat integer strings from qualified variables where first is a string
+//? expect: "123"
+//? source: ...
+
+// This will be concat of string because app::one is string.
+return app::one + app::two + app::three;

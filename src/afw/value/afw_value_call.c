@@ -170,6 +170,11 @@ impl_afw_value_optional_evaluate(
      */
     function_value = afw_value_evaluate(self->function_value, p, xctx);
 
+    /* If function_value is a compile value, evaluate it. */
+    if (afw_value_is_compiled_value(function_value)) {
+        function_value = afw_value_evaluate(function_value, p, xctx);
+    }
+
     /*
      * This is most likely a script function call since built-ins are usually
      * handled by afw_value_built_in_function. Check and handle for script
