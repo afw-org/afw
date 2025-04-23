@@ -246,7 +246,9 @@ impl_assignment_target(
 
     case afw_compile_assignment_target_type_symbol_reference:
         afw_xctx_scope_symbol_set_value(
-            at->symbol_reference->symbol, value, xctx);
+            at->symbol_reference->symbol,
+            afw_value_evaluate(value, p, xctx),
+            xctx);
         break;
 
     case afw_compile_assignment_target_type_max_type:

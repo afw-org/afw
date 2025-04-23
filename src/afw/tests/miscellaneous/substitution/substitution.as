@@ -21,8 +21,8 @@ return `H#{'ello ' + 'Wor'}ld${'!'}`;
 return #{"Hello World!"};
 
 //?
-//? test: hello_world_evaluate_template
-//? description: Evaluate mixed template string
+//? test: hello_world_eval_template
+//? description: Eval mixed template string
 //? expect: "Hello World!"
 //? source: ...
 
@@ -32,76 +32,66 @@ return eval(source);
 
 //?
 //? test: hello_world_return_app_helloWorld
-//? description: Return evaluated app::helloWorld string
+//? description: Return app::helloWorld string
 //? expect: "Hello World!"
 //? source: ...
 
-return evaluate(app::helloWorld);
+return app::helloWorld;
 
 //?
 //? test: hello_world_return_app_compileTime
-//? description: Return evaluated app::compileTime string
+//? description: Return app::compileTime string
 //? expect: "Hello World!"
 //? source: ...
 
-return evaluate(app::compileTime);
+return app::compileTime;
 
 //?
 //? test: hello_world_return_app_evalTime
-//? description: Return evaluated app::evalTime string
+//? description: Return app::evalTime string
 //? expect: "Hello World!"
 //? source: ...
 
-return evaluate(app::evalTime);
+return app::evalTime;
 
 //?
 //? test: hello_world_assign_app_helloWorld
-//? description: Assign unevaluated app::helloWorld to x then return evaluated(x)
+//? description: Assign app::helloWorld to x then return x
 //? expect: "Hello World!"
 //? source: ...
 
 const x = app::helloWorld;
-return evaluate(x);
+return x;
 
 //?
 //? test: hello_world_assign_app_compileTime
-//? description: Assign unevaluated app::compileTime to x then return evaluated(x)
+//? description: Assign app::compileTime to x then return x
 //? expect: "Hello World!"
 //? source: ...
 
 const x = app::compileTime;
-return evaluate(x);
+return x;
 
 //?
 //? test: hello_world_assign_app_evalTime
-//? description: Assign unevaluated app::evalTime to x then return evaluated(x)
+//? description: Assign app::evalTime to x then return x
 //? expect: "Hello World!"
 //? source: ...
 
 const x = app::evalTime;
-return evaluate(x);
+return x;
 
 //?
 //? test: hello_world_call_app_helloWorldFunction
-//? description: Call function returned from app::helloWorldFunction
+//? description: Call function app::helloWorldFunction()
 //? expect: "Hello World!"
 //? source: ...
 
-const x = evaluate(app::helloWorldFunction);
-return x();
+return app::helloWorldFunction();
 
 //?
 //? test: hello_world_call_loaded_function
 //? description: Call function loaded from file
-//? expect: "Hello World!"
-//? source: ...
-
-const x = evaluate(compile_from_file('includes/a.as'));
-return x();
-
-//?
-//? test: hello_world_call_loaded_function_using_eval
-//? description: Call function loaded from file using eval_from_file
 //? expect: "Hello World!"
 //? source: ...
 
@@ -110,25 +100,12 @@ return x();
 
 //?
 //? test: hello_world_call_app_helloWorldLoadedFunction
-//? description: Call function returned from app::helloWorldLoadedFunction
+//? description: Assign result of app::helloWorldLoadedFunction() to x and return x 
 //? expect: "Hello World!"
 //? source: ...
 
-// Evaluate is called so that x holds function reference instead of compiled
-// value of app::helloWorldLoadedFunction template.
-const x = evaluate(app::helloWorldLoadedFunction);
-return x();
-
-//?
-//? test: hello_world_call_app_helloWorldLoadedFunction2_no_evaluate
-//? description: Call function returned from app::helloWorldLoadedFunction with no evaluate
-//? expect: "Hello World!"
-//? source: ...
-
-// If no evaluate call it should work too because of special case handled by
-// value_call evaluate().
-const x = app::helloWorldLoadedFunction;
-return x();
+const x = app::helloWorldLoadedFunction();
+return x;
 
 //?
 //? test: hello_world_call_app_helloWorldLoadedFunction_direct
@@ -138,46 +115,6 @@ return x();
 
 // Call app::helloWorldLoadedFunction directly.
 return app::helloWorldLoadedFunction();
-
-//?
-//? test: hello_world_call_app_helloWorldLoadedFunction2
-//? description: Call function returned from app::helloWorldLoadedFunction2
-//? expect: "Hello World!"
-//? source: ...
-
-// Evaluate is called so that x holds function reference instead of compiled
-// value of app::helloWorldLoadedFunction2 template.
-const x = evaluate(app::helloWorldLoadedFunction2);
-return x();
-
-//?
-//? test: hello_world_call_app_helloWorldLoadedFunction2_no_evaluate
-//? description: Call function returned from app::helloWorldLoadedFunction2 with no evaluate
-//? expect: "Hello World!"
-//? source: ...
-
-// If no evaluate call it should work too because of special case handled by
-// value_call evaluate().
-const x = app::helloWorldLoadedFunction2;
-return x();
-
-//?
-//? test: hello_world_call_app_helloWorldLoadedFunction2_direct
-//? description: Call function returned from app::helloWorldLoadedFunction2 direct
-//? expect: "Hello World!"
-//? source: ...
-
-// Call app::helloWorldLoadedFunction2 directly.
-return app::helloWorldLoadedFunction2();
-
-//?
-//? test: hello_world_call_app_helloWorldLoadedFunction2_error
-//? description: Return compiled value of app::helloWorldLoadedFunction2 has to be skipped because unevaluated value in json test result causes error
-//? expect: error:Function 'eval<script>' returned a value that is not evaluated. (closure_binding )
-//? skip: true
-//? source: ...
-
-return app::helloWorldLoadedFunction2;
 
 //?
 //? test: add_integers_from_qualified_variables_1
@@ -222,21 +159,11 @@ return app::uuidCompileTime == app::uuidCompileTime;
 return app::uuidEvalTime == app::uuidEvalTime;
 
 //?
-//? test: qualified_variable_eval_time_uuid_assignment_no_evaluate
-//? description: Show that evaluation time substitution in template from qualified variable assigned to variable does reevaluate
-//? expect: false
-//? source: ...
-
-const x = app::uuidEvalTime;
-
-return x == x;
-
-//?
-//? test: qualified_variable_eval_time_uuid_assignment_with_evaluate
-//? description: Show that evaluation time substitution in template from qualified variable that is evaluated and assigned to variable does not reevaluate
+//? test: qualified_variable_eval_time_uuid_assignment
+//? description: Show that evaluation time substitution in template from qualified variable assigned to variable doesn't reevaluate
 //? expect: true
 //? source: ...
 
-const x = evaluate(app::uuidEvalTime);
+const x = app::uuidEvalTime;
 
 return x == x;
