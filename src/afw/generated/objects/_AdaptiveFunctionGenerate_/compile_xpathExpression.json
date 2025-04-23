@@ -4,7 +4,6 @@
     "camelCaseFunctionLabel": "compileXpathExpression",
     "category": "xpathExpression",
     "dataTypeMethod": true,
-    "deprecated": true,
     "description": "Compile xpathExpression value and return either an unevaluated adaptive value or a string containing the compiler listing.",
     "functionId": "compile<xpathExpression>",
     "functionLabel": "compile_xpathExpression",

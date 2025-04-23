@@ -22,8 +22,6 @@
  *
  * See afw_function_bindings.h for more information.
  *
- * This function is deprecated.
- *
  * Compile xpathExpression value and return either an unevaluated adaptive value
  * or a string containing the compiler listing.
  *
