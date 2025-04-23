@@ -232,6 +232,7 @@ impl_assignment_target(
 {
     const afw_compile_assignment_target_t *at =
         target->assignment_target;
+    const afw_value_block_symbol_t *symbol;
 
     switch (at->target_type) {
     case afw_compile_assignment_target_type_list_destructure:
@@ -245,10 +246,11 @@ impl_assignment_target(
         break;
 
     case afw_compile_assignment_target_type_symbol_reference:
-        afw_xctx_scope_symbol_set_value(
-            at->symbol_reference->symbol,
-            afw_value_evaluate(value, p, xctx),
-            xctx);
+        symbol = at->symbol_reference->symbol;
+        if (symbol->type.data_type != afw_data_type_unevaluated) {
+            value = afw_value_evaluate(value, p, xctx);
+        }
+        afw_xctx_scope_symbol_set_value(symbol, value, xctx);
         break;
 
     case afw_compile_assignment_target_type_max_type:

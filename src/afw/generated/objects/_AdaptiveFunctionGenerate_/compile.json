@@ -30,14 +30,6 @@
         "template",
         "xpathExpression"
     ],
-    "polymorphicOverrides": {
-        "script": {
-            "deprecated": true
-        },
-        "template": {
-            "deprecated": true
-        }
-    },
     "pure": true,
     "returns": {
         "dataType": "unevaluated"

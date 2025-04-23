@@ -4,7 +4,6 @@
     "camelCaseFunctionLabel": "compileTemplate",
     "category": "template",
     "dataTypeMethod": true,
-    "deprecated": true,
     "description": "Compile template value and return either an unevaluated adaptive value or a string containing the compiler listing.",
     "functionId": "compile<template>",
     "functionLabel": "compile_template",

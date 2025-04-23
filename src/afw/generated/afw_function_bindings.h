@@ -24677,8 +24677,6 @@ afw_function_definition_compile_script;
  * @brief Adaptive Function `compile<script>`
  * @param x function execute parameter.
  *
- * This function is deprecated.
- *
  * Compile script value and return either an unevaluated adaptive value or a
  * string containing the compiler listing.
  *
@@ -28073,8 +28071,6 @@ afw_function_definition_compile_template;
 /**
  * @brief Adaptive Function `compile<template>`
  * @param x function execute parameter.
- *
- * This function is deprecated.
  *
  * Compile template value and return either an unevaluated adaptive value or a
  * string containing the compiler listing.
