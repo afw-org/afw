@@ -90,6 +90,72 @@ return x;
 return app::helloWorldFunction();
 
 //?
+//? test: hello_world_call_app_helloWorldFunctionArray
+//? description: Call function app::helloWorldFunctionArray[0]()
+//? expect: "Hello World!"
+//? source: ...
+
+const x = app::helloWorldFunctionArray;
+
+return x[0]();
+
+//?
+//? test: hello_world_call_app_helloWorldFunctionArray_not_assigned
+//? description: Call function app::helloWorldFunctionArray[0]() without assigning to variable
+//? expect: "Hello World!"
+//? source: ...
+
+return app::helloWorldFunctionArray[0]();
+
+//?
+//? test: hello_world_call_app_helloWorldFunctionArray_destructure
+//? description: Call function app::helloWorldFunctionArray using destructure
+//? expect: "Hello World!"
+//? source: ...
+
+const [x,y] = app::helloWorldFunctionArray;
+
+return x();
+
+//?
+//? test: hello_world_call_app_helloWorldFunctionObject
+//? description: Call function app::helloWorldFunctionObject[0]()
+//? expect: "Hello World!"
+//? source: ...
+
+const x = app::helloWorldFunctionObject;
+
+return x.a();
+
+//?
+//? test: hello_world_call_app_helloWorldFunctionObject_not_assigned
+//? description: Call function app::helloWorldFunctionArray[0]() without assigning to variable
+//? expect: "Hello World!"
+//? source: ...
+
+return app::helloWorldFunctionObject.a();
+
+//?
+//? test: hello_world_call_app_helloWorldFunctionObject_destructure
+//? description: Call function app::helloWorldFunctionObject using destructure
+//? expect: "Hello World!"
+//? source: ...
+
+const {a:x,b:y} = app::helloWorldFunctionObject;
+
+return x();
+
+//?
+//? test: hello_world_call_app_helloWorldFunctionObject_destructure_concat
+//? description: Call function app::helloWorldFunctionObject using destructure and concat
+//? expect: "Hello World!<<<Same to you!"
+//? source: ...
+
+const {a:x,b:y} = app::helloWorldFunctionObject;
+
+return x() + '<<<' + y();
+
+//?
 //? test: hello_world_call_loaded_function
 //? description: Call function loaded from file
 //? expect: "Hello World!"
@@ -165,5 +231,104 @@ return app::uuidEvalTime == app::uuidEvalTime;
 //? source: ...
 
 const x = app::uuidEvalTime;
+
+return x == x;
+
+//?
+//? test: compile_time_template_literal_1
+//? description: Show that evaluation time substitution in template of qualified variable does reevaluate
+//? expect: false
+//? source: ...
+
+return #{return generate_uuid();} == #{return generate_uuid();};
+
+//?
+//? test: compile_time_template_literal_2
+//? description: Show that evaluation time substitution in template of qualified variable does reevaluate
+//? expect: true
+//? source: ...
+
+const x = #{return generate_uuid();};
+return x == x;
+
+//?
+//? test: run_time_template_literal_1
+//? description: Show that evaluation time substitution in template of qualified variable does reevaluate
+//? expect: false
+//? source: ...
+
+return `${return generate_uuid();}` == `${return generate_uuid();}`;
+
+//?
+//? test: run_time_template_literal_2
+//? description: Show that evaluation time substitution in template of qualified variable does reevaluate
+//? expect: true
+//? source: ...
+
+const x = `${return generate_uuid();}`;
+return x == x;
+
+//?
+//? test: run_time_template_literal_3
+//? description: Show that evaluation time substitution in template of qualified variable does reevaluate
+//? expect: true
+//? source: ...
+
+const x:unevaluated = `${return generate_uuid();}`;
+return x == x;
+
+//?
+//? test: run_time_template_literal_4
+//? description: Show that evaluation time substitution in template of qualified variable does reevaluate
+//? expect: false
+//? source: ...
+
+const x:unevaluated = compile(template("${return generate_uuid();}"));
+return x == x;
+
+//?
+//? test: run_time_template_literal_5
+//? description: Show that evaluation time substitution in template of qualified variable does reevaluate
+//? expect: true
+//? source: ...
+
+const x = compile(template("${return generate_uuid();}"));
+return x == x;
+
+//?
+//? test: qualified_variable_compile_time_uuid_stored_unevaluated
+//? description: Show that compile time substitution in template of qualified variable doesn't reevaluate
+//? expect: true
+//? source: ...
+
+const x:unevaluated = app::uuidCompileTime;
+return x == x;
+
+//?
+//? test: qualified_variable_eval_time_uuid_stored_unevaluated
+//? description: Show that evaluation time substitution in template of qualified variable does reevaluate
+//? expect: false
+//? source: ...
+
+const x:unevaluated = app::uuidEvalTime;
+return x == x;
+
+//?
+//? test: qualified_variable_eval_time_uuid_assignment_no_evaluate_stored_unevaluated
+//? description: Show that evaluation time substitution in template from qualified variable assigned to variable does reevaluate
+//? expect: false
+//? source: ...
+
+const x:unevaluated = app::uuidEvalTime;
+
+return x == x;
+
+//?
+//? test: qualified_variable_eval_time_uuid_assignment_with_evaluate_stored_unevaluated
+//? description: Show that evaluation time substitution in template from qualified variable that is evaluated and assigned to variable does not reevaluate
+//? expect: true
+//? source: ...
+
+const x:unevaluated = evaluate(app::uuidEvalTime);
 
 return x == x;

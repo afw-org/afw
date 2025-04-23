@@ -236,11 +236,17 @@ impl_assignment_target(
 
     switch (at->target_type) {
     case afw_compile_assignment_target_type_list_destructure:
+        if (afw_value_is_compiled_value(value)) {
+            value = afw_value_evaluate(value, p, xctx);
+        }
         impl_list_destructure(at, at->list_destructure, value,
             assignment_type, p, xctx);
         break;
 
     case afw_compile_assignment_target_type_object_destructure:
+        if (afw_value_is_compiled_value(value)) {
+            value = afw_value_evaluate(value, p, xctx);
+        }
         impl_object_destructure(at, at->object_destructure, value,
             assignment_type, p, xctx);
         break;
