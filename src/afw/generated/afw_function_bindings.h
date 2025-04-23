@@ -6572,6 +6572,8 @@ afw_function_definition_compile_from_file;
  * @brief Adaptive Function `compile_from_file`
  * @param x function execute parameter.
  *
+ * This function is deprecated.
+ *
  * Load an external adaptive script, json, or template to be compiled and
  * returned.
  *
@@ -16174,6 +16176,8 @@ afw_function_definition_compile_json;
  * @brief Adaptive Function `compile<json>`
  * @param x function execute parameter.
  *
+ * This function is deprecated.
+ *
  * Compile json value and return either an unevaluated adaptive value or a
  * string containing the compiler listing.
  *
@@ -20289,6 +20293,8 @@ afw_function_definition_compile;
  * @brief Adaptive Function `compile`
  * @param x function execute parameter.
  *
+ * This function is deprecated.
+ *
  * Compile `<dataType>` value and return either an unevaluated adaptive value or
  * a string containing the compiler listing.
  *
@@ -23266,6 +23272,8 @@ afw_function_definition_compile_regexp;
  * @brief Adaptive Function `compile<regexp>`
  * @param x function execute parameter.
  *
+ * This function is deprecated.
+ *
  * Compile regexp value and return either an unevaluated adaptive value or a
  * string containing the compiler listing.
  *
@@ -23672,6 +23680,8 @@ afw_function_definition_compile_relaxed_json;
 /**
  * @brief Adaptive Function `compile<relaxed_json>`
  * @param x function execute parameter.
+ *
+ * This function is deprecated.
  *
  * Compile relaxed_json value and return either an unevaluated adaptive value or
  * a string containing the compiler listing.
@@ -24674,6 +24684,8 @@ afw_function_definition_compile_script;
 /**
  * @brief Adaptive Function `compile<script>`
  * @param x function execute parameter.
+ *
+ * This function is deprecated.
  *
  * Compile script value and return either an unevaluated adaptive value or a
  * string containing the compiler listing.
@@ -28070,6 +28082,8 @@ afw_function_definition_compile_template;
  * @brief Adaptive Function `compile<template>`
  * @param x function execute parameter.
  *
+ * This function is deprecated.
+ *
  * Compile template value and return either an unevaluated adaptive value or a
  * string containing the compiler listing.
  *
@@ -30518,6 +30532,8 @@ afw_function_definition_compile_xpathExpression;
 /**
  * @brief Adaptive Function `compile<xpathExpression>`
  * @param x function execute parameter.
+ *
+ * This function is deprecated.
  *
  * Compile xpathExpression value and return either an unevaluated adaptive value
  * or a string containing the compiler listing.

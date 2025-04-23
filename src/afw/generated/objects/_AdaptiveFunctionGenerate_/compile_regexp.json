@@ -4,6 +4,7 @@
     "camelCaseFunctionLabel": "compileRegexp",
     "category": "regexp",
     "dataTypeMethod": true,
+    "deprecated": true,
     "description": "Compile regexp value and return either an unevaluated adaptive value or a string containing the compiler listing.",
     "functionId": "compile<regexp>",
     "functionLabel": "compile_regexp",

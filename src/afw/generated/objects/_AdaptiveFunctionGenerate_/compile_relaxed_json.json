@@ -4,6 +4,7 @@
     "camelCaseFunctionLabel": "compileRelaxedJson",
     "category": "relaxed_json",
     "dataTypeMethod": true,
+    "deprecated": true,
     "description": "Compile relaxed_json value and return either an unevaluated adaptive value or a string containing the compiler listing.",
     "functionId": "compile<relaxed_json>",
     "functionLabel": "compile_relaxed_json",

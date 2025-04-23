@@ -4,6 +4,7 @@
     "camelCaseFunctionLabel": "compileScript",
     "category": "script",
     "dataTypeMethod": true,
+    "deprecated": true,
     "description": "Compile script value and return either an unevaluated adaptive value or a string containing the compiler listing.",
     "functionId": "compile<script>",
     "functionLabel": "compile_script",

@@ -4,6 +4,7 @@
     "camelCaseFunctionLabel": "compileJson",
     "category": "json",
     "dataTypeMethod": true,
+    "deprecated": true,
     "description": "Compile json value and return either an unevaluated adaptive value or a string containing the compiler listing.",
     "functionId": "compile<json>",
     "functionLabel": "compile_json",

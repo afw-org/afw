@@ -65,6 +65,8 @@ afw_function_execute_assert(
  *
  * See afw_function_bindings.h for more information.
  *
+ * This function is deprecated.
+ *
  * Load an external adaptive script, json, or template to be compiled and
  * returned.
  *

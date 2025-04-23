@@ -4,6 +4,7 @@
     "camelCaseFunctionLabel": "compile",
     "category": "polymorphic",
     "dataTypeMethod": true,
+    "deprecated": true,
     "description": "Compile <dataType> value and return either an unevaluated adaptive value or a string containing the compiler listing.",
     "functionId": "compile",
     "functionLabel": "compile",
