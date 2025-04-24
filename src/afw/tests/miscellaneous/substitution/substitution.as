@@ -101,7 +101,8 @@ return x[0]();
 
 //?
 //? test: hello_world_call_app_helloWorldFunctionArray_not_assigned
-//? description: Call function app::helloWorldFunctionArray[0]() without assigning to variable
+//? description: ...
+Call function app::helloWorldFunctionArray[0]() without assigning to variable
 //? expect: "Hello World!"
 //? source: ...
 
@@ -129,7 +130,8 @@ return x.a();
 
 //?
 //? test: hello_world_call_app_helloWorldFunctionObject_not_assigned
-//? description: Call function app::helloWorldFunctionArray[0]() without assigning to variable
+//? description: ...
+Call function app::helloWorldFunctionArray[0]() without assigning to variable
 //? expect: "Hello World!"
 //? source: ...
 
@@ -137,7 +139,8 @@ return app::helloWorldFunctionObject.a();
 
 //?
 //? test: hello_world_call_app_helloWorldFunctionObject_destructure
-//? description: Call function app::helloWorldFunctionObject using destructure
+//? description: ...
+Call function app::helloWorldFunctionObject using destructure
 //? expect: "Hello World!"
 //? source: ...
 
@@ -147,7 +150,8 @@ return x();
 
 //?
 //? test: hello_world_call_app_helloWorldFunctionObject_destructure_concat
-//? description: Call function app::helloWorldFunctionObject using destructure and concat
+//? description: ...
+Call function app::helloWorldFunctionObject using destructure and concat
 //? expect: "Hello World!<<<Same to you!"
 //? source: ...
 
@@ -166,7 +170,8 @@ return x();
 
 //?
 //? test: hello_world_call_app_helloWorldLoadedFunction
-//? description: Assign result of app::helloWorldLoadedFunction() to x and return x 
+//? description: ...
+Assign result of app::helloWorldLoadedFunction() to x and return x 
 //? expect: "Hello World!"
 //? source: ...
 
@@ -175,7 +180,8 @@ return x;
 
 //?
 //? test: hello_world_call_app_helloWorldLoadedFunction_direct
-//? description: Call function returned from app::helloWorldLoadedFunction direct
+//? description: ...
+Call function returned from app::helloWorldLoadedFunction directly
 //? expect: "Hello World!"
 //? source: ...
 
@@ -184,7 +190,8 @@ return app::helloWorldLoadedFunction();
 
 //?
 //? test: add_integers_from_qualified_variables_1
-//? description: Add integers from qualified variables where first is a string
+//? description: ...
+Add integers from qualified variables where first is a string
 //? expect: 6
 //? source: ...
 
@@ -201,7 +208,8 @@ return app::two + integer(app::one) + app::three;
 
 //?
 //? test: concat_integer_strings_from_qualified_variables
-//? description: Concat integer strings from qualified variables where first is a string
+//? description: ...
+Concat integer strings from qualified variables where first is a string
 //? expect: "123"
 //? source: ...
 
@@ -210,7 +218,9 @@ return app::one + app::two + app::three;
 
 //?
 //? test: qualified_variable_compile_time_uuid
-//? description: Show that compile time substitution in template of qualified variable doesn't reevaluate
+//? description: ...
+Show that compile time substitution in template of qualified variable doesn't
+reevaluate
 //? expect: true
 //? source: ...
 
@@ -218,7 +228,9 @@ return app::uuidCompileTime == app::uuidCompileTime;
 
 //?
 //? test: qualified_variable_eval_time_uuid
-//? description: Show that evaluation time substitution in template of qualified variable does reevaluate
+//? description: ...
+Show that evaluation time substitution in template of qualified variable does
+reevaluate
 //? expect: false
 //? source: ...
 
@@ -226,7 +238,9 @@ return app::uuidEvalTime == app::uuidEvalTime;
 
 //?
 //? test: qualified_variable_eval_time_uuid_assignment
-//? description: Show that evaluation time substitution in template from qualified variable assigned to variable doesn't reevaluate
+//? description: ...
+Show that evaluation time substitution in template from qualified variable
+assigned to variable doesn't reevaluate
 //? expect: true
 //? source: ...
 
@@ -236,7 +250,8 @@ return x == x;
 
 //?
 //? test: compile_time_template_literal_1
-//? description: Show that evaluation time substitution in template of qualified variable does reevaluate
+//? description: ...
+Show that script in two compile time templates do get different results
 //? expect: false
 //? source: ...
 
@@ -244,7 +259,8 @@ return #{return generate_uuid();} == #{return generate_uuid();};
 
 //?
 //? test: compile_time_template_literal_2
-//? description: Show that evaluation time substitution in template of qualified variable does reevaluate
+//? description: ...
+Show that that compile time template assigned to variable doesn't reevaluate
 //? expect: true
 //? source: ...
 
@@ -253,7 +269,7 @@ return x == x;
 
 //?
 //? test: run_time_template_literal_1
-//? description: Show that evaluation time substitution in template of qualified variable does reevaluate
+//? description: Show that two runtime template literals each evaluate
 //? expect: false
 //? source: ...
 
@@ -261,7 +277,8 @@ return `${return generate_uuid();}` == `${return generate_uuid();}`;
 
 //?
 //? test: run_time_template_literal_2
-//? description: Show that evaluation time substitution in template of qualified variable does reevaluate
+//? description: ...
+Show that a runtime template literal assigned to variable doesn't reevaluate
 //? expect: true
 //? source: ...
 
@@ -270,7 +287,10 @@ return x == x;
 
 //?
 //? test: run_time_template_literal_3
-//? description: Show that evaluation time substitution in template of qualified variable does reevaluate
+//? description: ...
+Show that a runtime template literal assigned to a variable with unevaluated
+data type is evaluated before assignment because a literal is not a compiled
+value and thus is part of normal expression evaluation
 //? expect: true
 //? source: ...
 
@@ -279,7 +299,10 @@ return x == x;
 
 //?
 //? test: run_time_template_literal_4
-//? description: Show that evaluation time substitution in template of qualified variable does reevaluate
+//? description: ...
+Show that a compiled template assigned to a variable with unevaluated
+data type does reevaluate each time accessed because that is the purpose
+of the unevaluated data type.
 //? expect: false
 //? source: ...
 
@@ -288,7 +311,9 @@ return x == x;
 
 //?
 //? test: run_time_template_literal_5
-//? description: Show that evaluation time substitution in template of qualified variable does reevaluate
+//? description: ...
+Show that a compiled template assigned to a variable without unevaluated
+data type is evaluated at assignment time.
 //? expect: true
 //? source: ...
 
@@ -297,7 +322,9 @@ return x == x;
 
 //?
 //? test: qualified_variable_compile_time_uuid_stored_unevaluated
-//? description: Show that compile time substitution in template of qualified variable doesn't reevaluate
+//? description: ...
+Show that compile time substitution in template of qualified variable doesn't
+reevaluate even when assigned to a variable with data type unevaluated
 //? expect: true
 //? source: ...
 
@@ -306,26 +333,20 @@ return x == x;
 
 //?
 //? test: qualified_variable_eval_time_uuid_stored_unevaluated
-//? description: Show that evaluation time substitution in template of qualified variable does reevaluate
+//? description: ...
+Show that runtime substitution in template of qualified variable doesn't
+evaluate when assigned to a variable with data type unevaluated
 //? expect: false
 //? source: ...
 
 const x:unevaluated = app::uuidEvalTime;
-return x == x;
-
-//?
-//? test: qualified_variable_eval_time_uuid_assignment_no_evaluate_stored_unevaluated
-//? description: Show that evaluation time substitution in template from qualified variable assigned to variable does reevaluate
-//? expect: false
-//? source: ...
-
-const x:unevaluated = app::uuidEvalTime;
-
 return x == x;
 
 //?
 //? test: qualified_variable_eval_time_uuid_assignment_with_evaluate_stored_unevaluated
-//? description: Show that evaluation time substitution in template from qualified variable that is evaluated and assigned to variable does not reevaluate
+//? description: ...
+Show that evaluation time substitution in template from qualified variable that
+is evaluated and assigned to variable does not reevaluate
 //? expect: true
 //? source: ...
 
