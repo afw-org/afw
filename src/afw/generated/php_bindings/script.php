@@ -159,11 +159,11 @@ class script
     }
 
     /**
-     * evaluate_script()
+     * eval_script()
      *
      * Compile and evaluate script value.
      *
-     * @param script $source script string to compile and evaluate
+     * @param script $source script to compile and evaluate
      * @param object $additionalUntrustedQualifiedVariables This parameter
      *                                                      supplies
      *                                                      additional
@@ -189,13 +189,13 @@ class script
      *                                                      anything running
      *                                                      in production.
      *
-     * @return unevaluated
+     * @return any
      */
-    public function evaluate_script(, $source, $additionalUntrustedQualifiedVariables = null)
+    public function eval_script(, $source, $additionalUntrustedQualifiedVariables = null)
     {
         $request = $this->$session->request();
 
-        $request->set("function", "evaluate<script>");
+        $request->set("function", "eval<script>");
 
         /* pass along required parameters to the request payload */
         $request->set("source", $source);

@@ -117,11 +117,42 @@ class compiler
     }
 
     /**
-     * evaluate_value()
+     * eval_from_file()
+     *
+     * Load an external adaptive script, json, or template to be compiled and
+     * evaluate.
+     *
+     * @param string $file The path of the file to include, which will be
+     *                     resolved using rootFilePaths.
+     * @param string $compileType The compile type, used by the parser to
+     *                            determine how to compile the data. For
+     *                            example, 'json', 'relaxed_json', 'script',
+     *                            'template'
+     *
+     * @return any
+     */
+    public function eval_from_file(, $file, $compileType = null)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "eval_from_file");
+
+        /* pass along required parameters to the request payload */
+        $request->set("file", $file);
+
+        /* pass along any optional parameters to the request payload */
+        if ($compileType != null)
+            $request->set('compileType', $compileType);
+
+        return $request->get_result();
+    }
+
+    /**
+     * evaluate()
      *
      * Evaluate an adaptive value.
      *
-     * @param  $value
+     * @param any $value
      * @param object $additionalUntrustedQualifiedVariables This parameter
      *                                                      supplies
      *                                                      additional
@@ -147,13 +178,13 @@ class compiler
      *                                                      anything running
      *                                                      in production.
      *
-     * @return  Evaluated adaptive value.
+     * @return any Evaluated adaptive value.
      */
-    public function evaluate_value(, $value, $additionalUntrustedQualifiedVariables = null)
+    public function evaluate(, $value, $additionalUntrustedQualifiedVariables = null)
     {
         $request = $this->$session->request();
 
-        $request->set("function", "evaluate_value");
+        $request->set("function", "evaluate");
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);

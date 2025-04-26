@@ -3,6 +3,7 @@
     "brief": "Compile an external file",
     "camelCaseFunctionLabel": "compileFromFile",
     "category": "compiler",
+    "deprecated": true,
     "description": "Load an external adaptive script, json, or template to be compiled and returned.",
     "functionId": "compile_from_file",
     "functionLabel": "compile_from_file",

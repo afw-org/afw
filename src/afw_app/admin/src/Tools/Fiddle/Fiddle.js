@@ -20,7 +20,7 @@ import {
 } from "@afw/react";
 
 import {
-    afwEvaluateTemplate,
+    afwEvalTemplate,
     afwCompileScript,
     afwCompileTemplate,
     afwGetObjectWithUri,
@@ -654,7 +654,7 @@ export const Fiddle = () => {
     const onEvaluateScript = async (script, additionalUntrustedQualifiedVariables) => {        
         let action = {};
 
-        action["function"] = "evaluate<script>";
+        action["function"] = "eval<script>";
         action["source"] = script;
 
         if (additionalUntrustedQualifiedVariables)
@@ -722,7 +722,7 @@ export const Fiddle = () => {
                     await onEvaluateScript(input, additionalUntrustedQualifiedVariables));
 
             else if (activeTabInputFormat === "template") {
-                result = await afwEvaluateTemplate(client.current, input, additionalUntrustedQualifiedVariables).result();                
+                result = await afwEvalTemplate(client.current, input, additionalUntrustedQualifiedVariables).result();                
             }
 
             dispatch({ 
@@ -1053,7 +1053,7 @@ export const Fiddle = () => {
         if (state.contextVariables && state.contextVariables.length > 0)
             action.additionalUntrustedQualifiedVariables = state.contextVariables;
 
-        action.function = "evaluate<script>";
+        action.function = "eval<script>";
         action.source = state.tabs[state.activeTab].source;
         
         onCopy(JSON.stringify(action, null, 4));

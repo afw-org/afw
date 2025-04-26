@@ -1037,15 +1037,15 @@ assert(i === 1);
 //? source: ...
 #!/usr/bin/env afw
 
-assert(evaluate(script('1; for (let a of [0]) { break; }')) === undefined);
-assert(evaluate(script('2; for (let b of [0]) { 3; break; }')) === 3);
+assert(eval(script('1; for (let a of [0]) { break; }')) === undefined);
+assert(eval(script('2; for (let b of [0]) { 3; break; }')) === 3);
 
 assert(
-  evaluate(script('4; outer: do { for (let a of [0]) { continue outer; } } while (false)')),
+  eval(script('4; outer: do { for (let a of [0]) { continue outer; } } while (false)')),
   undefined
 );
 assert(
-  evaluate(script('5; outer: do { for (let b of [0]) { 6; continue outer; } } while (false)')),
+  eval(script('5; outer: do { for (let b of [0]) { 6; continue outer; } } while (false)')),
   6
 );
 
@@ -1057,8 +1057,8 @@ assert(
 //? source: ...
 #!/usr/bin/env afw
 
-assert(evaluate(script('1; for (let a of [0]) { }')) === undefined);
-assert(evaluate(script('2; for (let b of [0]) { 3; }')) === 3);
+assert(eval(script('1; for (let a of [0]) { }')) === undefined);
+assert(eval(script('2; for (let b of [0]) { 3; }')) === 3);
 
 
 //? test: cptn-decl-no-itr
@@ -1068,8 +1068,8 @@ assert(evaluate(script('2; for (let b of [0]) { 3; }')) === 3);
 //? source: ...
 #!/usr/bin/env afw
 
-assert(evaluate(script('1; for (let a of []) { }')) === undefined);
-assert(evaluate(script('2; for (let b of []) { 3; }')) === undefined);
+assert(eval(script('1; for (let a of []) { }')) === undefined);
+assert(eval(script('2; for (let b of []) { 3; }')) === undefined);
 
 
 //? test: cptn-expr-abrupt-empty
@@ -1080,15 +1080,15 @@ assert(evaluate(script('2; for (let b of []) { 3; }')) === undefined);
 #!/usr/bin/env afw
 
 
-assert(evaluate(script('let a; 1; for (a of [0]) { break; }')) === undefined);
-assert(evaluate(script('let b; 2; for (b of [0]) { 3; break; }')) === 3);
+assert(eval(script('let a; 1; for (a of [0]) { break; }')) === undefined);
+assert(eval(script('let b; 2; for (b of [0]) { 3; break; }')) === 3);
 
 assert(
-  evaluate(script('let a; 4; outer: do { for (a of [0]) { continue outer; } } while (false)')),
+  eval(script('let a; 4; outer: do { for (a of [0]) { continue outer; } } while (false)')),
   undefined
 );
 assert(
-  evaluate(script('let b; 5; outer: do { for (b of [0]) { 6; continue outer; } } while (false)')),
+  eval(script('let b; 5; outer: do { for (b of [0]) { 6; continue outer; } } while (false)')),
   6
 );
 
@@ -1100,8 +1100,8 @@ assert(
 //? source: ...
 #!/usr/bin/env afw
 
-assert(evaluate(script('let a; 1; for (a of [0]) { }')) === undefined);
-assert(evaluate(script('let b; 2; for (b of [0]) { 3; }')) === 3);
+assert(eval(script('let a; 1; for (a of [0]) { }')) === undefined);
+assert(eval(script('let b; 2; for (b of [0]) { 3; }')) === 3);
 
 
 //? test: cptn-expr-no-itr
@@ -1111,8 +1111,8 @@ assert(evaluate(script('let b; 2; for (b of [0]) { 3; }')) === 3);
 //? source: ...
 #!/usr/bin/env afw
 
-assert(evaluate(script('let a; 1; for (a of []) { }')) === undefined);
-assert(evaluate(script('let b; 2; for (b of []) { 3; }')) === undefined);
+assert(eval(script('let a; 1; for (a of []) { }')) === undefined);
+assert(eval(script('let b; 2; for (b of []) { 3; }')) === undefined);
 
 
 //? test: decl-async-fun
@@ -3666,7 +3666,7 @@ let probeDecl, probeExpr, probeBody;
 for (
     let [_ = probeDecl = function() { return x; }]
     of
-    [[evaluate(script('let x = 2;')), probeExpr = function() { return x; }]]
+    [[eval(script('let x = 2;')), probeExpr = function() { return x; }]]
   )
   probeBody = function() { return x; };
 

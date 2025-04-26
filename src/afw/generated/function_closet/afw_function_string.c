@@ -146,6 +146,53 @@ afw_function_execute_eq_ignore_case_string(
 
 
 /*
+ * Adaptive function: eval<string>
+ *
+ * afw_function_execute_eval_string
+ *
+ * See afw_function_bindings.h for more information.
+ *
+ * Compile and evaluate string value as adaptive script.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function eval<string>(
+ *       source: string,
+ *       additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_)
+ *   ): any;
+ * ```
+ *
+ * Parameters:
+ *
+ *   source - (string) string to compile and evaluate.
+ *
+ *   additionalUntrustedQualifiedVariables - (optional object
+ *       _AdaptiveTemplatePropertiesObjects_) This parameter supplies additional
+ *       qualified variables that can be accessed during evaluation. These
+ *       variables will not be used by anything that needs to ensure its
+ *       qualified variables must come from a trusted source, such as
+ *       authorization. This parameter is intended to be used for testing only
+ *       and should not be used for anything running in production.
+ *
+ * Returns:
+ *
+ *   (any)
+ */
+const afw_value_t *
+afw_function_execute_eval_string(
+    afw_function_execute_t *x)
+{
+    /** @todo Add code. */
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
+}
+
+
+
+/*
  * Adaptive function: normalize_space<string>
  *
  * afw_function_execute_normalize_space_string

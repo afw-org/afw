@@ -337,6 +337,17 @@ afw_application_internal_application_conf_type_create_cede_p(
     context_type_object = afw_environment_get_context_type(afw_s_application,
         xctx);
 
+    /* rootFilePaths */
+    env->root_file_paths = afw_object_old_get_property_as_object(
+        env->application_object, afw_s_rootFilePaths, xctx);
+
+    /* defaultFlags */
+    default_flags = afw_object_old_get_property_as_array(env->application_object,
+        afw_s_defaultFlags, xctx);
+    if (default_flags) {
+        afw_flag_set_default_flag_ids(default_flags, xctx);
+    }
+
     /* application:: variable definitions. */
     variable_definitions_object =
         afw_context_type_insure_variable_definitions_object_exists(
@@ -358,17 +369,6 @@ afw_application_internal_application_conf_type_create_cede_p(
         afw_context_variable_definitions_compile_and_add_based_on_qualifiers_object(
             context_type_object, env->application_qualified_variables,
             detail_source_location, xctx);
-    }
-
-    /* rootFilePaths */
-    env->root_file_paths = afw_object_old_get_property_as_object(
-        env->application_object, afw_s_rootFilePaths, xctx);
-
-    /* defaultFlags */
-    default_flags = afw_object_old_get_property_as_array(env->application_object,
-        afw_s_defaultFlags, xctx);
-    if (default_flags) {
-        afw_flag_set_default_flag_ids(default_flags, xctx);
     }
 
     /* Get optional layoutAdapterId. */

@@ -1,12 +1,18 @@
 {
-    "brief": "Evaluate value",
-    "category": "compiler",
-    "description": "Evaluate an adaptive value.",
-    "functionId": "evaluate_value",
-    "functionLabel": "evaluate_value",
+    "afwCamelCaseFunctionLabel": "afwEvalString",
+    "brief": "Compile and evaluate string value as adaptive script",
+    "camelCaseFunctionLabel": "evalString",
+    "category": "string",
+    "dataTypeMethod": true,
+    "description": "Compile and evaluate string value as adaptive script.",
+    "functionId": "eval<string>",
+    "functionLabel": "eval_string",
     "parameters": [
         {
-            "name": "value"
+            "brief": "Source to eval",
+            "dataType": "string",
+            "description": "string to compile and evaluate",
+            "name": "source"
         },
         {
             "brief": "Additional untrusted qualified variables",
@@ -18,6 +24,6 @@
         }
     ],
     "returns": {
-        "description": "Evaluated adaptive value."
+        "dataType": "any"
     }
 }

@@ -65,6 +65,8 @@ afw_function_execute_assert(
  *
  * See afw_function_bindings.h for more information.
  *
+ * This function is deprecated.
+ *
  * Load an external adaptive script, json, or template to be compiled and
  * returned.
  *
@@ -149,9 +151,54 @@ afw_function_execute_decompile(
 
 
 /*
- * Adaptive function: evaluate_value
+ * Adaptive function: eval_from_file
  *
- * afw_function_execute_evaluate_value
+ * afw_function_execute_eval_from_file
+ *
+ * See afw_function_bindings.h for more information.
+ *
+ * Load an external adaptive script, json, or template to be compiled and
+ * evaluate.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function eval_from_file(
+ *       file: string,
+ *       compileType?: string
+ *   ): any;
+ * ```
+ *
+ * Parameters:
+ *
+ *   file - (string) The path of the file to include, which will be resolved
+ *       using rootFilePaths.
+ *
+ *   compileType - (optional string) The compile type, used by the parser to
+ *       determine how to compile the data.
+ *       For example, 'json', 'relaxed_json', 'script', 'template'.
+ *
+ * Returns:
+ *
+ *   (any)
+ */
+const afw_value_t *
+afw_function_execute_eval_from_file(
+    afw_function_execute_t *x)
+{
+    /** @todo Add code. */
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
+}
+
+
+
+/*
+ * Adaptive function: evaluate
+ *
+ * afw_function_execute_evaluate
  *
  * See afw_function_bindings.h for more information.
  *
@@ -163,7 +210,7 @@ afw_function_execute_decompile(
  * Declaration:
  *
  * ```
- *   function evaluate_value(
+ *   function evaluate(
  *       value: any,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_)
  *   ): any;
@@ -171,7 +218,7 @@ afw_function_execute_decompile(
  *
  * Parameters:
  *
- *   value - (any dataType)
+ *   value - (any)
  *
  *   additionalUntrustedQualifiedVariables - (optional object
  *       _AdaptiveTemplatePropertiesObjects_) This parameter supplies additional
@@ -183,10 +230,10 @@ afw_function_execute_decompile(
  *
  * Returns:
  *
- *   (any dataType) Evaluated adaptive value.
+ *   (any) Evaluated adaptive value.
  */
 const afw_value_t *
-afw_function_execute_evaluate_value(
+afw_function_execute_evaluate(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */

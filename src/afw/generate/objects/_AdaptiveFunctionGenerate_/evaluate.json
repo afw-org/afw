@@ -1,18 +1,13 @@
 {
-    "afwCamelCaseFunctionLabel": "afwEvaluateScript",
-    "brief": "Evaluate script value",
-    "camelCaseFunctionLabel": "evaluateScript",
-    "category": "script",
-    "dataTypeMethod": true,
-    "description": "Compile and evaluate script value.",
-    "functionId": "evaluate<script>",
-    "functionLabel": "evaluate_script",
+    "brief": "Evaluate value",
+    "category": "compiler",
+    "description": "Evaluate an adaptive value.",
+    "functionId": "evaluate",
+    "functionLabel": "evaluate",
     "parameters": [
         {
-            "brief": "Source to evaluate",
-            "dataType": "script",
-            "description": "script string to compile and evaluate",
-            "name": "source"
+            "dataType": "any",
+            "name": "value"
         },
         {
             "brief": "Additional untrusted qualified variables",
@@ -24,6 +19,7 @@
         }
     ],
     "returns": {
-        "dataType": "unevaluated"
+        "dataType": "any",
+        "description": "Evaluated adaptive value."
     }
 }

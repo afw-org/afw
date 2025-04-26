@@ -12,52 +12,52 @@
 #!/usr/bin/env afw
 
 //CHECK#1
-if (evaluate(script("void\u00090")) !== undefined) {
+if (eval(script("void\u00090")) !== undefined) {
   throw '#1: void\\u00090 === undefined';
 }
 
 //CHECK#2
-if (evaluate(script("void\u000B0")) !== undefined) {
+if (eval(script("void\u000B0")) !== undefined) {
   throw '#2: void\\u000B0 === undefined';
 }
 
 //CHECK#3
-if (evaluate(script("void\u000C0")) !== undefined) {
+if (eval(script("void\u000C0")) !== undefined) {
   throw '#3: void\\u000C0 === undefined';
 }
 
 //CHECK#4
-if (evaluate(script("void\u00200")) !== undefined) {
+if (eval(script("void\u00200")) !== undefined) {
   throw '#4: void\\u00200 === undefined';
 }
 
 //CHECK#5
-if (evaluate(script("void\u00A00")) !== undefined) {
+if (eval(script("void\u00A00")) !== undefined) {
   throw '#5: void\\u00A00 === undefined';
 }
 
 //CHECK#6
-if (evaluate(script("void\u000A0")) !== undefined) {
+if (eval(script("void\u000A0")) !== undefined) {
   throw '#6: void\\u000A0 === undefined';
 }
 
 //CHECK#7
-if (evaluate(script("void\u000D0")) !== undefined) {
+if (eval(script("void\u000D0")) !== undefined) {
   throw '#7: void\\u000D0 === undefined';
 }
 
 //CHECK#8
-if (evaluate(script("void\u20280")) !== undefined) {
+if (eval(script("void\u20280")) !== undefined) {
   throw '#8: void\\u20280 === undefined';
 }
 
 //CHECK#9
-if (evaluate(script("void\u20290")) !== undefined) {
+if (eval(script("void\u20290")) !== undefined) {
   throw '#9: void\\u20290 === undefined';
 }
 
 //CHECK#10
-if (evaluate(script("void\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u20290")) !== undefined) {
+if (eval(script("void\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u20290")) !== undefined) {
   throw '#10: void\\u0009\\u000B\\u000C\\u0020\\u00A0\\u000A\\u000D\\u2028\\u20290 === undefined';
 }
 

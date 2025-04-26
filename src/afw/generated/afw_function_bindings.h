@@ -6572,6 +6572,8 @@ afw_function_definition_compile_from_file;
  * @brief Adaptive Function `compile_from_file`
  * @param x function execute parameter.
  *
+ * This function is deprecated.
+ *
  * Load an external adaptive script, json, or template to be compiled and
  * returned.
  *
@@ -6644,12 +6646,52 @@ const afw_value_t *
 afw_function_execute_decompile(
     afw_function_execute_t *x);
 
-/** @brief Function definition evaluate_value */
+/** @brief Function definition eval_from_file */
 AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_evaluate_value;
+afw_function_definition_eval_from_file;
 
 /**
- * @brief Adaptive Function `evaluate_value`
+ * @brief Adaptive Function `eval_from_file`
+ * @param x function execute parameter.
+ *
+ * Load an external adaptive script, json, or template to be compiled and
+ * evaluate.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function eval_from_file(
+ *       file: string,
+ *       compileType?: string
+ *   ): any;
+ * ```
+ *
+ * Parameters:
+ *
+ *   file - (string) The path of the file to include, which will be resolved
+ *       using rootFilePaths.
+ *
+ *   compileType - (optional string) The compile type, used by the parser to
+ *       determine how to compile the data.
+ *       For example, 'json', 'relaxed_json', 'script', 'template'.
+ *
+ * Returns:
+ *
+ *   (any)
+ */
+const afw_value_t *
+afw_function_execute_eval_from_file(
+    afw_function_execute_t *x);
+
+/** @brief Function definition evaluate */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_evaluate;
+
+/**
+ * @brief Adaptive Function `evaluate`
  * @param x function execute parameter.
  *
  * Evaluate an adaptive value.
@@ -6660,7 +6702,7 @@ afw_function_definition_evaluate_value;
  * Declaration:
  *
  * ```
- *   function evaluate_value(
+ *   function evaluate(
  *       value: any,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_)
  *   ): any;
@@ -6668,7 +6710,7 @@ afw_function_definition_evaluate_value;
  *
  * Parameters:
  *
- *   value - (any dataType)
+ *   value - (any)
  *
  *   additionalUntrustedQualifiedVariables - (optional object
  *       _AdaptiveTemplatePropertiesObjects_) This parameter supplies additional
@@ -6680,10 +6722,10 @@ afw_function_definition_evaluate_value;
  *
  * Returns:
  *
- *   (any dataType) Evaluated adaptive value.
+ *   (any) Evaluated adaptive value.
  */
 const afw_value_t *
-afw_function_execute_evaluate_value(
+afw_function_execute_evaluate(
     afw_function_execute_t *x);
 
 /** @brief Function definition evaluate_with_retry */
@@ -20628,12 +20670,12 @@ afw_function_definition_eqx;
  * __________
  */
 
-/** @brief Function definition evaluate */
+/** @brief Function definition eval */
 AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_evaluate;
+afw_function_definition_eval;
 
 /**
- * @brief Adaptive Function `evaluate`
+ * @brief Adaptive Function `eval`
  * @param x function execute parameter.
  *
  * Compile and evaluate `<dataType>` value.
@@ -20643,20 +20685,20 @@ afw_function_definition_evaluate;
  *
  * Supported `<dataType>`:
  *
- *   script, template, xpathExpression.
+ *   script, string, template, xpathExpression.
  *
  * Declaration:
  *
  * ```
- *   function evaluate <dataType>(
+ *   function eval <dataType>(
  *       source: dataType,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_)
- *   ): unevaluated;
+ *   ): any;
  * ```
  *
  * Parameters:
  *
- *   source - (``<Type>``) `<dataType>` string to compile and evaluate.
+ *   source - (``<Type>``) `<dataType>` to compile and evaluate.
  *
  *   additionalUntrustedQualifiedVariables - (optional object
  *       _AdaptiveTemplatePropertiesObjects_) This parameter supplies additional
@@ -20668,7 +20710,7 @@ afw_function_definition_evaluate;
  *
  * Returns:
  *
- *   (unevaluated)
+ *   (any)
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -24752,12 +24794,12 @@ afw_function_definition_eqx_script;
  * __________
  */
 
-/** @brief Function definition evaluate<script> */
+/** @brief Function definition eval<script> */
 AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_evaluate_script;
+afw_function_definition_eval_script;
 
 /**
- * @brief Adaptive Function `evaluate<script>`
+ * @brief Adaptive Function `eval<script>`
  * @param x function execute parameter.
  *
  * Compile and evaluate script value.
@@ -24768,15 +24810,15 @@ afw_function_definition_evaluate_script;
  * Declaration:
  *
  * ```
- *   function evaluate<script>(
+ *   function eval<script>(
  *       source: script,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_)
- *   ): unevaluated;
+ *   ): any;
  * ```
  *
  * Parameters:
  *
- *   source - (script) script string to compile and evaluate.
+ *   source - (script) script to compile and evaluate.
  *
  *   additionalUntrustedQualifiedVariables - (optional object
  *       _AdaptiveTemplatePropertiesObjects_) This parameter supplies additional
@@ -24788,10 +24830,10 @@ afw_function_definition_evaluate_script;
  *
  * Returns:
  *
- *   (unevaluated)
+ *   (any)
  */
 const afw_value_t *
-afw_function_execute_evaluate_script(
+afw_function_execute_eval_script(
     afw_function_execute_t *x);
 
 /** @brief Function definition ge<script> */
@@ -26145,6 +26187,48 @@ afw_function_definition_eqx_string;
  *
  * __________
  */
+
+/** @brief Function definition eval<string> */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_eval_string;
+
+/**
+ * @brief Adaptive Function `eval<string>`
+ * @param x function execute parameter.
+ *
+ * Compile and evaluate string value as adaptive script.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function eval<string>(
+ *       source: string,
+ *       additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_)
+ *   ): any;
+ * ```
+ *
+ * Parameters:
+ *
+ *   source - (string) string to compile and evaluate.
+ *
+ *   additionalUntrustedQualifiedVariables - (optional object
+ *       _AdaptiveTemplatePropertiesObjects_) This parameter supplies additional
+ *       qualified variables that can be accessed during evaluation. These
+ *       variables will not be used by anything that needs to ensure its
+ *       qualified variables must come from a trusted source, such as
+ *       authorization. This parameter is intended to be used for testing only
+ *       and should not be used for anything running in production.
+ *
+ * Returns:
+ *
+ *   (any)
+ */
+const afw_value_t *
+afw_function_execute_eval_string(
+    afw_function_execute_t *x);
 
 /** @brief Function definition ge<string> */
 AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
@@ -28105,12 +28189,12 @@ afw_function_definition_eqx_template;
  * __________
  */
 
-/** @brief Function definition evaluate<template> */
+/** @brief Function definition eval<template> */
 AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_evaluate_template;
+afw_function_definition_eval_template;
 
 /**
- * @brief Adaptive Function `evaluate<template>`
+ * @brief Adaptive Function `eval<template>`
  * @param x function execute parameter.
  *
  * Compile and evaluate template value.
@@ -28121,15 +28205,15 @@ afw_function_definition_evaluate_template;
  * Declaration:
  *
  * ```
- *   function evaluate<template>(
+ *   function eval<template>(
  *       source: template,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_)
- *   ): unevaluated;
+ *   ): any;
  * ```
  *
  * Parameters:
  *
- *   source - (template) template string to compile and evaluate.
+ *   source - (template) template to compile and evaluate.
  *
  *   additionalUntrustedQualifiedVariables - (optional object
  *       _AdaptiveTemplatePropertiesObjects_) This parameter supplies additional
@@ -28141,10 +28225,10 @@ afw_function_definition_evaluate_template;
  *
  * Returns:
  *
- *   (unevaluated)
+ *   (any)
  */
 const afw_value_t *
-afw_function_execute_evaluate_template(
+afw_function_execute_eval_template(
     afw_function_execute_t *x);
 
 /** @brief Function definition ge<template> */
@@ -30555,12 +30639,12 @@ afw_function_definition_eqx_xpathExpression;
  * __________
  */
 
-/** @brief Function definition evaluate<xpathExpression> */
+/** @brief Function definition eval<xpathExpression> */
 AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
-afw_function_definition_evaluate_xpathExpression;
+afw_function_definition_eval_xpathExpression;
 
 /**
- * @brief Adaptive Function `evaluate<xpathExpression>`
+ * @brief Adaptive Function `eval<xpathExpression>`
  * @param x function execute parameter.
  *
  * Compile and evaluate xpathExpression value.
@@ -30571,15 +30655,15 @@ afw_function_definition_evaluate_xpathExpression;
  * Declaration:
  *
  * ```
- *   function evaluate<xpathExpression>(
+ *   function eval<xpathExpression>(
  *       source: xpathExpression,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_)
- *   ): unevaluated;
+ *   ): any;
  * ```
  *
  * Parameters:
  *
- *   source - (xpathExpression) xpathExpression string to compile and evaluate.
+ *   source - (xpathExpression) xpathExpression to compile and evaluate.
  *
  *   additionalUntrustedQualifiedVariables - (optional object
  *       _AdaptiveTemplatePropertiesObjects_) This parameter supplies additional
@@ -30591,10 +30675,10 @@ afw_function_definition_evaluate_xpathExpression;
  *
  * Returns:
  *
- *   (unevaluated)
+ *   (any)
  */
 const afw_value_t *
-afw_function_execute_evaluate_xpathExpression(
+afw_function_execute_eval_xpathExpression(
     afw_function_execute_t *x);
 
 /** @brief Function definition ge<xpathExpression> */
@@ -31882,7 +31966,7 @@ afw_function_definition_yearMonthDuration;
     XX(encode_as_base64Binary)                                                 \
     XX(encode_as_hexBinary)                                                    \
     XX(eq_ignore_case)                                                         \
-    XX(evaluate)                                                               \
+    XX(eval)                                                                   \
     XX(in_range)                                                               \
     XX(match)                                                                  \
     XX(normalize_space)                                                        \
@@ -31936,7 +32020,7 @@ typedef enum afw_data_type_method_number_e {
  * encode_as_hexBinary
  * ends_with
  * eq_ignore_case
- * evaluate
+ * eval
  * floor
  * ge
  * gt

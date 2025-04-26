@@ -29466,8 +29466,8 @@
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveFunction_/evaluate_script",
-                "objectId": "evaluate_script",
+                "path": "/afw/_AdaptiveFunction_/eval_script",
+                "objectId": "eval_script",
                 "objectType": "_AdaptiveFunction_"
             },
             "scriptSupportNumber": 0,
@@ -29514,15 +29514,15 @@
                 }
             ],
             "functionPrototype": "*** coming soon ***",
-            "functionLabel": "evaluate_script",
-            "functionId": "evaluate_script",
+            "functionLabel": "eval_script",
+            "functionId": "eval_script",
             "description": "Compile a string containing adaptive script syntax and then evaluate the result.",
             "deprecated": false,
             "dataTypeMethodNumber": 0,
             "category": "compiler",
             "camelCaseFunctionLabel": "evaluateScript",
             "brief": "Evaluate script",
-            "afwCamelCaseFunctionLabel": "afwEvaluateScript"
+            "afwCamelCaseFunctionLabel": "afwEvalScript"
         },
         {
             "_meta_": {
@@ -32159,8 +32159,8 @@
         },
         {
             "_meta_": {
-                "path": "/afw/_AdaptiveFunction_/evaluate_template",
-                "objectId": "evaluate_template",
+                "path": "/afw/_AdaptiveFunction_/eval_template",
+                "objectId": "eval_template",
                 "objectType": "_AdaptiveFunction_"
             },
             "scriptSupportNumber": 0,
@@ -32207,15 +32207,15 @@
                 }
             ],
             "functionPrototype": "*** coming soon ***",
-            "functionLabel": "evaluate_template",
-            "functionId": "evaluate_template",
+            "functionLabel": "eval_template",
+            "functionId": "eval_template",
             "description": "Compile a string containing adaptive template syntax and then evaluate the result.",
             "deprecated": false,
             "dataTypeMethodNumber": 0,
             "category": "compiler",
             "camelCaseFunctionLabel": "evaluateTemplate",
             "brief": "Evaluate template",
-            "afwCamelCaseFunctionLabel": "afwEvaluateTemplate"
+            "afwCamelCaseFunctionLabel": "afwEvalTemplate"
         },
         {
             "_meta_": {

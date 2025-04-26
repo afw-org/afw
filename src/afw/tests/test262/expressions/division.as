@@ -63,52 +63,52 @@ assert(notRegExp ===  5);
 
 
 //CHECK#1
-if (evaluate(script("1\u0009/\u00091")) !== 1) {
+if (eval(script("1\u0009/\u00091")) !== 1) {
   throw '#1: 1\\u0009/\\u00091 === 1';
 }
 
 //CHECK#2
-if (evaluate(script("1\u000B/\u000B1")) !== 1) {
+if (eval(script("1\u000B/\u000B1")) !== 1) {
   throw '#2: 1\\u000B/\\u000B1 === 1';
 }
 
 //CHECK#3
-if (evaluate(script("1\u000C/\u000C1")) !== 1) {
+if (eval(script("1\u000C/\u000C1")) !== 1) {
   throw '#3: 1\\u000C/\\u000C1 === 1';
 }
 
 //CHECK#4
-if (evaluate(script("1\u0020/\u00201")) !== 1) {
+if (eval(script("1\u0020/\u00201")) !== 1) {
   throw '#4: 1\\u0020/\\u00201 === 1';
 }
 
 //CHECK#5
-if (evaluate(script("1\u00A0/\u00A01")) !== 1) {
+if (eval(script("1\u00A0/\u00A01")) !== 1) {
   throw '#5: 1\\u00A0/\\u00A01 === 1';
 }
 
 //CHECK#6
-if (evaluate(script("1\u000A/\u000A1")) !== 1) {
+if (eval(script("1\u000A/\u000A1")) !== 1) {
   throw '#6: 1\\u000A/\\u000A1 === 1';
 }
 
 //CHECK#7
-if (evaluate(script("1\u000D/\u000D1")) !== 1) {
+if (eval(script("1\u000D/\u000D1")) !== 1) {
   throw '#7: 1\\u000D/\\u000D1 === 1';
 }
 
 //CHECK#8
-if (evaluate(script("1\u2028/\u20281")) !== 1) {
+if (eval(script("1\u2028/\u20281")) !== 1) {
   throw '#8: 1\\u2028/\\u20281 === 1';
 }
 
 //CHECK#9
-if (evaluate(script("1\u2029/\u20291")) !== 1) {
+if (eval(script("1\u2029/\u20291")) !== 1) {
   throw '#9: 1\\u2029/\\u20291 === 1';
 }
 
 //CHECK#10
-if (evaluate(script("1\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u2029/\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u20291")) !== 1) {
+if (eval(script("1\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u2029/\u0009\u000B\u000C\u0020\u00A0\u000A\u000D\u2028\u20291")) !== 1) {
   throw '#10: 1\\u0009\\u000B\\u000C\\u0020\\u00A0\\u000A\\u000D\\u2028\\u2029/\\u0009\\u000B\\u000C\\u0020\\u00A0\\u000A\\u000D\\u2028\\u20291 === 1';
 }
 

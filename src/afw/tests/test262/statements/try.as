@@ -537,46 +537,46 @@ assert(count.finally === 1, '3: finally count');
 #!/usr/bin/env afw
 
 assert(
-  evaluate(script('99; do { -99; try { 39 } catch (e) { -1 } finally { 42; break; -2 }; } while (false);')) === 42
+  eval(script('99; do { -99; try { 39 } catch (e) { -1 } finally { 42; break; -2 }; } while (false);')) === 42
 );
 assert(
-  evaluate(script('99; do { -99; try { [].x.x } catch (e) { -1; } finally { 42; break; -3 }; } while (false);')) === 42
+  eval(script('99; do { -99; try { [].x.x } catch (e) { -1; } finally { 42; break; -3 }; } while (false);')) === 42
 );
 assert(
-  evaluate(script('99; do { -99; try { 39 } catch (e) { -1 } finally { break; -2 }; } while (false);')) === undefined
+  eval(script('99; do { -99; try { 39 } catch (e) { -1 } finally { break; -2 }; } while (false);')) === undefined
 );
 assert(
-  evaluate(script('99; do { -99; try { [].x.x } catch (e) { -1; } finally { break; -3 }; } while (false);')) === undefined
+  eval(script('99; do { -99; try { [].x.x } catch (e) { -1; } finally { break; -3 }; } while (false);')) === undefined
 );
 assert(
-  evaluate(script('99; do { -99; try { 39 } catch (e) { -1 } finally { 42; break; -3 }; -77 } while (false);')) === 42
+  eval(script('99; do { -99; try { 39 } catch (e) { -1 } finally { 42; break; -3 }; -77 } while (false);')) === 42
 );
 assert(
-  evaluate(script('99; do { -99; try { [].x.x } catch (e) { -1; } finally { 42; break; -3 }; -77 } while (false);')) ===
+  eval(script('99; do { -99; try { [].x.x } catch (e) { -1; } finally { 42; break; -3 }; -77 } while (false);')) ===
   42
 );
 assert(
-  evaluate(script('99; do { -99; try { 39 } catch (e) { -1 } finally { break; -3 }; -77 } while (false);')) ===
+  eval(script('99; do { -99; try { 39 } catch (e) { -1 } finally { break; -3 }; -77 } while (false);')) ===
   undefined
 );
 assert(
-  evaluate(script('99; do { -99; try { [].x.x } catch (e) { -1; } finally { break; -3 }; -77 } while (false);')) ===
+  eval(script('99; do { -99; try { [].x.x } catch (e) { -1; } finally { break; -3 }; -77 } while (false);')) ===
   undefined
 );
 assert(
-  evaluate(script('99; do { -99; try { 39 } catch (e) { -1 } finally { 42; continue; -3 }; } while (false);')) ===
+  eval(script('99; do { -99; try { 39 } catch (e) { -1 } finally { 42; continue; -3 }; } while (false);')) ===
   42
 );
 assert(
-  evaluate(script('99; do { -99; try { [].x.x } catch (e) { -1; } finally { 42; continue; -3 }; } while (false);')) ===
+  eval(script('99; do { -99; try { [].x.x } catch (e) { -1; } finally { 42; continue; -3 }; } while (false);')) ===
   42
 );
 assert(
-  evaluate(script('99; do { -99; try { 39 } catch (e) { -1 } finally { 42; continue; -3 }; -77 } while (false);')) ===
+  eval(script('99; do { -99; try { 39 } catch (e) { -1 } finally { 42; continue; -3 }; -77 } while (false);')) ===
   42
 );
 assert(
-  evaluate(script('99; do { -99; try { [].x.x } catch (e) { -1 } finally { 42; continue; -3 }; -77 } while (false);')) ===
+  eval(script('99; do { -99; try { [].x.x } catch (e) { -1 } finally { 42; continue; -3 }; -77 } while (false);')) ===
   42
 );
 
@@ -590,7 +590,7 @@ assert(
 #!/usr/bin/env afw
 
 // Ensure the completion value from the first iteration ('bad completion') is not returned.
-let completion = evaluate(script("for (let i = 0; i < 2; i++) { if (i) { try { throw null; } catch (e) { break; } } 'bad completion'; }"));
+let completion = eval(script("for (let i = 0; i < 2; i++) { if (i) { try { throw null; } catch (e) { break; } } 'bad completion'; }"));
 assert(completion === undefined);
 
 
@@ -601,7 +601,7 @@ assert(completion === undefined);
 #!/usr/bin/env afw
 
 // Ensure the completion value from the first iteration ('bad completion') is not returned.
-let completion = evaluate(script("for (let i = 0; i < 2; i++) { if (i) { try { throw null; } catch (e) { continue; } } 'bad completion'; }"));
+let completion = eval(script("for (let i = 0; i < 2; i++) { if (i) { try { throw null; } catch (e) { continue; } } 'bad completion'; }"));
 assert(completion === undefined);
 
 
@@ -612,7 +612,7 @@ assert(completion === undefined);
 #!/usr/bin/env afw
 
 // Ensure the completion value from the first iteration ('bad completion') is not returned.
-let completion = evaluate(script("for (let i = 0; i < 2; i++) { if (i) { try { throw null; } catch (e) {} finally { break; } } 'bad completion'; }"));
+let completion = eval(script("for (let i = 0; i < 2; i++) { if (i) { try { throw null; } catch (e) {} finally { break; } } 'bad completion'; }"));
 assert(completion === undefined);
 
 
@@ -623,7 +623,7 @@ assert(completion === undefined);
 #!/usr/bin/env afw
 
 // Ensure the completion value from the first iteration ('bad completion') is not returned.
-let completion = evaluate(script("for (let i = 0; i < 2; i++) { if (i) { try { throw null; } catch (e) {} finally { continue; } } 'bad completion'; }"));
+let completion = eval(script("for (let i = 0; i < 2; i++) { if (i) { try { throw null; } catch (e) {} finally { continue; } } 'bad completion'; }"));
 assert(completion === undefined);
 
 
@@ -634,8 +634,8 @@ assert(completion === undefined);
 //? source: ...
 #!/usr/bin/env afw
 
-assert(evaluate(script('1; try { throw null; } catch (err) { }') === undefined);
-assert(evaluate(script('2; try { throw null; } catch (err) { 3; }') === 3);
+assert(eval(script('1; try { throw null; } catch (err) { }') === undefined);
+assert(eval(script('2; try { throw null; } catch (err) { 3; }') === 3);
 
 
 //? test: cptn-finally-empty-break
@@ -646,7 +646,7 @@ assert(evaluate(script('2; try { throw null; } catch (err) { 3; }') === 3);
 #!/usr/bin/env afw
 
 // Ensure the completion value from the first iteration ('bad completion') is not returned.
-let completion = evaluate(script("for (let i = 0; i < 2; ++i) { if (i) { try {} finally { break; } } 'bad completion'; }");
+let completion = eval(script("for (let i = 0; i < 2; ++i) { if (i) { try {} finally { break; } } 'bad completion'; }");
 assert(completion === undefined);
 
 
@@ -658,7 +658,7 @@ assert(completion === undefined);
 #!/usr/bin/env afw
 
 // Ensure the completion value from the first iteration ('bad completion') is not returned.
-let completion = evaluate(script("for (let i = 0; i < 2; ++i) { if (i) { try {} finally { continue; } } 'bad completion'; }");
+let completion = eval(script("for (let i = 0; i < 2; ++i) { if (i) { try {} finally { continue; } } 'bad completion'; }");
 assert(completion === undefined);
 
 
@@ -672,16 +672,16 @@ assert(completion === undefined);
 #!/usr/bin/env afw
 
 assert(
-  evaluate(script('1; try { throw null; } catch (err) { } finally { }'), undefined
+  eval(script('1; try { throw null; } catch (err) { } finally { }'), undefined
 );
 assert(
-  evaluate(script('2; try { throw null; } catch (err) { 3; } finally { }'), 3
+  eval(script('2; try { throw null; } catch (err) { 3; } finally { }'), 3
 );
 assert(
-  evaluate(script('4; try { throw null; } catch (err) { } finally { 5; }'), undefined
+  eval(script('4; try { throw null; } catch (err) { } finally { 5; }'), undefined
 );
 assert(
-  evaluate(script('6; try { throw null; } catch (err) { 7; } finally { 8; }'), 7
+  eval(script('6; try { throw null; } catch (err) { 7; } finally { 8; }'), 7
 );
 
 
@@ -694,14 +694,14 @@ assert(
 //? source: ...
 #!/usr/bin/env afw
 
-assert(evaluate(script('1; try { } catch (err) { } finally { }') === undefined);
-assert(evaluate(script('2; try { } catch (err) { 3; } finally { }') === undefined);
-assert(evaluate(script('4; try { } catch (err) { } finally { 5; }') === undefined);
-assert(evaluate(script('6; try { } catch (err) { 7; } finally { 8; }') === undefined);
-assert(evaluate(script('9; try { 10; } catch (err) { } finally { }') === 10);
-assert(evaluate(script('11; try { 12; } catch (err) { 13; } finally { }') === 12);
-assert(evaluate(script('14; try { 15; } catch (err) { } finally { 16; }') === 15);
-assert(evaluate(script('17; try { 18; } catch (err) { 19; } finally { 20; }') === 18);
+assert(eval(script('1; try { } catch (err) { } finally { }') === undefined);
+assert(eval(script('2; try { } catch (err) { 3; } finally { }') === undefined);
+assert(eval(script('4; try { } catch (err) { } finally { 5; }') === undefined);
+assert(eval(script('6; try { } catch (err) { 7; } finally { 8; }') === undefined);
+assert(eval(script('9; try { 10; } catch (err) { } finally { }') === 10);
+assert(eval(script('11; try { 12; } catch (err) { 13; } finally { }') === 12);
+assert(eval(script('14; try { 15; } catch (err) { } finally { 16; }') === 15);
+assert(eval(script('17; try { 18; } catch (err) { 19; } finally { 20; }') === 18);
 
 
 //? test: cptn-finally-wo-catch
@@ -711,10 +711,10 @@ assert(evaluate(script('17; try { 18; } catch (err) { 19; } finally { 20; }') ==
 //? source: ...
 #!/usr/bin/env afw
 
-assert(evaluate(script('1; try { } finally { }') === undefined);
-assert(evaluate(script('2; try { 3; } finally { }') === 3);
-assert(evaluate(script('4; try { } finally { 5; }') === undefined);
-assert(evaluate(script('6; try { 7; } finally { 8; }') === 7);
+assert(eval(script('1; try { } finally { }') === undefined);
+assert(eval(script('2; try { 3; } finally { }') === 3);
+assert(eval(script('4; try { } finally { 5; }') === undefined);
+assert(eval(script('6; try { 7; } finally { 8; }') === 7);
 
 
 //? test: cptn-try
@@ -724,10 +724,10 @@ assert(evaluate(script('6; try { 7; } finally { 8; }') === 7);
 //? source: ...
 #!/usr/bin/env afw
 
-assert(evaluate(script('1; try { } catch (err) { }') === undefined);
-assert(evaluate(script('2; try { 3; } catch (err) { }') === 3);
-assert(evaluate(script('4; try { } catch (err) { 5; }') === undefined);
-assert(evaluate(script('6; try { 7; } catch (err) { 8; }') === 7);
+assert(eval(script('1; try { } catch (err) { }') === undefined);
+assert(eval(script('2; try { 3; } catch (err) { }') === 3);
+assert(eval(script('4; try { } catch (err) { 5; }') === undefined);
+assert(eval(script('6; try { 7; } catch (err) { 8; }') === 7);
 
 //? test: early-catch-duplicates
 //? description:...
@@ -3046,7 +3046,7 @@ catch(e){
 // CHECK#2
   if (e.value!=='myObj_value') throw '#2: e.value===\'myObj_value\'. Actual:  e.value==='+ e.value ;
 // CHECK#3
-  if (e.evaluate(script()!=='obj_eval')) throw '#3: e.evaluate(script()===\'obj_eval\'. Actual:  e.evaluate(script())==='+ e.evaluate(script()) ;
+  if (e.eval(script()!=='obj_eval')) throw '#3: e.eval(script()===\'obj_eval\'. Actual:  e.eval(script())==='+ e.eval(script()) ;
 }
 
 // CHECK#4
@@ -4635,7 +4635,7 @@ try {
   // can't throw array
   throw [];
   // can't destructure catch
-} catch ([_ = (evaluate(script('let x = 3;'), probeParam = function() { return x; })]) {
+} catch ([_ = (eval(script('let x = 3;'), probeParam = function() { return x; })]) {
   let x = 4;
   probeBlock = function() { return x; };
 }

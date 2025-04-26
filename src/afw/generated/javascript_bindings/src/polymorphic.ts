@@ -380,7 +380,7 @@ export function afwEqx(client : any, arg1 : any, arg2 : any) : any {
 /**
  * Compile and evaluate `<dataType>` value.
  * 
- * @param {} source - `<dataType>` string to compile and evaluate
+ * @param {} source - `<dataType>` to compile and evaluate
  * 
  * @param {object} additionalUntrustedQualifiedVariables - This parameter
  *     supplies additional qualified variables that can be accessed during
@@ -389,13 +389,13 @@ export function afwEqx(client : any, arg1 : any, arg2 : any) : any {
  *     authorization. This parameter is intended to be used for testing only
  *     and should not be used for anything running in production.
  * 
- * @returns {unevaluated}
+ * @returns {any}
  */
-export function afwEvaluate(client : any, source : any, additionalUntrustedQualifiedVariables? : object) : any {
+export function afwEval(client : any, source : any, additionalUntrustedQualifiedVariables? : object) : any {
 
     let _action : IAnyObject = {};
 
-    _action["function"] = "evaluate";
+    _action["function"] = "eval";
     _action["source"] = source;
 
     if (additionalUntrustedQualifiedVariables !== undefined)

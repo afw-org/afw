@@ -1,17 +1,17 @@
 {
-    "afwCamelCaseFunctionLabel": "afwEvaluateXpathExpression",
-    "brief": "Evaluate xpathExpression value",
-    "camelCaseFunctionLabel": "evaluateXpathExpression",
+    "afwCamelCaseFunctionLabel": "afwEvalXpathExpression",
+    "brief": "Compile and evaluate xpathExpression value",
+    "camelCaseFunctionLabel": "evalXpathExpression",
     "category": "xpathExpression",
     "dataTypeMethod": true,
     "description": "Compile and evaluate xpathExpression value.",
-    "functionId": "evaluate<xpathExpression>",
-    "functionLabel": "evaluate_xpathExpression",
+    "functionId": "eval<xpathExpression>",
+    "functionLabel": "eval_xpathExpression",
     "parameters": [
         {
-            "brief": "Source to evaluate",
+            "brief": "Source to eval",
             "dataType": "xpathExpression",
-            "description": "xpathExpression string to compile and evaluate",
+            "description": "xpathExpression to compile and evaluate",
             "name": "source"
         },
         {
@@ -24,6 +24,6 @@
         }
     ],
     "returns": {
-        "dataType": "unevaluated"
+        "dataType": "any"
     }
 }

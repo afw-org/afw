@@ -237,6 +237,33 @@ export function afwEqxString(client : any, arg1 : string, arg2 : any) : any {
 }
 
 /**
+ * Compile and evaluate string value as adaptive script.
+ * 
+ * @param {string} source - string to compile and evaluate
+ * 
+ * @param {object} additionalUntrustedQualifiedVariables - This parameter
+ *     supplies additional qualified variables that can be accessed during
+ *     evaluation. These variables will not be used by anything that needs to
+ *     ensure its qualified variables must come from a trusted source, such as
+ *     authorization. This parameter is intended to be used for testing only
+ *     and should not be used for anything running in production.
+ * 
+ * @returns {any}
+ */
+export function afwEvalString(client : any, source : string, additionalUntrustedQualifiedVariables? : object) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "eval<string>";
+    _action["source"] = source;
+
+    if (additionalUntrustedQualifiedVariables !== undefined)
+        _action["additionalUntrustedQualifiedVariables"] = additionalUntrustedQualifiedVariables;
+
+    return client.perform(_action);
+}
+
+/**
  * Checks for string arg1 is greater than or equal to string arg2 and return
  * the boolean result.
  * 

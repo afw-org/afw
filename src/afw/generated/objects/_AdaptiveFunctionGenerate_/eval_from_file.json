@@ -1,10 +1,11 @@
 {
-    "brief": "Compile an external file",
+    "afwCamelCaseFunctionLabel": "afwEvalFromFile",
+    "brief": "Compile and evaluate an external file",
+    "camelCaseFunctionLabel": "evalFromFile",
     "category": "compiler",
-    "deprecated": true,
-    "description": "Load an external adaptive script, json, or template to be compiled and returned.",
-    "functionId": "compile_from_file",
-    "functionLabel": "compile_from_file",
+    "description": "Load an external adaptive script, json, or template to be compiled and evaluate.",
+    "functionId": "eval_from_file",
+    "functionLabel": "eval_from_file",
     "parameters": [
         {
             "dataType": "string",

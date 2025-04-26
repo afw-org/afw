@@ -5,12 +5,11 @@
     "description": "Compile <dataType> value and return either an unevaluated adaptive value or a string containing the compiler listing.",
     "functionId": "compile",
     "functionLabel": "compile",
-    "pure": true,
     "parameters": [
         {
             "brief": "Source to compile",
             "description": "<dataType> string to compile",
-            "name": "source",   
+            "name": "source",
             "polymorphicDataType": true
         },
         {
@@ -29,6 +28,7 @@
         "template",
         "xpathExpression"
     ],
+    "pure": true,
     "returns": {
         "dataType": "unevaluated"
     }

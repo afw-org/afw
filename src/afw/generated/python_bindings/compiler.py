@@ -120,7 +120,44 @@ def decompile(session, value, whitespace=None):
 
     return response['actions'][0]['result']
 
-def evaluate_value(session, value, additionalUntrustedQualifiedVariables=None):
+def eval_from_file(session, file, compileType=None):
+    """
+    Compile and evaluate an external file
+
+    Load an external adaptive script, json, or template to be compiled and
+    evaluate.
+
+    Args:
+        file (str): The path of the file to include, which will be resolved
+        using rootFilePaths.
+
+        compileType (str): The compile type, used by the parser to determine
+        how to compile the data. For example, 'json', 'relaxed_json',
+        'script', 'template'
+
+    Returns:
+        object:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "eval_from_file",
+        "file": file
+    }
+
+    if compileType != None:
+        action['compileType'] = compileType
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def evaluate(session, value, additionalUntrustedQualifiedVariables=None):
     """
     Evaluate value
 
@@ -143,7 +180,7 @@ def evaluate_value(session, value, additionalUntrustedQualifiedVariables=None):
     request = session.Request()
 
     action = {
-        "function": "evaluate_value",
+        "function": "evaluate",
         "value": value
     }
 

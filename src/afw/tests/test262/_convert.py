@@ -65,7 +65,7 @@ for line in lines:
             converted = converted[::-1].replace(")", "", 1)[::-1]
 
         #if "eval(" in converted:
-        #    converted = re.sub(r'(eval(":[.*]"))', r'evaluate(script("\1"))')
+        #    converted = re.sub(r'(eval(":[.*]"))', r'eval(script("\1"))')
 
         if "var " in converted:
             converted = converted.replace("var ", "let ")

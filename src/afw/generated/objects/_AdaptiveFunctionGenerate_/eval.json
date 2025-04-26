@@ -1,0 +1,43 @@
+{
+    "afwCamelCaseFunctionLabel": "afwEval",
+    "brief": "Compile and evaluate <dataType> value",
+    "camelCaseFunctionLabel": "eval",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Compile and evaluate <dataType> value.",
+    "functionId": "eval",
+    "functionLabel": "eval",
+    "parameters": [
+        {
+            "brief": "Source to eval",
+            "description": "<dataType> to compile and evaluate",
+            "name": "source",
+            "polymorphicDataType": true
+        },
+        {
+            "brief": "Additional untrusted qualified variables",
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveTemplatePropertiesObjects_",
+            "description": "This parameter supplies additional qualified variables that can be accessed during evaluation. These variables will not be used by anything that needs to ensure its qualified variables must come from a trusted source, such as authorization. This parameter is intended to be used for testing only and should not be used for anything running in production.",
+            "name": "additionalUntrustedQualifiedVariables",
+            "optional": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "script",
+        "string",
+        "template",
+        "xpathExpression"
+    ],
+    "polymorphicOverrides": {
+        "string": {
+            "brief": "Compile and evaluate string value as adaptive script",
+            "description": "Compile and evaluate string value as adaptive script."
+        }
+    },
+    "returns": {
+        "dataType": "any"
+    },
+    "useExecuteFunction": "AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING"
+}

@@ -88,11 +88,8 @@ impl_afw_value_get_data_type(
     const afw_value_t * instance,
     afw_xctx_t *xctx)
 {
-    const afw_value_compiled_value_t *self =
-        (const afw_value_compiled_value_t *)instance;
-
-    /* Return the result of calling root value's get_data_type(). */
-    return afw_value_get_data_type(self->root_value, xctx);
+    /* Compiled values are always data type unevaluated. */
+    return &afw_data_type_unevaluated_direct;
 }
 
 /*

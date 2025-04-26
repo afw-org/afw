@@ -10188,7 +10188,7 @@
                 },
                 "scriptSupportNumber": 0
             },
-            "evaluate_xpathExpression": {
+            "eval_xpathExpression": {
                 "afwCamelCaseFunctionLabel": "afwEvaluateXpathExpression",
                 "brief": "Evaluate xpathExpression value",
                 "camelCaseFunctionLabel": "evaluateXpathExpression",
@@ -10197,8 +10197,8 @@
                 "dataTypeMethodNumber": 52,
                 "deprecated": false,
                 "description": "Compile and evaluate xpathExpression value.",
-                "functionId": "evaluate<xpathExpression>",
-                "functionLabel": "evaluate_xpathExpression",
+                "functionId": "eval<xpathExpression>",
+                "functionLabel": "eval_xpathExpression",
                 "functionSignature": "unevaluated(xpathExpression source, (object _AdaptiveTemplatePropertiesObjects_) additionalContext?)",
                 "functionDeclaration": "/* Evaluate xpathExpression value */\nunevaluated (\n    xpathExpression source                                        /* Source to evaluate */,\n    (object _AdaptiveTemplatePropertiesObjects_) additionalContext? /* Additional context */)",
                 "parameters": [
@@ -19171,8 +19171,8 @@
                 },
                 "scriptSupportNumber": 0
             },
-            "evaluate_script": {
-                "afwCamelCaseFunctionLabel": "afwEvaluateScript",
+            "eval_script": {
+                "afwCamelCaseFunctionLabel": "afwEvalScript",
                 "brief": "Evaluate script value",
                 "camelCaseFunctionLabel": "evaluateScript",
                 "category": "script",
@@ -19180,8 +19180,8 @@
                 "dataTypeMethodNumber": 52,
                 "deprecated": false,
                 "description": "Compile and evaluate script value.",
-                "functionId": "evaluate<script>",
-                "functionLabel": "evaluate_script",
+                "functionId": "eval<script>",
+                "functionLabel": "eval_script",
                 "functionSignature": "unevaluated(script source, (object _AdaptiveTemplatePropertiesObjects_) additionalContext?)",
                 "functionDeclaration": "/* Evaluate script value */\nunevaluated (\n    script source                                                 /* Source to evaluate */,\n    (object _AdaptiveTemplatePropertiesObjects_) additionalContext? /* Additional context */)",
                 "parameters": [
@@ -28622,8 +28622,8 @@
                 },
                 "scriptSupportNumber": 0
             },
-            "evaluate_template": {
-                "afwCamelCaseFunctionLabel": "afwEvaluateTemplate",
+            "eval_template": {
+                "afwCamelCaseFunctionLabel": "afwEvalTemplate",
                 "brief": "Evaluate template value",
                 "camelCaseFunctionLabel": "evaluateTemplate",
                 "category": "template",
@@ -28631,8 +28631,8 @@
                 "dataTypeMethodNumber": 52,
                 "deprecated": false,
                 "description": "Compile and evaluate template value.",
-                "functionId": "evaluate<template>",
-                "functionLabel": "evaluate_template",
+                "functionId": "eval<template>",
+                "functionLabel": "eval_template",
                 "functionSignature": "unevaluated(template source, (object _AdaptiveTemplatePropertiesObjects_) additionalContext?)",
                 "functionDeclaration": "/* Evaluate template value */\nunevaluated (\n    template source                                               /* Source to evaluate */,\n    (object _AdaptiveTemplatePropertiesObjects_) additionalContext? /* Additional context */)",
                 "parameters": [

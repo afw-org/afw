@@ -232,21 +232,31 @@ impl_assignment_target(
 {
     const afw_compile_assignment_target_t *at =
         target->assignment_target;
+    const afw_value_block_symbol_t *symbol;
 
     switch (at->target_type) {
     case afw_compile_assignment_target_type_list_destructure:
+        if (afw_value_is_compiled_value(value)) {
+            value = afw_value_evaluate(value, p, xctx);
+        }
         impl_list_destructure(at, at->list_destructure, value,
             assignment_type, p, xctx);
         break;
 
     case afw_compile_assignment_target_type_object_destructure:
+        if (afw_value_is_compiled_value(value)) {
+            value = afw_value_evaluate(value, p, xctx);
+        }
         impl_object_destructure(at, at->object_destructure, value,
             assignment_type, p, xctx);
         break;
 
     case afw_compile_assignment_target_type_symbol_reference:
-        afw_xctx_scope_symbol_set_value(
-            at->symbol_reference->symbol, value, xctx);
+        symbol = at->symbol_reference->symbol;
+        if (symbol->type.data_type != afw_data_type_unevaluated) {
+            value = afw_value_evaluate(value, p, xctx);
+        }
+        afw_xctx_scope_symbol_set_value(symbol, value, xctx);
         break;
 
     case afw_compile_assignment_target_type_max_type:

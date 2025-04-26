@@ -204,7 +204,7 @@ impl_afw_value_decompile(
         return;
     }
 
-    afw_writer_write_z(writer, "evaluate_template(", xctx);
+    afw_writer_write_z(writer, "eval_template(", xctx);
 
     /*impl_decompile_template(self, writer, xctx);*/
     string_value.inf = &afw_value_unmanaged_string_inf;

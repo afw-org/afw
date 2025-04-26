@@ -39,7 +39,7 @@ return 0;
 //? expect: 0
 //? source: ...
 
-const obj = compile_from_file("includes/good.as");
+const obj = evaluate(compile_from_file("includes/good.as"));
 
 assert(obj.func1());
 assert(!obj.func2());

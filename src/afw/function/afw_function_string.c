@@ -417,3 +417,69 @@ afw_function_execute_url_decode(
     /** @todo should this be here or in anyURI?. */
     AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
 }
+
+
+
+/*
+ * Adaptive function: eval<string>
+ *
+ * afw_function_execute_eval_string
+ *
+ * See afw_function_bindings.h for more information.
+ *
+ * Compile and evaluate string value as adaptive script.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function eval<string>(
+ *       source: string,
+ *       additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_)
+ *   ): any;
+ * ```
+ *
+ * Parameters:
+ *
+ *   source - (string) string to compile and evaluate.
+ *
+ *   additionalUntrustedQualifiedVariables - (optional object
+ *       _AdaptiveTemplatePropertiesObjects_) This parameter supplies additional
+ *       qualified variables that can be accessed during evaluation. These
+ *       variables will not be used by anything that needs to ensure its
+ *       qualified variables must come from a trusted source, such as
+ *       authorization. This parameter is intended to be used for testing only
+ *       and should not be used for anything running in production.
+ *
+ * Returns:
+ *
+ *   (any)
+ */
+const afw_value_t *
+afw_function_execute_eval_string(
+    afw_function_execute_t *x)
+{
+    const afw_value_string_t *script;
+    const afw_value_t *compiled;
+    const afw_value_t *value;
+
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(script, 1, string);
+
+    compiled = afw_compile_to_value(
+        &script->internal, AFW_FUNCTION_SOURCE_LOCATION,
+        afw_compile_type_script,
+        NULL, NULL, x->p, x->xctx);
+
+    if (AFW_FUNCTION_PARAMETER_IS_PRESENT(2)) {
+        value = afw_value_evaluate_with_additional_untrusted_qualified_variables(
+            compiled, x->argv[2], x->p, x->xctx);
+    }
+    else {
+        value = afw_value_evaluate(compiled, x->p, x->xctx);
+    }
+    
+    afw_xctx_statement_flow_reset_all_except_rethrow(x->xctx);
+    return value;
+}

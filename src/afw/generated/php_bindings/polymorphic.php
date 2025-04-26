@@ -468,11 +468,11 @@ class polymorphic
     }
 
     /**
-     * evaluate()
+     * eval()
      *
      * Compile and evaluate `<dataType>` value.
      *
-     * @param  $source `<dataType>` string to compile and evaluate
+     * @param  $source `<dataType>` to compile and evaluate
      * @param object $additionalUntrustedQualifiedVariables This parameter
      *                                                      supplies
      *                                                      additional
@@ -498,13 +498,13 @@ class polymorphic
      *                                                      anything running
      *                                                      in production.
      *
-     * @return unevaluated
+     * @return any
      */
-    public function evaluate(, $source, $additionalUntrustedQualifiedVariables = null)
+    public function eval(, $source, $additionalUntrustedQualifiedVariables = null)
     {
         $request = $this->$session->request();
 
-        $request->set("function", "evaluate");
+        $request->set("function", "eval");
 
         /* pass along required parameters to the request payload */
         $request->set("source", $source);

@@ -69,7 +69,7 @@
 
 
 assert(
-  evaluate(script('let test262id1;')) == undefined, 
+  eval(script('let test262id1;')) == undefined, 
   'Single declaration without initializer'
 );
 
@@ -77,23 +77,23 @@ assert(
 // returns the value assigned. In ECMAScript, it returns undefined.
 // If we change this in the future, the expect should also be changed.
 assert(
-  evaluate(script('let test262id2 = 2;')) == undefined,
+  eval(script('let test262id2 = 2;')) == undefined,
   'Single declaration bearing initializer'
 );
 assert(
-  evaluate(script('let test262id3 = 3, test262id4;')) == undefined,
+  eval(script('let test262id3 = 3, test262id4;')) == undefined,
   'Multiple declarations, final without initializer'
 );
 assert(
-  evaluate(script('let test262id5, test262id6 = 6;')) == undefined,
+  eval(script('let test262id5, test262id6 = 6;')) == undefined,
   'Multiple declarations, final bearing initializer'
 );
 
 // can't do expressions as statements in adaptive script
-assert(evaluate(script('7; let test262id8;')) === 7);
-assert(evaluate(script('9; let test262id10 = 10;')) === 9);
-assert(evaluate(script('11; let test262id12 = 12 === test262id13;')) === 11);
-assert(evaluate(script('14; let test262id15 === test262id16 = 16;')) === 14);
+assert(eval(script('7; let test262id8;')) === 7);
+assert(eval(script('9; let test262id10 = 10;')) === 9);
+assert(eval(script('11; let test262id12 = 12 === test262id13;')) === 11);
+assert(eval(script('14; let test262id15 === test262id16 = 16;')) === 14);
 
 
 //? test: fn-name-arrow

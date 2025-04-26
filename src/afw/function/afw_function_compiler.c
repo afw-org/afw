@@ -177,9 +177,9 @@ afw_function_execute_decompile(
 
 
 /*
- * Adaptive function: evaluate_value
+ * Adaptive function: evaluate
  *
- * afw_function_execute_evaluate_value
+ * afw_function_execute_evaluate
  *
  * See afw_function_bindings.h for more information.
  *
@@ -191,7 +191,7 @@ afw_function_execute_decompile(
  * Declaration:
  *
  * ```
- *   function evaluate_value(
+ *   function evaluate(
  *       value: any,
  *       additionalUntrustedQualifiedVariables?: (object _AdaptiveTemplatePropertiesObjects_)
  *   ): any;
@@ -199,7 +199,7 @@ afw_function_execute_decompile(
  *
  * Parameters:
  *
- *   value - (any dataType)
+ *   value - (any)
  *
  *   additionalUntrustedQualifiedVariables - (optional object
  *       _AdaptiveTemplatePropertiesObjects_) This parameter supplies additional
@@ -211,10 +211,10 @@ afw_function_execute_decompile(
  *
  * Returns:
  *
- *   (any dataType) Evaluated adaptive value.
+ *   (any) Evaluated adaptive value.
  */
 const afw_value_t *
-afw_function_execute_evaluate_value(
+afw_function_execute_evaluate(
     afw_function_execute_t *x)
 {
     const afw_value_t *value;
@@ -225,9 +225,13 @@ afw_function_execute_evaluate_value(
                 x->argv[1], x->argv[2], x->p, x->xctx);
     }
     else {
-        value = afw_value_evaluate(x->argv[0], x->p, x->xctx);
+        value = afw_value_evaluate(x->argv[1], x->p, x->xctx);
     }
   
+    if (afw_value_is_compiled_value(value)) {
+        value = afw_value_evaluate(value, x->p, x->xctx);
+    }
+
     afw_xctx_statement_flow_reset_all_except_rethrow(x->xctx);
     return value;
 }
@@ -978,6 +982,8 @@ int impl_octet_get_cb(afw_utf8_octet_t *octet, void *data, afw_xctx_t *xctx)
  *
  * See afw_function_bindings.h for more information.
  *
+ * This function is deprecated.
+ *
  * Load an external adaptive script, json, or template to be compiled and
  * returned.
  *
@@ -1013,7 +1019,6 @@ afw_function_execute_compile_from_file(
     afw_xctx_t *xctx = x->xctx;
     const afw_pool_t *p = x->p;
     const afw_value_t *result = NULL;
-    const afw_value_t *compiled_value;
     const afw_value_string_t *file_value;
     const afw_value_string_t *compile_type_value;
     afw_compile_type_t compile_type = afw_compile_type_script;
@@ -1087,12 +1092,11 @@ afw_function_execute_compile_from_file(
 
     /* read it using a callback and let it convert to an adaptive value */
     AFW_TRY {
-        compiled_value = afw_compile_to_value_with_callback(NULL,
+        result = afw_compile_to_value_with_callback(NULL,
             impl_octet_get_cb, self, file, compile_type, 
             afw_compile_residual_check_to_full,
             NULL, NULL, x->p, xctx
         );
-        result = afw_value_evaluate(compiled_value, p, xctx);
     }
     AFW_FINALLY {
         apr_file_close(self->f);
@@ -1105,4 +1109,52 @@ afw_function_execute_compile_from_file(
     }
 
     return result;
+}
+
+
+
+/*
+ * Adaptive function: eval_from_file
+ *
+ * afw_function_execute_eval_from_file
+ *
+ * See afw_function_bindings.h for more information.
+ *
+ * Load an external adaptive script, json, or template to be compiled and
+ * evaluate.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function eval_from_file(
+ *       file: string,
+ *       compileType?: string
+ *   ): any;
+ * ```
+ *
+ * Parameters:
+ *
+ *   file - (string) The path of the file to include, which will be resolved
+ *       using rootFilePaths.
+ *
+ *   compileType - (optional string) The compile type, used by the parser to
+ *       determine how to compile the data.
+ *       For example, 'json', 'relaxed_json', 'script', 'template'.
+ *
+ * Returns:
+ *
+ *   (any)
+ */
+const afw_value_t *
+afw_function_execute_eval_from_file(
+    afw_function_execute_t *x)
+{
+    const afw_value_t *result;
+
+    /* This is the same as compile except it also calls evalaute. */
+    result = afw_function_execute_compile_from_file(x);
+    return afw_value_evaluate(result, x->p, x->xctx);
 }

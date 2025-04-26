@@ -7,7 +7,7 @@
 #        "afwfcgi" mode.
 # @details These tests assume the nginx/afwfcgi service is running on 
 #          localhost:8080. Scripts are executed over HTTP remotely using the 
-#          evaluate_script() Python binding function.
+#          eval_script() Python binding function.
 #
 #          Only Adaptive Scripts (.as) are supported.
 #
@@ -15,7 +15,7 @@
 import os
 
 from afw import Session
-from python_bindings.script import evaluate_script
+from python_bindings.script import eval_script
 from _afwdev.common import msg
 
 ##
@@ -63,7 +63,7 @@ def run_test(test, options, testEnvironment=None, testGroupConfig=None):
 
         if not syntax or syntax == 'test_script':         
             msg.debug("Running test script: %s" % test)
-            result = evaluate_script(session, source)                    
+            result = eval_script(session, source)                    
 
     except Exception as e:
         msg.debug(str(e))
