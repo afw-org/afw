@@ -1,7 +1,5 @@
 #!/usr/bin/env afw
 
-trace("onSetProperty..");
-
 assert(variable_exists("current::adapterId"));
 assert(current::adapterId === 'model');
 
