@@ -52,3 +52,22 @@ assert((result.objectId === "TestObject3"), "objectId was not created with onAdd
 delete_object("model", "MyObjectType3", "TestObject3");
 
 return 0;
+
+
+//? test: Test onAddObject Qualified Variables
+//? description: Test onAddObject qualified variables
+//? expect: 0
+//? source: ...
+
+const result = add_object(
+    "model", 
+    "TestQualifiedVariables",
+    { "x": true },
+    "abc",
+    { "extra": "journal" },
+    { "func": "add_object" }
+);
+
+assert(result.objectId === "xyz");
+
+return 0;

@@ -1142,6 +1142,7 @@ impl_afw_adapter_session_retrieve_objects(
                 ctx->mapped_object_type_id_value =
                     ctx->model_object_type->mapped_object_type_id_value;
                 ctx->criteria = criteria;
+                ctx->adapterTypeSpecific = adapter_type_specific;
 
                 result = afw_value_evaluate(
                     cb_ctx.model_object_type->onRetrieveObjects,
@@ -1258,6 +1259,7 @@ impl_afw_adapter_session_get_object(
                 ctx->mapped_object_type_id_value =
                     ctx->model_object_type->mapped_object_type_id_value;
                 ctx->object_id = object_id;
+                ctx->adapterTypeSpecific = adapter_type_specific;
 
                 object_value = afw_value_evaluate(
                     cb_ctx.model_object_type->onGetObject,
@@ -1464,6 +1466,7 @@ impl_afw_adapter_session_add_object(
                 xctx);
             ctx->object = object;
             ctx->process_initial_values = true;
+            ctx->adapterTypeSpecific = adapter_type_specific;
 
             /* If onAddObject, evaluate it. */
             use_default_processing = true;
@@ -1631,6 +1634,7 @@ impl_afw_adapter_session_modify_object(
                 object_id,
                 xctx);
             ctx->modify_entries = entry;
+            ctx->adapterTypeSpecific = adapter_type_specific;
 
             /* If onModifyObject, evaluate it to modify object. */
             use_default_processing = true;
@@ -1729,6 +1733,7 @@ impl_afw_adapter_session_replace_object(
                 object_id,
                 xctx);
             ctx->object = replacement_object;
+            ctx->adapterTypeSpecific = adapter_type_specific;
 
             /* If onReplaceObject, evaluate it. */
             use_default_processing = true;
@@ -1820,6 +1825,7 @@ impl_afw_adapter_session_delete_object(
                 object_type_id,
                 object_id,
                 xctx);
+            ctx->adapterTypeSpecific = adapter_type_specific;
 
             /* If onDeleteObject, evaluate it. */
             use_default_processing = true;

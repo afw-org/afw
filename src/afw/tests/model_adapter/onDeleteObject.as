@@ -36,3 +36,21 @@ assert(
 );
 
 return 0;
+
+
+//? test: Test onDeleteObject Qualified Variables
+//? description: Test onDeleteObject qualified variables
+//? expect: 0
+//? source: ...
+
+const result = delete_object(
+    "model", 
+    "TestQualifiedVariables",
+    "xyz",
+    { "extra": "journal" },
+    { "func": "delete_object" }
+);
+
+assert(result.extra === "journal");
+
+return 0;

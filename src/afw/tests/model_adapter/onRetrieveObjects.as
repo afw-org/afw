@@ -52,3 +52,22 @@ assert(obj !== undefined);
 assert(obj.MyTestString1 === "This is a test string.");
 
 return 0;
+
+
+//? test: Test onRetrieveObjects Qualified Variables
+//? description: Test onRetrieveObjects qualified variables
+//? expect: 0
+//? source: ...
+
+const objects = retrieve_objects(
+    "model", 
+    "TestQualifiedVariables",
+    { "urlEncodedRQLString": "x=true"},
+    { "objectId": true },
+    { "func": "retrieve_objects" }
+);
+
+assert(length(objects) == 1);
+assert(objects[0].x === true);
+
+return 0;

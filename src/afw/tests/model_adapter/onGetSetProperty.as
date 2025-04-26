@@ -37,3 +37,35 @@ assert((length(x) === 1), "Expected x to have length of 1, instead length = " + 
 assert((x[0] === "x"), "Expected 'x', got " + string(x));
 
 return 0;
+
+
+
+//? test: Test onGetProperty Qualified Variables
+//? description: Test onGetProperty qualified variables
+//? expect: 0
+//? source: ...
+
+let result: object;
+
+// create a simple object
+result = add_object(
+    "model",
+    "TestPropertyQualifiedVariables",
+    { "x": true },
+    'abc',
+    ,
+    { 'objectId': 'hijklmn'}
+);
+assert((result.objectId == 'hijklmn'), "objectId was not created properly");
+
+const obj = get_object(
+    "model", 
+    "TestPropertyQualifiedVariables",
+    'hijklmn',
+    { "objectId": true },
+    { "func": "get_object" }
+);
+
+assert(obj.x === false);
+
+return 0;
