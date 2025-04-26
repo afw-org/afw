@@ -65,13 +65,13 @@
             }
         },
         "TestQualifiedVariables": {
-            "onRetrieveObjects": "compile_from_file('includes/onRetrieveObjects.as')",
-            "onAddObject": "compile_from_file('includes/onAddObject.as')",
-            "onDeleteObject": "compile_from_file('includes/onDeleteObject.as')",
-            "onGetInitialObjectId": "compile_from_file('includes/onGetInitialObjectId.as')",
-            "onGetObject": "compile_from_file('includes/onGetObject.as')",
-            "onModifyObject": "compile_from_file('includes/onModifyObject.as')",
-            "onReplaceObject": "compile_from_file('includes/onReplaceObject.as')",
+            "onRetrieveObjects": "eval_from_file('includes/onRetrieveObjects.as')",
+            "onAddObject": "eval_from_file('includes/onAddObject.as')",
+            "onDeleteObject": "eval_from_file('includes/onDeleteObject.as')",
+            "onGetInitialObjectId": "eval_from_file('includes/onGetInitialObjectId.as')",
+            "onGetObject": "eval_from_file('includes/onGetObject.as')",
+            "onModifyObject": "eval_from_file('includes/onModifyObject.as')",
+            "onReplaceObject": "eval_from_file('includes/onReplaceObject.as')",
             "propertyTypes": {
                 "x": {
                     "dataType": "boolean",
@@ -80,13 +80,13 @@
             }
         },
         "TestPropertyQualifiedVariables": {
-            "onGetInitialObjectId": "compile_from_file('includes/onGetInitialObjectId.as')",
+            "onGetInitialObjectId": "eval_from_file('includes/onGetInitialObjectId.as')",
             "propertyTypes": {
                 "x": {
                     "dataType": "boolean",
                     "allowQuery": true,
-                    "onGetProperty": "compile_from_file('includes/onGetProperty.as')",
-                    "onSetProperty": "compile_from_file('includes/onSetProperty.as')"
+                    "onGetProperty": "eval_from_file('includes/onGetProperty.as')",
+                    "onSetProperty": "eval_from_file('includes/onSetProperty.as')"
                 }
             }
         }
