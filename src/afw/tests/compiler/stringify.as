@@ -117,3 +117,118 @@ result = stringify(obj,,"    ");
 assert(result == "{\n    \"a\": \"b\",\n    \"c\": 1,\n    \"d\": true\n}");
 
 return 0;
+
+
+//? test: stringify-object-property-escape-quote
+//? description: ...
+Test stringify of objects, containing properties with 
+names that include quotes.
+The expect matching is a bit of a mess, since there's 
+so many layers of escape that need to happen in this 
+test!
+//? skip: false
+//? expect: "{\"a\\\\\\\"b\":\"c\"}"
+//? source: ...
+
+const str = "a\\\"b";
+
+let obj = {};
+obj[str] = "c";
+
+return stringify(obj);
+
+
+//? test: stringify-object-property-escape-tab
+//? description: ...
+Test stringify of objects, containing properties with 
+names that include tabs
+//? skip: false
+//? expect: "{\"a\\tb\":\"c\"}"
+//? source: ...
+
+const str = "a\tb";
+
+let obj = {};
+obj[str] = "c";
+
+return stringify(obj);
+
+
+//? test: stringify-object-property-escape-nl
+//? description: ...
+Test stringify of objects, containing properties with 
+names that include newlines
+//? skip: false
+//? expect: "{\"a\\nb\":\"c\"}"
+//? source: ...
+
+const str = "a\nb";
+
+let obj = {};
+obj[str] = "c";
+
+return stringify(obj);
+
+
+//? test: stringify-object-property-escape-cr
+//? description: ...
+Test stringify of objects, containing properties with 
+names that include carriage returns
+//? skip: false
+//? expect: "{\"a\\rb\":\"c\"}"
+//? source: ...
+
+const str = "a\rb";
+
+let obj = {};
+obj[str] = "c";
+
+return stringify(obj);
+
+
+//? test: stringify-object-property-escape-formfeed
+//? description: ...
+Test stringify of objects, containing properties with 
+names that include formfeeds
+//? skip: false
+//? expect: "{\"a\\fb\":\"c\"}"
+//? source: ...
+
+const str = "a\fb";
+
+let obj = {};
+obj[str] = "c";
+
+return stringify(obj);
+
+
+//? test: stringify-object-property-escape-bell
+//? description: ...
+Test stringify of objects, containing properties with 
+names that include bells
+//? skip: false
+//? expect: "{\"a\\bb\":\"c\"}"
+//? source: ...
+
+const str = "a\u{0007}b";
+
+let obj = {};
+obj[str] = "c";
+
+return stringify(obj);
+
+
+//? test: stringify-object-property-escape-control-char
+//? description: ...
+Test stringify of objects, containing properties with 
+names that include other control characters
+//? skip: false
+//? expect: "{\"a\\u0005b\":\"c\"}"
+//? source: ...
+
+const str = "a\u{0005}b";
+
+let obj = {};
+obj[str] = "c";
+
+return stringify(obj);

@@ -36,11 +36,6 @@ impl_put_json_string(
     const afw_utf8_t *string);
 
 static void
-impl_put_quoted_to_json(
-    impl_from_value_wa_t *wa,
-    const afw_utf8_t *s);
-
-static void
 impl_convert_boolean_to_json(
     impl_from_value_wa_t *wa,
     afw_boolean_t b);
@@ -188,20 +183,6 @@ impl_put_json_string(
 
 
 static void
-impl_put_quoted_to_json(
-    impl_from_value_wa_t *wa,
-    const afw_utf8_t *s)
-{
-    impl_putc(wa, '"');
-    /** @fixme Need to encode?*/
-    if (s) {
-        impl_write(wa, s->s, s->len);
-    }
-    impl_putc(wa, '"');
-}
-
-
-static void
 impl_convert_boolean_to_json(
     impl_from_value_wa_t *wa,
     afw_boolean_t b)
@@ -294,7 +275,7 @@ impl_convert_object_to_json(
             }
             impl_put_ws(wa);
             wa->skip_next_ws = 1;
-            impl_put_quoted_to_json(wa, property_name);
+            impl_put_json_string(wa, property_name);
 
             impl_putc(wa, ':');
             if (wa->do_ws) {
@@ -403,7 +384,7 @@ impl_convert_value_to_json(
             AFW_JSON_S_PRIMITIVE_NUMBER))
         {
             if (afw_value_is_integer(value) &&
-                /** @fixme (option quoute all || */
+                /** @fixme (option quote all || */
                 !AFW_INTEGER_IS_SAFE_DOUBLE(
                 ((const afw_value_integer_t *)value)->internal))
                 )
