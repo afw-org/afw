@@ -85,6 +85,22 @@ afw_curl_internal_http_patch(
     const afw_pool_t        * pool,
     afw_xctx_t              * xctx);
 
+const afw_object_t *
+afw_curl_internal_http_head(
+    const afw_utf8_t        * url,
+    const afw_array_t       * headers,
+    const afw_object_t      * options,
+    const afw_pool_t        * pool,
+    afw_xctx_t              * xctx);
+
+const afw_object_t *
+afw_curl_internal_http_options(
+    const afw_utf8_t        * url,
+    const afw_array_t       * headers,
+    const afw_object_t      * options,
+    const afw_pool_t        * pool,
+    afw_xctx_t              * xctx);
+
 void 
 afw_curl_internal_smtp_send(
     const afw_utf8_t        * url,

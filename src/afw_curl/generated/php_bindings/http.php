@@ -88,6 +88,68 @@ class http
     }
 
     /**
+     * http_head()
+     *
+     * Makes a HTTP HEAD Request.
+     *
+     * @param string $url HTTP Url.
+     * @param array $headers HTTP Headers.
+     * @param object $options CURL Options
+     *
+     * @return object Returns an object describing the response from the HTTP
+     *                head request.
+     */
+    public function http_head(, $url, $headers = null, $options = null)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "http_head");
+
+        /* pass along required parameters to the request payload */
+        $request->set("url", $url);
+
+        /* pass along any optional parameters to the request payload */
+        if ($headers != null)
+            $request->set('headers', $headers);
+
+        if ($options != null)
+            $request->set('options', $options);
+
+        return $request->get_result();
+    }
+
+    /**
+     * http_options()
+     *
+     * Makes a HTTP OPTIONS Request.
+     *
+     * @param string $url HTTP Url.
+     * @param array $headers HTTP Headers.
+     * @param object $options CURL Options
+     *
+     * @return object Returns an object describing the response from the HTTP
+     *                OPTIONS request.
+     */
+    public function http_options(, $url, $headers = null, $options = null)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "http_options");
+
+        /* pass along required parameters to the request payload */
+        $request->set("url", $url);
+
+        /* pass along any optional parameters to the request payload */
+        if ($headers != null)
+            $request->set('headers', $headers);
+
+        if ($options != null)
+            $request->set('options', $options);
+
+        return $request->get_result();
+    }
+
+    /**
      * http_patch()
      *
      * Makes a HTTP PATCH Request.

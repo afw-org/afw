@@ -1,0 +1,32 @@
+{
+    "category": "http",
+    "description": "Makes a HTTP OPTIONS Request.",
+    "functionId": "http_options",
+    "functionLabel": "http_options",
+    "parameters": [
+        {
+            "dataType": "string",
+            "description": "HTTP Url.",
+            "name": "url"
+        },
+        {
+            "dataType": "array",
+            "description": "HTTP Headers.",
+            "name": "headers",
+            "optional": true
+        },
+        {
+            "dataType": "object",
+            "dataTypeParameter": "_AdaptiveCurlOptions_",
+            "description": "CURL Options",
+            "name": "options",
+            "optional": true
+        }
+    ],
+    "requiresExecuteAccess": true,
+    "returns": {
+        "dataType": "object",
+        "dataTypeParameter": "_AdaptiveCurlHttpResponse_",
+        "description": "Returns an object describing the response from the HTTP OPTIONS request."
+    }
+}

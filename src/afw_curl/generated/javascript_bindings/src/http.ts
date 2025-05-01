@@ -74,6 +74,62 @@ export function afwHttpGet(client : any, url : string, headers? : any[], options
 }
 
 /**
+ * Makes a HTTP HEAD Request.
+ * 
+ * @param {string} url - HTTP Url.
+ * 
+ * @param {array} headers - HTTP Headers.
+ * 
+ * @param {object} options - CURL Options
+ * 
+ * @returns {object} Returns an object describing the response from the HTTP
+ *     head request.
+ */
+export function afwHttpHead(client : any, url : string, headers? : any[], options? : object) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "http_head";
+    _action["url"] = url;
+
+    if (headers !== undefined)
+        _action["headers"] = headers;
+
+    if (options !== undefined)
+        _action["options"] = options;
+
+    return client.perform(_action);
+}
+
+/**
+ * Makes a HTTP OPTIONS Request.
+ * 
+ * @param {string} url - HTTP Url.
+ * 
+ * @param {array} headers - HTTP Headers.
+ * 
+ * @param {object} options - CURL Options
+ * 
+ * @returns {object} Returns an object describing the response from the HTTP
+ *     OPTIONS request.
+ */
+export function afwHttpOptions(client : any, url : string, headers? : any[], options? : object) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "http_options";
+    _action["url"] = url;
+
+    if (headers !== undefined)
+        _action["headers"] = headers;
+
+    if (options !== undefined)
+        _action["options"] = options;
+
+    return client.perform(_action);
+}
+
+/**
  * Makes a HTTP PATCH Request.
  * 
  * @param {string} url - HTTP Url.

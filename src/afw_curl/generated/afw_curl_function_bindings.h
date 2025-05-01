@@ -171,6 +171,82 @@ afw_curl_function_execute_http_get(
     afw_function_execute_t *x);
 
 /**
+ * @brief Adaptive Function `http_head`
+ * @param x function execute parameter.
+ *
+ * Makes a HTTP HEAD Request.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters.
+ *
+ * This function requires 'execute' access.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function http_head(
+ *       url: string,
+ *       headers?: array,
+ *       options?: (object _AdaptiveCurlOptions_)
+ *   ): (object _AdaptiveCurlHttpResponse_);
+ * ```
+ *
+ * Parameters:
+ *
+ *   url - (string) HTTP Url.
+ *
+ *   headers - (optional array) HTTP Headers.
+ *
+ *   options - (optional object _AdaptiveCurlOptions_) CURL Options.
+ *
+ * Returns:
+ *
+ *   (object _AdaptiveCurlHttpResponse_) Returns an object describing the
+ *       response from the HTTP head request.
+ */
+const afw_value_t *
+afw_curl_function_execute_http_head(
+    afw_function_execute_t *x);
+
+/**
+ * @brief Adaptive Function `http_options`
+ * @param x function execute parameter.
+ *
+ * Makes a HTTP OPTIONS Request.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters.
+ *
+ * This function requires 'execute' access.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function http_options(
+ *       url: string,
+ *       headers?: array,
+ *       options?: (object _AdaptiveCurlOptions_)
+ *   ): (object _AdaptiveCurlHttpResponse_);
+ * ```
+ *
+ * Parameters:
+ *
+ *   url - (string) HTTP Url.
+ *
+ *   headers - (optional array) HTTP Headers.
+ *
+ *   options - (optional object _AdaptiveCurlOptions_) CURL Options.
+ *
+ * Returns:
+ *
+ *   (object _AdaptiveCurlHttpResponse_) Returns an object describing the
+ *       response from the HTTP OPTIONS request.
+ */
+const afw_value_t *
+afw_curl_function_execute_http_options(
+    afw_function_execute_t *x);
+
+/**
  * @brief Adaptive Function `http_patch`
  * @param x function execute parameter.
  *

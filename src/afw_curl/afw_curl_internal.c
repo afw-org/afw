@@ -915,6 +915,236 @@ afw_curl_internal_http_patch(
     return result;
 }
 
+const afw_object_t *
+afw_curl_internal_http_head(
+    const afw_utf8_t        * url,
+    const afw_array_t       * headers,
+    const afw_object_t      * options,
+    const afw_pool_t        * pool,
+    afw_xctx_t              * xctx)
+{
+    CURL *curl = NULL;
+    CURLcode res;
+    const afw_object_t * result = NULL;
+    struct curl_slist *curl_headers = NULL;
+    afw_curl_internal_write_cb_t * response = NULL;
+    long response_code;
+    const afw_value_t *value;
+    const afw_iterator_t *header_iterator;
+    afw_memory_t * response_body;
+    afw_utf8_t * encoded_response;
+    char *errbuf;
+
+    curl = curl_easy_init();
+    AFW_TRY {
+        if (!curl) {
+            AFW_THROW_ERROR_Z(general, "Error in curl_easy_init().", xctx);
+        }
+
+        /* First, set the common, required options. */
+        res = curl_easy_setopt(curl, CURLOPT_URL, afw_utf8_to_utf8_z(url, xctx->p, xctx));
+        if (res != CURLE_OK)
+            AFW_THROW_ERROR_RV_Z(general, curl, res, "Error setting CURLOPT_URL", xctx);
+
+        /* Now, send any optional headers across. */
+        if (headers) {
+            /* iterate through each header in our list */
+            header_iterator = NULL;
+            value = afw_array_get_next_value(headers, &header_iterator, pool, xctx);
+            while (value) {
+                const afw_utf8_z_t *next_header;
+
+                next_header  = afw_value_as_utf8_z(value, pool, xctx);
+                curl_headers = curl_slist_append(curl_headers, next_header);
+                value = afw_array_get_next_value(headers, &header_iterator, pool, xctx);
+            }
+
+            res = curl_easy_setopt(curl, CURLOPT_HTTPHEADER, curl_headers);
+            if (res != CURLE_OK)
+                AFW_THROW_ERROR_RV_Z(general, curl, res, "Error setting CURLOPT_HTTPHEADER", xctx);
+        }
+
+        curl_easy_setopt(curl, CURLOPT_NOBODY, 1L);  // HEAD request
+
+        /* set any options, that may have been specified */
+        afw_curl_internal_options(curl, options, pool, xctx);
+
+        /* set the error buffer as empty before performing a request */
+        errbuf = afw_pool_calloc(pool, CURL_ERROR_SIZE, xctx);
+
+        /* set handling of more detailed error messages */
+        res = curl_easy_setopt(curl, CURLOPT_ERRORBUFFER, errbuf);
+        if (res != CURLE_OK)
+            AFW_THROW_ERROR_RV_Z(general, curl, res, "Error setting CURLOPT_ERRORBUFFER", xctx);
+
+        /* setup our response callbacks to handle data send back from the server */
+        response = afw_curl_internal_response(curl, pool, xctx);
+
+        /* Perform the request, res will get the return code */
+        res = curl_easy_perform(curl);
+        /* Check for errors */
+        if (res != CURLE_OK) {
+            size_t len = strlen(errbuf);
+            if (len > 0) {
+                AFW_THROW_ERROR_RV_Z(general, curl, res, errbuf, xctx);
+            } else {
+                AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_perform()", xctx);
+            }
+        }
+    
+        /* create a result object */ 
+        result = afw_object_create(pool, xctx);
+
+        /* set the response code */
+        res = curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &response_code);
+        if (res != CURLE_OK) 
+            AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_getinfo()", xctx);
+
+        afw_object_set_property_as_integer(result, afw_curl_s_response_code, response_code, xctx);
+
+        /* parse the response body and attach it, too */
+        response_body = afw_curl_internal_parse_response(response, pool, xctx);
+        if (response_body && response_body->size) {
+            encoded_response = afw_pool_calloc_type(pool, afw_utf8_t, xctx);
+            afw_memory_encode_base64(encoded_response, response_body, pool, xctx);
+
+            afw_object_set_property_as_string(result,
+                afw_curl_s_response, encoded_response, xctx);
+        }
+    }
+
+    AFW_FINALLY {
+
+        /* free up headers list */
+        if (curl_headers)
+            curl_slist_free_all(curl_headers);
+
+        /* cleanup curl resources */
+        if (curl)
+            curl_easy_cleanup(curl);
+    }
+
+    AFW_ENDTRY;
+
+    return result;
+}
+
+const afw_object_t *
+afw_curl_internal_http_options(
+    const afw_utf8_t        * url,
+    const afw_array_t       * headers,
+    const afw_object_t      * options,
+    const afw_pool_t        * pool,
+    afw_xctx_t              * xctx)
+{
+    CURL *curl = NULL;
+    CURLcode res;
+    const afw_object_t * result = NULL;
+    struct curl_slist *curl_headers = NULL;
+    afw_curl_internal_write_cb_t * response = NULL;
+    long response_code;
+    const afw_value_t *value;
+    const afw_iterator_t *header_iterator;
+    afw_memory_t * response_body;
+    afw_utf8_t * encoded_response;
+    char *errbuf;
+
+    curl = curl_easy_init();
+    AFW_TRY {
+        if (!curl) {
+            AFW_THROW_ERROR_Z(general, "Error in curl_easy_init().", xctx);
+        }
+
+        /* First, set the common, required options. */
+        res = curl_easy_setopt(curl, CURLOPT_URL, afw_utf8_to_utf8_z(url, xctx->p, xctx));
+        if (res != CURLE_OK)
+            AFW_THROW_ERROR_RV_Z(general, curl, res, "Error setting CURLOPT_URL", xctx);
+
+        /* Now, send any optional headers across. */
+        if (headers) {
+            /* iterate through each header in our list */
+            header_iterator = NULL;
+            value = afw_array_get_next_value(headers, &header_iterator, pool, xctx);
+            while (value) {
+                const afw_utf8_z_t *next_header;
+
+                next_header  = afw_value_as_utf8_z(value, pool, xctx);
+                curl_headers = curl_slist_append(curl_headers, next_header);
+                value = afw_array_get_next_value(headers, &header_iterator, pool, xctx);
+            }
+
+            res = curl_easy_setopt(curl, CURLOPT_HTTPHEADER, curl_headers);
+            if (res != CURLE_OK)
+                AFW_THROW_ERROR_RV_Z(general, curl, res, "Error setting CURLOPT_HTTPHEADER", xctx);
+        }
+
+        curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "OPTIONS");
+
+        curl_easy_setopt(curl, CURLOPT_NOBODY, 1L);  // HEAD request
+
+        /* set any options, that may have been specified */
+        afw_curl_internal_options(curl, options, pool, xctx);
+
+        /* set the error buffer as empty before performing a request */
+        errbuf = afw_pool_calloc(pool, CURL_ERROR_SIZE, xctx);
+
+        /* set handling of more detailed error messages */
+        res = curl_easy_setopt(curl, CURLOPT_ERRORBUFFER, errbuf);
+        if (res != CURLE_OK)
+            AFW_THROW_ERROR_RV_Z(general, curl, res, "Error setting CURLOPT_ERRORBUFFER", xctx);
+
+        /* setup our response callbacks to handle data send back from the server */
+        response = afw_curl_internal_response(curl, pool, xctx);
+
+        /* Perform the request, res will get the return code */
+        res = curl_easy_perform(curl);
+        /* Check for errors */
+        if (res != CURLE_OK) {
+            size_t len = strlen(errbuf);
+            if (len > 0) {
+                AFW_THROW_ERROR_RV_Z(general, curl, res, errbuf, xctx);
+            } else {
+                AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_perform()", xctx);
+            }
+        }
+    
+        /* create a result object */ 
+        result = afw_object_create(pool, xctx);
+
+        /* set the response code */
+        res = curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &response_code);
+        if (res != CURLE_OK) 
+            AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_getinfo()", xctx);
+
+        afw_object_set_property_as_integer(result, afw_curl_s_response_code, response_code, xctx);
+
+        /* parse the response body and attach it, too */
+        response_body = afw_curl_internal_parse_response(response, pool, xctx);
+        if (response_body && response_body->size) {
+            encoded_response = afw_pool_calloc_type(pool, afw_utf8_t, xctx);
+            afw_memory_encode_base64(encoded_response, response_body, pool, xctx);
+
+            afw_object_set_property_as_string(result,
+                afw_curl_s_response, encoded_response, xctx);
+        }
+    }
+
+    AFW_FINALLY {
+
+        /* free up headers list */
+        if (curl_headers)
+            curl_slist_free_all(curl_headers);
+
+        /* cleanup curl resources */
+        if (curl)
+            curl_easy_cleanup(curl);
+    }
+
+    AFW_ENDTRY;
+
+    return result;
+}
+
 void
 afw_curl_internal_smtp_send(
     const afw_utf8_t        * url,
