@@ -13,6 +13,7 @@ use warnings;
 use Exporter qw(import);
 
 our @EXPORT_OK = qw(
+    curl_easy_options 
     curl_version_info 
 );
 
@@ -24,6 +25,13 @@ afw::curl - Perl module for curl functions
 
 The following functions are exported by default
 
+=head3 curl_easy_options
+
+Returns option names that are available with the installed version of libcurl.
+
+
+=head4 Parameters
+
 =head3 curl_version_info
 
 Returns run-time libcurl version info.
@@ -32,6 +40,16 @@ Returns run-time libcurl version info.
 =head4 Parameters
 
 =cut
+
+sub curl_easy_options {
+    my () = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "curl_easy_options");
+
+    return $request->getResult();
+}
 
 sub curl_version_info {
     my () = @_;

@@ -164,7 +164,14 @@ afw_curl_internal_options(
     const afw_utf8_t *proxy, *userPassword;
     const afw_utf8_t *awsSigv4, *caInfo, *caBlob, *caPath;
 
-    /* process any additional options */
+    /*
+     * Process any additional options.
+     * 
+     * Note: it may be feasible in the future to use libCURL's curl_easy_option_by_name()
+     * to set options by name, but they would require that the types that curl expects to
+     * be mapped to the types that afw expects.  This is especially difficult for function 
+     * types. For now, we will just set the options that we know about.
+     */
     if (options) {
         verbose = afw_object_old_get_property_as_boolean(options, afw_curl_s_verbose, &found, xctx);
         if (found && verbose == AFW_TRUE) {
@@ -265,10 +272,6 @@ afw_curl_internal_options(
             if (res != CURLE_OK)
                 AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_setopt() setting caPath.", xctx);
         }
-
-
-        /** @fixme set many more in the object type definition */
-
     }
 }
 

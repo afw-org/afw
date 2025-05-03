@@ -11,6 +11,33 @@
 import requests
 import json
 
+def curl_easy_options(session):
+    """
+    
+
+    Returns option names that are available with the installed version of
+    libcurl.
+
+    Args:
+    Returns:
+        list: Returns an array of strings containing the cURL option names
+        that are available with the installed version of libcurl.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "curl_easy_options"
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def curl_version_info(session):
     """
     

@@ -16,6 +16,46 @@
 
 
 /*
+ * Adaptive function: curl_easy_options
+ *
+ * afw_curl_function_execute_curl_easy_options
+ *
+ * See afw_curl_function_bindings.h for more information.
+ *
+ * Returns option names that are available with the installed version of
+ * libcurl.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters.
+ *
+ * This function requires 'execute' access.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function curl_easy_options(
+ *   
+ *   ): (array string);
+ * ```
+ *
+ * Parameters:
+ *
+ * Returns:
+ *
+ *   (array string) Returns an array of strings containing the cURL option names
+ *       that are available with the installed version of libcurl.
+ */
+const afw_value_t *
+afw_curl_function_execute_curl_easy_options(
+    afw_function_execute_t *x)
+{
+    /** @todo Add code. */
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
+}
+
+
+
+/*
  * Adaptive function: curl_version_info
  *
  * afw_curl_function_execute_curl_version_info
