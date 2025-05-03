@@ -18,7 +18,7 @@
 #include <apr_buckets.h>
 
 size_t 
-afw_curl_internal_write_response_headers(
+afw_curl_internal_write_response_headers_cb(
     char    * ptr,
     size_t    size,
     size_t    nmemb,
@@ -109,7 +109,7 @@ afw_curl_internal_response(
     if (res != CURLE_OK)
         AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_setopt() setting HEADERDATA.", xctx);
 
-    res = curl_easy_setopt(curl, CURLOPT_HEADERFUNCTION, afw_curl_internal_write_response_headers);
+    res = curl_easy_setopt(curl, CURLOPT_HEADERFUNCTION, afw_curl_internal_write_response_headers_cb);
     if (res != CURLE_OK)
         AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_setopt() setting HEADERFUNCTION.", xctx);
 
@@ -244,7 +244,14 @@ afw_curl_internal_options(
         caBlob = afw_object_old_get_property_as_string(options, afw_curl_s_caBlob, xctx);
         if (caBlob) {
 #ifdef CURLOPT_CAINFO_BLOB
-            res = curl_easy_setopt(curl, CURLOPT_CAINFO_BLOB, afw_utf8_to_utf8_z(caBlob, xctx->p, xctx));
+            struct curl_blob *blob;
+
+            blob = afw_pool_malloc(xctx->p, sizeof(struct curl_blob), xctx);
+            blob->data = (char *)afw_utf8_to_utf8_z(caBlob, xctx->p, xctx);
+            blob->len = caBlob->len;    
+            blob->flags = CURL_BLOB_COPY;
+
+            res = curl_easy_setopt(curl, CURLOPT_CAINFO_BLOB, blob);
             if (res != CURLE_OK)
                 AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_setopt() setting caBlob.", xctx);
 #else
