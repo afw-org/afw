@@ -74,3 +74,49 @@ if (environment::TEST_CURL_HTTPBIN === undefined) {
 const response = http_get("https://www.httpbin.org/status/400");
 
 return response.response_code;
+
+
+//? test: http_get_writer_cb
+//? description: Call http_get with writer callback
+//? expect: 200
+//? source: ...
+#!/usr/bin/env afw
+
+// only do live HTTP requests, if configured to do so
+if (environment::TEST_CURL_HTTPBIN === undefined) {
+    return 200;
+}
+
+// fixme: if I don't set the "payload" property first,
+// then I get a valgrind/memory error; need to 
+// check memory pools
+let userData = {
+    "payload": ""
+};
+
+function writer(buffer, userData) {
+    const str = decode_to_string(buffer);
+    const len = length(str);
+
+    // here, we could read the string and do something
+    if (userData.payload !== undefined)
+        userData["payload"] += str;
+    else 
+        userData["payload"] = str;
+
+    return len;
+}
+
+const response = http_get(
+    "http://www.httpbin.org/get", 
+    undefined,
+    undefined,
+    undefined,
+    undefined,
+    writer,
+    userData
+);
+
+//trace(userData);
+
+return response.response_code;

@@ -50,7 +50,7 @@ def http_delete(session, url, headers=None, options=None):
 
     return response['actions'][0]['result']
 
-def http_get(session, url, headers=None, options=None):
+def http_get(session, url, headers=None, options=None, headerCallback=None, headerUserData=None, bodyCallback=None, bodyUserData=None):
     """
     
 
@@ -62,6 +62,18 @@ def http_get(session, url, headers=None, options=None):
         headers (list): HTTP Headers.
 
         options (dict): CURL Options
+
+        headerCallback (object): The optional callback function to read the
+        headers.
+
+        headerUserData (object): The user data to pass to the header callback
+        function.
+
+        bodyCallback (object): The optional callback function to read the
+        body.
+
+        bodyUserData (object): The user data to pass to the body callback
+        function.
 
     Returns:
         dict: Returns an object describing the response from the HTTP GET
@@ -80,6 +92,18 @@ def http_get(session, url, headers=None, options=None):
 
     if options != None:
         action['options'] = options
+
+    if headerCallback != None:
+        action['headerCallback'] = headerCallback
+
+    if headerUserData != None:
+        action['headerUserData'] = headerUserData
+
+    if bodyCallback != None:
+        action['bodyCallback'] = bodyCallback
+
+    if bodyUserData != None:
+        action['bodyUserData'] = bodyUserData
 
     request.add_action(action)
 

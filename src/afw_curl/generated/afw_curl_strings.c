@@ -272,6 +272,18 @@ afw_curl_self_v_awsSigv4 = {
 };
 
 const afw_value_string_t
+afw_curl_self_v_bodyCallback = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_CURL_Q_bodyCallback)
+};
+
+const afw_value_string_t
+afw_curl_self_v_bodyUserData = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_CURL_Q_bodyUserData)
+};
+
+const afw_value_string_t
 afw_curl_self_v_boolean = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_CURL_Q_boolean)
@@ -416,6 +428,12 @@ afw_curl_self_v_freshConnect = {
 };
 
 const afw_value_string_t
+afw_curl_self_v_function = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_CURL_Q_function)
+};
+
+const afw_value_string_t
 afw_curl_self_v_functionId = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_CURL_Q_functionId)
@@ -425,6 +443,18 @@ const afw_value_string_t
 afw_curl_self_v_functionLabel = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_CURL_Q_functionLabel)
+};
+
+const afw_value_string_t
+afw_curl_self_v_headerCallback = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_CURL_Q_headerCallback)
+};
+
+const afw_value_string_t
+afw_curl_self_v_headerUserData = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_CURL_Q_headerUserData)
 };
 
 const afw_value_string_t
@@ -998,6 +1028,12 @@ afw_curl_self_v_zz__2564 = {
 };
 
 const afw_value_string_t
+afw_curl_self_v_zz__2565 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_CURL_Q_zz__2565)
+};
+
+const afw_value_string_t
 afw_curl_self_v_zz__Auto_Referer = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_CURL_Q_zz__Auto_Referer)
@@ -1352,6 +1388,30 @@ afw_curl_self_v_zz__TCP_No_Delay = {
 };
 
 const afw_value_string_t
+afw_curl_self_v_zz__The_optional_callback_function_to_read_the_body_ = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_CURL_Q_zz__The_optional_callback_function_to_read_the_body_)
+};
+
+const afw_value_string_t
+afw_curl_self_v_zz__The_optional_callback_function_to_read_the_headers_ = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_CURL_Q_zz__The_optional_callback_function_to_read_the_headers_)
+};
+
+const afw_value_string_t
+afw_curl_self_v_zz__The_user_data_to_pass_to_the_body_callback_function_ = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_CURL_Q_zz__The_user_data_to_pass_to_the_body_callback_function_)
+};
+
+const afw_value_string_t
+afw_curl_self_v_zz__The_user_data_to_pass_to_the_header_callback_function_ = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_CURL_Q_zz__The_user_data_to_pass_to_the_header_callback_function_)
+};
+
+const afw_value_string_t
 afw_curl_self_v_zz__Timeout__in_milliseconds__for_the_connection_phase_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_CURL_Q_zz__Timeout__in_milliseconds__for_the_connection_phase_)
@@ -1511,6 +1571,12 @@ const afw_value_integer_t
 afw_curl_integer_self_v_5 = {
     {&afw_value_permanent_integer_inf},
     5
+};
+
+const afw_value_integer_t
+afw_curl_integer_self_v_7 = {
+    {&afw_value_permanent_integer_inf},
+    7
 };
 
 const afw_value_integer_t

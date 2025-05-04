@@ -112,7 +112,11 @@ afw_curl_function_execute_http_post(
  *   function http_get(
  *       url: string,
  *       headers?: array,
- *       options?: (object _AdaptiveCurlOptions_)
+ *       options?: (object _AdaptiveCurlOptions_),
+ *       headerCallback?: function,
+ *       headerUserData?: any,
+ *       bodyCallback?: function,
+ *       bodyUserData?: any
  *   ): (object _AdaptiveCurlHttpResponse_);
  * ```
  *
@@ -123,6 +127,18 @@ afw_curl_function_execute_http_post(
  *   headers - (optional array) HTTP Headers.
  *
  *   options - (optional object _AdaptiveCurlOptions_) CURL Options.
+ *
+ *   headerCallback - (optional function) The optional callback function to read
+ *       the headers.
+ *
+ *   headerUserData - (optional any dataType) The user data to pass to the
+ *       header callback function.
+ *
+ *   bodyCallback - (optional function) The optional callback function to read
+ *       the body.
+ *
+ *   bodyUserData - (optional any dataType) The user data to pass to the body
+ *       callback function.
  *
  * Returns:
  *
@@ -137,6 +153,13 @@ afw_curl_function_execute_http_get(
     const afw_value_array_t     * headers;
     const afw_value_object_t    * options;
     const afw_object_t          * result;
+    afw_curl_internal_script_cb_t * writer;
+    afw_curl_internal_script_cb_t * header;
+
+    writer = afw_pool_calloc_type(x->p,
+        afw_curl_internal_script_cb_t, x->xctx);
+    header = afw_pool_calloc_type(x->p,
+        afw_curl_internal_script_cb_t, x->xctx);
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(url, 1, string);
 
@@ -152,11 +175,37 @@ afw_curl_function_execute_http_get(
         AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(options, 3, object);
     }
 
+    /* Optional header callback */
+    header->callback = NULL;
+    if (AFW_FUNCTION_PARAMETER_IS_PRESENT(4)) {
+        AFW_FUNCTION_EVALUATE_PARAMETER(header->callback, 4);
+    }
+
+    /* Optional header user data */
+    header->userData = NULL;
+    if (AFW_FUNCTION_PARAMETER_IS_PRESENT(5)) {
+        AFW_FUNCTION_EVALUATE_PARAMETER(header->userData, 5);
+    }
+
+    /* Optional body writer callback */
+    writer->callback = NULL;
+    if (AFW_FUNCTION_PARAMETER_IS_PRESENT(6)) {
+        AFW_FUNCTION_EVALUATE_PARAMETER(writer->callback, 6);
+    }
+
+    /* Optional body user data */
+    writer->userData = NULL;
+    if (AFW_FUNCTION_PARAMETER_IS_PRESENT(7)) {
+        AFW_FUNCTION_EVALUATE_PARAMETER(writer->userData, 7);
+    }
+
     /* use internal routine to do the GET */
     result = afw_curl_internal_http_get(
         &url->internal,
         (headers ? headers->internal : NULL),
         (options ? options->internal : NULL),
+        header,
+        writer,
         x->p, x->xctx);
 
     return afw_value_create_unmanaged_object(result, x->p, x->xctx);

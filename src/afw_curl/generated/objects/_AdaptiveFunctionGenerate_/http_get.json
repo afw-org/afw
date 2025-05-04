@@ -23,6 +23,30 @@
             "description": "CURL Options",
             "name": "options",
             "optional": true
+        },
+        {
+            "dataType": "function",
+            "description": "The optional callback function to read the headers.",
+            "name": "headerCallback",
+            "optional": true
+        },
+        {
+            "canBeUndefined": true,
+            "description": "The user data to pass to the header callback function.",
+            "name": "headerUserData",
+            "optional": true
+        },
+        {
+            "dataType": "function",
+            "description": "The optional callback function to read the body.",
+            "name": "bodyCallback",
+            "optional": true
+        },
+        {
+            "canBeUndefined": true,
+            "description": "The user data to pass to the body callback function.",
+            "name": "bodyUserData",
+            "optional": true
         }
     ],
     "requiresExecuteAccess": true,
