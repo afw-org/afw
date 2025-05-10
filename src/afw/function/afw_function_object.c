@@ -434,21 +434,19 @@ afw_function_execute_property_get(
 {
     const afw_value_object_t *object;
     const afw_value_string_t *name;
-    const afw_value_t *the_default; /* Can be null. */
     const afw_value_t *result;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(object, 1, object);
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(name, 2, string);
 
-    the_default = afw_value_undefined;
-    if (AFW_FUNCTION_PARAMETER_IS_PRESENT(3)) {
-        the_default = afw_value_evaluate(x->argv[3], x->p, x->xctx);
-    }
-
     result = afw_object_get_property(object->internal,
         &name->internal, x->xctx);
     if (!result) {
-        result = the_default;
+        result = afw_value_undefined;
+        if (AFW_FUNCTION_PARAMETER_IS_PRESENT(3)) {
+            result = afw_value_evaluate(x->argv[3], x->p, x->xctx);
+            result = afw_value_clone(result, x->p, x->xctx);
+        }
     }
 
     return afw_value_evaluate(result, x->p, x->xctx);

@@ -822,6 +822,7 @@ afw_function_execute_variable_get(
         value = afw_value_undefined;
         if (AFW_FUNCTION_PARAMETER_IS_PRESENT(2)) {
             value = afw_value_evaluate(x->argv[2], x->p, x->xctx);
+            value = afw_value_clone(value, x->p, x->xctx);
         }
     }
 
