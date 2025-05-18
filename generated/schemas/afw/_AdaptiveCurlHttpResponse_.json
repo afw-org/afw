@@ -12,6 +12,15 @@
         },
         "_AdaptiveCurlHttpResponse_.propertyTypes": {
             "properties": {
+                "headers": {
+                    "description": "HTTP Headers from the server.",
+                    "items": {
+                        "description": "HTTP Headers from the server.",
+                        "type": "string"
+                    },
+                    "title": "Headers",
+                    "type": "array"
+                },
                 "response": {
                     "description": "HTTP Response Data from the server.",
                     "title": "Response",

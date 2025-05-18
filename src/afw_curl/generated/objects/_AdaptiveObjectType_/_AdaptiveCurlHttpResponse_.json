@@ -9,6 +9,12 @@
     "description": "Object type for cURL HTTP Responses.",
     "objectType": "_AdaptiveCurlHttpResponse_",
     "propertyTypes": {
+        "headers": {
+            "dataType": "array",
+            "dataTypeParameter": "string",
+            "description": "HTTP Headers from the server.",
+            "label": "Headers"
+        },
         "response": {
             "dataType": "string",
             "description": "HTTP Response Data from the server.",

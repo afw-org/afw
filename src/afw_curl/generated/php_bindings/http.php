@@ -64,19 +64,11 @@ class http
      * @param string $url HTTP Url.
      * @param array $headers HTTP Headers.
      * @param object $options CURL Options
-     * @param function $headerCallback The optional callback function to read
-     *                                 the headers.
-     * @param  $headerUserData The user data to pass to the header callback
-     *                         function.
-     * @param function $bodyCallback The optional callback function to read
-     *                               the body.
-     * @param  $bodyUserData The user data to pass to the body callback
-     *                       function.
      *
      * @return object Returns an object describing the response from the HTTP
      *                GET request.
      */
-    public function http_get(, $url, $headers = null, $options = null, $headerCallback = null, $headerUserData = null, $bodyCallback = null, $bodyUserData = null)
+    public function http_get(, $url, $headers = null, $options = null)
     {
         $request = $this->$session->request();
 
@@ -91,18 +83,6 @@ class http
 
         if ($options != null)
             $request->set('options', $options);
-
-        if ($headerCallback != null)
-            $request->set('headerCallback', $headerCallback);
-
-        if ($headerUserData != null)
-            $request->set('headerUserData', $headerUserData);
-
-        if ($bodyCallback != null)
-            $request->set('bodyCallback', $bodyCallback);
-
-        if ($bodyUserData != null)
-            $request->set('bodyUserData', $bodyUserData);
 
         return $request->get_result();
     }

@@ -36,6 +36,9 @@ if (environment::TEST_CURL_HTTPBIN === undefined) {
 
 const response = http_get("http://www.httpbin.org/get");
 
+/* make sure we get at least the 200 OK header back */
+assert(includes(response.headers, "HTTP/1.1 200 OK\r\n"));
+
 return response.response_code;
 
 
@@ -76,8 +79,8 @@ const response = http_get("https://www.httpbin.org/status/400");
 return response.response_code;
 
 
-//? test: http_get_writer_cb
-//? description: Call http_get with writer callback
+//? test: http_get_callbacks
+//? description: Call http_get with callbacks
 //? expect: 200
 //? source: ...
 #!/usr/bin/env afw
@@ -91,7 +94,8 @@ if (environment::TEST_CURL_HTTPBIN === undefined) {
 // then I get a valgrind/memory error; need to 
 // check memory pools
 let userData = {
-    "payload": ""
+    "payload": "",
+    "headers": []
 };
 
 function writer(buffer, userData) {
@@ -107,16 +111,30 @@ function writer(buffer, userData) {
     return len;
 }
 
+function headers(header, userData) {
+    const len = length(header);
+
+    if (len > 0) {
+        add_entries(userData.headers, header);
+    }
+
+    return len;
+}
+
+const options = {
+    "headerFunction": headers,
+    "headerUserData": userData,
+    "writeFunction": writer,
+    "writeUserData": userData,
+};
+
 const response = http_get(
     "http://www.httpbin.org/get", 
     undefined,
-    undefined,
-    undefined,
-    undefined,
-    writer,
-    userData
+    options
 );
 
-//trace(userData);
+assert(length(userData.headers) > 0);
+assert(length(userData.payload) > 0);
 
 return response.response_code;

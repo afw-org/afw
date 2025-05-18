@@ -72,7 +72,40 @@ afw_curl_internal_write_response_headers_cb(
      * The provided header line is not null-terminated. Do not modify the
      * passed in buffer.
      */
-    size_t realsize = size * nitems;
+    afw_curl_internal_write_cb_t * appdata = 
+        (afw_curl_internal_write_cb_t *) userdata;
+    afw_curl_internal_script_cb_t * header = appdata->header;
+    const afw_value_t *return_value;
+    size_t realsize = 0;
+
+    if (header && header->callback) 
+    {
+        header->argv[0] = header->callback;
+        header->argv[1] = afw_value_create_unmanaged_string(
+            afw_utf8_create_copy(buffer, nitems, appdata->pool, appdata->xctx),
+            appdata->pool, appdata->xctx);
+        header->argv[2] = header->userData;
+        if (!header->call) {
+            header->call = afw_value_call_create(NULL,
+                2, &header->argv[0], false, appdata->pool, appdata->xctx);
+        }
+        return_value = afw_value_evaluate(header->call, 
+            appdata->pool, appdata->xctx);
+
+        realsize = afw_value_as_integer(return_value, appdata->xctx);
+    }
+
+    else 
+    {
+        afw_array_add_value(appdata->headers,
+            afw_value_create_unmanaged_string(
+                afw_utf8_create_copy(buffer, nitems, appdata->pool, appdata->xctx),
+                appdata->pool, appdata->xctx),
+            appdata->xctx
+        );
+        
+        realsize = size * nitems;
+    }
 
     return realsize;
 }
@@ -207,6 +240,7 @@ afw_curl_internal_register_response_callbacks(
         afw_pool_get_apr_pool(appdata->pool));
     appdata->response = apr_brigade_create(
         afw_pool_get_apr_pool(appdata->pool), appdata->allocator);
+    appdata->headers = afw_array_create_generic(pool, xctx);
     appdata->header = header;
     appdata->writer = writer;
 
@@ -267,6 +301,9 @@ void
 afw_curl_internal_options(
     CURL                * curl,
     const afw_object_t  * options,
+    afw_curl_internal_script_cb_t * reader,
+    afw_curl_internal_script_cb_t * writer,
+    afw_curl_internal_script_cb_t * header,
     const afw_pool_t    * pool,
     afw_xctx_t          * xctx)
 {
@@ -276,6 +313,9 @@ afw_curl_internal_options(
     afw_boolean_t followLocation, verbose;
     const afw_utf8_t *proxy, *userPassword;
     const afw_utf8_t *awsSigv4, *caInfo, *caBlob, *caPath;
+    const afw_value_t *readFunc, *writeFunc, *headerFunc;
+    const afw_value_t *readUserData, *writeUserData, *headerUserData;
+    
 
     /*
      * Process any additional options.
@@ -385,6 +425,43 @@ afw_curl_internal_options(
             if (res != CURLE_OK)
                 AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_setopt() setting caPath.", xctx);
         }
+
+        readFunc = afw_object_get_property(options, 
+            afw_curl_s_readFunction, xctx);
+        if (readFunc && reader) {
+            reader->callback = readFunc;
+        }
+
+        readUserData = afw_object_get_property(options, 
+            afw_curl_s_readUserData, xctx);
+        if (readUserData && reader) {
+            reader->userData = readUserData;
+        }
+
+        writeFunc = afw_object_get_property(options, 
+            afw_curl_s_writeFunction, xctx);
+        if (writeFunc && writer) {
+            writer->callback = writeFunc;
+        }
+
+        writeUserData = afw_object_get_property(options, 
+            afw_curl_s_writeUserData, xctx);
+        if (writeUserData && writer) {
+            writer->userData = writeUserData;
+        }
+
+        headerFunc = afw_object_get_property(options, 
+            afw_curl_s_headerFunction, xctx);
+        if (headerFunc && header) {
+            header->callback = headerFunc;
+        }
+
+        headerUserData = afw_object_get_property(options, 
+            afw_curl_s_headerUserData, xctx);
+        if (headerUserData && header) {
+            header->userData = headerUserData;
+        }
+
     }
 }
 
@@ -480,7 +557,7 @@ afw_curl_internal_http_post(
         }
 
         /* set any options, that may have been specified */
-        afw_curl_internal_options(curl, options, pool, xctx);
+        afw_curl_internal_options(curl, options, NULL, NULL, NULL, pool, xctx);
 
         /* set the error buffer as empty before performing a request */
         errbuf = afw_pool_calloc(pool, CURL_ERROR_SIZE, xctx);
@@ -551,8 +628,6 @@ afw_curl_internal_http_get(
     const afw_utf8_t    * url,
     const afw_array_t   * headers,
     const afw_object_t  * options,
-    afw_curl_internal_script_cb_t * header,
-    afw_curl_internal_script_cb_t * writer,
     const afw_pool_t    * pool,
     afw_xctx_t          * xctx)
 {
@@ -566,6 +641,8 @@ afw_curl_internal_http_get(
     const afw_iterator_t * header_iterator;
     afw_memory_t * response_body;
     afw_utf8_t * encoded_response;
+    afw_curl_internal_script_cb_t * header = NULL;
+    afw_curl_internal_script_cb_t * writer = NULL;
     char *errbuf;
 
     curl = curl_easy_init();
@@ -598,8 +675,13 @@ afw_curl_internal_http_get(
             }
         }
 
+        writer = afw_pool_calloc_type(pool,
+            afw_curl_internal_script_cb_t, xctx);
+        header = afw_pool_calloc_type(pool,
+            afw_curl_internal_script_cb_t, xctx);
+
         /* set any options, that may have been specified */
-        afw_curl_internal_options(curl, options, pool, xctx);
+        afw_curl_internal_options(curl, options, NULL, writer, header, pool, xctx);
 
         /* set the error buffer as empty before performing a request */
         errbuf = afw_pool_calloc(pool, CURL_ERROR_SIZE, xctx);
@@ -646,6 +728,12 @@ afw_curl_internal_http_get(
 
             afw_object_set_property_as_string(result,
                 afw_curl_s_response, encoded_response, xctx);
+        }
+
+        /* append the headers */
+        if (response->headers) {
+            afw_object_set_property_as_array(result,
+                afw_curl_s_headers, response->headers, xctx);
         }
     }
 
@@ -724,7 +812,7 @@ afw_curl_internal_http_delete(
         }
 
         /* set any options, that may have been specified */
-        afw_curl_internal_options(curl, options, pool, xctx);
+        afw_curl_internal_options(curl, options, NULL, NULL, NULL, pool, xctx);
 
         /* set the error buffer as empty before performing a request */
         errbuf = afw_pool_calloc(pool, CURL_ERROR_SIZE, xctx);
@@ -853,7 +941,7 @@ afw_curl_internal_http_put(
         }
 
         /* set any options, that may have been specified */
-        afw_curl_internal_options(curl, options, pool, xctx);
+        afw_curl_internal_options(curl, options, NULL, NULL, NULL, pool, xctx);
 
         /* set the error buffer as empty before performing a request */
         errbuf = afw_pool_calloc(pool, CURL_ERROR_SIZE, xctx);
@@ -982,7 +1070,7 @@ afw_curl_internal_http_patch(
         }
 
         /* set any options, that may have been specified */
-        afw_curl_internal_options(curl, options, pool, xctx);
+        afw_curl_internal_options(curl, options, NULL, NULL, NULL, pool, xctx);
 
         /* set the error buffer as empty before performing a request */
         errbuf = afw_pool_calloc(pool, CURL_ERROR_SIZE, xctx);
@@ -1097,7 +1185,7 @@ afw_curl_internal_http_head(
         curl_easy_setopt(curl, CURLOPT_NOBODY, 1L);  // HEAD request
 
         /* set any options, that may have been specified */
-        afw_curl_internal_options(curl, options, pool, xctx);
+        afw_curl_internal_options(curl, options, NULL, NULL, NULL, pool, xctx);
 
         /* set the error buffer as empty before performing a request */
         errbuf = afw_pool_calloc(pool, CURL_ERROR_SIZE, xctx);
@@ -1214,7 +1302,7 @@ afw_curl_internal_http_options(
         curl_easy_setopt(curl, CURLOPT_NOBODY, 1L);  // HEAD request
 
         /* set any options, that may have been specified */
-        afw_curl_internal_options(curl, options, pool, xctx);
+        afw_curl_internal_options(curl, options, NULL, NULL, NULL, pool, xctx);
 
         /* set the error buffer as empty before performing a request */
         errbuf = afw_pool_calloc(pool, CURL_ERROR_SIZE, xctx);
@@ -1322,7 +1410,7 @@ afw_curl_internal_smtp_send(
         curl_easy_setopt(curl, CURLOPT_MAIL_RCPT, recipients);
         
         /* set any options, that may have been specified */
-        afw_curl_internal_options(curl, options, pool, xctx);
+        afw_curl_internal_options(curl, options, NULL, NULL, NULL, pool, xctx);
 
         /* send the body of the email, using a callback */
         afw_curl_internal_register_request_callbacks(curl, payload, pool, xctx);

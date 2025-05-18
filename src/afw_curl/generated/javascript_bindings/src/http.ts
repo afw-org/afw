@@ -54,22 +54,10 @@ export function afwHttpDelete(client : any, url : string, headers? : any[], opti
  * 
  * @param {object} options - CURL Options
  * 
- * @param {function} headerCallback - The optional callback function to read
- *     the headers.
- * 
- * @param {} headerUserData - The user data to pass to the header callback
- *     function.
- * 
- * @param {function} bodyCallback - The optional callback function to read the
- *     body.
- * 
- * @param {} bodyUserData - The user data to pass to the body callback
- *     function.
- * 
  * @returns {object} Returns an object describing the response from the HTTP
  *     GET request.
  */
-export function afwHttpGet(client : any, url : string, headers? : any[], options? : object, headerCallback? : any, headerUserData? : any, bodyCallback? : any, bodyUserData? : any) : any {
+export function afwHttpGet(client : any, url : string, headers? : any[], options? : object) : any {
 
     let _action : IAnyObject = {};
 
@@ -81,18 +69,6 @@ export function afwHttpGet(client : any, url : string, headers? : any[], options
 
     if (options !== undefined)
         _action["options"] = options;
-
-    if (headerCallback !== undefined)
-        _action["headerCallback"] = headerCallback;
-
-    if (headerUserData !== undefined)
-        _action["headerUserData"] = headerUserData;
-
-    if (bodyCallback !== undefined)
-        _action["bodyCallback"] = bodyCallback;
-
-    if (bodyUserData !== undefined)
-        _action["bodyUserData"] = bodyUserData;
 
     return client.perform(_action);
 }

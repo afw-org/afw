@@ -82,11 +82,7 @@ afw_curl_function_execute_http_delete(
  *   function http_get(
  *       url: string,
  *       headers?: array,
- *       options?: (object _AdaptiveCurlOptions_),
- *       headerCallback?: function,
- *       headerUserData?: any,
- *       bodyCallback?: function,
- *       bodyUserData?: any
+ *       options?: (object _AdaptiveCurlOptions_)
  *   ): (object _AdaptiveCurlHttpResponse_);
  * ```
  *
@@ -97,18 +93,6 @@ afw_curl_function_execute_http_delete(
  *   headers - (optional array) HTTP Headers.
  *
  *   options - (optional object _AdaptiveCurlOptions_) CURL Options.
- *
- *   headerCallback - (optional function) The optional callback function to read
- *       the headers.
- *
- *   headerUserData - (optional any dataType) The user data to pass to the
- *       header callback function.
- *
- *   bodyCallback - (optional function) The optional callback function to read
- *       the body.
- *
- *   bodyUserData - (optional any dataType) The user data to pass to the body
- *       callback function.
  *
  * Returns:
  *

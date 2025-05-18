@@ -68,22 +68,6 @@ HTTP Headers.
 
 CURL Options
 
-    $headerCallback
-
-The optional callback function to read the headers.
-
-    $headerUserData
-
-The user data to pass to the header callback function.
-
-    $bodyCallback
-
-The optional callback function to read the body.
-
-    $bodyUserData
-
-The user data to pass to the body callback function.
-
 =head3 http_head
 
 Makes a HTTP HEAD Request.
@@ -211,7 +195,7 @@ sub http_delete {
 }
 
 sub http_get {
-    my ($url, $headers, $options, $headerCallback, $headerUserData, $bodyCallback, $bodyUserData) = @_;
+    my ($url, $headers, $options) = @_;
 
     my $request = $session->request()
 
@@ -223,18 +207,6 @@ sub http_get {
 
     if (defined $options)
         $request->set("options", $options);
-
-    if (defined $headerCallback)
-        $request->set("headerCallback", $headerCallback);
-
-    if (defined $headerUserData)
-        $request->set("headerUserData", $headerUserData);
-
-    if (defined $bodyCallback)
-        $request->set("bodyCallback", $bodyCallback);
-
-    if (defined $bodyUserData)
-        $request->set("bodyUserData", $bodyUserData);
 
     return $request->getResult();
 }

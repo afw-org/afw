@@ -38,6 +38,7 @@ typedef struct afw_curl_internal_script_cb_s {
 typedef struct afw_curl_internal_write_cb_s {
     apr_bucket_alloc_t              * allocator;
     apr_bucket_brigade              * response;
+    const afw_array_t               * headers;
     afw_curl_internal_script_cb_t   * header;
     afw_curl_internal_script_cb_t   * writer;
     const afw_pool_t                * pool;
@@ -76,8 +77,6 @@ afw_curl_internal_http_get(
     const afw_utf8_t        * url,
     const afw_array_t       * headers,
     const afw_object_t      * options,
-    afw_curl_internal_script_cb_t * header_reader,
-    afw_curl_internal_script_cb_t * reader,
     const afw_pool_t        * pool,
     afw_xctx_t              * xctx);
 
