@@ -143,6 +143,7 @@ afw_curl_internal_response_cb(
     size_t realsize = 0;
     apr_status_t rc;
 
+    /* check to see if a callback was provided by adaptive script */
     if (writer && writer->callback) 
     {
         buf.ptr = ptr;
@@ -208,20 +209,52 @@ afw_curl_internal_request_cb(
      */
     afw_curl_internal_read_cb_t * appdata =
         (afw_curl_internal_read_cb_t *) userdata;
+    afw_curl_internal_script_cb_t * reader = appdata->reader;
+    const afw_value_t *return_value;
+    const afw_memory_t *payload;
 
     if ((size == 0) || (nitems == 0) || ((size * nitems) < 1)) {
         return 0;
     }
+    
+    /* check to see if a callback was provided by adaptive script */
+    if (reader && reader->callback)
+    {
+        reader->argv[0] = reader->callback;
+        reader->argv[1] = reader->userData;
+        reader->argv[2] = afw_value_create_unmanaged_integer(
+            size, appdata->pool, appdata->xctx);
+        reader->argv[3] = afw_value_create_unmanaged_integer(
+            nitems, appdata->pool, appdata->xctx);
+        if (!reader->call) {
+            reader->call = afw_value_call_create(NULL,
+                3, &reader->argv[0], false, appdata->pool, appdata->xctx);
+        }
+        return_value = afw_value_evaluate(reader->call, 
+            appdata->pool, appdata->xctx);
 
-    if (appdata->bytes_sent == appdata->payload->len)
-        return 0;
-   
-    memcpy(buffer, appdata->payload->s, appdata->payload->len); 
-    appdata->bytes_sent = appdata->payload->len;
+        /* copy the bytes returned into buffer (null indicates end of data) */
+        if (afw_value_is_null(return_value)) {
+            return 0;
+        }
 
-    return appdata->bytes_sent;
+        payload = afw_value_as_hexBinary(return_value, appdata->xctx);
+        memcpy(buffer, payload->ptr, payload->size);
+        
+        return payload->size;
+    }
+
+    else
+    {
+        if (appdata->bytes_sent == appdata->payload->len)
+            return 0;
+    
+        memcpy(buffer, appdata->payload->s, appdata->payload->len); 
+        appdata->bytes_sent = appdata->payload->len;
+
+        return appdata->bytes_sent;
+    }
 }
-
 afw_curl_internal_write_cb_t *
 afw_curl_internal_register_response_callbacks(
     CURL                * curl,
@@ -267,6 +300,7 @@ afw_curl_internal_read_cb_t *
 afw_curl_internal_register_request_callbacks(
     CURL                * curl,
     const afw_utf8_t    * payload,
+    afw_curl_internal_script_cb_t * reader,
     const afw_pool_t    * pool,
     afw_xctx_t          * xctx)
 {
@@ -278,6 +312,7 @@ afw_curl_internal_register_request_callbacks(
     appdata->xctx = xctx;
     appdata->payload = payload;
     appdata->bytes_sent = 0;
+    appdata->reader = reader;
 
     res = curl_easy_setopt(curl, CURLOPT_READDATA, appdata);
     if (res != CURLE_OK)
@@ -612,6 +647,12 @@ afw_curl_internal_http_post(
             afw_object_set_property_as_string(result,
                 afw_curl_s_response, encoded_response, xctx);
         }
+
+        /* append the headers */
+        if (response->headers) {
+            afw_object_set_property_as_array(result,
+                afw_curl_s_headers, response->headers, xctx);
+        }
     }
 
     AFW_FINALLY {
@@ -874,6 +915,12 @@ afw_curl_internal_http_delete(
             afw_object_set_property_as_string(result,
                 afw_curl_s_response, encoded_response, xctx);
         }
+
+        /* append the headers */
+        if (response->headers) {
+            afw_object_set_property_as_array(result,
+                afw_curl_s_headers, response->headers, xctx);
+        }
     }
 
     AFW_FINALLY {
@@ -1012,6 +1059,12 @@ afw_curl_internal_http_put(
 
             afw_object_set_property_as_string(result,
                 afw_curl_s_response, encoded_response, xctx);
+        }
+
+        /* append the headers */
+        if (response->headers) {
+            afw_object_set_property_as_array(result,
+                afw_curl_s_headers, response->headers, xctx);
         }
     }
 
@@ -1152,6 +1205,12 @@ afw_curl_internal_http_patch(
             afw_object_set_property_as_string(result,
                 afw_curl_s_response, encoded_response, xctx);
         }
+
+        /* append the headers */
+        if (response->headers) {
+            afw_object_set_property_as_array(result,
+                afw_curl_s_headers, response->headers, xctx);
+        }
     }
 
     AFW_FINALLY {
@@ -1273,6 +1332,12 @@ afw_curl_internal_http_head(
 
             afw_object_set_property_as_string(result,
                 afw_curl_s_response, encoded_response, xctx);
+        }
+
+        /* append the headers */
+        if (response->headers) {
+            afw_object_set_property_as_array(result,
+                afw_curl_s_headers, response->headers, xctx);
         }
     }
 
@@ -1398,6 +1463,12 @@ afw_curl_internal_http_options(
             afw_object_set_property_as_string(result,
                 afw_curl_s_response, encoded_response, xctx);
         }
+
+        /* append the headers */
+        if (response->headers) {
+            afw_object_set_property_as_array(result,
+                afw_curl_s_headers, response->headers, xctx);
+        }
     }
 
     AFW_FINALLY {
@@ -1464,7 +1535,7 @@ afw_curl_internal_smtp_send(
         afw_curl_internal_options(curl, options, NULL, NULL, NULL, pool, xctx);
 
         /* send the body of the email, using a callback */
-        afw_curl_internal_register_request_callbacks(curl, payload, pool, xctx);
+        afw_curl_internal_register_request_callbacks(curl, payload, NULL, pool, xctx);
 
         /* Perform the request, res will get the return code */
         res = curl_easy_perform(curl);
