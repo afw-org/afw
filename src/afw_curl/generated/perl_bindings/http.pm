@@ -15,6 +15,8 @@ use Exporter qw(import);
 our @EXPORT_OK = qw(
     http_delete 
     http_get 
+    http_head 
+    http_options 
     http_patch 
     http_post 
     http_put 
@@ -50,6 +52,44 @@ CURL Options
 =head3 http_get
 
 Makes a HTTP GET Request.
+
+
+=head4 Parameters
+
+    $url
+
+HTTP Url.
+
+    $headers
+
+HTTP Headers.
+
+    $options
+
+CURL Options
+
+=head3 http_head
+
+Makes a HTTP HEAD Request.
+
+
+=head4 Parameters
+
+    $url
+
+HTTP Url.
+
+    $headers
+
+HTTP Headers.
+
+    $options
+
+CURL Options
+
+=head3 http_options
+
+Makes a HTTP OPTIONS Request.
 
 
 =head4 Parameters
@@ -160,6 +200,40 @@ sub http_get {
     my $request = $session->request()
 
     $request->set("function" => "http_get");
+    $request->set("url", $url);
+
+    if (defined $headers)
+        $request->set("headers", $headers);
+
+    if (defined $options)
+        $request->set("options", $options);
+
+    return $request->getResult();
+}
+
+sub http_head {
+    my ($url, $headers, $options) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "http_head");
+    $request->set("url", $url);
+
+    if (defined $headers)
+        $request->set("headers", $headers);
+
+    if (defined $options)
+        $request->set("options", $options);
+
+    return $request->getResult();
+}
+
+sub http_options {
+    my ($url, $headers, $options) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "http_options");
     $request->set("url", $url);
 
     if (defined $headers)

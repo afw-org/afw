@@ -18,6 +18,22 @@ interface IAnyObject {
 }
 
 /**
+ * Returns option names that are available with the installed version of
+ * libcurl.
+ * 
+ * @returns {array} Returns an array of strings containing the cURL option
+ *     names that are available with the installed version of libcurl.
+ */
+export function afwCurlEasyOptions(client : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "curl_easy_options";
+
+    return client.perform(_action);
+}
+
+/**
  * Returns run-time libcurl version info.
  * 
  * @returns {object} Returns an object describing the cURL version

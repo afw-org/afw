@@ -28,6 +28,102 @@
 #include "afw_curl_strings.h"
 
 
+/* ---------- curl_easy_options ---------- */
+
+static const afw_value_function_definition_t
+impl_curl_easy_options;
+
+static const afw_utf8_t
+impl_object_path__curl_easy_options =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/curl_easy_options");
+
+static const afw_runtime_object_indirect_t
+impl_object__curl_easy_options = {
+    {
+        NULL,
+        NULL,
+        NULL, /* Resolved at runtime. */
+        {
+            NULL,
+            NULL,
+            &afw_curl_self_s_curl_easy_options,
+            &afw_curl_self_s__AdaptiveFunction_,
+            &impl_object_path__curl_easy_options
+        }
+    },
+    (void *)&impl_curl_easy_options
+};
+
+static const afw_value_function_parameter_t
+impl_curl_easy_options_returns = {
+    {
+        NULL,
+        NULL,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_curl_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    &afw_curl_self_v_array,
+    &afw_curl_self_v_string,
+    NULL,
+    NULL,
+    &afw_curl_self_v_zz__2531,
+    &afw_curl_integer_self_v_zz___1,
+    &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_false,
+};
+
+static const afw_value_function_parameter_t *
+impl_curl_easy_options_parameters[] = {
+    NULL
+};
+
+static const afw_value_function_definition_t
+impl_curl_easy_options = {
+    {NULL},
+    (const afw_object_t *)&impl_object__curl_easy_options,
+    &afw_curl_self_v_curl,
+    &afw_curl_self_v_curl_easy_options,
+    &afw_curl_self_v_zz___afw__AdaptiveFunction__curl_easy_options,
+    &afw_curl_self_v_curl_easy_options,
+    &afw_curl_self_v_curl_easy_options,
+    &afw_curl_self_v_curlEasyOptions,
+    &afw_curl_self_v_afwCurlEasyOptions,
+    NULL,
+    &afw_curl_self_v_zz__2532,
+    &afw_curl_self_v_zz_______array_string_,
+    &afw_curl_self_v_zz__function_curl_easy_options________array_string___,
+    NULL,
+    afw_function_execute_requiresExecuteAccess_wrapper,
+    afw_curl_function_execute_curl_easy_options,
+    NULL,
+    &afw_curl_integer_self_v_0,
+    &afw_curl_integer_self_v_0,
+    &impl_curl_easy_options_parameters[0],
+    0,
+    &impl_curl_easy_options_returns,
+    NULL,
+    NULL,
+    &afw_curl_self_v_zz__,
+    NULL,
+    NULL,
+    0, /* Not a data type method. */
+    &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_true,
+};
+
 /* ---------- curl_version_info ---------- */
 
 static const afw_value_function_definition_t
@@ -100,7 +196,7 @@ impl_curl_version_info = {
     NULL,
     &afw_curl_self_v_zz__Returns_run_time_libcurl_version_info_,
     &afw_curl_self_v_zz_______object__AdaptiveCurlVersionInfo__,
-    &afw_curl_self_v_zz__2531,
+    &afw_curl_self_v_zz__2533,
     NULL,
     afw_function_execute_requiresExecuteAccess_wrapper,
     afw_curl_function_execute_curl_version_info,
@@ -169,7 +265,7 @@ impl_http_delete_returns = {
     &afw_curl_self_v__AdaptiveCurlHttpResponse_,
     NULL,
     NULL,
-    &afw_curl_self_v_zz__2532,
+    &afw_curl_self_v_zz__2534,
     &afw_curl_integer_self_v_zz___1,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
@@ -279,8 +375,8 @@ impl_http_delete = {
     &afw_curl_self_v_afwHttpDelete,
     NULL,
     &afw_curl_self_v_zz__Makes_a_HTTP_DELETE_Request_,
-    &afw_curl_self_v_zz__2533,
-    &afw_curl_self_v_zz__2534,
+    &afw_curl_self_v_zz__2535,
+    &afw_curl_self_v_zz__2536,
     NULL,
     afw_function_execute_requiresExecuteAccess_wrapper,
     afw_curl_function_execute_http_delete,
@@ -349,7 +445,7 @@ impl_http_get_returns = {
     &afw_curl_self_v__AdaptiveCurlHttpResponse_,
     NULL,
     NULL,
-    &afw_curl_self_v_zz__2535,
+    &afw_curl_self_v_zz__2537,
     &afw_curl_integer_self_v_zz___1,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
@@ -459,8 +555,8 @@ impl_http_get = {
     &afw_curl_self_v_afwHttpGet,
     NULL,
     &afw_curl_self_v_zz__Makes_a_HTTP_GET_Request_,
-    &afw_curl_self_v_zz__2533,
-    &afw_curl_self_v_zz__2536,
+    &afw_curl_self_v_zz__2535,
+    &afw_curl_self_v_zz__2538,
     NULL,
     afw_function_execute_requiresExecuteAccess_wrapper,
     afw_curl_function_execute_http_get,
@@ -470,6 +566,366 @@ impl_http_get = {
     &impl_http_get_parameters[0],
     3,
     &impl_http_get_returns,
+    NULL,
+    NULL,
+    &afw_curl_self_v_zz__,
+    NULL,
+    NULL,
+    0, /* Not a data type method. */
+    &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_true,
+};
+
+/* ---------- http_head ---------- */
+
+static const afw_value_function_definition_t
+impl_http_head;
+
+static const afw_utf8_t
+impl_object_path__http_head =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/http_head");
+
+static const afw_runtime_object_indirect_t
+impl_object__http_head = {
+    {
+        NULL,
+        NULL,
+        NULL, /* Resolved at runtime. */
+        {
+            NULL,
+            NULL,
+            &afw_curl_self_s_http_head,
+            &afw_curl_self_s__AdaptiveFunction_,
+            &impl_object_path__http_head
+        }
+    },
+    (void *)&impl_http_head
+};
+
+static const afw_value_function_parameter_t
+impl_http_head_returns = {
+    {
+        NULL,
+        NULL,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_curl_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    &afw_curl_self_v_object,
+    &afw_curl_self_v__AdaptiveCurlHttpResponse_,
+    NULL,
+    NULL,
+    &afw_curl_self_v_zz__2539,
+    &afw_curl_integer_self_v_zz___1,
+    &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_false,
+};
+
+static const afw_value_function_parameter_t
+impl_http_head_parameter_1 = {
+    {
+        NULL,
+        NULL,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_curl_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    &afw_curl_self_v_string,
+    NULL,
+    &afw_curl_self_v_url,
+    NULL,
+    &afw_curl_self_v_zz__HTTP_Url_,
+    &afw_curl_integer_self_v_zz___1,
+    &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_false,
+};
+
+static const afw_value_function_parameter_t
+impl_http_head_parameter_2 = {
+    {
+        NULL,
+        NULL,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_curl_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    &afw_curl_self_v_array,
+    NULL,
+    &afw_curl_self_v_headers,
+    NULL,
+    &afw_curl_self_v_zz__HTTP_Headers_,
+    &afw_curl_integer_self_v_zz___1,
+    &afw_curl_boolean_self_v_true,
+    &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_false,
+};
+
+static const afw_value_function_parameter_t
+impl_http_head_parameter_3 = {
+    {
+        NULL,
+        NULL,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_curl_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    &afw_curl_self_v_object,
+    &afw_curl_self_v__AdaptiveCurlOptions_,
+    &afw_curl_self_v_options,
+    NULL,
+    &afw_curl_self_v_zz__CURL_Options,
+    &afw_curl_integer_self_v_zz___1,
+    &afw_curl_boolean_self_v_true,
+    &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_false,
+};
+
+static const afw_value_function_parameter_t *
+impl_http_head_parameters[] = {
+    &impl_http_head_parameter_1,
+    &impl_http_head_parameter_2,
+    &impl_http_head_parameter_3,
+    NULL
+};
+
+static const afw_value_function_definition_t
+impl_http_head = {
+    {NULL},
+    (const afw_object_t *)&impl_object__http_head,
+    &afw_curl_self_v_http,
+    &afw_curl_self_v_http_head,
+    &afw_curl_self_v_zz___afw__AdaptiveFunction__http_head,
+    &afw_curl_self_v_http_head,
+    &afw_curl_self_v_http_head,
+    &afw_curl_self_v_httpHead,
+    &afw_curl_self_v_afwHttpHead,
+    NULL,
+    &afw_curl_self_v_zz__Makes_a_HTTP_HEAD_Request_,
+    &afw_curl_self_v_zz__2535,
+    &afw_curl_self_v_zz__2540,
+    NULL,
+    afw_function_execute_requiresExecuteAccess_wrapper,
+    afw_curl_function_execute_http_head,
+    NULL,
+    &afw_curl_integer_self_v_1,
+    &afw_curl_integer_self_v_3,
+    &impl_http_head_parameters[0],
+    3,
+    &impl_http_head_returns,
+    NULL,
+    NULL,
+    &afw_curl_self_v_zz__,
+    NULL,
+    NULL,
+    0, /* Not a data type method. */
+    &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_true,
+};
+
+/* ---------- http_options ---------- */
+
+static const afw_value_function_definition_t
+impl_http_options;
+
+static const afw_utf8_t
+impl_object_path__http_options =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveFunction_/http_options");
+
+static const afw_runtime_object_indirect_t
+impl_object__http_options = {
+    {
+        NULL,
+        NULL,
+        NULL, /* Resolved at runtime. */
+        {
+            NULL,
+            NULL,
+            &afw_curl_self_s_http_options,
+            &afw_curl_self_s__AdaptiveFunction_,
+            &impl_object_path__http_options
+        }
+    },
+    (void *)&impl_http_options
+};
+
+static const afw_value_function_parameter_t
+impl_http_options_returns = {
+    {
+        NULL,
+        NULL,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_curl_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    &afw_curl_self_v_object,
+    &afw_curl_self_v__AdaptiveCurlHttpResponse_,
+    NULL,
+    NULL,
+    &afw_curl_self_v_zz__2541,
+    &afw_curl_integer_self_v_zz___1,
+    &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_false,
+};
+
+static const afw_value_function_parameter_t
+impl_http_options_parameter_1 = {
+    {
+        NULL,
+        NULL,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_curl_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    &afw_curl_self_v_string,
+    NULL,
+    &afw_curl_self_v_url,
+    NULL,
+    &afw_curl_self_v_zz__HTTP_Url_,
+    &afw_curl_integer_self_v_zz___1,
+    &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_false,
+};
+
+static const afw_value_function_parameter_t
+impl_http_options_parameter_2 = {
+    {
+        NULL,
+        NULL,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_curl_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    &afw_curl_self_v_array,
+    NULL,
+    &afw_curl_self_v_headers,
+    NULL,
+    &afw_curl_self_v_zz__HTTP_Headers_,
+    &afw_curl_integer_self_v_zz___1,
+    &afw_curl_boolean_self_v_true,
+    &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_false,
+};
+
+static const afw_value_function_parameter_t
+impl_http_options_parameter_3 = {
+    {
+        NULL,
+        NULL,
+        NULL,
+        {
+            NULL,
+            NULL,
+            NULL,
+            &afw_curl_self_s__AdaptiveFunctionParameter_,
+            NULL,
+        }
+    },
+    NULL,
+    &afw_curl_self_v_object,
+    &afw_curl_self_v__AdaptiveCurlOptions_,
+    &afw_curl_self_v_options,
+    NULL,
+    &afw_curl_self_v_zz__CURL_Options,
+    &afw_curl_integer_self_v_zz___1,
+    &afw_curl_boolean_self_v_true,
+    &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_false,
+    &afw_curl_boolean_self_v_false,
+};
+
+static const afw_value_function_parameter_t *
+impl_http_options_parameters[] = {
+    &impl_http_options_parameter_1,
+    &impl_http_options_parameter_2,
+    &impl_http_options_parameter_3,
+    NULL
+};
+
+static const afw_value_function_definition_t
+impl_http_options = {
+    {NULL},
+    (const afw_object_t *)&impl_object__http_options,
+    &afw_curl_self_v_http,
+    &afw_curl_self_v_http_options,
+    &afw_curl_self_v_zz___afw__AdaptiveFunction__http_options,
+    &afw_curl_self_v_http_options,
+    &afw_curl_self_v_http_options,
+    &afw_curl_self_v_httpOptions,
+    &afw_curl_self_v_afwHttpOptions,
+    NULL,
+    &afw_curl_self_v_zz__Makes_a_HTTP_OPTIONS_Request_,
+    &afw_curl_self_v_zz__2535,
+    &afw_curl_self_v_zz__2542,
+    NULL,
+    afw_function_execute_requiresExecuteAccess_wrapper,
+    afw_curl_function_execute_http_options,
+    NULL,
+    &afw_curl_integer_self_v_1,
+    &afw_curl_integer_self_v_3,
+    &impl_http_options_parameters[0],
+    3,
+    &impl_http_options_returns,
     NULL,
     NULL,
     &afw_curl_self_v_zz__,
@@ -529,7 +985,7 @@ impl_http_patch_returns = {
     &afw_curl_self_v__AdaptiveCurlHttpResponse_,
     NULL,
     NULL,
-    &afw_curl_self_v_zz__2537,
+    &afw_curl_self_v_zz__2543,
     &afw_curl_integer_self_v_zz___1,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
@@ -667,8 +1123,8 @@ impl_http_patch = {
     &afw_curl_self_v_afwHttpPatch,
     NULL,
     &afw_curl_self_v_zz__Makes_a_HTTP_PATCH_Request_,
-    &afw_curl_self_v_zz__2538,
-    &afw_curl_self_v_zz__2539,
+    &afw_curl_self_v_zz__2544,
+    &afw_curl_self_v_zz__2545,
     NULL,
     afw_function_execute_requiresExecuteAccess_wrapper,
     afw_curl_function_execute_http_patch,
@@ -737,7 +1193,7 @@ impl_http_post_returns = {
     &afw_curl_self_v__AdaptiveCurlHttpResponse_,
     NULL,
     NULL,
-    &afw_curl_self_v_zz__2540,
+    &afw_curl_self_v_zz__2546,
     &afw_curl_integer_self_v_zz___1,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
@@ -875,8 +1331,8 @@ impl_http_post = {
     &afw_curl_self_v_afwHttpPost,
     NULL,
     &afw_curl_self_v_zz__Makes_a_HTTP_POST_Request_,
-    &afw_curl_self_v_zz__2538,
-    &afw_curl_self_v_zz__2541,
+    &afw_curl_self_v_zz__2544,
+    &afw_curl_self_v_zz__2547,
     NULL,
     afw_function_execute_requiresExecuteAccess_wrapper,
     afw_curl_function_execute_http_post,
@@ -945,7 +1401,7 @@ impl_http_put_returns = {
     &afw_curl_self_v__AdaptiveCurlHttpResponse_,
     NULL,
     NULL,
-    &afw_curl_self_v_zz__2542,
+    &afw_curl_self_v_zz__2548,
     &afw_curl_integer_self_v_zz___1,
     &afw_curl_boolean_self_v_false,
     &afw_curl_boolean_self_v_false,
@@ -1083,8 +1539,8 @@ impl_http_put = {
     &afw_curl_self_v_afwHttpPut,
     NULL,
     &afw_curl_self_v_zz__Makes_a_HTTP_PUT_Request_,
-    &afw_curl_self_v_zz__2538,
-    &afw_curl_self_v_zz__2543,
+    &afw_curl_self_v_zz__2544,
+    &afw_curl_self_v_zz__2549,
     NULL,
     afw_function_execute_requiresExecuteAccess_wrapper,
     afw_curl_function_execute_http_put,
@@ -1319,8 +1775,8 @@ impl_smtp_send = {
     &afw_curl_self_v_afwSmtpSend,
     NULL,
     &afw_curl_self_v_zz__Sends_an_eMail_using_SMTP_protocol_with_cURL_,
-    &afw_curl_self_v_zz__2544,
-    &afw_curl_self_v_zz__2545,
+    &afw_curl_self_v_zz__2550,
+    &afw_curl_self_v_zz__2551,
     NULL,
     afw_function_execute_requiresExecuteAccess_wrapper,
     afw_curl_function_execute_smtp_send,
@@ -1346,9 +1802,12 @@ impl_smtp_send = {
 
 static const afw_value_function_definition_t * 
 impl_function_bindings[] = {
+    &impl_curl_easy_options,
     &impl_curl_version_info,
     &impl_http_delete,
     &impl_http_get,
+    &impl_http_head,
+    &impl_http_options,
     &impl_http_patch,
     &impl_http_post,
     &impl_http_put,

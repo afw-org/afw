@@ -1382,242 +1382,8 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_VFS_Q_zz__2581 \
-    "If true, filenames that begin with dot ('.') will be included."
-
-/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2581 */
-#define afw_vfs_s_zz__2581 \
-    (&afw_vfs_self_v_zz__2581.internal)
-
-/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2581 */
-#define afw_vfs_self_s_zz__2581 \
-    (afw_vfs_self_v_zz__2581.internal)
-
-/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__2581 */
-extern const afw_value_string_t \
-    afw_vfs_self_v_zz__2581;
-
-/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__2581 */
-#define afw_vfs_z_zz__2581 \
-    (afw_vfs_self_v_zz__2581.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__2581 */
-#define afw_vfs_v_zz__2581 \
-    (&afw_vfs_self_v_zz__2581.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_VFS_Q_zz__2582 \
-    "If specified, the retrieve will start in the specified vfs subdirectory instead of the vfs root. The value can not start with '/', must end with '/', and can not contain '\\', './' or '../'."
-
-/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2582 */
-#define afw_vfs_s_zz__2582 \
-    (&afw_vfs_self_v_zz__2582.internal)
-
-/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2582 */
-#define afw_vfs_self_s_zz__2582 \
-    (afw_vfs_self_v_zz__2582.internal)
-
-/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__2582 */
-extern const afw_value_string_t \
-    afw_vfs_self_v_zz__2582;
-
-/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__2582 */
-#define afw_vfs_z_zz__2582 \
-    (afw_vfs_self_v_zz__2582.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__2582 */
-#define afw_vfs_v_zz__2582 \
-    (&afw_vfs_self_v_zz__2582.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_VFS_Q_zz__2583 \
-    "If specified, only files with filenames that end with the specified suffix are included."
-
-/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2583 */
-#define afw_vfs_s_zz__2583 \
-    (&afw_vfs_self_v_zz__2583.internal)
-
-/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2583 */
-#define afw_vfs_self_s_zz__2583 \
-    (afw_vfs_self_v_zz__2583.internal)
-
-/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__2583 */
-extern const afw_value_string_t \
-    afw_vfs_self_v_zz__2583;
-
-/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__2583 */
-#define afw_vfs_z_zz__2583 \
-    (afw_vfs_self_v_zz__2583.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__2583 */
-#define afw_vfs_v_zz__2583 \
-    (&afw_vfs_self_v_zz__2583.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_VFS_Q_zz__2584 \
-    "This is the object type for the optional adapterTypeSpecific parameter of the retrieve_objects() adaptive function when the adapterType of the adapterId is vfs."
-
-/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2584 */
-#define afw_vfs_s_zz__2584 \
-    (&afw_vfs_self_v_zz__2584.internal)
-
-/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2584 */
-#define afw_vfs_self_s_zz__2584 \
-    (afw_vfs_self_v_zz__2584.internal)
-
-/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__2584 */
-extern const afw_value_string_t \
-    afw_vfs_self_v_zz__2584;
-
-/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__2584 */
-#define afw_vfs_z_zz__2584 \
-    (afw_vfs_self_v_zz__2584.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__2584 */
-#define afw_vfs_v_zz__2584 \
-    (&afw_vfs_self_v_zz__2584.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_VFS_Q_zz__2585 \
-    "This is a list of vfsPath filename patterns whose host files should be marked as executable when written. For instance, ['*.as'] will mark Adaptive Scripts whose vfsPath ends with '.as' as executable.\n\nA PATTERN match uses Apache apr function apr_fnmatch() which interprets a pattern as follows:\n\nThere are no illegal patterns.\n\nPATTERN: Backslash followed by any character, including another backslash.\nMATCHES: That character exactly.\n\nPATTERN: ?\nMATCHES: Any single character.\n\nPATTERN: *\nMATCHES: Any sequence of zero or more characters. (Note that multiple *s in a row are equivalent to one.)\n\nPATTERN: Any character other than \\?*[ or a \\ at the end of the pattern\nMATCHES: That character exactly. (Case sensitive.)\n\nPATTERN: [ followed by a class description followed by ]\nMATCHES: A single character described by the class description. (Never matches, if the class description reaches until the end of the string without a ].) If the first character of the class description is ^ or !, the sense of the description is reversed. The rest of the class description is a list of single characters or pairs of characters separated by -. Any of those characters can have a backslash in front of them, which is ignored; this lets you use the characters ] and - in the character class, as well as ^ and ! at the beginning. The pattern matches a single character if it is one of the listed characters or falls into one of the listed ranges (inclusive, case sensitive). Ranges with the first character larger than the second are legal but never match. Edge cases: [] never matches, and [^] and [!] always match without consuming a character.\n\nNote that these patterns attempt to match the entire vfsPath, not just find a substring matching the pattern."
-
-/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2585 */
-#define afw_vfs_s_zz__2585 \
-    (&afw_vfs_self_v_zz__2585.internal)
-
-/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2585 */
-#define afw_vfs_self_s_zz__2585 \
-    (afw_vfs_self_v_zz__2585.internal)
-
-/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__2585 */
-extern const afw_value_string_t \
-    afw_vfs_self_v_zz__2585;
-
-/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__2585 */
-#define afw_vfs_z_zz__2585 \
-    (afw_vfs_self_v_zz__2585.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__2585 */
-#define afw_vfs_v_zz__2585 \
-    (&afw_vfs_self_v_zz__2585.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_VFS_Q_zz__2586 \
-    "This property is a list of vfs map entries.\n\nThe vfsPath of objects in this vfs adapter is of the form:\n\n/<adapterId>/<objectId>\n\nWhere <adapterId> is the id of this adapter and where <objectId> is the relative path from the vfs root directory ('<adapterId>/') to the associated file or directory. An <objectId> of a directory ends with a slash ('/').\n\nEach vfsMap entry is a string of the form:\n\n<objectId_prefix>=<host file system directory path>\n\n<objectId_prefix> can be empty if the entry applies to files and directories in the vfs root directory or the objectId of a directory within the vfs.\n\nThe <host file system directory path> must end in a slash ('/'). A backslash is tolerated on a Windows host. The host system file path is the <objectId> with <objectId_prefix> removed appended to the associated <host file system directory path>.\n\nThe map entry with the longest matching <objectId_prefix> is the one used for any adapter functions objectId parameter.\n\nFor retrieve_objects*() the entries are processed in longest to shortest <objectId_prefix> order. If 'subdirectory' is supplied in the retrieve_objects*() adapterSpecific parameter, only matching entries are used. Note, that depending on the vfsMap, a single physical file or directory can appear multiple times with different vfsPaths."
-
-/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2586 */
-#define afw_vfs_s_zz__2586 \
-    (&afw_vfs_self_v_zz__2586.internal)
-
-/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2586 */
-#define afw_vfs_self_s_zz__2586 \
-    (afw_vfs_self_v_zz__2586.internal)
-
-/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__2586 */
-extern const afw_value_string_t \
-    afw_vfs_self_v_zz__2586;
-
-/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__2586 */
-#define afw_vfs_z_zz__2586 \
-    (afw_vfs_self_v_zz__2586.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__2586 */
-#define afw_vfs_v_zz__2586 \
-    (&afw_vfs_self_v_zz__2586.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_VFS_Q_zz__2587 \
-    "Adaptive Framework configuration component for type=adapter adapterType=vfs. This is a virtual file system adapter that allows files to be accessed as objects that have a 'data' property and additional file stats properties. The vfs path to files begins with '/', the adapter name, '/_AdaptiveFile_vfs'. The path of the operating system directory as well as the paths to subdirectories are defined in the 'vfsMap' property."
-
-/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2587 */
-#define afw_vfs_s_zz__2587 \
-    (&afw_vfs_self_v_zz__2587.internal)
-
-/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2587 */
-#define afw_vfs_self_s_zz__2587 \
-    (afw_vfs_self_v_zz__2587.internal)
-
-/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__2587 */
-extern const afw_value_string_t \
-    afw_vfs_self_v_zz__2587;
-
-/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__2587 */
-#define afw_vfs_z_zz__2587 \
-    (afw_vfs_self_v_zz__2587.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__2587 */
-#define afw_vfs_v_zz__2587 \
-    (&afw_vfs_self_v_zz__2587.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_VFS_Q_zz__2588 \
-    "This is the contents of the file. If this is a directory, data is a list of strings containing the name from its entries. If this is not a directory and the data is valid utf-8, data is a string otherwise, it is hexBinary. This property is ignored when adding a directory."
-
-/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2588 */
-#define afw_vfs_s_zz__2588 \
-    (&afw_vfs_self_v_zz__2588.internal)
-
-/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2588 */
-#define afw_vfs_self_s_zz__2588 \
-    (afw_vfs_self_v_zz__2588.internal)
-
-/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__2588 */
-extern const afw_value_string_t \
-    afw_vfs_self_v_zz__2588;
-
-/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__2588 */
-#define afw_vfs_z_zz__2588 \
-    (afw_vfs_self_v_zz__2588.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__2588 */
-#define afw_vfs_v_zz__2588 \
-    (&afw_vfs_self_v_zz__2588.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_VFS_Q_zz__2589 \
-    "This is true if this is a directory. This property is read-only. A slash ('/') at the end of an objectId is used to indicate this in requests."
-
-/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2589 */
-#define afw_vfs_s_zz__2589 \
-    (&afw_vfs_self_v_zz__2589.internal)
-
-/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2589 */
-#define afw_vfs_self_s_zz__2589 \
-    (afw_vfs_self_v_zz__2589.internal)
-
-/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__2589 */
-extern const afw_value_string_t \
-    afw_vfs_self_v_zz__2589;
-
-/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__2589 */
-#define afw_vfs_z_zz__2589 \
-    (afw_vfs_self_v_zz__2589.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__2589 */
-#define afw_vfs_v_zz__2589 \
-    (&afw_vfs_self_v_zz__2589.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_VFS_Q_zz__2590 \
-    "This is the vfs path within this instance of Adaptive Framework. This property is read-only."
+    "If true, filenames that begin with dot ('.') will be included."
 
 /** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2590 */
 #define afw_vfs_s_zz__2590 \
@@ -1638,6 +1404,240 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__2590 */
 #define afw_vfs_v_zz__2590 \
     (&afw_vfs_self_v_zz__2590.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_VFS_Q_zz__2591 \
+    "If specified, the retrieve will start in the specified vfs subdirectory instead of the vfs root. The value can not start with '/', must end with '/', and can not contain '\\', './' or '../'."
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2591 */
+#define afw_vfs_s_zz__2591 \
+    (&afw_vfs_self_v_zz__2591.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2591 */
+#define afw_vfs_self_s_zz__2591 \
+    (afw_vfs_self_v_zz__2591.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__2591 */
+extern const afw_value_string_t \
+    afw_vfs_self_v_zz__2591;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__2591 */
+#define afw_vfs_z_zz__2591 \
+    (afw_vfs_self_v_zz__2591.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__2591 */
+#define afw_vfs_v_zz__2591 \
+    (&afw_vfs_self_v_zz__2591.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_VFS_Q_zz__2592 \
+    "If specified, only files with filenames that end with the specified suffix are included."
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2592 */
+#define afw_vfs_s_zz__2592 \
+    (&afw_vfs_self_v_zz__2592.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2592 */
+#define afw_vfs_self_s_zz__2592 \
+    (afw_vfs_self_v_zz__2592.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__2592 */
+extern const afw_value_string_t \
+    afw_vfs_self_v_zz__2592;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__2592 */
+#define afw_vfs_z_zz__2592 \
+    (afw_vfs_self_v_zz__2592.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__2592 */
+#define afw_vfs_v_zz__2592 \
+    (&afw_vfs_self_v_zz__2592.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_VFS_Q_zz__2593 \
+    "This is the object type for the optional adapterTypeSpecific parameter of the retrieve_objects() adaptive function when the adapterType of the adapterId is vfs."
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2593 */
+#define afw_vfs_s_zz__2593 \
+    (&afw_vfs_self_v_zz__2593.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2593 */
+#define afw_vfs_self_s_zz__2593 \
+    (afw_vfs_self_v_zz__2593.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__2593 */
+extern const afw_value_string_t \
+    afw_vfs_self_v_zz__2593;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__2593 */
+#define afw_vfs_z_zz__2593 \
+    (afw_vfs_self_v_zz__2593.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__2593 */
+#define afw_vfs_v_zz__2593 \
+    (&afw_vfs_self_v_zz__2593.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_VFS_Q_zz__2594 \
+    "This is a list of vfsPath filename patterns whose host files should be marked as executable when written. For instance, ['*.as'] will mark Adaptive Scripts whose vfsPath ends with '.as' as executable.\n\nA PATTERN match uses Apache apr function apr_fnmatch() which interprets a pattern as follows:\n\nThere are no illegal patterns.\n\nPATTERN: Backslash followed by any character, including another backslash.\nMATCHES: That character exactly.\n\nPATTERN: ?\nMATCHES: Any single character.\n\nPATTERN: *\nMATCHES: Any sequence of zero or more characters. (Note that multiple *s in a row are equivalent to one.)\n\nPATTERN: Any character other than \\?*[ or a \\ at the end of the pattern\nMATCHES: That character exactly. (Case sensitive.)\n\nPATTERN: [ followed by a class description followed by ]\nMATCHES: A single character described by the class description. (Never matches, if the class description reaches until the end of the string without a ].) If the first character of the class description is ^ or !, the sense of the description is reversed. The rest of the class description is a list of single characters or pairs of characters separated by -. Any of those characters can have a backslash in front of them, which is ignored; this lets you use the characters ] and - in the character class, as well as ^ and ! at the beginning. The pattern matches a single character if it is one of the listed characters or falls into one of the listed ranges (inclusive, case sensitive). Ranges with the first character larger than the second are legal but never match. Edge cases: [] never matches, and [^] and [!] always match without consuming a character.\n\nNote that these patterns attempt to match the entire vfsPath, not just find a substring matching the pattern."
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2594 */
+#define afw_vfs_s_zz__2594 \
+    (&afw_vfs_self_v_zz__2594.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2594 */
+#define afw_vfs_self_s_zz__2594 \
+    (afw_vfs_self_v_zz__2594.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__2594 */
+extern const afw_value_string_t \
+    afw_vfs_self_v_zz__2594;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__2594 */
+#define afw_vfs_z_zz__2594 \
+    (afw_vfs_self_v_zz__2594.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__2594 */
+#define afw_vfs_v_zz__2594 \
+    (&afw_vfs_self_v_zz__2594.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_VFS_Q_zz__2595 \
+    "This property is a list of vfs map entries.\n\nThe vfsPath of objects in this vfs adapter is of the form:\n\n/<adapterId>/<objectId>\n\nWhere <adapterId> is the id of this adapter and where <objectId> is the relative path from the vfs root directory ('<adapterId>/') to the associated file or directory. An <objectId> of a directory ends with a slash ('/').\n\nEach vfsMap entry is a string of the form:\n\n<objectId_prefix>=<host file system directory path>\n\n<objectId_prefix> can be empty if the entry applies to files and directories in the vfs root directory or the objectId of a directory within the vfs.\n\nThe <host file system directory path> must end in a slash ('/'). A backslash is tolerated on a Windows host. The host system file path is the <objectId> with <objectId_prefix> removed appended to the associated <host file system directory path>.\n\nThe map entry with the longest matching <objectId_prefix> is the one used for any adapter functions objectId parameter.\n\nFor retrieve_objects*() the entries are processed in longest to shortest <objectId_prefix> order. If 'subdirectory' is supplied in the retrieve_objects*() adapterSpecific parameter, only matching entries are used. Note, that depending on the vfsMap, a single physical file or directory can appear multiple times with different vfsPaths."
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2595 */
+#define afw_vfs_s_zz__2595 \
+    (&afw_vfs_self_v_zz__2595.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2595 */
+#define afw_vfs_self_s_zz__2595 \
+    (afw_vfs_self_v_zz__2595.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__2595 */
+extern const afw_value_string_t \
+    afw_vfs_self_v_zz__2595;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__2595 */
+#define afw_vfs_z_zz__2595 \
+    (afw_vfs_self_v_zz__2595.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__2595 */
+#define afw_vfs_v_zz__2595 \
+    (&afw_vfs_self_v_zz__2595.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_VFS_Q_zz__2596 \
+    "Adaptive Framework configuration component for type=adapter adapterType=vfs. This is a virtual file system adapter that allows files to be accessed as objects that have a 'data' property and additional file stats properties. The vfs path to files begins with '/', the adapter name, '/_AdaptiveFile_vfs'. The path of the operating system directory as well as the paths to subdirectories are defined in the 'vfsMap' property."
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2596 */
+#define afw_vfs_s_zz__2596 \
+    (&afw_vfs_self_v_zz__2596.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2596 */
+#define afw_vfs_self_s_zz__2596 \
+    (afw_vfs_self_v_zz__2596.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__2596 */
+extern const afw_value_string_t \
+    afw_vfs_self_v_zz__2596;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__2596 */
+#define afw_vfs_z_zz__2596 \
+    (afw_vfs_self_v_zz__2596.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__2596 */
+#define afw_vfs_v_zz__2596 \
+    (&afw_vfs_self_v_zz__2596.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_VFS_Q_zz__2597 \
+    "This is the contents of the file. If this is a directory, data is a list of strings containing the name from its entries. If this is not a directory and the data is valid utf-8, data is a string otherwise, it is hexBinary. This property is ignored when adding a directory."
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2597 */
+#define afw_vfs_s_zz__2597 \
+    (&afw_vfs_self_v_zz__2597.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2597 */
+#define afw_vfs_self_s_zz__2597 \
+    (afw_vfs_self_v_zz__2597.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__2597 */
+extern const afw_value_string_t \
+    afw_vfs_self_v_zz__2597;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__2597 */
+#define afw_vfs_z_zz__2597 \
+    (afw_vfs_self_v_zz__2597.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__2597 */
+#define afw_vfs_v_zz__2597 \
+    (&afw_vfs_self_v_zz__2597.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_VFS_Q_zz__2598 \
+    "This is true if this is a directory. This property is read-only. A slash ('/') at the end of an objectId is used to indicate this in requests."
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2598 */
+#define afw_vfs_s_zz__2598 \
+    (&afw_vfs_self_v_zz__2598.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2598 */
+#define afw_vfs_self_s_zz__2598 \
+    (afw_vfs_self_v_zz__2598.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__2598 */
+extern const afw_value_string_t \
+    afw_vfs_self_v_zz__2598;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__2598 */
+#define afw_vfs_z_zz__2598 \
+    (afw_vfs_self_v_zz__2598.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__2598 */
+#define afw_vfs_v_zz__2598 \
+    (&afw_vfs_self_v_zz__2598.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_VFS_Q_zz__2599 \
+    "This is the vfs path within this instance of Adaptive Framework. This property is read-only."
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2599 */
+#define afw_vfs_s_zz__2599 \
+    (&afw_vfs_self_v_zz__2599.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2599 */
+#define afw_vfs_self_s_zz__2599 \
+    (afw_vfs_self_v_zz__2599.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__2599 */
+extern const afw_value_string_t \
+    afw_vfs_self_v_zz__2599;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__2599 */
+#define afw_vfs_z_zz__2599 \
+    (afw_vfs_self_v_zz__2599.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__2599 */
+#define afw_vfs_v_zz__2599 \
+    (&afw_vfs_self_v_zz__2599.pub)
 
 
 

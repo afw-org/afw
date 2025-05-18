@@ -1,0 +1,15 @@
+{
+    "afwCamelCaseFunctionLabel": "afwCurlEasyOptions",
+    "camelCaseFunctionLabel": "curlEasyOptions",
+    "category": "curl",
+    "description": "Returns option names that are available with the installed version of libcurl.",
+    "functionId": "curl_easy_options",
+    "functionLabel": "curl_easy_options",
+    "parameters": [],
+    "requiresExecuteAccess": true,
+    "returns": {
+        "dataType": "array",
+        "dataTypeParameter": "string",
+        "description": "Returns an array of strings containing the cURL option names that are available with the installed version of libcurl."
+    }
+}

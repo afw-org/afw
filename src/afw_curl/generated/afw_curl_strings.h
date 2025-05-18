@@ -108,6 +108,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_CURL_Q_Headers \
+    "Headers"
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_Headers */
+#define afw_curl_s_Headers \
+    (&afw_curl_self_v_Headers.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_Headers */
+#define afw_curl_self_s_Headers \
+    (afw_curl_self_v_Headers.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CURL_Q_Headers */
+extern const afw_value_string_t \
+    afw_curl_self_v_Headers;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CURL_Q_Headers */
+#define afw_curl_z_Headers \
+    (afw_curl_self_v_Headers.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CURL_Q_Headers */
+#define afw_curl_v_Headers \
+    (&afw_curl_self_v_Headers.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_CURL_Q_Host \
     "Host"
 
@@ -628,6 +654,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_CURL_Q_afwCurlEasyOptions \
+    "afwCurlEasyOptions"
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_afwCurlEasyOptions */
+#define afw_curl_s_afwCurlEasyOptions \
+    (&afw_curl_self_v_afwCurlEasyOptions.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_afwCurlEasyOptions */
+#define afw_curl_self_s_afwCurlEasyOptions \
+    (afw_curl_self_v_afwCurlEasyOptions.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CURL_Q_afwCurlEasyOptions */
+extern const afw_value_string_t \
+    afw_curl_self_v_afwCurlEasyOptions;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CURL_Q_afwCurlEasyOptions */
+#define afw_curl_z_afwCurlEasyOptions \
+    (afw_curl_self_v_afwCurlEasyOptions.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CURL_Q_afwCurlEasyOptions */
+#define afw_curl_v_afwCurlEasyOptions \
+    (&afw_curl_self_v_afwCurlEasyOptions.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_CURL_Q_afwCurlVersionInfo \
     "afwCurlVersionInfo"
 
@@ -702,6 +754,58 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_CURL_Q_afwHttpGet */
 #define afw_curl_v_afwHttpGet \
     (&afw_curl_self_v_afwHttpGet.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CURL_Q_afwHttpHead \
+    "afwHttpHead"
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_afwHttpHead */
+#define afw_curl_s_afwHttpHead \
+    (&afw_curl_self_v_afwHttpHead.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_afwHttpHead */
+#define afw_curl_self_s_afwHttpHead \
+    (afw_curl_self_v_afwHttpHead.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CURL_Q_afwHttpHead */
+extern const afw_value_string_t \
+    afw_curl_self_v_afwHttpHead;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CURL_Q_afwHttpHead */
+#define afw_curl_z_afwHttpHead \
+    (afw_curl_self_v_afwHttpHead.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CURL_Q_afwHttpHead */
+#define afw_curl_v_afwHttpHead \
+    (&afw_curl_self_v_afwHttpHead.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CURL_Q_afwHttpOptions \
+    "afwHttpOptions"
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_afwHttpOptions */
+#define afw_curl_s_afwHttpOptions \
+    (&afw_curl_self_v_afwHttpOptions.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_afwHttpOptions */
+#define afw_curl_self_s_afwHttpOptions \
+    (afw_curl_self_v_afwHttpOptions.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CURL_Q_afwHttpOptions */
+extern const afw_value_string_t \
+    afw_curl_self_v_afwHttpOptions;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CURL_Q_afwHttpOptions */
+#define afw_curl_z_afwHttpOptions \
+    (afw_curl_self_v_afwHttpOptions.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CURL_Q_afwHttpOptions */
+#define afw_curl_v_afwHttpOptions \
+    (&afw_curl_self_v_afwHttpOptions.pub)
 
 
 
@@ -1356,6 +1460,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_CURL_Q_curlEasyOptions \
+    "curlEasyOptions"
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_curlEasyOptions */
+#define afw_curl_s_curlEasyOptions \
+    (&afw_curl_self_v_curlEasyOptions.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_curlEasyOptions */
+#define afw_curl_self_s_curlEasyOptions \
+    (afw_curl_self_v_curlEasyOptions.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CURL_Q_curlEasyOptions */
+extern const afw_value_string_t \
+    afw_curl_self_v_curlEasyOptions;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CURL_Q_curlEasyOptions */
+#define afw_curl_z_curlEasyOptions \
+    (afw_curl_self_v_curlEasyOptions.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CURL_Q_curlEasyOptions */
+#define afw_curl_v_curlEasyOptions \
+    (&afw_curl_self_v_curlEasyOptions.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_CURL_Q_curlVersionInfo \
     "curlVersionInfo"
 
@@ -1378,6 +1508,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_CURL_Q_curlVersionInfo */
 #define afw_curl_v_curlVersionInfo \
     (&afw_curl_self_v_curlVersionInfo.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CURL_Q_curl_easy_options \
+    "curl_easy_options"
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_curl_easy_options */
+#define afw_curl_s_curl_easy_options \
+    (&afw_curl_self_v_curl_easy_options.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_curl_easy_options */
+#define afw_curl_self_s_curl_easy_options \
+    (afw_curl_self_v_curl_easy_options.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CURL_Q_curl_easy_options */
+extern const afw_value_string_t \
+    afw_curl_self_v_curl_easy_options;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CURL_Q_curl_easy_options */
+#define afw_curl_z_curl_easy_options \
+    (afw_curl_self_v_curl_easy_options.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CURL_Q_curl_easy_options */
+#define afw_curl_v_curl_easy_options \
+    (&afw_curl_self_v_curl_easy_options.pub)
 
 
 
@@ -1590,6 +1746,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_CURL_Q_function \
+    "function"
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_function */
+#define afw_curl_s_function \
+    (&afw_curl_self_v_function.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_function */
+#define afw_curl_self_s_function \
+    (afw_curl_self_v_function.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CURL_Q_function */
+extern const afw_value_string_t \
+    afw_curl_self_v_function;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CURL_Q_function */
+#define afw_curl_z_function \
+    (afw_curl_self_v_function.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CURL_Q_function */
+#define afw_curl_v_function \
+    (&afw_curl_self_v_function.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_CURL_Q_functionId \
     "functionId"
 
@@ -1638,6 +1820,58 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_CURL_Q_functionLabel */
 #define afw_curl_v_functionLabel \
     (&afw_curl_self_v_functionLabel.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CURL_Q_headerFunction \
+    "headerFunction"
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_headerFunction */
+#define afw_curl_s_headerFunction \
+    (&afw_curl_self_v_headerFunction.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_headerFunction */
+#define afw_curl_self_s_headerFunction \
+    (afw_curl_self_v_headerFunction.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CURL_Q_headerFunction */
+extern const afw_value_string_t \
+    afw_curl_self_v_headerFunction;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CURL_Q_headerFunction */
+#define afw_curl_z_headerFunction \
+    (afw_curl_self_v_headerFunction.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CURL_Q_headerFunction */
+#define afw_curl_v_headerFunction \
+    (&afw_curl_self_v_headerFunction.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CURL_Q_headerUserData \
+    "headerUserData"
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_headerUserData */
+#define afw_curl_s_headerUserData \
+    (&afw_curl_self_v_headerUserData.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_headerUserData */
+#define afw_curl_self_s_headerUserData \
+    (afw_curl_self_v_headerUserData.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CURL_Q_headerUserData */
+extern const afw_value_string_t \
+    afw_curl_self_v_headerUserData;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CURL_Q_headerUserData */
+#define afw_curl_z_headerUserData \
+    (afw_curl_self_v_headerUserData.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CURL_Q_headerUserData */
+#define afw_curl_v_headerUserData \
+    (&afw_curl_self_v_headerUserData.pub)
 
 
 
@@ -1768,6 +2002,58 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_CURL_Q_httpGet */
 #define afw_curl_v_httpGet \
     (&afw_curl_self_v_httpGet.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CURL_Q_httpHead \
+    "httpHead"
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_httpHead */
+#define afw_curl_s_httpHead \
+    (&afw_curl_self_v_httpHead.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_httpHead */
+#define afw_curl_self_s_httpHead \
+    (afw_curl_self_v_httpHead.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CURL_Q_httpHead */
+extern const afw_value_string_t \
+    afw_curl_self_v_httpHead;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CURL_Q_httpHead */
+#define afw_curl_z_httpHead \
+    (afw_curl_self_v_httpHead.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CURL_Q_httpHead */
+#define afw_curl_v_httpHead \
+    (&afw_curl_self_v_httpHead.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CURL_Q_httpOptions \
+    "httpOptions"
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_httpOptions */
+#define afw_curl_s_httpOptions \
+    (&afw_curl_self_v_httpOptions.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_httpOptions */
+#define afw_curl_self_s_httpOptions \
+    (afw_curl_self_v_httpOptions.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CURL_Q_httpOptions */
+extern const afw_value_string_t \
+    afw_curl_self_v_httpOptions;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CURL_Q_httpOptions */
+#define afw_curl_z_httpOptions \
+    (afw_curl_self_v_httpOptions.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CURL_Q_httpOptions */
+#define afw_curl_v_httpOptions \
+    (&afw_curl_self_v_httpOptions.pub)
 
 
 
@@ -1924,6 +2210,58 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_CURL_Q_http_get */
 #define afw_curl_v_http_get \
     (&afw_curl_self_v_http_get.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CURL_Q_http_head \
+    "http_head"
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_http_head */
+#define afw_curl_s_http_head \
+    (&afw_curl_self_v_http_head.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_http_head */
+#define afw_curl_self_s_http_head \
+    (afw_curl_self_v_http_head.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CURL_Q_http_head */
+extern const afw_value_string_t \
+    afw_curl_self_v_http_head;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CURL_Q_http_head */
+#define afw_curl_z_http_head \
+    (afw_curl_self_v_http_head.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CURL_Q_http_head */
+#define afw_curl_v_http_head \
+    (&afw_curl_self_v_http_head.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CURL_Q_http_options \
+    "http_options"
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_http_options */
+#define afw_curl_s_http_options \
+    (&afw_curl_self_v_http_options.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_http_options */
+#define afw_curl_self_s_http_options \
+    (afw_curl_self_v_http_options.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CURL_Q_http_options */
+extern const afw_value_string_t \
+    afw_curl_self_v_http_options;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CURL_Q_http_options */
+#define afw_curl_z_http_options \
+    (afw_curl_self_v_http_options.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CURL_Q_http_options */
+#define afw_curl_v_http_options \
+    (&afw_curl_self_v_http_options.pub)
 
 
 
@@ -2496,6 +2834,58 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_CURL_Q_proxyServiceName */
 #define afw_curl_v_proxyServiceName \
     (&afw_curl_self_v_proxyServiceName.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CURL_Q_readFunction \
+    "readFunction"
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_readFunction */
+#define afw_curl_s_readFunction \
+    (&afw_curl_self_v_readFunction.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_readFunction */
+#define afw_curl_self_s_readFunction \
+    (afw_curl_self_v_readFunction.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CURL_Q_readFunction */
+extern const afw_value_string_t \
+    afw_curl_self_v_readFunction;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CURL_Q_readFunction */
+#define afw_curl_z_readFunction \
+    (afw_curl_self_v_readFunction.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CURL_Q_readFunction */
+#define afw_curl_v_readFunction \
+    (&afw_curl_self_v_readFunction.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CURL_Q_readUserData \
+    "readUserData"
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_readUserData */
+#define afw_curl_s_readUserData \
+    (&afw_curl_self_v_readUserData.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_readUserData */
+#define afw_curl_self_s_readUserData \
+    (afw_curl_self_v_readUserData.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CURL_Q_readUserData */
+extern const afw_value_string_t \
+    afw_curl_self_v_readUserData;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CURL_Q_readUserData */
+#define afw_curl_z_readUserData \
+    (afw_curl_self_v_readUserData.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CURL_Q_readUserData */
+#define afw_curl_v_readUserData \
+    (&afw_curl_self_v_readUserData.pub)
 
 
 
@@ -3098,6 +3488,58 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_CURL_Q_writeFunction \
+    "writeFunction"
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_writeFunction */
+#define afw_curl_s_writeFunction \
+    (&afw_curl_self_v_writeFunction.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_writeFunction */
+#define afw_curl_self_s_writeFunction \
+    (afw_curl_self_v_writeFunction.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CURL_Q_writeFunction */
+extern const afw_value_string_t \
+    afw_curl_self_v_writeFunction;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CURL_Q_writeFunction */
+#define afw_curl_z_writeFunction \
+    (afw_curl_self_v_writeFunction.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CURL_Q_writeFunction */
+#define afw_curl_v_writeFunction \
+    (&afw_curl_self_v_writeFunction.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CURL_Q_writeUserData \
+    "writeUserData"
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_writeUserData */
+#define afw_curl_s_writeUserData \
+    (&afw_curl_self_v_writeUserData.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_writeUserData */
+#define afw_curl_self_s_writeUserData \
+    (afw_curl_self_v_writeUserData.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CURL_Q_writeUserData */
+extern const afw_value_string_t \
+    afw_curl_self_v_writeUserData;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CURL_Q_writeUserData */
+#define afw_curl_z_writeUserData \
+    (afw_curl_self_v_writeUserData.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CURL_Q_writeUserData */
+#define afw_curl_v_writeUserData \
+    (&afw_curl_self_v_writeUserData.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_CURL_Q_zz__ \
     ""
 
@@ -3125,7 +3567,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CURL_Q_zz__2531 \
-    "function curl_version_info (\n\n): (object _AdaptiveCurlVersionInfo_);\n"
+    "Returns an array of strings containing the cURL option names that are available with the installed version of libcurl."
 
 /** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__2531 */
 #define afw_curl_s_zz__2531 \
@@ -3151,7 +3593,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CURL_Q_zz__2532 \
-    "Returns an object describing the response from the HTTP delete request."
+    "Returns option names that are available with the installed version of libcurl."
 
 /** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__2532 */
 #define afw_curl_s_zz__2532 \
@@ -3177,7 +3619,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CURL_Q_zz__2533 \
-    "(url: string, headers?: array, options?: (object _AdaptiveCurlOptions_)): (object _AdaptiveCurlHttpResponse_)"
+    "function curl_version_info (\n\n): (object _AdaptiveCurlVersionInfo_);\n"
 
 /** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__2533 */
 #define afw_curl_s_zz__2533 \
@@ -3203,7 +3645,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CURL_Q_zz__2534 \
-    "function http_delete (\n    url: string,\n    headers?: array,\n    options?: (object _AdaptiveCurlOptions_)\n): (object _AdaptiveCurlHttpResponse_);\n"
+    "Returns an object describing the response from the HTTP delete request."
 
 /** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__2534 */
 #define afw_curl_s_zz__2534 \
@@ -3229,7 +3671,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CURL_Q_zz__2535 \
-    "Returns an object describing the response from the HTTP GET request."
+    "(url: string, headers?: array, options?: (object _AdaptiveCurlOptions_)): (object _AdaptiveCurlHttpResponse_)"
 
 /** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__2535 */
 #define afw_curl_s_zz__2535 \
@@ -3255,7 +3697,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CURL_Q_zz__2536 \
-    "function http_get (\n    url: string,\n    headers?: array,\n    options?: (object _AdaptiveCurlOptions_)\n): (object _AdaptiveCurlHttpResponse_);\n"
+    "function http_delete (\n    url: string,\n    headers?: array,\n    options?: (object _AdaptiveCurlOptions_)\n): (object _AdaptiveCurlHttpResponse_);\n"
 
 /** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__2536 */
 #define afw_curl_s_zz__2536 \
@@ -3281,7 +3723,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CURL_Q_zz__2537 \
-    "Returns an object describing the response from the HTTP PATCH request."
+    "Returns an object describing the response from the HTTP GET request."
 
 /** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__2537 */
 #define afw_curl_s_zz__2537 \
@@ -3307,7 +3749,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CURL_Q_zz__2538 \
-    "(url: string, payload?: string, headers?: array, options?: (object _AdaptiveCurlOptions_)): (object _AdaptiveCurlHttpResponse_)"
+    "function http_get (\n    url: string,\n    headers?: array,\n    options?: (object _AdaptiveCurlOptions_)\n): (object _AdaptiveCurlHttpResponse_);\n"
 
 /** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__2538 */
 #define afw_curl_s_zz__2538 \
@@ -3333,7 +3775,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CURL_Q_zz__2539 \
-    "function http_patch (\n    url: string,\n    payload?: string,\n    headers?: array,\n    options?: (object _AdaptiveCurlOptions_)\n): (object _AdaptiveCurlHttpResponse_);\n"
+    "Returns an object describing the response from the HTTP head request."
 
 /** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__2539 */
 #define afw_curl_s_zz__2539 \
@@ -3359,7 +3801,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CURL_Q_zz__2540 \
-    "Returns an object describing the response from the HTTP POST request."
+    "function http_head (\n    url: string,\n    headers?: array,\n    options?: (object _AdaptiveCurlOptions_)\n): (object _AdaptiveCurlHttpResponse_);\n"
 
 /** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__2540 */
 #define afw_curl_s_zz__2540 \
@@ -3385,7 +3827,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CURL_Q_zz__2541 \
-    "function http_post (\n    url: string,\n    payload?: string,\n    headers?: array,\n    options?: (object _AdaptiveCurlOptions_)\n): (object _AdaptiveCurlHttpResponse_);\n"
+    "Returns an object describing the response from the HTTP OPTIONS request."
 
 /** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__2541 */
 #define afw_curl_s_zz__2541 \
@@ -3411,7 +3853,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CURL_Q_zz__2542 \
-    "Returns an object describing the response from the HTTP PUT request."
+    "function http_options (\n    url: string,\n    headers?: array,\n    options?: (object _AdaptiveCurlOptions_)\n): (object _AdaptiveCurlHttpResponse_);\n"
 
 /** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__2542 */
 #define afw_curl_s_zz__2542 \
@@ -3437,7 +3879,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CURL_Q_zz__2543 \
-    "function http_put (\n    url: string,\n    payload?: string,\n    headers?: array,\n    options?: (object _AdaptiveCurlOptions_)\n): (object _AdaptiveCurlHttpResponse_);\n"
+    "Returns an object describing the response from the HTTP PATCH request."
 
 /** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__2543 */
 #define afw_curl_s_zz__2543 \
@@ -3463,7 +3905,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CURL_Q_zz__2544 \
-    "(url: string, mail_from: string, mail_recipients: array, payload: string, options?: (object _AdaptiveCurlOptions_)): void"
+    "(url: string, payload?: string, headers?: array, options?: (object _AdaptiveCurlOptions_)): (object _AdaptiveCurlHttpResponse_)"
 
 /** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__2544 */
 #define afw_curl_s_zz__2544 \
@@ -3489,7 +3931,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CURL_Q_zz__2545 \
-    "function smtp_send (\n    url: string,\n    mail_from: string,\n    mail_recipients: array,\n    payload: string,\n    options?: (object _AdaptiveCurlOptions_)\n): void;\n"
+    "function http_patch (\n    url: string,\n    payload?: string,\n    headers?: array,\n    options?: (object _AdaptiveCurlOptions_)\n): (object _AdaptiveCurlHttpResponse_);\n"
 
 /** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__2545 */
 #define afw_curl_s_zz__2545 \
@@ -3515,7 +3957,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CURL_Q_zz__2546 \
-    "When true, libcurl will automatically set the Referer: header field in HTTP requests where it follows a Location: redirect."
+    "Returns an object describing the response from the HTTP POST request."
 
 /** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__2546 */
 #define afw_curl_s_zz__2546 \
@@ -3541,7 +3983,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CURL_Q_zz__2547 \
-    "When specified, libcurl will use AWS Signature Version 4 for authentication."
+    "function http_post (\n    url: string,\n    payload?: string,\n    headers?: array,\n    options?: (object _AdaptiveCurlOptions_)\n): (object _AdaptiveCurlHttpResponse_);\n"
 
 /** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__2547 */
 #define afw_curl_s_zz__2547 \
@@ -3567,7 +4009,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CURL_Q_zz__2548 \
-    "Sets the next transfer to use a new (fresh) connection instead of trying to re-use an existing one."
+    "Returns an object describing the response from the HTTP PUT request."
 
 /** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__2548 */
 #define afw_curl_s_zz__2548 \
@@ -3593,7 +4035,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CURL_Q_zz__2549 \
-    "Set this parameter to true to make libcurl tunnel all operations through the HTTP proxy."
+    "function http_put (\n    url: string,\n    payload?: string,\n    headers?: array,\n    options?: (object _AdaptiveCurlOptions_)\n): (object _AdaptiveCurlHttpResponse_);\n"
 
 /** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__2549 */
 #define afw_curl_s_zz__2549 \
@@ -3619,7 +4061,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CURL_Q_zz__2550 \
-    "This sets the interface name to use as outgoing network interface.  The name can be an interface name, an IP address, or host name."
+    "(url: string, mail_from: string, mail_recipients: array, payload: string, options?: (object _AdaptiveCurlOptions_)): void"
 
 /** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__2550 */
 #define afw_curl_s_zz__2550 \
@@ -3645,7 +4087,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CURL_Q_zz__2551 \
-    "Set the proxy to use for the upcoming request.  This parameter should be a string holding the host name or dotted numerical IP address.  A numerical IPv6 address must be written within [brackets].  To specify a port number in this string, append :[port] to the end of the host name.  The proxy string may be prefixed with the [scheme]:// to specify which kind of proxy is used."
+    "function smtp_send (\n    url: string,\n    mail_from: string,\n    mail_recipients: array,\n    payload: string,\n    options?: (object _AdaptiveCurlOptions_)\n): void;\n"
 
 /** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__2551 */
 #define afw_curl_s_zz__2551 \
@@ -3671,7 +4113,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CURL_Q_zz__2552 \
-    "Parameter specifies the name of the service.  The default service name is 'HTTP' for HTTP based proxies and 'rcmd' for SOCKS5."
+    "When true, libcurl will automatically set the Referer: header field in HTTP requests where it follows a Location: redirect."
 
 /** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__2552 */
 #define afw_curl_s_zz__2552 \
@@ -3697,7 +4139,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CURL_Q_zz__2553 \
-    "The name of teh service for DIGEST-MD5, SPNEGO and Kerberos 5 authentication mechanisms.  The default service names are 'ftp', 'HTTP', 'imap', 'pop' and 'smtp'."
+    "When specified, libcurl will use AWS Signature Version 4 for authentication."
 
 /** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__2553 */
 #define afw_curl_s_zz__2553 \
@@ -3723,7 +4165,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CURL_Q_zz__2554 \
-    "Specifies whether the TCP_NODELAY option is to be set or cleared.  Setting this to true will disable TCP's Nagle algorithm on this connection.  The purpose of this algorithm is to try to minimize the number of small packets on the network."
+    "Sets the next transfer to use a new (fresh) connection instead of trying to re-use an existing one."
 
 /** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__2554 */
 #define afw_curl_s_zz__2554 \
@@ -3749,7 +4191,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CURL_Q_zz__2555 \
-    "The user/password combination to use for authentication in the form user:password"
+    "The optional callback function to read the headers.\nThis callback function gets invoked by libcurl as soon as it has received header data. The header callback is called once for each header and only complete header lines are passed on to the callback.\nYour callback should return the number of bytes actually taken care of. If that amount differs from the amount passed to your callback function, it signals an error condition to the library. This causes the transfer to get aborted."
 
 /** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__2555 */
 #define afw_curl_s_zz__2555 \
@@ -3775,7 +4217,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CURL_Q_zz__2556 \
-    "Functions from this category use the cURL (Client URL) API's to provide functions for interacting with remote URL data over a variety of protocols."
+    "Set this parameter to true to make libcurl tunnel all operations through the HTTP proxy."
 
 /** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__2556 */
 #define afw_curl_s_zz__2556 \
@@ -3801,7 +4243,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CURL_Q_zz__2557 \
-    "These functions provide adaptive functions to that allow the user to access HTTP resources."
+    "This sets the interface name to use as outgoing network interface.  The name can be an interface name, an IP address, or host name."
 
 /** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__2557 */
 #define afw_curl_s_zz__2557 \
@@ -3827,7 +4269,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_CURL_Q_zz__2558 \
-    "This category provides adaptive functions that allow the user to interact with SMTP (Simple Mail Transfer Protocol) in order to send eMail."
+    "Set the proxy to use for the upcoming request.  This parameter should be a string holding the host name or dotted numerical IP address.  A numerical IPv6 address must be written within [brackets].  To specify a port number in this string, append :[port] to the end of the host name.  The proxy string may be prefixed with the [scheme]:// to specify which kind of proxy is used."
 
 /** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__2558 */
 #define afw_curl_s_zz__2558 \
@@ -3848,6 +4290,240 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_CURL_Q_zz__2558 */
 #define afw_curl_v_zz__2558 \
     (&afw_curl_self_v_zz__2558.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CURL_Q_zz__2559 \
+    "Parameter specifies the name of the service.  The default service name is 'HTTP' for HTTP based proxies and 'rcmd' for SOCKS5."
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__2559 */
+#define afw_curl_s_zz__2559 \
+    (&afw_curl_self_v_zz__2559.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__2559 */
+#define afw_curl_self_s_zz__2559 \
+    (afw_curl_self_v_zz__2559.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CURL_Q_zz__2559 */
+extern const afw_value_string_t \
+    afw_curl_self_v_zz__2559;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CURL_Q_zz__2559 */
+#define afw_curl_z_zz__2559 \
+    (afw_curl_self_v_zz__2559.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CURL_Q_zz__2559 */
+#define afw_curl_v_zz__2559 \
+    (&afw_curl_self_v_zz__2559.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CURL_Q_zz__2560 \
+    "The optional callback function to read the request body.\nThis callback function gets called by libcurl as soon as it has data to send. The read callback is called repeatedly until it returns 0 or an error occurs. The read callback should return the number of bytes actually taken care of. If that amount differs from the amount passed to your callback function, it signals an error condition to the library. This causes the transfer to get aborted."
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__2560 */
+#define afw_curl_s_zz__2560 \
+    (&afw_curl_self_v_zz__2560.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__2560 */
+#define afw_curl_self_s_zz__2560 \
+    (afw_curl_self_v_zz__2560.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CURL_Q_zz__2560 */
+extern const afw_value_string_t \
+    afw_curl_self_v_zz__2560;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CURL_Q_zz__2560 */
+#define afw_curl_z_zz__2560 \
+    (afw_curl_self_v_zz__2560.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CURL_Q_zz__2560 */
+#define afw_curl_v_zz__2560 \
+    (&afw_curl_self_v_zz__2560.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CURL_Q_zz__2561 \
+    "The name of teh service for DIGEST-MD5, SPNEGO and Kerberos 5 authentication mechanisms.  The default service names are 'ftp', 'HTTP', 'imap', 'pop' and 'smtp'."
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__2561 */
+#define afw_curl_s_zz__2561 \
+    (&afw_curl_self_v_zz__2561.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__2561 */
+#define afw_curl_self_s_zz__2561 \
+    (afw_curl_self_v_zz__2561.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CURL_Q_zz__2561 */
+extern const afw_value_string_t \
+    afw_curl_self_v_zz__2561;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CURL_Q_zz__2561 */
+#define afw_curl_z_zz__2561 \
+    (afw_curl_self_v_zz__2561.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CURL_Q_zz__2561 */
+#define afw_curl_v_zz__2561 \
+    (&afw_curl_self_v_zz__2561.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CURL_Q_zz__2562 \
+    "Specifies whether the TCP_NODELAY option is to be set or cleared.  Setting this to true will disable TCP's Nagle algorithm on this connection.  The purpose of this algorithm is to try to minimize the number of small packets on the network."
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__2562 */
+#define afw_curl_s_zz__2562 \
+    (&afw_curl_self_v_zz__2562.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__2562 */
+#define afw_curl_self_s_zz__2562 \
+    (afw_curl_self_v_zz__2562.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CURL_Q_zz__2562 */
+extern const afw_value_string_t \
+    afw_curl_self_v_zz__2562;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CURL_Q_zz__2562 */
+#define afw_curl_z_zz__2562 \
+    (afw_curl_self_v_zz__2562.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CURL_Q_zz__2562 */
+#define afw_curl_v_zz__2562 \
+    (&afw_curl_self_v_zz__2562.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CURL_Q_zz__2563 \
+    "The user/password combination to use for authentication in the form user:password"
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__2563 */
+#define afw_curl_s_zz__2563 \
+    (&afw_curl_self_v_zz__2563.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__2563 */
+#define afw_curl_self_s_zz__2563 \
+    (afw_curl_self_v_zz__2563.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CURL_Q_zz__2563 */
+extern const afw_value_string_t \
+    afw_curl_self_v_zz__2563;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CURL_Q_zz__2563 */
+#define afw_curl_z_zz__2563 \
+    (afw_curl_self_v_zz__2563.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CURL_Q_zz__2563 */
+#define afw_curl_v_zz__2563 \
+    (&afw_curl_self_v_zz__2563.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CURL_Q_zz__2564 \
+    "The optional callback function to write the response body.\nThis callback function gets called by libcurl as soon as there is data received that needs to be saved. For most transfers, this callback gets called many times and each invoke delivers another chunk of data."
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__2564 */
+#define afw_curl_s_zz__2564 \
+    (&afw_curl_self_v_zz__2564.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__2564 */
+#define afw_curl_self_s_zz__2564 \
+    (afw_curl_self_v_zz__2564.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CURL_Q_zz__2564 */
+extern const afw_value_string_t \
+    afw_curl_self_v_zz__2564;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CURL_Q_zz__2564 */
+#define afw_curl_z_zz__2564 \
+    (afw_curl_self_v_zz__2564.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CURL_Q_zz__2564 */
+#define afw_curl_v_zz__2564 \
+    (&afw_curl_self_v_zz__2564.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CURL_Q_zz__2565 \
+    "Functions from this category use the cURL (Client URL) API's to provide functions for interacting with remote URL data over a variety of protocols."
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__2565 */
+#define afw_curl_s_zz__2565 \
+    (&afw_curl_self_v_zz__2565.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__2565 */
+#define afw_curl_self_s_zz__2565 \
+    (afw_curl_self_v_zz__2565.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CURL_Q_zz__2565 */
+extern const afw_value_string_t \
+    afw_curl_self_v_zz__2565;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CURL_Q_zz__2565 */
+#define afw_curl_z_zz__2565 \
+    (afw_curl_self_v_zz__2565.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CURL_Q_zz__2565 */
+#define afw_curl_v_zz__2565 \
+    (&afw_curl_self_v_zz__2565.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CURL_Q_zz__2566 \
+    "These functions provide adaptive functions to that allow the user to access HTTP resources."
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__2566 */
+#define afw_curl_s_zz__2566 \
+    (&afw_curl_self_v_zz__2566.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__2566 */
+#define afw_curl_self_s_zz__2566 \
+    (afw_curl_self_v_zz__2566.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CURL_Q_zz__2566 */
+extern const afw_value_string_t \
+    afw_curl_self_v_zz__2566;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CURL_Q_zz__2566 */
+#define afw_curl_z_zz__2566 \
+    (afw_curl_self_v_zz__2566.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CURL_Q_zz__2566 */
+#define afw_curl_v_zz__2566 \
+    (&afw_curl_self_v_zz__2566.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CURL_Q_zz__2567 \
+    "This category provides adaptive functions that allow the user to interact with SMTP (Simple Mail Transfer Protocol) in order to send eMail."
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__2567 */
+#define afw_curl_s_zz__2567 \
+    (&afw_curl_self_v_zz__2567.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__2567 */
+#define afw_curl_self_s_zz__2567 \
+    (afw_curl_self_v_zz__2567.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CURL_Q_zz__2567 */
+extern const afw_value_string_t \
+    afw_curl_self_v_zz__2567;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CURL_Q_zz__2567 */
+#define afw_curl_z_zz__2567 \
+    (afw_curl_self_v_zz__2567.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CURL_Q_zz__2567 */
+#define afw_curl_v_zz__2567 \
+    (&afw_curl_self_v_zz__2567.pub)
 
 
 
@@ -4450,6 +5126,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_CURL_Q_zz__HTTP_Headers_from_the_server_ \
+    "HTTP Headers from the server."
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__HTTP_Headers_from_the_server_ */
+#define afw_curl_s_zz__HTTP_Headers_from_the_server_ \
+    (&afw_curl_self_v_zz__HTTP_Headers_from_the_server_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__HTTP_Headers_from_the_server_ */
+#define afw_curl_self_s_zz__HTTP_Headers_from_the_server_ \
+    (afw_curl_self_v_zz__HTTP_Headers_from_the_server_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CURL_Q_zz__HTTP_Headers_from_the_server_ */
+extern const afw_value_string_t \
+    afw_curl_self_v_zz__HTTP_Headers_from_the_server_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CURL_Q_zz__HTTP_Headers_from_the_server_ */
+#define afw_curl_z_zz__HTTP_Headers_from_the_server_ \
+    (afw_curl_self_v_zz__HTTP_Headers_from_the_server_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CURL_Q_zz__HTTP_Headers_from_the_server_ */
+#define afw_curl_v_zz__HTTP_Headers_from_the_server_ \
+    (&afw_curl_self_v_zz__HTTP_Headers_from_the_server_.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_CURL_Q_zz__HTTP_Proxy_Tunnel \
     "HTTP Proxy Tunnel"
 
@@ -4606,6 +5308,58 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_CURL_Q_zz__Header_Function \
+    "Header Function"
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__Header_Function */
+#define afw_curl_s_zz__Header_Function \
+    (&afw_curl_self_v_zz__Header_Function.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__Header_Function */
+#define afw_curl_self_s_zz__Header_Function \
+    (afw_curl_self_v_zz__Header_Function.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CURL_Q_zz__Header_Function */
+extern const afw_value_string_t \
+    afw_curl_self_v_zz__Header_Function;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CURL_Q_zz__Header_Function */
+#define afw_curl_z_zz__Header_Function \
+    (afw_curl_self_v_zz__Header_Function.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CURL_Q_zz__Header_Function */
+#define afw_curl_v_zz__Header_Function \
+    (&afw_curl_self_v_zz__Header_Function.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CURL_Q_zz__Header_User_Data \
+    "Header User Data"
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__Header_User_Data */
+#define afw_curl_s_zz__Header_User_Data \
+    (&afw_curl_self_v_zz__Header_User_Data.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__Header_User_Data */
+#define afw_curl_self_s_zz__Header_User_Data \
+    (afw_curl_self_v_zz__Header_User_Data.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CURL_Q_zz__Header_User_Data */
+extern const afw_value_string_t \
+    afw_curl_self_v_zz__Header_User_Data;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CURL_Q_zz__Header_User_Data */
+#define afw_curl_z_zz__Header_User_Data \
+    (afw_curl_self_v_zz__Header_User_Data.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CURL_Q_zz__Header_User_Data */
+#define afw_curl_v_zz__Header_User_Data \
+    (&afw_curl_self_v_zz__Header_User_Data.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_CURL_Q_zz__If_true__TCP_keepalive_probes_will_be_sent_ \
     "If true, TCP keepalive probes will be sent."
 
@@ -4732,6 +5486,58 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_CURL_Q_zz__Makes_a_HTTP_GET_Request_ */
 #define afw_curl_v_zz__Makes_a_HTTP_GET_Request_ \
     (&afw_curl_self_v_zz__Makes_a_HTTP_GET_Request_.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CURL_Q_zz__Makes_a_HTTP_HEAD_Request_ \
+    "Makes a HTTP HEAD Request."
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__Makes_a_HTTP_HEAD_Request_ */
+#define afw_curl_s_zz__Makes_a_HTTP_HEAD_Request_ \
+    (&afw_curl_self_v_zz__Makes_a_HTTP_HEAD_Request_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__Makes_a_HTTP_HEAD_Request_ */
+#define afw_curl_self_s_zz__Makes_a_HTTP_HEAD_Request_ \
+    (afw_curl_self_v_zz__Makes_a_HTTP_HEAD_Request_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CURL_Q_zz__Makes_a_HTTP_HEAD_Request_ */
+extern const afw_value_string_t \
+    afw_curl_self_v_zz__Makes_a_HTTP_HEAD_Request_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CURL_Q_zz__Makes_a_HTTP_HEAD_Request_ */
+#define afw_curl_z_zz__Makes_a_HTTP_HEAD_Request_ \
+    (afw_curl_self_v_zz__Makes_a_HTTP_HEAD_Request_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CURL_Q_zz__Makes_a_HTTP_HEAD_Request_ */
+#define afw_curl_v_zz__Makes_a_HTTP_HEAD_Request_ \
+    (&afw_curl_self_v_zz__Makes_a_HTTP_HEAD_Request_.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CURL_Q_zz__Makes_a_HTTP_OPTIONS_Request_ \
+    "Makes a HTTP OPTIONS Request."
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__Makes_a_HTTP_OPTIONS_Request_ */
+#define afw_curl_s_zz__Makes_a_HTTP_OPTIONS_Request_ \
+    (&afw_curl_self_v_zz__Makes_a_HTTP_OPTIONS_Request_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__Makes_a_HTTP_OPTIONS_Request_ */
+#define afw_curl_self_s_zz__Makes_a_HTTP_OPTIONS_Request_ \
+    (afw_curl_self_v_zz__Makes_a_HTTP_OPTIONS_Request_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CURL_Q_zz__Makes_a_HTTP_OPTIONS_Request_ */
+extern const afw_value_string_t \
+    afw_curl_self_v_zz__Makes_a_HTTP_OPTIONS_Request_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CURL_Q_zz__Makes_a_HTTP_OPTIONS_Request_ */
+#define afw_curl_z_zz__Makes_a_HTTP_OPTIONS_Request_ \
+    (afw_curl_self_v_zz__Makes_a_HTTP_OPTIONS_Request_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CURL_Q_zz__Makes_a_HTTP_OPTIONS_Request_ */
+#define afw_curl_v_zz__Makes_a_HTTP_OPTIONS_Request_ \
+    (&afw_curl_self_v_zz__Makes_a_HTTP_OPTIONS_Request_.pub)
 
 
 
@@ -4940,6 +5746,58 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_CURL_Q_zz__Proxy_Service_Name */
 #define afw_curl_v_zz__Proxy_Service_Name \
     (&afw_curl_self_v_zz__Proxy_Service_Name.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CURL_Q_zz__Read_Function \
+    "Read Function"
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__Read_Function */
+#define afw_curl_s_zz__Read_Function \
+    (&afw_curl_self_v_zz__Read_Function.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__Read_Function */
+#define afw_curl_self_s_zz__Read_Function \
+    (afw_curl_self_v_zz__Read_Function.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CURL_Q_zz__Read_Function */
+extern const afw_value_string_t \
+    afw_curl_self_v_zz__Read_Function;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CURL_Q_zz__Read_Function */
+#define afw_curl_z_zz__Read_Function \
+    (afw_curl_self_v_zz__Read_Function.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CURL_Q_zz__Read_Function */
+#define afw_curl_v_zz__Read_Function \
+    (&afw_curl_self_v_zz__Read_Function.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CURL_Q_zz__Read_User_Data \
+    "Read User Data"
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__Read_User_Data */
+#define afw_curl_s_zz__Read_User_Data \
+    (&afw_curl_self_v_zz__Read_User_Data.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__Read_User_Data */
+#define afw_curl_self_s_zz__Read_User_Data \
+    (afw_curl_self_v_zz__Read_User_Data.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CURL_Q_zz__Read_User_Data */
+extern const afw_value_string_t \
+    afw_curl_self_v_zz__Read_User_Data;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CURL_Q_zz__Read_User_Data */
+#define afw_curl_z_zz__Read_User_Data \
+    (afw_curl_self_v_zz__Read_User_Data.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CURL_Q_zz__Read_User_Data */
+#define afw_curl_v_zz__Read_User_Data \
+    (&afw_curl_self_v_zz__Read_User_Data.pub)
 
 
 
@@ -5334,6 +6192,84 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_CURL_Q_zz__The_user_data_to_pass_to_the_header_callback_function_ \
+    "The user data to pass to the header callback function."
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__The_user_data_to_pass_to_the_header_callback_function_ */
+#define afw_curl_s_zz__The_user_data_to_pass_to_the_header_callback_function_ \
+    (&afw_curl_self_v_zz__The_user_data_to_pass_to_the_header_callback_function_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__The_user_data_to_pass_to_the_header_callback_function_ */
+#define afw_curl_self_s_zz__The_user_data_to_pass_to_the_header_callback_function_ \
+    (afw_curl_self_v_zz__The_user_data_to_pass_to_the_header_callback_function_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CURL_Q_zz__The_user_data_to_pass_to_the_header_callback_function_ */
+extern const afw_value_string_t \
+    afw_curl_self_v_zz__The_user_data_to_pass_to_the_header_callback_function_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CURL_Q_zz__The_user_data_to_pass_to_the_header_callback_function_ */
+#define afw_curl_z_zz__The_user_data_to_pass_to_the_header_callback_function_ \
+    (afw_curl_self_v_zz__The_user_data_to_pass_to_the_header_callback_function_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CURL_Q_zz__The_user_data_to_pass_to_the_header_callback_function_ */
+#define afw_curl_v_zz__The_user_data_to_pass_to_the_header_callback_function_ \
+    (&afw_curl_self_v_zz__The_user_data_to_pass_to_the_header_callback_function_.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CURL_Q_zz__The_user_data_to_pass_to_the_read_callback_function_ \
+    "The user data to pass to the read callback function."
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__The_user_data_to_pass_to_the_read_callback_function_ */
+#define afw_curl_s_zz__The_user_data_to_pass_to_the_read_callback_function_ \
+    (&afw_curl_self_v_zz__The_user_data_to_pass_to_the_read_callback_function_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__The_user_data_to_pass_to_the_read_callback_function_ */
+#define afw_curl_self_s_zz__The_user_data_to_pass_to_the_read_callback_function_ \
+    (afw_curl_self_v_zz__The_user_data_to_pass_to_the_read_callback_function_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CURL_Q_zz__The_user_data_to_pass_to_the_read_callback_function_ */
+extern const afw_value_string_t \
+    afw_curl_self_v_zz__The_user_data_to_pass_to_the_read_callback_function_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CURL_Q_zz__The_user_data_to_pass_to_the_read_callback_function_ */
+#define afw_curl_z_zz__The_user_data_to_pass_to_the_read_callback_function_ \
+    (afw_curl_self_v_zz__The_user_data_to_pass_to_the_read_callback_function_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CURL_Q_zz__The_user_data_to_pass_to_the_read_callback_function_ */
+#define afw_curl_v_zz__The_user_data_to_pass_to_the_read_callback_function_ \
+    (&afw_curl_self_v_zz__The_user_data_to_pass_to_the_read_callback_function_.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CURL_Q_zz__The_user_data_to_pass_to_the_write_callback_function_ \
+    "The user data to pass to the write callback function."
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__The_user_data_to_pass_to_the_write_callback_function_ */
+#define afw_curl_s_zz__The_user_data_to_pass_to_the_write_callback_function_ \
+    (&afw_curl_self_v_zz__The_user_data_to_pass_to_the_write_callback_function_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__The_user_data_to_pass_to_the_write_callback_function_ */
+#define afw_curl_self_s_zz__The_user_data_to_pass_to_the_write_callback_function_ \
+    (afw_curl_self_v_zz__The_user_data_to_pass_to_the_write_callback_function_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CURL_Q_zz__The_user_data_to_pass_to_the_write_callback_function_ */
+extern const afw_value_string_t \
+    afw_curl_self_v_zz__The_user_data_to_pass_to_the_write_callback_function_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CURL_Q_zz__The_user_data_to_pass_to_the_write_callback_function_ */
+#define afw_curl_z_zz__The_user_data_to_pass_to_the_write_callback_function_ \
+    (afw_curl_self_v_zz__The_user_data_to_pass_to_the_write_callback_function_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CURL_Q_zz__The_user_data_to_pass_to_the_write_callback_function_ */
+#define afw_curl_v_zz__The_user_data_to_pass_to_the_write_callback_function_ \
+    (&afw_curl_self_v_zz__The_user_data_to_pass_to_the_write_callback_function_.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_CURL_Q_zz__Timeout__in_milliseconds__for_the_connection_phase_ \
     "Timeout (in milliseconds) for the connection phase."
 
@@ -5568,6 +6504,84 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_CURL_Q_zz__Write_Function \
+    "Write Function"
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__Write_Function */
+#define afw_curl_s_zz__Write_Function \
+    (&afw_curl_self_v_zz__Write_Function.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__Write_Function */
+#define afw_curl_self_s_zz__Write_Function \
+    (afw_curl_self_v_zz__Write_Function.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CURL_Q_zz__Write_Function */
+extern const afw_value_string_t \
+    afw_curl_self_v_zz__Write_Function;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CURL_Q_zz__Write_Function */
+#define afw_curl_z_zz__Write_Function \
+    (afw_curl_self_v_zz__Write_Function.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CURL_Q_zz__Write_Function */
+#define afw_curl_v_zz__Write_Function \
+    (&afw_curl_self_v_zz__Write_Function.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CURL_Q_zz__Write_User_Data \
+    "Write User Data"
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__Write_User_Data */
+#define afw_curl_s_zz__Write_User_Data \
+    (&afw_curl_self_v_zz__Write_User_Data.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__Write_User_Data */
+#define afw_curl_self_s_zz__Write_User_Data \
+    (afw_curl_self_v_zz__Write_User_Data.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CURL_Q_zz__Write_User_Data */
+extern const afw_value_string_t \
+    afw_curl_self_v_zz__Write_User_Data;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CURL_Q_zz__Write_User_Data */
+#define afw_curl_z_zz__Write_User_Data \
+    (afw_curl_self_v_zz__Write_User_Data.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CURL_Q_zz__Write_User_Data */
+#define afw_curl_v_zz__Write_User_Data \
+    (&afw_curl_self_v_zz__Write_User_Data.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CURL_Q_zz_______array_string_ \
+    "(): (array string)"
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz_______array_string_ */
+#define afw_curl_s_zz_______array_string_ \
+    (&afw_curl_self_v_zz_______array_string_.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz_______array_string_ */
+#define afw_curl_self_s_zz_______array_string_ \
+    (afw_curl_self_v_zz_______array_string_.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CURL_Q_zz_______array_string_ */
+extern const afw_value_string_t \
+    afw_curl_self_v_zz_______array_string_;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CURL_Q_zz_______array_string_ */
+#define afw_curl_z_zz_______array_string_ \
+    (afw_curl_self_v_zz_______array_string_.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CURL_Q_zz_______array_string_ */
+#define afw_curl_v_zz_______array_string_ \
+    (&afw_curl_self_v_zz_______array_string_.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_CURL_Q_zz_______object__AdaptiveCurlVersionInfo__ \
     "(): (object _AdaptiveCurlVersionInfo_)"
 
@@ -5590,6 +6604,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_CURL_Q_zz_______object__AdaptiveCurlVersionInfo__ */
 #define afw_curl_v_zz_______object__AdaptiveCurlVersionInfo__ \
     (&afw_curl_self_v_zz_______object__AdaptiveCurlVersionInfo__.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CURL_Q_zz___afw__AdaptiveFunction__curl_easy_options \
+    "/afw/_AdaptiveFunction_/curl_easy_options"
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz___afw__AdaptiveFunction__curl_easy_options */
+#define afw_curl_s_zz___afw__AdaptiveFunction__curl_easy_options \
+    (&afw_curl_self_v_zz___afw__AdaptiveFunction__curl_easy_options.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz___afw__AdaptiveFunction__curl_easy_options */
+#define afw_curl_self_s_zz___afw__AdaptiveFunction__curl_easy_options \
+    (afw_curl_self_v_zz___afw__AdaptiveFunction__curl_easy_options.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CURL_Q_zz___afw__AdaptiveFunction__curl_easy_options */
+extern const afw_value_string_t \
+    afw_curl_self_v_zz___afw__AdaptiveFunction__curl_easy_options;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CURL_Q_zz___afw__AdaptiveFunction__curl_easy_options */
+#define afw_curl_z_zz___afw__AdaptiveFunction__curl_easy_options \
+    (afw_curl_self_v_zz___afw__AdaptiveFunction__curl_easy_options.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CURL_Q_zz___afw__AdaptiveFunction__curl_easy_options */
+#define afw_curl_v_zz___afw__AdaptiveFunction__curl_easy_options \
+    (&afw_curl_self_v_zz___afw__AdaptiveFunction__curl_easy_options.pub)
 
 
 
@@ -5668,6 +6708,58 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_CURL_Q_zz___afw__AdaptiveFunction__http_get */
 #define afw_curl_v_zz___afw__AdaptiveFunction__http_get \
     (&afw_curl_self_v_zz___afw__AdaptiveFunction__http_get.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CURL_Q_zz___afw__AdaptiveFunction__http_head \
+    "/afw/_AdaptiveFunction_/http_head"
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz___afw__AdaptiveFunction__http_head */
+#define afw_curl_s_zz___afw__AdaptiveFunction__http_head \
+    (&afw_curl_self_v_zz___afw__AdaptiveFunction__http_head.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz___afw__AdaptiveFunction__http_head */
+#define afw_curl_self_s_zz___afw__AdaptiveFunction__http_head \
+    (afw_curl_self_v_zz___afw__AdaptiveFunction__http_head.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CURL_Q_zz___afw__AdaptiveFunction__http_head */
+extern const afw_value_string_t \
+    afw_curl_self_v_zz___afw__AdaptiveFunction__http_head;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CURL_Q_zz___afw__AdaptiveFunction__http_head */
+#define afw_curl_z_zz___afw__AdaptiveFunction__http_head \
+    (afw_curl_self_v_zz___afw__AdaptiveFunction__http_head.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CURL_Q_zz___afw__AdaptiveFunction__http_head */
+#define afw_curl_v_zz___afw__AdaptiveFunction__http_head \
+    (&afw_curl_self_v_zz___afw__AdaptiveFunction__http_head.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CURL_Q_zz___afw__AdaptiveFunction__http_options \
+    "/afw/_AdaptiveFunction_/http_options"
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz___afw__AdaptiveFunction__http_options */
+#define afw_curl_s_zz___afw__AdaptiveFunction__http_options \
+    (&afw_curl_self_v_zz___afw__AdaptiveFunction__http_options.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz___afw__AdaptiveFunction__http_options */
+#define afw_curl_self_s_zz___afw__AdaptiveFunction__http_options \
+    (afw_curl_self_v_zz___afw__AdaptiveFunction__http_options.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CURL_Q_zz___afw__AdaptiveFunction__http_options */
+extern const afw_value_string_t \
+    afw_curl_self_v_zz___afw__AdaptiveFunction__http_options;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CURL_Q_zz___afw__AdaptiveFunction__http_options */
+#define afw_curl_z_zz___afw__AdaptiveFunction__http_options \
+    (afw_curl_self_v_zz___afw__AdaptiveFunction__http_options.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CURL_Q_zz___afw__AdaptiveFunction__http_options */
+#define afw_curl_v_zz___afw__AdaptiveFunction__http_options \
+    (&afw_curl_self_v_zz___afw__AdaptiveFunction__http_options.pub)
 
 
 
@@ -5772,6 +6864,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_CURL_Q_zz___afw__AdaptiveFunction__smtp_send */
 #define afw_curl_v_zz___afw__AdaptiveFunction__smtp_send \
     (&afw_curl_self_v_zz___afw__AdaptiveFunction__smtp_send.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_CURL_Q_zz__function_curl_easy_options________array_string___ \
+    "function curl_easy_options (\n\n): (array string);\n"
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__function_curl_easy_options________array_string___ */
+#define afw_curl_s_zz__function_curl_easy_options________array_string___ \
+    (&afw_curl_self_v_zz__function_curl_easy_options________array_string___.internal)
+
+/** @brief 'afw_utf8_t' for AFW_CURL_Q_zz__function_curl_easy_options________array_string___ */
+#define afw_curl_self_s_zz__function_curl_easy_options________array_string___ \
+    (afw_curl_self_v_zz__function_curl_easy_options________array_string___.internal)
+
+/** @brief 'afw_value_string_t' for AFW_CURL_Q_zz__function_curl_easy_options________array_string___ */
+extern const afw_value_string_t \
+    afw_curl_self_v_zz__function_curl_easy_options________array_string___;
+
+/** @brief 'afw_utf8_z_t *' for AFW_CURL_Q_zz__function_curl_easy_options________array_string___ */
+#define afw_curl_z_zz__function_curl_easy_options________array_string___ \
+    (afw_curl_self_v_zz__function_curl_easy_options________array_string___.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_CURL_Q_zz__function_curl_easy_options________array_string___ */
+#define afw_curl_v_zz__function_curl_easy_options________array_string___ \
+    (&afw_curl_self_v_zz__function_curl_easy_options________array_string___.pub)
 
 
 
