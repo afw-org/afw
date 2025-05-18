@@ -513,6 +513,9 @@ afw_curl_internal_http_post(
     const afw_iterator_t *header_iterator;
     afw_memory_t * response_body;
     afw_utf8_t * encoded_response;
+    afw_curl_internal_script_cb_t * header = NULL;
+    afw_curl_internal_script_cb_t * writer = NULL;
+    afw_curl_internal_script_cb_t * reader = NULL;
     char *errbuf;
 
     curl = curl_easy_init();
@@ -556,8 +559,15 @@ afw_curl_internal_http_post(
                 AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_setopt()", xctx);
         }
 
+        writer = afw_pool_calloc_type(pool,
+            afw_curl_internal_script_cb_t, xctx);
+        header = afw_pool_calloc_type(pool,
+            afw_curl_internal_script_cb_t, xctx);
+        reader = afw_pool_calloc_type(pool,
+            afw_curl_internal_script_cb_t, xctx);
+
         /* set any options, that may have been specified */
-        afw_curl_internal_options(curl, options, NULL, NULL, NULL, pool, xctx);
+        afw_curl_internal_options(curl, options, reader, writer, header, pool, xctx);
 
         /* set the error buffer as empty before performing a request */
         errbuf = afw_pool_calloc(pool, CURL_ERROR_SIZE, xctx);
@@ -775,6 +785,8 @@ afw_curl_internal_http_delete(
     const afw_iterator_t *header_iterator;
     afw_memory_t * response_body;
     afw_utf8_t * encoded_response;
+    afw_curl_internal_script_cb_t * header = NULL;
+    afw_curl_internal_script_cb_t * writer = NULL;
     char *errbuf;
 
     curl = curl_easy_init();
@@ -811,8 +823,13 @@ afw_curl_internal_http_delete(
                 AFW_THROW_ERROR_RV_Z(general, curl, res, "Error in curl_easy_setopt()", xctx);
         }
 
+        writer = afw_pool_calloc_type(pool,
+            afw_curl_internal_script_cb_t, xctx);
+        header = afw_pool_calloc_type(pool,
+            afw_curl_internal_script_cb_t, xctx);
+
         /* set any options, that may have been specified */
-        afw_curl_internal_options(curl, options, NULL, NULL, NULL, pool, xctx);
+        afw_curl_internal_options(curl, options, header, NULL, writer, pool, xctx);
 
         /* set the error buffer as empty before performing a request */
         errbuf = afw_pool_calloc(pool, CURL_ERROR_SIZE, xctx);
@@ -897,6 +914,9 @@ afw_curl_internal_http_put(
     const afw_iterator_t *header_iterator;
     afw_memory_t * response_body;
     afw_utf8_t * encoded_response;
+    afw_curl_internal_script_cb_t * header = NULL;
+    afw_curl_internal_script_cb_t * writer = NULL;
+    afw_curl_internal_script_cb_t * reader = NULL;
     char *errbuf;
 
     curl = curl_easy_init();
@@ -940,8 +960,15 @@ afw_curl_internal_http_put(
                 AFW_THROW_ERROR_RV_Z(general, curl, res, "Error setting CURLOPT_HTTPHEADER", xctx);
         }
 
+        reader = afw_pool_calloc_type(pool,
+            afw_curl_internal_script_cb_t, xctx);
+        writer = afw_pool_calloc_type(pool,
+            afw_curl_internal_script_cb_t, xctx);
+        header = afw_pool_calloc_type(pool,
+            afw_curl_internal_script_cb_t, xctx);
+
         /* set any options, that may have been specified */
-        afw_curl_internal_options(curl, options, NULL, NULL, NULL, pool, xctx);
+        afw_curl_internal_options(curl, options, reader, writer, header, pool, xctx);
 
         /* set the error buffer as empty before performing a request */
         errbuf = afw_pool_calloc(pool, CURL_ERROR_SIZE, xctx);
@@ -1026,6 +1053,9 @@ afw_curl_internal_http_patch(
     const afw_iterator_t *header_iterator;
     afw_memory_t * response_body;
     afw_utf8_t * encoded_response;
+    afw_curl_internal_script_cb_t * header = NULL;
+    afw_curl_internal_script_cb_t * writer = NULL;
+    afw_curl_internal_script_cb_t * reader = NULL;
     char *errbuf;
 
     curl = curl_easy_init();
@@ -1069,8 +1099,15 @@ afw_curl_internal_http_patch(
                 AFW_THROW_ERROR_RV_Z(general, curl, res, "Error setting CURLOPT_HTTPHEADER", xctx);
         }
 
+        writer = afw_pool_calloc_type(pool,
+            afw_curl_internal_script_cb_t, xctx);
+        header = afw_pool_calloc_type(pool,
+            afw_curl_internal_script_cb_t, xctx);
+        reader = afw_pool_calloc_type(pool,
+            afw_curl_internal_script_cb_t, xctx);
+
         /* set any options, that may have been specified */
-        afw_curl_internal_options(curl, options, NULL, NULL, NULL, pool, xctx);
+        afw_curl_internal_options(curl, options, reader, writer, header, pool, xctx);
 
         /* set the error buffer as empty before performing a request */
         errbuf = afw_pool_calloc(pool, CURL_ERROR_SIZE, xctx);
@@ -1151,6 +1188,8 @@ afw_curl_internal_http_head(
     const afw_iterator_t *header_iterator;
     afw_memory_t * response_body;
     afw_utf8_t * encoded_response;
+    afw_curl_internal_script_cb_t * header = NULL;
+    afw_curl_internal_script_cb_t * writer = NULL;
     char *errbuf;
 
     curl = curl_easy_init();
@@ -1184,8 +1223,13 @@ afw_curl_internal_http_head(
 
         curl_easy_setopt(curl, CURLOPT_NOBODY, 1L);  // HEAD request
 
+        writer = afw_pool_calloc_type(pool,
+            afw_curl_internal_script_cb_t, xctx);
+        header = afw_pool_calloc_type(pool,
+            afw_curl_internal_script_cb_t, xctx);
+
         /* set any options, that may have been specified */
-        afw_curl_internal_options(curl, options, NULL, NULL, NULL, pool, xctx);
+        afw_curl_internal_options(curl, options, header, NULL, writer, pool, xctx);
 
         /* set the error buffer as empty before performing a request */
         errbuf = afw_pool_calloc(pool, CURL_ERROR_SIZE, xctx);
@@ -1266,6 +1310,8 @@ afw_curl_internal_http_options(
     const afw_iterator_t *header_iterator;
     afw_memory_t * response_body;
     afw_utf8_t * encoded_response;
+    afw_curl_internal_script_cb_t * header = NULL;
+    afw_curl_internal_script_cb_t * writer = NULL;
     char *errbuf;
 
     curl = curl_easy_init();
@@ -1301,8 +1347,13 @@ afw_curl_internal_http_options(
 
         curl_easy_setopt(curl, CURLOPT_NOBODY, 1L);  // HEAD request
 
+        writer = afw_pool_calloc_type(pool,
+            afw_curl_internal_script_cb_t, xctx);
+        header = afw_pool_calloc_type(pool,
+            afw_curl_internal_script_cb_t, xctx);
+
         /* set any options, that may have been specified */
-        afw_curl_internal_options(curl, options, NULL, NULL, NULL, pool, xctx);
+        afw_curl_internal_options(curl, options, header, NULL, writer, pool, xctx);
 
         /* set the error buffer as empty before performing a request */
         errbuf = afw_pool_calloc(pool, CURL_ERROR_SIZE, xctx);
