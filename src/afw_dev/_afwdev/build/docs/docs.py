@@ -271,7 +271,7 @@ def generate_doc_html_content_or_text(options, cwd, path, docsHtml, level, eleme
 
     content = ""
     for node in element.xpath("child::node()"):            
-        if isinstance(node, etree._ElementStringResult) or isinstance(node, etree._ElementUnicodeResult):
+        if isinstance(node, str):
             content += node                
         else:                   
             content += generate_doc_html_content(
@@ -319,7 +319,7 @@ def generate_doc_html_content(options, cwd, path, docsHtml, element, level):
         # iterate over all text and element nodes
         para_content = ""
         for node in element.xpath("child::node()"):               
-            if isinstance(node, etree._ElementStringResult) or isinstance(node, etree._ElementUnicodeResult):                
+            if isinstance(node, str):                
                 para_content += node                
             else:                                   
                 para_content += generate_doc_html_content(
@@ -425,10 +425,10 @@ def generate_doc_html_content(options, cwd, path, docsHtml, element, level):
     elif tag == 'item':
 
         item_content = ""
-        for node in element.xpath("child::node()"):            
-            if isinstance(node, etree._ElementStringResult) or isinstance(node, etree._ElementUnicodeResult):
-                item_content += node                
-            else:                   
+        for node in element.xpath("child::node()"):
+            if isinstance(node, str):
+                item_content += node
+            else:
                 item_content += generate_doc_html_content(
                     options, 
                     cwd, 
