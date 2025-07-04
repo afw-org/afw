@@ -164,6 +164,7 @@ afw_curl_internal_response_cb(
 
     else 
     {
+        realsize = size * nmemb;
         rc = apr_brigade_write(appdata->response,
             NULL, NULL, ptr, realsize);
         if (rc != APR_SUCCESS) {
@@ -171,7 +172,6 @@ afw_curl_internal_response_cb(
                 "Error writing response to internal buffer.", 
                 appdata->xctx);
         }
-        realsize = size * nmemb;
     }
 
     return realsize;
@@ -614,7 +614,7 @@ afw_curl_internal_http_post(
 
         /* setup our response callbacks to handle data send back from the server */
         response = afw_curl_internal_register_response_callbacks(curl, 
-            NULL, NULL, pool, xctx);
+            header, writer, pool, xctx);
 
         /* Perform the request, res will get the return code */
         res = curl_easy_perform(curl);

@@ -66,3 +66,113 @@ const response = http_post("https://www.httpbin.org/post",
     });
 
 return response.response_code;
+
+
+//? test: http_post_json
+//? description: Call http_post with json data
+//? expect: 200
+//? source: ...
+#!/usr/bin/env afw
+
+// only do live HTTP requests, if configured to do so
+if (environment::TEST_CURL_HTTPBIN === undefined) {
+    return 200;
+}
+
+const postData = {
+    "foo": "bar"
+};
+
+const postHeaders = [
+    "Content-Type: application/json",
+    "Accept: application/json"
+];
+
+
+const response = http_post(
+    "http://www.httpbin.org/post", 
+    string(postData),
+    postHeaders
+);
+
+assert(length(response.headers) > 0);
+assert(length(response.response) > 0);
+
+const decoded = compile(json(decode_to_string(base64Binary(response.response))));
+
+// Note: response format from httpbin.org could change in the future
+assert(decoded.headers.Accept === "application/json");
+assert(decoded.json.foo === "bar");
+
+return response.response_code;
+
+
+//? test: http_post_callbacks
+//? description: Call http_post with callbacks
+//? expect: 200
+//? source: ...
+#!/usr/bin/env afw
+
+// only do live HTTP requests, if configured to do so
+if (environment::TEST_CURL_HTTPBIN === undefined) {
+    return 200;
+}
+
+// fixme: if I don't set the "payload" property first,
+// then I get a valgrind/memory error; need to 
+// check memory pools
+let userData = {
+    "payload": "",
+    "headers": []
+};
+
+function writer(buffer, userData) {
+    const str = decode_to_string(buffer);
+    const len = length(str);
+
+    // here, we could read the string and do something
+    if (userData.payload !== undefined)
+        userData["payload"] += str;
+    else 
+        userData["payload"] = str;
+
+    return len;
+}
+
+function headers(header, userData) {
+    const len = length(header);
+
+    if (len > 0) {
+        add_entries(userData.headers, header);
+    }
+
+    return len;
+}
+
+const postData = {
+    "foo": "bar"
+};
+
+const postHeaders = [
+    "Content-Type: application/json",
+    "Accept: application/json"
+];
+
+const options = {
+    "headerFunction": headers,
+    "headerUserData": userData,
+    "writeFunction": writer,
+    "writeUserData": userData,
+};
+
+const response = http_post(
+    "http://www.httpbin.org/post", 
+    string(postData),
+    postHeaders,    
+    options
+);
+
+assert(length(userData.headers) > 0);
+assert(length(userData.payload) > 0);
+
+return response.response_code;
