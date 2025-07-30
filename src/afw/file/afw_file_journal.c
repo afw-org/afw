@@ -917,8 +917,11 @@ impl_afw_adapter_journal_mark_entry_consumed(
     consume_cursor = afw_object_old_get_property_as_string(peer,
         afw_s_consumeCursor, xctx);
     if (!consume_cursor || !afw_utf8_equal(entry_cursor, consume_cursor)) {
-        AFW_THROW_ERROR_Z(general,
-            "Object id supplied is not currently being consumed", xctx);
+        AFW_THROW_ERROR_FZ(general, xctx,
+            "Entry cursor supplied is not currently being consumed. consumer_id=",
+            AFW_UTF8_FMT_Q ", entry_cursor=" AFW_UTF8_FMT_Q, 
+            AFW_UTF8_FMT_ARG(consumer_id),            
+            AFW_UTF8_FMT_ARG(entry_cursor));
     }
 
     /* Remove consume* properties. */
