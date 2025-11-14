@@ -41,6 +41,7 @@ struct afw_file_internal_adapter_s {
     const afw_utf8_t *filename_suffix;
     const afw_utf8_z_t *journal_dir_path_z;
     const afw_utf8_z_t *journal_lock_file_path_z;
+    const afw_lock_rw_t *journal_rw_lock;
 };
 
 

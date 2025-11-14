@@ -134,7 +134,7 @@ def run_test_group(testGroup, options, testEnvironments, work_dir_prefix):
 
             print_test_response(options, test, response, hasFailures, allSuccess, allSkipped)
 
-            bail = options.get('bail', 0)
+            bail = options.get('bail', 0)            
             if bail > 0 and failed >= bail:
                 msg.highlighted_info("")          
 

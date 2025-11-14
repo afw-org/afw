@@ -119,6 +119,10 @@ a_lock_authorization_handler_id_anchor=environment:authorization_handler_id
 a_lock_authorization_handler_id_anchor_brief=Authorization handler id anchor lock
 a_lock_authorization_handler_id_anchor_description=This lock is used internally when accessing authorization handler id anchor memory.
 
+a_lock_file_journal_anchor=environment:file_journal_anchor
+a_lock_file_journal_anchor_brief=File Journal anchor lock
+a_lock_file_journal_anchor_description=This lock protects access to shared file journal entries.
+
 a_lock_log_list=environment:log_list
 a_lock_log_list_brief=Environment log list lock
 a_lock_log_list_description=This lock is used internally when accessing environment log list memory.

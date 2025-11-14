@@ -13550,6 +13550,84 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_a_lock_file_journal_anchor \
+    "environment:file_journal_anchor"
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_lock_file_journal_anchor */
+#define afw_s_a_lock_file_journal_anchor \
+    (&afw_self_v_a_lock_file_journal_anchor.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_lock_file_journal_anchor */
+#define afw_self_s_a_lock_file_journal_anchor \
+    (afw_self_v_a_lock_file_journal_anchor.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_a_lock_file_journal_anchor */
+extern const afw_value_string_t \
+    afw_self_v_a_lock_file_journal_anchor;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_a_lock_file_journal_anchor */
+#define afw_z_a_lock_file_journal_anchor \
+    (afw_self_v_a_lock_file_journal_anchor.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_a_lock_file_journal_anchor */
+#define afw_v_a_lock_file_journal_anchor \
+    (&afw_self_v_a_lock_file_journal_anchor.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_a_lock_file_journal_anchor_brief \
+    "File Journal anchor lock"
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_lock_file_journal_anchor_brief */
+#define afw_s_a_lock_file_journal_anchor_brief \
+    (&afw_self_v_a_lock_file_journal_anchor_brief.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_lock_file_journal_anchor_brief */
+#define afw_self_s_a_lock_file_journal_anchor_brief \
+    (afw_self_v_a_lock_file_journal_anchor_brief.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_a_lock_file_journal_anchor_brief */
+extern const afw_value_string_t \
+    afw_self_v_a_lock_file_journal_anchor_brief;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_a_lock_file_journal_anchor_brief */
+#define afw_z_a_lock_file_journal_anchor_brief \
+    (afw_self_v_a_lock_file_journal_anchor_brief.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_a_lock_file_journal_anchor_brief */
+#define afw_v_a_lock_file_journal_anchor_brief \
+    (&afw_self_v_a_lock_file_journal_anchor_brief.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_a_lock_file_journal_anchor_description \
+    "This lock protects access to shared file journal entries."
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_lock_file_journal_anchor_description */
+#define afw_s_a_lock_file_journal_anchor_description \
+    (&afw_self_v_a_lock_file_journal_anchor_description.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_a_lock_file_journal_anchor_description */
+#define afw_self_s_a_lock_file_journal_anchor_description \
+    (afw_self_v_a_lock_file_journal_anchor_description.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_a_lock_file_journal_anchor_description */
+extern const afw_value_string_t \
+    afw_self_v_a_lock_file_journal_anchor_description;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_a_lock_file_journal_anchor_description */
+#define afw_z_a_lock_file_journal_anchor_description \
+    (afw_self_v_a_lock_file_journal_anchor_description.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_a_lock_file_journal_anchor_description */
+#define afw_v_a_lock_file_journal_anchor_description \
+    (&afw_self_v_a_lock_file_journal_anchor_description.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_a_lock_flags \
     "environment:flags"
 

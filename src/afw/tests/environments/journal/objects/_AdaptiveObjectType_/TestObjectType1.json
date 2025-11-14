@@ -1,0 +1,35 @@
+{
+    "objectType": "TestObjectType1",
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": true,    
+    "propertyTypes": {
+        "TestString1": {
+            "dataType": "string",
+            "allowQuery": true
+        },
+        "TestInteger1": {
+            "dataType": "integer",
+            "allowQuery": true
+        },
+        "TestDouble1": {
+            "dataType": "double",
+            "allowQuery": true
+        },
+        "TestBoolean1": {
+            "dataType": "boolean",
+            "allowQuery": true
+        },
+        "TestObject1": {
+            "dataType": "object",
+            "dataTypeParameter": "TestObjectType3",
+            "allowQuery": true
+        },
+        "TestArray1": {
+            "dataType": "array",
+            "dataTypeParameter": "string",
+            "allowQuery": true
+        }
+    }
+}

@@ -270,7 +270,7 @@ error_peer_apr:
  * Implementation of method add_entry of interface afw_adapter_journal.
  */
 const afw_utf8_t *
-impl_afw_adapter_journal_add_entry(
+impl_afw_adapter_journal_add_entry_internal(
     const afw_adapter_journal_t * instance,
     const afw_adapter_impl_request_t * impl_request,
     const afw_object_t * entry,
@@ -539,12 +539,39 @@ error_old_journal_apr:
         old_full_entry_path_z, footprint.z);
 }
 
+/*
+ * Implementation of method add_entry of interface afw_adapter_journal 
+ * by wrapping internal with reader/writer locks.
+ */
+const afw_utf8_t *
+impl_afw_adapter_journal_add_entry(
+    const afw_adapter_journal_t * instance,
+    const afw_adapter_impl_request_t * impl_request,
+    const afw_object_t * entry,
+    afw_xctx_t *xctx)
+{
+    afw_file_internal_adapter_session_t * session = 
+        (afw_file_internal_adapter_session_t *)instance->session;
+    afw_file_internal_adapter_t *adapter = session->adapter;
+    const afw_utf8_t *result;
+
+    AFW_LOCK_WRITE_BEGIN(adapter->journal_rw_lock) {
+
+        result = impl_afw_adapter_journal_add_entry_internal(
+            instance, impl_request, entry, xctx);
+    } 
+
+    AFW_LOCK_WRITE_END;
+
+    return result;
+}
+
 
 /*
  * Implementation of method get_entry of interface afw_adapter_journal.
  */
 void
-impl_afw_adapter_journal_get_entry(
+impl_afw_adapter_journal_get_entry_internal(
     const afw_adapter_journal_t * instance,
     const afw_adapter_impl_request_t * impl_request,
     afw_adapter_journal_option_t option,
@@ -889,6 +916,42 @@ error_journal:
         AFW_UTF8_FMT_ARG(&adapter->pub.adapter_id),
         full_entry_path_z, footprint.z);
 
+}
+
+/*
+ * Implementation of method get_entry of interface afw_adapter_journal.
+ * Wraps internal with reader lock.
+ */
+void
+impl_afw_adapter_journal_get_entry(
+    const afw_adapter_journal_t * instance,
+    const afw_adapter_impl_request_t * impl_request,
+    afw_adapter_journal_option_t option,
+    const afw_utf8_t * consumer_id,
+    const afw_utf8_t * entry_cursor,
+    afw_size_t limit,
+    const afw_object_t * response,
+    afw_xctx_t *xctx)
+{
+    afw_file_internal_adapter_session_t * session =
+        (afw_file_internal_adapter_session_t *)instance->session;
+    afw_file_internal_adapter_t *adapter = session->adapter;
+
+    AFW_LOCK_READ_BEGIN(adapter->journal_rw_lock) {
+
+        impl_afw_adapter_journal_get_entry_internal(
+            instance,
+            impl_request,
+            option,
+            consumer_id,
+            entry_cursor,
+            limit,
+            response,
+            xctx);
+
+    } 
+
+    AFW_LOCK_READ_END;
 }
 
 
