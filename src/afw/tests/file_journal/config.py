@@ -4,7 +4,7 @@ import glob
 import os
 
 # test configuration settings
-Environment = "journal"
+Environment = "file-journal"
 
 ignore = [
     "objects/_AdaptiveObjectType_/TestObjectType1.json",
