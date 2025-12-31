@@ -3,7 +3,7 @@
 import os
 
 # test configuration settings
-Environment = "journal"
+Environment = "lmdb-journal"
 
 def remove_file(path):
     if os.path.exists(path):

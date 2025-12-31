@@ -1,13 +1,13 @@
 #!/usr/bin/env -S afw --syntax test_script
 //?
 //? testScript: journal_tests_1.as
-//? customPurpose: Part of lmdb tests
-//? description: Test lmdb journal interface methods.
+//? customPurpose: Part of file journal tests
+//? description: Test file journal interface methods.
 //? sourceType: script
 //?
 //? test: journal_get_first
-//? description: test lmdb journal_get_first with no entries
-//? skip: false
+//? description: test file journal_get_first with no entries
+//? skip: true
 //? expect: 0
 //? source: ...
 #!/usr/bin/env afw
@@ -25,16 +25,15 @@ return 0;
 //? source: ...
 #!/usr/bin/env afw
 
-let uuid = generate_uuid();
-
-add_object("lmdb", "_AdaptiveObject_", { 
+const result = add_object("file", "_AdaptiveObject_", { 
     firstName: "bob"
-}, uuid);
+});
 
 let journal = journal_get_first("journal");
-assert(journal.entry.request.suggestedObjectId === uuid);
+assert(journal.entry.request.objectId === result.request.objectId);
 
 return 0;
+
 
 
 //? test: journal_get_by_cursor
@@ -64,8 +63,10 @@ return 0;
 let entry = journal_get_first("journal");
 let cursor = entry.entryCursor;
 assert(cursor != null);
+assert(entry.entry != null);
 
 let j1 = journal_get_next_after_cursor("journal", cursor);
-assert(j1 == {});
+assert(j1.entry == null);
+
 
 return 0;

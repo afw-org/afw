@@ -3,7 +3,7 @@
 import os
 
 # test configuration settings
-Environment = "adapter"
+Environment = "lmdb-adapter"
 
 def remove_file(path):
     if os.path.exists(path):

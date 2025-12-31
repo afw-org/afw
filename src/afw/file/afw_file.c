@@ -340,6 +340,13 @@ afw_file_adapter_create_cede_p(
         AFW_UTF8_FMT AFW_OBJECT_Q_OBJECT_TYPE_ID_JOURNAL_ENTRY "/journal_lock",
         AFW_UTF8_FMT_ARG(self->root));
 
+    self->journal_rw_lock = afw_lock_create_rw_and_register(
+        afw_s_a_lock_file_journal_anchor,
+        afw_s_a_lock_file_journal_anchor_brief,
+        afw_s_a_lock_file_journal_anchor_description,
+        xctx
+    );
+
     /* If isDevelopmentInput is true, provide appropriate object types. */
     b = afw_object_old_get_property_as_boolean_deprecated(properties,
         afw_s_isDevelopmentInput, xctx);
