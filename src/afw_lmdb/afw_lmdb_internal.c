@@ -712,8 +712,6 @@ impl_afw_adapter_key_value_delete (
             if (must_exist)
                 AFW_THROW_ERROR_RV_Z(general, lmdb_internal, dbi,
                     "Unable to delete key/value.", xctx);
-            else 
-                return;
         } else if (rc) {
             AFW_THROW_ERROR_RV_Z(general, lmdb_internal, rc,
                 "Unable to delete key/value to database.", xctx);
