@@ -382,9 +382,15 @@ do { \
             } else { \
                 apr_thread_rwlock_rdlock(adapter->dbLock); \
             } \
+            afw_trace_z(1, adapter->pub.trace_flag_index, \
+                NULL, (flags & MDB_RDONLY) ? "LMDB Begin read transaction" : \
+                "LMDB Begin write transaction", this_xctx); \
             this_rc = mdb_txn_begin(adapter->dbEnv, NULL, flags, &this_txn); \
             if (this_rc) { \
                 apr_thread_rwlock_unlock(adapter->dbLock); \
+                afw_trace_fz(1, adapter->pub.trace_flag_index, \
+                    NULL, this_xctx, "LMDB transaction begin failed with error: " \
+                    AFW_INTEGER_FMT, this_rc); \
                 AFW_THROW_ERROR_RV_Z(general, lmdb, this_rc, \
                     "Unable to begin transaction.", this_xctx); \
             } \
@@ -394,7 +400,7 @@ do { \
         do {
 
 /**
- * 
+ * @brief Get the current transaction handle.
  */
 #define AFW_LMDB_GET_TRANSACTION() \
     (this_session && this_session->currTxn) ? this_session->currTxn : this_txn
@@ -411,6 +417,8 @@ do { \
                 AFW_THROW_ERROR_RV_Z(general, lmdb_internal, this_rc, \
                     "Unable to commit transaction.", this_xctx); \
             } \
+            afw_trace_z(1, this_session->adapter->pub.trace_flag_index, \
+                NULL, "LMDB Transaction committed.", this_xctx); \
         } \
     } 
 
@@ -421,11 +429,13 @@ do { \
     if (!(this_session && this_session->transaction)) { \
         if (this_txn && !this_txnHandled) { \
             mdb_txn_abort(this_txn); \
-            txnHandled = true; \
+            this_txnHandled = true; \
             if (this_rc) { \
                 AFW_THROW_ERROR_RV_Z(general, lmdb_internal, this_rc, \
                     "Unable to abort transaction.", this_xctx); \
             } \
+            afw_trace_z(1, this_session->adapter->pub.trace_flag_index, \
+                NULL, "LMDB Transaction aborted.", this_xctx); \
         } \
     } 
 
@@ -439,6 +449,8 @@ do { \
             if (this_txn && !this_txnHandled) { \
                 mdb_txn_abort(this_txn); \
                 this_txnHandled = true; \
+                afw_trace_z(1, this_session->adapter->pub.trace_flag_index, \
+                    NULL, "LMDB Transaction aborted.", this_xctx); \
             } \
             apr_thread_rwlock_unlock(this_adapter->dbLock); \
         } \
