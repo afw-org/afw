@@ -1305,6 +1305,8 @@ afw_lmdb_transaction_t * afw_lmdb_transaction_create(
             NULL, xctx, "LMDB transaction begin failed with error: " 
             AFW_INTEGER_FMT, rc);
 
+        abort();
+
         AFW_THROW_ERROR_RV_Z(general, lmdb, rc,
             "Unable to begin transaction.", xctx);
     }

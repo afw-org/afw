@@ -391,6 +391,7 @@ do { \
                 afw_trace_fz(1, adapter->pub.trace_flag_index, \
                     NULL, this_xctx, "LMDB transaction begin failed with error: " \
                     AFW_INTEGER_FMT, this_rc); \
+                abort(); \
                 AFW_THROW_ERROR_RV_Z(general, lmdb, this_rc, \
                     "Unable to begin transaction.", this_xctx); \
             } \
