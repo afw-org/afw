@@ -1,4 +1,0 @@
-generate/datatype_tests/
-------------------------
-
-@todo add document (remove?)

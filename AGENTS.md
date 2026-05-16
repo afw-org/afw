@@ -46,10 +46,6 @@ AFW is a **metadata-driven** framework: define object types, functions, data typ
 - **`afwdev build --install`** runs **`cmake --install`** (libs, headers, `afwdev`, commands, per CMake). **HTML docs are not assumed** to be installed unless CMake explicitly adds them.
 - **Multi-distro CI:** Builder images (Alpine, Ubuntu, Rocky, openSUSE, …) validate full builds. Example JS image path: `afwdev build --js --docs`, then **`tar`** `build/js/apps` → `afw-apps-*.tar` and `build/docs` → `afw-docs-*.tar` for nginx-backed images.
 
-## Legacy / cleanup
-
-- **`generate/function_tests/`** and **`generate/datatype_tests/`** are **obsolete**; metadata lives in **`generate/objects/_AdaptiveFunctionGenerate_`** and **`_AdaptiveDataTypeGenerate_`**. Remove stub dirs and update docs (`generate.txt`, `generate.xml`, README stubs) when cleaning house.
-
 ## Useful commands (from package root)
 
 ```bash

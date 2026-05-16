@@ -15,10 +15,8 @@
 generate/
 |-- additional_includes/   # See generate_additional_includes.txt
 |-- additional_javascript/ # See generate_additional_javascript.txt
-|-- datatype_tests/        # See generate_datatype_tests.txt
 |-- ebnf/                  # See generate_ebnf.txt
 |-- external/              # See generate_external.txt
-|-- function_tests/        # See generate_function_tests.txt
 |-- interfaces/            # See generate_interfaces.txt
 |-- manifest/              # See generate_manifest.txt
 |-- objects/               # See generate_objects.txt
