@@ -7,9 +7,11 @@ alwaysApply: false
 # afwdev (Python)
 
 ## Layout
-- Entry: `src/afw_dev/afwdev.py` (also invoked as `./afwdev` from package root).
-- Package: `src/afw_dev/_afwdev/` with `generate/`, `build/`, `test/`, `validate/`, `common/`.
-- Subcommand metadata uses `_info_<subcommand>` dicts in `afwdev.py` (argparse-driven). Match existing patterns when adding options or subcommands.
+- Entry shim: `src/afw_dev/afwdev.py` (zipapp `afwdev:main`; also `./afwdev` from package root). Re-exports `main` and `afwdev_info`.
+- CLI: `_afwdev/cli/` — `info.py` (`_info_*` metadata), `parser.py`, `registry.py` (explicit `SUBCOMMAND_HANDLERS`), `settings.py`, `handlers/`.
+- Scaffold: `_afwdev/scaffold/` — shared make-*/add-* helpers and handlers.
+- Other: `_afwdev/{generate,build,test,validate,common}/`.
+- Options keys: see `_afwdev/cli/options.py`. Prefer snake_case `optionName` in `_info_*`; register new subcommands in both `info.py` and `registry.py`.
 
 ## Generate pipeline
 - Orchestration: `_afwdev/generate/generate.py` — wipes `src/<srcdir>/generated/` then runs bindings, interfaces, strings, cmake fragments, etc.
