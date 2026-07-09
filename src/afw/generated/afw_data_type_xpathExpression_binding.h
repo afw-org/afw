@@ -77,6 +77,14 @@ AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_managed_xpathExpression_inf;
 
 /**
+ * @brief Managed slice value inf for data type xpathExpression.
+ *
+ * View into a containing managed value; refcount is on the containing value.
+ */
+AFW_DECLARE_CONST_DATA(afw_value_inf_t)
+afw_value_managed_slice_xpathExpression_inf;
+
+/**
  * @brief Permanent (life of afw environment) value inf for data type xpathExpression.
  *
  * The lifetime of the value is the lifetime of the afw environment.
@@ -177,6 +185,25 @@ struct afw_value_xpathExpression_managed_s {
     afw_size_t reference_count;
 };
 
+/** @brief struct for managed slice data type xpathExpression values.
+ *
+ * A view into a containing managed value. The slice header is allocated
+ * separately; reference counting applies to the containing managed value.
+ */
+struct afw_value_xpathExpression_managed_slice_s {
+    /** @brief  Value inf union with afw_value_t pub to reduce casting needed. */
+    union {
+        const afw_value_inf_t *inf;
+        afw_value_t pub;
+    };
+
+    /** @brief  Internal afw_utf8_t view (pointer into containing). */
+    afw_utf8_t internal;
+
+    /** @brief  Containing managed value that owns the buffer. */
+    const afw_value_xpathExpression_managed_t *containing_value;
+};
+
 /**
  * @brief Typesafe cast of data type xpathExpression.
  * @param value (const afw_value_t *).
@@ -214,15 +241,16 @@ afw_value_create_managed_xpathExpression(
     afw_xctx_t *xctx);
 
 /**
- * @brief Create function for managed data type xpathExpression slice value.
- * @param containing_value with a cType of 'afw_utf8_t'.
- * @param offset in contain value's internal.
+ * @brief Create a managed slice of a managed data type xpathExpression value.
+ * @param containing_value managed (or managed_slice) value with cType afw_utf8_t.
+ * @param offset into containing value's internal.
  * @param len of slice.
  * @param xctx of caller.
- * @return  Created const afw_value_t *.
+ * @return Created const afw_value_t * (managed_slice inf).
  *
- * This value and memory for the specified len is allocated in xctx->p.
- * Set *s for the specified len to a valid utf-8 string.
+ * Returns a view into containing_value without copying bytes. Increments
+ * the containing managed value's reference count. The slice header is
+ * allocated in xctx->p.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_create_managed_xpathExpression_slice(

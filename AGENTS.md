@@ -26,6 +26,7 @@ Package manifest: [`afw-package.json`](afw-package.json) (`srcdirs`, `srcdirMani
 - **`afw_value_t`**: interface pointer (`inf`) + payload. Kinds include `compiled_value`, `block`, `call`, `symbol_reference`, `closure_binding`, etc.
 - **Pools**: hierarchical allocation (including per-scope subpools). Reference counting for escaping values (e.g. closures); bulk free when pools/scopes release.
 - **`compiled_value`**: owns a pool; evaluation uses scope-stack discipline.
+- **Data-type value lifetimes** (inf chooses policy): **permanent** (built-in / life of AFW environment; usually const in the `.so`); **managed** (refcount or clone); **managed_slice** (utf8/memory view into a containing managed value); **unmanaged** (programmer/pool). Create APIs come from `data_type_bindings.py`. A main focus for long-running scripts is getting managed release/clone paths right — see [`.cursor/rules/afw-value-memory.mdc`](.cursor/rules/afw-value-memory.mdc).
 
 ## Interfaces vs script compiler
 
@@ -95,6 +96,7 @@ afwdev generate --srcdir-pattern '*'
 |------|------|
 | `.cursor/rules/afw-project.mdc` | Always-on |
 | `.cursor/rules/afw-c-runtime.mdc` | C when editing `.c`/`.h` |
+| `.cursor/rules/afw-value-memory.mdc` | Value lifetimes / data_type_bindings / const producers |
 | `.cursor/rules/afw-generate-metadata.mdc` | When editing `generate/` |
 | `.cursor/rules/afw-compiler-ebnf.mdc` | When editing `compile/` or `generate/ebnf/` |
 | `.cursor/rules/afw-afwdev-python.mdc` | When editing `src/afw_dev` |

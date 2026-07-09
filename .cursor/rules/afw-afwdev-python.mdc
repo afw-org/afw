@@ -16,12 +16,14 @@ alwaysApply: false
 ## Generate pipeline
 - Orchestration: `_afwdev/generate/generate.py` — wipes `src/<srcdir>/generated/` then runs bindings, interfaces, strings, cmake fragments, etc.
 - Generators must write only under `generated/` (or documented outputs). Never instruct agents to patch generated C/headers by hand.
+- Deeper generator guidance: `.cursor/rules/afw-afwdev-generate.mdc` (applies when editing `_afwdev/generate/`).
 
 ## Conventions
 - Follow surrounding Python style in `_afwdev` (existing modules are the style guide).
 - Use `afw-package.json` / `package` helpers in `_afwdev.common` for srcdir discovery; respect `--srcdir-pattern`.
 - Prefer extending an existing generator module over duplicating logic.
 - Optional per-srcdir hook: `generate/additional_generate/additional_generate.py`.
+- Doxygen (`@file` / `@brief` / `@details` / …) is used for afwdev docs. Keep it; do not add changelog or attribution comments.
 
 ## Related commands agents run
 ```bash

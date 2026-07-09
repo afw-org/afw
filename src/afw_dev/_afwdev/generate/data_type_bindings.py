@@ -2,118 +2,57 @@
 
 ##
 # @file data_type_bindings.py
-# @ingroup afwdev_generate
-# @brief This file contains the functions used to generate C data type bindings.
-# @details 
-# FIXME: These comments are a work in progress and don't necessarily represent
-# what this module does.
+# @namespace afwdev_generate
+# @brief Generate C data type bindings (value infs, create APIs, helpers).
+# @details
+# Metadata source of truth is generate/objects/_AdaptiveDataTypeGenerate_/*.json
+# (fields such as cType, special, directReturn, scalar). This module emits the
+# C APIs and afw_value_inf_t instances used to create and classify evaluated
+# data-type values. Core and extensions include the generated headers and call
+# the create/allocate functions at runtime.
 #
-# Adaptive values are used to represent values in the afw environment. They are
-# used for properties of objects and elements of arrays. They are also used for
-# the values of parameters and return values of functions.
+# Adaptive values (afw_value_t) have an inf pointer and a typed payload. For
+# each data type this module generates afw_value_<dataType>_t (pub + internal
+# cType) and afw_value_<dataType>_managed_t (same plus reference_count). For
+# afw_utf8_t / afw_memory_t cTypes it also generates
+# afw_value_<dataType>_managed_slice_t (view + containing managed value).
 #
-# Adaptive values are represented by the afw_value_t typedef. The struct has an
-# inf field that points to an afw_value_inf_t struct. The inf struct has
-# function pointers to functions that operate on the value. The inf struct also
-# has a data type field that is a pointer to the associated afw_data_type_t
-# struct, if there is one. The data type struct has function pointers to
-# functions that operate on values of that data type. There are multiple inf
-# structs for each data type as mentioned below.
+# Lifetime policies (inf chooses policy):
 #
-# There is an afw_value_<dataType>_t struct for each data type whose first
-# member is an afw_value_t struct with a name of 'pub'. The
-# afw_value_<dataType>_t struct has a field for the internal representation of
-# the value. The internal representation is the cType of the data type.
+#   permanent     Built-in or lasts for the life of an AFW environment. Usually
+#                 static const in the .so; env-lifetime values may also use the
+#                 permanent inf. No refcount; clone_or_reference returns as-is.
+#   managed       Lifetime by reference count (or clone when necessary).
+#                 Created via afw_value_create_managed_<dataType>().
+#   managed_slice View (pointer + length/size) into a containing managed value
+#                 for cType afw_utf8_t or afw_memory_t only. Holds a reference
+#                 on the containing managed value; does not copy bytes.
+#   unmanaged     Programmer-owned; usually pool-allocated and pool-lifetime.
+#                 Created via allocate/create_unmanaged_<dataType>().
 #
-# There is also an afw_value_<dataType>_managed_t struct for each data type that
-# is mainly intended for internal use. Its is the same as afw_value_<dataType>_t
-# with an additional member for the reference count.
+# Generated files (prefix e.g. afw_):
 #
-# This module generates <dataType> related *.c and *.h files. The files are:
+#   <prefix>data_type_bindings.c / .h
+#   <prefix>data_type_<dataType>_binding.c / .h
+#   <prefix>data_type_typedefs.h
 #
-#   <prefix>_data_type_bindings.c
-#   <prefix>_data_type_bindings.h
-#   <prefix>_data_type_<dataType>_binding.c
-#   <prefix>_data_type_<dataType>_binding.h
-#   <prefix>_data_type_typedefs.h
+# Inf symbols: afw_value_{permanent,managed,managed_slice,unmanaged}_<dataType>_inf
+# (managed_slice only for utf8/memory cTypes; special types get permanent only).
 #
-# Files <prefix>_data_type_bindings.c, <prefix>_data_type_bindings.h, and
-# <prefix>_data_type_typedefs.h have functions, macros, and typedefs related
-# to all data types. Files <prefix>_data_type_<dataType>_binding.c and
-# <prefix>_data_type_<dataType>_binding.h are produced for each data type.
+# Also generated: type-check macros, afw_value_as_*, object/array helpers, and
+# afw_data_type_<dataType>_to_internal / to_utf8. Permanent const instances from
+# strings.py / const_objects.py / this module use permanent_*_inf; there is no
+# create_permanent_* API.
 #
-# Multiple inf structures are produced for each data type. The inf structures
-# are:
-#
-#   afw_value_<infType_><dataType>_inf
-#
-# where <infType_> is each of these:
-#
-#   <infType> | description
-#   ---------+---------------------------------------------------------------
-#   permanent | Must exist for life of afw environment. Mostly generated const.
-#   managed | Managed by reference count.
-#   managed_slice | Managed by reference count. Is a slice of another managed value.
-#   unmanaged | Not managed by reference count. Lifetime is lifetime of pool.
-#
-# Note: 'managed_slice' is only produced for data types with cType of
-#       'afw_utf8_t' and 'afw_memory_t'.
-#
-# There are macros produced to check if a value is of a particular data type:
-#
-#   afw_data_type_is_<dataType>()
-#   afw_value_is_<dataType>()
-#   afw_value_is_array_of_<dataType>()
-#
-# There are also a few functions produced that are used as interface
-# "afw_data_type" methods:
-#
-#   afw_data_type_<dataType>_to_internal()
-#   afw_data_type_<dataType>_to_utf8()
-#
-# Plus a function to force a value to be a particular data type:
-#
-#   afw_value_as_<dataType>()
-#
-# Functions are generated to allocate and create adaptive values.
-#
-#   afw_value_allocate_unmanaged_<dataType>()
-#   afw_value_create_managed_<dataType>()
-#   afw_value_create_unmanaged_<dataType>()
-#
-# There are functions to create slices of values if appropriate:
-#
-#   afw_value_create_managed_<dataType>_slice()
-#
-# There are functions to get the value of a property of an object:
-#
-#   afw_object_get_property_as_<dataType>()
-#   afw_object_get_next_property_as_<dataType>()
-#
-# There are functions to set the value of a property of an object:
-#
-#   afw_object_set_property_as_<dataType>()
-#
-# There are functions to get the next value of an array of values:
-#
-#   afw_array_of_<dataType>_get_next()
-#
-# There are functions to add and remove values from an array of values:
-#
-#   afw_array_of_<dataType>_add()
-#   afw_array_of_<dataType>_remove()
-#
-# There are functions to convert to and from the data type's cType:
-#
-#   afw_data_type_<dataType>_to_internal()
-#   afw_data_type_<dataType>_to_utf8()
-
 
 
 import os
 from _afwdev.generate import c
 from _afwdev.common import msg, nfc, package
 
+
+def _supports_managed_slice(ctype):
+    return ctype in ('afw_utf8_t', 'afw_memory_t')
 
 def write_typedefs_h_section(fd, prefix, obj):
     id = obj['_meta_']['objectId']
@@ -146,6 +85,10 @@ def write_typedefs_h_section(fd, prefix, obj):
     fd.write('\n/** @brief Typedef for data type ' + id + ' managed value. */\n')
     fd.write('typedef struct afw_value_' + id + '_managed_s\n' + '    afw_value_' + id + '_managed_t;\n')
 
+    if _supports_managed_slice(ctype):
+        fd.write('\n/** @brief Typedef for data type ' + id + ' managed slice value. */\n')
+        fd.write('typedef struct afw_value_' + id + '_managed_slice_s\n' +
+            '    afw_value_' + id + '_managed_slice_t;\n')
 
 
 def write_h_section(fd, prefix, obj):
@@ -213,6 +156,15 @@ def write_h_section(fd, prefix, obj):
         fd.write(' */\n')
         fd.write(declare_data + '(afw_value_inf_t)\n')
         fd.write('afw_value_managed_' + id + '_inf;\n')
+
+        if _supports_managed_slice(ctype):
+            fd.write('\n/**\n')
+            fd.write(' * @brief Managed slice value inf for data type ' + id + '.\n')
+            fd.write(' *\n')
+            fd.write(' * View into a containing managed value; refcount is on the containing value.\n')
+            fd.write(' */\n')
+            fd.write(declare_data + '(afw_value_inf_t)\n')
+            fd.write('afw_value_managed_slice_' + id + '_inf;\n')
 
     fd.write('\n/**\n')
     fd.write(' * @brief Permanent (life of afw environment) value inf for data type ' + id + '.\n')
@@ -310,6 +262,26 @@ def write_h_section(fd, prefix, obj):
     fd.write('    afw_size_t reference_count;\n')
     fd.write('};\n')
 
+    if _supports_managed_slice(ctype):
+        fd.write('\n/** @brief struct for managed slice data type ' + id + ' values.\n')
+        fd.write(' *\n')
+        fd.write(' * A view into a containing managed value. The slice header is allocated\n')
+        fd.write(' * separately; reference counting applies to the containing managed value.\n')
+        fd.write(' */\n')
+        fd.write('struct afw_value_' + id + '_managed_slice_s {\n')
+        fd.write('    /** @brief  Value inf union with afw_value_t pub to reduce casting needed. */\n')
+        fd.write('    union {\n')
+        fd.write('        const afw_value_inf_t *inf;\n')
+        fd.write('        afw_value_t pub;\n')
+        fd.write('    };\n')
+        fd.write('\n')
+        fd.write('    /** @brief  Internal ' + ctype + ' view (pointer into containing). */\n')
+        fd.write('    ' + ctype + ' internal;\n')
+        fd.write('\n')
+        fd.write('    /** @brief  Containing managed value that owns the buffer. */\n')
+        fd.write('    const afw_value_' + id + '_managed_t *containing_value;\n')
+        fd.write('};\n')
+
     if not special:
         fd.write('\n/**\n')
         fd.write(' * @brief Typesafe cast of data type ' + id + '.\n')
@@ -344,15 +316,16 @@ def write_h_section(fd, prefix, obj):
 
         if ctype == 'afw_utf8_t':
             fd.write('\n/**\n')
-            fd.write(' * @brief Create function for managed data type ' + id + ' slice value.\n')
-            fd.write(' * @param containing_value with a cType of \'afw_utf8_t\'.\n')
-            fd.write(' * @param offset in contain value\'s internal.\n')
+            fd.write(' * @brief Create a managed slice of a managed data type ' + id + ' value.\n')
+            fd.write(' * @param containing_value managed (or managed_slice) value with cType afw_utf8_t.\n')
+            fd.write(' * @param offset into containing value\'s internal.\n')
             fd.write(' * @param len of slice.\n')
             fd.write(' * @param xctx of caller.\n')
-            fd.write(' * @return  Created const afw_value_t *.\n')
+            fd.write(' * @return Created const afw_value_t * (managed_slice inf).\n')
             fd.write(' *\n')
-            fd.write(' * This value and memory for the specified len is allocated in xctx->p.\n')
-            fd.write(' * Set *s for the specified len to a valid utf-8 string.\n')
+            fd.write(' * Returns a view into containing_value without copying bytes. Increments\n')
+            fd.write(' * the containing managed value\'s reference count. The slice header is\n')
+            fd.write(' * allocated in xctx->p.\n')
             fd.write(' */\n')
             fd.write(declare + '(const afw_value_t *)\n')
             fd.write('afw_value_create_managed_' + id + '_slice(\n')
@@ -362,15 +335,16 @@ def write_h_section(fd, prefix, obj):
             fd.write('    afw_xctx_t *xctx);\n')
         elif ctype == 'afw_memory_t':
             fd.write('\n/**\n')
-            fd.write(' * @brief Create function for managed data type ' + id + ' slice value.\n')
-            fd.write(' * @param containing_value with a cType of \'afw_memory_t\'.\n')
-            fd.write(' * @param offset in contain value\'s internal.\n')
+            fd.write(' * @brief Create a managed slice of a managed data type ' + id + ' value.\n')
+            fd.write(' * @param containing_value managed (or managed_slice) value with cType afw_memory_t.\n')
+            fd.write(' * @param offset into containing value\'s internal.\n')
             fd.write(' * @param size of slice.\n')
             fd.write(' * @param xctx of caller.\n')
-            fd.write(' * @return  Created const afw_value_t *.\n')
+            fd.write(' * @return Created const afw_value_t * (managed_slice inf).\n')
             fd.write(' *\n')
-            fd.write(' * This value and memory for the specified size is allocated in xctx->p.\n')
-            fd.write(' * Set *ptr for the specified size to the bytes of the value.\n')
+            fd.write(' * Returns a view into containing_value without copying bytes. Increments\n')
+            fd.write(' * the containing managed value\'s reference count. The slice header is\n')
+            fd.write(' * allocated in xctx->p.\n')
             fd.write(' */\n')
             fd.write(declare + '(const afw_value_t *)\n')
             fd.write('afw_value_create_managed_' + id + '_slice(\n')
@@ -677,6 +651,22 @@ def write_c_section(fd, prefix, obj):
         fd.write('    afw_xctx_t *xctx);\n')
         fd.write('\n')
 
+        if _supports_managed_slice(ctype):
+            fd.write('\n')
+            fd.write('/* Declaration for method optional_release for managed slice value. */\n')
+            fd.write('AFW_DECLARE_STATIC(void)\n')
+            fd.write('impl_afw_value_managed_slice_optional_release(\n')
+            fd.write('    const afw_value_t *instance,\n')
+            fd.write('    afw_xctx_t *xctx);\n')
+            fd.write('\n')
+            fd.write('/* Declaration for method get_reference for managed slice value. */\n')
+            fd.write('AFW_DECLARE_STATIC(const afw_value_t *)\n')
+            fd.write('impl_afw_value_managed_slice_get_reference(\n')
+            fd.write('    const afw_value_t *instance,\n')
+            fd.write('    const afw_pool_t *p,\n')
+            fd.write('    afw_xctx_t *xctx);\n')
+            fd.write('\n')
+
     fd.write('\n')
     fd.write('/* Declaration for method get_reference for permanent value. */\n')
     fd.write('AFW_DECLARE_STATIC(const afw_value_t *)\n')
@@ -737,6 +727,24 @@ def write_c_section(fd, prefix, obj):
         fd.write('#undef impl_afw_value_optional_release\n')
         fd.write('#undef impl_afw_value_clone_or_reference\n')
         fd.write('#undef AFW_VALUE_INF_ONLY\n')
+
+        if _supports_managed_slice(ctype):
+            fd.write('\n/* Declares and rti/inf defines for interface afw_value */\n')
+            fd.write('/* This is the inf for managed_slice ' + id + ' values. */\n')
+            fd.write('/* optional_release / clone_or_reference update containing refcount. */\n')
+            fd.write('#define AFW_IMPLEMENTATION_ID "managed_slice_' + id + '"\n')
+            fd.write('#define AFW_IMPLEMENTATION_INF_LABEL afw_value_managed_slice_' + id + '_inf\n')
+            fd.write('#define impl_afw_value_optional_release '
+                     'impl_afw_value_managed_slice_optional_release\n')
+            fd.write('#define impl_afw_value_clone_or_reference '
+                     'impl_afw_value_managed_slice_get_reference\n')
+            fd.write('#define AFW_VALUE_INF_ONLY 1\n')
+            fd.write('#include "afw_value_impl_declares.h"\n')
+            fd.write('#undef AFW_IMPLEMENTATION_ID\n')
+            fd.write('#undef AFW_IMPLEMENTATION_INF_LABEL\n')
+            fd.write('#undef impl_afw_value_optional_release\n')
+            fd.write('#undef impl_afw_value_clone_or_reference\n')
+            fd.write('#undef AFW_VALUE_INF_ONLY\n')
 
         fd.write('\n/* Declares and rti/inf defines for interface afw_value */\n')
         fd.write('/* This is the inf for permanent ' + id + ' values. For this one */\n')
@@ -1020,58 +1028,52 @@ def write_c_section(fd, prefix, obj):
         fd.write('afw_value_create_managed_' + id + '(\n    ' + return_type + ' internal,\n')
         fd.write('    afw_xctx_t *xctx)\n')
         fd.write('{\n')
-        #FIXME Remove 'False and' when value set correctly in all places
-        if False and ctype == 'const afw_object_t *':
-            fd.write('    /* Just return object\'s value. */;\n')
-            fd.write('    if (!internal->value || !internal->value->inf) {\n')
-            fd.write('        return internal->value;\n')
-            fd.write('    }\n')
-            fd.write('    return internal->value;\n')
-        else:
-            fd.write('    afw_value_' + id + '_managed_t *v;\n')
-            if ctype == 'afw_utf8_t':
-                fd.write('    afw_size_t len;\n')
-                fd.write('\n')
-                fd.write('    len = (internal) ? internal->len : 0;\n')
-                fd.write('    v = afw_xctx_calloc(\n')
-                fd.write('        sizeof(afw_value_' + id + '_managed_t) + len, xctx);\n')
-                fd.write('    v->inf = &afw_value_managed_' + id + '_inf;\n')
-                fd.write('    v->internal.len = len;\n')
-                fd.write('    v->internal.s = (const afw_utf8_octet_t *)v +\n        sizeof(afw_value_' + id + '_managed_t);\n')
-                fd.write('    if (internal && internal->s) {\n')
-                fd.write('        memcpy((void *)v->internal.s, internal->s, len);\n')
-                fd.write('    }\n')
-            elif ctype == 'afw_memory_t':
-                fd.write('\n')
-                fd.write('    afw_size_t size;\n')
-                fd.write('\n')
-                fd.write('    size = (internal) ? internal->size : 0;\n')
-                fd.write('    v = afw_xctx_calloc(\n')
-                fd.write('        sizeof(afw_value_' + id + '_managed_t) + size, xctx);\n')
-                fd.write('    v->inf = &afw_value_managed_' + id + '_inf;\n')
-                fd.write('    v->internal.size = (internal) ? internal->size : 0;\n')
-                fd.write('    v->internal.ptr = (const afw_byte_t *)v +\n        sizeof(afw_value_' + id + '_managed_t);\n')
-                fd.write('    if (internal && internal->ptr) {\n')
-                fd.write('       memcpy((void *)v->internal.ptr, internal->ptr, size);\n')
-                fd.write('    }\n')
-            elif direct_return == True:
-                fd.write('\n')
-                fd.write('    v = afw_xctx_malloc(\n')
-                fd.write('        sizeof(afw_value_' + id + '_managed_t), xctx);\n')
-                fd.write('    v->inf = &afw_value_managed_' + id + '_inf;\n')
-                fd.write('    v->internal = internal;\n')
-                fd.write('    v->reference_count = 0;\n')
-                #FIXME Might need to clone to correct pool or at least check reference
-            else:
-                fd.write('\n')
-                fd.write('    v = afw_xctx_calloc(\n')
-                fd.write('        sizeof(afw_value_' + id + '_managed_t), xctx);\n')
-                fd.write('    v->inf = &afw_value_managed_' + id + '_inf;\n')
-                fd.write('    if (internal) {\n')
-                fd.write('        memcpy(&v->internal, internal, sizeof(' + ctype + '));\n')
-                fd.write('    }\n')
+        fd.write('    afw_value_' + id + '_managed_t *v;\n')
+        if ctype == 'afw_utf8_t':
+            fd.write('    afw_size_t len;\n')
             fd.write('\n')
-            fd.write('    return &v->pub;\n')
+            fd.write('    len = (internal) ? internal->len : 0;\n')
+            fd.write('    v = afw_xctx_calloc(\n')
+            fd.write('        sizeof(afw_value_' + id + '_managed_t) + len, xctx);\n')
+            fd.write('    v->inf = &afw_value_managed_' + id + '_inf;\n')
+            fd.write('    v->internal.len = len;\n')
+            fd.write('    v->internal.s = (const afw_utf8_octet_t *)v +\n        sizeof(afw_value_' + id + '_managed_t);\n')
+            fd.write('    if (internal && internal->s) {\n')
+            fd.write('        memcpy((void *)v->internal.s, internal->s, len);\n')
+            fd.write('    }\n')
+        elif ctype == 'afw_memory_t':
+            fd.write('\n')
+            fd.write('    afw_size_t size;\n')
+            fd.write('\n')
+            fd.write('    size = (internal) ? internal->size : 0;\n')
+            fd.write('    v = afw_xctx_calloc(\n')
+            fd.write('        sizeof(afw_value_' + id + '_managed_t) + size, xctx);\n')
+            fd.write('    v->inf = &afw_value_managed_' + id + '_inf;\n')
+            fd.write('    v->internal.size = (internal) ? internal->size : 0;\n')
+            fd.write('    v->internal.ptr = (const afw_byte_t *)v +\n        sizeof(afw_value_' + id + '_managed_t);\n')
+            fd.write('    if (internal && internal->ptr) {\n')
+            fd.write('       memcpy((void *)v->internal.ptr, internal->ptr, size);\n')
+            fd.write('    }\n')
+        elif direct_return == True:
+            fd.write('\n')
+            # Note: stores internal by value in xctx->p. If internal is a pointer
+            # into a shorter-lived pool, caller must ensure it outlives this value
+            # or clone into xctx->p before create. No automatic clone yet.
+            fd.write('    v = afw_xctx_malloc(\n')
+            fd.write('        sizeof(afw_value_' + id + '_managed_t), xctx);\n')
+            fd.write('    v->inf = &afw_value_managed_' + id + '_inf;\n')
+            fd.write('    v->internal = internal;\n')
+            fd.write('    v->reference_count = 0;\n')
+        else:
+            fd.write('\n')
+            fd.write('    v = afw_xctx_calloc(\n')
+            fd.write('        sizeof(afw_value_' + id + '_managed_t), xctx);\n')
+            fd.write('    v->inf = &afw_value_managed_' + id + '_inf;\n')
+            fd.write('    if (internal) {\n')
+            fd.write('        memcpy(&v->internal, internal, sizeof(' + ctype + '));\n')
+            fd.write('    }\n')
+        fd.write('\n')
+        fd.write('    return &v->pub;\n')
         fd.write('}\n')
 
         if ctype == 'afw_utf8_t':
@@ -1083,7 +1085,41 @@ def write_c_section(fd, prefix, obj):
             fd.write('    afw_size_t len,\n')
             fd.write('    afw_xctx_t *xctx)\n')
             fd.write('{\n')
-            fd.write('    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);\n')
+            fd.write('    const afw_value_' + id + '_managed_t *containing;\n')
+            fd.write('    const afw_utf8_t *base;\n')
+            fd.write('    afw_value_' + id + '_managed_slice_t *v;\n')
+            fd.write('\n')
+            fd.write('    if (!containing_value) {\n')
+            fd.write('        AFW_THROW_ERROR_Z(general,\n')
+            fd.write('            "containing_value required for managed slice", xctx);\n')
+            fd.write('    }\n')
+            fd.write('    if (containing_value->inf == &afw_value_managed_slice_' + id + '_inf) {\n')
+            fd.write('        const afw_value_' + id + '_managed_slice_t *slice =\n')
+            fd.write('            (const afw_value_' + id + '_managed_slice_t *)containing_value;\n')
+            fd.write('        containing = slice->containing_value;\n')
+            fd.write('        base = &slice->internal;\n')
+            fd.write('    }\n')
+            fd.write('    else if (containing_value->inf == &afw_value_managed_' + id + '_inf) {\n')
+            fd.write('        containing =\n')
+            fd.write('            (const afw_value_' + id + '_managed_t *)containing_value;\n')
+            fd.write('        base = &containing->internal;\n')
+            fd.write('    }\n')
+            fd.write('    else {\n')
+            fd.write('        AFW_THROW_ERROR_Z(general,\n')
+            fd.write('            "containing_value must be managed or managed_slice ' + id + '",\n')
+            fd.write('            xctx);\n')
+            fd.write('    }\n')
+            fd.write('    if (offset > base->len || len > base->len - offset) {\n')
+            fd.write('        AFW_THROW_ERROR_Z(general,\n')
+            fd.write('            "managed slice offset/len out of range", xctx);\n')
+            fd.write('    }\n')
+            fd.write('    v = afw_xctx_calloc(sizeof(afw_value_' + id + '_managed_slice_t), xctx);\n')
+            fd.write('    v->inf = &afw_value_managed_slice_' + id + '_inf;\n')
+            fd.write('    v->internal.s = base->s + offset;\n')
+            fd.write('    v->internal.len = len;\n')
+            fd.write('    v->containing_value = containing;\n')
+            fd.write('    ((afw_value_' + id + '_managed_t *)containing)->reference_count++;\n')
+            fd.write('    return &v->pub;\n')
             fd.write('}\n')
         elif ctype == 'afw_memory_t':
             fd.write('\n/* Create function for managed data type ' + id + ' slice value. */\n')
@@ -1094,7 +1130,41 @@ def write_c_section(fd, prefix, obj):
             fd.write('    afw_size_t size,\n')
             fd.write('    afw_xctx_t *xctx)\n')
             fd.write('{\n')
-            fd.write('    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);\n')
+            fd.write('    const afw_value_' + id + '_managed_t *containing;\n')
+            fd.write('    const afw_memory_t *base;\n')
+            fd.write('    afw_value_' + id + '_managed_slice_t *v;\n')
+            fd.write('\n')
+            fd.write('    if (!containing_value) {\n')
+            fd.write('        AFW_THROW_ERROR_Z(general,\n')
+            fd.write('            "containing_value required for managed slice", xctx);\n')
+            fd.write('    }\n')
+            fd.write('    if (containing_value->inf == &afw_value_managed_slice_' + id + '_inf) {\n')
+            fd.write('        const afw_value_' + id + '_managed_slice_t *slice =\n')
+            fd.write('            (const afw_value_' + id + '_managed_slice_t *)containing_value;\n')
+            fd.write('        containing = slice->containing_value;\n')
+            fd.write('        base = &slice->internal;\n')
+            fd.write('    }\n')
+            fd.write('    else if (containing_value->inf == &afw_value_managed_' + id + '_inf) {\n')
+            fd.write('        containing =\n')
+            fd.write('            (const afw_value_' + id + '_managed_t *)containing_value;\n')
+            fd.write('        base = &containing->internal;\n')
+            fd.write('    }\n')
+            fd.write('    else {\n')
+            fd.write('        AFW_THROW_ERROR_Z(general,\n')
+            fd.write('            "containing_value must be managed or managed_slice ' + id + '",\n')
+            fd.write('            xctx);\n')
+            fd.write('    }\n')
+            fd.write('    if (offset > base->size || size > base->size - offset) {\n')
+            fd.write('        AFW_THROW_ERROR_Z(general,\n')
+            fd.write('            "managed slice offset/size out of range", xctx);\n')
+            fd.write('    }\n')
+            fd.write('    v = afw_xctx_calloc(sizeof(afw_value_' + id + '_managed_slice_t), xctx);\n')
+            fd.write('    v->inf = &afw_value_managed_slice_' + id + '_inf;\n')
+            fd.write('    v->internal.ptr = base->ptr + offset;\n')
+            fd.write('    v->internal.size = size;\n')
+            fd.write('    v->containing_value = containing;\n')
+            fd.write('    ((afw_value_' + id + '_managed_t *)containing)->reference_count++;\n')
+            fd.write('    return &v->pub;\n')
             fd.write('}\n')
 
         fd.write('\n/* Create function for data type ' + id + ' value. */\n')
@@ -1102,26 +1172,18 @@ def write_c_section(fd, prefix, obj):
         fd.write('afw_value_create_unmanaged_' + id + '(' + return_type + ' internal,\n')
         fd.write('    const afw_pool_t *p, afw_xctx_t *xctx)\n')
         fd.write('{\n')
-        #FIXME Remove 'False and' when value set correctly in all places
-        if False and ctype == 'const afw_object_t *':
-            fd.write('    /* Just return object\'s value. */;\n')
-            fd.write('    if (!internal->value || !internal->value->inf) {\n')
-            fd.write('        return internal->value;\n')
-            fd.write('    }\n')
-            fd.write('    return internal->value;\n')
+        fd.write('    afw_value_' + id + '_t *v;\n')
+        fd.write('\n')
+        fd.write('    v = afw_pool_calloc(p, sizeof(afw_value_' + id + '_t),\n')
+        fd.write('        xctx);\n')
+        fd.write('    v->inf = &afw_value_unmanaged_' + id + '_inf;\n')
+        if direct_return == True:
+            fd.write('    v->internal = internal;\n')
         else:
-            fd.write('    afw_value_' + id + '_t *v;\n')
-            fd.write('\n')
-            fd.write('    v = afw_pool_calloc(p, sizeof(afw_value_' + id + '_t),\n')
-            fd.write('        xctx);\n')
-            fd.write('    v->inf = &afw_value_unmanaged_' + id + '_inf;\n')
-            if direct_return == True:
-                fd.write('    v->internal = internal;\n')
-            else:
-                fd.write('    if (internal) {\n')
-                fd.write('        memcpy(&v->internal, internal, sizeof(' + ctype + '));\n')
-                fd.write('    }\n')
-            fd.write('    return &v->pub;\n')
+            fd.write('    if (internal) {\n')
+            fd.write('        memcpy(&v->internal, internal, sizeof(' + ctype + '));\n')
+            fd.write('    }\n')
+        fd.write('    return &v->pub;\n')
         fd.write('}\n')
 
         fd.write('\n/* Convert data type ' + id + ' string to ' + ctype + ' *. */\n')
@@ -1331,6 +1393,54 @@ def write_c_section(fd, prefix, obj):
         fd.write('    return instance;\n')
         fd.write('}\n')
         fd.write('\n')
+
+        if _supports_managed_slice(ctype):
+            fd.write('\n')
+            fd.write('/* Implementation of method optional_release for managed slice. */\n')
+            fd.write('AFW_DECLARE_STATIC(void)\n')
+            fd.write('impl_afw_value_managed_slice_optional_release(\n')
+            fd.write('    const afw_value_t *instance,\n')
+            fd.write('    afw_xctx_t *xctx)\n')
+            fd.write('{\n')
+            fd.write('    afw_value_' + id + '_managed_slice_t *self =\n')
+            fd.write('        (afw_value_' + id + '_managed_slice_t *)instance;\n')
+            fd.write('    afw_value_' + id + '_managed_t *containing =\n')
+            fd.write('        (afw_value_' + id + '_managed_t *)self->containing_value;\n')
+            fd.write('\n')
+            fd.write('    /* Release reference on containing managed value. */\n')
+            fd.write('    if (containing->reference_count <= 1) {\n')
+            fd.write('        afw_pool_free_memory((void *)containing, xctx);\n')
+            fd.write('    }\n')
+            fd.write('    else {\n')
+            fd.write('        containing->reference_count--;\n')
+            fd.write('    }\n')
+            fd.write('    /* Free the slice header itself. */\n')
+            fd.write('    afw_pool_free_memory((void *)instance, xctx);\n')
+            fd.write('}\n')
+            fd.write('\n')
+            fd.write('/* Implementation of method get_reference for managed slice. */\n')
+            fd.write('AFW_DECLARE_STATIC(const afw_value_t *)\n')
+            fd.write('impl_afw_value_managed_slice_get_reference(\n')
+            fd.write('    const afw_value_t *instance,\n')
+            fd.write('    const afw_pool_t *p,\n')
+            fd.write('    afw_xctx_t *xctx)\n')
+            fd.write('{\n')
+            fd.write('    const afw_value_' + id + '_managed_slice_t *self =\n')
+            fd.write('        (const afw_value_' + id + '_managed_slice_t *)instance;\n')
+            fd.write('    afw_value_' + id + '_managed_t *containing =\n')
+            fd.write('        (afw_value_' + id + '_managed_t *)self->containing_value;\n')
+            fd.write('    afw_value_' + id + '_managed_slice_t *v;\n')
+            fd.write('\n')
+            fd.write('    /* New slice header sharing the same view; bump containing. */\n')
+            fd.write('    v = afw_xctx_calloc(\n')
+            fd.write('        sizeof(afw_value_' + id + '_managed_slice_t), xctx);\n')
+            fd.write('    v->inf = &afw_value_managed_slice_' + id + '_inf;\n')
+            fd.write('    v->internal = self->internal;\n')
+            fd.write('    v->containing_value = containing;\n')
+            fd.write('    containing->reference_count++;\n')
+            fd.write('    return &v->pub;\n')
+            fd.write('}\n')
+            fd.write('\n')
 
     fd.write('\n')
     fd.write('/* Implementation of method get_reference for permanent value. */\n')

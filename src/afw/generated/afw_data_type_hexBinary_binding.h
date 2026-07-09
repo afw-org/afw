@@ -77,6 +77,14 @@ AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_managed_hexBinary_inf;
 
 /**
+ * @brief Managed slice value inf for data type hexBinary.
+ *
+ * View into a containing managed value; refcount is on the containing value.
+ */
+AFW_DECLARE_CONST_DATA(afw_value_inf_t)
+afw_value_managed_slice_hexBinary_inf;
+
+/**
  * @brief Permanent (life of afw environment) value inf for data type hexBinary.
  *
  * The lifetime of the value is the lifetime of the afw environment.
@@ -177,6 +185,25 @@ struct afw_value_hexBinary_managed_s {
     afw_size_t reference_count;
 };
 
+/** @brief struct for managed slice data type hexBinary values.
+ *
+ * A view into a containing managed value. The slice header is allocated
+ * separately; reference counting applies to the containing managed value.
+ */
+struct afw_value_hexBinary_managed_slice_s {
+    /** @brief  Value inf union with afw_value_t pub to reduce casting needed. */
+    union {
+        const afw_value_inf_t *inf;
+        afw_value_t pub;
+    };
+
+    /** @brief  Internal afw_memory_t view (pointer into containing). */
+    afw_memory_t internal;
+
+    /** @brief  Containing managed value that owns the buffer. */
+    const afw_value_hexBinary_managed_t *containing_value;
+};
+
 /**
  * @brief Typesafe cast of data type hexBinary.
  * @param value (const afw_value_t *).
@@ -214,15 +241,16 @@ afw_value_create_managed_hexBinary(
     afw_xctx_t *xctx);
 
 /**
- * @brief Create function for managed data type hexBinary slice value.
- * @param containing_value with a cType of 'afw_memory_t'.
- * @param offset in contain value's internal.
+ * @brief Create a managed slice of a managed data type hexBinary value.
+ * @param containing_value managed (or managed_slice) value with cType afw_memory_t.
+ * @param offset into containing value's internal.
  * @param size of slice.
  * @param xctx of caller.
- * @return  Created const afw_value_t *.
+ * @return Created const afw_value_t * (managed_slice inf).
  *
- * This value and memory for the specified size is allocated in xctx->p.
- * Set *ptr for the specified size to the bytes of the value.
+ * Returns a view into containing_value without copying bytes. Increments
+ * the containing managed value's reference count. The slice header is
+ * allocated in xctx->p.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_create_managed_hexBinary_slice(

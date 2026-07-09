@@ -17,6 +17,7 @@ alwaysApply: false
 - Pass `p` (pool) and `xctx` through call chains. Throws need `xctx`.
 - Errors: `AFW_THROW_ERROR_Z` / `AFW_THROW_ERROR_FZ` / memory helpers from `error/afw_error.h`.
 - Structured recovery: `AFW_TRY` / `AFW_CATCH` / `AFW_FINALLY` / `AFW_ENDTRY` — the context variable must be named `xctx`.
+- Value lifetimes (permanent / managed / managed_slice / unmanaged): see `afw-value-memory` (important for long-running scripts).
 
 ## Adaptive functions
 - Implement in hand source: `src/afw/function/afw_function_<category>.c` as `afw_function_execute_<label>(afw_function_execute_t *x)`.
