@@ -873,7 +873,10 @@ _info_test_tags = {
     "action": "store",
     "default": ".*",
     "noprompt": True,
-    "help": "Test tags to match and run"
+    "help":
+        "Regex matched against each test group's Tags (from config.py). "
+        "Default '.*' runs all groups. Groups without Tags are skipped when "
+        "a non-default pattern is set."
 }
 
 _info_test_watch = {

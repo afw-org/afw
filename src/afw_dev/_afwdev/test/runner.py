@@ -10,6 +10,7 @@
 #
 
 import os
+import re
 import sys
 import time
 import multiprocessing
@@ -20,6 +21,25 @@ from _afwdev.test.common import \
     get_test_environment, parse_test_run, print_test_response, find_test_groups, \
     load_test_environments, load_test_group_config, run_test, before_all, \
     before_each, after_all, after_each
+
+
+##
+# @brief Return True if the test group Tags match --tags (test_tags) pattern
+# @param options The options dictionary
+# @param testGroupConfig The loaded test group config, or None
+# @details Default pattern ".*" matches all groups. Otherwise at least one
+#          Tags entry must match the regex. Groups with no Tags are skipped
+#          when a non-default pattern is set.
+#
+def _test_group_matches_tags(options, testGroupConfig):
+    tag_pattern = options.get("test_tags") or ".*"
+    if tag_pattern == ".*":
+        return True
+    tags = (testGroupConfig or {}).get("Tags") or []
+    try:
+        return any(re.search(tag_pattern, tag) for tag in tags)
+    except re.error as e:
+        msg.error_exit("Invalid --tags regex '" + tag_pattern + "': " + str(e))
 
 
 ##
@@ -52,10 +72,10 @@ def run_test_group(testGroup, options, testEnvironments, work_dir_prefix):
             for key, value in testGroupConfig.get('EnvVars').items():
                 os.environ[key] = value
 
-    # if tags were specified, make sure this test group matches
-    if options.get("tags") and testGroupConfig:
-        if not any(tag in testGroupConfig.get("Tags", []) for tag in options.get("tags")):
-            msg.debug("  Skipping test group because it doesn't match the specified tags")
+    # if --tags was specified (non-default), skip groups that do not match
+    if not _test_group_matches_tags(options, testGroupConfig):
+        msg.debug("  Skipping test group because it doesn't match the specified tags")
+        return testGroup, 0, 0, 0
 
     # get the test environment for this test group
     testEnvironment = get_test_environment(testGroup, testEnvironments, testGroupConfig, work_dir_prefix)    

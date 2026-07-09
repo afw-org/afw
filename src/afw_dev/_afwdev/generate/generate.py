@@ -472,8 +472,8 @@ def generate(passed_options):
     if options['objects']:
         options['strings'] = True
 
-    # If verbose mode, print options.
-    if msg.is_debug_mode:
+    # If debug mode, print options.
+    if msg.is_debug_mode():
         msg.debug(nfc.json_dumps(options, sort_keys=True, indent=4))
         msg.debug('\n')
 
