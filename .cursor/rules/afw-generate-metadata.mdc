@@ -16,6 +16,7 @@ alwaysApply: false
 - `_AdaptivePolymorphicFunction_/` — polymorphic / shared execute dispatch.
 - `_AdaptiveObjectType_/` and related — object type metadata.
 - Interfaces: `generate/interfaces/*.xml` (core: `src/afw/generate/interfaces/afw_interface.xml`).
+- EBNF: `generate/ebnf/*.txt` lists which compile sources to scan; grammar text lives in `/*ebnf>>>` comments in those `.c` files → `generated/ebnf/`. See `.cursor/rules/afw-compiler-ebnf.mdc`.
 
 ## Workflow after edits
 ```bash

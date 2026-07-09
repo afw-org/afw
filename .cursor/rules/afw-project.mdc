@@ -20,6 +20,10 @@ Metadata-driven **C** runtime (`libafw`) plus Python **`afwdev`**. Define functi
 - `src/afw_*` — extensions (same generate/generated pattern)
 - `afw-package.json` — srcdirs / buildType / prefix
 
+## Access model (short)
+- Core, extensions, and commands interact through **interfaces** (XML under `generate/interfaces/` → generated headers/vtables).
+- Core also owns the **script compiler/runtime** (`compile/`). Grammar docs are harvested from `/*ebnf>>>` comments — see rule `afw-compiler-ebnf` when editing those files.
+
 ## Commands (package root)
 ```bash
 # C/Python day-to-day: generate + cmake + install core/extensions/afwdev (not JS/docs)
@@ -38,5 +42,5 @@ Use **`./afwdev`** when the build may refresh the installed `afwdev` itself; oth
 
 ## More context
 - Long-form map: `@AGENTS.md`
-- File-scoped rules under `.cursor/rules/` (C, generate, afwdev Python, tests)
+- File-scoped rules under `.cursor/rules/` (C, generate, compiler/EBNF, afwdev Python, tests)
 - Workflows: skills `add-adaptive-function`, `afw-generate-build-test`

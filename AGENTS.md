@@ -27,6 +27,11 @@ Package manifest: [`afw-package.json`](afw-package.json) (`srcdirs`, `srcdirMani
 - **Pools**: hierarchical allocation (including per-scope subpools). Reference counting for escaping values (e.g. closures); bulk free when pools/scopes release.
 - **`compiled_value`**: owns a pool; evaluation uses scope-stack discipline.
 
+## Interfaces vs script compiler
+
+- **Interfaces** — Core, extensions, and commands access C capabilities through contracts defined in `generate/interfaces/*.xml` (core: `afw_interface.xml`) and generated into headers/vtables/skeletons.
+- **Script compiler** — Core also hosts the Adaptive Script / expression compiler under `src/afw/compile/`. Grammar documentation fragments live in C comments (`/*ebnf>>>` … `<<<ebnf*/`); `generate/ebnf/*.txt` only lists which files to harvest into `generated/ebnf/`. Details: [`.cursor/rules/afw-compiler-ebnf.mdc`](.cursor/rules/afw-compiler-ebnf.mdc).
+
 Authoritative coding conventions: [`src/afw/doc/guide/developer/contributing.xml`](src/afw/doc/guide/developer/contributing.xml). Packages: [`packages.xml`](src/afw/doc/guide/developer/packages.xml).
 
 ## Metadata → generate → implement → test
@@ -50,8 +55,8 @@ Core interface XML: `src/afw/generate/interfaces/afw_interface.xml`.
 
 | Hand-edit | Do not hand-edit |
 |-----------|------------------|
-| `generate/objects/`, `generate/interfaces/`, `generate/strings/`, `generate/ebnf/` | `src/*/generated/**`, package `generated/` |
-| `function/afw_function_*.c`, runtime `*/afw_*.c` | `generated/function_closet/`, binding `*.c`/`*.h` |
+| `generate/objects/`, `generate/interfaces/`, `generate/strings/`, `generate/ebnf/*.txt` (file lists only) | `src/*/generated/**`, package `generated/` (incl. `generated/ebnf/`) |
+| `function/afw_function_*.c`, runtime `*/afw_*.c`, EBNF blocks in `compile/afw_compile_*.c` | `generated/function_closet/`, binding `*.c`/`*.h`, harvested `generated/ebnf/*.ebnf` |
 | `tests/**/*.as`, `tests/**/config.py` | Generated test trees if present |
 | `src/afw_dev/_afwdev/**/*.py` | Output those generators write under `generated/` |
 
@@ -90,6 +95,7 @@ afwdev generate --srcdir-pattern '*'
 | `.cursor/rules/afw-project.mdc` | Always-on |
 | `.cursor/rules/afw-c-runtime.mdc` | C when editing `.c`/`.h` |
 | `.cursor/rules/afw-generate-metadata.mdc` | When editing `generate/` |
+| `.cursor/rules/afw-compiler-ebnf.mdc` | When editing `compile/` or `generate/ebnf/` |
 | `.cursor/rules/afw-afwdev-python.mdc` | When editing `src/afw_dev` |
 | `.cursor/rules/afw-tests.mdc` | When editing `.as` / test `config.py` |
 | `.cursor/skills/add-adaptive-function/` | Add/change Adaptive functions or data types |

@@ -26,3 +26,4 @@ alwaysApply: false
 
 ## Interfaces
 - Method shape: `impl_<interface>_<method>(..., afw_xctx_t *xctx)`. Skeletons under `generated/interface_closet/` are reference only — copy patterns into hand-maintained impls.
+- Core/extensions/commands use these interfaces as the C contract. Script language work is separate: `compile/` + EBNF-in-comments (rule `afw-compiler-ebnf`).

@@ -1,0 +1,23 @@
+---
+description: AFW script compiler — EBNF lives in C comments; generate/ebnf lists scan files; generated/ebnf is harvested
+globs: src/afw/compile/**/*,src/afw/generate/ebnf/**
+alwaysApply: false
+---
+
+# Compiler and EBNF
+
+Core owns the Adaptive Script / expression **compiler runtime** under `src/afw/compile/` (separate from interface-based extension APIs).
+
+## Source of truth
+- Grammar fragments live in C comments marked `/*ebnf>>>` … `<<<ebnf*/` (mainly `compile/afw_compile_parse*.c`, `compile/afw_compile_lexical*.c`).
+- `src/afw/generate/ebnf/*.txt` is **not** the grammar: first non-comment line is the output basename; following lines are source globs to scan (e.g. `syntax.txt` → `syntax.ebnf` from those compile files).
+- `afwdev generate` harvests those comments into `src/afw/generated/ebnf/` (e.g. `syntax.ebnf`). That tree is derived documentation, not the edit surface.
+
+## When changing the language
+1. Edit the EBNF comment blocks and the real parse/lex C.
+2. Change `generate/ebnf/*.txt` only if which files are scanned (or the output name) must change.
+3. `./afwdev build --cdev -j`
+
+## Do not
+- Hand-edit `generated/ebnf/`.
+- Treat harvested EBNF as executable truth — the C parser is; in-source EBNF is documentation-oriented (W3C-style; comments note it is not fully precise).
