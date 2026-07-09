@@ -43,7 +43,7 @@ edit generate/ or hand C/Python  →  ./afwdev build --cdev -j  →  afwdev test
 1. **Edit** `src/<srcdir>/generate/` — e.g. `objects/_AdaptiveFunctionGenerate_/*.json`, `interfaces/*.xml` — and/or hand C under `src/afw/…`.
 2. **Build (C-dev)** — from package root: `./afwdev build --cdev -j`. This is the usual C/Python loop: generate, cmake-build, and install core, extensions, and the `afwdev` Python command. It does **not** build the JS app or docs. `-j` enables parallel make.
 3. **Implement** — e.g. `src/afw/function/afw_function_<category>.c` (not `generated/function_closet/`).
-4. **Test** — `afwdev test -j` runs the Adaptive Script tests (judge success from command output). Narrow with `--srcdir-pattern` / `--pattern` when useful.
+4. **Test** — `afwdev test -j` runs the Adaptive Script tests (judge success from command output). Narrow with `--srcdir-pattern` / `--pattern` when useful. For memory work or before a major PR, occasionally run `afwdev test --env-mode valgrind -j` (much slower).
 
 Use **`./afwdev`** for builds that refresh/install `afwdev` itself; use **`afwdev`** (PATH) afterward for `test`, `validate`, etc.
 
@@ -70,6 +70,7 @@ Committed `generated/` is for review/grep; **authoritative** output is the last 
 
 # After --cdev, installed afwdev is current
 afwdev test -j
+afwdev test --env-mode valgrind -j   # occasional; much slower (memory / major PR)
 afwdev test --srcdir-pattern afw --pattern 'rql/.*'
 afwdev validate --pattern 'src/afw/generate/objects/...'
 

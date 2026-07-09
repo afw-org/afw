@@ -3,8 +3,8 @@ name: afw-generate-build-test
 description: >-
   Runs the AFW C/Python regenerate, build, install, and test loop after metadata
   or interface changes. Use when the user asks to generate, rebuild with --cdev,
-  verify bindings, run afwdev test/validate, or check that generated/ was not
-  hand-edited.
+  verify bindings, run afwdev test/validate (including --env-mode valgrind), or
+  check that generated/ was not hand-edited.
 ---
 
 # Generate → build → test
@@ -23,7 +23,8 @@ Progress:
 - [ ] 2. Optional: validate metadata if JSON/XML changed
 - [ ] 3. ./afwdev build --cdev -j   (from package root)
 - [ ] 4. afwdev test -j             (or targeted --pattern)
-- [ ] 5. Confirm success from command output
+- [ ] 5. Optional: afwdev test --env-mode valgrind -j (memory work / major PR)
+- [ ] 6. Confirm success from command output
 ```
 
 ## Preferred commands
@@ -44,6 +45,10 @@ afwdev test --srcdir-pattern afw --pattern 'rql/.*'
 afwdev test --srcdir-pattern afw --tags rql
 afwdev test --srcdir-pattern afw --list
 afwdev test --srcdir-pattern afw --bail 1
+
+# Occasional: run tests under valgrind (much slower). Use for memory-management
+# work or when getting close to a major PR — not every edit cycle.
+afwdev test --env-mode valgrind -j
 
 # Full repo including app + docs
 ./afwdev build --all --install -j

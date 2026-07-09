@@ -32,6 +32,9 @@ Metadata-driven **C** runtime (`libafw`) plus Python **`afwdev`**. Define functi
 # Script tests (use installed afwdev after --cdev)
 afwdev test -j
 
+# Occasional memory check (much slower): before major PRs or memory work
+afwdev test --env-mode valgrind -j
+
 # Full repo including app + docs
 ./afwdev build --all --install -j
 

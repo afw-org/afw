@@ -25,6 +25,10 @@ alwaysApply: false
 # Usual full script-test run (judge success from output)
 afwdev test -j
 
+# Occasional: same tests under valgrind (much slower). Use when working on
+# memory management or before a major PR — not for every edit cycle.
+afwdev test --env-mode valgrind -j
+
 afwdev test --srcdir-pattern afw --pattern 'rql/.*'
 afwdev test --srcdir-pattern afw --tags rql
 afwdev test --srcdir-pattern afw --list
