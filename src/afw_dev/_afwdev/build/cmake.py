@@ -5,7 +5,8 @@
 # @ingroup afwdev_build
 # @brief This file contains the main entry point for the "cmake" build.
 # @details The "cmake" build builds all C-related source code into their 
-#          appropriate binary libraries and executables.
+#          appropriate binary libraries and executables. Order is configure,
+#          build, then optional cpack, analyze-build, and install.
 #
 
 import subprocess

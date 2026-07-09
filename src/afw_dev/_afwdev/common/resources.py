@@ -5,6 +5,10 @@
 # @ingroup afwdev_common
 # @brief This file contains some common functions for working with resources 
 #        associated with afw packages.
+# @details Supports a source tree (_resources next to afwdev.py) and the
+#          zipapp layout. Skeleton text may contain <afwdev {key}> or
+#          <afwdev {key.method()}> substitutions resolved from the options
+#          dict with a restricted parser.
 #
 
 import os

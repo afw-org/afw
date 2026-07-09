@@ -2,6 +2,12 @@
 ##
 # @file parser.py
 # @ingroup afwdev_cli
+# @brief Build the afwdev argparse parser and populate the options dict.
+# @details Subcommand and option metadata come from cli.info. After parse_args,
+#          set_package_and_args_options() resolves the package directory,
+#          loads afwdev settings, and copies each arg's optionName into
+#          options. Dispatch uses registry.SUBCOMMAND_HANDLERS. See options.py
+#          for the shared options keys.
 #
 
 import argparse

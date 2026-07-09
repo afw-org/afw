@@ -2,6 +2,7 @@
 ##
 # @file make.py
 # @ingroup afwdev_scaffold
+# @brief Handlers for make-afw-package, make-command, and make-extension.
 #
 
 import os

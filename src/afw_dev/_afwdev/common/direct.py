@@ -5,6 +5,9 @@
 # @ingroup afwdev_common
 # @brief This file contains some common functions for direct file object 
 #        retrieval.
+# @details Loads *.json from a directory for generate-time processing and
+#          sets _meta_.objectId (basename) and _meta_.objectType (directory
+#          name unless overridden). Used when walking generate/objects/.
 #
 
 import os
@@ -14,6 +17,7 @@ from _afwdev.common import msg, nfc
 def retrieve_objects_direct(dir, objectType = None):
     list = []
 
+    # Default objectType from the directory name.
     parts = dir.replace('\\', '/').split('/')
     count = len(parts);
     if count > 0:

@@ -2,6 +2,11 @@
 ##
 # @file generate_hooks.py
 # @ingroup afwdev_scaffold
+# @brief Generate helpers used by make-* and add-* scaffold handlers.
+# @details call_generated_generate() regenerates the current srcdir.
+#          generate_primary() regenerates srcdirManifest and package
+#          root_generate(). generate_register() writes a
+#          generate/manifest/<type>/<key>.c skeleton.
 #
 
 import os

@@ -3,6 +3,8 @@
 # @file add_registry_type.py
 # @ingroup afwdev_scaffold
 # @brief Shared flow for add-adapter-type / add-content-type / add-log-type.
+# @details Sequence: begin_add_to_srcdir, add_interfaces, add_conf_object,
+#          finish_registry_type (register, generate srcdir, generate_primary).
 #
 
 import os

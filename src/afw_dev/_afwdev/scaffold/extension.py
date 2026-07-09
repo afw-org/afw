@@ -2,6 +2,9 @@
 ##
 # @file extension.py
 # @ingroup afwdev_scaffold
+# @brief Create an extension srcdir and run generate for it.
+# @details Updates afw-package.json, adds generate closet content, the
+#          afw_extension interface, CMakeLists, then generate.
 #
 
 import os

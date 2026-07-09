@@ -4,6 +4,11 @@
 # @file package.py
 # @ingroup afwdev_common
 # @brief This file contains some common functions for working with afw packages.
+# @details find_afw_package_dir() walks up from the current working directory
+#          to locate afw-package.json. get_afw_package() caches the parsed
+#          package on options. set_options_from_existing_package_srcdir()
+#          fills srcdir-related keys used by generate, build, test, and
+#          scaffold.
 #
 
 import os

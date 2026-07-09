@@ -4,6 +4,13 @@
 # @file generate.py
 # @ingroup afwdev_generate
 # @brief This file contains the main entry point for the "generate" subcommand.
+# @details For one srcdir, generate() removes generated/, optionally overlays
+#          generate/external/ into generate/temp_generate/, then runs the
+#          generators that match existing generate/ subdirectories (object
+#          types, interfaces, polymorphic functions, bindings, strings, cmake
+#          fragments, and related outputs). root_generate() runs once per
+#          package after srcdirs and writes package-level generated/ content
+#          such as cmake fragments and JSON schemas.
 #
 
 ##

@@ -2,6 +2,7 @@
 ##
 # @file common.py
 # @ingroup afwdev_scaffold
+# @brief Shared messaging helpers for scaffold subcommands.
 #
 
 from _afwdev.common import msg

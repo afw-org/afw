@@ -8,6 +8,11 @@
 # @file common.py
 # @brief This file contains common routines that are used by all 
 #        test routines.
+# @details Under src/<srcdir>/tests/, directories with test files form groups.
+#          Optional config.py may define Tags, Environment, and before/after
+#          hooks. Shared fixtures live in tests/environments/. Execution modes
+#          are plugins under _afwdev/test/modes/.
+#
 
 import os
 import shutil

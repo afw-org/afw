@@ -11,6 +11,8 @@
 ##
 # @file generate.py
 # @ingroup afwdev_cli
+# @brief Handler for the generate subcommand.
+# @details Loops matching srcdirs, then runs package root_generate().
 #
 
 import os

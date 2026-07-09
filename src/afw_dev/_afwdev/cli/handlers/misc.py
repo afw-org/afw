@@ -2,6 +2,7 @@
 ##
 # @file misc.py
 # @ingroup afwdev_cli
+# @brief Handlers for build, ebnf, for, task, settings, and afwdev-parser-info.
 #
 
 import subprocess

@@ -2,6 +2,9 @@
 ##
 # @file interface.py
 # @ingroup afwdev_scaffold
+# @brief Copy a core interface skeleton (.h/.c) into a srcdir with substitutions.
+# @details Expects options['interface_name'] and prefix/srcdir paths. Created
+#          paths are appended to options['added_files'].
 #
 
 import os

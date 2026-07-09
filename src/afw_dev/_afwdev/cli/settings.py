@@ -2,6 +2,11 @@
 ##
 # @file settings.py
 # @ingroup afwdev_cli
+# @brief Resolve afwdev-settings.json and related multi-package paths.
+# @details Search walks up from the package root, then checks ~/ .
+#          When afwPackages is unset, folders from afw.code-workspace that
+#          contain afw-package.json are used. forSets['default'] is filled
+#          with those package paths for the `afwdev for` subcommand.
 #
 
 import os

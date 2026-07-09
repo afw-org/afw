@@ -3,6 +3,9 @@
 # @file info.py
 # @ingroup afwdev_cli
 # @brief Declarative CLI metadata (_info_* dicts) and afwdev_info export.
+# @details Help text and optionNames here drive argparse and generated docs.
+#          Each _subcommand_infos entry must have a matching handler in
+#          registry.SUBCOMMAND_HANDLERS.
 #
 
 _afwdev_overall_info = {

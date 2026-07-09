@@ -3,6 +3,9 @@
 # @file registry.py
 # @ingroup afwdev_cli
 # @brief Explicit subcommand handler and info maps (no globals() dispatch).
+# @details SUBCOMMAND_HANDLERS maps each subcommand name to its callable.
+#          validate_registry() runs at import and requires the same set of
+#          names as _subcommand_infos in info.py.
 #
 
 from _afwdev.cli.info import _subcommand_infos, afwdev_info

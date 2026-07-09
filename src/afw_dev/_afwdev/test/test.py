@@ -20,6 +20,8 @@
 # @file test.py
 # @ingroup afwdev_test
 # @brief This file contains the main entry point for the "test" subcommand.
+# @details Selects matching srcdirs, then list, watch, javascript, or the
+#          runner. Modes such as afw and valgrind live under test/modes/.
 #
 
 import os

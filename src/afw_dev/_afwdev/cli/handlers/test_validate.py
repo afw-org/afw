@@ -2,6 +2,7 @@
 ##
 # @file test_validate.py
 # @ingroup afwdev_cli
+# @brief Handlers for the test and validate subcommands.
 #
 
 import sys

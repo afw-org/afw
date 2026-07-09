@@ -3,6 +3,8 @@
 # @file entry.py
 # @ingroup afwdev_cli
 # @brief main() for the afwdev command.
+# @details Locates afwdev resources (sibling _resources/ or zipapp contents),
+#          parses arguments, and dispatches the selected subcommand handler.
 #
 
 import os

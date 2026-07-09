@@ -11,8 +11,9 @@
 #          layouts, servers, test data, etc.
 #
 # Implementation lives under _afwdev/cli/ (parser, metadata, handlers) and
-# _afwdev/scaffold/ (make-* / add-*). This module is the zipapp entry point
-# (afwdev:main) and re-exports afwdev_info for tooling.
+# _afwdev/scaffold/ (make-* / add-*). Shared options keys are documented in
+# _afwdev/cli/options.py. This module is the zipapp entry point (afwdev:main)
+# and re-exports afwdev_info for tooling.
 #
 
 from _afwdev.cli.entry import main

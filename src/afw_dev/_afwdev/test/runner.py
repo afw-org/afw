@@ -7,6 +7,9 @@
 ##
 # @file runner.py
 # @brief This file contains the main functions for running tests.
+# @details Runs discovered test groups sequentially or via multiprocessing.Pool.
+#          Parallelism is per group. Each group restores cwd and os.environ
+#          in a finally block.
 #
 
 import os

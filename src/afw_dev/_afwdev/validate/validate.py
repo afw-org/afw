@@ -4,6 +4,9 @@
 # @file validate.py
 # @ingroup afwdev_validate
 # @brief This file contains the main entry point for the "validate" subcommand.
+# @details Validates JSON against schemas in generated/schemas/afw/ from a
+#          prior generate. Object type comes from $schema, else a special
+#          filename mapping, else the parent directory name.
 #
 
 

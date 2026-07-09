@@ -4,6 +4,8 @@
 # @file nfc.py
 # @ingroup afwdev_common
 # @brief This file contains some common functions for normalizing unicode.
+# @details Also provides UTF-8 text I/O and JSON helpers used for afwdev
+#          metadata so identifiers stay in a single Unicode form.
 #
 
 import json
@@ -12,6 +14,7 @@ import builtins
 
 def open(path, mode='r'):
     # If not binary mode, open with utf-8 encoding and newline=''.
+    # newline='' keeps diffs stable across OSes.
     if 'b' not in mode:
         fd = builtins.open(path, mode=mode, encoding='utf-8', newline='')
     else:
