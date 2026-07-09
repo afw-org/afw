@@ -404,12 +404,10 @@ impl_afw_value_managed_optional_release(
     afw_value_yearMonthDuration_managed_t *self =
         (afw_value_yearMonthDuration_managed_t *)instance;
 
-    /* If reference count is 1 or less, free value's memory. */
-    if (self->reference_count <= 1) {
+    /* Create starts at 0; get_reference increments. Free only at 0. */
+    if (self->reference_count == 0) {
         afw_pool_free_memory((void *)instance, xctx);
     }
-    
-    /* If not freeing memory, decrement reference count. */
     else {
         self->reference_count--;
     }

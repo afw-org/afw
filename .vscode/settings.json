@@ -427,5 +427,9 @@
     "spellright.language": [
         "en"
     ],
-    "terminal.integrated.scrollback": 2000
+    "terminal.integrated.scrollback": 2000,
+    "cursorpyright.analysis.extraPaths": [
+        "./src/afw/generated",
+        "./src/afw_client/python"
+    ]
 }
