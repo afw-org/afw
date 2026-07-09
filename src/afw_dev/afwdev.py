@@ -856,7 +856,16 @@ _info_test_errors = {
     "arg": "--errors",     
     "action": "store_true",    
     "default": True,
-    "help": "Only show errors."
+    "help":
+        "Only show failing tests (default). Use --show-all to include passes."
+}
+
+_info_test_show_all = {
+    "optionName": "show_all",
+    "arg": "--show-all",
+    "action": "store_true",
+    "default": False,
+    "help": "Show all tests including passes (overrides default --errors)."
 }
 
 _info_test_list = {
@@ -864,7 +873,7 @@ _info_test_list = {
     "arg": "--list",
     "action": "store_true",
     "default": False,
-    "help": "List tests (do not run)"
+    "help": "List matching tests and exit without running them."
 }
 
 _info_test_tags = {
@@ -914,7 +923,9 @@ _info_test_output = {
     "action": "store",
     "default": "stdout",
     "noprompt": True,
-    "help": "Where to send test output (default is stdout)."
+    "help":
+        "Where to write a JSON results summary. Use 'stdout' (default) for "
+        "console only, or a file path."
 }
 
 _info_test_pattern = {
@@ -944,6 +955,7 @@ _info_test = {
         _info_test_list,
         _info_test_tags,
         _info_test_errors,
+        _info_test_show_all,
         _info_srcdir_pattern, 
         _info_test_watch,
         _info_test_jobs,
@@ -1416,7 +1428,8 @@ def _subcommand_for(args, options):
                 rc = subprocess.run(command, cwd=cwd)
                 if rc.returncode != 0:
                     failed = True
-            except:
+            except Exception as e:
+                msg.error('Command failed in ' + cwd + ': ' + str(e))
                 failed = True
             if failed:
                 errors += 1
@@ -1461,22 +1474,43 @@ def _subcommand_generate(args, options):
     options['srcdir_pattern'] = options['srcdir_pattern'].replace('\\','')
     options['subcommand'] = "generate"
 
+    matched = 0
+    generated = 0
+    skipped_build_type = 0
+    skipped_no_generate = 0
+
     # Process all the matching srcdirs
     for srcdir in afw_package['srcdirs']:
         if not fnmatch.fnmatch(srcdir, options['srcdir_pattern']):
             continue
+        matched += 1
         package.set_options_from_existing_package_srcdir(options, srcdir, set_all=True)
         if options.get('buildType') != 'afwmake':
+            skipped_build_type += 1
+            msg.info('Skipping ' + srcdir + ' (buildType is not afwmake)')
             continue
         if not os.path.exists(options['srcdir_path'] + 'generate'):
+            skipped_no_generate += 1
+            msg.info('Skipping ' + srcdir + ' (no generate/ directory)')
             continue
         msg.info("Generating " + srcdir, empty_before=True)
         _call_generated_generate(options)                    
-        
+        generated += 1
         msg.success('Generate ' + srcdir + ' successful')
 
     # Do root generate
     generate.root_generate(options)
+
+    msg.highlighted_info(
+        'Generate summary: ' +
+        str(generated) + ' generated, ' +
+        str(skipped_build_type) + ' skipped (buildType), ' +
+        str(skipped_no_generate) + ' skipped (no generate/), ' +
+        str(matched) + ' matched pattern')
+    if matched == 0:
+        msg.warn(
+            'No srcdirs matched --srcdir-pattern ' +
+            repr(options['srcdir_pattern']))
 
 
 
@@ -1650,7 +1684,8 @@ def _subcommand_task(args, options):
             if rc.returncode != 0:
                 failed = True
                 break
-    except:
+    except Exception as e:
+        msg.error('Task ' + options['task_name'] + ' raised: ' + str(e))
         failed = True
 
     if failed:
@@ -1908,20 +1943,13 @@ def _set_package_and_args_options(args, options):
     # set the afwdev_info object
     options['afwdev_info'] = afwdev_info
     
-    # If not newPackageDirPath, find afw-package.json in cwd or it's parent and set options['afw_package_dir_path']
+    # If not newPackageDirPath, find afw-package.json in cwd or a parent
     options['is_core_afw_package'] = False
     if not info.get('newPackageDirPath', False):
-        options['afw_package_dir_path'] = os.getcwd()
-        while options['afw_package_dir_path'] != '':
-            if os.path.exists(options['afw_package_dir_path'] + '/afw-package.json'):
-                options['afw_package_dir_path'] += '/'
-                break
-            if options['afw_package_dir_path'] == '/':
-                options['afw_package_dir_path'] = ''
-                break
-            options['afw_package_dir_path'] = os.path.split(options['afw_package_dir_path'])[0]
-        if options['afw_package_dir_path'] == '':
+        package_dir = package.find_afw_package_dir()
+        if package_dir is None:
             msg.error_exit('The current working directory must be inside of an AFW package')
+        options['afw_package_dir_path'] = package_dir
 
         # The core afw package will have 'src/afw/environment/afw_environment.c' as a fingerprint.
         package.set_is_core_afw_package(options)

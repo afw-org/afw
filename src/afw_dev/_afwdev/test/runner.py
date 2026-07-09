@@ -10,7 +10,7 @@
 #
 
 import os
-import re
+import shutil
 import sys
 import time
 import multiprocessing
@@ -20,26 +20,7 @@ from _afwdev.common import msg, nfc
 from _afwdev.test.common import \
     get_test_environment, parse_test_run, print_test_response, find_test_groups, \
     load_test_environments, load_test_group_config, run_test, before_all, \
-    before_each, after_all, after_each
-
-
-##
-# @brief Return True if the test group Tags match --tags (test_tags) pattern
-# @param options The options dictionary
-# @param testGroupConfig The loaded test group config, or None
-# @details Default pattern ".*" matches all groups. Otherwise at least one
-#          Tags entry must match the regex. Groups with no Tags are skipped
-#          when a non-default pattern is set.
-#
-def _test_group_matches_tags(options, testGroupConfig):
-    tag_pattern = options.get("test_tags") or ".*"
-    if tag_pattern == ".*":
-        return True
-    tags = (testGroupConfig or {}).get("Tags") or []
-    try:
-        return any(re.search(tag_pattern, tag) for tag in tags)
-    except re.error as e:
-        msg.error_exit("Invalid --tags regex '" + tag_pattern + "': " + str(e))
+    before_each, after_all, after_each, test_group_matches_tags
 
 
 ##
@@ -73,7 +54,7 @@ def run_test_group(testGroup, options, testEnvironments, work_dir_prefix):
                 os.environ[key] = value
 
     # if --tags was specified (non-default), skip groups that do not match
-    if not _test_group_matches_tags(options, testGroupConfig):
+    if not test_group_matches_tags(options, testGroupConfig):
         msg.debug("  Skipping test group because it doesn't match the specified tags")
         return testGroup, 0, 0, 0
 
@@ -132,17 +113,18 @@ def run_test_group(testGroup, options, testEnvironments, work_dir_prefix):
                     str = error
                     try:
                         str = nfc.json_loads(error).get('message')
-                    except:
+                    except Exception:
                         str = error
-                    msg.error("\n    \u2717 {}\n".format(str))   
+                    msg.error("\n    \u2717 {}\n".format(str))    
 
             if msg.is_debug_mode() and debug:
                 msg.debug(debug)
 
             after_each(root, testGroupConfig, testEnvironment)
 
-            # if we only report errors, then skip successful tests
-            if options.get('errors') and not hasFailures:
+            # Default is errors-only; --show-all prints successful tests too
+            errors_only = options.get('errors', True) and not options.get('show_all')
+            if errors_only and not hasFailures:
                 continue
 
             # already reported test name above
@@ -196,7 +178,7 @@ def allocate_working_directory(options):
     # if folder already exists, remove it first
     if os.path.exists(working_directory):
         msg.highlighted_info("Removing previous working directory: " + working_directory)        
-        os.system("rm -rf " + working_directory)
+        shutil.rmtree(working_directory)
     
     # create folder
     os.mkdir(working_directory)

@@ -160,7 +160,7 @@ def run_test(test, options, testEnvironment=None, testGroupConfig=None):
                 stdout_w.close()
             if not stderr_w_closed:
                 stderr_w.close()        
-        except:
+        except Exception:
             pass
 
     return response, error, debug

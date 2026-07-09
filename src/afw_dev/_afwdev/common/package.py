@@ -110,16 +110,32 @@ def _check_package(package):
 
     return package
 
+##
+# @brief Walk up from start_dir looking for afw-package.json
+# @param start_dir Directory to start from (default: cwd)
+# @return Absolute package root path ending with '/', or None if not found
+#
+def find_afw_package_dir(start_dir=None):
+    path = os.path.realpath(start_dir if start_dir is not None else os.getcwd())
+    while True:
+        if os.path.exists(os.path.join(path, 'afw-package.json')):
+            if not path.endswith('/'):
+                path += '/'
+            return path
+        parent = os.path.dirname(path)
+        if parent == path:
+            return None
+        path = parent
+
+
 def _get_afw_package_dir_path(options):
     if options.get('afw_package_dir_path') is None:
-        path = os.getcwd()
-        while path != '':
-            if os.path.exists(path + '/afw-package.json'):
-                options['afw_package_dir_path'] = path + '/'
-                break
-            path = os.path.split(path)[0]
-        if path == '':
-            msg.error_exit('--path must be specified, or the current working directory must be inside of an AFW package')
+        found = find_afw_package_dir()
+        if found is None:
+            msg.error_exit(
+                '--path must be specified, or the current working directory '
+                'must be inside of an AFW package')
+        options['afw_package_dir_path'] = found
     set_is_core_afw_package(options)
     return options['afw_package_dir_path']
 

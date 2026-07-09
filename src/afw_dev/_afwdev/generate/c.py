@@ -216,8 +216,10 @@ def replace_file_copyright(srcdir_path, src_file) :
             linenumber += 1
             try:
                 line = fd.readline()
-            except:
-                msg.error('Error reading ' + file_path + ' line number ' + str(linenumber))
+            except Exception as e:
+                msg.error(
+                    'Error reading ' + file_path + ' line number ' +
+                    str(linenumber) + ': ' + str(e))
                 return
 
             if not line:
@@ -315,8 +317,9 @@ def replace_file_copyright(srcdir_path, src_file) :
                     fd.write('\n')
 
                 fd.writelines(remaining_lines)
-            except:
-                msg.error('Error updating copyright in ' + src_file)
+            except Exception as e:
+                msg.error(
+                    'Error updating copyright in ' + src_file + ': ' + str(e))
 
 
 

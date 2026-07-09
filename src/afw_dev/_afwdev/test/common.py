@@ -10,22 +10,46 @@
 #        test routines.
 
 import os
+import shutil
 import subprocess
 import importlib
+import importlib.machinery
 import re
 from os.path import exists
 
 from _afwdev.common import msg, nfc
 
+
+##
+# @brief Return True if the test group Tags match --tags (test_tags) pattern
+# @param options The options dictionary
+# @param testGroupConfig The loaded test group config, or None
+# @details Default pattern ".*" matches all groups. Otherwise at least one
+#          Tags entry must match the regex. Groups with no Tags are skipped
+#          when a non-default pattern is set.
+#
+def test_group_matches_tags(options, testGroupConfig):
+    tag_pattern = options.get("test_tags") or ".*"
+    if tag_pattern == ".*":
+        return True
+    tags = (testGroupConfig or {}).get("Tags") or []
+    try:
+        return any(re.search(tag_pattern, tag) for tag in tags)
+    except re.error as e:
+        msg.error_exit("Invalid --tags regex '" + tag_pattern + "': " + str(e))
+
+
 # common routine for calling before/after functions
 def test_wrapper(root, testGroupConfig, testEnvironment, action):
-    cwd = root
     if testGroupConfig and testGroupConfig.get(action):
         testGroupConfig[action]()        
 
     elif exists(root + '/' + action + '.py'):
         msg.debug("Running " + action + ".py")
-        subprocess.call(['python3', root + '/' + action + '.py'])
+        rc = subprocess.run(['python3', root + '/' + action + '.py'])
+        if rc.returncode != 0:
+            raise Exception(
+                action + '.py failed with exit code ' + str(rc.returncode))
 
 # function that is run before all tests in a test group
 def before_all(root, testGroupConfig, testEnvironment):
@@ -144,7 +168,13 @@ def get_test_environment(testGroup, testEnvironments, testGroupConfig, work_dir_
         # copy everything from testEnv['path'] to work_dir
         if testEnv.get('path'):
             msg.debug("Copying test environment files from: " + testEnv['path'])
-            os.system("cp -r " + testEnv['path'] + "/* " + work_dir)    
+            for name in os.listdir(testEnv['path']):
+                src = os.path.join(testEnv['path'], name)
+                dst = os.path.join(work_dir, name)
+                if os.path.isdir(src):
+                    shutil.copytree(src, dst)
+                else:
+                    shutil.copy2(src, dst)
 
     return testEnv
 
@@ -185,15 +215,19 @@ def load_test_group_config(root):
     fullPath = root + '/config.py'
     if exists(fullPath):
 
-        # import the test config module
-        test_config = importlib.machinery.SourceFileLoader("config", fullPath).load_module()
+        # Unique module name per path so Tags/hooks from one group are not
+        # reused for another (SourceFileLoader caches by module name).
+        module_name = 'afwdev_test_config_' + re.sub(r'[^A-Za-z0-9_]', '_', os.path.abspath(fullPath))
+        test_config = importlib.machinery.SourceFileLoader(
+            module_name, fullPath).load_module()
 
         groupConfig = {
             'before_all': test_config.before_all if hasattr(test_config, 'before_all') else None,
             'after_all': test_config.after_all if hasattr(test_config, 'after_all') else None,
             'before_each': test_config.before_each if hasattr(test_config, 'before_each') else None,
             'after_each': test_config.after_each if hasattr(test_config, 'after_each') else None,
-            'environment': test_config.Environment if hasattr(test_config, 'Environment') else None
+            'environment': test_config.Environment if hasattr(test_config, 'Environment') else None,
+            'Tags': test_config.Tags if hasattr(test_config, 'Tags') else None,
         }                        
         
         return groupConfig
@@ -538,6 +572,9 @@ def print_test_response(options, test, response, hasFailures, allSuccess, allSki
 
         if allSkipped:
             return        
+
+        # Default is errors-only; --show-all prints passes/skips too
+        errors_only = options.get('errors', True) and not options.get('show_all')
             
         for testCase in response['tests']:
             
@@ -547,14 +584,14 @@ def print_test_response(options, test, response, hasFailures, allSuccess, allSki
             tc_test = testCase.get('test')               
 
             if tc_skip == True:                                            
-                if not options.get('errors'):
+                if not errors_only:
                     msg.warn("    \u25cb", end="")
                     msg.highlighted_info(" {}".format(tc_test))
                     if (msg.is_verbose_mode()):
                         print("\033[2m      {}\033[0m\n".format(tc_description))
                     msg.debug(nfc.json_dumps(testCase, sort_keys=True, indent=4))                  
             elif tc_passed == True:
-                if not options.get('errors'):
+                if not errors_only:
                     msg.success("    \u2713", end="")
                     msg.highlighted_info(" {}".format(tc_test))
                     if (msg.is_verbose_mode()):

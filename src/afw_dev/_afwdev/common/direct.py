@@ -29,8 +29,10 @@ def retrieve_objects_direct(dir, objectType = None):
                 content = fd.read()
                 try:
                     obj = nfc.json_loads(content)
-                except:
-                    print("Unable to load JSON content from: " + dir + file)
+                except Exception as e:
+                    print(
+                        "Unable to load JSON content from: " + dir + file +
+                        ": " + str(e))
                     raise
                 obj['_meta_'] = {}
                 obj['_meta_']['objectId'] = file.replace('.json', '')

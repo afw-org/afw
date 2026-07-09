@@ -22,12 +22,48 @@
 # @brief This file contains the main entry point for the "test" subcommand.
 #
 
+import os
 import sys
 import time
 import fnmatch
 
-from _afwdev.common import msg, package
+from _afwdev.common import msg, nfc, package
 from _afwdev.test import watch, runner, js
+from _afwdev.test.common import (
+    find_test_groups, load_test_group_config, test_group_matches_tags)
+
+
+##
+# @brief List matching tests without running them
+#
+def _list_tests(options, srcdirs):
+    count = 0
+    for srcdir, srcdirPath, _, manual_tests in srcdirs:
+        if not os.path.exists(manual_tests):
+            continue
+        for testGroup in find_test_groups(options, srcdir, manual_tests):
+            _, root, tests = testGroup
+            testGroupConfig = load_test_group_config(root)
+            if not test_group_matches_tags(options, testGroupConfig):
+                continue
+            for test in tests:
+                msg.highlighted_info(os.path.relpath(test))
+                count += 1
+    msg.highlighted_info(str(count) + ' test(s) listed')
+    sys.exit(0)
+
+
+##
+# @brief Optionally write a JSON results summary to --output
+#
+def _write_output_summary(options, summary):
+    output = options.get('output') or 'stdout'
+    if output == 'stdout':
+        return
+    with nfc.open(output, 'w') as fd:
+        nfc.json_dump(summary, fd, indent=2, sort_keys=True)
+    msg.highlighted_info('Wrote test summary to ' + output)
+
 
 ## 
 # @brief The main entry point for the "test" subcommand
@@ -39,6 +75,8 @@ from _afwdev.test import watch, runner, js
 #          changed.
 #
 #          "run" (default) will simply run all requested tests.
+#
+#          "list" will list matching tests and exit.
 #
 #          "javascript" will run javascript tests.
 #
@@ -82,6 +120,9 @@ def run(options):
             )
         )
 
+    if options.get('list'):
+        _list_tests(options, srcdirs)
+
     if options.get('javascript'):
 
         js.run(options, srcdirs)
@@ -109,6 +150,7 @@ def run(options):
                 srcdirs_failed += 1
 
         srcdirs_passed = total_srcdirs - (srcdirs_failed + srcdirs_skipped)
+        elapsed = round(end - start, 2)
 
         # Print summary
         msg.highlighted_info("")
@@ -137,10 +179,33 @@ def run(options):
             msg.highlighted_info(", ", end="")    
                 
         msg.highlighted_info("{} total".format(total_tests))
-        msg.highlighted_info("Time:          {}s".format(
-            round(end - start, 2)))    
+        msg.highlighted_info("Time:          {}s".format(elapsed))
+
+        _write_output_summary(options, {
+            'srcdirs': {
+                'passed': srcdirs_passed,
+                'failed': srcdirs_failed,
+                'skipped': srcdirs_skipped,
+                'total': total_srcdirs,
+            },
+            'tests': {
+                'passed': total_passed,
+                'failed': total_failed,
+                'skipped': total_skipped,
+                'total': total_tests,
+            },
+            'time_seconds': elapsed,
+            'by_srcdir': {
+                srcdir: {
+                    'passed': stats[0],
+                    'skipped': stats[1],
+                    'failed': stats[2],
+                }
+                for srcdir, stats in results.items()
+            },
+        })
 
         if total_failed > 0:
             sys.exit(1)
         else:
-            sys.exit(0)   
+            sys.exit(0)  

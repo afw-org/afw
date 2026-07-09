@@ -48,7 +48,7 @@ def build(options):
 
     # make
     _make_command = ['cmake', '--build', options['build_directory_rpath_cmake']]
-    if msg.is_verbose:
+    if msg.is_verbose_mode():
         _make_command.extend(['--verbose'])
     if options.get('build_make_jobs') is None:
         if options['afwdev_settings'].get('make_jobs_argument'):
@@ -68,7 +68,7 @@ def build(options):
     # cpack
     if options.get('build_package', False):
         _package_command = ['cpack']
-        if msg.is_verbose:
+        if msg.is_verbose_mode():
             _package_command.extend(['--verbose'])        
         msg.highlighted_info('Running ' + str(" ".join(_package_command)))
         rc = subprocess.run(_package_command,
@@ -110,7 +110,7 @@ def build(options):
         if options.get('build_sudo', False):
             _install_command = ['sudo'] + _install_command
 
-        if msg.is_verbose:
+        if msg.is_verbose_mode():
             _install_command.extend(['--verbose'])
 
         msg.highlighted_info('Running ' + str(" ".join(_install_command)))
