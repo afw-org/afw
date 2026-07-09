@@ -1,0 +1,31 @@
+---
+description: afwdev Python CLI conventions under src/afw_dev (_afwdev generate/build/test/validate)
+globs: src/afw_dev/**/*.py,**/afwdev.py
+alwaysApply: false
+---
+
+# afwdev (Python)
+
+## Layout
+- Entry: `src/afw_dev/afwdev.py` (also invoked as `./afwdev` from package root).
+- Package: `src/afw_dev/_afwdev/` with `generate/`, `build/`, `test/`, `validate/`, `common/`.
+- Subcommand metadata uses `_info_<subcommand>` dicts in `afwdev.py` (argparse-driven). Match existing patterns when adding options or subcommands.
+
+## Generate pipeline
+- Orchestration: `_afwdev/generate/generate.py` — wipes `src/<srcdir>/generated/` then runs bindings, interfaces, strings, cmake fragments, etc.
+- Generators must write only under `generated/` (or documented outputs). Never instruct agents to patch generated C/headers by hand.
+
+## Conventions
+- Follow surrounding Python style in `_afwdev` (existing modules are the style guide).
+- Use `afw-package.json` / `package` helpers in `_afwdev.common` for srcdir discovery; respect `--srcdir-pattern`.
+- Prefer extending an existing generator module over duplicating logic.
+- Optional per-srcdir hook: `generate/additional_generate/additional_generate.py`.
+
+## Related commands agents run
+```bash
+# Use ./afwdev when the build installs/refreshes afwdev itself
+./afwdev build --cdev -j
+afwdev test -j
+afwdev validate --pattern '...'
+./afwdev build --all --install -j   # full repo including JS + docs
+```

@@ -1,66 +1,101 @@
 # AGENTS.md — Adaptive Framework (AFW)
 
-This file is **long-form context** for humans and AI assistants. **Short, always-on rules** live in **`.cursor/rules/afw-project.mdc`**. Package structure is also in **`afw-package.json`**. In Cursor chat, you can mention this file with **`@AGENTS.md`** when you need the full picture.
+Long-form context for humans and AI assistants. **Always-on** rules live in [`.cursor/rules/afw-project.mdc`](.cursor/rules/afw-project.mdc). Mention **`@AGENTS.md`** in chat when you need this map.
+
+Primary development focus for Cursor agents: **C runtime** and **Python afwdev**. JS/admin work is secondary unless explicitly requested.
 
 ## Mission
 
-AFW is a **metadata-driven** framework: define object types, functions, data types, and C **interfaces** once, then generate headers, bindings, registration, and docs. The **runtime is C**; **afwdev** is Python.
+AFW is **metadata-driven**: define object types, functions, data types, and C **interfaces** once, then generate headers, bindings, registration, and docs. The **runtime is C**; **afwdev** is Python.
 
 ## Main components
 
 | Area | Role |
 |------|------|
-| `src/afw` | `libafw` — core runtime (pools, `afw_value_t`, scopes/`xctx`, compiler, environment). |
-| `src/afw_dev` | `afwdev` command (generate, build, test, docs, validate, …). |
-| `src/afw_command` | `afw` CLI executable. |
-| `src/afw_app` | Admin web app (React); docs UX + links to static handbook under `/docs/...`. |
-| `src/afw_server_fcgi` | FCGI server deployment. |
-| `src/afw_*` (e.g. curl, ldap, …) | Extensions (loadable), same `generate/` / `generated/` pattern. |
+| `src/afw` | `libafw` — pools, `afw_value_t`, scopes/`xctx`, compiler, environment |
+| `src/afw_dev` | `afwdev` (generate, build, test, docs, validate, …) |
+| `src/afw_command` | `afw` CLI |
+| `src/afw_*` | Extensions (loadable), same `generate/` / `generated/` pattern |
+| `src/afw_server_fcgi` | FCGI server |
+| `src/afw_app` | Admin React app (defer unless asked) |
 
-## Values and memory (core mental model)
+Package manifest: [`afw-package.json`](afw-package.json) (`srcdirs`, `srcdirManifest`, `prefix`, `buildType`).
 
-- **Value graph:** `afw_value_t` = interface pointer (`inf`) + implementation payload. Many **inf** kinds: `compiled_value`, `block`, `call`, `symbol_reference`, `closure_binding`, etc.
-- **Allocation:** **Hierarchical memory pools** (including per-scope subpools). **Reference counting** is used for **escaping** values (e.g. closures holding lexical scopes); bulk free happens when pools/scopes are released.
-- **`compiled_value`:** Owns a pool; evaluation uses scope-stack discipline; long-running / escape semantics are still being refined (`optional_release`, `clone_or_reference` on some value kinds).
+## Values and memory (short)
 
-## Metadata and code generation
+- **`afw_value_t`**: interface pointer (`inf`) + payload. Kinds include `compiled_value`, `block`, `call`, `symbol_reference`, `closure_binding`, etc.
+- **Pools**: hierarchical allocation (including per-scope subpools). Reference counting for escaping values (e.g. closures); bulk free when pools/scopes release.
+- **`compiled_value`**: owns a pool; evaluation uses scope-stack discipline.
 
-1. **Per srcdir:** `src/<name>/generate/` — `objects/` (JSON under `_Adaptive*_/`), optional `interfaces/*.xml`, `manifest/`, `strings/`, `ebnf/`, optional `external/`, optional **`additional_generate/additional_generate.py`**, etc.
-2. **`afwdev generate`** (or **`afwdev build --generate`**) **wipes** `src/<name>/generated/` and regenerates C, CMake fragments, bindings, copied `generated/objects/`, etc.
-3. **Package root `generated/`** — from **`generate.root_generate()`**: shared schemas, root CMake includes (e.g. `afw_package_basic_build.cmake`), `generated/schemas/afw/`, etc.
-4. **`afw-package.json`** — `srcdirs`, `srcdirManifest`, `prefix`, `buildType`; **`buildType: afwmake`** srcdirs that contain `generate/` are processed by the generate subcommand (subject to `--srcdir-pattern`).
+Authoritative coding conventions: [`src/afw/doc/guide/developer/contributing.xml`](src/afw/doc/guide/developer/contributing.xml). Packages: [`packages.xml`](src/afw/doc/guide/developer/packages.xml).
 
-**Committed `generated/`:** Often kept in Git for **diffs and grep**; **authoritative** output is still from the **last generate** — regenerate before relying on a clean build.
+## Metadata → generate → implement → test
 
-**Core interface XML:** `src/afw/generate/interfaces/afw_interface.xml`.
+```text
+edit generate/ or hand C/Python  →  ./afwdev build --cdev -j  →  afwdev test -j
+```
+
+1. **Edit** `src/<srcdir>/generate/` — e.g. `objects/_AdaptiveFunctionGenerate_/*.json`, `interfaces/*.xml` — and/or hand C under `src/afw/…`.
+2. **Build (C-dev)** — from package root: `./afwdev build --cdev -j`. This is the usual C/Python loop: generate, cmake-build, and install core, extensions, and the `afwdev` Python command. It does **not** build the JS app or docs. `-j` enables parallel make.
+3. **Implement** — e.g. `src/afw/function/afw_function_<category>.c` (not `generated/function_closet/`).
+4. **Test** — `afwdev test -j` runs the Adaptive Script tests (judge success from command output). Narrow with `--srcdir-pattern` / `--pattern` when useful.
+
+Use **`./afwdev`** for builds that refresh/install `afwdev` itself; use **`afwdev`** (PATH) afterward for `test`, `validate`, etc.
+
+Optional: `generate/additional_generate/additional_generate.py` for custom codegen.
+
+Core interface XML: `src/afw/generate/interfaces/afw_interface.xml`.
+
+## Hand-edit vs generated
+
+| Hand-edit | Do not hand-edit |
+|-----------|------------------|
+| `generate/objects/`, `generate/interfaces/`, `generate/strings/`, `generate/ebnf/` | `src/*/generated/**`, package `generated/` |
+| `function/afw_function_*.c`, runtime `*/afw_*.c` | `generated/function_closet/`, binding `*.c`/`*.h` |
+| `tests/**/*.as`, `tests/**/config.py` | Generated test trees if present |
+| `src/afw_dev/_afwdev/**/*.py` | Output those generators write under `generated/` |
+
+Committed `generated/` is for review/grep; **authoritative** output is the last generate.
+
+## afwdev cheat sheet
+
+```bash
+# From package root — C/Python day-to-day (generate + cmake + install; not JS/docs)
+./afwdev build --cdev -j
+
+# After --cdev, installed afwdev is current
+afwdev test -j
+afwdev test --srcdir-pattern afw --pattern 'rql/.*'
+afwdev validate --pattern 'src/afw/generate/objects/...'
+
+# Full repository: cmake + docs + JS (+ docker context), with install
+./afwdev build --all --install -j
+
+# Narrow generate only (usually unnecessary if using --cdev)
+afwdev generate --srcdir-pattern '*'
+```
+
+`--cdev` is a convenience shortcut (enables generate/install and related C-dev switches; cmake is the build context; no `--js` / `--docs`). CMake output lives under `build/cmake/`.
 
 ## Documentation
 
-- **Authoring:** `src/afw/doc/` — XML guides/references, markdown, images. This is **not** the final HTML site by itself.
-- **Published handbook:** `afwdev build --docs` → **`build/docs/`**, typically served as **`/docs/...`** (e.g. nginx in Docker). Placeholders in `doc/index.xml` expand data type / function / object type reference navigation from the **same JSON metadata** as the rest of the stack.
-- **Admin app:** “Living” reference views use **runtime objects** (`retrieve_objects`, etc.); handbook links point at **built** HTML. Some requests use paths like `/doc/...` (served or proxied next to the app).
+- Author: `src/afw/doc/` (XML, markdown, images).
+- Publish: included in `./afwdev build --all --install -j`, or `afwdev build --docs` → `build/docs/` (served as `/docs/...`).
+- `--cdev` installs libs/headers/`afwdev` via cmake; it does not build the handbook or admin app.
 
-## Build, install, CI
+## Cursor layout
 
-- **`afwdev build`** — typically CMake under `build/cmake/`; **`--docs`** runs the Python doc builder; **`--js`** builds JS apps under `build/js/`.
-- **`afwdev build --install`** runs **`cmake --install`** (libs, headers, `afwdev`, commands, per CMake). **HTML docs are not assumed** to be installed unless CMake explicitly adds them.
-- **Multi-distro CI:** Builder images (Alpine, Ubuntu, Rocky, openSUSE, …) validate full builds. Example JS image path: `afwdev build --js --docs`, then **`tar`** `build/js/apps` → `afw-apps-*.tar` and `build/docs` → `afw-docs-*.tar` for nginx-backed images.
-
-## Useful commands (from package root)
-
-```bash
-afwdev generate --srcdir-pattern '*'
-afwdev build --generate          # generate then cmake
-afwdev build --docs              # handbook → build/docs
-afwdev build --js --docs         # apps + handbook (e.g. Docker builder)
-```
-
-## Using this repo with Cursor
-
-- **Short rules:** `.cursor/rules/afw-project.mdc` (`alwaysApply: true`).
-- **Long context:** `@AGENTS.md` in chat when you want this narrative loaded.
-- **Do not hand-edit** `generated/`; after changing **`generate/`**, run **`afwdev generate`** or **`afwdev build --generate`** before trusting build/test results.
+| Path | Role |
+|------|------|
+| `.cursor/rules/afw-project.mdc` | Always-on |
+| `.cursor/rules/afw-c-runtime.mdc` | C when editing `.c`/`.h` |
+| `.cursor/rules/afw-generate-metadata.mdc` | When editing `generate/` |
+| `.cursor/rules/afw-afwdev-python.mdc` | When editing `src/afw_dev` |
+| `.cursor/rules/afw-tests.mdc` | When editing `.as` / test `config.py` |
+| `.cursor/skills/add-adaptive-function/` | Add/change Adaptive functions or data types |
+| `.cursor/skills/afw-generate-build-test/` | Regenerate, build, validate, test |
+| `.cursorignore` | Skips `node_modules/`, `build/`, `generated/`, binaries |
 
 ## Other repositories
 
-External packages can implement the same interfaces and add more interface XML; **`additional_generate/`** allows Python hooks for bespoke codegen without forking core afwdev generators.
+External AFW packages can implement the same interfaces and add interface XML; `additional_generate/` allows bespoke codegen without forking core afwdev generators.

@@ -1,0 +1,27 @@
+# Dependencies and build artifacts
+**/node_modules/
+/build/
+src/*/build/
+src/afw_app/**/build/
+
+# Codegen output — edit generate/ instead; regenerate with afwdev generate
+**/generated/
+
+# App-copied / local env assets
+src/afw_app/admin/public/monaco-editor/
+src/afw_app/admin/.env
+
+# Binary and package noise
+*.o
+*.so
+*.a
+*.tar
+*.tar.gz
+*.rpm
+*.deb
+
+# Caches
+.eslintcache
+**/.cache/
+**/__pycache__/
+*.pyc

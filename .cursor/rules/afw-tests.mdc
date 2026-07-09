@@ -1,0 +1,34 @@
+---
+description: Adaptive Script (.as) tests and afwdev test / config.py environments
+globs: "**/tests/**/*.as","**/tests/**/config.py"
+alwaysApply: false
+---
+
+# AFW tests
+
+## Layout
+- Per srcdir: `src/<srcdir>/tests/` — groups are subdirs with optional `config.py`.
+- Primary tests: `.as` files. Files starting with `_` and `config.py` are not tests.
+- Environments: `tests/environments/<name>/` (`afw.conf`, seed objects); set `Environment = "<name>"` in `config.py`.
+- Hooks in `config.py`: `before_all`, `before_each`, `after_each`, `after_all` when needed.
+
+## `.as` test_script
+- Shebang: `#!/usr/bin/env -S afw --syntax test_script`
+- Metadata and cases via `//?` comments (multiple `//? test:` blocks per file).
+- Example pattern: `src/afw/tests/rql/eq.as`.
+
+## Commands
+```bash
+# After C/Python changes, build/install first:
+./afwdev build --cdev -j
+
+# Usual full script-test run (judge success from output)
+afwdev test -j
+
+afwdev test --srcdir-pattern afw --pattern 'rql/.*'
+afwdev test --srcdir-pattern afw --tags rql
+afwdev test --srcdir-pattern afw --list
+afwdev test --srcdir-pattern afw --bail 1
+```
+
+Default `--env-mode` is `afw` (runs via `afw` CLI). Use `afwdev` from PATH after `--cdev` has installed it.

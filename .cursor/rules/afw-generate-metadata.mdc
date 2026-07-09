@@ -1,0 +1,33 @@
+---
+description: Edit generate/ metadata (functions, data types, interfaces); never hand-edit generated/
+globs: "**/generate/**/*"
+alwaysApply: false
+---
+
+# AFW generate / metadata
+
+## Source of truth
+- Human inputs: `src/<srcdir>/generate/` — `objects/`, `interfaces/`, `strings/`, `ebnf/`, `manifest/`, optional `additional_generate/`.
+- Output: `src/<srcdir>/generated/` and package-root `generated/`. **`afwdev generate` deletes and rebuilds matching `generated/`.** Never hand-edit it.
+
+## Common object dirs (JSON)
+- `_AdaptiveFunctionGenerate_/` — Adaptive functions (`functionId`, `functionLabel`, `category`, `parameters`, `returns`). Example: `src/afw/generate/objects/_AdaptiveFunctionGenerate_/and.json`.
+- `_AdaptiveDataTypeGenerate_/` — data types (not `_AdaptiveDataType_`).
+- `_AdaptivePolymorphicFunction_/` — polymorphic / shared execute dispatch.
+- `_AdaptiveObjectType_/` and related — object type metadata.
+- Interfaces: `generate/interfaces/*.xml` (core: `src/afw/generate/interfaces/afw_interface.xml`).
+
+## Workflow after edits
+```bash
+afwdev validate --pattern 'src/afw/generate/objects/_AdaptiveFunctionGenerate_/<id>.json'
+# C/Python day-to-day: generate + cmake + install (not JS/docs)
+./afwdev build --cdev -j
+afwdev test -j
+```
+
+## Hooks
+- Optional `generate/additional_generate/additional_generate.py` for custom codegen without forking afwdev generators.
+
+## Do not
+- Edit `generated/**` or treat committed generated trees as editable source.
+- Put implementations only in closet skeletons and skip hand `function/` / runtime modules.
