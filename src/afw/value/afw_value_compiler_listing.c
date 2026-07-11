@@ -502,6 +502,7 @@ afw_value_compiler_listing_to_string_instance(
     }
 
     /*  Make sure this does not exceed limitation. */
+    AFW_ASSERT(sizeof(self->current_prefix_buffer) >= sizeof(impl_empty_prefix));
     if (self->prefix_size > sizeof(impl_empty_prefix)) {
         AFW_THROW_ERROR_Z(general, "Limitation", xctx);
     }
@@ -639,16 +640,15 @@ afw_value_compiler_listing_begin_value(
     afw_size_t column_number;
     afw_size_t end_line_number;
     afw_size_t end_column_number;
-    afw_utf8_t prefix;
     afw_size_t len;
-    char buffer[sizeof(impl_empty_prefix)];
 
     if (contextual) {
         if (contextual->value_offset > self->max_value_cursor) {
             self->max_value_cursor = contextual->value_offset;
         }
         if (self->offset_only) {
-            len = snprintf(buffer, sizeof(buffer),
+            len = snprintf(self->current_prefix_buffer,
+                sizeof(self->current_prefix_buffer),
                 self->prefix_format,
                 contextual->value_offset,
                 contextual->value_offset + contextual->value_size);
@@ -661,17 +661,19 @@ afw_value_compiler_listing_begin_value(
                 contextual->compiled_value->full_source,
                 contextual->value_offset + contextual->value_size,
                 self->tab_size, xctx);
-            len = snprintf(buffer, sizeof(buffer),
+            len = snprintf(self->current_prefix_buffer,
+                sizeof(self->current_prefix_buffer),
                 self->prefix_format,
                 line_number, column_number,
                 end_line_number, end_column_number);
         }
-        prefix.s = &buffer[0];
-        prefix.len = self->empty_prefix.len;
-        memcpy(&buffer[len],
-            &impl_empty_prefix[len + (sizeof(impl_empty_prefix) - prefix.len) - 1],
-            prefix.len - len);
-        self->current_prefix = &prefix;
+        self->current_prefix_value.s = self->current_prefix_buffer;
+        self->current_prefix_value.len = self->empty_prefix.len;
+        memcpy(&self->current_prefix_buffer[len],
+            &impl_empty_prefix[len +
+                (sizeof(impl_empty_prefix) - self->current_prefix_value.len) - 1],
+            self->current_prefix_value.len - len);
+        self->current_prefix = &self->current_prefix_value;
     }
     else {
         self->current_prefix = &self->empty_prefix;

@@ -780,6 +780,9 @@ struct afw_value_compiler_listing_s {
     afw_size_t last_line_written;
     const char *prefix_format;
     afw_utf8_t empty_prefix;
+    /* Storage for current_prefix when contextual; must outlive begin_value. */
+    afw_utf8_t current_prefix_value;
+    char current_prefix_buffer[64];
     const afw_utf8_t *current_prefix;
     afw_value_info_t first_info;
     afw_boolean_t offset_only;
