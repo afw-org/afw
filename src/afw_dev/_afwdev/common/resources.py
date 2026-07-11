@@ -106,7 +106,7 @@ def do_afwdev_substitutions(options, skeleton, path):
         afw_package = package.get_afw_package(options)
         options['srcdirManifest'] = afw_package.get('srcdirManifest')
 
-    regexp = re.compile('<afwdev \{([^\}]+)\}>')
+    regexp = re.compile(r'<afwdev \{([^\}]+)\}>')
     exps = regexp.findall(skeleton)
     for exp in exps:
         # First segment is the options key; remainder is a restricted chain

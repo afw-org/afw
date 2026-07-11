@@ -93,7 +93,7 @@ def is_test_file(file):
     if (file.endswith(".as") or
         file.endswith(".py") or
         file.endswith(".sh") or
-        re.match("^commands_.+\.txt$", file)):
+        re.match(r"^commands_.+\.txt$", file)):
         if file in skip or file.startswith("_"):
             return False        
         return True
@@ -286,7 +286,7 @@ def run_test(test, options, testEnvironment=None, testGroupConfig=None):
 
     # Files whose name starts with 'commands_' and has the .txt file
     # extension are run in 'commands' mode.
-    elif re.match(".*/commands_.+\.txt$", test):
+    elif re.match(r".*/commands_.+\.txt$", test):
         mode = "commands"
 
     else:
