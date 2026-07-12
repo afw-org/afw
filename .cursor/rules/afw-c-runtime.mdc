@@ -7,10 +7,11 @@ alwaysApply: false
 # AFW C runtime
 
 ## Includes and modules
-- Core `.c` files include `afw_internal.h`, not `afw.h`. Extensions use `afw.h`.
+- Core `.c` files include `afw_internal.h`, not `afw.h`. Extensions / commands / afwfcgi use `afw.h`. Full header layers: `afw-headers`. Module map: `afw-core-layout`. Extension DSO pattern: `afw-extensions`.
 - Public symbols: prefix with header/module name (`afw_pool_*`). `#define`s: `AFW_POOL_*`.
 - Object/property type IDs: UpperCamelCase. Property names: lowerCamelCase.
 - 4-space indent, LF, UTF-8. Match file headers in existing modules (e.g. `function/afw_function_logical.c`).
+- Platform code: edit matching files under `os/nix/` and `os/win/` (cmake selects one).
 
 ## Memory and errors
 - Allocate with pools: `afw_pool_calloc` / `afw_pool_calloc_type`, or `afw_xctx_calloc` for xctx lifetime. No raw `malloc`/`free`.
@@ -20,10 +21,11 @@ alwaysApply: false
 - Value lifetimes (permanent / managed / managed_slice / unmanaged) and pool/scope escape: see `afw-value-memory` (important for long-running scripts). Compile/eval graph: `afw-script-eval`.
 
 ## Adaptive functions
-- Implement in hand source: `src/afw/function/afw_function_<category>.c` as `afw_function_execute_<label>(afw_function_execute_t *x)`.
+- Implement in hand source: `src/afw/function/afw_function_<category>.c` as `afw_function_execute_<label>(afw_function_execute_t *x)`. Details: `afw-function`.
 - Do **not** implement in `generated/function_closet/` (skeletons for extensions / codegen).
 - Use `AFW_FUNCTION_EVALUATE_*` macros; caller context is `x->xctx`.
 - Metadata lives under `generate/objects/_AdaptiveFunctionGenerate_/`; regenerate before relying on bindings.
+- Core bootstrap registers all functions then `afw_function_internal_prepare_environment` (operators) — do not reverse that order (`afw-environment`).
 
 ## Interfaces
 - Method shape: `impl_<interface>_<method>(..., afw_xctx_t *xctx)`. Skeletons under `generated/interface_closet/` are reference only — copy patterns into hand-maintained impls.

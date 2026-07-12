@@ -35,4 +35,9 @@ afwdev test --srcdir-pattern afw --list
 afwdev test --srcdir-pattern afw --bail 1
 ```
 
-Default `--env-mode` is `afw` (runs via `afw` CLI). Use `afwdev` from PATH after `--cdev` has installed it.
+Default `--env-mode` is `afw` (runs via the **`afw` CLI** from `src/afw_command` — see `afw-command`). Use `afwdev` from PATH after `--cdev` has installed it.
+
+## Other test styles
+- `src/afw_command/tests/` — Python-mode fixtures for `afw --local` (`local_test.py`), not `.as` test_script.
+- `afwdev test --env-mode afwfcgi` — HTTP against nginx+`afwfcgi` (see `afw-server-fcgi`); not the default.
+- Valgrind / other env-modes wrap the same script runner with different process wrappers.

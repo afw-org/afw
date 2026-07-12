@@ -12,11 +12,11 @@ AFW is **metadata-driven**: define object types, functions, data types, and C **
 
 | Area | Role |
 |------|------|
-| `src/afw` | `libafw` — pools, `afw_value_t`, scopes/`xctx`, compiler, environment |
+| `src/afw` | `libafw` — pools, values, xctx, compiler, objects/adapters, environment (module map: [`.cursor/rules/afw-core-layout.mdc`](.cursor/rules/afw-core-layout.mdc)) |
 | `src/afw_dev` | `afwdev` (generate, build, test, docs, validate, …) |
-| `src/afw_command` | `afw` CLI |
-| `src/afw_*` | Extensions (loadable), same `generate/` / `generated/` pattern |
-| `src/afw_server_fcgi` | FCGI server |
+| `src/afw_command` | `afw` CLI — compile/eval Adaptive syntaxes, conf/extensions, `--local` ([`.cursor/rules/afw-command.mdc`](.cursor/rules/afw-command.mdc)) |
+| `src/afw_*` | Loadable extension DSOs — same env registries as core ([`.cursor/rules/afw-extensions.mdc`](.cursor/rules/afw-extensions.mdc): curl, ldap, lmdb, ubjson, vfs, yaml) |
+| `src/afw_server_fcgi` | `afwfcgi` FastCGI server — HTTP transport over libafw request handlers ([`.cursor/rules/afw-server-fcgi.mdc`](.cursor/rules/afw-server-fcgi.mdc)) |
 | `src/afw_app` | Admin React app (defer unless asked) |
 
 Package manifest: [`afw-package.json`](afw-package.json) (`srcdirs`, `srcdirManifest`, `prefix`, `buildType`).
@@ -28,10 +28,11 @@ Package manifest: [`afw-package.json`](afw-package.json) (`srcdirs`, `srcdirMani
 - **`compiled_value`**: owns a pool; evaluation uses scope-stack discipline and `statement_flow` for leave paths.
 - **Data-type value lifetimes** (inf chooses policy): **permanent** (built-in / life of AFW environment; usually const in the `.so`); **managed** (refcount or clone); **managed_slice** (utf8/memory view into a containing managed value); **unmanaged** (programmer/pool). Create APIs come from `data_type_bindings.py`. A main focus for long-running scripts is getting managed release/clone paths right and evaluating into `scope->p` — see [`.cursor/rules/afw-value-memory.mdc`](.cursor/rules/afw-value-memory.mdc).
 
-## Interfaces vs script compiler
+## Interfaces vs script compiler vs environment
 
 - **Interfaces** — Core, extensions, and commands access C capabilities through contracts defined in `generate/interfaces/*.xml` (core: `afw_interface.xml`) and generated into headers/vtables/skeletons.
-- **Script compiler** — Core also hosts the Adaptive Script / expression compiler under `src/afw/compile/`. Grammar documentation fragments live in C comments (`/*ebnf>>>` … `<<<ebnf*/`); `generate/ebnf/*.txt` only lists which files to harvest into `generated/ebnf/`. Details: [`.cursor/rules/afw-compiler-ebnf.mdc`](.cursor/rules/afw-compiler-ebnf.mdc).
+- **Environment** — Process-wide keyed registries (`afw_environment_t` / `xctx->env`). Core registers at create (`afw_environment_register_core.c`: `afw_generated_register` then hand wiring — **functions before `prepare_environment`**, then conf/adapters/content types). Extensions/commands use the same registries. Details: [`.cursor/rules/afw-environment.mdc`](.cursor/rules/afw-environment.mdc).
+- **Script compiler** — `src/afw/compile/` (`afw_compile.h`) turns syntaxes into `afw_value` graphs; EBNF docs in `/*ebnf>>>` comments harvested via `generate/ebnf/`. Evaluate via `value/` + `function/`. Rules: [`.cursor/rules/afw-compile.mdc`](.cursor/rules/afw-compile.mdc), [`.cursor/rules/afw-script-eval.mdc`](.cursor/rules/afw-script-eval.mdc), [`.cursor/rules/afw-function.mdc`](.cursor/rules/afw-function.mdc), [`.cursor/rules/afw-compiler-ebnf.mdc`](.cursor/rules/afw-compiler-ebnf.mdc).
 
 Authoritative coding conventions: [`src/afw/doc/guide/developer/contributing.xml`](src/afw/doc/guide/developer/contributing.xml). Packages: [`packages.xml`](src/afw/doc/guide/developer/packages.xml).
 
@@ -96,11 +97,20 @@ afwdev generate --srcdir-pattern '*'
 |------|------|
 | `.cursor/rules/afw-project.mdc` | Always-on (generate/build focus) |
 | `.cursor/rules/afw-runtime-model.mdc` | Always-on runtime mental model |
+| `.cursor/rules/afw-core-layout.mdc` | `src/afw` module map and usage modes |
+| `.cursor/rules/afw-headers.mdc` | Include hierarchy; hand vs generated headers |
+| `.cursor/rules/afw-core-services.mdc` | Env consumers: adapter, object, request, auth, model |
+| `.cursor/rules/afw-environment.mdc` | Environment registries; core/extension/command registration |
+| `.cursor/rules/afw-command.mdc` | `afw` CLI host (`src/afw_command`) |
+| `.cursor/rules/afw-server-fcgi.mdc` | `afwfcgi` FastCGI host (`src/afw_server_fcgi`) |
+| `.cursor/rules/afw-extensions.mdc` | Loadable extensions (curl/ldap/lmdb/ubjson/vfs/yaml) |
 | `.cursor/rules/afw-c-runtime.mdc` | C when editing `.c`/`.h` |
 | `.cursor/rules/afw-value-memory.mdc` | Value lifetimes / pools / long-running escape |
-| `.cursor/rules/afw-script-eval.mdc` | Compile/eval, scopes, statement_flow, key files |
+| `.cursor/rules/afw-script-eval.mdc` | Compile/eval pipeline, scopes, statement_flow |
+| `.cursor/rules/afw-compile.mdc` | `afw_compile.h` API, compile types, parser map |
+| `.cursor/rules/afw-compiler-ebnf.mdc` | EBNF-in-comments harvest |
+| `.cursor/rules/afw-function.mdc` | Built-in execute_*, polymorphic, compiler_* |
 | `.cursor/rules/afw-generate-metadata.mdc` | When editing `generate/` |
-| `.cursor/rules/afw-compiler-ebnf.mdc` | When editing `compile/` or `generate/ebnf/` |
 | `.cursor/rules/afw-afwdev-python.mdc` | When editing `src/afw_dev` |
 | `.cursor/rules/afw-tests.mdc` | When editing `.as` / test `config.py` |
 | `.cursor/skills/add-adaptive-function/` | Add/change Adaptive functions or data types |
@@ -109,4 +119,4 @@ afwdev generate --srcdir-pattern '*'
 
 ## Other repositories
 
-External AFW packages can implement the same interfaces and add interface XML; `additional_generate/` allows bespoke codegen without forking core afwdev generators.
+External AFW packages can implement the same interfaces and add interface XML; `additional_generate/` allows bespoke codegen without forking core afwdev generators. Base-repo extension DSOs (`afw_curl`, `afw_ldap`, …) are documented in [`.cursor/rules/afw-extensions.mdc`](.cursor/rules/afw-extensions.mdc).

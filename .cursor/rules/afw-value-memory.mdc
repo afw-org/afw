@@ -53,4 +53,4 @@ Never hand-edit `generated/` — change generator or JSON, then `./afwdev build 
 
 ## Related
 
-- `afw-runtime-model`, `afw-script-eval`, `afw-c-runtime`, `afw-afwdev-generate`, `afw-generate-metadata`, `@AGENTS.md`
+- `afw-environment` (`register_core` bootstrap), `afw-script-eval`, `afw-c-runtime`, `afw-afwdev-generate`, `afw-generate-metadata`, `@AGENTS.md`

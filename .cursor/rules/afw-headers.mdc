@@ -1,0 +1,54 @@
+---
+description: libafw header layers — afw.h vs afw_internal.h vs generated; hand-edit boundaries
+globs: src/afw/**/*.h,src/afw/include/**,src/afw/generate/interfaces/**,src/afw/generate/additional_includes/**
+alwaysApply: false
+---
+
+# libafw headers
+
+Documented in `include/afw_common.h`. Do not `#include "afw_common.h"` directly.
+
+## Include hierarchy
+
+```
+afw_doxygen.h
+  └─ afw_common.h (+ afw_common_opaques.h + generated afw_interface_opaques.h)
+       └─ afw_interface.h              [GENERATED from generate/interfaces/afw_interface.xml]
+            └─ afw_minimal.h           [cross-package-safe core subset]
+                 └─ afw.h              [full public API — extensions / consumers]
+                      └─ afw_internal.h [core libafw .c only — may change every build]
+```
+
+## Who includes what
+
+| Context | Include |
+|---------|---------|
+| Core `src/afw/**/*.c` | **`afw_internal.h` only** (pulls `afw.h` + internals + generated registration) |
+| Extension / command `.c` | **`afw.h`** — never `afw_internal.h` |
+| New public module header | Prefer `#include "afw_interface.h"`; use `afw_minimal.h` only if it must stay in the minimal set (must not be pulled *by* `afw_minimal.h` itself) |
+| Headers under `afw_minimal.h` | Only depend on `afw_interface.h` / non-AFW deps — keep the minimal contract |
+
+## Hand vs generated headers
+
+| Hand-edit | Never hand-edit |
+|-----------|-----------------|
+| `include/*.h` (umbrellas, common, minimal) | Entire `generated/` tree |
+| `<module>/afw_*.h` and `*_internal.h` beside `.c` | `generated/afw_interface.h`, `afw_interface_opaques.h` |
+| `generate/additional_includes/*.h` (injected into generators) | `afw_*_bindings.h`, `afw_data_type_*_binding.h`, `afw_strings.h`, `afw_const_objects.h`, `afw_declare_helpers.h`, `afw_generated.h`, `afw_version_info.h`, `afw_runtime_object_maps.h`, `*_impl_declares.h` |
+| `generate/interfaces/*.xml`, `generate/objects/**`, `generate/strings/` | `generated/interface_closet/`, `function_closet/`, `ebnf/`, `objects/` copies, language bindings |
+
+Top-level `generated/*.h` are installed/public (bindings, interface, strings). Closets and `generated/ebnf/` are **reference / docs only** — copy patterns into hand impls; do not ship logic only there.
+
+## Generated header roles (quick)
+
+- **`afw_interface.h`** — all interface structs/vtables/method typedefs (the C contract).
+- **`afw_data_type_*` / `afw_function_bindings.h`** — create/evaluate/register surfaces for types and built-ins.
+- **`afw_strings.h` / `afw_const_objects.h`** — permanent string/object instances.
+- **`afw_generated.h`** — `afw_generated_register(xctx)` wires core metadata into the **environment** at create (see `afw-environment`).
+- **`*_impl_declares.h`** — macros to declare an interface implementation (include from hand `.c`).
+
+## Adding a public header
+
+Drop `foo/afw_foo.h` under `src/afw` (outside `generate/`, `generated/`, `tests/`, `doc/`, `cmake/`). Next `./afwdev build --cdev -j` inventories it for install/include paths. If it is part of the public API, also add it to `include/afw.h`. If it is core-internal only, add it to `include/afw_internal.h` instead.
+
+Related: `afw-core-layout`, `afw-generate-metadata`, `afw-c-runtime`.

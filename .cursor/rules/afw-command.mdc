@@ -1,0 +1,90 @@
+---
+description: afw CLI (src/afw_command) — syntax host, conf/extensions, --local protocol
+globs: src/afw_command/**
+alwaysApply: false
+---
+
+# `afw` command (`src/afw_command`)
+
+Thin **libafw host** executable (`produces: afw`). Compiles/evaluates Adaptive syntaxes, optionally configures the environment, and embeds a chunked **`--local`** server. Not an extension DSO.
+
+## Bootstrap (not a DSO)
+
+```text
+AFW_ENVIRONMENT_CREATE          → full core registries
+afw_command_generated_register  → version info + strings only (minimal generate/)
+optional -e  → afw_environment_load_extension
+optional -f  → configure_with_object_list (content type -t, default json)
+then one execution path (below)
+```
+
+Includes **`afw.h`** (consumer pattern), never `afw_internal.h`. See `afw-environment` for registry semantics.
+
+## Execution paths (pick the right branch)
+
+| Mode | How | Notes |
+|------|-----|--------|
+| One-shot expression | `-x '…'` | Eval first; exits if no `[IN]` |
+| Script / test file | `[IN]` + `-s script` / default / `test_script` | Whole file; script result → shell exit `0–255` or null |
+| Interactive | stdin, no `[IN]`/`-l` | Line-oriented; type `exit` |
+| Check only | `-k` / `--check` | Compile only, no evaluate |
+| Local server | `-l` / `--local <fd\|path>` | Chunked stdin→fd protocol; see `afw_command_local.md` |
+
+`impl_evaluate` uses a **child xctx**, `afw_compile_to_value_with_callback` → `afw_value_evaluate` (unless `-k`), then content-type serialize (`-a`, default json). Commits/releases adapter session cache after each eval.
+
+## `-s` syntax mapping (code truth)
+
+| CLI `-s` | `compile_option` |
+|----------|------------------|
+| *(default)* / `script` / `expression` | `afw_compile_type_script` |
+| `template` | `afw_compile_type_template` |
+| `test_script` | `afw_compile_type_test_script` |
+
+Help/docs mention **`parenthesized`**; it is **not** wired in `process_args_getopt`. Prefer code over `usage.xml` when they disagree.
+
+## Conf and I/O
+
+- Without `-f`: core only (no conf adapters). **Exception:** `--local` injects a default adapter request-handler conf if none given.
+- `-t` = conf input content type; `-a` = result output content type (both default `json`).
+- Startup sets env “stdout” diagnostics to **stderr**; evaluated results go to real stdout / `-l` fd.
+- `response:error` flag defaulted **true** for richer CLI errors.
+
+## `--local` (embedding)
+
+Hand spec: `afw_command_local.md`. Length-prefixed UTF-8 chunks ending `0\n`; final input `4\nexit\n0\n`. Directives `++afw-local-*`; default mode `evaluate-direct`. Modes: `evaluate`, `evaluate-direct`, `action`, `action-direct`, `http-like`. Implements **`afw_server`** + **`afw_request`** in `afw_command_local_*.c` (`AFW_IMPLEMENTATION_ID "afw_command_local"`).
+
+Production HTTP uses **`afwfcgi`** instead (`afw-server-fcgi`); `http-like` local mode is the closest CLI analogue for handler debugging.
+
+## Hand vs generated
+
+| Hand-edit | Never hand-edit |
+|-----------|-----------------|
+| `afw_command.c`, `afw_command_internal.h`, `afw_command_local*.{c,h,md}` | `generated/**` |
+| `generate/strings/strings.txt` only (no objects/interfaces/manifest) | |
+| `doc/**`, `tests/local_test*` | |
+
+## Tests and relation to `afwdev test`
+
+- Most Adaptive Script tests: `src/*/tests/**/*.as` with shebang `afw --syntax test_script` (`afw-tests`).
+- This srcdir’s tests: **Python-mode** `tests/local_test.py` + fixture files — cover `--local`, not test_script.
+- Spot-check: `afw -x '…'`, `afw --syntax test_script path.as`, `afwdev test --srcdir-pattern afw_command`.
+
+## Key files
+
+| Path | Role |
+|------|------|
+| `afw_command.c` | `main`, flags, `impl_evaluate` |
+| `afw_command_internal.h` | `afw_command_self_t` |
+| `afw_command_local_server.c` | `--local` loop / modes |
+| `afw_command_local.md` | Local protocol |
+| `generate/strings/strings.txt` | Source-location / directive strings |
+
+## When debugging
+
+1. Which path? (`-x` / file / interactive / `-k` / `--local`)
+2. Confirm `-s` → `compile_option` in code (not help text alone).
+3. Need adapters/types from conf? `-f` present? Extension before conf? `-e`.
+4. Local: validate segment framing; stderr is unstructured.
+5. After string changes: `./afwdev build --cdev -j`.
+
+Related: `afw-environment`, `afw-script-eval`, `afw-tests`, `afw-headers`.

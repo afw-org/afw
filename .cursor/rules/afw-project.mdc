@@ -22,6 +22,7 @@ Metadata-driven **C** runtime (`libafw`) plus Python **`afwdev`**. Define functi
 
 ## Access model (short)
 - Core, extensions, and commands interact through **interfaces** (XML under `generate/interfaces/` → generated headers/vtables).
+- They also **register into the shared environment** (`afw_environment_t`) — core at create; extensions/commands later; same lookup APIs. See `afw-environment`.
 - Core also owns the **script compiler/runtime** (`compile/`). Grammar docs are harvested from `/*ebnf>>>` comments — see rule `afw-compiler-ebnf` when editing those files.
 
 ## Commands (package root)
@@ -45,6 +46,11 @@ Use **`./afwdev`** when the build may refresh the installed `afwdev` itself; oth
 
 ## More context
 - Runtime mental model (always): `afw-runtime-model`
+- When in `src/afw/`: `afw-core-layout`, `afw-headers`, `afw-core-services`, `afw-environment`
+- Compile / value / function: `afw-compile`, `afw-compiler-ebnf`, `afw-script-eval`, `afw-function`, `afw-value-memory`
+- When in `src/afw_command/`: `afw-command`
+- When in `src/afw_server_fcgi/`: `afw-server-fcgi`
+- When in `src/afw_{curl,ldap,lmdb,ubjson,vfs,yaml}/`: `afw-extensions`
 - Long-form map: `@AGENTS.md`
-- File-scoped rules: C, value memory, script eval, generate, compiler/EBNF, afwdev Python, tests
+- File-scoped rules: C, generate, afwdev Python, tests
 - Workflows: skills `add-adaptive-function`, `afw-generate-build-test`

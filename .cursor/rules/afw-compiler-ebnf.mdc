@@ -6,12 +6,25 @@ alwaysApply: false
 
 # Compiler and EBNF
 
-Core owns the Adaptive Script / expression **compiler runtime** under `src/afw/compile/` (separate from interface-based extension APIs).
+Core owns the Adaptive Script / expression **compiler runtime** under `src/afw/compile/` (separate from interface-based extension APIs). Public API and compile types: **`afw-compile`**.
 
 ## Source of truth
-- Grammar fragments live in C comments marked `/*ebnf>>>` … `<<<ebnf*/` (mainly `compile/afw_compile_parse*.c`, `compile/afw_compile_lexical*.c`).
-- `src/afw/generate/ebnf/*.txt` is **not** the grammar: first non-comment line is the output basename; following lines are source globs to scan (e.g. `syntax.txt` → `syntax.ebnf` from those compile files).
-- `afwdev generate` harvests those comments into `src/afw/generated/ebnf/` (e.g. `syntax.ebnf`). That tree is derived documentation, not the edit surface.
+- Grammar fragments live in C comments marked `/*ebnf>>>` … `<<<ebnf*/` beside the real parser (mainly `compile/afw_compile_parse*.c`, `compile/afw_compile_lexical*.c`).
+- `src/afw/generate/ebnf/*.txt` is **not** the grammar: first non-comment line is the output basename; following lines are source globs to scan (e.g. `syntax.txt` → `syntax.ebnf`).
+- `afwdev generate` harvests into `src/afw/generated/ebnf/` (e.g. `syntax.ebnf`). Derived docs only; W3C-style and explicitly imprecise.
+- Handbook diagrams under `src/afw/doc/syntax/` are maintained from that harvest.
+
+## Where productions live (edit C + EBNF comment together)
+
+| Concern | Primary file |
+|---------|----------------|
+| Tokens / residual | `afw_compile_lexical.c` |
+| Symbols / contextual | `afw_compile_parse.c` |
+| Script / TestScript / statements | `afw_compile_parse_script.c` |
+| Expressions / operators / lambdas | `afw_compile_parse_expression.c` |
+| JSON / literals | `afw_compile_parse_value.c` |
+| Templates | `afw_compile_parse_template.c` |
+| Destructuring | `afw_compile_parse_assignment_target.c` |
 
 ## When changing the language
 1. Edit the EBNF comment blocks and the real parse/lex C.
@@ -20,4 +33,5 @@ Core owns the Adaptive Script / expression **compiler runtime** under `src/afw/c
 
 ## Do not
 - Hand-edit `generated/ebnf/`.
-- Treat harvested EBNF as executable truth — the C parser is; in-source EBNF is documentation-oriented (W3C-style; comments note it is not fully precise).
+- Treat harvested EBNF as executable truth — the C parser is.
+- Assume a top-level `parenthesized` compile type — it is an expression production only (`afw-compile`, `afw-command`).
