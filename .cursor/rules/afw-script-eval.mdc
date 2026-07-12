@@ -1,0 +1,36 @@
+---
+description: AFW script compile/eval — xctx scopes, statement_flow, calls/closures, source contextual
+globs: src/afw/value/**,src/afw/xctx/**,src/afw/compile/**,src/afw/function/afw_function_compiler*.c,src/afw/pool/**
+alwaysApply: false
+---
+
+# Script compile and evaluate
+
+Use when changing the value graph, scopes, compiler output, or script execution.
+
+## Compile
+- Parser under `compile/` builds the value graph; EBNF docs harvested from `/*ebnf>>>` … `<<<ebnf*/` (rule `afw-compiler-ebnf`).
+- `afw_compile_to_value()` returns a `compiled_value` in the requested pool (parent / shared / `p`).
+- Assignment auto-wraps escaping `script_function_definition` in `closure_binding` when lexical depth requires. Destructuring + rest supported.
+- Source mapping: `afw_compile_value_contextual_t` (`compiled_value` + offset/size into `full_source`). Errors should carry contextual.
+
+## Execute
+- Lazy: `inf->optional_evaluate`; macros in `afw_value.h`.
+- Scopes created per block, activated on `xctx->scope_stack`, released on deactivate. Symbol get/set via `afw_xctx_scope_symbol_*`.
+- Control flow: `afw_xctx_statement_flow_*` (sequential, break, continue, return, rethrow) — check `is_leave` in statement loops.
+- Calls: built-in vs script via `call_*` nodes; security wrapper when `requiresExecuteAccess`.
+- Closures: `closure_binding` holds `script_function_definition` + referenced scope (`afw_xctx_scope_get_reference` / release pair).
+
+## Key hand files
+| Area | Files |
+|------|--------|
+| Uniform value API | `value/afw_value.h`, `value/afw_value_internal.h` |
+| Graph nodes | `value/afw_value_compiled_value.c`, `*_block.c`, `*_call*.c`, `*_script_function*.c`, `*_closure_binding.c`, `*_symbol_reference.c` |
+| Pools | `pool/afw_pool*.c` |
+| Scopes / xctx | `xctx/afw_xctx*.c`, `xctx/afw_xctx.h` |
+| Built-ins | `function/afw_function_*.c` (`AFW_FUNCTION_EVALUATE_*`, alloc in `x->p` / scope pool) |
+| Parse / assign | `compile/afw_compile_parse_script.c`, other `afw_compile_*.c` |
+
+## Do
+- Match existing create/evaluate/release patterns; no global mutable script state.
+- For long-running eval, prefer current `scope->p` for temporaries that must die with the scope; see `afw-value-memory`.

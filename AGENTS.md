@@ -23,10 +23,10 @@ Package manifest: [`afw-package.json`](afw-package.json) (`srcdirs`, `srcdirMani
 
 ## Values and memory (short)
 
-- **`afw_value_t`**: interface pointer (`inf`) + payload. Kinds include `compiled_value`, `block`, `call`, `symbol_reference`, `closure_binding`, etc.
+- **`afw_value_t`**: interface pointer (`inf`) + payload. Kinds include `compiled_value`, `block`, `call`, `symbol_reference`, `closure_binding`, etc. Full mental model: [`.cursor/rules/afw-runtime-model.mdc`](.cursor/rules/afw-runtime-model.mdc); compile/eval details: [`.cursor/rules/afw-script-eval.mdc`](.cursor/rules/afw-script-eval.mdc).
 - **Pools**: hierarchical allocation (including per-scope subpools). Reference counting for escaping values (e.g. closures); bulk free when pools/scopes release.
-- **`compiled_value`**: owns a pool; evaluation uses scope-stack discipline.
-- **Data-type value lifetimes** (inf chooses policy): **permanent** (built-in / life of AFW environment; usually const in the `.so`); **managed** (refcount or clone); **managed_slice** (utf8/memory view into a containing managed value); **unmanaged** (programmer/pool). Create APIs come from `data_type_bindings.py`. A main focus for long-running scripts is getting managed release/clone paths right — see [`.cursor/rules/afw-value-memory.mdc`](.cursor/rules/afw-value-memory.mdc).
+- **`compiled_value`**: owns a pool; evaluation uses scope-stack discipline and `statement_flow` for leave paths.
+- **Data-type value lifetimes** (inf chooses policy): **permanent** (built-in / life of AFW environment; usually const in the `.so`); **managed** (refcount or clone); **managed_slice** (utf8/memory view into a containing managed value); **unmanaged** (programmer/pool). Create APIs come from `data_type_bindings.py`. A main focus for long-running scripts is getting managed release/clone paths right and evaluating into `scope->p` — see [`.cursor/rules/afw-value-memory.mdc`](.cursor/rules/afw-value-memory.mdc).
 
 ## Interfaces vs script compiler
 
@@ -94,9 +94,11 @@ afwdev generate --srcdir-pattern '*'
 
 | Path | Role |
 |------|------|
-| `.cursor/rules/afw-project.mdc` | Always-on |
+| `.cursor/rules/afw-project.mdc` | Always-on (generate/build focus) |
+| `.cursor/rules/afw-runtime-model.mdc` | Always-on runtime mental model |
 | `.cursor/rules/afw-c-runtime.mdc` | C when editing `.c`/`.h` |
-| `.cursor/rules/afw-value-memory.mdc` | Value lifetimes / data_type_bindings / const producers |
+| `.cursor/rules/afw-value-memory.mdc` | Value lifetimes / pools / long-running escape |
+| `.cursor/rules/afw-script-eval.mdc` | Compile/eval, scopes, statement_flow, key files |
 | `.cursor/rules/afw-generate-metadata.mdc` | When editing `generate/` |
 | `.cursor/rules/afw-compiler-ebnf.mdc` | When editing `compile/` or `generate/ebnf/` |
 | `.cursor/rules/afw-afwdev-python.mdc` | When editing `src/afw_dev` |

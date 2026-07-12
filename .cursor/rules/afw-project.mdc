@@ -44,6 +44,7 @@ afwdev validate --pattern 'src/afw/generate/objects/...'
 Use **`./afwdev`** when the build may refresh the installed `afwdev` itself; otherwise **`afwdev`** from PATH is fine.
 
 ## More context
+- Runtime mental model (always): `afw-runtime-model`
 - Long-form map: `@AGENTS.md`
-- File-scoped rules under `.cursor/rules/` (C, generate, compiler/EBNF, afwdev Python, tests)
+- File-scoped rules: C, value memory, script eval, generate, compiler/EBNF, afwdev Python, tests
 - Workflows: skills `add-adaptive-function`, `afw-generate-build-test`

@@ -6,7 +6,14 @@ alwaysApply: false
 
 # AFW value memory
 
-Use when changing value lifetime, refcount, create/allocate APIs, data type bindings, const objects/strings, or debugging leaks for **long-running scripts**.
+Use when changing value lifetime, refcount, create/allocate APIs, data type bindings, const objects/strings, pools/scopes, or debugging leaks for **long-running scripts**.
+
+## Pool and scope model
+
+- Hierarchical pools: base (multithreaded), thread-specific, and **subpools** (xctx, scopes). Subpool destroy returns tracked memory to the parent and **reparents survivors**.
+- `compiled_value` owns a dedicated pool; release destroys everything in it unless individually referenced/reparented.
+- Scope create/activate/deactivate: RC on scopes; `closure_binding` calls `afw_xctx_scope_get_reference` so enclosing symbols survive; scope release walks `symbol_values` and releases values.
+- Short scripts: pool + scope bulk free is enough (production-proven). **Long-running** needs correct managed escape paths (below).
 
 ## Lifetimes (inf chooses policy)
 
@@ -16,6 +23,12 @@ Use when changing value lifetime, refcount, create/allocate APIs, data type bind
 - **unmanaged** — programmer-owned; usually created in a pool and lasting for that pool. `afw_value_create_unmanaged_<dt>()` / `allocate_unmanaged_*`.
 
 Do not invent new lifetime paths; match existing create_* patterns.
+
+## Active long-running focus
+
+- Implement/complete **optional_release** / **clone_or_reference** (or get_reference) on escaping values: objects, lists/arrays, closures, `compiled_value`, and other managed kinds that outlive a scope.
+- Evaluation temporaries and results that belong to the current activation should use **current `scope->p`** (not a longer-lived pool) unless they intentionally escape.
+- Subpool + RC already handle bulk release and escape reparenting — polish the value-inf hooks and call sites; do not replace the pool model.
 
 ## Source of truth and producers
 
@@ -40,4 +53,4 @@ Never hand-edit `generated/` — change generator or JSON, then `./afwdev build 
 
 ## Related
 
-- `afw-c-runtime`, `afw-afwdev-generate`, `afw-generate-metadata`, `@AGENTS.md`
+- `afw-runtime-model`, `afw-script-eval`, `afw-c-runtime`, `afw-afwdev-generate`, `afw-generate-metadata`, `@AGENTS.md`
