@@ -36,7 +36,7 @@ Prefer **`generate/manifest/`** (mutually exclusive with hand `_AdaptiveManifest
 | `manifest/manifest.json` | `extensionId`, `modulePath`, brief — **no** `registers` field |
 | `manifest/<registry_type>/<key>.c` | `void <prefix><type>_<key>_register(afw_xctx_t *)` |
 
-Generator builds `_AdaptiveManifest_` `registers: ["adapter_type/ldap", …]` and calls those stubs from `<prefix>_generated_register`. On registry miss, env scans manifests and may `dlopen` the DSO — see `afw_dev/_resources/doc/generate_manifest.txt`.
+Generator builds `_AdaptiveManifest_` `registers: ["adapter_type/ldap", …]`, emits calls inside `<prefix>_generated_register()`, and copies the hand-written `manifest/.../*.c` stubs into `generated/`. On registry miss, env scans manifests and may `dlopen` the DSO — see `afw_dev/_resources/doc/generate_manifest.txt`. (Never hand-edit anything under `generated/`.)
 
 **yaml** is the odd one: hand `generate/objects/_AdaptiveManifest_/afw_yaml.json` with `registers`; `initialize` calls `afw_yaml_register` (no `generated_register` for content type).
 

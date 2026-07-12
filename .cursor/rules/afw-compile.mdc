@@ -34,7 +34,7 @@ Public entry for Adaptive syntaxes. Output is an **`afw_value_t`** (usually `com
 
 Data-type hybrid `compileType` in `_AdaptiveDataTypeGenerate_` maps to these enums → `afw_value_compile()`.
 
-**Stale:** comments/`afw` CLI help may mention `parenthesized`; it is an **expression production**, not a top-level compile type.
+**Stale:** comments, `afw` CLI help text, and `usage.xml` may mention `parenthesized` / `parentheses`. It was never a top-level compile type (only an internal expression production) and is not accepted by the CLI parser. See `afw-command` for the actual `-s` mapping.
 
 ## Residual check
 

@@ -8,7 +8,7 @@ alwaysApply: true
 Metadata-driven **C** runtime (`libafw`) plus Python **`afwdev`**. Define functions, data types, object types, and interfaces in `generate/`; codegen fills `generated/`.
 
 ## Hard rules
-- Edit **`src/<srcdir>/generate/`** (JSON/XML). Never hand-edit **`generated/`** — generate deletes and rebuilds it.
+- **"Get it right at most once"**: Humans edit only under `src/<srcdir>/generate/` (JSON/XML for metadata, `interfaces/*.xml`, `strings/`, EBNF comments, manifest stubs, etc.). The generator produces everything else. Never hand-edit **`generated/`** — `afwdev generate` deletes and rebuilds it.
 - After metadata/C/afwdev changes, use the C-dev build below before trusting tests.
 - Prefer existing patterns; match naming in `src/afw/doc/guide/developer/contributing.xml`.
 - Primary agent focus: **C + Python (afwdev)**. JS/admin app only when explicitly asked.
@@ -22,8 +22,8 @@ Metadata-driven **C** runtime (`libafw`) plus Python **`afwdev`**. Define functi
 
 ## Access model (short)
 - Core, extensions, and commands interact through **interfaces** (XML under `generate/interfaces/` → generated headers/vtables).
-- They also **register into the shared environment** (`afw_environment_t`) — core at create; extensions/commands later; same lookup APIs. See `afw-environment`.
-- Core also owns the **script compiler/runtime** (`compile/`). Grammar docs are harvested from `/*ebnf>>>` comments — see rule `afw-compiler-ebnf` when editing those files.
+- The primary integration point is the **shared environment** (`afw_environment_t` via `xctx->env`): almost every capability is a keyed entry in one of its registries (functions, data types, adapter types, content types, request handlers, etc.). Core registers at `AFW_ENVIRONMENT_CREATE` time; extensions and hosts (`afw`, `afwfcgi`) register later—often lazily via manifests. After registration they are peers under the same lookup APIs. See `afw-environment`.
+- Core also owns the **script compiler + runtime** (`compile/`, `value/`, `xctx/`, `function/`). The compiler and expression lowering depend on functions already being registered (bootstrap order matters—see `afw-environment`). Grammar fragments are harvested from `/*ebnf>>> … <<<ebnf*/` comments in the parser sources—see `afw-compiler-ebnf`.
 
 ## Commands (package root)
 ```bash

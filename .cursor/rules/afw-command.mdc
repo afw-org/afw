@@ -34,13 +34,15 @@ Includes **`afw.h`** (consumer pattern), never `afw_internal.h`. See `afw-enviro
 
 ## `-s` syntax mapping (code truth)
 
+Only these four values are recognized by the parser (see `process_args_getopt`). "parenthesized" and variants are dead documentation.
+
 | CLI `-s` | `compile_option` |
 |----------|------------------|
 | *(default)* / `script` / `expression` | `afw_compile_type_script` |
 | `template` | `afw_compile_type_template` |
 | `test_script` | `afw_compile_type_test_script` |
 
-Help/docs mention **`parenthesized`**; it is **not** wired in `process_args_getopt`. Prefer code over `usage.xml` when they disagree.
+Help text (in `afw_command.c`), `usage.xml`, and a leftover comment mention "parenthesized", "parentheses", or "parenthesized_expression". None of these are accepted. `process_args_getopt` only recognizes `expression` (treated as script), `script`, `template`, and `test_script`. Code is authoritative—ignore the stale strings and docs.
 
 ## Conf and I/O
 

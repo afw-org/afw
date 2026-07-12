@@ -71,6 +71,11 @@ Two approaches (mutually exclusive per srcdir):
 1. **Preferred:** `generate/manifest/manifest.json` + `generate/manifest/<registry_type_id>/<key>.c` → generator fills `registers` and `<prefix>_<type>_<key>_register()`.
 2. **Hand:** `generate/objects/_AdaptiveManifest_/<id>.json` with explicit `registers` (only **afw_yaml** among base extensions).
 
+The generator:
+- Adds calls to the `<prefix>..._register()` functions inside `<prefix>generated_register()`.
+- Declares the prototypes in the generated header.
+- For manifest/ style, copies the hand-written register stub `.c` files into `generated/`.
+
 On registry miss, env scans `/afw/_AdaptiveManifest_/*`; if `registers` contains `<type>/<key>`, loads that DSO then retries.
 
 Examples: `src/afw_ldap/generate/manifest/adapter_type/ldap.c`; `src/afw_yaml/generate/objects/_AdaptiveManifest_/afw_yaml.json`. Docs: `src/afw_dev/_resources/doc/generate_manifest.txt`. Full map: **`afw-extensions`**.

@@ -1,5 +1,5 @@
 ---
-description: C runtime conventions for libafw and afw_* extensions (pools, xctx, errors, functions)
+description: C runtime conventions (includes, pools, xctx, errors, functions) — applies to src/afw core and src/afw_* extensions
 globs: src/afw/**/*.c,src/afw/**/*.h,src/afw_*/**/*.c,src/afw_*/**/*.h
 alwaysApply: false
 ---
@@ -7,7 +7,8 @@ alwaysApply: false
 # AFW C runtime
 
 ## Includes and modules
-- Core `.c` files include `afw_internal.h`, not `afw.h`. Extensions / commands / afwfcgi use `afw.h`. Full header layers: `afw-headers`. Module map: `afw-core-layout`. Extension DSO pattern: `afw-extensions`.
+- This rule covers both `src/afw` (libafw) and the `src/afw_*` extension trees (the glob is intentionally broad).
+- Core `.c` files under `src/afw/` include `afw_internal.h` (never `afw.h` directly). Extensions, commands (`src/afw_command`), and `afw_server_fcgi` include only `afw.h`. See `afw-headers` for the full layer diagram and `afw-core-layout` for the module map.
 - Public symbols: prefix with header/module name (`afw_pool_*`). `#define`s: `AFW_POOL_*`.
 - Object/property type IDs: UpperCamelCase. Property names: lowerCamelCase.
 - 4-space indent, LF, UTF-8. Match file headers in existing modules (e.g. `function/afw_function_logical.c`).

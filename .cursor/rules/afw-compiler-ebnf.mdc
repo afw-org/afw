@@ -34,4 +34,4 @@ Core owns the Adaptive Script / expression **compiler runtime** under `src/afw/c
 ## Do not
 - Hand-edit `generated/ebnf/`.
 - Treat harvested EBNF as executable truth — the C parser is.
-- Assume a top-level `parenthesized` compile type — it is an expression production only (`afw-compile`, `afw-command`).
+- Assume a top-level `parenthesized` / `parentheses` compile type (dead docs only; it was an internal expression production, never wired as a `-s` value or compile type enum). See `afw-command` and `afw-compile`.

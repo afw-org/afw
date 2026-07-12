@@ -6,9 +6,10 @@ alwaysApply: false
 
 # AFW generate / metadata
 
-## Source of truth
+## Source of truth (the "at most once" principle)
 - Human inputs: `src/<srcdir>/generate/` — `objects/`, `interfaces/`, `strings/`, `ebnf/`, `manifest/` (extensions), optional `additional_generate/`.
 - Output: `src/<srcdir>/generated/` and package-root `generated/`. **`afwdev generate` deletes and rebuilds matching `generated/`.** Never hand-edit it.
+- One correct definition (function JSON, data type JSON, interface XML, etc.) produces bindings, registration, cross-language surfaces, strings, const objects, schemas, skeletons, and docs. Change the source; regenerate.
 
 ## Common object dirs (JSON)
 - `_AdaptiveFunctionGenerate_/` — Adaptive functions (`functionId`, `functionLabel`, `category`, `parameters`, `returns`). Example: `src/afw/generate/objects/_AdaptiveFunctionGenerate_/and.json`.
