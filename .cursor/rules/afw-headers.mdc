@@ -63,4 +63,6 @@ Doxygen comments in `src/afw/**/*.h` (and `include/`) must be kept in sync with 
 - Comment blocks must be lexically balanced. Stray `*/` or unescaped `/*` sequences inside `/** ... */` blocks will trigger `-Werror=comment` during normal C compilation.
 - Central rich group descriptions and mental models belong in `include/afw_doxygen.h` (`@defgroup`). Individual headers use `@addtogroup` + a `@file` block that says "See @ref ...".
 
+GitHub renders list markers (`-`, `*`, `+`) as bullets in the PR description view; the source uses dashes or asterisks.
+
 After making Doxygen changes, run `./afwdev build --cdev -j` (and targeted tests) to ensure the comments do not break the build.
