@@ -12,10 +12,7 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_object_type Object type
- * @ingroup afw_c_api_public
- *
- * Provide afw_object interface common support.
+ * @addtogroup afw_object_type
  * @{
  */
 
@@ -206,6 +203,6 @@ afw_object_type_property_normalize(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_OBJECT_TYPE_H */

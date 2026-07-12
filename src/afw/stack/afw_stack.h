@@ -12,11 +12,7 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_stack Stack
- * @ingroup afw_c_api_public
- *
- * Adaptive Framework Stack.
- * 
+ * @addtogroup afw_stack
  * @{
  */
 
@@ -266,6 +262,6 @@ afw_stack_internal_set_evaluation_stack(
     
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_STACK_H__ */

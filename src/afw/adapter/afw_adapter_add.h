@@ -13,12 +13,15 @@
 
 /**
  * @addtogroup afw_adapter
+ *
  * @{
  */
 
 /**
  * @file afw_adapter_add.h
  * @brief Adaptive Framework adapter add object 
+ *
+ * Contributes to @ref afw_adapter.
  */
 
 AFW_BEGIN_DECLARES
@@ -54,6 +57,6 @@ afw_adapter_add_object(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_ADAPTER_ADD_H__ */

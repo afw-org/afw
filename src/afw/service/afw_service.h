@@ -13,11 +13,7 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_service Service support
- * @ingroup afw_c_api_public
- * 
- * Adaptive service API.
- * 
+ * @addtogroup afw_service
  * @{
  */
 
@@ -287,6 +283,6 @@ afw_service_restart(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_SERVICE_H__ */

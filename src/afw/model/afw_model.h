@@ -12,11 +12,7 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_model Model
- * @ingroup afw_c_api_public
- *
- * Model API.
- *
+ * @addtogroup afw_model
  * @{
  */
 
@@ -86,6 +82,6 @@ afw_model_get_object_type(const afw_model_t *model,
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_MODEL_H__ */

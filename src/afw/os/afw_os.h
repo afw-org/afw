@@ -12,11 +12,7 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_os OS specific
- * @ingroup afw_c_api_public
- *
- * OS specific functions
- *
+ * @addtogroup afw_os
  * @{
  */
 
@@ -102,6 +98,6 @@ afw_os_backtrace(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_OS_H__ */

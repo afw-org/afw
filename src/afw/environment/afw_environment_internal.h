@@ -14,15 +14,12 @@
 #include <apr_dso.h>
 
 /**
- * @defgroup afw_environment_internal Environment
- * @ingroup afw_c_api_internal
- * 
- * Internal environment API.
+ * @addtogroup afw_environment_internal
  * @{
  */
 
 /**
- * @file afw_environment.h
+ * @file afw_environment_internal.h
  * @brief Internal header for AFW environment.
  */
 
@@ -95,6 +92,6 @@ void afw_environment_internal_extension_conf_type_create_cede_p(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_ENVIRONMENT_INTERNAL_H__ */

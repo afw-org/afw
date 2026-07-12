@@ -79,6 +79,6 @@ typedef struct afw_instance_s {
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_INTERFACE_COMMON_H__ */

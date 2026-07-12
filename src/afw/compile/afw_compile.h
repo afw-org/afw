@@ -12,16 +12,21 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_compile Compile AFW syntax
- * @ingroup afw_c_api_public
- *
- * Adaptive Framework Compile AFW syntax.
+ * @addtogroup afw_compile
  * @{
  */
 
 /**
  * @file afw_compile.h
  * @brief Header file for Adaptive Framework Compile.
+ *
+ * See @ref afw_compile. Main APIs are the to_value family.
+ * Residual check controls how much source must be consumed.
+ *
+ * Compile types in AFW_COMPILE_TYPE_MAP. Parsers in afw_compile_parse_*.c .
+ * EBNF in comments harvested by afwdev.
+ *
+ * Important: functions must be registered before compile (bootstrap).
  */
 
 AFW_BEGIN_DECLARES
@@ -410,6 +415,6 @@ afw_compile_source_location_of_value(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_COMPILE_H__ */

@@ -12,8 +12,7 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_array_impl afw_array
- * @ingroup afw_c_api_impl
+ * @addtogroup afw_array_impl
  * @{
  */
 
@@ -146,6 +145,6 @@ afw_array_external_impl_get_next_entry_meta(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_ARRAY_IMPL_H__ */

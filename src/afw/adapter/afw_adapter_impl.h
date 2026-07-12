@@ -12,11 +12,7 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_adapter_impl afw_adapter
- * @ingroup afw_c_api_impl
- * 
- * Helpers for afw_adapor implementations.
- * 
+ * @addtogroup afw_adapter_impl
  * @{
  */
 
@@ -490,6 +486,6 @@ afw_adapter_impl_set_supported_core_object_type(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_ADAPTER_IMPL_H__ */

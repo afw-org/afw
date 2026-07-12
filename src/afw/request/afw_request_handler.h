@@ -13,16 +13,17 @@
 #include "afw_request.h"
 
 /**
- * @defgroup afw_request_handler Request handler
- * @ingroup afw_c_api_public
- *
- * Provide afw_request_handler interface common support.
+ * @addtogroup afw_request_handler
  * @{
  */
 
 /**
  * @file afw_request_handler.h
  * @brief Header file for Adaptive Framework Request Handler
+ *
+ * See @ref afw_request_handler. The director is the main entry for dispatching.
+ *
+ * Handlers implement afw_request_handler interface; director chooses by prefix.
  */
 
 AFW_BEGIN_DECLARES
@@ -63,6 +64,6 @@ afw_request_handler_director_create(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_REQUEST_HANDLER_H__ */

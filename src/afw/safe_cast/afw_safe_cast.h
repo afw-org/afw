@@ -14,11 +14,7 @@
 
 
 /**
- * @defgroup afw_safe_cast Safe cast
- * @ingroup afw_c_api_public
- *
- * Safe cast between c types.
- *
+ * @addtogroup afw_safe_cast
  * @{
  */
 
@@ -184,6 +180,6 @@ afw_safe_cast_size_to_uint32(afw_size_t size, afw_xctx_t *xctx)
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_SAFE_CAST_H__ */

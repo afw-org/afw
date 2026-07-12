@@ -13,6 +13,7 @@
 
 /**
  * @addtogroup afw_array_template_internal
+ *
  * @{
  */
 
@@ -75,6 +76,6 @@ afw_associative_array_set(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_ASSOCIATIVE_ARRAY_H__ */

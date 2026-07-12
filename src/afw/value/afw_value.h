@@ -12,35 +12,21 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_value Value
- * @ingroup afw_c_api_public
- *
- * Adaptive Framework Value
+ * @addtogroup afw_value
  * @{
  */
 
 /**
  * @file afw_value.h
- * @brief Adaptive Framework header for adaptive values
- * 
- * This is the main header for adaptive values.
- * 
- * An adaptive value is a structure that consists of an inf pointer followed
- * by internal memory specific to an afw_value implementation. There are
- * implementations of afw_value to represent values for all of the adaptive
- * data types as well as implementations that can be evaluated at runtime such
- * as "compiled_value", "block", and "symbol_reference".
+ * @brief Adaptive Framework header for adaptive values.
  *
- * Adaptive source, such as adaptive expressions, json, and adaptive scripts,
- * can be compiled to produce an adaptive value. Adaptive values can also be
- * produced by calling their corresponding type's afw_value_allocate_* or
- * afw_value_create_* function. 
- * 
- * The afw_value_evaluate() macro can be called to evaluate any adaptive
- * value. For example, afw_value_evaluate() can be called for an adaptive
- * value returned from the adaptive compiler used to compile an adaptive script
- * to "run" the adaptive script and return its adaptive value result.
- * 
+ * See the @ref afw_value group (defined in afw_doxygen.h) for the overall mental model.
+ *
+ * This is the main public header. It declares the common value structures
+ * and the afw_value_evaluate() macro that everything flows through.
+ *
+ * Core value kinds: data type values (permanent/managed), compiled_value,
+ * block, call_*, symbol_reference, closure_binding.
  */
 
 AFW_BEGIN_DECLARES
@@ -1682,6 +1668,6 @@ afw_value_register_core_value_infs(afw_xctx_t *xctx);
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_VALUE_H__ */

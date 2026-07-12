@@ -12,12 +12,7 @@
 #include "afw_minimal.h"
 
 /**
- * @defgroup afw_query_criteria Query Criteria
- * @ingroup afw_c_api_public
- * 
- * All property_name parameters can use dotted notation to refer to properties
- * of embedded objects.
- *
+ * @addtogroup afw_query_criteria
  * @{
  */
 
@@ -137,16 +132,16 @@ struct afw_query_criteria_sort_entry_s {
  */
 struct afw_query_criteria_filter_entry_s {
 
-    /* @brief Next entry in the order coded in query string/object traversal. */
+    /** @brief Next entry in the order coded in query string/object traversal. */
     const afw_query_criteria_filter_entry_t *next;
 
-    /* @brief Operation string. */
+    /** @brief Operation string. */
     const afw_utf8_t *op_name;
 
-    /* @brief Enum of operation to perform. */
+    /** @brief Enum of operation to perform. */
     afw_query_criteria_filter_op_id_t op_id;
 
-    /* @brief Indicates alt_op is the "not" of op. */
+    /** @brief Indicates alt_op is the "not" of op. */
     afw_boolean_t alt_not;
 
     /*
@@ -378,7 +373,7 @@ afw_query_criteria_to_query_string(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
-#endif /* __AFW_AFW_QUERY_CRITERIA_H__ */
+#endif /* __AFW_QUERY_CRITERIA_H__ */
 

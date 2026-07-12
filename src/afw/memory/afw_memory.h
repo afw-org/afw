@@ -11,11 +11,7 @@
 
 
 /**
- * @defgroup afw_memory Memory support
- * @ingroup afw_c_api_public
- *
- * Adaptive framework memory support functions.
- *
+ * @addtogroup afw_memory
  * @{
  */
 
@@ -219,6 +215,6 @@ afw_memory_writer_retrieve_and_release(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_MEMORY_H__ */

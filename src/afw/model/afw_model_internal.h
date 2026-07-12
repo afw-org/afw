@@ -12,11 +12,7 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_model_internal Model
- * @ingroup afw_c_api_internal
- *
- * Internal model API.
- *
+ * @addtogroup afw_model_internal
  * @{
  */
 
@@ -600,6 +596,6 @@ afw_model_internal_context_current_runtime_ctx[];
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_MODEL_INTERNAL_H__ */

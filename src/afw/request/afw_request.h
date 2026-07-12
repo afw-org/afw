@@ -12,11 +12,7 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_request Request
- * @ingroup afw_c_api_public
- *
- * Provide afw_request interface common support.
- * 
+ * @addtogroup afw_request
  * @{
  */
 
@@ -270,6 +266,6 @@ afw_request_write_success_response(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_REQUEST_H__ */

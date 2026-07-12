@@ -12,8 +12,7 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_content_type_impl afw_content_type
- * @ingroup afw_c_api_impl
+ * @addtogroup afw_content_type_impl
  * @{
  */
 
@@ -38,6 +37,6 @@ afw_content_type_impl_create_object_list_writer(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_CONTENT_TYPE_IMPL_H__ */

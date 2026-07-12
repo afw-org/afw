@@ -12,8 +12,7 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_adapter_index_impl afw_adapter_index
- * @ingroup afw_c_api_impl
+ * @addtogroup afw_adapter_index_impl
  * @{
  */
 
@@ -129,6 +128,6 @@ AFW_DECLARE(void) afw_adapter_impl_index_open_definitions(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_ADAPTER_IMPL_INDEX_H__ */

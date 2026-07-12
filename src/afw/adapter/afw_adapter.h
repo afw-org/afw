@@ -21,10 +21,7 @@
 #include "afw_adapter_retrieve.h"
 
 /**
- * @defgroup afw_adapter Adapter
- * @ingroup afw_c_api_public
- *
- * Provide afw_adapter interface common support.
+ * @addtogroup afw_adapter
  * @{
  */
 
@@ -32,7 +29,7 @@
  * @file afw_adapter.h
  * @brief Header for interface afw_adapter* helpers.
  *
- * These headers are included and are part of the adapter api:
+ * See @ref afw_adapter. These sub headers are included:
  *
  *  afw_adapter_add.h
  *  afw_adapter_delete.h
@@ -40,6 +37,9 @@
  *  afw_adapter_journal.h
  *  afw_adapter_modify.h
  *  afw_adapter_replace.h
+ *
+ * Key: adapters provide sessions; use afw_adapter_session_* for CRUD.
+ */
  *  afw_adapter_retrieve.h
  *  afw_adapter_update.h
  */
@@ -248,6 +248,6 @@ afw_adapter_session_release(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_ADAPTER_H__ */

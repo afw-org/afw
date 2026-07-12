@@ -12,16 +12,12 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_pool_internal Pool
- * @ingroup afw_c_api_internal
- *
- * Pool internal API
- *
+ * @addtogroup afw_pool_internal
  * @{
  */
 
 /**
- * @file afw_pool.h
+ * @file afw_pool_internal.h
  * @brief Adaptive Framework memory pool internal header.
  */
 
@@ -87,7 +83,7 @@ struct afw_pool_internal_free_memory_s {
 
 typedef struct afw_pool_internal_free_memory_head_s
 afw_pool_internal_free_memory_head_t;
-/* @brief The head of each free memory free_block. */
+/** @brief The head of each free memory free_block. */
 struct afw_pool_internal_free_memory_head_s {
     afw_pool_internal_free_memory_t *first; /* This will go away. */
 };
@@ -120,10 +116,10 @@ struct afw_pool_internal_self_s {
     /** @brief Parent pool of this pool. */
     afw_pool_internal_self_t *parent;
 
-    /* @brief First subpool of this pool. */
+    /** @brief First subpool of this pool. */
     afw_pool_internal_self_t *first_child;
 
-    /* @brief Next sibling of this pool. */
+    /** @brief Next sibling of this pool. */
     afw_pool_internal_self_t *next_sibling;
 
     /**
@@ -196,6 +192,6 @@ afw_pool_print_debug_info(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_POOL_INTERNAL_H__ */

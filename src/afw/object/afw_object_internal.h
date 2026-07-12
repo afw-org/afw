@@ -14,11 +14,7 @@
 #include <apr_hash.h>
 
 /**
- * @defgroup afw_object_internal Object
- * @ingroup afw_c_api_internal
- * 
- * Internal object API.
- * 
+ * @addtogroup afw_object_internal
  * @{
  */
 
@@ -161,6 +157,6 @@ afw_object_aggregate_external_self_s {
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_OBJECT_INTERNAL_H__ */

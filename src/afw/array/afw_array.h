@@ -12,16 +12,15 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_array List
- * @ingroup afw_c_api_public
- *
- * List API.
+ * @addtogroup afw_array
  * @{
  */
 
 /**
  * @file afw_array.h
  * @brief Adaptive Framework afw_array interface helper header
+ *
+ * See @ref afw_array.
  */
 
 AFW_BEGIN_DECLARES
@@ -457,6 +456,6 @@ afw_array_set_value_by_index(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_ARRAY_H__ */

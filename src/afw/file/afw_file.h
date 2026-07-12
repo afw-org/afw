@@ -12,11 +12,7 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_file File Adapter
- * @ingroup afw_c_api_public
- *
- * Adaptive Framework adapter for storing objects in file system.
- * 
+ * @addtogroup afw_file
  * @{
  */
 
@@ -116,6 +112,6 @@ afw_file_delete(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_FILE_H__ */

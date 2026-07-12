@@ -12,10 +12,7 @@
 #include "afw_minimal.h"
 
 /**
- * @defgroup afw_log_impl afw_log
- * @ingroup afw_c_api_impl
- *
- * Interface log implementation helpers.
+ * @addtogroup afw_log_impl
  * @{
  */
 
@@ -154,7 +151,7 @@ afw_log_impl_throw_property_required(
     afw_xctx_t *xctx);
 
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 AFW_END_DECLARES
 

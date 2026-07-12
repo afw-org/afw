@@ -12,29 +12,16 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_xctx Execution context (xctx)
- * @ingroup afw_c_api_public
- *
- * Adaptive Framework Execution Context (xctx) interface.
- * 
- * An execution context holds common information related to a unit of work in
- * Adaptive Framework. This unit of work runs in a single thread of a
- * single-threaded or multi-threaded process. In a multi-threaded process,
- * the main thread has the global execution context. Other threads have their
- * own execution context and required the appropriate mutexes or queued work
- * to access memory in the global execution context.
- * 
- * The type of execution contexts can be "server", "request_session', etc. A
- * execution context's pool, properties, and object cache will last for the
- * life of the execution context. An execution context's parent will always
- * have a longer life.
- *
+ * @addtogroup afw_xctx
  * @{
  */
 
 /**
  * @file afw_xctx.h
  * @brief Adaptive Framework Execution Context (xctx) Implementation Header.
+ *
+ * See @ref afw_xctx for mental model. Scopes are activated on the stack;
+ * statement_flow is used for non-local control (break/return etc.).
  */
 
 
@@ -928,6 +915,6 @@ afw_xctx_qualifiers_object_create(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_XCTX_H__ */

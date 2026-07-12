@@ -12,10 +12,7 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_data_type Data type
- * @ingroup afw_c_api_public
- * 
- * Common to all Adaptive Framework applications
+ * @addtogroup afw_data_type
  * @{
  */
 
@@ -82,6 +79,6 @@ afw_data_type_object_value_compiler_listing(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_DATA_TYPE_H__ */

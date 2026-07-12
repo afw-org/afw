@@ -13,11 +13,7 @@
 #include <apr_file_io.h>
 
 /**
- * @defgroup afw_log_deprecated Log (deprecated)
- * @ingroup afw_c_api_internal
- *
- * Adaptive Framework log.
- * 
+ * @addtogroup afw_log_deprecated
  * @{
  */
 
@@ -47,6 +43,6 @@ afw_create_log_deprecated(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_LOG_DEPRECATED_H__ */

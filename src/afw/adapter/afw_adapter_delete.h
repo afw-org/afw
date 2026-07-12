@@ -19,6 +19,8 @@
 /**
  * @file afw_adapter_delete.h
  * @brief Adaptive Framework adapter delete object 
+ *
+ * Contributes to @ref afw_adapter.
  */
 
 AFW_BEGIN_DECLARES
@@ -49,6 +51,6 @@ afw_adapter_delete_object(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_ADAPTER_DELETE_H__ */

@@ -12,10 +12,7 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_log_internal Log
- * @ingroup afw_c_api_internal
- *
- * Internal log API.
+ * @addtogroup afw_log_internal
  * @{
  */
 
@@ -56,6 +53,6 @@ void afw_log_internal_register_logType_context_type(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_LOG_INTERNAL_H__ */

@@ -12,6 +12,7 @@
 
 /**
  * @addtogroup afw_log_deprecated
+ *
  * @{
  */
 
@@ -195,6 +196,6 @@ AFW_DEFINE_STATIC_INLINE(void) afw_log_deprecated_trace(
     va_end(args);
 }
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFWLOGINTERFACE_H__ */

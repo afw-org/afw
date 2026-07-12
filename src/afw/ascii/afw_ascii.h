@@ -12,11 +12,7 @@
 #include "afw_minimal.h"
 
 /**
- * @defgroup afw_ascii ASC-II
- * @ingroup afw_c_api_public
- * 
- * ASC-II
- * 
+ * @addtogroup afw_ascii
  * @{
  */
 
@@ -241,7 +237,7 @@ afw_ascii_encode_hex_digit(afw_octet_t octet);
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_ASCII_H__ */
 

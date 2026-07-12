@@ -12,10 +12,7 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_lock Locks
- * @ingroup afw_c_api_public
- *
- * Locks API.
+ * @addtogroup afw_lock
  * @{
  */
 
@@ -416,6 +413,6 @@ AFW_ENDTRY
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_LOCK_H__ */

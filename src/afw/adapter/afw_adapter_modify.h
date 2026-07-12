@@ -279,6 +279,6 @@ afw_adapter_modify_needed_to_reconcile(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_ADAPTER_MODIFY_H__ */

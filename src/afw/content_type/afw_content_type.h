@@ -12,16 +12,17 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_content_type Content type
- * @ingroup afw_c_api_public
- * 
- * Provide afw_content_type interface common support.
+ * @addtogroup afw_content_type
  * @{
  */
 
 /**
  * @file afw_content_type.h
  * @brief Header Adaptive Framework afw_content_type interface support
+ *
+ * See @ref afw_content_type.
+ *
+ * Key: content types implement from_value / to_value for serialization.
  */
 
 AFW_BEGIN_DECLARES
@@ -131,6 +132,6 @@ afw_content_type_application_afw_stream_create(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_CONTENT_TYPE_H__ */

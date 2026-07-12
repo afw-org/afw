@@ -986,6 +986,6 @@ typedef enum {
 } afw_xctx_statement_flow_t;
 
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_COMMON_OPAQUES_H__ */

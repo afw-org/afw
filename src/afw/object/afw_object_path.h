@@ -12,10 +12,7 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_object_path Adaptive object path
- * @ingroup afw_c_api_public
- *
- * Provide adaptive object path support.
+ * @addtogroup afw_object_path
  * @{
  */
 
@@ -41,55 +38,55 @@ struct afw_object_path_property_name_entry_s {
  */
 struct afw_object_path_parsed_s {
 
-    /* @brief Copy of path passed to afw_object_path_parse(). */
+    /** @brief Copy of path passed to afw_object_path_parse(). */
     afw_utf8_t original_path;
 
-    /* @brief Normalized path. */
+    /** @brief Normalized path. */
     afw_utf8_t normalized_path;
 
-    /* @brief Entity part of normalized path. */
+    /** @brief Entity part of normalized path. */
     afw_utf8_t entity_path;
 
-    /* @brief `<adapter_id>` */
+    /** @brief `<adapter_id>` */
     afw_utf8_t adapter_id;
 
-    /* @brief `<object_type_id>` */
+    /** @brief `<object_type_id>` */
     afw_utf8_t object_type_id;
 
-    /* @brief `<object_id>` */
+    /** @brief `<object_id>` */
     afw_utf8_t entity_object_id;
 
-    /* @brief `<object_id>` plus any dotted property names. NOT URI DECODED. */
+    /** @brief `<object_id>` plus any dotted property names. NOT URI DECODED. */
     afw_utf8_t undecoded_object_id;
 
-    /* @brief List of `<property_name>` if uri has dotted property names. */
+    /** @brief List of `<property_name>` if uri has dotted property names. */
     const afw_object_path_property_name_entry_t *first_property_name;
 
-    /* @brief Options object or NULL. See afw_object_options.h. */
+    /** @brief Options object or NULL. See afw_object_options.h. */
     const afw_object_t *options_object;
 
-    /* @brief Options based on options_object or NULL. */
+    /** @brief Options based on options_object or NULL. */
     const afw_object_options_t *options;
 
-    /* @brief Current path was used for substitutions. */
+    /** @brief Current path was used for substitutions. */
     afw_boolean_t substitution_occurred;
 
-    /* @brief Adapter id was substituted from current path. */
+    /** @brief Adapter id was substituted from current path. */
     afw_boolean_t substituted_adapter_id;
 
-    /* @brief Object type id was substituted from current path. */
+    /** @brief Object type id was substituted from current path. */
     afw_boolean_t substituted_object_type_id;
 
-    /* @brief Entire object id was substituted from current path. */
+    /** @brief Entire object id was substituted from current path. */
     afw_boolean_t substituted_entire_object_id;
 
-    /* @brief Entity object id was substituted from current path. */
+    /** @brief Entity object id was substituted from current path. */
     afw_boolean_t substituted_entity_object_id;
 
-    /* @brief At least one property name was substituted from current path. */
+    /** @brief At least one property name was substituted from current path. */
     afw_boolean_t substituted_property_name;
 
-    /* @brief At least one property name was substituted from current path. */
+    /** @brief At least one property name was substituted from current path. */
     afw_boolean_t contains_unresolved_substitutions;
 };
 
@@ -278,6 +275,6 @@ afw_object_path_are_equivalent(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_OBJECT_PATH_H */

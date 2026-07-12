@@ -12,11 +12,7 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_thread Thread
- * @ingroup afw_c_api_public
- *
- * Thread support.
- *
+ * @addtogroup afw_thread
  * @{
  */
 
@@ -158,6 +154,6 @@ AFW_ENDTRY; \
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_THREAD_H__ */

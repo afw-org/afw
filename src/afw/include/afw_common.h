@@ -14,11 +14,7 @@
 
 
 /**
- * @defgroup afw_common Common
- * @ingroup afw_c_api_public
- *
- * Common to all Adaptive Framework applications
- *
+ * @addtogroup afw_common
  * @{
  */
 
@@ -1984,6 +1980,6 @@ struct afw_xctx_s {
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_COMMON_H__ */

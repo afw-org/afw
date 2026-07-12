@@ -12,16 +12,18 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_object Object
- * @ingroup afw_c_api_public
- *
- * Provide afw_object interface common support and memory implementation.
+ * @addtogroup afw_object
  * @{
  */
 
 /**
  * @file afw_object.h
  * @brief Header for interface afw_object helpers.
+ *
+ * See @ref afw_object. Objects are adaptive unless raw. Use meta for
+ * property types.
+ *
+ * Key: most objects come from adapters; const objects for permanent data.
  */
 
 AFW_BEGIN_DECLARES
@@ -1106,6 +1108,6 @@ afw_object_create_const_from_key_value_strings_z(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_OBJECT_H */

@@ -12,10 +12,7 @@
 #include "afw_common.h"
 
 /**
- * @defgroup afw_endian Endian
- * @ingroup afw_c_api_public
- * 
- * Various defines and structs for endian support.
+ * @addtogroup afw_endian
  * @{
  */
 
@@ -573,6 +570,6 @@ afw_endian_native_to_little_int16(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_ENDIAN_H__ */

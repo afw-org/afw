@@ -12,8 +12,8 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_trace Software Trace
- * @ingroup afw_c_api_public
+ * @addtogroup afw_trace
+ * @{
  *
  * These macros and functions assist writing trace message to the environment
  * log.  All trace message have associated runtime information (rti) that can
@@ -25,13 +25,12 @@
  *
  * All trace message are written to the environment log.  See afw_log.h for
  * more information.
- *
- * @{
  */
 
 /**
  * @file afw_trace.h
  * @brief Adaptive Framework Software Trace Header.
+ */
  */
 
 AFW_BEGIN_DECLARES
@@ -222,6 +221,6 @@ afw_trace_write_z(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_TRACE_H__ */

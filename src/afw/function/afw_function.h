@@ -12,16 +12,22 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_function Adaptive function support
- * @ingroup afw_c_api_public
- *
- * Adaptive Framework runtime function support.
+ * @addtogroup afw_function
  * @{
  */
 
 /**
  * @file afw_function.h
  * @brief Header file for Adaptive Framework Runtime Basic Function Support.
+ *
+ * See @ref afw_function (defined centrally in afw_doxygen.h).
+ *
+ * Use the AFW_FUNCTION_* macros inside execute functions.
+ * Polymorphic dispatch uses dataTypeMethod and execute == NULL.
+ *
+ * Operator functions are prepared in afw_function_internal_prepare_environment.
+ *
+ * All functions are registered via environment; see afw_generated_register.
  */
 
 AFW_BEGIN_DECLARES
@@ -453,6 +459,6 @@ afw_function_evaluate_parameter_with_type(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_FUNCTION_H__ */

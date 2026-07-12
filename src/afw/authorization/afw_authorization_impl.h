@@ -12,11 +12,7 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_authorization_handler_impl afw_authorization_helper
- * @ingroup afw_c_api_impl
- * 
- * Helpers for afw_authorization_helper implementations.
- * 
+ * @addtogroup afw_authorization_handler_impl
  * @{
  */
 
@@ -81,6 +77,6 @@ afw_authorization_handler_impl_create_cede_p(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_AUTHORIZATION_IMPL_H__ */

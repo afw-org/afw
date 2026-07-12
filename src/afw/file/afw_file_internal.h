@@ -12,11 +12,7 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_file_internal File
- * @ingroup afw_c_api_internal
- * 
- * Internal file API.
- * 
+ * @addtogroup afw_file_internal
  * @{
  */
 
@@ -56,6 +52,6 @@ const afw_adapter_journal_inf_t * afw_file_internal_get_journal_inf();
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_FILE_INTERNAL_H__ */

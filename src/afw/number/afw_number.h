@@ -13,11 +13,7 @@
 #include <float.h>
 
 /**
- * @defgroup afw_number Number
- * @ingroup afw_c_api_public
- *
- * Adaptive Framework number support.
- *
+ * @addtogroup afw_number
  * @{
  */
 
@@ -255,6 +251,6 @@ afw_number_bytes_needed_integer(afw_integer_t i);
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_NUMBER_H__ */

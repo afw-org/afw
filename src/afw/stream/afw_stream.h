@@ -12,11 +12,7 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_stream Stream
- * @ingroup afw_c_api_public
- *
- * Adaptive Framework Stream.
- *
+ * @addtogroup afw_stream
  * @{
  */
 
@@ -295,6 +291,6 @@ afw_stream_internal_release_all_streams(afw_xctx_t *xctx);
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_STREAM_H__ */

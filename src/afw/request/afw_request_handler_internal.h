@@ -12,11 +12,7 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_request_handler_internal Request handler
- * @ingroup afw_c_api_internal
- * 
- * Internal request handler API.
- * 
+ * @addtogroup afw_request_handler_internal
  * @{
  */
 
@@ -66,6 +62,6 @@ void afw_request_handler_internal_conf_type_create_cede_p(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_REQUEST_HANDLER_INTERNAL_H__ */

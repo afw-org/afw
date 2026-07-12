@@ -12,16 +12,9 @@
 #include "afw_common.h" 
 
 /**
- * @defgroup afw_version Version information
- * @ingroup afw_c_api_public
- *
- * Adaptive Framework uses the semantic versioning scheme.  See
- * http://semver.org/.
- *
- * AFW_VERSION_THROW_ERROR_IF_NOT_COMPATIBLE() or
- * AFW_VERSION_ABORT_IF_NOT_COMPATIBLE should be executed early in the life of
- * Adaptive Framework extensions and applications to ensure compatibility
- * with Adaptive Framework Core (libafw).
+ * @addtogroup afw_version
+ * @{
+ */
  *
  * @{
  */
@@ -128,6 +121,6 @@ do { \
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_VERSION_H__ */

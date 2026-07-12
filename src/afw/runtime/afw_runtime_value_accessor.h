@@ -14,11 +14,7 @@
 AFW_BEGIN_DECLARES
 
 /**
- * @defgroup afw_runtime_value_accessor Runtime value accessors
- * @ingroup afw_c_api_public
- *
- * This is an Adaptive Framework core runtime value accessors.
- *
+ * @addtogroup afw_runtime_value_accessor
  * @{
  */
 
@@ -387,6 +383,6 @@ afw_runtime_value_accessor_value(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_RUNTIME_VALUE_ACCESSOR_H__ */

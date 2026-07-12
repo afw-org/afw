@@ -12,16 +12,19 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_environment Environment
- * @ingroup afw_c_api_public
- *
- * Adaptive Framework Environment
+ * @addtogroup afw_environment
  * @{
  */
 
 /**
  * @file afw_environment.h
- * @brief Header for adaptive framework environment.
+ * @brief Header for the Adaptive Framework environment (registries).
+ *
+ * See the @ref afw_environment group (defined in afw_doxygen.h) for the mental model.
+ *
+ * Registration order matters critically. See afw_environment_register_core.c
+ * and the environment rule for the exact sequence (generated first, then
+ * prepare_environment for operators, then types, adapters, etc.).
  */
 
 AFW_BEGIN_DECLARES
@@ -345,7 +348,7 @@ typedef void (*afw_environment_register_additional_cb_t)(
 
 
 
-/* @brief Entries in environemnt->registry_types[] */
+/** @brief Entries in environment->registry_types[] */
 struct afw_environment_registry_type_s {
 
     /* Registry type id */
@@ -1914,6 +1917,6 @@ afw_environment_set_stdout_fd(FILE *fd, afw_xctx_t *xctx);
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_ENVIRONMENT_H__ */

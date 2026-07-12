@@ -12,11 +12,7 @@
 #include "afw.h"
 
 /**
- * @defgroup afw_compile_internal Compile
- * @ingroup afw_c_api_internal
- * 
- * Internal compile API.
- * 
+ * @addtogroup afw_compile_internal
  * @{
  */
 
@@ -1325,6 +1321,6 @@ afw_compile_lexical_parser_finish_and_release(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_COMPILE_INTERNAL_H__ */

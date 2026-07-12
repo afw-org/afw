@@ -12,11 +12,7 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_context Context
- * @ingroup afw_c_api_public
- *
- * Adaptive Framework Context.
- *
+ * @addtogroup afw_context
  * @{
  */
 
@@ -277,6 +273,6 @@ afw_context_variable_definitions_compile_and_add_based_on_qualifiers_object(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_CONTEXT_H__ */

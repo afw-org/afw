@@ -13,7 +13,8 @@
 
 /**
  * @addtogroup afw_adapter
-* @{
+ *
+ * @{
  */
 
 /**
@@ -55,6 +56,6 @@ afw_adapter_replace_object(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_ADAPTER_REPLACE_H__ */

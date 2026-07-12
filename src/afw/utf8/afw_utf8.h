@@ -12,11 +12,7 @@
 #include "afw_minimal.h"
 
 /**
- * @defgroup afw_utf8 UTF-8 NFC string
- * @ingroup afw_c_api_public
- *
- * All utf8 strings must be valid utf-8.
- *
+ * @addtogroup afw_utf8
  * @{
  */
 
@@ -965,7 +961,7 @@ afw_utf8_writer_current_string(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_UTF8_H__ */
 
