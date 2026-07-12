@@ -84,8 +84,8 @@ afw_array_create_with_options(
 
 /**
  * @brief Create an immutable array from an array of objects.
- * @param values is address of first value in array.
- * @param count is number for values.
+ * @param objects is address of first object in array.
+ * @param count is number of objects.
  * @param p is pool for result.
  * @param xctx of caller.
  * @return array instance.
@@ -118,7 +118,7 @@ afw_array_const_create_array_of_values(
 
 /**
  * @brief Create an immutable array from NULL terminated array of objects.
- * @param values is NULL terminated array of objects.
+ * @param objects is NULL terminated array of objects.
  * @param p is pool for result.
  * @param xctx of caller.
  * @return array instance.
@@ -169,7 +169,7 @@ afw_array_create_or_clone(
 /**
  * @brief Create a typed array from a value.
  * @param data_type of array
- * @param value.
+ * @param value
  * @param p to use for the array.
  * @param xctx of caller.
  * @return typed array.
@@ -255,7 +255,7 @@ afw_array_wrapper_for_array_inf;
 
 /**
  * @brief Helper macro to fill out afw_array_wrapper_for_array_self_t.
- * @brief instance is pointer to afw_array_wrapper_for_array_self_t.
+ * @param instance is pointer to afw_array_wrapper_for_array_self_t.
  * @param _internal array of internal values.
  * @param _indirect if true array is array of pointers to internal value.
  * @param _data_type of array.
@@ -306,7 +306,7 @@ _internal, _indirect, _data_type, _count, _p) \
 /**
  * @brief Get next value from array whose data type cType is afw_utf8_t.
  * @param instance of array.
- * @param iterator.
+ * @param iterator
  * @param xctx of caller.
  * @return (const afw_utf8_t *) or NULL.
  * 
@@ -431,8 +431,8 @@ afw_array_remove_value(
 /**
  * @brief Call method set_value_by_index of interface afw_array_setter
  * @param instance Pointer to this value array instance.
- * @param index.
- * @param value.
+ * @param index
+ * @param value
  * @param xctx of caller.
  */
 AFW_DECLARE(void)
@@ -445,7 +445,7 @@ afw_array_set_value_by_index(
 
 /**
  * @brief Determine if array is immutable.
- * @param instance of array.
+ * @param array of array.
  * @param xctx of caller.
  * @return boolean result.
  */

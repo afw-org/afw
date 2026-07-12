@@ -47,7 +47,7 @@ memset((to), 0, sizeof(*(to)))
 
 /**
  * @brief Create a afw_memory_t struct for a ptr and size.
- * @param ptr.
+ * @param ptr
  * @param size
  * @param p to use.
  * @param xctx of caller.

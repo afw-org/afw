@@ -135,7 +135,7 @@
  * @defgroup afw_compile Compile
  *
  * Compilation of Adaptive Script, templates, JSON, etc. into value graphs.
- * Grammar documentation is harvested from /*ebnf>>> comments.
+ * Grammar documentation is harvested from ` / *ebnf>>> ` comments.
  *
  * Main entry: afw_compile_to_value_with_callback and variants.
  * Result is usually a compiled_value owning its own pool.
@@ -271,7 +271,6 @@
  *
  * All trace message are written to the environment log.  See afw_log.h for
  * more information.
- */
  */
 
 /**
@@ -451,7 +450,6 @@
  *
  * Method names are impl_<interface>_<method>.
  */
- */
 
 /**
  * @defgroup afw_c_api_impl Interface implementation support
@@ -516,6 +514,6 @@
  * Adaptive Framework Base Package Doxygen main groups.
  */
 
-/** @} */  // end of @addtogroup @addtogroup
+/** @} */  // end of group
 
 #endif /* __AFW_DOXYGEN_H__ */

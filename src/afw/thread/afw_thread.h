@@ -108,10 +108,9 @@ afw_thread_create(
 
 
 /**
- * @brief Join a thread
+ * @brief Join a thread.
  * @param thread to join.
  * @param xctx of caller.
- * @return new threadr.
  */
 AFW_DECLARE(void)
 afw_thread_join(

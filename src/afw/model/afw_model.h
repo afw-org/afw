@@ -55,7 +55,7 @@ afw_model_adapter_create_cede_p(
 /**
  * @brief Compile a model and add object types to associative array.
  * @param adapter_id to use for object type paths.
- * @param model_object.
+ * @param model_object
  * @param p to use.
  * @param xctx of caller.
  * @return model.

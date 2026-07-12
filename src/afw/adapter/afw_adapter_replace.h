@@ -38,7 +38,6 @@ AFW_BEGIN_DECLARES
  *    be added.
  * @param adapter_type_specific parameter or NULL.
  * @param xctx of caller.
- * @return
  *
  * Completely replace an existing adaptive object via adapter.
  */

@@ -66,7 +66,7 @@ afw_compile_type_get_info_by_pneumonic(
 
 /**
  * @brief Return info for a afw_compile_type_t.
- * @param compile_type.
+ * @param compile_type
  * @return info for compile type or info for error with no compile function.
  */
 AFW_DECLARE(const afw_compile_type_info_t *)
@@ -77,11 +77,10 @@ afw_compile_type_get_info(
 
 
 /**
- * @brief Created a struct for sharing resources by multiple compiles.
- * @param string to compile or NULL.
+ * @brief Create a struct for sharing resources by multiple compiles.
  * @param p to use for result.
  * @param xctx of caller.
- * @return stuct to be passed in the shared parameter of compiles.
+ * @return struct to be passed in the shared parameter of compiles.
  *
  * The purpose of this struct is to allow multiple compiles that have a
  * p with the same lifetime to share strings, literals, etc.
@@ -113,7 +112,7 @@ afw_compile_and_evaluate(
 
 
 /**
- * @brief Convience macro to call afw_compile_and_evaluate() with compile_type.
+ * @brief Convenience macro to call afw_compile_and_evaluate() with compile_type.
  * @param compile_type appended to "afw_compile_type_" for option. 
  * @param string to compile and evaluate.
  * @param source_location to associate with compiled string or NULL.

@@ -448,8 +448,8 @@ typedef const afw_utf8_z_t * (*afw_environment_error_rv_decoder_z_t) (
  * @param version of Adaptive Framework core caller is compiled against.
  * @param argc
  * @param argv
- * @param returned_error place if error occurs while creating environment. 
- * @return base xctx or NULL if returned_error points to an error.
+ * @param environment_create_error place if error occurs while creating environment. 
+ * @return base xctx or NULL if environment_create_error points to an error.
  *
  * Call this function once in an Adaptive Framework application to initialize the
  * Adaptive Framework environment and create the initial base xctx.  All core
@@ -509,11 +509,10 @@ afw_environment_create(
 
 /**
  * @brief Call afw_environment_create() supplying version compiled with.
- * @param xctx set to base xctx or NULL if returned_error points to an error.
+ * @param xctx set to base xctx or NULL if environment_create_error points to an error.
  * @param argc
  * @param argv
- * @param returned_error place if error occurs while creating environment.
- * @param parent_p Parent pool or NULL if there is not one.
+ * @param environment_create_error place if error occurs while creating environment.
  *
  * This macro calls AFW_VERSION_ABORT_IF_NOT_COMPATIBLE() to check for
  * compatibility.  If you want to handle this situation differently,
@@ -526,7 +525,7 @@ afw_environment_create(
 
 
 /**
- * @brief Create the Adaptive Framework core environment and return base xctx.
+ * @brief Release the Adaptive Framework core environment and base xctx.
  * @param xctx returned from afw_environment_create().
  */
 AFW_DECLARE(void)
@@ -605,7 +604,7 @@ afw_environment_create_environment_variables_object(
  *
  * The properties object can supply extension_id with the "extensionId"
  * property and module_path with the modulePath property. If either is
- * supplied in the object as well as parameters, their values much match.
+ * supplied in the object as well as parameters, their values must match.
  * 
  * Either extension_id or module_path must be available.
  * 
@@ -705,7 +704,7 @@ afw_environment_create_registry_type(
 
 /**
  * @brief Get the registry type associated with a registry type id.
- * @param registry_type_id.
+ * @param registry_type_id
  * @param load_extension if needed.
  * @param xctx of caller.
  * @return pointer to afw_environment_registry_type_t.
@@ -721,7 +720,7 @@ afw_environment_get_registry_type_by_id(
 
 /**
  * @brief Get the registry type associated with a registry type number.
- * @param registry_type_number.
+ * @param registry_type_number
  * @param xctx of caller.
  * @return pointer to afw_environment_registry_type_t.
  *
@@ -914,7 +913,7 @@ afw_environment_register_adapter_id(
 
 /**
  * @brief Get the adapter id anchor associated with adapter id.
- * @param adapter_id.
+ * @param adapter_id
  * @param xctx of caller.
  * @return Associated adapter id anchor or NULL if not found.
  */
@@ -994,7 +993,7 @@ afw_environment_register_authorization_handler_id(
 /**
  * @brief Get the authorization handler id anchor associated with
  *    authorization handler id.
- * @param authorization_handler_id.
+ * @param authorization_handler_id
  * @param xctx of caller.
  * @return Associated authorization handler id anchor or NULL if not found.
  */
@@ -1169,7 +1168,7 @@ afw_environment_get_content_type(
 
 /**
  * @brief Register an context type.
- * @param context_type_id.
+ * @param context_type_id
  * @param context type object.
  * @param xctx of caller.
  */
@@ -1191,7 +1190,7 @@ afw_environment_register_context_type(
 /**
  * @brief Get the afw_environment_context_type struct associated with a
  *    context type.
- * @param context_type_id.
+ * @param context_type_id
  * @param xctx of caller.
  * @return context_type_object.
  */
@@ -1293,9 +1292,9 @@ afw_environment_get_error_rv_decoder(
 
 /**
  * @brief Register a flag.
- * @param flag_id.
- * @param brief.
- * @param description.
+ * @param flag_id
+ * @param brief
+ * @param description
  * @param included_by_flag_id or NULL (afw_flag_add_included_by() adds more)
  * @param log_priority to be used if this flag triggers a log message.
  * @param xctx of caller.

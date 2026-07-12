@@ -126,7 +126,7 @@ afw_log_impl_create_cede_p(
 
 /**
  * @brief Developers should call this for configuration property errors.
- * @param log.
+ * @param log
  * @param property_name this is in error.
  * @param xctx of caller.
  */
@@ -140,7 +140,7 @@ afw_log_impl_throw_property_invalid(
 /**
  * @brief Developers should call this for missing required configuration
  *     property.
- * @param log.
+ * @param log
  * @param property_name this is in error.
  * @param xctx of caller.
  */

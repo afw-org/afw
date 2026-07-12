@@ -78,7 +78,7 @@ afw_os_log_factory_get();
  * @brief Provide a backtrace if possible.
  * @param code Error code or 0.  Code afw_error_code_memory or others might
  *    influence whether producing backtrace is possible.
- * @param max_backtrace.
+ * @param max_backtrace
  * @param xctx of caller.
  * @return backtrace or NULL if not possible.
  *

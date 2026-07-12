@@ -64,7 +64,7 @@ afw_xctx_internal_create_finishup(afw_xctx_t *xctx);
 /**
  * @internal
  * @brief Internal function used by afw_thread_create().
- * @param thread.
+ * @param thread
  * @param xctx of caller.
  */
 AFW_DECLARE(afw_xctx_t *)

@@ -244,7 +244,7 @@ afw_uri_parser_create(const afw_utf8_t *uri,
 
 /**
  * @brief Parse next token.
- * @param parser.
+ * @param parser
  * @param xctx of caller.
  *
  * See parser->token and parser->token_is_delimiter for results.  If there are
@@ -259,7 +259,7 @@ afw_uri_parse_next_token(const afw_uri_parser_t *parser,
 /**
  * @brief Cause next call afw_uri_parse_get_next_token() to return current
  *    token.
- * @param parser.
+ * @param parser
  * @param xctx of caller.
  */
 AFW_DECLARE(void)
@@ -269,7 +269,7 @@ afw_uri_parse_reuse_token(const afw_uri_parser_t *parser,
 
 /**
  * @brief Set consider_period_a_token flag.
- * @param parser.
+ * @param parser
  * @param consider_period_a_token flag.
  * @param xctx of caller.
  *

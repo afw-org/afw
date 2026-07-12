@@ -68,7 +68,7 @@ afw_content_type_register(
  * @brief Convert value to the raw in specified pool.
  * @param instance of content type.
  * @param value to convert.
- * @param options.
+ * @param options
  * @param p to use for result.
  * @param xctx of caller.
  * @return converted raw encoded memory.
@@ -87,7 +87,7 @@ afw_content_type_value_to_raw(
  * @brief Convert object to the raw in specified pool.
  * @param instance of content type.
  * @param object to convert.
- * @param options.
+ * @param options
  * @param p to use for result.
  * @param xctx of caller.
  * @return converted raw encoded memory.
@@ -116,7 +116,7 @@ afw_content_type_application_afw_inf;
 /**
  * @brief Create a stream for content type application/afw.
  * @param response_stream this stream will flush to.
- * @param streamId.
+ * @param streamId
  * @param info for header frame.
  * @param p to use.
  * @param xctx of caller.

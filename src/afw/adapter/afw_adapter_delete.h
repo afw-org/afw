@@ -34,7 +34,6 @@ AFW_BEGIN_DECLARES
  *    be added.
  * @param adapter_type_specific parameter or NULL.
  * @param xctx of caller.
- * @return
  *
  * Delete an existing adaptive object via adapter. The object will not
  * actually be deleted until method commit() is called.

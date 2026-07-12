@@ -48,7 +48,7 @@ afw_request_handler_adapter_create_cede_p(
 /**
  * @brief Create a request handler for director.
  * @param server
- * @param config or NULL of config string.
+ * @param config_file or NULL of config string.
  * @param p to use for request handler resources.
  * @param xctx of caller.
  * @return request handler instance.

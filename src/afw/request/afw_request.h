@@ -218,7 +218,7 @@ afw_request_response_body_raw_writer_create(
  * @brief Write value to response body.
  * @param request instance
  * @param value to write.
- * @param options.
+ * @param options
  * @param xctx of caller.
  *
  * The value is converted based on the content-type header and written to the

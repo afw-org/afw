@@ -65,7 +65,7 @@ afw_context_push_cb_variables(
 
 /**
  * @brief Create a context type object.
- * @param context_type_id.
+ * @param context_type_id
  * @param p to use for context.
  * @param xctx of caller.
  *
@@ -81,7 +81,7 @@ afw_context_type_create(
     
 /**
  * @brief Insure qualifier definitions object exists.
- * @param context_type_object.
+ * @param context_type_object
  * @param xctx of caller.
  * @return object associated with variable definitions
  *
@@ -98,8 +98,8 @@ afw_context_type_insure_qualifier_definitions_object_exists(
 
 /**
  * @brief Insure variable definitions object exists for qualifier id.
- * @param context_type_object.
- * @param qualifier_id.
+ * @param context_type_object
+ * @param qualifier_id
  * @param xctx of caller.
  * @return object associated with variable definitions
  *
@@ -118,7 +118,7 @@ afw_context_type_insure_variable_definitions_object_exists(
 /**
  * @brief Merge qualifier definitions.
  * @param qualifier_definitions preallocated object.
- * @param definitions_to_add.
+ * @param definitions_to_add
  * @param replace_duplicates true will replace variables with same name.
  * @param xctx of caller.
  */
@@ -182,7 +182,7 @@ afw_context_variable_definition_add_z(
 /**
  * @brief Add variable definitions.
  * @param variable_definitions object.
- * @param definitions_to_add.
+ * @param definitions_to_add
  * @param replace_duplicates true will replace variables with same name.
  * @param xctx of caller.
  */
@@ -219,7 +219,7 @@ afw_context_variable_definitions_add_based_on_object(
 /**
  * @brief Add variable definitions based on object type id.
  * @param variable_definitions preallocated object.
- * @param object_type_id.
+ * @param object_type_id
  * @param include_evaluated determines if variables with an evaluated data
  *    type should be included.
  * @param xctx of caller.
@@ -238,9 +238,9 @@ afw_context_variable_definitions_add_based_on_object_type_id(
 /**
  * @brief Compile and add variable definitions based on
  *    _AdaptiveTemplateProperties_ object.
- * @param context_type_object.
+ * @param context_type_object
  * @param object used as basis for new definitions.
- * @param qualifier_id.
+ * @param qualifier_id
  * @param source_location to associate with compiled string or NULL.
  * @param xctx of caller.
  */
@@ -256,7 +256,7 @@ afw_context_variable_definitions_compile_and_add_based_on_object(
 /**
  * @brief Compile and add variable definitions based on
  *    _AdaptiveTemplateProperties_ object.
- * @param context_type_object.
+ * @param context_type_object
  * @param objects used as basis for new definitions.
  * @param source_location to associate with compiled string or NULL.
  * @param xctx of caller.

@@ -361,9 +361,9 @@ afw_function_execute_requiresExecuteAccess_wrapper(
     afw_function_execute_t *x);
 
 
-/*
+/**
  * @brief Evaluate function parameter.
- * @param function_arg.
+ * @param function_arg function value or definition.
  * @param p Pool to use for result.
  * @param xctx of caller.
  * @return function.
@@ -376,7 +376,7 @@ afw_function_evaluate_function_parameter(
 
 
 
-/*
+/**
  * @brief Execute whitespace parameter.
  * @param x function execute struct pointer.
  * @param n of whitespace parameter in argv.
@@ -416,7 +416,7 @@ afw_function_evaluate_parameter(
 
 
 /**
- * @brief Evaluate an required parameter and convert if necessary.
+ * @brief Evaluate a required parameter and convert if necessary.
  * @param x function execute struct pointer.
  * @param parameter_number starting at 1.
  * @param data_type result will be converted to if needed or NULL.

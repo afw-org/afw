@@ -31,7 +31,6 @@
  * @file afw_trace.h
  * @brief Adaptive Framework Software Trace Header.
  */
- */
 
 AFW_BEGIN_DECLARES
 

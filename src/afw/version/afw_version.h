@@ -15,9 +15,6 @@
  * @addtogroup afw_version
  * @{
  */
- *
- * @{
- */
 
 /**
  * @file afw_version.h

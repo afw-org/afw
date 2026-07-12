@@ -70,7 +70,6 @@ struct afw_adapter_modify_entry_s {
  *    be added.
  * @param adapter_type_specific parameter or NULL.
  * @param xctx of caller.
- * @return
  *
  * Patch an existing adaptive object via adapter.
  */

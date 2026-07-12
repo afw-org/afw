@@ -263,7 +263,7 @@ afw_object_set_property(
  * @param property_name of property to set.
  * @param year including century. Negative is BC. No 0.
  * @param month (1-12).
- * @param day of month (1-31).  Month limited to days in month..
+ * @param day of month (1-31).  Month limited to days in month.
  * @param tz_hours_offset Hours (-14 - +14).  If +14 or -14, minutes must be 0.
  * @param tz_minutes_offset Minutes (0 - 59 or -1).  -1 indicates no time zone,
  *    in which case, hours must be 0.
@@ -288,7 +288,7 @@ afw_object_set_property_as_date_from_parts(
  * @param property_name of property to set.
  * @param year including century. Negative is BC. No 0.
  * @param month (1-12).
- * @param day of month (1-31).  Month limited to days in month..
+ * @param day of month (1-31).  Month limited to days in month.
  * @param hour (0-24).  If hour is 24 then other values must be 0.
  * @param minute (0-59).
  * @param second (0-60+). 60 or more is allowed for leap seconds.

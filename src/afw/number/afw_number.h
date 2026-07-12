@@ -93,7 +93,7 @@ afw_number_is_NaN(double d)
  *    double.
  * @param p to use for wa.
  * @param xctx of caller.
- * @return len of number in buffer starting at buffer or or -1 if error.
+ * @return len of number in buffer starting at buffer or -1 if error.
  */
 AFW_DECLARE(afw_size_t)
 afw_number_parse(
@@ -109,7 +109,7 @@ afw_number_parse(
  * @param i is NULL or pointer to place to return integer.
  * @param p to use for wa.
  * @param xctx of caller.
- * @return len of number in buffer starting at buffer or or -1 if error.
+ * @return len of number in buffer starting at buffer or -1 if error.
  */
 #define afw_number_parse_integer(cursor, len, i, p, xctx) \
     afw_number_parse(cursor, len, i, NULL, NULL, p, xctx)
@@ -122,7 +122,7 @@ afw_number_parse(
  * @param d is NULL or pointer to place to return double.
  * @param p to use for wa.
  * @param xctx of caller.
- * @return len of number in buffer starting at buffer or or -1 if error.
+ * @return len of number in buffer starting at buffer or -1 if error.
  */
 #define afw_number_parse_double(cursor, len, d, p, xctx) \
     afw_number_parse(cursor, len, NULL, d, NULL, p, xctx)

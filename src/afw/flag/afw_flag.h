@@ -185,9 +185,9 @@ afw_flag_set_to_defaults_plus_array(
 
 /**
  * @brief Register a flag definition.
- * @param flag_id.
- * @param brief.
- * @param description.
+ * @param flag_id
+ * @param brief
+ * @param description
  * @param included_by_flag_id
  * @param log_priority to be used if this flag triggers a log message.
  * @param xctx of caller.

@@ -88,8 +88,9 @@ afw_file_to_memory(
 /**
  * @brief Write a file from a memory.
  * @param file_path file path
+ * @param from_memory memory to write.
+ * @param mode file open mode.
  * @param xctx of caller.
- * @return value
  */
 AFW_DECLARE(void)
 afw_file_from_memory(
