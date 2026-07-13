@@ -17,8 +17,9 @@ alwaysApply: false
 ## Memory and errors
 - Allocate with pools: `afw_pool_calloc` / `afw_pool_calloc_type`, or `afw_xctx_calloc` for xctx lifetime. No raw `malloc`/`free`.
 - Pass `p` (pool) and `xctx` through call chains. Throws need `xctx`.
-- Errors: `AFW_THROW_ERROR_Z` / `AFW_THROW_ERROR_FZ` / memory helpers from `error/afw_error.h`.
-- Structured recovery: `AFW_TRY` / `AFW_CATCH` / `AFW_FINALLY` / `AFW_ENDTRY` — the context variable must be named `xctx`.
+- Errors: `AFW_THROW_ERROR_Z` / `AFW_THROW_ERROR_FZ` / related macros and memory helpers from `error/afw_error.h`. Prefer these for invariant failures, API misuse, and unexpected conditions—not `assert` / `AFW_ASSERT`.
+- **Do not use `AFW_ASSERT`** in new or changed code. It is a thin wrapper around C `assert()` (`afw_common.h`), aborts the process, and does **not** participate in `AFW_TRY` / `AFW_CATCH` / `AFW_FINALLY`. The macro is legacy (`@fixme` remove when unused). For checks that must fail hard in production paths, throw instead, e.g. `AFW_THROW_ERROR_Z(general, "…", xctx)` or `AFW_THROW_ERROR_FZ(...)`.
+- Structured recovery: `AFW_TRY` / `AFW_CATCH` / `AFW_FINALLY` / `AFW_ENDTRY` — the context variable must be named `xctx`. Thrown errors are what those blocks observe.
 - Value lifetimes (permanent / managed / managed_slice / unmanaged) and pool/scope escape: see `afw-value-memory` (important for long-running scripts). Compile/eval graph: `afw-script-eval`.
 
 ## Adaptive functions
