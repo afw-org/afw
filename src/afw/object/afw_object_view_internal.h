@@ -13,11 +13,7 @@
 #include "afw_utf8.h"
 
 /**
- * @defgroup afw_object_view_internal Object View
- * @ingroup afw_c_api_internal
- * 
- * Internal Object View API.
- * 
+ * @addtogroup afw_object_view_internal
  * @{
  */
 
@@ -166,6 +162,6 @@ struct afw_object_view_internal_view_s {
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
-#endif /* __NEW_AFW_OBJECT_VIEW_INTERNAL_H__ */
+#endif /* __AFW_OBJECT_VIEW_INTERNAL_H__ */

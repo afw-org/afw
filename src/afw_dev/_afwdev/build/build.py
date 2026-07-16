@@ -4,6 +4,11 @@
 # @file build.py
 # @ingroup afwdev_build
 # @brief This file contains the main entry point for the "build" subcommand.
+# @details Orchestrates the cmake, docs, js, and docker build contexts.
+#          Context flags (build_cmake, build_docs, ...) are independent.
+#          --cdev enables clean, generate, and install for C/Python work;
+#          --all enables every context. With no context selected, cmake is
+#          the default. When --generate is set, `afwdev generate` runs first.
 #
 
 ##

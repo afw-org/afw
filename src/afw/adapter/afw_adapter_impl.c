@@ -603,17 +603,17 @@ afw_adapter_impl_generic_object_type_object_get(
         afw_s__AdaptiveObjectType_, objectType, xctx);
     afw_object_set_property_as_string(result, afw_s_objectType,
         objectType, xctx);
-    afw_object_set_property_as_boolean(result,
+    afw_object_set_property(result,
         afw_s_allowAdd, afw_boolean_v_true, xctx);
-    afw_object_set_property_as_boolean(result,
+    afw_object_set_property(result,
         afw_s_allowChange, afw_boolean_v_true, xctx);
-    afw_object_set_property_as_boolean(result,
+    afw_object_set_property(result,
         afw_s_allowDelete, afw_boolean_v_true, xctx);
     other_properties = afw_object_create_embedded(result,
         afw_s_otherProperties, xctx);
-    afw_object_set_property_as_boolean(other_properties,
+    afw_object_set_property(other_properties,
         afw_s_allowQuery, afw_boolean_v_true, xctx);
-    afw_object_set_property_as_boolean(other_properties,
+    afw_object_set_property(other_properties,
         afw_s_allowWrite, afw_boolean_v_true, xctx);
 
     return result;

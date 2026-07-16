@@ -12,10 +12,7 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_object_meta Object meta
- * @ingroup afw_c_api_public
- *
- * Provide afw_object interface common support.
+ * @addtogroup afw_object_meta
  * @{
  */
 
@@ -223,7 +220,7 @@ afw_object_meta_log_errors(
 /**
  * @brief Create an object instance to access an object's meta with options.
  * @param instance of object whose meta is to be accessed.
- * @param options.
+ * @param options
  * @param p to use.
  * @param xctx of caller.
  * @return Object instance to access meta or NULL if there is none to access.
@@ -372,7 +369,7 @@ afw_object_meta_get_object_id_value(
 /**
  * @brief Add a parent path to instance's meta.
  * @param instance of object.
- * @param parent_path.
+ * @param parent_path
  * @param xctx of caller.
  *
  * If the object already has a parent path, this one will be added to the end.
@@ -686,6 +683,6 @@ afw_object_meta_clone_and_set(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_OBJECT_META_H */

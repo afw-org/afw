@@ -12,10 +12,7 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_writer Writer
- * @ingroup afw_c_api_public
- *
- * Provide afw_writer interface common support.
+ * @addtogroup afw_writer
  * @{
  */
 
@@ -76,6 +73,6 @@ afw_writer_write_size(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_WRITER_H__ */

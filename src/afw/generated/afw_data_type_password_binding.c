@@ -49,6 +49,20 @@ impl_afw_value_managed_get_reference(
     afw_xctx_t *xctx);
 
 
+/* Declaration for method optional_release for managed slice value. */
+AFW_DECLARE_STATIC(void)
+impl_afw_value_managed_slice_optional_release(
+    const afw_value_t *instance,
+    afw_xctx_t *xctx);
+
+/* Declaration for method get_reference for managed slice value. */
+AFW_DECLARE_STATIC(const afw_value_t *)
+impl_afw_value_managed_slice_get_reference(
+    const afw_value_t *instance,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx);
+
+
 /* Declaration for method get_reference for permanent value. */
 AFW_DECLARE_STATIC(const afw_value_t *)
 impl_afw_value_permanent_get_reference(
@@ -96,6 +110,21 @@ impl_afw_value_permanent_get_reference(
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_managed_password_inf
 #define impl_afw_value_optional_release impl_afw_value_managed_optional_release
 #define impl_afw_value_clone_or_reference impl_afw_value_managed_get_reference
+#define AFW_VALUE_INF_ONLY 1
+#include "afw_value_impl_declares.h"
+#undef AFW_IMPLEMENTATION_ID
+#undef AFW_IMPLEMENTATION_INF_LABEL
+#undef impl_afw_value_optional_release
+#undef impl_afw_value_clone_or_reference
+#undef AFW_VALUE_INF_ONLY
+
+/* Declares and rti/inf defines for interface afw_value */
+/* This is the inf for managed_slice password values. */
+/* optional_release / clone_or_reference update containing refcount. */
+#define AFW_IMPLEMENTATION_ID "managed_slice_password"
+#define AFW_IMPLEMENTATION_INF_LABEL afw_value_managed_slice_password_inf
+#define impl_afw_value_optional_release impl_afw_value_managed_slice_optional_release
+#define impl_afw_value_clone_or_reference impl_afw_value_managed_slice_get_reference
 #define AFW_VALUE_INF_ONLY 1
 #include "afw_value_impl_declares.h"
 #undef AFW_IMPLEMENTATION_ID
@@ -309,7 +338,41 @@ afw_value_create_managed_password_slice(
     afw_size_t len,
     afw_xctx_t *xctx)
 {
-    AFW_THROW_ERROR_Z(general, "Not implemented", xctx);
+    const afw_value_password_managed_t *containing;
+    const afw_utf8_t *base;
+    afw_value_password_managed_slice_t *v;
+
+    if (!containing_value) {
+        AFW_THROW_ERROR_Z(general,
+            "containing_value required for managed slice", xctx);
+    }
+    if (containing_value->inf == &afw_value_managed_slice_password_inf) {
+        const afw_value_password_managed_slice_t *slice =
+            (const afw_value_password_managed_slice_t *)containing_value;
+        containing = slice->containing_value;
+        base = &slice->internal;
+    }
+    else if (containing_value->inf == &afw_value_managed_password_inf) {
+        containing =
+            (const afw_value_password_managed_t *)containing_value;
+        base = &containing->internal;
+    }
+    else {
+        AFW_THROW_ERROR_Z(general,
+            "containing_value must be managed or managed_slice password",
+            xctx);
+    }
+    if (offset > base->len || len > base->len - offset) {
+        AFW_THROW_ERROR_Z(general,
+            "managed slice offset/len out of range", xctx);
+    }
+    v = afw_xctx_calloc(sizeof(afw_value_password_managed_slice_t), xctx);
+    v->inf = &afw_value_managed_slice_password_inf;
+    v->internal.s = base->s + offset;
+    v->internal.len = len;
+    v->containing_value = containing;
+    ((afw_value_password_managed_t *)containing)->reference_count++;
+    return &v->pub;
 }
 
 /* Create function for data type password value. */
@@ -420,12 +483,10 @@ impl_afw_value_managed_optional_release(
     afw_value_password_managed_t *self =
         (afw_value_password_managed_t *)instance;
 
-    /* If reference count is 1 or less, free value's memory. */
-    if (self->reference_count <= 1) {
+    /* Create starts at 0; get_reference increments. Free only at 0. */
+    if (self->reference_count == 0) {
         afw_pool_free_memory((void *)instance, xctx);
     }
-    
-    /* If not freeing memory, decrement reference count. */
     else {
         self->reference_count--;
     }
@@ -456,6 +517,52 @@ impl_afw_value_managed_get_reference(
     /* Increment reference count and return instance. */
     self->reference_count++;
     return instance;
+}
+
+
+/* Implementation of method optional_release for managed slice. */
+AFW_DECLARE_STATIC(void)
+impl_afw_value_managed_slice_optional_release(
+    const afw_value_t *instance,
+    afw_xctx_t *xctx)
+{
+    afw_value_password_managed_slice_t *self =
+        (afw_value_password_managed_slice_t *)instance;
+    afw_value_password_managed_t *containing =
+        (afw_value_password_managed_t *)self->containing_value;
+
+    /* Create starts at 0; get_reference/slice increments. Free only at 0. */
+    if (containing->reference_count == 0) {
+        afw_pool_free_memory((void *)containing, xctx);
+    }
+    else {
+        containing->reference_count--;
+    }
+    /* Free the slice header itself. */
+    afw_pool_free_memory((void *)instance, xctx);
+}
+
+/* Implementation of method get_reference for managed slice. */
+AFW_DECLARE_STATIC(const afw_value_t *)
+impl_afw_value_managed_slice_get_reference(
+    const afw_value_t *instance,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_value_password_managed_slice_t *self =
+        (const afw_value_password_managed_slice_t *)instance;
+    afw_value_password_managed_t *containing =
+        (afw_value_password_managed_t *)self->containing_value;
+    afw_value_password_managed_slice_t *v;
+
+    /* New slice header sharing the same view; bump containing. */
+    v = afw_xctx_calloc(
+        sizeof(afw_value_password_managed_slice_t), xctx);
+    v->inf = &afw_value_managed_slice_password_inf;
+    v->internal = self->internal;
+    v->containing_value = containing;
+    containing->reference_count++;
+    return &v->pub;
 }
 
 

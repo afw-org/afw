@@ -12,10 +12,7 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_flag Software Flag
- * @ingroup afw_c_api_public
- * 
- * Software flags.
+ * @addtogroup afw_flag
  * @{
  */
 
@@ -188,9 +185,9 @@ afw_flag_set_to_defaults_plus_array(
 
 /**
  * @brief Register a flag definition.
- * @param flag_id.
- * @param brief.
- * @param description.
+ * @param flag_id
+ * @param brief
+ * @param description
  * @param included_by_flag_id
  * @param log_priority to be used if this flag triggers a log message.
  * @param xctx of caller.
@@ -228,6 +225,6 @@ afw_flag_internal_early_register_core(afw_xctx_t *xctx);
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
-#endif /* __AFW_TRACE_H__ */
+#endif /* __AFW_FLAG_H__ */

@@ -12,11 +12,7 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_uri Uniform Resource Identifier (URI)
- * @ingroup afw_c_api_public
- * 
- * Uniform Resource Identifier (URI) support.
- * 
+ * @addtogroup afw_uri
  * @{
  */
 
@@ -132,10 +128,10 @@ afw_uri_octet_type[256];
 /** @brief Typedef for parsed URI returned from afw_uri_parse(). */
 typedef struct afw_uri_parsed_s {
 
-    /* @brief Unparsed uri from call to afw_uri_parse(). */
+    /** @brief Unparsed uri from call to afw_uri_parse(). */
     const afw_utf8_t *original_uri;
 
-    /* @brief Current path or NULL passed to afw_uri_parse(). */
+    /** @brief Current path or NULL passed to afw_uri_parse(). */
     const afw_utf8_t *current_path;
 
     /*
@@ -154,40 +150,40 @@ typedef struct afw_uri_parsed_s {
      */
     afw_utf8_t normalized_uri;
 
-    /* @brief  Scheme. Can not be percent encoded. */
+    /** @brief Scheme. Can not be percent encoded. */
     afw_utf8_t scheme;
 
-    /* @brief  Original hier-part */
+    /** @brief Original hier-part */
     afw_utf8_t original_hier_part;
 
-    /* @brief  Original authority */
+    /** @brief Original authority */
     afw_utf8_t original_authority;
 
-    /* @brief  Decoded authority */
+    /** @brief Decoded authority */
     const afw_utf8_t *authority;
 
-    /* @brief  Original userinfo */
+    /** @brief Original userinfo */
     afw_utf8_t original_userinfo;
 
-    /* @brief  Decoded userinfo */
+    /** @brief Decoded userinfo */
     const afw_utf8_t *userinfo;
 
-    /* @brief  Original host */
+    /** @brief Original host */
     afw_utf8_t original_host;
 
-    /* @brief  Decoded host */
+    /** @brief Decoded host */
     const afw_utf8_t *host;
 
-    /* @brief  Port. Can not be percent encoded. */
+    /** @brief Port. Can not be percent encoded. */
     afw_utf8_t port;
 
-    /* @brief  Original path */
+    /** @brief Original path */
     afw_utf8_t original_path;
 
-    /* @brief  Original query */
+    /** @brief Original query */
     afw_utf8_t original_query;
 
-    /* @brief  Original fragment */
+    /** @brief Original fragment */
     afw_utf8_t original_fragment;
 
 } afw_uri_parsed_t;
@@ -196,10 +192,10 @@ typedef struct afw_uri_parsed_s {
 /**  @brief URI parser typedef. */
 typedef struct afw_uri_parser_s {
 
-    /* @brief Decoded string representing token. */
+    /** @brief Decoded string representing token. */
     afw_utf8_t token;
 
-    /* @brief Indicates that token is AFW_URI_OCTET_RESERVED. */
+    /** @brief Indicates that token is AFW_URI_OCTET_RESERVED. */
     afw_boolean_t is_reserved;
 
     /* Private members. */
@@ -248,7 +244,7 @@ afw_uri_parser_create(const afw_utf8_t *uri,
 
 /**
  * @brief Parse next token.
- * @param parser.
+ * @param parser
  * @param xctx of caller.
  *
  * See parser->token and parser->token_is_delimiter for results.  If there are
@@ -263,7 +259,7 @@ afw_uri_parse_next_token(const afw_uri_parser_t *parser,
 /**
  * @brief Cause next call afw_uri_parse_get_next_token() to return current
  *    token.
- * @param parser.
+ * @param parser
  * @param xctx of caller.
  */
 AFW_DECLARE(void)
@@ -273,7 +269,7 @@ afw_uri_parse_reuse_token(const afw_uri_parser_t *parser,
 
 /**
  * @brief Set consider_period_a_token flag.
- * @param parser.
+ * @param parser
  * @param consider_period_a_token flag.
  * @param xctx of caller.
  *
@@ -611,6 +607,6 @@ afw_uri_are_equivalent(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_URI_H__ */

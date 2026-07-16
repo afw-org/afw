@@ -13,7 +13,8 @@
 
 /**
  * @addtogroup afw_adapter
-* @{
+ *
+ * @{
  */
 
 /**
@@ -37,7 +38,6 @@ AFW_BEGIN_DECLARES
  *    be added.
  * @param adapter_type_specific parameter or NULL.
  * @param xctx of caller.
- * @return
  *
  * Completely replace an existing adaptive object via adapter.
  */
@@ -55,6 +55,6 @@ afw_adapter_replace_object(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_ADAPTER_REPLACE_H__ */

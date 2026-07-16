@@ -1,0 +1,48 @@
+---
+description: Edit generate/ metadata (functions, data types, interfaces); never hand-edit generated/
+globs: "**/generate/**/*"
+alwaysApply: false
+---
+
+# AFW generate / metadata
+
+## Source of truth (the "at most once" principle)
+- Human inputs: `src/<srcdir>/generate/` — `objects/`, `interfaces/`, `strings/`, `ebnf/`, `manifest/` (extensions), optional `additional_generate/`.
+- Output: `src/<srcdir>/generated/` and package-root `generated/`. **`afwdev generate` deletes and rebuilds matching `generated/`.** Never hand-edit it.
+- One correct definition (function JSON, data type JSON, interface XML, etc.) produces bindings, registration, cross-language surfaces, strings, const objects, schemas, skeletons, and docs. Change the source; regenerate.
+
+## Common object dirs (JSON)
+- `_AdaptiveFunctionGenerate_/` — Adaptive functions (`functionId`, `functionLabel`, `category`, `parameters`, `returns`). Example: `src/afw/generate/objects/_AdaptiveFunctionGenerate_/and.json`.
+- `_AdaptiveDataTypeGenerate_/` — data types (not `_AdaptiveDataType_`).
+- `_AdaptivePolymorphicFunction_/` — polymorphic / shared execute dispatch.
+- `_AdaptiveObjectType_/` and related — object type metadata.
+- Interfaces: `generate/interfaces/*.xml` (core: `src/afw/generate/interfaces/afw_interface.xml`).
+- EBNF: `generate/ebnf/*.txt` lists which compile sources to scan; grammar text lives in `/*ebnf>>>` comments in those `.c` files → `generated/ebnf/`. See `.cursor/rules/afw-compiler-ebnf.mdc`.
+
+## Extension manifest (environment registration)
+- Prefer `generate/manifest/manifest.json` + `generate/manifest/<registry_type_id>/<key>.c` — builds `_AdaptiveManifest_` `registers` and `<prefix>_<type>_<key>_register()` for lazy/eager env registration.
+- Alternate (mutually exclusive): hand `generate/objects/_AdaptiveManifest_/<id>.json` with `registers` (base example: **afw_yaml**).
+- Same registries core uses (`adapter_type`, `content_type`, `error_rv_decoder`, `function`, …). Details: `afw-environment`, `afw-extensions`, `src/afw_dev/_resources/doc/generate_manifest.txt`.
+
+## Extension `generate/` typical contents
+- `objects/_AdaptiveFunctionGenerate_/`, `_AdaptiveObjectType_/`, `_AdaptiveCollection_/` — functions and runtime metadata.
+- `strings/strings.txt`, optional `additional_javascript/`, `additional_includes/`.
+- Core owns interface XML; extensions implement those interfaces in hand `.c` (adapters, content types, …).
+## Workflow after edits
+```bash
+afwdev validate --pattern 'src/afw/generate/objects/_AdaptiveFunctionGenerate_/<id>.json'
+# C/Python day-to-day: generate + cmake + install (not JS/docs)
+./afwdev build --cdev -j
+afwdev test -j
+```
+
+## Hooks
+- Optional `generate/additional_generate/additional_generate.py` for custom codegen without forking afwdev generators.
+- Hand snippets injected into generators: `generate/additional_includes/` (not under `generated/`).
+
+## Core generated headers (libafw)
+See `afw-headers`. Notable outputs: `afw_interface.h`, `afw_*_bindings.h`, `afw_strings.h`, `afw_const_objects.h`, `afw_generated.h` (`afw_generated_register`), `*_impl_declares.h`, closets (reference only).
+
+## Do not
+- Edit `generated/**` or treat committed generated trees as editable source.
+- Put implementations only in closet skeletons and skip hand `function/` / runtime modules.

@@ -11,11 +11,7 @@
 
 
 /**
- * @defgroup afw_memory Memory support
- * @ingroup afw_c_api_public
- *
- * Adaptive framework memory support functions.
- *
+ * @addtogroup afw_memory
  * @{
  */
 
@@ -51,7 +47,7 @@ memset((to), 0, sizeof(*(to)))
 
 /**
  * @brief Create a afw_memory_t struct for a ptr and size.
- * @param ptr.
+ * @param ptr
  * @param size
  * @param p to use.
  * @param xctx of caller.
@@ -219,6 +215,6 @@ afw_memory_writer_retrieve_and_release(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_MEMORY_H__ */

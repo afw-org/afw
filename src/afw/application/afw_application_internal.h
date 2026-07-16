@@ -12,10 +12,7 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_application_internal Application
- * @ingroup afw_c_api_internal
- *
- * Application internal.
+ * @addtogroup afw_application_internal
  * @{
  */
 
@@ -58,6 +55,6 @@ void afw_application_internal_application_conf_type_create_cede_p(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_APPLICATION_INTERNAL_H__ */

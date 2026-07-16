@@ -12,11 +12,7 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_array_internal File
- * @ingroup afw_c_api_internal
- * 
- * Internal array API.
- * 
+ * @addtogroup afw_array_internal
  * @{
  */
 
@@ -29,6 +25,6 @@ AFW_BEGIN_DECLARES
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_ARRAY_INTERNAL_H__ */

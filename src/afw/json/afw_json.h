@@ -12,11 +12,7 @@
 #include "afw_minimal.h"
 
 /**
- * @defgroup afw_json JSON support
- * @ingroup afw_c_api_public
- *
- * Adaptive Framework JSON support
- * 
+ * @addtogroup afw_json
  * @{
  */
 
@@ -194,6 +190,6 @@ afw_json_utf8_string_create(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_JSON_H__ */

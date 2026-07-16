@@ -19,6 +19,8 @@
 /**
  * @file afw_adapter_delete.h
  * @brief Adaptive Framework adapter delete object 
+ *
+ * Contributes to @ref afw_adapter.
  */
 
 AFW_BEGIN_DECLARES
@@ -32,7 +34,6 @@ AFW_BEGIN_DECLARES
  *    be added.
  * @param adapter_type_specific parameter or NULL.
  * @param xctx of caller.
- * @return
  *
  * Delete an existing adaptive object via adapter. The object will not
  * actually be deleted until method commit() is called.
@@ -49,6 +50,6 @@ afw_adapter_delete_object(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_ADAPTER_DELETE_H__ */

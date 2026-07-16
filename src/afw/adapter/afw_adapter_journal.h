@@ -152,6 +152,6 @@ afw_adapter_journal_entry_consume(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_ADAPTER_JOURNAL_H__ */

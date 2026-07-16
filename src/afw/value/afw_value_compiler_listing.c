@@ -639,16 +639,14 @@ afw_value_compiler_listing_begin_value(
     afw_size_t column_number;
     afw_size_t end_line_number;
     afw_size_t end_column_number;
-    afw_utf8_t prefix;
-    afw_size_t len;
-    char buffer[sizeof(impl_empty_prefix)];
+    const afw_utf8_t *current_prefix;
 
     if (contextual) {
         if (contextual->value_offset > self->max_value_cursor) {
             self->max_value_cursor = contextual->value_offset;
         }
         if (self->offset_only) {
-            len = snprintf(buffer, sizeof(buffer),
+            current_prefix = afw_utf8_printf(writer->p, xctx,
                 self->prefix_format,
                 contextual->value_offset,
                 contextual->value_offset + contextual->value_size);
@@ -661,17 +659,20 @@ afw_value_compiler_listing_begin_value(
                 contextual->compiled_value->full_source,
                 contextual->value_offset + contextual->value_size,
                 self->tab_size, xctx);
-            len = snprintf(buffer, sizeof(buffer),
+            current_prefix = afw_utf8_printf(writer->p, xctx,
                 self->prefix_format,
                 line_number, column_number,
                 end_line_number, end_column_number);
         }
-        prefix.s = &buffer[0];
-        prefix.len = self->empty_prefix.len;
-        memcpy(&buffer[len],
-            &impl_empty_prefix[len + (sizeof(impl_empty_prefix) - prefix.len) - 1],
-            prefix.len - len);
-        self->current_prefix = &prefix;
+        /* Pad with remaining empty_prefix (spaces and trailing " + "). */
+        if (current_prefix->len < self->empty_prefix.len) {
+            current_prefix = afw_utf8_printf(writer->p, xctx,
+                AFW_UTF8_FMT "%.*s",
+                AFW_UTF8_FMT_ARG(current_prefix),
+                (int)(self->empty_prefix.len - current_prefix->len),
+                self->empty_prefix.s + current_prefix->len);
+        }
+        self->current_prefix = current_prefix;
     }
     else {
         self->current_prefix = &self->empty_prefix;

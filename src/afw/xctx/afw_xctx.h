@@ -12,29 +12,16 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_xctx Execution context (xctx)
- * @ingroup afw_c_api_public
- *
- * Adaptive Framework Execution Context (xctx) interface.
- * 
- * An execution context holds common information related to a unit of work in
- * Adaptive Framework. This unit of work runs in a single thread of a
- * single-threaded or multi-threaded process. In a multi-threaded process,
- * the main thread has the global execution context. Other threads have their
- * own execution context and required the appropriate mutexes or queued work
- * to access memory in the global execution context.
- * 
- * The type of execution contexts can be "server", "request_session', etc. A
- * execution context's pool, properties, and object cache will last for the
- * life of the execution context. An execution context's parent will always
- * have a longer life.
- *
+ * @addtogroup afw_xctx
  * @{
  */
 
 /**
  * @file afw_xctx.h
  * @brief Adaptive Framework Execution Context (xctx) Implementation Header.
+ *
+ * See @ref afw_xctx for mental model. Scopes are activated on the stack;
+ * statement_flow is used for non-local control (break/return etc.).
  */
 
 
@@ -262,7 +249,7 @@ struct afw_xctx_scope_s {
 
 
 /**
- * @brief Creat a new scope.
+ * @brief Create a new scope.
  * @param block associated with this scope.
  * @param parent_lexical_scope of this scope or NULL for first one.
  * @param xctx of caller.
@@ -400,7 +387,7 @@ afw_xctx_scope_deactivate(
 
 /**
  * @brief Release current scope.
- * @param scope much match afw_xctx_scope_current(xctx)
+ * @param scope must match afw_xctx_scope_current(xctx)
  * @param xctx of caller.
  * 
  * This will decrement the reference count of this scope and any parent scopes.
@@ -658,7 +645,7 @@ AFW_STACK_STRUCT(afw_xctx_evaluation_stack_s,
 
 /**
  * @brief Push VALUE onto execution stack.
- * @param VALUE.
+ * @param VALUE
  * @param xctx of caller.
  * @return Don't use.
  */
@@ -669,7 +656,7 @@ AFW_STACK_STRUCT(afw_xctx_evaluation_stack_s,
 
 /**
  * @brief Push PARAMETER_NUMBER onto execution stack.
- * @param PARAMETER_NUMBER.
+ * @param PARAMETER_NUMBER
  * @param xctx of caller.
  */
 #define afw_xctx_evaluation_stack_push_parameter_number( \
@@ -739,7 +726,7 @@ xctx->evaluation_stack->top = evaluation_stack_save_top
 
 /**
  * @brief Get a variable from xctx stack.
- * @param qualifier of variable or NULL..
+ * @param qualifier of variable or NULL.
  * @param name of variable.
  * @param xctx of caller.
  * @return value or NULL if not found.
@@ -804,11 +791,10 @@ afw_xctx_qualifier_stack_top_set(int top, afw_xctx_t *xctx);
 
 /**
  * @brief Push qualifiers object on to stack.
- * @param context_object.
+ * @param context_object
  * @param secure access to this qualifier is allowed.
  * @param p used while evaluating variable values.
  * @param xctx of caller.
- * @return Stack top.
  *
  * Context object is an object whose properties are objects with a name of a
  * qualifier.  Each of the qualifier objects contains properties that are
@@ -831,7 +817,7 @@ afw_xctx_qualifier_stack_qualifiers_object_push(
 /**
  * @brief Push qualifier on to stack.
  * @param qualifier or NULL.
- * @param qualifier_object.
+ * @param qualifier_object
  * @param secure access to this qualifier is allowed.
  * @param get routine or NULL.
  * @param data to be passed to get/set.
@@ -877,7 +863,6 @@ afw_xctx_qualifier_stack_qualifier_push(
  * @param secure access to this qualifier is allowed.
  * @param p used while evaluating variable values.
  * @param xctx of caller.
- * @return Stack top.
  *
  * Never specify secure true if source of context is a client. A secure
  * context is used for access control and other server side configured
@@ -897,7 +882,7 @@ afw_xctx_qualifier_stack_qualifier_object_push(
 
 /**
  * @brief Create object to access active variables for a qualifier.
- * @param qualifier_name.
+ * @param qualifier_name
  * @param for_testing
  * @param p to use.
  * @param xctx of caller.
@@ -928,6 +913,6 @@ afw_xctx_qualifiers_object_create(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_XCTX_H__ */

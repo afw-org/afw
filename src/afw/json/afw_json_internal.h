@@ -12,11 +12,7 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_json_internal JSON support
- * @ingroup afw_c_api_internal
- *
- * Adaptive Framework JSON internal support
- * 
+ * @addtogroup afw_json_internal
  * @{
  */
 
@@ -39,6 +35,6 @@ void afw_json_internal_write_value(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_JSON_INTERNAL_H__ */

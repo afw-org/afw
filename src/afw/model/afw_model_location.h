@@ -43,7 +43,7 @@ struct afw_model_location_s {
 };
 
 
-/* @brief Create model location. */
+/** @brief Create model location. */
 AFW_DECLARE(const afw_model_location_t *)
 afw_model_location_create(
     const afw_adapter_t *adapter,
@@ -58,6 +58,6 @@ afw_model_location_get_model(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_MODEL_LOCATION_H__ */

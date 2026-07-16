@@ -1,0 +1,99 @@
+---
+description: afwfcgi FastCGI server — afw_server/afw_request over libfcgi; conf-driven director
+globs: src/afw_server_fcgi/**
+alwaysApply: false
+---
+
+# `afwfcgi` (`src/afw_server_fcgi`)
+
+Production **HTTP/FastCGI host** for libafw. Executable `afwfcgi` (not an extension DSO). Implements transport interfaces; routing and adapters live in core `src/afw/request/` + conf.
+
+## Role vs siblings
+
+| | `afwfcgi` | `afw --local` (`afw-command`) |
+|--|-----------|-------------------------------|
+| Transport | libfcgi (`FCGX_*`) | Chunked fd protocol |
+| Threads | `-n` acceptor pool (default 1) | Single-threaded |
+| Conf | Always (`-f`, default `afw.conf`) | Optional |
+| Pipeline | Always `afw_request_handler_director` | Only some local modes |
+
+Edit **FCGI I/O / threading** here; edit **handler/adapter logic** in libafw. Reproduce handler behavior with `afw --local` + `++afw-local-mode-http-like` and the same conf when useful.
+
+## Bootstrap
+
+```text
+AFW_ENVIRONMENT_CREATE              → full core registries
+afw_server_fcgi_generated_register  → strings/version/collection (minimal)
+optional -e  → load_extension (before conf)
+-f conf (default afw.conf), -t content type (default json)
+afw_environment_configure_with_object_list
+afw_server_fcgi_internal_create(-p path, -n threads)  → FCGX_OpenSocket
+afw_request_handler_director_create(server, conf_path, …)
+afw_server_run(server, director)  → thread accept loop
+```
+
+Includes: hand `.c` use `afw.h`; `afw_server_fcgi_internal.h` must be first in server/request `.c` (pulls `fcgiapp.h` + `afw_minimal.h`).
+
+## Interfaces implemented (here)
+
+| Interface | File | `AFW_IMPLEMENTATION_ID` |
+|-----------|------|-------------------------|
+| `afw_server` | `afw_server_fcgi.c` | `"fcgi"` |
+| `afw_request` | `afw_server_fcgi_request.c` | `"afw_server_fcgi"` |
+| `afw_object` (request properties) | `afw_server_fcgi_properties_object.c` | `"fcgi"` |
+
+Properties resolve in-memory then **`FCGX_GetParam(envp)`** — nginx/Apache must pass `REQUEST_METHOD`, `REQUEST_URI`/`PATH_INFO`, `QUERY_STRING`, `CONTENT_TYPE`, `HTTP_ACCEPT`, etc.
+
+**Not** reimplemented: `afw_request_handler` (director + adapter/xacml handlers in libafw), streams, extensions.
+
+## Request flow
+
+```text
+FCGX_Accept_r (per thread)
+  → create_request + properties object + child REQUEST_SESSION xctx
+  → afw_request_handler_process(director)  # longest uriPrefix match
+  → matched handler (e.g. adapter REST)
+  → write Status:/headers/body via FCGX_*
+  → afw_request_release / xctx release
+```
+
+FCGI quirks: HTTP status via **`Status: code reason`** header; first body write ends headers with `CRLF`. Write failures → `client_closed` with rv source `"fcgi"`.
+
+## CLI / socket
+
+- `-f` conf, `-p` socket path (Unix `/path.sock` or TCP `:port`; default **`:9345`** if omitted), `-n` threads, `-e` extension, `-t` conf content type.
+- Deploy samples often use Unix socket + nginx `fastcgi_pass` (`src/afw/doc/guide/administrative/nginx.conf`, `afwfcgi.service`).
+- Links **libfcgi** separately (`cmake/afw_fcgi-config.cmake`).
+
+## Conf objects that matter
+
+`type: adapter`, `requestHandler` (`uriPrefix` + `requestHandlerType`), `application`, plus extensions as needed. Without a matching `uriPrefix`, director returns not_found.
+
+## Hand vs generated
+
+| Hand-edit | Never hand-edit |
+|-----------|-----------------|
+| `afw_server_fcgi*.c`, `afw_server_fcgi_internal.h` | `generated/**` |
+| `generate/strings/strings.txt`, `generate/objects/_AdaptiveCollection_/…` | |
+| `cmake/afw_fcgi-config.cmake`, `CMakeLists.txt` | |
+
+No interfaces/manifest/functions in this `generate/` — capabilities come from core env + conf.
+
+## Known incompletes / drift
+
+- `impl_afw_server_release` stub; SIGTERM/`FCGX_ShutdownPending` path commented out.
+- Properties `get_count` not implemented.
+- Admin docs may mention `-d`; CLI does not.
+- No srcdir `.as` tests; `afwdev test --env-mode afwfcgi` needs nginx+`afwfcgi` (often `:8080`).
+
+## When debugging
+
+1. Process up? `-p` matches proxy `fastcgi_pass` (don’t assume Unix if default TCP).
+2. Conf JSON array valid? Extensions `-e` / conf before adapters needed?
+3. URI match a configured `uriPrefix`?
+4. Proxy `fastcgi_param` set complete?
+5. Trace flags: `trace:server`, `trace:server:request`, `trace:server:request:process`.
+6. Handler bug vs transport? Try same conf under `afw --local` http-like.
+7. After generate strings: `./afwdev build --cdev -j` (needs libfcgi).
+
+Related: `afw-environment`, `afw-command`, `afw-core-services`, `afw-headers`.

@@ -12,10 +12,7 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_adapter_internal Adapter
- * @ingroup afw_c_api_internal
- *
- * Adapter internal.
+ * @addtogroup afw_adapter_internal
  * @{
  */
 
@@ -26,7 +23,7 @@
 
 AFW_BEGIN_DECLARES
 
-/* @brief Internal struct used by adapters for this xctx. */
+/** @brief Internal struct used by adapters for this xctx. */
 struct afw_adapter_xctx_internal_s {
     afw_boolean_t loading_object_types;
 };
@@ -179,6 +176,6 @@ afw_adapter_internal_conf_type_create_cede_p(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_ADAPTER_INTERNAL_H__ */

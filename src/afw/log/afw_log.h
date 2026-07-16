@@ -12,8 +12,8 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_log Log
- * @ingroup afw_c_api_public
+ * @addtogroup afw_log
+ * @{
  *
  *  Adaptive Framework Log Support.
  *
@@ -43,8 +43,6 @@
  *  trace6     | Trace level 6 message
  *  trace7     | Trace level 7 message
  *  trace8     | Trace level 8 message
- *
- * @{
  */
 
 /**
@@ -307,6 +305,6 @@ afw_log_set_mask(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_LOG_H__ */

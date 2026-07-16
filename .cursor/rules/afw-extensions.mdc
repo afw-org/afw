@@ -1,0 +1,81 @@
+---
+description: AFW loadable extensions (afw_curl/ldap/lmdb/ubjson/vfs/yaml) — DSO pattern, manifests, per-ext map
+globs: src/afw_curl/**,src/afw_ldap/**,src/afw_lmdb/**,src/afw_ubjson/**,src/afw_vfs/**,src/afw_yaml/**
+alwaysApply: false
+---
+
+# AFW extensions (`src/afw_*`)
+
+Loadable DSOs (`libafwcurl`, `libafwldap`, …). After `afw_environment_load_extension` / conf / **lazy manifest**, their registrations are **equal** to core’s. Interfaces come from core `afw_interface.xml` — these six do not ship their own interface XML.
+
+Hosts: `#include "afw.h"` (never `afw_internal.h`). Env APIs: `afw-environment`.
+
+## Boilerplate (every extension)
+
+```c
+#define AFW_IMPLEMENTATION_ID "afw_<name>"
+#define AFW_IMPLEMENTATION_VERSION AFW_<NAME>_VERSION_STRING
+#include "afw_extension_impl_declares.h"
+#include "generated/afw_<name>_version_info.h"
+
+AFW_ENVIRONMENT_DEFINE_EXTENSION_IMPL();  /* exports afw_environment_extension_instance */
+
+/* initialize: optional lib init, then usually: */
+afw_<name>_generated_register(xctx);
+return &impl_extension;
+```
+
+Entry file is usually `afw_<name>_extension.c`; **ubjson** and **yaml** put extension + `afw_content_type` in one `.c`.
+
+## Manifest → lazy load
+
+Prefer **`generate/manifest/`** (mutually exclusive with hand `_AdaptiveManifest_` JSON):
+
+| Piece | Role |
+|-------|------|
+| `manifest/manifest.json` | `extensionId`, `modulePath`, brief — **no** `registers` field |
+| `manifest/<registry_type>/<key>.c` | `void <prefix><type>_<key>_register(afw_xctx_t *)` |
+
+Generator builds `_AdaptiveManifest_` `registers: ["adapter_type/ldap", …]`, emits calls inside `<prefix>_generated_register()`, and copies the hand-written `manifest/.../*.c` stubs into `generated/`. On registry miss, env scans manifests and may `dlopen` the DSO — see `afw_dev/_resources/doc/generate_manifest.txt`. (Never hand-edit anything under `generated/`.)
+
+**yaml** is the odd one: hand `generate/objects/_AdaptiveManifest_/afw_yaml.json` with `registers`; `initialize` calls `afw_yaml_register` (no `generated_register` for content type).
+
+Eager vs lazy: Adaptive **functions** / most metadata register inside `generated_register` at load; **manifest keys** are what trigger lazy load (often `adapter_type/*`, `content_type/*`, `error_rv_decoder/*`).
+
+## Hand vs generated
+
+| Hand-edit | Never hand-edit |
+|-----------|-----------------|
+| `*_extension.c`, adapter/session/function/codec `.c`, `*_internal.*` | Entire `generated/` |
+| `generate/manifest/**`, `generate/objects/**`, `generate/strings/` | |
+| Extension-local `cmake/*Config.cmake` for external libs | |
+
+## Per-extension map
+
+| Ext | Lib | Provides | External | Tests |
+|-----|-----|----------|----------|-------|
+| **curl** | `libafwcurl` | Functions: HTTP verbs, SMTP, curl meta; `error_rv_decoder/curl` | libcurl | `tests/{http,curl}/` |
+| **ldap** | `libafwldap` | `adapter_type/ldap` (+ session); `error_rv_decoder/ldap`; LDAP schema object types | OpenLDAP (APR) | — |
+| **lmdb** | `libafwlmdb` | `adapter_type/lmdb` (txn, KV, journal, indexes); `reader_*` functions; `error_rv_decoder/lmdb` | LMDB | `tests/{adapter,journal}/` |
+| **ubjson** | `libafwubjson` | `content_type/ubjson` | — | — (used by LMDB) |
+| **vfs** | `libafwvfs` | `adapter_type/vfs` (local FS via `vfsMap`) | — | `tests/vfs_test.as` |
+| **yaml** | `libafwyaml` | `content_type/yaml` (+ lazy `x-yaml`) | libyaml | — |
+
+Impl ids: extension DSO id is `"afw_<name>"`; adapter/factory often shorter (`"ldap"`, `"lmdb"`, `"vfs"`).
+
+### Notes agents hit often
+
+- **curl**: `curl_global_init` in `initialize` before `generated_register`.
+- **lmdb**: richest adapter; docs say load **ubjson** content type for storage; conf samples may say `extension_id: "ubjson"` — runtime id is **`afw_ubjson`**.
+- **ldap**: heavy `afw_ldap_syntax_handler.c` / metadata for schema ↔ values.
+- **vfs**: factory symbol `afw_vfs_adapter_factory_vfs`; conf `adapterType: "vfs"` lazy-loads.
+- **ubjson/yaml**: dual-interface entry files; codecs in `*_from_value` / `*_to_value`.
+
+## Adding a capability
+
+1. Metadata under `src/<srcdir>/generate/` (function JSON, object types, and/or `manifest/<type>/<key>.c`).
+2. Hand impl implementing core interface(s) via `*_impl_declares.h`.
+3. Keep manifest `registers` in sync with keys you expect to lazy-load.
+4. `./afwdev build --cdev -j` → `afwdev test --srcdir-pattern <srcdir>`.
+
+Related: `afw-environment`, `afw-generate-metadata`, `afw-core-services`, `afw-headers`.

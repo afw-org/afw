@@ -12,16 +12,12 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_authorization_internal Authorization
- * @ingroup afw_c_api_internal
- * 
- * Internal authorization API.
- * 
+ * @addtogroup afw_authorization_internal
  * @{
  */
 
 /**
- * @file afw_authorization.h
+ * @file afw_authorization_internal.h
  * @brief Adaptive Framework authorization.
  */
 
@@ -206,6 +202,6 @@ afw_authorization_handler_type_script_create_cede_p(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_AUTHORIZATION_INTERNAL_H__ */

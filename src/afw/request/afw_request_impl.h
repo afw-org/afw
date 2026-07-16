@@ -12,11 +12,7 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_request_handler_impl afw_request_handler
- * @ingroup afw_c_api_impl
- * 
- * Helpers for afw_request_handler implementations.
- * 
+ * @addtogroup afw_request_handler_impl
  * @{
  */
 
@@ -41,6 +37,6 @@ afw_request_impl_trace_begin(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_REQUEST_IMPL_H__ */

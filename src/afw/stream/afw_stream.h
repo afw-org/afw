@@ -12,11 +12,7 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_stream Stream
- * @ingroup afw_c_api_public
- *
- * Adaptive Framework Stream.
- *
+ * @addtogroup afw_stream
  * @{
  */
 
@@ -49,7 +45,7 @@ struct afw_stream_anchor_s {
 
 /**
  * @brief Get stream by streamId and streamNumber.
- * @param streamId.
+ * @param streamId
  * @param stream return pointer.
  * @param streamNumber return pointer.
  * @param xctx of caller.
@@ -65,7 +61,7 @@ afw_stream_get_by_streamId(
 
 /**
  * @brief Get stream by streamNumber.
- * @param streamNumber.
+ * @param streamNumber
  * @param xctx of caller.
  * @return Stream or NULL if not found.
  */
@@ -78,7 +74,7 @@ afw_stream_get_by_streamNumber(
 
 /**
  * @brief Get streamNumber for streamId.
- * @param streamId.
+ * @param streamId
  * @param xctx of caller.
  * @return streamNumber or -1 if not found.
  */
@@ -91,7 +87,7 @@ afw_stream_get_streamNumber_for_streamId(
 
 /**
  * @brief Set an opening stream and get its streamNumber.
- * @param stream.
+ * @param stream
  * @param xctx of caller.
  * @return streamNumber or -1 if failed.
  */
@@ -295,6 +291,6 @@ afw_stream_internal_release_all_streams(afw_xctx_t *xctx);
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_STREAM_H__ */

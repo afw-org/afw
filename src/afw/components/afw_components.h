@@ -12,11 +12,7 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_components Components
- * @ingroup afw_c_api_public
- *
- * Adaptive application components
- *
+ * @addtogroup afw_components
  * @{
  */
 
@@ -33,6 +29,6 @@ struct afw_components_s {
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_COMPONENTS_H__ */

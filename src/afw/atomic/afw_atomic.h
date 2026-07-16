@@ -12,12 +12,8 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_atomic Atomic
- * @ingroup afw_c_api_public
- *
- * Atomic functions
-*
-* @{
+ * @addtogroup afw_atomic
+ * @{
  */
 
 /**
@@ -136,6 +132,6 @@ afw_atomic_integer_increment(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_ATOMIC_H__ */

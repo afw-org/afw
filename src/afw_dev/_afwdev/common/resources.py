@@ -5,6 +5,10 @@
 # @ingroup afwdev_common
 # @brief This file contains some common functions for working with resources 
 #        associated with afw packages.
+# @details Supports a source tree (_resources next to afwdev.py) and the
+#          zipapp layout. Skeleton text may contain <afwdev {key}> or
+#          <afwdev {key.method()}> substitutions resolved from the options
+#          dict with a restricted parser.
 #
 
 import os
@@ -18,23 +22,112 @@ from subprocess import PIPE
 from _afwdev.common import msg, nfc, package
 
 
+##
+# @brief Parse a single- or double-quoted string literal
+# @return (decoded_string, index_after_closing_quote)
+#
+def _parse_quoted_string(s, i):
+    quote = s[i]
+    if quote not in ("'", '"'):
+        raise ValueError('expected quoted string at ' + str(i))
+    i += 1
+    out = []
+    while i < len(s):
+        ch = s[i]
+        if ch == '\\' and i + 1 < len(s):
+            out.append(s[i + 1])
+            i += 2
+            continue
+        if ch == quote:
+            return ''.join(out), i + 1
+        out.append(ch)
+        i += 1
+    raise ValueError('unterminated string literal')
+
+
+##
+# @brief Apply a restricted method/attr chain after the options key
+# @details Allows patterns used by closet skeletons, e.g.
+#          .upper(), .replace('.', '_'), .replace('_factory','').
+#          No arbitrary eval / attribute names beyond getattr on the value.
+#
+def _apply_substitution_suffix(value, suffix):
+    i = 0
+    n = len(suffix)
+    while i < n:
+        if suffix[i] != '.':
+            raise ValueError('expected "." in substitution suffix')
+        i += 1
+        start = i
+        while i < n and (suffix[i].isalnum() or suffix[i] == '_'):
+            i += 1
+        name = suffix[start:i]
+        if not name:
+            raise ValueError('empty attribute name in substitution')
+        attr = getattr(value, name, None)
+        if attr is None:
+            raise AttributeError(name)
+        if i < n and suffix[i] == '(':
+            i += 1
+            args = []
+            while True:
+                while i < n and suffix[i].isspace():
+                    i += 1
+                if i < n and suffix[i] == ')':
+                    i += 1
+                    break
+                if i >= n or suffix[i] not in ("'", '"'):
+                    raise ValueError(
+                        'only quoted string args allowed in substitutions')
+                arg, i = _parse_quoted_string(suffix, i)
+                args.append(arg)
+                while i < n and suffix[i].isspace():
+                    i += 1
+                if i < n and suffix[i] == ',':
+                    i += 1
+                    continue
+                if i < n and suffix[i] == ')':
+                    i += 1
+                    break
+                raise ValueError('invalid method arguments in substitution')
+            if not callable(attr):
+                raise TypeError(name + ' is not callable')
+            value = attr(*args)
+        elif callable(attr):
+            # Bare method name without () is not applied (use .upper())
+            value = attr
+        else:
+            value = attr
+    return value
+
+
 def do_afwdev_substitutions(options, skeleton, path):
     if options.get('srcdirManifest') is None:
         afw_package = package.get_afw_package(options)
         options['srcdirManifest'] = afw_package.get('srcdirManifest')
 
-    regexp = re.compile('<afwdev \{([^\}]+)\}>')
+    regexp = re.compile(r'<afwdev \{([^\}]+)\}>')
     exps = regexp.findall(skeleton)
     for exp in exps:
-        parts = exp.split('.')
-        value = options.get(parts[0])
+        # First segment is the options key; remainder is a restricted chain
+        if '.' in exp:
+            key, suffix = exp.split('.', 1)
+            suffix = '.' + suffix
+        else:
+            key, suffix = exp, ''
+        value = options.get(key)
         if value is None:
             msg.warn('Not replacing <afwdev {' + exp + '}> in ' + path)
             continue
-        if len(parts) > 1:
-            value = nfc.json_dumps(value) + '.' + '.'.join(parts[1:])
-            value = eval(value)
-        skeleton = skeleton.replace('<afwdev {' + exp + '}>', value)
+        if suffix:
+            try:
+                value = _apply_substitution_suffix(value, suffix)
+            except (AttributeError, KeyError, TypeError, ValueError) as e:
+                msg.warn(
+                    'Not replacing <afwdev {' + exp + '}> in ' + path +
+                    ' (' + str(e) + ')')
+                continue
+        skeleton = skeleton.replace('<afwdev {' + exp + '}>', str(value))
     return skeleton
 
 

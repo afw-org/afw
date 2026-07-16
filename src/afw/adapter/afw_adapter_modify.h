@@ -70,7 +70,6 @@ struct afw_adapter_modify_entry_s {
  *    be added.
  * @param adapter_type_specific parameter or NULL.
  * @param xctx of caller.
- * @return
  *
  * Patch an existing adaptive object via adapter.
  */
@@ -279,6 +278,6 @@ afw_adapter_modify_needed_to_reconcile(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_ADAPTER_MODIFY_H__ */

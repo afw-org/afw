@@ -13,12 +13,7 @@
 #include <stdio.h>
 
 /**
- * @defgroup afw_error Error
- * @ingroup afw_c_api_public
- *
- * Adaptive Framework error
- *
- * Typedef afw_error_code_t is defined in afw_common.h
+ * @addtogroup afw_error
  * @{
  */
 
@@ -131,7 +126,7 @@ struct afw_error_s {
 
 /** @fixme AFW_ERROR_RETHROW doesn't restore evaluation_stack. */
 
-/* @brief Macro used to clear an error between code and decode_rv_wa. */
+/** @brief Macro used to clear an error between code and decode_rv_wa. */
 #define AFW_ERROR_CLEAR_PARTIAL(__ERROR_) \
 memset( \
     (char *)&((__ERROR_)->code), \
@@ -1043,6 +1038,6 @@ afw_error_to_utf8(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_ERROR_H__ */

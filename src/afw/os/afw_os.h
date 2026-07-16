@@ -12,11 +12,7 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_os OS specific
- * @ingroup afw_c_api_public
- *
- * OS specific functions
- *
+ * @addtogroup afw_os
  * @{
  */
 
@@ -82,7 +78,7 @@ afw_os_log_factory_get();
  * @brief Provide a backtrace if possible.
  * @param code Error code or 0.  Code afw_error_code_memory or others might
  *    influence whether producing backtrace is possible.
- * @param max_backtrace.
+ * @param max_backtrace
  * @param xctx of caller.
  * @return backtrace or NULL if not possible.
  *
@@ -102,6 +98,6 @@ afw_os_backtrace(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_OS_H__ */

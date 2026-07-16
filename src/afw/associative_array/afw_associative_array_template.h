@@ -11,6 +11,7 @@
 
 /**
  * @addtogroup afw_array_template_internal
+ *
  * @{
  */
 
@@ -92,6 +93,6 @@ name##_set(const name##_t *instance, \
         key, ( const void * )value,  xctx); \
 }\
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_ASSOCIATIVE_ARRAY_TEMPLATE_H__ */

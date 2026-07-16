@@ -12,11 +12,7 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_service_internal Service
- * @ingroup afw_c_api_internal
- * 
- * Internal service API.
- * 
+ * @addtogroup afw_service_internal
  * @{
  */
 
@@ -70,6 +66,6 @@ afw_service_internal_start_initial_services(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_SERVICE_INTERNAL_H__ */

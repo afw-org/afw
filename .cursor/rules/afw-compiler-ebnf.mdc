@@ -1,0 +1,37 @@
+---
+description: AFW script compiler — EBNF lives in C comments; generate/ebnf lists scan files; generated/ebnf is harvested
+globs: src/afw/compile/**/*,src/afw/generate/ebnf/**
+alwaysApply: false
+---
+
+# Compiler and EBNF
+
+Core owns the Adaptive Script / expression **compiler runtime** under `src/afw/compile/` (separate from interface-based extension APIs). Public API and compile types: **`afw-compile`**.
+
+## Source of truth
+- Grammar fragments live in C comments marked `/*ebnf>>>` … `<<<ebnf*/` beside the real parser (mainly `compile/afw_compile_parse*.c`, `compile/afw_compile_lexical*.c`).
+- `src/afw/generate/ebnf/*.txt` is **not** the grammar: first non-comment line is the output basename; following lines are source globs to scan (e.g. `syntax.txt` → `syntax.ebnf`).
+- `afwdev generate` harvests into `src/afw/generated/ebnf/` (e.g. `syntax.ebnf`). Derived docs only; W3C-style and explicitly imprecise.
+- Handbook diagrams under `src/afw/doc/syntax/` are maintained from that harvest.
+
+## Where productions live (edit C + EBNF comment together)
+
+| Concern | Primary file |
+|---------|----------------|
+| Tokens / residual | `afw_compile_lexical.c` |
+| Symbols / contextual | `afw_compile_parse.c` |
+| Script / TestScript / statements | `afw_compile_parse_script.c` |
+| Expressions / operators / lambdas | `afw_compile_parse_expression.c` |
+| JSON / literals | `afw_compile_parse_value.c` |
+| Templates | `afw_compile_parse_template.c` |
+| Destructuring | `afw_compile_parse_assignment_target.c` |
+
+## When changing the language
+1. Edit the EBNF comment blocks and the real parse/lex C.
+2. Change `generate/ebnf/*.txt` only if which files are scanned (or the output name) must change.
+3. `./afwdev build --cdev -j`
+
+## Do not
+- Hand-edit `generated/ebnf/`.
+- Treat harvested EBNF as executable truth — the C parser is.
+- Assume a top-level `parenthesized` / `parentheses` compile type (dead docs only; it was an internal expression production, never wired as a `-s` value or compile type enum). See `afw-command` and `afw-compile`.

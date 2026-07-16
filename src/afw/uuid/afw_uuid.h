@@ -13,11 +13,7 @@
 #include "apr_uuid.h"
 
 /**
- * @defgroup afw_uuid UUID
- * @ingroup afw_c_api_public
- *
- * UUID functions
- *
+ * @addtogroup afw_uuid
  * @{
  */
 
@@ -124,6 +120,6 @@ afw_uuid_from_utf8(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_UUID_H__ */

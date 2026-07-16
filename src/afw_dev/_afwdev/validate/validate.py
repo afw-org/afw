@@ -4,6 +4,9 @@
 # @file validate.py
 # @ingroup afwdev_validate
 # @brief This file contains the main entry point for the "validate" subcommand.
+# @details Validates JSON against schemas in generated/schemas/afw/ from a
+#          prior generate. Object type comes from $schema, else a special
+#          filename mapping, else the parent directory name.
 #
 
 
@@ -74,8 +77,8 @@ def validate(options, path, json_object=None, schema_object=None):
         with nfc.open(path, mode='r') as fd:
             try:
                 json_object = nfc.json_load(fd)
-            except:
-                error = ['Failed to load ' + path]
+            except Exception as e:
+                error = ['Failed to load ' + path + ': ' + str(e)]
 
     # Determine object_type_id if schema_object was not passed.
     if not error and not schema_object:
@@ -106,8 +109,9 @@ def validate(options, path, json_object=None, schema_object=None):
                 with nfc.open(schema_path, mode='r') as fd2:
                     schema_object = nfc.json_load(fd2)
                     _schema_cache[object_type_id] = schema_object
-            except:
-                error = ['Schema ' + object_type_id + ' not found']
+            except Exception as e:
+                error = [
+                    'Schema ' + object_type_id + ' not found: ' + str(e)]
 
     # Validate object.
     if not error:

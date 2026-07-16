@@ -14,11 +14,7 @@
 AFW_BEGIN_DECLARES
 
 /**
- * @defgroup afw_runtime Runtime objects
- * @ingroup afw_c_api_public
- *
- * This is an Adaptive Framework read-only objects adapter.
- *
+ * @addtogroup afw_runtime
  * @{
  */
 
@@ -613,6 +609,6 @@ afw_runtime_object_get_setter(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_RUNTIME_H__ */

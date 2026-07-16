@@ -12,16 +12,17 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_content_type Content type
- * @ingroup afw_c_api_public
- * 
- * Provide afw_content_type interface common support.
+ * @addtogroup afw_content_type
  * @{
  */
 
 /**
  * @file afw_content_type.h
  * @brief Header Adaptive Framework afw_content_type interface support
+ *
+ * See @ref afw_content_type.
+ *
+ * Key: content types implement from_value / to_value for serialization.
  */
 
 AFW_BEGIN_DECLARES
@@ -67,7 +68,7 @@ afw_content_type_register(
  * @brief Convert value to the raw in specified pool.
  * @param instance of content type.
  * @param value to convert.
- * @param options.
+ * @param options
  * @param p to use for result.
  * @param xctx of caller.
  * @return converted raw encoded memory.
@@ -86,7 +87,7 @@ afw_content_type_value_to_raw(
  * @brief Convert object to the raw in specified pool.
  * @param instance of content type.
  * @param object to convert.
- * @param options.
+ * @param options
  * @param p to use for result.
  * @param xctx of caller.
  * @return converted raw encoded memory.
@@ -115,7 +116,7 @@ afw_content_type_application_afw_inf;
 /**
  * @brief Create a stream for content type application/afw.
  * @param response_stream this stream will flush to.
- * @param streamId.
+ * @param streamId
  * @param info for header frame.
  * @param p to use.
  * @param xctx of caller.
@@ -131,6 +132,6 @@ afw_content_type_application_afw_stream_create(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_CONTENT_TYPE_H__ */

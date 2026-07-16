@@ -12,11 +12,7 @@
 #include "afw_minimal.h"
 
 /**
- * @defgroup afw_utf8 UTF-8 NFC string
- * @ingroup afw_c_api_public
- *
- * All utf8 strings must be valid utf-8.
- *
+ * @addtogroup afw_utf8
  * @{
  */
 
@@ -32,7 +28,7 @@ AFW_BEGIN_DECLARES
 /**
  * @brief Callback function for creating a string from an adaptive value.
  * @param value
- * @param Indicate to only include own properties of any objects.
+ * @param own Indicate to only include own properties of any objects.
  * @param xctx of caller.
  * @return string
  */
@@ -45,9 +41,8 @@ typedef const afw_utf8_t *
 
 /**
  * @brief Callback function for converting a string to an adaptive value.
- * @param utf-8 string to convert.
+ * @param from_utf8 utf-8 string to convert.
  * @param path Object path to use if string is an object or NULL.
- * @param object_id Optional id of object if value is object or NULL.
  * @param xctx of caller.
  * @return value
  *
@@ -335,7 +330,7 @@ afw_utf8_z_array_to_utf8_z_with_separator(
 
 /**
  * @brief Clone a utf-8 string into a specific pool.
- * @param string.
+ * @param string
  * @param len is number of bytes.
  * @param p pool used for result.
  * @param xctx of caller.
@@ -965,7 +960,7 @@ afw_utf8_writer_current_string(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_UTF8_H__ */
 

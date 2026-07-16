@@ -13,10 +13,7 @@
 #include "afw_object_internal.h"
 
 /**
- * @defgroup afw_value_internal Value
- * @ingroup afw_c_api_internal
- *
- * Adaptive Framework Value internal API.
+ * @addtogroup afw_value_internal
  * @{
  */
 
@@ -390,10 +387,10 @@ struct afw_value_internal_compiled_value_s {
      */
     afw_size_t longest_line;
 
-    /* @brief Top symbol block. */
+    /** @brief Top symbol block. */
     afw_value_block_t *top_block;
 
-    /* @brief Current symbol block. */
+    /** @brief Current symbol block. */
     afw_value_block_t *current_block;
 
     /**
@@ -606,7 +603,7 @@ struct afw_value_template_definition_s {
 
 
 
-/* @brief struct for afw_value_symbol_reference_t */
+/** @brief struct for afw_value_symbol_reference_t */
 struct afw_value_symbol_reference_s {
     /* Value inf union with afw_value_t pub to reduce casting needed. */
     union {
@@ -850,6 +847,6 @@ afw_value_block_evaluate_block(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_VALUE_INTERNAL_H__ */

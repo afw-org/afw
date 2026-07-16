@@ -12,16 +12,22 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_function Adaptive function support
- * @ingroup afw_c_api_public
- *
- * Adaptive Framework runtime function support.
+ * @addtogroup afw_function
  * @{
  */
 
 /**
  * @file afw_function.h
  * @brief Header file for Adaptive Framework Runtime Basic Function Support.
+ *
+ * See @ref afw_function (defined centrally in afw_doxygen.h).
+ *
+ * Use the AFW_FUNCTION_* macros inside execute functions.
+ * Polymorphic dispatch uses dataTypeMethod and execute == NULL.
+ *
+ * Operator functions are prepared in afw_function_internal_prepare_environment.
+ *
+ * All functions are registered via environment; see afw_generated_register.
  */
 
 AFW_BEGIN_DECLARES
@@ -355,9 +361,9 @@ afw_function_execute_requiresExecuteAccess_wrapper(
     afw_function_execute_t *x);
 
 
-/*
+/**
  * @brief Evaluate function parameter.
- * @param function_arg.
+ * @param function_arg function value or definition.
  * @param p Pool to use for result.
  * @param xctx of caller.
  * @return function.
@@ -370,7 +376,7 @@ afw_function_evaluate_function_parameter(
 
 
 
-/*
+/**
  * @brief Execute whitespace parameter.
  * @param x function execute struct pointer.
  * @param n of whitespace parameter in argv.
@@ -410,7 +416,7 @@ afw_function_evaluate_parameter(
 
 
 /**
- * @brief Evaluate an required parameter and convert if necessary.
+ * @brief Evaluate a required parameter and convert if necessary.
  * @param x function execute struct pointer.
  * @param parameter_number starting at 1.
  * @param data_type result will be converted to if needed or NULL.
@@ -453,6 +459,6 @@ afw_function_evaluate_parameter_with_type(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_FUNCTION_H__ */

@@ -1,0 +1,30 @@
+---
+description: afwdev Python generators under _afwdev/generate/ (not package generate/ metadata)
+globs: src/afw_dev/_afwdev/generate/**/*.py
+alwaysApply: false
+---
+
+# afwdev generate (Python generators)
+
+This rule is for **`src/afw_dev/_afwdev/generate/`** — the Python that turns package metadata into `generated/`. It is **not** for `src/*/generate/` JSON/XML (see `afw-generate-metadata.mdc`).
+
+## Roles
+- Orchestration: `generate.py` — per-srcdir `generate()` then package `root_generate()`.
+- Per-srcdir: wipe `generated/`; optional overlay of `generate/external/` into `generate/temp_generate/`; run modules that match existing `generate/` subdirs (objects, interfaces, polymorphic functions, bindings, strings, cmake fragments, …).
+- Package-level: `root_generate()` writes package `generated/` (cmake fragments, JSON schemas, …).
+- Sibling modules (`function_bindings.py`, `interfaces.py`, `cmake.py`, …) are the generators; extend those rather than patching outputs.
+
+## Hard rules
+- Write only under `generated/` (or documented generator outputs). Never hand-edit `src/*/generated/**`.
+- After generator changes: `./afwdev build --cdev -j`, then targeted `afwdev test` / `afwdev validate` as needed.
+- Prefer existing patterns in neighboring generator modules; match naming and file layout already used there.
+
+## Comments / Doxygen
+- afwdev docs use Doxygen (`@file`, `@brief`, `@details`, `@namespace`, `@defgroup`). Keep that markup; improve `@details` with durable “what this module does” context.
+- Do **not** add changelog, attribution, or “who/why we changed this” comments.
+
+## Related
+- Metadata inputs: `.cursor/rules/afw-generate-metadata.mdc`
+- CLI / scaffold layout: `.cursor/rules/afw-afwdev-python.mdc`
+- Value lifetimes / `data_type_bindings` / const producers: `.cursor/rules/afw-value-memory.mdc`
+- Build/test loop: skill `afw-generate-build-test`

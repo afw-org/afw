@@ -12,16 +12,15 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_authorization Authorization
- * @ingroup afw_c_api_public
- *
- * Adaptive Framework authorization support.
+ * @addtogroup afw_authorization
  * @{
  */
 
 /**
  * @file afw_authorization.h
  * @brief Adaptive Framework authorization.
+ *
+ * See @ref afw_authorization.
  */
 
 AFW_BEGIN_DECLARES
@@ -244,6 +243,6 @@ afw_authorization_handler_release(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_AUTHORIZATION_H__ */

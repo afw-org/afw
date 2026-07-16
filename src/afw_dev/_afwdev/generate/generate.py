@@ -4,6 +4,13 @@
 # @file generate.py
 # @ingroup afwdev_generate
 # @brief This file contains the main entry point for the "generate" subcommand.
+# @details For one srcdir, generate() removes generated/, optionally overlays
+#          generate/external/ into generate/temp_generate/, then runs the
+#          generators that match existing generate/ subdirectories (object
+#          types, interfaces, polymorphic functions, bindings, strings, cmake
+#          fragments, and related outputs). root_generate() runs once per
+#          package after srcdirs and writes package-level generated/ content
+#          such as cmake fragments and JSON schemas.
 #
 
 ##
@@ -472,8 +479,8 @@ def generate(passed_options):
     if options['objects']:
         options['strings'] = True
 
-    # If verbose mode, print options.
-    if msg.is_debug_mode:
+    # If debug mode, print options.
+    if msg.is_debug_mode():
         msg.debug(nfc.json_dumps(options, sort_keys=True, indent=4))
         msg.debug('\n')
 

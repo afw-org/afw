@@ -4,6 +4,9 @@
 # @file msg.py
 # @ingroup afwdev_common
 # @brief This file contains some common functions for message logging.
+# @details Verbosity tiers are quiet, normal, verbose, and debug. Callers
+#          should use is_*_mode() helpers. error_exit() prints a message and
+#          exits with status 1.
 #
 
 import os

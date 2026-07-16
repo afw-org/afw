@@ -12,11 +12,7 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_code_point Unicode code point support
- * @ingroup afw_c_api_public
- *
- * Unicode code point support.
- *
+ * @addtogroup afw_code_point
  * @{
  */
 
@@ -74,6 +70,6 @@ afw_compile_code_point_is_WhitespaceOrEOL(afw_code_point_t cp);
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
-#endif /* __AFW_CODE_POINT_H__ */
+#endif /* __AFW_COMPILE_CODE_POINT_H__ */

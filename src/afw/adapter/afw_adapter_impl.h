@@ -12,11 +12,7 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_adapter_impl afw_adapter
- * @ingroup afw_c_api_impl
- * 
- * Helpers for afw_adapor implementations.
- * 
+ * @addtogroup afw_adapter_impl
  * @{
  */
 
@@ -30,15 +26,16 @@ AFW_BEGIN_DECLARES
 /**
  * @brief Macro to begin an adapter read lock section.
  * @param adapter
- * @param xctx of caller.
  *
  * Usage:
  *
- * AFW_ADAPTER_IMPL_LOCK_READ_BEGIN(adapter, xctx) {
+ * AFW_ADAPTER_IMPL_LOCK_READ_BEGIN(adapter) {
  *    ... a very small amount of code that doesn't call anything
  *        that might lock this again.
  * }
  * AFW_ADAPTER_IMPL_LOCK_READ_END;
+ *
+ * (xctx is used inside the locked block via the surrounding context.)
  */
 #define AFW_ADAPTER_IMPL_LOCK_READ_BEGIN(adapter) \
 AFW_LOCK_READ_BEGIN((adapter)->impl->adapter_lock_rw)
@@ -56,15 +53,16 @@ AFW_LOCK_READ_END
 /**
  * @brief Macro to begin an adapter write lock section.
  * @param adapter
- * @param xctx of caller.
  *
  * Usage:
  *
- * AFW_ADAPTER_IMPL_LOCK_WRITE_BEGIN(adapter, xctx) {
+ * AFW_ADAPTER_IMPL_LOCK_WRITE_BEGIN(adapter) {
  *    ... a very small amount of code that doesn't call anything
  *        that might lock this again.
  * }
  * AFW_ADAPTER_IMPL_LOCK_WRITE_END;
+ *
+ * (xctx is used inside the locked block via the surrounding context.)
  */
 #define AFW_ADAPTER_IMPL_LOCK_WRITE_BEGIN(adapter) \
 AFW_LOCK_WRITE_BEGIN((adapter)->impl->adapter_lock_rw)
@@ -266,8 +264,6 @@ struct afw_adapter_impl_request_s {
  * @param inf afw_adapter_inf_t pointer for implementation.
  * @param instance_size 0 or size greater than sizeof(afw_adapter_t).
  * @param properties config object.
- * @param start is function to call to start adapter.
- * @param stop is function to call to stop adapter.
  * @param p to use as parent when creating adapter pool.
  * @param xctx of caller.
  * @return instance of afw_adapter_t that optionally with extra memory based
@@ -359,8 +355,8 @@ afw_adapter_impl_set_object_types_fully_loaded(
 
 /**
  * @brief Create a generic object type object.
- * @param adapter_id.
- * @param object_type_id.
+ * @param adapter
+ * @param object_type_id
  * @param p to use for result.
  * @param xctx of caller.
  * @return generic object type object (like _AdaptiveObject_).
@@ -379,7 +375,7 @@ afw_adapter_impl_generic_object_type_object_get(
 
 /**
  * @brief Push adapter qualifiers to xctx.
- * @param adapter.
+ * @param adapter
  * @param xctx of caller.
  *
  * Call this to add adapter related qualifiers to xctx.  Make sure
@@ -394,7 +390,7 @@ afw_adapter_impl_push_qualifiers(
 
 /**
  * @brief Developers should call this for configuration property errors.
- * @param adapter.
+ * @param adapter
  * @param property_name this is in error.
  * @param xctx of caller.
  */
@@ -408,7 +404,7 @@ afw_adapter_impl_throw_property_invalid(
 /**
  * @brief Developers should call this for missing required configuration
  *    property.
- * @param adapter.
+ * @param adapter
  * @param property_name this is in error.
  * @param xctx of caller.
  */
@@ -425,7 +421,6 @@ afw_adapter_impl_throw_property_required(
  * @param context
  * @param callback
  * @param xctx of caller.
- * @return afw_adapter_session_retrieve_objects_result instance.
  */
 AFW_DECLARE(void)
 afw_adapter_impl_call_object_cb_from_list(
@@ -437,7 +432,7 @@ afw_adapter_impl_call_object_cb_from_list(
 
 /**
  * @brief Determine whether a journal entry is applicable to a consumer.
- * @param afw_adapter_journal instance.
+ * @param instance afw_adapter_journal instance.
  * @param entry from journal.
  * @param consumer object.
  * @param filter should be initialized to NULL on first call and anytime
@@ -461,8 +456,8 @@ AFW_THROW_ERROR_Z(read_only, "Adapter is read-only.", xctx)
 
 /**
  * @brief Indicates support of a core object type.
- * @param adapter.
- * @param object_type_id.
+ * @param adapter
+ * @param object_type_id
  * @param allow_entity indicates adapter allows entities of this type.
  * @param allow_write indicates adapter can store instances of this type.
  * @param xctx of caller.
@@ -490,6 +485,6 @@ afw_adapter_impl_set_supported_core_object_type(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_ADAPTER_IMPL_H__ */

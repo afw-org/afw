@@ -7,9 +7,13 @@
 ##
 # @file runner.py
 # @brief This file contains the main functions for running tests.
+# @details Runs discovered test groups sequentially or via multiprocessing.Pool.
+#          Parallelism is per group. Each group restores cwd and os.environ
+#          in a finally block.
 #
 
 import os
+import shutil
 import sys
 import time
 import multiprocessing
@@ -19,7 +23,7 @@ from _afwdev.common import msg, nfc
 from _afwdev.test.common import \
     get_test_environment, parse_test_run, print_test_response, find_test_groups, \
     load_test_environments, load_test_group_config, run_test, before_all, \
-    before_each, after_all, after_each
+    before_each, after_all, after_each, test_group_matches_tags
 
 
 ##
@@ -52,10 +56,10 @@ def run_test_group(testGroup, options, testEnvironments, work_dir_prefix):
             for key, value in testGroupConfig.get('EnvVars').items():
                 os.environ[key] = value
 
-    # if tags were specified, make sure this test group matches
-    if options.get("tags") and testGroupConfig:
-        if not any(tag in testGroupConfig.get("Tags", []) for tag in options.get("tags")):
-            msg.debug("  Skipping test group because it doesn't match the specified tags")
+    # if --tags was specified (non-default), skip groups that do not match
+    if not test_group_matches_tags(options, testGroupConfig):
+        msg.debug("  Skipping test group because it doesn't match the specified tags")
+        return testGroup, 0, 0, 0
 
     # get the test environment for this test group
     testEnvironment = get_test_environment(testGroup, testEnvironments, testGroupConfig, work_dir_prefix)    
@@ -112,17 +116,18 @@ def run_test_group(testGroup, options, testEnvironments, work_dir_prefix):
                     str = error
                     try:
                         str = nfc.json_loads(error).get('message')
-                    except:
+                    except Exception:
                         str = error
-                    msg.error("\n    \u2717 {}\n".format(str))   
+                    msg.error("\n    \u2717 {}\n".format(str))    
 
             if msg.is_debug_mode() and debug:
                 msg.debug(debug)
 
             after_each(root, testGroupConfig, testEnvironment)
 
-            # if we only report errors, then skip successful tests
-            if options.get('errors') and not hasFailures:
+            # Default is errors-only; --show-all prints successful tests too
+            errors_only = options.get('errors', True) and not options.get('show_all')
+            if errors_only and not hasFailures:
                 continue
 
             # already reported test name above
@@ -176,7 +181,7 @@ def allocate_working_directory(options):
     # if folder already exists, remove it first
     if os.path.exists(working_directory):
         msg.highlighted_info("Removing previous working directory: " + working_directory)        
-        os.system("rm -rf " + working_directory)
+        shutil.rmtree(working_directory)
     
     # create folder
     os.mkdir(working_directory)

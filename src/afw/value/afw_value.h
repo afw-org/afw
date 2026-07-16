@@ -12,35 +12,21 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_value Value
- * @ingroup afw_c_api_public
- *
- * Adaptive Framework Value
+ * @addtogroup afw_value
  * @{
  */
 
 /**
  * @file afw_value.h
- * @brief Adaptive Framework header for adaptive values
- * 
- * This is the main header for adaptive values.
- * 
- * An adaptive value is a structure that consists of an inf pointer followed
- * by internal memory specific to an afw_value implementation. There are
- * implementations of afw_value to represent values for all of the adaptive
- * data types as well as implementations that can be evaluated at runtime such
- * as "compiled_value", "block", and "symbol_reference".
+ * @brief Adaptive Framework header for adaptive values.
  *
- * Adaptive source, such as adaptive expressions, json, and adaptive scripts,
- * can be compiled to produce an adaptive value. Adaptive values can also be
- * produced by calling their corresponding type's afw_value_allocate_* or
- * afw_value_create_* function. 
- * 
- * The afw_value_evaluate() macro can be called to evaluate any adaptive
- * value. For example, afw_value_evaluate() can be called for an adaptive
- * value returned from the adaptive compiler used to compile an adaptive script
- * to "run" the adaptive script and return its adaptive value result.
- * 
+ * See the @ref afw_value group (defined in afw_doxygen.h) for the overall mental model.
+ *
+ * This is the main public header. It declares the common value structures
+ * and the afw_value_evaluate() macro that everything flows through.
+ *
+ * Core value kinds: data type values (permanent/managed), compiled_value,
+ * block, call_*, symbol_reference, closure_binding.
  */
 
 AFW_BEGIN_DECLARES
@@ -851,7 +837,9 @@ afw_value_contains(
 
 /**
  * @brief Get the optimized version of this value.
- * @param value
+ * @param value to optimize.
+ * @param p to use (currently unused by implementation).
+ * @param xctx of caller (currently unused by implementation).
  * @return optimized version of the value.
  *
  * If there is not an optional_get_optimized method for this value, the
@@ -878,10 +866,10 @@ afw_value_contains(
  
  
 /**
- * @brief Assert that the data type of two adaptive values is the same
+ * @brief Test whether the data type of two adaptive values is the same.
  * @param value1 is an adaptive value.
  * @param value2 is an adaptive value.
- * @param xctx of caller
+ * @param xctx of caller.
  */
 #define AFW_VALUE_DATA_TYPES_EQUAL(value1, value2, xctx) \
 (afw_value_get_data_type(value1, xctx) != \
@@ -890,10 +878,10 @@ afw_value_contains(
 
 
 /**
- * @brief Assert that the data type of two adaptive values is the same
+ * @brief Assert that the data type of two adaptive values is the same.
  * @param value1 is an adaptive value.
  * @param value2 is an adaptive value.
- * @param xctx of caller
+ * @param xctx of caller.
  */
 #define AFW_VALUE_ASSERT_DATA_TYPES_EQUAL(value1, value2, xctx) \
 if (!AFW_VALUE_DATA_TYPES_EQUAL(value1, value2, xctx)) \
@@ -905,7 +893,7 @@ if (!AFW_VALUE_DATA_TYPES_EQUAL(value1, value2, xctx)) \
 
 /**
  * @brief Compile a value.
- * @param value must be a type that can be compiled
+ * @param value must be a type that can be compiled.
  * @param source_location to associate with compiled value or NULL.
  * @param p to use for result.
  * @param xctx of caller.
@@ -943,7 +931,7 @@ afw_value_compile_as(
  * @brief Compile and evaluate a value.
  * @param value must be a type that can be compiled
  * @param source_location to associate with compiled string or NULL.
- * @param compile_type.
+ * @param compile_type
  * @param p to use for result.
  * @param xctx of caller.
  * @return result of compiling and evaluating the value.
@@ -961,7 +949,7 @@ afw_value_compile_and_evaluate(
  * @brief Compile and evaluate a value using specified compile type.
  * @param value can be type appropriate for compile_type or string.
  * @param source_location to associate with compiled string or NULL.
- * @param compile_type.
+ * @param compile_type
  * @param p to use for result.
  * @param xctx of caller.
  * @return result of compiling and evaluating the value.
@@ -1000,7 +988,7 @@ afw_value_evaluate_with_additional_untrusted_qualified_variables(
 /**
  * @brief Convert a value to a value/data type.
  * @param value to evaluate and convert, if needed.
- * @param to_data_type.
+ * @param to_data_type
  * @param required if false returns NULL if value is NULL.
  * @param p to hold converted value.
  * @param xctx of caller.
@@ -1180,7 +1168,7 @@ afw_value_block_finalize(
 
 
 /**
- * @brief Allocate function for an evaluated data type value.
+ * @brief Allocate an afw_value_common_t for an evaluated data type value.
  * @param data_type of value.
  * @param p pool used for value.
  * @param xctx of caller.
@@ -1195,7 +1183,7 @@ afw_value_common_allocate(
 
 
 /**
- * @brief Create function for an evaluated data type value.
+ * @brief Create an evaluated data type value.
  * @param value to copy.
  * @param data_type of value.
  * @param p pool used for value.
@@ -1212,7 +1200,7 @@ afw_value_common_create(
 
 
 /**
- * @brief Create function closure binding value.
+ * @brief Create a closure binding value.
  * @param script_function_definition script function to enclose.
  * @param enclosing_lexical_scope for closure binding.
  * @param xctx of caller.
@@ -1227,7 +1215,7 @@ afw_value_closure_binding_create(
 
 
 /**
- * @brief Create function for call value.
+ * @brief Create a call value.
  * @param contextual information for function call.
  * @param argc number of arguments (does not include argv[0]).
  * @param argv list of argument value pointers. argv[0] must be function value.
@@ -1256,7 +1244,7 @@ afw_value_call_create(
 
 
 /**
- * @brief Create function for call_built_in_function value.
+ * @brief Create a call_built_in_function value.
  * @param contextual information for function call.
  * @param argc number of arguments (does not include argv[0]).
  * @param argv list of argument value pointers. argv[0] must be function
@@ -1285,7 +1273,7 @@ afw_value_call_built_in_function_create(
 
 
 /**
- * @brief Create function for call_script_function value.
+ * @brief Create a call_script_function value.
  * @param contextual information for function call.
  * @param script_function_definition script function to call.
  * @param enclosing_lexical_scope for closure binding or NULL if not enclosed.
@@ -1318,7 +1306,7 @@ afw_value_call_script_function_create(
 
 
 /**
- * @brief Create function for call_test_script value.
+ * @brief Create a call_test_script value.
  * @param contextual information for test script call.
  * @param test_script testScriptObject object<_AdaptiveTestScriptResult>.
  * @param p pool used for value.
@@ -1375,7 +1363,7 @@ afw_value_function_thunk_create_impl( \
 
 
 /**
- * @brief Create function for lambda definition value.
+ * @brief Create a script function (lambda) definition value.
  * @param contextual information for lambda.
  * @param depth is static depth of function.
  * @param signature or NULL.
@@ -1402,8 +1390,8 @@ afw_value_script_function_definition_create(
 
 
 /**
- * @brief Create function for list expression value.
- * @param contextual information for lambda.
+ * @brief Create an array (list) expression value.
+ * @param contextual information for the expression.
  * @param internal value that will evaluate to a list or NULL.
  * @param p pool used for value.
  * @param xctx of caller.
@@ -1418,8 +1406,8 @@ afw_value_create_array_expression(
 
 
 /**
- * @brief Create function for object expression value.
- * @param contextual information for lambda.
+ * @brief Create an object expression value.
+ * @param contextual information for the expression.
  * @param internal object.
  * @param p pool used for value.
  * @param xctx of caller.
@@ -1434,7 +1422,7 @@ afw_value_create_object_expression(
 
 
 /**
- * @brief Create function for variable reference value.
+ * @brief Create a qualified variable reference value.
  * @param contextual information for variable.
  * @param qualifier of variable or NULL.
  * @param name of variable.
@@ -1453,7 +1441,7 @@ afw_value_qualified_variable_reference_create(
 
 
 /**
- * @brief Create function for reference_by_key value.
+ * @brief Create a reference_by_key value.
  * @param contextual information for property by index or NULL.
  * @param aggregate_value must be an evaluated object or list value.
  * @param key used to access value in aggregate_value.
@@ -1471,7 +1459,7 @@ afw_value_reference_by_key_create(
 
 
 /**
- * @brief Create function for template definition value.
+ * @brief Create a template definition value.
  * @param contextual information for template.
  * @param count of values.
  * @param values list of value pointers.
@@ -1496,7 +1484,7 @@ afw_value_template_definition_create(
 
 
 /**
- * @brief Create function for symbol reference value.
+ * @brief Create a symbol reference value.
  * @param contextual information for variable.
  * @param symbol for variable.
  * @param p pool used for value.
@@ -1574,7 +1562,7 @@ afw_value_create_dateTime_now_local(
 
 /**
  * @brief Return a NULL terminated list of values in a specified pool.
- * @param value.
+ * @param value
  * @param p to use for returned value.
  * @param xctx of caller.
  * @return NULL terminated list of values or undefined if value is undefined.
@@ -1588,7 +1576,7 @@ afw_value_as_array_of_values(
 
 /**
  * @brief Return a NULL terminated list of utf8 in a specified pool.
- * @param value.
+ * @param value
  * @param p to use for returned value.
  * @param xctx of caller.
  * @return NULL terminated list of strings or undefined if value is undefined.
@@ -1638,7 +1626,7 @@ afw_value_decompile_to_string(
 
 /**
  * @brief Decompile call args.
- * @param writer.
+ * @param writer
  * @param args to decompile.
  * @param xctx of caller.
  */
@@ -1654,7 +1642,7 @@ afw_value_decompile_call_args(
 /**
  * @brief Decompile Value::.
  * @param instance to decompile.
- * @param writer.
+ * @param writer
  * @param xctx of caller.
  *
  * Value ::= Json | Lambda | Evaluation | ParenthesizedExpression
@@ -1682,6 +1670,6 @@ afw_value_register_core_value_infs(afw_xctx_t *xctx);
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_VALUE_H__ */

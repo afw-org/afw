@@ -1,0 +1,50 @@
+---
+description: AFW script compile/eval — value graph, scopes, statement_flow, calls/closures
+globs: src/afw/value/**,src/afw/xctx/**,src/afw/compile/**,src/afw/function/afw_function_compiler*.c,src/afw/pool/**
+alwaysApply: false
+---
+
+# Script compile and evaluate
+
+Pipeline: **`afw-compile`** → value graph → **`afw_value_evaluate`** → calls into **`afw-function`** / scopes. Bootstrap: functions before compile (`afw-environment` / `register_core`).
+
+```text
+afw_compile_to_value*
+  → parser builds nodes in parser pool (often owned by compiled_value)
+  → afw_value_evaluate(compiled_value) evaluates root_value
+       → block / symbol_reference / call_* / …
+       → call_built_in → afw_function_execute_*
+       → call_script → body + closure scope
+```
+
+## Compile → value
+
+- Public API / types: `afw-compile`. EBNF: `afw-compiler-ebnf`.
+- **JSON / relaxed_json** → direct `afw_value` (no `compiled_value` wrapper).
+- **script / template / test_script** → `afw_value_compiled_value_t` (`root_value`, `top_block`, `full_source`, own pool).
+- Assignment may wrap escaping `script_function_definition` in `closure_binding`. Destructuring + rest supported.
+- Contextual: `afw_compile_value_contextual_t` on nodes/errors.
+
+## Execute
+
+- Lazy: `inf->optional_evaluate` (`afw_value_evaluate` macro in `afw_value.h`).
+- Scopes: `afw_xctx_scope_*` on `scope_stack`; symbols by lexical depth + index.
+- Control flow: `afw_xctx_statement_flow_*` (sequential / break / continue / return / rethrow).
+- Calls: `afw_value_call_create` specializes built-in vs script vs closure (`value/afw_value_call.c`).
+- Closures: `closure_binding` holds definition + scope ref (`get_reference` / release).
+
+## Key hand files
+
+| Area | Files |
+|------|--------|
+| Value API | `value/afw_value.h` (public), `value/afw_value_internal.h` (core only) |
+| Graph | `afw_value_compiled_value.c`, `*_block.c`, `*_call*.c`, `*_script_function*.c`, `*_closure_binding.c`, `*_symbol_reference.c` |
+| Scopes | `xctx/afw_xctx*.c` |
+| Built-ins / stmt runtime | `function/afw_function_*.c`, especially `*_compiler_script.c` |
+| Parse | `compile/afw_compile_parse_*.c` |
+
+## Do
+
+- Match existing create/evaluate/release patterns; no global mutable script state.
+- Long-running: allocate into current `scope->p` when appropriate; see `afw-value-memory`.
+- Extensions never include `afw_value_internal.h`.

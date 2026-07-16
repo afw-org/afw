@@ -1,0 +1,62 @@
+---
+description: afw_compile.h API — compile types, residual check, pool/parent/shared, parser file map
+globs: src/afw/compile/**,src/afw/include/afw_common.h
+alwaysApply: false
+---
+
+# Compile API (`compile/afw_compile.h`)
+
+Public entry for Adaptive syntaxes. Output is an **`afw_value_t`** (usually `compiled_value`; JSON returns the value directly). Eval: `afw-script-eval`. EBNF harvest: `afw-compiler-ebnf`. Bootstrap needs functions registered first: `afw-environment` / `register_core`.
+
+## Entry points
+
+| API | Role |
+|-----|------|
+| `afw_compile_to_value` | Macro → `…_with_callback` + `residual_check_to_full` |
+| `afw_compile_to_value_with_callback` | String and/or octet callback; main compiler |
+| `afw_compile_and_evaluate[_type]` | Compile then `afw_value_evaluate` |
+| `afw_compile_script` / `_template` | Typed shortcuts |
+| `afw_compile_to_object` | Strict JSON → `afw_object_t` (not `compiled_value`) |
+| `afw_compile_shared_create` | Share literals across compiles on same pool |
+
+**Pool precedence** (one required): `shared->p` → `parent->p` → `p`. Nested compiles pass `parent` for shared symbols/contextual (e.g. `#{…}` in templates).
+
+## Compile types (`AFW_COMPILE_TYPE_MAP` in `afw_common.h`)
+
+| Type | Parser | Result |
+|------|--------|--------|
+| `json` / `relaxed_json` | `parse_Json` | Direct value (object/list/scalar) |
+| `script` | `parse_Script` | `compiled_value` |
+| `template` | `parse_Template` | `compiled_value` |
+| `test_script` | `parse_TestScript` | `compiled_value` |
+| `regexp` / `xpathExpression` | — | **Throws** “not supported yet” at API |
+| `error` | — | Invalid |
+
+Data-type hybrid `compileType` in `_AdaptiveDataTypeGenerate_` maps to these enums → `afw_value_compile()`.
+
+**Stale:** comments, `afw` CLI help text, and `usage.xml` may mention `parenthesized` / `parentheses`. It was never a top-level compile type (only an internal expression production) and is not accepted by the CLI parser. See `afw-command` for the actual `-s` mapping.
+
+## Residual check
+
+`none` | `to_newline` | `to_full` (default) | `to_close_brace` (nested `{…}` bodies — no residual check). Enforced in `afw_compile_lexical.c`.
+
+## Contextual
+
+`afw_compile_value_contextual_t`: owning `compiled_value` + offset/size into `full_source`. Nodes and errors should carry it (`afw_compile_create_contextual`, embellish on throw).
+
+## Parser file ownership
+
+| File | Owns |
+|------|------|
+| `afw_compile.c` | Dispatch by compile_type; type info table |
+| `afw_compile_lexical.c` | Tokens, residual, parser create/finish, shared |
+| `afw_compile_parse.c` | Contextual, symbols, blocks, parse errors |
+| `afw_compile_parse_script.c` | Statements, `TestScript`, control flow |
+| `afw_compile_parse_expression.c` | Expressions, lambdas, operators → `call_built_in_function` |
+| `afw_compile_parse_value.c` | JSON literals / objects / lists |
+| `afw_compile_parse_template.c` | Templates; `#{…}` / `${…}` |
+| `afw_compile_parse_assignment_target.c` | Destructuring targets |
+
+**Operator lowering:** expression parser emits calls to env **operator** `function_definition`s — requires `afw_generated_register` then `afw_function_internal_prepare_environment` (see `register_core.c`).
+
+Related: `afw-compiler-ebnf`, `afw-script-eval`, `afw-function`, `afw-command` (`-s` mapping).

@@ -1,0 +1,81 @@
+---
+description: src/afw (libafw) module map — where subsystems live and which rule to open
+globs: src/afw/**
+alwaysApply: false
+---
+
+# src/afw core layout
+
+`src/afw` is **libafw**: the Adaptive Framework core shared library. One subdirectory ≈ one concern. Hand `.c`/`.h` live in the module dir; metadata in `generate/`; afwdev output in `generated/` (never hand-edit).
+
+## Umbrellas and build
+| Path | Role |
+|------|------|
+| `include/` | Master includes only: `afw.h`, `afw_internal.h`, `afw_minimal.h`, `afw_common*.h` — see `afw-headers` |
+| `generate/` | Metadata inputs (objects, interfaces XML, strings, ebnf lists) |
+| `generated/` | afwdev output (bindings, `afw_interface.h`, closets, ebnf harvest) |
+| `cmake/` | Consumer CMake helpers (not runtime C) |
+| `doc/` | Handbook XML/markdown (not linked into lib) |
+| `tests/` | `.as` script tests + environments (not installed with lib) |
+| `os/nix/`, `os/win/` | Platform sources; cmake picks one tree |
+
+## Runtime / language
+| Dir | Role |
+|-----|------|
+| `value/` | Immutable value graph, evaluate/decompile (`afw-script-eval`, `afw-value-memory`) |
+| `compile/` | Syntaxes → values (`afw-compile`, `afw-compiler-ebnf`) |
+| `xctx/` | Execution context, scopes, statement_flow |
+| `pool/` | Hierarchical pools / subpools |
+| `function/` | Built-in Adaptive function bodies (`afw-function`) |
+| `data_type/` | Helpers atop generated data-type bindings |
+| `stack/` | Evaluation stacks used by xctx |
+| `environment/` | Registries + `afw_environment_register_core.c` bootstrap (`afw-environment`) |
+
+## Objects, storage, I/O
+| Dir | Role |
+|-----|------|
+| `object/` | Object memory, meta, path, type, view |
+| `array/` | List implementations (`afw_array` interface) |
+| `adapter/` | Adapter session CRUD (+ per-op headers) |
+| `model/` | Model adapter — map between adapters/requestors |
+| `runtime/` | Read-only runtime/metadata objects |
+| `content_type/` | Serialize values ↔ bytes |
+| `json/` | JSON ↔ value/object |
+| `query_criteria/` | Retrieve filters |
+| `file/`, `stream/`, `writer/`, `utf8/` | I/O and strings |
+
+## Process / policy / hosting
+| Dir | Role |
+|-----|------|
+| `environment/` | Env create, registries, core registration |
+| `application/` | Application bootstrap (internal) |
+| `authorization/` | Authorization handlers / action ids |
+| `request/` | Request/response + handler factories |
+| `service/` | Long-running service lifecycle |
+| `action/` | `_AdaptiveAction_` / batch function perform |
+| `context/` | Register typed variables into eval context |
+| `log/`, `trace/`, `flag/`, `lock/`, `thread/` | Observability and concurrency |
+
+## Small utilities
+`ascii/`, `associative_array/`, `atomic/`, `endian/`, `error/`, `memory/`, `number/`, `safe_cast/`, `time/`, `uri/`, `uuid/`, `version/`, `components/` (stub). Prefer `array/` over deprecated `array_template/`. Prefer `log/afw_log.h` over `*_deprecated*`.
+
+## Usage modes (pick the right dirs)
+1. **Script compile/eval** → `compile/`, `value/`, `xctx/`, `pool/` (`afw-script-eval`, `afw-runtime-model`)
+2. **Object CRUD via adapters** → `adapter/`, `object/`, `model/`, `query_criteria/` (`afw-core-services`)
+3. **HTTP/request handling** → `request/`, `content_type/`, `stream/` + host `src/afw_server_fcgi` (`afw-server-fcgi`) or `afw --local` (`afw-command`)
+4. **Authorization** → `authorization/` (+ script policies)
+5. **Built-in Adaptive functions** → `generate/objects/_AdaptiveFunctionGenerate_/` + `function/`
+6. **Extension / registry wiring** → `environment/` (`afw-environment`); extension DSOs `src/afw_*` (`afw-extensions`); hosts `afw-command` / `afw-server-fcgi`
+
+## Decision tree
+```
+Behavior in C?              → matching module/*.c
+New Adaptive function?      → generate/.../_AdaptiveFunctionGenerate_/ + function/  (afw-function)
+Interface contract change?  → generate/interfaces/afw_interface.xml
+Data type surface?          → generate/.../_AdaptiveDataTypeGenerate_/
+Grammar / parser?           → compile/*.c + ebnf comments  (afw-compile, afw-compiler-ebnf)
+Need a declared API?        → generated/afw_interface.h first; extend XML if missing
+Register a capability?      → afw_environment_register_* ; core order in register_core.c
+```
+
+Related: `afw-headers`, `afw-core-services`, `afw-environment`, `afw-c-runtime`, `afw-runtime-model`.

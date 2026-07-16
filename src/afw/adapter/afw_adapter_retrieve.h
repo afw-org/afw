@@ -60,6 +60,6 @@ afw_adapter_retrieve_objects(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_ADAPTER_RETRIEVE_H__ */

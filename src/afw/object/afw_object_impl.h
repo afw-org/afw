@@ -12,9 +12,7 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_object_impl afw_object
- * @ingroup afw_c_api_impl
- * 
+ * @addtogroup afw_object_impl
  * @{
  */
 
@@ -252,6 +250,6 @@ afw_object_impl_get_next_property_meta(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_OBJECT_IMPL_H__ */

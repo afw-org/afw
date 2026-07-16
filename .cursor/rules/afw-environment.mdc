@@ -1,0 +1,114 @@
+---
+description: AFW environment — process-wide registries; core, extensions, and commands plug in equally
+globs: src/afw/environment/**,**/generate/manifest/**,**/afw_*_extension.c,src/afw_command/**,src/afw/include/afw_common.h
+alwaysApply: false
+---
+
+# Environment (the framework glue)
+
+One **`afw_environment_t`** per process (via `xctx->env`). Almost every capability—core, command, or extension—is a **keyed entry in a registry**. After registration, extension-provided adapters/functions/content types are first-class equals of core ones.
+
+Source of truth for core registry kinds: `AFW_ENVIRONMENT_REGISTRY_TYPE_MAP` in `environment/afw_environment.h`. Hosts use `AFW_ENVIRONMENT_CREATE` → work → `afw_environment_release` (see header snippet).
+
+## Mental model
+
+```text
+AFW_ENVIRONMENT_CREATE
+  └─ afw_environment_internal_register_core
+       ├─ afw_generated_register          ← metadata (data types, functions, …)
+       └─ hand register_core              ← conf_types, adapter_types, JSON, OS, …
+
+Optional:
+  afw_environment_configure_with_object(_list)  ← conf → instances (base xctx only)
+  afw_environment_load_extension(...)           ← DSO initialize → more register_*
+
+Runtime:
+  afw_environment_get_* / registry_get          ← may lazy-load extension via manifest
+  Mirrored under /afw/_AdaptiveEnvironmentRegistry_/ and related runtime objects
+```
+
+## Registry types (core)
+
+Grouped from the map (enum ids use typo `afw_environemnt_registry_type_<id>` — match code when grepping):
+
+| Group | Types |
+|-------|--------|
+| Meta | `registry_type`, `singleton`, `extension`, `conf_type` |
+| Adapters | `adapter_type` (factory), `adapter_id` (instance) |
+| Auth | `authorization_handler_type/id`, `policy_combining_algorithm`, `rule_combining_algorithm` |
+| Script/values | `data_type`, `function`, `value_inf`, `flag`, `runtime_*` |
+| Request/I/O | `content_type`, `request_handler_type/id`, `context_type` |
+| Ops | `log_type`/`log`, `lock`, `error_rv_decoder` |
+| Services | `service_type`/`service` |
+
+Most keys **cannot** reregister. Exceptions (`allow_reregister`): `context_type`, `lock`, `log`, `service`.
+
+Extensions may add kinds with `afw_environment_create_registry_type()`.
+
+## Who registers what
+
+| Actor | How |
+|-------|-----|
+| **Core** (`src/afw`) | `afw_environment_register_core.c` + generated `afw_generated_register`. Same env APIs as everyone else. Also registers built-in **adapter_type**s (`afw`, `file`, `model`, `runtime`), content types (JSON, `application/afw`), conf_types, etc. |
+| **Extension** (`src/afw_*` DSO) | `AFW_ENVIRONMENT_DEFINE_EXTENSION_IMPL()`; `initialize` → `<prefix>_generated_register` and/or hand register. Load: conf `type=extension`, `-e` / `load_extension`, or **lazy** via manifest. Pattern + six base extensions: **`afw-extensions`**. |
+| **Command** (`afw_command`) | Not a DSO: create + `afw_command_generated_register`, optional `-e`/`-f`. See **`afw-command`**. |
+| **FCGI host** (`afw_server_fcgi`) | Not a DSO: create/configure → `afw_server_run`. See **`afw-server-fcgi`**. |
+
+**Invariant:** once registered, a key is looked up the same way regardless of who provided it. Extension adapters/content types/functions are first-class next to core’s.
+
+## Conf vs type vs instance
+
+- **`conf_type`** — dispatcher for a conf object’s `"type"` field (`adapter`, `application`, `extension`, `log`, `requestHandler`, …). Create fn receives a ceded multithreaded pool.
+- **`*_type` registries** — factories (e.g. `adapter_type=ldap`).
+- **`*_id` / instance registries** — live objects from conf or code (e.g. `adapter_id=…`).
+
+Configure APIs require the **base xctx**.
+
+## Manifest (extensions) — lazy registration
+
+Two approaches (mutually exclusive per srcdir):
+
+1. **Preferred:** `generate/manifest/manifest.json` + `generate/manifest/<registry_type_id>/<key>.c` → generator fills `registers` and `<prefix>_<type>_<key>_register()`.
+2. **Hand:** `generate/objects/_AdaptiveManifest_/<id>.json` with explicit `registers` (only **afw_yaml** among base extensions).
+
+The generator:
+- Adds calls to the `<prefix>..._register()` functions inside `<prefix>generated_register()`.
+- Declares the prototypes in the generated header.
+- For manifest/ style, copies the hand-written register stub `.c` files into `generated/`.
+
+On registry miss, env scans `/afw/_AdaptiveManifest_/*`; if `registers` contains `<type>/<key>`, loads that DSO then retries.
+
+Examples: `src/afw_ldap/generate/manifest/adapter_type/ldap.c`; `src/afw_yaml/generate/objects/_AdaptiveManifest_/afw_yaml.json`. Docs: `src/afw_dev/_resources/doc/generate_manifest.txt`. Full map: **`afw-extensions`**.
+
+## Core bootstrap order (`afw_environment_register_core.c`)
+
+`afw_environment_internal_register_core` — **order matters**. Agents must not reorder past these invariants:
+
+1. **`afw_generated_register`** first — data types, **all functions**, object maps, const objects.
+2. Early flags → `afw_value_register_core_value_infs` → runtime value accessors.
+3. **`afw_function_internal_prepare_environment`** — caches operator `function_definition*` on `env->function_environment`. **Requires step 1** (expression/script compile lowers operators to these).
+4. Conf types: `adapter`, `application`, `extension`, `log`, `requestHandler` (before hosts call configure).
+5. Adapter types: runtime, afw, file, model; request handler type `adapter`; authorization; request-handler singleton head.
+6. Content types: JSON, `application/afw`; then `afw_os_environment_initialize`.
+
+Compile/value do not register here directly; they **consume** functions/types from step 1–3. New core adapter/content/conf types belong in this file (or an extension manifest), not ad hoc globals. Never hand-edit `generated/afw_generated.c`.
+
+## APIs to prefer
+
+- Typed: `afw_environment_register_*` / `afw_environment_get_*` (adapter_type, function, data_type, content_type, …).
+- Low-level: `afw_environment_registry_register` / `registry_get` by type number.
+- Content types: `afw_content_type_register` (id + media types).
+- New extension capability: manifest `<type>/<key>.c` + keep `registers` in sync + `./afwdev build --cdev -j`.
+
+## Key files
+
+| Path | Role |
+|------|------|
+| `environment/afw_environment.h` | Public API, registry map, extension macro |
+| `environment/afw_environment.c` | create, registry, load_extension |
+| `environment/afw_environment_register_core.c` | Core bootstrap after generated register |
+| `environment/afw_environment_configuration.c` | Conf dispatch |
+| `environment/afw_environment_registry_object.c` | `/afw/_AdaptiveEnvironmentRegistry_/current` |
+| `generated/afw_generated.c` | Core metadata registration (do not hand-edit) |
+
+Related: `afw-core-services`, `afw-core-layout`, `afw-generate-metadata`, `afw-headers`.

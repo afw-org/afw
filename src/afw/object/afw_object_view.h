@@ -12,11 +12,7 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_object_view Object view
- * @ingroup afw_c_api_public
- *
- * Adaptive Framework object view.
- *
+ * @addtogroup afw_object_view
  * @{
  */
 
@@ -47,6 +43,6 @@ afw_object_view_create(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_OBJECT_VIEW_H__ */

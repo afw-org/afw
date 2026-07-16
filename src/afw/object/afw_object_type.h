@@ -12,10 +12,7 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_object_type Object type
- * @ingroup afw_c_api_public
- *
- * Provide afw_object interface common support.
+ * @addtogroup afw_object_type
  * @{
  */
 
@@ -77,7 +74,7 @@ struct afw_object_type_property_type_s {
 /**
  * @brief Create an object type.
  * @param adapter
- * @param object_type_object.
+ * @param object_type_object
  * @param p for result.
  * @param xctx of caller.
  * @return object type.
@@ -92,7 +89,7 @@ afw_object_type_internal_create(
 
 /**
  * @brief Get a object type property.
- * @param object_type.
+ * @param object_type
  * @param property_name is the object type property name.
  * @param xctx of caller.
  * @return value of object type property.
@@ -105,7 +102,7 @@ afw_object_type_internal_create(
 
 /**
  * @brief Get a meta property as utf8.
- * @param object_type.
+ * @param object_type
  * @param property_name is the object type property name.
  * @param xctx of caller.
  * @return utf8 or NULL if not found.
@@ -118,7 +115,7 @@ afw_object_type_internal_create(
 
 /**
  * @brief Get property type object for property
- * @param object_type.
+ * @param object_type
  * @param property_name to get property type for.
  * @param xctx of caller.
  * @return property type or NULL if not found.
@@ -137,7 +134,7 @@ afw_object_type_property_type_get(
 /**
  * @brief Get property type object for an object type's own property 
  *        or embedded property.
- * @param object_type.
+ * @param object_type
  * @param property_name of property type to get. Can be dotted to access
  *       embedded property type objects.
  * @param xctx of caller.
@@ -156,7 +153,7 @@ afw_object_type_property_type_get_extended(
 
 /**
  * @brief Get next property type for object type.
- * @param object_type.
+ * @param object_type
  * @param iterator pointer. Set to NULL before first call.
  * @param property_name is place to return pointer to property name.
  * @param xctx of caller.
@@ -172,7 +169,7 @@ afw_object_type_property_type_get_next(
 
 /**
  * @brief Normalize a value based on property type.
- * @param pt.
+ * @param pt
  * @param value to normalize.
  * @param p to use.
  * @param xctx of caller.
@@ -188,7 +185,7 @@ afw_object_type_property_type_normalize(
 
 /**
  * @brief Normalize a value based an object type and property name.
- * @param object_type.
+ * @param object_type
  * @param property_name to get property type for.
  * @param value to normalize.
  * @param p to use.
@@ -206,6 +203,6 @@ afw_object_type_property_normalize(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_OBJECT_TYPE_H */

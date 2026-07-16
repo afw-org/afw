@@ -12,11 +12,7 @@
 #include "afw_common.h"
 
 /**
- * @defgroup afw_array_template_internal (deprecated) Array template
- * @ingroup afw_c_api_internal
- * 
- * (deprecated) Array Template
- * 
+ * @addtogroup afw_array_template_internal
  * @{
  */
 
@@ -190,6 +186,6 @@ AFW_ARRAY_TEMPLATE(const_afw_char_ptr_array,
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_ARRAY_TEMPLATE_H__ */

@@ -21,10 +21,7 @@
 #include "afw_adapter_retrieve.h"
 
 /**
- * @defgroup afw_adapter Adapter
- * @ingroup afw_c_api_public
- *
- * Provide afw_adapter interface common support.
+ * @addtogroup afw_adapter
  * @{
  */
 
@@ -32,7 +29,7 @@
  * @file afw_adapter.h
  * @brief Header for interface afw_adapter* helpers.
  *
- * These headers are included and are part of the adapter api:
+ * See @ref afw_adapter. These sub headers are included:
  *
  *  afw_adapter_add.h
  *  afw_adapter_delete.h
@@ -41,7 +38,8 @@
  *  afw_adapter_modify.h
  *  afw_adapter_replace.h
  *  afw_adapter_retrieve.h
- *  afw_adapter_update.h
+ *
+ * Key: adapters provide sessions; use afw_adapter_session_* for CRUD.
  */
 
 AFW_BEGIN_DECLARES
@@ -85,7 +83,7 @@ struct afw_adapter_id_anchor_s {
  * @param adapter for which the request is being made.
  * @param p used for result.
  * @param xctx of caller.
- * @return _AdaptiveAuthorizationResult_ object.
+ * @return void.
  *
  * This is called internally by afw_adapter_* functions, so it is not
  * usually necessary to call this externally.
@@ -166,9 +164,8 @@ afw_adapter_query_criteria_parse_url_encoded_rql_string(
  * @brief Release an adapter accessed by afw_adapter_get_reference().
  * @param adapter to release.
  * @param xctx of caller.
- * @return adapter.
  *
- * Get adapter.  Start it if necessary and possible.
+ * Releases a reference obtained via afw_adapter_get_reference() or similar.
  */
 AFW_DECLARE(void)
 afw_adapter_release(const afw_adapter_t *adapter, afw_xctx_t *xctx);
@@ -235,7 +232,6 @@ afw_adapter_session_get_cached(
  * @brief Release an adapter session created by afw_adapter_session_create().
  * @param session to release.
  * @param xctx of caller.
- * @return Adapter session.
  *
  * Any uncommitted changes are lost.
  *
@@ -248,6 +244,6 @@ afw_adapter_session_release(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_ADAPTER_H__ */

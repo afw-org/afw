@@ -5,7 +5,8 @@
 # @ingroup afwdev_build
 # @brief This file contains the main entry point for the "cmake" build.
 # @details The "cmake" build builds all C-related source code into their 
-#          appropriate binary libraries and executables.
+#          appropriate binary libraries and executables. Order is configure,
+#          build, then optional cpack, analyze-build, and install.
 #
 
 import subprocess
@@ -48,7 +49,7 @@ def build(options):
 
     # make
     _make_command = ['cmake', '--build', options['build_directory_rpath_cmake']]
-    if msg.is_verbose:
+    if msg.is_verbose_mode():
         _make_command.extend(['--verbose'])
     if options.get('build_make_jobs') is None:
         if options['afwdev_settings'].get('make_jobs_argument'):
@@ -63,12 +64,12 @@ def build(options):
         cwd=options['afw_package_dir_path'],
         stdout=stdout_capture)
     if rc.returncode != 0:
-        msg.error_exit("CMake configure failed " + str(rc))
+        msg.error_exit("CMake build failed " + str(rc))
 
     # cpack
     if options.get('build_package', False):
         _package_command = ['cpack']
-        if msg.is_verbose:
+        if msg.is_verbose_mode():
             _package_command.extend(['--verbose'])        
         msg.highlighted_info('Running ' + str(" ".join(_package_command)))
         rc = subprocess.run(_package_command,
@@ -79,7 +80,7 @@ def build(options):
         
 
     # if --scan was specified, run analyze-build
-    if options.get('build_scan', True):
+    if options.get('build_scan') is True:
         # on Ubuntu, the analyze-build symlink is broken, so
         # we need to check if analyze-build-14 exists first
         _analyze_command = ['analyze-build']
@@ -110,7 +111,7 @@ def build(options):
         if options.get('build_sudo', False):
             _install_command = ['sudo'] + _install_command
 
-        if msg.is_verbose:
+        if msg.is_verbose_mode():
             _install_command.extend(['--verbose'])
 
         msg.highlighted_info('Running ' + str(" ".join(_install_command)))

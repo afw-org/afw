@@ -667,7 +667,7 @@ impl_make_property_type_and_handler_hash_tables(
                 }
 
                 /* If you can read it, you can query it. */
-                afw_object_set_property_as_boolean(
+                afw_object_set_property(
                     attribute_type->property_type_object,
                     afw_s_allowQuery, afw_boolean_v_true, xctx);
 

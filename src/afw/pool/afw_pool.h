@@ -12,17 +12,21 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_pool Pool
- * @ingroup afw_c_api_public
- *
- * Pool support
- *
+ * @addtogroup afw_pool
  * @{
  */
 
 /**
  * @file afw_pool.h
  * @brief Adaptive Framework memory pool support header.
+ *
+ * See the @ref afw_pool group (defined in afw_doxygen.h) for the mental model.
+ *
+ * Key invariants:
+ * - Allocations are from p or parent; subpools track for release.
+ * - Thread specific pools must only be used from their thread.
+ * - Use afw_pool_calloc_type for typed zeroed allocs.
+ * - Cleanup functions are called on release.
  */
 
 AFW_BEGIN_DECLARES
@@ -38,13 +42,13 @@ struct afw_pool_cleanup_s {
     /** @brief Next cleanup function. */
     afw_pool_cleanup_t *next_cleanup;
 
-    /* @brief Cleanup function. */
+    /** @brief Cleanup function. */
     afw_pool_cleanup_function_p_t cleanup;
 
-    /* @brief Parameter data passed to function. */
+    /** @brief Parameter data passed to function. */
     void *data;
 
-    /* @brief Parameter data2 passed to function. */
+    /** @brief Parameter data2 passed to function. */
     void *data2;
 };
 
@@ -172,6 +176,6 @@ afw_pool_free_memory(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_POOL_H__ */

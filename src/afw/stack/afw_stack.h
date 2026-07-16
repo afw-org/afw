@@ -12,11 +12,7 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_stack Stack
- * @ingroup afw_c_api_public
- *
- * Adaptive Framework Stack.
- * 
+ * @addtogroup afw_stack
  * @{
  */
 
@@ -148,7 +144,7 @@ afw_stack_extend_impl(
 
 /**
  * @brief Determine is a stack is empty.
- * @param instance.
+ * @param instance
  *
  * stack->top will point to uninitialize storage.  If needed
  * the stack's extend will be called, so stack first and end
@@ -160,7 +156,7 @@ afw_stack_extend_impl(
 
 /**
  * @brief Decrement stack->top to location of previous entry.
- * @param instance.
+ * @param instance
  * @param xctx of caller.
  *
  * An error will be thrown on underflow.
@@ -174,7 +170,7 @@ afw_stack_extend_impl(
   
 /**
  * @brief Number of entries in stack.
- * @param instance.
+ * @param instance
  * @param xctx of caller.
  * @return number of entries.
  */
@@ -234,7 +230,7 @@ afw_stack_extend_impl(
 
 /**
  * @brief Increment stack->top to location of next entry.
- * @param instance.
+ * @param instance
  *
  * stack->top will point to uninitialize storage.  If needed
  * the stack's extend will be called, so stack first and end
@@ -266,6 +262,6 @@ afw_stack_internal_set_evaluation_stack(
     
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_STACK_H__ */

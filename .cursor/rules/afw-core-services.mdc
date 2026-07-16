@@ -1,0 +1,45 @@
+---
+description: libafw non-script services — environment registries, adapters, objects, request, auth, model
+globs: src/afw/environment/**,src/afw/adapter/**,src/afw/object/**,src/afw/model/**,src/afw/request/**,src/afw/authorization/**,src/afw/runtime/**,src/afw/service/**,src/afw/action/**,src/afw/content_type/**,src/afw/application/**
+alwaysApply: false
+---
+
+# Core services (beyond script eval)
+
+libafw is not only a script engine. Hosts, adapters, and policies plug in through **interfaces** and the **environment registries**. For the registration model (core vs extension vs command, conf, manifests), see **`afw-environment`** — that is how most of the framework ties together. Interface contracts: generated `afw_interface.h` (`generate/interfaces/afw_interface.xml`).
+
+## Environment (summary)
+
+- `AFW_ENVIRONMENT_CREATE` → core `afw_generated_register` + `afw_environment_register_core.c` populate the same registries extensions use later.
+- Lookups: `afw_environment_get_*`. Extension DSOs: `AFW_ENVIRONMENT_DEFINE_EXTENSION_IMPL` + `load_extension` / conf / manifest lazy load.
+- After register, extension capabilities are equal citizens of the environment.
+
+## Adapters and objects
+
+- **Adapter** = pluggable object store/API: session + optional transaction; ops split across `adapter/afw_adapter_{add,get,modify,delete,replace,retrieve,journal}.h`.
+- Factories register as `adapter_type`; instances as `adapter_id`. Impl helpers in `afw_adapter_impl*`.
+- **Core built-in adapter types** (registered in `afw_environment_register_core.c`): e.g. `afw`, `file`, `model`, `runtime`. **Extension adapter types** (ldap, lmdb, vfs, …) use the same interfaces and register the same way — see `afw-extensions`.
+- **Objects** (`object/`): `afw_object_t` + meta/path/type/view. Prefer interface methods and existing helpers (`afw_object_create*`, property meta) over ad-hoc structs.
+- **Model** (`model/`): maps between adapter/requestor shapes; factory `afw_adapter_factory_model`.
+- **Runtime** (`runtime/`): read-only views of environment/metadata objects (`afw_runtime.h`, value accessors).
+- **Query** (`query_criteria/`): filters for retrieve.
+
+## Request, content type, action
+
+- **Request** (`request/`): handler factory/director pipeline; production host `afwfcgi` (`afw-server-fcgi`), CLI embed `afw --local` (`afw-command`).
+- **Content type** (`content_type/`): encode/decode adaptive values. Core registers JSON and `application/afw`; extensions add others (**ubjson**, **yaml**) via `afw_content_type_register`.
+- **Action** (`action/`): `afw_action_perform()` runs `_AdaptiveAction_` / function-call batches.
+
+## Authorization and services
+
+- **Authorization** (`authorization/`): handler factory/impl; action-id constants; script handler type for policy-as-script.
+- **Service** (`service/`): long-running start/stop lifecycle (`afw_service_start_*`), registered service types.
+
+## Impl pattern
+
+1. Prefer extending via **interfaces** (XML → generate → `*_impl_declares.h` in hand `.c`).
+2. Copy structure from `generated/interface_closet/` skeletons; do not edit closets as source of truth.
+3. **Register** factories/instances on the environment (`afw-environment`) so script and request paths resolve them by id/type — same APIs whether code lives in core or an extension.
+4. Allocate through pools/`xctx`; return adaptive objects/values, not raw malloc'd graphs.
+
+Related: `afw-environment`, `afw-core-layout`, `afw-headers`, `afw-c-runtime`, `afw-generate-metadata`.

@@ -120,6 +120,6 @@ afw_adapter_get_objects_by_paths(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_ADAPTER_GET_H__ */

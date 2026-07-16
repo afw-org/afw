@@ -12,16 +12,15 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_action Action perform
- * @ingroup afw_c_api_public
- *
- * Provides action perform.
+ * @addtogroup afw_action
  * @{
  */
 
 /**
  * @file afw_action.h
  * @brief Functions for working with _AdaptiveAction_ objects.
+ *
+ * See @ref afw_action.
  */
 
 AFW_BEGIN_DECLARES
@@ -54,6 +53,6 @@ afw_action_perform(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_ACTION_H__ */

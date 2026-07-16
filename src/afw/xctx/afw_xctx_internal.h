@@ -13,11 +13,7 @@
 #include "afw_environment_internal.h"
 
 /**
- * @defgroup afw_xctx_internal Execution Context (xctx)
- * @ingroup afw_c_api_internal
- *
- * Adaptive Framework Execution Context (xctx) internal.
- *
+ * @addtogroup afw_xctx_internal
  * @{
  */
 
@@ -68,7 +64,7 @@ afw_xctx_internal_create_finishup(afw_xctx_t *xctx);
 /**
  * @internal
  * @brief Internal function used by afw_thread_create().
- * @param thread.
+ * @param thread
  * @param xctx of caller.
  */
 AFW_DECLARE(afw_xctx_t *)
@@ -78,6 +74,6 @@ afw_xctx_internal_create_thread_xctx(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_XCTX_INTERNAL_H__ */

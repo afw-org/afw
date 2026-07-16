@@ -12,11 +12,7 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_file File Adapter
- * @ingroup afw_c_api_public
- *
- * Adaptive Framework adapter for storing objects in file system.
- * 
+ * @addtogroup afw_file
  * @{
  */
 
@@ -92,8 +88,9 @@ afw_file_to_memory(
 /**
  * @brief Write a file from a memory.
  * @param file_path file path
+ * @param from_memory memory to write.
+ * @param mode file open mode.
  * @param xctx of caller.
- * @return value
  */
 AFW_DECLARE(void)
 afw_file_from_memory(
@@ -116,6 +113,6 @@ afw_file_delete(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_FILE_H__ */

@@ -12,11 +12,7 @@
 #include "afw_interface.h"
 
 /**
- * @defgroup afw_object_options Object processing options
- * @ingroup afw_c_api_public
- *
- * Adaptive Framework object processing options.
- *
+ * @addtogroup afw_object_options
  * @{
  */
 
@@ -373,7 +369,7 @@ afw_object_options_set_from_object(
 /**
  * @brief Create a options.
  * @param initial_options or NULL.
- * @param options.
+ * @param options
  * @param p to use for result.
  * @param xctx of caller.
  * @return Normalized copy of options.
@@ -391,6 +387,6 @@ afw_object_options_create(
 
 AFW_END_DECLARES
 
-/** @} */
+/** @} */  // end of @addtogroup @addtogroup
 
 #endif /* __AFW_OBJECT_OPTIONS_H__ */

@@ -1,0 +1,35 @@
+---
+description: afwdev Python CLI conventions under src/afw_dev (_afwdev generate/build/test/validate)
+globs: src/afw_dev/**/*.py,**/afwdev.py
+alwaysApply: false
+---
+
+# afwdev (Python)
+
+## Layout
+- Entry shim: `src/afw_dev/afwdev.py` (zipapp `afwdev:main`; also `./afwdev` from package root). Re-exports `main` and `afwdev_info`.
+- CLI: `_afwdev/cli/` — `info.py` (`_info_*` metadata), `parser.py`, `registry.py` (explicit `SUBCOMMAND_HANDLERS`), `settings.py`, `handlers/`.
+- Scaffold: `_afwdev/scaffold/` — shared make-*/add-* helpers and handlers.
+- Other: `_afwdev/{generate,build,test,validate,common}/`.
+- Options keys: see `_afwdev/cli/options.py`. Prefer snake_case `optionName` in `_info_*`; register new subcommands in both `info.py` and `registry.py`.
+
+## Generate pipeline
+- Orchestration: `_afwdev/generate/generate.py` — wipes `src/<srcdir>/generated/` then runs bindings, interfaces, strings, cmake fragments, etc.
+- Generators must write only under `generated/` (or documented outputs). Never instruct agents to patch generated C/headers by hand.
+- Deeper generator guidance: `.cursor/rules/afw-afwdev-generate.mdc` (applies when editing `_afwdev/generate/`).
+
+## Conventions
+- Follow surrounding Python style in `_afwdev` (existing modules are the style guide).
+- Use `afw-package.json` / `package` helpers in `_afwdev.common` for srcdir discovery; respect `--srcdir-pattern`.
+- Prefer extending an existing generator module over duplicating logic.
+- Optional per-srcdir hook: `generate/additional_generate/additional_generate.py`.
+- Doxygen (`@file` / `@brief` / `@details` / …) is used for afwdev docs. Keep it; do not add changelog or attribution comments.
+
+## Related commands agents run
+```bash
+# Use ./afwdev when the build installs/refreshes afwdev itself
+./afwdev build --cdev -j
+afwdev test -j
+afwdev validate --pattern '...'
+./afwdev build --all --install -j   # full repo including JS + docs
+```

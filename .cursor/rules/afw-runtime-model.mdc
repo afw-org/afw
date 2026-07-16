@@ -1,0 +1,38 @@
+---
+description: AFW runtime mental model — immutable values, pools/scopes, compile/eval, design philosophy
+alwaysApply: true
+---
+
+# AFW runtime model
+
+Permanent mental model for `libafw` script/value work. Deeper detail: `afw-value-memory`, `afw-script-eval`, `afw-compiler-ebnf`, `@AGENTS.md`.
+
+## Core idea
+- **Metadata-driven C runtime** + Python **afwdev**; interfaces and Adaptive Script share the same **immutable value graph**.
+- Every significant entity is `afw_value_t` (`inf` + payload). Evaluate with `afw_value_evaluate` / `inf->optional_evaluate` (lazy; missing evaluate ⇒ value as-is).
+
+## Value graph (non-dataType nodes)
+Important infs: `compiled_value`, `block`, `call`, `call_built_in_function`, `call_script_function`, `script_function_definition`, `closure_binding`, `list_expression`, `object_expression`, `qualified_variable_reference`, `reference_by_key`, `symbol_reference`, `assignment_target`, `template_definition` (plus data-type values).
+
+- **`compiled_value`**: self-contained unit with its own pool (`full_source`, literals, `top_block`, `root_value`, …). Releasing it destroys that pool unless survivors are referenced/reparented.
+- **Scopes**: `afw_xctx_scope_t` — subpool `p`, `block`, `parent_lexical_scope`, RC, `symbol_values[]`. Activate on stack; resolve by lexical depth + index. Assignment stores into symbols (may wrap escaping lambdas in `closure_binding`).
+
+## Memory (short)
+Hierarchical pools (incl. xctx/scope subpools). Bulk free on pool/scope release; **RC only for escaping values** (e.g. closures hold scope refs). Long-running polish: managed `optional_release` / clone-or-reference on escaping objects/lists/closures/`compiled_value`, and allocate evaluation results in current `scope->p` — see `afw-value-memory`.
+
+## Eval / control flow
+`afw_xctx_t`: scope stack, evaluation stack, qualifier stack, **`statement_flow`** (sequential / break / continue / return / rethrow) — script leave paths are flags, not C exceptions. Built-ins and script functions unify via call nodes; polymorphic built-ins resolve from first arg type at runtime.
+
+## Design philosophy
+Immutability first; pool-centric lifetimes; metadata as single source of truth; curated TypeScript-like surface (lambdas, destructuring, types — not prototypes/loose JS). Prefer small patterned pieces over one-off machinery.
+
+## Process glue
+Capabilities (functions, data types, adapters, content types, …) are **registered into the environment** — core at create (`afw_environment_register_core.c` after `afw_generated_register`), extensions/commands later via the same APIs. See `afw-environment`.
+
+**Compile → value → evaluate:** `afw-compile` / `afw-compiler-ebnf` → graph in `value/` → `afw-script-eval`; built-ins in `afw-function`. Expression compile needs `prepare_environment` after functions are registered.
+
+## Use cases that drive design
+Authorization policies, object mapping, compile-once long-running subscribers (global/parent pool), NL→script tools, embedded.
+
+## Where in the tree
+`src/afw` module map / headers / adapter-env services: `afw-core-layout`, `afw-headers`, `afw-core-services`, `afw-environment`.

@@ -76,6 +76,10 @@ typedef struct afw_value_anyURI_s
 typedef struct afw_value_anyURI_managed_s
     afw_value_anyURI_managed_t;
 
+/** @brief Typedef for data type anyURI managed slice value. */
+typedef struct afw_value_anyURI_managed_slice_s
+    afw_value_anyURI_managed_slice_t;
+
 /** @} */
 
 /**
@@ -123,6 +127,10 @@ typedef struct afw_value_base64Binary_s
 /** @brief Typedef for data type base64Binary managed value. */
 typedef struct afw_value_base64Binary_managed_s
     afw_value_base64Binary_managed_t;
+
+/** @brief Typedef for data type base64Binary managed slice value. */
+typedef struct afw_value_base64Binary_managed_slice_s
+    afw_value_base64Binary_managed_slice_t;
 
 /** @} */
 
@@ -244,6 +252,10 @@ typedef struct afw_value_dnsName_s
 typedef struct afw_value_dnsName_managed_s
     afw_value_dnsName_managed_t;
 
+/** @brief Typedef for data type dnsName managed slice value. */
+typedef struct afw_value_dnsName_managed_slice_s
+    afw_value_dnsName_managed_slice_t;
+
 /** @} */
 
 /**
@@ -316,6 +328,10 @@ typedef struct afw_value_hexBinary_s
 typedef struct afw_value_hexBinary_managed_s
     afw_value_hexBinary_managed_t;
 
+/** @brief Typedef for data type hexBinary managed slice value. */
+typedef struct afw_value_hexBinary_managed_slice_s
+    afw_value_hexBinary_managed_slice_t;
+
 /** @} */
 
 /**
@@ -339,6 +355,10 @@ typedef struct afw_value_ia5String_s
 /** @brief Typedef for data type ia5String managed value. */
 typedef struct afw_value_ia5String_managed_s
     afw_value_ia5String_managed_t;
+
+/** @brief Typedef for data type ia5String managed slice value. */
+typedef struct afw_value_ia5String_managed_slice_s
+    afw_value_ia5String_managed_slice_t;
 
 /** @} */
 
@@ -388,6 +408,10 @@ typedef struct afw_value_ipAddress_s
 typedef struct afw_value_ipAddress_managed_s
     afw_value_ipAddress_managed_t;
 
+/** @brief Typedef for data type ipAddress managed slice value. */
+typedef struct afw_value_ipAddress_managed_slice_s
+    afw_value_ipAddress_managed_slice_t;
+
 /** @} */
 
 /**
@@ -411,6 +435,10 @@ typedef struct afw_value_json_s
 /** @brief Typedef for data type json managed value. */
 typedef struct afw_value_json_managed_s
     afw_value_json_managed_t;
+
+/** @brief Typedef for data type json managed slice value. */
+typedef struct afw_value_json_managed_slice_s
+    afw_value_json_managed_slice_t;
 
 /** @} */
 
@@ -484,6 +512,10 @@ typedef struct afw_value_objectId_s
 typedef struct afw_value_objectId_managed_s
     afw_value_objectId_managed_t;
 
+/** @brief Typedef for data type objectId managed slice value. */
+typedef struct afw_value_objectId_managed_slice_s
+    afw_value_objectId_managed_slice_t;
+
 /** @} */
 
 /**
@@ -507,6 +539,10 @@ typedef struct afw_value_objectPath_s
 /** @brief Typedef for data type objectPath managed value. */
 typedef struct afw_value_objectPath_managed_s
     afw_value_objectPath_managed_t;
+
+/** @brief Typedef for data type objectPath managed slice value. */
+typedef struct afw_value_objectPath_managed_slice_s
+    afw_value_objectPath_managed_slice_t;
 
 /** @} */
 
@@ -532,6 +568,10 @@ typedef struct afw_value_password_s
 typedef struct afw_value_password_managed_s
     afw_value_password_managed_t;
 
+/** @brief Typedef for data type password managed slice value. */
+typedef struct afw_value_password_managed_slice_s
+    afw_value_password_managed_slice_t;
+
 /** @} */
 
 /**
@@ -555,6 +595,10 @@ typedef struct afw_value_regexp_s
 /** @brief Typedef for data type regexp managed value. */
 typedef struct afw_value_regexp_managed_s
     afw_value_regexp_managed_t;
+
+/** @brief Typedef for data type regexp managed slice value. */
+typedef struct afw_value_regexp_managed_slice_s
+    afw_value_regexp_managed_slice_t;
 
 /** @} */
 
@@ -580,6 +624,10 @@ typedef struct afw_value_relaxed_json_s
 typedef struct afw_value_relaxed_json_managed_s
     afw_value_relaxed_json_managed_t;
 
+/** @brief Typedef for data type relaxed_json managed slice value. */
+typedef struct afw_value_relaxed_json_managed_slice_s
+    afw_value_relaxed_json_managed_slice_t;
+
 /** @} */
 
 /**
@@ -603,6 +651,10 @@ typedef struct afw_value_rfc822Name_s
 /** @brief Typedef for data type rfc822Name managed value. */
 typedef struct afw_value_rfc822Name_managed_s
     afw_value_rfc822Name_managed_t;
+
+/** @brief Typedef for data type rfc822Name managed slice value. */
+typedef struct afw_value_rfc822Name_managed_slice_s
+    afw_value_rfc822Name_managed_slice_t;
 
 /** @} */
 
@@ -628,6 +680,10 @@ typedef struct afw_value_script_s
 typedef struct afw_value_script_managed_s
     afw_value_script_managed_t;
 
+/** @brief Typedef for data type script managed slice value. */
+typedef struct afw_value_script_managed_slice_s
+    afw_value_script_managed_slice_t;
+
 /** @} */
 
 /**
@@ -652,6 +708,10 @@ typedef struct afw_value_string_s
 typedef struct afw_value_string_managed_s
     afw_value_string_managed_t;
 
+/** @brief Typedef for data type string managed slice value. */
+typedef struct afw_value_string_managed_slice_s
+    afw_value_string_managed_slice_t;
+
 /** @} */
 
 /**
@@ -675,6 +735,10 @@ typedef struct afw_value_template_s
 /** @brief Typedef for data type template managed value. */
 typedef struct afw_value_template_managed_s
     afw_value_template_managed_t;
+
+/** @brief Typedef for data type template managed slice value. */
+typedef struct afw_value_template_managed_slice_s
+    afw_value_template_managed_slice_t;
 
 /** @} */
 
@@ -820,6 +884,10 @@ typedef struct afw_value_x500Name_s
 typedef struct afw_value_x500Name_managed_s
     afw_value_x500Name_managed_t;
 
+/** @brief Typedef for data type x500Name managed slice value. */
+typedef struct afw_value_x500Name_managed_slice_s
+    afw_value_x500Name_managed_slice_t;
+
 /** @} */
 
 /**
@@ -843,6 +911,10 @@ typedef struct afw_value_xpathExpression_s
 /** @brief Typedef for data type xpathExpression managed value. */
 typedef struct afw_value_xpathExpression_managed_s
     afw_value_xpathExpression_managed_t;
+
+/** @brief Typedef for data type xpathExpression managed slice value. */
+typedef struct afw_value_xpathExpression_managed_slice_s
+    afw_value_xpathExpression_managed_slice_t;
 
 /** @} */
 
