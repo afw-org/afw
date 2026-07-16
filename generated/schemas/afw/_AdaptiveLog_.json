@@ -1,34 +1,69 @@
 {
+    "$comment": "Generated from adaptive object type _AdaptiveLog_. Primary use: editor completion/validation for generate/objects JSON. Do not hand-edit.",
     "$defs": {
         "_AdaptiveLog_": {
-            "allOf": [
-                {
-                    "$ref": "#/$defs/_AdaptiveLog_.propertyTypes"
-                }
-            ],
+            "additionalProperties": false,
             "description": "Runtime log information.",
-            "type": "object",
-            "unevaluatedProperties": false
-        },
-        "_AdaptiveLog_.propertyTypes": {
+            "markdownDescription": "Runtime log information.",
             "properties": {
+                "_meta_": {
+                    "additionalProperties": true,
+                    "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+                    "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+                    "title": "Meta",
+                    "type": "object"
+                },
                 "logId": {
                     "description": "Log id.",
+                    "markdownDescription": "**Log Id**\n\nLog id.",
                     "title": "Log Id",
                     "type": "string"
                 },
                 "properties": {
                     "description": "This object contains some of properties from the associated conf object plus other runtime properties.",
+                    "markdownDescription": "**Properties**\n\nThis object contains some of properties from the associated conf object plus other runtime properties.",
                     "title": "Properties",
                     "type": "object"
                 },
                 "serviceId": {
                     "description": "The id of the associated service. The URI of the service is '/afw/_AdaptiveService_/' followed by this id.",
+                    "markdownDescription": "**Service Id**\n\nThe id of the associated service. The URI of the service is '/afw/_AdaptiveService_/' followed by this id.",
                     "title": "Service Id",
                     "type": "string"
                 },
                 "sourceLocation": {
                     "description": "This is a source location to help determine how this log was defined.",
+                    "markdownDescription": "**Source Location**\n\nThis is a source location to help determine how this log was defined.",
+                    "title": "Source Location",
+                    "type": "string"
+                }
+            },
+            "title": "_AdaptiveLog_",
+            "type": "object"
+        },
+        "_AdaptiveLog_.propertyTypes": {
+            "properties": {
+                "logId": {
+                    "description": "Log id.",
+                    "markdownDescription": "**Log Id**\n\nLog id.",
+                    "title": "Log Id",
+                    "type": "string"
+                },
+                "properties": {
+                    "description": "This object contains some of properties from the associated conf object plus other runtime properties.",
+                    "markdownDescription": "**Properties**\n\nThis object contains some of properties from the associated conf object plus other runtime properties.",
+                    "title": "Properties",
+                    "type": "object"
+                },
+                "serviceId": {
+                    "description": "The id of the associated service. The URI of the service is '/afw/_AdaptiveService_/' followed by this id.",
+                    "markdownDescription": "**Service Id**\n\nThe id of the associated service. The URI of the service is '/afw/_AdaptiveService_/' followed by this id.",
+                    "title": "Service Id",
+                    "type": "string"
+                },
+                "sourceLocation": {
+                    "description": "This is a source location to help determine how this log was defined.",
+                    "markdownDescription": "**Source Location**\n\nThis is a source location to help determine how this log was defined.",
                     "title": "Source Location",
                     "type": "string"
                 }
@@ -37,9 +72,42 @@
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "allOf": [
-        {
-            "$ref": "#/$defs/_AdaptiveLog_"
+    "additionalProperties": false,
+    "description": "Runtime log information.",
+    "markdownDescription": "Runtime log information.",
+    "properties": {
+        "_meta_": {
+            "additionalProperties": true,
+            "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+            "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+            "title": "Meta",
+            "type": "object"
+        },
+        "logId": {
+            "description": "Log id.",
+            "markdownDescription": "**Log Id**\n\nLog id.",
+            "title": "Log Id",
+            "type": "string"
+        },
+        "properties": {
+            "description": "This object contains some of properties from the associated conf object plus other runtime properties.",
+            "markdownDescription": "**Properties**\n\nThis object contains some of properties from the associated conf object plus other runtime properties.",
+            "title": "Properties",
+            "type": "object"
+        },
+        "serviceId": {
+            "description": "The id of the associated service. The URI of the service is '/afw/_AdaptiveService_/' followed by this id.",
+            "markdownDescription": "**Service Id**\n\nThe id of the associated service. The URI of the service is '/afw/_AdaptiveService_/' followed by this id.",
+            "title": "Service Id",
+            "type": "string"
+        },
+        "sourceLocation": {
+            "description": "This is a source location to help determine how this log was defined.",
+            "markdownDescription": "**Source Location**\n\nThis is a source location to help determine how this log was defined.",
+            "title": "Source Location",
+            "type": "string"
         }
-    ]
+    },
+    "title": "_AdaptiveLog_",
+    "type": "object"
 }

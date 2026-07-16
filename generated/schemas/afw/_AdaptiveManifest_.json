@@ -1,39 +1,40 @@
 {
+    "$comment": "Generated from adaptive object type _AdaptiveManifest_. Primary use: editor completion/validation for generate/objects JSON. Do not hand-edit.",
     "$defs": {
         "_AdaptiveManifest_": {
-            "allOf": [
-                {
-                    "$ref": "#/$defs/_AdaptiveManifest_.propertyTypes"
-                }
-            ],
+            "additionalProperties": false,
             "description": "Adaptive Framework extension manifest.",
-            "required": [
-                "extensionId",
-                "modulePath"
-            ],
-            "type": "object",
-            "unevaluatedProperties": false
-        },
-        "_AdaptiveManifest_.propertyTypes": {
+            "markdownDescription": "Adaptive Framework extension manifest.",
             "properties": {
+                "_meta_": {
+                    "additionalProperties": true,
+                    "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+                    "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+                    "title": "Meta",
+                    "type": "object"
+                },
                 "brief": {
                     "description": "Brief description for this extension.",
+                    "markdownDescription": "**Brief**\n\nBrief description for this extension.",
                     "title": "Brief",
                     "type": "string"
                 },
                 "description": {
                     "contentMediaType": "text/plain",
                     "description": "Description for this extension in more detail.",
+                    "markdownDescription": "**Description**\n\nDescription for this extension in more detail.",
                     "title": "Description",
                     "type": "string"
                 },
                 "extensionId": {
                     "description": "Extension id.",
+                    "markdownDescription": "**Extension**\n\nExtension id.",
                     "title": "Extension",
                     "type": "string"
                 },
                 "modulePath": {
                     "description": "Module path. A system appropriate suffix will be added ('.so' for Linux and '.dll' for Windows).",
+                    "markdownDescription": "**Module Path**\n\nModule path. A system appropriate suffix will be added ('.so' for Linux and '.dll' for Windows).",
                     "title": "Module Path",
                     "type": "string"
                 },
@@ -41,9 +42,11 @@
                     "description": "Each entry is the path of an afw adapter object supplied by this extension. This extension will be loaded by function afw_runtime_get_object() if needed.",
                     "items": {
                         "description": "Each entry is the path of an afw adapter object supplied by this extension. This extension will be loaded by function afw_runtime_get_object() if needed.",
+                        "markdownDescription": "Each entry is the path of an afw adapter object supplied by this extension. This extension will be loaded by function afw_runtime_get_object() if needed.",
                         "title": "List of object paths provided by this extension",
                         "type": "string"
                     },
+                    "markdownDescription": "**Provides Objects**\n\nEach entry is the path of an afw adapter object supplied by this extension. This extension will be loaded by function afw_runtime_get_object() if needed.",
                     "title": "Provides Objects",
                     "type": "array"
                 },
@@ -51,9 +54,70 @@
                     "description": "Each entry is a string of the form '<registry type>/<registry key>', where <registry type> is a valid registry type id and <registry key> is a registry key that is registered at runtime by the associated command, extension, server, etc. If this manifest is for an extension, the extension will be automatically loaded when afw_environment_registry_get() is called for a <registry type>/<registry key> combo that is not already registered. See afw/afw_environment.h for more information.",
                     "items": {
                         "description": "Each entry is a string of the form '<registry type>/<registry key>', where <registry type> is a valid registry type id and <registry key> is a registry key that is registered at runtime by the associated command, extension, server, etc. If this manifest is for an extension, the extension will be automatically loaded when afw_environment_registry_get() is called for a <registry type>/<registry key> combo that is not already registered. See afw/afw_environment.h for more information.",
+                        "markdownDescription": "Each entry is a string of the form '<registry type>/<registry key>', where <registry type> is a valid registry type id and <registry key> is a registry key that is registered at runtime by the associated command, extension, server, etc. If this manifest is for an extension, the extension will be automatically loaded when afw_environment_registry_get() is called for a <registry type>/<registry key> combo that is not already registered. See afw/afw_environment.h for more information.",
                         "title": "List of entries this extension registers",
                         "type": "string"
                     },
+                    "markdownDescription": "**Registers**\n\nEach entry is a string of the form '<registry type>/<registry key>', where <registry type> is a valid registry type id and <registry key> is a registry key that is registered at runtime by the associated command, extension, server, etc. If this manifest is for an extension, the extension will be automatically loaded when afw_environment_registry_get() is called for a <registry type>/<registry key> combo that is not already registered. See afw/afw_environment.h for more information.",
+                    "title": "Registers",
+                    "type": "array"
+                }
+            },
+            "required": [
+                "extensionId",
+                "modulePath"
+            ],
+            "title": "_AdaptiveManifest_",
+            "type": "object"
+        },
+        "_AdaptiveManifest_.propertyTypes": {
+            "properties": {
+                "brief": {
+                    "description": "Brief description for this extension.",
+                    "markdownDescription": "**Brief**\n\nBrief description for this extension.",
+                    "title": "Brief",
+                    "type": "string"
+                },
+                "description": {
+                    "contentMediaType": "text/plain",
+                    "description": "Description for this extension in more detail.",
+                    "markdownDescription": "**Description**\n\nDescription for this extension in more detail.",
+                    "title": "Description",
+                    "type": "string"
+                },
+                "extensionId": {
+                    "description": "Extension id.",
+                    "markdownDescription": "**Extension**\n\nExtension id.",
+                    "title": "Extension",
+                    "type": "string"
+                },
+                "modulePath": {
+                    "description": "Module path. A system appropriate suffix will be added ('.so' for Linux and '.dll' for Windows).",
+                    "markdownDescription": "**Module Path**\n\nModule path. A system appropriate suffix will be added ('.so' for Linux and '.dll' for Windows).",
+                    "title": "Module Path",
+                    "type": "string"
+                },
+                "providesObjects": {
+                    "description": "Each entry is the path of an afw adapter object supplied by this extension. This extension will be loaded by function afw_runtime_get_object() if needed.",
+                    "items": {
+                        "description": "Each entry is the path of an afw adapter object supplied by this extension. This extension will be loaded by function afw_runtime_get_object() if needed.",
+                        "markdownDescription": "Each entry is the path of an afw adapter object supplied by this extension. This extension will be loaded by function afw_runtime_get_object() if needed.",
+                        "title": "List of object paths provided by this extension",
+                        "type": "string"
+                    },
+                    "markdownDescription": "**Provides Objects**\n\nEach entry is the path of an afw adapter object supplied by this extension. This extension will be loaded by function afw_runtime_get_object() if needed.",
+                    "title": "Provides Objects",
+                    "type": "array"
+                },
+                "registers": {
+                    "description": "Each entry is a string of the form '<registry type>/<registry key>', where <registry type> is a valid registry type id and <registry key> is a registry key that is registered at runtime by the associated command, extension, server, etc. If this manifest is for an extension, the extension will be automatically loaded when afw_environment_registry_get() is called for a <registry type>/<registry key> combo that is not already registered. See afw/afw_environment.h for more information.",
+                    "items": {
+                        "description": "Each entry is a string of the form '<registry type>/<registry key>', where <registry type> is a valid registry type id and <registry key> is a registry key that is registered at runtime by the associated command, extension, server, etc. If this manifest is for an extension, the extension will be automatically loaded when afw_environment_registry_get() is called for a <registry type>/<registry key> combo that is not already registered. See afw/afw_environment.h for more information.",
+                        "markdownDescription": "Each entry is a string of the form '<registry type>/<registry key>', where <registry type> is a valid registry type id and <registry key> is a registry key that is registered at runtime by the associated command, extension, server, etc. If this manifest is for an extension, the extension will be automatically loaded when afw_environment_registry_get() is called for a <registry type>/<registry key> combo that is not already registered. See afw/afw_environment.h for more information.",
+                        "title": "List of entries this extension registers",
+                        "type": "string"
+                    },
+                    "markdownDescription": "**Registers**\n\nEach entry is a string of the form '<registry type>/<registry key>', where <registry type> is a valid registry type id and <registry key> is a registry key that is registered at runtime by the associated command, extension, server, etc. If this manifest is for an extension, the extension will be automatically loaded when afw_environment_registry_get() is called for a <registry type>/<registry key> combo that is not already registered. See afw/afw_environment.h for more information.",
                     "title": "Registers",
                     "type": "array"
                 }
@@ -62,9 +126,71 @@
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "allOf": [
-        {
-            "$ref": "#/$defs/_AdaptiveManifest_"
+    "additionalProperties": false,
+    "description": "Adaptive Framework extension manifest.",
+    "markdownDescription": "Adaptive Framework extension manifest.",
+    "properties": {
+        "_meta_": {
+            "additionalProperties": true,
+            "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+            "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+            "title": "Meta",
+            "type": "object"
+        },
+        "brief": {
+            "description": "Brief description for this extension.",
+            "markdownDescription": "**Brief**\n\nBrief description for this extension.",
+            "title": "Brief",
+            "type": "string"
+        },
+        "description": {
+            "contentMediaType": "text/plain",
+            "description": "Description for this extension in more detail.",
+            "markdownDescription": "**Description**\n\nDescription for this extension in more detail.",
+            "title": "Description",
+            "type": "string"
+        },
+        "extensionId": {
+            "description": "Extension id.",
+            "markdownDescription": "**Extension**\n\nExtension id.",
+            "title": "Extension",
+            "type": "string"
+        },
+        "modulePath": {
+            "description": "Module path. A system appropriate suffix will be added ('.so' for Linux and '.dll' for Windows).",
+            "markdownDescription": "**Module Path**\n\nModule path. A system appropriate suffix will be added ('.so' for Linux and '.dll' for Windows).",
+            "title": "Module Path",
+            "type": "string"
+        },
+        "providesObjects": {
+            "description": "Each entry is the path of an afw adapter object supplied by this extension. This extension will be loaded by function afw_runtime_get_object() if needed.",
+            "items": {
+                "description": "Each entry is the path of an afw adapter object supplied by this extension. This extension will be loaded by function afw_runtime_get_object() if needed.",
+                "markdownDescription": "Each entry is the path of an afw adapter object supplied by this extension. This extension will be loaded by function afw_runtime_get_object() if needed.",
+                "title": "List of object paths provided by this extension",
+                "type": "string"
+            },
+            "markdownDescription": "**Provides Objects**\n\nEach entry is the path of an afw adapter object supplied by this extension. This extension will be loaded by function afw_runtime_get_object() if needed.",
+            "title": "Provides Objects",
+            "type": "array"
+        },
+        "registers": {
+            "description": "Each entry is a string of the form '<registry type>/<registry key>', where <registry type> is a valid registry type id and <registry key> is a registry key that is registered at runtime by the associated command, extension, server, etc. If this manifest is for an extension, the extension will be automatically loaded when afw_environment_registry_get() is called for a <registry type>/<registry key> combo that is not already registered. See afw/afw_environment.h for more information.",
+            "items": {
+                "description": "Each entry is a string of the form '<registry type>/<registry key>', where <registry type> is a valid registry type id and <registry key> is a registry key that is registered at runtime by the associated command, extension, server, etc. If this manifest is for an extension, the extension will be automatically loaded when afw_environment_registry_get() is called for a <registry type>/<registry key> combo that is not already registered. See afw/afw_environment.h for more information.",
+                "markdownDescription": "Each entry is a string of the form '<registry type>/<registry key>', where <registry type> is a valid registry type id and <registry key> is a registry key that is registered at runtime by the associated command, extension, server, etc. If this manifest is for an extension, the extension will be automatically loaded when afw_environment_registry_get() is called for a <registry type>/<registry key> combo that is not already registered. See afw/afw_environment.h for more information.",
+                "title": "List of entries this extension registers",
+                "type": "string"
+            },
+            "markdownDescription": "**Registers**\n\nEach entry is a string of the form '<registry type>/<registry key>', where <registry type> is a valid registry type id and <registry key> is a registry key that is registered at runtime by the associated command, extension, server, etc. If this manifest is for an extension, the extension will be automatically loaded when afw_environment_registry_get() is called for a <registry type>/<registry key> combo that is not already registered. See afw/afw_environment.h for more information.",
+            "title": "Registers",
+            "type": "array"
         }
-    ]
+    },
+    "required": [
+        "extensionId",
+        "modulePath"
+    ],
+    "title": "_AdaptiveManifest_",
+    "type": "object"
 }

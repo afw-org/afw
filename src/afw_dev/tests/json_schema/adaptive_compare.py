@@ -156,10 +156,12 @@ def _check_open_closed(ot_id, ot_json, schema_doc, tests):
                 ok,
             ))
     else:
-        ok = entity.get('unevaluatedProperties') is False
+        ok = (
+            entity.get('additionalProperties') is False or
+            entity.get('unevaluatedProperties') is False)
         tests.append(make_test(
             'closed-' + ot_id,
-            ot_id + ' no otherProperties → unevaluatedProperties false',
+            ot_id + ' no otherProperties → closed additional/unevaluatedProperties',
             ok,
         ))
 

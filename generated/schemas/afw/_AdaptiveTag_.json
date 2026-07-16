@@ -1,25 +1,28 @@
 {
+    "$comment": "Generated from adaptive object type _AdaptiveTag_. Primary use: editor completion/validation for generate/objects JSON. Do not hand-edit.",
     "$defs": {
         "_AdaptiveTag_": {
-            "allOf": [
-                {
-                    "$ref": "#/$defs/_AdaptiveTag_.propertyTypes"
-                }
-            ],
+            "additionalProperties": false,
             "description": "This defines the purpose of a tag id. Among other places, tags can be specified in object types and property types. All tags that begin with '_Adaptive' are reserved by Adaptive Framework. The requirement that other tags be defined is up to the application.",
-            "type": "object",
-            "unevaluatedProperties": false
-        },
-        "_AdaptiveTag_.propertyTypes": {
+            "markdownDescription": "This defines the purpose of a tag id. Among other places, tags can be specified in object types and property types. All tags that begin with '_Adaptive' are reserved by Adaptive Framework. The requirement that other tags be defined is up to the application.",
             "properties": {
+                "_meta_": {
+                    "additionalProperties": true,
+                    "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+                    "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+                    "title": "Meta",
+                    "type": "object"
+                },
                 "description": {
                     "contentMediaType": "text/plain",
                     "description": "Description of this tag.",
+                    "markdownDescription": "**Description**\n\nDescription of this tag.",
                     "title": "Description",
                     "type": "string"
                 },
                 "tagId": {
                     "description": "The id of this tag.",
+                    "markdownDescription": "**Tag Id**\n\nThe id of this tag.",
                     "title": "Tag Id",
                     "type": "string"
                 },
@@ -27,9 +30,42 @@
                     "description": "Tags that can be used to query for this tag. One possible purpose is to use a tag to define a category of tags.",
                     "items": {
                         "description": "Tags that can be used to query for this tag. One possible purpose is to use a tag to define a category of tags.",
+                        "markdownDescription": "Tags that can be used to query for this tag. One possible purpose is to use a tag to define a category of tags.",
                         "title": "Tags that can be used to query for this tag",
                         "type": "string"
                     },
+                    "markdownDescription": "**Tags**\n\nTags that can be used to query for this tag. One possible purpose is to use a tag to define a category of tags.",
+                    "title": "Tags",
+                    "type": "array"
+                }
+            },
+            "title": "_AdaptiveTag_",
+            "type": "object"
+        },
+        "_AdaptiveTag_.propertyTypes": {
+            "properties": {
+                "description": {
+                    "contentMediaType": "text/plain",
+                    "description": "Description of this tag.",
+                    "markdownDescription": "**Description**\n\nDescription of this tag.",
+                    "title": "Description",
+                    "type": "string"
+                },
+                "tagId": {
+                    "description": "The id of this tag.",
+                    "markdownDescription": "**Tag Id**\n\nThe id of this tag.",
+                    "title": "Tag Id",
+                    "type": "string"
+                },
+                "tags": {
+                    "description": "Tags that can be used to query for this tag. One possible purpose is to use a tag to define a category of tags.",
+                    "items": {
+                        "description": "Tags that can be used to query for this tag. One possible purpose is to use a tag to define a category of tags.",
+                        "markdownDescription": "Tags that can be used to query for this tag. One possible purpose is to use a tag to define a category of tags.",
+                        "title": "Tags that can be used to query for this tag",
+                        "type": "string"
+                    },
+                    "markdownDescription": "**Tags**\n\nTags that can be used to query for this tag. One possible purpose is to use a tag to define a category of tags.",
                     "title": "Tags",
                     "type": "array"
                 }
@@ -38,9 +74,43 @@
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "allOf": [
-        {
-            "$ref": "#/$defs/_AdaptiveTag_"
+    "additionalProperties": false,
+    "description": "This defines the purpose of a tag id. Among other places, tags can be specified in object types and property types. All tags that begin with '_Adaptive' are reserved by Adaptive Framework. The requirement that other tags be defined is up to the application.",
+    "markdownDescription": "This defines the purpose of a tag id. Among other places, tags can be specified in object types and property types. All tags that begin with '_Adaptive' are reserved by Adaptive Framework. The requirement that other tags be defined is up to the application.",
+    "properties": {
+        "_meta_": {
+            "additionalProperties": true,
+            "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+            "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+            "title": "Meta",
+            "type": "object"
+        },
+        "description": {
+            "contentMediaType": "text/plain",
+            "description": "Description of this tag.",
+            "markdownDescription": "**Description**\n\nDescription of this tag.",
+            "title": "Description",
+            "type": "string"
+        },
+        "tagId": {
+            "description": "The id of this tag.",
+            "markdownDescription": "**Tag Id**\n\nThe id of this tag.",
+            "title": "Tag Id",
+            "type": "string"
+        },
+        "tags": {
+            "description": "Tags that can be used to query for this tag. One possible purpose is to use a tag to define a category of tags.",
+            "items": {
+                "description": "Tags that can be used to query for this tag. One possible purpose is to use a tag to define a category of tags.",
+                "markdownDescription": "Tags that can be used to query for this tag. One possible purpose is to use a tag to define a category of tags.",
+                "title": "Tags that can be used to query for this tag",
+                "type": "string"
+            },
+            "markdownDescription": "**Tags**\n\nTags that can be used to query for this tag. One possible purpose is to use a tag to define a category of tags.",
+            "title": "Tags",
+            "type": "array"
         }
-    ]
+    },
+    "title": "_AdaptiveTag_",
+    "type": "object"
 }

@@ -1,19 +1,33 @@
 {
+    "$comment": "Generated from adaptive object type _AdaptiveRuntimeValueAccessor_. Primary use: editor completion/validation for generate/objects JSON. Do not hand-edit.",
     "$defs": {
         "_AdaptiveRuntimeValueAccessor_": {
-            "allOf": [
-                {
-                    "$ref": "#/$defs/_AdaptiveRuntimeValueAccessor_.propertyTypes"
-                }
-            ],
+            "additionalProperties": false,
             "description": "A registry type runtime_value_accessor entry.",
-            "type": "object",
-            "unevaluatedProperties": false
+            "markdownDescription": "A registry type runtime_value_accessor entry.",
+            "properties": {
+                "_meta_": {
+                    "additionalProperties": true,
+                    "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+                    "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+                    "title": "Meta",
+                    "type": "object"
+                },
+                "key": {
+                    "description": "Key of entry.",
+                    "markdownDescription": "**Key**\n\nKey of entry.",
+                    "title": "Key",
+                    "type": "string"
+                }
+            },
+            "title": "_AdaptiveRuntimeValueAccessor_",
+            "type": "object"
         },
         "_AdaptiveRuntimeValueAccessor_.propertyTypes": {
             "properties": {
                 "key": {
                     "description": "Key of entry.",
+                    "markdownDescription": "**Key**\n\nKey of entry.",
                     "title": "Key",
                     "type": "string"
                 }
@@ -22,9 +36,24 @@
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "allOf": [
-        {
-            "$ref": "#/$defs/_AdaptiveRuntimeValueAccessor_"
+    "additionalProperties": false,
+    "description": "A registry type runtime_value_accessor entry.",
+    "markdownDescription": "A registry type runtime_value_accessor entry.",
+    "properties": {
+        "_meta_": {
+            "additionalProperties": true,
+            "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+            "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+            "title": "Meta",
+            "type": "object"
+        },
+        "key": {
+            "description": "Key of entry.",
+            "markdownDescription": "**Key**\n\nKey of entry.",
+            "title": "Key",
+            "type": "string"
         }
-    ]
+    },
+    "title": "_AdaptiveRuntimeValueAccessor_",
+    "type": "object"
 }

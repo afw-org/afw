@@ -12,11 +12,13 @@ from _common import (
     allof_property_types_refs,
     ancestor_ot_ids,
     entity_def,
+    entity_property_names,
     is_clean_ref_form,
     load_json,
     load_ot,
     load_schema,
     make_test,
+    ot_local_property_names,
     package_root,
     property_map,
     skip_if_no_schemas,
@@ -88,13 +90,14 @@ def run():
 
     root = package_root()
 
-    # --- inheritance: adaptive parentPaths vs schema allOf ---
+    # --- inheritance: parentPaths recorded + composite property merge ---
     for ot_id, description in INHERITANCE_CASES:
         try:
             schema_doc = load_schema(ot_id, root)
             entity = entity_def(schema_doc, ot_id)
             expected_ancestors = set(ancestor_ot_ids(ot_id, root))
-            actual_refs = allof_property_types_refs(entity)
+            actual_inherited = allof_property_types_refs(entity)
+            prop_names = entity_property_names(entity)
         except FileNotFoundError as exc:
             tests.append(make_test(
                 'inherit-' + ot_id,
@@ -104,20 +107,34 @@ def run():
             ))
             continue
 
-        # allOf must include self.propertyTypes and every ancestor
-        expected_refs = set(expected_ancestors)
-        expected_refs.add(ot_id)
-        missing = sorted(expected_refs - actual_refs)
-        # actual may only list direct path; ancestor_ot_ids is full chain —
-        # require full chain in schema (generator walks recursively)
-        ok = not missing and ot_id in actual_refs
+        missing_inherited = sorted(expected_ancestors - actual_inherited)
+        ok_chain = not missing_inherited
         tests.append(make_test(
             'inherit-' + ot_id,
-            description,
-            ok,
-            detail=None if ok else (
-                'missing allOf propertyTypes refs: ' + ','.join(missing) +
-                '; have ' + ','.join(sorted(actual_refs))),
+            description + ' (x-afw-inheritedObjectTypes)',
+            ok_chain,
+            detail=None if ok_chain else (
+                'missing inherited OTs: ' + ','.join(missing_inherited) +
+                '; have ' + ','.join(sorted(actual_inherited))),
+        ))
+
+        # Composite entity properties include local + ancestor property names
+        # (child overrides share names but still appear once).
+        expected_props = set()
+        try:
+            for aid in list(expected_ancestors) + [ot_id]:
+                expected_props.update(ot_local_property_names(load_ot(aid, root)))
+        except FileNotFoundError:
+            expected_props = set()
+        # _meta_ is added as optional instance bag on closed composites
+        expected_props.add('_meta_')
+        missing_props = sorted(expected_props - prop_names)
+        tests.append(make_test(
+            'inherit-merged-props-' + ot_id,
+            ot_id + ' entity properties include inherited + local names',
+            not missing_props,
+            detail=None if not missing_props else (
+                'missing props: ' + ','.join(missing_props[:15])),
         ))
 
         # Polymorphic must not require Function's functionResourceId
@@ -128,7 +145,6 @@ def run():
                 'PolymorphicFunction does not require functionResourceId',
                 'functionResourceId' not in req,
             ))
-
     # --- nested object / array-of-object projections ---
     for ot_id, prop_name, target_ot in NESTED_OBJECT_PROPS:
         try:

@@ -6,16 +6,25 @@
 # @brief Generate package-root JSON Schema files from adaptive object types.
 # @details
 # Adaptive object types under src/**/generated/objects/_AdaptiveObjectType_/
-# are the source of truth. This module emits a best-effort JSON Schema
-# (draft 2020-12) projection into generated/schemas/afw/ for editors and
-# `afwdev validate`. It is not a complete model of adaptive meta (runtime,
-# allowQuery, etc. are intentionally omitted).
+# are the source of truth. This module emits a JSON Schema (draft 2020-12)
+# projection into generated/schemas/afw/.
 #
-# Important mapping choices:
-# - Object-typed properties use pure $ref or annotations + allOf/[{$ref}]
-#   (never $ref mixed with siblings; see issue #3).
-# - Inheritance (parentPaths) is composite allOf of .propertyTypes defs.
-# - required applies only to the leaf object type, not inherited property maps.
+# Primary purpose: help editors (VS Code json.schemas, etc.) when authoring
+# adaptive object JSON under generate/objects/ — completion, hovers, and light
+# validation. Schemas are generated and read-only, so verbosity is fine; prefer
+# structures editors resolve well (flat property maps, explicit type object,
+# $defs + $ref) over compact or validator-only forms.
+#
+# Secondary: afwdev validate / tests. Not a full adaptive meta model (runtime,
+# allowQuery, etc. are omitted). Client-side UI validation should stay simple;
+# these files are not optimized as a minimal runtime payload.
+#
+# Mapping choices:
+# - Object-typed properties: pure $ref, or annotations + type object +
+#   allOf:[{$ref}] (never $ref mixed with siblings; issue #3).
+# - Inheritance: merge property maps with child override (not stacked allOf of
+#   parent maps, which breaks overrides and confuses editors).
+# - required applies only to the leaf object type.
 #
 
 import glob
@@ -113,27 +122,46 @@ def _update_vscode_settings_json_schema(options):
 
 
 # ---------------------------------------------------------------------------
-# $ref helpers (issue #3)
+# $ref helpers (issue #3 + editor-friendly object refs)
 # ---------------------------------------------------------------------------
+
+def _editor_docs(schema_node):
+    """
+    Duplicate description into markdownDescription for VS Code hovers.
+
+    vscode.json-language-features recognizes markdownDescription on schemas.
+    """
+    if schema_node.get('description') and 'markdownDescription' not in schema_node:
+        schema_node['markdownDescription'] = schema_node['description']
+
 
 def _ref_schema(ref, base=None):
     """
     Build a schema that references another without mixing $ref and siblings.
 
-    With annotations: { title, description, ..., allOf: [ { $ref } ] }
-    Without:          { $ref }
+    Editor-oriented forms (verbose is fine; schemas are generated):
+    - No annotations: { "$ref": "..." }  (VS Code follows $ref cleanly)
+    - With annotations: {
+        "type": "object",
+        "title", "description", "markdownDescription", ...
+        "allOf": [ { "$ref": "..." } ]
+      }
+      type sits beside allOf, never beside $ref (issue #3).
     """
     annotations = {}
     if base:
         for key, value in base.items():
-            # type/format come from the target; never re-emit $ref/allOf here.
+            # Target supplies structural type; never re-emit $ref/allOf here.
             if key in ('$ref', 'type', 'format', 'allOf'):
                 continue
             annotations[key] = value
     if not annotations:
         return {'$ref': ref}
     result = dict(annotations)
+    # Explicit object type helps completion before $ref is fully resolved.
+    result['type'] = 'object'
     result['allOf'] = [{'$ref': ref}]
+    _editor_docs(result)
     return result
 
 
@@ -147,11 +175,12 @@ def _apply_annotations(schema, annotations):
     if (isinstance(all_of, list) and len(all_of) == 1 and
             isinstance(all_of[0], dict) and
             list(all_of[0].keys()) == ['$ref']):
-        base = {k: v for k, v in schema.items() if k != 'allOf'}
+        base = {k: v for k, v in schema.items() if k not in ('allOf', 'type')}
         base.update(annotations)
         return _ref_schema(all_of[0]['$ref'], base)
     result = dict(schema)
     result.update(annotations)
+    _editor_docs(result)
     return result
 
 
@@ -194,6 +223,19 @@ def _apply_property_annotations(schema_node, property_type,
         schema_node['description'] = description
     elif 'description' in property_type:
         schema_node['description'] = property_type['description']
+
+    # Prefer label as completion text; brief as secondary hover when both exist.
+    if ('brief' in property_type and
+            property_type.get('brief') and
+            schema_node.get('description') and
+            property_type.get('brief') != schema_node.get('description') and
+            'markdownDescription' not in schema_node):
+        schema_node['markdownDescription'] = (
+            '**' + str(property_type.get('label') or
+                       property_type.get('brief')) + '**\n\n' +
+            str(schema_node['description']))
+    else:
+        _editor_docs(schema_node)
 
     if 'defaultValue' in property_type:
         schema_node['default'] = property_type['defaultValue']
@@ -400,9 +442,11 @@ def _process_parents(ctx, needed, object_type, meta, visited=None):
 
 def _ensure_property_types_schema(ctx, needed, object_type, object_type_object):
     """
-    Build ObjectType.propertyTypes def: property map only (no required).
+    Build ObjectType.propertyTypes def: local property map only (no required).
 
-    Shared via allOf into descendants; leaf required lives on the entity def.
+    Kept for tooling/docs and as a building block. Entity schemas use a
+    merged composite map so child property definitions override parents
+    (adaptive composite), which plain allOf of parent maps cannot express.
     """
     key = object_type + '.propertyTypes'
     if key in needed or object_type == '_AdaptivePropertyTypes_':
@@ -422,6 +466,60 @@ def _ensure_property_types_schema(ctx, needed, object_type, object_type_object):
         'type': 'object',
         'properties': properties,
     }
+
+
+def _ancestor_object_type_ids(ctx, object_type_object):
+    """Return ancestor object type ids from parentPaths (nearest parent first)."""
+    ordered = []
+    seen = set()
+
+    def walk(meta):
+        if not meta or 'parentPaths' not in meta:
+            return
+        for parent_path in meta['parentPaths']:
+            parent_id = _parent_object_type_from_path(parent_path)
+            if not parent_id or parent_id in seen:
+                continue
+            seen.add(parent_id)
+            ordered.append(parent_id)
+            parent_ot = ctx.object_types.get(parent_id)
+            if parent_ot and isinstance(parent_ot.get('propertyTypes'), dict):
+                walk(parent_ot['propertyTypes'].get('_meta_'))
+
+    pts = object_type_object.get('propertyTypes')
+    if isinstance(pts, dict):
+        walk(pts.get('_meta_'))
+    return ordered
+
+
+def _merged_instance_properties(ctx, needed, object_type, object_type_object):
+    """
+    Merge propertyTypes along the inheritance chain with child override.
+
+    Ancestors first, then this object type. Same-named properties from the
+    child replace the parent (e.g. ModelObjectType.propertyTypes overrides
+    ObjectType.propertyTypes). Returns a properties dict for the entity.
+    """
+    merged = {}
+    # Farthest ancestor first so nearer ancestors and self overwrite.
+    ancestor_ids = _ancestor_object_type_ids(ctx, object_type_object)
+    chain = []
+    for ancestor_id in reversed(ancestor_ids):
+        ancestor_ot = ctx.object_types.get(ancestor_id)
+        if ancestor_ot is not None:
+            chain.append((ancestor_id, ancestor_ot))
+        _ensure_property_types_schema(
+            ctx, needed, ancestor_id, ancestor_ot or {})
+    chain.append((object_type, object_type_object))
+
+    for ot_id, ot_obj in chain:
+        for name, prop in (ot_obj.get('propertyTypes') or {}).items():
+            if name == '_meta_' or not isinstance(prop, dict):
+                continue
+            merged[name] = _convert_property_type(
+                ctx, needed, prop,
+                'objectType ' + ot_id + ' property ' + name)
+    return merged
 
 
 def _property_types_meta_schema():
@@ -461,7 +559,6 @@ def _convert_object_type(ctx, needed, object_type, object_type_object,
 
     needed.append(object_type)
     schema = {'type': 'object'}
-    all_of = []
 
     # Required only for instances of this object type (not ancestors).
     local_required = []
@@ -474,16 +571,35 @@ def _convert_object_type(ctx, needed, object_type, object_type_object,
     if object_type == '_AdaptivePropertyTypes_':
         schema['properties'] = {'_meta_': _property_types_meta_schema()}
     else:
-        all_of = [{'$ref': ctx.ref(object_type + '.propertyTypes')}]
+        # Composite map: inherited + local with child property override.
+        # Also keep allOf refs to each .propertyTypes for documentation of
+        # the inheritance chain (validators use properties= merged map).
+        merged = _merged_instance_properties(
+            ctx, needed, object_type, object_type_object)
+        # Optional adaptive instance meta bag (common on real objects).
+        merged.setdefault('_meta_', {
+            'type': 'object',
+            'additionalProperties': True,
+            'title': 'Meta',
+            'description':
+                'Adaptive instance meta (objectId, path, objectType, ...).',
+            'markdownDescription':
+                'Adaptive instance meta (`objectId`, `path`, `objectType`, …).',
+        })
+        schema['properties'] = merged
 
-    property_types = object_type_object.get('propertyTypes')
-    if isinstance(property_types, dict) and '_meta_' in property_types:
-        parent_refs = _process_parents(
-            ctx, needed, object_type, property_types['_meta_'])
-        if parent_refs:
-            all_of.extend(parent_refs)
+        # Inheritance chain for tests/tooling only (not applied as allOf).
+        inherited = _ancestor_object_type_ids(ctx, object_type_object)
+        if inherited:
+            schema['x-afw-inheritedObjectTypes'] = inherited
+            _process_parents(
+                ctx, needed, object_type,
+                (object_type_object.get('propertyTypes') or {}).get('_meta_')
+                or {})
 
     # otherProperties → additionalProperties; missing → closed object.
+    # Prefer additionalProperties (widely understood by editors) over
+    # unevaluatedProperties.
     if 'otherProperties' in object_type_object:
         other = object_type_object['otherProperties']
         if other is None or other == {}:
@@ -495,10 +611,8 @@ def _convert_object_type(ctx, needed, object_type, object_type_object,
                 description=object_type_object.get('description'),
                 title=object_type_object.get('label'))
     else:
-        schema['unevaluatedProperties'] = False
+        schema['additionalProperties'] = False
 
-    if all_of:
-        schema['allOf'] = all_of
     if local_required:
         schema['required'] = local_required
 
@@ -506,11 +620,15 @@ def _convert_object_type(ctx, needed, object_type, object_type_object,
         schema['description'] = description
     elif 'description' in object_type_object:
         schema['description'] = object_type_object['description']
+    _editor_docs(schema)
 
     if title is not None:
         schema['title'] = title
     elif 'title' in object_type_object:
         schema['title'] = object_type_object['title']
+    elif 'objectType' in object_type_object:
+        # Editors show title in schema pickers / hovers.
+        schema['title'] = object_type_object['objectType']
 
     ctx.schemas[object_type] = schema
 
@@ -564,6 +682,10 @@ def _write_entity_schemas(ctx):
     Write one schema file per allowEntity object type.
 
     allowEntity defaults to true when omitted (matches adaptive OT meta).
+
+    Document shape is editor-first: the entity schema is at the document root
+    (type/properties/required/...) so VS Code applies it directly to matched
+    files. $defs holds the entity and nested types for $ref resolution.
     """
     schemas_dir = ctx.options['afw_package_dir_path'] + 'generated/schemas/afw/'
     os.makedirs(schemas_dir, exist_ok=True)
@@ -589,11 +711,24 @@ def _write_entity_schemas(ctx):
                 continue
             defs[need] = ctx.schemas[need]
 
+        entity = ctx.schemas.get(object_type)
+        if entity is None:
+            msg.warn('No entity schema for ' + object_type)
+            continue
+
+        # Root = entity keywords (editor applies this to the open file).
+        # $defs keeps the same entity plus dependencies for internal $refs.
         document = {
             '$schema': ctx.json_schema_uri,
+            '$comment':
+                'Generated from adaptive object type ' + object_type +
+                '. Primary use: editor completion/validation for '
+                'generate/objects JSON. Do not hand-edit.',
             '$defs': defs,
-            'allOf': [{'$ref': ctx.ref(object_type)}],
         }
+        for key, value in entity.items():
+            document[key] = value
+
         with nfc.open(schemas_dir + filename, 'w') as fd:
             nfc.json_dump(document, fd, indent=4, sort_keys=True)
 

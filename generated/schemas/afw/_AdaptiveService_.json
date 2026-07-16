@@ -1,109 +1,247 @@
 {
+    "$comment": "Generated from adaptive object type _AdaptiveService_. Primary use: editor completion/validation for generate/objects JSON. Do not hand-edit.",
     "$defs": {
         "_AdaptiveService_": {
-            "allOf": [
-                {
-                    "$ref": "#/$defs/_AdaptiveService_.propertyTypes"
-                }
-            ],
+            "additionalProperties": false,
             "description": "An adaptive service.",
-            "type": "object",
-            "unevaluatedProperties": false
-        },
-        "_AdaptiveService_.propertyTypes": {
+            "markdownDescription": "An adaptive service.",
             "properties": {
+                "_meta_": {
+                    "additionalProperties": true,
+                    "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+                    "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+                    "title": "Meta",
+                    "type": "object"
+                },
                 "canRestart": {
                     "description": "Can attempt to restart this service.",
+                    "markdownDescription": "Can attempt to restart this service.",
                     "title": "Can Restart",
                     "type": "boolean"
                 },
                 "canStart": {
                     "description": "Can attempt to start this service.",
+                    "markdownDescription": "Can attempt to start this service.",
                     "title": "Can Start",
                     "type": "boolean"
                 },
                 "canStop": {
                     "description": "Can attempt to stop this service.",
+                    "markdownDescription": "Can attempt to stop this service.",
                     "title": "Can Stop",
                     "type": "boolean"
                 },
                 "confId": {
                     "description": "The 'id' part of serviceId. This is the value of appropriate conf id property based on the conf type.",
+                    "markdownDescription": "The 'id' part of serviceId. This is the value of appropriate conf id property based on the conf type.",
                     "title": "Conf Id",
                     "type": "string"
                 },
                 "confPropertyObjectType": {
                     "description": "Object type for 'conf' property object.",
+                    "markdownDescription": "Object type for 'conf' property object.",
                     "title": "Conf Property Object Type",
                     "type": "string"
                 },
                 "confSubtype": {
                     "description": "This is the value of appropriate conf subtype property based on the conf type.",
+                    "markdownDescription": "This is the value of appropriate conf subtype property based on the conf type.",
                     "title": "Conf Subtype",
                     "type": "string"
                 },
                 "serviceId": {
                     "description": "Service id.",
+                    "markdownDescription": "Service id.",
                     "title": "Service",
                     "type": "string"
                 },
                 "serviceType": {
                     "description": "The 'type' part of serviceId.",
+                    "markdownDescription": "The 'type' part of serviceId.",
                     "title": "Service Type",
                     "type": "string"
                 },
                 "sourceLocation": {
                     "description": "Related to where service was defined.",
+                    "markdownDescription": "Related to where service was defined.",
                     "title": "Source Location",
                     "type": "string"
                 },
                 "startTime": {
                     "description": "Start time.",
                     "format": "date-time",
+                    "markdownDescription": "Start time.",
                     "title": "Start Time",
                     "type": "string"
                 },
                 "startup": {
                     "default": "manual",
                     "description": "Service startup condition.",
+                    "markdownDescription": "Service startup condition.",
                     "title": "Startup",
                     "type": "string"
                 },
                 "startupDescription": {
                     "description": "Service startup condition description.",
+                    "markdownDescription": "Service startup condition description.",
                     "title": "Startup Description",
                     "type": "string"
                 },
                 "status": {
                     "description": "Service status.",
+                    "markdownDescription": "Service status.",
                     "title": "Status",
                     "type": "string"
                 },
                 "statusDebug": {
                     "contentMediaType": "text/plain",
                     "description": "This is statusMessage with additional debug information.",
+                    "markdownDescription": "This is statusMessage with additional debug information.",
                     "title": "Status Debug",
                     "type": "string"
                 },
                 "statusDescription": {
                     "description": "Service status description.",
+                    "markdownDescription": "Service status description.",
                     "title": "Status Description",
                     "type": "string"
                 },
                 "statusMessage": {
                     "description": "Optional message associated with status. In the case of status=error, this is the error message.",
+                    "markdownDescription": "Optional message associated with status. In the case of status=error, this is the error message.",
                     "title": "Status Message",
                     "type": "string"
                 },
                 "uriRelated": {
                     "description": "URI of related object.",
                     "format": "uri-reference",
+                    "markdownDescription": "URI of related object.",
                     "title": "URI Related",
                     "type": "string"
                 },
                 "uriServiceConf": {
                     "description": "URI of service conf object.",
                     "format": "uri-reference",
+                    "markdownDescription": "URI of service conf object.",
+                    "title": "URI Service Conf",
+                    "type": "string"
+                }
+            },
+            "title": "_AdaptiveService_",
+            "type": "object"
+        },
+        "_AdaptiveService_.propertyTypes": {
+            "properties": {
+                "canRestart": {
+                    "description": "Can attempt to restart this service.",
+                    "markdownDescription": "Can attempt to restart this service.",
+                    "title": "Can Restart",
+                    "type": "boolean"
+                },
+                "canStart": {
+                    "description": "Can attempt to start this service.",
+                    "markdownDescription": "Can attempt to start this service.",
+                    "title": "Can Start",
+                    "type": "boolean"
+                },
+                "canStop": {
+                    "description": "Can attempt to stop this service.",
+                    "markdownDescription": "Can attempt to stop this service.",
+                    "title": "Can Stop",
+                    "type": "boolean"
+                },
+                "confId": {
+                    "description": "The 'id' part of serviceId. This is the value of appropriate conf id property based on the conf type.",
+                    "markdownDescription": "The 'id' part of serviceId. This is the value of appropriate conf id property based on the conf type.",
+                    "title": "Conf Id",
+                    "type": "string"
+                },
+                "confPropertyObjectType": {
+                    "description": "Object type for 'conf' property object.",
+                    "markdownDescription": "Object type for 'conf' property object.",
+                    "title": "Conf Property Object Type",
+                    "type": "string"
+                },
+                "confSubtype": {
+                    "description": "This is the value of appropriate conf subtype property based on the conf type.",
+                    "markdownDescription": "This is the value of appropriate conf subtype property based on the conf type.",
+                    "title": "Conf Subtype",
+                    "type": "string"
+                },
+                "serviceId": {
+                    "description": "Service id.",
+                    "markdownDescription": "Service id.",
+                    "title": "Service",
+                    "type": "string"
+                },
+                "serviceType": {
+                    "description": "The 'type' part of serviceId.",
+                    "markdownDescription": "The 'type' part of serviceId.",
+                    "title": "Service Type",
+                    "type": "string"
+                },
+                "sourceLocation": {
+                    "description": "Related to where service was defined.",
+                    "markdownDescription": "Related to where service was defined.",
+                    "title": "Source Location",
+                    "type": "string"
+                },
+                "startTime": {
+                    "description": "Start time.",
+                    "format": "date-time",
+                    "markdownDescription": "Start time.",
+                    "title": "Start Time",
+                    "type": "string"
+                },
+                "startup": {
+                    "default": "manual",
+                    "description": "Service startup condition.",
+                    "markdownDescription": "Service startup condition.",
+                    "title": "Startup",
+                    "type": "string"
+                },
+                "startupDescription": {
+                    "description": "Service startup condition description.",
+                    "markdownDescription": "Service startup condition description.",
+                    "title": "Startup Description",
+                    "type": "string"
+                },
+                "status": {
+                    "description": "Service status.",
+                    "markdownDescription": "Service status.",
+                    "title": "Status",
+                    "type": "string"
+                },
+                "statusDebug": {
+                    "contentMediaType": "text/plain",
+                    "description": "This is statusMessage with additional debug information.",
+                    "markdownDescription": "This is statusMessage with additional debug information.",
+                    "title": "Status Debug",
+                    "type": "string"
+                },
+                "statusDescription": {
+                    "description": "Service status description.",
+                    "markdownDescription": "Service status description.",
+                    "title": "Status Description",
+                    "type": "string"
+                },
+                "statusMessage": {
+                    "description": "Optional message associated with status. In the case of status=error, this is the error message.",
+                    "markdownDescription": "Optional message associated with status. In the case of status=error, this is the error message.",
+                    "title": "Status Message",
+                    "type": "string"
+                },
+                "uriRelated": {
+                    "description": "URI of related object.",
+                    "format": "uri-reference",
+                    "markdownDescription": "URI of related object.",
+                    "title": "URI Related",
+                    "type": "string"
+                },
+                "uriServiceConf": {
+                    "description": "URI of service conf object.",
+                    "format": "uri-reference",
+                    "markdownDescription": "URI of service conf object.",
                     "title": "URI Service Conf",
                     "type": "string"
                 }
@@ -112,9 +250,131 @@
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "allOf": [
-        {
-            "$ref": "#/$defs/_AdaptiveService_"
+    "additionalProperties": false,
+    "description": "An adaptive service.",
+    "markdownDescription": "An adaptive service.",
+    "properties": {
+        "_meta_": {
+            "additionalProperties": true,
+            "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+            "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+            "title": "Meta",
+            "type": "object"
+        },
+        "canRestart": {
+            "description": "Can attempt to restart this service.",
+            "markdownDescription": "Can attempt to restart this service.",
+            "title": "Can Restart",
+            "type": "boolean"
+        },
+        "canStart": {
+            "description": "Can attempt to start this service.",
+            "markdownDescription": "Can attempt to start this service.",
+            "title": "Can Start",
+            "type": "boolean"
+        },
+        "canStop": {
+            "description": "Can attempt to stop this service.",
+            "markdownDescription": "Can attempt to stop this service.",
+            "title": "Can Stop",
+            "type": "boolean"
+        },
+        "confId": {
+            "description": "The 'id' part of serviceId. This is the value of appropriate conf id property based on the conf type.",
+            "markdownDescription": "The 'id' part of serviceId. This is the value of appropriate conf id property based on the conf type.",
+            "title": "Conf Id",
+            "type": "string"
+        },
+        "confPropertyObjectType": {
+            "description": "Object type for 'conf' property object.",
+            "markdownDescription": "Object type for 'conf' property object.",
+            "title": "Conf Property Object Type",
+            "type": "string"
+        },
+        "confSubtype": {
+            "description": "This is the value of appropriate conf subtype property based on the conf type.",
+            "markdownDescription": "This is the value of appropriate conf subtype property based on the conf type.",
+            "title": "Conf Subtype",
+            "type": "string"
+        },
+        "serviceId": {
+            "description": "Service id.",
+            "markdownDescription": "Service id.",
+            "title": "Service",
+            "type": "string"
+        },
+        "serviceType": {
+            "description": "The 'type' part of serviceId.",
+            "markdownDescription": "The 'type' part of serviceId.",
+            "title": "Service Type",
+            "type": "string"
+        },
+        "sourceLocation": {
+            "description": "Related to where service was defined.",
+            "markdownDescription": "Related to where service was defined.",
+            "title": "Source Location",
+            "type": "string"
+        },
+        "startTime": {
+            "description": "Start time.",
+            "format": "date-time",
+            "markdownDescription": "Start time.",
+            "title": "Start Time",
+            "type": "string"
+        },
+        "startup": {
+            "default": "manual",
+            "description": "Service startup condition.",
+            "markdownDescription": "Service startup condition.",
+            "title": "Startup",
+            "type": "string"
+        },
+        "startupDescription": {
+            "description": "Service startup condition description.",
+            "markdownDescription": "Service startup condition description.",
+            "title": "Startup Description",
+            "type": "string"
+        },
+        "status": {
+            "description": "Service status.",
+            "markdownDescription": "Service status.",
+            "title": "Status",
+            "type": "string"
+        },
+        "statusDebug": {
+            "contentMediaType": "text/plain",
+            "description": "This is statusMessage with additional debug information.",
+            "markdownDescription": "This is statusMessage with additional debug information.",
+            "title": "Status Debug",
+            "type": "string"
+        },
+        "statusDescription": {
+            "description": "Service status description.",
+            "markdownDescription": "Service status description.",
+            "title": "Status Description",
+            "type": "string"
+        },
+        "statusMessage": {
+            "description": "Optional message associated with status. In the case of status=error, this is the error message.",
+            "markdownDescription": "Optional message associated with status. In the case of status=error, this is the error message.",
+            "title": "Status Message",
+            "type": "string"
+        },
+        "uriRelated": {
+            "description": "URI of related object.",
+            "format": "uri-reference",
+            "markdownDescription": "URI of related object.",
+            "title": "URI Related",
+            "type": "string"
+        },
+        "uriServiceConf": {
+            "description": "URI of service conf object.",
+            "format": "uri-reference",
+            "markdownDescription": "URI of service conf object.",
+            "title": "URI Service Conf",
+            "type": "string"
         }
-    ]
+    },
+    "title": "_AdaptiveService_",
+    "type": "object"
 }

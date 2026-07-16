@@ -1,25 +1,47 @@
 {
+    "$comment": "Generated from adaptive object type _AdaptiveLogType_. Primary use: editor completion/validation for generate/objects JSON. Do not hand-edit.",
     "$defs": {
         "_AdaptiveLogType_": {
-            "allOf": [
-                {
-                    "$ref": "#/$defs/_AdaptiveLogType_.propertyTypes"
-                }
-            ],
+            "additionalProperties": false,
             "description": "A registry type log_factory entry.",
-            "type": "object",
-            "unevaluatedProperties": false
+            "markdownDescription": "A registry type log_factory entry.",
+            "properties": {
+                "_meta_": {
+                    "additionalProperties": true,
+                    "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+                    "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+                    "title": "Meta",
+                    "type": "object"
+                },
+                "description": {
+                    "contentMediaType": "text/plain",
+                    "description": "Description of log type.",
+                    "markdownDescription": "**Description**\n\nDescription of log type.",
+                    "title": "Description",
+                    "type": "string"
+                },
+                "logType": {
+                    "description": "Type of log.",
+                    "markdownDescription": "**Log Type**\n\nType of log.",
+                    "title": "Log Type",
+                    "type": "string"
+                }
+            },
+            "title": "_AdaptiveLogType_",
+            "type": "object"
         },
         "_AdaptiveLogType_.propertyTypes": {
             "properties": {
                 "description": {
                     "contentMediaType": "text/plain",
                     "description": "Description of log type.",
+                    "markdownDescription": "**Description**\n\nDescription of log type.",
                     "title": "Description",
                     "type": "string"
                 },
                 "logType": {
                     "description": "Type of log.",
+                    "markdownDescription": "**Log Type**\n\nType of log.",
                     "title": "Log Type",
                     "type": "string"
                 }
@@ -28,9 +50,31 @@
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "allOf": [
-        {
-            "$ref": "#/$defs/_AdaptiveLogType_"
+    "additionalProperties": false,
+    "description": "A registry type log_factory entry.",
+    "markdownDescription": "A registry type log_factory entry.",
+    "properties": {
+        "_meta_": {
+            "additionalProperties": true,
+            "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+            "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+            "title": "Meta",
+            "type": "object"
+        },
+        "description": {
+            "contentMediaType": "text/plain",
+            "description": "Description of log type.",
+            "markdownDescription": "**Description**\n\nDescription of log type.",
+            "title": "Description",
+            "type": "string"
+        },
+        "logType": {
+            "description": "Type of log.",
+            "markdownDescription": "**Log Type**\n\nType of log.",
+            "title": "Log Type",
+            "type": "string"
         }
-    ]
+    },
+    "title": "_AdaptiveLogType_",
+    "type": "object"
 }

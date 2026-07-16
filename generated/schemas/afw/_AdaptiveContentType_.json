@@ -1,19 +1,33 @@
 {
+    "$comment": "Generated from adaptive object type _AdaptiveContentType_. Primary use: editor completion/validation for generate/objects JSON. Do not hand-edit.",
     "$defs": {
         "_AdaptiveContentType_": {
-            "allOf": [
-                {
-                    "$ref": "#/$defs/_AdaptiveContentType_.propertyTypes"
-                }
-            ],
+            "additionalProperties": false,
             "description": "There is one of these for each media type registered for a content type implementation.",
-            "type": "object",
-            "unevaluatedProperties": false
+            "markdownDescription": "There is one of these for each media type registered for a content type implementation.",
+            "properties": {
+                "_meta_": {
+                    "additionalProperties": true,
+                    "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+                    "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+                    "title": "Meta",
+                    "type": "object"
+                },
+                "mediaType": {
+                    "description": "Key of entry.",
+                    "markdownDescription": "**Media Type**\n\nKey of entry.",
+                    "title": "Media Type",
+                    "type": "string"
+                }
+            },
+            "title": "_AdaptiveContentType_",
+            "type": "object"
         },
         "_AdaptiveContentType_.propertyTypes": {
             "properties": {
                 "mediaType": {
                     "description": "Key of entry.",
+                    "markdownDescription": "**Media Type**\n\nKey of entry.",
                     "title": "Media Type",
                     "type": "string"
                 }
@@ -22,9 +36,24 @@
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "allOf": [
-        {
-            "$ref": "#/$defs/_AdaptiveContentType_"
+    "additionalProperties": false,
+    "description": "There is one of these for each media type registered for a content type implementation.",
+    "markdownDescription": "There is one of these for each media type registered for a content type implementation.",
+    "properties": {
+        "_meta_": {
+            "additionalProperties": true,
+            "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+            "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+            "title": "Meta",
+            "type": "object"
+        },
+        "mediaType": {
+            "description": "Key of entry.",
+            "markdownDescription": "**Media Type**\n\nKey of entry.",
+            "title": "Media Type",
+            "type": "string"
         }
-    ]
+    },
+    "title": "_AdaptiveContentType_",
+    "type": "object"
 }

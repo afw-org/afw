@@ -1,25 +1,47 @@
 {
+    "$comment": "Generated from adaptive object type _AdaptiveRequestHandlerType_. Primary use: editor completion/validation for generate/objects JSON. Do not hand-edit.",
     "$defs": {
         "_AdaptiveRequestHandlerType_": {
-            "allOf": [
-                {
-                    "$ref": "#/$defs/_AdaptiveRequestHandlerType_.propertyTypes"
-                }
-            ],
+            "additionalProperties": false,
             "description": "A registry type request_handler_factory entry.",
-            "type": "object",
-            "unevaluatedProperties": false
+            "markdownDescription": "A registry type request_handler_factory entry.",
+            "properties": {
+                "_meta_": {
+                    "additionalProperties": true,
+                    "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+                    "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+                    "title": "Meta",
+                    "type": "object"
+                },
+                "description": {
+                    "contentMediaType": "text/plain",
+                    "description": "Description of request handler type.",
+                    "markdownDescription": "**Description**\n\nDescription of request handler type.",
+                    "title": "Description",
+                    "type": "string"
+                },
+                "requestHandlerType": {
+                    "description": "Type of request handler.",
+                    "markdownDescription": "**Request Handler Type**\n\nType of request handler.",
+                    "title": "Request Handler Type",
+                    "type": "string"
+                }
+            },
+            "title": "_AdaptiveRequestHandlerType_",
+            "type": "object"
         },
         "_AdaptiveRequestHandlerType_.propertyTypes": {
             "properties": {
                 "description": {
                     "contentMediaType": "text/plain",
                     "description": "Description of request handler type.",
+                    "markdownDescription": "**Description**\n\nDescription of request handler type.",
                     "title": "Description",
                     "type": "string"
                 },
                 "requestHandlerType": {
                     "description": "Type of request handler.",
+                    "markdownDescription": "**Request Handler Type**\n\nType of request handler.",
                     "title": "Request Handler Type",
                     "type": "string"
                 }
@@ -28,9 +50,31 @@
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "allOf": [
-        {
-            "$ref": "#/$defs/_AdaptiveRequestHandlerType_"
+    "additionalProperties": false,
+    "description": "A registry type request_handler_factory entry.",
+    "markdownDescription": "A registry type request_handler_factory entry.",
+    "properties": {
+        "_meta_": {
+            "additionalProperties": true,
+            "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+            "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+            "title": "Meta",
+            "type": "object"
+        },
+        "description": {
+            "contentMediaType": "text/plain",
+            "description": "Description of request handler type.",
+            "markdownDescription": "**Description**\n\nDescription of request handler type.",
+            "title": "Description",
+            "type": "string"
+        },
+        "requestHandlerType": {
+            "description": "Type of request handler.",
+            "markdownDescription": "**Request Handler Type**\n\nType of request handler.",
+            "title": "Request Handler Type",
+            "type": "string"
         }
-    ]
+    },
+    "title": "_AdaptiveRequestHandlerType_",
+    "type": "object"
 }

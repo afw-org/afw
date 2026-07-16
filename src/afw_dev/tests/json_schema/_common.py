@@ -73,7 +73,11 @@ def iter_schema_files(root=None):
 
 
 def entity_def(schema_doc, object_type_id):
-    return schema_doc.get('$defs', {}).get(object_type_id)
+    """Entity body from $defs, or root when the document is the entity."""
+    defs = schema_doc.get('$defs') or {}
+    if object_type_id in defs:
+        return defs[object_type_id]
+    return entity_from_document(schema_doc, object_type_id)
 
 
 def property_types_def(schema_doc, object_type_id):
@@ -103,7 +107,13 @@ def find_mixed_refs(obj, path='$'):
 
 
 def is_clean_ref_form(node):
-    """True if node is pure $ref or annotations + allOf:[{$ref}]."""
+    """
+    True if node is pure $ref or editor-friendly allOf ref form.
+
+    Allowed with allOf:[{$ref}]: type (object), title, description,
+    markdownDescription, defaults, enums, etc. Never $ref as a sibling
+    of those keywords (issue #3).
+    """
     if not isinstance(node, dict):
         return False
     if list(node.keys()) == ['$ref']:
@@ -113,31 +123,56 @@ def is_clean_ref_form(node):
         return False
     if not isinstance(all_of[0], dict) or list(all_of[0].keys()) != ['$ref']:
         return False
-    # siblings of allOf must not include $ref or type (type comes from target)
     for key in node:
-        if key in ('allOf', 'title', 'description', 'default', 'readOnly',
-                   'enum', 'minimum', 'maximum', 'minLength', 'maxLength',
-                   'uniqueItems', 'contentMediaType'):
+        if key in (
+                'allOf', 'type', 'title', 'description', 'markdownDescription',
+                'default', 'readOnly', 'enum', 'minimum', 'maximum',
+                'minLength', 'maxLength', 'uniqueItems', 'contentMediaType'):
             continue
         if key == '$ref':
             return False
-        # allow nothing else that would re-mix $ref semantics
-        if key in ('type', 'format', 'properties', 'items', 'required'):
+        if key in ('format', 'properties', 'items', 'required',
+                   'additionalProperties', 'unevaluatedProperties'):
             return False
     return True
 
 
+def entity_from_document(schema_doc, object_type_id):
+    """Entity schema: $defs copy, or root document if promoted for editors."""
+    defs = schema_doc.get('$defs') or {}
+    if object_type_id in defs:
+        return defs[object_type_id]
+    if schema_doc.get('type') == 'object' or 'properties' in schema_doc:
+        skip = {'$schema', '$defs', '$comment', '$id'}
+        return {k: v for k, v in schema_doc.items() if k not in skip}
+    return None
+
+
 def allof_property_types_refs(entity):
-    """Set of object-type ids referenced as .propertyTypes in entity allOf."""
-    refs = set()
+    """
+    Set of inherited object-type ids for an entity schema.
+
+    Prefers x-afw-inheritedObjectTypes (composite merge). Falls back to
+    legacy allOf .propertyTypes $refs if present.
+    """
     if not entity:
-        return refs
+        return set()
+    inherited = entity.get('x-afw-inheritedObjectTypes')
+    if isinstance(inherited, list):
+        return set(inherited)
+    refs = set()
     for entry in entity.get('allOf') or []:
         ref = entry.get('$ref', '')
-        # #/$defs/Foo.propertyTypes
         if ref.startswith('#/$defs/') and ref.endswith('.propertyTypes'):
             refs.add(ref[len('#/$defs/'):-len('.propertyTypes')])
     return refs
+
+
+def entity_property_names(entity):
+    """Instance property names on an entity def (merged composite map)."""
+    if not entity:
+        return set()
+    return set((entity.get('properties') or {}).keys())
 
 
 def parent_ot_ids_from_adaptive(ot_json):

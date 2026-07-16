@@ -1,39 +1,45 @@
 {
+    "$comment": "Generated from adaptive object type _AdaptiveAuthorizationHandler_. Primary use: editor completion/validation for generate/objects JSON. Do not hand-edit.",
     "$defs": {
         "_AdaptiveAuthorizationHandler_": {
-            "allOf": [
-                {
-                    "$ref": "#/$defs/_AdaptiveAuthorizationHandler_.propertyTypes"
-                }
-            ],
+            "additionalProperties": false,
             "description": "Runtime authorization handler information.",
-            "type": "object",
-            "unevaluatedProperties": false
-        },
-        "_AdaptiveAuthorizationHandler_.propertyTypes": {
+            "markdownDescription": "Runtime authorization handler information.",
             "properties": {
+                "_meta_": {
+                    "additionalProperties": true,
+                    "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+                    "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+                    "title": "Meta",
+                    "type": "object"
+                },
                 "authorizationHandlerId": {
                     "description": "Authorization handler id.",
+                    "markdownDescription": "**Authorization Handler Id**\n\nAuthorization handler id.",
                     "title": "Authorization Handler Id",
                     "type": "string"
                 },
                 "processingOrder": {
                     "description": "This is the order this authorization handler will be processed. If 0, this handler is not active.",
+                    "markdownDescription": "**Processing Order**\n\nThis is the order this authorization handler will be processed. If 0, this handler is not active.",
                     "title": "Processing Order",
                     "type": "integer"
                 },
                 "properties": {
                     "description": "This object contains some of properties from the associated conf object plus other runtime properties.",
+                    "markdownDescription": "**Properties**\n\nThis object contains some of properties from the associated conf object plus other runtime properties.",
                     "title": "Properties",
                     "type": "object"
                 },
                 "referenceCount": {
                     "description": "Authorization handler's reference count.",
+                    "markdownDescription": "**Reference Count**\n\nAuthorization handler's reference count.",
                     "title": "Reference Count",
                     "type": "integer"
                 },
                 "serviceId": {
                     "description": "The id of the associated service. The URI of the service is '/afw/_AdaptiveService_/' followed by this id.",
+                    "markdownDescription": "**Service Id**\n\nThe id of the associated service. The URI of the service is '/afw/_AdaptiveService_/' followed by this id.",
                     "title": "Service Id",
                     "type": "string"
                 },
@@ -41,9 +47,59 @@
                     "description": "Reference count of stopping instances.",
                     "items": {
                         "description": "Reference count of stopping instances.",
+                        "markdownDescription": "Reference count of stopping instances.",
                         "title": "Reference count of stopping instances",
                         "type": "integer"
                     },
+                    "markdownDescription": "**Stopping Instances**\n\nReference count of stopping instances.",
+                    "title": "Stopping Instances",
+                    "type": "array"
+                }
+            },
+            "title": "_AdaptiveAuthorizationHandler_",
+            "type": "object"
+        },
+        "_AdaptiveAuthorizationHandler_.propertyTypes": {
+            "properties": {
+                "authorizationHandlerId": {
+                    "description": "Authorization handler id.",
+                    "markdownDescription": "**Authorization Handler Id**\n\nAuthorization handler id.",
+                    "title": "Authorization Handler Id",
+                    "type": "string"
+                },
+                "processingOrder": {
+                    "description": "This is the order this authorization handler will be processed. If 0, this handler is not active.",
+                    "markdownDescription": "**Processing Order**\n\nThis is the order this authorization handler will be processed. If 0, this handler is not active.",
+                    "title": "Processing Order",
+                    "type": "integer"
+                },
+                "properties": {
+                    "description": "This object contains some of properties from the associated conf object plus other runtime properties.",
+                    "markdownDescription": "**Properties**\n\nThis object contains some of properties from the associated conf object plus other runtime properties.",
+                    "title": "Properties",
+                    "type": "object"
+                },
+                "referenceCount": {
+                    "description": "Authorization handler's reference count.",
+                    "markdownDescription": "**Reference Count**\n\nAuthorization handler's reference count.",
+                    "title": "Reference Count",
+                    "type": "integer"
+                },
+                "serviceId": {
+                    "description": "The id of the associated service. The URI of the service is '/afw/_AdaptiveService_/' followed by this id.",
+                    "markdownDescription": "**Service Id**\n\nThe id of the associated service. The URI of the service is '/afw/_AdaptiveService_/' followed by this id.",
+                    "title": "Service Id",
+                    "type": "string"
+                },
+                "stopping": {
+                    "description": "Reference count of stopping instances.",
+                    "items": {
+                        "description": "Reference count of stopping instances.",
+                        "markdownDescription": "Reference count of stopping instances.",
+                        "title": "Reference count of stopping instances",
+                        "type": "integer"
+                    },
+                    "markdownDescription": "**Stopping Instances**\n\nReference count of stopping instances.",
                     "title": "Stopping Instances",
                     "type": "array"
                 }
@@ -52,9 +108,60 @@
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "allOf": [
-        {
-            "$ref": "#/$defs/_AdaptiveAuthorizationHandler_"
+    "additionalProperties": false,
+    "description": "Runtime authorization handler information.",
+    "markdownDescription": "Runtime authorization handler information.",
+    "properties": {
+        "_meta_": {
+            "additionalProperties": true,
+            "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+            "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+            "title": "Meta",
+            "type": "object"
+        },
+        "authorizationHandlerId": {
+            "description": "Authorization handler id.",
+            "markdownDescription": "**Authorization Handler Id**\n\nAuthorization handler id.",
+            "title": "Authorization Handler Id",
+            "type": "string"
+        },
+        "processingOrder": {
+            "description": "This is the order this authorization handler will be processed. If 0, this handler is not active.",
+            "markdownDescription": "**Processing Order**\n\nThis is the order this authorization handler will be processed. If 0, this handler is not active.",
+            "title": "Processing Order",
+            "type": "integer"
+        },
+        "properties": {
+            "description": "This object contains some of properties from the associated conf object plus other runtime properties.",
+            "markdownDescription": "**Properties**\n\nThis object contains some of properties from the associated conf object plus other runtime properties.",
+            "title": "Properties",
+            "type": "object"
+        },
+        "referenceCount": {
+            "description": "Authorization handler's reference count.",
+            "markdownDescription": "**Reference Count**\n\nAuthorization handler's reference count.",
+            "title": "Reference Count",
+            "type": "integer"
+        },
+        "serviceId": {
+            "description": "The id of the associated service. The URI of the service is '/afw/_AdaptiveService_/' followed by this id.",
+            "markdownDescription": "**Service Id**\n\nThe id of the associated service. The URI of the service is '/afw/_AdaptiveService_/' followed by this id.",
+            "title": "Service Id",
+            "type": "string"
+        },
+        "stopping": {
+            "description": "Reference count of stopping instances.",
+            "items": {
+                "description": "Reference count of stopping instances.",
+                "markdownDescription": "Reference count of stopping instances.",
+                "title": "Reference count of stopping instances",
+                "type": "integer"
+            },
+            "markdownDescription": "**Stopping Instances**\n\nReference count of stopping instances.",
+            "title": "Stopping Instances",
+            "type": "array"
         }
-    ]
+    },
+    "title": "_AdaptiveAuthorizationHandler_",
+    "type": "object"
 }

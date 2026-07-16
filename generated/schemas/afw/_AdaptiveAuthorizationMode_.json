@@ -1,30 +1,59 @@
 {
+    "$comment": "Generated from adaptive object type _AdaptiveAuthorizationMode_. Primary use: editor completion/validation for generate/objects JSON. Do not hand-edit.",
     "$defs": {
         "_AdaptiveAuthorizationMode_": {
-            "allOf": [
-                {
-                    "$ref": "#/$defs/_AdaptiveAuthorizationMode_.propertyTypes"
-                }
-            ],
+            "additionalProperties": false,
             "description": "This is meta for current::modeId qualified variable value.",
-            "type": "object",
-            "unevaluatedProperties": false
-        },
-        "_AdaptiveAuthorizationMode_.propertyTypes": {
+            "markdownDescription": "This is meta for current::modeId qualified variable value.",
             "properties": {
+                "_meta_": {
+                    "additionalProperties": true,
+                    "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+                    "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+                    "title": "Meta",
+                    "type": "object"
+                },
                 "brief": {
                     "description": "This is a predicate for this modeId value with the first letter capitalized and without a trailing period.",
+                    "markdownDescription": "**Brief**\n\nThis is a predicate for this modeId value with the first letter capitalized and without a trailing period.",
                     "title": "Brief",
                     "type": "string"
                 },
                 "description": {
                     "contentMediaType": "text/plain",
                     "description": "This is the description of this modeId value.",
+                    "markdownDescription": "**Description**\n\nThis is the description of this modeId value.",
                     "title": "Description",
                     "type": "string"
                 },
                 "modeId": {
                     "description": "This is used to uniquely identify this particular authorization mode.",
+                    "markdownDescription": "**Mode Id**\n\nThis is used to uniquely identify this particular authorization mode.",
+                    "title": "Mode Id",
+                    "type": "string"
+                }
+            },
+            "title": "_AdaptiveAuthorizationMode_",
+            "type": "object"
+        },
+        "_AdaptiveAuthorizationMode_.propertyTypes": {
+            "properties": {
+                "brief": {
+                    "description": "This is a predicate for this modeId value with the first letter capitalized and without a trailing period.",
+                    "markdownDescription": "**Brief**\n\nThis is a predicate for this modeId value with the first letter capitalized and without a trailing period.",
+                    "title": "Brief",
+                    "type": "string"
+                },
+                "description": {
+                    "contentMediaType": "text/plain",
+                    "description": "This is the description of this modeId value.",
+                    "markdownDescription": "**Description**\n\nThis is the description of this modeId value.",
+                    "title": "Description",
+                    "type": "string"
+                },
+                "modeId": {
+                    "description": "This is used to uniquely identify this particular authorization mode.",
+                    "markdownDescription": "**Mode Id**\n\nThis is used to uniquely identify this particular authorization mode.",
                     "title": "Mode Id",
                     "type": "string"
                 }
@@ -33,9 +62,37 @@
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "allOf": [
-        {
-            "$ref": "#/$defs/_AdaptiveAuthorizationMode_"
+    "additionalProperties": false,
+    "description": "This is meta for current::modeId qualified variable value.",
+    "markdownDescription": "This is meta for current::modeId qualified variable value.",
+    "properties": {
+        "_meta_": {
+            "additionalProperties": true,
+            "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+            "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+            "title": "Meta",
+            "type": "object"
+        },
+        "brief": {
+            "description": "This is a predicate for this modeId value with the first letter capitalized and without a trailing period.",
+            "markdownDescription": "**Brief**\n\nThis is a predicate for this modeId value with the first letter capitalized and without a trailing period.",
+            "title": "Brief",
+            "type": "string"
+        },
+        "description": {
+            "contentMediaType": "text/plain",
+            "description": "This is the description of this modeId value.",
+            "markdownDescription": "**Description**\n\nThis is the description of this modeId value.",
+            "title": "Description",
+            "type": "string"
+        },
+        "modeId": {
+            "description": "This is used to uniquely identify this particular authorization mode.",
+            "markdownDescription": "**Mode Id**\n\nThis is used to uniquely identify this particular authorization mode.",
+            "title": "Mode Id",
+            "type": "string"
         }
-    ]
+    },
+    "title": "_AdaptiveAuthorizationMode_",
+    "type": "object"
 }

@@ -1,63 +1,138 @@
 {
+    "$comment": "Generated from adaptive object type _AdaptiveModelCurrentOnGetProperty_. Primary use: editor completion/validation for generate/objects JSON. Do not hand-edit.",
     "$defs": {
         "_AdaptiveModelCurrentOnGetProperty_": {
-            "allOf": [
-                {
-                    "$ref": "#/$defs/_AdaptiveModelCurrentOnGetProperty_.propertyTypes"
-                }
-            ],
+            "additionalProperties": false,
             "description": "Qualifier current:: for model onGetProperty.",
-            "type": "object",
-            "unevaluatedProperties": false
-        },
-        "_AdaptiveModelCurrentOnGetProperty_.propertyTypes": {
+            "markdownDescription": "Qualifier current:: for model onGetProperty.",
             "properties": {
+                "_meta_": {
+                    "additionalProperties": true,
+                    "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+                    "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+                    "title": "Meta",
+                    "type": "object"
+                },
                 "adapterId": {
                     "description": "The adapter id of the object being converted to mapped object.",
+                    "markdownDescription": "**Adapter Id**\n\nThe adapter id of the object being converted to mapped object.",
                     "title": "Adapter Id",
                     "type": "string"
                 },
                 "adapterTypeSpecific": {
                     "description": "This is the adapterTypeSpecific parameter value.",
+                    "markdownDescription": "**Adapter Specific**\n\nThis is the adapterTypeSpecific parameter value.",
                     "title": "Adapter Specific",
                     "type": "object"
                 },
                 "mappedAdapterId": {
                     "description": "The adapter id of the object being converted to object.",
+                    "markdownDescription": "**Mapped Adapter Id**\n\nThe adapter id of the object being converted to object.",
                     "title": "Mapped Adapter Id",
                     "type": "string"
                 },
                 "mappedObject": {
                     "description": "This is the object from mapped adapter.",
+                    "markdownDescription": "**Object**\n\nThis is the object from mapped adapter.",
                     "title": "Object",
                     "type": "object"
                 },
                 "mappedObjectId": {
                     "description": "This is objectId of mappedObject from mapped adapter.",
+                    "markdownDescription": "**Mapped object id**\n\nThis is objectId of mappedObject from mapped adapter.",
                     "title": "Mapped object id",
                     "type": "string"
                 },
                 "mappedObjectType": {
                     "description": "The object type of the object being converted to object.",
+                    "markdownDescription": "**Mapped Object Type**\n\nThe object type of the object being converted to object.",
                     "title": "Mapped Object Type",
                     "type": "string"
                 },
                 "mappedPropertyName": {
                     "description": "This is propertyName in mappedObject from mapped adapter.",
+                    "markdownDescription": "**Mapped Property Name**\n\nThis is propertyName in mappedObject from mapped adapter.",
                     "title": "Mapped Property Name",
                     "type": "string"
                 },
                 "mappedValue": {
                     "description": "This is the value of mappedPropertyName from mapped adapter.",
+                    "markdownDescription": "**Mapped Value**\n\nThis is the value of mappedPropertyName from mapped adapter.",
                     "title": "Mapped Value"
                 },
                 "objectType": {
                     "description": "The object type of the object being converted to mapped object.",
+                    "markdownDescription": "**Object Type**\n\nThe object type of the object being converted to mapped object.",
                     "title": "Object Type",
                     "type": "string"
                 },
                 "useDefaultProcessing": {
                     "description": "Return this value to cause default processing to occur.",
+                    "markdownDescription": "**Use Default Processing**\n\nReturn this value to cause default processing to occur.",
+                    "title": "Use Default Processing"
+                }
+            },
+            "title": "_AdaptiveModelCurrentOnGetProperty_",
+            "type": "object"
+        },
+        "_AdaptiveModelCurrentOnGetProperty_.propertyTypes": {
+            "properties": {
+                "adapterId": {
+                    "description": "The adapter id of the object being converted to mapped object.",
+                    "markdownDescription": "**Adapter Id**\n\nThe adapter id of the object being converted to mapped object.",
+                    "title": "Adapter Id",
+                    "type": "string"
+                },
+                "adapterTypeSpecific": {
+                    "description": "This is the adapterTypeSpecific parameter value.",
+                    "markdownDescription": "**Adapter Specific**\n\nThis is the adapterTypeSpecific parameter value.",
+                    "title": "Adapter Specific",
+                    "type": "object"
+                },
+                "mappedAdapterId": {
+                    "description": "The adapter id of the object being converted to object.",
+                    "markdownDescription": "**Mapped Adapter Id**\n\nThe adapter id of the object being converted to object.",
+                    "title": "Mapped Adapter Id",
+                    "type": "string"
+                },
+                "mappedObject": {
+                    "description": "This is the object from mapped adapter.",
+                    "markdownDescription": "**Object**\n\nThis is the object from mapped adapter.",
+                    "title": "Object",
+                    "type": "object"
+                },
+                "mappedObjectId": {
+                    "description": "This is objectId of mappedObject from mapped adapter.",
+                    "markdownDescription": "**Mapped object id**\n\nThis is objectId of mappedObject from mapped adapter.",
+                    "title": "Mapped object id",
+                    "type": "string"
+                },
+                "mappedObjectType": {
+                    "description": "The object type of the object being converted to object.",
+                    "markdownDescription": "**Mapped Object Type**\n\nThe object type of the object being converted to object.",
+                    "title": "Mapped Object Type",
+                    "type": "string"
+                },
+                "mappedPropertyName": {
+                    "description": "This is propertyName in mappedObject from mapped adapter.",
+                    "markdownDescription": "**Mapped Property Name**\n\nThis is propertyName in mappedObject from mapped adapter.",
+                    "title": "Mapped Property Name",
+                    "type": "string"
+                },
+                "mappedValue": {
+                    "description": "This is the value of mappedPropertyName from mapped adapter.",
+                    "markdownDescription": "**Mapped Value**\n\nThis is the value of mappedPropertyName from mapped adapter.",
+                    "title": "Mapped Value"
+                },
+                "objectType": {
+                    "description": "The object type of the object being converted to mapped object.",
+                    "markdownDescription": "**Object Type**\n\nThe object type of the object being converted to mapped object.",
+                    "title": "Object Type",
+                    "type": "string"
+                },
+                "useDefaultProcessing": {
+                    "description": "Return this value to cause default processing to occur.",
+                    "markdownDescription": "**Use Default Processing**\n\nReturn this value to cause default processing to occur.",
                     "title": "Use Default Processing"
                 }
             },
@@ -65,9 +140,76 @@
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "allOf": [
-        {
-            "$ref": "#/$defs/_AdaptiveModelCurrentOnGetProperty_"
+    "additionalProperties": false,
+    "description": "Qualifier current:: for model onGetProperty.",
+    "markdownDescription": "Qualifier current:: for model onGetProperty.",
+    "properties": {
+        "_meta_": {
+            "additionalProperties": true,
+            "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+            "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+            "title": "Meta",
+            "type": "object"
+        },
+        "adapterId": {
+            "description": "The adapter id of the object being converted to mapped object.",
+            "markdownDescription": "**Adapter Id**\n\nThe adapter id of the object being converted to mapped object.",
+            "title": "Adapter Id",
+            "type": "string"
+        },
+        "adapterTypeSpecific": {
+            "description": "This is the adapterTypeSpecific parameter value.",
+            "markdownDescription": "**Adapter Specific**\n\nThis is the adapterTypeSpecific parameter value.",
+            "title": "Adapter Specific",
+            "type": "object"
+        },
+        "mappedAdapterId": {
+            "description": "The adapter id of the object being converted to object.",
+            "markdownDescription": "**Mapped Adapter Id**\n\nThe adapter id of the object being converted to object.",
+            "title": "Mapped Adapter Id",
+            "type": "string"
+        },
+        "mappedObject": {
+            "description": "This is the object from mapped adapter.",
+            "markdownDescription": "**Object**\n\nThis is the object from mapped adapter.",
+            "title": "Object",
+            "type": "object"
+        },
+        "mappedObjectId": {
+            "description": "This is objectId of mappedObject from mapped adapter.",
+            "markdownDescription": "**Mapped object id**\n\nThis is objectId of mappedObject from mapped adapter.",
+            "title": "Mapped object id",
+            "type": "string"
+        },
+        "mappedObjectType": {
+            "description": "The object type of the object being converted to object.",
+            "markdownDescription": "**Mapped Object Type**\n\nThe object type of the object being converted to object.",
+            "title": "Mapped Object Type",
+            "type": "string"
+        },
+        "mappedPropertyName": {
+            "description": "This is propertyName in mappedObject from mapped adapter.",
+            "markdownDescription": "**Mapped Property Name**\n\nThis is propertyName in mappedObject from mapped adapter.",
+            "title": "Mapped Property Name",
+            "type": "string"
+        },
+        "mappedValue": {
+            "description": "This is the value of mappedPropertyName from mapped adapter.",
+            "markdownDescription": "**Mapped Value**\n\nThis is the value of mappedPropertyName from mapped adapter.",
+            "title": "Mapped Value"
+        },
+        "objectType": {
+            "description": "The object type of the object being converted to mapped object.",
+            "markdownDescription": "**Object Type**\n\nThe object type of the object being converted to mapped object.",
+            "title": "Object Type",
+            "type": "string"
+        },
+        "useDefaultProcessing": {
+            "description": "Return this value to cause default processing to occur.",
+            "markdownDescription": "**Use Default Processing**\n\nReturn this value to cause default processing to occur.",
+            "title": "Use Default Processing"
         }
-    ]
+    },
+    "title": "_AdaptiveModelCurrentOnGetProperty_",
+    "type": "object"
 }

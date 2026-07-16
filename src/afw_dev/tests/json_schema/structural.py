@@ -68,18 +68,19 @@ def run():
                 detail=str(exc),
             ))
             continue
+        # Editor-first: entity keywords live at document root; $defs holds
+        # the entity and nested types for $ref.
         ok = (
             doc.get('$schema') is not None and
             isinstance(doc.get('$defs'), dict) and
             ot_id in doc['$defs'] and
-            isinstance(doc.get('allOf'), list) and
-            len(doc['allOf']) >= 1 and
-            doc['allOf'][0].get('$ref') == '#/$defs/' + ot_id
+            doc.get('type') == 'object' and
+            isinstance(doc.get('properties'), dict)
         )
         tests.append(make_test(
             'entity-document-shape-' + ot_id,
             'schema document for ' + ot_id +
-            ' has $schema, $defs, allOf->$ref entity',
+            ' has $schema, $defs, and entity properties at root (editor)',
             ok,
         ))
 

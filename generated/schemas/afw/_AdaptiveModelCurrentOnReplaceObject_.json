@@ -1,54 +1,116 @@
 {
+    "$comment": "Generated from adaptive object type _AdaptiveModelCurrentOnReplaceObject_. Primary use: editor completion/validation for generate/objects JSON. Do not hand-edit.",
     "$defs": {
         "_AdaptiveModelCurrentOnReplaceObject_": {
-            "allOf": [
-                {
-                    "$ref": "#/$defs/_AdaptiveModelCurrentOnReplaceObject_.propertyTypes"
-                }
-            ],
+            "additionalProperties": false,
             "description": "Qualifier current:: for model onReplaceObject.",
-            "type": "object",
-            "unevaluatedProperties": false
-        },
-        "_AdaptiveModelCurrentOnReplaceObject_.propertyTypes": {
+            "markdownDescription": "Qualifier current:: for model onReplaceObject.",
             "properties": {
+                "_meta_": {
+                    "additionalProperties": true,
+                    "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+                    "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+                    "title": "Meta",
+                    "type": "object"
+                },
                 "adapterId": {
                     "description": "The adapter id of the object being converted to mapped object.",
+                    "markdownDescription": "**Adapter Id**\n\nThe adapter id of the object being converted to mapped object.",
                     "title": "Adapter Id",
                     "type": "string"
                 },
                 "adapterTypeSpecific": {
                     "description": "This is the adapterTypeSpecific parameter value.",
+                    "markdownDescription": "**Adapter Specific**\n\nThis is the adapterTypeSpecific parameter value.",
                     "title": "Adapter Specific",
                     "type": "object"
                 },
                 "mappedAdapterId": {
                     "description": "The adapter id of the object being converted to object.",
+                    "markdownDescription": "**Mapped Adapter Id**\n\nThe adapter id of the object being converted to object.",
                     "title": "Mapped Adapter Id",
                     "type": "string"
                 },
                 "mappedObjectType": {
                     "description": "The object type of the object being converted to object.",
+                    "markdownDescription": "**Mapped Object Type**\n\nThe object type of the object being converted to object.",
                     "title": "Mapped Object Type",
                     "type": "string"
                 },
                 "object": {
                     "description": "This is the replacement object.",
+                    "markdownDescription": "**Replacement Object**\n\nThis is the replacement object.",
                     "title": "Replacement Object",
                     "type": "object"
                 },
                 "objectId": {
                     "description": "This is objectId of the object to replace.",
+                    "markdownDescription": "**Object Id**\n\nThis is objectId of the object to replace.",
                     "title": "Object Id",
                     "type": "string"
                 },
                 "objectType": {
                     "description": "The object type of the object being converted to mapped object.",
+                    "markdownDescription": "**Object Type**\n\nThe object type of the object being converted to mapped object.",
                     "title": "Object Type",
                     "type": "string"
                 },
                 "useDefaultProcessing": {
                     "description": "Return this value to cause default processing to occur.",
+                    "markdownDescription": "**Use Default Processing**\n\nReturn this value to cause default processing to occur.",
+                    "title": "Use Default Processing"
+                }
+            },
+            "title": "_AdaptiveModelCurrentOnReplaceObject_",
+            "type": "object"
+        },
+        "_AdaptiveModelCurrentOnReplaceObject_.propertyTypes": {
+            "properties": {
+                "adapterId": {
+                    "description": "The adapter id of the object being converted to mapped object.",
+                    "markdownDescription": "**Adapter Id**\n\nThe adapter id of the object being converted to mapped object.",
+                    "title": "Adapter Id",
+                    "type": "string"
+                },
+                "adapterTypeSpecific": {
+                    "description": "This is the adapterTypeSpecific parameter value.",
+                    "markdownDescription": "**Adapter Specific**\n\nThis is the adapterTypeSpecific parameter value.",
+                    "title": "Adapter Specific",
+                    "type": "object"
+                },
+                "mappedAdapterId": {
+                    "description": "The adapter id of the object being converted to object.",
+                    "markdownDescription": "**Mapped Adapter Id**\n\nThe adapter id of the object being converted to object.",
+                    "title": "Mapped Adapter Id",
+                    "type": "string"
+                },
+                "mappedObjectType": {
+                    "description": "The object type of the object being converted to object.",
+                    "markdownDescription": "**Mapped Object Type**\n\nThe object type of the object being converted to object.",
+                    "title": "Mapped Object Type",
+                    "type": "string"
+                },
+                "object": {
+                    "description": "This is the replacement object.",
+                    "markdownDescription": "**Replacement Object**\n\nThis is the replacement object.",
+                    "title": "Replacement Object",
+                    "type": "object"
+                },
+                "objectId": {
+                    "description": "This is objectId of the object to replace.",
+                    "markdownDescription": "**Object Id**\n\nThis is objectId of the object to replace.",
+                    "title": "Object Id",
+                    "type": "string"
+                },
+                "objectType": {
+                    "description": "The object type of the object being converted to mapped object.",
+                    "markdownDescription": "**Object Type**\n\nThe object type of the object being converted to mapped object.",
+                    "title": "Object Type",
+                    "type": "string"
+                },
+                "useDefaultProcessing": {
+                    "description": "Return this value to cause default processing to occur.",
+                    "markdownDescription": "**Use Default Processing**\n\nReturn this value to cause default processing to occur.",
                     "title": "Use Default Processing"
                 }
             },
@@ -56,9 +118,65 @@
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "allOf": [
-        {
-            "$ref": "#/$defs/_AdaptiveModelCurrentOnReplaceObject_"
+    "additionalProperties": false,
+    "description": "Qualifier current:: for model onReplaceObject.",
+    "markdownDescription": "Qualifier current:: for model onReplaceObject.",
+    "properties": {
+        "_meta_": {
+            "additionalProperties": true,
+            "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+            "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+            "title": "Meta",
+            "type": "object"
+        },
+        "adapterId": {
+            "description": "The adapter id of the object being converted to mapped object.",
+            "markdownDescription": "**Adapter Id**\n\nThe adapter id of the object being converted to mapped object.",
+            "title": "Adapter Id",
+            "type": "string"
+        },
+        "adapterTypeSpecific": {
+            "description": "This is the adapterTypeSpecific parameter value.",
+            "markdownDescription": "**Adapter Specific**\n\nThis is the adapterTypeSpecific parameter value.",
+            "title": "Adapter Specific",
+            "type": "object"
+        },
+        "mappedAdapterId": {
+            "description": "The adapter id of the object being converted to object.",
+            "markdownDescription": "**Mapped Adapter Id**\n\nThe adapter id of the object being converted to object.",
+            "title": "Mapped Adapter Id",
+            "type": "string"
+        },
+        "mappedObjectType": {
+            "description": "The object type of the object being converted to object.",
+            "markdownDescription": "**Mapped Object Type**\n\nThe object type of the object being converted to object.",
+            "title": "Mapped Object Type",
+            "type": "string"
+        },
+        "object": {
+            "description": "This is the replacement object.",
+            "markdownDescription": "**Replacement Object**\n\nThis is the replacement object.",
+            "title": "Replacement Object",
+            "type": "object"
+        },
+        "objectId": {
+            "description": "This is objectId of the object to replace.",
+            "markdownDescription": "**Object Id**\n\nThis is objectId of the object to replace.",
+            "title": "Object Id",
+            "type": "string"
+        },
+        "objectType": {
+            "description": "The object type of the object being converted to mapped object.",
+            "markdownDescription": "**Object Type**\n\nThe object type of the object being converted to mapped object.",
+            "title": "Object Type",
+            "type": "string"
+        },
+        "useDefaultProcessing": {
+            "description": "Return this value to cause default processing to occur.",
+            "markdownDescription": "**Use Default Processing**\n\nReturn this value to cause default processing to occur.",
+            "title": "Use Default Processing"
         }
-    ]
+    },
+    "title": "_AdaptiveModelCurrentOnReplaceObject_",
+    "type": "object"
 }

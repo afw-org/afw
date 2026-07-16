@@ -1,28 +1,49 @@
 {
+    "$comment": "Generated from adaptive object type _AdaptivePolymorphicFunction_. Primary use: editor completion/validation for generate/objects JSON. Do not hand-edit.",
     "$defs": {
         "_AdaptiveFunctionErrorThrown_": {
-            "allOf": [
-                {
-                    "$ref": "#/$defs/_AdaptiveFunctionErrorThrown_.propertyTypes"
-                }
-            ],
+            "additionalProperties": false,
             "description": "An object entry of _AdaptiveFunction_ errorsThrown array.",
-            "required": [
-                "error",
-                "reason"
-            ],
-            "type": "object",
-            "unevaluatedProperties": false
-        },
-        "_AdaptiveFunctionErrorThrown_.propertyTypes": {
+            "markdownDescription": "An object entry of _AdaptiveFunction_ errorsThrown array.",
             "properties": {
+                "_meta_": {
+                    "additionalProperties": true,
+                    "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+                    "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+                    "title": "Meta",
+                    "type": "object"
+                },
                 "error": {
                     "description": "This is the error id of the error that can be thrown.",
+                    "markdownDescription": "**Error**\n\nThis is the error id of the error that can be thrown.",
                     "title": "Error",
                     "type": "string"
                 },
                 "reason": {
                     "description": "This is the reason the error can be thrown.",
+                    "markdownDescription": "**Reason**\n\nThis is the reason the error can be thrown.",
+                    "title": "Reason",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "error",
+                "reason"
+            ],
+            "title": "_AdaptiveFunctionErrorThrown_",
+            "type": "object"
+        },
+        "_AdaptiveFunctionErrorThrown_.propertyTypes": {
+            "properties": {
+                "error": {
+                    "description": "This is the error id of the error that can be thrown.",
+                    "markdownDescription": "**Error**\n\nThis is the error id of the error that can be thrown.",
+                    "title": "Error",
+                    "type": "string"
+                },
+                "reason": {
+                    "description": "This is the reason the error can be thrown.",
+                    "markdownDescription": "**Reason**\n\nThis is the reason the error can be thrown.",
                     "title": "Reason",
                     "type": "string"
                 }
@@ -30,67 +51,146 @@
             "type": "object"
         },
         "_AdaptiveFunctionParameter_": {
-            "allOf": [
-                {
-                    "$ref": "#/$defs/_AdaptiveFunctionParameter_.propertyTypes"
-                }
-            ],
+            "additionalProperties": false,
             "description": "Adaptive function parameter meta.",
-            "type": "object",
-            "unevaluatedProperties": false
-        },
-        "_AdaptiveFunctionParameter_.propertyTypes": {
+            "markdownDescription": "Adaptive function parameter meta.",
             "properties": {
+                "_meta_": {
+                    "additionalProperties": true,
+                    "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+                    "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+                    "title": "Meta",
+                    "type": "object"
+                },
                 "brief": {
                     "description": "This is a predicate for the parameter with the first letter capitalized and without a trailing period.",
+                    "markdownDescription": "**Brief**\n\nThis is a predicate for the parameter with the first letter capitalized and without a trailing period.",
                     "title": "Brief",
                     "type": "string"
                 },
                 "canBeUndefined": {
                     "default": false,
                     "description": "Indicates that parameter can be undefined (NULL) even if not optional.",
+                    "markdownDescription": "**Optional**\n\nIndicates that parameter can be undefined (NULL) even if not optional.",
                     "title": "Optional",
                     "type": "boolean"
                 },
                 "dataType": {
                     "description": "This is the data type id for this parameter's value.",
+                    "markdownDescription": "**Data Type**\n\nThis is the data type id for this parameter's value.",
                     "title": "Data Type",
                     "type": "string"
                 },
                 "dataTypeParameter": {
                     "description": "See the data type's dataTypeParameterType property to determine how to interpret this.",
+                    "markdownDescription": "**Data Type Parameter**\n\nSee the data type's dataTypeParameterType property to determine how to interpret this.",
                     "title": "Data Type Parameter",
                     "type": "string"
                 },
                 "description": {
                     "contentMediaType": "text/plain",
                     "description": "This is the description of this parameter.",
+                    "markdownDescription": "**Description**\n\nThis is the description of this parameter.",
                     "title": "Description",
                     "type": "string"
                 },
                 "minArgs": {
                     "description": "This is the minimum number of values that can be specified for this parameter. If -1, the parameter can be specified exactly once. This can only have a value other than -1 on last parameter where it can have a value of -1 to 127.",
+                    "markdownDescription": "**Min Args**\n\nThis is the minimum number of values that can be specified for this parameter. If -1, the parameter can be specified exactly once. This can only have a value other than -1 on last parameter where it can have a value of -1 to 127.",
                     "title": "Min Args",
                     "type": "integer"
                 },
                 "name": {
                     "description": "This is the name of this parameter.",
+                    "markdownDescription": "**Name**\n\nThis is the name of this parameter.",
                     "title": "Name",
                     "type": "string"
                 },
                 "optional": {
                     "default": false,
                     "description": "This indicates that parameter is optional and can be undefined (NULL).",
+                    "markdownDescription": "**Optional**\n\nThis indicates that parameter is optional and can be undefined (NULL).",
                     "title": "Optional",
                     "type": "boolean"
                 },
                 "polymorphicDataType": {
                     "description": "The dataType for this parameter is <Type>.",
+                    "markdownDescription": "**Polymorphic Data Type**\n\nThe dataType for this parameter is <Type>.",
                     "title": "Polymorphic Data Type",
                     "type": "boolean"
                 },
                 "polymorphicDataTypeParameter": {
                     "description": "The dataTypeParameter for this parameter is <Type>.",
+                    "markdownDescription": "**Polymorphic Data Type Parameter**\n\nThe dataTypeParameter for this parameter is <Type>.",
+                    "title": "Polymorphic Data Type Parameter",
+                    "type": "boolean"
+                }
+            },
+            "title": "_AdaptiveFunctionParameter_",
+            "type": "object"
+        },
+        "_AdaptiveFunctionParameter_.propertyTypes": {
+            "properties": {
+                "brief": {
+                    "description": "This is a predicate for the parameter with the first letter capitalized and without a trailing period.",
+                    "markdownDescription": "**Brief**\n\nThis is a predicate for the parameter with the first letter capitalized and without a trailing period.",
+                    "title": "Brief",
+                    "type": "string"
+                },
+                "canBeUndefined": {
+                    "default": false,
+                    "description": "Indicates that parameter can be undefined (NULL) even if not optional.",
+                    "markdownDescription": "**Optional**\n\nIndicates that parameter can be undefined (NULL) even if not optional.",
+                    "title": "Optional",
+                    "type": "boolean"
+                },
+                "dataType": {
+                    "description": "This is the data type id for this parameter's value.",
+                    "markdownDescription": "**Data Type**\n\nThis is the data type id for this parameter's value.",
+                    "title": "Data Type",
+                    "type": "string"
+                },
+                "dataTypeParameter": {
+                    "description": "See the data type's dataTypeParameterType property to determine how to interpret this.",
+                    "markdownDescription": "**Data Type Parameter**\n\nSee the data type's dataTypeParameterType property to determine how to interpret this.",
+                    "title": "Data Type Parameter",
+                    "type": "string"
+                },
+                "description": {
+                    "contentMediaType": "text/plain",
+                    "description": "This is the description of this parameter.",
+                    "markdownDescription": "**Description**\n\nThis is the description of this parameter.",
+                    "title": "Description",
+                    "type": "string"
+                },
+                "minArgs": {
+                    "description": "This is the minimum number of values that can be specified for this parameter. If -1, the parameter can be specified exactly once. This can only have a value other than -1 on last parameter where it can have a value of -1 to 127.",
+                    "markdownDescription": "**Min Args**\n\nThis is the minimum number of values that can be specified for this parameter. If -1, the parameter can be specified exactly once. This can only have a value other than -1 on last parameter where it can have a value of -1 to 127.",
+                    "title": "Min Args",
+                    "type": "integer"
+                },
+                "name": {
+                    "description": "This is the name of this parameter.",
+                    "markdownDescription": "**Name**\n\nThis is the name of this parameter.",
+                    "title": "Name",
+                    "type": "string"
+                },
+                "optional": {
+                    "default": false,
+                    "description": "This indicates that parameter is optional and can be undefined (NULL).",
+                    "markdownDescription": "**Optional**\n\nThis indicates that parameter is optional and can be undefined (NULL).",
+                    "title": "Optional",
+                    "type": "boolean"
+                },
+                "polymorphicDataType": {
+                    "description": "The dataType for this parameter is <Type>.",
+                    "markdownDescription": "**Polymorphic Data Type**\n\nThe dataType for this parameter is <Type>.",
+                    "title": "Polymorphic Data Type",
+                    "type": "boolean"
+                },
+                "polymorphicDataTypeParameter": {
+                    "description": "The dataTypeParameter for this parameter is <Type>.",
+                    "markdownDescription": "**Polymorphic Data Type Parameter**\n\nThe dataTypeParameter for this parameter is <Type>.",
                     "title": "Polymorphic Data Type Parameter",
                     "type": "boolean"
                 }
@@ -101,43 +201,51 @@
             "properties": {
                 "afwCamelCaseFunctionLabel": {
                     "description": "This is the functionLabel prefixed with 'afw' and converted to camel case.",
+                    "markdownDescription": "**Prefixed Camel Case**\n\nThis is the functionLabel prefixed with 'afw' and converted to camel case.",
                     "title": "Prefixed Camel Case",
                     "type": "string"
                 },
                 "brief": {
                     "description": "This is a predicate for the function with the first letter capitalized and without a trailing period.",
+                    "markdownDescription": "**Brief**\n\nThis is a predicate for the function with the first letter capitalized and without a trailing period.",
                     "title": "Brief",
                     "type": "string"
                 },
                 "camelCaseFunctionLabel": {
                     "description": "This is the functionLabel converted to camel case.",
+                    "markdownDescription": "**Camel Case**\n\nThis is the functionLabel converted to camel case.",
                     "title": "Camel Case",
                     "type": "string"
                 },
                 "category": {
                     "description": "Function category.",
+                    "markdownDescription": "**Category**\n\nFunction category.",
                     "title": "Category",
                     "type": "string"
                 },
                 "dataType": {
                     "description": "If present, this is a method for this data type.",
+                    "markdownDescription": "**Data Type**\n\nIf present, this is a method for this data type.",
                     "title": "Data Type",
                     "type": "string"
                 },
                 "dataTypeMethodNumber": {
                     "description": "This is an internal number that is unique to the method name (the part after :: in functionId) of a dataTypeMethod function.",
+                    "markdownDescription": "**Method Number**\n\nThis is an internal number that is unique to the method name (the part after :: in functionId) of a dataTypeMethod function.",
                     "title": "Method Number",
                     "type": "integer"
                 },
                 "deprecated": {
                     "default": false,
                     "description": "This indicates that the function is deprecated and may go away at some point.",
+                    "markdownDescription": "**Deprecated**\n\nThis indicates that the function is deprecated and may go away at some point.",
                     "title": "Deprecated",
                     "type": "boolean"
                 },
                 "description": {
                     "contentMediaType": "text/plain",
                     "description": "This is the function's description, used for documentation purposes.",
+                    "markdownDescription": "**Description**\n\nThis is the function's description, used for documentation purposes.",
                     "title": "Description",
                     "type": "string"
                 },
@@ -150,49 +258,60 @@
                             }
                         ],
                         "description": "These are errors that can possibly be thrown by this function.",
-                        "title": "Errors thrown"
+                        "markdownDescription": "These are errors that can possibly be thrown by this function.",
+                        "title": "Errors thrown",
+                        "type": "object"
                     },
+                    "markdownDescription": "**Errors Thrown**\n\nThese are errors that can possibly be thrown by this function.",
                     "title": "Errors Thrown",
                     "type": "array"
                 },
                 "functionDeclaration": {
                     "contentMediaType": "text/plain",
                     "description": "This is the function's declaration with whitespace and brief comments.",
+                    "markdownDescription": "**Function Declaration**\n\nThis is the function's declaration with whitespace and brief comments.",
                     "title": "Function Declaration",
                     "type": "string"
                 },
                 "functionId": {
                     "description": "This is the function's id.",
+                    "markdownDescription": "**Function**\n\nThis is the function's id.",
                     "title": "Function",
                     "type": "string"
                 },
                 "functionLabel": {
                     "description": "This is the function's label.",
+                    "markdownDescription": "**Function Label**\n\nThis is the function's label.",
                     "title": "Function Label",
                     "type": "string"
                 },
                 "functionResourceId": {
                     "description": "This is the function's resource id.",
+                    "markdownDescription": "**Function Resource Id**\n\nThis is the function's resource id.",
                     "title": "Function Resource Id",
                     "type": "string"
                 },
                 "functionSignature": {
                     "description": "This is the function's signature.",
+                    "markdownDescription": "**Signature**\n\nThis is the function's signature.",
                     "title": "Signature",
                     "type": "string"
                 },
                 "maximumNumberOfParameters": {
                     "description": "This is the maximum number of parameters or -1 if there is no maximum.",
+                    "markdownDescription": "**Maximum Parameters**\n\nThis is the maximum number of parameters or -1 if there is no maximum.",
                     "title": "Maximum Parameters",
                     "type": "integer"
                 },
                 "numberOfRequiredParameters": {
                     "description": "This is the number of required parameters.",
+                    "markdownDescription": "**Required Parameters**\n\nThis is the number of required parameters.",
                     "title": "Required Parameters",
                     "type": "integer"
                 },
                 "op": {
                     "description": "This is the function's operator. This is not used at the moment, but may be used in a future expression syntax.",
+                    "markdownDescription": "**Op**\n\nThis is the function's operator. This is not used at the moment, but may be used in a future expression syntax.",
                     "title": "Op",
                     "type": "string"
                 },
@@ -205,14 +324,18 @@
                             }
                         ],
                         "description": "These are the function's parameters.",
-                        "title": "The function's parameters"
+                        "markdownDescription": "These are the function's parameters.",
+                        "title": "The function's parameters",
+                        "type": "object"
                     },
+                    "markdownDescription": "**Parameters**\n\nThese are the function's parameters.",
                     "title": "Parameters",
                     "type": "array"
                 },
                 "polymorphic": {
                     "default": false,
                     "description": "This indicates that this function can be called polymorphically without specifying the <Type>:: qualifier. The appropriate implementation of the function will be called based on the dataType and/or dataTypeParameter of the first function parameter value.",
+                    "markdownDescription": "**Polymorphic**\n\nThis indicates that this function can be called polymorphically without specifying the <Type>:: qualifier. The appropriate implementation of the function will be called based on the dataType and/or dataTypeParameter of the first function parameter value.",
                     "title": "Polymorphic",
                     "type": "boolean"
                 },
@@ -221,20 +344,24 @@
                     "description": "This function will call the appropriate function when the first parameter is one of these data types.",
                     "items": {
                         "description": "This function will call the appropriate function when the first parameter is one of these data types.",
+                        "markdownDescription": "This function will call the appropriate function when the first parameter is one of these data types.",
                         "title": "This function will call the appropriate function when the first parameter is one of these data types",
                         "type": "string"
                     },
+                    "markdownDescription": "**Polymorphic Data Types**\n\nThis function will call the appropriate function when the first parameter is one of these data types.",
                     "title": "Polymorphic Data Types",
                     "type": "array"
                 },
                 "pure": {
                     "default": false,
                     "description": "This indicates that, given exactly the same parameter values, this function will always return the same result and will not cause any side effects.",
+                    "markdownDescription": "**Pure**\n\nThis indicates that, given exactly the same parameter values, this function will always return the same result and will not cause any side effects.",
                     "title": "Pure",
                     "type": "boolean"
                 },
                 "requiresExecuteAccess": {
                     "description": "If true, this function requires 'execute' access to be called. The 'resourceId' for the authorization check is the function object path, the 'actionId' is 'execute', and the 'object' is object type '_AdaptiveFunctionArguments_' which contains the function object and the arguments to the called function.",
+                    "markdownDescription": "**Requires Execute Access**\n\nIf true, this function requires 'execute' access to be called. The 'resourceId' for the authorization check is the function object path, the 'actionId' is 'execute', and the 'object' is object type '_AdaptiveFunctionArguments_' which contains the function object and the arguments to the called function.",
                     "title": "Requires Execute Access",
                     "type": "boolean"
                 },
@@ -245,25 +372,31 @@
                         }
                     ],
                     "description": "The return parameter.",
-                    "title": "Returns"
+                    "markdownDescription": "**Returns**\n\nThe return parameter.",
+                    "title": "Returns",
+                    "type": "object"
                 },
                 "sideEffects": {
                     "description": "Any side effects that this function may produce as a result of execution.",
                     "items": {
                         "description": "Any side effects that this function may produce as a result of execution.",
+                        "markdownDescription": "Any side effects that this function may produce as a result of execution.",
                         "title": "Side effects for this function.",
                         "type": "string"
                     },
+                    "markdownDescription": "**Side Effects**\n\nAny side effects that this function may produce as a result of execution.",
                     "title": "Side Effects",
                     "type": "array"
                 },
                 "signatureOnly": {
                     "description": "This is a signature with an unimplemented execute function.",
+                    "markdownDescription": "**Signature Only**\n\nThis is a signature with an unimplemented execute function.",
                     "title": "Signature Only",
                     "type": "boolean"
                 },
                 "untypedFunctionId": {
                     "description": "This is the function's id without <dataType>. If this function is not polymorphic, this is the same as functionId.",
+                    "markdownDescription": "**Function**\n\nThis is the function's id without <dataType>. If this function is not polymorphic, this is the same as functionId.",
                     "title": "Function",
                     "type": "string"
                 }
@@ -271,22 +404,253 @@
             "type": "object"
         },
         "_AdaptivePolymorphicFunction_": {
-            "allOf": [
-                {
-                    "$ref": "#/$defs/_AdaptivePolymorphicFunction_.propertyTypes"
-                },
-                {
-                    "$ref": "#/$defs/_AdaptiveFunction_.propertyTypes"
-                }
-            ],
+            "additionalProperties": false,
             "description": "This is a development time only object type. Objects of this type in generate/objects are processed to produce one polymorphic _AdaptiveFunction_ plus one for each dataType in polymorphicDataTypes.",
+            "markdownDescription": "This is a development time only object type. Objects of this type in generate/objects are processed to produce one polymorphic _AdaptiveFunction_ plus one for each dataType in polymorphicDataTypes.",
+            "properties": {
+                "_meta_": {
+                    "additionalProperties": true,
+                    "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+                    "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+                    "title": "Meta",
+                    "type": "object"
+                },
+                "afwCamelCaseFunctionLabel": {
+                    "description": "This is the functionLabel prefixed with 'afw' and converted to camel case.",
+                    "markdownDescription": "**Prefixed Camel Case**\n\nThis is the functionLabel prefixed with 'afw' and converted to camel case.",
+                    "title": "Prefixed Camel Case",
+                    "type": "string"
+                },
+                "brief": {
+                    "description": "This is a predicate for the function with the first letter capitalized and without a trailing period.",
+                    "markdownDescription": "**Brief**\n\nThis is a predicate for the function with the first letter capitalized and without a trailing period.",
+                    "title": "Brief",
+                    "type": "string"
+                },
+                "camelCaseFunctionLabel": {
+                    "description": "This is the functionLabel converted to camel case.",
+                    "markdownDescription": "**Camel Case**\n\nThis is the functionLabel converted to camel case.",
+                    "title": "Camel Case",
+                    "type": "string"
+                },
+                "category": {
+                    "description": "Function category.",
+                    "markdownDescription": "**Category**\n\nFunction category.",
+                    "title": "Category",
+                    "type": "string"
+                },
+                "dataType": {
+                    "description": "If present, this is a method for this data type.",
+                    "markdownDescription": "**Data Type**\n\nIf present, this is a method for this data type.",
+                    "title": "Data Type",
+                    "type": "string"
+                },
+                "dataTypeMethod": {
+                    "description": "If true, this is a data type method that can be called polymorphically or by prefixing the function with the data type followed by double colons ('::').",
+                    "markdownDescription": "**Data Type Method**\n\nIf true, this is a data type method that can be called polymorphically or by prefixing the function with the data type followed by double colons ('::').",
+                    "title": "Data Type Method",
+                    "type": "boolean"
+                },
+                "dataTypeMethodNumber": {
+                    "description": "This is an internal number that is unique to the method name (the part after :: in functionId) of a dataTypeMethod function.",
+                    "markdownDescription": "**Method Number**\n\nThis is an internal number that is unique to the method name (the part after :: in functionId) of a dataTypeMethod function.",
+                    "title": "Method Number",
+                    "type": "integer"
+                },
+                "deprecated": {
+                    "default": false,
+                    "description": "This indicates that the function is deprecated and may go away at some point.",
+                    "markdownDescription": "**Deprecated**\n\nThis indicates that the function is deprecated and may go away at some point.",
+                    "title": "Deprecated",
+                    "type": "boolean"
+                },
+                "description": {
+                    "contentMediaType": "text/plain",
+                    "description": "This is the function's description, used for documentation purposes.",
+                    "markdownDescription": "**Description**\n\nThis is the function's description, used for documentation purposes.",
+                    "title": "Description",
+                    "type": "string"
+                },
+                "errorsThrown": {
+                    "description": "Errors that can be thrown by this function.",
+                    "items": {
+                        "allOf": [
+                            {
+                                "$ref": "#/$defs/_AdaptiveFunctionErrorThrown_"
+                            }
+                        ],
+                        "description": "Errors that can be thrown by this function.",
+                        "markdownDescription": "Errors that can be thrown by this function.",
+                        "title": "Errors thrown by this function",
+                        "type": "object"
+                    },
+                    "markdownDescription": "**Errors Thrown**\n\nErrors that can be thrown by this function.",
+                    "title": "Errors Thrown",
+                    "type": "array"
+                },
+                "functionDeclaration": {
+                    "contentMediaType": "text/plain",
+                    "description": "This is the function's declaration with whitespace and brief comments.",
+                    "markdownDescription": "**Function Declaration**\n\nThis is the function's declaration with whitespace and brief comments.",
+                    "title": "Function Declaration",
+                    "type": "string"
+                },
+                "functionId": {
+                    "description": "This is the function's id.",
+                    "markdownDescription": "**Function**\n\nThis is the function's id.",
+                    "title": "Function",
+                    "type": "string"
+                },
+                "functionLabel": {
+                    "description": "This is the function's label.",
+                    "markdownDescription": "**Function Label**\n\nThis is the function's label.",
+                    "title": "Function Label",
+                    "type": "string"
+                },
+                "functionResourceId": {
+                    "description": "This is the function's resource id.",
+                    "markdownDescription": "**Function Resource Id**\n\nThis is the function's resource id.",
+                    "title": "Function Resource Id",
+                    "type": "string"
+                },
+                "functionSignature": {
+                    "description": "This is the function's signature.",
+                    "markdownDescription": "**Signature**\n\nThis is the function's signature.",
+                    "title": "Signature",
+                    "type": "string"
+                },
+                "maximumNumberOfParameters": {
+                    "description": "This is the maximum number of parameters or -1 if there is no maximum.",
+                    "markdownDescription": "**Maximum Parameters**\n\nThis is the maximum number of parameters or -1 if there is no maximum.",
+                    "title": "Maximum Parameters",
+                    "type": "integer"
+                },
+                "numberOfRequiredParameters": {
+                    "description": "This is the number of required parameters.",
+                    "markdownDescription": "**Required Parameters**\n\nThis is the number of required parameters.",
+                    "title": "Required Parameters",
+                    "type": "integer"
+                },
+                "op": {
+                    "description": "This is the function's operator. This is not used at the moment, but may be used in a future expression syntax.",
+                    "markdownDescription": "**Op**\n\nThis is the function's operator. This is not used at the moment, but may be used in a future expression syntax.",
+                    "title": "Op",
+                    "type": "string"
+                },
+                "parameters": {
+                    "description": "These are the function's parameters.",
+                    "items": {
+                        "allOf": [
+                            {
+                                "$ref": "#/$defs/_AdaptiveFunctionParameter_"
+                            }
+                        ],
+                        "description": "These are the function's parameters.",
+                        "markdownDescription": "These are the function's parameters.",
+                        "title": "The function's parameters",
+                        "type": "object"
+                    },
+                    "markdownDescription": "**Parameters**\n\nThese are the function's parameters.",
+                    "title": "Parameters",
+                    "type": "array"
+                },
+                "polymorphic": {
+                    "default": false,
+                    "description": "This indicates that this function can be called polymorphically without specifying the <Type>:: qualifier. The appropriate implementation of the function will be called based on the dataType and/or dataTypeParameter of the first function parameter value.",
+                    "markdownDescription": "**Polymorphic**\n\nThis indicates that this function can be called polymorphically without specifying the <Type>:: qualifier. The appropriate implementation of the function will be called based on the dataType and/or dataTypeParameter of the first function parameter value.",
+                    "title": "Polymorphic",
+                    "type": "boolean"
+                },
+                "polymorphicDataTypes": {
+                    "default": false,
+                    "description": "This function will call the appropriate function when the first parameter is one of these data types.",
+                    "items": {
+                        "description": "This function will call the appropriate function when the first parameter is one of these data types.",
+                        "markdownDescription": "This function will call the appropriate function when the first parameter is one of these data types.",
+                        "title": "This function will call the appropriate function when the first parameter is one of these data types",
+                        "type": "string"
+                    },
+                    "markdownDescription": "**Polymorphic Data Types**\n\nThis function will call the appropriate function when the first parameter is one of these data types.",
+                    "title": "Polymorphic Data Types",
+                    "type": "array"
+                },
+                "polymorphicExecuteFunction": {
+                    "description": "Polymorphic Function.",
+                    "markdownDescription": "**Adapter**\n\nPolymorphic Function.",
+                    "title": "Adapter",
+                    "type": "string"
+                },
+                "polymorphicExecuteFunctionEvaluatesFirstParameter": {
+                    "default": false,
+                    "description": "If true, the first parameter evaluate is deferred to polymorphicExecuteFunction function. If false or not specified, standard polymorphic function processing evaluates the first parameter to determine the appropriate evaluate to call.",
+                    "markdownDescription": "**Defer Evaluate**\n\nIf true, the first parameter evaluate is deferred to polymorphicExecuteFunction function. If false or not specified, standard polymorphic function processing evaluates the first parameter to determine the appropriate evaluate to call.",
+                    "title": "Defer Evaluate",
+                    "type": "boolean"
+                },
+                "polymorphicOverrides": {
+                    "title": "Polymorphic Overrides",
+                    "type": "object"
+                },
+                "pure": {
+                    "default": false,
+                    "description": "This indicates that, given exactly the same parameter values, this function will always return the same result and will not cause any side effects.",
+                    "markdownDescription": "**Pure**\n\nThis indicates that, given exactly the same parameter values, this function will always return the same result and will not cause any side effects.",
+                    "title": "Pure",
+                    "type": "boolean"
+                },
+                "requiresExecuteAccess": {
+                    "description": "If true, this function requires 'execute' access to be called. The 'resourceId' for the authorization check is the function object path, the 'actionId' is 'execute', and the 'object' is object type '_AdaptiveFunctionArguments_' which contains the function object and the arguments to the called function.",
+                    "markdownDescription": "**Requires Execute Access**\n\nIf true, this function requires 'execute' access to be called. The 'resourceId' for the authorization check is the function object path, the 'actionId' is 'execute', and the 'object' is object type '_AdaptiveFunctionArguments_' which contains the function object and the arguments to the called function.",
+                    "title": "Requires Execute Access",
+                    "type": "boolean"
+                },
+                "returns": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/_AdaptiveFunctionParameter_"
+                        }
+                    ],
+                    "description": "The return parameter.",
+                    "markdownDescription": "**Returns**\n\nThe return parameter.",
+                    "title": "Returns",
+                    "type": "object"
+                },
+                "sideEffects": {
+                    "description": "Any side effects that this function may produce as a result of execution.",
+                    "items": {
+                        "description": "Any side effects that this function may produce as a result of execution.",
+                        "markdownDescription": "Any side effects that this function may produce as a result of execution.",
+                        "title": "Side effects for this function.",
+                        "type": "string"
+                    },
+                    "markdownDescription": "**Side Effects**\n\nAny side effects that this function may produce as a result of execution.",
+                    "title": "Side Effects",
+                    "type": "array"
+                },
+                "signatureOnly": {
+                    "description": "This is a signature with an unimplemented execute function.",
+                    "markdownDescription": "**Signature Only**\n\nThis is a signature with an unimplemented execute function.",
+                    "title": "Signature Only",
+                    "type": "boolean"
+                },
+                "untypedFunctionId": {
+                    "description": "This is the function's id without <dataType>. If this function is not polymorphic, this is the same as functionId.",
+                    "markdownDescription": "**Function**\n\nThis is the function's id without <dataType>. If this function is not polymorphic, this is the same as functionId.",
+                    "title": "Function",
+                    "type": "string"
+                }
+            },
+            "title": "_AdaptivePolymorphicFunction_",
             "type": "object",
-            "unevaluatedProperties": false
+            "x-afw-inheritedObjectTypes": [
+                "_AdaptiveFunction_"
+            ]
         },
         "_AdaptivePolymorphicFunction_.propertyTypes": {
             "properties": {
                 "dataTypeMethod": {
                     "description": "If true, this is a data type method that can be called polymorphically or by prefixing the function with the data type followed by double colons ('::').",
+                    "markdownDescription": "**Data Type Method**\n\nIf true, this is a data type method that can be called polymorphically or by prefixing the function with the data type followed by double colons ('::').",
                     "title": "Data Type Method",
                     "type": "boolean"
                 },
@@ -299,19 +663,24 @@
                             }
                         ],
                         "description": "Errors that can be thrown by this function.",
-                        "title": "Errors thrown by this function"
+                        "markdownDescription": "Errors that can be thrown by this function.",
+                        "title": "Errors thrown by this function",
+                        "type": "object"
                     },
+                    "markdownDescription": "**Errors Thrown**\n\nErrors that can be thrown by this function.",
                     "title": "Errors Thrown",
                     "type": "array"
                 },
                 "polymorphicExecuteFunction": {
                     "description": "Polymorphic Function.",
+                    "markdownDescription": "**Adapter**\n\nPolymorphic Function.",
                     "title": "Adapter",
                     "type": "string"
                 },
                 "polymorphicExecuteFunctionEvaluatesFirstParameter": {
                     "default": false,
                     "description": "If true, the first parameter evaluate is deferred to polymorphicExecuteFunction function. If false or not specified, standard polymorphic function processing evaluates the first parameter to determine the appropriate evaluate to call.",
+                    "markdownDescription": "**Defer Evaluate**\n\nIf true, the first parameter evaluate is deferred to polymorphicExecuteFunction function. If false or not specified, standard polymorphic function processing evaluates the first parameter to determine the appropriate evaluate to call.",
                     "title": "Defer Evaluate",
                     "type": "boolean"
                 },
@@ -324,9 +693,245 @@
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "allOf": [
-        {
-            "$ref": "#/$defs/_AdaptivePolymorphicFunction_"
+    "additionalProperties": false,
+    "description": "This is a development time only object type. Objects of this type in generate/objects are processed to produce one polymorphic _AdaptiveFunction_ plus one for each dataType in polymorphicDataTypes.",
+    "markdownDescription": "This is a development time only object type. Objects of this type in generate/objects are processed to produce one polymorphic _AdaptiveFunction_ plus one for each dataType in polymorphicDataTypes.",
+    "properties": {
+        "_meta_": {
+            "additionalProperties": true,
+            "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+            "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+            "title": "Meta",
+            "type": "object"
+        },
+        "afwCamelCaseFunctionLabel": {
+            "description": "This is the functionLabel prefixed with 'afw' and converted to camel case.",
+            "markdownDescription": "**Prefixed Camel Case**\n\nThis is the functionLabel prefixed with 'afw' and converted to camel case.",
+            "title": "Prefixed Camel Case",
+            "type": "string"
+        },
+        "brief": {
+            "description": "This is a predicate for the function with the first letter capitalized and without a trailing period.",
+            "markdownDescription": "**Brief**\n\nThis is a predicate for the function with the first letter capitalized and without a trailing period.",
+            "title": "Brief",
+            "type": "string"
+        },
+        "camelCaseFunctionLabel": {
+            "description": "This is the functionLabel converted to camel case.",
+            "markdownDescription": "**Camel Case**\n\nThis is the functionLabel converted to camel case.",
+            "title": "Camel Case",
+            "type": "string"
+        },
+        "category": {
+            "description": "Function category.",
+            "markdownDescription": "**Category**\n\nFunction category.",
+            "title": "Category",
+            "type": "string"
+        },
+        "dataType": {
+            "description": "If present, this is a method for this data type.",
+            "markdownDescription": "**Data Type**\n\nIf present, this is a method for this data type.",
+            "title": "Data Type",
+            "type": "string"
+        },
+        "dataTypeMethod": {
+            "description": "If true, this is a data type method that can be called polymorphically or by prefixing the function with the data type followed by double colons ('::').",
+            "markdownDescription": "**Data Type Method**\n\nIf true, this is a data type method that can be called polymorphically or by prefixing the function with the data type followed by double colons ('::').",
+            "title": "Data Type Method",
+            "type": "boolean"
+        },
+        "dataTypeMethodNumber": {
+            "description": "This is an internal number that is unique to the method name (the part after :: in functionId) of a dataTypeMethod function.",
+            "markdownDescription": "**Method Number**\n\nThis is an internal number that is unique to the method name (the part after :: in functionId) of a dataTypeMethod function.",
+            "title": "Method Number",
+            "type": "integer"
+        },
+        "deprecated": {
+            "default": false,
+            "description": "This indicates that the function is deprecated and may go away at some point.",
+            "markdownDescription": "**Deprecated**\n\nThis indicates that the function is deprecated and may go away at some point.",
+            "title": "Deprecated",
+            "type": "boolean"
+        },
+        "description": {
+            "contentMediaType": "text/plain",
+            "description": "This is the function's description, used for documentation purposes.",
+            "markdownDescription": "**Description**\n\nThis is the function's description, used for documentation purposes.",
+            "title": "Description",
+            "type": "string"
+        },
+        "errorsThrown": {
+            "description": "Errors that can be thrown by this function.",
+            "items": {
+                "allOf": [
+                    {
+                        "$ref": "#/$defs/_AdaptiveFunctionErrorThrown_"
+                    }
+                ],
+                "description": "Errors that can be thrown by this function.",
+                "markdownDescription": "Errors that can be thrown by this function.",
+                "title": "Errors thrown by this function",
+                "type": "object"
+            },
+            "markdownDescription": "**Errors Thrown**\n\nErrors that can be thrown by this function.",
+            "title": "Errors Thrown",
+            "type": "array"
+        },
+        "functionDeclaration": {
+            "contentMediaType": "text/plain",
+            "description": "This is the function's declaration with whitespace and brief comments.",
+            "markdownDescription": "**Function Declaration**\n\nThis is the function's declaration with whitespace and brief comments.",
+            "title": "Function Declaration",
+            "type": "string"
+        },
+        "functionId": {
+            "description": "This is the function's id.",
+            "markdownDescription": "**Function**\n\nThis is the function's id.",
+            "title": "Function",
+            "type": "string"
+        },
+        "functionLabel": {
+            "description": "This is the function's label.",
+            "markdownDescription": "**Function Label**\n\nThis is the function's label.",
+            "title": "Function Label",
+            "type": "string"
+        },
+        "functionResourceId": {
+            "description": "This is the function's resource id.",
+            "markdownDescription": "**Function Resource Id**\n\nThis is the function's resource id.",
+            "title": "Function Resource Id",
+            "type": "string"
+        },
+        "functionSignature": {
+            "description": "This is the function's signature.",
+            "markdownDescription": "**Signature**\n\nThis is the function's signature.",
+            "title": "Signature",
+            "type": "string"
+        },
+        "maximumNumberOfParameters": {
+            "description": "This is the maximum number of parameters or -1 if there is no maximum.",
+            "markdownDescription": "**Maximum Parameters**\n\nThis is the maximum number of parameters or -1 if there is no maximum.",
+            "title": "Maximum Parameters",
+            "type": "integer"
+        },
+        "numberOfRequiredParameters": {
+            "description": "This is the number of required parameters.",
+            "markdownDescription": "**Required Parameters**\n\nThis is the number of required parameters.",
+            "title": "Required Parameters",
+            "type": "integer"
+        },
+        "op": {
+            "description": "This is the function's operator. This is not used at the moment, but may be used in a future expression syntax.",
+            "markdownDescription": "**Op**\n\nThis is the function's operator. This is not used at the moment, but may be used in a future expression syntax.",
+            "title": "Op",
+            "type": "string"
+        },
+        "parameters": {
+            "description": "These are the function's parameters.",
+            "items": {
+                "allOf": [
+                    {
+                        "$ref": "#/$defs/_AdaptiveFunctionParameter_"
+                    }
+                ],
+                "description": "These are the function's parameters.",
+                "markdownDescription": "These are the function's parameters.",
+                "title": "The function's parameters",
+                "type": "object"
+            },
+            "markdownDescription": "**Parameters**\n\nThese are the function's parameters.",
+            "title": "Parameters",
+            "type": "array"
+        },
+        "polymorphic": {
+            "default": false,
+            "description": "This indicates that this function can be called polymorphically without specifying the <Type>:: qualifier. The appropriate implementation of the function will be called based on the dataType and/or dataTypeParameter of the first function parameter value.",
+            "markdownDescription": "**Polymorphic**\n\nThis indicates that this function can be called polymorphically without specifying the <Type>:: qualifier. The appropriate implementation of the function will be called based on the dataType and/or dataTypeParameter of the first function parameter value.",
+            "title": "Polymorphic",
+            "type": "boolean"
+        },
+        "polymorphicDataTypes": {
+            "default": false,
+            "description": "This function will call the appropriate function when the first parameter is one of these data types.",
+            "items": {
+                "description": "This function will call the appropriate function when the first parameter is one of these data types.",
+                "markdownDescription": "This function will call the appropriate function when the first parameter is one of these data types.",
+                "title": "This function will call the appropriate function when the first parameter is one of these data types",
+                "type": "string"
+            },
+            "markdownDescription": "**Polymorphic Data Types**\n\nThis function will call the appropriate function when the first parameter is one of these data types.",
+            "title": "Polymorphic Data Types",
+            "type": "array"
+        },
+        "polymorphicExecuteFunction": {
+            "description": "Polymorphic Function.",
+            "markdownDescription": "**Adapter**\n\nPolymorphic Function.",
+            "title": "Adapter",
+            "type": "string"
+        },
+        "polymorphicExecuteFunctionEvaluatesFirstParameter": {
+            "default": false,
+            "description": "If true, the first parameter evaluate is deferred to polymorphicExecuteFunction function. If false or not specified, standard polymorphic function processing evaluates the first parameter to determine the appropriate evaluate to call.",
+            "markdownDescription": "**Defer Evaluate**\n\nIf true, the first parameter evaluate is deferred to polymorphicExecuteFunction function. If false or not specified, standard polymorphic function processing evaluates the first parameter to determine the appropriate evaluate to call.",
+            "title": "Defer Evaluate",
+            "type": "boolean"
+        },
+        "polymorphicOverrides": {
+            "title": "Polymorphic Overrides",
+            "type": "object"
+        },
+        "pure": {
+            "default": false,
+            "description": "This indicates that, given exactly the same parameter values, this function will always return the same result and will not cause any side effects.",
+            "markdownDescription": "**Pure**\n\nThis indicates that, given exactly the same parameter values, this function will always return the same result and will not cause any side effects.",
+            "title": "Pure",
+            "type": "boolean"
+        },
+        "requiresExecuteAccess": {
+            "description": "If true, this function requires 'execute' access to be called. The 'resourceId' for the authorization check is the function object path, the 'actionId' is 'execute', and the 'object' is object type '_AdaptiveFunctionArguments_' which contains the function object and the arguments to the called function.",
+            "markdownDescription": "**Requires Execute Access**\n\nIf true, this function requires 'execute' access to be called. The 'resourceId' for the authorization check is the function object path, the 'actionId' is 'execute', and the 'object' is object type '_AdaptiveFunctionArguments_' which contains the function object and the arguments to the called function.",
+            "title": "Requires Execute Access",
+            "type": "boolean"
+        },
+        "returns": {
+            "allOf": [
+                {
+                    "$ref": "#/$defs/_AdaptiveFunctionParameter_"
+                }
+            ],
+            "description": "The return parameter.",
+            "markdownDescription": "**Returns**\n\nThe return parameter.",
+            "title": "Returns",
+            "type": "object"
+        },
+        "sideEffects": {
+            "description": "Any side effects that this function may produce as a result of execution.",
+            "items": {
+                "description": "Any side effects that this function may produce as a result of execution.",
+                "markdownDescription": "Any side effects that this function may produce as a result of execution.",
+                "title": "Side effects for this function.",
+                "type": "string"
+            },
+            "markdownDescription": "**Side Effects**\n\nAny side effects that this function may produce as a result of execution.",
+            "title": "Side Effects",
+            "type": "array"
+        },
+        "signatureOnly": {
+            "description": "This is a signature with an unimplemented execute function.",
+            "markdownDescription": "**Signature Only**\n\nThis is a signature with an unimplemented execute function.",
+            "title": "Signature Only",
+            "type": "boolean"
+        },
+        "untypedFunctionId": {
+            "description": "This is the function's id without <dataType>. If this function is not polymorphic, this is the same as functionId.",
+            "markdownDescription": "**Function**\n\nThis is the function's id without <dataType>. If this function is not polymorphic, this is the same as functionId.",
+            "title": "Function",
+            "type": "string"
         }
+    },
+    "title": "_AdaptivePolymorphicFunction_",
+    "type": "object",
+    "x-afw-inheritedObjectTypes": [
+        "_AdaptiveFunction_"
     ]
 }

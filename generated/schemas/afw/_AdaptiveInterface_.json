@@ -1,28 +1,50 @@
 {
+    "$comment": "Generated from adaptive object type _AdaptiveInterface_. Primary use: editor completion/validation for generate/objects JSON. Do not hand-edit.",
     "$defs": {
         "_AdaptiveInterface_": {
-            "allOf": [
-                {
-                    "$ref": "#/$defs/_AdaptiveInterface_.propertyTypes"
-                }
-            ],
+            "additionalProperties": false,
             "description": "Adaptive interface object.",
+            "markdownDescription": "Adaptive interface object.",
+            "properties": {
+                "_meta_": {
+                    "additionalProperties": true,
+                    "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+                    "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+                    "title": "Meta",
+                    "type": "object"
+                },
+                "description": {
+                    "contentMediaType": "text/plain",
+                    "description": "Description of this interface",
+                    "markdownDescription": "Description of this interface",
+                    "title": "Description",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Interface name.",
+                    "markdownDescription": "**Name**\n\nInterface name.",
+                    "title": "Name",
+                    "type": "string"
+                }
+            },
             "required": [
                 "name"
             ],
-            "type": "object",
-            "unevaluatedProperties": false
+            "title": "_AdaptiveInterface_",
+            "type": "object"
         },
         "_AdaptiveInterface_.propertyTypes": {
             "properties": {
                 "description": {
                     "contentMediaType": "text/plain",
                     "description": "Description of this interface",
+                    "markdownDescription": "Description of this interface",
                     "title": "Description",
                     "type": "string"
                 },
                 "name": {
                     "description": "Interface name.",
+                    "markdownDescription": "**Name**\n\nInterface name.",
                     "title": "Name",
                     "type": "string"
                 }
@@ -31,9 +53,34 @@
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "allOf": [
-        {
-            "$ref": "#/$defs/_AdaptiveInterface_"
+    "additionalProperties": false,
+    "description": "Adaptive interface object.",
+    "markdownDescription": "Adaptive interface object.",
+    "properties": {
+        "_meta_": {
+            "additionalProperties": true,
+            "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+            "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+            "title": "Meta",
+            "type": "object"
+        },
+        "description": {
+            "contentMediaType": "text/plain",
+            "description": "Description of this interface",
+            "markdownDescription": "Description of this interface",
+            "title": "Description",
+            "type": "string"
+        },
+        "name": {
+            "description": "Interface name.",
+            "markdownDescription": "**Name**\n\nInterface name.",
+            "title": "Name",
+            "type": "string"
         }
-    ]
+    },
+    "required": [
+        "name"
+    ],
+    "title": "_AdaptiveInterface_",
+    "type": "object"
 }

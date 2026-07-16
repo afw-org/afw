@@ -1,25 +1,30 @@
 {
+    "$comment": "Generated from adaptive object type _AdaptiveRequestHandler_. Primary use: editor completion/validation for generate/objects JSON. Do not hand-edit.",
     "$defs": {
         "_AdaptiveConf_.propertyTypes": {
             "properties": {
                 "description": {
                     "contentMediaType": "text/plain",
                     "description": "The description of this configuration component.",
+                    "markdownDescription": "**Description**\n\nThe description of this configuration component.",
                     "title": "Description",
                     "type": "string"
                 },
                 "sourceLocation": {
                     "description": "This is a contextual string added when this configuration object is processed.",
+                    "markdownDescription": "**Source Location**\n\nThis is a contextual string added when this configuration object is processed.",
                     "title": "Source Location",
                     "type": "string"
                 },
                 "title": {
                     "description": "The title for this configuration component.",
+                    "markdownDescription": "**Title**\n\nThe title for this configuration component.",
                     "title": "Title",
                     "type": "string"
                 },
                 "type": {
                     "description": "Configuration type.",
+                    "markdownDescription": "**Type**\n\nConfiguration type.",
                     "title": "Type",
                     "type": "string"
                 }
@@ -30,11 +35,13 @@
             "properties": {
                 "requestHandlerType": {
                     "description": "Type of request handler that will process requests directed to this handler.",
+                    "markdownDescription": "**Handler Type**\n\nType of request handler that will process requests directed to this handler.",
                     "title": "Handler Type",
                     "type": "string"
                 },
                 "uriPrefix": {
                     "description": "Prefix of URIs that will be directed to this request handler.",
+                    "markdownDescription": "**URI Prefix**\n\nPrefix of URIs that will be directed to this request handler.",
                     "title": "URI Prefix",
                     "type": "string"
                 }
@@ -43,19 +50,60 @@
         },
         "_AdaptiveRequestHandler_": {
             "additionalProperties": true,
-            "allOf": [
-                {
-                    "$ref": "#/$defs/_AdaptiveRequestHandler_.propertyTypes"
-                },
-                {
-                    "$ref": "#/$defs/_AdaptiveConf_requestHandler.propertyTypes"
-                },
-                {
-                    "$ref": "#/$defs/_AdaptiveConf_.propertyTypes"
-                }
-            ],
             "description": "Runtime request handler information.",
-            "type": "object"
+            "markdownDescription": "Runtime request handler information.",
+            "properties": {
+                "_meta_": {
+                    "additionalProperties": true,
+                    "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+                    "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+                    "title": "Meta",
+                    "type": "object"
+                },
+                "description": {
+                    "contentMediaType": "text/plain",
+                    "description": "The description of this configuration component.",
+                    "markdownDescription": "**Description**\n\nThe description of this configuration component.",
+                    "title": "Description",
+                    "type": "string"
+                },
+                "requestHandlerType": {
+                    "description": "Type of request handler that will process requests directed to this handler.",
+                    "markdownDescription": "**Handler Type**\n\nType of request handler that will process requests directed to this handler.",
+                    "title": "Handler Type",
+                    "type": "string"
+                },
+                "sourceLocation": {
+                    "description": "This is a contextual string added when this configuration object is processed.",
+                    "markdownDescription": "**Source Location**\n\nThis is a contextual string added when this configuration object is processed.",
+                    "title": "Source Location",
+                    "type": "string"
+                },
+                "title": {
+                    "description": "The title for this configuration component.",
+                    "markdownDescription": "**Title**\n\nThe title for this configuration component.",
+                    "title": "Title",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "Configuration type.",
+                    "markdownDescription": "**Type**\n\nConfiguration type.",
+                    "title": "Type",
+                    "type": "string"
+                },
+                "uriPrefix": {
+                    "description": "Prefix of URIs that will be directed to this request handler.",
+                    "markdownDescription": "**URI Prefix**\n\nPrefix of URIs that will be directed to this request handler.",
+                    "title": "URI Prefix",
+                    "type": "string"
+                }
+            },
+            "title": "_AdaptiveRequestHandler_",
+            "type": "object",
+            "x-afw-inheritedObjectTypes": [
+                "_AdaptiveConf_requestHandler",
+                "_AdaptiveConf_"
+            ]
         },
         "_AdaptiveRequestHandler_.propertyTypes": {
             "properties": {},
@@ -63,9 +111,59 @@
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "allOf": [
-        {
-            "$ref": "#/$defs/_AdaptiveRequestHandler_"
+    "additionalProperties": true,
+    "description": "Runtime request handler information.",
+    "markdownDescription": "Runtime request handler information.",
+    "properties": {
+        "_meta_": {
+            "additionalProperties": true,
+            "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+            "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+            "title": "Meta",
+            "type": "object"
+        },
+        "description": {
+            "contentMediaType": "text/plain",
+            "description": "The description of this configuration component.",
+            "markdownDescription": "**Description**\n\nThe description of this configuration component.",
+            "title": "Description",
+            "type": "string"
+        },
+        "requestHandlerType": {
+            "description": "Type of request handler that will process requests directed to this handler.",
+            "markdownDescription": "**Handler Type**\n\nType of request handler that will process requests directed to this handler.",
+            "title": "Handler Type",
+            "type": "string"
+        },
+        "sourceLocation": {
+            "description": "This is a contextual string added when this configuration object is processed.",
+            "markdownDescription": "**Source Location**\n\nThis is a contextual string added when this configuration object is processed.",
+            "title": "Source Location",
+            "type": "string"
+        },
+        "title": {
+            "description": "The title for this configuration component.",
+            "markdownDescription": "**Title**\n\nThe title for this configuration component.",
+            "title": "Title",
+            "type": "string"
+        },
+        "type": {
+            "description": "Configuration type.",
+            "markdownDescription": "**Type**\n\nConfiguration type.",
+            "title": "Type",
+            "type": "string"
+        },
+        "uriPrefix": {
+            "description": "Prefix of URIs that will be directed to this request handler.",
+            "markdownDescription": "**URI Prefix**\n\nPrefix of URIs that will be directed to this request handler.",
+            "title": "URI Prefix",
+            "type": "string"
         }
+    },
+    "title": "_AdaptiveRequestHandler_",
+    "type": "object",
+    "x-afw-inheritedObjectTypes": [
+        "_AdaptiveConf_requestHandler",
+        "_AdaptiveConf_"
     ]
 }

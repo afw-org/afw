@@ -1,14 +1,44 @@
 {
+    "$comment": "Generated from adaptive object type _AdaptiveCurlHttpResponse_. Primary use: editor completion/validation for generate/objects JSON. Do not hand-edit.",
     "$defs": {
         "_AdaptiveCurlHttpResponse_": {
-            "allOf": [
-                {
-                    "$ref": "#/$defs/_AdaptiveCurlHttpResponse_.propertyTypes"
-                }
-            ],
+            "additionalProperties": false,
             "description": "Object type for cURL HTTP Responses.",
-            "type": "object",
-            "unevaluatedProperties": false
+            "markdownDescription": "Object type for cURL HTTP Responses.",
+            "properties": {
+                "_meta_": {
+                    "additionalProperties": true,
+                    "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+                    "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+                    "title": "Meta",
+                    "type": "object"
+                },
+                "headers": {
+                    "description": "HTTP Headers from the server.",
+                    "items": {
+                        "description": "HTTP Headers from the server.",
+                        "markdownDescription": "HTTP Headers from the server.",
+                        "type": "string"
+                    },
+                    "markdownDescription": "HTTP Headers from the server.",
+                    "title": "Headers",
+                    "type": "array"
+                },
+                "response": {
+                    "description": "HTTP Response Data from the server.",
+                    "markdownDescription": "HTTP Response Data from the server.",
+                    "title": "Response",
+                    "type": "string"
+                },
+                "response_code": {
+                    "description": "HTTP Response Code from the server.",
+                    "markdownDescription": "HTTP Response Code from the server.",
+                    "title": "Response Code",
+                    "type": "integer"
+                }
+            },
+            "title": "_AdaptiveCurlHttpResponse_",
+            "type": "object"
         },
         "_AdaptiveCurlHttpResponse_.propertyTypes": {
             "properties": {
@@ -16,18 +46,22 @@
                     "description": "HTTP Headers from the server.",
                     "items": {
                         "description": "HTTP Headers from the server.",
+                        "markdownDescription": "HTTP Headers from the server.",
                         "type": "string"
                     },
+                    "markdownDescription": "HTTP Headers from the server.",
                     "title": "Headers",
                     "type": "array"
                 },
                 "response": {
                     "description": "HTTP Response Data from the server.",
+                    "markdownDescription": "HTTP Response Data from the server.",
                     "title": "Response",
                     "type": "string"
                 },
                 "response_code": {
                     "description": "HTTP Response Code from the server.",
+                    "markdownDescription": "HTTP Response Code from the server.",
                     "title": "Response Code",
                     "type": "integer"
                 }
@@ -36,9 +70,41 @@
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "allOf": [
-        {
-            "$ref": "#/$defs/_AdaptiveCurlHttpResponse_"
+    "additionalProperties": false,
+    "description": "Object type for cURL HTTP Responses.",
+    "markdownDescription": "Object type for cURL HTTP Responses.",
+    "properties": {
+        "_meta_": {
+            "additionalProperties": true,
+            "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+            "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+            "title": "Meta",
+            "type": "object"
+        },
+        "headers": {
+            "description": "HTTP Headers from the server.",
+            "items": {
+                "description": "HTTP Headers from the server.",
+                "markdownDescription": "HTTP Headers from the server.",
+                "type": "string"
+            },
+            "markdownDescription": "HTTP Headers from the server.",
+            "title": "Headers",
+            "type": "array"
+        },
+        "response": {
+            "description": "HTTP Response Data from the server.",
+            "markdownDescription": "HTTP Response Data from the server.",
+            "title": "Response",
+            "type": "string"
+        },
+        "response_code": {
+            "description": "HTTP Response Code from the server.",
+            "markdownDescription": "HTTP Response Code from the server.",
+            "title": "Response Code",
+            "type": "integer"
         }
-    ]
+    },
+    "title": "_AdaptiveCurlHttpResponse_",
+    "type": "object"
 }
