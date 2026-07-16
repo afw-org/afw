@@ -1,10 +1,8 @@
 {
     "$defs": {
         "_AdaptiveSystemInfo_": {
-            "additionalProperties": {
-                "description": "Objects of this type represent runtime information about the system Adaptive Framework is running on. The meta of instances of _AdaptiveSystemInfo_ should contain the description of the instance plus supplemental property type information."
-            },
-            "anyOf": [
+            "additionalProperties": true,
+            "allOf": [
                 {
                     "$ref": "#/$defs/_AdaptiveSystemInfo_.propertyTypes"
                 }
@@ -18,7 +16,7 @@
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "anyOf": [
+    "allOf": [
         {
             "$ref": "#/$defs/_AdaptiveSystemInfo_"
         }

@@ -1,7 +1,7 @@
 {
     "$defs": {
         "_AdaptiveConfType_": {
-            "anyOf": [
+            "allOf": [
                 {
                     "$ref": "#/$defs/_AdaptiveConfType_.propertyTypes"
                 }
@@ -68,7 +68,7 @@
             "type": "object"
         },
         "_AdaptiveServiceType_": {
-            "anyOf": [
+            "allOf": [
                 {
                     "$ref": "#/$defs/_AdaptiveServiceType_.propertyTypes"
                 }
@@ -80,10 +80,13 @@
         "_AdaptiveServiceType_.propertyTypes": {
             "properties": {
                 "confType": {
-                    "$ref": "#/$defs/_AdaptiveConfType_",
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/_AdaptiveConfType_"
+                        }
+                    ],
                     "description": "Conf type for this service type.",
-                    "title": "Conf Type",
-                    "type": "object"
+                    "title": "Conf Type"
                 },
                 "description": {
                     "contentMediaType": "text/plain",
@@ -106,7 +109,7 @@
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "anyOf": [
+    "allOf": [
         {
             "$ref": "#/$defs/_AdaptiveServiceType_"
         }

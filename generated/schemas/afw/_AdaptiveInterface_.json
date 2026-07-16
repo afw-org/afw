@@ -1,12 +1,15 @@
 {
     "$defs": {
         "_AdaptiveInterface_": {
-            "anyOf": [
+            "allOf": [
                 {
                     "$ref": "#/$defs/_AdaptiveInterface_.propertyTypes"
                 }
             ],
             "description": "Adaptive interface object.",
+            "required": [
+                "name"
+            ],
             "type": "object",
             "unevaluatedProperties": false
         },
@@ -24,14 +27,11 @@
                     "type": "string"
                 }
             },
-            "required": [
-                "name"
-            ],
             "type": "object"
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "anyOf": [
+    "allOf": [
         {
             "$ref": "#/$defs/_AdaptiveInterface_"
         }

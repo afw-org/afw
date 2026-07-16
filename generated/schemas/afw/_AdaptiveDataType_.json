@@ -1,12 +1,16 @@
 {
     "$defs": {
         "_AdaptiveDataType_": {
-            "anyOf": [
+            "allOf": [
                 {
                     "$ref": "#/$defs/_AdaptiveDataType_.propertyTypes"
                 }
             ],
             "description": "Adaptive data type.",
+            "required": [
+                "cType",
+                "dataType"
+            ],
             "type": "object",
             "unevaluatedProperties": false
         },
@@ -34,6 +38,14 @@
                 },
                 "dataTypeParameterType": {
                     "description": "This is the type of parameter that can optionally be specified for this data type. A data type parameter is specified in the 'dataTypeParameter' property of an _AdaptiveValueMeta_ object or in a Type in Adaptive syntax. If the value of the 'dataTypeParameter' property is a single quoted string, the quotes are optional.\n\nAll dataTypeParameterType values correspond to a production by the same name in Adaptive syntax. These are the valid types and their meanings:\n\nFunctionSignature - A return Type and parameter array.\n\nArrayOf - Zero or more 'of array' followed by 'of' and a Type.\n\nMediaType - A quoted string containing a media-type as define in https://tools.ietf.org/html/rfc7763 that is appropriate for the data type..\n\nObjectType - The object type id of the object.\n\nSourceParameter - Either the return Type resulting from the evaluation of the compiled source or 'body' followed by a FunctionSignature if the value is the body of a function with this signature.\n\nType - Any Type in Adaptive syntax that is expected when the value is evaluated.",
+                    "enum": [
+                        "FunctionSignature",
+                        "ArrayOf",
+                        "MediaType",
+                        "ObjectType",
+                        "SourceParameter",
+                        "Type"
+                    ],
                     "title": "Parameter Type",
                     "type": "string"
                 },
@@ -54,6 +66,7 @@
                     "type": "boolean"
                 },
                 "jsonImpliesDataType": {
+                    "default": false,
                     "description": "Indicates that dataType needs to be available to fully interpret json value. If not available, this data type can be implied from the appropriate JSON value.",
                     "title": "JSON Implies Data Type",
                     "type": "boolean"
@@ -89,15 +102,11 @@
                     "type": "boolean"
                 }
             },
-            "required": [
-                "cType",
-                "dataType"
-            ],
             "type": "object"
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "anyOf": [
+    "allOf": [
         {
             "$ref": "#/$defs/_AdaptiveDataType_"
         }

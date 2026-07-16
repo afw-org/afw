@@ -1,12 +1,16 @@
 {
     "$defs": {
         "_AdaptiveFunctionErrorThrown_": {
-            "anyOf": [
+            "allOf": [
                 {
                     "$ref": "#/$defs/_AdaptiveFunctionErrorThrown_.propertyTypes"
                 }
             ],
             "description": "An object entry of _AdaptiveFunction_ errorsThrown array.",
+            "required": [
+                "error",
+                "reason"
+            ],
             "type": "object",
             "unevaluatedProperties": false
         },
@@ -23,19 +27,21 @@
                     "type": "string"
                 }
             },
-            "required": [
-                "error",
-                "reason"
-            ],
             "type": "object"
         },
         "_AdaptiveFunctionGenerate_": {
-            "anyOf": [
+            "allOf": [
                 {
                     "$ref": "#/$defs/_AdaptiveFunctionGenerate_.propertyTypes"
                 }
             ],
             "description": "This is the object type for objects in the generate/objects/_AdaptiveFunctionGenerate_/ of command, core, and extension source directories. These objects are used by the 'dev.py generate' script to generate _AdaptiveFunction_ objects.",
+            "required": [
+                "category",
+                "functionId",
+                "functionLabel",
+                "returns"
+            ],
             "type": "object",
             "unevaluatedProperties": false
         },
@@ -77,6 +83,7 @@
                     "type": "boolean"
                 },
                 "deprecated": {
+                    "default": false,
                     "description": "This indicates that the function is deprecated and may go away at some point.",
                     "title": "Deprecated",
                     "type": "boolean"
@@ -95,10 +102,13 @@
                 "errorsThrown": {
                     "description": "Errors that can be thrown by this function.",
                     "items": {
-                        "$ref": "#/$defs/_AdaptiveFunctionErrorThrown_",
+                        "allOf": [
+                            {
+                                "$ref": "#/$defs/_AdaptiveFunctionErrorThrown_"
+                            }
+                        ],
                         "description": "Errors that can be thrown by this function.",
-                        "title": "Errors thrown by this function",
-                        "type": "object"
+                        "title": "Errors thrown by this function"
                     },
                     "title": "Errors Thrown",
                     "type": "array"
@@ -126,20 +136,25 @@
                 "parameters": {
                     "description": "These are the function's parameters.",
                     "items": {
-                        "$ref": "#/$defs/_AdaptiveFunctionParameter_",
+                        "allOf": [
+                            {
+                                "$ref": "#/$defs/_AdaptiveFunctionParameter_"
+                            }
+                        ],
                         "description": "These are the function's parameters.",
-                        "title": "The function's parameters",
-                        "type": "object"
+                        "title": "The function's parameters"
                     },
                     "title": "Parameters",
                     "type": "array"
                 },
                 "polymorphic": {
+                    "default": false,
                     "description": "This indicates that this function can be called polymorphically without specifying the <Type>:: qualifier. The appropriate implementation of the function will be called based on the dataType and/or dataTypeParameter of the first function parameter value.",
                     "title": "Polymorphic",
                     "type": "boolean"
                 },
                 "polymorphicDataTypes": {
+                    "default": false,
                     "description": "This function will call the appropriate function when the first parameter is one of these data types.",
                     "items": {
                         "description": "This function will call the appropriate function when the first parameter is one of these data types.",
@@ -155,6 +170,7 @@
                     "type": "string"
                 },
                 "polymorphicExecuteFunctionEvaluatesFirstParameter": {
+                    "default": false,
                     "description": "If true, the first parameter evaluate is deferred to polymorphicExecuteFunction function. If false or not specified, standard polymorphic function processing evaluates the first parameter to determine the appropriate evaluate to call.",
                     "title": "Defer Evaluate",
                     "type": "boolean"
@@ -165,6 +181,7 @@
                     "type": "object"
                 },
                 "pure": {
+                    "default": false,
                     "description": "This indicates that, given exactly the same parameter values, this function will always return the same result and will not cause any side effects.",
                     "title": "Pure",
                     "type": "boolean"
@@ -175,10 +192,13 @@
                     "type": "boolean"
                 },
                 "returns": {
-                    "$ref": "#/$defs/_AdaptiveFunctionParameter_",
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/_AdaptiveFunctionParameter_"
+                        }
+                    ],
                     "description": "The return parameter.",
-                    "title": "Returns",
-                    "type": "object"
+                    "title": "Returns"
                 },
                 "scriptSupport": {
                     "description": "This property can only be true for afw core functions that supports a statement in adaptive script. If true, there must be a #define in afw_value.h of the form 'AFW_VALUE_CALL_SCRIPT_SUPPORT_NUMBER_' followed by the upper case of the functionId to specify the special number associated with this function along with supporting code in afw_function_script.c.",
@@ -206,16 +226,10 @@
                     "type": "string"
                 }
             },
-            "required": [
-                "category",
-                "functionId",
-                "functionLabel",
-                "returns"
-            ],
             "type": "object"
         },
         "_AdaptiveFunctionParameter_": {
-            "anyOf": [
+            "allOf": [
                 {
                     "$ref": "#/$defs/_AdaptiveFunctionParameter_.propertyTypes"
                 }
@@ -232,6 +246,7 @@
                     "type": "string"
                 },
                 "canBeUndefined": {
+                    "default": false,
                     "description": "Indicates that parameter can be undefined (NULL) even if not optional.",
                     "title": "Optional",
                     "type": "boolean"
@@ -263,6 +278,7 @@
                     "type": "string"
                 },
                 "optional": {
+                    "default": false,
                     "description": "This indicates that parameter is optional and can be undefined (NULL).",
                     "title": "Optional",
                     "type": "boolean"
@@ -282,7 +298,7 @@
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "anyOf": [
+    "allOf": [
         {
             "$ref": "#/$defs/_AdaptiveFunctionGenerate_"
         }

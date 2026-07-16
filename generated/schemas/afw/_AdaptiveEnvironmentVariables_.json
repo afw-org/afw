@@ -5,7 +5,7 @@
                 "description": "Environment variables of process.",
                 "type": "string"
             },
-            "anyOf": [
+            "allOf": [
                 {
                     "$ref": "#/$defs/_AdaptiveEnvironmentVariables_.propertyTypes"
                 }
@@ -19,7 +19,7 @@
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "anyOf": [
+    "allOf": [
         {
             "$ref": "#/$defs/_AdaptiveEnvironmentVariables_"
         }

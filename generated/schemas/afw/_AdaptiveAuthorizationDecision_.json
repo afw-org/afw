@@ -1,7 +1,7 @@
 {
     "$defs": {
         "_AdaptiveAuthorizationDecision_": {
-            "anyOf": [
+            "allOf": [
                 {
                     "$ref": "#/$defs/_AdaptiveAuthorizationDecision_.propertyTypes"
                 }
@@ -29,6 +29,7 @@
                     "type": "string"
                 },
                 "intermediateOnly": {
+                    "default": false,
                     "description": "Intermediate decision only.",
                     "title": "Intermediate Only",
                     "type": "boolean"
@@ -38,7 +39,7 @@
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "anyOf": [
+    "allOf": [
         {
             "$ref": "#/$defs/_AdaptiveAuthorizationDecision_"
         }

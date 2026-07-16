@@ -1,10 +1,8 @@
 {
     "$defs": {
         "_AdaptiveRequestContext_": {
-            "additionalProperties": {
-                "description": "Request subject."
-            },
-            "anyOf": [
+            "additionalProperties": true,
+            "allOf": [
                 {
                     "$ref": "#/$defs/_AdaptiveRequestContext_.propertyTypes"
                 }
@@ -24,7 +22,7 @@
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "anyOf": [
+    "allOf": [
         {
             "$ref": "#/$defs/_AdaptiveRequestContext_"
         }

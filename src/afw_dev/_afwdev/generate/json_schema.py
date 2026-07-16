@@ -3,446 +3,611 @@
 ##
 # @file json_schema.py
 # @ingroup afwdev_generate
-# @brief This file contains the functions used to generate JSON schema files
+# @brief Generate package-root JSON Schema files from adaptive object types.
+# @details
+# Adaptive object types under src/**/generated/objects/_AdaptiveObjectType_/
+# are the source of truth. This module emits a best-effort JSON Schema
+# (draft 2020-12) projection into generated/schemas/afw/ for editors and
+# `afwdev validate`. It is not a complete model of adaptive meta (runtime,
+# allowQuery, etc. are intentionally omitted).
+#
+# Important mapping choices:
+# - Object-typed properties use pure $ref or annotations + allOf/[{$ref}]
+#   (never $ref mixed with siblings; see issue #3).
+# - Inheritance (parentPaths) is composite allOf of .propertyTypes defs.
+# - required applies only to the leaf object type, not inherited property maps.
 #
 
-import os
 import glob
+import os
+
 from _afwdev.common import msg, package, resources, nfc
 
-_data_types = None
+# Adaptive dataTypeParameterType values with no JSON Schema projection yet.
+_UNMAPPED_PARAMETER_TYPES = frozenset({
+    'SourceParameter',
+    'FunctionSignature',
+    'Type',
+    'xpathExpression',
+})
 
-# Look for pattern in setting.json json.schema.
-def _fileMatch_exists(json_schema, pattern):
-    for entry in json_schema:
-        if entry.get('fileMatch'):
-            for fileMatch in entry['fileMatch']:
-                if fileMatch == pattern:
-                    return True
+
+##
+# @brief Per-generate build state (object types, data types, emitted schemas).
+#
+class _SchemaBuildContext:
+
+    def __init__(self, options):
+        self.options = options
+        self.data_types = {}
+        self.object_types = {}
+        self.schemas = {}
+        self.ref_prefix = '#/$defs/'
+        self.ref_suffix = ''
+        self.json_schema_uri = 'https://json-schema.org/draft/2020-12/schema'
+
+    def ref(self, name):
+        return self.ref_prefix + name + self.ref_suffix
+
+
+# ---------------------------------------------------------------------------
+# VS Code settings (optional side effect of generate)
+# ---------------------------------------------------------------------------
+
+def _fileMatch_exists(json_schema_entries, pattern):
+    for entry in json_schema_entries:
+        for fileMatch in entry.get('fileMatch') or []:
+            if fileMatch == pattern:
+                return True
     return False
 
-# Update setting.json json.schema with unmatched object type schemas patterns.
+
 def _update_vscode_settings_json_schema(options):
+    """Ensure .vscode/settings.json maps generate object paths to schemas."""
     filename = '.vscode/settings.json'
     fullpath = options['afw_package_dir_path'] + filename
     was_updated = False
+
     if os.path.exists(fullpath):
         with nfc.open(fullpath, 'r') as fd:
             settings = nfc.json_load(fd)
     else:
         settings = {}
 
-    json_schema = settings.get('json.schemas')
-    if json_schema is None:
-        json_schema = []
+    json_schema_entries = settings.get('json.schemas')
+    if json_schema_entries is None:
+        json_schema_entries = []
 
-    # Make sure entry for afw-package.json exists.
-    if not _fileMatch_exists(json_schema, '/afw-package.json'):
-        fileMatch = "/afw-package.json"
-        json_schema.append({
-            "fileMatch": [ fileMatch ],
-            "url": "./generated/schemas/afw/_AdaptivePackage_.json"
+    if not _fileMatch_exists(json_schema_entries, '/afw-package.json'):
+        json_schema_entries.append({
+            'fileMatch': ['/afw-package.json'],
+            'url': './generated/schemas/afw/_AdaptivePackage_.json',
         })
-        msg.info('Added fileMatch ' + fileMatch + ' to ' + filename + ' json.schemas')
+        msg.info('Added fileMatch /afw-package.json to ' + filename +
+                 ' json.schemas')
         was_updated = True
 
-    # Make sure entries exist for all schemas in generated/schemas/afw/.
     relative_schema_path = 'generated/schemas/afw/'
-    for full_schema_path in glob.glob(options['afw_package_dir_path'] + relative_schema_path + '*.json'):
-        objectType = full_schema_path[len(options['afw_package_dir_path'] + relative_schema_path):-5]
+    schema_glob = options['afw_package_dir_path'] + relative_schema_path + '*.json'
+    prefix_len = len(options['afw_package_dir_path'] + relative_schema_path)
+    for full_schema_path in glob.glob(schema_glob):
+        objectType = full_schema_path[prefix_len:-5]
         fileMatch = '/src/*/generate*/objects/' + objectType + '/*.json'
-        if not _fileMatch_exists(json_schema, fileMatch):
-            json_schema.append({
-                "fileMatch": [ fileMatch ],
-                "url": "./generated/schemas/afw/" + objectType + ".json"
+        if not _fileMatch_exists(json_schema_entries, fileMatch):
+            json_schema_entries.append({
+                'fileMatch': [fileMatch],
+                'url': './generated/schemas/afw/' + objectType + '.json',
             })
-            msg.info('Added fileMatch ' + fileMatch + ' to ' + filename + ' json.schemas')
+            msg.info('Added fileMatch ' + fileMatch + ' to ' + filename +
+                     ' json.schemas')
             was_updated = True
 
     if was_updated:
-        settings['json.schemas'] = json_schema
+        settings['json.schemas'] = json_schema_entries
         os.makedirs(options['afw_package_dir_path'] + '.vscode', exist_ok=True)
         with nfc.open(fullpath, 'w') as fd:
             nfc.json_dump(settings, fd, indent=4, sort_keys=True)
-        msg.success('Update to settings.json json.schemas property for new object types successful (restart vscode required to take effect)')
+        msg.success(
+            'Updated settings.json json.schemas for new object types '
+            '(restart vscode required to take effect)')
 
 
-# Add objectType's needs and make sure they're in global _all_schemas.
-def _add_definition(mutable_objectTypes_needed,
-    options, objectType, ref_prefix, ref_suffix,
-    propertyTypesOnly=False, description=None, title=None):
+# ---------------------------------------------------------------------------
+# $ref helpers (issue #3)
+# ---------------------------------------------------------------------------
 
-    global _all_schemas
-    global _all_object_type_objects
+def _ref_schema(ref, base=None):
+    """
+    Build a schema that references another without mixing $ref and siblings.
 
-    # If the objectType is already in definitions, return.
-    if objectType in mutable_objectTypes_needed:
+    With annotations: { title, description, ..., allOf: [ { $ref } ] }
+    Without:          { $ref }
+    """
+    annotations = {}
+    if base:
+        for key, value in base.items():
+            # type/format come from the target; never re-emit $ref/allOf here.
+            if key in ('$ref', 'type', 'format', 'allOf'):
+                continue
+            annotations[key] = value
+    if not annotations:
+        return {'$ref': ref}
+    result = dict(annotations)
+    result['allOf'] = [{'$ref': ref}]
+    return result
+
+
+def _apply_annotations(schema, annotations):
+    """Attach title/description/etc. without putting them beside a bare $ref."""
+    if not annotations:
+        return schema
+    if list(schema.keys()) == ['$ref']:
+        return _ref_schema(schema['$ref'], annotations)
+    all_of = schema.get('allOf')
+    if (isinstance(all_of, list) and len(all_of) == 1 and
+            isinstance(all_of[0], dict) and
+            list(all_of[0].keys()) == ['$ref']):
+        base = {k: v for k, v in schema.items() if k != 'allOf'}
+        base.update(annotations)
+        return _ref_schema(all_of[0]['$ref'], base)
+    result = dict(schema)
+    result.update(annotations)
+    return result
+
+
+# ---------------------------------------------------------------------------
+# Data type / property conversion
+# ---------------------------------------------------------------------------
+
+def _set_type(ctx, schema_node, data_type_id):
+    """Map adaptive dataType id onto JSON Schema type/format. Returns DT object."""
+    data_type = ctx.data_types.get(data_type_id)
+    if data_type is None:
+        msg.error('Unknown data type ' + data_type_id)
+        return None
+    if data_type.get('jsonPrimitive') is None:
+        msg.warn('Missing jsonPrimitive for data type ' + data_type_id)
+        return None
+
+    # Adaptive "integer" uses JSON Schema integer (not number).
+    if data_type_id == 'integer':
+        schema_node['type'] = 'integer'
+    else:
+        schema_node['type'] = data_type['jsonPrimitive']
+
+    if 'jsonSchemaStringFormat' in data_type:
+        schema_node['format'] = data_type['jsonSchemaStringFormat']
+    return data_type
+
+
+def _apply_property_annotations(schema_node, property_type,
+                                description=None, title=None):
+    """Copy title, description, default, readOnly, enum from adaptive value meta."""
+    if title is not None:
+        schema_node['title'] = title
+    elif 'label' in property_type:
+        schema_node['title'] = property_type['label']
+    elif 'brief' in property_type:
+        schema_node['title'] = property_type['brief']
+
+    if description is not None:
+        schema_node['description'] = description
+    elif 'description' in property_type:
+        schema_node['description'] = property_type['description']
+
+    if 'defaultValue' in property_type:
+        schema_node['default'] = property_type['defaultValue']
+    elif 'default' in property_type:
+        schema_node['default'] = property_type['default']
+
+    if 'allowWrite' in property_type:
+        schema_node['readOnly'] = not property_type['allowWrite']
+
+    if 'allowedValues' in property_type:
+        schema_node['enum'] = property_type['allowedValues']
+    elif 'possibleValues' in property_type:
+        schema_node['enum'] = property_type['possibleValues']
+
+
+def _apply_type_constraints(schema_node, property_type):
+    """Map min/max/length/unique onto JSON Schema keywords by JSON type."""
+    json_type = schema_node.get('type')
+    if json_type in ('integer', 'number'):
+        if 'minValue' in property_type:
+            schema_node['minimum'] = property_type['minValue']
+        if 'maxValue' in property_type:
+            schema_node['maximum'] = property_type['maxValue']
+    elif json_type == 'string':
+        if 'minLength' in property_type:
+            schema_node['minLength'] = property_type['minLength']
+        if 'maxLength' in property_type:
+            schema_node['maxLength'] = property_type['maxLength']
+    elif json_type == 'array' and property_type.get('unique') is True:
+        schema_node['uniqueItems'] = True
+
+
+def _array_items_for_object_type(ctx, needed, object_type_id):
+    _add_definition(ctx, needed, object_type_id, propertyTypesOnly=False)
+    return _ref_schema(ctx.ref(object_type_id))
+
+
+def _parse_array_data_type_parameter(ctx, needed, dataTypeParameter):
+    """
+    Parse adaptive ArrayOf dataTypeParameter into an items subschema.
+
+    Accepts primitives (string, integer, ...), object types
+    (object _AdaptiveX_ or bare _AdaptiveX_), and nested array of ...
+    """
+    if not dataTypeParameter or not str(dataTypeParameter).strip():
+        return None
+
+    tokens = dataTypeParameter.strip().split(' ', 1)
+    head = tokens[0]
+    rest = tokens[1] if len(tokens) > 1 else None
+
+    # Nested arrays: "array of <element>"
+    if head == 'array':
+        if rest is None:
+            return {'type': 'array'}
+        rest_tokens = rest.split(' ', 1)
+        if rest_tokens[0] != 'of' or len(rest_tokens) < 2:
+            return None
+        nested = _parse_array_data_type_parameter(ctx, needed, rest_tokens[1])
+        if nested is None:
+            return None
+        return {'type': 'array', 'items': nested}
+
+    # Bare object type id (layout components often omit the "object " prefix).
+    if (head not in ctx.data_types and rest is None and
+            (head in ctx.object_types or head.startswith('_Adaptive'))):
+        return _array_items_for_object_type(ctx, needed, head)
+
+    items = {}
+    data_type = _set_type(ctx, items, head)
+    if not data_type:
+        return None
+
+    ptype = data_type.get('dataTypeParameterType')
+    if ptype is not None and rest is not None:
+        if ptype == 'ObjectType':
+            return _array_items_for_object_type(ctx, needed, rest)
+        if ptype == 'MediaType':
+            items['contentMediaType'] = rest
+
+    return items
+
+
+def _convert_property_type(ctx, needed, property_type, property_id_for_msg,
+                           description=None, title=None):
+    """Convert one adaptive propertyTypes entry to a JSON Schema property."""
+    schema_node = {}
+    data_type = None
+
+    if property_type.get('dataType'):
+        data_type = _set_type(ctx, schema_node, property_type['dataType'])
+
+    _apply_property_annotations(
+        schema_node, property_type, description=description, title=title)
+    _apply_type_constraints(schema_node, property_type)
+
+    if (data_type and
+            'dataTypeParameter' in property_type and
+            'dataTypeParameterType' in data_type):
+        ptype = data_type['dataTypeParameterType'].strip()
+        param = property_type['dataTypeParameter']
+
+        if ptype == 'ObjectType':
+            _add_definition(
+                ctx, needed, param, propertyTypesOnly=False,
+                description=property_type.get('description'),
+                title=property_type.get('label'))
+            schema_node = _ref_schema(ctx.ref(param), schema_node)
+
+        elif ptype == 'ArrayOf':
+            items = _parse_array_data_type_parameter(ctx, needed, param)
+            if items:
+                item_annotations = {}
+                if 'description' in property_type:
+                    item_annotations['description'] = property_type['description']
+                if 'brief' in property_type:
+                    item_annotations['title'] = property_type['brief']
+                schema_node['items'] = _apply_annotations(
+                    items, item_annotations)
+            else:
+                msg.warn('Invalid ' + property_id_for_msg +
+                         ' dataTypeParameter')
+
+        elif ptype == 'MediaType':
+            schema_node['contentMediaType'] = param
+
+        elif ptype in _UNMAPPED_PARAMETER_TYPES:
+            pass
+
+        else:
+            msg.warn(
+                'Unknown dataTypeParameterType ' + ptype +
+                ' in dataType ' + property_type['dataType'])
+
+    return schema_node
+
+
+# ---------------------------------------------------------------------------
+# Object type conversion and inheritance
+# ---------------------------------------------------------------------------
+
+def _parent_object_type_from_path(parent_path):
+    """
+    Extract object type id from propertyTypes._meta_.parentPaths entry.
+
+    Supports:
+      /afw/_AdaptiveObjectType_/_AdaptiveConf_/propertyTypes
+      /*/*/_AdaptiveLayoutComponentType_Common/propertyTypes
+    """
+    if not parent_path or not isinstance(parent_path, str):
+        return None
+    parts = [p for p in parent_path.split('/') if p and p != '*']
+    if not parts:
+        return None
+    if parts[-1] == 'propertyTypes':
+        if len(parts) < 2:
+            return None
+        return parts[-2]
+    return parts[-1]
+
+
+def _process_parents(ctx, needed, object_type, meta, visited=None):
+    """
+    Build allOf $refs for ancestor .propertyTypes (composite inheritance).
+
+    Walks parentPaths recursively with cycle detection. Required is not
+    inherited here — only property shape maps.
+    """
+    if not meta or 'parentPaths' not in meta:
+        return []
+
+    if visited is None:
+        visited = set()
+
+    parent_refs = []
+    for parent_path in meta['parentPaths']:
+        parent_id = _parent_object_type_from_path(parent_path)
+        if not parent_id:
+            msg.warn(object_type + ' parentPath could not be parsed: ' +
+                     str(parent_path))
+            continue
+        if not str(parent_path).rstrip('/').endswith('propertyTypes'):
+            msg.warn(object_type +
+                     ' parentPath does not end with /propertyTypes: ' +
+                     str(parent_path))
+
+        if parent_id in visited:
+            continue
+        visited.add(parent_id)
+
+        parent_refs.append({'$ref': ctx.ref(parent_id + '.propertyTypes')})
+        _add_definition(ctx, needed, parent_id, propertyTypesOnly=True)
+
+        parent_ot = ctx.object_types.get(parent_id)
+        if parent_ot and isinstance(parent_ot.get('propertyTypes'), dict):
+            parent_meta = parent_ot['propertyTypes'].get('_meta_')
+            if parent_meta:
+                parent_refs.extend(
+                    _process_parents(
+                        ctx, needed, parent_id, parent_meta, visited=visited))
+
+    return parent_refs
+
+
+def _ensure_property_types_schema(ctx, needed, object_type, object_type_object):
+    """
+    Build ObjectType.propertyTypes def: property map only (no required).
+
+    Shared via allOf into descendants; leaf required lives on the entity def.
+    """
+    key = object_type + '.propertyTypes'
+    if key in needed or object_type == '_AdaptivePropertyTypes_':
         return
-    
-    # Load the objectTypeObject, convert it to a JSON schema, and add it to the
-    # definitions.
-    objectTypeObject = _all_object_type_objects.get(objectType)
-    if objectTypeObject is None:
-        msg.warn('Unable to load object type ' + objectType)
+    needed.append(key)
 
-    # Set objectType property in definitions even if objectTypeObject wasn't
-    # found so it wont be tried again.
-    _convert_objectType(mutable_objectTypes_needed,
-        options, objectType, objectTypeObject, ref_prefix, ref_suffix,
+    properties = {}
+    for name, prop in (object_type_object.get('propertyTypes') or {}).items():
+        # _meta_ is inheritance metadata, not an instance property.
+        if name == '_meta_' or not isinstance(prop, dict):
+            continue
+        properties[name] = _convert_property_type(
+            ctx, needed, prop,
+            'objectType ' + object_type + ' property ' + name)
+
+    ctx.schemas[key] = {
+        'type': 'object',
+        'properties': properties,
+    }
+
+
+def _property_types_meta_schema():
+    """Synthetic schema for _AdaptivePropertyTypes_._meta_ (core-implied)."""
+    return {
+        'properties': {
+            'parentPaths': {
+                'title': 'Parent Paths',
+                'description':
+                    'This is a list of paths to the parent object type.',
+                'type': 'array',
+                'items': {
+                    'type': 'string',
+                    'title': 'Parent Path',
+                    'description':
+                        'This is a path to a parent object type.',
+                },
+            }
+        },
+        'description':
+            'This is the special Meta object that has deltas between this '
+            'instance and its Adaptive Object Type.',
+        'title': 'Meta',
+    }
+
+
+def _convert_object_type(ctx, needed, object_type, object_type_object,
+                         propertyTypesOnly=False, description=None, title=None):
+    """Convert one adaptive object type into ctx.schemas entries."""
+    if object_type_object is None:
+        object_type_object = {}
+
+    _ensure_property_types_schema(ctx, needed, object_type, object_type_object)
+
+    if propertyTypesOnly or object_type in needed:
+        return
+
+    needed.append(object_type)
+    schema = {'type': 'object'}
+    all_of = []
+
+    # Required only for instances of this object type (not ancestors).
+    local_required = []
+    for name, prop in (object_type_object.get('propertyTypes') or {}).items():
+        if name == '_meta_' or not isinstance(prop, dict):
+            continue
+        if prop.get('required', False):
+            local_required.append(name)
+
+    if object_type == '_AdaptivePropertyTypes_':
+        schema['properties'] = {'_meta_': _property_types_meta_schema()}
+    else:
+        all_of = [{'$ref': ctx.ref(object_type + '.propertyTypes')}]
+
+    property_types = object_type_object.get('propertyTypes')
+    if isinstance(property_types, dict) and '_meta_' in property_types:
+        parent_refs = _process_parents(
+            ctx, needed, object_type, property_types['_meta_'])
+        if parent_refs:
+            all_of.extend(parent_refs)
+
+    # otherProperties → additionalProperties; missing → closed object.
+    if 'otherProperties' in object_type_object:
+        other = object_type_object['otherProperties']
+        if other is None or other == {}:
+            schema['additionalProperties'] = True
+        else:
+            schema['additionalProperties'] = _convert_property_type(
+                ctx, needed, other,
+                object_type + ' additionalProperties',
+                description=object_type_object.get('description'),
+                title=object_type_object.get('label'))
+    else:
+        schema['unevaluatedProperties'] = False
+
+    if all_of:
+        schema['allOf'] = all_of
+    if local_required:
+        schema['required'] = local_required
+
+    if description is not None:
+        schema['description'] = description
+    elif 'description' in object_type_object:
+        schema['description'] = object_type_object['description']
+
+    if title is not None:
+        schema['title'] = title
+    elif 'title' in object_type_object:
+        schema['title'] = object_type_object['title']
+
+    ctx.schemas[object_type] = schema
+
+
+def _add_definition(ctx, needed, object_type, propertyTypesOnly=False,
+                    description=None, title=None):
+    """Ensure object_type (and deps) are converted into ctx.schemas."""
+    if object_type in needed:
+        return
+
+    object_type_object = ctx.object_types.get(object_type)
+    if object_type_object is None:
+        msg.warn('Unable to load object type ' + object_type)
+
+    _convert_object_type(
+        ctx, needed, object_type, object_type_object,
         propertyTypesOnly=propertyTypesOnly,
         description=description, title=title)
 
 
-# Parse dataTypeParameter for list. Return None if invalid or items for
-# subschema if good.
-def _parse_dataTypeParameter_for_list(mutable_objectTypes_needed,
-        options, dataTypeParameter, ref_prefix, ref_suffix) :
+# ---------------------------------------------------------------------------
+# Public entry
+# ---------------------------------------------------------------------------
 
-    t = dataTypeParameter.split(" ", 1)
-    if len(t) == 0:
-        return None
-    if t[0] == 'array':
-        items = {'type':'array'}
-        if len(t) > 1:
-            t = t[0].split(" ", 1)
-            if t[0] != 'of' or len(t) < 2:
-                return None
-            r = _parse_dataTypeParameter_for_list(mutable_objectTypes_needed,
-                options, t[1], ref_prefix, ref_suffix)
-            if r is None:
-                return None
-            items['items'] = r
-    else:
-        items = {}
-        data_type = _set_type(items, t[0])
-        if not data_type:
-            return None
-        ptype = data_type.get('dataTypeParameterType')
-        if ptype is not None and len(t) > 1:
-            if ptype == 'ObjectType':
-                _add_definition(mutable_objectTypes_needed,
-                    options, t[1], ref_prefix, ref_suffix,
-                    propertyTypesOnly=False)
-                items['$ref'] = ref_prefix + t[1] + ref_suffix
-            elif ptype == 'MediaType':
-                property['contentMediaType'] = t[1]
-    
-    return items
+def _load_data_types(ctx):
+    entries = resources.copy_resources(
+        ctx.options, 'objects/_AdaptiveDataTypeGenerate_/')
+    for entry in entries:
+        data_type_object = nfc.json_loads(entry['resource'])
+        ctx.data_types[data_type_object['dataType']] = data_type_object
 
 
-# Set type and optional format for data type.
-def _set_type(mutable_property, data_type_id):
-    data_type = _data_types.get(data_type_id)
-    if data_type is None:
-        msg.error('Unknown data type ' + data_type_id)
-        return None
-    if data_type.get('jsonPrimitive') is not None:          
-        mutable_property['type'] = data_type['jsonPrimitive']
-        # Override for integer since JSON Schema supports integer.
-        if data_type_id == "integer":
-            mutable_property['type'] = 'integer'
-    else:
-        msg.warn('Missing jsonPrimitive for data type ' + data_type_id)
-        return None
-    
-    if 'jsonSchemaStringFormat' in data_type:
-        mutable_property['format'] = data_type['jsonSchemaStringFormat']
-        
-    return data_type
+def _load_object_types(ctx):
+    options = ctx.options
+    if not options['is_core_afw_package']:
+        for object_type_object in resources.get_core_object_types(options):
+            object_type = object_type_object['_meta_']['objectId']
+            ctx.object_types[object_type] = object_type_object
+
+    src_dir_path = options['afw_package_dir_path'] + 'src/'
+    pattern = src_dir_path + '**/generated/objects/_AdaptiveObjectType_/*.json'
+    for object_type_file in glob.glob(pattern, recursive=True):
+        object_type = os.path.basename(object_type_file)[:-len('.json')]
+        msg.info('Generating JSON schema for ' + object_type)
+        with nfc.open(object_type_file, 'r') as fd:
+            ctx.object_types[object_type] = nfc.json_load(fd)
 
 
-# Convert propertyType.
-def _convert_propertyType(
-        mutable_objectTypes_needed, options, propertyType, property_id_for_msg,
-        ref_prefix, ref_suffix, description=None, title=None):
+def _write_entity_schemas(ctx):
+    """
+    Write one schema file per allowEntity object type.
 
-    property = {}
+    allowEntity defaults to true when omitted (matches adaptive OT meta).
+    """
+    schemas_dir = ctx.options['afw_package_dir_path'] + 'generated/schemas/afw/'
+    os.makedirs(schemas_dir, exist_ok=True)
 
-    # Convert dataType to type
-    data_type = None
-    if propertyType.get('dataType'):
-        _set_type(property, propertyType['dataType'])
-        data_type = _data_types.get(propertyType['dataType'])
-    
-    # If the propertyType has a label or title passed, use it as the title.
-    if title:
-        property['title'] = title
-    elif 'label' in propertyType:
-        property['title'] = propertyType['label']
+    for object_type, object_type_object in ctx.object_types.items():
+        if object_type_object.get('allowEntity', True) is False:
+            continue
 
-    # If the propertyType has a default, use it as the default.
-    if 'default' in propertyType:
-        property['default'] = propertyType['default']
+        filename = object_type + '.json'
+        msg.info('Writing ' + schemas_dir + filename)
 
-    # If propertyType has a description or one passed, use it as the description.
-    if description:
-        property['description'] = description
-    elif 'description' in propertyType:
-        property['description'] = propertyType['description']
+        needed = []
+        _convert_object_type(
+            ctx, needed, object_type, object_type_object,
+            propertyTypesOnly=False)
 
-    # If the propertyType has allowWrite, use it to determine readOnly.
-    if 'allowWrite' in propertyType:
-        property['readOnly'] = not propertyType['allowWrite']   
+        defs = {}
+        for need in sorted(set(needed)):
+            if need not in ctx.schemas:
+                msg.warn(
+                    'Missing schema definition for ' + need +
+                    ' while writing ' + object_type)
+                continue
+            defs[need] = ctx.schemas[need]
 
-    # Any type
-    if 'allowedValues' in propertyType:
-        property['enum'] = propertyType['allowedValues']
-
-    # JSON Schema extra type integer
-    if property.get('type') == 'integer':
-        if 'minValue' in propertyType:
-            property['minimum'] = propertyType['minValue']
-        if 'maxValue' in propertyType:
-            property['maximum'] = propertyType['maxValue']
-
-    # jsonPrimitive number
-    elif property.get('type') == 'number':
-        if 'minValue' in propertyType:
-            property['minimum'] = propertyType['minValue']
-        if 'maxValue' in propertyType:
-            property['maximum'] = propertyType['maxValue']
-
-    # jsonPrimitive string
-    elif property.get('type') == 'string':
-        if 'minLength' in propertyType:
-            property['minLength'] = propertyType['minLength']
-        if 'maxLength' in propertyType:
-            property['maxLength'] = propertyType['maxLength']
-
-    # jsonPrimitive array
-    elif property.get('type') == 'array':
-        pass
-
-    # jsonPrimitive object
-    elif property.get('type') == 'object':
-        pass
- 
-    # jsonPrimitive boolean
-    elif property.get('dataType') == 'boolean':
-        pass
-
-    # jsonPrimitive null
-    elif property.get('dataType') == 'null':
-        pass
-
-    # Handle dataTypeParameter
-    if (data_type and 
-        'dataTypeParameter' in propertyType and
-        'dataTypeParameterType' in data_type):
-        ptype = data_type['dataTypeParameterType'].strip()
-        param = propertyType['dataTypeParameter']
-        if ptype == 'ObjectType':
-            _add_definition(mutable_objectTypes_needed,
-                options, param, ref_prefix, ref_suffix,
-                propertyTypesOnly=False,
-                description=propertyType.get('description'),
-                title=propertyType.get('label'))
-            property['$ref'] = ref_prefix + param + ref_suffix
-        elif ptype == 'ArrayOf':
-            items = _parse_dataTypeParameter_for_list(mutable_objectTypes_needed,
-                options, param, ref_prefix, ref_suffix)           
-            if "description" in propertyType:
-                items["description"] = propertyType["description"]
-            if "brief" in propertyType:
-                items["title"] = propertyType["brief"]     
-            if items:
-                property['items'] = items
-            else:
-                msg.warn('Invalid ' + property_id_for_msg + ' dataTypeParameter')
-        elif ptype == 'MediaType':
-            property['contentMediaType'] = param 
-        elif ptype == 'SourceParameter':
-            pass
-        elif ptype == 'FunctionSignature':
-            pass
-        elif ptype == 'Type':
-            pass
-        elif ptype == 'xpathExpression':
-            pass
-        else:
-            msg.warn('Unknown dataTypeParameterType ' + ptype + ' in dataType ' + propertyType['dataType'])
-
-    return property
-
-# Process _meta_ for parent.
-def _process_parents(mutable_objectTypes_needed, options, objectType, meta,
-    ref_prefix='./',
-    ref_suffix='.json'):
-
-    if not 'parentPaths' in meta:
-        return None
-    
-    anyOf = []
-    for parentPath in meta['parentPaths']:
-        if parentPath.startswith('/afw/_AdaptiveObjectType_/'):
-            parentObjectType = parentPath[26:]
-            if parentObjectType.endswith('/propertyTypes'):
-                parentObjectType = parentObjectType[:-14]
-            else:
-                msg.warn(objectType + 'parentPath does not end with /propertyTypes')
-            anyOf.append({'$ref': ref_prefix + parentObjectType + '.propertyTypes' + ref_suffix})
-            _add_definition(mutable_objectTypes_needed,
-                options, parentObjectType, ref_prefix, ref_suffix,
-                propertyTypesOnly=True)
-            # parentsAnyOf = _process_parents(mutable_objectTypes_needed,
-            #     options, parentObjectType, meta,
-            #     ref_prefix=ref_prefix,
-            #     ref_suffix=ref_suffix)
-            # if parentsAnyOf:
-            #     anyOf += parentsAnyOf
-        else:
-            msg.warn(objectType + ' parentPath does not begin with /afw/_AdaptiveObjectType_/')
-
-    return anyOf
-
-
-# Conversion based on:
-#   http://json-schema.org/draft/2020-12/json-schema-validation.html#name-default
-
-# Convert objectType.
-def _convert_objectType(mutable_objectTypes_needed,
-        options, objectType, objectTypeObject, ref_prefix, ref_suffix,
-        propertyTypesOnly=False, description=None, title=None):
-    
-    global _all_schemas
-
-    # If objectType propertyTypes is not already in _all_schemas, make it.
-    # Skip if objectType is _AdaptivePropertyTypes_ since it has to be handled
-    # specially because of _meta_.
-    objectTypePropertyTypes = objectType + '.propertyTypes'
-    if (objectTypePropertyTypes not in mutable_objectTypes_needed and
-        objectType != '_AdaptivePropertyTypes_'):
-
-        # Will need self and everything added to mutable_objectTypes_needed.
-        mutable_objectTypes_needed.append(objectTypePropertyTypes)
-    
-        # Start schema object for propertyTypes and initialize some variables..
-        schema = {
-            "type": "object"
-        } 
-        properties = {}
-        required = []
-
-        # Process all of the propertyTypes.
-        for propertyTypeName, propertyType in objectTypeObject.get('propertyTypes',{}).items():
-            property =  _convert_propertyType(mutable_objectTypes_needed,
-                options, propertyType,
-                'objectType ' + objectType + ' property ' + propertyTypeName,
-                ref_prefix, ref_suffix)     
-            properties[propertyTypeName] = property
-            # If the propertyType is required, add it to the required list.
-            if propertyType.get('required', False):
-                required.append(propertyTypeName)
-        schema['properties'] = properties
-        
-        # If objectType has required properties, list them in schema required.
-        if len(required) > 0:
-            schema['required'] = required
-
-        # Keep objectType in _all_schemas
-        _all_schemas[objectTypePropertyTypes] = schema
-
-    # If propertyTypesOnly or objectType already being handled, return.
-    if propertyTypesOnly or objectType in mutable_objectTypes_needed:
-        return
- 
-    # Start schema object and initialize some variables..
-    mutable_objectTypes_needed.append(objectType)
-    schema = {
-        "type": "object"
-    } 
-
-    anyOf = []
-
-    # Special handling for _meta_ in _AdaptivePropertyTypes_ because it's not
-    # defined in Adaptive Object type but implied by core code.
-    if objectType == '_AdaptivePropertyTypes_':
-        schema['properties'] = {
-            "_meta_": {
-                "properties": {
-                    "parentPaths":{
-                        "title": "Parent Paths",
-                        "description": "This is a list of paths to the parent object type.",
-                        "items": {
-                            "type": "string",
-                            "title": "Parent Path",
-                            "description": "This is a path to a parent object type."
-                        },
-                        "type": "array"
-                    }
-                },
-                "description":"This is the special Meta object that has deltas between this instance and its Adaptive Object Type.",
-                "title":"Meta"
-            }
+        document = {
+            '$schema': ctx.json_schema_uri,
+            '$defs': defs,
+            'allOf': [{'$ref': ctx.ref(object_type)}],
         }
-    else:
-        # Have _process_parents return anyOf.
-        anyOf = [
-            {'$ref': ref_prefix + objectTypePropertyTypes + ref_suffix}
-        ]
-
-    if 'propertyTypes' in objectTypeObject:
-        propertyTypes = objectTypeObject['propertyTypes']
-        if '_meta_' in propertyTypes:
-            parentAnyOf = _process_parents(mutable_objectTypes_needed,
-                options, objectType, propertyTypes['_meta_'],
-                ref_prefix=ref_prefix, ref_suffix=ref_suffix)
-            if parentAnyOf:
-                anyOf += parentAnyOf
+        with nfc.open(schemas_dir + filename, 'w') as fd:
+            nfc.json_dump(document, fd, indent=4, sort_keys=True)
 
 
-    # If objectType has otherProperties, use it for additionalProperties in
-    # schema.
-    if 'otherProperties' in objectTypeObject:
-        additionalProperties = _convert_propertyType(
-            mutable_objectTypes_needed, options,
-            objectTypeObject['otherProperties'],
-            objectType + ' additionalProperties',
-            ref_prefix, ref_suffix,
-            description=objectTypeObject.get('description'),
-            title=objectTypeObject.get('label'),)
-        schema['additionalProperties'] = additionalProperties
-        
-    # If objectType does not have otherProperties, set unevaluatedProperties to
-    # false in outermost schema only to prevent additional properties.
-    else:
-        schema['unevaluatedProperties'] = False
-
-    # Add anyOf to schema.
-    if len(anyOf) > 0:
-        schema['anyOf'] = anyOf
-
-    # If objectType has a description or one passed, use it as the description.
-    if description:
-        schema['description'] = description
-    elif 'description' in objectTypeObject:
-        schema['description'] = objectTypeObject['description']
-
-    # If objectType has a title or one passed, use it as the title.
-    if title:
-        schema['title'] = title
-    elif 'title' in objectTypeObject:
-        schema['title'] = objectTypeObject['title']
-
-    # Keep objectType in _all_schemas
-    _all_schemas[objectType] = schema
-
-
-# Generate generated/schemas/afw and generated/schema.json.
 def generate(options):
+    """Generate generated/schemas/afw/*.json and update VS Code schema map."""
+    msg.info(
+        'Generating JSON schema files for generated _AdaptiveObjectType_ '
+        'objects')
 
-    global _data_types
-    global _all_schemas
-    global _all_object_type_objects
-
-    _all_schemas = {}
-    _all_object_type_objects = {}
-
-
-    msg.info('Generating JSON schema files for generated _AdaptiveObjectType_ objects')
-
-    # Get afw package
+    ctx = _SchemaBuildContext(options)
     afw_package = package.get_afw_package(options)
+
+    # Reserved for possible future $id emission.
     options['json_schema_id_base_uri'] = (
         'https://adaptiveframework.org/' +
         afw_package['afwPackageId'] + '-' + afw_package['version'] +
@@ -451,78 +616,10 @@ def generate(options):
         'https://adaptiveframework.org/' +
         afw_package['afwPackageId'] + '-' + afw_package['version'] +
         '/schema')
-    options['json_schema_uri'] = 'https://json-schema.org/draft/2020-12/schema'
+    options['json_schema_uri'] = ctx.json_schema_uri
 
-    # Copy afwdev's resources to generated/afwdev/_resources
-    if _data_types is None:
-        list = resources.copy_resources(
-            options, 'objects/_AdaptiveDataTypeGenerate_/')
-        _data_types = {}
-        for entry in list:
-            object = nfc.json_loads(entry['resource'])
-            _data_types[object['dataType']] = object
-
-    # JSON schema files for all subdirs go in package's generated/schemas directory.
-    schemasDir = options['afw_package_dir_path'] + 'generated/schemas/afw/'
-    os.makedirs(schemasDir, exist_ok=True)
-
-    ref_prefix = '#/$defs/'
-    ref_suffix = ''
-
-    # If not core afw package, get the core _AdaptiveObjectType_ objects and add
-    # them to _all_object_type_objects.
-    if not options['is_core_afw_package']:
-        for objectTypeObject in resources.get_core_object_types(options):
-            objectType = objectTypeObject['_meta_']['objectId']
-            _all_object_type_objects[objectType] = objectTypeObject
-
-    # Get all the generated _AdaptiveObjectType_ objects and add them to
-    # _all_object_type_objects.
-    srcDirPath = options['afw_package_dir_path'] + 'src/'  
-    for objectTypeFile in glob.glob(
-        srcDirPath + '**/generated/objects/_AdaptiveObjectType_/*.json',
-        recursive=True):
-        objectType = os.path.basename(objectTypeFile)[: -len('.json')]
-        msg.info('Generating JSON schema for ' +  objectType)
-
-        with nfc.open(objectTypeFile, 'r') as fd:
-            objectTypeObject = nfc.json_load(fd)
-            _all_object_type_objects[objectType] = objectTypeObject
-
-    # Process all of the _AdaptiveObjectType_ objects.    
-    for objectType, objectTypeObject in _all_object_type_objects.items():
-
-        if not objectTypeObject.get('allowEntity', False):
-            continue
-
-        filename = objectType + '.json'
-        msg.info('Writing ' + schemasDir + filename)
-        with nfc.open(schemasDir + filename, 'w') as fd:
-            definitions = {}
-
-            mutable_objectTypes_needed = []
-            _convert_objectType(mutable_objectTypes_needed,
-                options, objectType, objectTypeObject, ref_prefix, ref_suffix,
-                propertyTypesOnly=False)
-            
-            # Add definitions for all object types needed by this objectType.
-            defs = {}
-            for need in sorted(set(mutable_objectTypes_needed)):
-                defs[need] = _all_schemas[need]
-
-            schema = {
-                # Removed> '$id': options['json_schema_id_base_uri'] + objectType,
-                '$schema': options['json_schema_uri'],
-                '$defs': defs,
-                'anyOf': [
-                    {'$ref': ref_prefix + objectType + ref_suffix}
-                ]
-            }
-
-            nfc.json_dump(schema, fd, indent=4, sort_keys=True)         
-
-    # Update vscode settings.json with schema.json if needed.
+    _load_data_types(ctx)
+    _load_object_types(ctx)
+    _write_entity_schemas(ctx)
     _update_vscode_settings_json_schema(options)
-
-    # Indicate success
     msg.success('Generate JSON schema files successful')

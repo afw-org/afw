@@ -1,12 +1,22 @@
 {
     "$defs": {
         "_AdaptiveAdapterMetrics_": {
-            "anyOf": [
+            "allOf": [
                 {
                     "$ref": "#/$defs/_AdaptiveAdapterMetrics_.propertyTypes"
                 }
             ],
             "description": "An adapter may provide metrics to describe the current state of this adapter instance.",
+            "required": [
+                "addObjectCount",
+                "additional",
+                "deleteObjectCount",
+                "getObjectCount",
+                "modifyObjectCount",
+                "replaceObjectCount",
+                "retrieveObjectsCount",
+                "updateObjectCount"
+            ],
             "title": "Metrics",
             "type": "object",
             "unevaluatedProperties": false
@@ -54,20 +64,10 @@
                     "type": "integer"
                 }
             },
-            "required": [
-                "addObjectCount",
-                "additional",
-                "deleteObjectCount",
-                "getObjectCount",
-                "modifyObjectCount",
-                "replaceObjectCount",
-                "retrieveObjectsCount",
-                "updateObjectCount"
-            ],
             "type": "object"
         },
         "_AdaptiveAdapter_": {
-            "anyOf": [
+            "allOf": [
                 {
                     "$ref": "#/$defs/_AdaptiveAdapter_.propertyTypes"
                 }
@@ -84,10 +84,13 @@
                     "type": "string"
                 },
                 "metrics": {
-                    "$ref": "#/$defs/_AdaptiveAdapterMetrics_",
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/_AdaptiveAdapterMetrics_"
+                        }
+                    ],
                     "description": "An adapter may provide metrics to describe the current state of this adapter instance.",
-                    "title": "Metrics",
-                    "type": "object"
+                    "title": "Metrics"
                 },
                 "properties": {
                     "description": "This object contains some of properties from the associated conf object plus other runtime properties.",
@@ -119,7 +122,7 @@
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "anyOf": [
+    "allOf": [
         {
             "$ref": "#/$defs/_AdaptiveAdapter_"
         }

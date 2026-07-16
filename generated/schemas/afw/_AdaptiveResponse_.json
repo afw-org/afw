@@ -1,10 +1,8 @@
 {
     "$defs": {
         "_AdaptiveError_": {
-            "additionalProperties": {
-                "description": "The _AdaptiveObjectType_ for _AdaptiveError_ objects."
-            },
-            "anyOf": [
+            "additionalProperties": true,
+            "allOf": [
                 {
                     "$ref": "#/$defs/_AdaptiveError_.propertyTypes"
                 }
@@ -125,10 +123,8 @@
             "type": "object"
         },
         "_AdaptiveResponseAction_": {
-            "additionalProperties": {
-                "description": "The result of an action."
-            },
-            "anyOf": [
+            "additionalProperties": true,
+            "allOf": [
                 {
                     "$ref": "#/$defs/_AdaptiveResponseAction_.propertyTypes"
                 }
@@ -161,8 +157,8 @@
             "type": "object"
         },
         "_AdaptiveResponse_": {
-            "additionalProperties": {},
-            "anyOf": [
+            "additionalProperties": true,
+            "allOf": [
                 {
                     "$ref": "#/$defs/_AdaptiveResponse_.propertyTypes"
                 }
@@ -174,10 +170,13 @@
                 "actions": {
                     "description": "If the request has multiple actions, this property is an array of _AdaptiveResponseAction_ objects.",
                     "items": {
-                        "$ref": "#/$defs/_AdaptiveResponseAction_",
+                        "allOf": [
+                            {
+                                "$ref": "#/$defs/_AdaptiveResponseAction_"
+                            }
+                        ],
                         "description": "If the request has multiple actions, this property is an array of _AdaptiveResponseAction_ objects.",
-                        "title": "List of _AdaptiveResponseAction_ objects",
-                        "type": "object"
+                        "title": "List of _AdaptiveResponseAction_ objects"
                     },
                     "title": "Actions",
                     "type": "array"
@@ -188,10 +187,13 @@
                     "type": "string"
                 },
                 "error": {
-                    "$ref": "#/$defs/_AdaptiveError_",
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/_AdaptiveError_"
+                        }
+                    ],
                     "description": "This is error detail if status is error. This property will not exist for intermediate response objects.",
-                    "title": "Error",
-                    "type": "object"
+                    "title": "Error"
                 },
                 "intermediate": {
                     "description": "If true, this is an intermediate response object containing a single result that will be followed by at least one more response object. If intermediate is missing or false, this is the final response object.",
@@ -209,6 +211,11 @@
                 },
                 "status": {
                     "description": "Result status. If this value is 'error', see property 'error' for more detail. This property will not exist for intermediate response objects.",
+                    "enum": [
+                        "success",
+                        "error",
+                        "fatal"
+                    ],
                     "title": "Status",
                     "type": "string"
                 },
@@ -227,7 +234,7 @@
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "anyOf": [
+    "allOf": [
         {
             "$ref": "#/$defs/_AdaptiveResponse_"
         }

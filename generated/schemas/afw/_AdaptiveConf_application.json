@@ -1,7 +1,7 @@
 {
     "$defs": {
         "_AdaptiveAuthorizationControl_": {
-            "anyOf": [
+            "allOf": [
                 {
                     "$ref": "#/$defs/_AdaptiveAuthorizationControl_.propertyTypes"
                 }
@@ -14,6 +14,7 @@
         "_AdaptiveAuthorizationControl_.propertyTypes": {
             "properties": {
                 "checkIntermediateMode": {
+                    "default": false,
                     "description": "Do authorization check when running in mode intermediate. If false, the checks will be bypassed.",
                     "title": "Check Intermediate",
                     "type": "boolean"
@@ -24,6 +25,7 @@
                     "type": "string"
                 },
                 "denyIfNotApplicable": {
+                    "default": false,
                     "description": "Specify true to deny access to resources when notApplicable is the final result of other checks.",
                     "title": "Deny If Not Applicable",
                     "type": "boolean"
@@ -60,13 +62,10 @@
                     "type": "string"
                 }
             },
-            "required": [
-                "type"
-            ],
             "type": "object"
         },
         "_AdaptiveConf_application": {
-            "anyOf": [
+            "allOf": [
                 {
                     "$ref": "#/$defs/_AdaptiveConf_application.propertyTypes"
                 },
@@ -80,7 +79,6 @@
         },
         "_AdaptiveConf_application.propertyTypes": {
             "properties": {
-                "_meta_": {},
                 "applicationId": {
                     "description": "This is id of the application. The default applicationId is 'application'. This property can only be specified in the type=application entry of the conf file.",
                     "readOnly": true,
@@ -88,10 +86,13 @@
                     "type": "string"
                 },
                 "authorizationControl": {
-                    "$ref": "#/$defs/_AdaptiveAuthorizationControl_",
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/_AdaptiveAuthorizationControl_"
+                        }
+                    ],
                     "description": "This defines how authorization checking occurs in this application.",
-                    "title": "Authorization",
-                    "type": "object"
+                    "title": "Authorization"
                 },
                 "confAdapterId": {
                     "description": "This is the optional adapterId of the running adapter that contains configuration related objects. This property can only be specified in the type=application entry of the conf file.\n\nThe runtime /afw/_AdaptiveApplication_/current object will consist of properties from the type=application entry of the conf file plus unique properties from the optional /<confAdapterId>/_AdaptiveConf_application/<applicationId> object.\n\nAll services defined by _AdaptiveServiceConf_ objects in <confAdapterId> with startup 'permanent' or 'immediate' will be started when the type=application conf entry is processed.",
@@ -156,16 +157,22 @@
                     "type": "string"
                 },
                 "qualifiedVariables": {
-                    "$ref": "#/$defs/_AdaptiveTemplatePropertiesObjects_",
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/_AdaptiveTemplatePropertiesObjects_"
+                        }
+                    ],
                     "description": "The name of each property in this object corresponds to a qualifier that is available in processing associated with this application. The qualifier can not be an empty string. The properties of these 'qualifier objects' are template values that are accessible as qualified variables. These variables are evaluated once per execution context (xctx) as they are accessed.\n\nSome qualifiers are restricted.",
-                    "title": "Qualified Variables",
-                    "type": "object"
+                    "title": "Qualified Variables"
                 },
                 "rootFilePaths": {
-                    "$ref": "#/$defs/_AdaptiveRootFilePaths_",
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/_AdaptiveRootFilePaths_"
+                        }
+                    ],
                     "description": "The properties of this object are the root file paths used by open_file().",
-                    "title": "Root File Paths",
-                    "type": "object"
+                    "title": "Root File Paths"
                 },
                 "title": {
                     "description": "The title of the application. This is used as the title of the Adaptive Framework Web App and is available for use in other places as appropriate.",
@@ -180,7 +187,7 @@
                 "description": "A function open_file path that begins with a slash followed by this property name will access a file in the directory path specified as a value to this property. For example, if this property is 'my': '/temp/my', file_open('mine', '/my/xyz', 'w') will open '/temp/my/xyz' for write in the host file system.",
                 "type": "string"
             },
-            "anyOf": [
+            "allOf": [
                 {
                     "$ref": "#/$defs/_AdaptiveRootFilePaths_.propertyTypes"
                 }
@@ -195,11 +202,14 @@
         },
         "_AdaptiveTemplatePropertiesObjects_": {
             "additionalProperties": {
-                "$ref": "#/$defs/_AdaptiveTemplateProperties_",
-                "description": "Each property is a _AdaptiveTemplateProperties_ object.",
-                "type": "object"
+                "allOf": [
+                    {
+                        "$ref": "#/$defs/_AdaptiveTemplateProperties_"
+                    }
+                ],
+                "description": "Each property is a _AdaptiveTemplateProperties_ object."
             },
-            "anyOf": [
+            "allOf": [
                 {
                     "$ref": "#/$defs/_AdaptiveTemplatePropertiesObjects_.propertyTypes"
                 }
@@ -217,7 +227,7 @@
                 "description": "Each property is a template value.",
                 "type": "string"
             },
-            "anyOf": [
+            "allOf": [
                 {
                     "$ref": "#/$defs/_AdaptiveTemplateProperties_.propertyTypes"
                 }
@@ -231,7 +241,7 @@
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "anyOf": [
+    "allOf": [
         {
             "$ref": "#/$defs/_AdaptiveConf_application"
         }

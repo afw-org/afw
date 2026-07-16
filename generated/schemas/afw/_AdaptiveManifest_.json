@@ -1,12 +1,16 @@
 {
     "$defs": {
         "_AdaptiveManifest_": {
-            "anyOf": [
+            "allOf": [
                 {
                     "$ref": "#/$defs/_AdaptiveManifest_.propertyTypes"
                 }
             ],
             "description": "Adaptive Framework extension manifest.",
+            "required": [
+                "extensionId",
+                "modulePath"
+            ],
             "type": "object",
             "unevaluatedProperties": false
         },
@@ -54,15 +58,11 @@
                     "type": "array"
                 }
             },
-            "required": [
-                "extensionId",
-                "modulePath"
-            ],
             "type": "object"
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "anyOf": [
+    "allOf": [
         {
             "$ref": "#/$defs/_AdaptiveManifest_"
         }

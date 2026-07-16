@@ -1,12 +1,15 @@
 {
     "$defs": {
         "_AdaptiveLayoutComponentTypeCategory_": {
-            "anyOf": [
+            "allOf": [
                 {
                     "$ref": "#/$defs/_AdaptiveLayoutComponentTypeCategory_.propertyTypes"
                 }
             ],
             "description": "Layout Component Type Category.",
+            "required": [
+                "category"
+            ],
             "type": "object",
             "unevaluatedProperties": false
         },
@@ -29,14 +32,11 @@
                     "type": "string"
                 }
             },
-            "required": [
-                "category"
-            ],
             "type": "object"
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "anyOf": [
+    "allOf": [
         {
             "$ref": "#/$defs/_AdaptiveLayoutComponentTypeCategory_"
         }

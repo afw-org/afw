@@ -1,0 +1,73 @@
+{
+    "$defs": {
+        "_AdaptiveModelCurrentOnSetProperty_": {
+            "allOf": [
+                {
+                    "$ref": "#/$defs/_AdaptiveModelCurrentOnSetProperty_.propertyTypes"
+                }
+            ],
+            "description": "Qualifier current:: for model onSetProperty.",
+            "type": "object",
+            "unevaluatedProperties": false
+        },
+        "_AdaptiveModelCurrentOnSetProperty_.propertyTypes": {
+            "properties": {
+                "adapterId": {
+                    "description": "The adapter id of the object being converted to mapped object.",
+                    "title": "Adapter Id",
+                    "type": "string"
+                },
+                "adapterTypeSpecific": {
+                    "description": "This is the adapterTypeSpecific parameter value.",
+                    "title": "Adapter Specific",
+                    "type": "object"
+                },
+                "mappedAdapterId": {
+                    "description": "The adapter id of the object being converted to object.",
+                    "title": "Mapped Adapter Id",
+                    "type": "string"
+                },
+                "mappedObjectType": {
+                    "description": "The object type of the object being converted to object.",
+                    "title": "Mapped Object Type",
+                    "type": "string"
+                },
+                "object": {
+                    "description": "This is the object from request.",
+                    "title": "Object",
+                    "type": "object"
+                },
+                "objectId": {
+                    "description": "This is objectId of the object from request.",
+                    "title": "Object Id",
+                    "type": "string"
+                },
+                "objectType": {
+                    "description": "The object type of the object being converted to mapped object.",
+                    "title": "Object Type",
+                    "type": "string"
+                },
+                "propertyName": {
+                    "description": "This is the property name from request.",
+                    "title": "Object Id",
+                    "type": "string"
+                },
+                "useDefaultProcessing": {
+                    "description": "Return this value to cause default processing to occur.",
+                    "title": "Use Default Processing"
+                },
+                "value": {
+                    "description": "This is the value of the property from request.",
+                    "title": "Object Id"
+                }
+            },
+            "type": "object"
+        }
+    },
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "allOf": [
+        {
+            "$ref": "#/$defs/_AdaptiveModelCurrentOnSetProperty_"
+        }
+    ]
+}

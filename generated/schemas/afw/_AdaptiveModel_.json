@@ -1,7 +1,7 @@
 {
     "$defs": {
         "_AdaptiveModelObjectType_": {
-            "anyOf": [
+            "allOf": [
                 {
                     "$ref": "#/$defs/_AdaptiveModelObjectType_.propertyTypes"
                 },
@@ -15,14 +15,14 @@
         },
         "_AdaptiveModelObjectType_.propertyTypes": {
             "properties": {
-                "_meta_": {
-                    "title": " Meta "
-                },
                 "custom": {
-                    "$ref": "#/$defs/_AdaptiveTemplateProperties_",
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/_AdaptiveTemplateProperties_"
+                        }
+                    ],
                     "description": "Object type level qualifier custom:: variables available to model expressions.",
-                    "title": "Custom",
-                    "type": "object"
+                    "title": "Custom"
                 },
                 "mappedObjectType": {
                     "description": "This is the objectType used internally by the adapter for this object type. It not specified, current::objectType is used.",
@@ -65,21 +65,28 @@
                     "type": "string"
                 },
                 "propertyTypes": {
-                    "$ref": "#/$defs/_AdaptiveModelPropertyTypes_",
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/_AdaptiveModelPropertyTypes_"
+                        }
+                    ],
                     "description": "The name of the properties in this object corresponds to the property name of an instance of this object type and is its property type object.",
-                    "title": "Property Types",
-                    "type": "object"
+                    "title": "Property Types"
                 }
             },
             "type": "object"
         },
         "_AdaptiveModelObjectTypes_": {
             "additionalProperties": {
-                "$ref": "#/$defs/_AdaptiveModelObjectType_",
+                "allOf": [
+                    {
+                        "$ref": "#/$defs/_AdaptiveModelObjectType_"
+                    }
+                ],
                 "description": "The adaptive object type of all object that contains _AdaptiveModelObjectTypes_ objects as properties.",
-                "type": "object"
+                "title": "Defines an Object Type definition in this Adaptive Model"
             },
-            "anyOf": [
+            "allOf": [
                 {
                     "$ref": "#/$defs/_AdaptiveModelObjectTypes_.propertyTypes"
                 }
@@ -93,7 +100,7 @@
             "type": "object"
         },
         "_AdaptiveModelPropertyType_": {
-            "anyOf": [
+            "allOf": [
                 {
                     "$ref": "#/$defs/_AdaptiveModelPropertyType_.propertyTypes"
                 },
@@ -107,19 +114,20 @@
         },
         "_AdaptiveModelPropertyType_.propertyTypes": {
             "properties": {
-                "_meta_": {
-                    "title": " Meta "
-                },
                 "allowRead": {
+                    "default": true,
                     "description": "Indicates that this property can be read. If true, the property will be included in get_object() and retrieve_objects() requests.",
                     "title": "Allow Read",
                     "type": "boolean"
                 },
                 "custom": {
-                    "$ref": "#/$defs/_AdaptiveTemplateProperties_",
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/_AdaptiveTemplateProperties_"
+                        }
+                    ],
                     "description": "Property type level qualifier custom:: variables available to model expressions.",
-                    "title": "Custom",
-                    "type": "object"
+                    "title": "Custom"
                 },
                 "mappedPropertyName": {
                     "description": "This is the property name of this property used internally by an adapter. If not specified, propertyName is used.",
@@ -147,6 +155,7 @@
                     "type": "string"
                 },
                 "transitory": {
+                    "default": false,
                     "description": "Indicates that this property is transitory and will not be persisted by the adapter. The value can be produced by setValue or supplied in the request.",
                     "title": "Transitory",
                     "type": "boolean"
@@ -156,11 +165,15 @@
         },
         "_AdaptiveModelPropertyTypes_": {
             "additionalProperties": {
-                "$ref": "#/$defs/_AdaptiveModelPropertyType_",
+                "allOf": [
+                    {
+                        "$ref": "#/$defs/_AdaptiveModelPropertyType_"
+                    }
+                ],
                 "description": "Object type of the propertyTypes property of instances of _AdaptiveModelObjectType_.",
-                "type": "object"
+                "title": "Defines a Property Type within this Adaptive Model Object Type definition"
             },
-            "anyOf": [
+            "allOf": [
                 {
                     "$ref": "#/$defs/_AdaptiveModelPropertyTypes_.propertyTypes"
                 }
@@ -174,7 +187,7 @@
             "type": "object"
         },
         "_AdaptiveModel_": {
-            "anyOf": [
+            "allOf": [
                 {
                     "$ref": "#/$defs/_AdaptiveModel_.propertyTypes"
                 }
@@ -197,10 +210,13 @@
                     "type": "array"
                 },
                 "custom": {
-                    "$ref": "#/$defs/_AdaptiveTemplateProperties_",
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/_AdaptiveTemplateProperties_"
+                        }
+                    ],
                     "description": "Qualifier custom:: variables available to model expressions.",
-                    "title": "Custom",
-                    "type": "object"
+                    "title": "Custom"
                 },
                 "description": {
                     "contentMediaType": "text/plain",
@@ -214,11 +230,14 @@
                     "type": "string"
                 },
                 "objectTypes": {
-                    "$ref": "#/$defs/_AdaptiveModelObjectTypes_",
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/_AdaptiveModelObjectTypes_"
+                        }
+                    ],
                     "description": "Model for an object type.",
                     "readOnly": false,
-                    "title": "Object Types",
-                    "type": "object"
+                    "title": "Object Types"
                 },
                 "originURI": {
                     "description": "The origin URI of this model. Descendant object types should be used for any deviations. This URI may be different from the URI within this instance of Adaptive Framework.",
@@ -227,10 +246,13 @@
                     "type": "string"
                 },
                 "propertyTypes": {
-                    "$ref": "#/$defs/_AdaptiveModelPropertyTypes_",
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/_AdaptiveModelPropertyTypes_"
+                        }
+                    ],
                     "description": "Property type objects that can be inherited by propertyTypes in objectTypes.",
-                    "title": "Property Types",
-                    "type": "object"
+                    "title": "Property Types"
                 }
             },
             "type": "object"
@@ -238,21 +260,25 @@
         "_AdaptiveObjectType_.propertyTypes": {
             "properties": {
                 "allowAdd": {
+                    "default": true,
                     "description": "If false, objects of this type can NEVER be added via an adapter. If true, objects of this type can be added via an adapter as long as allowed by authorization policy and the adapter.",
                     "title": "Allow Add",
                     "type": "boolean"
                 },
                 "allowChange": {
+                    "default": true,
                     "description": "If false, objects of this type can NEVER be changed via an adapter. If true, objects of this type can be changed via an adapter as long as allowed by authorization policy and the adapter.",
                     "title": "Allow Change",
                     "type": "boolean"
                 },
                 "allowDelete": {
+                    "default": true,
                     "description": "If false, objects of this type can NEVER be deleted via an adapter. If true, objects of this type can be deleted via an adapter as long as allowed by authorization policy and the adapter.",
                     "title": "Allow Delete",
                     "type": "boolean"
                 },
                 "allowEntity": {
+                    "default": true,
                     "description": "Instances of this object type can exist as an entity object, not just an embedded object.",
                     "title": "Allow Entity",
                     "type": "boolean"
@@ -301,16 +327,22 @@
                     "type": "string"
                 },
                 "otherProperties": {
-                    "$ref": "#/$defs/_AdaptiveValueMeta_",
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/_AdaptiveValueMeta_"
+                        }
+                    ],
                     "description": "If specified, this is the property type for properties that are not explicitly specified. If otherProperties is not specified, only explicitly specified properties are allowed.",
-                    "title": "Other Properties",
-                    "type": "object"
+                    "title": "Other Properties"
                 },
                 "propertyTypes": {
-                    "$ref": "#/$defs/_AdaptivePropertyTypes_",
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/_AdaptivePropertyTypes_"
+                        }
+                    ],
                     "description": "An object whose properties contain the _AdaptiveValueMeta_ for properties with corresponding name in instances of this _AdaptiveObjectType_.",
-                    "title": "Property Types",
-                    "type": "object"
+                    "title": "Property Types"
                 },
                 "referenceURI": {
                     "description": "URI of more reference information about this object.",
@@ -319,10 +351,13 @@
                     "type": "string"
                 },
                 "runtime": {
-                    "$ref": "#/$defs/_AdaptiveRuntimeObject_",
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/_AdaptiveRuntimeObject_"
+                        }
+                    ],
                     "description": "This is only valid for runtime object types. These are objects that are accessed with adapterId afw. See afw_runtime.h for more information.",
-                    "title": "Runtime",
-                    "type": "object"
+                    "title": "Runtime"
                 },
                 "tags": {
                     "description": "This is an array of keywords and terms associated with this object type. An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag. Adaptive Framework reserves the definition of all tags that begin with '_Adaptive'.",
@@ -338,8 +373,8 @@
             "type": "object"
         },
         "_AdaptiveObject_": {
-            "additionalProperties": {},
-            "anyOf": [
+            "additionalProperties": true,
+            "allOf": [
                 {
                     "$ref": "#/$defs/_AdaptiveObject_.propertyTypes"
                 }
@@ -354,9 +389,12 @@
         },
         "_AdaptivePropertyTypes_": {
             "additionalProperties": {
-                "$ref": "#/$defs/_AdaptiveValueMeta_",
-                "description": "Object type of the propertyTypes property of an object type.",
-                "type": "object"
+                "allOf": [
+                    {
+                        "$ref": "#/$defs/_AdaptiveValueMeta_"
+                    }
+                ],
+                "description": "Object type of the propertyTypes property of an object type."
             },
             "description": "An object whose properties contain the _AdaptiveValueMeta_ for properties with corresponding name in instances of this _AdaptiveObjectType_.",
             "properties": {
@@ -381,7 +419,7 @@
             "type": "object"
         },
         "_AdaptiveRuntimeLabels_": {
-            "anyOf": [
+            "allOf": [
                 {
                     "$ref": "#/$defs/_AdaptiveRuntimeLabels_.propertyTypes"
                 }
@@ -407,7 +445,7 @@
             "type": "object"
         },
         "_AdaptiveRuntimeObject_": {
-            "anyOf": [
+            "allOf": [
                 {
                     "$ref": "#/$defs/_AdaptiveRuntimeObject_.propertyTypes"
                 }
@@ -425,10 +463,13 @@
                     "type": "boolean"
                 },
                 "labels": {
-                    "$ref": "#/$defs/_AdaptiveRuntimeLabels_",
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/_AdaptiveRuntimeLabels_"
+                        }
+                    ],
                     "description": "Labels.",
-                    "title": "Labels",
-                    "type": "object"
+                    "title": "Labels"
                 },
                 "typedef": {
                     "description": "The typedef of the struct for the runtime object.",
@@ -439,7 +480,7 @@
             "type": "object"
         },
         "_AdaptiveRuntimeProperty_": {
-            "anyOf": [
+            "allOf": [
                 {
                     "$ref": "#/$defs/_AdaptiveRuntimeProperty_.propertyTypes"
                 }
@@ -479,7 +520,7 @@
                 "description": "Each property is a template value.",
                 "type": "string"
             },
-            "anyOf": [
+            "allOf": [
                 {
                     "$ref": "#/$defs/_AdaptiveTemplateProperties_.propertyTypes"
                 }
@@ -493,7 +534,7 @@
             "type": "object"
         },
         "_AdaptiveValueMeta_": {
-            "anyOf": [
+            "allOf": [
                 {
                     "$ref": "#/$defs/_AdaptiveValueMeta_.propertyTypes"
                 }
@@ -572,10 +613,13 @@
                     "type": "string"
                 },
                 "hints": {
-                    "$ref": "#/$defs/_AdaptiveObject_",
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/_AdaptiveObject_"
+                        }
+                    ],
                     "description": "Hints that can optionally be used by UI to render this value.",
-                    "title": "Hints",
-                    "type": "object"
+                    "title": "Hints"
                 },
                 "label": {
                     "description": "Label used to identify this value.",
@@ -623,15 +667,19 @@
                     "type": "string"
                 },
                 "required": {
+                    "default": false,
                     "description": "Indicates that value is required.",
                     "title": "Required",
                     "type": "boolean"
                 },
                 "runtime": {
-                    "$ref": "#/$defs/_AdaptiveRuntimeProperty_",
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/_AdaptiveRuntimeProperty_"
+                        }
+                    ],
                     "description": "This is only valid for runtime object types. These are objects that are accessed with adapterId afw. See afw_runtime.h for more information.",
-                    "title": "Runtime",
-                    "type": "object"
+                    "title": "Runtime"
                 },
                 "skeleton": {
                     "description": "This is a skeleton example that can optionally be used by an application as an initial value. For example, if this is a new data type 'template' value, this can be the text used to prime the edit window with sample Adaptive Script code including comments.",
@@ -668,7 +716,7 @@
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "anyOf": [
+    "allOf": [
         {
             "$ref": "#/$defs/_AdaptiveModel_"
         }

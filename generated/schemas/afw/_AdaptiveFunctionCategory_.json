@@ -1,12 +1,15 @@
 {
     "$defs": {
         "_AdaptiveFunctionCategory_": {
-            "anyOf": [
+            "allOf": [
                 {
                     "$ref": "#/$defs/_AdaptiveFunctionCategory_.propertyTypes"
                 }
             ],
             "description": "Function category.",
+            "required": [
+                "category"
+            ],
             "type": "object",
             "unevaluatedProperties": false
         },
@@ -34,14 +37,11 @@
                     "type": "string"
                 }
             },
-            "required": [
-                "category"
-            ],
             "type": "object"
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "anyOf": [
+    "allOf": [
         {
             "$ref": "#/$defs/_AdaptiveFunctionCategory_"
         }

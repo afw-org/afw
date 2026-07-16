@@ -5,7 +5,7 @@
                 "description": "The version information associated with an id.",
                 "type": "string"
             },
-            "anyOf": [
+            "allOf": [
                 {
                     "$ref": "#/$defs/_AdaptiveVersionInfo_.propertyTypes"
                 }
@@ -70,7 +70,7 @@
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "anyOf": [
+    "allOf": [
         {
             "$ref": "#/$defs/_AdaptiveVersionInfo_"
         }

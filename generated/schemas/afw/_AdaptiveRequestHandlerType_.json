@@ -1,7 +1,7 @@
 {
     "$defs": {
         "_AdaptiveRequestHandlerType_": {
-            "anyOf": [
+            "allOf": [
                 {
                     "$ref": "#/$defs/_AdaptiveRequestHandlerType_.propertyTypes"
                 }
@@ -28,7 +28,7 @@
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "anyOf": [
+    "allOf": [
         {
             "$ref": "#/$defs/_AdaptiveRequestHandlerType_"
         }

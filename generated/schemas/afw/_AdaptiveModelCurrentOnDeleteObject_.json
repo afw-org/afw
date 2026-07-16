@@ -1,0 +1,59 @@
+{
+    "$defs": {
+        "_AdaptiveModelCurrentOnDeleteObject_": {
+            "allOf": [
+                {
+                    "$ref": "#/$defs/_AdaptiveModelCurrentOnDeleteObject_.propertyTypes"
+                }
+            ],
+            "description": "Qualifier current:: for model onDeleteObject.",
+            "type": "object",
+            "unevaluatedProperties": false
+        },
+        "_AdaptiveModelCurrentOnDeleteObject_.propertyTypes": {
+            "properties": {
+                "adapterId": {
+                    "description": "The adapter id of the object being converted to mapped object.",
+                    "title": "Adapter Id",
+                    "type": "string"
+                },
+                "adapterTypeSpecific": {
+                    "description": "This is the adapterTypeSpecific parameter value.",
+                    "title": "Adapter Specific",
+                    "type": "object"
+                },
+                "mappedAdapterId": {
+                    "description": "The adapter id of the object being converted to object.",
+                    "title": "Mapped Adapter Id",
+                    "type": "string"
+                },
+                "mappedObjectType": {
+                    "description": "The object type of the object being converted to object.",
+                    "title": "Mapped Object Type",
+                    "type": "string"
+                },
+                "objectId": {
+                    "description": "This is objectId of the object to delete.",
+                    "title": "Object Id",
+                    "type": "string"
+                },
+                "objectType": {
+                    "description": "The object type of the object being converted to mapped object.",
+                    "title": "Object Type",
+                    "type": "string"
+                },
+                "useDefaultProcessing": {
+                    "description": "Return this value to cause default processing to occur.",
+                    "title": "Use Default Processing"
+                }
+            },
+            "type": "object"
+        }
+    },
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "allOf": [
+        {
+            "$ref": "#/$defs/_AdaptiveModelCurrentOnDeleteObject_"
+        }
+    ]
+}

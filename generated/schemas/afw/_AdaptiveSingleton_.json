@@ -1,7 +1,7 @@
 {
     "$defs": {
         "_AdaptiveSingleton_": {
-            "anyOf": [
+            "allOf": [
                 {
                     "$ref": "#/$defs/_AdaptiveSingleton_.propertyTypes"
                 }
@@ -22,7 +22,7 @@
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "anyOf": [
+    "allOf": [
         {
             "$ref": "#/$defs/_AdaptiveSingleton_"
         }

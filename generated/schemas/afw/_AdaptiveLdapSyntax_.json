@@ -1,10 +1,8 @@
 {
     "$defs": {
         "_AdaptiveLdapSyntax_": {
-            "additionalProperties": {
-                "description": "Object type for type=adapter adapter_type=ldap synthetic syntax object."
-            },
-            "anyOf": [
+            "additionalProperties": true,
+            "allOf": [
                 {
                     "$ref": "#/$defs/_AdaptiveLdapSyntax_.propertyTypes"
                 }
@@ -27,7 +25,7 @@
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "anyOf": [
+    "allOf": [
         {
             "$ref": "#/$defs/_AdaptiveLdapSyntax_"
         }

@@ -1,12 +1,19 @@
 {
     "$defs": {
         "_AdaptiveServer_": {
-            "anyOf": [
+            "allOf": [
                 {
                     "$ref": "#/$defs/_AdaptiveServer_.propertyTypes"
                 }
             ],
             "description": "Object type for afw_server_fcgi server info.",
+            "required": [
+                "concurrent",
+                "maxConcurrent",
+                "requestCount",
+                "threadCount",
+                "unhandledErrors"
+            ],
             "type": "object",
             "unevaluatedProperties": false
         },
@@ -64,18 +71,11 @@
                     "type": "integer"
                 }
             },
-            "required": [
-                "concurrent",
-                "maxConcurrent",
-                "requestCount",
-                "threadCount",
-                "unhandledErrors"
-            ],
             "type": "object"
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "anyOf": [
+    "allOf": [
         {
             "$ref": "#/$defs/_AdaptiveServer_"
         }

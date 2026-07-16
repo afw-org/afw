@@ -1,12 +1,15 @@
 {
     "$defs": {
         "_AdaptiveLayoutComponentType_": {
-            "anyOf": [
+            "allOf": [
                 {
                     "$ref": "#/$defs/_AdaptiveLayoutComponentType_.propertyTypes"
                 }
             ],
             "description": "All adaptive layout component object types are derived from this object type.\n\nEach component type must have a corresponding object type with an id of '_AdaptiveLayoutComponentType_' followed by a unique component type id (componentType). These object types defines the properties of the object that is passed to their associated implementation.",
+            "required": [
+                "componentType"
+            ],
             "type": "object",
             "unevaluatedProperties": false
         },
@@ -54,14 +57,11 @@
                     "type": "string"
                 }
             },
-            "required": [
-                "componentType"
-            ],
             "type": "object"
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "anyOf": [
+    "allOf": [
         {
             "$ref": "#/$defs/_AdaptiveLayoutComponentType_"
         }

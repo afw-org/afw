@@ -1,7 +1,7 @@
 {
     "$defs": {
         "_AdaptiveLog_": {
-            "anyOf": [
+            "allOf": [
                 {
                     "$ref": "#/$defs/_AdaptiveLog_.propertyTypes"
                 }
@@ -37,7 +37,7 @@
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "anyOf": [
+    "allOf": [
         {
             "$ref": "#/$defs/_AdaptiveLog_"
         }

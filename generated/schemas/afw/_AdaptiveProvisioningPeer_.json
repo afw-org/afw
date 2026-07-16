@@ -1,12 +1,15 @@
 {
     "$defs": {
         "_AdaptiveProvisioningPeer_": {
-            "anyOf": [
+            "allOf": [
                 {
                     "$ref": "#/$defs/_AdaptiveProvisioningPeer_.propertyTypes"
                 }
             ],
             "description": "A provisioning peer consumes and/or produces adaptive journal entries.",
+            "required": [
+                "peerId"
+            ],
             "type": "object",
             "unevaluatedProperties": false
         },
@@ -23,6 +26,7 @@
                     "type": "string"
                 },
                 "consumeFilter": {
+                    "default": "true",
                     "description": "This is a boolean expression that determines if a journal entry is applicable to be consumed by this peer.",
                     "title": "Consume Filter",
                     "type": "string"
@@ -56,14 +60,11 @@
                     "type": "string"
                 }
             },
-            "required": [
-                "peerId"
-            ],
             "type": "object"
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "anyOf": [
+    "allOf": [
         {
             "$ref": "#/$defs/_AdaptiveProvisioningPeer_"
         }

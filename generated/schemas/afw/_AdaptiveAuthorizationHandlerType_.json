@@ -1,7 +1,7 @@
 {
     "$defs": {
         "_AdaptiveAuthorizationHandlerType_": {
-            "anyOf": [
+            "allOf": [
                 {
                     "$ref": "#/$defs/_AdaptiveAuthorizationHandlerType_.propertyTypes"
                 }
@@ -28,7 +28,7 @@
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "anyOf": [
+    "allOf": [
         {
             "$ref": "#/$defs/_AdaptiveAuthorizationHandlerType_"
         }

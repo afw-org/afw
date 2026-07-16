@@ -1,7 +1,7 @@
 {
     "$defs": {
         "_AdaptiveServiceConf_": {
-            "anyOf": [
+            "allOf": [
                 {
                     "$ref": "#/$defs/_AdaptiveServiceConf_.propertyTypes"
                 }
@@ -23,6 +23,7 @@
                     "type": "string"
                 },
                 "startup": {
+                    "default": "manual",
                     "description": "Service startup condition specifies how the service should be started. Choose 'manual', if you intend to start the service by hand. Choose 'immediate' if the service should be started as soon as it as loaded. Services defined in the main configuration file are 'permanent', which are started immediately and cannot be stopped.",
                     "title": "Startup",
                     "type": "string"
@@ -32,7 +33,7 @@
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "anyOf": [
+    "allOf": [
         {
             "$ref": "#/$defs/_AdaptiveServiceConf_"
         }

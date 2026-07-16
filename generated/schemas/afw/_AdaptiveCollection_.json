@@ -1,12 +1,15 @@
 {
     "$defs": {
         "_AdaptiveCollection_": {
-            "anyOf": [
+            "allOf": [
                 {
                     "$ref": "#/$defs/_AdaptiveCollection_.propertyTypes"
                 }
             ],
             "description": "Describes a collection.",
+            "required": [
+                "objectId"
+            ],
             "type": "object",
             "unevaluatedProperties": false
         },
@@ -35,14 +38,11 @@
                     "type": "string"
                 }
             },
-            "required": [
-                "objectId"
-            ],
             "type": "object"
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "anyOf": [
+    "allOf": [
         {
             "$ref": "#/$defs/_AdaptiveCollection_"
         }

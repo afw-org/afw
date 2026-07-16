@@ -8,9 +8,10 @@
                     "title": "Compiler option",
                     "type": "string"
                 },
+                "title": "Compiler option",
                 "type": "array"
             },
-            "anyOf": [
+            "allOf": [
                 {
                     "$ref": "#/$defs/_AdaptivePackageCompileOptions_.propertyTypes"
                 }
@@ -24,7 +25,7 @@
             "type": "object"
         },
         "_AdaptivePackageSrcdirInfo_": {
-            "anyOf": [
+            "allOf": [
                 {
                     "$ref": "#/$defs/_AdaptivePackageSrcdirInfo_.propertyTypes"
                 }
@@ -91,12 +92,15 @@
         },
         "_AdaptivePackageSrcdirs_": {
             "additionalProperties": {
-                "$ref": "#/$defs/_AdaptivePackageSrcdirInfo_",
+                "allOf": [
+                    {
+                        "$ref": "#/$defs/_AdaptivePackageSrcdirInfo_"
+                    }
+                ],
                 "description": "Property name is a srcdir and value is srcdir info.",
-                "title": "Srcdir Info",
-                "type": "object"
+                "title": "Srcdir Info"
             },
-            "anyOf": [
+            "allOf": [
                 {
                     "$ref": "#/$defs/_AdaptivePackageSrcdirs_.propertyTypes"
                 }
@@ -110,12 +114,16 @@
             "type": "object"
         },
         "_AdaptivePackage_": {
-            "anyOf": [
+            "allOf": [
                 {
                     "$ref": "#/$defs/_AdaptivePackage_.propertyTypes"
                 }
             ],
             "description": "This is essential information that is needed for this AFW package by afwdev and related development tools.",
+            "required": [
+                "installPackageSubdir",
+                "version"
+            ],
             "type": "object",
             "unevaluatedProperties": false
         },
@@ -142,10 +150,13 @@
                     "type": "string"
                 },
                 "compileOptions": {
-                    "$ref": "#/$defs/_AdaptivePackageCompileOptions_",
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/_AdaptivePackageCompileOptions_"
+                        }
+                    ],
                     "description": "This is an array of compile options to add during all compiles for a specific compiler id. The value of this property is an object with property names matching the <LANG> as defined under 'CMAKE_LANG_COMPILER_ID' in the CMake documentation and whose value is an array of compiler options for that <LANG>. This is useful for providing compiler specify options such as warning and error flags.",
-                    "title": "Compile Options",
-                    "type": "object"
+                    "title": "Compile Options"
                 },
                 "copyright": {
                     "description": "This is a text string that will be used as the copyright inserted into source files during the generate process.",
@@ -173,10 +184,13 @@
                     "type": "string"
                 },
                 "srcdirs": {
-                    "$ref": "#/$defs/_AdaptivePackageSrcdirs_",
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/_AdaptivePackageSrcdirs_"
+                        }
+                    ],
                     "description": "This is information about subdirectories in this repository's src/ directory.",
-                    "title": "Package Srcdir Info",
-                    "type": "object"
+                    "title": "Package Srcdir Info"
                 },
                 "tarballName": {
                     "description": "This is the name of the tarball produced by make dist. It's used in the tarname parameter of AC_INIT in configure.ac.\n\nThis is the full package name. It defaults to package-name with \u2018GNU \u2019 stripped, lower-cased, and all characters other than alphanumerics and underscores are changed to \u2018-\u2019. ",
@@ -189,15 +203,11 @@
                     "type": "string"
                 }
             },
-            "required": [
-                "installPackageSubdir",
-                "version"
-            ],
             "type": "object"
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "anyOf": [
+    "allOf": [
         {
             "$ref": "#/$defs/_AdaptivePackage_"
         }

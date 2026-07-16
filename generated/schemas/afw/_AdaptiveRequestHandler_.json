@@ -1,10 +1,33 @@
 {
     "$defs": {
+        "_AdaptiveConf_.propertyTypes": {
+            "properties": {
+                "description": {
+                    "contentMediaType": "text/plain",
+                    "description": "The description of this configuration component.",
+                    "title": "Description",
+                    "type": "string"
+                },
+                "sourceLocation": {
+                    "description": "This is a contextual string added when this configuration object is processed.",
+                    "title": "Source Location",
+                    "type": "string"
+                },
+                "title": {
+                    "description": "The title for this configuration component.",
+                    "title": "Title",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "Configuration type.",
+                    "title": "Type",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
         "_AdaptiveConf_requestHandler.propertyTypes": {
             "properties": {
-                "_meta_": {
-                    "title": " Meta "
-                },
                 "requestHandlerType": {
                     "description": "Type of request handler that will process requests directed to this handler.",
                     "title": "Handler Type",
@@ -19,31 +42,28 @@
             "type": "object"
         },
         "_AdaptiveRequestHandler_": {
-            "additionalProperties": {
-                "description": "Runtime request handler information."
-            },
-            "anyOf": [
+            "additionalProperties": true,
+            "allOf": [
                 {
                     "$ref": "#/$defs/_AdaptiveRequestHandler_.propertyTypes"
                 },
                 {
                     "$ref": "#/$defs/_AdaptiveConf_requestHandler.propertyTypes"
+                },
+                {
+                    "$ref": "#/$defs/_AdaptiveConf_.propertyTypes"
                 }
             ],
             "description": "Runtime request handler information.",
             "type": "object"
         },
         "_AdaptiveRequestHandler_.propertyTypes": {
-            "properties": {
-                "_meta_": {
-                    "title": " Meta "
-                }
-            },
+            "properties": {},
             "type": "object"
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "anyOf": [
+    "allOf": [
         {
             "$ref": "#/$defs/_AdaptiveRequestHandler_"
         }

@@ -1,7 +1,7 @@
 {
     "$defs": {
         "_AdaptiveContextType_": {
-            "anyOf": [
+            "allOf": [
                 {
                     "$ref": "#/$defs/_AdaptiveContextType_.propertyTypes"
                 }
@@ -24,10 +24,13 @@
                     "type": "string"
                 },
                 "qualifierDefinitions": {
-                    "$ref": "#/$defs/_AdaptiveQualifierDefinitions_",
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/_AdaptiveQualifierDefinitions_"
+                        }
+                    ],
                     "description": "Qualifiers that can be used in log related expressions. An empty string qualifier is used for unqualified variable references.",
-                    "title": "Qualifiers",
-                    "type": "object"
+                    "title": "Qualifiers"
                 },
                 "title": {
                     "description": "Title of this context type.",
@@ -38,8 +41,8 @@
             "type": "object"
         },
         "_AdaptiveObject_": {
-            "additionalProperties": {},
-            "anyOf": [
+            "additionalProperties": true,
+            "allOf": [
                 {
                     "$ref": "#/$defs/_AdaptiveObject_.propertyTypes"
                 }
@@ -54,9 +57,12 @@
         },
         "_AdaptivePropertyTypes_": {
             "additionalProperties": {
-                "$ref": "#/$defs/_AdaptiveValueMeta_",
-                "description": "Object type of the propertyTypes property of an object type.",
-                "type": "object"
+                "allOf": [
+                    {
+                        "$ref": "#/$defs/_AdaptiveValueMeta_"
+                    }
+                ],
+                "description": "Object type of the propertyTypes property of an object type."
             },
             "description": "Object type of the propertyTypes property of an object type.",
             "properties": {
@@ -81,11 +87,14 @@
         },
         "_AdaptiveQualifierDefinitions_": {
             "additionalProperties": {
-                "$ref": "#/$defs/_AdaptivePropertyTypes_",
-                "description": "This object type used for qualifier definitions where each property is a _AdaptivePropertyTypes_ object with a qualifier id as a property name.",
-                "type": "object"
+                "allOf": [
+                    {
+                        "$ref": "#/$defs/_AdaptivePropertyTypes_"
+                    }
+                ],
+                "description": "This object type used for qualifier definitions where each property is a _AdaptivePropertyTypes_ object with a qualifier id as a property name."
             },
-            "anyOf": [
+            "allOf": [
                 {
                     "$ref": "#/$defs/_AdaptiveQualifierDefinitions_.propertyTypes"
                 }
@@ -99,7 +108,7 @@
             "type": "object"
         },
         "_AdaptiveRuntimeProperty_": {
-            "anyOf": [
+            "allOf": [
                 {
                     "$ref": "#/$defs/_AdaptiveRuntimeProperty_.propertyTypes"
                 }
@@ -135,7 +144,7 @@
             "type": "object"
         },
         "_AdaptiveValueMeta_": {
-            "anyOf": [
+            "allOf": [
                 {
                     "$ref": "#/$defs/_AdaptiveValueMeta_.propertyTypes"
                 }
@@ -213,10 +222,13 @@
                     "type": "string"
                 },
                 "hints": {
-                    "$ref": "#/$defs/_AdaptiveObject_",
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/_AdaptiveObject_"
+                        }
+                    ],
                     "description": "Hints that can optionally be used by UI to render this value.",
-                    "title": "Hints",
-                    "type": "object"
+                    "title": "Hints"
                 },
                 "label": {
                     "description": "Label used to identify this value.",
@@ -264,15 +276,19 @@
                     "type": "string"
                 },
                 "required": {
+                    "default": false,
                     "description": "Indicates that value is required.",
                     "title": "Required",
                     "type": "boolean"
                 },
                 "runtime": {
-                    "$ref": "#/$defs/_AdaptiveRuntimeProperty_",
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/_AdaptiveRuntimeProperty_"
+                        }
+                    ],
                     "description": "This is only valid for runtime object types. These are objects that are accessed with adapterId afw. See afw_runtime.h for more information.",
-                    "title": "Runtime",
-                    "type": "object"
+                    "title": "Runtime"
                 },
                 "skeleton": {
                     "description": "This is a skeleton example that can optionally be used by an application as an initial value. For example, if this is a new data type 'template' value, this can be the text used to prime the edit window with sample Adaptive Script code including comments.",
@@ -309,7 +325,7 @@
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "anyOf": [
+    "allOf": [
         {
             "$ref": "#/$defs/_AdaptiveContextType_"
         }

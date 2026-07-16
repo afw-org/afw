@@ -1,0 +1,87 @@
+{
+    "$defs": {
+        "_AdaptiveModelCurrentOnGetInitialValue_": {
+            "allOf": [
+                {
+                    "$ref": "#/$defs/_AdaptiveModelCurrentOnGetInitialValue_.propertyTypes"
+                }
+            ],
+            "description": "Qualifier current:: for model onGetInitialValue.",
+            "type": "object",
+            "unevaluatedProperties": false
+        },
+        "_AdaptiveModelCurrentOnGetInitialValue_.propertyTypes": {
+            "properties": {
+                "adapterId": {
+                    "description": "The adapter id of the object being converted to mapped object.",
+                    "title": "Adapter Id",
+                    "type": "string"
+                },
+                "adapterTypeSpecific": {
+                    "description": "This is the adapterTypeSpecific parameter value.",
+                    "title": "Adapter Specific",
+                    "type": "object"
+                },
+                "mappedAdapterId": {
+                    "description": "The adapter id of the object being converted to object.",
+                    "title": "Mapped Adapter Id",
+                    "type": "string"
+                },
+                "mappedObjectId": {
+                    "description": "This is mappedObjectId from model.",
+                    "title": "Mapped object id",
+                    "type": "string"
+                },
+                "mappedObjectType": {
+                    "description": "The object type of the object being converted to object.",
+                    "title": "Mapped Object Type",
+                    "type": "string"
+                },
+                "mappedPropertyName": {
+                    "description": "This is mappedPropertyName from model.",
+                    "title": "Mapped Property Name",
+                    "type": "string"
+                },
+                "mappedValue": {
+                    "description": "This is the mappedValue from the model.",
+                    "title": "Mapped Value"
+                },
+                "object": {
+                    "description": "This is the object from request.",
+                    "title": "Object",
+                    "type": "object"
+                },
+                "objectId": {
+                    "description": "This is objectId of the object from request.",
+                    "title": "Object Id",
+                    "type": "string"
+                },
+                "objectType": {
+                    "description": "The object type of the object being converted to mapped object.",
+                    "title": "Object Type",
+                    "type": "string"
+                },
+                "propertyName": {
+                    "description": "This is the property name from request.",
+                    "title": "Object Id",
+                    "type": "string"
+                },
+                "useDefaultProcessing": {
+                    "description": "Return this value to cause default processing to occur.",
+                    "title": "Use Default Processing"
+                },
+                "value": {
+                    "description": "This is the value of the property from request.",
+                    "title": "Object Id"
+                }
+            },
+            "type": "object"
+        }
+    },
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "allOf": [
+        {
+            "$ref": "#/$defs/_AdaptiveModelCurrentOnGetInitialValue_"
+        }
+    ]
+}

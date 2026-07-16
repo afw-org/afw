@@ -1,7 +1,7 @@
 {
     "$defs": {
         "_AdaptiveLock_": {
-            "anyOf": [
+            "allOf": [
                 {
                     "$ref": "#/$defs/_AdaptiveLock_.propertyTypes"
                 }
@@ -43,7 +43,7 @@
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "anyOf": [
+    "allOf": [
         {
             "$ref": "#/$defs/_AdaptiveLock_"
         }
