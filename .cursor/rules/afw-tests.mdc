@@ -13,6 +13,13 @@ alwaysApply: false
 - Hooks in `config.py`: `before_all`, `before_each`, `after_each`, `after_all` when needed.
 - Optional `Tags = ["..."]` in `config.py` for `afwdev test --tags`.
 
+## Tests under `src/` are permanent regression assets
+
+- **Never delete or “clean up”** test sources under `src/*/tests/` (`.as`, conf, fixtures, `config.py`) unless the user explicitly asks.
+- They exist so future `afwdev test` runs catch regressions. Treat them as product code.
+- **`afwdev test` runs in a temp work directory** and does **not** modify the `src/` tree for normal cases. Do not remove `src/` test files thinking they are runner scratch.
+- If you see many untracked files under a test dir after a manual `afw --conf ./afw.conf` from that folder, those may be local relative-path outputs — still **do not remove tracked test sources** (`.as`, fixtures). Prefer leave untracked outputs alone or only delete clearly untracked runtime junk after confirming `git ls-files` keeps the suite.
+
 ## `.as` test_script
 - Shebang: `#!/usr/bin/env -S afw --syntax test_script`
 - Metadata and cases via `//?` comments (multiple `//? test:` blocks per file).
