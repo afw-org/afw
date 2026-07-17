@@ -1,0 +1,84 @@
+---
+description: VFS adapter (afw_vfs) — vfsMap, whole-file data, multi-map paths, tests (issue #79)
+globs: src/afw_vfs/**,src/afw/doc/guide/administrative/adapters.xml
+alwaysApply: false
+---
+
+# VFS adapter (`src/afw_vfs`)
+
+Loadable extension **`afw_vfs`** (`libafwvfs`), `adapterType: "vfs"`. Exposes host files/directories as **`_AdaptiveFile_vfs`** objects. Not the same as stream **`open_file` / `rootFilePaths`** (see **`afw-stream`**); same longest-prefix / containment ideas apply to `vfsMap`.
+
+**Product text SSOT:** conf and file object types under `src/afw_vfs/generate/objects/_AdaptiveObjectType_/` (`_AdaptiveConf_adapter_vfs`, `_AdaptiveFile_vfs`, `_AdaptiveAdapterTypeSpecific_vfs_retrieve_objects`). Handbook: administrative **Adapters → VFS**. User-facing notes: package `whats_new.md` when behavior changes.
+
+Issue **#79**: empty-file read must not call `afw_pool_malloc` with size 0; full-file rewrite must not leave prior bytes on shorter/empty replace or modify.
+
+## Key files
+
+| Path | Role |
+|------|------|
+| `afw_vfs_adapter.c` | Create, parse `vfsMap` / `markExecutable` / `maxReadBytes`, canonicalize host roots |
+| `afw_vfs_adapter_session.c` | Session CRUD, retrieve, path resolve, read/write |
+| `afw_vfs_adapter_internal.h` | Adapter self (map, markExecutable, max_read_bytes) |
+| `afw_vfs_adapter_factory.c` | Factory `afw_vfs_adapter_factory_vfs` |
+| `afw_vfs_extension.c` | Extension entry + `generated_register` |
+| Conf OT | `_AdaptiveConf_adapter_vfs.json` |
+
+## Conf
+
+- **Required:** `vfsMap` — array of `"objectId_prefix=host/dir/"` strings (empty prefix OK; non-empty prefix must end with `/`; host dir must exist and end with `/`)
+- **Optional:** `markExecutable` (fnmatch patterns on full vfsPath), `maxReadBytes` (default 64 MiB; `0` = unlimited)
+- Lazy load: conf `adapterType: "vfs"` → extension via manifest
+
+## Runtime rules
+
+1. **Object type:** only `_AdaptiveFile_vfs`. Directory objectIds end with `/`; files do not.
+2. **`data`:** file content (UTF-8 string or hexBinary). Directories: list of entry name strings in `data`. Omitted `data` on file add/replace → empty file. Directory add ignores `data`.
+3. **Whole-file I/O:** get loads entire file into memory (respect `maxReadBytes`). Write uses temp file + rename (full replace, including empty/shorter content).
+4. **Empty files (#79):** size 0 → skip pool malloc; return empty string `data`.
+5. **`vfsMap` match:** longest matching prefix with path boundary (empty prefix matches all). Prefer explicit best-of scan, not “first sorted hit” alone as the mental model.
+6. **Resolve:** canonicalize host roots at adapter create; merge under root with SECUREROOT-style discipline; reject objectId segments `.` / `..` / `\` / empty middle segments; final path must stay under host root.
+7. **Retrieve `subdirectory`:** only map entries whose prefix matches the subdirectory path; remainder after prefix goes under that host dir — **do not** append the map key twice onto the host path.
+8. **Hidden:** names starting with `.` omitted from dir listing and retrieve unless `includeHidden` (also on `get_object` adapter-specific for directories).
+9. **`isDirectory`:** `true` dirs, `false` files; allowQuery true for retrieve filters.
+10. **Delete:** non-recursive for directories (must be empty). Missing get/delete → `not_found` where applicable.
+11. **Not a security boundary:** symlinks under a trusted map root may be followed; document rather than over-promise.
+
+## Streams vs VFS
+
+| | `open_file` / streams | VFS adapter |
+|--|----------------------|-------------|
+| Conf | application `rootFilePaths` | adapter `vfsMap` |
+| API | stream numbers, read/write chunks | adapter object CRUD, whole `data` |
+| Shared ideas | longest prefix, no `..` escape, under-root | same for map keys/hosts |
+
+Do not implement VFS I/O by calling `open_file`; keep adapter session on APR file APIs.
+
+## Hand vs generated
+
+| Hand-edit | Never hand-edit |
+|-----------|-----------------|
+| `afw_vfs_*.c`, `*_internal.h` | Entire `src/afw_vfs/generated/` |
+| `generate/objects/`, `generate/manifest/`, `generate/strings/` | |
+| `tests/**/*.as`, `tests/environments/**` | |
+
+## Tests (permanent assets)
+
+| File | Focus |
+|------|--------|
+| `tests/vfs_test.as` | CRUD, empty/shorten, listing, retrieve options, errors, maxReadBytes, markExecutable |
+| `tests/vfs_multimap.as` | Multi-entry map, longest prefix (`include` vs `includes`), retrieve `data/` |
+| `tests/vfs_phase4.as` | hexBinary/BOM, query `isDirectory`, error ids, modest stress, sibling symlink |
+
+Env: `tests/environments/vfs/` (`afw.conf`, seed `multi/`). Run: `afwdev test -p afw_vfs -j`.
+
+Mention `issue #79` in empty-file / write-truncate related cases. Prefer small fixtures; do not add multi‑MB permanent files.
+
+## Agent pitfalls
+
+- **`afw_pool_malloc(size 0)`** throws — always special-case empty reads.
+- **`AFW_TRY`:** never `return` from inside `AFW_CATCH` without finishing `AFW_ENDTRY` (corrupts try stack; shows up under `test_script` + `safe_evaluate`).
+- **Containment:** if host root string ends with `/`, strip trailing slash before separator-boundary compare.
+- **Union `afw_key_z_string_z_t`:** set `key.len` / `string.len` then `key_z` / `string_z` (pointer overwrites `s`, length field retained).
+- After conf/OT edits: `./afwdev build --cdev -j` (do not hand-edit `generated/`).
+
+Related: **`afw-extensions`**, **`afw-stream`** (path parity), **`afw-tests`**, **`afw-c-runtime`**.

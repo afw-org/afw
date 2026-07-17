@@ -113,6 +113,7 @@ afwdev generate --srcdir-pattern '*'
 | `.cursor/rules/afw-server.mdc` | `afw_server` / `afw_request` hosts (interface vs FCGI/local/future HTTP) |
 | `.cursor/rules/afw-server-fcgi.mdc` | `afwfcgi` FastCGI host (`src/afw_server_fcgi`) |
 | `.cursor/rules/afw-stream.mdc` | Streams, `open_file`, rootFilePaths, progressive response write path |
+| `.cursor/rules/afw-vfs.mdc` | VFS adapter (`afw_vfs`): vfsMap, whole-file data, multi-map, tests (#79) |
 | `.cursor/rules/afw-extensions.mdc` | Loadable extensions (curl/ldap/lmdb/ubjson/vfs/yaml) |
 | `.cursor/rules/afw-c-runtime.mdc` | C when editing `.c`/`.h` |
 | `.cursor/rules/afw-value-memory.mdc` | Value lifetimes / pools / shared mutables / long-running escape |

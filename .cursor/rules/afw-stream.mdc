@@ -48,6 +48,7 @@ Core stream/file code must not special-case FCGI. See **`afw-server`**, **`afw-s
 - Absolute and relative host roots; relative roots absolutized at resolve time; production prefers absolute host roots
 - **Traversal hardening:** reject `..` segments in remainder; final path under canonical root (`apr_filepath_merge` + SECUREROOT / separator-boundary containment). Symlinks that escape fail
 - No open without a matching root; empty path fails
+- **Related:** adapter-style whole-file FS access uses **`vfsMap`** on `adapterType=vfs` (extension **`afw_vfs`**), not `rootFilePaths` — see **`afw-vfs`** (same longest-prefix / under-root ideas)
 - `requiresExecuteAccess` on `open_file`
 - **Modes** (stdio): `r` `w` `a` `r+` `w+` `a+` and binary `rb` `wb` `ab` `rb+` `r+b` `wb+` `w+b` `ab+` `a+b`. FD self stores `allow_read` / `allow_write` from mode chars (`r`/`w`/`a`/`+`); enforce on read/write methods
 - Path param to `fopen` must be the **resolved host path**, not the mode string
