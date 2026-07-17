@@ -1522,6 +1522,18 @@ impl_16;
  */
 
 static const afw_value_boolean_t
+impl_16_property_value_allowQuery = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+static const afw_runtime_property_t
+impl_16_property_allowQuery = {
+    &afw_vfs_self_s_allowQuery,
+    &impl_16_property_value_allowQuery.pub
+};
+
+static const afw_value_boolean_t
 impl_16_property_value_allowWrite = {
     {&afw_value_permanent_boolean_inf},
     false
@@ -1559,6 +1571,7 @@ impl_16_property_label = {
 
 static const afw_runtime_property_t *
 impl_16_properties[] = {
+    &impl_16_property_allowQuery,
     &impl_16_property_allowWrite,
     &impl_16_property_brief,
     &impl_16_property_dataType,

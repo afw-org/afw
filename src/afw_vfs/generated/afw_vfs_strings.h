@@ -524,6 +524,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_VFS_Q_allowQuery \
+    "allowQuery"
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_allowQuery */
+#define afw_vfs_s_allowQuery \
+    (&afw_vfs_self_v_allowQuery.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_allowQuery */
+#define afw_vfs_self_s_allowQuery \
+    (afw_vfs_self_v_allowQuery.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_allowQuery */
+extern const afw_value_string_t \
+    afw_vfs_self_v_allowQuery;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_allowQuery */
+#define afw_vfs_z_allowQuery \
+    (afw_vfs_self_v_allowQuery.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_allowQuery */
+#define afw_vfs_v_allowQuery \
+    (&afw_vfs_self_v_allowQuery.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_VFS_Q_allowWrite \
     "allowWrite"
 
@@ -1461,7 +1487,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_VFS_Q_zz__2595 \
-    "If specified, the retrieve will start in the specified vfs subdirectory instead of the vfs root. The value can not start with '/', must end with '/', and can not contain '\\', './' or '../'."
+    "If specified, the retrieve will start in the specified vfs subdirectory instead of the vfs root. The value can not start with '/', must end with '/', and can not contain '\\', './' or '../'. For multi-entry vfsMap, only map entries whose objectId prefix matches this path are used; the path after that prefix is resolved under that entry's host directory (the map key is not appended twice to the host path)."
 
 /** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2595 */
 #define afw_vfs_s_zz__2595 \

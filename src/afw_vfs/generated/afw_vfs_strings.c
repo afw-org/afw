@@ -140,6 +140,12 @@ afw_vfs_self_v_allowEntity = {
 };
 
 const afw_value_string_t
+afw_vfs_self_v_allowQuery = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_allowQuery)
+};
+
+const afw_value_string_t
 afw_vfs_self_v_allowWrite = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_VFS_Q_allowWrite)

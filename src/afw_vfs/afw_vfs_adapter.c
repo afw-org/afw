@@ -17,6 +17,7 @@
 #include "afw.h"
 #include "afw_adapter_impl.h"
 #include "afw_vfs_adapter_internal.h"
+#include <apr_file_info.h>
 
 
 /* Declares and rti/inf defines for interface afw_adapter */
@@ -141,6 +142,42 @@ afw_vfs_adapter_internal_create_cede_p(
                 "%s in vfsMap entry <host file system directory path> is not "
                 "a directory",
                 entries->string_z);
+        }
+
+        /*
+         * Canonicalize host directory (absolute real path) so later
+         * SECUREROOT merges match rootFilePaths behavior (issue #103 / #120).
+         */
+        {
+            char *merged_z;
+            apr_pool_t *apr_p;
+            afw_size_t mlen;
+
+            apr_p = afw_pool_get_apr_pool(p);
+            rv = apr_filepath_merge(&merged_z, NULL, entries->string_z,
+                APR_FILEPATH_TRUENAME, apr_p);
+            if (rv != APR_SUCCESS) {
+                rv = apr_filepath_merge(&merged_z, NULL, entries->string_z,
+                    0, apr_p);
+            }
+            if (rv == APR_SUCCESS && merged_z && *merged_z) {
+                mlen = strlen(merged_z);
+                if (merged_z[mlen - 1] == '/'
+#if defined(_WIN32) || defined(WIN32)
+                    || merged_z[mlen - 1] == '\\'
+#endif
+                    )
+                {
+                    entries->string_z = afw_utf8_z_create(
+                        merged_z, mlen, p, xctx);
+                    entries->string.len = mlen;
+                }
+                else {
+                    entries->string_z = afw_utf8_z_printf(p, xctx,
+                        "%s/", merged_z);
+                    entries->string.len = strlen(entries->string_z);
+                }
+            }
         }
 
         /* Move new entry to its ordered place. */
