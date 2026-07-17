@@ -112,7 +112,9 @@ afwdev generate --srcdir-pattern '*'
 | `.cursor/rules/afw-function.mdc` | Built-in execute_*, polymorphic, compiler_* |
 | `.cursor/rules/afw-generate-metadata.mdc` | When editing `generate/` |
 | `.cursor/rules/afw-afwdev-python.mdc` | When editing `src/afw_dev` |
-| `.cursor/rules/afw-tests.mdc` | When editing `.as` / test `config.py` |
+| `.cursor/rules/afw-afwdev-generate.mdc` | When editing `_afwdev/generate/` generators |
+| `.cursor/rules/afw-json-schema.mdc` | JSON Schema projection / `generated/schemas` / schema tests |
+| `.cursor/rules/afw-tests.mdc` | When editing tests (`.as`, Python, `config.py`) |
 | `.cursor/skills/add-adaptive-function/` | Add/change Adaptive functions or data types |
 | `.cursor/skills/afw-generate-build-test/` | Regenerate, build, validate, test |
 | `.cursorignore` | Skips `node_modules/`, `build/`, `generated/`, binaries |
