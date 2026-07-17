@@ -21,6 +21,18 @@ Metadata → generated bindings → env `function` registry → call nodes → `
 
 Caller context: `x->xctx`, allocate results in `x->p` or current `scope->p` (long-running: `afw-value-memory`).
 
+## Optional defaults and returned mutables
+
+When a built-in returns a **caller-supplied default** (or any value the script may mutate) because a property/variable/key was missing:
+
+1. Evaluate the default only when it is needed (`AFW_FUNCTION_PARAMETER_IS_PRESENT` + evaluate).
+2. **`afw_value_clone` the result into `x->p`** (or the appropriate result pool) before returning.
+3. Do **not** return a shared permanent / compiled literal (`{}`, `[]`, const objects) that the caller can mutate in place.
+
+**Why:** Script object/array literals used as defaults can be shared across evaluations. Without a clone, mutations stick (or dangle after pool free) across later calls — including multi-request `afwfcgi` / model `on*` paths. Reference fix: issue **#110** (`property_get`, `variable_get` in `afw_function_object.c` / `afw_function_miscellaneous.c`).
+
+Scalars and immutable permanents are usually fine without clone; prefer clone when the type is object, array, or otherwise mutable.
+
 ## Call path
 
 `afw_value_call_create` (`value/afw_value_call.c`) specializes by `argv[0]`:
@@ -46,7 +58,7 @@ Parser statement/expression nodes reference these `function_definition_*` symbol
 
 ```bash
 ./afwdev build --cdev -j
-afwdev test -j   # or --pattern for the function
+afwdev test -j   # or: afwdev test -p afw --test-pattern 'my_function'
 ```
 
-Skill: `add-adaptive-function`. Related: `afw-compile`, `afw-script-eval`, `afw-environment`, `afw-generate-metadata`.
+Skill: `add-adaptive-function`. Related: `afw-compile`, `afw-script-eval`, `afw-environment`, `afw-generate-metadata`, `afw-value-memory`, `afw-adaptive-script`, `afw-tests`.

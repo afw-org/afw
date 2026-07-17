@@ -49,6 +49,7 @@ Use **`./afwdev`** when the build may refresh the installed `afwdev` itself; oth
 - Runtime mental model (always): `afw-runtime-model`
 - When in `src/afw/`: `afw-core-layout`, `afw-headers`, `afw-core-services`, `afw-environment`
 - Compile / value / function: `afw-compile`, `afw-compiler-ebnf`, `afw-script-eval`, `afw-function`, `afw-value-memory`
+- Adaptive Script authoring (tests, model `on*`, probes): `afw-adaptive-script`, `afw-tests`
 - When in `src/afw_command/`: `afw-command`
 - When in `src/afw_server_fcgi/`: `afw-server-fcgi`
 - When in `src/afw_{curl,ldap,lmdb,ubjson,vfs,yaml}/`: `afw-extensions`

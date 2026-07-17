@@ -105,16 +105,17 @@ afwdev generate --srcdir-pattern '*'
 | `.cursor/rules/afw-server-fcgi.mdc` | `afwfcgi` FastCGI host (`src/afw_server_fcgi`) |
 | `.cursor/rules/afw-extensions.mdc` | Loadable extensions (curl/ldap/lmdb/ubjson/vfs/yaml) |
 | `.cursor/rules/afw-c-runtime.mdc` | C when editing `.c`/`.h` |
-| `.cursor/rules/afw-value-memory.mdc` | Value lifetimes / pools / long-running escape |
+| `.cursor/rules/afw-value-memory.mdc` | Value lifetimes / pools / shared mutables / long-running escape |
 | `.cursor/rules/afw-script-eval.mdc` | Compile/eval pipeline, scopes, statement_flow |
 | `.cursor/rules/afw-compile.mdc` | `afw_compile.h` API, compile types, parser map |
 | `.cursor/rules/afw-compiler-ebnf.mdc` | EBNF-in-comments harvest |
-| `.cursor/rules/afw-function.mdc` | Built-in execute_*, polymorphic, compiler_* |
+| `.cursor/rules/afw-function.mdc` | Built-in execute_*, polymorphic, compiler_*, default-clone |
+| `.cursor/rules/afw-adaptive-script.mdc` | Adaptive Script authoring (equality, nullish, defaults, probes) |
 | `.cursor/rules/afw-generate-metadata.mdc` | When editing `generate/` |
 | `.cursor/rules/afw-afwdev-python.mdc` | When editing `src/afw_dev` |
 | `.cursor/rules/afw-afwdev-generate.mdc` | When editing `_afwdev/generate/` generators |
 | `.cursor/rules/afw-json-schema.mdc` | JSON Schema projection / `generated/schemas` / schema tests |
-| `.cursor/rules/afw-tests.mdc` | When editing tests (`.as`, Python, `config.py`) |
+| `.cursor/rules/afw-tests.mdc` | When editing tests (`.as`, Python, `config.py`), regression style |
 | `.cursor/skills/add-adaptive-function/` | Add/change Adaptive functions or data types |
 | `.cursor/skills/afw-generate-build-test/` | Regenerate, build, validate, test |
 | `.cursorignore` | Skips `node_modules/`, `build/`, `generated/`, binaries |
