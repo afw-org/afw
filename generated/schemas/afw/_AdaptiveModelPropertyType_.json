@@ -1,0 +1,924 @@
+{
+    "$comment": "Generated from adaptive object type _AdaptiveModelPropertyType_. Primary use: editor completion/validation for generate/objects JSON. Do not hand-edit.",
+    "$defs": {
+        "_AdaptiveModelPropertyType_": {
+            "additionalProperties": false,
+            "description": "The object type for properties in the 'propertyTypes' property of instances of _AdaptiveModelObjectType_. This includes all of the properties from _AdaptiveValueMeta_ plus additional private properties used by Adaptive Framework to support the property.",
+            "markdownDescription": "The object type for properties in the 'propertyTypes' property of instances of _AdaptiveModelObjectType_. This includes all of the properties from _AdaptiveValueMeta_ plus additional private properties used by Adaptive Framework to support the property.",
+            "properties": {
+                "_meta_": {
+                    "additionalProperties": true,
+                    "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+                    "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+                    "title": "Meta",
+                    "type": "object"
+                },
+                "additionalConstraints": {
+                    "description": "Additional constraint for the value.",
+                    "markdownDescription": "**Additional Constraints**\n\nAdditional constraint for the value.",
+                    "title": "Additional Constraints",
+                    "type": "string"
+                },
+                "allowQuery": {
+                    "description": "If false, this value can NEVER be queried. If true, this value can be queried if allowed by authorization policy.",
+                    "markdownDescription": "**Allow Query**\n\nIf false, this value can NEVER be queried. If true, this value can be queried if allowed by authorization policy.",
+                    "title": "Allow Query",
+                    "type": "boolean"
+                },
+                "allowRead": {
+                    "default": true,
+                    "description": "Indicates that this property can be read. If true, the property will be included in get_object() and retrieve_objects() requests.",
+                    "markdownDescription": "**Allow Read**\n\nIndicates that this property can be read. If true, the property will be included in get_object() and retrieve_objects() requests.",
+                    "title": "Allow Read",
+                    "type": "boolean"
+                },
+                "allowWrite": {
+                    "description": "If true, the value can be written if allowed by authorization policy as long as allowChange for the instance is also true. If false, the value can only be written if required is true when adding a new object.",
+                    "markdownDescription": "**Allow Write**\n\nIf true, the value can be written if allowed by authorization policy as long as allowChange for the instance is also true. If false, the value can only be written if required is true when adding a new object.",
+                    "title": "Allow Write",
+                    "type": "boolean"
+                },
+                "allowedValues": {
+                    "description": "This is an array of the allowed values for this adaptive value. The dataType and dataTypeParameter of these values is the same as for the adaptive value itself.",
+                    "markdownDescription": "**Allowed Values**\n\nThis is an array of the allowed values for this adaptive value. The dataType and dataTypeParameter of these values is the same as for the adaptive value itself.",
+                    "title": "Allowed Values",
+                    "type": "array"
+                },
+                "brief": {
+                    "description": "This is a predicate for this value, with the first letter capitalized and without a trailing period.",
+                    "markdownDescription": "**Brief**\n\nThis is a predicate for this value, with the first letter capitalized and without a trailing period.",
+                    "title": "Brief",
+                    "type": "string"
+                },
+                "collectionURIs": {
+                    "description": "This is the URIs of the collections that this value is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections. If a collection is used outside of the local instance, it should be a full URI. The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adapter.",
+                    "items": {
+                        "description": "This is the URIs of the collections that this value is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections. If a collection is used outside of the local instance, it should be a full URI. The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adapter.",
+                        "format": "uri-reference",
+                        "markdownDescription": "This is the URIs of the collections that this value is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections. If a collection is used outside of the local instance, it should be a full URI. The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adapter.",
+                        "title": "The URIs of the collection that this value is a part of",
+                        "type": "string"
+                    },
+                    "markdownDescription": "**Collection URIs**\n\nThis is the URIs of the collections that this value is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections. If a collection is used outside of the local instance, it should be a full URI. The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adapter.",
+                    "title": "Collection URIs",
+                    "type": "array"
+                },
+                "contextType": {
+                    "description": "For data types that are evaluated (evaluate property true), this is the context type used for the evaluation.",
+                    "markdownDescription": "**Context Type**\n\nFor data types that are evaluated (evaluate property true), this is the context type used for the evaluation.",
+                    "title": "Context Type",
+                    "type": "string"
+                },
+                "custom": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/_AdaptiveTemplateProperties_"
+                        }
+                    ],
+                    "description": "Property type level qualifier custom:: variables available to model expressions.",
+                    "markdownDescription": "**Custom**\n\nProperty type level qualifier custom:: variables available to model expressions.",
+                    "title": "Custom",
+                    "type": "object"
+                },
+                "dataType": {
+                    "description": "Data type of this value.",
+                    "markdownDescription": "**Data Type**\n\nData type of this value.",
+                    "title": "Data Type",
+                    "type": "string"
+                },
+                "dataTypeParameter": {
+                    "description": "See the data type's dataTypeParameterType property to determine how to interpret this.",
+                    "markdownDescription": "**Data Type Parameter**\n\nSee the data type's dataTypeParameterType property to determine how to interpret this.",
+                    "title": "Data Type Parameter",
+                    "type": "string"
+                },
+                "dataTypeParameterFormatted": {
+                    "description": "This is the same as dataTypeParameter with possible comments and whitespace. This is especially useful for data type function to document its signature. If this property is not present, dataTypeParameter can be used in its place.",
+                    "markdownDescription": "**Formatted Data Type Parameter**\n\nThis is the same as dataTypeParameter with possible comments and whitespace. This is especially useful for data type function to document its signature. If this property is not present, dataTypeParameter can be used in its place.",
+                    "title": "Formatted Data Type Parameter",
+                    "type": "string"
+                },
+                "defaultValue": {
+                    "description": "This is the default value. The dataType and dataTypeParameter properties apply to this value. If needed, this value will be normalized.",
+                    "markdownDescription": "**Default Value**\n\nThis is the default value. The dataType and dataTypeParameter properties apply to this value. If needed, this value will be normalized.",
+                    "title": "Default Value"
+                },
+                "description": {
+                    "contentMediaType": "text/plain",
+                    "description": "The description of this value.",
+                    "markdownDescription": "**Description**\n\nThe description of this value.",
+                    "title": "Description",
+                    "type": "string"
+                },
+                "hints": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/_AdaptiveObject_"
+                        }
+                    ],
+                    "description": "Hints that can optionally be used by UI to render this value.",
+                    "markdownDescription": "**Hints**\n\nHints that can optionally be used by UI to render this value.",
+                    "title": "Hints",
+                    "type": "object"
+                },
+                "label": {
+                    "description": "Label used to identify this value.",
+                    "markdownDescription": "**Label**\n\nLabel used to identify this value.",
+                    "title": "Label",
+                    "type": "string"
+                },
+                "mappedPropertyName": {
+                    "description": "This is the property name of this property used internally by an adapter. If not specified, propertyName is used.",
+                    "markdownDescription": "**Mapped Property Name**\n\nThis is the property name of this property used internally by an adapter. If not specified, propertyName is used.",
+                    "title": "Mapped Property Name",
+                    "type": "string"
+                },
+                "maxLength": {
+                    "description": "This is maximum length of the to_string() for this value. If not specified, there is no maximum length.",
+                    "markdownDescription": "**Maximum Length**\n\nThis is maximum length of the to_string() for this value. If not specified, there is no maximum length.",
+                    "title": "Maximum Length",
+                    "type": "integer"
+                },
+                "maxNormalLength": {
+                    "description": "This is maximum normal length of the to_string() for this value.  If not specified, maxLength is used.",
+                    "markdownDescription": "**Normal Maximum Length**\n\nThis is maximum normal length of the to_string() for this value.  If not specified, maxLength is used.",
+                    "title": "Normal Maximum Length",
+                    "type": "integer"
+                },
+                "maxValue": {
+                    "description": "This is the maximum for this value. If not specified, there is no maximum value. The dataType and dataTypeParameter of this value is the same as for the value.",
+                    "markdownDescription": "**Maximum Value**\n\nThis is the maximum for this value. If not specified, there is no maximum value. The dataType and dataTypeParameter of this value is the same as for the value.",
+                    "title": "Maximum Value"
+                },
+                "method": {
+                    "description": "This is a method for this object that can be called in expressions. This script value must be a lambda function expressed in adaptive script syntax.",
+                    "markdownDescription": "**Method**\n\nThis is a method for this object that can be called in expressions. This script value must be a lambda function expressed in adaptive script syntax.",
+                    "title": "Method",
+                    "type": "string"
+                },
+                "minLength": {
+                    "description": "This is minimum length of the to_string() for this value. If not specified, there is no minimum length.",
+                    "markdownDescription": "**Minimum Length**\n\nThis is minimum length of the to_string() for this value. If not specified, there is no minimum length.",
+                    "title": "Minimum Length",
+                    "type": "integer"
+                },
+                "minValue": {
+                    "description": "This is the minimum for this. If not specified, there is no minimum value. The dataType and dataTypeParameter of this value is the same as for the value.",
+                    "markdownDescription": "**Minimum Value**\n\nThis is the minimum for this. If not specified, there is no minimum value. The dataType and dataTypeParameter of this value is the same as for the value.",
+                    "title": "Minimum Value"
+                },
+                "onGetInitialValue": {
+                    "description": "This is a script value is evaluated to set the value of this property when producing an instance of this object for add object requests.",
+                    "markdownDescription": "**On Get Initial Value**\n\nThis is a script value is evaluated to set the value of this property when producing an instance of this object for add object requests.",
+                    "title": "On Get Initial Value",
+                    "type": "string"
+                },
+                "onGetProperty": {
+                    "description": "This script is evaluated to produce the value of this property when getting an object. If a value of null is returned, the property will not be included in the resulting object.",
+                    "markdownDescription": "**On Get Property**\n\nThis script is evaluated to produce the value of this property when getting an object. If a value of null is returned, the property will not be included in the resulting object.",
+                    "title": "On Get Property",
+                    "type": "string"
+                },
+                "onSetProperty": {
+                    "description": "This script is evaluated to produce the value of this property for add/modify/replace object requests. If initialValue is specified, setProperty is ignored for add object requests. If setProperty is not specified and the property exists in the current object, that value is used. If setProperty is specified, but the evaluation returns a value of null, the property will not be included in the mapped object.",
+                    "markdownDescription": "**On Set Property**\n\nThis script is evaluated to produce the value of this property for add/modify/replace object requests. If initialValue is specified, setProperty is ignored for add object requests. If setProperty is not specified and the property exists in the current object, that value is used. If setProperty is specified, but the evaluation returns a value of null, the property will not be included in the mapped object.",
+                    "title": "On Set Property",
+                    "type": "string"
+                },
+                "originURI": {
+                    "description": "The origin URI of this value meta. Descendant object types should be used for any deviations. This URI may be different from the URI within this instance of Adaptive Framework.",
+                    "format": "uri-reference",
+                    "markdownDescription": "**Origin URI**\n\nThe origin URI of this value meta. Descendant object types should be used for any deviations. This URI may be different from the URI within this instance of Adaptive Framework.",
+                    "title": "Origin URI",
+                    "type": "string"
+                },
+                "possibleValues": {
+                    "description": "Possible values of this value. This can be the typed value or the string value.",
+                    "markdownDescription": "**Possible Values**\n\nPossible values of this value. This can be the typed value or the string value.",
+                    "title": "Possible Values",
+                    "type": "array"
+                },
+                "referenceURI": {
+                    "description": "URI of more reference information about this value meta.",
+                    "format": "uri-reference",
+                    "markdownDescription": "**Reference URI**\n\nURI of more reference information about this value meta.",
+                    "title": "Reference URI",
+                    "type": "string"
+                },
+                "required": {
+                    "default": false,
+                    "description": "Indicates that value is required.",
+                    "markdownDescription": "**Required**\n\nIndicates that value is required.",
+                    "title": "Required",
+                    "type": "boolean"
+                },
+                "runtime": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/_AdaptiveRuntimeProperty_"
+                        }
+                    ],
+                    "description": "This is only valid for runtime object types. These are objects that are accessed with adapterId afw. See afw_runtime.h for more information.",
+                    "markdownDescription": "**Runtime**\n\nThis is only valid for runtime object types. These are objects that are accessed with adapterId afw. See afw_runtime.h for more information.",
+                    "title": "Runtime",
+                    "type": "object"
+                },
+                "skeleton": {
+                    "description": "This is a skeleton example that can optionally be used by an application as an initial value. For example, if this is a new data type 'template' value, this can be the text used to prime the edit window with sample Adaptive Script code including comments.",
+                    "markdownDescription": "**Skeleton**\n\nThis is a skeleton example that can optionally be used by an application as an initial value. For example, if this is a new data type 'template' value, this can be the text used to prime the edit window with sample Adaptive Script code including comments.",
+                    "title": "Skeleton"
+                },
+                "tags": {
+                    "description": "This is an array of keywords and terms associated with values with the meta. An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag. Adaptive Framework reserves the definition of all tags that begin with '_Adaptive'.",
+                    "items": {
+                        "description": "This is an array of keywords and terms associated with values with the meta. An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag. Adaptive Framework reserves the definition of all tags that begin with '_Adaptive'.",
+                        "markdownDescription": "This is an array of keywords and terms associated with values with the meta. An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag. Adaptive Framework reserves the definition of all tags that begin with '_Adaptive'.",
+                        "title": "List of keywords and terms associated with values with this meta",
+                        "type": "string"
+                    },
+                    "markdownDescription": "**Tags**\n\nThis is an array of keywords and terms associated with values with the meta. An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag. Adaptive Framework reserves the definition of all tags that begin with '_Adaptive'.",
+                    "title": "Tags",
+                    "type": "array"
+                },
+                "testDataParameter": {
+                    "description": "This contains additional information about values with this meta that is used to produce test data.",
+                    "markdownDescription": "**Test Data Parameter**\n\nThis contains additional information about values with this meta that is used to produce test data.",
+                    "title": "Test Data Parameter",
+                    "type": "string"
+                },
+                "transitory": {
+                    "default": false,
+                    "description": "Indicates that this property is transitory and will not be persisted by the adapter. The value can be produced by setValue or supplied in the request.",
+                    "markdownDescription": "**Transitory**\n\nIndicates that this property is transitory and will not be persisted by the adapter. The value can be produced by setValue or supplied in the request.",
+                    "title": "Transitory",
+                    "type": "boolean"
+                },
+                "unique": {
+                    "description": "Value of property must be unique within object type.",
+                    "markdownDescription": "**Unique**\n\nValue of property must be unique within object type.",
+                    "title": "Unique",
+                    "type": "boolean"
+                },
+                "valueInfId": {
+                    "description": "This is a runtime property that is the implementation id of the value interface.",
+                    "markdownDescription": "**valueInf**\n\nThis is a runtime property that is the implementation id of the value interface.",
+                    "readOnly": true,
+                    "title": "valueInf",
+                    "type": "string"
+                }
+            },
+            "title": "_AdaptiveModelPropertyType_",
+            "type": "object",
+            "x-afw-inheritedObjectTypes": [
+                "_AdaptiveValueMeta_"
+            ]
+        },
+        "_AdaptiveModelPropertyType_.propertyTypes": {
+            "properties": {
+                "allowRead": {
+                    "default": true,
+                    "description": "Indicates that this property can be read. If true, the property will be included in get_object() and retrieve_objects() requests.",
+                    "markdownDescription": "**Allow Read**\n\nIndicates that this property can be read. If true, the property will be included in get_object() and retrieve_objects() requests.",
+                    "title": "Allow Read",
+                    "type": "boolean"
+                },
+                "custom": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/_AdaptiveTemplateProperties_"
+                        }
+                    ],
+                    "description": "Property type level qualifier custom:: variables available to model expressions.",
+                    "markdownDescription": "**Custom**\n\nProperty type level qualifier custom:: variables available to model expressions.",
+                    "title": "Custom",
+                    "type": "object"
+                },
+                "mappedPropertyName": {
+                    "description": "This is the property name of this property used internally by an adapter. If not specified, propertyName is used.",
+                    "markdownDescription": "**Mapped Property Name**\n\nThis is the property name of this property used internally by an adapter. If not specified, propertyName is used.",
+                    "title": "Mapped Property Name",
+                    "type": "string"
+                },
+                "method": {
+                    "description": "This is a method for this object that can be called in expressions. This script value must be a lambda function expressed in adaptive script syntax.",
+                    "markdownDescription": "**Method**\n\nThis is a method for this object that can be called in expressions. This script value must be a lambda function expressed in adaptive script syntax.",
+                    "title": "Method",
+                    "type": "string"
+                },
+                "onGetInitialValue": {
+                    "description": "This is a script value is evaluated to set the value of this property when producing an instance of this object for add object requests.",
+                    "markdownDescription": "**On Get Initial Value**\n\nThis is a script value is evaluated to set the value of this property when producing an instance of this object for add object requests.",
+                    "title": "On Get Initial Value",
+                    "type": "string"
+                },
+                "onGetProperty": {
+                    "description": "This script is evaluated to produce the value of this property when getting an object. If a value of null is returned, the property will not be included in the resulting object.",
+                    "markdownDescription": "**On Get Property**\n\nThis script is evaluated to produce the value of this property when getting an object. If a value of null is returned, the property will not be included in the resulting object.",
+                    "title": "On Get Property",
+                    "type": "string"
+                },
+                "onSetProperty": {
+                    "description": "This script is evaluated to produce the value of this property for add/modify/replace object requests. If initialValue is specified, setProperty is ignored for add object requests. If setProperty is not specified and the property exists in the current object, that value is used. If setProperty is specified, but the evaluation returns a value of null, the property will not be included in the mapped object.",
+                    "markdownDescription": "**On Set Property**\n\nThis script is evaluated to produce the value of this property for add/modify/replace object requests. If initialValue is specified, setProperty is ignored for add object requests. If setProperty is not specified and the property exists in the current object, that value is used. If setProperty is specified, but the evaluation returns a value of null, the property will not be included in the mapped object.",
+                    "title": "On Set Property",
+                    "type": "string"
+                },
+                "transitory": {
+                    "default": false,
+                    "description": "Indicates that this property is transitory and will not be persisted by the adapter. The value can be produced by setValue or supplied in the request.",
+                    "markdownDescription": "**Transitory**\n\nIndicates that this property is transitory and will not be persisted by the adapter. The value can be produced by setValue or supplied in the request.",
+                    "title": "Transitory",
+                    "type": "boolean"
+                }
+            },
+            "type": "object"
+        },
+        "_AdaptiveObject_": {
+            "additionalProperties": true,
+            "description": "Hints that can optionally be used by UI to render this value.",
+            "markdownDescription": "Hints that can optionally be used by UI to render this value.",
+            "properties": {
+                "_meta_": {
+                    "additionalProperties": true,
+                    "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+                    "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+                    "title": "Meta",
+                    "type": "object"
+                }
+            },
+            "title": "Hints",
+            "type": "object"
+        },
+        "_AdaptiveObject_.propertyTypes": {
+            "properties": {},
+            "type": "object"
+        },
+        "_AdaptiveRuntimeProperty_": {
+            "additionalProperties": false,
+            "description": "This is only valid for runtime object types. These are objects that are accessed with adapterId afw. See afw_runtime.h for more information.",
+            "markdownDescription": "This is only valid for runtime object types. These are objects that are accessed with adapterId afw. See afw_runtime.h for more information.",
+            "properties": {
+                "_meta_": {
+                    "additionalProperties": true,
+                    "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+                    "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+                    "title": "Meta",
+                    "type": "object"
+                },
+                "memberName": {
+                    "description": "The member name of this property in the runtime struct if other than the property name.",
+                    "markdownDescription": "**Member Name**\n\nThe member name of this property in the runtime struct if other than the property name.",
+                    "title": "Member Name",
+                    "type": "string"
+                },
+                "onGetValueCFunctionName": {
+                    "description": "This is the name of the c callback function called to get the value of this property at runtime. If this property is specified, valueAccessor is ignored.",
+                    "markdownDescription": "**onGetValueCFunctionName**\n\nThis is the name of the c callback function called to get the value of this property at runtime. If this property is specified, valueAccessor is ignored.",
+                    "title": "onGetValueCFunctionName",
+                    "type": "string"
+                },
+                "valueAccessor": {
+                    "description": "The name of the registered value accessor used to access this property. The default is default. See afw_runtime_value_accessor.h for the built in accessors.",
+                    "markdownDescription": "**Value Accessor**\n\nThe name of the registered value accessor used to access this property. The default is default. See afw_runtime_value_accessor.h for the built in accessors.",
+                    "title": "Value Accessor",
+                    "type": "string"
+                },
+                "zeroOffset": {
+                    "description": "Indicates that the value accessor is called with a pointer to the struct and a 0 offset.",
+                    "markdownDescription": "**Zero Offset**\n\nIndicates that the value accessor is called with a pointer to the struct and a 0 offset.",
+                    "title": "Zero Offset",
+                    "type": "boolean"
+                }
+            },
+            "title": "Runtime",
+            "type": "object"
+        },
+        "_AdaptiveRuntimeProperty_.propertyTypes": {
+            "properties": {
+                "memberName": {
+                    "description": "The member name of this property in the runtime struct if other than the property name.",
+                    "markdownDescription": "**Member Name**\n\nThe member name of this property in the runtime struct if other than the property name.",
+                    "title": "Member Name",
+                    "type": "string"
+                },
+                "onGetValueCFunctionName": {
+                    "description": "This is the name of the c callback function called to get the value of this property at runtime. If this property is specified, valueAccessor is ignored.",
+                    "markdownDescription": "**onGetValueCFunctionName**\n\nThis is the name of the c callback function called to get the value of this property at runtime. If this property is specified, valueAccessor is ignored.",
+                    "title": "onGetValueCFunctionName",
+                    "type": "string"
+                },
+                "valueAccessor": {
+                    "description": "The name of the registered value accessor used to access this property. The default is default. See afw_runtime_value_accessor.h for the built in accessors.",
+                    "markdownDescription": "**Value Accessor**\n\nThe name of the registered value accessor used to access this property. The default is default. See afw_runtime_value_accessor.h for the built in accessors.",
+                    "title": "Value Accessor",
+                    "type": "string"
+                },
+                "zeroOffset": {
+                    "description": "Indicates that the value accessor is called with a pointer to the struct and a 0 offset.",
+                    "markdownDescription": "**Zero Offset**\n\nIndicates that the value accessor is called with a pointer to the struct and a 0 offset.",
+                    "title": "Zero Offset",
+                    "type": "boolean"
+                }
+            },
+            "type": "object"
+        },
+        "_AdaptiveTemplateProperties_": {
+            "additionalProperties": {
+                "description": "Each property is a template value.",
+                "markdownDescription": "Each property is a template value.",
+                "type": "string"
+            },
+            "description": "Property type level qualifier custom:: variables available to model expressions.",
+            "markdownDescription": "Property type level qualifier custom:: variables available to model expressions.",
+            "properties": {
+                "_meta_": {
+                    "additionalProperties": true,
+                    "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+                    "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+                    "title": "Meta",
+                    "type": "object"
+                }
+            },
+            "title": "Custom",
+            "type": "object"
+        },
+        "_AdaptiveTemplateProperties_.propertyTypes": {
+            "properties": {},
+            "type": "object"
+        },
+        "_AdaptiveValueMeta_.propertyTypes": {
+            "properties": {
+                "additionalConstraints": {
+                    "description": "Additional constraint for the value.",
+                    "markdownDescription": "**Additional Constraints**\n\nAdditional constraint for the value.",
+                    "title": "Additional Constraints",
+                    "type": "string"
+                },
+                "allowQuery": {
+                    "description": "If false, this value can NEVER be queried. If true, this value can be queried if allowed by authorization policy.",
+                    "markdownDescription": "**Allow Query**\n\nIf false, this value can NEVER be queried. If true, this value can be queried if allowed by authorization policy.",
+                    "title": "Allow Query",
+                    "type": "boolean"
+                },
+                "allowWrite": {
+                    "description": "If true, the value can be written if allowed by authorization policy as long as allowChange for the instance is also true. If false, the value can only be written if required is true when adding a new object.",
+                    "markdownDescription": "**Allow Write**\n\nIf true, the value can be written if allowed by authorization policy as long as allowChange for the instance is also true. If false, the value can only be written if required is true when adding a new object.",
+                    "title": "Allow Write",
+                    "type": "boolean"
+                },
+                "allowedValues": {
+                    "description": "This is an array of the allowed values for this adaptive value. The dataType and dataTypeParameter of these values is the same as for the adaptive value itself.",
+                    "markdownDescription": "**Allowed Values**\n\nThis is an array of the allowed values for this adaptive value. The dataType and dataTypeParameter of these values is the same as for the adaptive value itself.",
+                    "title": "Allowed Values",
+                    "type": "array"
+                },
+                "brief": {
+                    "description": "This is a predicate for this value, with the first letter capitalized and without a trailing period.",
+                    "markdownDescription": "**Brief**\n\nThis is a predicate for this value, with the first letter capitalized and without a trailing period.",
+                    "title": "Brief",
+                    "type": "string"
+                },
+                "collectionURIs": {
+                    "description": "This is the URIs of the collections that this value is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections. If a collection is used outside of the local instance, it should be a full URI. The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adapter.",
+                    "items": {
+                        "description": "This is the URIs of the collections that this value is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections. If a collection is used outside of the local instance, it should be a full URI. The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adapter.",
+                        "format": "uri-reference",
+                        "markdownDescription": "This is the URIs of the collections that this value is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections. If a collection is used outside of the local instance, it should be a full URI. The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adapter.",
+                        "title": "The URIs of the collection that this value is a part of",
+                        "type": "string"
+                    },
+                    "markdownDescription": "**Collection URIs**\n\nThis is the URIs of the collections that this value is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections. If a collection is used outside of the local instance, it should be a full URI. The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adapter.",
+                    "title": "Collection URIs",
+                    "type": "array"
+                },
+                "contextType": {
+                    "description": "For data types that are evaluated (evaluate property true), this is the context type used for the evaluation.",
+                    "markdownDescription": "**Context Type**\n\nFor data types that are evaluated (evaluate property true), this is the context type used for the evaluation.",
+                    "title": "Context Type",
+                    "type": "string"
+                },
+                "dataType": {
+                    "description": "Data type of this value.",
+                    "markdownDescription": "**Data Type**\n\nData type of this value.",
+                    "title": "Data Type",
+                    "type": "string"
+                },
+                "dataTypeParameter": {
+                    "description": "See the data type's dataTypeParameterType property to determine how to interpret this.",
+                    "markdownDescription": "**Data Type Parameter**\n\nSee the data type's dataTypeParameterType property to determine how to interpret this.",
+                    "title": "Data Type Parameter",
+                    "type": "string"
+                },
+                "dataTypeParameterFormatted": {
+                    "description": "This is the same as dataTypeParameter with possible comments and whitespace. This is especially useful for data type function to document its signature. If this property is not present, dataTypeParameter can be used in its place.",
+                    "markdownDescription": "**Formatted Data Type Parameter**\n\nThis is the same as dataTypeParameter with possible comments and whitespace. This is especially useful for data type function to document its signature. If this property is not present, dataTypeParameter can be used in its place.",
+                    "title": "Formatted Data Type Parameter",
+                    "type": "string"
+                },
+                "defaultValue": {
+                    "description": "This is the default value. The dataType and dataTypeParameter properties apply to this value. If needed, this value will be normalized.",
+                    "markdownDescription": "**Default Value**\n\nThis is the default value. The dataType and dataTypeParameter properties apply to this value. If needed, this value will be normalized.",
+                    "title": "Default Value"
+                },
+                "description": {
+                    "contentMediaType": "text/plain",
+                    "description": "The description of this value.",
+                    "markdownDescription": "**Description**\n\nThe description of this value.",
+                    "title": "Description",
+                    "type": "string"
+                },
+                "hints": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/_AdaptiveObject_"
+                        }
+                    ],
+                    "description": "Hints that can optionally be used by UI to render this value.",
+                    "markdownDescription": "**Hints**\n\nHints that can optionally be used by UI to render this value.",
+                    "title": "Hints",
+                    "type": "object"
+                },
+                "label": {
+                    "description": "Label used to identify this value.",
+                    "markdownDescription": "**Label**\n\nLabel used to identify this value.",
+                    "title": "Label",
+                    "type": "string"
+                },
+                "maxLength": {
+                    "description": "This is maximum length of the to_string() for this value. If not specified, there is no maximum length.",
+                    "markdownDescription": "**Maximum Length**\n\nThis is maximum length of the to_string() for this value. If not specified, there is no maximum length.",
+                    "title": "Maximum Length",
+                    "type": "integer"
+                },
+                "maxNormalLength": {
+                    "description": "This is maximum normal length of the to_string() for this value.  If not specified, maxLength is used.",
+                    "markdownDescription": "**Normal Maximum Length**\n\nThis is maximum normal length of the to_string() for this value.  If not specified, maxLength is used.",
+                    "title": "Normal Maximum Length",
+                    "type": "integer"
+                },
+                "maxValue": {
+                    "description": "This is the maximum for this value. If not specified, there is no maximum value. The dataType and dataTypeParameter of this value is the same as for the value.",
+                    "markdownDescription": "**Maximum Value**\n\nThis is the maximum for this value. If not specified, there is no maximum value. The dataType and dataTypeParameter of this value is the same as for the value.",
+                    "title": "Maximum Value"
+                },
+                "minLength": {
+                    "description": "This is minimum length of the to_string() for this value. If not specified, there is no minimum length.",
+                    "markdownDescription": "**Minimum Length**\n\nThis is minimum length of the to_string() for this value. If not specified, there is no minimum length.",
+                    "title": "Minimum Length",
+                    "type": "integer"
+                },
+                "minValue": {
+                    "description": "This is the minimum for this. If not specified, there is no minimum value. The dataType and dataTypeParameter of this value is the same as for the value.",
+                    "markdownDescription": "**Minimum Value**\n\nThis is the minimum for this. If not specified, there is no minimum value. The dataType and dataTypeParameter of this value is the same as for the value.",
+                    "title": "Minimum Value"
+                },
+                "originURI": {
+                    "description": "The origin URI of this value meta. Descendant object types should be used for any deviations. This URI may be different from the URI within this instance of Adaptive Framework.",
+                    "format": "uri-reference",
+                    "markdownDescription": "**Origin URI**\n\nThe origin URI of this value meta. Descendant object types should be used for any deviations. This URI may be different from the URI within this instance of Adaptive Framework.",
+                    "title": "Origin URI",
+                    "type": "string"
+                },
+                "possibleValues": {
+                    "description": "Possible values of this value. This can be the typed value or the string value.",
+                    "markdownDescription": "**Possible Values**\n\nPossible values of this value. This can be the typed value or the string value.",
+                    "title": "Possible Values",
+                    "type": "array"
+                },
+                "referenceURI": {
+                    "description": "URI of more reference information about this value meta.",
+                    "format": "uri-reference",
+                    "markdownDescription": "**Reference URI**\n\nURI of more reference information about this value meta.",
+                    "title": "Reference URI",
+                    "type": "string"
+                },
+                "required": {
+                    "default": false,
+                    "description": "Indicates that value is required.",
+                    "markdownDescription": "**Required**\n\nIndicates that value is required.",
+                    "title": "Required",
+                    "type": "boolean"
+                },
+                "runtime": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/_AdaptiveRuntimeProperty_"
+                        }
+                    ],
+                    "description": "This is only valid for runtime object types. These are objects that are accessed with adapterId afw. See afw_runtime.h for more information.",
+                    "markdownDescription": "**Runtime**\n\nThis is only valid for runtime object types. These are objects that are accessed with adapterId afw. See afw_runtime.h for more information.",
+                    "title": "Runtime",
+                    "type": "object"
+                },
+                "skeleton": {
+                    "description": "This is a skeleton example that can optionally be used by an application as an initial value. For example, if this is a new data type 'template' value, this can be the text used to prime the edit window with sample Adaptive Script code including comments.",
+                    "markdownDescription": "**Skeleton**\n\nThis is a skeleton example that can optionally be used by an application as an initial value. For example, if this is a new data type 'template' value, this can be the text used to prime the edit window with sample Adaptive Script code including comments.",
+                    "title": "Skeleton"
+                },
+                "tags": {
+                    "description": "This is an array of keywords and terms associated with values with the meta. An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag. Adaptive Framework reserves the definition of all tags that begin with '_Adaptive'.",
+                    "items": {
+                        "description": "This is an array of keywords and terms associated with values with the meta. An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag. Adaptive Framework reserves the definition of all tags that begin with '_Adaptive'.",
+                        "markdownDescription": "This is an array of keywords and terms associated with values with the meta. An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag. Adaptive Framework reserves the definition of all tags that begin with '_Adaptive'.",
+                        "title": "List of keywords and terms associated with values with this meta",
+                        "type": "string"
+                    },
+                    "markdownDescription": "**Tags**\n\nThis is an array of keywords and terms associated with values with the meta. An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag. Adaptive Framework reserves the definition of all tags that begin with '_Adaptive'.",
+                    "title": "Tags",
+                    "type": "array"
+                },
+                "testDataParameter": {
+                    "description": "This contains additional information about values with this meta that is used to produce test data.",
+                    "markdownDescription": "**Test Data Parameter**\n\nThis contains additional information about values with this meta that is used to produce test data.",
+                    "title": "Test Data Parameter",
+                    "type": "string"
+                },
+                "unique": {
+                    "description": "Value of property must be unique within object type.",
+                    "markdownDescription": "**Unique**\n\nValue of property must be unique within object type.",
+                    "title": "Unique",
+                    "type": "boolean"
+                },
+                "valueInfId": {
+                    "description": "This is a runtime property that is the implementation id of the value interface.",
+                    "markdownDescription": "**valueInf**\n\nThis is a runtime property that is the implementation id of the value interface.",
+                    "readOnly": true,
+                    "title": "valueInf",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    },
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "additionalProperties": false,
+    "description": "The object type for properties in the 'propertyTypes' property of instances of _AdaptiveModelObjectType_. This includes all of the properties from _AdaptiveValueMeta_ plus additional private properties used by Adaptive Framework to support the property.",
+    "markdownDescription": "The object type for properties in the 'propertyTypes' property of instances of _AdaptiveModelObjectType_. This includes all of the properties from _AdaptiveValueMeta_ plus additional private properties used by Adaptive Framework to support the property.",
+    "properties": {
+        "_meta_": {
+            "additionalProperties": true,
+            "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+            "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+            "title": "Meta",
+            "type": "object"
+        },
+        "additionalConstraints": {
+            "description": "Additional constraint for the value.",
+            "markdownDescription": "**Additional Constraints**\n\nAdditional constraint for the value.",
+            "title": "Additional Constraints",
+            "type": "string"
+        },
+        "allowQuery": {
+            "description": "If false, this value can NEVER be queried. If true, this value can be queried if allowed by authorization policy.",
+            "markdownDescription": "**Allow Query**\n\nIf false, this value can NEVER be queried. If true, this value can be queried if allowed by authorization policy.",
+            "title": "Allow Query",
+            "type": "boolean"
+        },
+        "allowRead": {
+            "default": true,
+            "description": "Indicates that this property can be read. If true, the property will be included in get_object() and retrieve_objects() requests.",
+            "markdownDescription": "**Allow Read**\n\nIndicates that this property can be read. If true, the property will be included in get_object() and retrieve_objects() requests.",
+            "title": "Allow Read",
+            "type": "boolean"
+        },
+        "allowWrite": {
+            "description": "If true, the value can be written if allowed by authorization policy as long as allowChange for the instance is also true. If false, the value can only be written if required is true when adding a new object.",
+            "markdownDescription": "**Allow Write**\n\nIf true, the value can be written if allowed by authorization policy as long as allowChange for the instance is also true. If false, the value can only be written if required is true when adding a new object.",
+            "title": "Allow Write",
+            "type": "boolean"
+        },
+        "allowedValues": {
+            "description": "This is an array of the allowed values for this adaptive value. The dataType and dataTypeParameter of these values is the same as for the adaptive value itself.",
+            "markdownDescription": "**Allowed Values**\n\nThis is an array of the allowed values for this adaptive value. The dataType and dataTypeParameter of these values is the same as for the adaptive value itself.",
+            "title": "Allowed Values",
+            "type": "array"
+        },
+        "brief": {
+            "description": "This is a predicate for this value, with the first letter capitalized and without a trailing period.",
+            "markdownDescription": "**Brief**\n\nThis is a predicate for this value, with the first letter capitalized and without a trailing period.",
+            "title": "Brief",
+            "type": "string"
+        },
+        "collectionURIs": {
+            "description": "This is the URIs of the collections that this value is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections. If a collection is used outside of the local instance, it should be a full URI. The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adapter.",
+            "items": {
+                "description": "This is the URIs of the collections that this value is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections. If a collection is used outside of the local instance, it should be a full URI. The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adapter.",
+                "format": "uri-reference",
+                "markdownDescription": "This is the URIs of the collections that this value is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections. If a collection is used outside of the local instance, it should be a full URI. The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adapter.",
+                "title": "The URIs of the collection that this value is a part of",
+                "type": "string"
+            },
+            "markdownDescription": "**Collection URIs**\n\nThis is the URIs of the collections that this value is a part of and preferably a URIs that can be used to locate an object with objects type _AdaptiveCollection_ that describes the collections. If a collection is used outside of the local instance, it should be a full URI. The URI can also be a local path of the collection object or just the collection's objectId if it resides in the in the same adapter.",
+            "title": "Collection URIs",
+            "type": "array"
+        },
+        "contextType": {
+            "description": "For data types that are evaluated (evaluate property true), this is the context type used for the evaluation.",
+            "markdownDescription": "**Context Type**\n\nFor data types that are evaluated (evaluate property true), this is the context type used for the evaluation.",
+            "title": "Context Type",
+            "type": "string"
+        },
+        "custom": {
+            "allOf": [
+                {
+                    "$ref": "#/$defs/_AdaptiveTemplateProperties_"
+                }
+            ],
+            "description": "Property type level qualifier custom:: variables available to model expressions.",
+            "markdownDescription": "**Custom**\n\nProperty type level qualifier custom:: variables available to model expressions.",
+            "title": "Custom",
+            "type": "object"
+        },
+        "dataType": {
+            "description": "Data type of this value.",
+            "markdownDescription": "**Data Type**\n\nData type of this value.",
+            "title": "Data Type",
+            "type": "string"
+        },
+        "dataTypeParameter": {
+            "description": "See the data type's dataTypeParameterType property to determine how to interpret this.",
+            "markdownDescription": "**Data Type Parameter**\n\nSee the data type's dataTypeParameterType property to determine how to interpret this.",
+            "title": "Data Type Parameter",
+            "type": "string"
+        },
+        "dataTypeParameterFormatted": {
+            "description": "This is the same as dataTypeParameter with possible comments and whitespace. This is especially useful for data type function to document its signature. If this property is not present, dataTypeParameter can be used in its place.",
+            "markdownDescription": "**Formatted Data Type Parameter**\n\nThis is the same as dataTypeParameter with possible comments and whitespace. This is especially useful for data type function to document its signature. If this property is not present, dataTypeParameter can be used in its place.",
+            "title": "Formatted Data Type Parameter",
+            "type": "string"
+        },
+        "defaultValue": {
+            "description": "This is the default value. The dataType and dataTypeParameter properties apply to this value. If needed, this value will be normalized.",
+            "markdownDescription": "**Default Value**\n\nThis is the default value. The dataType and dataTypeParameter properties apply to this value. If needed, this value will be normalized.",
+            "title": "Default Value"
+        },
+        "description": {
+            "contentMediaType": "text/plain",
+            "description": "The description of this value.",
+            "markdownDescription": "**Description**\n\nThe description of this value.",
+            "title": "Description",
+            "type": "string"
+        },
+        "hints": {
+            "allOf": [
+                {
+                    "$ref": "#/$defs/_AdaptiveObject_"
+                }
+            ],
+            "description": "Hints that can optionally be used by UI to render this value.",
+            "markdownDescription": "**Hints**\n\nHints that can optionally be used by UI to render this value.",
+            "title": "Hints",
+            "type": "object"
+        },
+        "label": {
+            "description": "Label used to identify this value.",
+            "markdownDescription": "**Label**\n\nLabel used to identify this value.",
+            "title": "Label",
+            "type": "string"
+        },
+        "mappedPropertyName": {
+            "description": "This is the property name of this property used internally by an adapter. If not specified, propertyName is used.",
+            "markdownDescription": "**Mapped Property Name**\n\nThis is the property name of this property used internally by an adapter. If not specified, propertyName is used.",
+            "title": "Mapped Property Name",
+            "type": "string"
+        },
+        "maxLength": {
+            "description": "This is maximum length of the to_string() for this value. If not specified, there is no maximum length.",
+            "markdownDescription": "**Maximum Length**\n\nThis is maximum length of the to_string() for this value. If not specified, there is no maximum length.",
+            "title": "Maximum Length",
+            "type": "integer"
+        },
+        "maxNormalLength": {
+            "description": "This is maximum normal length of the to_string() for this value.  If not specified, maxLength is used.",
+            "markdownDescription": "**Normal Maximum Length**\n\nThis is maximum normal length of the to_string() for this value.  If not specified, maxLength is used.",
+            "title": "Normal Maximum Length",
+            "type": "integer"
+        },
+        "maxValue": {
+            "description": "This is the maximum for this value. If not specified, there is no maximum value. The dataType and dataTypeParameter of this value is the same as for the value.",
+            "markdownDescription": "**Maximum Value**\n\nThis is the maximum for this value. If not specified, there is no maximum value. The dataType and dataTypeParameter of this value is the same as for the value.",
+            "title": "Maximum Value"
+        },
+        "method": {
+            "description": "This is a method for this object that can be called in expressions. This script value must be a lambda function expressed in adaptive script syntax.",
+            "markdownDescription": "**Method**\n\nThis is a method for this object that can be called in expressions. This script value must be a lambda function expressed in adaptive script syntax.",
+            "title": "Method",
+            "type": "string"
+        },
+        "minLength": {
+            "description": "This is minimum length of the to_string() for this value. If not specified, there is no minimum length.",
+            "markdownDescription": "**Minimum Length**\n\nThis is minimum length of the to_string() for this value. If not specified, there is no minimum length.",
+            "title": "Minimum Length",
+            "type": "integer"
+        },
+        "minValue": {
+            "description": "This is the minimum for this. If not specified, there is no minimum value. The dataType and dataTypeParameter of this value is the same as for the value.",
+            "markdownDescription": "**Minimum Value**\n\nThis is the minimum for this. If not specified, there is no minimum value. The dataType and dataTypeParameter of this value is the same as for the value.",
+            "title": "Minimum Value"
+        },
+        "onGetInitialValue": {
+            "description": "This is a script value is evaluated to set the value of this property when producing an instance of this object for add object requests.",
+            "markdownDescription": "**On Get Initial Value**\n\nThis is a script value is evaluated to set the value of this property when producing an instance of this object for add object requests.",
+            "title": "On Get Initial Value",
+            "type": "string"
+        },
+        "onGetProperty": {
+            "description": "This script is evaluated to produce the value of this property when getting an object. If a value of null is returned, the property will not be included in the resulting object.",
+            "markdownDescription": "**On Get Property**\n\nThis script is evaluated to produce the value of this property when getting an object. If a value of null is returned, the property will not be included in the resulting object.",
+            "title": "On Get Property",
+            "type": "string"
+        },
+        "onSetProperty": {
+            "description": "This script is evaluated to produce the value of this property for add/modify/replace object requests. If initialValue is specified, setProperty is ignored for add object requests. If setProperty is not specified and the property exists in the current object, that value is used. If setProperty is specified, but the evaluation returns a value of null, the property will not be included in the mapped object.",
+            "markdownDescription": "**On Set Property**\n\nThis script is evaluated to produce the value of this property for add/modify/replace object requests. If initialValue is specified, setProperty is ignored for add object requests. If setProperty is not specified and the property exists in the current object, that value is used. If setProperty is specified, but the evaluation returns a value of null, the property will not be included in the mapped object.",
+            "title": "On Set Property",
+            "type": "string"
+        },
+        "originURI": {
+            "description": "The origin URI of this value meta. Descendant object types should be used for any deviations. This URI may be different from the URI within this instance of Adaptive Framework.",
+            "format": "uri-reference",
+            "markdownDescription": "**Origin URI**\n\nThe origin URI of this value meta. Descendant object types should be used for any deviations. This URI may be different from the URI within this instance of Adaptive Framework.",
+            "title": "Origin URI",
+            "type": "string"
+        },
+        "possibleValues": {
+            "description": "Possible values of this value. This can be the typed value or the string value.",
+            "markdownDescription": "**Possible Values**\n\nPossible values of this value. This can be the typed value or the string value.",
+            "title": "Possible Values",
+            "type": "array"
+        },
+        "referenceURI": {
+            "description": "URI of more reference information about this value meta.",
+            "format": "uri-reference",
+            "markdownDescription": "**Reference URI**\n\nURI of more reference information about this value meta.",
+            "title": "Reference URI",
+            "type": "string"
+        },
+        "required": {
+            "default": false,
+            "description": "Indicates that value is required.",
+            "markdownDescription": "**Required**\n\nIndicates that value is required.",
+            "title": "Required",
+            "type": "boolean"
+        },
+        "runtime": {
+            "allOf": [
+                {
+                    "$ref": "#/$defs/_AdaptiveRuntimeProperty_"
+                }
+            ],
+            "description": "This is only valid for runtime object types. These are objects that are accessed with adapterId afw. See afw_runtime.h for more information.",
+            "markdownDescription": "**Runtime**\n\nThis is only valid for runtime object types. These are objects that are accessed with adapterId afw. See afw_runtime.h for more information.",
+            "title": "Runtime",
+            "type": "object"
+        },
+        "skeleton": {
+            "description": "This is a skeleton example that can optionally be used by an application as an initial value. For example, if this is a new data type 'template' value, this can be the text used to prime the edit window with sample Adaptive Script code including comments.",
+            "markdownDescription": "**Skeleton**\n\nThis is a skeleton example that can optionally be used by an application as an initial value. For example, if this is a new data type 'template' value, this can be the text used to prime the edit window with sample Adaptive Script code including comments.",
+            "title": "Skeleton"
+        },
+        "tags": {
+            "description": "This is an array of keywords and terms associated with values with the meta. An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag. Adaptive Framework reserves the definition of all tags that begin with '_Adaptive'.",
+            "items": {
+                "description": "This is an array of keywords and terms associated with values with the meta. An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag. Adaptive Framework reserves the definition of all tags that begin with '_Adaptive'.",
+                "markdownDescription": "This is an array of keywords and terms associated with values with the meta. An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag. Adaptive Framework reserves the definition of all tags that begin with '_Adaptive'.",
+                "title": "List of keywords and terms associated with values with this meta",
+                "type": "string"
+            },
+            "markdownDescription": "**Tags**\n\nThis is an array of keywords and terms associated with values with the meta. An instance of _AdaptiveTag_ can be used to define and document the purpose of a tag. Adaptive Framework reserves the definition of all tags that begin with '_Adaptive'.",
+            "title": "Tags",
+            "type": "array"
+        },
+        "testDataParameter": {
+            "description": "This contains additional information about values with this meta that is used to produce test data.",
+            "markdownDescription": "**Test Data Parameter**\n\nThis contains additional information about values with this meta that is used to produce test data.",
+            "title": "Test Data Parameter",
+            "type": "string"
+        },
+        "transitory": {
+            "default": false,
+            "description": "Indicates that this property is transitory and will not be persisted by the adapter. The value can be produced by setValue or supplied in the request.",
+            "markdownDescription": "**Transitory**\n\nIndicates that this property is transitory and will not be persisted by the adapter. The value can be produced by setValue or supplied in the request.",
+            "title": "Transitory",
+            "type": "boolean"
+        },
+        "unique": {
+            "description": "Value of property must be unique within object type.",
+            "markdownDescription": "**Unique**\n\nValue of property must be unique within object type.",
+            "title": "Unique",
+            "type": "boolean"
+        },
+        "valueInfId": {
+            "description": "This is a runtime property that is the implementation id of the value interface.",
+            "markdownDescription": "**valueInf**\n\nThis is a runtime property that is the implementation id of the value interface.",
+            "readOnly": true,
+            "title": "valueInf",
+            "type": "string"
+        }
+    },
+    "title": "_AdaptiveModelPropertyType_",
+    "type": "object",
+    "x-afw-inheritedObjectTypes": [
+        "_AdaptiveValueMeta_"
+    ]
+}

@@ -52,5 +52,5 @@ Use **`./afwdev`** when the build may refresh the installed `afwdev` itself; oth
 - When in `src/afw_server_fcgi/`: `afw-server-fcgi`
 - When in `src/afw_{curl,ldap,lmdb,ubjson,vfs,yaml}/`: `afw-extensions`
 - Long-form map: `@AGENTS.md`
-- File-scoped rules: C, generate, afwdev Python, tests
+- File-scoped rules: C, generate, afwdev Python, JSON Schema projection, tests
 - Workflows: skills `add-adaptive-function`, `afw-generate-build-test`

@@ -1,14 +1,71 @@
 {
+    "$comment": "Generated from adaptive object type _AdaptiveCurlVersionInfo_. Primary use: editor completion/validation for generate/objects JSON. Do not hand-edit.",
     "$defs": {
         "_AdaptiveCurlVersionInfo_": {
-            "anyOf": [
-                {
-                    "$ref": "#/$defs/_AdaptiveCurlVersionInfo_.propertyTypes"
-                }
-            ],
+            "additionalProperties": false,
             "description": "Object type for cURL extension version info object.",
-            "type": "object",
-            "unevaluatedProperties": false
+            "markdownDescription": "Object type for cURL extension version info object.",
+            "properties": {
+                "_meta_": {
+                    "additionalProperties": true,
+                    "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+                    "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+                    "title": "Meta",
+                    "type": "object"
+                },
+                "age": {
+                    "title": "Age",
+                    "type": "string"
+                },
+                "brotli_version": {
+                    "title": "Brotli Version",
+                    "type": "string"
+                },
+                "features": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "title": "Features",
+                    "type": "array"
+                },
+                "host": {
+                    "title": "Host",
+                    "type": "string"
+                },
+                "libssh_version": {
+                    "title": "LibSSH Version",
+                    "type": "string"
+                },
+                "libz_version": {
+                    "title": "LibZ Version",
+                    "type": "string"
+                },
+                "protocols": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "title": "Protocols",
+                    "type": "array"
+                },
+                "ssl_version": {
+                    "title": "SSL Version",
+                    "type": "string"
+                },
+                "ssl_version_num": {
+                    "title": "SSL Version Number",
+                    "type": "integer"
+                },
+                "version": {
+                    "title": "Version",
+                    "type": "string"
+                },
+                "version_num": {
+                    "title": "Version Number",
+                    "type": "integer"
+                }
+            },
+            "title": "_AdaptiveCurlVersionInfo_",
+            "type": "object"
         },
         "_AdaptiveCurlVersionInfo_.propertyTypes": {
             "properties": {
@@ -67,9 +124,68 @@
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "anyOf": [
-        {
-            "$ref": "#/$defs/_AdaptiveCurlVersionInfo_"
+    "additionalProperties": false,
+    "description": "Object type for cURL extension version info object.",
+    "markdownDescription": "Object type for cURL extension version info object.",
+    "properties": {
+        "_meta_": {
+            "additionalProperties": true,
+            "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+            "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+            "title": "Meta",
+            "type": "object"
+        },
+        "age": {
+            "title": "Age",
+            "type": "string"
+        },
+        "brotli_version": {
+            "title": "Brotli Version",
+            "type": "string"
+        },
+        "features": {
+            "items": {
+                "type": "string"
+            },
+            "title": "Features",
+            "type": "array"
+        },
+        "host": {
+            "title": "Host",
+            "type": "string"
+        },
+        "libssh_version": {
+            "title": "LibSSH Version",
+            "type": "string"
+        },
+        "libz_version": {
+            "title": "LibZ Version",
+            "type": "string"
+        },
+        "protocols": {
+            "items": {
+                "type": "string"
+            },
+            "title": "Protocols",
+            "type": "array"
+        },
+        "ssl_version": {
+            "title": "SSL Version",
+            "type": "string"
+        },
+        "ssl_version_num": {
+            "title": "SSL Version Number",
+            "type": "integer"
+        },
+        "version": {
+            "title": "Version",
+            "type": "string"
+        },
+        "version_num": {
+            "title": "Version Number",
+            "type": "integer"
         }
-    ]
+    },
+    "title": "_AdaptiveCurlVersionInfo_",
+    "type": "object"
 }

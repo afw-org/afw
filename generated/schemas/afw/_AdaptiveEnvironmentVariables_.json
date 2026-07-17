@@ -1,16 +1,24 @@
 {
+    "$comment": "Generated from adaptive object type _AdaptiveEnvironmentVariables_. Primary use: editor completion/validation for generate/objects JSON. Do not hand-edit.",
     "$defs": {
         "_AdaptiveEnvironmentVariables_": {
             "additionalProperties": {
                 "description": "Environment variables of process.",
+                "markdownDescription": "Environment variables of process.",
                 "type": "string"
             },
-            "anyOf": [
-                {
-                    "$ref": "#/$defs/_AdaptiveEnvironmentVariables_.propertyTypes"
-                }
-            ],
             "description": "Environment variables of process.",
+            "markdownDescription": "Environment variables of process.",
+            "properties": {
+                "_meta_": {
+                    "additionalProperties": true,
+                    "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+                    "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+                    "title": "Meta",
+                    "type": "object"
+                }
+            },
+            "title": "_AdaptiveEnvironmentVariables_",
             "type": "object"
         },
         "_AdaptiveEnvironmentVariables_.propertyTypes": {
@@ -19,9 +27,22 @@
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "anyOf": [
-        {
-            "$ref": "#/$defs/_AdaptiveEnvironmentVariables_"
+    "additionalProperties": {
+        "description": "Environment variables of process.",
+        "markdownDescription": "Environment variables of process.",
+        "type": "string"
+    },
+    "description": "Environment variables of process.",
+    "markdownDescription": "Environment variables of process.",
+    "properties": {
+        "_meta_": {
+            "additionalProperties": true,
+            "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+            "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+            "title": "Meta",
+            "type": "object"
         }
-    ]
+    },
+    "title": "_AdaptiveEnvironmentVariables_",
+    "type": "object"
 }

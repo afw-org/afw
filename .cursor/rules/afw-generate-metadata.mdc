@@ -15,7 +15,7 @@ alwaysApply: false
 - `_AdaptiveFunctionGenerate_/` — Adaptive functions (`functionId`, `functionLabel`, `category`, `parameters`, `returns`). Example: `src/afw/generate/objects/_AdaptiveFunctionGenerate_/and.json`.
 - `_AdaptiveDataTypeGenerate_/` — data types (not `_AdaptiveDataType_`).
 - `_AdaptivePolymorphicFunction_/` — polymorphic / shared execute dispatch.
-- `_AdaptiveObjectType_/` and related — object type metadata.
+- `_AdaptiveObjectType_/` and related — object type metadata. Inheritance uses `propertyTypes._meta_.parentPaths` (not flattened on generate→generated copy). Package-root JSON Schema for editors is projected from these OTs — see `afw-json-schema`.
 - Interfaces: `generate/interfaces/*.xml` (core: `src/afw/generate/interfaces/afw_interface.xml`).
 - EBNF: `generate/ebnf/*.txt` lists which compile sources to scan; grammar text lives in `/*ebnf>>>` comments in those `.c` files → `generated/ebnf/`. See `.cursor/rules/afw-compiler-ebnf.mdc`.
 

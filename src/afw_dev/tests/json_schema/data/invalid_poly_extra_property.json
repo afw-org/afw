@@ -1,0 +1,24 @@
+{
+    "brief": "Absolute value",
+    "category": "polymorphic",
+    "dataTypeMethod": true,
+    "description": "Compute the absolute value.",
+    "functionId": "abs",
+    "functionLabel": "abs",
+    "pure": true,
+    "parameters": [
+        {
+            "name": "value",
+            "polymorphicDataType": true
+        }
+    ],
+    "polymorphic": true,
+    "polymorphicDataTypes": [
+        "double",
+        "integer"
+    ],
+    "returns": {
+        "polymorphicDataType": true
+    },
+    "notARealFunctionProperty": true
+}

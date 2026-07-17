@@ -1,36 +1,41 @@
 {
+    "$comment": "Generated from adaptive object type _AdaptiveCollection_. Primary use: editor completion/validation for generate/objects JSON. Do not hand-edit.",
     "$defs": {
         "_AdaptiveCollection_": {
-            "anyOf": [
-                {
-                    "$ref": "#/$defs/_AdaptiveCollection_.propertyTypes"
-                }
-            ],
+            "additionalProperties": false,
             "description": "Describes a collection.",
-            "type": "object",
-            "unevaluatedProperties": false
-        },
-        "_AdaptiveCollection_.propertyTypes": {
+            "markdownDescription": "Describes a collection.",
             "properties": {
+                "_meta_": {
+                    "additionalProperties": true,
+                    "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+                    "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+                    "title": "Meta",
+                    "type": "object"
+                },
                 "brief": {
                     "description": "Brief description of the collection",
+                    "markdownDescription": "Brief description of the collection",
                     "title": "Brief",
                     "type": "string"
                 },
                 "description": {
                     "contentMediaType": "text/plain",
                     "description": "Description of the collection.",
+                    "markdownDescription": "Description of the collection.",
                     "title": "Description",
                     "type": "string"
                 },
                 "objectId": {
                     "description": "Id of the collection.",
+                    "markdownDescription": "Id of the collection.",
                     "title": "Object",
                     "type": "string"
                 },
                 "originURI": {
                     "description": "The origin URI of this collection. This may be different from the URI within this instance of Adaptive Framework.",
                     "format": "uri-reference",
+                    "markdownDescription": "The origin URI of this collection. This may be different from the URI within this instance of Adaptive Framework.",
                     "title": "Origin URI",
                     "type": "string"
                 }
@@ -38,13 +43,83 @@
             "required": [
                 "objectId"
             ],
+            "title": "_AdaptiveCollection_",
+            "type": "object"
+        },
+        "_AdaptiveCollection_.propertyTypes": {
+            "properties": {
+                "brief": {
+                    "description": "Brief description of the collection",
+                    "markdownDescription": "Brief description of the collection",
+                    "title": "Brief",
+                    "type": "string"
+                },
+                "description": {
+                    "contentMediaType": "text/plain",
+                    "description": "Description of the collection.",
+                    "markdownDescription": "Description of the collection.",
+                    "title": "Description",
+                    "type": "string"
+                },
+                "objectId": {
+                    "description": "Id of the collection.",
+                    "markdownDescription": "Id of the collection.",
+                    "title": "Object",
+                    "type": "string"
+                },
+                "originURI": {
+                    "description": "The origin URI of this collection. This may be different from the URI within this instance of Adaptive Framework.",
+                    "format": "uri-reference",
+                    "markdownDescription": "The origin URI of this collection. This may be different from the URI within this instance of Adaptive Framework.",
+                    "title": "Origin URI",
+                    "type": "string"
+                }
+            },
             "type": "object"
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "anyOf": [
-        {
-            "$ref": "#/$defs/_AdaptiveCollection_"
+    "additionalProperties": false,
+    "description": "Describes a collection.",
+    "markdownDescription": "Describes a collection.",
+    "properties": {
+        "_meta_": {
+            "additionalProperties": true,
+            "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+            "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+            "title": "Meta",
+            "type": "object"
+        },
+        "brief": {
+            "description": "Brief description of the collection",
+            "markdownDescription": "Brief description of the collection",
+            "title": "Brief",
+            "type": "string"
+        },
+        "description": {
+            "contentMediaType": "text/plain",
+            "description": "Description of the collection.",
+            "markdownDescription": "Description of the collection.",
+            "title": "Description",
+            "type": "string"
+        },
+        "objectId": {
+            "description": "Id of the collection.",
+            "markdownDescription": "Id of the collection.",
+            "title": "Object",
+            "type": "string"
+        },
+        "originURI": {
+            "description": "The origin URI of this collection. This may be different from the URI within this instance of Adaptive Framework.",
+            "format": "uri-reference",
+            "markdownDescription": "The origin URI of this collection. This may be different from the URI within this instance of Adaptive Framework.",
+            "title": "Origin URI",
+            "type": "string"
         }
-    ]
+    },
+    "required": [
+        "objectId"
+    ],
+    "title": "_AdaptiveCollection_",
+    "type": "object"
 }

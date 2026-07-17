@@ -1,65 +1,143 @@
 {
+    "$comment": "Generated from adaptive object type _AdaptiveConfType_. Primary use: editor completion/validation for generate/objects JSON. Do not hand-edit.",
     "$defs": {
         "_AdaptiveConfType_": {
-            "anyOf": [
-                {
-                    "$ref": "#/$defs/_AdaptiveConfType_.propertyTypes"
-                }
-            ],
+            "additionalProperties": false,
             "description": "An adaptive configuration (conf) type.",
-            "type": "object",
-            "unevaluatedProperties": false
+            "markdownDescription": "An adaptive configuration (conf) type.",
+            "properties": {
+                "_meta_": {
+                    "additionalProperties": true,
+                    "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+                    "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+                    "title": "Meta",
+                    "type": "object"
+                },
+                "description": {
+                    "contentMediaType": "text/plain",
+                    "description": "Description of this configuration type.",
+                    "markdownDescription": "**Description**\n\nDescription of this configuration type.",
+                    "title": "Description",
+                    "type": "string"
+                },
+                "idPropertyName": {
+                    "description": "This is the id property name for instances of this conf type. For adapter, this is 'adapterId'.",
+                    "markdownDescription": "**Id Property Name**\n\nThis is the id property name for instances of this conf type. For adapter, this is 'adapterId'.",
+                    "title": "Id Property Name",
+                    "type": "string"
+                },
+                "idRegistryType": {
+                    "description": "This is the registry type for instances of this conf type. For adapter, this is 'adapter_id'.",
+                    "markdownDescription": "**Id Registry Type**\n\nThis is the registry type for instances of this conf type. For adapter, this is 'adapter_id'.",
+                    "title": "Id Registry Type",
+                    "type": "string"
+                },
+                "idRuntimeObjectType": {
+                    "description": "This is the runtime object type for instances of this conf type. For adapter, this is '_AdaptiveAdapter_'.",
+                    "markdownDescription": "**Id Runtime Object Type**\n\nThis is the runtime object type for instances of this conf type. For adapter, this is '_AdaptiveAdapter_'.",
+                    "title": "Id Runtime Object Type",
+                    "type": "string"
+                },
+                "isUnique": {
+                    "description": "This configuration type can only be specified once.",
+                    "markdownDescription": "**Is Unique**\n\nThis configuration type can only be specified once.",
+                    "title": "Is Unique",
+                    "type": "boolean"
+                },
+                "subtypePropertyName": {
+                    "description": "This is the subtype property name for instances of this conf type.  For adapter, this is 'adapterType'.",
+                    "markdownDescription": "**Subtype Property Name**\n\nThis is the subtype property name for instances of this conf type.  For adapter, this is 'adapterType'.",
+                    "title": "Subtype Property Name",
+                    "type": "string"
+                },
+                "subtypeRegistryType": {
+                    "description": "This is the subtype registry type for instances of this conf type. For adapter, this is 'adapter_type'.",
+                    "markdownDescription": "**Subtype Registry Type**\n\nThis is the subtype registry type for instances of this conf type. For adapter, this is 'adapter_type'.",
+                    "title": "Subtype Registry Type",
+                    "type": "string"
+                },
+                "subtypeRuntimeObjectType": {
+                    "description": "This is the subtype runtime object type for instances of this conf type. For adapter, this is '_AdaptiveAdapterType_'.",
+                    "markdownDescription": "**Subtype Runtime Object Type**\n\nThis is the subtype runtime object type for instances of this conf type. For adapter, this is '_AdaptiveAdapterType_'.",
+                    "title": "Subtype Runtime Object Type",
+                    "type": "string"
+                },
+                "title": {
+                    "description": "Title for this configuration type.",
+                    "markdownDescription": "**Title**\n\nTitle for this configuration type.",
+                    "title": "Title",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "Configuration type id.",
+                    "markdownDescription": "**Type**\n\nConfiguration type id.",
+                    "title": "Type",
+                    "type": "string"
+                }
+            },
+            "title": "_AdaptiveConfType_",
+            "type": "object"
         },
         "_AdaptiveConfType_.propertyTypes": {
             "properties": {
                 "description": {
                     "contentMediaType": "text/plain",
                     "description": "Description of this configuration type.",
+                    "markdownDescription": "**Description**\n\nDescription of this configuration type.",
                     "title": "Description",
                     "type": "string"
                 },
                 "idPropertyName": {
                     "description": "This is the id property name for instances of this conf type. For adapter, this is 'adapterId'.",
+                    "markdownDescription": "**Id Property Name**\n\nThis is the id property name for instances of this conf type. For adapter, this is 'adapterId'.",
                     "title": "Id Property Name",
                     "type": "string"
                 },
                 "idRegistryType": {
                     "description": "This is the registry type for instances of this conf type. For adapter, this is 'adapter_id'.",
+                    "markdownDescription": "**Id Registry Type**\n\nThis is the registry type for instances of this conf type. For adapter, this is 'adapter_id'.",
                     "title": "Id Registry Type",
                     "type": "string"
                 },
                 "idRuntimeObjectType": {
                     "description": "This is the runtime object type for instances of this conf type. For adapter, this is '_AdaptiveAdapter_'.",
+                    "markdownDescription": "**Id Runtime Object Type**\n\nThis is the runtime object type for instances of this conf type. For adapter, this is '_AdaptiveAdapter_'.",
                     "title": "Id Runtime Object Type",
                     "type": "string"
                 },
                 "isUnique": {
                     "description": "This configuration type can only be specified once.",
+                    "markdownDescription": "**Is Unique**\n\nThis configuration type can only be specified once.",
                     "title": "Is Unique",
                     "type": "boolean"
                 },
                 "subtypePropertyName": {
                     "description": "This is the subtype property name for instances of this conf type.  For adapter, this is 'adapterType'.",
+                    "markdownDescription": "**Subtype Property Name**\n\nThis is the subtype property name for instances of this conf type.  For adapter, this is 'adapterType'.",
                     "title": "Subtype Property Name",
                     "type": "string"
                 },
                 "subtypeRegistryType": {
                     "description": "This is the subtype registry type for instances of this conf type. For adapter, this is 'adapter_type'.",
+                    "markdownDescription": "**Subtype Registry Type**\n\nThis is the subtype registry type for instances of this conf type. For adapter, this is 'adapter_type'.",
                     "title": "Subtype Registry Type",
                     "type": "string"
                 },
                 "subtypeRuntimeObjectType": {
                     "description": "This is the subtype runtime object type for instances of this conf type. For adapter, this is '_AdaptiveAdapterType_'.",
+                    "markdownDescription": "**Subtype Runtime Object Type**\n\nThis is the subtype runtime object type for instances of this conf type. For adapter, this is '_AdaptiveAdapterType_'.",
                     "title": "Subtype Runtime Object Type",
                     "type": "string"
                 },
                 "title": {
                     "description": "Title for this configuration type.",
+                    "markdownDescription": "**Title**\n\nTitle for this configuration type.",
                     "title": "Title",
                     "type": "string"
                 },
                 "type": {
                     "description": "Configuration type id.",
+                    "markdownDescription": "**Type**\n\nConfiguration type id.",
                     "title": "Type",
                     "type": "string"
                 }
@@ -68,9 +146,79 @@
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "anyOf": [
-        {
-            "$ref": "#/$defs/_AdaptiveConfType_"
+    "additionalProperties": false,
+    "description": "An adaptive configuration (conf) type.",
+    "markdownDescription": "An adaptive configuration (conf) type.",
+    "properties": {
+        "_meta_": {
+            "additionalProperties": true,
+            "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+            "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+            "title": "Meta",
+            "type": "object"
+        },
+        "description": {
+            "contentMediaType": "text/plain",
+            "description": "Description of this configuration type.",
+            "markdownDescription": "**Description**\n\nDescription of this configuration type.",
+            "title": "Description",
+            "type": "string"
+        },
+        "idPropertyName": {
+            "description": "This is the id property name for instances of this conf type. For adapter, this is 'adapterId'.",
+            "markdownDescription": "**Id Property Name**\n\nThis is the id property name for instances of this conf type. For adapter, this is 'adapterId'.",
+            "title": "Id Property Name",
+            "type": "string"
+        },
+        "idRegistryType": {
+            "description": "This is the registry type for instances of this conf type. For adapter, this is 'adapter_id'.",
+            "markdownDescription": "**Id Registry Type**\n\nThis is the registry type for instances of this conf type. For adapter, this is 'adapter_id'.",
+            "title": "Id Registry Type",
+            "type": "string"
+        },
+        "idRuntimeObjectType": {
+            "description": "This is the runtime object type for instances of this conf type. For adapter, this is '_AdaptiveAdapter_'.",
+            "markdownDescription": "**Id Runtime Object Type**\n\nThis is the runtime object type for instances of this conf type. For adapter, this is '_AdaptiveAdapter_'.",
+            "title": "Id Runtime Object Type",
+            "type": "string"
+        },
+        "isUnique": {
+            "description": "This configuration type can only be specified once.",
+            "markdownDescription": "**Is Unique**\n\nThis configuration type can only be specified once.",
+            "title": "Is Unique",
+            "type": "boolean"
+        },
+        "subtypePropertyName": {
+            "description": "This is the subtype property name for instances of this conf type.  For adapter, this is 'adapterType'.",
+            "markdownDescription": "**Subtype Property Name**\n\nThis is the subtype property name for instances of this conf type.  For adapter, this is 'adapterType'.",
+            "title": "Subtype Property Name",
+            "type": "string"
+        },
+        "subtypeRegistryType": {
+            "description": "This is the subtype registry type for instances of this conf type. For adapter, this is 'adapter_type'.",
+            "markdownDescription": "**Subtype Registry Type**\n\nThis is the subtype registry type for instances of this conf type. For adapter, this is 'adapter_type'.",
+            "title": "Subtype Registry Type",
+            "type": "string"
+        },
+        "subtypeRuntimeObjectType": {
+            "description": "This is the subtype runtime object type for instances of this conf type. For adapter, this is '_AdaptiveAdapterType_'.",
+            "markdownDescription": "**Subtype Runtime Object Type**\n\nThis is the subtype runtime object type for instances of this conf type. For adapter, this is '_AdaptiveAdapterType_'.",
+            "title": "Subtype Runtime Object Type",
+            "type": "string"
+        },
+        "title": {
+            "description": "Title for this configuration type.",
+            "markdownDescription": "**Title**\n\nTitle for this configuration type.",
+            "title": "Title",
+            "type": "string"
+        },
+        "type": {
+            "description": "Configuration type id.",
+            "markdownDescription": "**Type**\n\nConfiguration type id.",
+            "title": "Type",
+            "type": "string"
         }
-    ]
+    },
+    "title": "_AdaptiveConfType_",
+    "type": "object"
 }

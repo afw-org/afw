@@ -1,23 +1,27 @@
 {
+    "$comment": "Generated from adaptive object type _AdaptiveFile_vfs. Primary use: editor completion/validation for generate/objects JSON. Do not hand-edit.",
     "$defs": {
         "_AdaptiveFile_vfs": {
-            "anyOf": [
-                {
-                    "$ref": "#/$defs/_AdaptiveFile_vfs.propertyTypes"
-                }
-            ],
+            "additionalProperties": false,
             "description": "This is the single object type of objects in a vfs adapter.",
-            "type": "object",
-            "unevaluatedProperties": false
-        },
-        "_AdaptiveFile_vfs.propertyTypes": {
+            "markdownDescription": "This is the single object type of objects in a vfs adapter.",
             "properties": {
+                "_meta_": {
+                    "additionalProperties": true,
+                    "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+                    "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+                    "title": "Meta",
+                    "type": "object"
+                },
                 "data": {
+                    "default": "",
                     "description": "This is the contents of the file. If this is a directory, data is a list of strings containing the name from its entries. If this is not a directory and the data is valid utf-8, data is a string otherwise, it is hexBinary. This property is ignored when adding a directory.",
+                    "markdownDescription": "**Data**\n\nThis is the contents of the file. If this is a directory, data is a list of strings containing the name from its entries. If this is not a directory and the data is valid utf-8, data is a string otherwise, it is hexBinary. This property is ignored when adding a directory.",
                     "title": "Data"
                 },
                 "isDirectory": {
                     "description": "This is true if this is a directory. This property is read-only. A slash ('/') at the end of an objectId is used to indicate this in requests.",
+                    "markdownDescription": "**Is Directory**\n\nThis is true if this is a directory. This property is read-only. A slash ('/') at the end of an objectId is used to indicate this in requests.",
                     "readOnly": true,
                     "title": "Is Directory",
                     "type": "boolean"
@@ -25,24 +29,76 @@
                 "timeAccessed": {
                     "description": "This is the time the file was last accessed.",
                     "format": "date-time",
+                    "markdownDescription": "**Time Accessed**\n\nThis is the time the file was last accessed.",
                     "title": "Time Accessed",
                     "type": "string"
                 },
                 "timeCreated": {
                     "description": "This is the time the file was created.",
                     "format": "date-time",
+                    "markdownDescription": "**Time Created**\n\nThis is the time the file was created.",
                     "title": "Time Created",
                     "type": "string"
                 },
                 "timeModified": {
                     "description": "This is the time the file was last modified.",
                     "format": "date-time",
+                    "markdownDescription": "**Time Modified**\n\nThis is the time the file was last modified.",
                     "title": "Time Modified",
                     "type": "string"
                 },
                 "vfsPath": {
                     "description": "This is the vfs path within this instance of Adaptive Framework. This property is read-only.",
                     "format": "uri-reference",
+                    "markdownDescription": "**VFS Path**\n\nThis is the vfs path within this instance of Adaptive Framework. This property is read-only.",
+                    "readOnly": true,
+                    "title": "VFS Path",
+                    "type": "string"
+                }
+            },
+            "title": "_AdaptiveFile_vfs",
+            "type": "object"
+        },
+        "_AdaptiveFile_vfs.propertyTypes": {
+            "properties": {
+                "data": {
+                    "default": "",
+                    "description": "This is the contents of the file. If this is a directory, data is a list of strings containing the name from its entries. If this is not a directory and the data is valid utf-8, data is a string otherwise, it is hexBinary. This property is ignored when adding a directory.",
+                    "markdownDescription": "**Data**\n\nThis is the contents of the file. If this is a directory, data is a list of strings containing the name from its entries. If this is not a directory and the data is valid utf-8, data is a string otherwise, it is hexBinary. This property is ignored when adding a directory.",
+                    "title": "Data"
+                },
+                "isDirectory": {
+                    "description": "This is true if this is a directory. This property is read-only. A slash ('/') at the end of an objectId is used to indicate this in requests.",
+                    "markdownDescription": "**Is Directory**\n\nThis is true if this is a directory. This property is read-only. A slash ('/') at the end of an objectId is used to indicate this in requests.",
+                    "readOnly": true,
+                    "title": "Is Directory",
+                    "type": "boolean"
+                },
+                "timeAccessed": {
+                    "description": "This is the time the file was last accessed.",
+                    "format": "date-time",
+                    "markdownDescription": "**Time Accessed**\n\nThis is the time the file was last accessed.",
+                    "title": "Time Accessed",
+                    "type": "string"
+                },
+                "timeCreated": {
+                    "description": "This is the time the file was created.",
+                    "format": "date-time",
+                    "markdownDescription": "**Time Created**\n\nThis is the time the file was created.",
+                    "title": "Time Created",
+                    "type": "string"
+                },
+                "timeModified": {
+                    "description": "This is the time the file was last modified.",
+                    "format": "date-time",
+                    "markdownDescription": "**Time Modified**\n\nThis is the time the file was last modified.",
+                    "title": "Time Modified",
+                    "type": "string"
+                },
+                "vfsPath": {
+                    "description": "This is the vfs path within this instance of Adaptive Framework. This property is read-only.",
+                    "format": "uri-reference",
+                    "markdownDescription": "**VFS Path**\n\nThis is the vfs path within this instance of Adaptive Framework. This property is read-only.",
                     "readOnly": true,
                     "title": "VFS Path",
                     "type": "string"
@@ -52,9 +108,60 @@
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "anyOf": [
-        {
-            "$ref": "#/$defs/_AdaptiveFile_vfs"
+    "additionalProperties": false,
+    "description": "This is the single object type of objects in a vfs adapter.",
+    "markdownDescription": "This is the single object type of objects in a vfs adapter.",
+    "properties": {
+        "_meta_": {
+            "additionalProperties": true,
+            "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+            "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+            "title": "Meta",
+            "type": "object"
+        },
+        "data": {
+            "default": "",
+            "description": "This is the contents of the file. If this is a directory, data is a list of strings containing the name from its entries. If this is not a directory and the data is valid utf-8, data is a string otherwise, it is hexBinary. This property is ignored when adding a directory.",
+            "markdownDescription": "**Data**\n\nThis is the contents of the file. If this is a directory, data is a list of strings containing the name from its entries. If this is not a directory and the data is valid utf-8, data is a string otherwise, it is hexBinary. This property is ignored when adding a directory.",
+            "title": "Data"
+        },
+        "isDirectory": {
+            "description": "This is true if this is a directory. This property is read-only. A slash ('/') at the end of an objectId is used to indicate this in requests.",
+            "markdownDescription": "**Is Directory**\n\nThis is true if this is a directory. This property is read-only. A slash ('/') at the end of an objectId is used to indicate this in requests.",
+            "readOnly": true,
+            "title": "Is Directory",
+            "type": "boolean"
+        },
+        "timeAccessed": {
+            "description": "This is the time the file was last accessed.",
+            "format": "date-time",
+            "markdownDescription": "**Time Accessed**\n\nThis is the time the file was last accessed.",
+            "title": "Time Accessed",
+            "type": "string"
+        },
+        "timeCreated": {
+            "description": "This is the time the file was created.",
+            "format": "date-time",
+            "markdownDescription": "**Time Created**\n\nThis is the time the file was created.",
+            "title": "Time Created",
+            "type": "string"
+        },
+        "timeModified": {
+            "description": "This is the time the file was last modified.",
+            "format": "date-time",
+            "markdownDescription": "**Time Modified**\n\nThis is the time the file was last modified.",
+            "title": "Time Modified",
+            "type": "string"
+        },
+        "vfsPath": {
+            "description": "This is the vfs path within this instance of Adaptive Framework. This property is read-only.",
+            "format": "uri-reference",
+            "markdownDescription": "**VFS Path**\n\nThis is the vfs path within this instance of Adaptive Framework. This property is read-only.",
+            "readOnly": true,
+            "title": "VFS Path",
+            "type": "string"
         }
-    ]
+    },
+    "title": "_AdaptiveFile_vfs",
+    "type": "object"
 }

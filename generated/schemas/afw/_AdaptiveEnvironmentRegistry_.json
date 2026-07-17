@@ -1,16 +1,24 @@
 {
+    "$comment": "Generated from adaptive object type _AdaptiveEnvironmentRegistry_. Primary use: editor completion/validation for generate/objects JSON. Do not hand-edit.",
     "$defs": {
         "_AdaptiveEnvironmentRegistry_": {
             "additionalProperties": {
                 "description": "This object contains a property named for each registry type and that property has a property for each entry of that type. These entries are object of the object type appropriate for the registry type.",
+                "markdownDescription": "This object contains a property named for each registry type and that property has a property for each entry of that type. These entries are object of the object type appropriate for the registry type.",
                 "type": "object"
             },
-            "anyOf": [
-                {
-                    "$ref": "#/$defs/_AdaptiveEnvironmentRegistry_.propertyTypes"
-                }
-            ],
             "description": "This object contains a property named for each registry type and that property has a property for each entry of that type. These entries are object of the object type appropriate for the registry type.",
+            "markdownDescription": "This object contains a property named for each registry type and that property has a property for each entry of that type. These entries are object of the object type appropriate for the registry type.",
+            "properties": {
+                "_meta_": {
+                    "additionalProperties": true,
+                    "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+                    "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+                    "title": "Meta",
+                    "type": "object"
+                }
+            },
+            "title": "_AdaptiveEnvironmentRegistry_",
             "type": "object"
         },
         "_AdaptiveEnvironmentRegistry_.propertyTypes": {
@@ -19,9 +27,22 @@
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "anyOf": [
-        {
-            "$ref": "#/$defs/_AdaptiveEnvironmentRegistry_"
+    "additionalProperties": {
+        "description": "This object contains a property named for each registry type and that property has a property for each entry of that type. These entries are object of the object type appropriate for the registry type.",
+        "markdownDescription": "This object contains a property named for each registry type and that property has a property for each entry of that type. These entries are object of the object type appropriate for the registry type.",
+        "type": "object"
+    },
+    "description": "This object contains a property named for each registry type and that property has a property for each entry of that type. These entries are object of the object type appropriate for the registry type.",
+    "markdownDescription": "This object contains a property named for each registry type and that property has a property for each entry of that type. These entries are object of the object type appropriate for the registry type.",
+    "properties": {
+        "_meta_": {
+            "additionalProperties": true,
+            "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+            "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+            "title": "Meta",
+            "type": "object"
         }
-    ]
+    },
+    "title": "_AdaptiveEnvironmentRegistry_",
+    "type": "object"
 }

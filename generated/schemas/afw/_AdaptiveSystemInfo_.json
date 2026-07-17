@@ -1,15 +1,20 @@
 {
+    "$comment": "Generated from adaptive object type _AdaptiveSystemInfo_. Primary use: editor completion/validation for generate/objects JSON. Do not hand-edit.",
     "$defs": {
         "_AdaptiveSystemInfo_": {
-            "additionalProperties": {
-                "description": "Objects of this type represent runtime information about the system Adaptive Framework is running on. The meta of instances of _AdaptiveSystemInfo_ should contain the description of the instance plus supplemental property type information."
-            },
-            "anyOf": [
-                {
-                    "$ref": "#/$defs/_AdaptiveSystemInfo_.propertyTypes"
-                }
-            ],
+            "additionalProperties": true,
             "description": "Objects of this type represent runtime information about the system Adaptive Framework is running on. The meta of instances of _AdaptiveSystemInfo_ should contain the description of the instance plus supplemental property type information.",
+            "markdownDescription": "Objects of this type represent runtime information about the system Adaptive Framework is running on. The meta of instances of _AdaptiveSystemInfo_ should contain the description of the instance plus supplemental property type information.",
+            "properties": {
+                "_meta_": {
+                    "additionalProperties": true,
+                    "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+                    "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+                    "title": "Meta",
+                    "type": "object"
+                }
+            },
+            "title": "_AdaptiveSystemInfo_",
             "type": "object"
         },
         "_AdaptiveSystemInfo_.propertyTypes": {
@@ -18,9 +23,18 @@
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "anyOf": [
-        {
-            "$ref": "#/$defs/_AdaptiveSystemInfo_"
+    "additionalProperties": true,
+    "description": "Objects of this type represent runtime information about the system Adaptive Framework is running on. The meta of instances of _AdaptiveSystemInfo_ should contain the description of the instance plus supplemental property type information.",
+    "markdownDescription": "Objects of this type represent runtime information about the system Adaptive Framework is running on. The meta of instances of _AdaptiveSystemInfo_ should contain the description of the instance plus supplemental property type information.",
+    "properties": {
+        "_meta_": {
+            "additionalProperties": true,
+            "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+            "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+            "title": "Meta",
+            "type": "object"
         }
-    ]
+    },
+    "title": "_AdaptiveSystemInfo_",
+    "type": "object"
 }

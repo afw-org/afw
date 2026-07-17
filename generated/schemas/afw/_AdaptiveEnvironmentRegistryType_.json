@@ -1,40 +1,83 @@
 {
+    "$comment": "Generated from adaptive object type _AdaptiveEnvironmentRegistryType_. Primary use: editor completion/validation for generate/objects JSON. Do not hand-edit.",
     "$defs": {
         "_AdaptiveEnvironmentRegistryType_": {
-            "anyOf": [
-                {
-                    "$ref": "#/$defs/_AdaptiveEnvironmentRegistryType_.propertyTypes"
-                }
-            ],
+            "additionalProperties": false,
             "description": "An environment registry type.",
-            "type": "object",
-            "unevaluatedProperties": false
-        },
-        "_AdaptiveEnvironmentRegistryType_.propertyTypes": {
+            "markdownDescription": "An environment registry type.",
             "properties": {
+                "_meta_": {
+                    "additionalProperties": true,
+                    "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+                    "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+                    "title": "Meta",
+                    "type": "object"
+                },
                 "allowReregister": {
                     "description": "Indicates reregister of a key is allowed.",
+                    "markdownDescription": "**Allow Reregister**\n\nIndicates reregister of a key is allowed.",
                     "title": "Allow Reregister",
                     "type": "boolean"
                 },
                 "autoRegister": {
                     "description": "Indicates if entries are automatically added for this type.",
+                    "markdownDescription": "**Auto Register**\n\nIndicates if entries are automatically added for this type.",
                     "title": "Auto Register",
                     "type": "boolean"
                 },
                 "description": {
                     "contentMediaType": "text/plain",
                     "description": "Description of registry type.",
+                    "markdownDescription": "**Description**\n\nDescription of registry type.",
                     "title": "Description",
                     "type": "string"
                 },
                 "objectType": {
                     "description": "There is an /afw/<objectType>/<key> object for each registered entry.",
+                    "markdownDescription": "**Object Type**\n\nThere is an /afw/<objectType>/<key> object for each registered entry.",
                     "title": "Object Type",
                     "type": "string"
                 },
                 "registryType": {
                     "description": "Registry type.",
+                    "markdownDescription": "**Registry Type**\n\nRegistry type.",
+                    "title": "Registry Type",
+                    "type": "string"
+                }
+            },
+            "title": "_AdaptiveEnvironmentRegistryType_",
+            "type": "object"
+        },
+        "_AdaptiveEnvironmentRegistryType_.propertyTypes": {
+            "properties": {
+                "allowReregister": {
+                    "description": "Indicates reregister of a key is allowed.",
+                    "markdownDescription": "**Allow Reregister**\n\nIndicates reregister of a key is allowed.",
+                    "title": "Allow Reregister",
+                    "type": "boolean"
+                },
+                "autoRegister": {
+                    "description": "Indicates if entries are automatically added for this type.",
+                    "markdownDescription": "**Auto Register**\n\nIndicates if entries are automatically added for this type.",
+                    "title": "Auto Register",
+                    "type": "boolean"
+                },
+                "description": {
+                    "contentMediaType": "text/plain",
+                    "description": "Description of registry type.",
+                    "markdownDescription": "**Description**\n\nDescription of registry type.",
+                    "title": "Description",
+                    "type": "string"
+                },
+                "objectType": {
+                    "description": "There is an /afw/<objectType>/<key> object for each registered entry.",
+                    "markdownDescription": "**Object Type**\n\nThere is an /afw/<objectType>/<key> object for each registered entry.",
+                    "title": "Object Type",
+                    "type": "string"
+                },
+                "registryType": {
+                    "description": "Registry type.",
+                    "markdownDescription": "**Registry Type**\n\nRegistry type.",
                     "title": "Registry Type",
                     "type": "string"
                 }
@@ -43,9 +86,49 @@
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "anyOf": [
-        {
-            "$ref": "#/$defs/_AdaptiveEnvironmentRegistryType_"
+    "additionalProperties": false,
+    "description": "An environment registry type.",
+    "markdownDescription": "An environment registry type.",
+    "properties": {
+        "_meta_": {
+            "additionalProperties": true,
+            "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+            "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+            "title": "Meta",
+            "type": "object"
+        },
+        "allowReregister": {
+            "description": "Indicates reregister of a key is allowed.",
+            "markdownDescription": "**Allow Reregister**\n\nIndicates reregister of a key is allowed.",
+            "title": "Allow Reregister",
+            "type": "boolean"
+        },
+        "autoRegister": {
+            "description": "Indicates if entries are automatically added for this type.",
+            "markdownDescription": "**Auto Register**\n\nIndicates if entries are automatically added for this type.",
+            "title": "Auto Register",
+            "type": "boolean"
+        },
+        "description": {
+            "contentMediaType": "text/plain",
+            "description": "Description of registry type.",
+            "markdownDescription": "**Description**\n\nDescription of registry type.",
+            "title": "Description",
+            "type": "string"
+        },
+        "objectType": {
+            "description": "There is an /afw/<objectType>/<key> object for each registered entry.",
+            "markdownDescription": "**Object Type**\n\nThere is an /afw/<objectType>/<key> object for each registered entry.",
+            "title": "Object Type",
+            "type": "string"
+        },
+        "registryType": {
+            "description": "Registry type.",
+            "markdownDescription": "**Registry Type**\n\nRegistry type.",
+            "title": "Registry Type",
+            "type": "string"
         }
-    ]
+    },
+    "title": "_AdaptiveEnvironmentRegistryType_",
+    "type": "object"
 }

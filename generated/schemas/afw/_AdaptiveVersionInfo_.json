@@ -1,67 +1,145 @@
 {
+    "$comment": "Generated from adaptive object type _AdaptiveVersionInfo_. Primary use: editor completion/validation for generate/objects JSON. Do not hand-edit.",
     "$defs": {
         "_AdaptiveVersionInfo_": {
             "additionalProperties": {
                 "description": "The version information associated with an id.",
+                "markdownDescription": "The version information associated with an id.",
                 "type": "string"
             },
-            "anyOf": [
-                {
-                    "$ref": "#/$defs/_AdaptiveVersionInfo_.propertyTypes"
-                }
-            ],
             "description": "The version information associated with an id.",
+            "markdownDescription": "The version information associated with an id.",
+            "properties": {
+                "_meta_": {
+                    "additionalProperties": true,
+                    "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+                    "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+                    "title": "Meta",
+                    "type": "object"
+                },
+                "compileDate": {
+                    "description": "This uses the C preprocessor macro __DATE__ at time of compile.",
+                    "markdownDescription": "**Compile Date**\n\nThis uses the C preprocessor macro __DATE__ at time of compile.",
+                    "title": "Compile Date",
+                    "type": "string"
+                },
+                "compileTime": {
+                    "description": "This uses the C preprocessor macro __TIME__ at time of compile.",
+                    "markdownDescription": "**Compile Time**\n\nThis uses the C preprocessor macro __TIME__ at time of compile.",
+                    "title": "Compile Time",
+                    "type": "string"
+                },
+                "gitBranch": {
+                    "description": "The current Git branch used for this build. It's calculated with the command, 'git rev-parse --abbrev-ref HEAD'",
+                    "markdownDescription": "**Git Branch**\n\nThe current Git branch used for this build. It's calculated with the command, 'git rev-parse --abbrev-ref HEAD'",
+                    "title": "Git Branch",
+                    "type": "string"
+                },
+                "gitDescribe": {
+                    "description": "The most recent tag that is reachable from the current Git commit. If the tag points to the commit, then only the tag is shown. Otherwise, it suffixes the tag name with the number of additional commits on top of the tagged object and the abbreviated object name of the most recent commit. The result is a human-readable object name which can also be used to identify the commit to other git commands. This is calculated with the command 'git describe --dirty --always --tags'",
+                    "markdownDescription": "**Git Describe**\n\nThe most recent tag that is reachable from the current Git commit. If the tag points to the commit, then only the tag is shown. Otherwise, it suffixes the tag name with the number of additional commits on top of the tagged object and the abbreviated object name of the most recent commit. The result is a human-readable object name which can also be used to identify the commit to other git commands. This is calculated with the command 'git describe --dirty --always --tags'",
+                    "title": "Git Describe",
+                    "type": "string"
+                },
+                "gitSha": {
+                    "description": "The full SHA-1 object name (40-byte hexadecimal string), that is unique within the repository, used to identify the source for this build. It's calculated with the command 'git rev-parse HEAD'",
+                    "markdownDescription": "**Git SHA**\n\nThe full SHA-1 object name (40-byte hexadecimal string), that is unique within the repository, used to identify the source for this build. It's calculated with the command 'git rev-parse HEAD'",
+                    "title": "Git SHA",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "This is the id associated with the version information. This is usually the name of the subdirectory containing the source for the command or extension.",
+                    "markdownDescription": "**ID**\n\nThis is the id associated with the version information. This is usually the name of the subdirectory containing the source for the command or extension.",
+                    "title": "ID",
+                    "type": "string"
+                },
+                "libafwVersion": {
+                    "description": "AFW_VERSION_STRING at time of compile.",
+                    "markdownDescription": "**libafw Version**\n\nAFW_VERSION_STRING at time of compile.",
+                    "title": "libafw Version",
+                    "type": "string"
+                },
+                "libafwVersionWithGitInfo": {
+                    "description": "AFW_VERSION_WITH_GIT_INFO at time of compile.",
+                    "markdownDescription": "**libafw Version+Git**\n\nAFW_VERSION_WITH_GIT_INFO at time of compile.",
+                    "title": "libafw Version+Git",
+                    "type": "string"
+                },
+                "version": {
+                    "description": "<srcdir>_VERSION_STRING at time of compile.",
+                    "markdownDescription": "**<srcdir> Version**\n\n<srcdir>_VERSION_STRING at time of compile.",
+                    "title": "<srcdir> Version",
+                    "type": "string"
+                },
+                "versionWithGitInfo": {
+                    "description": "<srcdir>_VERSION_WITH_GIT_INFO at time of compile.",
+                    "markdownDescription": "**<srcdir> Version+Git**\n\n<srcdir>_VERSION_WITH_GIT_INFO at time of compile.",
+                    "title": "<srcdir> Version+Git",
+                    "type": "string"
+                }
+            },
+            "title": "_AdaptiveVersionInfo_",
             "type": "object"
         },
         "_AdaptiveVersionInfo_.propertyTypes": {
             "properties": {
                 "compileDate": {
                     "description": "This uses the C preprocessor macro __DATE__ at time of compile.",
+                    "markdownDescription": "**Compile Date**\n\nThis uses the C preprocessor macro __DATE__ at time of compile.",
                     "title": "Compile Date",
                     "type": "string"
                 },
                 "compileTime": {
                     "description": "This uses the C preprocessor macro __TIME__ at time of compile.",
+                    "markdownDescription": "**Compile Time**\n\nThis uses the C preprocessor macro __TIME__ at time of compile.",
                     "title": "Compile Time",
                     "type": "string"
                 },
                 "gitBranch": {
                     "description": "The current Git branch used for this build. It's calculated with the command, 'git rev-parse --abbrev-ref HEAD'",
+                    "markdownDescription": "**Git Branch**\n\nThe current Git branch used for this build. It's calculated with the command, 'git rev-parse --abbrev-ref HEAD'",
                     "title": "Git Branch",
                     "type": "string"
                 },
                 "gitDescribe": {
                     "description": "The most recent tag that is reachable from the current Git commit. If the tag points to the commit, then only the tag is shown. Otherwise, it suffixes the tag name with the number of additional commits on top of the tagged object and the abbreviated object name of the most recent commit. The result is a human-readable object name which can also be used to identify the commit to other git commands. This is calculated with the command 'git describe --dirty --always --tags'",
+                    "markdownDescription": "**Git Describe**\n\nThe most recent tag that is reachable from the current Git commit. If the tag points to the commit, then only the tag is shown. Otherwise, it suffixes the tag name with the number of additional commits on top of the tagged object and the abbreviated object name of the most recent commit. The result is a human-readable object name which can also be used to identify the commit to other git commands. This is calculated with the command 'git describe --dirty --always --tags'",
                     "title": "Git Describe",
                     "type": "string"
                 },
                 "gitSha": {
                     "description": "The full SHA-1 object name (40-byte hexadecimal string), that is unique within the repository, used to identify the source for this build. It's calculated with the command 'git rev-parse HEAD'",
+                    "markdownDescription": "**Git SHA**\n\nThe full SHA-1 object name (40-byte hexadecimal string), that is unique within the repository, used to identify the source for this build. It's calculated with the command 'git rev-parse HEAD'",
                     "title": "Git SHA",
                     "type": "string"
                 },
                 "id": {
                     "description": "This is the id associated with the version information. This is usually the name of the subdirectory containing the source for the command or extension.",
+                    "markdownDescription": "**ID**\n\nThis is the id associated with the version information. This is usually the name of the subdirectory containing the source for the command or extension.",
                     "title": "ID",
                     "type": "string"
                 },
                 "libafwVersion": {
                     "description": "AFW_VERSION_STRING at time of compile.",
+                    "markdownDescription": "**libafw Version**\n\nAFW_VERSION_STRING at time of compile.",
                     "title": "libafw Version",
                     "type": "string"
                 },
                 "libafwVersionWithGitInfo": {
                     "description": "AFW_VERSION_WITH_GIT_INFO at time of compile.",
+                    "markdownDescription": "**libafw Version+Git**\n\nAFW_VERSION_WITH_GIT_INFO at time of compile.",
                     "title": "libafw Version+Git",
                     "type": "string"
                 },
                 "version": {
                     "description": "<srcdir>_VERSION_STRING at time of compile.",
+                    "markdownDescription": "**<srcdir> Version**\n\n<srcdir>_VERSION_STRING at time of compile.",
                     "title": "<srcdir> Version",
                     "type": "string"
                 },
                 "versionWithGitInfo": {
                     "description": "<srcdir>_VERSION_WITH_GIT_INFO at time of compile.",
+                    "markdownDescription": "**<srcdir> Version+Git**\n\n<srcdir>_VERSION_WITH_GIT_INFO at time of compile.",
                     "title": "<srcdir> Version+Git",
                     "type": "string"
                 }
@@ -70,9 +148,82 @@
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "anyOf": [
-        {
-            "$ref": "#/$defs/_AdaptiveVersionInfo_"
+    "additionalProperties": {
+        "description": "The version information associated with an id.",
+        "markdownDescription": "The version information associated with an id.",
+        "type": "string"
+    },
+    "description": "The version information associated with an id.",
+    "markdownDescription": "The version information associated with an id.",
+    "properties": {
+        "_meta_": {
+            "additionalProperties": true,
+            "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+            "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+            "title": "Meta",
+            "type": "object"
+        },
+        "compileDate": {
+            "description": "This uses the C preprocessor macro __DATE__ at time of compile.",
+            "markdownDescription": "**Compile Date**\n\nThis uses the C preprocessor macro __DATE__ at time of compile.",
+            "title": "Compile Date",
+            "type": "string"
+        },
+        "compileTime": {
+            "description": "This uses the C preprocessor macro __TIME__ at time of compile.",
+            "markdownDescription": "**Compile Time**\n\nThis uses the C preprocessor macro __TIME__ at time of compile.",
+            "title": "Compile Time",
+            "type": "string"
+        },
+        "gitBranch": {
+            "description": "The current Git branch used for this build. It's calculated with the command, 'git rev-parse --abbrev-ref HEAD'",
+            "markdownDescription": "**Git Branch**\n\nThe current Git branch used for this build. It's calculated with the command, 'git rev-parse --abbrev-ref HEAD'",
+            "title": "Git Branch",
+            "type": "string"
+        },
+        "gitDescribe": {
+            "description": "The most recent tag that is reachable from the current Git commit. If the tag points to the commit, then only the tag is shown. Otherwise, it suffixes the tag name with the number of additional commits on top of the tagged object and the abbreviated object name of the most recent commit. The result is a human-readable object name which can also be used to identify the commit to other git commands. This is calculated with the command 'git describe --dirty --always --tags'",
+            "markdownDescription": "**Git Describe**\n\nThe most recent tag that is reachable from the current Git commit. If the tag points to the commit, then only the tag is shown. Otherwise, it suffixes the tag name with the number of additional commits on top of the tagged object and the abbreviated object name of the most recent commit. The result is a human-readable object name which can also be used to identify the commit to other git commands. This is calculated with the command 'git describe --dirty --always --tags'",
+            "title": "Git Describe",
+            "type": "string"
+        },
+        "gitSha": {
+            "description": "The full SHA-1 object name (40-byte hexadecimal string), that is unique within the repository, used to identify the source for this build. It's calculated with the command 'git rev-parse HEAD'",
+            "markdownDescription": "**Git SHA**\n\nThe full SHA-1 object name (40-byte hexadecimal string), that is unique within the repository, used to identify the source for this build. It's calculated with the command 'git rev-parse HEAD'",
+            "title": "Git SHA",
+            "type": "string"
+        },
+        "id": {
+            "description": "This is the id associated with the version information. This is usually the name of the subdirectory containing the source for the command or extension.",
+            "markdownDescription": "**ID**\n\nThis is the id associated with the version information. This is usually the name of the subdirectory containing the source for the command or extension.",
+            "title": "ID",
+            "type": "string"
+        },
+        "libafwVersion": {
+            "description": "AFW_VERSION_STRING at time of compile.",
+            "markdownDescription": "**libafw Version**\n\nAFW_VERSION_STRING at time of compile.",
+            "title": "libafw Version",
+            "type": "string"
+        },
+        "libafwVersionWithGitInfo": {
+            "description": "AFW_VERSION_WITH_GIT_INFO at time of compile.",
+            "markdownDescription": "**libafw Version+Git**\n\nAFW_VERSION_WITH_GIT_INFO at time of compile.",
+            "title": "libafw Version+Git",
+            "type": "string"
+        },
+        "version": {
+            "description": "<srcdir>_VERSION_STRING at time of compile.",
+            "markdownDescription": "**<srcdir> Version**\n\n<srcdir>_VERSION_STRING at time of compile.",
+            "title": "<srcdir> Version",
+            "type": "string"
+        },
+        "versionWithGitInfo": {
+            "description": "<srcdir>_VERSION_WITH_GIT_INFO at time of compile.",
+            "markdownDescription": "**<srcdir> Version+Git**\n\n<srcdir>_VERSION_WITH_GIT_INFO at time of compile.",
+            "title": "<srcdir> Version+Git",
+            "type": "string"
         }
-    ]
+    },
+    "title": "_AdaptiveVersionInfo_",
+    "type": "object"
 }
