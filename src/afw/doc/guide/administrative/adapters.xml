@@ -76,11 +76,113 @@
     <section>
         <title>VFS</title>
         <paragraph>
-            This adapter allows you to access files as objects through a 
-            Virtual File System.
+            The VFS (Virtual File System) adapter, provided by the
+            <code>afw_vfs</code> extension, exposes host files and directories
+            as adaptive objects of type <code>_AdaptiveFile_vfs</code>. Use it
+            when scripts or services need adapter-style CRUD on filesystem
+            content rather than stream I/O via <code>open_file</code> and
+            <code>rootFilePaths</code>.
         </paragraph>
         <section>
             <title>Features</title>
+            <list>
+                <item>
+                    Object type <code>_AdaptiveFile_vfs</code> only. Directory
+                    objectIds end with <code>/</code>; regular files do not.
+                </item>
+                <item>
+                    File content is the <code>data</code> property (UTF-8
+                    string or <code>hexBinary</code>). Directories list entry
+                    names in <code>data</code>. Omitted <code>data</code> on
+                    add/replace of a file defaults to an empty file.
+                </item>
+                <item>
+                    Reads and writes load or replace the entire file (subject
+                    to <code>maxReadBytes</code>). Writes use a temporary file
+                    then rename so shorter content does not leave stale bytes.
+                </item>
+                <item>
+                    Optional <code>markExecutable</code> patterns mark matching
+                    vfsPaths executable after write (platform permitting).
+                </item>
+                <item>
+                    <code>retrieve_objects</code> supports adapter-specific
+                    options: <code>subdirectory</code>, <code>recursive</code>,
+                    <code>suffix</code>, and <code>includeHidden</code>.
+                </item>
+            </list>
+        </section>
+        <section>
+            <title>vfsMap and paths</title>
+            <paragraph>
+                Configure one or more <code>vfsMap</code> entries of the form
+                <code>objectId_prefix=host/directory/</code>. An empty prefix
+                maps the adapter root. Non-empty prefixes must end with
+                <code>/</code>; host paths must exist as directories and end
+                with <code>/</code> (a trailing backslash is accepted on
+                Windows).
+            </paragraph>
+            <paragraph>
+                For any objectId, the map entry with the longest matching
+                prefix is used (path boundary matching, same idea as
+                application <code>rootFilePaths</code>). Host roots are
+                canonicalized at adapter start; resolved host paths must stay
+                under that root. ObjectIds must not contain path segments
+                <code>.</code> or <code>..</code>, or backslash.
+            </paragraph>
+            <paragraph>
+                When <code>subdirectory</code> is set on retrieve, only map
+                entries whose prefix matches that path are used; the remainder
+                after the prefix is resolved under that entry's host directory
+                (the map key is not applied twice to the host path).
+            </paragraph>
+            <paragraph>
+                Names beginning with <code>.</code> are hidden from directory
+                listings and retrieve by default; set
+                <code>includeHidden</code> to include them. Directory delete is
+                non-recursive (the directory must be empty).
+            </paragraph>
+            <paragraph>
+                The VFS adapter is not a security boundary against a hostile
+                host filesystem (for example, pre-existing symlinks under a map
+                root may be followed when reading). Prefer trusted map roots
+                and trusted objectIds.
+            </paragraph>
+        </section>
+        <section>
+            <title>Example configuration</title>
+            <paragraph>
+                Minimal map of the process working directory, plus optional
+                multi-prefix layout and a read size limit:
+            </paragraph>
+            <code><![CDATA[
+[
+    {
+        "type": "adapter",
+        "adapterId": "vfs",
+        "adapterType": "vfs",
+        "vfsMap": [ "=./" ],
+        "markExecutable": [ "*.as" ],
+        "maxReadBytes": 67108864
+    },
+    {
+        "type": "adapter",
+        "adapterId": "content",
+        "adapterType": "vfs",
+        "vfsMap": [
+            "includes/=/var/afw/includes/",
+            "include/=/var/afw/include/",
+            "data/=/var/afw/data/"
+        ]
+    }
+]
+]]></code>
+            <paragraph>
+                Regression coverage lives under
+                <code>src/afw_vfs/tests/</code>
+                (<code>vfs_test.as</code>, <code>vfs_multimap.as</code>,
+                <code>vfs_phase4.as</code>).
+            </paragraph>
         </section>
         <section>
             <title>Configuration Parameters</title>
