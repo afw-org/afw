@@ -11,6 +11,7 @@ Internal agent rules, Cursor docs, and pure test-infrastructure work are omitted
 | Area | What changed |
 |------|----------------|
 | **File streams** | Working `open_file` with hardened `rootFilePaths`; stream errors **throw** |
+| **VFS adapter** | Empty files, safe full-file write, multi-map path rules, `maxReadBytes` |
 | **Model adapters** | `mappedAdapterId` is **optional** for pure-script models |
 | **`afw` CLI** | Optional interactive line editing and command history |
 | **JSON Schema** | Cleaner editor schemas for Adaptive object types |
@@ -61,6 +62,73 @@ close(sn2);
 - Unfinished APIs were removed from the public surface for a leaner beta: **`open_uri`**, **`open_response`**.
 
 Modes cover text and binary (`r`, `w`, `a`, `r+`, … and `rb`, `wb`, …). `open_file` requires execute access.
+
+---
+
+## VFS adapter (`afw_vfs`)
+
+**Issue #79** (empty-file read and related hardening on the issue branch)
+
+The VFS extension maps host directories to adaptive objects
+(`_AdaptiveFile_vfs`). Recent work fixes reliability bugs and aligns multi-entry
+`vfsMap` resolution with the same longest-prefix / containment ideas as
+`rootFilePaths` (see File streams above).
+
+### What you can rely on
+
+- **Empty files:** reading a 0-byte file no longer fails with a pool allocate
+  error. Writing empty or shorter content replaces the whole file (no leftover
+  prior bytes).
+- **`data` optional on file add/replace:** omitted `data` means an empty file
+  (matches the object type default). Directories still ignore `data`.
+- **`maxReadBytes`:** optional conf integer; default **64 MiB**. Files larger
+  than the limit fail on read. Use `0` for unlimited (not recommended on
+  long-running hosts).
+- **`vfsMap` multi-entry:** longest matching `objectId_prefix` wins. Host roots
+  are canonicalized at adapter start; resolved paths must stay under that root.
+- **`retrieve_objects` `subdirectory`:** only map entries whose prefix matches
+  the subdirectory path are used; the remainder is resolved under that host
+  root (the map key is not appended twice).
+- **Hidden names:** names starting with `.` are omitted from directory listings
+  and retrieve unless `includeHidden` is true (`get_object` supports the same
+  adapter-specific flag for directory objects).
+- **`isDirectory`:** `true` for directories, `false` for regular files; queryable
+  in retrieve criteria.
+- **Deletes:** directories are non-recursive (must be empty). Missing objects
+  report **`not_found`** where applicable.
+
+### Minimal conf example
+
+```json
+{
+  "type": "adapter",
+  "adapterId": "vfs",
+  "adapterType": "vfs",
+  "vfsMap": [ "=./" ],
+  "markExecutable": [ "*.as" ],
+  "maxReadBytes": 67108864
+}
+```
+
+Script sketch:
+
+```adaptive
+add_object("vfs", "_AdaptiveFile_vfs", {}, "temp/work/");
+add_object("vfs", "_AdaptiveFile_vfs", { data: "hello" }, "temp/work/a.txt");
+const o = get_object("vfs", "_AdaptiveFile_vfs", "temp/work/a.txt");
+// o.data === "hello"
+delete_object("vfs", "_AdaptiveFile_vfs", "temp/work/a.txt");
+delete_object("vfs", "_AdaptiveFile_vfs", "temp/work/");
+```
+
+### Not a security boundary
+
+VFS trusts its map roots and objectIds. Pre-existing symlinks under a host root
+may be followed. Prefer trusted trees and objectIds; do not expose untrusted
+paths as objectIds without additional controls.
+
+Handbook: administrative guide **Adapters → VFS**. Tests:
+`src/afw_vfs/tests/vfs_test.as`, `vfs_multimap.as`, `vfs_phase4.as`.
 
 ---
 
@@ -136,6 +204,10 @@ Tracked suites under `src/*/tests` are permanent regression assets. `afwdev test
 3. **`rootFilePaths`:** prefer logical paths like `my/file.txt` with a matching prefix property; rely on longest-prefix match and stay inside the host root.
 4. **Model conf:** pure-script adapters may drop `mappedAdapterId`; hybrid adapters keep it. If you omit it, every used op must be implemented in `on*`.
 5. **Schemas:** regenerate before depending on updated editor/validate behavior.
+6. **VFS:** if you relied on reading empty files failing, or on replace/modify
+   leaving trailing bytes when shortening content, update callers—those cases
+   now succeed with correct full-file content. Prefer setting `maxReadBytes`
+   appropriately for server hosts.
 
 ---
 
@@ -144,6 +216,7 @@ Tracked suites under `src/*/tests` are permanent regression assets. `afwdev test
 | Topic | Issue | PR |
 |-------|-------|-----|
 | File streams | #103 | #120 |
+| VFS empty file / hardening | #79 | *(this branch)* |
 | Optional `mappedAdapterId` | #109 | #119 |
 | Default-clone regressions | #110 | #118 (tests) |
 | Interactive libedit | #30 | #117 |

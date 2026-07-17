@@ -524,6 +524,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_VFS_Q_allowQuery \
+    "allowQuery"
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_allowQuery */
+#define afw_vfs_s_allowQuery \
+    (&afw_vfs_self_v_allowQuery.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_allowQuery */
+#define afw_vfs_self_s_allowQuery \
+    (afw_vfs_self_v_allowQuery.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_allowQuery */
+extern const afw_value_string_t \
+    afw_vfs_self_v_allowQuery;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_allowQuery */
+#define afw_vfs_z_allowQuery \
+    (afw_vfs_self_v_allowQuery.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_allowQuery */
+#define afw_vfs_v_allowQuery \
+    (&afw_vfs_self_v_allowQuery.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_VFS_Q_allowWrite \
     "allowWrite"
 
@@ -914,6 +940,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_VFS_Q_integer \
+    "integer"
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_integer */
+#define afw_vfs_s_integer \
+    (&afw_vfs_self_v_integer.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_integer */
+#define afw_vfs_self_s_integer \
+    (afw_vfs_self_v_integer.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_integer */
+extern const afw_value_string_t \
+    afw_vfs_self_v_integer;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_integer */
+#define afw_vfs_z_integer \
+    (afw_vfs_self_v_integer.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_integer */
+#define afw_vfs_v_integer \
+    (&afw_vfs_self_v_integer.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_VFS_Q_isDirectory \
     "isDirectory"
 
@@ -988,6 +1040,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_VFS_Q_markExecutable */
 #define afw_vfs_v_markExecutable \
     (&afw_vfs_self_v_markExecutable.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_VFS_Q_maxReadBytes \
+    "maxReadBytes"
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_maxReadBytes */
+#define afw_vfs_s_maxReadBytes \
+    (&afw_vfs_self_v_maxReadBytes.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_maxReadBytes */
+#define afw_vfs_self_s_maxReadBytes \
+    (afw_vfs_self_v_maxReadBytes.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_maxReadBytes */
+extern const afw_value_string_t \
+    afw_vfs_self_v_maxReadBytes;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_maxReadBytes */
+#define afw_vfs_z_maxReadBytes \
+    (afw_vfs_self_v_maxReadBytes.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_maxReadBytes */
+#define afw_vfs_v_maxReadBytes \
+    (&afw_vfs_self_v_maxReadBytes.pub)
 
 
 
@@ -1409,7 +1487,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_VFS_Q_zz__2595 \
-    "If specified, the retrieve will start in the specified vfs subdirectory instead of the vfs root. The value can not start with '/', must end with '/', and can not contain '\\', './' or '../'."
+    "If specified, the retrieve will start in the specified vfs subdirectory instead of the vfs root. The value can not start with '/', must end with '/', and can not contain '\\', './' or '../'. For multi-entry vfsMap, only map entries whose objectId prefix matches this path are used; the path after that prefix is resolved under that entry's host directory (the map key is not appended twice to the host path)."
 
 /** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2595 */
 #define afw_vfs_s_zz__2595 \
@@ -1513,7 +1591,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_VFS_Q_zz__2599 \
-    "This property is a list of vfs map entries.\n\nThe vfsPath of objects in this vfs adapter is of the form:\n\n/<adapterId>/<objectId>\n\nWhere <adapterId> is the id of this adapter and where <objectId> is the relative path from the vfs root directory ('<adapterId>/') to the associated file or directory. An <objectId> of a directory ends with a slash ('/').\n\nEach vfsMap entry is a string of the form:\n\n<objectId_prefix>=<host file system directory path>\n\n<objectId_prefix> can be empty if the entry applies to files and directories in the vfs root directory or the objectId of a directory within the vfs.\n\nThe <host file system directory path> must end in a slash ('/'). A backslash is tolerated on a Windows host. The host system file path is the <objectId> with <objectId_prefix> removed appended to the associated <host file system directory path>.\n\nThe map entry with the longest matching <objectId_prefix> is the one used for any adapter functions objectId parameter.\n\nFor retrieve_objects*() the entries are processed in longest to shortest <objectId_prefix> order. If 'subdirectory' is supplied in the retrieve_objects*() adapterSpecific parameter, only matching entries are used. Note, that depending on the vfsMap, a single physical file or directory can appear multiple times with different vfsPaths."
+    "Maximum number of bytes that will be read into memory for a single regular file on get_object/retrieve_objects. If a file is larger, the operation fails with an error. Default is 67108864 (64 MiB). Set to 0 for unlimited (not recommended for long-running hosts)."
 
 /** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2599 */
 #define afw_vfs_s_zz__2599 \
@@ -1539,7 +1617,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_VFS_Q_zz__2600 \
-    "Adaptive Framework configuration component for type=adapter adapterType=vfs. This is a virtual file system adapter that allows files to be accessed as objects that have a 'data' property and additional file stats properties. The vfs path to files begins with '/', the adapter name, '/_AdaptiveFile_vfs'. The path of the operating system directory as well as the paths to subdirectories are defined in the 'vfsMap' property."
+    "This property is a list of vfs map entries.\n\nThe vfsPath of objects in this vfs adapter is of the form:\n\n/<adapterId>/<objectId>\n\nWhere <adapterId> is the id of this adapter and where <objectId> is the relative path from the vfs root directory ('<adapterId>/') to the associated file or directory. An <objectId> of a directory ends with a slash ('/').\n\nEach vfsMap entry is a string of the form:\n\n<objectId_prefix>=<host file system directory path>\n\n<objectId_prefix> can be empty if the entry applies to files and directories in the vfs root directory or the objectId of a directory within the vfs.\n\nThe <host file system directory path> must end in a slash ('/'). A backslash is tolerated on a Windows host. The host system file path is the <objectId> with <objectId_prefix> removed appended to the associated <host file system directory path>.\n\nThe map entry with the longest matching <objectId_prefix> is the one used for any adapter functions objectId parameter.\n\nFor retrieve_objects*() the entries are processed in longest to shortest <objectId_prefix> order. If 'subdirectory' is supplied in the retrieve_objects*() adapterSpecific parameter, only matching entries are used. Note, that depending on the vfsMap, a single physical file or directory can appear multiple times with different vfsPaths."
 
 /** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2600 */
 #define afw_vfs_s_zz__2600 \
@@ -1565,7 +1643,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_VFS_Q_zz__2601 \
-    "This is the contents of the file. If this is a directory, data is a list of strings containing the name from its entries. If this is not a directory and the data is valid utf-8, data is a string otherwise, it is hexBinary. This property is ignored when adding a directory."
+    "Adaptive Framework configuration component for type=adapter adapterType=vfs (extension afw_vfs). Files and directories are _AdaptiveFile_vfs objects: objectId is the path under vfsMap; directory objectIds end with '/'. The vfsPath property is /{adapterId}/{objectId}. ObjectIds must not contain path segments '.' or '..', or backslash. vfsMap uses longest matching objectId_prefix (path boundary), with host directories canonicalized at start; resolved paths must stay under that host root. Directory listings and retrieve_objects hide names starting with '.' unless includeHidden is true. Regular files are loaded fully into memory subject to maxReadBytes (default 64 MiB; 0 = unlimited). Writes replace the entire file (including empty or shorter content) via temp file then rename. Directory delete is non-recursive (must be empty). For retrieve subdirectory with multi-entry vfsMap, only matching prefixes are used and the map key is not double-applied to the host path. Not a security boundary against a hostile host filesystem (for example, pre-existing symlinks under a map root). See the administrative Adapters handbook section and src/afw_vfs/tests/."
 
 /** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2601 */
 #define afw_vfs_s_zz__2601 \
@@ -1591,7 +1669,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_VFS_Q_zz__2602 \
-    "This is true if this is a directory. This property is read-only. A slash ('/') at the end of an objectId is used to indicate this in requests."
+    "This is the contents of the file. If this is a directory, data is a list of strings containing the name from its entries (names beginning with '.' are omitted unless includeHidden is requested). If this is not a directory and the data is valid utf-8, data is a string; otherwise it is hexBinary. When adding or replacing a regular file, if data is omitted it defaults to an empty string (0-byte file). This property is ignored when adding a directory. Directory delete is non-recursive: the directory must be empty."
 
 /** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2602 */
 #define afw_vfs_s_zz__2602 \
@@ -1617,7 +1695,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_VFS_Q_zz__2603 \
-    "This is the vfs path within this instance of Adaptive Framework. This property is read-only."
+    "True if this object is a directory, false if it is a regular file. This property is read-only. A slash ('/') at the end of an objectId is used to indicate a directory in requests."
 
 /** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2603 */
 #define afw_vfs_s_zz__2603 \
@@ -1638,6 +1716,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__2603 */
 #define afw_vfs_v_zz__2603 \
     (&afw_vfs_self_v_zz__2603.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_VFS_Q_zz__2604 \
+    "This is the vfs path within this instance of Adaptive Framework. This property is read-only."
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2604 */
+#define afw_vfs_s_zz__2604 \
+    (&afw_vfs_self_v_zz__2604.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__2604 */
+#define afw_vfs_self_s_zz__2604 \
+    (afw_vfs_self_v_zz__2604.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__2604 */
+extern const afw_value_string_t \
+    afw_vfs_self_v_zz__2604;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__2604 */
+#define afw_vfs_z_zz__2604 \
+    (afw_vfs_self_v_zz__2604.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__2604 */
+#define afw_vfs_v_zz__2604 \
+    (&afw_vfs_self_v_zz__2604.pub)
 
 
 
@@ -1898,6 +2002,58 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__Mark_Executable */
 #define afw_vfs_v_zz__Mark_Executable \
     (&afw_vfs_self_v_zz__Mark_Executable.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_VFS_Q_zz__Max_Read_Bytes \
+    "Max Read Bytes"
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__Max_Read_Bytes */
+#define afw_vfs_s_zz__Max_Read_Bytes \
+    (&afw_vfs_self_v_zz__Max_Read_Bytes.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__Max_Read_Bytes */
+#define afw_vfs_self_s_zz__Max_Read_Bytes \
+    (afw_vfs_self_v_zz__Max_Read_Bytes.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__Max_Read_Bytes */
+extern const afw_value_string_t \
+    afw_vfs_self_v_zz__Max_Read_Bytes;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__Max_Read_Bytes */
+#define afw_vfs_z_zz__Max_Read_Bytes \
+    (afw_vfs_self_v_zz__Max_Read_Bytes.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__Max_Read_Bytes */
+#define afw_vfs_v_zz__Max_Read_Bytes \
+    (&afw_vfs_self_v_zz__Max_Read_Bytes.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_VFS_Q_zz__Maximum_file_size_read_into_memory \
+    "Maximum file size read into memory"
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__Maximum_file_size_read_into_memory */
+#define afw_vfs_s_zz__Maximum_file_size_read_into_memory \
+    (&afw_vfs_self_v_zz__Maximum_file_size_read_into_memory.internal)
+
+/** @brief 'afw_utf8_t' for AFW_VFS_Q_zz__Maximum_file_size_read_into_memory */
+#define afw_vfs_self_s_zz__Maximum_file_size_read_into_memory \
+    (afw_vfs_self_v_zz__Maximum_file_size_read_into_memory.internal)
+
+/** @brief 'afw_value_string_t' for AFW_VFS_Q_zz__Maximum_file_size_read_into_memory */
+extern const afw_value_string_t \
+    afw_vfs_self_v_zz__Maximum_file_size_read_into_memory;
+
+/** @brief 'afw_utf8_z_t *' for AFW_VFS_Q_zz__Maximum_file_size_read_into_memory */
+#define afw_vfs_z_zz__Maximum_file_size_read_into_memory \
+    (afw_vfs_self_v_zz__Maximum_file_size_read_into_memory.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_VFS_Q_zz__Maximum_file_size_read_into_memory */
+#define afw_vfs_v_zz__Maximum_file_size_read_into_memory \
+    (&afw_vfs_self_v_zz__Maximum_file_size_read_into_memory.pub)
 
 
 

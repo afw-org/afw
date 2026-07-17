@@ -26,7 +26,7 @@
         "subdirectory": {
             "brief": "Subdirectory",
             "dataType": "string",
-            "description": "If specified, the retrieve will start in the specified vfs subdirectory instead of the vfs root. The value can not start with '/', must end with '/', and can not contain '\\', './' or '../'.",
+            "description": "If specified, the retrieve will start in the specified vfs subdirectory instead of the vfs root. The value can not start with '/', must end with '/', and can not contain '\\', './' or '../'. For multi-entry vfsMap, only map entries whose objectId prefix matches this path are used; the path after that prefix is resolved under that entry's host directory (the map key is not appended twice to the host path).",
             "label": "Subdirectory",
             "required": false
         },

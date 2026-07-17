@@ -928,25 +928,31 @@ static const afw_runtime_const_object_instance_t
 impl_11;
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_vfs/propertyTypes/vfsMap
+ * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_vfs/propertyTypes/maxReadBytes
  */
 
 static const afw_runtime_property_t
 impl_11_property_brief = {
     &afw_vfs_self_s_brief,
-    &afw_vfs_self_v_zz__VFS_to_operating_system_directory_map.pub
+    &afw_vfs_self_v_zz__Maximum_file_size_read_into_memory.pub
 };
 
 static const afw_runtime_property_t
 impl_11_property_dataType = {
     &afw_vfs_self_s_dataType,
-    &afw_vfs_self_v_array.pub
+    &afw_vfs_self_v_integer.pub
+};
+
+static const afw_value_integer_t
+impl_11_property_value_defaultValue = {
+    {&afw_value_permanent_integer_inf},
+    67108864
 };
 
 static const afw_runtime_property_t
-impl_11_property_dataTypeParameter = {
-    &afw_vfs_self_s_dataTypeParameter,
-    &afw_vfs_self_v_string.pub
+impl_11_property_defaultValue = {
+    &afw_vfs_self_s_defaultValue,
+    &impl_11_property_value_defaultValue.pub
 };
 
 static const afw_runtime_property_t
@@ -958,13 +964,13 @@ impl_11_property_description = {
 static const afw_runtime_property_t
 impl_11_property_label = {
     &afw_vfs_self_s_label,
-    &afw_vfs_self_v_zz__VFS_Map.pub
+    &afw_vfs_self_v_zz__Max_Read_Bytes.pub
 };
 
 static const afw_value_boolean_t
 impl_11_property_value_required = {
     {&afw_value_permanent_boolean_inf},
-    true
+    false
 };
 
 static const afw_runtime_property_t
@@ -977,7 +983,7 @@ static const afw_runtime_property_t *
 impl_11_properties[] = {
     &impl_11_property_brief,
     &impl_11_property_dataType,
-    &impl_11_property_dataTypeParameter,
+    &impl_11_property_defaultValue,
     &impl_11_property_description,
     &impl_11_property_label,
     &impl_11_property_required,
@@ -1006,7 +1012,7 @@ impl_11_meta_object__value = {
 
 static const afw_utf8_t
 impl_11_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_vfs/propertyTypes/vfsMap");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_vfs/propertyTypes/maxReadBytes");
 
 static const afw_value_object_t
 impl_11__value;
@@ -1020,7 +1026,7 @@ impl_11 = {
         {
             (const afw_object_t *)&impl_11_meta_object,
             (const afw_object_t *)&impl_9,
-            &afw_vfs_self_s_vfsMap,
+            &afw_vfs_self_s_maxReadBytes,
             &afw_vfs_self_s__AdaptiveValueMeta_,
             &impl_11_meta_path
         }
@@ -1032,6 +1038,116 @@ static const afw_value_object_t
 impl_11__value = {
     {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_11
+};
+
+static const afw_runtime_const_object_instance_t
+impl_12;
+
+/*
+ * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_vfs/propertyTypes/vfsMap
+ */
+
+static const afw_runtime_property_t
+impl_12_property_brief = {
+    &afw_vfs_self_s_brief,
+    &afw_vfs_self_v_zz__VFS_to_operating_system_directory_map.pub
+};
+
+static const afw_runtime_property_t
+impl_12_property_dataType = {
+    &afw_vfs_self_s_dataType,
+    &afw_vfs_self_v_array.pub
+};
+
+static const afw_runtime_property_t
+impl_12_property_dataTypeParameter = {
+    &afw_vfs_self_s_dataTypeParameter,
+    &afw_vfs_self_v_string.pub
+};
+
+static const afw_runtime_property_t
+impl_12_property_description = {
+    &afw_vfs_self_s_description,
+    &afw_vfs_self_v_zz__2600.pub
+};
+
+static const afw_runtime_property_t
+impl_12_property_label = {
+    &afw_vfs_self_s_label,
+    &afw_vfs_self_v_zz__VFS_Map.pub
+};
+
+static const afw_value_boolean_t
+impl_12_property_value_required = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+static const afw_runtime_property_t
+impl_12_property_required = {
+    &afw_vfs_self_s_required,
+    &impl_12_property_value_required.pub
+};
+
+static const afw_runtime_property_t *
+impl_12_properties[] = {
+    &impl_12_property_brief,
+    &impl_12_property_dataType,
+    &impl_12_property_dataTypeParameter,
+    &impl_12_property_description,
+    &impl_12_property_label,
+    &impl_12_property_required,
+    NULL
+};
+
+static const afw_value_object_t
+impl_12_meta_object__value;
+
+static const afw_runtime_const_object_meta_object_t
+impl_12_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_12_meta_object__value
+    },
+    &impl_12,
+    NULL
+};
+
+static const afw_value_object_t
+impl_12_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_12_meta_object
+};
+
+static const afw_utf8_t
+impl_12_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_vfs/propertyTypes/vfsMap");
+
+static const afw_value_object_t
+impl_12__value;
+
+static const afw_runtime_const_object_instance_t
+impl_12 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_12__value,
+        {
+            (const afw_object_t *)&impl_12_meta_object,
+            (const afw_object_t *)&impl_9,
+            &afw_vfs_self_s_vfsMap,
+            &afw_vfs_self_s__AdaptiveValueMeta_,
+            &impl_12_meta_path
+        }
+    },
+    &impl_12_properties[0]
+};
+
+static const afw_value_object_t
+impl_12__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_12
 };
 
 /*
@@ -1051,9 +1167,21 @@ impl_9_property_markExecutable = {
 };
 
 static const afw_value_object_t
-impl_9_property_value_vfsMap = {
+impl_9_property_value_maxReadBytes = {
     {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_11
+};
+
+static const afw_runtime_property_t
+impl_9_property_maxReadBytes = {
+    &afw_vfs_self_s_maxReadBytes,
+    &impl_9_property_value_maxReadBytes.pub
+};
+
+static const afw_value_object_t
+impl_9_property_value_vfsMap = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_12
 };
 
 static const afw_runtime_property_t
@@ -1065,6 +1193,7 @@ impl_9_property_vfsMap = {
 static const afw_runtime_property_t *
 impl_9_properties[] = {
     &impl_9_property_markExecutable,
+    &impl_9_property_maxReadBytes,
     &impl_9_property_vfsMap,
     NULL
 };
@@ -1195,7 +1324,7 @@ impl_8_property_collectionURIs = {
 static const afw_runtime_property_t
 impl_8_property_description = {
     &afw_vfs_self_s_description,
-    &afw_vfs_self_v_zz__2600.pub
+    &afw_vfs_self_v_zz__2601.pub
 };
 
 static const afw_runtime_property_t
@@ -1277,143 +1406,28 @@ impl_8__value = {
 };
 
 static const afw_runtime_const_object_instance_t
-impl_12;
-
-static const afw_runtime_const_object_instance_t
 impl_13;
 
 static const afw_runtime_const_object_instance_t
 impl_14;
+
+static const afw_runtime_const_object_instance_t
+impl_15;
 
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveFile_vfs/propertyTypes/data
  */
 
 static const afw_runtime_property_t
-impl_14_property_brief = {
+impl_15_property_brief = {
     &afw_vfs_self_s_brief,
     &afw_vfs_self_v_zz__Contents_of_file.pub
 };
 
 static const afw_runtime_property_t
-impl_14_property_defaultValue = {
+impl_15_property_defaultValue = {
     &afw_vfs_self_s_defaultValue,
     &afw_vfs_self_v_zz__.pub
-};
-
-static const afw_runtime_property_t
-impl_14_property_description = {
-    &afw_vfs_self_s_description,
-    &afw_vfs_self_v_zz__2601.pub
-};
-
-static const afw_runtime_property_t
-impl_14_property_label = {
-    &afw_vfs_self_s_label,
-    &afw_vfs_self_v_Data.pub
-};
-
-static const afw_value_boolean_t
-impl_14_property_value_required = {
-    {&afw_value_permanent_boolean_inf},
-    false
-};
-
-static const afw_runtime_property_t
-impl_14_property_required = {
-    &afw_vfs_self_s_required,
-    &impl_14_property_value_required.pub
-};
-
-static const afw_runtime_property_t *
-impl_14_properties[] = {
-    &impl_14_property_brief,
-    &impl_14_property_defaultValue,
-    &impl_14_property_description,
-    &impl_14_property_label,
-    &impl_14_property_required,
-    NULL
-};
-
-static const afw_value_object_t
-impl_14_meta_object__value;
-
-static const afw_runtime_const_object_meta_object_t
-impl_14_meta_object = {
-    {
-        &afw_runtime_inf_const_meta_object_inf,
-        NULL,
-        (const afw_value_t *)&impl_14_meta_object__value
-    },
-    &impl_14,
-    NULL
-};
-
-static const afw_value_object_t
-impl_14_meta_object__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_14_meta_object
-};
-
-static const afw_utf8_t
-impl_14_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveFile_vfs/propertyTypes/data");
-
-static const afw_value_object_t
-impl_14__value;
-
-static const afw_runtime_const_object_instance_t
-impl_14 = {
-    {
-        &afw_runtime_inf_const_embedded_untyped_object,
-        NULL,
-        (const afw_value_t *)&impl_14__value,
-        {
-            (const afw_object_t *)&impl_14_meta_object,
-            (const afw_object_t *)&impl_13,
-            &afw_vfs_self_s_data,
-            &afw_vfs_self_s__AdaptiveValueMeta_,
-            &impl_14_meta_path
-        }
-    },
-    &impl_14_properties[0]
-};
-
-static const afw_value_object_t
-impl_14__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_14
-};
-
-static const afw_runtime_const_object_instance_t
-impl_15;
-
-/*
- * /afw/_AdaptiveObjectType_/_AdaptiveFile_vfs/propertyTypes/isDirectory
- */
-
-static const afw_value_boolean_t
-impl_15_property_value_allowWrite = {
-    {&afw_value_permanent_boolean_inf},
-    false
-};
-
-static const afw_runtime_property_t
-impl_15_property_allowWrite = {
-    &afw_vfs_self_s_allowWrite,
-    &impl_15_property_value_allowWrite.pub
-};
-
-static const afw_runtime_property_t
-impl_15_property_brief = {
-    &afw_vfs_self_s_brief,
-    &afw_vfs_self_v_zz__Is_directory.pub
-};
-
-static const afw_runtime_property_t
-impl_15_property_dataType = {
-    &afw_vfs_self_s_dataType,
-    &afw_vfs_self_v_boolean.pub
 };
 
 static const afw_runtime_property_t
@@ -1425,16 +1439,28 @@ impl_15_property_description = {
 static const afw_runtime_property_t
 impl_15_property_label = {
     &afw_vfs_self_s_label,
-    &afw_vfs_self_v_zz__Is_Directory.pub
+    &afw_vfs_self_v_Data.pub
+};
+
+static const afw_value_boolean_t
+impl_15_property_value_required = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
+impl_15_property_required = {
+    &afw_vfs_self_s_required,
+    &impl_15_property_value_required.pub
 };
 
 static const afw_runtime_property_t *
 impl_15_properties[] = {
-    &impl_15_property_allowWrite,
     &impl_15_property_brief,
-    &impl_15_property_dataType,
+    &impl_15_property_defaultValue,
     &impl_15_property_description,
     &impl_15_property_label,
+    &impl_15_property_required,
     NULL
 };
 
@@ -1460,7 +1486,7 @@ impl_15_meta_object__value = {
 
 static const afw_utf8_t
 impl_15_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveFile_vfs/propertyTypes/isDirectory");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveFile_vfs/propertyTypes/data");
 
 static const afw_value_object_t
 impl_15__value;
@@ -1473,8 +1499,8 @@ impl_15 = {
         (const afw_value_t *)&impl_15__value,
         {
             (const afw_object_t *)&impl_15_meta_object,
-            (const afw_object_t *)&impl_13,
-            &afw_vfs_self_s_isDirectory,
+            (const afw_object_t *)&impl_14,
+            &afw_vfs_self_s_data,
             &afw_vfs_self_s__AdaptiveValueMeta_,
             &impl_15_meta_path
         }
@@ -1492,52 +1518,65 @@ static const afw_runtime_const_object_instance_t
 impl_16;
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveFile_vfs/propertyTypes/timeAccessed
+ * /afw/_AdaptiveObjectType_/_AdaptiveFile_vfs/propertyTypes/isDirectory
  */
 
-static const afw_runtime_property_t
-impl_16_property_brief = {
-    &afw_vfs_self_s_brief,
-    &afw_vfs_self_v_zz__Time_last_accessed.pub
+static const afw_value_boolean_t
+impl_16_property_value_allowQuery = {
+    {&afw_value_permanent_boolean_inf},
+    true
 };
 
 static const afw_runtime_property_t
-impl_16_property_dataType = {
-    &afw_vfs_self_s_dataType,
-    &afw_vfs_self_v_dateTime.pub
-};
-
-static const afw_runtime_property_t
-impl_16_property_description = {
-    &afw_vfs_self_s_description,
-    &afw_vfs_self_v_zz__This_is_the_time_the_file_was_last_accessed_.pub
-};
-
-static const afw_runtime_property_t
-impl_16_property_label = {
-    &afw_vfs_self_s_label,
-    &afw_vfs_self_v_zz__Time_Accessed.pub
+impl_16_property_allowQuery = {
+    &afw_vfs_self_s_allowQuery,
+    &impl_16_property_value_allowQuery.pub
 };
 
 static const afw_value_boolean_t
-impl_16_property_value_required = {
+impl_16_property_value_allowWrite = {
     {&afw_value_permanent_boolean_inf},
     false
 };
 
 static const afw_runtime_property_t
-impl_16_property_required = {
-    &afw_vfs_self_s_required,
-    &impl_16_property_value_required.pub
+impl_16_property_allowWrite = {
+    &afw_vfs_self_s_allowWrite,
+    &impl_16_property_value_allowWrite.pub
+};
+
+static const afw_runtime_property_t
+impl_16_property_brief = {
+    &afw_vfs_self_s_brief,
+    &afw_vfs_self_v_zz__Is_directory.pub
+};
+
+static const afw_runtime_property_t
+impl_16_property_dataType = {
+    &afw_vfs_self_s_dataType,
+    &afw_vfs_self_v_boolean.pub
+};
+
+static const afw_runtime_property_t
+impl_16_property_description = {
+    &afw_vfs_self_s_description,
+    &afw_vfs_self_v_zz__2603.pub
+};
+
+static const afw_runtime_property_t
+impl_16_property_label = {
+    &afw_vfs_self_s_label,
+    &afw_vfs_self_v_zz__Is_Directory.pub
 };
 
 static const afw_runtime_property_t *
 impl_16_properties[] = {
+    &impl_16_property_allowQuery,
+    &impl_16_property_allowWrite,
     &impl_16_property_brief,
     &impl_16_property_dataType,
     &impl_16_property_description,
     &impl_16_property_label,
-    &impl_16_property_required,
     NULL
 };
 
@@ -1563,7 +1602,7 @@ impl_16_meta_object__value = {
 
 static const afw_utf8_t
 impl_16_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveFile_vfs/propertyTypes/timeAccessed");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveFile_vfs/propertyTypes/isDirectory");
 
 static const afw_value_object_t
 impl_16__value;
@@ -1576,8 +1615,8 @@ impl_16 = {
         (const afw_value_t *)&impl_16__value,
         {
             (const afw_object_t *)&impl_16_meta_object,
-            (const afw_object_t *)&impl_13,
-            &afw_vfs_self_s_timeAccessed,
+            (const afw_object_t *)&impl_14,
+            &afw_vfs_self_s_isDirectory,
             &afw_vfs_self_s__AdaptiveValueMeta_,
             &impl_16_meta_path
         }
@@ -1595,13 +1634,13 @@ static const afw_runtime_const_object_instance_t
 impl_17;
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveFile_vfs/propertyTypes/timeCreated
+ * /afw/_AdaptiveObjectType_/_AdaptiveFile_vfs/propertyTypes/timeAccessed
  */
 
 static const afw_runtime_property_t
 impl_17_property_brief = {
     &afw_vfs_self_s_brief,
-    &afw_vfs_self_v_zz__Time_created.pub
+    &afw_vfs_self_v_zz__Time_last_accessed.pub
 };
 
 static const afw_runtime_property_t
@@ -1613,13 +1652,13 @@ impl_17_property_dataType = {
 static const afw_runtime_property_t
 impl_17_property_description = {
     &afw_vfs_self_s_description,
-    &afw_vfs_self_v_zz__This_is_the_time_the_file_was_created_.pub
+    &afw_vfs_self_v_zz__This_is_the_time_the_file_was_last_accessed_.pub
 };
 
 static const afw_runtime_property_t
 impl_17_property_label = {
     &afw_vfs_self_s_label,
-    &afw_vfs_self_v_zz__Time_Created.pub
+    &afw_vfs_self_v_zz__Time_Accessed.pub
 };
 
 static const afw_value_boolean_t
@@ -1666,7 +1705,7 @@ impl_17_meta_object__value = {
 
 static const afw_utf8_t
 impl_17_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveFile_vfs/propertyTypes/timeCreated");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveFile_vfs/propertyTypes/timeAccessed");
 
 static const afw_value_object_t
 impl_17__value;
@@ -1679,8 +1718,8 @@ impl_17 = {
         (const afw_value_t *)&impl_17__value,
         {
             (const afw_object_t *)&impl_17_meta_object,
-            (const afw_object_t *)&impl_13,
-            &afw_vfs_self_s_timeCreated,
+            (const afw_object_t *)&impl_14,
+            &afw_vfs_self_s_timeAccessed,
             &afw_vfs_self_s__AdaptiveValueMeta_,
             &impl_17_meta_path
         }
@@ -1698,13 +1737,13 @@ static const afw_runtime_const_object_instance_t
 impl_18;
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveFile_vfs/propertyTypes/timeModified
+ * /afw/_AdaptiveObjectType_/_AdaptiveFile_vfs/propertyTypes/timeCreated
  */
 
 static const afw_runtime_property_t
 impl_18_property_brief = {
     &afw_vfs_self_s_brief,
-    &afw_vfs_self_v_zz__Time_last_modified.pub
+    &afw_vfs_self_v_zz__Time_created.pub
 };
 
 static const afw_runtime_property_t
@@ -1716,13 +1755,13 @@ impl_18_property_dataType = {
 static const afw_runtime_property_t
 impl_18_property_description = {
     &afw_vfs_self_s_description,
-    &afw_vfs_self_v_zz__This_is_the_time_the_file_was_last_modified_.pub
+    &afw_vfs_self_v_zz__This_is_the_time_the_file_was_created_.pub
 };
 
 static const afw_runtime_property_t
 impl_18_property_label = {
     &afw_vfs_self_s_label,
-    &afw_vfs_self_v_zz__Time_Modified.pub
+    &afw_vfs_self_v_zz__Time_Created.pub
 };
 
 static const afw_value_boolean_t
@@ -1769,7 +1808,7 @@ impl_18_meta_object__value = {
 
 static const afw_utf8_t
 impl_18_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveFile_vfs/propertyTypes/timeModified");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveFile_vfs/propertyTypes/timeCreated");
 
 static const afw_value_object_t
 impl_18__value;
@@ -1782,8 +1821,8 @@ impl_18 = {
         (const afw_value_t *)&impl_18__value,
         {
             (const afw_object_t *)&impl_18_meta_object,
-            (const afw_object_t *)&impl_13,
-            &afw_vfs_self_s_timeModified,
+            (const afw_object_t *)&impl_14,
+            &afw_vfs_self_s_timeCreated,
             &afw_vfs_self_s__AdaptiveValueMeta_,
             &impl_18_meta_path
         }
@@ -1801,52 +1840,52 @@ static const afw_runtime_const_object_instance_t
 impl_19;
 
 /*
- * /afw/_AdaptiveObjectType_/_AdaptiveFile_vfs/propertyTypes/vfsPath
+ * /afw/_AdaptiveObjectType_/_AdaptiveFile_vfs/propertyTypes/timeModified
  */
-
-static const afw_value_boolean_t
-impl_19_property_value_allowWrite = {
-    {&afw_value_permanent_boolean_inf},
-    false
-};
-
-static const afw_runtime_property_t
-impl_19_property_allowWrite = {
-    &afw_vfs_self_s_allowWrite,
-    &impl_19_property_value_allowWrite.pub
-};
 
 static const afw_runtime_property_t
 impl_19_property_brief = {
     &afw_vfs_self_s_brief,
-    &afw_vfs_self_v_zz__VFS_path.pub
+    &afw_vfs_self_v_zz__Time_last_modified.pub
 };
 
 static const afw_runtime_property_t
 impl_19_property_dataType = {
     &afw_vfs_self_s_dataType,
-    &afw_vfs_self_v_anyURI.pub
+    &afw_vfs_self_v_dateTime.pub
 };
 
 static const afw_runtime_property_t
 impl_19_property_description = {
     &afw_vfs_self_s_description,
-    &afw_vfs_self_v_zz__2603.pub
+    &afw_vfs_self_v_zz__This_is_the_time_the_file_was_last_modified_.pub
 };
 
 static const afw_runtime_property_t
 impl_19_property_label = {
     &afw_vfs_self_s_label,
-    &afw_vfs_self_v_zz__VFS_Path.pub
+    &afw_vfs_self_v_zz__Time_Modified.pub
+};
+
+static const afw_value_boolean_t
+impl_19_property_value_required = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
+impl_19_property_required = {
+    &afw_vfs_self_s_required,
+    &impl_19_property_value_required.pub
 };
 
 static const afw_runtime_property_t *
 impl_19_properties[] = {
-    &impl_19_property_allowWrite,
     &impl_19_property_brief,
     &impl_19_property_dataType,
     &impl_19_property_description,
     &impl_19_property_label,
+    &impl_19_property_required,
     NULL
 };
 
@@ -1872,7 +1911,7 @@ impl_19_meta_object__value = {
 
 static const afw_utf8_t
 impl_19_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveFile_vfs/propertyTypes/vfsPath");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveFile_vfs/propertyTypes/timeModified");
 
 static const afw_value_object_t
 impl_19__value;
@@ -1885,8 +1924,8 @@ impl_19 = {
         (const afw_value_t *)&impl_19__value,
         {
             (const afw_object_t *)&impl_19_meta_object,
-            (const afw_object_t *)&impl_13,
-            &afw_vfs_self_s_vfsPath,
+            (const afw_object_t *)&impl_14,
+            &afw_vfs_self_s_timeModified,
             &afw_vfs_self_s__AdaptiveValueMeta_,
             &impl_19_meta_path
         }
@@ -1900,90 +1939,331 @@ impl_19__value = {
     (const afw_object_t *)&impl_19
 };
 
+static const afw_runtime_const_object_instance_t
+impl_20;
+
+/*
+ * /afw/_AdaptiveObjectType_/_AdaptiveFile_vfs/propertyTypes/vfsPath
+ */
+
+static const afw_value_boolean_t
+impl_20_property_value_allowWrite = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+static const afw_runtime_property_t
+impl_20_property_allowWrite = {
+    &afw_vfs_self_s_allowWrite,
+    &impl_20_property_value_allowWrite.pub
+};
+
+static const afw_runtime_property_t
+impl_20_property_brief = {
+    &afw_vfs_self_s_brief,
+    &afw_vfs_self_v_zz__VFS_path.pub
+};
+
+static const afw_runtime_property_t
+impl_20_property_dataType = {
+    &afw_vfs_self_s_dataType,
+    &afw_vfs_self_v_anyURI.pub
+};
+
+static const afw_runtime_property_t
+impl_20_property_description = {
+    &afw_vfs_self_s_description,
+    &afw_vfs_self_v_zz__2604.pub
+};
+
+static const afw_runtime_property_t
+impl_20_property_label = {
+    &afw_vfs_self_s_label,
+    &afw_vfs_self_v_zz__VFS_Path.pub
+};
+
+static const afw_runtime_property_t *
+impl_20_properties[] = {
+    &impl_20_property_allowWrite,
+    &impl_20_property_brief,
+    &impl_20_property_dataType,
+    &impl_20_property_description,
+    &impl_20_property_label,
+    NULL
+};
+
+static const afw_value_object_t
+impl_20_meta_object__value;
+
+static const afw_runtime_const_object_meta_object_t
+impl_20_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_20_meta_object__value
+    },
+    &impl_20,
+    NULL
+};
+
+static const afw_value_object_t
+impl_20_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_20_meta_object
+};
+
+static const afw_utf8_t
+impl_20_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveFile_vfs/propertyTypes/vfsPath");
+
+static const afw_value_object_t
+impl_20__value;
+
+static const afw_runtime_const_object_instance_t
+impl_20 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_20__value,
+        {
+            (const afw_object_t *)&impl_20_meta_object,
+            (const afw_object_t *)&impl_14,
+            &afw_vfs_self_s_vfsPath,
+            &afw_vfs_self_s__AdaptiveValueMeta_,
+            &impl_20_meta_path
+        }
+    },
+    &impl_20_properties[0]
+};
+
+static const afw_value_object_t
+impl_20__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_20
+};
+
 /*
  * /afw/_AdaptiveObjectType_/_AdaptiveFile_vfs/propertyTypes
  */
 
 static const afw_value_object_t
-impl_13_property_value_data = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_14
-};
-
-static const afw_runtime_property_t
-impl_13_property_data = {
-    &afw_vfs_self_s_data,
-    &impl_13_property_value_data.pub
-};
-
-static const afw_value_object_t
-impl_13_property_value_isDirectory = {
+impl_14_property_value_data = {
     {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_15
 };
 
 static const afw_runtime_property_t
-impl_13_property_isDirectory = {
-    &afw_vfs_self_s_isDirectory,
-    &impl_13_property_value_isDirectory.pub
+impl_14_property_data = {
+    &afw_vfs_self_s_data,
+    &impl_14_property_value_data.pub
 };
 
 static const afw_value_object_t
-impl_13_property_value_timeAccessed = {
+impl_14_property_value_isDirectory = {
     {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_16
 };
 
 static const afw_runtime_property_t
-impl_13_property_timeAccessed = {
-    &afw_vfs_self_s_timeAccessed,
-    &impl_13_property_value_timeAccessed.pub
+impl_14_property_isDirectory = {
+    &afw_vfs_self_s_isDirectory,
+    &impl_14_property_value_isDirectory.pub
 };
 
 static const afw_value_object_t
-impl_13_property_value_timeCreated = {
+impl_14_property_value_timeAccessed = {
     {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_17
 };
 
 static const afw_runtime_property_t
-impl_13_property_timeCreated = {
-    &afw_vfs_self_s_timeCreated,
-    &impl_13_property_value_timeCreated.pub
+impl_14_property_timeAccessed = {
+    &afw_vfs_self_s_timeAccessed,
+    &impl_14_property_value_timeAccessed.pub
 };
 
 static const afw_value_object_t
-impl_13_property_value_timeModified = {
+impl_14_property_value_timeCreated = {
     {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_18
 };
 
 static const afw_runtime_property_t
-impl_13_property_timeModified = {
-    &afw_vfs_self_s_timeModified,
-    &impl_13_property_value_timeModified.pub
+impl_14_property_timeCreated = {
+    &afw_vfs_self_s_timeCreated,
+    &impl_14_property_value_timeCreated.pub
 };
 
 static const afw_value_object_t
-impl_13_property_value_vfsPath = {
+impl_14_property_value_timeModified = {
     {&afw_value_permanent_object_inf},
     (const afw_object_t *)&impl_19
 };
 
 static const afw_runtime_property_t
-impl_13_property_vfsPath = {
+impl_14_property_timeModified = {
+    &afw_vfs_self_s_timeModified,
+    &impl_14_property_value_timeModified.pub
+};
+
+static const afw_value_object_t
+impl_14_property_value_vfsPath = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_20
+};
+
+static const afw_runtime_property_t
+impl_14_property_vfsPath = {
     &afw_vfs_self_s_vfsPath,
-    &impl_13_property_value_vfsPath.pub
+    &impl_14_property_value_vfsPath.pub
+};
+
+static const afw_runtime_property_t *
+impl_14_properties[] = {
+    &impl_14_property_data,
+    &impl_14_property_isDirectory,
+    &impl_14_property_timeAccessed,
+    &impl_14_property_timeCreated,
+    &impl_14_property_timeModified,
+    &impl_14_property_vfsPath,
+    NULL
+};
+
+static const afw_value_object_t
+impl_14_meta_object__value;
+
+static const afw_runtime_const_object_meta_object_t
+impl_14_meta_object = {
+    {
+        &afw_runtime_inf_const_meta_object_inf,
+        NULL,
+        (const afw_value_t *)&impl_14_meta_object__value
+    },
+    &impl_14,
+    NULL
+};
+
+static const afw_value_object_t
+impl_14_meta_object__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_14_meta_object
+};
+
+static const afw_utf8_t
+impl_14_meta_path =
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveFile_vfs/propertyTypes");
+
+static const afw_value_object_t
+impl_14__value;
+
+static const afw_runtime_const_object_instance_t
+impl_14 = {
+    {
+        &afw_runtime_inf_const_embedded_untyped_object,
+        NULL,
+        (const afw_value_t *)&impl_14__value,
+        {
+            (const afw_object_t *)&impl_14_meta_object,
+            (const afw_object_t *)&impl_13,
+            &afw_vfs_self_s_propertyTypes,
+            &afw_vfs_self_s__AdaptivePropertyTypes_,
+            &impl_14_meta_path
+        }
+    },
+    &impl_14_properties[0]
+};
+
+static const afw_value_object_t
+impl_14__value = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_14
+};
+
+/*
+ * /afw/_AdaptiveObjectType_/_AdaptiveFile_vfs
+ */
+
+static const afw_value_boolean_t
+impl_13_property_value_allowEntity = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+static const afw_runtime_property_t
+impl_13_property_allowEntity = {
+    &afw_vfs_self_s_allowEntity,
+    &impl_13_property_value_allowEntity.pub
+};
+
+static const afw_utf8_t
+impl_13_array_collectionURIs[] = {
+    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/vfs_extension")
+};
+
+static const afw_value_array_t
+impl_13_list_collectionURIs__value;
+
+static const afw_array_wrapper_for_array_self_t
+impl_13_list_collectionURIs = {
+    {
+        &afw_array_wrapper_for_array_inf,
+        NULL,
+        (const afw_value_t *)&impl_13_list_collectionURIs__value
+    },
+    &afw_data_type_string_direct,
+    sizeof(impl_13_array_collectionURIs) / sizeof(afw_utf8_t),
+    &impl_13_array_collectionURIs
+};
+
+static const afw_value_array_t
+impl_13_list_collectionURIs__value = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_13_list_collectionURIs
+};
+
+static const afw_value_array_t
+impl_13_property_value_collectionURIs = {
+    {&afw_value_permanent_array_inf},
+    (const afw_array_t *)&impl_13_list_collectionURIs
+};
+
+static const afw_runtime_property_t
+impl_13_property_collectionURIs = {
+    &afw_vfs_self_s_collectionURIs,
+    &impl_13_property_value_collectionURIs.pub
+};
+
+static const afw_runtime_property_t
+impl_13_property_description = {
+    &afw_vfs_self_s_description,
+    &afw_vfs_self_v_zz__This_is_the_single_object_type_of_objects_in_a_vfs_adapter_.pub
+};
+
+static const afw_runtime_property_t
+impl_13_property_objectType = {
+    &afw_vfs_self_s_objectType,
+    &afw_vfs_self_v__AdaptiveFile_vfs.pub
+};
+
+static const afw_value_object_t
+impl_13_property_value_propertyTypes = {
+    {&afw_value_permanent_object_inf},
+    (const afw_object_t *)&impl_14
+};
+
+static const afw_runtime_property_t
+impl_13_property_propertyTypes = {
+    &afw_vfs_self_s_propertyTypes,
+    &impl_13_property_value_propertyTypes.pub
 };
 
 static const afw_runtime_property_t *
 impl_13_properties[] = {
-    &impl_13_property_data,
-    &impl_13_property_isDirectory,
-    &impl_13_property_timeAccessed,
-    &impl_13_property_timeCreated,
-    &impl_13_property_timeModified,
-    &impl_13_property_vfsPath,
+    &impl_13_property_allowEntity,
+    &impl_13_property_collectionURIs,
+    &impl_13_property_description,
+    &impl_13_property_objectType,
+    &impl_13_property_propertyTypes,
     NULL
 };
 
@@ -2009,7 +2289,7 @@ impl_13_meta_object__value = {
 
 static const afw_utf8_t
 impl_13_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveFile_vfs/propertyTypes");
+    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveFile_vfs");
 
 static const afw_value_object_t
 impl_13__value;
@@ -2017,14 +2297,14 @@ impl_13__value;
 static const afw_runtime_const_object_instance_t
 impl_13 = {
     {
-        &afw_runtime_inf_const_embedded_untyped_object,
+        &afw_runtime_inf__AdaptiveObjectType_,
         NULL,
         (const afw_value_t *)&impl_13__value,
         {
             (const afw_object_t *)&impl_13_meta_object,
-            (const afw_object_t *)&impl_12,
-            &afw_vfs_self_s_propertyTypes,
-            &afw_vfs_self_s__AdaptivePropertyTypes_,
+            NULL,
+            &afw_vfs_self_s__AdaptiveFile_vfs,
+            &afw_vfs_self_s__AdaptiveObjectType_,
             &impl_13_meta_path
         }
     },
@@ -2037,150 +2317,12 @@ impl_13__value = {
     (const afw_object_t *)&impl_13
 };
 
-/*
- * /afw/_AdaptiveObjectType_/_AdaptiveFile_vfs
- */
-
-static const afw_value_boolean_t
-impl_12_property_value_allowEntity = {
-    {&afw_value_permanent_boolean_inf},
-    true
-};
-
-static const afw_runtime_property_t
-impl_12_property_allowEntity = {
-    &afw_vfs_self_s_allowEntity,
-    &impl_12_property_value_allowEntity.pub
-};
-
-static const afw_utf8_t
-impl_12_array_collectionURIs[] = {
-    AFW_UTF8_LITERAL("/afw/_AdaptiveCollection_/vfs_extension")
-};
-
-static const afw_value_array_t
-impl_12_list_collectionURIs__value;
-
-static const afw_array_wrapper_for_array_self_t
-impl_12_list_collectionURIs = {
-    {
-        &afw_array_wrapper_for_array_inf,
-        NULL,
-        (const afw_value_t *)&impl_12_list_collectionURIs__value
-    },
-    &afw_data_type_string_direct,
-    sizeof(impl_12_array_collectionURIs) / sizeof(afw_utf8_t),
-    &impl_12_array_collectionURIs
-};
-
-static const afw_value_array_t
-impl_12_list_collectionURIs__value = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_12_list_collectionURIs
-};
-
-static const afw_value_array_t
-impl_12_property_value_collectionURIs = {
-    {&afw_value_permanent_array_inf},
-    (const afw_array_t *)&impl_12_list_collectionURIs
-};
-
-static const afw_runtime_property_t
-impl_12_property_collectionURIs = {
-    &afw_vfs_self_s_collectionURIs,
-    &impl_12_property_value_collectionURIs.pub
-};
-
-static const afw_runtime_property_t
-impl_12_property_description = {
-    &afw_vfs_self_s_description,
-    &afw_vfs_self_v_zz__This_is_the_single_object_type_of_objects_in_a_vfs_adapter_.pub
-};
-
-static const afw_runtime_property_t
-impl_12_property_objectType = {
-    &afw_vfs_self_s_objectType,
-    &afw_vfs_self_v__AdaptiveFile_vfs.pub
-};
-
-static const afw_value_object_t
-impl_12_property_value_propertyTypes = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_13
-};
-
-static const afw_runtime_property_t
-impl_12_property_propertyTypes = {
-    &afw_vfs_self_s_propertyTypes,
-    &impl_12_property_value_propertyTypes.pub
-};
-
-static const afw_runtime_property_t *
-impl_12_properties[] = {
-    &impl_12_property_allowEntity,
-    &impl_12_property_collectionURIs,
-    &impl_12_property_description,
-    &impl_12_property_objectType,
-    &impl_12_property_propertyTypes,
-    NULL
-};
-
-static const afw_value_object_t
-impl_12_meta_object__value;
-
-static const afw_runtime_const_object_meta_object_t
-impl_12_meta_object = {
-    {
-        &afw_runtime_inf_const_meta_object_inf,
-        NULL,
-        (const afw_value_t *)&impl_12_meta_object__value
-    },
-    &impl_12,
-    NULL
-};
-
-static const afw_value_object_t
-impl_12_meta_object__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_12_meta_object
-};
-
-static const afw_utf8_t
-impl_12_meta_path =
-    AFW_UTF8_LITERAL("/afw/_AdaptiveObjectType_/_AdaptiveFile_vfs");
-
-static const afw_value_object_t
-impl_12__value;
-
-static const afw_runtime_const_object_instance_t
-impl_12 = {
-    {
-        &afw_runtime_inf__AdaptiveObjectType_,
-        NULL,
-        (const afw_value_t *)&impl_12__value,
-        {
-            (const afw_object_t *)&impl_12_meta_object,
-            NULL,
-            &afw_vfs_self_s__AdaptiveFile_vfs,
-            &afw_vfs_self_s__AdaptiveObjectType_,
-            &impl_12_meta_path
-        }
-    },
-    &impl_12_properties[0]
-};
-
-static const afw_value_object_t
-impl_12__value = {
-    {&afw_value_permanent_object_inf},
-    (const afw_object_t *)&impl_12
-};
-
 /* NULL terminated list of objects. */
 static const afw_object_t *
 impl_const_objects[] = {
     (const afw_object_t *)&impl_1,
     (const afw_object_t *)&impl_8,
-    (const afw_object_t *)&impl_12,
+    (const afw_object_t *)&impl_13,
     NULL
 };
 
