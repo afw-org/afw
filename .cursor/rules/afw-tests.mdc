@@ -44,6 +44,17 @@ When fixing a C/runtime bug, add `.as` coverage that fails without the fix:
 - Multi-request / use-after-free still warrants occasional `afwdev test --env-mode valgrind -j`.
 - Reference examples: `src/afw/tests/miscellaneous/property_get.as`, `variable_get.as` (default-object clone).
 
+## Model adapter tests
+
+| Group | Environment | Notes |
+|-------|-------------|--------|
+| `tests/model_adapter/` | `models` | Hybrid: file is model location **and** `mappedAdapterId` |
+| `tests/model_adapter_script_only/` | `models-script-only` | Issue **#109**: no `mappedAdapterId`; pure `on*`; errors when default processing is needed |
+
+- Seed models under `tests/environments/<name>/objects/_AdaptiveModel_/`.
+- Hook bodies may live in `includes/*.as` via `eval_from_file` from the model JSON.
+- Rules: **`afw-model-adapter`**. Conf/hook semantics SSOT: generate OT property `brief`/`description`.
+
 ## Object equality in asserts
 
 - Object/array `===` is **structural**. Fresh `{}`/`[]` pairs compare equal even when distinct instances.

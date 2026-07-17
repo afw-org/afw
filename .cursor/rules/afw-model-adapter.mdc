@@ -1,0 +1,59 @@
+---
+description: Model adapter — mapping, on* scripts, optional mappedAdapterId (issue #109)
+globs: src/afw/model/**,src/afw/function/afw_function_model.c,src/afw/generate/objects/_AdaptiveObjectType_/_AdaptiveConf_adapter_model.json,src/afw/generate/objects/_AdaptiveObjectType_/_AdaptiveModel*.json,src/afw/tests/model_adapter/**,src/afw/tests/model_adapter_script_only/**,src/afw/tests/environments/models/**,src/afw/tests/environments/models-script-only/**
+alwaysApply: false
+---
+
+# Model adapter
+
+`adapterType=model` loads an `_AdaptiveModel_` from a **model location** adapter and optionally map-and-forwards to a **mapped** backend. Object/property **`on*`** hooks are Adaptive Script per request.
+
+**Product text SSOT:** property `brief` / `description` (and related fields) on generate object types under `src/afw/generate/objects/_AdaptiveObjectType_/` — especially `_AdaptiveConf_adapter_model`, `_AdaptiveModelObjectType_`, `_AdaptiveModelPropertyType_`, `_AdaptiveModelCurrentOn*_`. Do not invent parallel long docs; regenerate after OT edits.
+
+Issue **#109** (Phase 1): **`mappedAdapterId` is optional**. Pure-script models that implement all used ops in `on*` need no dummy backend. Default processing without mapped must error clearly.
+
+## Key files
+
+| Path | Role |
+|------|------|
+| `model/afw_model_adapter.c` | Factory, create, session CRUD, default → mapped |
+| `model/afw_model_compile.c` | Compile model → OTs / property types / `on*` |
+| `model/afw_model_context.c` | `current::`, `useDefaultProcessing` sentinel, thunks |
+| `model/afw_model_internal.h` | `AFW_MODEL_ON_MAP`, self/session/context |
+| `model/afw_model_location.c` | Load/cache when `isModelLocation=true` |
+| `function/afw_function_model.c` | `model_default_*_action` |
+| Conf OT | `_AdaptiveConf_adapter_model.json` |
+
+## Conf
+
+- **Required:** `modelLocationAdapterId`, `modelId`
+- **Optional:** `mappedAdapterId` — needed only for default map-and-forward / `model_default_*` / `useDefaultProcessing` fall-through
+- When set: string, must not equal this adapter’s id
+
+## Runtime rules (#109)
+
+1. Create: missing mapped → NULL id/value; present → validate string + not-self.
+2. Never dereference `mapped_adapter_id` on the default path without a require-mapped helper.
+3. Helper error should name adapter id, op, and “implement on* or set mappedAdapterId”.
+4. `current::mappedAdapterId` nullish when unset (do not throw).
+5. `begin_transaction`: if no mapped, do not session-cache NULL; if mapped, keep current behavior.
+6. Property-level mapping with **default** get/retrieve still needs mapped.
+
+## Tests
+
+| Group | Env | Notes |
+|-------|-----|--------|
+| `tests/model_adapter/` | `models` | Hybrid; `mappedAdapterId: "file"` |
+| `tests/model_adapter_script_only/` | `models-script-only` | No mapped; pure `on*` + error cases (#109) |
+
+Mention `issue #109` in new case descriptions. Run: `afwdev test -p afw --test-pattern 'model_adapter' -j`.
+
+## Do / don’t
+
+- **Do** put user-facing conf/hook semantics on generate OT properties; rebuild with `./afwdev build --cdev -j`.
+- **Don’t** hand-edit `generated/`.
+- **Don’t** add a dummy adapter type just to satisfy conf.
+- **Don’t** silent-default when mapped is NULL.
+- Mutables in `on*` on long-lived hosts: issue **#110** / `afw-function` / `afw-value-memory`.
+
+Related: `afw-core-services`, `afw-generate-metadata`, `afw-tests`, `afw-adaptive-script`.

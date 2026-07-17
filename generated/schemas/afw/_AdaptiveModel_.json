@@ -85,8 +85,8 @@
                     "type": "string"
                 },
                 "mappedObjectType": {
-                    "description": "This is the objectType used internally by the adapter for this object type. It not specified, current::objectType is used.",
-                    "markdownDescription": "**Mapped Object Type**\n\nThis is the objectType used internally by the adapter for this object type. It not specified, current::objectType is used.",
+                    "description": "This is the objectType used on the mapped adapter for default processing. If not specified, current::objectType (this model object type id) is used. Default map-and-forward requires mappedAdapterId on the model adapter conf.",
+                    "markdownDescription": "**Mapped Object Type**\n\nThis is the objectType used on the mapped adapter for default processing. If not specified, current::objectType (this model object type id) is used. Default map-and-forward requires mappedAdapterId on the model adapter conf.",
                     "title": "Mapped Object Type",
                     "type": "string"
                 },
@@ -103,44 +103,44 @@
                     "type": "string"
                 },
                 "onAddObject": {
-                    "description": "This can be specified to override default add_object() processing. It can return current::useDefaultProcessing if default processing should occur as if onAddObject was not specified.",
-                    "markdownDescription": "**On add_object**\n\nThis can be specified to override default add_object() processing. It can return current::useDefaultProcessing if default processing should occur as if onAddObject was not specified.",
+                    "description": "Override default add_object() processing. Return the new objectId as a string. Return current::useDefaultProcessing to map-and-forward to mappedAdapterId (requires mappedAdapterId). If the model adapter has no mappedAdapterId, this hook must fully handle add for this object type when add is used.",
+                    "markdownDescription": "**On add_object**\n\nOverride default add_object() processing. Return the new objectId as a string. Return current::useDefaultProcessing to map-and-forward to mappedAdapterId (requires mappedAdapterId). If the model adapter has no mappedAdapterId, this hook must fully handle add for this object type when add is used.",
                     "title": "On add_object",
                     "type": "string"
                 },
                 "onDeleteObject": {
-                    "description": "This can be specified to override default delete_object() processing. It can return current::useDefaultProcessing if default processing should occur as if onDeleteObject was not specified.",
-                    "markdownDescription": "**On delete_object**\n\nThis can be specified to override default delete_object() processing. It can return current::useDefaultProcessing if default processing should occur as if onDeleteObject was not specified.",
+                    "description": "Override default delete_object() processing. Return current::useDefaultProcessing to map-and-forward to mappedAdapterId (requires mappedAdapterId). If the model adapter has no mappedAdapterId, this hook must fully handle delete for this object type when delete is used.",
+                    "markdownDescription": "**On delete_object**\n\nOverride default delete_object() processing. Return current::useDefaultProcessing to map-and-forward to mappedAdapterId (requires mappedAdapterId). If the model adapter has no mappedAdapterId, this hook must fully handle delete for this object type when delete is used.",
                     "title": "On delete_object",
                     "type": "string"
                 },
                 "onGetInitialObjectId": {
-                    "description": "This optional script value is evaluated to determine the objectId on add requests. If not specified, current::objectId is used and if that is not specified, the adapter must be capable of assigning one. Even if specified, the adapter is free to ignore this.",
-                    "markdownDescription": "**On Get Initial ObjectId**\n\nThis optional script value is evaluated to determine the objectId on add requests. If not specified, current::objectId is used and if that is not specified, the adapter must be capable of assigning one. Even if specified, the adapter is free to ignore this.",
+                    "description": "This optional script value is evaluated during default add processing to determine the objectId. If not specified, current::objectId is used and if that is not specified, the mapped adapter may assign one. Even if specified, the mapped adapter is free to ignore this. Only used when default add processing runs (requires mappedAdapterId unless onAddObject fully handles add).",
+                    "markdownDescription": "**On Get Initial ObjectId**\n\nThis optional script value is evaluated during default add processing to determine the objectId. If not specified, current::objectId is used and if that is not specified, the mapped adapter may assign one. Even if specified, the mapped adapter is free to ignore this. Only used when default add processing runs (requires mappedAdapterId unless onAddObject fully handles add).",
                     "title": "On Get Initial ObjectId",
                     "type": "string"
                 },
                 "onGetObject": {
-                    "description": "This can be specified to override default get_object() processing. The script can return an object or undefined if object was to found. It can also return current::useDefaultProcessing if default processing should occur as if onGetObject was not specified.",
-                    "markdownDescription": "**On get_object**\n\nThis can be specified to override default get_object() processing. The script can return an object or undefined if object was to found. It can also return current::useDefaultProcessing if default processing should occur as if onGetObject was not specified.",
+                    "description": "Override default get_object() processing. Return an object, or nullish if not found. Return current::useDefaultProcessing to map-and-forward to mappedAdapterId (requires mappedAdapterId). If the model adapter has no mappedAdapterId, this hook must fully handle get for this object type when get is used.",
+                    "markdownDescription": "**On get_object**\n\nOverride default get_object() processing. Return an object, or nullish if not found. Return current::useDefaultProcessing to map-and-forward to mappedAdapterId (requires mappedAdapterId). If the model adapter has no mappedAdapterId, this hook must fully handle get for this object type when get is used.",
                     "title": "On get_object",
                     "type": "string"
                 },
                 "onModifyObject": {
-                    "description": "This can be specified to override default modify_object() processing. It can return current::useDefaultProcessing if default processing should occur as if onModifyObject was not specified.",
-                    "markdownDescription": "**On modify_object**\n\nThis can be specified to override default modify_object() processing. It can return current::useDefaultProcessing if default processing should occur as if onModifyObject was not specified.",
+                    "description": "Override default modify_object() processing. Return current::useDefaultProcessing to map-and-forward to mappedAdapterId (requires mappedAdapterId). If the model adapter has no mappedAdapterId, this hook must fully handle modify for this object type when modify is used.",
+                    "markdownDescription": "**On modify_object**\n\nOverride default modify_object() processing. Return current::useDefaultProcessing to map-and-forward to mappedAdapterId (requires mappedAdapterId). If the model adapter has no mappedAdapterId, this hook must fully handle modify for this object type when modify is used.",
                     "title": "On modify_object",
                     "type": "string"
                 },
                 "onReplaceObject": {
-                    "description": "This can be specified to override default replace_object() processing. It can return current::useDefaultProcessing if default processing should occur as if onReplaceObjects was not specified.",
-                    "markdownDescription": "**On replace_object**\n\nThis can be specified to override default replace_object() processing. It can return current::useDefaultProcessing if default processing should occur as if onReplaceObjects was not specified.",
+                    "description": "Override default replace_object() processing. Return current::useDefaultProcessing to map-and-forward to mappedAdapterId (requires mappedAdapterId). If the model adapter has no mappedAdapterId, this hook must fully handle replace for this object type when replace is used.",
+                    "markdownDescription": "**On replace_object**\n\nOverride default replace_object() processing. Return current::useDefaultProcessing to map-and-forward to mappedAdapterId (requires mappedAdapterId). If the model adapter has no mappedAdapterId, this hook must fully handle replace for this object type when replace is used.",
                     "title": "On replace_object",
                     "type": "string"
                 },
                 "onRetrieveObjects": {
-                    "description": "This can be specified to override default retrieve_objects() processing. This script should call current::returnObject(object) with each object to return. It can also return current::useDefaultProcessing if default processing should occur as if onRetrieveObjects was not specified.",
-                    "markdownDescription": "**On retrieve_objects**\n\nThis can be specified to override default retrieve_objects() processing. This script should call current::returnObject(object) with each object to return. It can also return current::useDefaultProcessing if default processing should occur as if onRetrieveObjects was not specified.",
+                    "description": "Override default retrieve_objects() processing. Call current::returnObject(object) for each object to return (optional mapBack flag). Return current::useDefaultProcessing to map-and-forward to mappedAdapterId (requires mappedAdapterId). If the model adapter has no mappedAdapterId, this hook must fully handle retrieve for this object type when retrieve is used.",
+                    "markdownDescription": "**On retrieve_objects**\n\nOverride default retrieve_objects() processing. Call current::returnObject(object) for each object to return (optional mapBack flag). Return current::useDefaultProcessing to map-and-forward to mappedAdapterId (requires mappedAdapterId). If the model adapter has no mappedAdapterId, this hook must fully handle retrieve for this object type when retrieve is used.",
                     "title": "On retrieve_objects",
                     "type": "string"
                 },
@@ -224,50 +224,50 @@
                     "type": "object"
                 },
                 "mappedObjectType": {
-                    "description": "This is the objectType used internally by the adapter for this object type. It not specified, current::objectType is used.",
-                    "markdownDescription": "**Mapped Object Type**\n\nThis is the objectType used internally by the adapter for this object type. It not specified, current::objectType is used.",
+                    "description": "This is the objectType used on the mapped adapter for default processing. If not specified, current::objectType (this model object type id) is used. Default map-and-forward requires mappedAdapterId on the model adapter conf.",
+                    "markdownDescription": "**Mapped Object Type**\n\nThis is the objectType used on the mapped adapter for default processing. If not specified, current::objectType (this model object type id) is used. Default map-and-forward requires mappedAdapterId on the model adapter conf.",
                     "title": "Mapped Object Type",
                     "type": "string"
                 },
                 "onAddObject": {
-                    "description": "This can be specified to override default add_object() processing. It can return current::useDefaultProcessing if default processing should occur as if onAddObject was not specified.",
-                    "markdownDescription": "**On add_object**\n\nThis can be specified to override default add_object() processing. It can return current::useDefaultProcessing if default processing should occur as if onAddObject was not specified.",
+                    "description": "Override default add_object() processing. Return the new objectId as a string. Return current::useDefaultProcessing to map-and-forward to mappedAdapterId (requires mappedAdapterId). If the model adapter has no mappedAdapterId, this hook must fully handle add for this object type when add is used.",
+                    "markdownDescription": "**On add_object**\n\nOverride default add_object() processing. Return the new objectId as a string. Return current::useDefaultProcessing to map-and-forward to mappedAdapterId (requires mappedAdapterId). If the model adapter has no mappedAdapterId, this hook must fully handle add for this object type when add is used.",
                     "title": "On add_object",
                     "type": "string"
                 },
                 "onDeleteObject": {
-                    "description": "This can be specified to override default delete_object() processing. It can return current::useDefaultProcessing if default processing should occur as if onDeleteObject was not specified.",
-                    "markdownDescription": "**On delete_object**\n\nThis can be specified to override default delete_object() processing. It can return current::useDefaultProcessing if default processing should occur as if onDeleteObject was not specified.",
+                    "description": "Override default delete_object() processing. Return current::useDefaultProcessing to map-and-forward to mappedAdapterId (requires mappedAdapterId). If the model adapter has no mappedAdapterId, this hook must fully handle delete for this object type when delete is used.",
+                    "markdownDescription": "**On delete_object**\n\nOverride default delete_object() processing. Return current::useDefaultProcessing to map-and-forward to mappedAdapterId (requires mappedAdapterId). If the model adapter has no mappedAdapterId, this hook must fully handle delete for this object type when delete is used.",
                     "title": "On delete_object",
                     "type": "string"
                 },
                 "onGetInitialObjectId": {
-                    "description": "This optional script value is evaluated to determine the objectId on add requests. If not specified, current::objectId is used and if that is not specified, the adapter must be capable of assigning one. Even if specified, the adapter is free to ignore this.",
-                    "markdownDescription": "**On Get Initial ObjectId**\n\nThis optional script value is evaluated to determine the objectId on add requests. If not specified, current::objectId is used and if that is not specified, the adapter must be capable of assigning one. Even if specified, the adapter is free to ignore this.",
+                    "description": "This optional script value is evaluated during default add processing to determine the objectId. If not specified, current::objectId is used and if that is not specified, the mapped adapter may assign one. Even if specified, the mapped adapter is free to ignore this. Only used when default add processing runs (requires mappedAdapterId unless onAddObject fully handles add).",
+                    "markdownDescription": "**On Get Initial ObjectId**\n\nThis optional script value is evaluated during default add processing to determine the objectId. If not specified, current::objectId is used and if that is not specified, the mapped adapter may assign one. Even if specified, the mapped adapter is free to ignore this. Only used when default add processing runs (requires mappedAdapterId unless onAddObject fully handles add).",
                     "title": "On Get Initial ObjectId",
                     "type": "string"
                 },
                 "onGetObject": {
-                    "description": "This can be specified to override default get_object() processing. The script can return an object or undefined if object was to found. It can also return current::useDefaultProcessing if default processing should occur as if onGetObject was not specified.",
-                    "markdownDescription": "**On get_object**\n\nThis can be specified to override default get_object() processing. The script can return an object or undefined if object was to found. It can also return current::useDefaultProcessing if default processing should occur as if onGetObject was not specified.",
+                    "description": "Override default get_object() processing. Return an object, or nullish if not found. Return current::useDefaultProcessing to map-and-forward to mappedAdapterId (requires mappedAdapterId). If the model adapter has no mappedAdapterId, this hook must fully handle get for this object type when get is used.",
+                    "markdownDescription": "**On get_object**\n\nOverride default get_object() processing. Return an object, or nullish if not found. Return current::useDefaultProcessing to map-and-forward to mappedAdapterId (requires mappedAdapterId). If the model adapter has no mappedAdapterId, this hook must fully handle get for this object type when get is used.",
                     "title": "On get_object",
                     "type": "string"
                 },
                 "onModifyObject": {
-                    "description": "This can be specified to override default modify_object() processing. It can return current::useDefaultProcessing if default processing should occur as if onModifyObject was not specified.",
-                    "markdownDescription": "**On modify_object**\n\nThis can be specified to override default modify_object() processing. It can return current::useDefaultProcessing if default processing should occur as if onModifyObject was not specified.",
+                    "description": "Override default modify_object() processing. Return current::useDefaultProcessing to map-and-forward to mappedAdapterId (requires mappedAdapterId). If the model adapter has no mappedAdapterId, this hook must fully handle modify for this object type when modify is used.",
+                    "markdownDescription": "**On modify_object**\n\nOverride default modify_object() processing. Return current::useDefaultProcessing to map-and-forward to mappedAdapterId (requires mappedAdapterId). If the model adapter has no mappedAdapterId, this hook must fully handle modify for this object type when modify is used.",
                     "title": "On modify_object",
                     "type": "string"
                 },
                 "onReplaceObject": {
-                    "description": "This can be specified to override default replace_object() processing. It can return current::useDefaultProcessing if default processing should occur as if onReplaceObjects was not specified.",
-                    "markdownDescription": "**On replace_object**\n\nThis can be specified to override default replace_object() processing. It can return current::useDefaultProcessing if default processing should occur as if onReplaceObjects was not specified.",
+                    "description": "Override default replace_object() processing. Return current::useDefaultProcessing to map-and-forward to mappedAdapterId (requires mappedAdapterId). If the model adapter has no mappedAdapterId, this hook must fully handle replace for this object type when replace is used.",
+                    "markdownDescription": "**On replace_object**\n\nOverride default replace_object() processing. Return current::useDefaultProcessing to map-and-forward to mappedAdapterId (requires mappedAdapterId). If the model adapter has no mappedAdapterId, this hook must fully handle replace for this object type when replace is used.",
                     "title": "On replace_object",
                     "type": "string"
                 },
                 "onRetrieveObjects": {
-                    "description": "This can be specified to override default retrieve_objects() processing. This script should call current::returnObject(object) with each object to return. It can also return current::useDefaultProcessing if default processing should occur as if onRetrieveObjects was not specified.",
-                    "markdownDescription": "**On retrieve_objects**\n\nThis can be specified to override default retrieve_objects() processing. This script should call current::returnObject(object) with each object to return. It can also return current::useDefaultProcessing if default processing should occur as if onRetrieveObjects was not specified.",
+                    "description": "Override default retrieve_objects() processing. Call current::returnObject(object) for each object to return (optional mapBack flag). Return current::useDefaultProcessing to map-and-forward to mappedAdapterId (requires mappedAdapterId). If the model adapter has no mappedAdapterId, this hook must fully handle retrieve for this object type when retrieve is used.",
+                    "markdownDescription": "**On retrieve_objects**\n\nOverride default retrieve_objects() processing. Call current::returnObject(object) for each object to return (optional mapBack flag). Return current::useDefaultProcessing to map-and-forward to mappedAdapterId (requires mappedAdapterId). If the model adapter has no mappedAdapterId, this hook must fully handle retrieve for this object type when retrieve is used.",
                     "title": "On retrieve_objects",
                     "type": "string"
                 },
@@ -679,8 +679,8 @@
         },
         "_AdaptiveModel_": {
             "additionalProperties": false,
-            "description": "Adaptive map object type.",
-            "markdownDescription": "Adaptive map object type.",
+            "description": "Adaptive model definition: object types with optional property/type mapping to a mapped adapter and/or on* Adaptive Scripts. A model may fully virtualize operations via on* without a mappedAdapterId on the model adapter conf (pure-script), or hybridize mapping with script overrides.",
+            "markdownDescription": "Adaptive model definition: object types with optional property/type mapping to a mapped adapter and/or on* Adaptive Scripts. A model may fully virtualize operations via on* without a mappedAdapterId on the model adapter conf (pure-script), or hybridize mapping with script overrides.",
             "properties": {
                 "_meta_": {
                     "additionalProperties": true,
@@ -1647,8 +1647,8 @@
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "additionalProperties": false,
-    "description": "Adaptive map object type.",
-    "markdownDescription": "Adaptive map object type.",
+    "description": "Adaptive model definition: object types with optional property/type mapping to a mapped adapter and/or on* Adaptive Scripts. A model may fully virtualize operations via on* without a mappedAdapterId on the model adapter conf (pure-script), or hybridize mapping with script overrides.",
+    "markdownDescription": "Adaptive model definition: object types with optional property/type mapping to a mapped adapter and/or on* Adaptive Scripts. A model may fully virtualize operations via on* without a mappedAdapterId on the model adapter conf (pure-script), or hybridize mapping with script overrides.",
     "properties": {
         "_meta_": {
             "additionalProperties": true,

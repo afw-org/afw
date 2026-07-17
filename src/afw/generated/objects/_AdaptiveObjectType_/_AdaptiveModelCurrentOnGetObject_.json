@@ -36,7 +36,7 @@
         "mappedAdapterId": {
             "brief": "Mapped Adapter Id",
             "dataType": "string",
-            "description": "The adapter id of the object being converted to object.",
+            "description": "The model adapter conf mappedAdapterId, when configured. Undefined/nullish when the model adapter omits mappedAdapterId (pure-script models that implement used operations in on* hooks).",
             "label": "Mapped Adapter Id",
             "runtime": {
                 "onGetValueCFunctionName": "afw_model_internal_get_current_mappedAdapterId"
@@ -71,7 +71,7 @@
         },
         "useDefaultProcessing": {
             "brief": "Use default processing return value",
-            "description": "Return this value to cause default processing to occur.",
+            "description": "Return this value to cause default map-and-forward processing. Default processing requires mappedAdapterId on the model adapter conf; without it, an error is thrown.",
             "label": "Use Default Processing",
             "runtime": {
                 "onGetValueCFunctionName": "afw_model_internal_get_current_useDefaultProcessing"
