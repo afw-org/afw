@@ -30,6 +30,12 @@ Do not invent new lifetime paths; match existing create_* patterns.
 - Evaluation temporaries and results that belong to the current activation should use **current `scope->p`** (not a longer-lived pool) unless they intentionally escape.
 - Subpool + RC already handle bulk release and escape reparenting — polish the value-inf hooks and call sites; do not replace the pool model.
 
+## Shared mutables and defaults (issue #110 class)
+
+- **Permanent** values and some **compiled literals** (`{}`, `[]`, const objects) may be **shared** across evaluations or requests. Script may still mutate object/array contents via property assignment.
+- Built-ins that **return a default** for a missing property/variable/key must not hand back a shared mutable without **`afw_value_clone` into the call/result pool** (`afw-function`). Residual properties or use-after-free show up on the **second** request in long-running hosts.
+- Prefer unit tests that mutate one returned default and assert a later call gets a clean default (`afw-adaptive-script`, `afw-tests`). Multi-request free paths: `afwdev test --env-mode valgrind` and/or `afwfcgi`.
+
 ## Source of truth and producers
 
 - Metadata: `generate/objects/_AdaptiveDataTypeGenerate_/*.json` (`cType`, `special`, `scalar`, …).
@@ -53,4 +59,4 @@ Never hand-edit `generated/` — change generator or JSON, then `./afwdev build 
 
 ## Related
 
-- `afw-environment` (`register_core` bootstrap), `afw-script-eval`, `afw-c-runtime`, `afw-afwdev-generate`, `afw-generate-metadata`, `@AGENTS.md`
+- `afw-environment` (`register_core` bootstrap), `afw-script-eval`, `afw-function`, `afw-c-runtime`, `afw-adaptive-script`, `afw-afwdev-generate`, `afw-generate-metadata`, `@AGENTS.md`
