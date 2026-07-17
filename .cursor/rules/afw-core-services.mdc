@@ -20,7 +20,7 @@ libafw is not only a script engine. Hosts, adapters, and policies plug in throug
 - Factories register as `adapter_type`; instances as `adapter_id`. Impl helpers in `afw_adapter_impl*`.
 - **Core built-in adapter types** (registered in `afw_environment_register_core.c`): e.g. `afw`, `file`, `model`, `runtime`. **Extension adapter types** (ldap, lmdb, vfs, …) use the same interfaces and register the same way — see `afw-extensions`.
 - **Objects** (`object/`): `afw_object_t` + meta/path/type/view. Prefer interface methods and existing helpers (`afw_object_create*`, property meta) over ad-hoc structs.
-- **Model** (`model/`): maps between adapter/requestor shapes; factory `afw_adapter_factory_model`. Object-type `on*` handlers are Adaptive Script evaluated per request on long-lived hosts — treat defaults/mutables carefully (`afw-adaptive-script`, issue #110 / `afw-function` default clone).
+- **Model** (`model/`): maps between adapter/requestor shapes; factory `afw_adapter_factory_model`. Object-type `on*` handlers are Adaptive Script evaluated per request on long-lived hosts — treat defaults/mutables carefully (`afw-adaptive-script`, issue #110 / `afw-function` default clone). **`mappedAdapterId`** is optional default backend (issue **#109** pure-script models); product text on generate OT properties — see **`afw-model-adapter`**.
 - **Runtime** (`runtime/`): read-only views of environment/metadata objects (`afw_runtime.h`, value accessors).
 - **Query** (`query_criteria/`): filters for retrieve.
 
@@ -42,4 +42,4 @@ libafw is not only a script engine. Hosts, adapters, and policies plug in throug
 3. **Register** factories/instances on the environment (`afw-environment`) so script and request paths resolve them by id/type — same APIs whether code lives in core or an extension.
 4. Allocate through pools/`xctx`; return adaptive objects/values, not raw malloc'd graphs.
 
-Related: `afw-environment`, `afw-core-layout`, `afw-headers`, `afw-c-runtime`, `afw-adaptive-script`, `afw-generate-metadata`.
+Related: `afw-environment`, `afw-core-layout`, `afw-headers`, `afw-c-runtime`, `afw-adaptive-script`, `afw-generate-metadata`, `afw-model-adapter`.

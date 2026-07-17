@@ -436,6 +436,23 @@ afw_model_internal_create_to_adapter_skeleton_context(
     afw_xctx_t *xctx);
 
 
+/**
+ * @internal
+ * @brief Require mappedAdapterId for default map-and-forward processing.
+ * @param adapter model adapter self.
+ * @param operation short op name (e.g. "get_object") for the error message.
+ * @param xctx of caller.
+ *
+ * Throws if adapter has no mappedAdapterId. Use before any default-processing
+ * path that would call the mapped backend (issue #109).
+ */
+AFW_DECLARE_INTERNAL(void)
+afw_model_internal_require_mapped_adapter(
+    const afw_model_internal_adapter_self_t *adapter,
+    const afw_utf8_z_t *operation,
+    afw_xctx_t *xctx);
+
+
 AFW_DECLARE_INTERNAL(void)
 afw_model_internal_complete_ctx_default_add_object(
     afw_model_internal_context_t *ctx,

@@ -193,6 +193,8 @@ afw_function_execute_model_default_add_object_action(
 
         /* Get session self and model. */
         impl_get_self_and_model(&self, &model, adapterId_value, modelId_value, xctx);
+        afw_model_internal_require_mapped_adapter(self->adapter,
+            "model_default_add_object_action", xctx);
 
         /* Prime context for "to adapter". */
         ctx = afw_model_internal_create_to_adapter_skeleton_context(
@@ -339,6 +341,8 @@ afw_function_execute_model_default_delete_object_action(
 
         /* Get session self and model. */
         impl_get_self_and_model(&self, &model, adapterId_value, modelId_value, xctx);
+        afw_model_internal_require_mapped_adapter(self->adapter,
+            "model_default_delete_object_action", xctx);
 
         /* Prime context for "to adapter". */
         ctx = afw_model_internal_create_to_adapter_skeleton_context(
@@ -350,7 +354,7 @@ afw_function_execute_model_default_delete_object_action(
             &objectId_value->internal,
             xctx);
 
-        /* Complete ctx for default add object. */
+        /* Complete ctx for default delete object. */
         afw_model_internal_complete_ctx_default_delete_object(ctx, xctx);
     }
 
@@ -508,6 +512,8 @@ afw_function_execute_model_default_modify_object_action(
 
         /* Get session self and model. */
         impl_get_self_and_model(&self, &model, adapterId_value, modelId_value, xctx);
+        afw_model_internal_require_mapped_adapter(self->adapter,
+            "model_default_modify_object_action", xctx);
 
         /* Prime context for "to adapter". */
         ctx = afw_model_internal_create_to_adapter_skeleton_context(
@@ -658,6 +664,8 @@ afw_function_execute_model_default_replace_object_action(
 
         /* Get session self and model. */
         impl_get_self_and_model(&self, &model, adapterId_value, modelId_value, xctx);
+        afw_model_internal_require_mapped_adapter(self->adapter,
+            "model_default_replace_object_action", xctx);
 
         /* Prime context for "to adapter". */
         ctx = afw_model_internal_create_to_adapter_skeleton_context(
@@ -672,7 +680,7 @@ afw_function_execute_model_default_replace_object_action(
         /** @todo This next line was missing so do a complete review of this. */
         ctx->object_value = &object_value->pub;
 
-        /* Complete ctx for default add object. */
+        /* Complete ctx for default replace object. */
         afw_model_internal_complete_ctx_default_replace_object(ctx, xctx);
     }
 

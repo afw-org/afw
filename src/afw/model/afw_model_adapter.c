@@ -71,6 +71,29 @@ afw_adapter_factory_model =
 };
 
 
+/*
+ * Require mappedAdapterId for default map-and-forward (issue #109).
+ */
+AFW_DEFINE_INTERNAL(void)
+afw_model_internal_require_mapped_adapter(
+    const afw_model_internal_adapter_self_t *adapter,
+    const afw_utf8_z_t *operation,
+    afw_xctx_t *xctx)
+{
+    if (adapter->mapped_adapter_id) {
+        return;
+    }
+
+    AFW_THROW_ERROR_FZ(general, xctx,
+        "Model adapter " AFW_UTF8_FMT_Q
+        " has no mappedAdapterId; default processing for %s is not available. "
+        "Implement the corresponding on* hook on the model object type, "
+        "or configure mappedAdapterId.",
+        AFW_UTF8_FMT_ARG(&adapter->pub.adapter_id),
+        operation);
+}
+
+
 static const afw_object_t *
 impl_adapt_object_from_adapter(
     afw_model_internal_adapter_session_self_t *self,
@@ -860,22 +883,28 @@ afw_model_adapter_create_cede_p(
 
     AFW_ENDTRY;
 
-    /* mappedAdapterId */
+    /*
+     * mappedAdapterId is optional (issue #109). Required only when default
+     * map-and-forward processing is used. Pure-script models that implement
+     * all used operations in on* may omit it.
+     */
     self->mappedAdapterId_value = afw_object_get_property(properties,
         afw_s_mappedAdapterId, xctx);
-    if (!self->mappedAdapterId_value) {
-        afw_adapter_impl_throw_property_required(adapter,
-        afw_s_mappedAdapterId, xctx);
+    if (self->mappedAdapterId_value) {
+        if (!afw_value_is_string(self->mappedAdapterId_value)) {
+            afw_adapter_impl_throw_property_invalid(adapter,
+                afw_s_mappedAdapterId, xctx);
+        }
+        self->mapped_adapter_id =
+            &((const afw_value_string_t *)self->mappedAdapterId_value)->internal;
+        if (afw_utf8_equal(self->mapped_adapter_id, &self->pub.adapter_id)) {
+            afw_adapter_impl_throw_property_invalid(adapter,
+                afw_s_mappedAdapterId, xctx);
+        }
     }
-    if (!afw_value_is_string(self->mappedAdapterId_value)) {
-        afw_adapter_impl_throw_property_invalid(adapter,
-            afw_s_mappedAdapterId, xctx);
-    }
-    self->mapped_adapter_id =
-        &((const afw_value_string_t *)self->mappedAdapterId_value)->internal;
-    if (afw_utf8_equal(self->mapped_adapter_id, &self->pub.adapter_id)) {
-        afw_adapter_impl_throw_property_invalid(adapter,
-            afw_s_mappedAdapterId, xctx);
+    else {
+        self->mapped_adapter_id = NULL;
+        self->mappedAdapterId_value = NULL;
     }
 
     /* Return adapter. */
@@ -1163,6 +1192,9 @@ impl_afw_adapter_session_retrieve_objects(
                 }
 
                 if (use_default_processing) {
+                    afw_model_internal_require_mapped_adapter(self->adapter,
+                        "retrieve_objects", xctx);
+
                     if (criteria) {
                         cb_ctx.criteria = afw_model_internal_convert_query_criteria(
                             cb_ctx.model_object_type, criteria, p, xctx);
@@ -1295,6 +1327,8 @@ impl_afw_adapter_session_get_object(
 
                 /* Get object and map.  */
                 if (use_default_processing) {
+                    afw_model_internal_require_mapped_adapter(self->adapter,
+                        "get_object", xctx);
                     mapped_object = afw_adapter_get_object(
                         self->adapter->mapped_adapter_id,
                         cb_ctx.model_object_type->mapped_object_type_id,
@@ -1490,8 +1524,10 @@ impl_afw_adapter_session_add_object(
                 }
             }
 
-            /* If no onAddObject or it returned undefined, do default processing. */
+            /* If no onAddObject or it returned useDefaultProcessing, do default. */
             if (use_default_processing) {
+                afw_model_internal_require_mapped_adapter(self->adapter,
+                    "add_object", xctx);
                 afw_model_internal_complete_ctx_default_add_object(ctx, xctx);
                 journal_entry = afw_object_create(ctx->p, xctx);
                 mapped_object_id = afw_adapter_add_object(
@@ -1656,8 +1692,10 @@ impl_afw_adapter_session_modify_object(
                 }
             }
 
-            /* If no onModifyObject or it returned undefined, do default processing. */
-            if(use_default_processing) {
+            /* If no onModifyObject or it returned useDefaultProcessing, do default. */
+            if (use_default_processing) {
+                afw_model_internal_require_mapped_adapter(self->adapter,
+                    "modify_object", xctx);
                 afw_model_internal_complete_ctx_default_modify_object(ctx, xctx);
                 journal_entry = afw_object_create(ctx->p, xctx);
                 afw_adapter_modify_object(
@@ -1751,8 +1789,10 @@ impl_afw_adapter_session_replace_object(
                 }
             }
 
-            /* If no onReplaceObject or it returned undefined, do default processing. */
+            /* If no onReplaceObject or it returned useDefaultProcessing, do default. */
             if (use_default_processing) {
+                afw_model_internal_require_mapped_adapter(self->adapter,
+                    "replace_object", xctx);
                 journal_entry = afw_object_create(ctx->p, xctx);
                 afw_model_internal_complete_ctx_default_replace_object(ctx, xctx);
                 afw_adapter_replace_object(
@@ -1843,8 +1883,10 @@ impl_afw_adapter_session_delete_object(
                 }
             }
 
-            /* If no onDeleteObjector or it returned undefined, do default processing. */
+            /* If no onDeleteObject or it returned useDefaultProcessing, do default. */
             if (use_default_processing) {
+                afw_model_internal_require_mapped_adapter(self->adapter,
+                    "delete_object", xctx);
                 journal_entry = afw_object_create_unmanaged(ctx->p, xctx);
                 afw_model_internal_complete_ctx_default_delete_object(ctx, xctx);
                 afw_adapter_delete_object(self->adapter->mapped_adapter_id,
@@ -1876,6 +1918,14 @@ impl_afw_adapter_session_begin_transaction (
 {
     afw_model_internal_adapter_self_t * adapter =
         (afw_model_internal_adapter_self_t *)instance->adapter;
+
+    /*
+     * If no mappedAdapterId (pure-script model), there is no mapped backend
+     * transaction to open (issue #109).
+     */
+    if (!adapter->mapped_adapter_id) {
+        return NULL;
+    }
 
     /* Get cached session with begin_transaction. Ignore result. */
     afw_adapter_session_get_cached(adapter->mapped_adapter_id,

@@ -26,8 +26,8 @@
                     "type": "object"
                 },
                 "mappedAdapterId": {
-                    "description": "The adapter id of the object being converted to object.",
-                    "markdownDescription": "**Mapped Adapter Id**\n\nThe adapter id of the object being converted to object.",
+                    "description": "The model adapter conf mappedAdapterId, when configured. Undefined/nullish when the model adapter omits mappedAdapterId (pure-script models that implement used operations in on* hooks).",
+                    "markdownDescription": "**Mapped Adapter Id**\n\nThe model adapter conf mappedAdapterId, when configured. Undefined/nullish when the model adapter omits mappedAdapterId (pure-script models that implement used operations in on* hooks).",
                     "title": "Mapped Adapter Id",
                     "type": "string"
                 },
@@ -85,8 +85,8 @@
                     "type": "string"
                 },
                 "useDefaultProcessing": {
-                    "description": "Return this value to cause default processing to occur.",
-                    "markdownDescription": "**Use Default Processing**\n\nReturn this value to cause default processing to occur.",
+                    "description": "Return this value to cause default map-and-forward processing. Default processing requires mappedAdapterId on the model adapter conf; without it, an error is thrown.",
+                    "markdownDescription": "**Use Default Processing**\n\nReturn this value to cause default map-and-forward processing. Default processing requires mappedAdapterId on the model adapter conf; without it, an error is thrown.",
                     "title": "Use Default Processing"
                 },
                 "value": {
@@ -113,8 +113,8 @@
                     "type": "object"
                 },
                 "mappedAdapterId": {
-                    "description": "The adapter id of the object being converted to object.",
-                    "markdownDescription": "**Mapped Adapter Id**\n\nThe adapter id of the object being converted to object.",
+                    "description": "The model adapter conf mappedAdapterId, when configured. Undefined/nullish when the model adapter omits mappedAdapterId (pure-script models that implement used operations in on* hooks).",
+                    "markdownDescription": "**Mapped Adapter Id**\n\nThe model adapter conf mappedAdapterId, when configured. Undefined/nullish when the model adapter omits mappedAdapterId (pure-script models that implement used operations in on* hooks).",
                     "title": "Mapped Adapter Id",
                     "type": "string"
                 },
@@ -172,8 +172,8 @@
                     "type": "string"
                 },
                 "useDefaultProcessing": {
-                    "description": "Return this value to cause default processing to occur.",
-                    "markdownDescription": "**Use Default Processing**\n\nReturn this value to cause default processing to occur.",
+                    "description": "Return this value to cause default map-and-forward processing. Default processing requires mappedAdapterId on the model adapter conf; without it, an error is thrown.",
+                    "markdownDescription": "**Use Default Processing**\n\nReturn this value to cause default map-and-forward processing. Default processing requires mappedAdapterId on the model adapter conf; without it, an error is thrown.",
                     "title": "Use Default Processing"
                 },
                 "value": {
@@ -210,8 +210,8 @@
             "type": "object"
         },
         "mappedAdapterId": {
-            "description": "The adapter id of the object being converted to object.",
-            "markdownDescription": "**Mapped Adapter Id**\n\nThe adapter id of the object being converted to object.",
+            "description": "The model adapter conf mappedAdapterId, when configured. Undefined/nullish when the model adapter omits mappedAdapterId (pure-script models that implement used operations in on* hooks).",
+            "markdownDescription": "**Mapped Adapter Id**\n\nThe model adapter conf mappedAdapterId, when configured. Undefined/nullish when the model adapter omits mappedAdapterId (pure-script models that implement used operations in on* hooks).",
             "title": "Mapped Adapter Id",
             "type": "string"
         },
@@ -269,8 +269,8 @@
             "type": "string"
         },
         "useDefaultProcessing": {
-            "description": "Return this value to cause default processing to occur.",
-            "markdownDescription": "**Use Default Processing**\n\nReturn this value to cause default processing to occur.",
+            "description": "Return this value to cause default map-and-forward processing. Default processing requires mappedAdapterId on the model adapter conf; without it, an error is thrown.",
+            "markdownDescription": "**Use Default Processing**\n\nReturn this value to cause default map-and-forward processing. Default processing requires mappedAdapterId on the model adapter conf; without it, an error is thrown.",
             "title": "Use Default Processing"
         },
         "value": {
