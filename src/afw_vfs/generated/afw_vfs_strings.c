@@ -230,6 +230,12 @@ afw_vfs_self_v_indirect = {
 };
 
 const afw_value_string_t
+afw_vfs_self_v_integer = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_integer)
+};
+
+const afw_value_string_t
 afw_vfs_self_v_isDirectory = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_VFS_Q_isDirectory)
@@ -245,6 +251,12 @@ const afw_value_string_t
 afw_vfs_self_v_markExecutable = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_VFS_Q_markExecutable)
+};
+
+const afw_value_string_t
+afw_vfs_self_v_maxReadBytes = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_maxReadBytes)
 };
 
 const afw_value_string_t
@@ -398,6 +410,12 @@ afw_vfs_self_v_zz__2603 = {
 };
 
 const afw_value_string_t
+afw_vfs_self_v_zz__2604 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__2604)
+};
+
+const afw_value_string_t
 afw_vfs_self_v_zz__Contents_of_file = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_VFS_Q_zz__Contents_of_file)
@@ -455,6 +473,18 @@ const afw_value_string_t
 afw_vfs_self_v_zz__Mark_Executable = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_VFS_Q_zz__Mark_Executable)
+};
+
+const afw_value_string_t
+afw_vfs_self_v_zz__Max_Read_Bytes = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__Max_Read_Bytes)
+};
+
+const afw_value_string_t
+afw_vfs_self_v_zz__Maximum_file_size_read_into_memory = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_VFS_Q_zz__Maximum_file_size_read_into_memory)
 };
 
 const afw_value_string_t

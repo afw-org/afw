@@ -90,16 +90,17 @@ afw_vfs_adapter_internal_create_cede_p(
         for (c = entry->s, end_c = c + entry->len;
             c < end_c && *c != '=';
             c++);
-        if (entry->s - c + 2 == entry->len) {
+        /* Require '=' and a non-empty host path after it. */
+        if (c >= end_c || *c != '=' || (end_c - (c + 1)) == 0) {
             AFW_THROW_ERROR_Z(general,
                 "\"vfsMap\" entries must contain an equal ('=') "
                 "followed by a path",
                 xctx);
         }
-        entries->key.len = c - entry->s;
+        entries->key.len = (afw_size_t)(c - entry->s);
         entries->key_z =
             afw_utf8_z_create(entry->s, entries->key.len, p, xctx);
-        entries->string.len = end_c - c - 1;
+        entries->string.len = (afw_size_t)(end_c - (c + 1));
         entries->string_z =
             afw_utf8_z_create(c + 1, entries->string.len, p, xctx);
 
@@ -181,14 +182,36 @@ afw_vfs_adapter_internal_create_cede_p(
             }
             if (!afw_value_is_string(value)) {
                 AFW_THROW_ERROR_Z(general,
-                    "\"executableSuffixes\" entries must be strings",
+                    "\"markExecutable\" entries must be strings",
                     xctx);
             }
+            mark_executable->s.len =
+                ((const afw_value_string_t *)value)->internal.len;
             mark_executable->s_z = afw_utf8_z_create(
-                (((const afw_value_string_t *)value)->internal).s,
-                (((const afw_value_string_t *)value)->internal).len,
+                ((const afw_value_string_t *)value)->internal.s,
+                mark_executable->s.len,
                 p, xctx);
-            mark_executable->s.len = sizeof(mark_executable->s_z);
+            mark_executable->s.s = mark_executable->s_z;
+        }
+    }
+
+    /* maxReadBytes: default 64 MiB; 0 means unlimited. */
+    {
+        afw_boolean_t found;
+        afw_integer_t max_read;
+
+        max_read = afw_object_old_get_property_as_integer(
+            adapter->properties, afw_vfs_s_maxReadBytes, &found, xctx);
+        if (!found) {
+            self->max_read_bytes = AFW_VFS_DEFAULT_MAX_READ_BYTES;
+        }
+        else if (max_read < 0) {
+            AFW_THROW_ERROR_Z(general,
+                "\"maxReadBytes\" must be >= 0",
+                xctx);
+        }
+        else {
+            self->max_read_bytes = (afw_size_t)max_read;
         }
     }
 
@@ -206,7 +229,7 @@ impl_afw_adapter_destroy(
     const afw_adapter_t * instance,
     afw_xctx_t *xctx)
 {
-    /*FIXME Add destroy code if needed. */
+    /* Memory is owned by the adapter pool; nothing else to release. */
 }
 
 

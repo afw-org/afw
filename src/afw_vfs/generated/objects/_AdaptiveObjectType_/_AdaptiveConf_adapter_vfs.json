@@ -3,7 +3,7 @@
     "collectionURIs": [
         "/afw/_AdaptiveCollection_/vfs_extension"
     ],
-    "description": "Adaptive Framework configuration component for type=adapter adapterType=vfs. This is a virtual file system adapter that allows files to be accessed as objects that have a 'data' property and additional file stats properties. The vfs path to files begins with '/', the adapter name, '/_AdaptiveFile_vfs'. The path of the operating system directory as well as the paths to subdirectories are defined in the 'vfsMap' property.",
+    "description": "Adaptive Framework configuration component for type=adapter adapterType=vfs. This is a virtual file system adapter that allows files to be accessed as objects that have a 'data' property and additional file stats properties. The vfs path to files begins with '/', the adapterId, and the objectId (relative host path under vfsMap). ObjectIds must not contain path segments '.' or '..', or backslash. Directory listings and retrieve_objects hide names starting with '.' unless includeHidden is true. Regular files are loaded fully into memory subject to maxReadBytes. Writes replace the entire file (including empty content) using a temp file then rename when possible. The VFS adapter is not a security boundary against a hostile host filesystem (for example, pre-existing symlinks under a map root).",
     "objectType": "_AdaptiveConf_adapter_vfs",
     "propertyTypes": {
         "_meta_": {
@@ -11,6 +11,14 @@
             "parentPaths": [
                 "/afw/_AdaptiveObjectType_/_AdaptiveConf_adapter/propertyTypes"
             ]
+        },
+        "maxReadBytes": {
+            "brief": "Maximum file size read into memory",
+            "dataType": "integer",
+            "description": "Maximum number of bytes that will be read into memory for a single regular file on get_object/retrieve_objects. If a file is larger, the operation fails with an error. Default is 67108864 (64 MiB). Set to 0 for unlimited (not recommended for long-running hosts).",
+            "label": "Max Read Bytes",
+            "defaultValue": 67108864,
+            "required": false
         },
         "markExecutable": {
             "brief": "vfsPath filename patterns to mark as executable",

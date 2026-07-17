@@ -31,6 +31,10 @@ typedef struct afw_vfs_adapter_internal_session_context_s
 afw_vfs_adapter_internal_session_context_t;
 
 
+/* Default max bytes read into memory for a single file object (64 MiB). */
+#define AFW_VFS_DEFAULT_MAX_READ_BYTES \
+    ((afw_size_t)(64 * 1024 * 1024))
+
 
 struct afw_vfs_adapter_internal_s {
     afw_adapter_t pub;
@@ -43,6 +47,12 @@ struct afw_vfs_adapter_internal_s {
      * s_z terminates the list.
      */
     const afw_utf8_utf8_z_t *mark_executable;
+
+    /*
+     * Maximum bytes loaded for one regular file on get/retrieve (0 = unlimited).
+     * Default is AFW_VFS_DEFAULT_MAX_READ_BYTES when conf omits maxReadBytes.
+     */
+    afw_size_t max_read_bytes;
 };
 
 

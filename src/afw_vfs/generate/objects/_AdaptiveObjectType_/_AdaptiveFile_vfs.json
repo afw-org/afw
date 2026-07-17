@@ -8,7 +8,7 @@
     "propertyTypes": {
         "data": {
             "brief": "Contents of file",
-            "description": "This is the contents of the file. If this is a directory, data is a list of strings containing the name from its entries. If this is not a directory and the data is valid utf-8, data is a string otherwise, it is hexBinary. This property is ignored when adding a directory.",
+            "description": "This is the contents of the file. If this is a directory, data is a list of strings containing the name from its entries (names beginning with '.' are omitted unless includeHidden is requested). If this is not a directory and the data is valid utf-8, data is a string; otherwise it is hexBinary. When adding or replacing a regular file, if data is omitted it defaults to an empty string (0-byte file). This property is ignored when adding a directory. Directory delete is non-recursive: the directory must be empty.",
             "label": "Data",
             "defaultValue": "",
             "required": false
@@ -17,7 +17,7 @@
             "allowWrite": false,
             "brief": "Is directory",
             "dataType": "boolean",
-            "description": "This is true if this is a directory. This property is read-only. A slash ('/') at the end of an objectId is used to indicate this in requests.",
+            "description": "True if this object is a directory, false if it is a regular file. This property is read-only. A slash ('/') at the end of an objectId is used to indicate a directory in requests.",
             "label": "Is Directory"
         },
         "timeAccessed": {
