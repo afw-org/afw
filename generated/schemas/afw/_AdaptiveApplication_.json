@@ -122,8 +122,8 @@
                             "$ref": "#/$defs/_AdaptiveRootFilePaths_"
                         }
                     ],
-                    "description": "The properties of this object are the root file paths used by open_file().",
-                    "markdownDescription": "**Root File Paths**\n\nThe properties of this object are the root file paths used by open_file().",
+                    "description": "Maps logical path prefixes to host directories for open_file(), compile_from_file(), and eval_from_file(). Longest matching prefix wins; absolute and relative host directories are supported; resolved paths must remain under the matched root (no path traversal). See /afw/_AdaptiveObjectType_/_AdaptiveRootFilePaths_.",
+                    "markdownDescription": "**Root File Paths**\n\nMaps logical path prefixes to host directories for open_file(), compile_from_file(), and eval_from_file(). Longest matching prefix wins; absolute and relative host directories are supported; resolved paths must remain under the matched root (no path traversal). See /afw/_AdaptiveObjectType_/_AdaptiveRootFilePaths_.",
                     "title": "Root File Paths",
                     "type": "object"
                 },
@@ -371,8 +371,8 @@
                             "$ref": "#/$defs/_AdaptiveRootFilePaths_"
                         }
                     ],
-                    "description": "The properties of this object are the root file paths used by open_file().",
-                    "markdownDescription": "**Root File Paths**\n\nThe properties of this object are the root file paths used by open_file().",
+                    "description": "Maps logical path prefixes to host directories for open_file(), compile_from_file(), and eval_from_file(). Longest matching prefix wins; absolute and relative host directories are supported; resolved paths must remain under the matched root (no path traversal). See /afw/_AdaptiveObjectType_/_AdaptiveRootFilePaths_.",
+                    "markdownDescription": "**Root File Paths**\n\nMaps logical path prefixes to host directories for open_file(), compile_from_file(), and eval_from_file(). Longest matching prefix wins; absolute and relative host directories are supported; resolved paths must remain under the matched root (no path traversal). See /afw/_AdaptiveObjectType_/_AdaptiveRootFilePaths_.",
                     "title": "Root File Paths",
                     "type": "object"
                 },
@@ -387,12 +387,12 @@
         },
         "_AdaptiveRootFilePaths_": {
             "additionalProperties": {
-                "description": "A function open_file path that begins with a slash followed by this property name will access a file in the directory path specified as a value to this property. For example, if this property is 'my': '/temp/my', file_open('mine', '/my/xyz', 'w') will open '/temp/my/xyz' for write in the host file system.",
-                "markdownDescription": "A function open_file path that begins with a slash followed by this property name will access a file in the directory path specified as a value to this property. For example, if this property is 'my': '/temp/my', file_open('mine', '/my/xyz', 'w') will open '/temp/my/xyz' for write in the host file system.",
+                "description": "Maps a logical path prefix to a host directory for open_file(), compile_from_file(), and eval_from_file(). The property name is the prefix: a logical path must equal the property name or begin with the property name followed by '/'. Among matching prefixes, the longest wins (so property 'includes' is preferred over 'include' for path 'includes/a.as'). The property value is the host directory (absolute path recommended for production; relative paths are resolved against the process current working directory at resolve time). The resolved host path must remain under that directory after canonicalization; path segments of '..' and other escapes are rejected. Example: property 'my' with value '/temp/my' allows open_file('s1', 'my/xyz', 'w') to open host file '/temp/my/xyz' when that path stays under '/temp/my'.",
+                "markdownDescription": "Maps a logical path prefix to a host directory for open_file(), compile_from_file(), and eval_from_file(). The property name is the prefix: a logical path must equal the property name or begin with the property name followed by '/'. Among matching prefixes, the longest wins (so property 'includes' is preferred over 'include' for path 'includes/a.as'). The property value is the host directory (absolute path recommended for production; relative paths are resolved against the process current working directory at resolve time). The resolved host path must remain under that directory after canonicalization; path segments of '..' and other escapes are rejected. Example: property 'my' with value '/temp/my' allows open_file('s1', 'my/xyz', 'w') to open host file '/temp/my/xyz' when that path stays under '/temp/my'.",
                 "type": "string"
             },
-            "description": "The properties of this object are the root file paths used by open_file().",
-            "markdownDescription": "The properties of this object are the root file paths used by open_file().",
+            "description": "Maps logical path prefixes to host directories for open_file(), compile_from_file(), and eval_from_file(). Longest matching prefix wins; absolute and relative host directories are supported; resolved paths must remain under the matched root (no path traversal). See /afw/_AdaptiveObjectType_/_AdaptiveRootFilePaths_.",
+            "markdownDescription": "Maps logical path prefixes to host directories for open_file(), compile_from_file(), and eval_from_file(). Longest matching prefix wins; absolute and relative host directories are supported; resolved paths must remain under the matched root (no path traversal). See /afw/_AdaptiveObjectType_/_AdaptiveRootFilePaths_.",
             "properties": {
                 "_meta_": {
                     "additionalProperties": true,
@@ -584,8 +584,8 @@
                     "$ref": "#/$defs/_AdaptiveRootFilePaths_"
                 }
             ],
-            "description": "The properties of this object are the root file paths used by open_file().",
-            "markdownDescription": "**Root File Paths**\n\nThe properties of this object are the root file paths used by open_file().",
+            "description": "Maps logical path prefixes to host directories for open_file(), compile_from_file(), and eval_from_file(). Longest matching prefix wins; absolute and relative host directories are supported; resolved paths must remain under the matched root (no path traversal). See /afw/_AdaptiveObjectType_/_AdaptiveRootFilePaths_.",
+            "markdownDescription": "**Root File Paths**\n\nMaps logical path prefixes to host directories for open_file(), compile_from_file(), and eval_from_file(). Longest matching prefix wins; absolute and relative host directories are supported; resolved paths must remain under the matched root (no path traversal). See /afw/_AdaptiveObjectType_/_AdaptiveRootFilePaths_.",
             "title": "Root File Paths",
             "type": "object"
         },
