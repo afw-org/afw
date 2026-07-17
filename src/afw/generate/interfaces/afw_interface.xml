@@ -4927,26 +4927,30 @@ AFW_DEFINE(const afw_request_handler_t *)
     <method name="read">
 
       <description>
-        Write the specified bytes.
+        Read up to size bytes into buffer. Returns the number of bytes read
+        (0 at end of stream). Implementations that are not readable should
+        throw an error.
       </description>
 
       <parameter name="instance" type="const afw_stream_t *">
         <description>Pointer to this stream instance.</description>
       </parameter>
 
-      <parameter name="buffer" type="const void *">
-        <description>Buffer to write.</description>
+      <parameter name="buffer" type="void *">
+        <description>Buffer to receive bytes (writable memory).</description>
       </parameter>
 
       <parameter name="size" type="afw_size_t">
-        <description>Size of buffer.</description>
+        <description>Maximum number of bytes to read.</description>
       </parameter>
 
       <parameter name="xctx" type="afw_xctx_t *">
         <description>This is the caller's xctx.</description>
       </parameter>
 
-      <return type="void"/>
+      <return type="afw_size_t">
+        <description>Number of bytes read (0 at EOF).</description>
+      </return>
 
     </method>
 

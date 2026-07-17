@@ -52,27 +52,15 @@ export function afwFlush(client : any, streamNumber : number) : any {
 }
 
 /**
- * Get the most recent stream error.
- * 
- * @returns {string} The most recent stream error.
- */
-export function afwGetStreamError(client : any) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "get_stream_error";
-
-    return client.perform(_action);
-}
-
-/**
- * This will open a file stream.
+ * Open a file stream for reading and/or writing. The path is resolved using
+ * application rootFilePaths (longest matching prefix; host path must remain
+ * under that root). See /afw/_AdaptiveObjectType_/_AdaptiveRootFilePaths_.
  * 
  * @param {string} streamId - This is the streamId that will be associated
  *     with this open file stream.
  * 
- * @param {string} path - This is the path to the file to open. The
- *     rootDirectory of the path is defined in the application object.
+ * @param {string} path - Logical path resolved using rootFilePaths (longest
+ *     matching prefix; host path must remain under that root).
  * 
  * @param {string} mode - This is the access mode string. Values can be:   r -
  *     Open an existing file text file for read.   w - Open a text file for
@@ -92,8 +80,8 @@ export function afwGetStreamError(client : any) : any {
  * @param {boolean} autoFlush - If specified and true, this will automatically
  *     flush the stream's buffers after every write.
  * 
- * @returns {integer} The streamNumber for the streamId or -1 if there was an
- *     error. Use get_stream_error() for error information.
+ * @returns {integer} The streamNumber for the streamId. Throws on error
+ *     (invalid path, open failure, or streamId already open).
  */
 export function afwOpenFile(client : any, streamId : string, path : string, mode : string, autoFlush? : boolean) : any {
 
@@ -102,64 +90,6 @@ export function afwOpenFile(client : any, streamId : string, path : string, mode
     _action["function"] = "open_file";
     _action["streamId"] = streamId;
     _action["path"] = path;
-    _action["mode"] = mode;
-
-    if (autoFlush !== undefined)
-        _action["autoFlush"] = autoFlush;
-
-    return client.perform(_action);
-}
-
-/**
- * This will open a response text write-only stream that will be written to
- * the http response.
- * 
- * @param {string} streamId - This is the streamId that will be associated
- *     with this open response stream.
- * 
- * @param {boolean} autoFlush - If specified and true, this will automatically
- *     flush the stream's buffers after every write.
- * 
- * @returns {integer} The streamNumber for the streamId or -1 if there was an
- *     error. Use get_stream_error() for error information.
- */
-export function afwOpenResponse(client : any, streamId : string, autoFlush? : boolean) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "open_response";
-    _action["streamId"] = streamId;
-
-    if (autoFlush !== undefined)
-        _action["autoFlush"] = autoFlush;
-
-    return client.perform(_action);
-}
-
-/**
- * This will open a read or write stream for a URI.
- * 
- * @param {string} streamId - This is the streamId that will be associated
- *     with this open URI stream.
- * 
- * @param {string} uri - This is the URI of the stream to open.
- * 
- * @param {string} mode - This is the access mode string. Values can be 'r'
- *     for read or 'w' for write.
- * 
- * @param {boolean} autoFlush - If specified and true, this will automatically
- *     flush the stream's buffers after every write.
- * 
- * @returns {integer} The streamNumber for the streamId or -1 if there was an
- *     error. Use get_stream_error() for error information.
- */
-export function afwOpenUri(client : any, streamId : string, uri : string, mode : string, autoFlush? : boolean) : any {
-
-    let _action : IAnyObject = {};
-
-    _action["function"] = "open_uri";
-    _action["streamId"] = streamId;
-    _action["uri"] = uri;
     _action["mode"] = mode;
 
     if (autoFlush !== undefined)
@@ -290,14 +220,14 @@ export function afwReadln(client : any, streamNumber : number) : any {
 }
 
 /**
- * This will return the streamNumber for a streamId. This function useful to
- * obtain the number of the automatically opened standard streams 'console',
- * 'stderr' and 'stdout' as well and any other open stream.
+ * Return the streamNumber for a streamId, including automatically opened
+ * standard streams 'console', 'stderr' and 'stdout', as well as any custom
+ * open stream. Throws if streamId is not open.
  * 
  * @param {string} streamId - The id of a stream.
  * 
- * @returns {integer} The streamNumber for the streamId or -1 if there was an
- *     error. Use get_stream_error() for error information.
+ * @returns {integer} The streamNumber for the streamId. Throws if the stream
+ *     is not open.
  */
 export function afwStream(client : any, streamId : string) : any {
 
@@ -315,7 +245,7 @@ export function afwStream(client : any, streamId : string) : any {
  * 
  * @param {integer} streamNumber - The streamNumber for the stream to write.
  * 
- * @param {any} value - Values to write as their string value.
+ * @param {} value - Values to write as their string value.
  * 
  * @returns {void}
  */
@@ -336,7 +266,8 @@ export function afwWrite(client : any, streamNumber : number, value : any) : any
  * 
  * @param {integer} streamNumber - The streamNumber for the stream to write.
  * 
- * @param {any} value - The internal memory of this value is written.
+ * @param {} value - The internal memory of this value is written (string,
+ *     hexBinary, or base64Binary).
  * 
  * @returns {void}
  */

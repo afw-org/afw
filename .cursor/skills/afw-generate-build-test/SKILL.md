@@ -21,9 +21,11 @@ description: >-
 Progress:
 - [ ] 1. Confirm edits are under generate/ or hand sources (not generated/)
 - [ ] 2. Optional: validate metadata if JSON/XML changed
-- [ ] 3. ./afwdev build --cdev -j   (from package root)
-- [ ] 4. afwdev test -j             (or targeted --pattern)
-- [ ] 5. Optional: afwdev test --env-mode valgrind -j (memory work / major PR)
+- [ ] 3. Day-to-day: ./afwdev build --cdev -j
+- [ ] 4. Day-to-day: afwdev test -j (or targeted --test-pattern)
+- [ ] 5. Full verify (user asked for full build/test, or before a PR when requested):
+         ./afwdev build --all --clean --install -j
+         afwdev test -j --env-mode valgrind
 - [ ] 6. Confirm success from command output
 ```
 
@@ -41,17 +43,16 @@ afwdev validate --pattern 'src/afw/generate/objects/_AdaptiveFunctionGenerate_/*
 
 # Script tests (installed afwdev after --cdev)
 afwdev test -j
-afwdev test --srcdir-pattern afw --pattern 'rql/.*'
+afwdev test --srcdir-pattern afw --test-pattern 'rql/.*'
 afwdev test --srcdir-pattern afw --tags rql
 afwdev test --srcdir-pattern afw --list
 afwdev test --srcdir-pattern afw --bail 1
 
-# Occasional: run tests under valgrind (much slower). Use for memory-management
-# work or when getting close to a major PR — not every edit cycle.
-afwdev test --env-mode valgrind -j
-
-# Full repo including app + docs
-./afwdev build --all --install -j
+# Full verify (maintainer preference): clean build of everything + valgrind tests.
+# Use when user asks for full build and test, or before opening/updating a PR.
+# Much slower — not for every edit cycle.
+./afwdev build --all --clean --install -j
+afwdev test -j --env-mode valgrind
 ```
 
 `--srcdir-pattern` uses fnmatch against srcdir names from `afw-package.json` (e.g. `afw`, `afw_lmdb`, `*`).

@@ -84,8 +84,9 @@ afw_function_execute_assert(
  *
  * Parameters:
  *
- *   file - (string) The path of the file to include, which will be resolved
- *       using rootFilePaths.
+ *   file - (string) The path of the file to include, resolved using
+ *       rootFilePaths (longest matching prefix; host path must remain under
+ *       that root).
  *
  *   compileType - (optional string) The compile type, used by the parser to
  *       determine how to compile the data.
@@ -174,8 +175,9 @@ afw_function_execute_decompile(
  *
  * Parameters:
  *
- *   file - (string) The path of the file to include, which will be resolved
- *       using rootFilePaths.
+ *   file - (string) The path of the file to include, resolved using
+ *       rootFilePaths (longest matching prefix; host path must remain under
+ *       that root).
  *
  *   compileType - (optional string) The compile type, used by the parser to
  *       determine how to compile the data.

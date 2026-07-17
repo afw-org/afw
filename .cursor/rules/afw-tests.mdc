@@ -43,6 +43,7 @@ When fixing a C/runtime bug, add `.as` coverage that fails without the fix:
 - Prefer **in-process** isolation checks (mutate returned defaults/objects; assert later calls are clean) over requiring full `afwfcgi` when the defect is local.
 - Multi-request / use-after-free still warrants occasional `afwdev test --env-mode valgrind -j`.
 - Reference examples: `src/afw/tests/miscellaneous/property_get.as`, `variable_get.as` (default-object clone).
+- Stream / open_file: `src/afw/tests/miscellaneous/stream_file/` (issue #103).
 
 ## Model adapter tests
 
@@ -77,14 +78,18 @@ When fixing a C/runtime bug, add `.as` coverage that fails without the fix:
 # After C/Python changes, build/install first:
 ./afwdev build --cdev -j
 
-# Usual full script-test run (judge success from command output)
+# Usual script-test run (judge success from command output)
 afwdev test -j
 
-# Occasional memory check (much slower): before major PRs or memory work
-afwdev test --env-mode valgrind -j
+# Thorough (maintainer preference): full clean install of everything, then
+# all tests under valgrind. Use when user asks for full build/test, or before
+# a PR when requested — not every edit cycle (much slower).
+./afwdev build --all --clean --install -j
+afwdev test -j --env-mode valgrind
 
 # Filename filter (regex on path under tests/)
 afwdev test -p afw --test-pattern 'miscellaneous/property_get'
+afwdev test -p afw --test-pattern 'stream_file'
 afwdev test -p afw --test-pattern 'rql/.*' --show-all
 afwdev test -p afw --tags rql
 afwdev test -p afw --list
@@ -93,7 +98,7 @@ afwdev test -p afw_dev --tags json_schema --show-all
 ```
 
 - Filter flag is **`--test-pattern`** (not `--pattern`).
-- Default `--env-mode` is `afw` (runs via the **`afw` CLI** from `src/afw_command` — see `afw-command`). Use `afwdev` from PATH after `--cdev` has installed it. `.py` tests still use python mode.
+- Default `--env-mode` is `afw` (runs via the **`afw` CLI** from `src/afw_command` — see `afw-command`). Use `afwdev` from PATH after `--cdev` has installed it. `.py` tests still use python mode. See **`afw-project`** for day-to-day vs full-verify matrix.
 
 ## Quick manual probes
 ```bash

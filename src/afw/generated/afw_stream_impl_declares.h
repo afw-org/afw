@@ -122,10 +122,10 @@ impl_afw_stream_flush(
 
 #ifndef impl_afw_stream_read
 /* Declare method read */
-AFW_DECLARE_STATIC(void)
+AFW_DECLARE_STATIC(afw_size_t)
 impl_afw_stream_read(
     AFW_STREAM_SELF_T *self,
-    const void * buffer,
+    void * buffer,
     afw_size_t size,
     afw_xctx_t * xctx);
 #endif

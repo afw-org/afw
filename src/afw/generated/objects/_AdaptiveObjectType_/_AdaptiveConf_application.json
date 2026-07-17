@@ -113,7 +113,7 @@
             "brief": "Root file paths",
             "dataType": "object",
             "dataTypeParameter": "_AdaptiveRootFilePaths_",
-            "description": "The properties of this object are the root file paths used by open_file().",
+            "description": "Maps logical path prefixes to host directories for open_file(), compile_from_file(), and eval_from_file(). Longest matching prefix wins; absolute and relative host directories are supported; resolved paths must remain under the matched root (no path traversal). See /afw/_AdaptiveObjectType_/_AdaptiveRootFilePaths_.",
             "label": "Root File Paths",
             "required": false
         },

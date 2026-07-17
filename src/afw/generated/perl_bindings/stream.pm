@@ -15,10 +15,7 @@ use Exporter qw(import);
 our @EXPORT_OK = qw(
     close 
     flush 
-    get_stream_error 
     open_file 
-    open_response 
-    open_uri 
     print 
     println 
     read 
@@ -61,16 +58,11 @@ Flush stream buffer
 
 The streamNumber for the stream to flush.
 
-=head3 get_stream_error
-
-Get the most recent stream error.
-Get stream error
-
-=head4 Parameters
-
 =head3 open_file
 
-This will open a file stream.
+Open a file stream for reading and/or writing. The path is resolved using
+application rootFilePaths (longest matching prefix; host path must remain
+under that root). See /afw/_AdaptiveObjectType_/_AdaptiveRootFilePaths_.
 Open a file stream
 
 =head4 Parameters
@@ -81,8 +73,8 @@ This is the streamId that will be associated with this open file stream.
 
     $path
 
-This is the path to the file to open. The rootDirectory of the path is defined
-in the application object.
+Logical path resolved using rootFilePaths (longest matching prefix; host path
+must remain under that root).
 
     $mode
 
@@ -101,47 +93,6 @@ the start of the file while writing will be appended to the end.
 All of these modes expect data type string. If you are using data type
 base64Binary or hexBinary you can use corresponding binary modes, 'rb', 'wb',
 'ab', 'rb+', 'r+b', 'wb+', 'w+b', 'ab+', and 'a+b'.
-
-    $autoFlush
-
-If specified and true, this will automatically flush the stream's buffers
-after every write.
-
-=head3 open_response
-
-This will open a response text write-only stream that will be written to the
-http response.
-Open a response stream
-
-=head4 Parameters
-
-    $streamId
-
-This is the streamId that will be associated with this open response stream.
-
-    $autoFlush
-
-If specified and true, this will automatically flush the stream's buffers
-after every write.
-
-=head3 open_uri
-
-This will open a read or write stream for a URI.
-Open a URI
-
-=head4 Parameters
-
-    $streamId
-
-This is the streamId that will be associated with this open URI stream.
-
-    $uri
-
-This is the URI of the stream to open.
-
-    $mode
-
-This is the access mode string. Values can be 'r' for read or 'w' for write.
 
     $autoFlush
 
@@ -235,9 +186,9 @@ Stream number
 
 =head3 stream
 
-This will return the streamNumber for a streamId. This function useful to
-obtain the number of the automatically opened standard streams 'console',
-'stderr' and 'stdout' as well and any other open stream.
+Return the streamNumber for a streamId, including automatically opened
+standard streams 'console', 'stderr' and 'stdout', as well as any custom open
+stream. Throws if streamId is not open.
 Get streamNumber for a streamId
 
 =head4 Parameters
@@ -276,7 +227,8 @@ The streamNumber for the stream to write.
 
     $value
 
-The internal memory of this value is written.
+The internal memory of this value is written (string, hexBinary, or
+base64Binary).
 
 =head3 writeln
 
@@ -319,16 +271,6 @@ sub flush {
     return $request->getResult();
 }
 
-sub get_stream_error {
-    my () = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "get_stream_error");
-
-    return $request->getResult();
-}
-
 sub open_file {
     my ($streamId, $path, $mode, $autoFlush) = @_;
 
@@ -337,36 +279,6 @@ sub open_file {
     $request->set("function" => "open_file");
     $request->set("streamId", $streamId);
     $request->set("path", $path);
-    $request->set("mode", $mode);
-
-    if (defined $autoFlush)
-        $request->set("autoFlush", $autoFlush);
-
-    return $request->getResult();
-}
-
-sub open_response {
-    my ($streamId, $autoFlush) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "open_response");
-    $request->set("streamId", $streamId);
-
-    if (defined $autoFlush)
-        $request->set("autoFlush", $autoFlush);
-
-    return $request->getResult();
-}
-
-sub open_uri {
-    my ($streamId, $uri, $mode, $autoFlush) = @_;
-
-    my $request = $session->request()
-
-    $request->set("function" => "open_uri");
-    $request->set("streamId", $streamId);
-    $request->set("uri", $uri);
     $request->set("mode", $mode);
 
     if (defined $autoFlush)

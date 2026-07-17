@@ -26,7 +26,7 @@ libafw is not only a script engine. Hosts, adapters, and policies plug in throug
 
 ## Request, content type, action
 
-- **Request** (`request/`): handler factory/director pipeline; production host `afwfcgi` (`afw-server-fcgi`), CLI embed `afw --local` (`afw-command`).
+- **Request** (`request/`): handler factory/director pipeline. Hosts implement **`afw_server` / `afw_request`** only — see **`afw-server`**. Today: production FastCGI (`afw-server-fcgi`), local `afw --local` (`afw-command`); future HTTP hosts plug in the same way. Streams/framing stay in core (`afw-stream`).
 - **Content type** (`content_type/`): encode/decode adaptive values. Core registers JSON and `application/afw`; extensions add others (**ubjson**, **yaml**) via `afw_content_type_register`.
 - **Action** (`action/`): `afw_action_perform()` runs `_AdaptiveAction_` / function-call batches.
 

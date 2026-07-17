@@ -62,7 +62,8 @@ Compile an external file
 
     $file
 
-The path of the file to include, which will be resolved using rootFilePaths.
+The path of the file to include, resolved using rootFilePaths (longest
+matching prefix; host path must remain under that root).
 
     $compileType
 
@@ -97,7 +98,8 @@ Compile and evaluate an external file
 
     $file
 
-The path of the file to include, which will be resolved using rootFilePaths.
+The path of the file to include, resolved using rootFilePaths (longest
+matching prefix; host path must remain under that root).
 
     $compileType
 

@@ -70,35 +70,18 @@ class stream
     }
 
     /**
-     * get_stream_error()
-     *
-     * Get the most recent stream error.
-     *
-     *
-     * @return string The most recent stream error.
-     */
-    public function get_stream_error()
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "get_stream_error");
-
-        /* pass along required parameters to the request payload */
-
-        /* pass along any optional parameters to the request payload */
-        return $request->get_result();
-    }
-
-    /**
      * open_file()
      *
-     * This will open a file stream.
+     * Open a file stream for reading and/or writing. The path is resolved
+     * using application rootFilePaths (longest matching prefix; host path
+     * must remain under that root). See
+     * /afw/_AdaptiveObjectType_/_AdaptiveRootFilePaths_.
      *
      * @param string $streamId This is the streamId that will be associated
      *                         with this open file stream.
-     * @param string $path This is the path to the file to open. The
-     *                     rootDirectory of the path is defined in the
-     *                     application object.
+     * @param string $path Logical path resolved using rootFilePaths (longest
+     *                     matching prefix; host path must remain under that
+     *                     root).
      * @param string $mode This is the access mode string. Values can be:   r
      *                     - Open an existing file text file for read.   w -
      *                     Open a text file for writing. If the file does not
@@ -121,8 +104,8 @@ class stream
      *                           automatically flush the stream's buffers
      *                           after every write.
      *
-     * @return integer The streamNumber for the streamId or -1 if there was an
-     *                 error. Use get_stream_error() for error information.
+     * @return integer The streamNumber for the streamId. Throws on error
+     *                 (invalid path, open failure, or streamId already open).
      */
     public function open_file(, $streamId, $path, $mode, $autoFlush = null)
     {
@@ -133,72 +116,6 @@ class stream
         /* pass along required parameters to the request payload */
         $request->set("streamId", $streamId);
         $request->set("path", $path);
-        $request->set("mode", $mode);
-
-        /* pass along any optional parameters to the request payload */
-        if ($autoFlush != null)
-            $request->set('autoFlush', $autoFlush);
-
-        return $request->get_result();
-    }
-
-    /**
-     * open_response()
-     *
-     * This will open a response text write-only stream that will be written
-     * to the http response.
-     *
-     * @param string $streamId This is the streamId that will be associated
-     *                         with this open response stream.
-     * @param boolean $autoFlush If specified and true, this will
-     *                           automatically flush the stream's buffers
-     *                           after every write.
-     *
-     * @return integer The streamNumber for the streamId or -1 if there was an
-     *                 error. Use get_stream_error() for error information.
-     */
-    public function open_response(, $streamId, $autoFlush = null)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "open_response");
-
-        /* pass along required parameters to the request payload */
-        $request->set("streamId", $streamId);
-
-        /* pass along any optional parameters to the request payload */
-        if ($autoFlush != null)
-            $request->set('autoFlush', $autoFlush);
-
-        return $request->get_result();
-    }
-
-    /**
-     * open_uri()
-     *
-     * This will open a read or write stream for a URI.
-     *
-     * @param string $streamId This is the streamId that will be associated
-     *                         with this open URI stream.
-     * @param string $uri This is the URI of the stream to open.
-     * @param string $mode This is the access mode string. Values can be 'r'
-     *                     for read or 'w' for write.
-     * @param boolean $autoFlush If specified and true, this will
-     *                           automatically flush the stream's buffers
-     *                           after every write.
-     *
-     * @return integer The streamNumber for the streamId or -1 if there was an
-     *                 error. Use get_stream_error() for error information.
-     */
-    public function open_uri(, $streamId, $uri, $mode, $autoFlush = null)
-    {
-        $request = $this->$session->request();
-
-        $request->set("function", "open_uri");
-
-        /* pass along required parameters to the request payload */
-        $request->set("streamId", $streamId);
-        $request->set("uri", $uri);
         $request->set("mode", $mode);
 
         /* pass along any optional parameters to the request payload */
@@ -360,14 +277,14 @@ class stream
     /**
      * stream()
      *
-     * This will return the streamNumber for a streamId. This function useful
-     * to obtain the number of the automatically opened standard streams
-     * 'console', 'stderr' and 'stdout' as well and any other open stream.
+     * Return the streamNumber for a streamId, including automatically opened
+     * standard streams 'console', 'stderr' and 'stdout', as well as any
+     * custom open stream. Throws if streamId is not open.
      *
      * @param string $streamId The id of a stream.
      *
-     * @return integer The streamNumber for the streamId or -1 if there was an
-     *                 error. Use get_stream_error() for error information.
+     * @return integer The streamNumber for the streamId. Throws if the stream
+     *                 is not open.
      */
     public function stream(, $streamId)
     {
@@ -390,7 +307,7 @@ class stream
      * 'undefined'.
      *
      * @param integer $streamNumber The streamNumber for the stream to write.
-     * @param any $value Values to write as their string value.
+     * @param  $value Values to write as their string value.
      *
      * @return void
      */
@@ -415,7 +332,8 @@ class stream
      * data type base64Binary and hexBinary.
      *
      * @param integer $streamNumber The streamNumber for the stream to write.
-     * @param any $value The internal memory of this value is written.
+     * @param  $value The internal memory of this value is written (string,
+     *                hexBinary, or base64Binary).
      *
      * @return void
      */

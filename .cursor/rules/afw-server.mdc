@@ -1,0 +1,44 @@
+---
+description: afw_server / afw_request hosts — interface vs transport implementations
+globs: src/afw_server_*/**,src/afw_command/afw_command_local*.c,src/afw/generate/interfaces/afw_interface.xml
+alwaysApply: false
+---
+
+# Server hosts (`afw_server` / `afw_request`)
+
+## Interfaces vs implementations
+
+**`afw_server`** and **`afw_request`** are **core interfaces** (XML → generated vtables). Hosts only supply transport:
+
+| Implementation | Path | Role |
+|----------------|------|------|
+| **fcgi** | `src/afw_server_fcgi` | Production HTTP via **FastCGI** (nginx/Apache). Details: **`afw-server-fcgi`** |
+| **afw_command_local** | `src/afw_command` | `afw --local` — local server/request (evaluate, action, **http-like**, …). Details: **`afw-command`** |
+| **Future** | e.g. native HTTP srcdir | Same interfaces; core stays unchanged |
+
+Handlers, adapters, streams, content-types, authorization live in **libafw**. Hosts must not reimplement retrieve streaming or x-afw framing.
+
+## Progressive response body (host-agnostic)
+
+```text
+retrieve / action intermediate writes
+  → response_body stream (optional application/x-afw framing)
+  → raw_response_body
+  → afw_request write_raw_response_body / flush_response
+  → host transport (FCGI PutStr, local protocol, future HTTP, …)
+```
+
+Do not design stream or adapter code against FCGI APIs. FCGI is one host.
+
+## Testing
+
+- **Prefer `afw --local`** (and existing test envs) for request/response/stream behavior that **strict CLI eval does not exercise**
+- Full `afwdev test --env-mode afwfcgi` (nginx + afwfcgi) is optional production-host coverage, not required for every core stream change
+
+## Adding a host
+
+1. New srcdir implementing `afw_server` + `afw_request` (and request properties object as needed)
+2. Bootstrap: environment create → conf → director/handler as appropriate
+3. Map write/flush to the transport; leave framing to core streams/content types
+
+Related: `afw-server-fcgi`, `afw-command`, `afw-stream`, `afw-core-services`, `afw-environment`.

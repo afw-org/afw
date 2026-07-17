@@ -34,14 +34,24 @@ Metadata-driven **C** runtime (`libafw`) plus Python **`afwdev`**. Define functi
 # Script tests (use installed afwdev after --cdev)
 afwdev test -j
 
-# Occasional memory check (much slower): before major PRs or memory work
-afwdev test --env-mode valgrind -j
+# Full build (everything: C, JS app, docs, clean install) — maintainer preference
+./afwdev build --all --clean --install -j
 
-# Full repo including app + docs
-./afwdev build --all --install -j
+# Full test under valgrind (much slower) — maintainer preference for thorough runs
+afwdev test -j --env-mode valgrind
 
 afwdev validate --pattern 'src/afw/generate/objects/...'
 ```
+
+### When to use which
+
+| Situation | Build | Test |
+|-----------|--------|------|
+| Day-to-day C/Python edit loop | `./afwdev build --cdev -j` | `afwdev test -j` (or narrow `--test-pattern`) |
+| User asks for **full build and test** | `./afwdev build --all --clean --install -j` | `afwdev test -j --env-mode valgrind` |
+| **Before opening/updating a PR** (when user requests a PR) | Prefer full: `./afwdev build --all --clean --install -j` | Prefer: `afwdev test -j --env-mode valgrind` |
+
+Valgrind runs are slow; do not use them on every tiny edit unless asked. Day-to-day stays `--cdev` + normal `afwdev test -j`.
 
 Use **`./afwdev`** when the build may refresh the installed `afwdev` itself; otherwise **`afwdev`** from PATH is fine.
 
@@ -51,7 +61,9 @@ Use **`./afwdev`** when the build may refresh the installed `afwdev` itself; oth
 - Compile / value / function: `afw-compile`, `afw-compiler-ebnf`, `afw-script-eval`, `afw-function`, `afw-value-memory`
 - Adaptive Script authoring (tests, model `on*`, probes): `afw-adaptive-script`, `afw-tests`
 - When in `src/afw_command/`: `afw-command`
-- When in `src/afw_server_fcgi/`: `afw-server-fcgi`
+- When in `src/afw_server_fcgi/` or any host: `afw-server` (interface), `afw-server-fcgi` (FCGI details)
+- Streams / open_file / rootFilePaths: `afw-stream`
+- Script try/catch / `_AdaptiveError_`: `afw-script-errors`
 - When in `src/afw_{curl,ldap,lmdb,ubjson,vfs,yaml}/`: `afw-extensions`
 - Long-form map: `@AGENTS.md`
 - File-scoped rules: C, generate, afwdev Python, JSON Schema projection, tests

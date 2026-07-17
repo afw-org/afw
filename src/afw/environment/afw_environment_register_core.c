@@ -14,6 +14,8 @@
 
 #include "afw_internal.h"
 #include <unicode/utypes.h>
+#include <string.h>
+#include <errno.h>
 
 
 AFW_DECLARE_INTERNAL(void)
@@ -24,6 +26,9 @@ AFW_UTF8_LITERAL("apr");
 
 static const afw_utf8_t impl_s_icu = 
 AFW_UTF8_LITERAL("icu");
+
+static const afw_utf8_t impl_s_errno =
+AFW_UTF8_LITERAL("errno");
 
 static const afw_utf8_t impl_s_description_initialEnvironmentVariables =
     AFW_UTF8_LITERAL("Environment variables when environment was created.");
@@ -41,6 +46,25 @@ static const afw_utf8_z_t * impl_rv_decoder_z_icu(int rv,
     afw_utf8_z_t *wa, afw_size_t wa_size)
 {
     return u_errorName(rv);
+}
+
+
+/* errno (libc) RV decoder. */
+static const afw_utf8_z_t * impl_rv_decoder_z_errno(int rv,
+    afw_utf8_z_t *wa, afw_size_t wa_size)
+{
+    const char *s;
+
+    if (wa_size == 0) {
+        return (const afw_utf8_z_t *)"";
+    }
+    s = strerror(rv);
+    if (!s) {
+        s = "Unknown errno";
+    }
+    strncpy((char *)wa, s, wa_size - 1);
+    wa[wa_size - 1] = 0;
+    return wa;
 }
 
 typedef struct impl_AdaptiveLayoutComponentType_context_s {
@@ -242,6 +266,10 @@ void afw_environment_internal_register_core(afw_xctx_t *xctx)
     /* Register ICU RV decoder. */
     afw_environment_register_error_rv_decoder(&impl_s_icu,
         impl_rv_decoder_z_icu, xctx);
+
+    /* Register errno (libc) RV decoder for stdio/OS failures. */
+    afw_environment_register_error_rv_decoder(&impl_s_errno,
+        impl_rv_decoder_z_errno, xctx);
 
     /* Register flag that are needed early in register core. */
     afw_flag_internal_early_register_core(xctx);

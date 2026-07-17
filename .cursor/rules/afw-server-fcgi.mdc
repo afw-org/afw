@@ -8,6 +8,8 @@ alwaysApply: false
 
 Production **HTTP/FastCGI host** for libafw. Executable `afwfcgi` (not an extension DSO). Implements transport interfaces; routing and adapters live in core `src/afw/request/` + conf.
 
+**This is one `afw_server` implementation (FastCGI), not the only possible HTTP host.** Core streams, handlers, and adapters must stay host-agnostic. Other hosts: `afw --local` (`afw-command`), future native HTTP, etc. Overview: **`afw-server`**.
+
 ## Role vs siblings
 
 | | `afwfcgi` | `afw --local` (`afw-command`) |

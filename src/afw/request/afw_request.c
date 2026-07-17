@@ -307,15 +307,17 @@ impl_afw_stream_release(
 /*
  * Implementation of method read for interface afw_stream.
  */
-void
+afw_size_t
 impl_afw_stream_read(
     const afw_stream_t *instance,
-    const void *buffer,
+    void *buffer,
     afw_size_t size,
     afw_xctx_t *xctx)
 {
-    /** @todo Add code to implement method. */
-    AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
+    (void)instance;
+    (void)buffer;
+    (void)size;
+    AFW_THROW_ERROR_Z(general, "Stream is not readable.", xctx);
 }
 
 /*
