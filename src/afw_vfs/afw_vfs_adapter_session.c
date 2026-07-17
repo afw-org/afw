@@ -189,10 +189,20 @@ impl_read_file_object(
             AFW_THROW_ERROR_Z(general, "fopen() failed.", xctx);
         }
         size = (size_t)finfo.size;
-        buff = afw_pool_malloc(p, size, xctx);
-        size_read = fread(buff, 1, size, fd);
+        /*
+         * Empty files have size 0. afw_pool_malloc() rejects size 0, so skip
+         * allocate/read and treat the content as empty. (issue #79)
+         */
+        if (size == 0) {
+            buff = NULL;
+            size_read = 0;
+        }
+        else {
+            buff = afw_pool_malloc(p, size, xctx);
+            size_read = fread(buff, 1, size, fd);
+        }
         fclose(fd);
-        if (size_read == -1) {
+        if (size != 0 && size_read == -1) {
             AFW_THROW_ERROR_FZ(general, xctx,
                 "Error reading %s.", file_path_z);
         }
@@ -748,16 +758,20 @@ impl_write_data_to_file(
             xctx);
     }
 
-    /* Flag is write/create plus binary if not string data. */
-    flag = APR_FOPEN_WRITE | APR_FOPEN_CREATE;
+    /*
+     * Full-file write: create if needed and always truncate so shorter
+     * (including empty) content does not leave prior bytes. (issue #79)
+     */
+    flag = APR_FOPEN_WRITE | APR_FOPEN_CREATE | APR_FOPEN_TRUNCATE;
     if (!afw_value_is_string(data)) {
         flag |= APR_FOPEN_BINARY;
     }
 
-    /* If is create, set that in flag. */
+    /* Create path: fail if the file already exists (also checked earlier). */
     if (is_create) {
-        flag |= APR_FOPEN_CREATE;
+        flag |= APR_FOPEN_EXCL;
     }
+
 
     /* Open file. */
     rv = apr_file_open(&fd, path_z, flag, APR_FPROT_OS_DEFAULT,
