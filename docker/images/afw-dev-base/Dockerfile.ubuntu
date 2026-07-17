@@ -12,7 +12,7 @@ RUN apt-get update && \
     libmysqlclient-dev libdb-dev liblmdb-dev libcurl4-openssl-dev libssl-dev \
     libaprutil1-dbd-mysql libaprutil1-dbd-sqlite3 libaprutil1-dbd-odbc \
     libaprutil1-ldap libaprutil1-dbd-pgsql \
-    libyaml-dev libfcgi-dev nginx gdb valgrind lsof default-jre doxygen \
+    libyaml-dev libfcgi-dev libedit-dev nginx gdb valgrind lsof default-jre doxygen \
     nodejs npm tmux vim locales bash-completion docker.io && \
     apt-get clean
 

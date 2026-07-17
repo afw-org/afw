@@ -58,7 +58,10 @@ afw will end after evaluating the expression.
 If neither -x or [IN] is specified, input is read from stdin.
 Each line read from stdin is evaluated as an adaptive expressions
 until either a line containing only "exit" or end of file is
-encountered.
+encountered. When stdin is a terminal, line editing and command
+history are available; history is stored in ~/.afw_history when
+HOME is set. (If this build was not linked with libedit, line
+editing and history are not available.)
 
 If [IN] is specified but -s is not, the file is evaluated as an
 adaptive script.

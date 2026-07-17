@@ -14,7 +14,7 @@ AFW is **metadata-driven**: define object types, functions, data types, and C **
 |------|------|
 | `src/afw` | `libafw` — pools, values, xctx, compiler, objects/adapters, environment (module map: [`.cursor/rules/afw-core-layout.mdc`](.cursor/rules/afw-core-layout.mdc)) |
 | `src/afw_dev` | `afwdev` (generate, build, test, docs, validate, …) |
-| `src/afw_command` | `afw` CLI — compile/eval Adaptive syntaxes, conf/extensions, `--local` ([`.cursor/rules/afw-command.mdc`](.cursor/rules/afw-command.mdc)) |
+| `src/afw_command` | `afw` CLI — compile/eval Adaptive syntaxes, conf/extensions, `--local`, optional interactive libedit ([`.cursor/rules/afw-command.mdc`](.cursor/rules/afw-command.mdc)) |
 | `src/afw_*` | Loadable extension DSOs — same env registries as core ([`.cursor/rules/afw-extensions.mdc`](.cursor/rules/afw-extensions.mdc): curl, ldap, lmdb, ubjson, vfs, yaml) |
 | `src/afw_server_fcgi` | `afwfcgi` FastCGI server — HTTP transport over libafw request handlers ([`.cursor/rules/afw-server-fcgi.mdc`](.cursor/rules/afw-server-fcgi.mdc)) |
 | `src/afw_app` | Admin React app (defer unless asked) |
