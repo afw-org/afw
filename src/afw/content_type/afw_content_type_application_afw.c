@@ -233,7 +233,7 @@ impl_afw_stream_release(
 afw_size_t
 impl_afw_stream_read(
     const afw_stream_t *instance,
-    const void *buffer,
+    void *buffer,
     afw_size_t size,
     afw_xctx_t *xctx)
 {

@@ -41,6 +41,14 @@ AFW_BEGIN_DECLARES
  */
 #define AFW_ERROR_RV_SOURCE_ID_Z_icu "icu"
 
+/**
+ * @brief errno (libc) rv source id.
+ *
+ * Registered in afw_environment_register_core.c. Use when rv is a POSIX
+ * errno value (e.g. after fopen/fread/fwrite failures).
+ */
+#define AFW_ERROR_RV_SOURCE_ID_Z_errno "errno"
+
 
 /**
  * @brief Adaptive Framework Error Context.
@@ -112,7 +120,8 @@ struct afw_error_s {
     /*IMPORTANT AFW_ERROR_CLEAR_PARTIAL() will clear up to decode_rv_wa. */
 
     /** @brief Place to optionally hold rv_decoded_z. */
-    afw_utf8_z_t decode_rv_wa[23];
+    /* Sized for strerror / apr_strerror / ICU names (was 23; too short for errno). */
+    afw_utf8_z_t decode_rv_wa[128];
 
     /** @brief Makes sure there is a zero terminator after decode_rv_wa. */
     afw_utf8_z_t decode_rv_wa_safety_zero_terminator;

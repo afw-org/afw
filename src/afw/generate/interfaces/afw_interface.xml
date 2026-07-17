@@ -4936,7 +4936,7 @@ AFW_DEFINE(const afw_request_handler_t *)
         <description>Pointer to this stream instance.</description>
       </parameter>
 
-      <parameter name="buffer" type="const void *">
+      <parameter name="buffer" type="void *">
         <description>Buffer to receive bytes (writable memory).</description>
       </parameter>
 

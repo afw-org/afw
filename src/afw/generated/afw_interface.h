@@ -5017,7 +5017,7 @@ typedef void
 typedef afw_size_t
 (*afw_stream_read_t)(
     const afw_stream_t * instance,
-    const void * buffer,
+    void * buffer,
     afw_size_t size,
     afw_xctx_t * xctx);
 

@@ -64,7 +64,9 @@ Core stream/file code must not special-case FCGI. See **`afw-server`**, **`afw-s
 | `read_to_hexBinary` / `read_to_base64Binary` | Binary; no UTF-8 check; n=0 empty |
 | `flush` / `close` | Bad number throws |
 
-**Error model:** throw + `try`/`catch`. Do not reintroduce `get_stream_error` or soft `-1` return codes for stream APIs. Script authors expect failures to stop the script unless caught.
+**Error model:** throw + `try`/`catch (e)`. Do not reintroduce `get_stream_error` or soft `-1` return codes. Catch sees `_AdaptiveError_`: use **`e.message`** (include `strerror`); FD I/O should also set **errno** rv source so `e.rv` / `e.rvDecoded` populate. See **`afw-script-errors`**.
+
+**FD I/O:** capture `errno` immediately after failed `fopen`/`fread`/`fwrite`/`fflush`/`fclose`; throw with op + streamId + strerror. `fflush` failures throw; `fclose` failures throw from release (explicit `close()` path).
 
 Do **not** re-add core `open_uri` / `open_response` without a real design. Progressive HTTP I/O uses standard `response_body` / `raw_response_body`. Network open, if needed later, belongs in an extension (e.g. curl), not lean core stubs.
 

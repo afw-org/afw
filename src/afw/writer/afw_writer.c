@@ -12,6 +12,8 @@
  */
 
 #include "afw_internal.h"
+#include <errno.h>
+#include <string.h>
 
 
 
@@ -78,9 +80,12 @@ impl_afw_writer_write(
     if (size != 0) {
         len = fwrite(buffer, size, 1, self->fd);
         if (len == 0) {
-            AFW_THROW_ERROR_RV_Z(general, NULL, ferror(self->fd),
-                "fwrite() failed",
-                xctx);
+            int err = errno;
+            if (err == 0) {
+                err = EIO;
+            }
+            AFW_THROW_ERROR_RV_FZ(general, errno, err, xctx,
+                "fwrite() failed: %s", strerror(err));
         }
     }
 }
@@ -100,9 +105,12 @@ impl_afw_writer_write_eol(
     /** @todo loop if everything is not returned??? */
     len = fwrite("\n", 1, 1, self->fd);
     if (len == 0) {
-        AFW_THROW_ERROR_RV_Z(general, NULL, ferror(self->fd),
-            "fwrite() failed",
-            xctx);
+        int err = errno;
+        if (err == 0) {
+            err = EIO;
+        }
+        AFW_THROW_ERROR_RV_FZ(general, errno, err, xctx,
+            "fwrite() failed: %s", strerror(err));
     }
 }
 

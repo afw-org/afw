@@ -79,23 +79,36 @@ open_file("open-fail-missing", "data/does_not_exist_open_fail.txt", "r");
 
 
 //? test: open_file-fails-missing-file-message
-//? description: open_file missing file error message includes failed to open and errno text
+//? description: open_file missing file populates _AdaptiveError_ message and errno rv
 //? expect: 0
 //? source: ...
 
 let caught = false;
 let msg = "";
+let id = "";
+let rv = 0;
+let rvDecoded = "";
+let rvSourceId = "";
 try {
     open_file("open-fail-msg", "data/does_not_exist_open_fail_msg.txt", "r");
 }
 catch (e) {
     caught = true;
     msg = e.message;
+    id = e.id;
+    rv = e.rv;
+    rvDecoded = e.rvDecoded;
+    rvSourceId = e.rvSourceId;
 }
 assert(caught);
 /* Host path is absolute; check stable message pieces (includes strerror(errno)). */
 assert(starts_with<string>(msg, "streamId 'open-fail-msg' failed to open "));
 assert(ends_with<string>(msg, "No such file or directory"));
+assert(id === "general");
+assert(rvSourceId === "errno");
+/* ENOENT is typically 2 on Linux. */
+assert(rv === 2);
+assert(rvDecoded === "No such file or directory");
 return 0;
 
 

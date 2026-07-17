@@ -12,6 +12,8 @@
  */
 
 #include "afw_internal.h"
+#include <errno.h>
+#include <string.h>
 
 
 /* Declares and rti/inf defines for interface afw_stream */
@@ -33,6 +35,27 @@ afw_stream_fd_self_s {
 
 
 /*
+ * Throw after a stdio failure. Capture errno before any other libc call.
+ * Message lands in catch (e).message; rv/rvSourceId/rvDecoded on e as well.
+ */
+static void
+impl_throw_stdio(
+    const afw_utf8_z_t *op_z,
+    const afw_utf8_t *streamId,
+    int err,
+    afw_xctx_t *xctx)
+{
+    if (err == 0) {
+        err = EIO;
+    }
+    AFW_THROW_ERROR_RV_FZ(general, errno, err, xctx,
+        "streamId " AFW_UTF8_FMT_Q " %s failed: %s",
+        AFW_UTF8_FMT_ARG(streamId), op_z, strerror(err));
+}
+
+
+
+/*
  * Implementation of write callback for interface afw_stream.
  */
 static afw_size_t
@@ -48,6 +71,7 @@ impl_afw_stream_fd_write_cb(
     const afw_octet_t *ptr;
     size_t remaining;
     size_t n;
+    int err;
 
     (void)p;
 
@@ -61,15 +85,20 @@ impl_afw_stream_fd_write_cb(
     while (remaining > 0) {
         n = fwrite(ptr, 1, remaining, self->fd);
         if (n == 0) {
-            AFW_THROW_ERROR_RV_Z(general, NULL, ferror(self->fd),
-                "fwrite() failed",
-                xctx);
+            err = errno;
+            if (err == 0 && ferror(self->fd)) {
+                err = EIO;
+            }
+            impl_throw_stdio("fwrite()", self->pub.streamId, err, xctx);
         }
         ptr += n;
         remaining -= n;
     }
     if (self->auto_flush) {
-        fflush(self->fd);
+        if (fflush(self->fd) != 0) {
+            err = errno;
+            impl_throw_stdio("fflush()", self->pub.streamId, err, xctx);
+        }
     }
     return size;
 }
@@ -86,12 +115,16 @@ impl_afw_stream_release(
 {
     afw_stream_fd_self_t *self =
         (afw_stream_fd_self_t *)instance;
-
-    (void)xctx;
+    FILE *f;
+    int err;
 
     if (self->close_on_release && self->fd) {
-        fclose(self->fd);
+        f = self->fd;
         self->fd = NULL;
+        if (fclose(f) != 0) {
+            err = errno;
+            impl_throw_stdio("fclose()", self->pub.streamId, err, xctx);
+        }
     }
 }
 
@@ -107,11 +140,13 @@ impl_afw_stream_flush(
 {
     afw_stream_fd_self_t *self =
         (afw_stream_fd_self_t *)instance;
-
-    (void)xctx;
+    int err;
 
     if (self->fd) {
-        fflush(self->fd);
+        if (fflush(self->fd) != 0) {
+            err = errno;
+            impl_throw_stdio("fflush()", self->pub.streamId, err, xctx);
+        }
     }
 }
 
@@ -124,13 +159,14 @@ impl_afw_stream_flush(
 afw_size_t
 impl_afw_stream_read(
     const afw_stream_t *instance,
-    const void *buffer,
+    void *buffer,
     afw_size_t size,
     afw_xctx_t *xctx)
 {
     afw_stream_fd_self_t *self =
         (afw_stream_fd_self_t *)instance;
     size_t n;
+    int err;
 
     if (!self->allow_read) {
         AFW_THROW_ERROR_Z(general,
@@ -140,11 +176,14 @@ impl_afw_stream_read(
         return 0;
     }
 
-    n = fread((void *)buffer, 1, size, self->fd);
+    clearerr(self->fd);
+    n = fread(buffer, 1, size, self->fd);
     if (n == 0 && ferror(self->fd)) {
-        AFW_THROW_ERROR_RV_Z(general, NULL, ferror(self->fd),
-            "fread() failed",
-            xctx);
+        err = errno;
+        if (err == 0) {
+            err = EIO;
+        }
+        impl_throw_stdio("fread()", self->pub.streamId, err, xctx);
     }
     return (afw_size_t)n;
 }
@@ -214,14 +253,19 @@ afw_stream_fd_open_and_create(
     FILE *fd;
     afw_boolean_t allow_read;
     afw_boolean_t allow_write;
+    int err;
 
     path_z = afw_utf8_to_utf8_z(path, p, xctx);
     mode_z = afw_utf8_to_utf8_z(mode, p, xctx);
     fd = fopen(path_z, mode_z);
     if (!fd) {
-        AFW_THROW_ERROR_FZ(general, xctx,
+        err = errno;
+        if (err == 0) {
+            err = EIO;
+        }
+        AFW_THROW_ERROR_RV_FZ(general, errno, err, xctx,
             "streamId " AFW_UTF8_FMT_Q " failed to open %s: %s",
-            AFW_UTF8_FMT_ARG(streamId), path_z, strerror(errno));
+            AFW_UTF8_FMT_ARG(streamId), path_z, strerror(err));
     }
 
     allow_read = false;
