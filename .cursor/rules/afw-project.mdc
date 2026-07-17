@@ -12,6 +12,7 @@ Metadata-driven **C** runtime (`libafw`) plus Python **`afwdev`**. Define functi
 - After metadata/C/afwdev changes, use the C-dev build below before trusting tests.
 - Prefer existing patterns; match naming in `src/afw/doc/guide/developer/contributing.xml`.
 - Primary agent focus: **C + Python (afwdev)**. JS/admin app only when explicitly asked.
+- **Third-party deps must stay MIT-compatible** (AFW is MIT — see `LICENSE` / `COPYING`). Prefer BSD/MIT/Apache-2.0 libraries (e.g. **libedit** for line editing). Avoid GPL-only linkage such as **GNU readline**. If a package is on all supported distros (Ubuntu, Alpine, Rocky, OpenSUSE — see `docker/images/afw-dev-base/` and CI), it may be required; otherwise make it optional at CMake time and degrade gracefully. Keep Dockerfiles and build docs in sync with new packages.
 
 ## Layout
 - `src/afw` — `libafw` (values, pools, xctx, compile/evaluate)

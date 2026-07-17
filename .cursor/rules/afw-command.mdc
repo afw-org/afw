@@ -26,11 +26,32 @@ Includes **`afw.h`** (consumer pattern), never `afw_internal.h`. See `afw-enviro
 |------|-----|--------|
 | One-shot expression | `-x '…'` | Eval first; exits if no `[IN]` |
 | Script / test file | `[IN]` + `-s script` / default / `test_script` | Whole file; script result → shell exit `0–255` or null |
-| Interactive | stdin, no `[IN]`/`-l` | Line-oriented; type `exit` |
+| Interactive | stdin, no `[IN]`/`-l` | Line-oriented; type `exit`; optional TTY line editing (below) |
 | Check only | `-k` / `--check` | Compile only, no evaluate |
 | Local server | `-l` / `--local <fd\|path>` | Chunked stdin→fd protocol; see `afw_command_local.md` |
 
 `impl_evaluate` uses a **child xctx**, `afw_compile_to_value_with_callback` → `afw_value_evaluate` (unless `-k`), then content-type serialize (`-a`, default json). Commits/releases adapter session cache after each eval.
+
+## Interactive input and libedit
+
+Issue context: GitHub **#30** (line editing / history for interactive `afw`).
+
+| Piece | Detail |
+|-------|--------|
+| Library | **libedit** (NetBSD Editline) — BSD, MIT-compatible. **Do not** use GNU readline (GPL). |
+| Build | Optional: `find_package(LibEdit …)` in `CMakeLists.txt`; `AFW_COMMAND_HAVE_LIBEDIT` when found. Build must still succeed without it. |
+| Find module | Hand `cmake/LibEditConfig.cmake` → `LibEdit::LibEdit` INTERFACE target. Wire with **`target_link_libraries` only** — never `target_include_directories(... LibEdit::LibEdit)` (CMake treats that name as a path). |
+| Runtime gate | Only when `interactive_mode && isatty(stdin)` and libedit was linked. |
+| Non-TTY / file / `-l` | Keep the plain **`fgetc` / `impl_get_input`** path. Never run libedit on pipes, `[IN]`, or `--local` chunks. |
+| History | `~/.afw_history` when `HOME` is set; size via `AFW_COMMAND_HISTORY_SIZE`. |
+| I/O split | libedit prompts/editing on **stderr**; evaluated results stay on **stdout** (`fd_output`). |
+| Line join | Trailing `\` + newline continues the logical line (same as non-edit path); continuation prompt `> `. |
+| Teardown | Save history → **`el_end` before `history_end`** (EditLine holds `EL_HIST`). |
+| Help text | Build-time `#ifdef AFW_COMMAND_HAVE_LIBEDIT` in `impl_additional_help_text`: with libedit describe history; without, say history is unavailable because the build was not linked with libedit. Prefer user-facing wording about *history/editing*, not the library name, when present. |
+| Static docs | `doc/reference/usage.xml` is **not** build-aware; document the common (with history) case and a short note when not linked. |
+| Packages | Ubuntu `libedit-dev`; Alpine `libedit-dev`; Rocky/OpenSUSE `libedit-devel`. Runtime: `libedit`. Keep **docker/images/afw-dev-base/** and runtime base images in sync. |
+
+Spot-check interactive: real TTY or `python`/`pty`; pipes alone do not exercise libedit.
 
 ## `-s` syntax mapping (code truth)
 
@@ -62,6 +83,7 @@ Production HTTP uses **`afwfcgi`** instead (`afw-server-fcgi`); `http-like` loca
 | Hand-edit | Never hand-edit |
 |-----------|-----------------|
 | `afw_command.c`, `afw_command_internal.h`, `afw_command_local*.{c,h,md}` | `generated/**` |
+| `CMakeLists.txt`, `cmake/*Config.cmake` (e.g. LibEdit) | |
 | `generate/strings/strings.txt` only (no objects/interfaces/manifest) | |
 | `doc/**`, `tests/local_test*` | |
 
@@ -75,8 +97,9 @@ Production HTTP uses **`afwfcgi`** instead (`afw-server-fcgi`); `http-like` loca
 
 | Path | Role |
 |------|------|
-| `afw_command.c` | `main`, flags, `impl_evaluate` |
-| `afw_command_internal.h` | `afw_command_self_t` |
+| `afw_command.c` | `main`, flags, `impl_evaluate`, interactive libedit |
+| `afw_command_internal.h` | `afw_command_self_t` (incl. editline / history fields) |
+| `CMakeLists.txt`, `cmake/LibEditConfig.cmake` | Optional libedit link |
 | `afw_command_local_server.c` | `--local` loop / modes |
 | `afw_command_local.md` | Local protocol |
 | `generate/strings/strings.txt` | Source-location / directive strings |
@@ -87,6 +110,7 @@ Production HTTP uses **`afwfcgi`** instead (`afw-server-fcgi`); `http-like` loca
 2. Confirm `-s` → `compile_option` in code (not help text alone).
 3. Need adapters/types from conf? `-f` present? Extension before conf? `-e`.
 4. Local: validate segment framing; stderr is unstructured.
-5. After string changes: `./afwdev build --cdev -j`.
+5. Interactive editing missing? Check `AFW_COMMAND_HAVE_LIBEDIT` at build, `ldd $(which afw) \| grep edit`, and that stdin is a TTY.
+6. After string / CMake / C changes: `./afwdev build --cdev -j`.
 
 Related: `afw-environment`, `afw-script-eval`, `afw-tests`, `afw-headers`.
