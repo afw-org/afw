@@ -40,12 +40,17 @@ Authoritative coding conventions: [`src/afw/doc/guide/developer/contributing.xml
 
 ```text
 edit generate/ or hand C/Python  →  ./afwdev build --cdev -j  →  afwdev test -j
+# full verify / before PR (when requested):
+#   ./afwdev build --all --clean --install -j  →  afwdev test -j --env-mode valgrind
 ```
 
 1. **Edit** `src/<srcdir>/generate/` — e.g. `objects/_AdaptiveFunctionGenerate_/*.json`, `interfaces/*.xml` — and/or hand C under `src/afw/…`.
 2. **Build (C-dev)** — from package root: `./afwdev build --cdev -j`. This is the usual C/Python loop: generate, cmake-build, and install core, extensions, and the `afwdev` Python command. It does **not** build the JS app or docs. `-j` enables parallel make.
 3. **Implement** — e.g. `src/afw/function/afw_function_<category>.c` (not `generated/function_closet/`).
-4. **Test** — `afwdev test -j` runs the Adaptive Script tests (judge success from command output). Narrow with `--srcdir-pattern` / `--pattern` when useful. For memory work or before a major PR, occasionally run `afwdev test --env-mode valgrind -j` (much slower).
+4. **Test** — `afwdev test -j` runs the Adaptive Script tests (judge success from command output). Narrow with `--srcdir-pattern` / `--test-pattern` when useful.
+
+**Full build and test** (when asked, or before a PR when requested):  
+`./afwdev build --all --clean --install -j` then `afwdev test -j --env-mode valgrind` (valgrind is much slower; not for every edit).
 
 Use **`./afwdev`** for builds that refresh/install `afwdev` itself; use **`afwdev`** (PATH) afterward for `test`, `validate`, etc.
 
@@ -72,11 +77,14 @@ Committed `generated/` is for review/grep; **authoritative** output is the last 
 
 # After --cdev, installed afwdev is current
 afwdev test -j
-afwdev test --env-mode valgrind -j   # occasional; much slower (memory / major PR)
-afwdev test --srcdir-pattern afw --pattern 'rql/.*'
+afwdev test --srcdir-pattern afw --test-pattern 'rql/.*'
 afwdev validate --pattern 'src/afw/generate/objects/...'
 
-# Full repository: cmake + docs + JS (+ docker context), with install
+# Full verify (preferred when asking for full build/test, or before a PR):
+./afwdev build --all --clean --install -j
+afwdev test -j --env-mode valgrind   # much slower
+
+# Full repository without clean (cmake + docs + JS, with install)
 ./afwdev build --all --install -j
 
 # Narrow generate only (usually unnecessary if using --cdev)
@@ -102,7 +110,9 @@ afwdev generate --srcdir-pattern '*'
 | `.cursor/rules/afw-core-services.mdc` | Env consumers: adapter, object, request, auth, model |
 | `.cursor/rules/afw-environment.mdc` | Environment registries; core/extension/command registration |
 | `.cursor/rules/afw-command.mdc` | `afw` CLI host (`src/afw_command`) |
+| `.cursor/rules/afw-server.mdc` | `afw_server` / `afw_request` hosts (interface vs FCGI/local/future HTTP) |
 | `.cursor/rules/afw-server-fcgi.mdc` | `afwfcgi` FastCGI host (`src/afw_server_fcgi`) |
+| `.cursor/rules/afw-stream.mdc` | Streams, `open_file`, rootFilePaths, progressive response write path |
 | `.cursor/rules/afw-extensions.mdc` | Loadable extensions (curl/ldap/lmdb/ubjson/vfs/yaml) |
 | `.cursor/rules/afw-c-runtime.mdc` | C when editing `.c`/`.h` |
 | `.cursor/rules/afw-value-memory.mdc` | Value lifetimes / pools / shared mutables / long-running escape |

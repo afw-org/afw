@@ -5014,7 +5014,7 @@ typedef void
     afw_xctx_t * xctx);
 
 /** @sa afw_stream_read() */
-typedef void
+typedef afw_size_t
 (*afw_stream_read_t)(
     const afw_stream_t * instance,
     const void * buffer,
@@ -5069,8 +5069,8 @@ struct afw_stream_inf_s {
 /**
  * @brief Call method read of interface afw_stream
  * @param instancePointer to this stream instance.
- * @param bufferBuffer to write.
- * @param sizeSize of buffer.
+ * @param bufferBuffer to receive bytes (writable memory).
+ * @param sizeMaximum number of bytes to read.
  * @param xctxThis is the caller's xctx.
  */
 #define afw_stream_read( \

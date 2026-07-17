@@ -76,7 +76,7 @@ Help text (in `afw_command.c`), `usage.xml`, and a leftover comment mention "par
 
 Hand spec: `afw_command_local.md`. Length-prefixed UTF-8 chunks ending `0\n`; final input `4\nexit\n0\n`. Directives `++afw-local-*`; default mode `evaluate-direct`. Modes: `evaluate`, `evaluate-direct`, `action`, `action-direct`, `http-like`. Implements **`afw_server`** + **`afw_request`** in `afw_command_local_*.c` (`AFW_IMPLEMENTATION_ID "afw_command_local"`).
 
-Production HTTP uses **`afwfcgi`** instead (`afw-server-fcgi`); `http-like` local mode is the closest CLI analogue for handler debugging.
+Production HTTP uses **`afwfcgi`** (`afw-server-fcgi`); `http-like` local mode is the closest CLI analogue for handler debugging. Prefer **`afw --local`** to test request/response/stream behavior that strict CLI eval does not show (see **`afw-server`**, **`afw-stream`**).
 
 ## Hand vs generated
 

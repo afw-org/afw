@@ -1,0 +1,7 @@
+# Runtime files created by stream_file.as tests
+*
+!include_root/
+!include_root/**
+!includes_root/
+!includes_root/**
+!.gitignore

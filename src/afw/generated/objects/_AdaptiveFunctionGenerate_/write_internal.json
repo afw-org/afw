@@ -15,8 +15,7 @@
         },
         {
             "brief": "Internal value to write",
-            "dataType": "any",
-            "description": "The internal memory of this value is written.",
+            "description": "The internal memory of this value is written (string, hexBinary, or base64Binary).",
             "name": "value"
         }
     ],

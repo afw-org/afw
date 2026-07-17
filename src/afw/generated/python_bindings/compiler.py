@@ -54,8 +54,9 @@ def compile_from_file(session, file, compileType=None):
     returned.
 
     Args:
-        file (str): The path of the file to include, which will be resolved
-        using rootFilePaths.
+        file (str): The path of the file to include, resolved using
+        rootFilePaths (longest matching prefix; host path must remain under
+        that root).
 
         compileType (str): The compile type, used by the parser to determine
         how to compile the data. For example, 'json', 'relaxed_json',
@@ -128,8 +129,9 @@ def eval_from_file(session, file, compileType=None):
     evaluate.
 
     Args:
-        file (str): The path of the file to include, which will be resolved
-        using rootFilePaths.
+        file (str): The path of the file to include, resolved using
+        rootFilePaths (longest matching prefix; host path must remain under
+        that root).
 
         compileType (str): The compile type, used by the parser to determine
         how to compile the data. For example, 'json', 'relaxed_json',

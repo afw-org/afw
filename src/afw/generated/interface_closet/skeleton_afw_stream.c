@@ -44,7 +44,7 @@ impl_afw_stream_flush(
 /*
  * Implementation of method read for interface afw_stream.
  */
-void
+afw_size_t
 impl_afw_stream_read(
     AFW_STREAM_SELF_T *self,
     const void * buffer,

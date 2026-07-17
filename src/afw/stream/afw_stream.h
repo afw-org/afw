@@ -38,7 +38,6 @@ typedef enum {
 struct afw_stream_anchor_s {
     afw_size_t maximum_number_of_streams;
     const afw_stream_t * const *streams;
-    const afw_utf8_t *last_stream_error;
 };
 
 
@@ -89,11 +88,27 @@ afw_stream_get_streamNumber_for_streamId(
  * @brief Set an opening stream and get its streamNumber.
  * @param stream
  * @param xctx of caller.
- * @return streamNumber or -1 if failed.
+ * @return streamNumber or (afw_size_t)-1 if failed (duplicate streamId or full).
  */
 AFW_DECLARE(afw_size_t)
 afw_stream_set(
     const afw_stream_t *stream,
+    afw_xctx_t *xctx);
+
+
+
+/**
+ * @brief Clear a stream table slot after the stream is released.
+ * @param streamNumber slot to clear.
+ * @param xctx of caller.
+ *
+ * Call after afw_stream_release for custom streams so the streamId can be
+ * reused. Do not use to tear down standard streams except via internal
+ * release-all paths.
+ */
+AFW_DECLARE(void)
+afw_stream_clear_slot(
+    afw_size_t streamNumber,
     afw_xctx_t *xctx);
 
 

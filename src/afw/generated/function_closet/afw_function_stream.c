@@ -92,49 +92,15 @@ afw_function_execute_flush(
 
 
 /*
- * Adaptive function: get_stream_error
- *
- * afw_function_execute_get_stream_error
- *
- * See afw_function_bindings.h for more information.
- *
- * Get the most recent stream error.
- *
- * This function is not pure, so it may return a different result
- * given exactly the same parameters.
- *
- * Declaration:
- *
- * ```
- *   function get_stream_error(
- *   
- *   ): string;
- * ```
- *
- * Parameters:
- *
- * Returns:
- *
- *   (string) The most recent stream error.
- */
-const afw_value_t *
-afw_function_execute_get_stream_error(
-    afw_function_execute_t *x)
-{
-    /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
-}
-
-
-
-/*
  * Adaptive function: open_file
  *
  * afw_function_execute_open_file
  *
  * See afw_function_bindings.h for more information.
  *
- * This will open a file stream.
+ * Open a file stream for reading and/or writing. The path is resolved using
+ * application rootFilePaths (longest matching prefix; host path must remain
+ * under that root). See /afw/_AdaptiveObjectType_/_AdaptiveRootFilePaths_.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters and has side effects.
@@ -157,8 +123,8 @@ afw_function_execute_get_stream_error(
  *   streamId - (string) This is the streamId that will be associated with this
  *       open file stream.
  *
- *   path - (string) This is the path to the file to open. The rootDirectory of
- *       the path is defined in the application object.
+ *   path - (string) Logical path resolved using rootFilePaths (longest matching
+ *       prefix; host path must remain under that root).
  *
  *   mode - (string) This is the access mode string. Values can be:
  *         r - Open an existing file text file for read.
@@ -183,111 +149,11 @@ afw_function_execute_get_stream_error(
  *
  * Returns:
  *
- *   (integer) The streamNumber for the streamId or -1 if there was an error.
- *       Use get_stream_error() for error information.
+ *   (integer) The streamNumber for the streamId. Throws on error (invalid path,
+ *       open failure, or streamId already open).
  */
 const afw_value_t *
 afw_function_execute_open_file(
-    afw_function_execute_t *x)
-{
-    /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
-}
-
-
-
-/*
- * Adaptive function: open_response
- *
- * afw_function_execute_open_response
- *
- * See afw_function_bindings.h for more information.
- *
- * This will open a response text write-only stream that will be written to the
- * http response.
- *
- * This function is not pure, so it may return a different result
- * given exactly the same parameters and has side effects.
- *
- * This function requires 'execute' access.
- *
- * Declaration:
- *
- * ```
- *   function open_response(
- *       streamId: string,
- *       autoFlush?: boolean
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   streamId - (string) This is the streamId that will be associated with this
- *       open response stream.
- *
- *   autoFlush - (optional boolean) If specified and true, this will
- *       automatically flush the stream's buffers after every write.
- *
- * Returns:
- *
- *   (integer) The streamNumber for the streamId or -1 if there was an error.
- *       Use get_stream_error() for error information.
- */
-const afw_value_t *
-afw_function_execute_open_response(
-    afw_function_execute_t *x)
-{
-    /** @todo Add code. */
-    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
-}
-
-
-
-/*
- * Adaptive function: open_uri
- *
- * afw_function_execute_open_uri
- *
- * See afw_function_bindings.h for more information.
- *
- * This will open a read or write stream for a URI.
- *
- * This function is not pure, so it may return a different result
- * given exactly the same parameters and has side effects.
- *
- * This function requires 'execute' access.
- *
- * Declaration:
- *
- * ```
- *   function open_uri(
- *       streamId: string,
- *       uri: string,
- *       mode: string,
- *       autoFlush?: boolean
- *   ): integer;
- * ```
- *
- * Parameters:
- *
- *   streamId - (string) This is the streamId that will be associated with this
- *       open URI stream.
- *
- *   uri - (string) This is the URI of the stream to open.
- *
- *   mode - (string) This is the access mode string. Values can be 'r' for read
- *       or 'w' for write.
- *
- *   autoFlush - (optional boolean) If specified and true, this will
- *       automatically flush the stream's buffers after every write.
- *
- * Returns:
- *
- *   (integer) The streamNumber for the streamId or -1 if there was an error.
- *       Use get_stream_error() for error information.
- */
-const afw_value_t *
-afw_function_execute_open_uri(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */
@@ -550,9 +416,9 @@ afw_function_execute_readln(
  *
  * See afw_function_bindings.h for more information.
  *
- * This will return the streamNumber for a streamId. This function useful to
- * obtain the number of the automatically opened standard streams 'console',
- * 'stderr' and 'stdout' as well and any other open stream.
+ * Return the streamNumber for a streamId, including automatically opened
+ * standard streams 'console', 'stderr' and 'stdout', as well as any custom open
+ * stream. Throws if streamId is not open.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -571,8 +437,8 @@ afw_function_execute_readln(
  *
  * Returns:
  *
- *   (integer) The streamNumber for the streamId or -1 if there was an error.
- *       Use get_stream_error() for error information.
+ *   (integer) The streamNumber for the streamId. Throws if the stream is not
+ *       open.
  */
 const afw_value_t *
 afw_function_execute_stream(
@@ -610,7 +476,7 @@ afw_function_execute_stream(
  *
  *   streamNumber - (integer) The streamNumber for the stream to write.
  *
- *   value - (0 or more any) Values to write as their string value.
+ *   value - (0 or more any dataType) Values to write as their string value.
  *
  * Returns:
  *
@@ -652,7 +518,8 @@ afw_function_execute_write(
  *
  *   streamNumber - (integer) The streamNumber for the stream to write.
  *
- *   value - (any) The internal memory of this value is written.
+ *   value - (any dataType) The internal memory of this value is written
+ *       (string, hexBinary, or base64Binary).
  *
  * Returns:
  *

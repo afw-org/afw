@@ -1,7 +1,7 @@
 {
     "brief": "Open a file stream",
     "category": "stream",
-    "description": "This will open a file stream.",
+    "description": "Open a file stream for reading and/or writing. The path is resolved using application rootFilePaths (longest matching prefix; host path must remain under that root). See /afw/_AdaptiveObjectType_/_AdaptiveRootFilePaths_.",
     "functionId": "open_file",
     "functionLabel": "open_file",
     "parameters": [
@@ -14,7 +14,7 @@
         {
             "brief": "File path",
             "dataType": "string",
-            "description": "This is the path to the file to open. The rootDirectory of the path is defined in the application object.",
+            "description": "Logical path resolved using rootFilePaths (longest matching prefix; host path must remain under that root).",
             "name": "path"
         },
         {
@@ -35,7 +35,7 @@
     "returns": {
         "brief": "streamNumber",
         "dataType": "integer",
-        "description": "The streamNumber for the streamId or -1 if there was an error. Use get_stream_error() for error information."
+        "description": "The streamNumber for the streamId. Throws on error (invalid path, open failure, or streamId already open)."
     },
     "sideEffects": [
         "Stream is opened"

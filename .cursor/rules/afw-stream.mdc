@@ -1,0 +1,109 @@
+---
+description: Adaptive streams — write path, file open via rootFilePaths, host-agnostic response body
+globs: src/afw/stream/**,src/afw/function/afw_function_stream.c,src/afw/generate/objects/_AdaptiveFunctionGenerate_/{open_file,read,readln,read_to_*,write,writeln,print,println,flush,close,stream,write_internal}.json,src/afw/generate/objects/_AdaptiveRootFilePaths_.json,src/afw/file/afw_file*.c,src/afw/file/afw_file.h,src/afw/content_type/afw_content_type_application_afw.c,src/afw/tests/miscellaneous/stream_file/**
+alwaysApply: false
+---
+
+# Streams (`stream/`, stream category functions)
+
+## Role
+
+Streams are **write-critical** for progressive I/O:
+
+- Standard xctx slots: `raw_response_body`, `response_body`, `console`, `stderr`, `stdout`
+- `write_cb` used by content-type encoders and adapter retrieve callbacks
+- Admin progressive retrieve: `retrieve_objects_to_response` + `Accept: application/x-afw` writes intermediates and **flushes per object** (does not buffer the whole result set)
+- Script: `print` / `println` / `write` / `writeln` / `flush` / `close` / `stream` / `open_file` / `read*` / `write_internal`
+
+Do **not** break: standard stream enum order, release **raw last**, x-afw frame format, intermediate `{ intermediate, result }` shape, or `write_cb` presence on writeable streams.
+
+## Host independence
+
+Response body ends at **`afw_request`** (`write_raw_response_body` / `flush_response`), not at FastCGI.
+
+| Host | Role |
+|------|------|
+| `afw_server_fcgi` | Production FastCGI behind nginx/Apache |
+| `afw_command_local` | `afw --local` (incl. http-like) — **preferred for testing** request/response stream behavior without nginx+fcgi |
+| Future (e.g. native HTTP) | Another `afw_server` / `afw_request` impl |
+
+Core stream/file code must not special-case FCGI. See **`afw-server`**, **`afw-server-fcgi`**, **`afw-command`**.
+
+## Standard vs custom streams (registry pitfalls)
+
+- Fixed enum slots (`afw_stream_number_*`, count = first custom index) for standards; custom streams via `afw_stream_set`
+- **`afw_stream_set`**: allocate only slots `>= afw_stream_number_count`; assign `table[n] = stream` (never a pointer past the end of the array after a walk)
+- **`get_by_streamId` for custom**: index and table entry must stay in sync — iterate `for (n = count; n < max; n++)` and use `streams[n]`. Starting the pointer at `streams[0]` while `n` starts at `count` returns **n + count** (bug found in #103)
+- Set **`streamNumber`** on custom match; skip NULL slots
+- **`streamId` lifetime**: `open_file` must **copy** streamId into **`xctx->p`** (not the call’s temporary pool) so `stream(id)` works after `open_file` returns
+- **`close`**: release then `afw_stream_clear_slot`; reject closing standard slots (`n < afw_stream_number_count`); second close → invalid streamNumber
+- On xctx teardown, release **all** slots (including custom), raw last
+- Standard streamIds (`stdout`, `stderr`, `console`, `response_body`, `raw_response_body`) are always “already open” for `open_file`
+
+## File I/O and rootFilePaths
+
+- `open_file` → **`afw_file_path_resolve_rootFilePaths`** then `afw_stream_fd_open_and_create` (same resolve helper as `compile_from_file` / `eval_from_file`)
+- Application conf: `rootFilePaths` map **prefix → host directory**
+- **Longest matching prefix** with path-boundary: match only if path equals prefix or continues with `/` (so `include` does not match `includes/...`)
+- Absolute and relative host roots; relative roots absolutized at resolve time; production prefers absolute host roots
+- **Traversal hardening:** reject `..` segments in remainder; final path under canonical root (`apr_filepath_merge` + SECUREROOT / separator-boundary containment). Symlinks that escape fail
+- No open without a matching root; empty path fails
+- `requiresExecuteAccess` on `open_file`
+- **Modes** (stdio): `r` `w` `a` `r+` `w+` `a+` and binary `rb` `wb` `ab` `rb+` `r+b` `wb+` `w+b` `ab+` `a+b`. FD self stores `allow_read` / `allow_write` from mode chars (`r`/`w`/`a`/`+`); enforce on read/write methods
+- Path param to `fopen` must be the **resolved host path**, not the mode string
+
+## Adaptive stream functions (implementation notes)
+
+| Function | Notes |
+|----------|--------|
+| `open_file` | Throws on resolve/open/duplicate streamId; returns streamNumber |
+| `stream` | streamId → streamNumber; **throws** if not open (no -1 / soft error) |
+| `write` / `writeln` / `print` / `println` | Convert values to string; undefined → `"undefined"`; bad streamNumber throws |
+| `write_internal` | string / hexBinary / base64Binary raw octets only |
+| `read` / `readln` | UTF-8 validated; **n is octets not characters**; mid-codepoint read throws; EOF empty string |
+| `read_to_hexBinary` / `read_to_base64Binary` | Binary; no UTF-8 check; n=0 empty |
+| `flush` / `close` | Bad number throws |
+
+**Error model:** throw + `try`/`catch`. Do not reintroduce `get_stream_error` or soft `-1` return codes for stream APIs. Script authors expect failures to stop the script unless caught.
+
+Do **not** re-add core `open_uri` / `open_response` without a real design. Progressive HTTP I/O uses standard `response_body` / `raw_response_body`. Network open, if needed later, belongs in an extension (e.g. curl), not lean core stubs.
+
+### Metadata gotcha
+
+Do **not** put `dataType: "any"` on stream write/variadic parameters — runtime then rejects real string/hexBinary args (“must evaluate to data type any”). Match `print`/`writeln` (no dataType on free values) or list concrete types.
+
+### Interface
+
+`afw_stream` **read** returns **`afw_size_t`** (bytes read, 0 at EOF). Non-readable impls throw `"Stream is not readable."`.
+
+## Out of core (intentionally lean for beta)
+
+- **`open_uri` / `open_response`**: **removed** (never finished)
+- **`get_stream_error`**: **removed** — redundant with throw + try
+- Progressive HTTP responses: standard streams + content-type framing only
+- No “read response body” without explicit design
+
+## Tests
+
+- `src/afw/tests/miscellaneous/stream_file/` — modes, path security, Unicode, binary, robustness
+- Conf: local `afw.conf` with `rootFilePaths` (`data`, `include`, `includes`)
+- Run: `afwdev test --srcdir-pattern afw --test-pattern 'stream_file' -j`
+- Prefer unique paths (`generate_uuid()`) when testing create/append so re-runs do not accumulate append-only files
+
+## Hand vs generated
+
+| Hand-edit | Never hand-edit |
+|-----------|-----------------|
+| `stream/*.c`, `function/afw_function_stream.c`, `file/afw_file*.c` | `generated/**` |
+| `generate/objects/_AdaptiveFunctionGenerate_/*`, `_AdaptiveRootFilePaths_` | |
+| `generate/interfaces/afw_interface.xml` (`afw_stream`) | |
+
+## Primary files
+
+- `stream/afw_stream.c`, `afw_stream.h`, `afw_stream_fd.c`
+- `function/afw_function_stream.c`
+- `file/afw_file.h`, `file/afw_file_path.c` (resolve)
+- `content_type/afw_content_type_application_afw.c` (framing)
+- Adapter retrieve streaming: `function/afw_function_adapter.c`
+
+Related: `afw-core-services`, `afw-server`, `afw-function`, `afw-extensions`, `afw-tests`.

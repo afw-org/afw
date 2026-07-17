@@ -45,8 +45,9 @@ export function afwAssert(client : any, assertion : boolean, reason? : string) :
  * Load an external adaptive script, json, or template to be compiled and
  * returned.
  * 
- * @param {string} file - The path of the file to include, which will be
- *     resolved using rootFilePaths.
+ * @param {string} file - The path of the file to include, resolved using
+ *     rootFilePaths (longest matching prefix; host path must remain under
+ *     that root).
  * 
  * @param {string} compileType - The compile type, used by the parser to
  *     determine how to compile the data. For example, 'json', 'relaxed_json',
@@ -97,8 +98,9 @@ export function afwDecompile(client : any, value : any, whitespace? : any) : any
  * Load an external adaptive script, json, or template to be compiled and
  * evaluate.
  * 
- * @param {string} file - The path of the file to include, which will be
- *     resolved using rootFilePaths.
+ * @param {string} file - The path of the file to include, resolved using
+ *     rootFilePaths (longest matching prefix; host path must remain under
+ *     that root).
  * 
  * @param {string} compileType - The compile type, used by the parser to
  *     determine how to compile the data. For example, 'json', 'relaxed_json',

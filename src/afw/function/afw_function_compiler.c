@@ -1001,8 +1001,9 @@ int impl_octet_get_cb(afw_utf8_octet_t *octet, void *data, afw_xctx_t *xctx)
  *
  * Parameters:
  *
- *   file - (string) The path of the file to include, which will be resolved
- *       using rootFilePaths.
+ *   file - (string) The path of the file to include, resolved using
+ *       rootFilePaths (longest matching prefix; host path must remain under
+ *       that root).
  *
  *   compileType - (optional string) The compile type, used by the parser to
  *       determine how to compile the data.
@@ -1027,8 +1028,7 @@ afw_function_execute_compile_from_file(
     afw_include_self_t *self;
     apr_pool_t *apr_p = afw_pool_get_apr_pool(xctx->p);
     apr_status_t rv;
-    const afw_iterator_t *iterator;
-    const afw_utf8_t *property_name, *property_value;
+    const afw_utf8_t *resolved_path;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(file_value, 1, string);
     AFW_FUNCTION_EVALUATE_DATA_TYPE_PARAMETER(compile_type_value, 2, string);
@@ -1053,34 +1053,9 @@ afw_function_execute_compile_from_file(
 
     file = &file_value->internal;
 
-    /* use the root_file_paths to resolve the location of our file */
-    if (x->xctx->env->root_file_paths) {
-        iterator = NULL;
-        self->file_z = NULL;
-        property_value = afw_object_get_next_property_as_string(x->xctx->env->root_file_paths,
-            &iterator, &property_name, p, x->xctx);
-        while (property_value) {
-            /* check if the file path starts with this root */
-            if (afw_utf8_starts_with(file, property_name)) {
-                afw_utf8_t new_file;
-                /* parse off the prefix in file */
-                new_file.s = file->s + property_name->len;
-                new_file.len = file->len - property_name->len;
-
-                self->file_z = afw_utf8_to_utf8_z(
-                    afw_utf8_concat(p, xctx, property_value, &new_file, NULL),
-                    p, xctx);
-            }
-
-            property_value = afw_object_get_next_property_as_string(x->xctx->env->root_file_paths,
-                &iterator, &property_name, p, x->xctx);
-        }
-    } 
-
-    if (!self->file_z) {
-        AFW_THROW_ERROR_FZ(not_found, xctx,
-            "Failed to resolve file location '%.*s'.", file->len, file->s);
-    }
+    /* Resolve logical path via shared rootFilePaths helper. */
+    resolved_path = afw_file_path_resolve_rootFilePaths(file, p, xctx);
+    self->file_z = afw_utf8_to_utf8_z(resolved_path, p, xctx);
 
     /* now open the file */
     rv = apr_file_open(&self->f, self->file_z, 
@@ -1137,8 +1112,9 @@ afw_function_execute_compile_from_file(
  *
  * Parameters:
  *
- *   file - (string) The path of the file to include, which will be resolved
- *       using rootFilePaths.
+ *   file - (string) The path of the file to include, resolved using
+ *       rootFilePaths (longest matching prefix; host path must remain under
+ *       that root).
  *
  *   compileType - (optional string) The compile type, used by the parser to
  *       determine how to compile the data.

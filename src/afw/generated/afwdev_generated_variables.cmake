@@ -305,6 +305,7 @@ set(AFWDEV_GENERATED_SOURCE_LIST
     error/afw_error.c
     file/afw_file.c
     file/afw_file_journal.c
+    file/afw_file_path.c
     flag/afw_flag.c
     function/afw_function.c
     function/afw_function_adapter.c

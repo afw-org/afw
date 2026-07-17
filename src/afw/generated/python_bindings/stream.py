@@ -67,43 +67,20 @@ def flush(session, streamNumber):
 
     return response['actions'][0]['result']
 
-def get_stream_error(session):
-    """
-    Get stream error
-
-    Get the most recent stream error.
-
-    Args:
-    Returns:
-        str: The most recent stream error.
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "get_stream_error"
-    }
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
 def open_file(session, streamId, path, mode, autoFlush=None):
     """
     Open a file stream
 
-    This will open a file stream.
+    Open a file stream for reading and/or writing. The path is resolved using
+    application rootFilePaths (longest matching prefix; host path must remain
+    under that root). See /afw/_AdaptiveObjectType_/_AdaptiveRootFilePaths_.
 
     Args:
         streamId (str): This is the streamId that will be associated with this
         open file stream.
 
-        path (str): This is the path to the file to open. The rootDirectory of
-        the path is defined in the application object.
+        path (str): Logical path resolved using rootFilePaths (longest
+        matching prefix; host path must remain under that root).
 
         mode (str): This is the access mode string. Values can be:   r - Open
         an existing file text file for read.   w - Open a text file for
@@ -124,8 +101,8 @@ def open_file(session, streamId, path, mode, autoFlush=None):
         the stream's buffers after every write.
 
     Returns:
-        int: The streamNumber for the streamId or -1 if there was an error.
-        Use get_stream_error() for error information.
+        int: The streamNumber for the streamId. Throws on error (invalid path,
+        open failure, or streamId already open).
     """
 
     request = session.Request()
@@ -134,86 +111,6 @@ def open_file(session, streamId, path, mode, autoFlush=None):
         "function": "open_file",
         "streamId": streamId,
         "path": path,
-        "mode": mode
-    }
-
-    if autoFlush != None:
-        action['autoFlush'] = autoFlush
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
-def open_response(session, streamId, autoFlush=None):
-    """
-    Open a response stream
-
-    This will open a response text write-only stream that will be written to
-    the http response.
-
-    Args:
-        streamId (str): This is the streamId that will be associated with this
-        open response stream.
-
-        autoFlush (bool): If specified and true, this will automatically flush
-        the stream's buffers after every write.
-
-    Returns:
-        int: The streamNumber for the streamId or -1 if there was an error.
-        Use get_stream_error() for error information.
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "open_response",
-        "streamId": streamId
-    }
-
-    if autoFlush != None:
-        action['autoFlush'] = autoFlush
-
-    request.add_action(action)
-
-    response = request.perform()
-    if response.get('status') == 'error':
-        raise Exception(response.get('error'))
-
-    return response['actions'][0]['result']
-
-def open_uri(session, streamId, uri, mode, autoFlush=None):
-    """
-    Open a URI
-
-    This will open a read or write stream for a URI.
-
-    Args:
-        streamId (str): This is the streamId that will be associated with this
-        open URI stream.
-
-        uri (str): This is the URI of the stream to open.
-
-        mode (str): This is the access mode string. Values can be 'r' for read
-        or 'w' for write.
-
-        autoFlush (bool): If specified and true, this will automatically flush
-        the stream's buffers after every write.
-
-    Returns:
-        int: The streamNumber for the streamId or -1 if there was an error.
-        Use get_stream_error() for error information.
-    """
-
-    request = session.Request()
-
-    action = {
-        "function": "open_uri",
-        "streamId": streamId,
-        "uri": uri,
         "mode": mode
     }
 
@@ -419,16 +316,16 @@ def stream(session, streamId):
     """
     Get streamNumber for a streamId
 
-    This will return the streamNumber for a streamId. This function useful to
-    obtain the number of the automatically opened standard streams 'console',
-    'stderr' and 'stdout' as well and any other open stream.
+    Return the streamNumber for a streamId, including automatically opened
+    standard streams 'console', 'stderr' and 'stdout', as well as any custom
+    open stream. Throws if streamId is not open.
 
     Args:
         streamId (str): The id of a stream.
 
     Returns:
-        int: The streamNumber for the streamId or -1 if there was an error.
-        Use get_stream_error() for error information.
+        int: The streamNumber for the streamId. Throws if the stream is not
+        open.
     """
 
     request = session.Request()
@@ -488,7 +385,8 @@ def write_internal(session, streamNumber, value):
     Args:
         streamNumber (int): The streamNumber for the stream to write.
 
-        value (object): The internal memory of this value is written.
+        value (object): The internal memory of this value is written (string,
+        hexBinary, or base64Binary).
 
     Returns:
         object:

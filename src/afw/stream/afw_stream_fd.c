@@ -1,33 +1,31 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * Adaptive Framework Helpers for interfaces afw_writer*
+ * Adaptive Framework file-descriptor stream
  *
  * Copyright (c) 2010-2024 Clemson University
  *
  */
 
 /**
- * @file afw_writer.c
- * @brief Helpers for interfaces afw_writer* 
+ * @file afw_stream_fd.c
+ * @brief afw_stream implementation over FILE *
  */
 
 #include "afw_internal.h"
 
 
-
-/* FIXME Add include for headers and anything else you want in this part of code. */
-
-/* Declares and rti/inf defines for interface afw_writer */
+/* Declares and rti/inf defines for interface afw_stream */
 #define AFW_IMPLEMENTATION_ID "afw_stream_fd"
 #include "afw_stream_impl_declares.h"
 
 
-/* FIXME If you prefer, you can move this struct to a .h file. */
-/* Self typedef for afw_stream_fd implementation of afw_writer. */
+/* Self for afw_stream_fd implementation of afw_stream. */
 typedef struct
 afw_stream_fd_self_s {
     afw_stream_t pub;
     FILE *fd;
+    afw_boolean_t allow_read;
+    afw_boolean_t allow_write;
     afw_boolean_t auto_flush;
     afw_boolean_t close_on_release;
 } afw_stream_fd_self_t;
@@ -35,7 +33,7 @@ afw_stream_fd_self_s {
 
 
 /*
- * Implementation of method write_eol for interface afw_writer.
+ * Implementation of write callback for interface afw_stream.
  */
 static afw_size_t
 impl_afw_stream_fd_write_cb(
@@ -47,22 +45,39 @@ impl_afw_stream_fd_write_cb(
 {
     afw_stream_fd_self_t *self =
         (afw_stream_fd_self_t *)context;
-    size_t len;
+    const afw_octet_t *ptr;
+    size_t remaining;
+    size_t n;
 
-    /** @todo loop if everything is not returned??? */
-    if (size != 0) {
-        len = fwrite(buffer, size, 1, self->fd);
-        if (len == 0) {
+    (void)p;
+
+    if (!self->allow_write) {
+        AFW_THROW_ERROR_Z(general,
+            "Stream is not open for write", xctx);
+    }
+
+    ptr = (const afw_octet_t *)buffer;
+    remaining = size;
+    while (remaining > 0) {
+        n = fwrite(ptr, 1, remaining, self->fd);
+        if (n == 0) {
             AFW_THROW_ERROR_RV_Z(general, NULL, ferror(self->fd),
                 "fwrite() failed",
                 xctx);
         }
+        ptr += n;
+        remaining -= n;
+    }
+    if (self->auto_flush) {
+        fflush(self->fd);
     }
     return size;
 }
 
+
+
 /*
- * Implementation of method release for interface afw_writer.
+ * Implementation of method release for interface afw_stream.
  */
 void
 impl_afw_stream_release(
@@ -72,13 +87,18 @@ impl_afw_stream_release(
     afw_stream_fd_self_t *self =
         (afw_stream_fd_self_t *)instance;
 
-    if (self->close_on_release) {
+    (void)xctx;
+
+    if (self->close_on_release && self->fd) {
         fclose(self->fd);
+        self->fd = NULL;
     }
 }
 
+
+
 /*
- * Implementation of method flush for interface afw_writer.
+ * Implementation of method flush for interface afw_stream.
  */
 void
 impl_afw_stream_flush(
@@ -88,25 +108,51 @@ impl_afw_stream_flush(
     afw_stream_fd_self_t *self =
         (afw_stream_fd_self_t *)instance;
 
-    fflush(self->fd);
+    (void)xctx;
+
+    if (self->fd) {
+        fflush(self->fd);
+    }
 }
+
+
 
 /*
  * Implementation of method read for interface afw_stream.
+ * Returns number of octets read (0 at EOF).
  */
-void
+afw_size_t
 impl_afw_stream_read(
     const afw_stream_t *instance,
     const void *buffer,
     afw_size_t size,
     afw_xctx_t *xctx)
 {
-    /** @todo Add code to implement method. */
-    AFW_THROW_ERROR_Z(general, "Method not implemented.", xctx);
+    afw_stream_fd_self_t *self =
+        (afw_stream_fd_self_t *)instance;
+    size_t n;
+
+    if (!self->allow_read) {
+        AFW_THROW_ERROR_Z(general,
+            "Stream is not open for read", xctx);
+    }
+    if (size == 0 || !buffer) {
+        return 0;
+    }
+
+    n = fread((void *)buffer, 1, size, self->fd);
+    if (n == 0 && ferror(self->fd)) {
+        AFW_THROW_ERROR_RV_Z(general, NULL, ferror(self->fd),
+            "fread() failed",
+            xctx);
+    }
+    return (afw_size_t)n;
 }
 
+
+
 /*
- * Implementation of method write for interface afw_writer.
+ * Implementation of method write for interface afw_stream.
  */
 void
 impl_afw_stream_write(
@@ -115,25 +161,13 @@ impl_afw_stream_write(
     afw_size_t size,
     afw_xctx_t *xctx)
 {
-    afw_stream_fd_self_t *self =
-        (afw_stream_fd_self_t *)instance;
-    size_t len;
-
-    /** @todo loop if everything is not returned??? */
-    if (size != 0) {
-        len = fwrite(buffer, size, 1, self->fd);
-        if (len == 0) {
-            AFW_THROW_ERROR_RV_Z(general, NULL, ferror(self->fd),
-                "fwrite() failed",
-                xctx);
-        }
-        if (self->auto_flush) {
-            fflush(self->fd);
-        }
-    }
+    impl_afw_stream_fd_write_cb((void *)instance, buffer, size,
+        instance->p, xctx);
 }
 
-/* Create a writer to a file descriptor. */
+
+
+/* Create a stream to a file descriptor. */
 AFW_DEFINE(const afw_stream_t *)
 afw_stream_fd_create(
     FILE *fd,
@@ -147,27 +181,24 @@ afw_stream_fd_create(
 {
     afw_stream_fd_self_t *self;
 
-    /*
-     * You may want to create a new pool for instance, but will just use
-     * xctx's pool in this example.
-     */
     self = afw_xctx_calloc_type(afw_stream_fd_self_t, xctx);
     self->pub.inf = &impl_afw_stream_inf;
     self->pub.p = p;
     self->pub.streamId = streamId;
-    self->pub.write_cb = impl_afw_stream_fd_write_cb;
+    self->pub.write_cb = allow_write ? impl_afw_stream_fd_write_cb : NULL;
     self->fd = fd;
+    self->allow_read = allow_read;
+    self->allow_write = allow_write;
     self->auto_flush = auto_flush;
     self->close_on_release = close_on_release;
 
-    /* Return new instance. */
-    return (afw_stream_t *)self;
+    return (const afw_stream_t *)self;
 }
 
 
 
-/* Open a file and create a stream for it. */
-AFW_DECLARE(const afw_stream_t *)
+/* Open a file and create a stream for it. Path must already be resolved. */
+AFW_DEFINE(const afw_stream_t *)
 afw_stream_fd_open_and_create(
     const afw_utf8_t *streamId,
     const afw_utf8_t *path,
@@ -177,22 +208,20 @@ afw_stream_fd_open_and_create(
     afw_xctx_t *xctx)
 {
     const afw_stream_t *stream;
-    const afw_utf8_z_t *actual_path_z;
+    const afw_utf8_z_t *path_z;
     const afw_utf8_z_t *mode_z;
     const afw_utf8_z_t *c;
     FILE *fd;
     afw_boolean_t allow_read;
     afw_boolean_t allow_write;
 
-    /*! @fixme use application rootPaths */
-    actual_path_z = afw_utf8_to_utf8_z(mode, p, xctx);
-
+    path_z = afw_utf8_to_utf8_z(path, p, xctx);
     mode_z = afw_utf8_to_utf8_z(mode, p, xctx);
-    fd = fopen(actual_path_z, mode_z);
+    fd = fopen(path_z, mode_z);
     if (!fd) {
         AFW_THROW_ERROR_FZ(general, xctx,
-            "streamId " AFW_UTF8_FMT_Q " failed to open: %s",
-            AFW_UTF8_FMT_ARG(streamId), strerror(errno));
+            "streamId " AFW_UTF8_FMT_Q " failed to open %s: %s",
+            AFW_UTF8_FMT_ARG(streamId), path_z, strerror(errno));
     }
 
     allow_read = false;
@@ -209,6 +238,7 @@ afw_stream_fd_open_and_create(
             allow_write = true;
         }
     }
+
     stream = afw_stream_fd_create(fd, streamId,
         allow_read, allow_write, auto_flush, true, p, xctx);
 
