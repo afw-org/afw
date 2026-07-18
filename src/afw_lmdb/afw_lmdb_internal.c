@@ -1301,11 +1301,9 @@ afw_lmdb_transaction_t * afw_lmdb_transaction_create(
     if (rc) {
         apr_thread_rwlock_unlock(session->adapter->dbLock);
 
-        afw_trace_fz(1, session->adapter->pub.trace_flag_index, 
-            NULL, xctx, "LMDB transaction begin failed with error: " 
+        afw_trace_fz(1, session->adapter->pub.trace_flag_index,
+            NULL, xctx, "LMDB transaction begin failed with error: "
             AFW_INTEGER_FMT, rc);
-
-        abort();
 
         AFW_THROW_ERROR_RV_Z(general, lmdb, rc,
             "Unable to begin transaction.", xctx);

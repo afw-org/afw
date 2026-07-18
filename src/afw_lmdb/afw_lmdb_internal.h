@@ -369,6 +369,7 @@ int afw_lmdb_internal_reader_list(
 do { \
     MDB_txn * this_txn = NULL; \
     bool this_txnHandled = false; \
+    bool this_txnOwner = false; \
     const afw_lmdb_adapter_t * this_adapter = adapter; \
     const afw_lmdb_adapter_session_t * this_session = session; \
     afw_xctx_t * this_xctx = xctx; \
@@ -376,6 +377,18 @@ do { \
     AFW_TRY { \
         if (session && session->transaction) { \
             ((afw_lmdb_adapter_session_t *)session)->currTxn = session->transaction->txn; \
+        } else if (session && session->currTxn) { \
+            /* \
+             * A transaction is already active for this session on this \
+             * thread, e.g. this is a recursive/reentrant call (such as a \
+             * mapped model property that triggers another retrieve while \
+             * an outer retrieve for the same underlying adapter session \
+             * is still iterating). LMDB only allows a single read \
+             * transaction per thread, so reuse the active one instead of \
+             * calling mdb_txn_begin() again, which would fail with \
+             * MDB_BAD_RSLOT ("Invalid reuse of reader locktable slot"). \
+             */ \
+            this_txn = session->currTxn; \
         } else { \
             if (exclusive) { \
                 apr_thread_rwlock_wrlock(adapter->dbLock); \
@@ -391,10 +404,10 @@ do { \
                 afw_trace_fz(1, adapter->pub.trace_flag_index, \
                     NULL, this_xctx, "LMDB transaction begin failed with error: " \
                     AFW_INTEGER_FMT, this_rc); \
-                abort(); \
                 AFW_THROW_ERROR_RV_Z(general, lmdb, this_rc, \
                     "Unable to begin transaction.", this_xctx); \
             } \
+            this_txnOwner = true; \
             if (session) \
                 ((afw_lmdb_adapter_session_t *)session)->currTxn = this_txn; \
         } \
@@ -410,10 +423,12 @@ do { \
  * @brief Commit a transaction.
  */
 #define AFW_LMDB_COMMIT_TRANSACTION() \
-    if (!(this_session && this_session->transaction)) { \
+    if (this_txnOwner) { \
         if (this_txn && !this_txnHandled) { \
             this_rc = mdb_txn_commit(this_txn); \
             this_txnHandled = true; \
+            if (this_session) \
+                ((afw_lmdb_adapter_session_t *)this_session)->currTxn = NULL; \
             if (this_rc) { \
                 AFW_THROW_ERROR_RV_Z(general, lmdb_internal, this_rc, \
                     "Unable to commit transaction.", this_xctx); \
@@ -421,16 +436,18 @@ do { \
             afw_trace_z(1, this_session->adapter->pub.trace_flag_index, \
                 NULL, "LMDB Transaction committed.", this_xctx); \
         } \
-    } 
+    }
 
 /**
  * @brief Abort a transaction.
  */
 #define AFW_LMDB_ABORT_TRANSACTION() \
-    if (!(this_session && this_session->transaction)) { \
+    if (this_txnOwner) { \
         if (this_txn && !this_txnHandled) { \
             mdb_txn_abort(this_txn); \
             this_txnHandled = true; \
+            if (this_session) \
+                ((afw_lmdb_adapter_session_t *)this_session)->currTxn = NULL; \
             if (this_rc) { \
                 AFW_THROW_ERROR_RV_Z(general, lmdb_internal, this_rc, \
                     "Unable to abort transaction.", this_xctx); \
@@ -438,7 +455,7 @@ do { \
             afw_trace_z(1, this_session->adapter->pub.trace_flag_index, \
                 NULL, "LMDB Transaction aborted.", this_xctx); \
         } \
-    } 
+    }
 
 /**
  * @brief End an LMDB transaction.
@@ -446,13 +463,15 @@ do { \
 #define AFW_LMDB_END_TRANSACTION() \
         } while (0); \
     } AFW_FINALLY { \
-        if (!(this_session && this_session->transaction)) { \
+        if (this_txnOwner) { \
             if (this_txn && !this_txnHandled) { \
                 mdb_txn_abort(this_txn); \
                 this_txnHandled = true; \
                 afw_trace_z(1, this_session->adapter->pub.trace_flag_index, \
                     NULL, "LMDB Transaction aborted.", this_xctx); \
             } \
+            if (this_session) \
+                ((afw_lmdb_adapter_session_t *)this_session)->currTxn = NULL; \
             apr_thread_rwlock_unlock(this_adapter->dbLock); \
         } \
         AFW_ERROR_RETHROW; \
