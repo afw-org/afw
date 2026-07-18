@@ -360,6 +360,54 @@ afw_utf8_nfc(
 
 
 /*
+ * Create a property name from untrusted external octets. Valid UTF-8 becomes
+ * an NFC name; otherwise "_NONUTF8_" + uppercase hex of the raw bytes.
+ */
+AFW_DEFINE(const afw_utf8_t *)
+afw_utf8_create_property_name_from_external_octets(
+    const afw_utf8_octet_t *s,
+    afw_size_t len,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    afw_memory_t memory;
+    afw_utf8_t hex;
+    afw_utf8_t *result;
+    afw_utf8_octet_t *out;
+    afw_size_t prefix_len;
+    const afw_utf8_octet_t *prefix =
+        (const afw_utf8_octet_t *)AFW_UTF8_Z_NONUTF8_PROPERTY_NAME_PREFIX;
+
+    if (len == AFW_UTF8_Z_LEN) {
+        len = (s) ? strlen(s) : 0;
+    }
+
+    if (!s || len == 0) {
+        return afw_s_a_empty_string;
+    }
+
+    if (afw_utf8_is_valid(s, len, xctx)) {
+        return afw_utf8_create_copy(s, len, p, xctx);
+    }
+
+    memory.ptr = (const afw_byte_t *)s;
+    memory.size = len;
+    afw_memory_encode_printable_hex(&hex, &memory, p, xctx);
+
+    prefix_len = strlen(AFW_UTF8_Z_NONUTF8_PROPERTY_NAME_PREFIX);
+    result = afw_pool_calloc_type(p, afw_utf8_t, xctx);
+    result->len = prefix_len + hex.len;
+    out = afw_pool_malloc(p, result->len, xctx);
+    memcpy(out, prefix, prefix_len);
+    if (hex.len > 0) {
+        memcpy(out + prefix_len, hex.s, hex.len);
+    }
+    result->s = out;
+    return result;
+}
+
+
+/*
  * Create a NFC normalized zero terminated UTF-8 string in specified
  * pool.
  */

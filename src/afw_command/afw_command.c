@@ -472,9 +472,10 @@ impl_evaluate(
     }
     AFW_TRY {
        
-        /* Set environment object and qualifier in new xctx. */
-        afw_runtime_xctx_set_object(self->environment_variables_object,
-            true, xctx);
+        /*
+         * Push environment:: qualifier only. Process-env current is registered
+         * once on the base xctx; re-registering here duplicates retrieve (#71).
+         */
         afw_xctx_qualifier_stack_qualifier_object_push(afw_s_environment,
             self->environment_variables_object, true, xctx->p, xctx);        
 
@@ -917,7 +918,8 @@ main(int argc, const char * const *argv) {
     /* Create Adaptive Framework environment for command. */
     AFW_ENVIRONMENT_CREATE(xctx, argc, argv, &create_error);
     if (!xctx) {
-        afw_error_print(xctx->env->stderr_fd, create_error);
+        /* xctx is NULL; use C stderr (redirects apply only after successful create). */
+        afw_error_print(stderr, create_error);
         return EXIT_FAILURE;
     }
 

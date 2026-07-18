@@ -32,6 +32,8 @@ Includes **`afw.h`** (consumer pattern), never `afw_internal.h`. See `afw-enviro
 
 `impl_evaluate` uses a **child xctx**, `afw_compile_to_value_with_callback` → `afw_value_evaluate` (unless `-k`), then content-type serialize (`-a`, default json). Commits/releases adapter session cache after each eval.
 
+**Process env (issue #71):** register `_AdaptiveEnvironmentVariables_/current` once on the base xctx; on child eval/local-request xctx **push `environment::` only** (do not re-`afw_runtime_xctx_set_object`). Details: **`afw-environment-variables`**. Local regression: `tests/local_test_3_*`.
+
 ## Interactive input and libedit
 
 Issue context: GitHub **#30** (line editing / history for interactive `afw`).

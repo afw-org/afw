@@ -10,6 +10,8 @@ One **`afw_environment_t`** per process (via `xctx->env`). Almost every capabili
 
 Source of truth for core registry kinds: `AFW_ENVIRONMENT_REGISTRY_TYPE_MAP` in `environment/afw_environment.h`. Hosts use `AFW_ENVIRONMENT_CREATE` → work → `afw_environment_release` (see header snippet).
 
+**Create failure (`!xctx`):** print with C **`stderr`** only — do not dereference null `xctx`. After create succeeds, use **`xctx->env->stderr_fd`** / `stdout_fd` (defaults set at create; hosts may redirect). Process env object + UTF-8 boundary: **`afw-environment-variables`** (issue #71).
+
 ## Mental model
 
 ```text

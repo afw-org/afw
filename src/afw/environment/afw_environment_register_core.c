@@ -196,7 +196,8 @@ impl_create_environment_variables_object(
     char *s;
     char *c;
     const afw_utf8_t *name;
-    const afw_utf8_t *value;
+    const afw_value_t *value;
+    afw_size_t name_len;
 
     result = afw_object_create_unmanaged(xctx->p, xctx);
     afw_object_meta_set_ids(result,
@@ -208,14 +209,22 @@ impl_create_environment_variables_object(
         &impl_s_description_initialEnvironmentVariables, xctx);
     afw_object_meta_set_read_only(result, xctx);
 
+    /*
+     * Snapshot process environ at startup. Names that are not valid UTF-8 use
+     * _NONUTF8_ + hex; values are string if valid UTF-8 else hexBinary. Never
+     * fail environment create because of a single bad entry.
+     */
     for (v = environ; *v; v++)
     {
         for (s = c = *v; *c != '=' && *c != 0; c++);
-        name = afw_utf8_create_copy(s, c - s, result->p, xctx);
-        if (*c == '=') c++;
-        value = afw_utf8_create_copy(c, AFW_UTF8_Z_LEN, result->p, xctx);
-        afw_object_set_property_as_string(result,
-            name, value, xctx);
+        name_len = (afw_size_t)(c - s);
+        name = afw_utf8_create_property_name_from_external_octets(
+            (const afw_utf8_octet_t *)s, name_len, result->p, xctx);
+        if (*c == '=') {
+            c++;
+        }
+        value = afw_value_create_from_external_z(c, result->p, xctx);
+        afw_object_set_property(result, name, value, xctx);
     }
 
     return result;

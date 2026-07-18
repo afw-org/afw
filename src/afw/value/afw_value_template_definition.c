@@ -129,7 +129,8 @@ impl_afw_value_optional_evaluate(
             }
         }
 
-        result = afw_value_make_single_string(concat, len, p, xctx);
+        result = afw_value_create_unmanaged_string(
+            afw_utf8_create(concat, len, p, xctx), p, xctx);
     }
 
     afw_xctx_statement_flow_reset_all_except_rethrow(xctx);

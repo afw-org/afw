@@ -1,0 +1,18 @@
+80
+++afw-local-mode-evaluate-direct:{"ACCEPT":"application/json","syntax":"script"}0
+73
+return length(retrieve_objects("afw", "_AdaptiveEnvironmentVariables_"));0
+103
+const e = get_object("afw", "_AdaptiveEnvironmentVariables_", "current"); return meta(e.HOME).dataType;0
+136
+const e = get_object("afw", "_AdaptiveEnvironmentVariables_", "current"); const a = e.HOME; const b = environment::HOME; return a === b;0
+91
+++afw-local-multi-request-properties:{"REMOTE_USER":"LocalTestUser","AFW_LOCAL_TEST":"yes"}0
+92
+const r = get_object("afw", "_AdaptiveRequestProperties_", "current"); return r.REMOTE_USER;0
+95
+const r = get_object("afw", "_AdaptiveRequestProperties_", "current"); return r.AFW_LOCAL_TEST;0
+73
+return length(retrieve_objects("afw", "_AdaptiveEnvironmentVariables_"));0
+4
+exit0

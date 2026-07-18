@@ -426,45 +426,54 @@ afw_value_as_utf8(const afw_value_t *value,
 
 
 
-/* Make an afw_value_common_t String using string in specified pool. */
+/*
+ * Create Adaptive value from untrusted external octets: string if valid
+ * UTF-8 (NFC), otherwise hexBinary with a copy of the same bytes.
+ */
 AFW_DEFINE(const afw_value_t *)
-afw_value_make_single_string(
+afw_value_create_from_external_octets(
     const afw_utf8_octet_t *s,
     afw_size_t len,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    afw_value_string_t *single;
+    const afw_utf8_t *string;
+    afw_memory_t memory;
+    const afw_byte_t *copy;
 
-    single = afw_pool_malloc_type(p, afw_value_string_t, xctx);
-    single->inf = &afw_value_unmanaged_string_inf;
-    single->internal.s = s;
-    single->internal.len = (len == AFW_UTF8_Z_LEN) ? strlen(s) : len;
-    return &single->pub;
+    if (len == AFW_UTF8_Z_LEN) {
+        len = (s) ? strlen(s) : 0;
+    }
 
+    /* Empty or NULL → empty string (not hexBinary). */
+    if (!s || len == 0) {
+        return afw_v_a_empty_string;
+    }
+
+    /* Valid UTF-8 → NFC string value. */
+    if (afw_utf8_is_valid(s, len, xctx)) {
+        string = afw_utf8_create_copy(s, len, p, xctx);
+        return afw_value_create_unmanaged_string(string, p, xctx);
+    }
+
+    /* Invalid UTF-8 → hexBinary with owned copy of the same bytes. */
+    copy = afw_memory_dup(s, len, p, xctx);
+    memory.ptr = copy;
+    memory.size = len;
+    return afw_value_create_unmanaged_hexBinary(&memory, p, xctx);
 }
 
-/* Make an afw_value_common_t String using copy of string in specified pool. */
+
+/* NUL-terminated convenience wrapper. */
 AFW_DEFINE(const afw_value_t *)
-afw_value_make_string_copy(
-    const afw_utf8_octet_t *s,
-    afw_size_t len,
+afw_value_create_from_external_z(
+    const char *s_z,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    afw_value_string_t *single;
-
-    single = afw_pool_malloc_type(p, afw_value_string_t, xctx);
-    single->inf = &afw_value_unmanaged_string_inf;
-    single->internal.len = (len == AFW_UTF8_Z_LEN) ? strlen(s) : len;
-    single->internal.s = (single->internal.len > 0)
-        ? afw_memory_dup(s, single->internal.len, p, xctx)
-        : NULL;
-
-    return &single->pub;
-
+    return afw_value_create_from_external_octets(
+        (const afw_utf8_octet_t *)s_z, AFW_UTF8_Z_LEN, p, xctx);
 }
-
 
 
 /* Make an afw_value_string_t from in specified pool. */

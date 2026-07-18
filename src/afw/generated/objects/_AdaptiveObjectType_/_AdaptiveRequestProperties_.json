@@ -3,10 +3,9 @@
     "collectionURIs": [
         "/afw/_AdaptiveCollection_/core"
     ],
-    "description": "Object type for adaptive request properties. This includes most of the environment variables that are supplied by the associated server.",
+    "description": "Object type for adaptive request properties (per-request CGI/FCGI-like parameters and headers). Known properties are strings. Additional properties from the request environment are string when valid UTF-8 (NFC), otherwise hexBinary; non-UTF-8 names use _NONUTF8_ plus uppercase hex of the raw name.",
     "objectType": "_AdaptiveRequestProperties_",
     "otherProperties": {
-        "dataType": "string"
     },
     "propertyTypes": {
         "ACCEPT": {

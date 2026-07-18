@@ -1,0 +1,59 @@
+---
+description: Process env and request properties — UTF-8 boundary, string|hexBinary, #71 single current
+globs: src/afw/environment/afw_environment_variables_object.c,src/afw/environment/afw_environment_register_core.c,src/afw/value/afw_value.c,src/afw/value/afw_value.h,src/afw/utf8/afw_utf8.c,src/afw/utf8/afw_utf8.h,src/afw_server_fcgi/afw_server_fcgi_properties_object.c,src/afw_server_fcgi/afw_server_fcgi_request.c,src/afw_command/afw_command.c,src/afw_command/afw_command_local_server.c,src/afw/tests/miscellaneous/environment_variables*,src/afw_command/tests/local_test_3*
+alwaysApply: false
+---
+
+# Process environment & request properties (issue #71)
+
+Two **separate** bags. Do not merge them into one `current` or one qualifier.
+
+| Role | Object type / id | Qualifier | Source |
+|------|------------------|-----------|--------|
+| **Process env** | `/afw/_AdaptiveEnvironmentVariables_/current` | `environment::` | Host `environ` / `getenv` |
+| **Request props** | `/afw/_AdaptiveRequestProperties_/current` | `request::` | FCGI `envp` / local multi-request / headers |
+
+## Single runtime registration (#71)
+
+- Register process-env `current` **once** on the base/server xctx (`afw_runtime_xctx_set_object`).
+- On **child** request/eval xctx: push **`environment::` only** — do **not** re-register the same object (parent-chain retrieve would return two identical `current`s).
+- Same pattern: `afw_command` (eval + local server), `afw_server_fcgi` (request), not “register again with overwrite.”
+
+`retrieve_objects("afw", "_AdaptiveEnvironmentVariables_")` must return **length 1**.
+
+## External octets → Adaptive values
+
+Untrusted external bytes (env, FCGI, similar) **must not** become string/`afw_utf8_t` without validation.
+
+| API | Role |
+|-----|------|
+| `afw_value_create_from_external_octets` / `_z` | Valid UTF-8 → **string** (NFC via `afw_utf8_*`); else **hexBinary** (copy of same raw bytes). Does **not** throw on invalid UTF-8. |
+| `afw_utf8_create_property_name_from_external_octets` | Valid UTF-8 name → NFC name; else **`_NONUTF8_` + uppercase hex** of raw name bytes. Property names are always `afw_utf8_t`. |
+| `afw_value_create_string_from_u8z` | Requires valid UTF-8; **throws** if not. For trusted/required text only. |
+
+**Never** reintroduce helpers that wrap unchecked bytes as string (removed: `afw_value_make_string_copy`, `afw_value_make_single_string`).
+
+Interior AFW may assume `afw_utf8_t` is valid NFC. Boundary ownership is `afw_utf8_*` + the external value helpers.
+
+## Lazy object + cache
+
+Custom objects (`afw_environment_variables_object.c`, FCGI properties object):
+
+1. Empty memory object `self->properties` as cache.
+2. `get_property`: cache hit → return; else external lookup → `create_from_external_*` → **`set_property` into cache** → return.
+3. Full load / retrieve: fill cache from `environ`/`envp` skipping names already present (cache preferred; **no duplicates**).
+4. Do not fail the process/request because one name/value is non-UTF-8.
+
+## `AFW_ENVIRONMENT_CREATE` failure
+
+When create returns NULL, **`xctx` is NULL** — use `afw_error_print(stderr, create_error)` only (skeleton / `afw` / `afwfcgi`). Stream redirects via `env->stderr_fd` apply **after** successful create. Do not dereference null `xctx`.
+
+## Tests
+
+| Asset | Covers |
+|-------|--------|
+| `src/afw/tests/miscellaneous/environment_variables.as` | #71 count, HOME string, qualifier |
+| `…/environment_variables_external.py` | Bad value → hexBinary; good UTF-8 string; bad name → `_NONUTF8_…` (C setenv + exec afw) |
+| `src/afw_command/tests/local_test_3_*` | #71 + environment:: + multi-request props under `afw --local` |
+
+No automated FCGI harness required for this issue; FCGI code follows the same rules. Related: `afw-environment`, `afw-command`, `afw-server-fcgi`, `afw-tests`, `afw-value-memory`.

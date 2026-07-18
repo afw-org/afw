@@ -1102,9 +1102,8 @@ impl_make_object_types(
                 "_AdaptiveObjectType representation of LDAP object"
                 "class " AFW_UTF8_FMT_Q ".",
                 AFW_UTF8_FMT_ARG(id));
-            value = afw_value_make_single_string(
-                default_description->s, default_description->len,
-                p, xctx);
+            value = afw_value_create_unmanaged_string(
+                default_description, p, xctx);
         }
         afw_object_set_property(object_type_object, afw_s_description, value,
             xctx);
