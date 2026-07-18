@@ -52,6 +52,7 @@ When fixing a C/runtime bug, add `.as` coverage that fails without the fix:
 - Reference examples: `src/afw/tests/miscellaneous/property_get.as`, `variable_get.as` (default-object clone).
 - Stream / open_file: `src/afw/tests/miscellaneous/stream_file/` (issue #103).
 - VFS adapter: `src/afw_vfs/tests/` (`vfs_test.as`, `vfs_multimap.as`, `vfs_phase4.as`; issue #79) — rules **`afw-vfs`**. Keep fixtures small (no multi‑MB permanent assets).
+- Process env / #71: `miscellaneous/environment_variables.as`, `environment_variables_external.py` (non-UTF-8 via setenv helper); `afw --local`: `src/afw_command/tests/local_test_3_*` — rules **`afw-environment-variables`**.
 
 ## Model adapter tests
 

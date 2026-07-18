@@ -24,6 +24,8 @@ Use when changing value lifetime, refcount, create/allocate APIs, data type bind
 
 Do not invent new lifetime paths; match existing create_* patterns.
 
+**Untrusted external bytes** (process env, FCGI params): never wrap as string without validation. Use **`afw_value_create_from_external_octets` / `_z`** (string if valid UTF-8 else hexBinary). See **`afw-environment-variables`**.
+
 ## Active long-running focus
 
 - Implement/complete **optional_release** / **clone_or_reference** (or get_reference) on escaping values: objects, lists/arrays, closures, `compiled_value`, and other managed kinds that outlive a scope.

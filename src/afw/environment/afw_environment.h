@@ -471,7 +471,9 @@ typedef const afw_utf8_z_t * (*afw_environment_error_rv_decoder_z_t) (
  *    ... Create Adaptive Framework environment using helper macro ...
  *    AFW_ENVIRONMENT_CREATE(xctx, argc, argv, &create_error);
  *    if (!xctx) {
- *        afw_error_print(xctx->env->stderr_fd, create_error);
+ *        // Create failed: xctx is NULL. Use C stderr here; stream redirects
+ *        // via env->stderr_fd apply only after a successful create.
+ *        afw_error_print(stderr, create_error);
  *        return -1; 
  *    }
  *   

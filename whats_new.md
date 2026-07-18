@@ -15,6 +15,17 @@ Internal agent rules, Cursor docs, and pure test-infrastructure work are omitted
 | **Model adapters** | `mappedAdapterId` is **optional** for pure-script models |
 | **`afw` CLI** | Optional interactive line editing and command history |
 | **JSON Schema** | Cleaner editor schemas for Adaptive object types |
+| **Process env** | One `current` on retrieve (issue **#71**); values are string if valid UTF-8 else hexBinary |
+
+---
+
+## Process environment variables (issue #71)
+
+`retrieve_objects("afw", "_AdaptiveEnvironmentVariables_")` now returns a **single** `current` object (process environment), not two identical ones. The `environment::` qualifier is unchanged.
+
+Property **values** from the host environment are Adaptive **string** when the bytes are valid UTF-8 (NFC), otherwise **hexBinary** (raw octets preserved). Property **names** that are not valid UTF-8 appear as `_NONUTF8_` plus uppercase hex of the raw name. A bad value no longer prevents AFW from starting.
+
+Request CGI/FCGI-like parameters remain under `_AdaptiveRequestProperties_` / `request::` (separate from process env).
 
 ---
 

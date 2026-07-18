@@ -1500,27 +1500,53 @@ afw_value_symbol_reference_create(
 
 
 
-/** Make an afw_value_common_t String using string in specified pool. */
+/**
+ * @brief Create an Adaptive value from untrusted external octets.
+ * @param s pointer to octets (may be NULL).
+ * @param len number of bytes, or AFW_UTF8_Z_LEN if s is NUL-terminated.
+ * @param p pool for the value and any owned payload.
+ * @param xctx of caller.
+ * @return string value if s is valid UTF-8 (NFC via afw_utf8_*);
+ *    otherwise hexBinary with a copy of the same bytes.
+ *
+ * Does not throw for invalid UTF-8. Use this for process environment,
+ * FCGI/CGI parameters, and similar external byte bags. Do not construct
+ * string values from untrusted bytes any other way.
+ *
+ * Empty or NULL input yields an empty string value.
+ */
 AFW_DECLARE(const afw_value_t *)
-afw_value_make_single_string(
+afw_value_create_from_external_octets(
     const afw_utf8_octet_t *s,
     afw_size_t len,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 
-
-/** Make an afw_value_common_t String using copy of string in specified pool. */
+/**
+ * @brief Create an Adaptive value from a NUL-terminated external C string.
+ * @param s_z NUL-terminated bytes (may be NULL).
+ * @param p pool for the value and any owned payload.
+ * @param xctx of caller.
+ * @return See afw_value_create_from_external_octets().
+ */
 AFW_DECLARE(const afw_value_t *)
-afw_value_make_string_copy(
-    const afw_utf8_octet_t *s,
-    afw_size_t len,
+afw_value_create_from_external_z(
+    const char *s_z,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 
-
-/** Make an afw_value_string_t from utf8_z in specified pool. */
+/**
+ * @brief Make an afw_value_string_t from utf8_z in specified pool.
+ * @param string_z must be valid UTF-8 (will be NFC-normalized).
+ * @param p pool for the value.
+ * @param xctx of caller.
+ * @return string value.
+ *
+ * Throws if string_z is not valid UTF-8. For untrusted external bytes use
+ * afw_value_create_from_external_octets() or afw_value_create_from_external_z().
+ */
 AFW_DECLARE(const afw_value_t *)
 afw_value_create_string_from_u8z(
     const afw_utf8_z_t *string_z,

@@ -2,13 +2,9 @@
     "$comment": "Generated from adaptive object type _AdaptiveEnvironmentVariables_. Primary use: editor completion/validation for generate/objects JSON. Do not hand-edit.",
     "$defs": {
         "_AdaptiveEnvironmentVariables_": {
-            "additionalProperties": {
-                "description": "Environment variables of process.",
-                "markdownDescription": "Environment variables of process.",
-                "type": "string"
-            },
-            "description": "Environment variables of process.",
-            "markdownDescription": "Environment variables of process.",
+            "additionalProperties": true,
+            "description": "Process environment variables of the Adaptive host. Each property is a string when the external value is valid UTF-8 (NFC), otherwise hexBinary with the raw octets. Property names that are not valid UTF-8 are exposed as _NONUTF8_ followed by uppercase hex of the raw name bytes.",
+            "markdownDescription": "Process environment variables of the Adaptive host. Each property is a string when the external value is valid UTF-8 (NFC), otherwise hexBinary with the raw octets. Property names that are not valid UTF-8 are exposed as _NONUTF8_ followed by uppercase hex of the raw name bytes.",
             "properties": {
                 "_meta_": {
                     "additionalProperties": true,
@@ -27,13 +23,9 @@
         }
     },
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "additionalProperties": {
-        "description": "Environment variables of process.",
-        "markdownDescription": "Environment variables of process.",
-        "type": "string"
-    },
-    "description": "Environment variables of process.",
-    "markdownDescription": "Environment variables of process.",
+    "additionalProperties": true,
+    "description": "Process environment variables of the Adaptive host. Each property is a string when the external value is valid UTF-8 (NFC), otherwise hexBinary with the raw octets. Property names that are not valid UTF-8 are exposed as _NONUTF8_ followed by uppercase hex of the raw name bytes.",
+    "markdownDescription": "Process environment variables of the Adaptive host. Each property is a string when the external value is valid UTF-8 (NFC), otherwise hexBinary with the raw octets. Property names that are not valid UTF-8 are exposed as _NONUTF8_ followed by uppercase hex of the raw name bytes.",
     "properties": {
         "_meta_": {
             "additionalProperties": true,

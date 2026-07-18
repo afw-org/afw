@@ -289,6 +289,17 @@ impl_read_and_process_request(
     AFW_TRY {
 
         /*
+         * Push environment:: on this request xctx. Process-env current is
+         * registered once on the base command xctx (issue #71); do not
+         * re-register it here.
+         */
+        if (self->command_self->environment_variables_object) {
+            afw_xctx_qualifier_stack_qualifier_object_push(afw_s_environment,
+                self->command_self->environment_variables_object,
+                true, xctx->p, xctx);
+        }
+
+        /*
          * Loop until an error, exit, or request processed. This is to allow
          * directives to be processed and then a request.
          */

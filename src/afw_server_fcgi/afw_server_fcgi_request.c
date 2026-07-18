@@ -88,9 +88,10 @@ afw_server_fcgi_internal_create_request(
     afw_xctx_qualifier_stack_qualifier_object_push(afw_s_request, self->pub.properties,
         true, xctx->p, xctx);
 
-    /* Set environment object and qualifier. */
-    afw_runtime_xctx_set_object(server->environment_variables_object,
-        true, xctx);
+    /*
+     * Push environment:: qualifier only. Process-env current is registered
+     * once on the server xctx; re-registering here duplicates retrieve (#71).
+     */
     afw_xctx_qualifier_stack_qualifier_object_push(afw_s_environment,
         server->environment_variables_object, true, xctx->p, xctx);   
 
