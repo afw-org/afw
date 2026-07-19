@@ -23,8 +23,9 @@ Progress:
 - [ ] 2. Optional: validate metadata if JSON/XML changed
 - [ ] 3. Day-to-day: ./afwdev build --cdev -j
 - [ ] 4. Day-to-day: afwdev test -j (or targeted --test-pattern)
-- [ ] 5. Full verify (user asked for full build/test, or before a PR when requested):
-         ./afwdev build --all --clean --install -j
+- [ ] 5. Full verify before a PR (maintainer default; also when user asks for
+         full build/test):
+         ./afwdev build --all --scan --clean --install -j
          afwdev test -j --env-mode valgrind
 - [ ] 6. Confirm success from command output
 ```
@@ -48,10 +49,12 @@ afwdev test --srcdir-pattern afw --tags rql
 afwdev test --srcdir-pattern afw --list
 afwdev test --srcdir-pattern afw --bail 1
 
-# Full verify (maintainer preference): clean build of everything + valgrind tests.
-# Use when user asks for full build and test, or before opening/updating a PR.
-# Much slower — not for every edit cycle.
-./afwdev build --all --clean --install -j
+# Full verify before a PR (maintainer default):
+#   --all    regenerate/build C + JS + docs
+#   --scan   clang analyze-build (analyzer errors fail the build)
+#   --clean  clean tree + extra syntax checking
+#   then all tests under valgrind (much slower — not every edit cycle)
+./afwdev build --all --scan --clean --install -j
 afwdev test -j --env-mode valgrind
 ```
 

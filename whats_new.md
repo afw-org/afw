@@ -10,6 +10,8 @@ Internal agent rules, Cursor docs, and pure test-infrastructure work are omitted
 
 | Area | What changed |
 |------|----------------|
+| **Retrieve arrays** | Optional **`maxObjects`** on materializing `retrieve_objects` (default **100**; issue **#49**) |
+| **Adapter auth** | `checkIndividualObjectReadAccess` wiring fixed + tests (issue **#90**) |
 | **File streams** | Working `open_file` with hardened `rootFilePaths`; stream errors **throw** |
 | **VFS adapter** | Empty files, safe full-file write, multi-map path rules, `maxReadBytes` |
 | **Model adapters** | `mappedAdapterId` is **optional** for pure-script models |
@@ -17,6 +19,68 @@ Internal agent rules, Cursor docs, and pure test-infrastructure work are omitted
 | **JSON Schema** | Cleaner editor schemas for Adaptive object types |
 | **Process env** | One `current` on retrieve (issue **#71**); values are string if valid UTF-8 else hexBinary |
 | **Templates** | Compile-time substitution `#{…}` docs and tests; backtick `` `\#` `` / `` `\$` `` match raw templates (issue **#97**) |
+
+---
+
+## Materializing retrieve: `maxObjects` (issue #49)
+
+**Issue #49** (partial)
+
+`retrieve_objects` and `retrieve_objects_with_uri` build a **full result array** in memory. To keep large dumps from exhausting the server, they now accept an optional trailing parameter:
+
+| Parameter | Default | Meaning |
+|-----------|---------|---------|
+| **`maxObjects`** | **100** | Maximum objects collected into the returned array |
+| | **0** | Unlimited |
+| Over max | — | Throws **`payload_too_large`** (`e.id === "payload_too_large"`) |
+
+```adaptive
+/* Default max 100 — large catalogs fail with payload_too_large */
+retrieve_objects("afw", "_AdaptiveObjectType_");
+
+/* Explicit unlimited when you intentionally want the full set */
+retrieve_objects("afw", "_AdaptiveObjectType_", undefined, undefined, undefined, 0);
+
+/* Cap a filtered retrieve */
+retrieve_objects("data", "Person", { filter: { op: "eq", property: "status", value: "active" } },
+    undefined, undefined, 50);
+```
+
+Same idea for URI form (parameter order: `uri`, `options?`, `adapterTypeSpecific?`, **`maxObjects?`**):
+
+```adaptive
+retrieve_objects_with_uri(anyURI("/afw/_AdaptiveObjectType_/"), undefined, undefined, 0);
+```
+
+### Progressive retrieve is not capped by `maxObjects`
+
+These APIs are for large result sets **without** materializing one array on the server:
+
+- `retrieve_objects_to_response` / `retrieve_objects_with_uri_to_response`
+- `retrieve_objects_to_stream` / `…_to_stream`
+- `retrieve_objects_to_callback` / `…_to_callback`
+
+They still use the same adapter session underneath; only the **array-building** functions enforce `maxObjects`. (Safe release after progressive write is tracked separately as issue **#127**. Broader long-running memory / OOM handling is issue **#2**.)
+
+`maxObjects` is **not** an adapter conf property and **not** RQL/client paging—those remain longer-term #49 work.
+
+---
+
+## Adapter get/retrieve authorization (issue #90)
+
+**Issue #90**
+
+Adapter get and retrieve always perform an action **`query`** authorization check on the resource before objects are returned. When adapter conf sets:
+
+```json
+"checkIndividualObjectReadAccess": true
+```
+
+each object is also checked with action **`read`** (object body available for the decision). Default is **`false`** (query only)—useful when decisions need per-object properties only if you opt in.
+
+Session delivery was fixed so intermediate handling (e.g. `_AdaptiveServiceConf_` typing, object-type dedupe) still runs when individual read is **off**. Previously those steps could be skipped along with the read check.
+
+Retrieve collection resource ids use a trailing slash (e.g. `/adapterId/ObjectType/`); get uses the full object path.
 
 ---
 
@@ -255,6 +319,14 @@ Tracked suites under `src/*/tests` are permanent regression assets. `afwdev test
 7. **Template strings:** if you relied on `` `\#…` `` or `` `\${…}` `` failing
    with “Invalid escape code,” they now emit literal `#` / `$` (opener
    suppress). Real `#{…}` / `${…}` substitutions are unchanged.
+8. **`retrieve_objects` / `retrieve_objects_with_uri`:** default **`maxObjects` is 100**.
+   Full catalog dumps (e.g. all `_AdaptiveObjectType_` or `_AdaptiveFunction_`
+   objects) must pass **`maxObjects: 0`** (or a higher explicit cap), or use a
+   progressive `retrieve_objects_to_*` API. Over the limit throws
+   **`payload_too_large`**. Language bindings expose the same optional parameter
+   (e.g. Python `maxObjects=0`).
+9. **Individual object read auth:** if you set `checkIndividualObjectReadAccess`
+   to `true`, ensure policies handle action **`read`** as well as **`query`**.
 
 ---
 
@@ -269,11 +341,16 @@ Tracked suites under `src/*/tests` are permanent regression assets. `afwdev test
 | Default-clone regressions | #110 | #118 (tests) |
 | Interactive libedit | #30 | #117 |
 | JSON Schema `$ref` / OT projection | #3 | #116 |
+| Process environment (single `current`, UTF-8/hexBinary) | #71 | *(this branch)* |
+| Materializing retrieve `maxObjects` | #49 | *(this branch, partial)* |
+| `checkIndividualObjectReadAccess` wiring / tests | #90 | *(this branch)* |
+| Progressive retrieve object release (follow-up) | #127 | *(open)* |
+| Long-running memory / OOM (follow-up) | #2 | *(open)* |
 
-Branch tip at the time of this note includes documentation commit #121 as well.
+Branch tip documentation also includes treating `src/*/tests` as permanent regression assets (#121).
 
 ---
 
 ## How this was produced
 
-Diff basis: `git log develop..mgg-develop` and the corresponding code/metadata changes on `mgg-develop`. For full commit history, see those PRs on the repository hosting Adaptive Framework.
+Diff basis: `git log develop..mgg-develop` / `develop..issue-#90` and the corresponding code/metadata changes (including uncommitted work on the issue branch that completes #90 / partial #49). For full commit history, see those PRs on the repository hosting Adaptive Framework.

@@ -63,15 +63,17 @@ Work largely on `mgg-develop` / related PRs — confirm, note leftovers, then cl
 | # | Title | Brief idea |
 |--:|:------|:-----------|
 | 85 | [Auth modes & delegation](https://github.com/afw-org/afw/issues/85) | Blunt `intermediate` workaround exists; need real model for handler install + delegated security domains. |
-| 49 | [Max objects from retrieve](https://github.com/afw-org/afw/issues/49) | Hard-coded retrieve limit; need long-term paging/streaming strategy. |
-| 41 | [Review auth checks in adaptor impl](https://github.com/afw-org/afw/issues/41) | Audit `afw_authorization_check()` call sites (query vs read, modify entries, request shape) + tests. |
+| 49 | [Max objects from retrieve](https://github.com/afw-org/afw/issues/49) | **Partial:** `maxObjects` on `retrieve_objects` / `with_uri` (default 100). Still open: paging/RQL, progressive product story. |
+| 41 | [Review auth checks in adaptor impl](https://github.com/afw-org/afw/issues/41) | Audit remaining: criteria on query, modify entries, actionId questions. |
 | 33 | [Review/change error codes](https://github.com/afw-org/afw/issues/33) | With try/catch, revisit error ids for script authors; docs + tests. |
+| 127 | [Progressive retrieve release](https://github.com/afw-org/afw/issues/127) | Re-enable safe object release after to_response write (old bug workaround). |
+| 2 | [Memory Management](https://github.com/afw-org/afw/issues/2) | Long-running scripts / graceful OOM — later; `maxObjects` stays useful alongside. |
 
 ## Test — tests (or unskipping) are the main remaining work
 
 | # | Title | Brief idea |
 |--:|:------|:-----------|
-| 90 | [`checkIndividualObjectReadAccess`](https://github.com/afw-org/afw/issues/90) | Conf param to skip per-object `read` auth after `query`; needs tests + docs polish. |
+| 90 | [`checkIndividualObjectReadAccess`](https://github.com/afw-org/afw/issues/90) | **Wiring + tests:** optional per-object `read`; special/no_dupe always run. |
 | 57 | [Tests for indexes](https://github.com/afw-org/afw/issues/57) | Write tests for core index interface (LMDB uses it). |
 
 ## Backlog — real work, not urgent / not started

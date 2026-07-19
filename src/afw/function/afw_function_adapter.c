@@ -47,6 +47,9 @@ typedef struct impl_retrieve_cb_ctx_s {
     const afw_object_options_t *object_options;
     const afw_value_t *call;
     const afw_value_t *argv[3];
+    /* Array materialization only: default 100; 0 = unlimited. */
+    afw_integer_t max_objects;
+    afw_integer_t object_count;
 } impl_retrieve_cb_ctx_t;
 
 static afw_boolean_t
@@ -61,8 +64,20 @@ impl_retrieve_cb(const afw_object_t *object, void *context,
     abort = false;
     if (object) {
         p = (object->p) ? object->p : ctx->p;
-        /** @fixme Need corresponding releases. */
+        /** @fixme Need corresponding releases. See issue #127. */
         if (ctx->array) {
+            /*
+             * Bound memory for materializing retrieve_objects /
+             * retrieve_objects_with_uri only. Progressive paths leave array NULL.
+             */
+            ctx->object_count++;
+            if (ctx->max_objects > 0 &&
+                ctx->object_count > ctx->max_objects)
+            {
+                AFW_THROW_ERROR_Z(payload_too_large,
+                    "Object retrieve limit exceeded.",
+                    xctx);
+            }
             afw_object_get_reference(object, xctx);
             afw_array_add_value(ctx->array,
                 afw_value_create_unmanaged_object(object, ctx->p, xctx), xctx);
@@ -1540,6 +1555,13 @@ afw_function_execute_replace_object_with_uri(
  * Use the objectOptions parameter to influence how the objects are viewed.
  * 
  * Options, specific to the adapterId, can be optionally supplied.
+ * 
+ * This function materializes all matching objects into a returned array. Use
+ * maxObjects to bound how many objects may be collected (default 100; 0 means
+ * unlimited). When the max would be exceeded, payload_too_large is thrown. For
+ * large result sets prefer retrieve_objects_to_response,
+ * retrieve_objects_to_stream, or retrieve_objects_to_callback so objects need
+ * not all be held in memory at once.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -1552,7 +1574,8 @@ afw_function_execute_replace_object_with_uri(
  *       objectType: string,
  *       queryCriteria?: (object _AdaptiveQueryCriteria_),
  *       options?: (object _AdaptiveObjectOptions_),
- *       adapterTypeSpecific?: object
+ *       adapterTypeSpecific?: object,
+ *       maxObjects?: integer
  *   ): array;
  * ```
  *
@@ -1579,6 +1602,12 @@ afw_function_execute_replace_object_with_uri(
  * 
  *       Where ${adapterType} is the adapter type id.
  *
+ *   maxObjects - (optional integer) Maximum number of objects that may be
+ *       collected into the returned array. Default is 100. Set to 0 for
+ *       unlimited. When exceeded, the function fails with payload_too_large.
+ *       This bounds memory for materializing retrieves only; progressive
+ *       retrieve_* functions are not limited by this parameter.
+ *
  * Returns:
  *
  *   (array) This is the array of objects retrieved.
@@ -1592,6 +1621,7 @@ afw_function_execute_retrieve_objects(
     const afw_value_object_t *queryCriteria;
     const afw_value_object_t *adapterTypeSpecific;
     const afw_value_object_t *options;
+    const afw_value_integer_t *maxObjects_arg;
     const afw_query_criteria_t * criteria;
     const afw_object_t *journal_entry;
     impl_retrieve_cb_ctx_t ctx;
@@ -1600,6 +1630,8 @@ afw_function_execute_retrieve_objects(
     afw_memory_clear(&ctx);
     ctx.p = x->p;
     ctx.array = afw_array_of_create(afw_data_type_object, x->p, x->xctx);
+    /* Default max for materializing retrieve; 0 = unlimited. */
+    ctx.max_objects = 100;
     criteria = NULL;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(adapterId,
@@ -1612,6 +1644,15 @@ afw_function_execute_retrieve_objects(
         4, object);
     AFW_FUNCTION_EVALUATE_DATA_TYPE_PARAMETER(adapterTypeSpecific,
         5, object);
+    if (AFW_FUNCTION_PARAMETER_IS_PRESENT(6)) {
+        AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(
+            maxObjects_arg, 6, integer);
+        if (maxObjects_arg->internal < 0) {
+            AFW_THROW_ERROR_Z(general,
+                "Parameter maxObjects must be >= 0", x->xctx);
+        }
+        ctx.max_objects = maxObjects_arg->internal;
+    }
 
     journal_entry = afw_object_create(x->p, x->xctx);
 
@@ -2081,6 +2122,11 @@ afw_function_execute_retrieve_objects_to_stream(
  * Use the objectOptions parameter to influence how the objects are viewed.
  * 
  * Options, specific to the adapterId, can be optionally supplied.
+ * 
+ * This function materializes all matching objects into a returned array. Use
+ * maxObjects to bound how many objects may be collected (default 100; 0 means
+ * unlimited). When the max would be exceeded, payload_too_large is thrown. For
+ * large result sets prefer progressive retrieve functions.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -2091,7 +2137,8 @@ afw_function_execute_retrieve_objects_to_stream(
  *   function retrieve_objects_with_uri(
  *       uri: anyURI,
  *       options?: (object _AdaptiveObjectOptions_),
- *       adapterTypeSpecific?: object
+ *       adapterTypeSpecific?: object,
+ *       maxObjects?: integer
  *   ): array;
  * ```
  *
@@ -2114,6 +2161,12 @@ afw_function_execute_retrieve_objects_to_stream(
  * 
  *       Where ${adapterType} is the adapter type id.
  *
+ *   maxObjects - (optional integer) Maximum number of objects that may be
+ *       collected into the returned array. Default is 100. Set to 0 for
+ *       unlimited. When exceeded, the function fails with payload_too_large.
+ *       This bounds memory for materializing retrieves only; progressive
+ *       retrieve_* functions are not limited by this parameter.
+ *
  * Returns:
  *
  *   (array) This is the array of objects retrieved.
@@ -2125,6 +2178,7 @@ afw_function_execute_retrieve_objects_with_uri(
     const afw_value_anyURI_t *uri;
     const afw_value_object_t *options;
     const afw_value_object_t *adapterTypeSpecific;
+    const afw_value_integer_t *maxObjects_arg;
     const afw_object_t *journal_entry;
     const afw_uri_parsed_t *parsed_uri;
     const afw_query_criteria_t *criteria;
@@ -2133,6 +2187,8 @@ afw_function_execute_retrieve_objects_with_uri(
     afw_memory_clear(&ctx);
     ctx.p = x->p;
     ctx.array = afw_array_of_create(afw_data_type_object, x->p, x->xctx);
+    /* Default max for materializing retrieve; 0 = unlimited. */
+    ctx.max_objects = 100;
     criteria = NULL;
     journal_entry = afw_object_create(x->p, x->xctx);
 
@@ -2142,6 +2198,15 @@ afw_function_execute_retrieve_objects_with_uri(
         2, object);
     AFW_FUNCTION_EVALUATE_DATA_TYPE_PARAMETER(adapterTypeSpecific,
         3, object);
+    if (AFW_FUNCTION_PARAMETER_IS_PRESENT(4)) {
+        AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(
+            maxObjects_arg, 4, integer);
+        if (maxObjects_arg->internal < 0) {
+            AFW_THROW_ERROR_Z(general,
+                "Parameter maxObjects must be >= 0", x->xctx);
+        }
+        ctx.max_objects = maxObjects_arg->internal;
+    }
 
     /* Optional options. */
     if (options) {

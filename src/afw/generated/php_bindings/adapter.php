@@ -751,6 +751,13 @@ class adapter
      * are viewed.
      * 
      * Options, specific to the adapterId, can be optionally supplied.
+     * 
+     * This function materializes all matching objects into a returned array.
+     * Use maxObjects to bound how many objects may be collected (default 100;
+     * 0 means unlimited). When the max would be exceeded, payload_too_large
+     * is thrown. For large result sets prefer retrieve_objects_to_response,
+     * retrieve_objects_to_stream, or retrieve_objects_to_callback so objects
+     * need not all be held in memory at once.
      *
      * @param string $adapterId Id of adapter containing objects to retrieve.
      * @param string $objectType Id of adaptive object type of objects to
@@ -774,10 +781,18 @@ class adapter
      * 
      *                                    Where ${adapterType} is the adapter
      *                                    type id.
+     * @param integer $maxObjects Maximum number of objects that may be
+     *                            collected into the returned array. Default
+     *                            is 100. Set to 0 for unlimited. When
+     *                            exceeded, the function fails with
+     *                            payload_too_large. This bounds memory for
+     *                            materializing retrieves only; progressive
+     *                            retrieve_* functions are not limited by this
+     *                            parameter.
      *
      * @return array This is the array of objects retrieved.
      */
-    public function retrieve_objects(, $objectType, $adapterId = null, $queryCriteria = null, $options = null, $adapterTypeSpecific = null)
+    public function retrieve_objects(, $objectType, $adapterId = null, $queryCriteria = null, $options = null, $adapterTypeSpecific = null, $maxObjects = null)
     {
         $request = $this->$session->request();
 
@@ -798,6 +813,9 @@ class adapter
 
         if ($adapterTypeSpecific != null)
             $request->set('adapterTypeSpecific', $adapterTypeSpecific);
+
+        if ($maxObjects != null)
+            $request->set('maxObjects', $maxObjects);
 
         return $request->get_result();
     }
@@ -1023,6 +1041,11 @@ class adapter
      * are viewed.
      * 
      * Options, specific to the adapterId, can be optionally supplied.
+     * 
+     * This function materializes all matching objects into a returned array.
+     * Use maxObjects to bound how many objects may be collected (default 100;
+     * 0 means unlimited). When the max would be exceeded, payload_too_large
+     * is thrown. For large result sets prefer progressive retrieve functions.
      *
      * @param anyURI $uri URI of objects to retrieve. If a URI begins with a
      *                    single slash ('/'), it is the local object path. A
@@ -1043,10 +1066,18 @@ class adapter
      * 
      *                                    Where ${adapterType} is the adapter
      *                                    type id.
+     * @param integer $maxObjects Maximum number of objects that may be
+     *                            collected into the returned array. Default
+     *                            is 100. Set to 0 for unlimited. When
+     *                            exceeded, the function fails with
+     *                            payload_too_large. This bounds memory for
+     *                            materializing retrieves only; progressive
+     *                            retrieve_* functions are not limited by this
+     *                            parameter.
      *
      * @return array This is the array of objects retrieved.
      */
-    public function retrieve_objects_with_uri(, $uri, $options = null, $adapterTypeSpecific = null)
+    public function retrieve_objects_with_uri(, $uri, $options = null, $adapterTypeSpecific = null, $maxObjects = null)
     {
         $request = $this->$session->request();
 
@@ -1061,6 +1092,9 @@ class adapter
 
         if ($adapterTypeSpecific != null)
             $request->set('adapterTypeSpecific', $adapterTypeSpecific);
+
+        if ($maxObjects != null)
+            $request->set('maxObjects', $maxObjects);
 
         return $request->get_result();
     }

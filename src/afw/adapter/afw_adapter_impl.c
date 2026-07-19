@@ -34,7 +34,6 @@ typedef struct {
     afw_object_cb_t original_callback;
     void *impl_callback_context;
     afw_object_cb_t impl_callback;
-    afw_integer_t retrieved_object_count;
 
     const afw_pool_t *p;
     afw_adapter_impl_session_t *session;
@@ -947,29 +946,33 @@ impl_no_duplicate_object_type_cb(
 }
 
 
-static afw_boolean_t
-impl_limit_returned_objects_cb(
-    const afw_object_t *object,
-    void *context,
-    afw_xctx_t *xctx)
+/*
+ * Wire object delivery callbacks:
+ *   [optional per-object read auth] → path_cb → original
+ *
+ * checkIndividualObjectReadAccess only controls the auth layer. Path-specific
+ * handling (special / no_dupe) always runs when selected. Array size limits are
+ * enforced in retrieve_objects() adaptive functions (maxObjects), not here.
+ */
+static void
+impl_setup_object_delivery_callbacks(
+    impl_request_context_t *ctx,
+    const afw_adapter_impl_t *impl,
+    afw_object_cb_t path_callback,
+    void *path_context,
+    afw_object_cb_t *callback_to_use,
+    void **context_to_use)
 {
-    impl_request_context_t *ctx = context;
-
-    /** @fixme This is a temporary way to limit # of objects returned. */
-    ctx->retrieved_object_count++;
-    if (ctx->retrieved_object_count > 100) {
-        return true;
-        //AFW_THROW_ERROR_Z(payload_too_large,
-        //    "Object retrieve limit exceeded.",
-        //    xctx);
+    if (impl->check_individual_object_read_access) {
+        ctx->impl_callback = path_callback;
+        ctx->impl_callback_context = path_context;
+        *callback_to_use = impl_authorization_cb;
+        *context_to_use = ctx;
     }
-
-    /** @fixme Check authorization */
-
-
-    /* Call original callback and return result. */
-    return ctx->original_callback(object, ctx->original_context,
-        xctx);
+    else {
+        *callback_to_use = path_callback;
+        *context_to_use = path_context;
+    }
 }
 
 
@@ -1017,16 +1020,6 @@ impl_afw_adapter_session_retrieve_objects(
     }
     ctx.action_id_value = afw_authorization_action_id_query;
 
-    /* If checkIndividualObjectReadAccess, use extra cb to check read access. */
-    if (self->pub.adapter->impl->check_individual_object_read_access) {
-        callback_to_use_for_get = impl_authorization_cb;
-        context_to_use_for_get = &ctx;
-    }
-    else {
-        callback_to_use_for_get = callback;
-        context_to_use_for_get = context;
-    }
-
     /* Trace begin */
     afw_trace_fz(1, adapter->trace_flag_index, self->wrapped_session, xctx,
         "begin retrieve_objects "
@@ -1036,7 +1029,7 @@ impl_afw_adapter_session_retrieve_objects(
     /** @fixme Add common prologue code. */
     afw_atomic_integer_increment(&impl->retrieve_objects_count);
 
-    /* Authorize */
+    /* Authorize collection-level query (always). */
     impl_check_authorization(&ctx, xctx);
 
     /*
@@ -1045,10 +1038,16 @@ impl_afw_adapter_session_retrieve_objects(
      * Allow only specific object types to be returned for retrieve.
      *
      * Note: get allows all to be returned.
+     *
+     * Core OTs are emitted first (optional read auth, no no_dupe — no_dupe
+     * would skip them as already in ht). Wrapped retrieve uses no_dupe.
      */
     if (afw_utf8_equal(object_type_id, afw_s__AdaptiveObjectType_))
     {
         ht = self->pub.adapter->impl->supported_core_object_types;
+        impl_setup_object_delivery_callbacks(&ctx, impl,
+            callback, context,
+            &callback_to_use_for_get, &context_to_use_for_get);
         for (hi = apr_hash_first(afw_pool_get_apr_pool(p), ht);
             hi;
             hi = apr_hash_next(hi))
@@ -1058,12 +1057,17 @@ impl_afw_adapter_session_retrieve_objects(
                 (void **)& e);
             if (afw_query_criteria_test_object(e->object, criteria, p, xctx))
             {
-                callback(e->object, context, xctx);
+                if (callback_to_use_for_get(
+                    e->object, context_to_use_for_get, xctx))
+                {
+                    goto end_retrieve_trace;
+                }
             }
         }
         ctx.ht = ht;
-        ctx.impl_callback_context = &ctx;
-        ctx.impl_callback = impl_no_duplicate_object_type_cb;
+        impl_setup_object_delivery_callbacks(&ctx, impl,
+            impl_no_duplicate_object_type_cb, &ctx,
+            &callback_to_use_for_get, &context_to_use_for_get);
         afw_adapter_session_retrieve_objects(
             self->wrapped_session, impl_request,
             object_type_id, criteria,
@@ -1074,8 +1078,9 @@ impl_afw_adapter_session_retrieve_objects(
 
     /** @fixme discuss this defensive check, it's null when indexing */
     else if (object_type_id && afw_utf8_starts_with(object_type_id, afw_s__Adaptive)) {
-        ctx.impl_callback_context = &ctx;
-        ctx.impl_callback = impl_special_object_handling_cb;
+        impl_setup_object_delivery_callbacks(&ctx, impl,
+            impl_special_object_handling_cb, &ctx,
+            &callback_to_use_for_get, &context_to_use_for_get);
         afw_adapter_session_retrieve_objects(
             self->wrapped_session, impl_request,
             object_type_id, criteria,
@@ -1085,8 +1090,9 @@ impl_afw_adapter_session_retrieve_objects(
     }
 
     else {
-        ctx.impl_callback_context = &ctx;
-        ctx.impl_callback = impl_limit_returned_objects_cb;
+        impl_setup_object_delivery_callbacks(&ctx, impl,
+            callback, context,
+            &callback_to_use_for_get, &context_to_use_for_get);
         afw_adapter_session_retrieve_objects(
             self->wrapped_session, impl_request,
             object_type_id, criteria,
@@ -1098,6 +1104,7 @@ impl_afw_adapter_session_retrieve_objects(
 
     /** @fixme Add common epilogue code. */
 
+end_retrieve_trace:
     /* Trace end */
     afw_trace_fz(1, adapter->trace_flag_index, self->wrapped_session, xctx,
         "end retrieve_objects "
@@ -1149,16 +1156,6 @@ impl_afw_adapter_session_get_object(
     }
     ctx.action_id_value = afw_authorization_action_id_query;
 
-    /* If checkIndividualObjectReadAccess, use extra cb to check read access. */
-    if (self->pub.adapter->impl->check_individual_object_read_access) {
-        callback_to_use_for_get = impl_authorization_cb;
-        context_to_use_for_get = &ctx;
-    }
-    else {
-        callback_to_use_for_get = callback;
-        context_to_use_for_get = context;
-    }
-
     /* Trace begin */
     afw_trace_fz(1, adapter->trace_flag_index, self->wrapped_session, xctx,
         "begin get_object "
@@ -1168,7 +1165,7 @@ impl_afw_adapter_session_get_object(
     /** @fixme Add common prologue code. */
     afw_atomic_integer_increment(&impl->get_object_count);
 
-    /* Authorize */
+    /* Authorize object-level query (always). */
     impl_check_authorization(&ctx, xctx);
 
     /* Get any core object types from runtime environment. */
@@ -1179,8 +1176,9 @@ impl_afw_adapter_session_get_object(
         e = apr_hash_get(self->pub.adapter->impl->supported_core_object_types,
             object_id->s, object_id->len);
         if (e) {
-            ctx.impl_callback_context = context;
-            ctx.impl_callback = callback;
+            impl_setup_object_delivery_callbacks(&ctx, impl,
+                callback, context,
+                &callback_to_use_for_get, &context_to_use_for_get);
             callback_to_use_for_get(e->object, context_to_use_for_get, xctx);
             goto end_trace;
         }
@@ -1189,16 +1187,18 @@ impl_afw_adapter_session_get_object(
         object_type_object = afw_runtime_get_object(
             object_type_id, object_id, xctx);
         if (object_type_object) {
-            ctx.impl_callback_context = context;
-            ctx.impl_callback = callback;
+            impl_setup_object_delivery_callbacks(&ctx, impl,
+                callback, context,
+                &callback_to_use_for_get, &context_to_use_for_get);
             callback_to_use_for_get(
                 object_type_object, context_to_use_for_get, xctx);
         }
 
         /* Other special pattern object type ids that begin with _Adaptive. */
         else {
-            ctx.impl_callback_context = context;
-            ctx.impl_callback = callback;
+            impl_setup_object_delivery_callbacks(&ctx, impl,
+                callback, context,
+                &callback_to_use_for_get, &context_to_use_for_get);
             afw_adapter_session_get_object(
                 self->wrapped_session, impl_request,
                 object_type_id, object_id,
@@ -1210,8 +1210,9 @@ impl_afw_adapter_session_get_object(
     }
 
     if (afw_utf8_starts_with(object_type_id, afw_s__Adaptive)) {
-        ctx.impl_callback_context = &ctx;
-        ctx.impl_callback = impl_special_object_handling_cb;
+        impl_setup_object_delivery_callbacks(&ctx, impl,
+            impl_special_object_handling_cb, &ctx,
+            &callback_to_use_for_get, &context_to_use_for_get);
         afw_adapter_session_get_object(
             self->wrapped_session, impl_request,
             object_type_id, object_id,
@@ -1222,8 +1223,9 @@ impl_afw_adapter_session_get_object(
 
     else {
         /* Call wrapped instance method. */
-        ctx.impl_callback_context = context;
-        ctx.impl_callback = callback;
+        impl_setup_object_delivery_callbacks(&ctx, impl,
+            callback, context,
+            &callback_to_use_for_get, &context_to_use_for_get);
         afw_adapter_session_get_object(
             self->wrapped_session, impl_request,
             object_type_id, object_id,

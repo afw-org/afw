@@ -2,41 +2,34 @@
 //?
 //? testScript: adapter.as
 //? customPurpose: Part of authorization tests
-//? description: Test adapter function decisions using application authorizationControl
+//? description: issue #90 - query deny for get_object and retrieve_objects (unskipped)
 //? sourceType: script
 //?
-//? test: get_object
-//? description: Test get_object
-//? expect: undefined
-//? skip: true
+//? test: get_object_query_denied
+//? description: get_object denied at query for specific resource
+//? expect: 0
 //? source: ...
 
 let caught = false;
-
 try {
     get_object("afw", "_AdaptiveObject_", "get-object-query");
 } catch (e) {
-    trace(e);
     assert(e.id === "denied");
     caught = true;
 }
-
 assert(caught);
+return 0;
 
-//? test: retrieve_objects
-//? description: Test retrieve_objects
-//? expect: undefined
-//? skip: true
+//?
+//? test: retrieve_objects_permit_runtime
+//? description: retrieve of runtime adapters is permitted by default policy branch
+//? expect: 0
 //? source: ...
 
-let caught = false;
-flag_set('response:error');
-
-try {
-    retrieve_objects("afw", "_AdaptiveAdapter_");
-} catch (e) {
-    assert(e.id === "denied");
-    caught = true;
-}
-
-assert(caught);
+/*
+ * Policy only denies a specific get resource; general retrieve on afw should
+ * succeed (permit path) when not matching the deny case.
+ */
+let list = retrieve_objects("afw", "_AdaptiveAdapter_");
+assert(length(list) >= 1);
+return 0;

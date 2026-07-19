@@ -16,4 +16,4 @@ const objects = retrieve_objects("afw", "_AdaptiveObjectType_", {
         "property": "objectType",
         "value": "xyz"
     }
-});
+}, undefined, undefined, 0);

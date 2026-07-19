@@ -552,6 +552,13 @@ The optional queryCriteria is used to filter the adaptive objects returned.
 Use the objectOptions parameter to influence how the objects are viewed.
 
 Options, specific to the adapterId, can be optionally supplied.
+
+This function materializes all matching objects into a returned array. Use
+maxObjects to bound how many objects may be collected (default 100; 0 means
+unlimited). When the max would be exceeded, payload_too_large is thrown. For
+large result sets prefer retrieve_objects_to_response,
+retrieve_objects_to_stream, or retrieve_objects_to_callback so objects need
+not all be held in memory at once.
 Retrieve adaptive objects
 
 =head4 Parameters
@@ -584,6 +591,13 @@ id of:
 _AdaptiveAdapterTypeSpecific_${adapterType}_retrieve_objects
 
 Where ${adapterType} is the adapter type id.
+
+    $maxObjects
+
+Maximum number of objects that may be collected into the returned array.
+Default is 100. Set to 0 for unlimited. When exceeded, the function fails with
+payload_too_large. This bounds memory for materializing retrieves only;
+progressive retrieve_* functions are not limited by this parameter.
 
 =head3 retrieve_objects_to_callback
 
@@ -744,6 +758,11 @@ The optional queryCriteria is used to filter the adaptive objects returned.
 Use the objectOptions parameter to influence how the objects are viewed.
 
 Options, specific to the adapterId, can be optionally supplied.
+
+This function materializes all matching objects into a returned array. Use
+maxObjects to bound how many objects may be collected (default 100; 0 means
+unlimited). When the max would be exceeded, payload_too_large is thrown. For
+large result sets prefer progressive retrieve functions.
 Retrieve adaptive object with URI
 
 =head4 Parameters
@@ -768,6 +787,13 @@ id of:
 _AdaptiveAdapterTypeSpecific_${adapterType}_retrieve_objects
 
 Where ${adapterType} is the adapter type id.
+
+    $maxObjects
+
+Maximum number of objects that may be collected into the returned array.
+Default is 100. Set to 0 for unlimited. When exceeded, the function fails with
+payload_too_large. This bounds memory for materializing retrieves only;
+progressive retrieve_* functions are not limited by this parameter.
 
 =head3 retrieve_objects_with_uri_to_callback
 
@@ -1237,7 +1263,7 @@ sub replace_object_with_uri {
 }
 
 sub retrieve_objects {
-    my ($adapterId, $objectType, $queryCriteria, $options, $adapterTypeSpecific) = @_;
+    my ($adapterId, $objectType, $queryCriteria, $options, $adapterTypeSpecific, $maxObjects) = @_;
 
     my $request = $session->request()
 
@@ -1255,6 +1281,9 @@ sub retrieve_objects {
 
     if (defined $adapterTypeSpecific)
         $request->set("adapterTypeSpecific", $adapterTypeSpecific);
+
+    if (defined $maxObjects)
+        $request->set("maxObjects", $maxObjects);
 
     return $request->getResult();
 }
@@ -1332,7 +1361,7 @@ sub retrieve_objects_to_stream {
 }
 
 sub retrieve_objects_with_uri {
-    my ($uri, $options, $adapterTypeSpecific) = @_;
+    my ($uri, $options, $adapterTypeSpecific, $maxObjects) = @_;
 
     my $request = $session->request()
 
@@ -1344,6 +1373,9 @@ sub retrieve_objects_with_uri {
 
     if (defined $adapterTypeSpecific)
         $request->set("adapterTypeSpecific", $adapterTypeSpecific);
+
+    if (defined $maxObjects)
+        $request->set("maxObjects", $maxObjects);
 
     return $request->getResult();
 }
