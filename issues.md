@@ -2,7 +2,7 @@
 
 Snapshot of open issues on [afw-org/afw](https://github.com/afw-org/afw) to help find “where things stand.”  
 Generated for work on **`mgg-develop`** (off **`develop`**). `main` is far behind and not the day-to-day base.  
-Last refreshed: 2026-07-18 (59 open on GitHub; triage notes from `whats_new.md` / branch work).
+Last refreshed: 2026-07-19 (62 open on GitHub; triage notes from `whats_new.md` / branch work).
 
 Grouped by rough next-step meaning (not formal GitHub status).
 
@@ -16,6 +16,7 @@ Work largely on `mgg-develop` / related PRs — confirm, note leftovers, then cl
 | 109 | [Script-only adapters (no dummy map)](https://github.com/afw-org/afw/issues/109) | Optional `mappedAdapterId` for pure-script models landed (#119 / `whats_new`). Confirm docs + close, or keep open for a dedicated script-adapter type. |
 | 103 | [Finish/remove stream functions](https://github.com/afw-org/afw/issues/103) | Stream / `open_file` / `rootFilePaths` finished on `mgg-develop` (#120). Verify, update issue, close. |
 | 97 | [Compile-time `#{…}` substitutions](https://github.com/afw-org/afw/issues/97) | Feature largely in (#100); docs, tests, and backtick `\#`/`\$` escapes completed on `mgg-develop` (`whats_new`). Verify and close. |
+| 90 | [`checkIndividualObjectReadAccess`](https://github.com/afw-org/afw/issues/90) | Conf wiring + session delivery fix + tests on `mgg-develop` (`whats_new`). Verify and close. |
 | 79 | [VFS empty file (0 bytes)](https://github.com/afw-org/afw/issues/79) | Fixed + hardened on issue/`mgg-develop` branch; merge/verify tests, then close (follow-ups listed in issue). |
 | 71 | [Duplicate `_AdaptiveEnvironmentVariables_`](https://github.com/afw-org/afw/issues/71) | Retrieve now returns one `current`; UTF-8/hexBinary value handling on `mgg-develop` (`whats_new`). Verify and close. |
 | 35 | [Closures (test262 gaps)](https://github.com/afw-org/afw/issues/35) | Scope/closure work advanced; remaining test262 skips — verify against current `develop`/`mgg-develop` and close or list gaps. |
@@ -26,6 +27,7 @@ Work largely on `mgg-develop` / related PRs — confirm, note leftovers, then cl
 
 | # | Title | Brief idea |
 |--:|:------|:-----------|
+| 127 | [Progressive retrieve release](https://github.com/afw-org/afw/issues/127) | Re-enable safe object release after to_response/stream write (old bug workaround still disables it). |
 | 114 | [Fiddle: close inactive unsaved tab](https://github.com/afw-org/afw/issues/114) | Closing an inactive unsaved tab closes the *active* tab instead — fix tab-id in close dialog (data-loss risk). |
 | 106 | [Resolve FIXMEs in afw tests](https://github.com/afw-org/afw/issues/106) | Hunt `FIXME` in `src/afw/tests/**/*.as` and fix or convert to tracked issues. |
 | 102 | [Model `on*`: `adapterTypeSpecific`](https://github.com/afw-org/afw/issues/102) | Expose `adapterTypeSpecific` to model `on*` scripts (and document). |
@@ -62,18 +64,16 @@ Work largely on `mgg-develop` / related PRs — confirm, note leftovers, then cl
 
 | # | Title | Brief idea |
 |--:|:------|:-----------|
+| 125 | [max vs maximum naming](https://github.com/afw-org/afw/issues/125) | Align outlier `maximum…` names (e.g. `maximumNumberOfParameters`) with dominant `max…` pattern; do later. |
 | 85 | [Auth modes & delegation](https://github.com/afw-org/afw/issues/85) | Blunt `intermediate` workaround exists; need real model for handler install + delegated security domains. |
-| 49 | [Max objects from retrieve](https://github.com/afw-org/afw/issues/49) | **Partial:** `maxObjects` on `retrieve_objects` / `with_uri` (default 100). Still open: paging/RQL, progressive product story. |
+| 49 | [Max objects from retrieve](https://github.com/afw-org/afw/issues/49) | **Partial:** `maxObjects` on materializing `retrieve_objects` / `with_uri` (default 100). Still open: paging/RQL, product story. |
 | 41 | [Review auth checks in adaptor impl](https://github.com/afw-org/afw/issues/41) | Audit remaining: criteria on query, modify entries, actionId questions. |
 | 33 | [Review/change error codes](https://github.com/afw-org/afw/issues/33) | With try/catch, revisit error ids for script authors; docs + tests. |
-| 127 | [Progressive retrieve release](https://github.com/afw-org/afw/issues/127) | Re-enable safe object release after to_response write (old bug workaround). |
-| 2 | [Memory Management](https://github.com/afw-org/afw/issues/2) | Long-running scripts / graceful OOM — later; `maxObjects` stays useful alongside. |
 
 ## Test — tests (or unskipping) are the main remaining work
 
 | # | Title | Brief idea |
 |--:|:------|:-----------|
-| 90 | [`checkIndividualObjectReadAccess`](https://github.com/afw-org/afw/issues/90) | **Wiring + tests:** optional per-object `read`; special/no_dupe always run. |
 | 57 | [Tests for indexes](https://github.com/afw-org/afw/issues/57) | Write tests for core index interface (LMDB uses it). |
 
 ## Backlog — real work, not urgent / not started
@@ -101,8 +101,9 @@ Work largely on `mgg-develop` / related PRs — confirm, note leftovers, then cl
 
 | # | Title | Brief idea |
 |--:|:------|:-----------|
+| 126 | [Journal support (meta)](https://github.com/afw-org/afw/issues/126) | Review, harden, document journal / `journalAdapterId`; park follow-ups here. |
 | 62 | [Adaptive Script language changes](https://github.com/afw-org/afw/issues/62) | Umbrella: statement results, multi `let`/`const`, `for` init, `=` as expr, loop labels. |
-| 2 | [Memory management](https://github.com/afw-org/afw/issues/2) | Long-running script lifetimes; substantial prior work — track remaining managed escape / pool polish. |
+| 2 | [Memory management](https://github.com/afw-org/afw/issues/2) | Long-running script lifetimes / OOM; related to #49 caps and #127 progressive release. |
 
 ---
 
