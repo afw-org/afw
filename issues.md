@@ -1,7 +1,8 @@
 # Open issues triage
 
 Snapshot of open issues on [afw-org/afw](https://github.com/afw-org/afw) to help find “where things stand.”  
-Generated for work on **`mgg-develop`** (off **`develop`**). `main` is far behind and not the day-to-day base.
+Generated for work on **`mgg-develop`** (off **`develop`**). `main` is far behind and not the day-to-day base.  
+Last refreshed: 2026-07-18 (59 open on GitHub; triage notes from `whats_new.md` / branch work).
 
 Grouped by rough next-step meaning (not formal GitHub status).
 
@@ -11,10 +12,12 @@ Work largely on `mgg-develop` / related PRs — confirm, note leftovers, then cl
 
 | # | Title | Brief idea |
 |--:|:------|:-----------|
-| 110 | [Segfault: embedded props in `on*`](https://github.com/afw-org/afw/issues/110) | Residual pointer after pool free in model `onGetObject`. Related work/tests on `mgg-develop` (#118); verify under valgrind and close or file leftovers. |
+| 110 | [Segfault: embedded props in `on*`](https://github.com/afw-org/afw/issues/110) | Clone-on-return fix on `develop`; regression tests on `mgg-develop` (#118 / `whats_new`). Verify under valgrind and close or file leftovers. |
 | 109 | [Script-only adapters (no dummy map)](https://github.com/afw-org/afw/issues/109) | Optional `mappedAdapterId` for pure-script models landed (#119 / `whats_new`). Confirm docs + close, or keep open for a dedicated script-adapter type. |
 | 103 | [Finish/remove stream functions](https://github.com/afw-org/afw/issues/103) | Stream / `open_file` / `rootFilePaths` finished on `mgg-develop` (#120). Verify, update issue, close. |
+| 97 | [Compile-time `#{…}` substitutions](https://github.com/afw-org/afw/issues/97) | Feature largely in (#100); docs, tests, and backtick `\#`/`\$` escapes completed on `mgg-develop` (`whats_new`). Verify and close. |
 | 79 | [VFS empty file (0 bytes)](https://github.com/afw-org/afw/issues/79) | Fixed + hardened on issue/`mgg-develop` branch; merge/verify tests, then close (follow-ups listed in issue). |
+| 71 | [Duplicate `_AdaptiveEnvironmentVariables_`](https://github.com/afw-org/afw/issues/71) | Retrieve now returns one `current`; UTF-8/hexBinary value handling on `mgg-develop` (`whats_new`). Verify and close. |
 | 35 | [Closures (test262 gaps)](https://github.com/afw-org/afw/issues/35) | Scope/closure work advanced; remaining test262 skips — verify against current `develop`/`mgg-develop` and close or list gaps. |
 | 30 | [Interactive afw input (libedit)](https://github.com/afw-org/afw/issues/30) | libedit line editing/history on `mgg-develop` (#117). Verify packages/docs and close. |
 | 3 | [JSON Schema `$ref` mixing](https://github.com/afw-org/afw/issues/3) | Schema projection cleanup on `mgg-develop` (#116). Verify validate/editor and close. |
@@ -26,12 +29,10 @@ Work largely on `mgg-develop` / related PRs — confirm, note leftovers, then cl
 | 114 | [Fiddle: close inactive unsaved tab](https://github.com/afw-org/afw/issues/114) | Closing an inactive unsaved tab closes the *active* tab instead — fix tab-id in close dialog (data-loss risk). |
 | 106 | [Resolve FIXMEs in afw tests](https://github.com/afw-org/afw/issues/106) | Hunt `FIXME` in `src/afw/tests/**/*.as` and fix or convert to tracked issues. |
 | 102 | [Model `on*`: `adapterTypeSpecific`](https://github.com/afw-org/afw/issues/102) | Expose `adapterTypeSpecific` to model `on*` scripts (and document). |
-| 97 | [Compile-time `#{…}` substitutions](https://github.com/afw-org/afw/issues/97) | Add `#{script}` compile-time template/value substitution (isolated script). |
 | 91 | [Auth mode `intermediate` for adapters](https://github.com/afw-org/afw/issues/91) | Use `intermediate` (not `user`) when adapters fetch internal/non-user-visible resources. |
 | 89 | [Pass function from array → error](https://github.com/afw-org/afw/issues/89) | `bar(a[0])` hits evaluation-limit error; skipped repro in `function.as` — fix eval/convert path. |
 | 86 | [Query criteria on embedded props](https://github.com/afw-org/afw/issues/86) | Dotted properties don’t resolve property types / `allowQuery`; add extended property-type get. |
 | 80 | [Auth handler script editor UI](https://github.com/afw-org/afw/issues/80) | Admin UI closes when editing authorizationHandler script source. |
-| 71 | [Duplicate `_AdaptiveEnvironmentVariables_`](https://github.com/afw-org/afw/issues/71) | Retrieve returns two identical `current` objects — find double registration/list. |
 | 70 | [JSON ↔ Adaptive specials](https://github.com/afw-org/afw/issues/70) | Map Infinity/NaN/undefined/integer vs double (and document rules). |
 | 69 | [Data types `json` / `relaxed_json`](https://github.com/afw-org/afw/issues/69) | Source-holding types with `compile` etc., like `script`/`template` (labeled in development). |
 | 63 | [Remove `expression` & `hybrid`](https://github.com/afw-org/afw/issues/63) | Drop diminished data types from core, app, tests, docs. |
