@@ -16,7 +16,7 @@ const objects = retrieve_objects("afw", "_AdaptiveObjectType_", {
         "property": "collectionURIs",
         "value": "/afw/_AdaptiveCollection_/core"
     }
-});
+}, undefined, undefined, 0);
 
 // we should have more than one object
 assert(length(objects) > 1);
@@ -40,7 +40,7 @@ const objects = retrieve_objects("afw", "_AdaptiveObjectType_", {
         "property": "collectionURIs",
         "value": "/x/y/z"
     }
-});
+}, undefined, undefined, 0);
 
 // we should have more than one object
 assert(length(objects) === 0);

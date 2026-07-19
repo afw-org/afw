@@ -24,25 +24,22 @@ libafw is not only a script engine. Hosts, adapters, and policies plug in throug
 - **Runtime** (`runtime/`): read-only views of environment/metadata objects (`afw_runtime.h`, value accessors).
 - **Query** (`query_criteria/`): filters for retrieve. RQL parse supports `limit(...)` (see `afw_query_criteria.c`); that is **not** yet a complete product paging story.
 
-### Retrieve object count limit (issue #49)
+### Retrieve array cap vs progressive (issue #49)
 
-Temporary hard-coded cap in the adapter **session impl wrapper** (`adapter/afw_adapter_impl.c`):
+**Materializing** adaptive functions build a full result array:
 
-- `impl_limit_returned_objects_cb` increments `retrieved_object_count` and **`return true` (abort callback chain)** after **100** objects — currently **silent** (no `payload_too_large` error; that throw is commented out).
-- Wired only on the **non-`_Adaptive*`** object-type branch of `impl_afw_adapter_session_retrieve_objects`. `_Adaptive*` types use other callbacks (special handling / object-type dedupe) and **skip** this limit path.
-- Even on that branch, the limit callback is only **invoked** when retrieve goes through `impl_authorization_cb` — i.e. when the adapter has **`checkIndividualObjectReadAccess`**. Otherwise `impl_callback` is set on ctx but the wrapped session is called with the **original** callback, so the cap may not run.
+- `retrieve_objects` / `retrieve_objects_with_uri` — optional **`maxObjects`** (default **100**, **0** = unlimited). Over max → **`payload_too_large`**. Enforced in `function/afw_function_adapter.c` when adding to the array, **not** in the session wrapper.
 
-**Do not** treat progressive streaming as closing #49:
+**Progressive** paths (no array max from `maxObjects`):
 
 | Path | Behavior |
 |------|----------|
-| `retrieve_objects` | Collect full list (or until abort); one response payload — original memory concern |
-| `retrieve_objects_to_response` / `_to_stream` | Per-object write + flush (`function/afw_function_adapter.c`); same `afw_adapter_retrieve_objects` → session retrieve underneath |
-| Admin Objects UI | Uses `retrieve_objects_to_response` + `application/x-afw` (`afw-stream`); **still** materializes the full client-side set via `streams()` / `readStreams()` |
+| `retrieve_objects_to_response` / `_to_stream` / `_to_callback` | Per-object write/callback; intended release-as-you-go (**#127** for safe release after write) |
+| Admin Objects UI | Progressive server write; client may still materialize full set |
 
-Streaming reduces **server response-assembly** peak for hosts that release after each intermediate; it is **not** a limit policy, not cursor paging, and does not fix silent truncate or non-stream callers. Long-term still needs design: configurable max/default, error vs truncate, RQL/page API, client paging. Tracker: GitHub **#49**; summary comment on the issue.
+Session wrapper (`adapter/afw_adapter_impl.c`) handles **auth** (`query` always; per-object `read` if `checkIndividualObjectReadAccess`) and special/no_dupe CBs — **not** the array size policy.
 
-When changing retrieve limits or callback chaining, re-read `impl_authorization_cb` → `impl_callback` wiring so “set on ctx” and “actually called” stay consistent.
+Long-term still open on #49: RQL/client paging, streaming product story. Long-running/OOM: **#2**.
 
 ## Request, content type, action
 

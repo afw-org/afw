@@ -11,10 +11,10 @@
 //? source: ...
 
 // retrieve our categories
-const categories: object = retrieve_objects("dev", "_AdaptiveFunctionCategory_");
+const categories: object = retrieve_objects("dev", "_AdaptiveFunctionCategory_", undefined, undefined, undefined, 0);
 
 // retrieve our functions
-const funcs: object = retrieve_objects("dev", "_AdaptiveFunctionGenerate_");
+const funcs: object = retrieve_objects("dev", "_AdaptiveFunctionGenerate_", undefined, undefined, undefined, 0);
 for (const func: object of funcs) {
     const {category} /* @todo :{category: string} */ = func;
 

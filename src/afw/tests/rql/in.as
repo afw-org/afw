@@ -16,7 +16,7 @@ const objects = retrieve_objects("afw", "_AdaptiveObjectType_", {
         "property": "objectType",
         "value": "xyz"
     }
-});
+}, undefined, undefined, 0);
 
 //? test: in_data_type_mismatch
 //? description: Test "in" when nothing matches
@@ -29,7 +29,7 @@ const objects = retrieve_objects("afw", "_AdaptiveObjectType_", {
         "property": "objectType",
         "value": [ true ]
     }
-});
+}, undefined, undefined, 0);
 
 
 //? test: in_none
@@ -43,7 +43,7 @@ const objects = retrieve_objects("afw", "_AdaptiveObjectType_", {
         "property": "objectType",
         "value": ["xyz"]
     }
-});
+}, undefined, undefined, 0);
 
 // we should have no objects that match
 assert(length(objects) === 0);
@@ -62,7 +62,7 @@ const objects = retrieve_objects("afw", "_AdaptiveObjectType_", {
         "property": "objectType",
         "value": ["_AdaptiveAdapter_"]
     }
-});
+}, undefined, undefined, 0);
 
 // we should have one object that match
 assert(length(objects) === 1);
@@ -80,7 +80,7 @@ const objects = retrieve_objects("afw", "_AdaptiveDataType_", {
         "property": "jsonPrimitive",
         "value": ["string"]
     }
-});
+}, undefined, undefined, 0);
 
 // we should have more than one object that matches
 assert(length(objects) > 1);
@@ -99,7 +99,7 @@ const objects = retrieve_objects("afw", "_AdaptiveObjectType_", {
         "property": "objectType",
         "value": ["abc","_AdaptiveAdapter_","xyz"]
     }
-});
+}, undefined, undefined, 0);
 
 // we should have one object that match
 assert(length(objects) === 1);
@@ -118,7 +118,7 @@ const objects = retrieve_objects("afw", "_AdaptiveObjectType_", {
         "property": "objectType",
         "value": ["_AdaptiveAdapterType_","_AdaptiveAdapter_","xyz"]
     }
-});
+}, undefined, undefined, 0);
 
 // we should have one object that match
 assert(length(objects) === 2);
@@ -137,7 +137,7 @@ const objects = retrieve_objects("afw", "_AdaptiveObjectType_", {
         "property": "collectionURIs",
         "value": ["/afw/_AdaptiveCollection_/core"]
     }
-});
+}, undefined, undefined, 0);
 
 // we should have one object that match
 assert(length(objects) > 1);

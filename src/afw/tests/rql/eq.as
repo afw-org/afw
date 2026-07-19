@@ -16,7 +16,7 @@ const objects = retrieve_objects("afw", "_AdaptiveObjectType_", {
         "property": "objectType",
         "value": "_AdaptiveObjectType_"
     }
-});
+}, undefined, undefined, 0);
 
 // we should have one object
 assert(length(objects) === 1);
@@ -40,7 +40,7 @@ const objects = retrieve_objects("afw", "_AdaptiveObjectType_", {
         "property": "objectType",
         "value": "xyz"
     }
-});
+}, undefined, undefined, 0);
 
 // we should have no objects
 assert(length(objects) === 0);
@@ -55,7 +55,7 @@ return 0;
 
 const objects = retrieve_objects("afw", "_AdaptiveObjectType_", {
     "urlEncodedRQLString": "objectType=_AdaptiveObjectType_"
-});
+}, undefined, undefined, 0);
 
 // we should have at least one object
 assert(length(objects) > 0);
@@ -79,7 +79,7 @@ const objects = retrieve_objects("afw", "_AdaptiveFunction_", {
         "property": "numberOfRequiredParameters",
         "value": 0
     }
-});
+}, undefined, undefined, 0);
 
 // we should have at least one object
 assert(length(objects) > 0);
@@ -103,7 +103,7 @@ const objects = retrieve_objects("afw", "_AdaptiveFunction_", {
         "property": "numberOfRequiredParameters",
         "value": 100
     }
-});
+}, undefined, undefined, 0);
 
 // we should have no matching objects
 assert(length(objects) === 0);
@@ -122,7 +122,7 @@ const objects = retrieve_objects("afw", "_AdaptiveObjectType_", {
         "property": "allowEntity",
         "value": true
     }
-});
+}, undefined, undefined, 0);
 
 // we should have at least one object
 assert(length(objects) > 0);
@@ -146,7 +146,7 @@ const objects = retrieve_objects("afw", "_AdaptiveObjectType_", {
         "property": "allowEntity",
         "value": false
     }
-});
+}, undefined, undefined, 0);
 
 // we should have at least one object
 assert(length(objects) > 1);
@@ -171,7 +171,7 @@ const objects = retrieve_objects("afw", "_AdaptiveObjectType_", {
         "property": "collectionURIs",
         "value": "/afw/_AdaptiveCollection_/core"
     }
-});
+}, undefined, undefined, 0);
 
 // we should have at least one object
 assert(length(objects) > 0);
@@ -197,7 +197,7 @@ const objects = retrieve_objects("afw", "_AdaptiveObjectType_", {
         "property": "propertyTypes.allowQuery",
         "value": true
     }
-});
+}, undefined, undefined, 0);
 
 // we should have at least one object
 assert(length(objects) > 0);
@@ -217,7 +217,7 @@ const objects: array = retrieve_objects("afw", "_AdaptiveObjectType_", {
         "property": "objectType",
         "value": true
     }
-});
+}, undefined, undefined, 0);
 
 // we should have one object to start with
 assert(length(objects) === 0);

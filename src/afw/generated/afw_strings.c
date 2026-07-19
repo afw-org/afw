@@ -16340,6 +16340,12 @@ afw_self_v_maxNormalLength = {
 };
 
 const afw_value_string_t
+afw_self_v_maxObjects = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_maxObjects)
+};
+
+const afw_value_string_t
 afw_self_v_maxString = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_maxString)
@@ -30818,6 +30824,12 @@ afw_self_v_zz__2277 = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__2278 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__2278)
+};
+
+const afw_value_string_t
 afw_self_v_zz__228 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__228)
@@ -42071,6 +42083,12 @@ const afw_value_string_t
 afw_self_v_zz__Maximum_number_to_retry_if_an_exception_occurs_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Maximum_number_to_retry_if_an_exception_occurs_)
+};
+
+const afw_value_string_t
+afw_self_v_zz__Maximum_objects_to_return = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Maximum_objects_to_return)
 };
 
 const afw_value_string_t

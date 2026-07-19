@@ -90,10 +90,10 @@ When fixing a C/runtime bug, add `.as` coverage that fails without the fix:
 # Usual script-test run (judge success from command output)
 afwdev test -j
 
-# Thorough (maintainer preference): full clean install of everything, then
-# all tests under valgrind. Use when user asks for full build/test, or before
-# a PR when requested — not every edit cycle (much slower).
-./afwdev build --all --clean --install -j
+# Thorough (maintainer default before a PR; also when user asks for full
+# build/test). --scan = clang analyze-build; --clean = clean + extra syntax
+# checking. Not every edit cycle (much slower).
+./afwdev build --all --scan --clean --install -j
 afwdev test -j --env-mode valgrind
 
 # Filename filter (regex on path under tests/)

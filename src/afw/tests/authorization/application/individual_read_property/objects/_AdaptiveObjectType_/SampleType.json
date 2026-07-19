@@ -1,0 +1,11 @@
+{
+    "objectType": "SampleType",
+    "allowAdd": true,
+    "allowChange": true,
+    "allowDelete": true,
+    "allowEntity": true,
+    "propertyTypes": {
+        "name": { "dataType": "string" },
+        "secret": { "dataType": "string" }
+    }
+}

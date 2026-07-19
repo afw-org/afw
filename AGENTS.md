@@ -40,8 +40,8 @@ Authoritative coding conventions: [`src/afw/doc/guide/developer/contributing.xml
 
 ```text
 edit generate/ or hand C/Python  →  ./afwdev build --cdev -j  →  afwdev test -j
-# full verify / before PR (when requested):
-#   ./afwdev build --all --clean --install -j  →  afwdev test -j --env-mode valgrind
+# full verify / before PR (maintainer default):
+#   ./afwdev build --all --scan --clean --install -j  →  afwdev test -j --env-mode valgrind
 ```
 
 1. **Edit** `src/<srcdir>/generate/` — e.g. `objects/_AdaptiveFunctionGenerate_/*.json`, `interfaces/*.xml` — and/or hand C under `src/afw/…`.
@@ -49,8 +49,9 @@ edit generate/ or hand C/Python  →  ./afwdev build --cdev -j  →  afwdev test
 3. **Implement** — e.g. `src/afw/function/afw_function_<category>.c` (not `generated/function_closet/`).
 4. **Test** — `afwdev test -j` runs the Adaptive Script tests (judge success from command output). Narrow with `--srcdir-pattern` / `--test-pattern` when useful.
 
-**Full build and test** (when asked, or before a PR when requested):  
-`./afwdev build --all --clean --install -j` then `afwdev test -j --env-mode valgrind` (valgrind is much slower; not for every edit).
+**Full build and test before a PR** (maintainer default; also when the user asks for full verify):  
+`./afwdev build --all --scan --clean --install -j` then `afwdev test -j --env-mode valgrind`.  
+`--all` regenerates/builds everything (C, JS, docs); `--clean` forces a clean tree and extra syntax checking; `--scan` runs clang analyze-build (fail on analyzer errors); valgrind is much slower — not for every edit.
 
 Use **`./afwdev`** for builds that refresh/install `afwdev` itself; use **`afwdev`** (PATH) afterward for `test`, `validate`, etc.
 
@@ -80,11 +81,12 @@ afwdev test -j
 afwdev test --srcdir-pattern afw --test-pattern 'rql/.*'
 afwdev validate --pattern 'src/afw/generate/objects/...'
 
-# Full verify (preferred when asking for full build/test, or before a PR):
-./afwdev build --all --clean --install -j
+# Full verify before PR (maintainer default; also when user asks for full build/test):
+# --scan = clang analyze-build; --clean = clean + extra syntax checking
+./afwdev build --all --scan --clean --install -j
 afwdev test -j --env-mode valgrind   # much slower
 
-# Full repository without clean (cmake + docs + JS, with install)
+# Full repository without clean/scan (cmake + docs + JS, with install)
 ./afwdev build --all --install -j
 
 # Narrow generate only (usually unnecessary if using --cdev)

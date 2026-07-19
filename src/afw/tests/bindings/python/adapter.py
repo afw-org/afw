@@ -22,7 +22,8 @@ def run():
         # first try retrieve_objects_with_uri
         passed = False
         try: 
-            objects = retrieve_objects_with_uri(session, "/afw/_AdaptiveObjectType_/")
+            objects = retrieve_objects_with_uri(
+                session, "/afw/_AdaptiveObjectType_/", maxObjects=0)
             if len(objects) > 0:
                 passed = True   
 

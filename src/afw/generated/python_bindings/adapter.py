@@ -769,7 +769,7 @@ def replace_object_with_uri(session, uri, object, journal=None, adapterTypeSpeci
 
     return response['actions'][0]['result']
 
-def retrieve_objects(session, objectType, adapterId=None, queryCriteria=None, options=None, adapterTypeSpecific=None):
+def retrieve_objects(session, objectType, adapterId=None, queryCriteria=None, options=None, adapterTypeSpecific=None, maxObjects=None):
     """
     Retrieve adaptive objects
 
@@ -781,6 +781,13 @@ def retrieve_objects(session, objectType, adapterId=None, queryCriteria=None, op
     viewed.
     
     Options, specific to the adapterId, can be optionally supplied.
+    
+    This function materializes all matching objects into a returned array. Use
+    maxObjects to bound how many objects may be collected (default 100; 0
+    means unlimited). When the max would be exceeded, payload_too_large is
+    thrown. For large result sets prefer retrieve_objects_to_response,
+    retrieve_objects_to_stream, or retrieve_objects_to_callback so objects
+    need not all be held in memory at once.
 
     Args:
         adapterId (str): Id of adapter containing objects to retrieve.
@@ -802,6 +809,12 @@ def retrieve_objects(session, objectType, adapterId=None, queryCriteria=None, op
         _AdaptiveAdapterTypeSpecific_${adapterType}_retrieve_objects
         
         Where ${adapterType} is the adapter type id.
+
+        maxObjects (int): Maximum number of objects that may be collected into
+        the returned array. Default is 100. Set to 0 for unlimited. When
+        exceeded, the function fails with payload_too_large. This bounds
+        memory for materializing retrieves only; progressive retrieve_*
+        functions are not limited by this parameter.
 
     Returns:
         list: This is the array of objects retrieved.
@@ -825,6 +838,9 @@ def retrieve_objects(session, objectType, adapterId=None, queryCriteria=None, op
 
     if adapterTypeSpecific != None:
         action['adapterTypeSpecific'] = adapterTypeSpecific
+
+    if maxObjects != None:
+        action['maxObjects'] = maxObjects
 
     request.add_action(action)
 
@@ -1055,7 +1071,7 @@ def retrieve_objects_to_stream(session, streamNumber, objectType, adapterId=None
 
     return response['actions'][0]['result']
 
-def retrieve_objects_with_uri(session, uri, options=None, adapterTypeSpecific=None):
+def retrieve_objects_with_uri(session, uri, options=None, adapterTypeSpecific=None, maxObjects=None):
     """
     Retrieve adaptive object with URI
 
@@ -1066,6 +1082,11 @@ def retrieve_objects_with_uri(session, uri, options=None, adapterTypeSpecific=No
     viewed.
     
     Options, specific to the adapterId, can be optionally supplied.
+    
+    This function materializes all matching objects into a returned array. Use
+    maxObjects to bound how many objects may be collected (default 100; 0
+    means unlimited). When the max would be exceeded, payload_too_large is
+    thrown. For large result sets prefer progressive retrieve functions.
 
     Args:
         uri (object): URI of objects to retrieve. If a URI begins with a
@@ -1085,6 +1106,12 @@ def retrieve_objects_with_uri(session, uri, options=None, adapterTypeSpecific=No
         
         Where ${adapterType} is the adapter type id.
 
+        maxObjects (int): Maximum number of objects that may be collected into
+        the returned array. Default is 100. Set to 0 for unlimited. When
+        exceeded, the function fails with payload_too_large. This bounds
+        memory for materializing retrieves only; progressive retrieve_*
+        functions are not limited by this parameter.
+
     Returns:
         list: This is the array of objects retrieved.
     """
@@ -1101,6 +1128,9 @@ def retrieve_objects_with_uri(session, uri, options=None, adapterTypeSpecific=No
 
     if adapterTypeSpecific != None:
         action['adapterTypeSpecific'] = adapterTypeSpecific
+
+    if maxObjects != None:
+        action['maxObjects'] = maxObjects
 
     request.add_action(action)
 

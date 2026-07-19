@@ -16,7 +16,7 @@ const objects = retrieve_objects("afw", "_AdaptiveObjectType_", {
         "property": "objectType",
         "value": "_AdaptiveObjectType_"
     }
-});
+}, undefined, undefined, 0);
 
 // we should have more than one object
 assert(length(objects) > 1);
@@ -39,7 +39,7 @@ const objects = retrieve_objects("afw", "_AdaptiveFunction_", {
         "property": "numberOfRequiredParameters",
         "value": 0
     }
-});
+}, undefined, undefined, 0);
 
 // we should have at least one object to start
 assert(length(objects) > 0);
@@ -62,7 +62,7 @@ const objects = retrieve_objects("afw", "_AdaptiveObjectType_", {
         "property": "allowEntity",
         "value": true
     }
-});
+}, undefined, undefined, 0);
 
 // we should have at least one object
 assert(length(objects) > 0);
@@ -86,7 +86,7 @@ const objects = retrieve_objects("afw", "_AdaptiveObjectType_", {
         "property": "allowEntity",
         "value": false
     }
-});
+}, undefined, undefined, 0);
 
 // we should have at least one object
 assert(length(objects) > 0);

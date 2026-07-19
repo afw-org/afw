@@ -882,6 +882,13 @@ afw_function_execute_replace_object_with_uri(
  * Use the objectOptions parameter to influence how the objects are viewed.
  * 
  * Options, specific to the adapterId, can be optionally supplied.
+ * 
+ * This function materializes all matching objects into a returned array. Use
+ * maxObjects to bound how many objects may be collected (default 100; 0 means
+ * unlimited). When the max would be exceeded, payload_too_large is thrown. For
+ * large result sets prefer retrieve_objects_to_response,
+ * retrieve_objects_to_stream, or retrieve_objects_to_callback so objects need
+ * not all be held in memory at once.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -894,7 +901,8 @@ afw_function_execute_replace_object_with_uri(
  *       objectType: string,
  *       queryCriteria?: (object _AdaptiveQueryCriteria_),
  *       options?: (object _AdaptiveObjectOptions_),
- *       adapterTypeSpecific?: object
+ *       adapterTypeSpecific?: object,
+ *       maxObjects?: integer
  *   ): array;
  * ```
  *
@@ -920,6 +928,12 @@ afw_function_execute_replace_object_with_uri(
  *       _AdaptiveAdapterTypeSpecific_${adapterType}_retrieve_objects
  * 
  *       Where ${adapterType} is the adapter type id.
+ *
+ *   maxObjects - (optional integer) Maximum number of objects that may be
+ *       collected into the returned array. Default is 100. Set to 0 for
+ *       unlimited. When exceeded, the function fails with payload_too_large.
+ *       This bounds memory for materializing retrieves only; progressive
+ *       retrieve_* functions are not limited by this parameter.
  *
  * Returns:
  *
@@ -1176,6 +1190,11 @@ afw_function_execute_retrieve_objects_to_stream(
  * Use the objectOptions parameter to influence how the objects are viewed.
  * 
  * Options, specific to the adapterId, can be optionally supplied.
+ * 
+ * This function materializes all matching objects into a returned array. Use
+ * maxObjects to bound how many objects may be collected (default 100; 0 means
+ * unlimited). When the max would be exceeded, payload_too_large is thrown. For
+ * large result sets prefer progressive retrieve functions.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -1186,7 +1205,8 @@ afw_function_execute_retrieve_objects_to_stream(
  *   function retrieve_objects_with_uri(
  *       uri: anyURI,
  *       options?: (object _AdaptiveObjectOptions_),
- *       adapterTypeSpecific?: object
+ *       adapterTypeSpecific?: object,
+ *       maxObjects?: integer
  *   ): array;
  * ```
  *
@@ -1208,6 +1228,12 @@ afw_function_execute_retrieve_objects_to_stream(
  *       _AdaptiveAdapterTypeSpecific_${adapterType}_retrieve_objects
  * 
  *       Where ${adapterType} is the adapter type id.
+ *
+ *   maxObjects - (optional integer) Maximum number of objects that may be
+ *       collected into the returned array. Default is 100. Set to 0 for
+ *       unlimited. When exceeded, the function fails with payload_too_large.
+ *       This bounds memory for materializing retrieves only; progressive
+ *       retrieve_* functions are not limited by this parameter.
  *
  * Returns:
  *

@@ -3,7 +3,7 @@
     "brief": "Retrieve adaptive objects",
     "camelCaseFunctionLabel": "retrieveObjects",
     "category": "adapter",
-    "description": "This function retrieves adaptive objects from an adapter, specified by adapterId, which match the type specified by objectType.\n\nThe optional queryCriteria is used to filter the adaptive objects returned. Use the objectOptions parameter to influence how the objects are viewed.\n\nOptions, specific to the adapterId, can be optionally supplied.",
+    "description": "This function retrieves adaptive objects from an adapter, specified by adapterId, which match the type specified by objectType.\n\nThe optional queryCriteria is used to filter the adaptive objects returned. Use the objectOptions parameter to influence how the objects are viewed.\n\nOptions, specific to the adapterId, can be optionally supplied.\n\nThis function materializes all matching objects into a returned array. Use maxObjects to bound how many objects may be collected (default 100; 0 means unlimited). When the max would be exceeded, payload_too_large is thrown. For large result sets prefer retrieve_objects_to_response, retrieve_objects_to_stream, or retrieve_objects_to_callback so objects need not all be held in memory at once.",
     "functionId": "retrieve_objects",
     "functionLabel": "retrieve_objects",
     "parameters": [
@@ -40,6 +40,13 @@
             "dataType": "object",
             "description": "This is an optional object parameter with an objectType determined by the adapterType associated with the adapterId parameter. If the adapterType supports this parameter, adapter afw will have an adaptive object type with an id of:\n\n_AdaptiveAdapterTypeSpecific_${adapterType}_retrieve_objects\n\nWhere ${adapterType} is the adapter type id.",
             "name": "adapterTypeSpecific",
+            "optional": true
+        },
+        {
+            "brief": "Maximum objects to return",
+            "dataType": "integer",
+            "description": "Maximum number of objects that may be collected into the returned array. Default is 100. Set to 0 for unlimited. When exceeded, the function fails with payload_too_large. This bounds memory for materializing retrieves only; progressive retrieve_* functions are not limited by this parameter.",
+            "name": "maxObjects",
             "optional": true
         }
     ],
