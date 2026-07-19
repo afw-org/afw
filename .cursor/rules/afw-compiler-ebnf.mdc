@@ -23,7 +23,7 @@ Core owns the Adaptive Script / expression **compiler runtime** under `src/afw/c
 | Script / TestScript / statements | `afw_compile_parse_script.c` |
 | Expressions / operators / lambdas | `afw_compile_parse_expression.c` |
 | JSON / literals | `afw_compile_parse_value.c` |
-| Templates | `afw_compile_parse_template.c` |
+| Templates (`#{…}` / `${…}`, TemplateString) | `afw_compile_parse_template.c` — compile-time nested script is isolated (`parent=NULL`); `\#`/`\$` suppress openers |
 | Destructuring | `afw_compile_parse_assignment_target.c` |
 
 ## When changing the language

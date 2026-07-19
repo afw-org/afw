@@ -128,11 +128,16 @@ afw_compile_parse_Substitution(afw_compile_parser_t *parser)
 
 /*ebnf>>>
  *
+ *# In Template and TemplateString bodies, '\#' and '\$' emit a literal '#' or
+ *# '$' so that '#{' / '${' substitution openers are not formed. TemplateString
+ *# also supports normal string escapes ('\\', '\n', '\`', ...).
+ *
  * Template ::=
  *    (
  *        ( Char - ['$' '#'] ) |
  *        ( ['$' '#'] ) |
  *        ( ['$' '#'] (Char - '{') ) |
+ *        ( '\\' ['$' '#'] ) |
  *        Substitution
  *    )*
  *
@@ -273,9 +278,24 @@ afw_compile_parse_TemplateString(afw_compile_parser_t *parser)
 
         /* Save cursor and get next code point. */
         afw_compile_save_cursor(previous_cursor);
-        cp = afw_compile_get_unescaped_code_point();
+        cp = afw_compile_get_code_point();
 
-        /* If '${' or '#{'}, indicate substitution and restore cursor. */
+        /*
+         * '\#' and '\$' suppress '#{' / '${' openers (same idea as Template).
+         * Other backslash escapes use normal string unescape.
+         */
+        if (cp == '\\') {
+            afw_compile_save_cursor(previous_cursor2);
+            cp2 = afw_compile_get_code_point();
+            if (cp2 == '$' || cp2 == '#') {
+                afw_compile_internal_s_push_code_point(parser, cp2);
+                continue;
+            }
+            afw_compile_restore_cursor(previous_cursor);
+            cp = afw_compile_get_unescaped_code_point();
+        }
+
+        /* If '${' or '#{', indicate substitution and restore cursor. */
         if (cp == '$' || cp == '#') {
             afw_compile_save_cursor(previous_cursor2);
             cp2 = afw_compile_get_code_point();
@@ -340,11 +360,3 @@ afw_compile_parse_TemplateString(afw_compile_parser_t *parser)
         (const afw_value_t * const *)values->elts,
         parser->p, parser->xctx);
 }
-
-
-
-/*ebnf>>>
- *
- * NamedTemplateString ::= '`' + ((Char - '$') | ('\$') | ('$' (Char - '{')) | '${' PropertyName '}') * '`'
- *
- *<<<ebnf*/

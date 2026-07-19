@@ -614,22 +614,22 @@ EvaluationTimeSubstitution ::= '${' Script '}'
 Substitution ::= CompileTimeSubstitution | EvaluationTimeSubstitution
 
 /* From afw_compile_parse_template.c                                          */
+/* In Template and TemplateString bodies, '\#' and '\$' emit a literal '#' or */
+/* '$' so that '#{' / '${' substitution openers are not formed. TemplateString */
+/* also supports normal string escapes ('\\', '\n', '\`', ...).               */
 
 Template ::=
    (
        ( Char - ['$' '#'] ) |
        ( ['$' '#'] ) |
        ( ['$' '#'] (Char - '{') ) |
+       ( '\\' ['$' '#'] ) |
        Substitution
    )*
 
 /* From afw_compile_parse_template.c                                          */
 
 TemplateString ::= '`' + Template + '`'
-
-/* From afw_compile_parse_template.c                                          */
-
-NamedTemplateString ::= '`' + ((Char - '$') | ('\$') | ('$' (Char - '{')) | '${' PropertyName '}') * '`'
 
 /* From afw_compile_parse_value.c                                             */
 /* Expression must produce a value of data type list.                         */

@@ -23,4 +23,13 @@
         is a Qualified Variable that is provided by the Adaptive Models when 
         processing an object that is being mapped to another object.
     </paragraph>
+    <paragraph>
+        Application conf may define qualified variables under
+        <literal>qualifiedVariables</literal> using template strings. Those
+        templates are compiled when the application conf is loaded (or
+        reloaded). Compile-time substitutions (<literal>#{…}</literal>) run at
+        load time and freeze a value for that config; evaluation-time
+        substitutions (<literal>${…}</literal>) re-run each time the variable
+        is evaluated. See Templates and Expressions for details.
+    </paragraph>
 </doc>
