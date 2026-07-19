@@ -16,6 +16,39 @@ Internal agent rules, Cursor docs, and pure test-infrastructure work are omitted
 | **`afw` CLI** | Optional interactive line editing and command history |
 | **JSON Schema** | Cleaner editor schemas for Adaptive object types |
 | **Process env** | One `current` on retrieve (issue **#71**); values are string if valid UTF-8 else hexBinary |
+| **Templates** | Compile-time substitution `#{…}` docs and tests; backtick `` `\#` `` / `` `\$` `` match raw templates (issue **#97**) |
+
+---
+
+## Compile-time template substitutions (issue #97)
+
+**Issue #97** (feature largely landed earlier as PR **#100**; completed on this branch)
+
+Templates support two substitution openers:
+
+| Syntax | When it runs | Outer script locals |
+|--------|----------------|---------------------|
+| `#{ Script }` | During compile (or application conf load for conf templates) | **Not** visible (isolated nested script) |
+| `${ Script }` | Each time the template is evaluated | Visible when the template is part of that script |
+
+Bare `#{…}` is also a **Value** in a script (`return #{1 + 2};`). Bare `${…}` is only valid **inside** a template, not as a bare value.
+
+Use compile-time substitution to freeze config (including one-shot values such as a UUID or a function built once at load). Use evaluation-time substitution when the value must change per access.
+
+### Escaping openers
+
+The openers are the two-character sequences `#{` and `${`. A backslash before `#` or `$` emits a literal `#` or `$` so the opener is not formed:
+
+```adaptive
+return `\#{not a sub} #{'is'}`;  /* → "#{not a sub} is" */
+return `\${not a sub} ${'is'}`;  /* → "${not a sub} is" */
+```
+
+This now works in **backtick template strings** the same way as in raw templates (`template(...)` / conf template compile type). Normal string escapes in backticks (`\\`, `\n`, `` \` ``, …) are unchanged.
+
+### Documentation
+
+Language reference **Templates and Expressions** and a short note under **Qualified Variables** describe the two forms, isolation, conf lifecycle, and escapes. Full Syntax EBNF / railroad diagrams refresh on a docs build.
 
 ---
 
@@ -219,6 +252,9 @@ Tracked suites under `src/*/tests` are permanent regression assets. `afwdev test
    leaving trailing bytes when shortening content, update callers—those cases
    now succeed with correct full-file content. Prefer setting `maxReadBytes`
    appropriately for server hosts.
+7. **Template strings:** if you relied on `` `\#…` `` or `` `\${…}` `` failing
+   with “Invalid escape code,” they now emit literal `#` / `$` (opener
+   suppress). Real `#{…}` / `${…}` substitutions are unchanged.
 
 ---
 
@@ -226,6 +262,7 @@ Tracked suites under `src/*/tests` are permanent regression assets. `afwdev test
 
 | Topic | Issue | PR |
 |-------|-------|-----|
+| Compile-time substitutions (docs / TemplateString escapes) | #97 | #100 (feature); *(this branch completes)* |
 | File streams | #103 | #120 |
 | VFS empty file / hardening | #79 | *(this branch)* |
 | Optional `mappedAdapterId` | #109 | #119 |
