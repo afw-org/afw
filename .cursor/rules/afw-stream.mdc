@@ -1,5 +1,5 @@
 ---
-description: Adaptive streams — write path, file open via rootFilePaths, host-agnostic response body
+description: Adaptive streams — write path, file open via rootFilePaths, host-agnostic response body; progressive retrieve vs #49 limits
 globs: src/afw/stream/**,src/afw/function/afw_function_stream.c,src/afw/generate/objects/_AdaptiveFunctionGenerate_/{open_file,read,readln,read_to_*,write,writeln,print,println,flush,close,stream,write_internal}.json,src/afw/generate/objects/_AdaptiveRootFilePaths_.json,src/afw/file/afw_file*.c,src/afw/file/afw_file.h,src/afw/content_type/afw_content_type_application_afw.c,src/afw/tests/miscellaneous/stream_file/**
 alwaysApply: false
 ---
@@ -12,10 +12,18 @@ Streams are **write-critical** for progressive I/O:
 
 - Standard xctx slots: `raw_response_body`, `response_body`, `console`, `stderr`, `stdout`
 - `write_cb` used by content-type encoders and adapter retrieve callbacks
-- Admin progressive retrieve: `retrieve_objects_to_response` + `Accept: application/x-afw` writes intermediates and **flushes per object** (does not buffer the whole result set)
+- Admin progressive retrieve: `retrieve_objects_to_response` + `Accept: application/x-afw` writes intermediates and **flushes per object** (does not buffer the whole result set on the **response** path)
 - Script: `print` / `println` / `write` / `writeln` / `flush` / `close` / `stream` / `open_file` / `read*` / `write_internal`
 
 Do **not** break: standard stream enum order, release **raw last**, x-afw frame format, intermediate `{ intermediate, result }` shape, or `write_cb` presence on writeable streams.
+
+### Progressive retrieve ≠ max-objects / paging (issue #49)
+
+`retrieve_objects_to_response` / `retrieve_objects_to_stream` are a **write strategy** (intermediate frames + flush). They still call `afw_adapter_retrieve_objects` and share the adapter session impl, including any temporary hard-coded return cap (`impl_limit_returned_objects_cb` — see **`afw-core-services`** / #49).
+
+- **Does help:** avoid one giant JSON array assembly for the HTTP response body.
+- **Does not:** replace configurable limits, make silent 100-object abort go away, page results, or keep the admin UI light — `ObjectsTable` still `await response.streams()` and builds the full object list client-side.
+- Prefer stream retrieve for large result **transport**; prefer explicit query `limit` / future paging for **how many** objects are fetched. Do not close or ignore #49 solely because the admin uses streams.
 
 ## Host independence
 
@@ -109,4 +117,4 @@ Do **not** put `dataType: "any"` on stream write/variadic parameters — runtime
 - `content_type/afw_content_type_application_afw.c` (framing)
 - Adapter retrieve streaming: `function/afw_function_adapter.c`
 
-Related: `afw-core-services`, `afw-server`, `afw-function`, `afw-extensions`, `afw-tests`.
+Related: `afw-core-services` (retrieve limit #49), `afw-server`, `afw-function`, `afw-extensions`, `afw-tests`.

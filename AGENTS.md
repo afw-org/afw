@@ -107,13 +107,13 @@ afwdev generate --srcdir-pattern '*'
 | `.cursor/rules/afw-runtime-model.mdc` | Always-on runtime mental model |
 | `.cursor/rules/afw-core-layout.mdc` | `src/afw` module map and usage modes |
 | `.cursor/rules/afw-headers.mdc` | Include hierarchy; hand vs generated headers |
-| `.cursor/rules/afw-core-services.mdc` | Env consumers: adapter, object, request, auth, model |
+| `.cursor/rules/afw-core-services.mdc` | Env consumers: adapter, object, request, auth, model; retrieve max-objects limit (#49) |
 | `.cursor/rules/afw-environment.mdc` | Environment registries; core/extension/command registration |
 | `.cursor/rules/afw-environment-variables.mdc` | Process env / request props; UTF-8 boundary; #71 single `current` |
 | `.cursor/rules/afw-command.mdc` | `afw` CLI host (`src/afw_command`) |
 | `.cursor/rules/afw-server.mdc` | `afw_server` / `afw_request` hosts (interface vs FCGI/local/future HTTP) |
 | `.cursor/rules/afw-server-fcgi.mdc` | `afwfcgi` FastCGI host (`src/afw_server_fcgi`) |
-| `.cursor/rules/afw-stream.mdc` | Streams, `open_file`, rootFilePaths, progressive response write path |
+| `.cursor/rules/afw-stream.mdc` | Streams, `open_file`, rootFilePaths, progressive response write path (≠ retrieve limit/paging; see #49 / core-services) |
 | `.cursor/rules/afw-vfs.mdc` | VFS adapter (`afw_vfs`): vfsMap, whole-file data, multi-map, tests (#79) |
 | `.cursor/rules/afw-extensions.mdc` | Loadable extensions (curl/ldap/lmdb/ubjson/vfs/yaml) |
 | `.cursor/rules/afw-c-runtime.mdc` | C when editing `.c`/`.h` |

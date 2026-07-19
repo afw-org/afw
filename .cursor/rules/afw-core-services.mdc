@@ -1,5 +1,5 @@
 ---
-description: libafw non-script services — environment registries, adapters, objects, request, auth, model
+description: libafw non-script services — environment registries, adapters, objects, request, auth, model; retrieve object-count limit (#49)
 globs: src/afw/environment/**,src/afw/adapter/**,src/afw/object/**,src/afw/model/**,src/afw/request/**,src/afw/authorization/**,src/afw/runtime/**,src/afw/service/**,src/afw/action/**,src/afw/content_type/**,src/afw/application/**
 alwaysApply: false
 ---
@@ -22,7 +22,27 @@ libafw is not only a script engine. Hosts, adapters, and policies plug in throug
 - **Objects** (`object/`): `afw_object_t` + meta/path/type/view. Prefer interface methods and existing helpers (`afw_object_create*`, property meta) over ad-hoc structs.
 - **Model** (`model/`): maps between adapter/requestor shapes; factory `afw_adapter_factory_model`. Object-type `on*` handlers are Adaptive Script evaluated per request on long-lived hosts — treat defaults/mutables carefully (`afw-adaptive-script`, issue #110 / `afw-function` default clone). **`mappedAdapterId`** is optional default backend (issue **#109** pure-script models); product text on generate OT properties — see **`afw-model-adapter`**.
 - **Runtime** (`runtime/`): read-only views of environment/metadata objects (`afw_runtime.h`, value accessors).
-- **Query** (`query_criteria/`): filters for retrieve.
+- **Query** (`query_criteria/`): filters for retrieve. RQL parse supports `limit(...)` (see `afw_query_criteria.c`); that is **not** yet a complete product paging story.
+
+### Retrieve object count limit (issue #49)
+
+Temporary hard-coded cap in the adapter **session impl wrapper** (`adapter/afw_adapter_impl.c`):
+
+- `impl_limit_returned_objects_cb` increments `retrieved_object_count` and **`return true` (abort callback chain)** after **100** objects — currently **silent** (no `payload_too_large` error; that throw is commented out).
+- Wired only on the **non-`_Adaptive*`** object-type branch of `impl_afw_adapter_session_retrieve_objects`. `_Adaptive*` types use other callbacks (special handling / object-type dedupe) and **skip** this limit path.
+- Even on that branch, the limit callback is only **invoked** when retrieve goes through `impl_authorization_cb` — i.e. when the adapter has **`checkIndividualObjectReadAccess`**. Otherwise `impl_callback` is set on ctx but the wrapped session is called with the **original** callback, so the cap may not run.
+
+**Do not** treat progressive streaming as closing #49:
+
+| Path | Behavior |
+|------|----------|
+| `retrieve_objects` | Collect full list (or until abort); one response payload — original memory concern |
+| `retrieve_objects_to_response` / `_to_stream` | Per-object write + flush (`function/afw_function_adapter.c`); same `afw_adapter_retrieve_objects` → session retrieve underneath |
+| Admin Objects UI | Uses `retrieve_objects_to_response` + `application/x-afw` (`afw-stream`); **still** materializes the full client-side set via `streams()` / `readStreams()` |
+
+Streaming reduces **server response-assembly** peak for hosts that release after each intermediate; it is **not** a limit policy, not cursor paging, and does not fix silent truncate or non-stream callers. Long-term still needs design: configurable max/default, error vs truncate, RQL/page API, client paging. Tracker: GitHub **#49**; summary comment on the issue.
+
+When changing retrieve limits or callback chaining, re-read `impl_authorization_cb` → `impl_callback` wiring so “set on ctx” and “actually called” stay consistent.
 
 ## Request, content type, action
 
@@ -42,4 +62,4 @@ libafw is not only a script engine. Hosts, adapters, and policies plug in throug
 3. **Register** factories/instances on the environment (`afw-environment`) so script and request paths resolve them by id/type — same APIs whether code lives in core or an extension.
 4. Allocate through pools/`xctx`; return adaptive objects/values, not raw malloc'd graphs.
 
-Related: `afw-environment`, `afw-core-layout`, `afw-headers`, `afw-c-runtime`, `afw-adaptive-script`, `afw-generate-metadata`, `afw-model-adapter`.
+Related: `afw-environment`, `afw-core-layout`, `afw-headers`, `afw-c-runtime`, `afw-adaptive-script`, `afw-generate-metadata`, `afw-model-adapter`, `afw-stream` (progressive retrieve write path).
