@@ -125,6 +125,7 @@ afwdev generate --srcdir-pattern '*'
 | `.cursor/rules/afw-compiler-ebnf.mdc` | EBNF-in-comments harvest |
 | `.cursor/rules/afw-function.mdc` | Built-in execute_*, polymorphic, compiler_*, default-clone |
 | `.cursor/rules/afw-adaptive-script.mdc` | Adaptive Script authoring (equality, nullish, defaults, probes) |
+| `.cursor/rules/afw-qualified-variables.mdc` | Qualifier stack, get vs `qualifier()`/`qualifiers()` snapshots (#9), includeUntrusted, size |
 | `.cursor/rules/afw-generate-metadata.mdc` | When editing `generate/` |
 | `.cursor/rules/afw-afwdev-python.mdc` | When editing `src/afw_dev` |
 | `.cursor/rules/afw-afwdev-generate.mdc` | When editing `_afwdev/generate/` generators |

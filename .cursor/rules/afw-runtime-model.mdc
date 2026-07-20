@@ -21,7 +21,9 @@ Important infs: `compiled_value`, `block`, `call`, `call_built_in_function`, `ca
 Hierarchical pools (incl. xctx/scope subpools). Bulk free on pool/scope release; **RC only for escaping values** (e.g. closures hold scope refs). Long-running polish: managed `optional_release` / clone-or-reference on escaping objects/lists/closures/`compiled_value`, and allocate evaluation results in current `scope->p` — see `afw-value-memory`.
 
 ## Eval / control flow
-`afw_xctx_t`: scope stack, evaluation stack, qualifier stack, **`statement_flow`** (sequential / break / continue / return / rethrow) — script leave paths are flags, not C exceptions. Built-ins and script functions unify via call nodes; polymorphic built-ins resolve from first arg type at runtime.
+`afw_xctx_t`: scope stack, evaluation stack, **qualifier stack**, **`statement_flow`** (sequential / break / continue / return / rethrow) — script leave paths are flags, not C exceptions. Built-ins and script functions unify via call nodes; polymorphic built-ins resolve from first arg type at runtime.
+
+**Qualifier stack:** hot path is `qualifier::name` (`get_cb`, most recent matching visible entry). List/debug snapshots are `qualifier()` / `qualifiers()` via `contribute_cb` (multi-entry, can be large) — see **`afw-qualified-variables`** (issue **#9**).
 
 ## Design philosophy
 Immutability first; pool-centric lifetimes; metadata as single source of truth; curated TypeScript-like surface (lambdas, destructuring, types — not prototypes/loose JS). Prefer small patterned pieces over one-off machinery.

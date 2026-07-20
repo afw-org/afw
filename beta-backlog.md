@@ -144,7 +144,7 @@ _(Paste raw notes here first; sort into themes later.)_
   - **custom::** multi-layer contribute redesign (risk of residual names under property-level `on*`).
   - Secure-mode fixture for `includeUntrusted` (needs secure xctx entry in tests).
   - Isolation / valgrind battery as a dedicated pass.
-- Handbook: use supported doc XML tags only (`literal`, `italic`, `strong`, …) — not DocBook `<emphasis>` (afwdev docs build logs `Unknown element`).
+- Handbook: use supported doc XML tags only (`literal`, `italic`, `strong`, …) — not DocBook `<emphasis>` (afwdev docs build logs `Unknown element`). Cursor: **`.cursor/rules/afw-qualified-variables.mdc`**, pointers in adaptive-script / value-memory / model-adapter / afwdev-python.
 
 ### Beta gate (checklist sketch)
 
