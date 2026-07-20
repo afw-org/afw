@@ -32,4 +32,53 @@
         substitutions (<literal>${…}</literal>) re-run each time the variable
         is evaluated. See Templates and Expressions for details.
     </paragraph>
+    <header>Listing active qualified variables</header>
+    <paragraph>
+        For debugging and tooling, <literal>qualifier(name)</literal> returns a
+        <italic>fresh</italic> object whose properties are the variables for
+        that qualifier on the current execution context stack (issue #9). Each
+        call builds a new object; it is not a live proxy. All matching visible
+        stack entries for the name may contribute (most recent first; later
+        entries fill property names not already set). If no matching visible
+        entry exists, the result is <literal>undefined</literal> (nullish), not
+        an empty object. <literal>qualifiers()</literal> returns an object
+        whose properties are active qualifier names, each mapping to such a
+        variables object; inactive names are omitted (never invented as
+        empty objects).
+    </paragraph>
+    <paragraph>
+        Get (<literal>qualifier::name</literal>) and snapshots share the same
+        stack and visibility rules: the most recent matching entry wins for a
+        binding. Default snapshot visibility matches normal
+        <literal>qualifier::name</literal> access in the current execution
+        context. Optional <literal>includeUntrusted</literal> (default false)
+        is only meaningful while the context is secure: set true so the
+        snapshot includes the same frames you would see with
+        <literal>qualifier::name</literal> if you were less secure (trusted
+        and untrusted frames—not untrusted-only). When already not secure,
+        true and false are the same because normal access already sees
+        untrusted frames. Everyday <literal>qualifier::name</literal> access
+        is unchanged and remains the hot path; snapshots are not intended
+        for tight production loops.
+    </paragraph>
+    <paragraph>
+        <strong>Size warning:</strong> snapshot objects can get large.
+        Qualifiers such as <literal>environment::</literal> and
+        <literal>request::</literal> may contribute many properties, and
+        some values can themselves be large. <literal>qualifiers()</literal>
+        builds a nested object of full snapshots for every active qualifier
+        name and multiplies that cost. Prefer
+        <literal>qualifier::name</literal> for normal work; use
+        <literal>qualifier()</literal> / <literal>qualifiers()</literal>
+        sparingly, and avoid holding or repeatedly rebuilding large
+        snapshots in long-running scripts.
+    </paragraph>
+    <paragraph>
+        Adaptive Models expose a rich <literal>current::</literal> bag during
+        <literal>on*</literal> hooks. The documented set for each hook is the
+        property's <literal>contextType</literal> (for example
+        <literal>modelGetObject</literal> or <literal>modelGetProperty</literal>
+        on model object/property type definitions).
+    </paragraph>
 </doc>
+

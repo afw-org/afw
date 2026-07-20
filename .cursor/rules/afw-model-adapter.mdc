@@ -38,6 +38,7 @@ Issue **#109** (Phase 1): **`mappedAdapterId` is optional**. Pure-script models 
 4. `current::mappedAdapterId` nullish when unset (do not throw).
 5. `begin_transaction`: if no mapped, do not session-cache NULL; if mapped, keep current behavior.
 6. Property-level mapping with **default** get/retrieve still needs mapped.
+7. During `on*`, **`current::`** (and **`custom::` / `adapter::` when pushed) are qualified variables (`contextType` on the hook property documents the bag). Optional **`qualifier("current")`** is a **snapshot** for debug/tools (can be large; not a hot path) — **`afw-qualified-variables`**.
 
 ## Tests
 
@@ -56,4 +57,4 @@ Mention `issue #109` in new case descriptions. Run: `afwdev test -p afw --test-p
 - **Don’t** silent-default when mapped is NULL.
 - Mutables in `on*` on long-lived hosts: issue **#110** / `afw-function` / `afw-value-memory`.
 
-Related: `afw-core-services`, `afw-generate-metadata`, `afw-tests`, `afw-adaptive-script`.
+Related: `afw-core-services`, `afw-generate-metadata`, `afw-tests`, `afw-adaptive-script`, `afw-qualified-variables`.

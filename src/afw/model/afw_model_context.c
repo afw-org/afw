@@ -1277,6 +1277,38 @@ impl_custom_variable_get_cb(
 }
 
 
+/* Layered custom:: bags: property → object type → model (first wins). */
+static void
+impl_custom_variable_contribute_cb(
+    const afw_xctx_qualifier_stack_entry_t *entry,
+    const afw_object_t *object,
+    afw_boolean_t include_untrusted,
+    afw_xctx_t *xctx)
+{
+    afw_model_internal_context_t *ctx = entry->data;
+
+    (void)include_untrusted;
+
+    if (ctx->property_level.model_property_type &&
+        ctx->property_level.model_property_type->custom_variables)
+    {
+        afw_object_merge(object,
+            ctx->property_level.model_property_type->custom_variables,
+            false, xctx);
+    }
+    if (ctx->model_object_type->custom_variables) {
+        afw_object_merge(object,
+            ctx->model_object_type->custom_variables,
+            false, xctx);
+    }
+    if (ctx->model_object_type->model->custom_variables) {
+        afw_object_merge(object,
+            ctx->model_object_type->model->custom_variables,
+            false, xctx);
+    }
+}
+
+
 
 /*
  * Create a skeleton context used by many adapter functions and push
@@ -1308,7 +1340,8 @@ afw_model_internal_create_skeleton_context(
     afw_adapter_impl_push_qualifiers(
         (const afw_adapter_t *)session_self->adapter, xctx);
     afw_xctx_qualifier_stack_qualifier_push(afw_s_custom, NULL, true,
-        impl_custom_variable_get_cb, ctx, p, xctx);
+        impl_custom_variable_get_cb, impl_custom_variable_contribute_cb,
+        ctx, p, xctx);
 
     /* Create and push current object level object. */
     afw_memory_copy(&ctx->runtime_object_level,

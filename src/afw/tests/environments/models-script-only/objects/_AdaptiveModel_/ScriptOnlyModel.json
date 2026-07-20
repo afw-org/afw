@@ -50,6 +50,9 @@
             "propertyTypes": {
                 "mappedAbsent": {
                     "dataType": "boolean"
+                },
+                "snapshotOk": {
+                    "dataType": "boolean"
                 }
             }
         }

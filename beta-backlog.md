@@ -51,6 +51,7 @@ Update this section if the plan changes.
 - Ask the assistant to **update rules / this backlog** when something will matter in future sessions.
 - Next real work: expect a **new feature branch** off current integration line (not pile everything only on long-lived chat state).
 - **`issues.md`**: temporary Cursor triage dump; do not treat as canonical. Prefer this file + GitHub.
+- **Build before commit:** day-to-day C/Python can use `./afwdev build --cdev -j`. Before commit/push on docs, multi-area, or finish-pass work, prefer **`./afwdev build --all --install --scan -j`** (docs-only exists; full `--all` is not much longer and catches more). PR gate still adds `--clean` + valgrind for full verify.
 
 ### Session wrap-up — 2026-07-20
 
@@ -127,15 +128,32 @@ _(Paste raw notes here first; sort into themes later.)_
 
 ### Runtime / memory / long-running
 
-**Status:** pointer
+**Status:** pointer / **beta-relevant**
 
-- Umbrella **#2** (memory). Related: retrieve caps **#49**, progressive release **#127**, value lifetime rules in project docs.
+- Umbrella **#2** (memory). Related: retrieve caps **#49**, progressive release **#127**, value lifetime rules in project docs / `.cursor/rules/afw-value-memory.mdc`.
+- **Qualifier snapshots (issue #9)** — `qualifier()` / `qualifiers()` allocate **fresh memory objects** and can get **very large** (`environment::`, `request::`, nested `qualifiers()` over every active qualifier, multi-entry contribute). Documented as debug/tools/not hot path + size warning in function metadata, language XML, `whats_new.md`.
+  - Another reason **memory management / managed release / long-running escape** needs to be solid **before calling the tree beta**: scripts that snapshot often (or hold results) will stress pools and lifetimes harder than `qualifier::name` get.
+  - Do **not** treat #9 as “done for beta” solely because the API exists; couple with #2 progress and real long-running exercise if tools use snapshots heavily.
+- Prefer everyday **`qualifier::name`**; snapshots only when listing/debug is intentional.
+
+### Qualified variables / issue #9 (finish notes)
+
+**Status:** partial (API on `Issue-#9` / PR #129; memory/beta still open)
+
+- Shipped direction: multi-entry contribute (most recent wins per property), nullish when no visible entry, `qualifiers()` omits inactive names, `includeUntrusted` = less-secure view while secure.
+- Still deferred by design (not blocking the snapshot API itself):
+  - **custom::** multi-layer contribute redesign (risk of residual names under property-level `on*`).
+  - Secure-mode fixture for `includeUntrusted` (needs secure xctx entry in tests).
+  - Isolation / valgrind battery as a dedicated pass.
+- Handbook: use supported doc XML tags only (`literal`, `italic`, `strong`, …) — not DocBook `<emphasis>` (afwdev docs build logs `Unknown element`). Cursor: **`.cursor/rules/afw-qualified-variables.mdc`**, pointers in adaptive-script / value-memory / model-adapter / afwdev-python.
 
 ### Beta gate (checklist sketch)
 
 _Not a commitment — fill in as “must be true before we call it beta.”_
 
-- [ ] …
+- [ ] Memory / long-running story credible (**#2**): managed values, pools, no silent leak under realistic server/script load
+- [ ] Large materializations constrained or progressive where needed (**#49**, **#127**, client progressive path)
+- [ ] Snapshot / debug APIs (e.g. **#9** `qualifier`/`qualifiers`) documented as non-hot-path and size-aware; not used as everyday data access
 - [ ] User-facing behavior documented in `whats_new.md` / real docs as appropriate
 - [ ] `mgg-develop` merged to `develop` when ready; `develop` → `main` when beta-ready
 

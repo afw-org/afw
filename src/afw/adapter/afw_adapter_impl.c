@@ -173,34 +173,15 @@ afw_adapter_impl_throw_property_required(
 
 
 
-/* Get common variable callback. */
-static const afw_value_t *
-impl_adapter_common_variable_get_cb(
-    const afw_xctx_qualifier_stack_entry_t *entry,
-    const afw_utf8_t *name,
-    afw_xctx_t *xctx)
-{
-    const afw_value_t *result;
-
-    result = NULL;
-    /** @fixme Add code. */
-
-    return result;
-}
-
-
-
 /* Push adapter qualifiers to xctx. */
 AFW_DEFINE(void)
 afw_adapter_impl_push_qualifiers(
     const afw_adapter_t *adapter,
     afw_xctx_t *xctx)
 {
+    /* Object-push owns adapter:: (properties + fixed contribute_cb). */
     afw_xctx_qualifier_stack_qualifier_object_push(afw_s_adapter,
         adapter->properties, true, xctx->p, xctx);
-    afw_xctx_qualifier_stack_qualifier_push(afw_s_adapter, NULL, true,
-        impl_adapter_common_variable_get_cb, (void *)adapter,
-        xctx->p, xctx);
     if (adapter->impl->custom_variables) {
         afw_xctx_qualifier_stack_qualifier_object_push(afw_s_custom,
             adapter->impl->custom_variables, true,

@@ -54,6 +54,8 @@ impl_current_get_variable_cb(
     const afw_value_t *result;
     afw_integer_t pid;
 
+    (void)entry;
+
     result = NULL;
     if (afw_utf8_equal(name, afw_s_mode)) {
         result = xctx->mode;
@@ -74,6 +76,40 @@ impl_current_get_variable_cb(
 }
 
 
+static void
+impl_current_contribute_variables_cb(
+    const afw_xctx_qualifier_stack_entry_t *entry,
+    const afw_object_t *object,
+    afw_boolean_t include_untrusted,
+    afw_xctx_t *xctx)
+{
+    static const afw_utf8_t * const names[] = {
+        afw_s_mode,
+        afw_s_pid,
+        afw_s_xctxUUID,
+        afw_s_programName,
+        NULL
+    };
+    const afw_utf8_t * const *np;
+    const afw_value_t *value;
+
+    (void)include_untrusted;
+
+    for (np = names; *np; np++) {
+        if (afw_object_has_property(object, *np, xctx)) {
+            continue;
+        }
+        value = impl_current_get_variable_cb(entry, *np, xctx);
+        if (value) {
+            afw_object_set_property(object, *np, value, xctx);
+        }
+        else {
+            afw_object_set_property(object, *np, afw_value_null, xctx);
+        }
+    }
+}
+
+
 
 void
 afw_application_internal_push_qualifiers(afw_xctx_t *xctx)
@@ -82,7 +118,8 @@ afw_application_internal_push_qualifiers(afw_xctx_t *xctx)
 
     /* Push current:: qualifier. */
     afw_xctx_qualifier_stack_qualifier_push(afw_s_current, NULL, true,
-        impl_current_get_variable_cb, NULL, xctx->p, xctx);
+        impl_current_get_variable_cb, impl_current_contribute_variables_cb,
+        NULL, xctx->p, xctx);
 
     /* If there is an application qualifier, push application qualifier. */
     if (env->application_object) {

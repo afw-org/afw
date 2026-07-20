@@ -347,7 +347,7 @@ afw_xctx_get_optionally_qualified_variable(
         e_cur >= xctx->qualifier_stack->first;
         e_cur--)
     {
-        if (!e_cur->get) {
+        if (!e_cur->get_cb) {
             continue;
         }
 
@@ -359,7 +359,7 @@ afw_xctx_get_optionally_qualified_variable(
             continue;
         }
 
-        result = e_cur->get(e_cur, name, xctx);
+        result = e_cur->get_cb(e_cur, name, xctx);
         break;
     }
 
@@ -419,16 +419,22 @@ afw_xctx_qualifier_stack_qualifier_push(
     const afw_utf8_t *qualifier,
     const afw_object_t *qualifier_object,
     afw_boolean_t secure,
-    afw_xctx_get_variable_t get,
+    afw_xctx_get_variable_cb_t get_cb,
+    afw_xctx_contribute_variables_cb_t contribute_cb,
     void * data,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    /*! \fixme add support for qualifier object. */
     afw_xctx_qualifier_stack_entry_t *entry;
 
     if (!qualifier || qualifier->len == 0) {
         AFW_THROW_ERROR_Z(general, "Qualifier required", xctx);
+    }
+    if (!get_cb) {
+        AFW_THROW_ERROR_Z(general, "get_cb required", xctx);
+    }
+    if (!contribute_cb) {
+        AFW_THROW_ERROR_Z(general, "contribute_cb required", xctx);
     }
 
     afw_stack_push_and_get_entry(
@@ -436,22 +442,20 @@ afw_xctx_qualifier_stack_qualifier_push(
 
     memset(entry, 0, sizeof(afw_xctx_qualifier_stack_entry_t));
     entry->p = p;
-    if (qualifier) {
-        memcpy(&entry->qualifier, qualifier,
-            sizeof(afw_xctx_qualifier_stack_entry_t));
-    }
+    memcpy(&entry->qualifier, qualifier, sizeof(afw_utf8_t));
     entry->qualifier_object = qualifier_object;
-    entry->get = get;
+    entry->get_cb = get_cb;
+    entry->contribute_cb = contribute_cb;
     entry->data = data;
     entry->secure = secure;
-    
+
     return entry;
 }
 
 
 
 static const afw_value_t *
-impl_get_object_variable(
+impl_get_object_variable_cb(
     const afw_xctx_qualifier_stack_entry_t *entry,
     const afw_utf8_t *name,
     afw_xctx_t *xctx)
@@ -461,7 +465,44 @@ impl_get_object_variable(
 }
 
 
-/* Push qualifier on to stack. */
+/*
+ * Fixed contribute for object-push frames: walk qualifier_object and set
+ * missing names on the accumulator using the iterated name+value (same values
+ * as get_property / get_cb for that object; avoids a redundant re-get).
+ */
+static void
+impl_contribute_object_variables_cb(
+    const afw_xctx_qualifier_stack_entry_t *entry,
+    const afw_object_t *object,
+    afw_boolean_t include_untrusted,
+    afw_xctx_t *xctx)
+{
+    const afw_iterator_t *iterator;
+    const afw_utf8_t *property_name;
+    const afw_value_t *value;
+
+    (void)include_untrusted;
+
+    if (!entry->qualifier_object) {
+        AFW_THROW_ERROR_Z(general,
+            "object-push contribute_cb requires qualifier_object", xctx);
+    }
+
+    iterator = NULL;
+    while ((value = afw_object_get_next_property(
+        entry->qualifier_object, &iterator, &property_name, xctx)))
+    {
+        if (!property_name ||
+            afw_object_has_property(object, property_name, xctx))
+        {
+            continue;
+        }
+        afw_object_set_property(object, property_name, value, xctx);
+    }
+}
+
+
+/* Push qualifier object on to stack. */
 AFW_DEFINE(void)
 afw_xctx_qualifier_stack_qualifier_object_push(
     const afw_utf8_t *qualifier_name,
@@ -481,7 +522,8 @@ afw_xctx_qualifier_stack_qualifier_object_push(
         memcpy(&entry->qualifier, qualifier_name, sizeof(afw_utf8_t));
     }
     entry->qualifier_object = qualifier_object;
-    entry->get = impl_get_object_variable;
+    entry->get_cb = impl_get_object_variable_cb;
+    entry->contribute_cb = impl_contribute_object_variables_cb;
     entry->secure = secure;
 }
 

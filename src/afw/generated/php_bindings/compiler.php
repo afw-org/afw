@@ -225,23 +225,58 @@ class compiler
     /**
      * qualifier()
      *
-     * This function allows the active variables for a qualifier to be
-     * accessed as the properties of an object.
+     * Returns a new memory object whose properties are the active variables
+     * for the given qualifier (issue #9). Built from the current xctx
+     * qualifier stack via contribute callbacks; not a live view. Each call
+     * creates a fresh object. Intended for debugging, tooling, and tests —
+     * not for hot production paths that only need qualifier::name access.
+     * 
+     * Warning: snapshots can be large. Qualifiers such as environment:: or
+     * request:: may contribute many properties (and some values can
+     * themselves be large objects). qualifiers() nests a full snapshot per
+     * active qualifier name and multiplies that cost. Prefer qualifier::name
+     * for normal work; use these functions sparingly and avoid holding or
+     * repeatedly rebuilding large snapshots in long-running scripts.
+     * 
+     * All matching visible stack entries for the qualifier name contribute
+     * into one object (most recent first; later entries only fill property
+     * names not already set). Get (qualifier::name) still uses the most
+     * recent matching entry for a single name. Default visibility matches
+     * normal qualifier::name access right now. Optional includeUntrusted is
+     * only meaningful while the xctx is secure: set true so the snapshot
+     * includes the same frames you would see with :: if you were less secure
+     * (trusted and untrusted). When already not secure, the flag changes
+     * nothing.
      *
      * @param string $qualifier This is the qualifier whose variables are to
      *                          be accessed as properties of the returned
      *                          object.
-     * @param boolean $forTesting If specified and true, the object returned
-     *                            will be suitable to pass as the
-     *                            additionalUntrustedQualifiedVariables
-     *                            parameter of evaluate*() functions. This is
-     *                            intended for testing purposes and should not
-     *                            be used in production.
+     * @param boolean $includeUntrusted Default false: snapshot matches what
+     *                                  qualifier::name can access in the
+     *                                  current xctx (while secure, untrusted
+     *                                  stack frames with secure=false are
+     *                                  omitted). Set true while secure to use
+     *                                  the same visibility as running less
+     *                                  secure — trusted and untrusted frames
+     *                                  (not untrusted-only). When the xctx is
+     *                                  not secure, true and false are the
+     *                                  same because :: already sees untrusted
+     *                                  frames. Does not change hot-path get;
+     *                                  only this snapshot. Useful for
+     *                                  debugging secure evaluation and for
+     *                                  building objects to re-inject as
+     *                                  evaluate()'s
+     *                                  additionalUntrustedQualifiedVariables.
      *
-     * @return object Each property is the name of a variable with the value
-     *                influenced by the forTesting property.
+     * @return  When the qualifier has at least one matching visible stack
+     *          entry, each property is a variable name for that qualifier
+     *          (values from contribute, most recent entry wins per name).
+     *          Fresh object on every call (may be empty if nothing was
+     *          contributed). When no matching visible entry exists for that
+     *          qualifier name, the result is undefined (nullish), not an
+     *          empty object.
      */
-    public function qualifier(, $qualifier, $forTesting = null)
+    public function qualifier(, $qualifier, $includeUntrusted = null)
     {
         $request = $this->$session->request();
 
@@ -251,8 +286,8 @@ class compiler
         $request->set("qualifier", $qualifier);
 
         /* pass along any optional parameters to the request payload */
-        if ($forTesting != null)
-            $request->set('forTesting', $forTesting);
+        if ($includeUntrusted != null)
+            $request->set('includeUntrusted', $includeUntrusted);
 
         return $request->get_result();
     }
@@ -260,23 +295,47 @@ class compiler
     /**
      * qualifiers()
      *
-     * This function allows the active qualifiers to be accessed as properties
-     * of an object. The value of each of these properties is an object whose
-     * properties are the variables for the corresponding qualifier.
+     * Returns a new memory object whose properties are active qualifier
+     * names; each value is an object of that qualifier's variables (issue
+     * #9). Built from the current xctx qualifier stack; each call creates a
+     * fresh object. Intended for debugging, tooling, and tests — not for hot
+     * production paths that only need qualifier::name access.
+     * 
+     * Warning: the result can be very large. Each property is a full snapshot
+     * of that qualifier (see qualifier()), so environment, request,
+     * application, current, and others can all appear as nested objects with
+     * many properties. Prefer qualifier::name or qualifier(name) when you
+     * need one bag; avoid repeated qualifiers() calls or retaining the result
+     * in long-running work.
+     * 
+     * Each nested variables object is the multi-entry snapshot for that name
+     * (all matching visible stack entries contribute; most recent wins per
+     * property). A qualifier name is omitted if it is not active (same as
+     * qualifier(name) being nullish); never invent an empty nested object for
+     * an inactive name. Default visibility matches normal qualifier::name
+     * access right now. Optional includeUntrusted is only meaningful while
+     * the xctx is secure: set true so each nested snapshot uses the same
+     * frame visibility as running less secure (trusted and untrusted). When
+     * already not secure, the flag changes nothing.
      *
-     * @param boolean $forTesting If specified and true, the object returned
-     *                            will be suitable to pass as the
-     *                            additionalUntrustedQualifiedVariables
-     *                            parameter of evaluate*() functions. This is
-     *                            intended for testing purposes and should not
-     *                            be used in production.
+     * @param boolean $includeUntrusted Default false: only qualifiers/frames
+     *                                  visible to qualifier::name in the
+     *                                  current xctx. Set true while secure to
+     *                                  match less-secure :: visibility
+     *                                  (include untrusted frames). When not
+     *                                  secure, true and false are the same.
+     *                                  Does not change hot-path get. The
+     *                                  result shape (qualifier → variables
+     *                                  object) is suitable to pass as
+     *                                  evaluate()'s
+     *                                  additionalUntrustedQualifiedVariables
+     *                                  when that is the intent.
      *
-     * @return object Each property is the name of a qualifier with a value
-     *                that is an object whose properties are the variables of
-     *                that qualifier. The value of the variable properties is
-     *                influenced by the forTesting property.
+     * @return object Each property is an active qualifier name with a value
+     *                that is a variables snapshot object for that qualifier.
+     *                Inactive names are omitted. Fresh object on every call.
      */
-    public function qualifiers(, $forTesting = null)
+    public function qualifiers(, $includeUntrusted = null)
     {
         $request = $this->$session->request();
 
@@ -285,8 +344,8 @@ class compiler
         /* pass along required parameters to the request payload */
 
         /* pass along any optional parameters to the request payload */
-        if ($forTesting != null)
-            $request->set('forTesting', $forTesting);
+        if ($includeUntrusted != null)
+            $request->set('includeUntrusted', $includeUntrusted);
 
         return $request->get_result();
     }

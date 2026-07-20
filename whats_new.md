@@ -10,7 +10,9 @@ Internal agent rules, Cursor docs, and pure test-infrastructure work are omitted
 
 | Area | What changed |
 |------|----------------|
+| **Qualified variables** | `qualifier()` / `qualifiers()` return **fresh listable snapshots** (issue **#9**) |
 | **Retrieve arrays** | Optional **`maxObjects`** on materializing `retrieve_objects` (default **100**; issue **#49**) |
+| **Admin / JS client** | `AfwModel` passes **`maxObjects: 0`** for full metadata catalogs so admin loads after #49 |
 | **Adapter auth** | `checkIndividualObjectReadAccess` wiring fixed + tests (issue **#90**) |
 | **File streams** | Working `open_file` with hardened `rootFilePaths`; stream errors **throw** |
 | **VFS adapter** | Empty files, safe full-file write, multi-map path rules, `maxReadBytes` |
@@ -19,6 +21,40 @@ Internal agent rules, Cursor docs, and pure test-infrastructure work are omitted
 | **JSON Schema** | Cleaner editor schemas for Adaptive object types |
 | **Process env** | One `current` on retrieve (issue **#71**); values are string if valid UTF-8 else hexBinary |
 | **Templates** | Compile-time substitution `#{…}` docs and tests; backtick `` `\#` `` / `` `\$` `` match raw templates (issue **#97**) |
+
+---
+
+## List active qualified variables (issue #9)
+
+**Issue #9**
+
+Scripts and tools can inspect active qualified variables as ordinary objects:
+
+```adaptive
+/* Variables for one qualifier (e.g. environment::, current::, request::) */
+const env = qualifier("environment");
+assert(env.HOME === environment::HOME);
+
+/* No matching stack frame → undefined (not {}) */
+assert(is_nullish(qualifier("no_such_qualifier")));
+
+/* All active qualifiers → nested objects of their variables */
+const all = qualifiers();
+/* all.environment, all.request, all.current, … when those frames are on the stack */
+```
+
+### Behavior
+
+| Rule | Detail |
+|------|--------|
+| **Fresh object each call** | Every `qualifier()` / `qualifiers()` builds a **new** memory object from the **current** stack (not a live proxy). Mutating a snapshot does not change later calls or `qualifier::name` access. |
+| **Missing qualifier** | If no **visible** stack entry matches the name, `qualifier(name)` is **nullish** (`undefined`), not an empty object. `qualifiers()` **omits** inactive names (does not invent `{}`). |
+| **Hot path unchanged** | Everyday `current::objectId` / `environment::HOME` still goes through stack **`get_cb`** only. Snapshots use a separate **`contribute_cb`** path intended for debug, tools, and tests—not tight production loops. |
+| **Most recent wins** | Get (`qualifier::name`) uses the **most recent** matching visible stack entry for that qualifier. A snapshot walks **all** matching visible entries (most recent first); each may contribute, and the most recent definition wins per property name. Nested pushes are cleaned up with the stack (e.g. `AFW_TRY`). |
+| **`includeUntrusted`** | Optional boolean, default **false**. **Default** matches normal `qualifier::name` visibility right now. While the xctx is **secure**, set **true** so the snapshot matches what you would see with `::` if you were **less secure** (trusted **and** untrusted frames—not untrusted-only). When already not secure, true and false are the same. |
+| **Can be large** | Snapshots copy variable bags into memory objects. `environment::` / `request::` (and similar) can be **big**; `qualifiers()` nests a full snapshot per active qualifier and multiplies cost. Prefer `qualifier::name` day to day; use list functions sparingly and do not retain or rebuild large snapshots in long-running scripts. |
+
+Object-backed qualifiers (`environment::`, `request::`, `application::`, model `current::` runtime bags, …) contribute by walking their objects. Callback-backed frames (app `current::`, model `custom::`, log, context tables) contribute their known variable sets.
 
 ---
 
@@ -63,6 +99,17 @@ These APIs are for large result sets **without** materializing one array on the 
 They still use the same adapter session underneath; only the **array-building** functions enforce `maxObjects`. (Safe release after progressive write is tracked separately as issue **#127**. Broader long-running memory / OOM handling is issue **#2**.)
 
 `maxObjects` is **not** an adapter conf property and **not** RQL/client paging—those remain longer-term #49 work.
+
+### Admin / `@afw/client` after the default of 100
+
+Core metadata catalogs (object types, etc.) are larger than 100. Materializing retrieves used by the admin SPA (Home boot `loadObjectTypes`, Documentation Schema via `useRetrieveObjects`) therefore failed with **`payload_too_large`** until the JS client was updated.
+
+**`AfwModel`** (`@afw/client`) now sends **`maxObjects: 0`** (unlimited) for:
+
+- `loadObjectTypes`
+- `retrieveObjects` (default; callers can still pass a positive limit)
+
+Rebuild/install the admin app (or full JS install) and hard-refresh the browser. Progressive `retrieve_objects_to_response` (already used by the Objects browser) remains the better pattern for large **instance** data; that client story is still open under #49.
 
 ---
 

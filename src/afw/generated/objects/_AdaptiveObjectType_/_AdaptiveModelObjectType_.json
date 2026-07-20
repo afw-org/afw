@@ -30,7 +30,7 @@
             "contextType": "modelAddObject",
             "dataType": "script",
             "dataTypeParameter": "string",
-            "description": "Override default add_object() processing. Return the new objectId as a string. Return current::useDefaultProcessing to map-and-forward to mappedAdapterId (requires mappedAdapterId). If the model adapter has no mappedAdapterId, this hook must fully handle add for this object type when add is used.",
+            "description": "Override default add_object() processing. Return the new objectId as a string. Return current::useDefaultProcessing to map-and-forward to mappedAdapterId (requires mappedAdapterId). If the model adapter has no mappedAdapterId, this hook must fully handle add for this object type when add is used. During evaluation, current:: (and custom:: / adapter:: when pushed) are available as qualified variables; contextType modelAddObject documents that bag. For debug/tools, qualifier(\"current\") returns a snapshot object of the current bag (not for hot paths).",
             "label": "On add_object",
             "skeleton": "/**\n * onAddObject\n *\n * Override default add_object() processing.\n * Return a string objectId, or current::useDefaultProcessing to use\n * mappedAdapterId (requires mappedAdapterId on the model adapter conf).\n *\n * Notable current:: variables: adapterId, objectType, object, objectId,\n * mappedAdapterId (if configured), useDefaultProcessing.\n */\n\n/* Example: fully handle add in script (no mapped backend required). */\n/*\nreturn current::objectId ?? generate_uuid();\n*/\n\n/* Example: fall through to default map-and-forward (needs mappedAdapterId). */\nreturn current::useDefaultProcessing;\n"
         },
@@ -39,7 +39,7 @@
             "dataType": "script",
             "dataTypeParameter": "null",
             "contextType": "modelDeleteObject",
-            "description": "Override default delete_object() processing. Return current::useDefaultProcessing to map-and-forward to mappedAdapterId (requires mappedAdapterId). If the model adapter has no mappedAdapterId, this hook must fully handle delete for this object type when delete is used.",
+            "description": "Override default delete_object() processing. Return current::useDefaultProcessing to map-and-forward to mappedAdapterId (requires mappedAdapterId). If the model adapter has no mappedAdapterId, this hook must fully handle delete for this object type when delete is used. During evaluation, current:: (and custom:: / adapter:: when pushed) are available; contextType modelDeleteObject documents that bag. qualifier(\"current\") can snapshot it for debug/tools.",
             "label": "On delete_object",
             "skeleton": "/**\n * onDeleteObject\n *\n * Override default delete_object() processing, or return\n * current::useDefaultProcessing (requires mappedAdapterId).\n */\nreturn current::useDefaultProcessing;\n"
         },
@@ -48,7 +48,7 @@
             "contextType": "modelInitialObjectId",
             "dataType": "script",
             "dataTypeParameter": "objectId",
-            "description": "This optional script value is evaluated during default add processing to determine the objectId. If not specified, current::objectId is used and if that is not specified, the mapped adapter may assign one. Even if specified, the mapped adapter is free to ignore this. Only used when default add processing runs (requires mappedAdapterId unless onAddObject fully handles add).",
+            "description": "This optional script value is evaluated during default add processing to determine the objectId. If not specified, current::objectId is used and if that is not specified, the mapped adapter may assign one. Even if specified, the mapped adapter is free to ignore this. Only used when default add processing runs (requires mappedAdapterId unless onAddObject fully handles add). Uses contextType modelInitialObjectId for current:: variables; qualifier(\"current\") can snapshot that bag for debug/tools.",
             "label": "On Get Initial ObjectId"
         },
         "onGetObject": {
@@ -56,16 +56,16 @@
             "contextType": "modelGetObject",
             "dataType": "script",
             "dataTypeParameter": "object",
-            "description": "Override default get_object() processing. Return an object, or nullish if not found. Return current::useDefaultProcessing to map-and-forward to mappedAdapterId (requires mappedAdapterId). If the model adapter has no mappedAdapterId, this hook must fully handle get for this object type when get is used.",
+            "description": "Override default get_object() processing. Return an object, or nullish if not found. Return current::useDefaultProcessing to map-and-forward to mappedAdapterId (requires mappedAdapterId). If the model adapter has no mappedAdapterId, this hook must fully handle get for this object type when get is used. During evaluation, current:: (and custom:: / adapter:: when pushed) are available as qualified variables; contextType modelGetObject documents that bag. For debug/tools, qualifier(\"current\") returns a snapshot of the current bag (not for hot paths).",
             "label": "On get_object",
-            "skeleton": "/**\n * onGetObject\n *\n * Return an object, nullish if not found, or current::useDefaultProcessing\n * (requires mappedAdapterId on the model adapter conf).\n */\nreturn current::useDefaultProcessing;\n"
+            "skeleton": "/**\n * onGetObject\n *\n * Return an object, nullish if not found, or current::useDefaultProcessing\n * (requires mappedAdapterId on the model adapter conf).\n *\n * Notable current:: variables: adapterId, objectType, objectId,\n * mappedAdapterId (if configured), mapBackObject, useDefaultProcessing.\n * Debug: qualifier(\"current\") snapshots the bag.\n */\nreturn current::useDefaultProcessing;\n"
         },
         "onModifyObject": {
             "brief": "Script to execute on modify_object()",
             "contextType": "modelModifyObject",
             "dataType": "script",
             "dataTypeParameter": "null",
-            "description": "Override default modify_object() processing. Return current::useDefaultProcessing to map-and-forward to mappedAdapterId (requires mappedAdapterId). If the model adapter has no mappedAdapterId, this hook must fully handle modify for this object type when modify is used.",
+            "description": "Override default modify_object() processing. Return current::useDefaultProcessing to map-and-forward to mappedAdapterId (requires mappedAdapterId). If the model adapter has no mappedAdapterId, this hook must fully handle modify for this object type when modify is used. During evaluation, current:: is available; contextType modelModifyObject documents that bag. qualifier(\"current\") can snapshot it for debug/tools.",
             "label": "On modify_object",
             "skeleton": "/**\n * onModifyObject\n *\n * Override default modify_object() processing, or return\n * current::useDefaultProcessing (requires mappedAdapterId).\n */\nreturn current::useDefaultProcessing;\n"
         },
@@ -74,7 +74,7 @@
             "contextType": "modelReplaceObject",
             "dataType": "script",
             "dataTypeParameter": "null",
-            "description": "Override default replace_object() processing. Return current::useDefaultProcessing to map-and-forward to mappedAdapterId (requires mappedAdapterId). If the model adapter has no mappedAdapterId, this hook must fully handle replace for this object type when replace is used.",
+            "description": "Override default replace_object() processing. Return current::useDefaultProcessing to map-and-forward to mappedAdapterId (requires mappedAdapterId). If the model adapter has no mappedAdapterId, this hook must fully handle replace for this object type when replace is used. During evaluation, current:: is available; contextType modelReplaceObject documents that bag. qualifier(\"current\") can snapshot it for debug/tools.",
             "label": "On replace_object",
             "skeleton": "/**\n * onReplaceObject\n *\n * Override default replace_object() processing, or return\n * current::useDefaultProcessing (requires mappedAdapterId).\n */\nreturn current::useDefaultProcessing;\n"
         },
@@ -83,9 +83,9 @@
             "contextType": "modelRetrieveObjects",
             "dataType": "script",
             "dataTypeParameter": "null",
-            "description": "Override default retrieve_objects() processing. Call current::returnObject(object) for each object to return (optional mapBack flag). Return current::useDefaultProcessing to map-and-forward to mappedAdapterId (requires mappedAdapterId). If the model adapter has no mappedAdapterId, this hook must fully handle retrieve for this object type when retrieve is used.",
+            "description": "Override default retrieve_objects() processing. Call current::returnObject(object) for each object to return (optional mapBack flag). Return current::useDefaultProcessing to map-and-forward to mappedAdapterId (requires mappedAdapterId). If the model adapter has no mappedAdapterId, this hook must fully handle retrieve for this object type when retrieve is used. During evaluation, current:: is available; contextType modelRetrieveObjects documents that bag (queryCriteria, returnObject, mapBackObject, …). qualifier(\"current\") can snapshot it for debug/tools.",
             "label": "On retrieve_objects",
-            "skeleton": "/**\n * onRetrieveObjects\n *\n * Call current::returnObject(object) for each result, or return\n * current::useDefaultProcessing (requires mappedAdapterId).\n */\nreturn current::useDefaultProcessing;\n"
+            "skeleton": "/**\n * onRetrieveObjects\n *\n * Call current::returnObject(object) for each result, or return\n * current::useDefaultProcessing (requires mappedAdapterId).\n *\n * Notable current:: variables: queryCriteria, returnObject, mapBackObject,\n * objectType, mappedAdapterId (if configured), useDefaultProcessing.\n */\nreturn current::useDefaultProcessing;\n"
         },
         "propertyTypes": {
             "brief": "Property types for this model object type",

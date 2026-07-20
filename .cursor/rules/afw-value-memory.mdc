@@ -31,6 +31,7 @@ Do not invent new lifetime paths; match existing create_* patterns.
 - Implement/complete **optional_release** / **clone_or_reference** (or get_reference) on escaping values: objects, lists/arrays, closures, `compiled_value`, and other managed kinds that outlive a scope.
 - Evaluation temporaries and results that belong to the current activation should use **current `scope->p`** (not a longer-lived pool) unless they intentionally escape.
 - Subpool + RC already handle bulk release and escape reparenting — polish the value-inf hooks and call sites; do not replace the pool model.
+- **Qualifier snapshots** (`qualifier()` / `qualifiers()`, issue **#9**) allocate **fresh, possibly large** memory objects (`environment::`, `request::`, nested `qualifiers()`). Prefer `qualifier::name` for normal work; treat repeated/retained snapshots as long-running stress — see **`afw-qualified-variables`**, `beta-backlog.md`.
 
 ## Shared mutables and defaults (issue #110 class)
 

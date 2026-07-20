@@ -30,6 +30,7 @@ assert(a !== b);  // now true because structures differ
 - **`is_nullish(v)`** — true for `null` or `undefined`.
 - Missing property / missing variable without a default → undefined (nullish).
 - Prefer `property_get(obj, name, default)` / `variable_get(name, default)` over assuming property access creates containers.
+- **`qualifier(name)`** when no visible stack entry matches → **nullish** (not `{}`). Prefer **`qualifier::name`** for normal access; `qualifier()` / `qualifiers()` are list/debug snapshots and can be **large** — see **`afw-qualified-variables`**.
 
 ## Defaults that callers may mutate
 
@@ -50,4 +51,4 @@ assert(a !== b);  // now true because structures differ
 
 ## Related
 
-- Tests layout: `afw-tests`. Built-in execute bodies: `afw-function`. Value lifetimes: `afw-value-memory`.
+- Tests layout: `afw-tests`. Built-in execute bodies: `afw-function`. Value lifetimes: `afw-value-memory`. Qualifier stack / snapshots: `afw-qualified-variables`.

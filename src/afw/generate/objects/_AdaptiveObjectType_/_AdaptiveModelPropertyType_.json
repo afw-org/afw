@@ -29,14 +29,14 @@
             "brief": "Evaluated when getting an object property",
             "contextType": "modelGetProperty",
             "dataType": "script",
-            "description": "This script is evaluated to produce the value of this property when getting an object. If a value of null is returned, the property will not be included in the resulting object.",
+            "description": "This script is evaluated to produce the value of this property when getting an object. If a value of null is returned, the property will not be included in the resulting object. During evaluation, current:: includes property-level names (contextType modelGetProperty: mappedObject, mappedValue, mappedPropertyName, … as applicable). qualifier(\"current\") can snapshot that bag for debug/tools (not for hot paths).",
             "label": "On Get Property"
         },
         "onGetInitialValue": {
             "brief": "Get initial value to for this property",
             "contextType": "modelGetProperty",
             "dataType": "script",
-            "description": "This is a script value is evaluated to set the value of this property when producing an instance of this object for add object requests.",
+            "description": "This is a script value is evaluated to set the value of this property when producing an instance of this object for add object requests. Uses the same property-level current:: bag as onGetProperty (contextType modelGetProperty). qualifier(\"current\") can snapshot it for debug/tools.",
             "label": "On Get Initial Value"
         },
         "mappedPropertyName": {
@@ -55,7 +55,7 @@
             "brief": "Evaluated when setting an object property",
             "contextType": "modelSetProperty",
             "dataType": "script",
-            "description": "This script is evaluated to produce the value of this property for add/modify/replace object requests. If initialValue is specified, setProperty is ignored for add object requests. If setProperty is not specified and the property exists in the current object, that value is used. If setProperty is specified, but the evaluation returns a value of null, the property will not be included in the mapped object.",
+            "description": "This script is evaluated to produce the value of this property for add/modify/replace object requests. If initialValue is specified, setProperty is ignored for add object requests. If setProperty is not specified and the property exists in the current object, that value is used. If setProperty is specified, but the evaluation returns a value of null, the property will not be included in the mapped object. During evaluation, current:: includes property-level names (contextType modelSetProperty: object, propertyName, value, … as applicable). qualifier(\"current\") can snapshot that bag for debug/tools.",
             "label": "On Set Property"
         },
         "transitory": {

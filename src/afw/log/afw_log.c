@@ -151,6 +151,39 @@ impl_log_current_variable_get_cb(
 }
 
 
+static void
+impl_log_current_contribute_variables_cb(
+    const afw_xctx_qualifier_stack_entry_t *entry,
+    const afw_object_t *object,
+    afw_boolean_t include_untrusted,
+    afw_xctx_t *xctx)
+{
+    static const afw_utf8_t * const names[] = {
+        afw_s_message,
+        afw_s_xctxUUID,
+        afw_s_source,
+        NULL
+    };
+    const afw_utf8_t * const *np;
+    const afw_value_t *value;
+
+    (void)include_untrusted;
+
+    for (np = names; *np; np++) {
+        if (afw_object_has_property(object, *np, xctx)) {
+            continue;
+        }
+        value = impl_log_current_variable_get_cb(entry, *np, xctx);
+        if (value) {
+            afw_object_set_property(object, *np, value, xctx);
+        }
+        else {
+            afw_object_set_property(object, *np, afw_value_null, xctx);
+        }
+    }
+}
+
+
 
 /*
  * Register logType context type.
@@ -452,8 +485,9 @@ impl_write_formatted_message(
                 wa->e->log->properties,
                 true, wa->p, xctx);
             afw_xctx_qualifier_stack_qualifier_push(afw_s_current, NULL, true,
-                impl_log_current_variable_get_cb, (void *)wa,
-                wa->p, xctx);
+                impl_log_current_variable_get_cb,
+                impl_log_current_contribute_variables_cb,
+                (void *)wa, wa->p, xctx);
             if (wa->e->log->impl->custom_variables) {
                 afw_xctx_qualifier_stack_qualifier_object_push(afw_s_custom,
                     wa->e->log->impl->custom_variables,
