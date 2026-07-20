@@ -43,6 +43,21 @@ Update this section if the plan changes.
 - When we improve developer documentation later, **mine this file** (and chat archaeology, FIXMEs, `whats_new.md` where relevant) and **fold durable facts into code comments / in-tree developer docs**, then thin the backlog.
 - User-facing material stays separate (`whats_new.md` while on `mgg-develop`, published handbook/docs as appropriate).
 
+## How we work with assistants (session hygiene)
+
+- **Default: new conversation per distinct issue** — keeps context size down; tools re-read code and this file as needed.
+- **Reopen an old chat** when that thread’s history is intentionally wanted in context.
+- **Durable knowledge** goes here, in **rules / `AGENTS.md` / code comments**, or git — not only in chat.
+- Ask the assistant to **update rules / this backlog** when something will matter in future sessions.
+- Next real work: expect a **new feature branch** off current integration line (not pile everything only on long-lived chat state).
+- **`issues.md`**: temporary Cursor triage dump; do not treat as canonical. Prefer this file + GitHub.
+
+### Session wrap-up — 2026-07-20
+
+- Explored **#54** (indexes / deprecated variables); did **not** implement — notes under Indexes below.
+- Created **`beta-backlog.md`** on **`mgg-develop`** (initial commit `9bfefbf7`; follow-up commits for hygiene/wrap-up notes).
+- No feature implementation this session; partnership agreement: keep this file together over months toward beta.
+
 ---
 
 ## Notes dump
@@ -140,3 +155,4 @@ _Not a commitment — fill in as “must be true before we call it beta.”_
 |------|------|
 | 2026-07-20 | Created; seeded from index/#54 discussion, expression vs script context, compile/value model, pure-fold plan, branch plan, doc roles. |
 | 2026-07-20 | Doc preference: long-term developer knowledge in code; this file is dump/source for later fold-in. |
+| 2026-07-20 | Session hygiene; wrap-up note for #54 explore-only session. |
