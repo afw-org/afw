@@ -41,3 +41,26 @@ const c = qualifier("environment");
 assert(c.__issue9_marker === undefined || c.__issue9_marker === null,
     "third call should be a fresh snapshot");
 return 0;
+
+//?
+//? test: qualifier-unknown-nullish
+//? description: issue #9 qualifier for name with no stack frame is nullish
+//? expect: 0
+//? source: ...
+
+assert(is_nullish(qualifier("no_such_qualifier_xyz_issue9")),
+    "unknown qualifier should be undefined/nullish, not empty object");
+return 0;
+
+//?
+//? test: qualifier-includeUntrusted-when-not-secure
+//? description: issue #9 when not secure, includeUntrusted true/false match ::
+//? expect: 0
+//? source: ...
+
+/* When xctx is not secure, true and false are the same (full :: visibility). */
+const a = qualifier("environment", false);
+const b = qualifier("environment", true);
+assert(!is_nullish(a) && !is_nullish(b));
+assert(a.HOME === b.HOME && a.HOME === environment::HOME);
+return 0;

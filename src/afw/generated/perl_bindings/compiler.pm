@@ -147,10 +147,14 @@ contribute callbacks; not a live view. Each call creates a fresh object.
 Intended for debugging, tooling, and tests — not for hot production paths that
 only need qualifier::name access.
 
-By default, visibility matches qualifier::name: when the execution context is
-secure (AFW_XCTX_SECURE_BEGIN / xctx.secure), stack entries pushed as
-untrusted (secure=false, e.g. additionalUntrustedQualifiedVariables) are
-omitted. Optional includeUntrusted widens that only while secure.
+All matching visible stack entries for the qualifier name contribute into one
+object (most recent first; later entries only fill property names not already
+set). Get (qualifier::name) still uses the most recent matching entry for a
+single name. Default visibility matches normal qualifier::name access right
+now. Optional includeUntrusted is only meaningful while the xctx is secure:
+set true so the snapshot includes the same frames you would see with :: if you
+were less secure (trusted and untrusted). When already not secure, the flag
+changes nothing.
 Snapshot of variables for a qualifier as an object
 
 =head4 Parameters
@@ -162,14 +166,14 @@ returned object.
 
     $includeUntrusted
 
-Default false. When the xctx is secure, qualified-variable get skips stack
-entries that were pushed with secure=false (untrusted client context). Set
-includeUntrusted to true to also contribute those frames into this snapshot so
-a secure caller can inspect them. When the xctx is not secure, this parameter
-is ignored because untrusted frames are already visible (same as
-qualifier::name). Does not change hot-path get; only affects this snapshot.
-Useful for debugging secure evaluation and for building objects to re-inject
-as evaluate()'s additionalUntrustedQualifiedVariables.
+Default false: snapshot matches what qualifier::name can access in the current
+xctx (while secure, untrusted stack frames with secure=false are omitted). Set
+true while secure to use the same visibility as running less secure — trusted
+and untrusted frames (not untrusted-only). When the xctx is not secure, true
+and false are the same because :: already sees untrusted frames. Does not
+change hot-path get; only this snapshot. Useful for debugging secure
+evaluation and for building objects to re-inject as evaluate()'s
+additionalUntrustedQualifiedVariables.
 
 =head3 qualifiers
 
@@ -179,21 +183,26 @@ current xctx qualifier stack; each call creates a fresh object. Intended for
 debugging, tooling, and tests — not for hot production paths that only need
 qualifier::name access.
 
-By default, visibility matches qualifier::name under secure xctx (untrusted
-stack frames omitted). Optional includeUntrusted widens that only while the
-xctx is secure; ignored when not secure.
+Each nested variables object is the multi-entry snapshot for that name (all
+matching visible stack entries contribute; most recent wins per property). A
+qualifier name is omitted if it is not active (same as qualifier(name) being
+nullish); never invent an empty nested object for an inactive name. Default
+visibility matches normal qualifier::name access right now. Optional
+includeUntrusted is only meaningful while the xctx is secure: set true so each
+nested snapshot uses the same frame visibility as running less secure (trusted
+and untrusted). When already not secure, the flag changes nothing.
 Snapshot of active qualifiers as an object
 
 =head4 Parameters
 
     $includeUntrusted
 
-Default false. When the xctx is secure, stack entries pushed with secure=false
-(untrusted) are not visible to qualifier::name and are omitted from this
-snapshot unless includeUntrusted is true. When the xctx is not secure, this
-parameter is ignored. Does not change hot-path get. The result shape
-(qualifier → variables object) is suitable to pass as evaluate()'s
-additionalUntrustedQualifiedVariables when that is the intent.
+Default false: only qualifiers/frames visible to qualifier::name in the
+current xctx. Set true while secure to match less-secure :: visibility
+(include untrusted frames). When not secure, true and false are the same. Does
+not change hot-path get. The result shape (qualifier → variables object) is
+suitable to pass as evaluate()'s additionalUntrustedQualifiedVariables when
+that is the intent.
 
 =head3 safe_evaluate
 

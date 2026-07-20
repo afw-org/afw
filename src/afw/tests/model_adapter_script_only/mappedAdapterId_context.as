@@ -13,5 +13,6 @@
 const obj = get_object("scriptModel", "ContextCheck", "ctx1");
 assert(obj !== undefined);
 assert(obj.mappedAbsent === true);
+assert(obj.snapshotOk === true, "issue #9 qualifier(\"current\") snapshot in onGetObject");
 
 return 0;

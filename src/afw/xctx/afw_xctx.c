@@ -467,7 +467,8 @@ impl_get_object_variable_cb(
 
 /*
  * Fixed contribute for object-push frames: walk qualifier_object and set
- * missing names on the accumulator (values via get_cb so they match access).
+ * missing names on the accumulator using the iterated name+value (same values
+ * as get_property / get_cb for that object; avoids a redundant re-get).
  */
 static void
 impl_contribute_object_variables_cb(
@@ -488,20 +489,15 @@ impl_contribute_object_variables_cb(
     }
 
     iterator = NULL;
-    while (afw_object_get_next_property(
-        entry->qualifier_object, &iterator, &property_name, xctx))
+    while ((value = afw_object_get_next_property(
+        entry->qualifier_object, &iterator, &property_name, xctx)))
     {
-        if (afw_object_has_property(object, property_name, xctx)) {
+        if (!property_name ||
+            afw_object_has_property(object, property_name, xctx))
+        {
             continue;
         }
-        value = entry->get_cb(entry, property_name, xctx);
-        if (value) {
-            afw_object_set_property(object, property_name, value, xctx);
-        }
-        else {
-            afw_object_set_property(object, property_name,
-                afw_value_null, xctx);
-        }
+        afw_object_set_property(object, property_name, value, xctx);
     }
 }
 

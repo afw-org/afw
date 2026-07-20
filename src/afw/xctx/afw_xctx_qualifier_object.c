@@ -12,6 +12,8 @@
  * @brief Build fresh memory-object snapshots of active qualified variables.
  *
  * Each call allocates a new object and fills it via stack entry contribute_cb.
+ * For one qualifier, every matching visible stack entry may contribute
+ * (most recent first; later entries only fill property names not already set).
  * Suitable for qualifier() / qualifiers() adaptive functions.
  */
 
@@ -21,10 +23,11 @@
 /*
  * True if this stack entry is visible for a snapshot.
  *
- * Matches get when include_untrusted is false: if xctx is secure, skip
- * entries pushed with secure=false. If include_untrusted is true and xctx
- * is secure, those untrusted frames are included. If xctx is not secure,
- * include_untrusted is ignored (all frames with contribute_cb are visible).
+ * Default (include_untrusted false): same as qualifier::name get — when
+ * xctx is secure, skip entries pushed with secure=false. When
+ * include_untrusted is true and xctx is secure, use less-secure visibility
+ * (trusted and untrusted frames). When xctx is not secure, true and false
+ * are the same (untrusted frames are already visible to get).
  */
 static afw_boolean_t
 impl_entry_visible_for_snapshot(
@@ -42,7 +45,13 @@ impl_entry_visible_for_snapshot(
 }
 
 
-/* Create a fresh memory object of active variables for one qualifier. */
+/* Create a fresh memory object of active variables for one qualifier.
+ *
+ * Walk most recent → older. Every matching visible entry contributes into one
+ * accumulator (contribute_cb should leave existing property names alone so the
+ * most recent definition wins). Returns NULL if no matching visible entry
+ * (nullish to scripts). Empty bag after contribute is still an object, not NULL.
+ */
 AFW_DEFINE(const afw_object_t *)
 afw_xctx_qualifier_object_create(
     const afw_utf8_t *qualifier,
@@ -53,13 +62,12 @@ afw_xctx_qualifier_object_create(
     const afw_object_t *object;
     const afw_xctx_qualifier_stack_entry_t *e_cur;
 
-    object = afw_object_create_unmanaged(p, xctx);
+    object = NULL;
 
     if (!qualifier || qualifier->len == 0) {
-        return object;
+        return NULL;
     }
 
-    /* First matching visible frame only (same ownership as get). */
     for (
         e_cur = xctx->qualifier_stack->top;
         e_cur >= xctx->qualifier_stack->first;
@@ -71,8 +79,10 @@ afw_xctx_qualifier_object_create(
         if (!impl_entry_visible_for_snapshot(e_cur, include_untrusted, xctx)) {
             continue;
         }
+        if (!object) {
+            object = afw_object_create_unmanaged(p, xctx);
+        }
         e_cur->contribute_cb(e_cur, object, include_untrusted, xctx);
-        break;
     }
 
     return object;
@@ -102,12 +112,16 @@ afw_xctx_qualifiers_object_create(
         if (!impl_entry_visible_for_snapshot(c, include_untrusted, xctx)) {
             continue;
         }
-        /* First occurrence of each qualifier name wins (top → bottom). */
+        /* One nested snapshot per qualifier name; create merges all entries. */
         if (afw_object_has_property(qualifiers, &c->qualifier, xctx)) {
             continue;
         }
         qualifier_object = afw_xctx_qualifier_object_create(
             &c->qualifier, include_untrusted, p, xctx);
+        /* NULL means not active — omit property; do not invent {}. */
+        if (!qualifier_object) {
+            continue;
+        }
         afw_object_set_property_as_object(qualifiers,
             &c->qualifier, qualifier_object, xctx);
     }

@@ -892,13 +892,16 @@ afw_xctx_qualifier_stack_qualifier_object_push(
 /**
  * @brief Create a fresh snapshot object of active variables for a qualifier.
  * @param qualifier name (e.g. environment, current).
- * @param include_untrusted When xctx is secure, true also includes stack
- *    entries pushed with secure=false (untrusted). Ignored when xctx is not
- *    secure (those frames are already visible, same as get). Default false
- *    matches qualifier::name visibility.
+ * @param include_untrusted Default false: same frame visibility as
+ *    qualifier::name get right now. When xctx is secure, true uses the same
+ *    visibility as running less secure (trusted and untrusted frames). When
+ *    xctx is not secure, true and false are the same.
  * @param p to use.
  * @param xctx of caller.
- * @return New memory object (never a live view).
+ * @return New memory object (never a live view), or NULL if no matching
+ *    visible stack entry for that qualifier (nullish to scripts). Walks most
+ *    recent → older; every matching visible entry contributes (most recent
+ *    wins per property name). Empty bag after contribute is still an object.
  */
 AFW_DEFINE(const afw_object_t *)
 afw_xctx_qualifier_object_create(

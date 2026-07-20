@@ -35,6 +35,9 @@ Scripts and tools can inspect active qualified variables as ordinary objects:
 const env = qualifier("environment");
 assert(env.HOME === environment::HOME);
 
+/* No matching stack frame → undefined (not {}) */
+assert(is_nullish(qualifier("no_such_qualifier")));
+
 /* All active qualifiers → nested objects of their variables */
 const all = qualifiers();
 /* all.environment, all.request, all.current, … when those frames are on the stack */
@@ -45,9 +48,10 @@ const all = qualifiers();
 | Rule | Detail |
 |------|--------|
 | **Fresh object each call** | Every `qualifier()` / `qualifiers()` builds a **new** memory object from the **current** stack (not a live proxy). Mutating a snapshot does not change later calls or `qualifier::name` access. |
+| **Missing qualifier** | If no **visible** stack entry matches the name, `qualifier(name)` is **nullish** (`undefined`), not an empty object. `qualifiers()` **omits** inactive names (does not invent `{}`). |
 | **Hot path unchanged** | Everyday `current::objectId` / `environment::HOME` still goes through stack **`get_cb`** only. Snapshots use a separate **`contribute_cb`** path intended for debug, tools, and tests—not tight production loops. |
-| **First frame wins** | Same ownership as get: the newest matching stack entry for a qualifier owns the snapshot (null/undefined can be real values). |
-| **`includeUntrusted`** | Optional boolean, default **false**. When the xctx is **secure**, set true to also list stack frames pushed as untrusted (`secure=false`). **Ignored** when the xctx is not secure (those frames are already visible, same as `qualifier::name`). |
+| **Most recent wins** | Get (`qualifier::name`) uses the **most recent** matching visible stack entry for that qualifier. A snapshot walks **all** matching visible entries (most recent first); each may contribute, and the most recent definition wins per property name. Nested pushes are cleaned up with the stack (e.g. `AFW_TRY`). |
+| **`includeUntrusted`** | Optional boolean, default **false**. **Default** matches normal `qualifier::name` visibility right now. While the xctx is **secure**, set **true** so the snapshot matches what you would see with `::` if you were **less secure** (trusted **and** untrusted frames—not untrusted-only). When already not secure, true and false are the same. |
 
 Object-backed qualifiers (`environment::`, `request::`, `application::`, model `current::` runtime bags, …) contribute by walking their objects. Callback-backed frames (app `current::`, model `custom::`, log, context tables) contribute their known variable sets.
 

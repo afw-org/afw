@@ -125065,7 +125065,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__1987 \
-    "Override default add_object() processing. Return the new objectId as a string. Return current::useDefaultProcessing to map-and-forward to mappedAdapterId (requires mappedAdapterId). If the model adapter has no mappedAdapterId, this hook must fully handle add for this object type when add is used."
+    "Override default add_object() processing. Return the new objectId as a string. Return current::useDefaultProcessing to map-and-forward to mappedAdapterId (requires mappedAdapterId). If the model adapter has no mappedAdapterId, this hook must fully handle add for this object type when add is used. During evaluation, current:: (and custom:: / adapter:: when pushed) are available as qualified variables; contextType modelAddObject documents that bag. For debug/tools, qualifier(\"current\") returns a snapshot object of the current bag (not for hot paths)."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__1987 */
 #define afw_s_zz__1987 \
@@ -125117,7 +125117,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__1989 \
-    "Override default delete_object() processing. Return current::useDefaultProcessing to map-and-forward to mappedAdapterId (requires mappedAdapterId). If the model adapter has no mappedAdapterId, this hook must fully handle delete for this object type when delete is used."
+    "Override default delete_object() processing. Return current::useDefaultProcessing to map-and-forward to mappedAdapterId (requires mappedAdapterId). If the model adapter has no mappedAdapterId, this hook must fully handle delete for this object type when delete is used. During evaluation, current:: (and custom:: / adapter:: when pushed) are available; contextType modelDeleteObject documents that bag. qualifier(\"current\") can snapshot it for debug/tools."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__1989 */
 #define afw_s_zz__1989 \
@@ -125221,7 +125221,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__1992 \
-    "This optional script value is evaluated during default add processing to determine the objectId. If not specified, current::objectId is used and if that is not specified, the mapped adapter may assign one. Even if specified, the mapped adapter is free to ignore this. Only used when default add processing runs (requires mappedAdapterId unless onAddObject fully handles add)."
+    "This optional script value is evaluated during default add processing to determine the objectId. If not specified, current::objectId is used and if that is not specified, the mapped adapter may assign one. Even if specified, the mapped adapter is free to ignore this. Only used when default add processing runs (requires mappedAdapterId unless onAddObject fully handles add). Uses contextType modelInitialObjectId for current:: variables; qualifier(\"current\") can snapshot that bag for debug/tools."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__1992 */
 #define afw_s_zz__1992 \
@@ -125247,7 +125247,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__1993 \
-    "Override default get_object() processing. Return an object, or nullish if not found. Return current::useDefaultProcessing to map-and-forward to mappedAdapterId (requires mappedAdapterId). If the model adapter has no mappedAdapterId, this hook must fully handle get for this object type when get is used."
+    "Override default get_object() processing. Return an object, or nullish if not found. Return current::useDefaultProcessing to map-and-forward to mappedAdapterId (requires mappedAdapterId). If the model adapter has no mappedAdapterId, this hook must fully handle get for this object type when get is used. During evaluation, current:: (and custom:: / adapter:: when pushed) are available as qualified variables; contextType modelGetObject documents that bag. For debug/tools, qualifier(\"current\") returns a snapshot of the current bag (not for hot paths)."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__1993 */
 #define afw_s_zz__1993 \
@@ -125273,7 +125273,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__1994 \
-    "/**\n * onGetObject\n *\n * Return an object, nullish if not found, or current::useDefaultProcessing\n * (requires mappedAdapterId on the model adapter conf).\n */\nreturn current::useDefaultProcessing;\n"
+    "/**\n * onGetObject\n *\n * Return an object, nullish if not found, or current::useDefaultProcessing\n * (requires mappedAdapterId on the model adapter conf).\n *\n * Notable current:: variables: adapterId, objectType, objectId,\n * mappedAdapterId (if configured), mapBackObject, useDefaultProcessing.\n * Debug: qualifier(\"current\") snapshots the bag.\n */\nreturn current::useDefaultProcessing;\n"
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__1994 */
 #define afw_s_zz__1994 \
@@ -125299,7 +125299,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__1995 \
-    "Override default modify_object() processing. Return current::useDefaultProcessing to map-and-forward to mappedAdapterId (requires mappedAdapterId). If the model adapter has no mappedAdapterId, this hook must fully handle modify for this object type when modify is used."
+    "Override default modify_object() processing. Return current::useDefaultProcessing to map-and-forward to mappedAdapterId (requires mappedAdapterId). If the model adapter has no mappedAdapterId, this hook must fully handle modify for this object type when modify is used. During evaluation, current:: is available; contextType modelModifyObject documents that bag. qualifier(\"current\") can snapshot it for debug/tools."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__1995 */
 #define afw_s_zz__1995 \
@@ -125351,7 +125351,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__1997 \
-    "Override default replace_object() processing. Return current::useDefaultProcessing to map-and-forward to mappedAdapterId (requires mappedAdapterId). If the model adapter has no mappedAdapterId, this hook must fully handle replace for this object type when replace is used."
+    "Override default replace_object() processing. Return current::useDefaultProcessing to map-and-forward to mappedAdapterId (requires mappedAdapterId). If the model adapter has no mappedAdapterId, this hook must fully handle replace for this object type when replace is used. During evaluation, current:: is available; contextType modelReplaceObject documents that bag. qualifier(\"current\") can snapshot it for debug/tools."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__1997 */
 #define afw_s_zz__1997 \
@@ -125403,7 +125403,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__1999 \
-    "Override default retrieve_objects() processing. Call current::returnObject(object) for each object to return (optional mapBack flag). Return current::useDefaultProcessing to map-and-forward to mappedAdapterId (requires mappedAdapterId). If the model adapter has no mappedAdapterId, this hook must fully handle retrieve for this object type when retrieve is used."
+    "Override default retrieve_objects() processing. Call current::returnObject(object) for each object to return (optional mapBack flag). Return current::useDefaultProcessing to map-and-forward to mappedAdapterId (requires mappedAdapterId). If the model adapter has no mappedAdapterId, this hook must fully handle retrieve for this object type when retrieve is used. During evaluation, current:: is available; contextType modelRetrieveObjects documents that bag (queryCriteria, returnObject, mapBackObject, …). qualifier(\"current\") can snapshot it for debug/tools."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__1999 */
 #define afw_s_zz__1999 \
@@ -125507,7 +125507,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2000 \
-    "/**\n * onRetrieveObjects\n *\n * Call current::returnObject(object) for each result, or return\n * current::useDefaultProcessing (requires mappedAdapterId).\n */\nreturn current::useDefaultProcessing;\n"
+    "/**\n * onRetrieveObjects\n *\n * Call current::returnObject(object) for each result, or return\n * current::useDefaultProcessing (requires mappedAdapterId).\n *\n * Notable current:: variables: queryCriteria, returnObject, mapBackObject,\n * objectType, mappedAdapterId (if configured), useDefaultProcessing.\n */\nreturn current::useDefaultProcessing;\n"
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2000 */
 #define afw_s_zz__2000 \
@@ -125715,7 +125715,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2008 \
-    "This is a script value is evaluated to set the value of this property when producing an instance of this object for add object requests."
+    "This is a script value is evaluated to set the value of this property when producing an instance of this object for add object requests. Uses the same property-level current:: bag as onGetProperty (contextType modelGetProperty). qualifier(\"current\") can snapshot it for debug/tools."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2008 */
 #define afw_s_zz__2008 \
@@ -125741,7 +125741,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2009 \
-    "This script is evaluated to produce the value of this property when getting an object. If a value of null is returned, the property will not be included in the resulting object."
+    "This script is evaluated to produce the value of this property when getting an object. If a value of null is returned, the property will not be included in the resulting object. During evaluation, current:: includes property-level names (contextType modelGetProperty: mappedObject, mappedValue, mappedPropertyName, … as applicable). qualifier(\"current\") can snapshot that bag for debug/tools (not for hot paths)."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2009 */
 #define afw_s_zz__2009 \
@@ -125793,7 +125793,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2010 \
-    "This script is evaluated to produce the value of this property for add/modify/replace object requests. If initialValue is specified, setProperty is ignored for add object requests. If setProperty is not specified and the property exists in the current object, that value is used. If setProperty is specified, but the evaluation returns a value of null, the property will not be included in the mapped object."
+    "This script is evaluated to produce the value of this property for add/modify/replace object requests. If initialValue is specified, setProperty is ignored for add object requests. If setProperty is not specified and the property exists in the current object, that value is used. If setProperty is specified, but the evaluation returns a value of null, the property will not be included in the mapped object. During evaluation, current:: includes property-level names (contextType modelSetProperty: object, propertyName, value, … as applicable). qualifier(\"current\") can snapshot that bag for debug/tools."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2010 */
 #define afw_s_zz__2010 \
@@ -139599,7 +139599,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__438 \
-    "Each property is a variable name for the qualifier. Values match what qualifier::name would return when present (for the same secure/untrusted visibility). Fresh object on every call."
+    "When the qualifier has at least one matching visible stack entry, each property is a variable name for that qualifier (values from contribute, most recent entry wins per name). Fresh object on every call (may be empty if nothing was contributed). When no matching visible entry exists for that qualifier name, the result is undefined (nullish), not an empty object."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__438 */
 #define afw_s_zz__438 \
@@ -139677,7 +139677,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__440 \
-    "Default false. When the xctx is secure, qualified-variable get skips stack entries that were pushed with secure=false (untrusted client context). Set includeUntrusted to true to also contribute those frames into this snapshot so a secure caller can inspect them. When the xctx is not secure, this parameter is ignored because untrusted frames are already visible (same as qualifier::name). Does not change hot-path get; only affects this snapshot. Useful for debugging secure evaluation and for building objects to re-inject as evaluate()'s additionalUntrustedQualifiedVariables."
+    "Default false: snapshot matches what qualifier::name can access in the current xctx (while secure, untrusted stack frames with secure=false are omitted). Set true while secure to use the same visibility as running less secure — trusted and untrusted frames (not untrusted-only). When the xctx is not secure, true and false are the same because :: already sees untrusted frames. Does not change hot-path get; only this snapshot. Useful for debugging secure evaluation and for building objects to re-inject as evaluate()'s additionalUntrustedQualifiedVariables."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__440 */
 #define afw_s_zz__440 \
@@ -139703,7 +139703,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__441 \
-    "Returns a new memory object whose properties are the active variables for the given qualifier (issue #9). Built from the current xctx qualifier stack via contribute callbacks; not a live view. Each call creates a fresh object. Intended for debugging, tooling, and tests — not for hot production paths that only need qualifier::name access.\n\nBy default, visibility matches qualifier::name: when the execution context is secure (AFW_XCTX_SECURE_BEGIN / xctx.secure), stack entries pushed as untrusted (secure=false, e.g. additionalUntrustedQualifiedVariables) are omitted. Optional includeUntrusted widens that only while secure."
+    "Returns a new memory object whose properties are the active variables for the given qualifier (issue #9). Built from the current xctx qualifier stack via contribute callbacks; not a live view. Each call creates a fresh object. Intended for debugging, tooling, and tests — not for hot production paths that only need qualifier::name access.\n\nAll matching visible stack entries for the qualifier name contribute into one object (most recent first; later entries only fill property names not already set). Get (qualifier::name) still uses the most recent matching entry for a single name. Default visibility matches normal qualifier::name access right now. Optional includeUntrusted is only meaningful while the xctx is secure: set true so the snapshot includes the same frames you would see with :: if you were less secure (trusted and untrusted). When already not secure, the flag changes nothing."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__441 */
 #define afw_s_zz__441 \
@@ -139729,7 +139729,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__442 \
-    "/* Snapshot of variables for a qualifier as an object */\nfunction qualifier (\n    qualifier: string          /* Qualifier */,\n    includeUntrusted?: boolean /* Also include untrusted stack frames */\n): object; /* Variables for the specified qualifier */\n"
+    "/* Snapshot of variables for a qualifier as an object */\nfunction qualifier (\n    qualifier: string          /* Qualifier */,\n    includeUntrusted?: boolean /* Match less-secure visibility while secure */\n): any; /* Variables for the specified qualifier, or undefined */\n"
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__442 */
 #define afw_s_zz__442 \
@@ -139755,7 +139755,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__443 \
-    "Each property is a qualifier name with a value that is an object of that qualifier's variables. Fresh object on every call."
+    "Each property is an active qualifier name with a value that is a variables snapshot object for that qualifier. Inactive names are omitted. Fresh object on every call."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__443 */
 #define afw_s_zz__443 \
@@ -139781,7 +139781,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__444 \
-    "Default false. When the xctx is secure, stack entries pushed with secure=false (untrusted) are not visible to qualifier::name and are omitted from this snapshot unless includeUntrusted is true. When the xctx is not secure, this parameter is ignored. Does not change hot-path get. The result shape (qualifier → variables object) is suitable to pass as evaluate()'s additionalUntrustedQualifiedVariables when that is the intent."
+    "Default false: only qualifiers/frames visible to qualifier::name in the current xctx. Set true while secure to match less-secure :: visibility (include untrusted frames). When not secure, true and false are the same. Does not change hot-path get. The result shape (qualifier → variables object) is suitable to pass as evaluate()'s additionalUntrustedQualifiedVariables when that is the intent."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__444 */
 #define afw_s_zz__444 \
@@ -139807,7 +139807,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__445 \
-    "Returns a new memory object whose properties are active qualifier names; each value is an object of that qualifier's variables (issue #9). Built from the current xctx qualifier stack; each call creates a fresh object. Intended for debugging, tooling, and tests — not for hot production paths that only need qualifier::name access.\n\nBy default, visibility matches qualifier::name under secure xctx (untrusted stack frames omitted). Optional includeUntrusted widens that only while the xctx is secure; ignored when not secure."
+    "Returns a new memory object whose properties are active qualifier names; each value is an object of that qualifier's variables (issue #9). Built from the current xctx qualifier stack; each call creates a fresh object. Intended for debugging, tooling, and tests — not for hot production paths that only need qualifier::name access.\n\nEach nested variables object is the multi-entry snapshot for that name (all matching visible stack entries contribute; most recent wins per property). A qualifier name is omitted if it is not active (same as qualifier(name) being nullish); never invent an empty nested object for an inactive name. Default visibility matches normal qualifier::name access right now. Optional includeUntrusted is only meaningful while the xctx is secure: set true so each nested snapshot uses the same frame visibility as running less secure (trusted and untrusted). When already not secure, the flag changes nothing."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__445 */
 #define afw_s_zz__445 \
@@ -139833,7 +139833,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__446 \
-    "/* Snapshot of active qualifiers as an object */\nfunction qualifiers (\n    includeUntrusted?: boolean /* Also include untrusted stack frames */\n): object; /* All qualifiers and their variables */\n"
+    "/* Snapshot of active qualifiers as an object */\nfunction qualifiers (\n    includeUntrusted?: boolean /* Match less-secure visibility while secure */\n): object; /* All active qualifiers and their variables */\n"
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__446 */
 #define afw_s_zz__446 \
@@ -159696,6 +159696,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__All_active_qualifiers_and_their_variables \
+    "All active qualifiers and their variables"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__All_active_qualifiers_and_their_variables */
+#define afw_s_zz__All_active_qualifiers_and_their_variables \
+    (&afw_self_v_zz__All_active_qualifiers_and_their_variables.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__All_active_qualifiers_and_their_variables */
+#define afw_self_s_zz__All_active_qualifiers_and_their_variables \
+    (afw_self_v_zz__All_active_qualifiers_and_their_variables.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__All_active_qualifiers_and_their_variables */
+extern const afw_value_string_t \
+    afw_self_v_zz__All_active_qualifiers_and_their_variables;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__All_active_qualifiers_and_their_variables */
+#define afw_z_zz__All_active_qualifiers_and_their_variables \
+    (afw_self_v_zz__All_active_qualifiers_and_their_variables.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__All_active_qualifiers_and_their_variables */
+#define afw_v_zz__All_active_qualifiers_and_their_variables \
+    (&afw_self_v_zz__All_active_qualifiers_and_their_variables.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__All_combinations_true \
     "All combinations true"
 
@@ -159770,32 +159796,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__All_other_flags_that_this_flag_includes */
 #define afw_v_zz__All_other_flags_that_this_flag_includes \
     (&afw_self_v_zz__All_other_flags_that_this_flag_includes.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__All_qualifiers_and_their_variables \
-    "All qualifiers and their variables"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__All_qualifiers_and_their_variables */
-#define afw_s_zz__All_qualifiers_and_their_variables \
-    (&afw_self_v_zz__All_qualifiers_and_their_variables.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__All_qualifiers_and_their_variables */
-#define afw_self_s_zz__All_qualifiers_and_their_variables \
-    (afw_self_v_zz__All_qualifiers_and_their_variables.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__All_qualifiers_and_their_variables */
-extern const afw_value_string_t \
-    afw_self_v_zz__All_qualifiers_and_their_variables;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__All_qualifiers_and_their_variables */
-#define afw_z_zz__All_qualifiers_and_their_variables \
-    (afw_self_v_zz__All_qualifiers_and_their_variables.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__All_qualifiers_and_their_variables */
-#define afw_v_zz__All_qualifiers_and_their_variables \
-    (&afw_self_v_zz__All_qualifiers_and_their_variables.pub)
 
 
 
@@ -160212,32 +160212,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__Allowed_Values */
 #define afw_v_zz__Allowed_Values \
     (&afw_self_v_zz__Allowed_Values.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__Also_include_untrusted_stack_frames \
-    "Also include untrusted stack frames"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Also_include_untrusted_stack_frames */
-#define afw_s_zz__Also_include_untrusted_stack_frames \
-    (&afw_self_v_zz__Also_include_untrusted_stack_frames.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Also_include_untrusted_stack_frames */
-#define afw_self_s_zz__Also_include_untrusted_stack_frames \
-    (afw_self_v_zz__Also_include_untrusted_stack_frames.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Also_include_untrusted_stack_frames */
-extern const afw_value_string_t \
-    afw_self_v_zz__Also_include_untrusted_stack_frames;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Also_include_untrusted_stack_frames */
-#define afw_z_zz__Also_include_untrusted_stack_frames \
-    (afw_self_v_zz__Also_include_untrusted_stack_frames.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Also_include_untrusted_stack_frames */
-#define afw_v_zz__Also_include_untrusted_stack_frames \
-    (&afw_self_v_zz__Also_include_untrusted_stack_frames.pub)
 
 
 
@@ -182026,6 +182000,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__Mark_journal_entry_consumed */
 #define afw_v_zz__Mark_journal_entry_consumed \
     (&afw_self_v_zz__Mark_journal_entry_consumed.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__Match_less_secure_visibility_while_secure \
+    "Match less-secure visibility while secure"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Match_less_secure_visibility_while_secure */
+#define afw_s_zz__Match_less_secure_visibility_while_secure \
+    (&afw_self_v_zz__Match_less_secure_visibility_while_secure.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Match_less_secure_visibility_while_secure */
+#define afw_self_s_zz__Match_less_secure_visibility_while_secure \
+    (afw_self_v_zz__Match_less_secure_visibility_while_secure.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Match_less_secure_visibility_while_secure */
+extern const afw_value_string_t \
+    afw_self_v_zz__Match_less_secure_visibility_while_secure;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Match_less_secure_visibility_while_secure */
+#define afw_z_zz__Match_less_secure_visibility_while_secure \
+    (afw_self_v_zz__Match_less_secure_visibility_while_secure.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Match_less_secure_visibility_while_secure */
+#define afw_v_zz__Match_less_secure_visibility_while_secure \
+    (&afw_self_v_zz__Match_less_secure_visibility_while_secure.pub)
 
 
 
@@ -206106,28 +206106,28 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__Variables_for_the_specified_qualifier \
-    "Variables for the specified qualifier"
+#define AFW_Q_zz__Variables_for_the_specified_qualifier__or_undefined \
+    "Variables for the specified qualifier, or undefined"
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Variables_for_the_specified_qualifier */
-#define afw_s_zz__Variables_for_the_specified_qualifier \
-    (&afw_self_v_zz__Variables_for_the_specified_qualifier.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Variables_for_the_specified_qualifier__or_undefined */
+#define afw_s_zz__Variables_for_the_specified_qualifier__or_undefined \
+    (&afw_self_v_zz__Variables_for_the_specified_qualifier__or_undefined.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Variables_for_the_specified_qualifier */
-#define afw_self_s_zz__Variables_for_the_specified_qualifier \
-    (afw_self_v_zz__Variables_for_the_specified_qualifier.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Variables_for_the_specified_qualifier__or_undefined */
+#define afw_self_s_zz__Variables_for_the_specified_qualifier__or_undefined \
+    (afw_self_v_zz__Variables_for_the_specified_qualifier__or_undefined.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Variables_for_the_specified_qualifier */
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Variables_for_the_specified_qualifier__or_undefined */
 extern const afw_value_string_t \
-    afw_self_v_zz__Variables_for_the_specified_qualifier;
+    afw_self_v_zz__Variables_for_the_specified_qualifier__or_undefined;
 
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Variables_for_the_specified_qualifier */
-#define afw_z_zz__Variables_for_the_specified_qualifier \
-    (afw_self_v_zz__Variables_for_the_specified_qualifier.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Variables_for_the_specified_qualifier__or_undefined */
+#define afw_z_zz__Variables_for_the_specified_qualifier__or_undefined \
+    (afw_self_v_zz__Variables_for_the_specified_qualifier__or_undefined.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Variables_for_the_specified_qualifier */
-#define afw_v_zz__Variables_for_the_specified_qualifier \
-    (&afw_self_v_zz__Variables_for_the_specified_qualifier.pub)
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Variables_for_the_specified_qualifier__or_undefined */
+#define afw_v_zz__Variables_for_the_specified_qualifier__or_undefined \
+    (&afw_self_v_zz__Variables_for_the_specified_qualifier__or_undefined.pub)
 
 
 
@@ -232470,28 +232470,28 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz___qualifier__string__includeUntrusted___boolean___object \
-    "(qualifier: string, includeUntrusted?: boolean): object"
+#define AFW_Q_zz___qualifier__string__includeUntrusted___boolean___any \
+    "(qualifier: string, includeUntrusted?: boolean): any"
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz___qualifier__string__includeUntrusted___boolean___object */
-#define afw_s_zz___qualifier__string__includeUntrusted___boolean___object \
-    (&afw_self_v_zz___qualifier__string__includeUntrusted___boolean___object.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz___qualifier__string__includeUntrusted___boolean___any */
+#define afw_s_zz___qualifier__string__includeUntrusted___boolean___any \
+    (&afw_self_v_zz___qualifier__string__includeUntrusted___boolean___any.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz___qualifier__string__includeUntrusted___boolean___object */
-#define afw_self_s_zz___qualifier__string__includeUntrusted___boolean___object \
-    (afw_self_v_zz___qualifier__string__includeUntrusted___boolean___object.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz___qualifier__string__includeUntrusted___boolean___any */
+#define afw_self_s_zz___qualifier__string__includeUntrusted___boolean___any \
+    (afw_self_v_zz___qualifier__string__includeUntrusted___boolean___any.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_zz___qualifier__string__includeUntrusted___boolean___object */
+/** @brief 'afw_value_string_t' for AFW_Q_zz___qualifier__string__includeUntrusted___boolean___any */
 extern const afw_value_string_t \
-    afw_self_v_zz___qualifier__string__includeUntrusted___boolean___object;
+    afw_self_v_zz___qualifier__string__includeUntrusted___boolean___any;
 
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___qualifier__string__includeUntrusted___boolean___object */
-#define afw_z_zz___qualifier__string__includeUntrusted___boolean___object \
-    (afw_self_v_zz___qualifier__string__includeUntrusted___boolean___object.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___qualifier__string__includeUntrusted___boolean___any */
+#define afw_z_zz___qualifier__string__includeUntrusted___boolean___any \
+    (afw_self_v_zz___qualifier__string__includeUntrusted___boolean___any.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_Q_zz___qualifier__string__includeUntrusted___boolean___object */
-#define afw_v_zz___qualifier__string__includeUntrusted___boolean___object \
-    (&afw_self_v_zz___qualifier__string__includeUntrusted___boolean___object.pub)
+/** @brief 'const afw_value_t *' for AFW_Q_zz___qualifier__string__includeUntrusted___boolean___any */
+#define afw_v_zz___qualifier__string__includeUntrusted___boolean___any \
+    (&afw_self_v_zz___qualifier__string__includeUntrusted___boolean___any.pub)
 
 
 
