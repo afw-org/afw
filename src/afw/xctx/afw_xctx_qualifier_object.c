@@ -14,7 +14,8 @@
  * Each call allocates a new object and fills it via stack entry contribute_cb.
  * For one qualifier, every matching visible stack entry may contribute
  * (most recent first; later entries only fill property names not already set).
- * Suitable for qualifier() / qualifiers() adaptive functions.
+ * Suitable for qualifier() / qualifiers() adaptive functions. Snapshots can be
+ * large (e.g. environment/request); not for hot or long-running retention paths.
  */
 
 #include "afw_internal.h"

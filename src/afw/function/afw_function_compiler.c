@@ -847,6 +847,13 @@ afw_function_execute_test_value(
  * Intended for debugging, tooling, and tests — not for hot production paths
  * that only need qualifier::name access.
  * 
+ * Warning: snapshots can be large. Qualifiers such as environment:: or
+ * request:: may contribute many properties (and some values can themselves be
+ * large objects). qualifiers() nests a full snapshot per active qualifier name
+ * and multiplies that cost. Prefer qualifier::name for normal work; use these
+ * functions sparingly and avoid holding or repeatedly rebuilding large
+ * snapshots in long-running scripts.
+ * 
  * All matching visible stack entries for the qualifier name contribute into one
  * object (most recent first; later entries only fill property names not already
  * set). Get (qualifier::name) still uses the most recent matching entry for a
@@ -931,6 +938,12 @@ afw_function_execute_qualifier(
  * current xctx qualifier stack; each call creates a fresh object. Intended for
  * debugging, tooling, and tests — not for hot production paths that only need
  * qualifier::name access.
+ * 
+ * Warning: the result can be very large. Each property is a full snapshot of
+ * that qualifier (see qualifier()), so environment, request, application,
+ * current, and others can all appear as nested objects with many properties.
+ * Prefer qualifier::name or qualifier(name) when you need one bag; avoid
+ * repeated qualifiers() calls or retaining the result in long-running work.
  * 
  * Each nested variables object is the multi-entry snapshot for that name (all
  * matching visible stack entries contribute; most recent wins per property). A

@@ -35,7 +35,7 @@
     <header>Listing active qualified variables</header>
     <paragraph>
         For debugging and tooling, <literal>qualifier(name)</literal> returns a
-        <emphasis>fresh</emphasis> object whose properties are the variables for
+        <italic>fresh</italic> object whose properties are the variables for
         that qualifier on the current execution context stack (issue #9). Each
         call builds a new object; it is not a live proxy. All matching visible
         stack entries for the name may contribute (most recent first; later
@@ -60,6 +60,18 @@
         untrusted frames. Everyday <literal>qualifier::name</literal> access
         is unchanged and remains the hot path; snapshots are not intended
         for tight production loops.
+    </paragraph>
+    <paragraph>
+        <strong>Size warning:</strong> snapshot objects can get large.
+        Qualifiers such as <literal>environment::</literal> and
+        <literal>request::</literal> may contribute many properties, and
+        some values can themselves be large. <literal>qualifiers()</literal>
+        builds a nested object of full snapshots for every active qualifier
+        name and multiplies that cost. Prefer
+        <literal>qualifier::name</literal> for normal work; use
+        <literal>qualifier()</literal> / <literal>qualifiers()</literal>
+        sparingly, and avoid holding or repeatedly rebuilding large
+        snapshots in long-running scripts.
     </paragraph>
     <paragraph>
         Adaptive Models expose a rich <literal>current::</literal> bag during
