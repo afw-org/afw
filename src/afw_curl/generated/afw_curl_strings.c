@@ -842,12 +842,6 @@ afw_curl_self_v_zz__ = {
 };
 
 const afw_value_string_t
-afw_curl_self_v_zz__2537 = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_CURL_Q_zz__2537)
-};
-
-const afw_value_string_t
 afw_curl_self_v_zz__2538 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_CURL_Q_zz__2538)
@@ -1061,6 +1055,12 @@ const afw_value_string_t
 afw_curl_self_v_zz__2573 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_CURL_Q_zz__2573)
+};
+
+const afw_value_string_t
+afw_curl_self_v_zz__2574 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_CURL_Q_zz__2574)
 };
 
 const afw_value_string_t

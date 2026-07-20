@@ -292,8 +292,17 @@ afw_function_execute_evaluate_with_retry(
  *
  * See afw_function_bindings.h for more information.
  *
- * This function allows the active variables for a qualifier to be accessed as
- * the properties of an object.
+ * Returns a new memory object whose properties are the active variables for the
+ * given qualifier (issue #9). Built from the current xctx qualifier stack via
+ * contribute callbacks; not a live view. Each call creates a fresh object.
+ * Intended for debugging, tooling, and tests — not for hot production paths
+ * that only need qualifier::name access.
+ * 
+ * When forTesting is true, the snapshot reflects the untrusted view (includes
+ * insecure frames) so trusted tests can inspect what untrusted evaluation would
+ * see; the object is also suitable to nest for evaluate()'s
+ * additionalUntrustedQualifiedVariables parameter. Do not use forTesting in
+ * production.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -312,15 +321,16 @@ afw_function_execute_evaluate_with_retry(
  *   qualifier - (string) This is the qualifier whose variables are to be
  *       accessed as properties of the returned object.
  *
- *   forTesting - (optional boolean) If specified and true, the object returned
- *       will be suitable to pass as the additionalUntrustedQualifiedVariables
- *       parameter of evaluate*() functions. This is intended for testing
- *       purposes and should not be used in production.
+ *   forTesting - (optional boolean) If specified and true, build the
+ *       untrusted-view snapshot (for trusted tests) and an object suitable to
+ *       pass as additionalUntrustedQualifiedVariables of evaluate*(). Testing
+ *       only; not for production.
  *
  * Returns:
  *
- *   (object) Each property is the name of a variable with the value influenced
- *       by the forTesting property.
+ *   (object) Each property is a variable name for the qualifier. Values match
+ *       what qualifier::name would return when present. Fresh object on every
+ *       call.
  */
 const afw_value_t *
 afw_function_execute_qualifier(
@@ -339,9 +349,16 @@ afw_function_execute_qualifier(
  *
  * See afw_function_bindings.h for more information.
  *
- * This function allows the active qualifiers to be accessed as properties of an
- * object. The value of each of these properties is an object whose properties
- * are the variables for the corresponding qualifier.
+ * Returns a new memory object whose properties are active qualifier names; each
+ * value is an object of that qualifier's variables (issue #9). Built from the
+ * current xctx qualifier stack; each call creates a fresh object. Intended for
+ * debugging, tooling, and tests — not for hot production paths that only need
+ * qualifier::name access.
+ * 
+ * When forTesting is true, the snapshot reflects the untrusted view (includes
+ * insecure frames) so trusted tests can inspect what untrusted evaluation would
+ * see; the result is suitable to pass as evaluate()'s
+ * additionalUntrustedQualifiedVariables. Do not use forTesting in production.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -356,16 +373,15 @@ afw_function_execute_qualifier(
  *
  * Parameters:
  *
- *   forTesting - (optional boolean) If specified and true, the object returned
- *       will be suitable to pass as the additionalUntrustedQualifiedVariables
- *       parameter of evaluate*() functions. This is intended for testing
- *       purposes and should not be used in production.
+ *   forTesting - (optional boolean) If specified and true, build the
+ *       untrusted-view snapshot (for trusted tests) suitable as
+ *       additionalUntrustedQualifiedVariables of evaluate*(). Testing only; not
+ *       for production.
  *
  * Returns:
  *
- *   (object) Each property is the name of a qualifier with a value that is an
- *       object whose properties are the variables of that qualifier. The value
- *       of the variable properties is influenced by the forTesting property.
+ *   (object) Each property is a qualifier name with a value that is an object
+ *       of that qualifier's variables. Fresh object on every call.
  */
 const afw_value_t *
 afw_function_execute_qualifiers(

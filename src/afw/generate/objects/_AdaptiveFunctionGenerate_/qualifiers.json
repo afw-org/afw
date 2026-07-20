@@ -1,13 +1,13 @@
 {
-    "brief": "Access qualifiers as an object",
+    "brief": "Snapshot of active qualifiers as an object",
     "category": "compiler",
-    "description": "This function allows the active qualifiers to be accessed as properties of an object. The value of each of these properties is an object whose properties are the variables for the corresponding qualifier.",
+    "description": "Returns a new memory object whose properties are active qualifier names; each value is an object of that qualifier's variables (issue #9). Built from the current xctx qualifier stack; each call creates a fresh object. Intended for debugging, tooling, and tests — not for hot production paths that only need qualifier::name access.\n\nWhen forTesting is true, the snapshot reflects the untrusted view (includes insecure frames) so trusted tests can inspect what untrusted evaluation would see; the result is suitable to pass as evaluate()'s additionalUntrustedQualifiedVariables. Do not use forTesting in production.",
     "functionId": "qualifiers",
     "functionLabel": "qualifiers",
     "parameters": [
         {
             "brief": "For testing if true",
-            "description": "If specified and true, the object returned will be suitable to pass as the additionalUntrustedQualifiedVariables parameter of evaluate*() functions. This is intended for testing purposes and should not be used in production.",
+            "description": "If specified and true, build the untrusted-view snapshot (for trusted tests) suitable as additionalUntrustedQualifiedVariables of evaluate*(). Testing only; not for production.",
             "dataType": "boolean",
             "name": "forTesting",
             "optional": true
@@ -16,6 +16,6 @@
     "returns": {
         "brief": "All qualifiers and their variables",
         "dataType": "object",
-        "description": "Each property is the name of a qualifier with a value that is an object whose properties are the variables of that qualifier. The value of the variable properties is influenced by the forTesting property."
+        "description": "Each property is a qualifier name with a value that is an object of that qualifier's variables. Fresh object on every call."
     }
 }

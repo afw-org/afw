@@ -43,6 +43,45 @@ impl_current_variable_get_cb(
 }
 
 
+/*
+ * Contribute variables from a NULL-terminated afw_context_cb_variable_t table
+ * held in entry->wa (issue #9). Shared by afw_context_push_cb_variables.
+ */
+static void
+impl_contribute_cb_variables_cb(
+    const afw_xctx_qualifier_stack_entry_t *entry,
+    const afw_object_t *object,
+    afw_boolean_t for_testing,
+    afw_xctx_t *xctx)
+{
+    const afw_context_cb_variable_t * const *variables =
+        (const afw_context_cb_variable_t * const *)entry->wa;
+    const afw_context_cb_variable_t *const *variable;
+    const afw_value_t *value;
+    const afw_utf8_t *name;
+
+    (void)for_testing;
+
+    if (!variables) {
+        return;
+    }
+
+    for (variable = variables; *variable; variable++) {
+        name = (*variable)->meta->name;
+        if (afw_object_has_property(object, name, xctx)) {
+            continue;
+        }
+        value = (*variable)->get_cb(entry, name, xctx);
+        if (value) {
+            afw_object_set_property(object, name, value, xctx);
+        }
+        else {
+            afw_object_set_property(object, name, afw_value_null, xctx);
+        }
+    }
+}
+
+
 AFW_DEFINE(void)
 afw_context_push_cb_variables(
     const afw_utf8_t *qualifier_id,
@@ -54,7 +93,8 @@ afw_context_push_cb_variables(
     afw_xctx_qualifier_stack_entry_t *entry;
 
     entry = afw_xctx_qualifier_stack_qualifier_push(qualifier_id, NULL, true,
-        impl_current_variable_get_cb, data, p, xctx);
+        impl_current_variable_get_cb, impl_contribute_cb_variables_cb,
+        data, p, xctx);
     entry->wa = (void *)variables;
 }
 

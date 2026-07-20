@@ -967,18 +967,38 @@ typedef void (*afw_pool_cleanup_function_p_t)(
 
 
 /**
- * @brief Typedef for function to get a qualified variable.
+ * @brief Typedef for callback to get a qualified variable from a stack entry.
  * @param entry Qualifier stack entry.
  * @param name Name of variable.
  * @param xctx of caller.
- * @return value or NULL if not found.
+ * @return value or NULL if not found / nullish.
  *
- * The stack is searched from newest to oldest.
+ * Used as get_cb on afw_xctx_qualifier_stack_entry_t. The stack is searched
+ * from newest to oldest for the first matching qualifier frame.
  */
 typedef const afw_value_t *
-(*afw_xctx_get_variable_t)(
+(*afw_xctx_get_variable_cb_t)(
     const afw_xctx_qualifier_stack_entry_t *entry,
     const afw_utf8_t *name,
+    afw_xctx_t *xctx);
+
+
+/**
+ * @brief Typedef for callback to contribute variables into a snapshot object.
+ * @param entry Qualifier stack entry.
+ * @param object Accumulator object; only add property names not already present.
+ * @param for_testing True when building an untrusted-view snapshot for tests.
+ * @param xctx of caller.
+ *
+ * Used as contribute_cb on afw_xctx_qualifier_stack_entry_t for qualifier() /
+ * qualifiers() listing (issue #9). Not for the hot qualifier::name path.
+ * Values should match what get_cb would return.
+ */
+typedef void
+(*afw_xctx_contribute_variables_cb_t)(
+    const afw_xctx_qualifier_stack_entry_t *entry,
+    const afw_object_t *object,
+    afw_boolean_t for_testing,
     afw_xctx_t *xctx);
 
 

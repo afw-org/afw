@@ -30830,6 +30830,12 @@ afw_self_v_zz__2278 = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__2279 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__2279)
+};
+
+const afw_value_string_t
 afw_self_v_zz__228 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__228)
@@ -36407,18 +36413,6 @@ const afw_value_string_t
 afw_self_v_zz__Absolute_value = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Absolute_value)
-};
-
-const afw_value_string_t
-afw_self_v_zz__Access_qualifiers_as_an_object = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__Access_qualifiers_as_an_object)
-};
-
-const afw_value_string_t
-afw_self_v_zz__Access_variables_of_a_qualifier_as_an_object = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__Access_variables_of_a_qualifier_as_an_object)
 };
 
 const afw_value_string_t
@@ -44429,6 +44423,18 @@ const afw_value_string_t
 afw_self_v_zz__Signature_used_for_current_returnObject__ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Signature_used_for_current_returnObject__)
+};
+
+const afw_value_string_t
+afw_self_v_zz__Snapshot_of_active_qualifiers_as_an_object = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Snapshot_of_active_qualifiers_as_an_object)
+};
+
+const afw_value_string_t
+afw_self_v_zz__Snapshot_of_variables_for_a_qualifier_as_an_object = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Snapshot_of_variables_for_a_qualifier_as_an_object)
 };
 
 const afw_value_string_t

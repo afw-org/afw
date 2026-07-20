@@ -141,9 +141,18 @@ Maximum number to retry if an exception occurs.
 
 =head3 qualifier
 
-This function allows the active variables for a qualifier to be accessed as
-the properties of an object.
-Access variables of a qualifier as an object
+Returns a new memory object whose properties are the active variables for the
+given qualifier (issue #9). Built from the current xctx qualifier stack via
+contribute callbacks; not a live view. Each call creates a fresh object.
+Intended for debugging, tooling, and tests — not for hot production paths that
+only need qualifier::name access.
+
+When forTesting is true, the snapshot reflects the untrusted view (includes
+insecure frames) so trusted tests can inspect what untrusted evaluation would
+see; the object is also suitable to nest for evaluate()'s
+additionalUntrustedQualifiedVariables parameter. Do not use forTesting in
+production.
+Snapshot of variables for a qualifier as an object
 
 =head4 Parameters
 
@@ -154,24 +163,31 @@ returned object.
 
     $forTesting
 
-If specified and true, the object returned will be suitable to pass as the
-additionalUntrustedQualifiedVariables parameter of evaluate*() functions. This
-is intended for testing purposes and should not be used in production.
+If specified and true, build the untrusted-view snapshot (for trusted tests)
+and an object suitable to pass as additionalUntrustedQualifiedVariables of
+evaluate*(). Testing only; not for production.
 
 =head3 qualifiers
 
-This function allows the active qualifiers to be accessed as properties of an
-object. The value of each of these properties is an object whose properties
-are the variables for the corresponding qualifier.
-Access qualifiers as an object
+Returns a new memory object whose properties are active qualifier names; each
+value is an object of that qualifier's variables (issue #9). Built from the
+current xctx qualifier stack; each call creates a fresh object. Intended for
+debugging, tooling, and tests — not for hot production paths that only need
+qualifier::name access.
+
+When forTesting is true, the snapshot reflects the untrusted view (includes
+insecure frames) so trusted tests can inspect what untrusted evaluation would
+see; the result is suitable to pass as evaluate()'s
+additionalUntrustedQualifiedVariables. Do not use forTesting in production.
+Snapshot of active qualifiers as an object
 
 =head4 Parameters
 
     $forTesting
 
-If specified and true, the object returned will be suitable to pass as the
-additionalUntrustedQualifiedVariables parameter of evaluate*() functions. This
-is intended for testing purposes and should not be used in production.
+If specified and true, build the untrusted-view snapshot (for trusted tests)
+suitable as additionalUntrustedQualifiedVariables of evaluate*(). Testing
+only; not for production.
 
 =head3 safe_evaluate
 

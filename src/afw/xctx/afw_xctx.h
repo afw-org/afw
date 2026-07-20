@@ -751,13 +751,19 @@ struct afw_xctx_qualifier_stack_entry_s {
     /** @brief qualifier_object.  This may be NULL now. */
     const afw_object_t *qualifier_object;
 
-    /** @brief Get routine or NULL if get not allowed. */
-    afw_xctx_get_variable_t get;
+    /** @brief Get a variable by name (hot path). */
+    afw_xctx_get_variable_cb_t get_cb;
 
-    /** @brief Data that will be passed to get/set. */
+    /**
+     * @brief Contribute known variables into a snapshot object (slow path).
+     * Skip names already present on the object (first wins). Required.
+     */
+    afw_xctx_contribute_variables_cb_t contribute_cb;
+
+    /** @brief Data that will be passed to get/contribute callbacks. */
     void *data;
 
-    /** @brief Work area used by get/set. */
+    /** @brief Work area used by callbacks (e.g. CB variable table). */
     void *wa;
 
     /** @brief Secure access to this qualifier is allowed. */
@@ -817,17 +823,19 @@ afw_xctx_qualifier_stack_qualifiers_object_push(
 /**
  * @brief Push qualifier on to stack.
  * @param qualifier or NULL.
- * @param qualifier_object
+ * @param qualifier_object optional object bag (may be NULL).
  * @param secure access to this qualifier is allowed.
- * @param get routine or NULL.
- * @param data to be passed to get/set.
+ * @param get_cb get variable by name (hot path).
+ * @param contribute_cb contribute variables into a snapshot object (required;
+ *    used by qualifier()/qualifiers() listing — issue #9).
+ * @param data to be passed to callbacks (often ctx).
  * @param p used while evaluating variable values.
  * @param xctx of caller.
  * @return New qualifier stack entry.
- * 
- * The "get" function is the fastest way to get the value of a known
- * variable for this pushed qualifier.  The qualifier_object is used
- * when the get_next_property() method is needed.
+ *
+ * get_cb is the fastest way to get a known variable for this qualifier.
+ * contribute_cb must list that frame's variables into a memory object without
+ * overwriting existing property names (first wins).
  *
  * Never specify secure true if source of context is a client. A secure
  * context is used for access control and other server side configured
@@ -850,7 +858,8 @@ afw_xctx_qualifier_stack_qualifier_push(
     const afw_utf8_t *qualifier,
     const afw_object_t *qualifier_object,
     afw_boolean_t secure,
-    afw_xctx_get_variable_t get,
+    afw_xctx_get_variable_cb_t get_cb,
+    afw_xctx_contribute_variables_cb_t contribute_cb,
     void * data,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
