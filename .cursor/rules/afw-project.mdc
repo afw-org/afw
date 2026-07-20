@@ -50,10 +50,13 @@ afwdev validate --pattern 'src/afw/generate/objects/...'
 | Situation | Build | Test |
 |-----------|--------|------|
 | Day-to-day C/Python edit loop | `./afwdev build --cdev -j` | `afwdev test -j` (or narrow `--test-pattern`) |
+| **Before commit/push** on work that is more than a trivial C/Python fix (docs, afwdev docs builder, JS, multi-area, finish pass) | Prefer **`./afwdev build --all --install --scan -j`** (docs-only exists but full `--all` is not much longer and catches more) | Focused or full `afwdev test` as appropriate |
 | User asks for **full build and test** | `./afwdev build --all --scan --clean --install -j` | `afwdev test -j --env-mode valgrind` |
 | **Before opening/updating a PR** | **Always** (maintainer default): `./afwdev build --all --scan --clean --install -j` | **Always:** `afwdev test -j --env-mode valgrind` |
 
-Valgrind and full `--all --scan --clean` are slow; do not use them on every tiny edit unless asked. Day-to-day stays `--cdev` + normal `afwdev test -j`. Before a PR, run the full pair so generate, JS/docs, clang scan, and valgrind all pass.
+**`--cdev` does not build the handbook or JS.** Doc XML / docs-builder bugs only show up under `--all` (or a docs-only build). Prefer **full `--all --install --scan -j`** over docs-only when verifying — cost is similar and it also runs cmake/JS/scan paths.
+
+Valgrind and full `--all --scan --clean` are slower; do not use valgrind/`--clean` on every tiny edit unless asked. Day-to-day stays `--cdev` + normal `afwdev test -j`. Before a PR, run the full pair so generate, JS/docs, clang scan, and valgrind all pass.
 
 Use **`./afwdev`** when the build may refresh the installed `afwdev` itself; otherwise **`afwdev`** from PATH is fine.
 

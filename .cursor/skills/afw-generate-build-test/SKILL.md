@@ -21,13 +21,15 @@ description: >-
 Progress:
 - [ ] 1. Confirm edits are under generate/ or hand sources (not generated/)
 - [ ] 2. Optional: validate metadata if JSON/XML changed
-- [ ] 3. Day-to-day: ./afwdev build --cdev -j
+- [ ] 3. Day-to-day edit loop: ./afwdev build --cdev -j
 - [ ] 4. Day-to-day: afwdev test -j (or targeted --test-pattern)
-- [ ] 5. Full verify before a PR (maintainer default; also when user asks for
+- [ ] 5. Before commit/push (docs, multi-area, finish pass — prefer over docs-only):
+         ./afwdev build --all --install --scan -j
+- [ ] 6. Full verify before a PR (maintainer default; also when user asks for
          full build/test):
          ./afwdev build --all --scan --clean --install -j
          afwdev test -j --env-mode valgrind
-- [ ] 6. Confirm success from command output
+- [ ] 7. Confirm success from command output
 ```
 
 ## Preferred commands
@@ -48,6 +50,10 @@ afwdev test --srcdir-pattern afw --test-pattern 'rql/.*'
 afwdev test --srcdir-pattern afw --tags rql
 afwdev test --srcdir-pattern afw --list
 afwdev test --srcdir-pattern afw --bail 1
+
+# Before commit/push when docs or broader surface may be involved:
+#   --cdev skips handbook/JS; docs-only exists but full --all is not much longer
+./afwdev build --all --install --scan -j
 
 # Full verify before a PR (maintainer default):
 #   --all    regenerate/build C + JS + docs

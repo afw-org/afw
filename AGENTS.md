@@ -49,6 +49,9 @@ edit generate/ or hand C/Python  →  ./afwdev build --cdev -j  →  afwdev test
 3. **Implement** — e.g. `src/afw/function/afw_function_<category>.c` (not `generated/function_closet/`).
 4. **Test** — `afwdev test -j` runs the Adaptive Script tests (judge success from command output). Narrow with `--srcdir-pattern` / `--test-pattern` when useful.
 
+**Before commit/push** (docs, multi-area, finish pass — not every one-line C fix): prefer  
+`./afwdev build --all --install --scan -j`. A docs-only build exists, but full `--all` is not much longer and may catch more. `--cdev` alone will not catch handbook XML/docs-builder failures.
+
 **Full build and test before a PR** (maintainer default; also when the user asks for full verify):  
 `./afwdev build --all --scan --clean --install -j` then `afwdev test -j --env-mode valgrind`.  
 `--all` regenerates/builds everything (C, JS, docs); `--clean` forces a clean tree and extra syntax checking; `--scan` runs clang analyze-build (fail on analyzer errors); valgrind is much slower — not for every edit.
@@ -81,12 +84,15 @@ afwdev test -j
 afwdev test --srcdir-pattern afw --test-pattern 'rql/.*'
 afwdev validate --pattern 'src/afw/generate/objects/...'
 
+# Before commit/push when docs or broader surface may matter:
+./afwdev build --all --install --scan -j
+
 # Full verify before PR (maintainer default; also when user asks for full build/test):
 # --scan = clang analyze-build; --clean = clean + extra syntax checking
 ./afwdev build --all --scan --clean --install -j
 afwdev test -j --env-mode valgrind   # much slower
 
-# Full repository without clean/scan (cmake + docs + JS, with install)
+# Full repository without clean (cmake + docs + JS, with install)
 ./afwdev build --all --install -j
 
 # Narrow generate only (usually unnecessary if using --cdev)
