@@ -49,7 +49,7 @@ Scalars and immutable permanents are usually fine without clone; prefer clone wh
 |------|------|
 | `afw_function_compiler_script.c` | Statement ops: `let`/`const`/`assign`, `if`, loops, `try`/`throw`, `return`/`break`/`continue` |
 | `afw_function_compiler_expression.c` | `nullish_coalescing`, `optional_chaining`, `void_operator` |
-| `afw_function_compiler.c` | `evaluate*`, `decompile`, `assert`, test helpers, file compile/eval |
+| `afw_function_compiler.c` | `evaluate*`, `decompile`, `assert`, `qualifier`/`qualifiers` snapshots (#9), test helpers, file compile/eval — see **`afw-qualified-variables`** |
 | `afw_function_script.c` / `template.c` / `json.c` | Adaptive `compile<script|template|…>` wrappers |
 
 Parser statement/expression nodes reference these `function_definition_*` symbols — they must be registered before script compile (bootstrap order).
