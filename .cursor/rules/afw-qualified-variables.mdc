@@ -68,7 +68,7 @@ Frame `secure` = how the entry was **pushed** (never push client context as trus
 
 ## Handbook XML (docs build)
 
-Author under `src/afw/doc/**/*.xml`. Supported inline tags include **`literal`**, **`strong`**, **`italic`** — not DocBook **`emphasis`** (afwdev logs `Unknown element: emphasis` on `./afwdev build --all` / `--docs`). See `_afwdev/build/docs/docs.py`.
+Author under `src/afw/doc/**/*.xml`. Supported inline tags: **`literal`**, **`strong`**, **`italic`** (not DocBook **`emphasis`**). `--cdev` skips handbook; use `./afwdev build --all …` to verify docs. See `afw-afwdev-python`.
 
 ## Related
 

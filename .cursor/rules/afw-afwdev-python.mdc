@@ -27,9 +27,10 @@ alwaysApply: false
 
 ## Handbook XML (`build --docs` / `--all`)
 
-- Source: `src/*/doc/**/*.xml`. Renderer: `_afwdev/build/docs/docs.py`.
-- Supported inline tags include **`literal`**, **`strong`**, **`italic`**. Unsupported tags log **`Unknown element: …`** (e.g. DocBook **`emphasis`** is not recognized).
-- `--cdev` does **not** build the handbook; use `./afwdev build --all …` or docs-related switches to catch XML tag mistakes.
+- Source: `src/*/doc/**/*.xml`. Renderer: `_afwdev/build/docs/docs.py` + `docs_html.py`.
+- Supported inline tags include **`literal`** (→ `<code>`), **`strong`**, **`italic`**. Tags must have both a branch in `docs.py` **and** a method on `DocsHtml` (templates under `_resources/html_templates/`).
+- Unsupported tags log **`Unknown element: …`** (e.g. DocBook **`emphasis`** is not recognized). Missing methods crash the docs build (`AttributeError`).
+- **`--cdev` does not build the handbook.** Run `./afwdev build --all --install -j` (or docs build) **before** merging/pushing doc XML or docs-builder changes.
 
 ## Related commands agents run
 ```bash
