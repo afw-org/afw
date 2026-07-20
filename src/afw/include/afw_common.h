@@ -987,7 +987,8 @@ typedef const afw_value_t *
  * @brief Typedef for callback to contribute variables into a snapshot object.
  * @param entry Qualifier stack entry.
  * @param object Accumulator object; only add property names not already present.
- * @param for_testing True when building an untrusted-view snapshot for tests.
+ * @param include_untrusted See afw_xctx_qualifier_object_create(); most
+ *    contributes ignore this (frame selection is done by the snapshot builder).
  * @param xctx of caller.
  *
  * Used as contribute_cb on afw_xctx_qualifier_stack_entry_t for qualifier() /
@@ -998,7 +999,7 @@ typedef void
 (*afw_xctx_contribute_variables_cb_t)(
     const afw_xctx_qualifier_stack_entry_t *entry,
     const afw_object_t *object,
-    afw_boolean_t for_testing,
+    afw_boolean_t include_untrusted,
     afw_xctx_t *xctx);
 
 

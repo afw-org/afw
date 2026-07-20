@@ -56320,32 +56320,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_forTesting \
-    "forTesting"
-
-/** @brief 'afw_utf8_t' for AFW_Q_forTesting */
-#define afw_s_forTesting \
-    (&afw_self_v_forTesting.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_forTesting */
-#define afw_self_s_forTesting \
-    (afw_self_v_forTesting.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_forTesting */
-extern const afw_value_string_t \
-    afw_self_v_forTesting;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_forTesting */
-#define afw_z_forTesting \
-    (afw_self_v_forTesting.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_forTesting */
-#define afw_v_forTesting \
-    (&afw_self_v_forTesting.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_for_of \
     "for_of"
 
@@ -60658,6 +60632,32 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_includeDescendentObjectTypes */
 #define afw_v_includeDescendentObjectTypes \
     (&afw_self_v_includeDescendentObjectTypes.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_includeUntrusted \
+    "includeUntrusted"
+
+/** @brief 'afw_utf8_t' for AFW_Q_includeUntrusted */
+#define afw_s_includeUntrusted \
+    (&afw_self_v_includeUntrusted.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_includeUntrusted */
+#define afw_self_s_includeUntrusted \
+    (afw_self_v_includeUntrusted.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_includeUntrusted */
+extern const afw_value_string_t \
+    afw_self_v_includeUntrusted;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_includeUntrusted */
+#define afw_z_includeUntrusted \
+    (afw_self_v_includeUntrusted.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_includeUntrusted */
+#define afw_v_includeUntrusted \
+    (&afw_self_v_includeUntrusted.pub)
 
 
 
@@ -139599,7 +139599,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__438 \
-    "Each property is a variable name for the qualifier. Values match what qualifier::name would return when present. Fresh object on every call."
+    "Each property is a variable name for the qualifier. Values match what qualifier::name would return when present (for the same secure/untrusted visibility). Fresh object on every call."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__438 */
 #define afw_s_zz__438 \
@@ -139677,7 +139677,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__440 \
-    "If specified and true, build the untrusted-view snapshot (for trusted tests) and an object suitable to pass as additionalUntrustedQualifiedVariables of evaluate*(). Testing only; not for production."
+    "Default false. When the xctx is secure, qualified-variable get skips stack entries that were pushed with secure=false (untrusted client context). Set includeUntrusted to true to also contribute those frames into this snapshot so a secure caller can inspect them. When the xctx is not secure, this parameter is ignored because untrusted frames are already visible (same as qualifier::name). Does not change hot-path get; only affects this snapshot. Useful for debugging secure evaluation and for building objects to re-inject as evaluate()'s additionalUntrustedQualifiedVariables."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__440 */
 #define afw_s_zz__440 \
@@ -139703,7 +139703,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__441 \
-    "Returns a new memory object whose properties are the active variables for the given qualifier (issue #9). Built from the current xctx qualifier stack via contribute callbacks; not a live view. Each call creates a fresh object. Intended for debugging, tooling, and tests — not for hot production paths that only need qualifier::name access.\n\nWhen forTesting is true, the snapshot reflects the untrusted view (includes insecure frames) so trusted tests can inspect what untrusted evaluation would see; the object is also suitable to nest for evaluate()'s additionalUntrustedQualifiedVariables parameter. Do not use forTesting in production."
+    "Returns a new memory object whose properties are the active variables for the given qualifier (issue #9). Built from the current xctx qualifier stack via contribute callbacks; not a live view. Each call creates a fresh object. Intended for debugging, tooling, and tests — not for hot production paths that only need qualifier::name access.\n\nBy default, visibility matches qualifier::name: when the execution context is secure (AFW_XCTX_SECURE_BEGIN / xctx.secure), stack entries pushed as untrusted (secure=false, e.g. additionalUntrustedQualifiedVariables) are omitted. Optional includeUntrusted widens that only while secure."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__441 */
 #define afw_s_zz__441 \
@@ -139729,7 +139729,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__442 \
-    "/* Snapshot of variables for a qualifier as an object */\nfunction qualifier (\n    qualifier: string    /* Qualifier */,\n    forTesting?: boolean /* For testing if true */\n): object; /* Variables for the specified qualifier */\n"
+    "/* Snapshot of variables for a qualifier as an object */\nfunction qualifier (\n    qualifier: string          /* Qualifier */,\n    includeUntrusted?: boolean /* Also include untrusted stack frames */\n): object; /* Variables for the specified qualifier */\n"
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__442 */
 #define afw_s_zz__442 \
@@ -139781,7 +139781,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__444 \
-    "If specified and true, build the untrusted-view snapshot (for trusted tests) suitable as additionalUntrustedQualifiedVariables of evaluate*(). Testing only; not for production."
+    "Default false. When the xctx is secure, stack entries pushed with secure=false (untrusted) are not visible to qualifier::name and are omitted from this snapshot unless includeUntrusted is true. When the xctx is not secure, this parameter is ignored. Does not change hot-path get. The result shape (qualifier → variables object) is suitable to pass as evaluate()'s additionalUntrustedQualifiedVariables when that is the intent."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__444 */
 #define afw_s_zz__444 \
@@ -139807,7 +139807,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__445 \
-    "Returns a new memory object whose properties are active qualifier names; each value is an object of that qualifier's variables (issue #9). Built from the current xctx qualifier stack; each call creates a fresh object. Intended for debugging, tooling, and tests — not for hot production paths that only need qualifier::name access.\n\nWhen forTesting is true, the snapshot reflects the untrusted view (includes insecure frames) so trusted tests can inspect what untrusted evaluation would see; the result is suitable to pass as evaluate()'s additionalUntrustedQualifiedVariables. Do not use forTesting in production."
+    "Returns a new memory object whose properties are active qualifier names; each value is an object of that qualifier's variables (issue #9). Built from the current xctx qualifier stack; each call creates a fresh object. Intended for debugging, tooling, and tests — not for hot production paths that only need qualifier::name access.\n\nBy default, visibility matches qualifier::name under secure xctx (untrusted stack frames omitted). Optional includeUntrusted widens that only while the xctx is secure; ignored when not secure."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__445 */
 #define afw_s_zz__445 \
@@ -139833,7 +139833,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__446 \
-    "/* Snapshot of active qualifiers as an object */\nfunction qualifiers (\n    forTesting?: boolean /* For testing if true */\n): object; /* All qualifiers and their variables */\n"
+    "/* Snapshot of active qualifiers as an object */\nfunction qualifiers (\n    includeUntrusted?: boolean /* Also include untrusted stack frames */\n): object; /* All qualifiers and their variables */\n"
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__446 */
 #define afw_s_zz__446 \
@@ -160216,6 +160216,32 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
+#define AFW_Q_zz__Also_include_untrusted_stack_frames \
+    "Also include untrusted stack frames"
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Also_include_untrusted_stack_frames */
+#define afw_s_zz__Also_include_untrusted_stack_frames \
+    (&afw_self_v_zz__Also_include_untrusted_stack_frames.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__Also_include_untrusted_stack_frames */
+#define afw_self_s_zz__Also_include_untrusted_stack_frames \
+    (afw_self_v_zz__Also_include_untrusted_stack_frames.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__Also_include_untrusted_stack_frames */
+extern const afw_value_string_t \
+    afw_self_v_zz__Also_include_untrusted_stack_frames;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Also_include_untrusted_stack_frames */
+#define afw_z_zz__Also_include_untrusted_stack_frames \
+    (afw_self_v_zz__Also_include_untrusted_stack_frames.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__Also_include_untrusted_stack_frames */
+#define afw_v_zz__Also_include_untrusted_stack_frames \
+    (&afw_self_v_zz__Also_include_untrusted_stack_frames.pub)
+
+
+
+/** @brief #define for string in quotes */
 #define AFW_Q_zz__An_adaptive_configuration__conf__type_ \
     "An adaptive configuration (conf) type."
 
@@ -174304,32 +174330,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__Flush_stream_buffer */
 #define afw_v_zz__Flush_stream_buffer \
     (&afw_self_v_zz__Flush_stream_buffer.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__For_testing_if_true \
-    "For testing if true"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__For_testing_if_true */
-#define afw_s_zz__For_testing_if_true \
-    (&afw_self_v_zz__For_testing_if_true.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__For_testing_if_true */
-#define afw_self_s_zz__For_testing_if_true \
-    (afw_self_v_zz__For_testing_if_true.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__For_testing_if_true */
-extern const afw_value_string_t \
-    afw_self_v_zz__For_testing_if_true;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__For_testing_if_true */
-#define afw_z_zz__For_testing_if_true \
-    (afw_self_v_zz__For_testing_if_true.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__For_testing_if_true */
-#define afw_v_zz__For_testing_if_true \
-    (&afw_self_v_zz__For_testing_if_true.pub)
 
 
 
@@ -231846,28 +231846,28 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz___forTesting___boolean___object \
-    "(forTesting?: boolean): object"
+#define AFW_Q_zz___includeUntrusted___boolean___object \
+    "(includeUntrusted?: boolean): object"
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz___forTesting___boolean___object */
-#define afw_s_zz___forTesting___boolean___object \
-    (&afw_self_v_zz___forTesting___boolean___object.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz___includeUntrusted___boolean___object */
+#define afw_s_zz___includeUntrusted___boolean___object \
+    (&afw_self_v_zz___includeUntrusted___boolean___object.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz___forTesting___boolean___object */
-#define afw_self_s_zz___forTesting___boolean___object \
-    (afw_self_v_zz___forTesting___boolean___object.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz___includeUntrusted___boolean___object */
+#define afw_self_s_zz___includeUntrusted___boolean___object \
+    (afw_self_v_zz___includeUntrusted___boolean___object.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_zz___forTesting___boolean___object */
+/** @brief 'afw_value_string_t' for AFW_Q_zz___includeUntrusted___boolean___object */
 extern const afw_value_string_t \
-    afw_self_v_zz___forTesting___boolean___object;
+    afw_self_v_zz___includeUntrusted___boolean___object;
 
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___forTesting___boolean___object */
-#define afw_z_zz___forTesting___boolean___object \
-    (afw_self_v_zz___forTesting___boolean___object.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___includeUntrusted___boolean___object */
+#define afw_z_zz___includeUntrusted___boolean___object \
+    (afw_self_v_zz___includeUntrusted___boolean___object.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_Q_zz___forTesting___boolean___object */
-#define afw_v_zz___forTesting___boolean___object \
-    (&afw_self_v_zz___forTesting___boolean___object.pub)
+/** @brief 'const afw_value_t *' for AFW_Q_zz___includeUntrusted___boolean___object */
+#define afw_v_zz___includeUntrusted___boolean___object \
+    (&afw_self_v_zz___includeUntrusted___boolean___object.pub)
 
 
 
@@ -232470,28 +232470,28 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz___qualifier__string__forTesting___boolean___object \
-    "(qualifier: string, forTesting?: boolean): object"
+#define AFW_Q_zz___qualifier__string__includeUntrusted___boolean___object \
+    "(qualifier: string, includeUntrusted?: boolean): object"
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz___qualifier__string__forTesting___boolean___object */
-#define afw_s_zz___qualifier__string__forTesting___boolean___object \
-    (&afw_self_v_zz___qualifier__string__forTesting___boolean___object.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz___qualifier__string__includeUntrusted___boolean___object */
+#define afw_s_zz___qualifier__string__includeUntrusted___boolean___object \
+    (&afw_self_v_zz___qualifier__string__includeUntrusted___boolean___object.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz___qualifier__string__forTesting___boolean___object */
-#define afw_self_s_zz___qualifier__string__forTesting___boolean___object \
-    (afw_self_v_zz___qualifier__string__forTesting___boolean___object.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz___qualifier__string__includeUntrusted___boolean___object */
+#define afw_self_s_zz___qualifier__string__includeUntrusted___boolean___object \
+    (afw_self_v_zz___qualifier__string__includeUntrusted___boolean___object.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_zz___qualifier__string__forTesting___boolean___object */
+/** @brief 'afw_value_string_t' for AFW_Q_zz___qualifier__string__includeUntrusted___boolean___object */
 extern const afw_value_string_t \
-    afw_self_v_zz___qualifier__string__forTesting___boolean___object;
+    afw_self_v_zz___qualifier__string__includeUntrusted___boolean___object;
 
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___qualifier__string__forTesting___boolean___object */
-#define afw_z_zz___qualifier__string__forTesting___boolean___object \
-    (afw_self_v_zz___qualifier__string__forTesting___boolean___object.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz___qualifier__string__includeUntrusted___boolean___object */
+#define afw_z_zz___qualifier__string__includeUntrusted___boolean___object \
+    (afw_self_v_zz___qualifier__string__includeUntrusted___boolean___object.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_Q_zz___qualifier__string__forTesting___boolean___object */
-#define afw_v_zz___qualifier__string__forTesting___boolean___object \
-    (&afw_self_v_zz___qualifier__string__forTesting___boolean___object.pub)
+/** @brief 'const afw_value_t *' for AFW_Q_zz___qualifier__string__includeUntrusted___boolean___object */
+#define afw_v_zz___qualifier__string__includeUntrusted___boolean___object \
+    (&afw_self_v_zz___qualifier__string__includeUntrusted___boolean___object.pub)
 
 
 

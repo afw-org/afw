@@ -155,7 +155,7 @@ static void
 impl_log_current_contribute_variables_cb(
     const afw_xctx_qualifier_stack_entry_t *entry,
     const afw_object_t *object,
-    afw_boolean_t for_testing,
+    afw_boolean_t include_untrusted,
     afw_xctx_t *xctx)
 {
     static const afw_utf8_t * const names[] = {
@@ -167,7 +167,7 @@ impl_log_current_contribute_variables_cb(
     const afw_utf8_t * const *np;
     const afw_value_t *value;
 
-    (void)for_testing;
+    (void)include_untrusted;
 
     for (np = names; *np; np++) {
         if (afw_object_has_property(object, *np, xctx)) {

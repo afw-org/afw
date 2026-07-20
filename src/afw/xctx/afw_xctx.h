@@ -890,32 +890,35 @@ afw_xctx_qualifier_stack_qualifier_object_push(
 
 
 /**
- * @brief Create object to access active variables for a qualifier.
- * @param qualifier_name
- * @param for_testing
+ * @brief Create a fresh snapshot object of active variables for a qualifier.
+ * @param qualifier name (e.g. environment, current).
+ * @param include_untrusted When xctx is secure, true also includes stack
+ *    entries pushed with secure=false (untrusted). Ignored when xctx is not
+ *    secure (those frames are already visible, same as get). Default false
+ *    matches qualifier::name visibility.
  * @param p to use.
  * @param xctx of caller.
- * @return qualifier object.
+ * @return New memory object (never a live view).
  */
 AFW_DEFINE(const afw_object_t *)
 afw_xctx_qualifier_object_create(
     const afw_utf8_t *qualifier,
-    afw_boolean_t for_testing,
+    afw_boolean_t include_untrusted,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 
 
 
 /**
- * @brief Create object to access active qualified variables.
- * @param for_testing
+ * @brief Create a fresh snapshot of all active qualifiers and their variables.
+ * @param include_untrusted Same meaning as afw_xctx_qualifier_object_create().
  * @param p to use.
  * @param xctx of caller.
- * @return qualifier object.
+ * @return New memory object of qualifier name → variables object.
  */
 AFW_DEFINE(const afw_object_t *)
 afw_xctx_qualifiers_object_create(
-    afw_boolean_t for_testing,
+    afw_boolean_t include_untrusted,
     const afw_pool_t *p,
     afw_xctx_t *xctx);
 

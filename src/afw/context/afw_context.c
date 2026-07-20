@@ -51,7 +51,7 @@ static void
 impl_contribute_cb_variables_cb(
     const afw_xctx_qualifier_stack_entry_t *entry,
     const afw_object_t *object,
-    afw_boolean_t for_testing,
+    afw_boolean_t include_untrusted,
     afw_xctx_t *xctx)
 {
     const afw_context_cb_variable_t * const *variables =
@@ -60,7 +60,7 @@ impl_contribute_cb_variables_cb(
     const afw_value_t *value;
     const afw_utf8_t *name;
 
-    (void)for_testing;
+    (void)include_untrusted;
 
     if (!variables) {
         return;

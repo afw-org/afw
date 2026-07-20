@@ -175,33 +175,38 @@ export function afwEvaluateWithRetry(client : any, value : any, limit : number) 
  * object. Intended for debugging, tooling, and tests — not for hot production
  * paths that only need qualifier::name access.
  * 
- * When forTesting is true, the snapshot reflects the untrusted view (includes
- * insecure frames) so trusted tests can inspect what untrusted evaluation
- * would see; the object is also suitable to nest for evaluate()'s
- * additionalUntrustedQualifiedVariables parameter. Do not use forTesting in
- * production.
+ * By default, visibility matches qualifier::name: when the execution context
+ * is secure (AFW_XCTX_SECURE_BEGIN / xctx.secure), stack entries pushed as
+ * untrusted (secure=false, e.g. additionalUntrustedQualifiedVariables) are
+ * omitted. Optional includeUntrusted widens that only while secure.
  * 
  * @param {string} qualifier - This is the qualifier whose variables are to be
  *     accessed as properties of the returned object.
  * 
- * @param {boolean} forTesting - If specified and true, build the
- *     untrusted-view snapshot (for trusted tests) and an object suitable to
- *     pass as additionalUntrustedQualifiedVariables of evaluate*(). Testing
- *     only; not for production.
+ * @param {boolean} includeUntrusted - Default false. When the xctx is secure,
+ *     qualified-variable get skips stack entries that were pushed with
+ *     secure=false (untrusted client context). Set includeUntrusted to true
+ *     to also contribute those frames into this snapshot so a secure caller
+ *     can inspect them. When the xctx is not secure, this parameter is
+ *     ignored because untrusted frames are already visible (same as
+ *     qualifier::name). Does not change hot-path get; only affects this
+ *     snapshot. Useful for debugging secure evaluation and for building
+ *     objects to re-inject as evaluate()'s
+ *     additionalUntrustedQualifiedVariables.
  * 
  * @returns {object} Each property is a variable name for the qualifier.
- *     Values match what qualifier::name would return when present. Fresh
- *     object on every call.
+ *     Values match what qualifier::name would return when present (for the
+ *     same secure/untrusted visibility). Fresh object on every call.
  */
-export function afwQualifier(client : any, qualifier : string, forTesting? : boolean) : any {
+export function afwQualifier(client : any, qualifier : string, includeUntrusted? : boolean) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "qualifier";
     _action["qualifier"] = qualifier;
 
-    if (forTesting !== undefined)
-        _action["forTesting"] = forTesting;
+    if (includeUntrusted !== undefined)
+        _action["includeUntrusted"] = includeUntrusted;
 
     return client.perform(_action);
 }
@@ -213,27 +218,29 @@ export function afwQualifier(client : any, qualifier : string, forTesting? : boo
  * Intended for debugging, tooling, and tests — not for hot production paths
  * that only need qualifier::name access.
  * 
- * When forTesting is true, the snapshot reflects the untrusted view (includes
- * insecure frames) so trusted tests can inspect what untrusted evaluation
- * would see; the result is suitable to pass as evaluate()'s
- * additionalUntrustedQualifiedVariables. Do not use forTesting in production.
+ * By default, visibility matches qualifier::name under secure xctx (untrusted
+ * stack frames omitted). Optional includeUntrusted widens that only while the
+ * xctx is secure; ignored when not secure.
  * 
- * @param {boolean} forTesting - If specified and true, build the
- *     untrusted-view snapshot (for trusted tests) suitable as
- *     additionalUntrustedQualifiedVariables of evaluate*(). Testing only; not
- *     for production.
+ * @param {boolean} includeUntrusted - Default false. When the xctx is secure,
+ *     stack entries pushed with secure=false (untrusted) are not visible to
+ *     qualifier::name and are omitted from this snapshot unless
+ *     includeUntrusted is true. When the xctx is not secure, this parameter
+ *     is ignored. Does not change hot-path get. The result shape (qualifier →
+ *     variables object) is suitable to pass as evaluate()'s
+ *     additionalUntrustedQualifiedVariables when that is the intent.
  * 
  * @returns {object} Each property is a qualifier name with a value that is an
  *     object of that qualifier's variables. Fresh object on every call.
  */
-export function afwQualifiers(client : any, forTesting? : boolean) : any {
+export function afwQualifiers(client : any, includeUntrusted? : boolean) : any {
 
     let _action : IAnyObject = {};
 
     _action["function"] = "qualifiers";
 
-    if (forTesting !== undefined)
-        _action["forTesting"] = forTesting;
+    if (includeUntrusted !== undefined)
+        _action["includeUntrusted"] = includeUntrusted;
 
     return client.perform(_action);
 }

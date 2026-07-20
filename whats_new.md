@@ -47,7 +47,7 @@ const all = qualifiers();
 | **Fresh object each call** | Every `qualifier()` / `qualifiers()` builds a **new** memory object from the **current** stack (not a live proxy). Mutating a snapshot does not change later calls or `qualifier::name` access. |
 | **Hot path unchanged** | Everyday `current::objectId` / `environment::HOME` still goes through stack **`get_cb`** only. Snapshots use a separate **`contribute_cb`** path intended for debug, tools, and tests—not tight production loops. |
 | **First frame wins** | Same ownership as get: the newest matching stack entry for a qualifier owns the snapshot (null/undefined can be real values). |
-| **`forTesting`** | Optional boolean. When true, builds an **untrusted-view** snapshot (for trusted tests / re-inject as `evaluate`’s `additionalUntrustedQualifiedVariables`). Do not use in production. |
+| **`includeUntrusted`** | Optional boolean, default **false**. When the xctx is **secure**, set true to also list stack frames pushed as untrusted (`secure=false`). **Ignored** when the xctx is not secure (those frames are already visible, same as `qualifier::name`). |
 
 Object-backed qualifiers (`environment::`, `request::`, `application::`, model `current::` runtime bags, …) contribute by walking their objects. Callback-backed frames (app `current::`, model `custom::`, log, context tables) contribute their known variable sets.
 

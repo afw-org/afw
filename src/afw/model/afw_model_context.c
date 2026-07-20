@@ -1282,12 +1282,12 @@ static void
 impl_custom_variable_contribute_cb(
     const afw_xctx_qualifier_stack_entry_t *entry,
     const afw_object_t *object,
-    afw_boolean_t for_testing,
+    afw_boolean_t include_untrusted,
     afw_xctx_t *xctx)
 {
     afw_model_internal_context_t *ctx = entry->data;
 
-    (void)for_testing;
+    (void)include_untrusted;
 
     if (ctx->property_level.model_property_type &&
         ctx->property_level.model_property_type->custom_variables)

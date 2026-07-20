@@ -473,14 +473,14 @@ static void
 impl_contribute_object_variables_cb(
     const afw_xctx_qualifier_stack_entry_t *entry,
     const afw_object_t *object,
-    afw_boolean_t for_testing,
+    afw_boolean_t include_untrusted,
     afw_xctx_t *xctx)
 {
     const afw_iterator_t *iterator;
     const afw_utf8_t *property_name;
     const afw_value_t *value;
 
-    (void)for_testing;
+    (void)include_untrusted;
 
     if (!entry->qualifier_object) {
         AFW_THROW_ERROR_Z(general,

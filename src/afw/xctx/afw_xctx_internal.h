@@ -24,17 +24,7 @@
 
 AFW_BEGIN_DECLARES
 
-/* Self typedef for afw_xctx_qualifier implementation of afw_object. */
-typedef struct
-afw_xctx_qualifier_object_self_s {
-    afw_object_t pub;
-    afw_value_object_t value;
-    afw_size_t reference_count;
-    const afw_utf8_t *qualifier;
-    afw_boolean_t for_testing;
-} afw_xctx_qualifier_object_self_t;
-
-
+/* Qualifier stack storage (entries defined in afw_xctx.h). */
 AFW_STACK_STRUCT(afw_xctx_internal_qualifier_stack_s,
     afw_xctx_qualifier_stack_entry_t);
 

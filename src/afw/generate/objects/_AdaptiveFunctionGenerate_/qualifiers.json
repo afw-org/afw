@@ -1,16 +1,16 @@
 {
     "brief": "Snapshot of active qualifiers as an object",
     "category": "compiler",
-    "description": "Returns a new memory object whose properties are active qualifier names; each value is an object of that qualifier's variables (issue #9). Built from the current xctx qualifier stack; each call creates a fresh object. Intended for debugging, tooling, and tests — not for hot production paths that only need qualifier::name access.\n\nWhen forTesting is true, the snapshot reflects the untrusted view (includes insecure frames) so trusted tests can inspect what untrusted evaluation would see; the result is suitable to pass as evaluate()'s additionalUntrustedQualifiedVariables. Do not use forTesting in production.",
+    "description": "Returns a new memory object whose properties are active qualifier names; each value is an object of that qualifier's variables (issue #9). Built from the current xctx qualifier stack; each call creates a fresh object. Intended for debugging, tooling, and tests — not for hot production paths that only need qualifier::name access.\n\nBy default, visibility matches qualifier::name under secure xctx (untrusted stack frames omitted). Optional includeUntrusted widens that only while the xctx is secure; ignored when not secure.",
     "functionId": "qualifiers",
     "functionLabel": "qualifiers",
     "parameters": [
         {
-            "brief": "For testing if true",
-            "description": "If specified and true, build the untrusted-view snapshot (for trusted tests) suitable as additionalUntrustedQualifiedVariables of evaluate*(). Testing only; not for production.",
+            "brief": "Also include untrusted stack frames",
             "dataType": "boolean",
-            "name": "forTesting",
-            "optional": true
+            "name": "includeUntrusted",
+            "optional": true,
+            "description": "Default false. When the xctx is secure, stack entries pushed with secure=false (untrusted) are not visible to qualifier::name and are omitted from this snapshot unless includeUntrusted is true. When the xctx is not secure, this parameter is ignored. Does not change hot-path get. The result shape (qualifier → variables object) is suitable to pass as evaluate()'s additionalUntrustedQualifiedVariables when that is the intent."
         }
     ],
     "returns": {

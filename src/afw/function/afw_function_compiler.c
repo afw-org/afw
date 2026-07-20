@@ -847,11 +847,10 @@ afw_function_execute_test_value(
  * Intended for debugging, tooling, and tests — not for hot production paths
  * that only need qualifier::name access.
  * 
- * When forTesting is true, the snapshot reflects the untrusted view (includes
- * insecure frames) so trusted tests can inspect what untrusted evaluation would
- * see; the object is also suitable to nest for evaluate()'s
- * additionalUntrustedQualifiedVariables parameter. Do not use forTesting in
- * production.
+ * By default, visibility matches qualifier::name: when the execution context is
+ * secure (AFW_XCTX_SECURE_BEGIN / xctx.secure), stack entries pushed as
+ * untrusted (secure=false, e.g. additionalUntrustedQualifiedVariables) are
+ * omitted. Optional includeUntrusted widens that only while secure.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -861,7 +860,7 @@ afw_function_execute_test_value(
  * ```
  *   function qualifier(
  *       qualifier: string,
- *       forTesting?: boolean
+ *       includeUntrusted?: boolean
  *   ): object;
  * ```
  *
@@ -870,33 +869,39 @@ afw_function_execute_test_value(
  *   qualifier - (string) This is the qualifier whose variables are to be
  *       accessed as properties of the returned object.
  *
- *   forTesting - (optional boolean) If specified and true, build the
- *       untrusted-view snapshot (for trusted tests) and an object suitable to
- *       pass as additionalUntrustedQualifiedVariables of evaluate*(). Testing
- *       only; not for production.
+ *   includeUntrusted - (optional boolean) Default false. When the xctx is
+ *       secure, qualified-variable get skips stack entries that were pushed
+ *       with secure=false (untrusted client context). Set includeUntrusted to
+ *       true to also contribute those frames into this snapshot so a secure
+ *       caller can inspect them. When the xctx is not secure, this parameter is
+ *       ignored because untrusted frames are already visible (same as
+ *       qualifier::name). Does not change hot-path get; only affects this
+ *       snapshot. Useful for debugging secure evaluation and for building
+ *       objects to re-inject as evaluate()'s
+ *       additionalUntrustedQualifiedVariables.
  *
  * Returns:
  *
  *   (object) Each property is a variable name for the qualifier. Values match
- *       what qualifier::name would return when present. Fresh object on every
- *       call.
+ *       what qualifier::name would return when present (for the same
+ *       secure/untrusted visibility). Fresh object on every call.
  */
 const afw_value_t *
 afw_function_execute_qualifier(
     afw_function_execute_t *x)
 {
     const afw_value_string_t *qualifier;
-    const afw_value_boolean_t *forTesting;
+    const afw_value_boolean_t *includeUntrusted;
     const afw_object_t *object;
 
     AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(qualifier,
         1, string);
-    AFW_FUNCTION_EVALUATE_DATA_TYPE_PARAMETER(forTesting,
+    AFW_FUNCTION_EVALUATE_DATA_TYPE_PARAMETER(includeUntrusted,
         2, boolean);
 
     object = afw_xctx_qualifier_object_create(
         &qualifier->internal,
-        (forTesting && forTesting->internal),
+        (includeUntrusted && includeUntrusted->internal),
         x->p, x->xctx);
 
     return afw_value_create_unmanaged_object(object, x->p, x->xctx);
@@ -917,10 +922,9 @@ afw_function_execute_qualifier(
  * debugging, tooling, and tests — not for hot production paths that only need
  * qualifier::name access.
  * 
- * When forTesting is true, the snapshot reflects the untrusted view (includes
- * insecure frames) so trusted tests can inspect what untrusted evaluation would
- * see; the result is suitable to pass as evaluate()'s
- * additionalUntrustedQualifiedVariables. Do not use forTesting in production.
+ * By default, visibility matches qualifier::name under secure xctx (untrusted
+ * stack frames omitted). Optional includeUntrusted widens that only while the
+ * xctx is secure; ignored when not secure.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.
@@ -929,16 +933,19 @@ afw_function_execute_qualifier(
  *
  * ```
  *   function qualifiers(
- *       forTesting?: boolean
+ *       includeUntrusted?: boolean
  *   ): object;
  * ```
  *
  * Parameters:
  *
- *   forTesting - (optional boolean) If specified and true, build the
- *       untrusted-view snapshot (for trusted tests) suitable as
- *       additionalUntrustedQualifiedVariables of evaluate*(). Testing only; not
- *       for production.
+ *   includeUntrusted - (optional boolean) Default false. When the xctx is
+ *       secure, stack entries pushed with secure=false (untrusted) are not
+ *       visible to qualifier::name and are omitted from this snapshot unless
+ *       includeUntrusted is true. When the xctx is not secure, this parameter
+ *       is ignored. Does not change hot-path get. The result shape (qualifier →
+ *       variables object) is suitable to pass as evaluate()'s
+ *       additionalUntrustedQualifiedVariables when that is the intent.
  *
  * Returns:
  *
@@ -949,14 +956,14 @@ const afw_value_t *
 afw_function_execute_qualifiers(
     afw_function_execute_t *x)
 {
-    const afw_value_boolean_t *forTesting;
+    const afw_value_boolean_t *includeUntrusted;
     const afw_object_t *object;
 
-    AFW_FUNCTION_EVALUATE_DATA_TYPE_PARAMETER(forTesting,
+    AFW_FUNCTION_EVALUATE_DATA_TYPE_PARAMETER(includeUntrusted,
         1, boolean);
 
     object = afw_xctx_qualifiers_object_create(
-        (forTesting && forTesting->internal),
+        (includeUntrusted && includeUntrusted->internal),
         x->p, x->xctx);
 
     return afw_value_create_unmanaged_object(object, x->p, x->xctx);

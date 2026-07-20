@@ -1,7 +1,7 @@
 {
     "brief": "Snapshot of variables for a qualifier as an object",
     "category": "compiler",
-    "description": "Returns a new memory object whose properties are the active variables for the given qualifier (issue #9). Built from the current xctx qualifier stack via contribute callbacks; not a live view. Each call creates a fresh object. Intended for debugging, tooling, and tests — not for hot production paths that only need qualifier::name access.\n\nWhen forTesting is true, the snapshot reflects the untrusted view (includes insecure frames) so trusted tests can inspect what untrusted evaluation would see; the object is also suitable to nest for evaluate()'s additionalUntrustedQualifiedVariables parameter. Do not use forTesting in production.",
+    "description": "Returns a new memory object whose properties are the active variables for the given qualifier (issue #9). Built from the current xctx qualifier stack via contribute callbacks; not a live view. Each call creates a fresh object. Intended for debugging, tooling, and tests — not for hot production paths that only need qualifier::name access.\n\nBy default, visibility matches qualifier::name: when the execution context is secure (AFW_XCTX_SECURE_BEGIN / xctx.secure), stack entries pushed as untrusted (secure=false, e.g. additionalUntrustedQualifiedVariables) are omitted. Optional includeUntrusted widens that only while secure.",
     "functionId": "qualifier",
     "functionLabel": "qualifier",
     "parameters": [
@@ -12,16 +12,16 @@
             "name": "qualifier"
         },
         {
-            "brief": "For testing if true",
-            "description": "If specified and true, build the untrusted-view snapshot (for trusted tests) and an object suitable to pass as additionalUntrustedQualifiedVariables of evaluate*(). Testing only; not for production.",
+            "brief": "Also include untrusted stack frames",
             "dataType": "boolean",
-            "name": "forTesting",
-            "optional": true
+            "name": "includeUntrusted",
+            "optional": true,
+            "description": "Default false. When the xctx is secure, qualified-variable get skips stack entries that were pushed with secure=false (untrusted client context). Set includeUntrusted to true to also contribute those frames into this snapshot so a secure caller can inspect them. When the xctx is not secure, this parameter is ignored because untrusted frames are already visible (same as qualifier::name). Does not change hot-path get; only affects this snapshot. Useful for debugging secure evaluation and for building objects to re-inject as evaluate()'s additionalUntrustedQualifiedVariables."
         }
     ],
     "returns": {
         "brief": "Variables for the specified qualifier",
         "dataType": "object",
-        "description": "Each property is a variable name for the qualifier. Values match what qualifier::name would return when present. Fresh object on every call."
+        "description": "Each property is a variable name for the qualifier. Values match what qualifier::name would return when present (for the same secure/untrusted visibility). Fresh object on every call."
     }
 }

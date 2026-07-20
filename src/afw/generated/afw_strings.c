@@ -13016,12 +13016,6 @@ afw_self_v_forOf = {
 };
 
 const afw_value_string_t
-afw_self_v_forTesting = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_forTesting)
-};
-
-const afw_value_string_t
 afw_self_v_for_of = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_for_of)
@@ -14015,6 +14009,12 @@ const afw_value_string_t
 afw_self_v_includeDescendentObjectTypes = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_includeDescendentObjectTypes)
+};
+
+const afw_value_string_t
+afw_self_v_includeUntrusted = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_includeUntrusted)
 };
 
 const afw_value_string_t
@@ -36992,6 +36992,12 @@ afw_self_v_zz__Allowed_Values = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__Also_include_untrusted_stack_frames = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Also_include_untrusted_stack_frames)
+};
+
+const afw_value_string_t
 afw_self_v_zz__An_adaptive_configuration__conf__type_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__An_adaptive_configuration__conf__type_)
@@ -40241,12 +40247,6 @@ const afw_value_string_t
 afw_self_v_zz__Flush_stream_buffer = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Flush_stream_buffer)
-};
-
-const afw_value_string_t
-afw_self_v_zz__For_testing_if_true = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__For_testing_if_true)
 };
 
 const afw_value_string_t
@@ -53522,9 +53522,9 @@ afw_self_v_zz___flagId___array_string___setTo___boolean___void = {
 };
 
 const afw_value_string_t
-afw_self_v_zz___forTesting___boolean___object = {
+afw_self_v_zz___includeUntrusted___boolean___object = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz___forTesting___boolean___object)
+    AFW_UTF8_LITERAL(AFW_Q_zz___includeUntrusted___boolean___object)
 };
 
 const afw_value_string_t
@@ -53666,9 +53666,9 @@ afw_self_v_zz___object__object__userData__any___boolean = {
 };
 
 const afw_value_string_t
-afw_self_v_zz___qualifier__string__forTesting___boolean___object = {
+afw_self_v_zz___qualifier__string__includeUntrusted___boolean___object = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz___qualifier__string__forTesting___boolean___object)
+    AFW_UTF8_LITERAL(AFW_Q_zz___qualifier__string__includeUntrusted___boolean___object)
 };
 
 const afw_value_string_t

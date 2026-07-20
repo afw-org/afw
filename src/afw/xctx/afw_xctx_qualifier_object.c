@@ -11,9 +11,8 @@
  * @file afw_xctx_qualifier_object.c
  * @brief Build fresh memory-object snapshots of active qualified variables.
  *
- * These replace the incomplete live-view afw_object implementation. Each call
- * allocates a new object and fills it via stack entry contribute_cb. Suitable
- * for qualifier() / qualifiers() adaptive functions (debug / tooling).
+ * Each call allocates a new object and fills it via stack entry contribute_cb.
+ * Suitable for qualifier() / qualifiers() adaptive functions.
  */
 
 #include "afw_internal.h"
@@ -21,22 +20,22 @@
 
 /*
  * True if this stack entry is visible for a snapshot.
- * for_testing: include insecure frames (untrusted view) even when xctx is
- * secure, so trusted tests can inspect what untrusted eval would see.
+ *
+ * Matches get when include_untrusted is false: if xctx is secure, skip
+ * entries pushed with secure=false. If include_untrusted is true and xctx
+ * is secure, those untrusted frames are included. If xctx is not secure,
+ * include_untrusted is ignored (all frames with contribute_cb are visible).
  */
 static afw_boolean_t
 impl_entry_visible_for_snapshot(
     const afw_xctx_qualifier_stack_entry_t *e,
-    afw_boolean_t for_testing,
+    afw_boolean_t include_untrusted,
     afw_xctx_t *xctx)
 {
     if (!e->contribute_cb) {
         return false;
     }
-    if (for_testing) {
-        return true;
-    }
-    if (!e->secure && xctx->secure) {
+    if (xctx->secure && !e->secure && !include_untrusted) {
         return false;
     }
     return true;
@@ -47,7 +46,7 @@ impl_entry_visible_for_snapshot(
 AFW_DEFINE(const afw_object_t *)
 afw_xctx_qualifier_object_create(
     const afw_utf8_t *qualifier,
-    afw_boolean_t for_testing,
+    afw_boolean_t include_untrusted,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
@@ -69,10 +68,10 @@ afw_xctx_qualifier_object_create(
         if (!afw_utf8_equal(qualifier, &e_cur->qualifier)) {
             continue;
         }
-        if (!impl_entry_visible_for_snapshot(e_cur, for_testing, xctx)) {
+        if (!impl_entry_visible_for_snapshot(e_cur, include_untrusted, xctx)) {
             continue;
         }
-        e_cur->contribute_cb(e_cur, object, for_testing, xctx);
+        e_cur->contribute_cb(e_cur, object, include_untrusted, xctx);
         break;
     }
 
@@ -84,7 +83,7 @@ afw_xctx_qualifier_object_create(
 /* Create a fresh object of all active qualifiers → variable snapshots. */
 AFW_DEFINE(const afw_object_t *)
 afw_xctx_qualifiers_object_create(
-    afw_boolean_t for_testing,
+    afw_boolean_t include_untrusted,
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
@@ -100,7 +99,7 @@ afw_xctx_qualifiers_object_create(
         if (c->qualifier.len == 0) {
             continue;
         }
-        if (!impl_entry_visible_for_snapshot(c, for_testing, xctx)) {
+        if (!impl_entry_visible_for_snapshot(c, include_untrusted, xctx)) {
             continue;
         }
         /* First occurrence of each qualifier name wins (top → bottom). */
@@ -108,7 +107,7 @@ afw_xctx_qualifiers_object_create(
             continue;
         }
         qualifier_object = afw_xctx_qualifier_object_create(
-            &c->qualifier, for_testing, p, xctx);
+            &c->qualifier, include_untrusted, p, xctx);
         afw_object_set_property_as_object(qualifiers,
             &c->qualifier, qualifier_object, xctx);
     }
