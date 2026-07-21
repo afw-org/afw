@@ -37,9 +37,13 @@ language bindings, commands, and administrative applications. The runtime is
 3. @ref afw_dev_implementing — scaffolds and `@todo`  
 4. @ref afw_dev_runtime — pools, values, xctx, environment  
 5. @ref afw_dev_extending — extension sketch  
+6. @ref afw_dev_compiler_ebnf — grammar / EBNF harvest (compiler maintainers only)  
 
 These pages also live under `src/afw/doc/developer/` in the repository for
 direct reading without opening HTML.
+
+**Modules (groups):** open the Modules list for topic “essays” (pools, values,
+interfaces, adapters, …) authored mainly in `afw_doxygen.h`.
 
 ## Source Code
 

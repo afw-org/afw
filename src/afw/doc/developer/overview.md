@@ -53,4 +53,5 @@ It skips Doxygen when `build/docs/doxygen` already exists; `--clean` with
 - @ref afw_dev_implementing — afwdev make/add, skeletons, impl_declares  
 - @ref afw_dev_extending — end-to-end extension sketch  
 - @ref afw_dev_runtime — pool, value, xctx, environment pointers  
-- Doxygen **Modules** list — group essays in `afw_doxygen.h`
+- @ref afw_dev_compiler_ebnf — grammar comments / EBNF harvest (compiler only)  
+- Doxygen **Modules** list — group pages (essays) in `afw_doxygen.h`

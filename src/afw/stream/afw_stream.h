@@ -19,6 +19,8 @@
 /**
  * @file afw_stream.h
  * @brief Adaptive Framework Stream Implementation Header.
+ *
+ * See the @ref afw_stream group for the mental model.
  */
 
 AFW_BEGIN_DECLARES

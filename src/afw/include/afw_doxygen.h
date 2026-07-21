@@ -116,12 +116,18 @@
 /**
  * @defgroup afw_function Adaptive Functions
  *
- * Built-in Adaptive functions. Defined in generate/objects/_AdaptiveFunctionGenerate_.
- * Hand implementations are in src/afw/function/. The compiler lowers operators
- * and calls to these.
+ * Built-in Adaptive functions (callable from script and from C via the
+ * function value / execute path).
  *
- * Polymorphic functions use NULL execute and resolve at runtime based on arg type.
- * Operator functions are prepared specially in prepare_environment.
+ * Metadata lives under `generate/objects/_AdaptiveFunctionGenerate_/`.
+ * Hand `execute_*` implementations are in `src/afw/function/` (not
+ * `generated/function_closet/`). The compiler lowers operators and calls
+ * onto these bindings after functions are registered.
+ *
+ * Polymorphic functions use a NULL execute and resolve at runtime from the
+ * argument data type. Operator functions need
+ * `afw_function_internal_prepare_environment` during bootstrap (see
+ * environment registration order).
  */
 
 /**
@@ -147,6 +153,7 @@
 /** @defgroup afw_object_view Object view @ingroup afw_object */
 /** @defgroup afw_object_impl Object impl helpers @ingroup afw_object */
 /** @defgroup afw_object_internal Object internal @ingroup afw_c_api_internal */
+/** @defgroup afw_object_view_internal Object view internal @ingroup afw_c_api_internal */
 
 /** @} */
 
@@ -174,8 +181,19 @@
 /**
  * @defgroup afw_file File Adapter
  *
- * Adapter for storing objects in the local filesystem.
+ * Core adapter type that stores adaptive objects as files/directories on
+ * the local filesystem (including optional journal support).
+ *
+ * Use as a simple object store or as a backend under a model adapter.
+ * Configuration is via conf object types for the file adapter; sessions
+ * follow the usual adapter session CRUD macros.
+ *
+ * @{
  */
+
+/** @defgroup afw_file_internal File adapter internal @ingroup afw_c_api_internal */
+
+/** @} */
 
 /**
  * @defgroup afw_compile Compile
@@ -208,55 +226,91 @@
 /**
  * @defgroup afw_request Request & Handlers
  *
- * Request handling, director, and related interfaces.
+ * HTTP-like request handling used by hosts (`afwfcgi`, `afw --local`, …).
  *
- * The director matches uriPrefix and dispatches to handlers (typically
- * adapter REST). Implements afw_server/afw_request in hosts.
+ * A director matches configured `uriPrefix` values and dispatches to request
+ * handlers (commonly adapter REST). Hosts implement `afw_server` /
+ * `afw_request`; handlers implement `afw_request_handler`.
  *
- * See also afw_server_fcgi and afw command --local.
+ * Call methods via interface macros. See also `afw_server_fcgi` and the
+ * `afw` command local path.
+ *
+ * @{
  */
+
+/** @defgroup afw_request_handler_impl Request handler impl @ingroup afw_request */
+/** @defgroup afw_request_handler_internal Request handler internal @ingroup afw_c_api_internal */
+
+/** @} */
 
 /**
  * @defgroup afw_request_handler Request handler
  *
  * Request handler interface and director support.
  *
- * The director routes requests based on configured uriPrefix values.
- * Actual handler implementations live in adapters, authorization, etc.
- *
- * See afw_request_handler_director.
+ * The director routes by `uriPrefix`. Handler implementations live in
+ * adapters, authorization, and hosts. Prefer call macros on the handler
+ * and director interfaces over raw `inf` access.
  */
 
 /**
  * @defgroup afw_content_type Content Types
  *
- * Serialization between values and bytes (JSON, YAML, UBJSON, etc.).
+ * Serialization between adaptive values and raw bytes (media types).
  *
- * Core has JSON; extensions add others. Registered via afw_content_type_register.
+ * Core provides JSON; extensions add YAML, UBJSON, etc. Types register
+ * with the environment (`afw_content_type_register`) and are selected by
+ * content-type / conf. Implementers use content_type (+ optional object
+ * list writer) interfaces from afwdev scaffolds.
+ *
+ * @{
  */
+
+/** @defgroup afw_content_type_impl Content type impl @ingroup afw_content_type */
+
+/** @} */
 
 /**
  * @defgroup afw_authorization Authorization
  *
- * Authorization handlers and policy support.
+ * Authorization checks and pluggable authorization handlers.
  *
- * Handlers decide access. Script handler allows policy as Adaptive Script.
+ * Core asks handlers whether an action is allowed; the script handler runs
+ * policy as Adaptive Script. Intermediate mode and handler install order
+ * matter for adapters and internal resource access.
+ *
+ * @{
  */
+
+/** @defgroup afw_authorization_handler_impl Authz handler impl @ingroup afw_authorization */
+/** @defgroup afw_authorization_internal Authorization internal @ingroup afw_c_api_internal */
+
+/** @} */
 
 /**
  * @defgroup afw_service Services
  *
- * Service lifecycle (start/stop) for long-running components.
+ * Service lifecycle (start/stop/status) for long-running components.
  *
- * Adapters, logs etc. are services started from conf.
+ * Adapters, logs, and similar conf-driven pieces are services started when
+ * the environment/application starts. Use service APIs when adding
+ * startable components rather than one-off global init.
+ *
+ * @{
  */
+
+/** @defgroup afw_service_internal Service internal @ingroup afw_c_api_internal */
+
+/** @} */
 
 /**
  * @defgroup afw_action Action perform
  *
- * Support for _AdaptiveAction_ batch execution.
+ * Batch execution of `_AdaptiveAction_` lists (function calls and related
+ * steps) used by admin/apps and hosts.
  *
- * afw_action_perform executes lists of actions (function calls etc.).
+ * `afw_action_perform` runs the list with shared request context; see
+ * action helpers and request integration when embedding AFW in a host.
  */
 
 /**
@@ -310,13 +364,20 @@
 /**
  * @defgroup afw_memory Memory
  *
- * Memory utilities.
+ * Low-level memory helpers used with pools (copy, set, compare, etc.).
+ *
+ * Prefer pool allocation (`afw_pool_*`) for AFW-owned lifetimes. These
+ * utilities are for byte-oriented work once you have a buffer from a pool
+ * or temporary stack storage.
  */
 
 /**
  * @defgroup afw_flag Flags
  *
- * Feature and trace flags.
+ * Feature and debug/trace flags registered in the environment.
+ *
+ * Flags gate optional behavior and tracing. Register and test flags rather
+ * than hard-coding global booleans in extensions when possible.
  */
 
 /**
@@ -337,104 +398,141 @@
 /**
  * @defgroup afw_lock Locks
  *
- * Synchronization primitives.
+ * Process locks and related synchronization used inside libafw.
+ *
+ * Prefer documented lock helpers over inventing ad-hoc mutex usage across
+ * pool/env boundaries; many AFW structures assume single-xctx or
+ * documented multi-thread rules.
  */
 
 /**
  * @defgroup afw_thread Threads
  *
- * Threading support.
+ * Thread create/join helpers and thread attributes.
+ *
+ * AFW often uses APR thread primitives under these wrappers. Follow pool
+ * and xctx rules when sharing data across threads.
  */
 
 /**
  * @defgroup afw_time Time
  *
- * Date and time handling.
+ * Date/time parse, format, and arithmetic for adaptive date/time types.
+ *
+ * Used by data types and functions; prefer these helpers over platform
+ * time APIs when values must round-trip as adaptive types.
  */
 
 /**
  * @defgroup afw_uri URI
  *
- * URI parsing.
+ * URI parse and related helpers for paths and adaptive anyURI values.
  */
 
 /**
  * @defgroup afw_utf8 UTF-8
  *
- * UTF-8 and NFC strings.
+ * UTF-8 strings (`afw_utf8_t`) and NFC normalization helpers.
+ *
+ * Most AFW text is UTF-8 with length + pointer (not always NUL-terminated).
+ * Use create/compare helpers rather than assuming C string semantics.
  */
 
 /**
  * @defgroup afw_uuid UUID
  *
- * UUIDs.
+ * UUID create, parse, and format helpers used by adapters and objects.
  */
 
 /**
  * @defgroup afw_number Number
  *
- * Numeric support.
+ * Numeric parse/format helpers for adaptive integer/double and related types.
  */
 
 /**
  * @defgroup afw_safe_cast Safe Cast
  *
- * Safe integer casting.
+ * Integer casts that check range and report errors instead of silent wrap.
+ *
+ * Use when converting sizes or protocol fields into AFW integer types.
  */
 
 /**
  * @defgroup afw_common Common
  *
- * Common types, macros, and includes used throughout AFW.
- * This is the base layer included early.
+ * Common types, macros, and includes used throughout AFW
+ * (`afw_common.h` layer under `afw_interface.h` / `afw_minimal.h`).
+ *
+ * Base layer included early: fundamental typedefs, try/catch-related
+ * pieces, and shared macros. Prefer including `afw.h` or
+ * `afw_interface.h` rather than pulling common alone from extensions.
  */
 
 /**
  * @defgroup afw_atomic Atomic
  *
- * Atomic operations.
+ * Atomic load/store and compare-exchange helpers for shared counters/flags.
  */
 
 /**
  * @defgroup afw_endian Endian
  *
- * Byte order.
+ * Portable endian conversion for binary protocols and on-disk formats.
  */
 
 /**
  * @defgroup afw_ascii ASCII
  *
- * ASCII utilities.
+ * ASCII classification and case helpers (also valid for ASCII subset of
+ * Unicode code points). Prefer UTF-8 APIs for full Unicode text.
  */
 
 /**
  * @defgroup afw_stack Stack
  *
- * Stacks.
+ * Growable stacks used by the compiler and runtime (values, frames, etc.).
+ *
+ * Not a general application container; use adaptive arrays/objects for
+ * script-visible data.
  */
 
 /**
  * @defgroup afw_stream Stream
  *
- * Streams.
+ * Readable/writable streams (files, memory, response bodies, etc.).
+ *
+ * Open helpers and progressive write paths for large responses live here.
+ * Distinct from adapter retrieve limits/paging (see retrieve max-objects
+ * notes in core-services docs).
  */
 
 /**
  * @defgroup afw_writer Writer
  *
- * Writers.
+ * Incremental writers used when serializing values (JSON, etc.).
+ *
+ * Helpers wrap the `afw_writer` interface for C strings and `afw_utf8_t`.
+ * Prefer writer APIs over building giant intermediate strings when
+ * streaming output.
  */
 
 /**
  * @defgroup afw_version Version
  *
- * Version info.
+ * Runtime version strings and git-info macros for packages and extensions.
+ *
+ * Extensions usually include generated `*_version_info.h` and report
+ * versions via the extension interface / manifest.
  */
 
 /**
  * @defgroup afw_components Components
  *
- * UI components.
+ * UI component identities and related objects used with the admin app.
+ *
+ * Not required for most C extensions; relevant when shipping component
+ * metadata for the React admin UI.
  */
 
 /**
@@ -455,33 +553,112 @@
 /**
  * @defgroup afw_context Context
  *
- * Contexts.
+ * Context types for pushing qualified variables and related runtime
+ * context (used by authorization, adapters, and script evaluation).
+ *
+ * Distinct from `afw_xctx` (execution context). Context registration
+ * supplies variable bags that script sees as qualifiers.
  */
 
 /**
  * @defgroup afw_json JSON
  *
- * JSON.
+ * JSON content-type support and value ↔ JSON text conversion (core).
+ *
+ * Primary built-in content type. For YAML/UBJSON see extensions. Internals
+ * of the JSON parser/writer live under the internal subgroup when present.
+ *
+ * @{
  */
+
+/** @defgroup afw_json_internal JSON internal @ingroup afw_c_api_internal */
+
+/** @} */
 
 /**
  * @defgroup afw_query_criteria Query Criteria
  *
- * RQL-like query criteria.
+ * Query criteria structures and RQL-like parsing for adapter retrieves.
+ *
+ * Built or parsed criteria drive `retrieve_objects` filters; indexes may
+ * accelerate sargable criteria on adapters that support them (e.g. LMDB).
  */
 
 /**
  * @defgroup afw_model Models
  *
- * Model adapter for transforming objects between adapters.
+ * Model adapter: reshape objects between a backend adapter and a
+ * model-facing object type graph (mappings and `on*` Adaptive Script).
  *
- * Models map shapes using scripts or simple mappings.
+ * Hybrid models, location resolution, and compile of model expressions
+ * live here. Prefer model APIs over hand-transforming objects in hosts.
+ *
+ * @{
  */
+
+/** @defgroup afw_model_internal Model internal @ingroup afw_c_api_internal */
+
+/** @} */
 
 /**
  * @defgroup afw_runtime Runtime Objects
  *
- * Read-only view of environment state as adaptive objects.
+ * Read-only adaptive objects that mirror environment/runtime state
+ * (registry entries, etc.) for introspection and admin tools.
+ *
+ * Object maps are generated; value accessors convert C fields to values.
+ *
+ * @{
+ */
+
+/** @defgroup afw_runtime_value_accessor Runtime value accessors @ingroup afw_runtime */
+
+/** @} */
+
+/**
+ * @defgroup afw_array Arrays / lists
+ *
+ * Adaptive array (list) values and helpers.
+ *
+ * Prefer array create APIs and interface methods (via macros) for
+ * script-visible lists. Templates and associative arrays are related
+ * helpers for C-side structures.
+ *
+ * @{
+ */
+
+/** @defgroup afw_array_impl Array impl helpers @ingroup afw_array */
+/** @defgroup afw_array_internal Array internal @ingroup afw_c_api_internal */
+/** @defgroup afw_array_template_internal Array templates internal @ingroup afw_c_api_internal */
+
+/** @} */
+
+/**
+ * @defgroup afw_data_type Data types (hand helpers)
+ *
+ * Hand helpers around adaptive data types (beyond generated bindings).
+ *
+ * Generated per-type APIs live under @ref afw_c_api_data_types. Use those
+ * create/evaluate paths from extensions unless you are inside libafw.
+ */
+
+/**
+ * @defgroup afw_application Application
+ *
+ * Application conf, qualified variables, and startup for an AFW application
+ * instance (distinct from a single extension).
+ *
+ * @{
+ */
+
+/** @defgroup afw_application_internal Application internal @ingroup afw_c_api_internal */
+
+/** @} */
+
+/**
+ * @defgroup afw_os OS helpers
+ *
+ * Thin OS/portability helpers used by libafw (paths, process bits, etc.).
  */
 
 /**
@@ -545,16 +722,37 @@
 
 /**
  * @defgroup afw_c_api_internal C Internal
- * 
- * Internal C APIs that are only for use inside libafw itself.
  *
- * These headers and functions may change at any time. Do not use from
- * extensions or application code.
+ * Internal C APIs that are only for use inside libafw itself
+ * (`afw_internal.h` and `*_internal` headers).
+ *
+ * These may change at any time. Extensions and commands should use
+ * `afw.h`, interface call macros, and documented public groups only.
+ * Nested `*_internal` groups hang here for navigation.
  */
 
-/** @defgroup afw_included_commands Commands
+/**
+ * @defgroup afw_log_impl Log impl helpers @ingroup afw_log
+ */
+
+/**
+ * @defgroup afw_log_internal Log internal @ingroup afw_c_api_internal
+ */
+
+/**
+ * @defgroup afw_log_deprecated Deprecated log API @ingroup afw_log
  *
- * The afw command-line tool and related command infrastructure.
+ * Compatibility log surface; prefer current log interfaces and AFW_LOG macros.
+ */
+
+/**
+ * @defgroup afw_included_commands Commands
+ *
+ * Command hosts in this package (primarily `afw`) and related local-server
+ * / request plumbing under `src/afw_command/`.
+ *
+ * Commands load conf and extensions, then compile/eval or serve
+ * `--local` requests. Scaffold new commands with `afwdev make-command`.
  */
 
 /**
