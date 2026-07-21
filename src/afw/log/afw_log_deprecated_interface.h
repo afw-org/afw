@@ -17,8 +17,8 @@
  */
 
 /**
- * @file afw_log_deprecated.h
- * @brief Header file for afw_log_deprecated.c.
+ * @file afw_log_deprecated_interface.h
+ * @brief Deprecated log interface compatibility declarations.
  */
 
 #include "afw_minimal.h"

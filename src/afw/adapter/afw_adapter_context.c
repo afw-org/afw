@@ -8,7 +8,7 @@
 
 /**
  * @file afw_adapter_context.c
- * @brief Adaptive framework adapter context
+ * @brief Adapter session/request context plumbing.
  */
 
 #include "afw_internal.h"

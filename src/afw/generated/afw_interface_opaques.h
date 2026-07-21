@@ -22,7 +22,7 @@
 
 /**
  * @file afw_interface_opaques.h
- * @brief Interface afw_interface opaque typedefs.
+ * @brief Generated opaque typedefs for Adaptive Framework interfaces (afw_interface).
  */
 /**
  * @addtogroup afw_interface Interfaces

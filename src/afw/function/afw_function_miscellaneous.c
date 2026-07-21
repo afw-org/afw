@@ -8,7 +8,7 @@
 
 /**
  * @file afw_function_miscellaneous.c
- * @brief afw_function_execute_* functions for miscellaneous.
+ * @brief Adaptive function execute implementations for category `miscellaneous`.
  */
 
 #include "afw_internal.h"

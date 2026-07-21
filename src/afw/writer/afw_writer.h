@@ -17,8 +17,8 @@
  */
 
 /**
- * @file afw_adapter.h
- * @brief Header for interface afw_writer* helpers.
+ * @file afw_writer.h
+ * @brief Helpers for the afw_writer interface.
  */
 
 AFW_BEGIN_DECLARES

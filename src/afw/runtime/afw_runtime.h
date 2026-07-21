@@ -20,7 +20,7 @@ AFW_BEGIN_DECLARES
 
 /**
  * @file afw_runtime.h
- * @brief Runtime objects adapter.
+ * @brief Runtime objects adapter and object-map registration.
  */
 
 

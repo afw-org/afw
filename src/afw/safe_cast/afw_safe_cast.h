@@ -20,7 +20,7 @@
 
 /**
  * @file afw_safe_cast.h
- * @brief Safe cast functions
+ * @brief Safe integer cast helpers with overflow checks.
  */
 
 AFW_BEGIN_DECLARES

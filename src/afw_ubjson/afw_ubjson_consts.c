@@ -8,7 +8,7 @@
 
 /**
  * @file afw_ubjson_consts.c
- * @brief AFW ubjson constants.
+ * @brief UBJSON type and marker constants.
  *
  */
 

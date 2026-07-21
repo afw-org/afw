@@ -8,7 +8,7 @@
 
 /**
  * @file afw_model_adapter.c
- * @brief Adaptive Framework model adapter.
+ * @brief Model adapter factory and session implementation.
  */
 
 #include "afw_internal.h"

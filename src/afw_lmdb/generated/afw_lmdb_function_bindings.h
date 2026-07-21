@@ -22,7 +22,7 @@
 
 /**
  * @file afw_lmdb_function_bindings.h
- * @brief Adaptive Framework core adaptive function bindings header.
+ * @brief Generated adaptive function bindings header for prefix `afw_lmdb_`.
  */
 
 #include "afw_lmdb_declare_helpers.h"

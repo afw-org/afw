@@ -35,7 +35,7 @@
 
 /**
  * @file afw_data_type_double_binding.h
- * @brief Adaptive data type double header.
+ * @brief Generated header for adaptive data type `double`.
  */
 
 AFW_BEGIN_DECLARES

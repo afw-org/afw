@@ -8,7 +8,7 @@
 
 /**
  * @file afw_time.c
- * @brief Adaptive Framework Time Support. 
+ * @brief Date/time parse, format, and arithmetic helpers.
  */
 
 #include "afw_internal.h"

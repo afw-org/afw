@@ -22,7 +22,7 @@
 
 /**
  * @file afw_curl_strings.h
- * @brief Adaptive Framework (afw_curl_) strings header.
+ * @brief Generated string constants header for prefix `afw_curl_`.
  */
 
 #include "afw_interface.h"

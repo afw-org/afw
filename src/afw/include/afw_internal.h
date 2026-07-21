@@ -12,7 +12,7 @@
 
 /**
  * @file afw_internal.h
- * @brief Adaptive Framework Core Internal.
+ * @brief Umbrella internal header for libafw implementation files.
  * @ingroup afw_c_api_internal
  *
  * This header includes all of the headers that are used internally by the

@@ -8,7 +8,7 @@
 
 /**
  * @file afw_function_regexp.c
- * @brief afw_function_execute_* functions for regexp.
+ * @brief Adaptive function execute implementations for category `regexp`.
  */
 
 #include "afw.h"

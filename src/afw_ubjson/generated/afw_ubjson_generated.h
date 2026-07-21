@@ -22,7 +22,7 @@
 
 /**
  * @file afw_ubjson_generated.h
- * @brief Adaptive Framework register generated (afw_ubjson) header.
+ * @brief Generated register/API header for srcdir `afw_ubjson`.
  */
 
 #include "afw_minimal.h"

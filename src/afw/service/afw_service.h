@@ -19,7 +19,7 @@
 
 /**
  * @file afw_service.h
- * @brief Adaptive Framework service support
+ * @brief Service start/stop public API.
  */
 
 AFW_BEGIN_DECLARES

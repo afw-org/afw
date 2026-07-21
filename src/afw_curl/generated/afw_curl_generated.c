@@ -19,7 +19,7 @@
 
 /**
  * @file afw_curl_generated.c
- * @brief Adaptive Framework register generated (afw_curl_).
+ * @brief Generated register implementation for `afw_curl`.
  */
 
 #include "afw.h"

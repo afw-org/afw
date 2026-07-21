@@ -8,7 +8,7 @@
 
 /**
  * @file afw_function_stream.c
- * @brief afw_function_execute_* functions for stream.
+ * @brief Adaptive function execute implementations for category `stream`.
  */
 
 #include "afw.h"

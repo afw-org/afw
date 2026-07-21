@@ -8,7 +8,7 @@
 
 /**
  * @file afw_function_polymorphic.c
- * @brief afw_common polymorphic function_execute_* functions.
+ * @brief Common polymorphic function_execute_* implementations (shared across data-type methods).
  */
 
 #include "afw_internal.h"

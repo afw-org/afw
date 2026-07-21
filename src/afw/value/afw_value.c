@@ -8,7 +8,7 @@
 
 /**
  * @file afw_value.c
- * @brief Adaptive Framework Value Functions
+ * @brief Core value evaluate, clone, and utility functions.
  */
 
 #include "afw_internal.h"

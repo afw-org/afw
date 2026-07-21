@@ -8,7 +8,7 @@
 
 /**
  * @file afw_curl_internal.c
- * @brief afw_curl_internal* functions for curl.
+ * @brief Internal curl request execution helpers.
  */
 
 #include "afw.h"

@@ -25,7 +25,9 @@ def generate(generated_by, options):
     os.makedirs(generated_dir_path, exist_ok=True)
     with nfc.open(generated_dir_path + filename, mode='w') as fd:
         c.write_h_prologue(fd, generated_by, 'Adaptive Framework Declare Helpers for ' + prefix, copyright, filename)
-        c.write_doxygen_file_section(fd, filename, 'Adaptive Framework declare helpers for ' + prefix)
+        c.write_doxygen_file_section(
+            fd, filename,
+            'Generated declare/define helpers for prefix `' + prefix + '`.')
         
         fd.write('\n\n')
         fd.write('#include <apr_general.h>\n')

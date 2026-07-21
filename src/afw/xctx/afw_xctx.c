@@ -8,7 +8,7 @@
 
 /**
  * @file afw_xctx.c
- * @brief Implementation of afw_xctx interface.
+ * @brief Execution context (xctx) create, scope, and error state.
  */
 
 #include "afw_internal.h"

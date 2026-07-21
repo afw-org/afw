@@ -8,7 +8,7 @@
 
 /**
  * @file afw_stream.c
- * @brief Implementation of afw_stream interface.
+ * @brief Stream open helpers and common stream utilities.
  */
 
 #include "afw_internal.h"

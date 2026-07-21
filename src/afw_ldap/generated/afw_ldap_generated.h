@@ -22,7 +22,7 @@
 
 /**
  * @file afw_ldap_generated.h
- * @brief Adaptive Framework register generated (afw_ldap) header.
+ * @brief Generated register/API header for srcdir `afw_ldap`.
  */
 
 #include "afw_minimal.h"

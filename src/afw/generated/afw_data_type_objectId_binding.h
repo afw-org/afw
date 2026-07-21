@@ -35,7 +35,7 @@
 
 /**
  * @file afw_data_type_objectId_binding.h
- * @brief Adaptive data type objectId header.
+ * @brief Generated header for adaptive data type `objectId`.
  */
 
 AFW_BEGIN_DECLARES

@@ -19,7 +19,7 @@
 
 /**
  * @file afw_value_internal.h
- * @brief Internal header for afw_value*.
+ * @brief Internal value kinds and evaluator helpers.
  */
 
 AFW_BEGIN_DECLARES

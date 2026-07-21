@@ -19,7 +19,7 @@
 
 /**
  * @file afw_lmdb_strings.c
- * @brief Adaptive Framework builtin objects.
+ * @brief Generated string/const value definitions for prefix `afw_lmdb_`.
  */
 
 #include "afw.h"

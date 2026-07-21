@@ -9,6 +9,11 @@
 #ifndef __AFW_DOXYGEN_H__
 #define __AFW_DOXYGEN_H__
 
+/**
+ * @file afw_doxygen.h
+ * @brief Top-level Doxygen @defgroup definitions for the AFW C API.
+ */
+
 /* These are major doxygen defgroup for Adaptive Framework base package. */
 
 /** @defgroup package_afw Adaptive Framework Base Package
@@ -509,7 +514,7 @@
 
 /**
  * @file afw_doxygen.h
- * @brief Adaptive Framework Base Package main Doxygen groups.
+ * @brief Top-level Doxygen @defgroup definitions for the AFW C API.
  *
  * Adaptive Framework Base Package Doxygen main groups.
  */

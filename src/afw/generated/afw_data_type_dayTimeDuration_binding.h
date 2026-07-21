@@ -35,7 +35,7 @@
 
 /**
  * @file afw_data_type_dayTimeDuration_binding.h
- * @brief Adaptive data type dayTimeDuration header.
+ * @brief Generated header for adaptive data type `dayTimeDuration`.
  */
 
 AFW_BEGIN_DECLARES

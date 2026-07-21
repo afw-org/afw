@@ -8,7 +8,7 @@
 
 /**
  * @file afw_function_hexBinary.c
- * @brief afw_function_execute_* functions for hexBinary.
+ * @brief Adaptive function execute implementations for category `hexBinary`.
  */
 
 #include "afw_internal.h"

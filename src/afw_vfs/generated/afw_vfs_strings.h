@@ -22,7 +22,7 @@
 
 /**
  * @file afw_vfs_strings.h
- * @brief Adaptive Framework (afw_vfs_) strings header.
+ * @brief Generated string constants header for prefix `afw_vfs_`.
  */
 
 #include "afw_interface.h"

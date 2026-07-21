@@ -18,7 +18,7 @@
 
 /**
  * @file afw_context.h
- * @brief Adaptive Framework Context.
+ * @brief Context type registration and qualified variable push.
  */
 
 AFW_BEGIN_DECLARES

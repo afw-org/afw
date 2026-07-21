@@ -9,7 +9,7 @@
 
 /**
  * @file afw_server_fcgi.c
- * @brief Adaptive Frame FastCGI Support
+ * @brief FastCGI request/server implementation for afwfcgi.
  *
  */
 

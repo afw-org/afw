@@ -13,7 +13,7 @@
 
 /**
  * @file afw_vfs_adapter_internal.h
- * @brief Internal header for adapter type vfs.
+ * @brief Internal structures for the VFS adapter.
  */
 
 #include "afw_interface.h"

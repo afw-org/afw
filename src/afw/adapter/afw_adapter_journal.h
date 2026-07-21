@@ -19,7 +19,7 @@
 
 /**
  * @file afw_adapter_journal.h
- * @brief Adaptive Framework adapter journal
+ * @brief Adapter journal entry helpers and cursor API.
  */
 
 AFW_BEGIN_DECLARES

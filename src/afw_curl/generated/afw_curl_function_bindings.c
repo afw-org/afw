@@ -19,7 +19,7 @@
 
 /**
  * @file afw_curl_function_bindings.c
- * @brief Adaptive Framework core adaptive function bindings.
+ * @brief Generated adaptive function bindings for prefix `afw_curl_`.
  */
 
 #include "afw.h"

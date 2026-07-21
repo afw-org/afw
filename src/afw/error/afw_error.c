@@ -8,7 +8,7 @@
 
 /**
  * @file afw_error.c
- * @brief Adaptive Framework Error Handling
+ * @brief Error throw, try/catch macros support, and formatting.
  */
 
 #include "afw_internal.h"

@@ -35,7 +35,7 @@
 
 /**
  * @file afw_data_type_template_binding.h
- * @brief Adaptive data type template header.
+ * @brief Generated header for adaptive data type `template`.
  */
 
 AFW_BEGIN_DECLARES

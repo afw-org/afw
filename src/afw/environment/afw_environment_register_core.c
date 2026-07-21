@@ -9,7 +9,7 @@
 
 /**
  * @file afw_environment_register_core.c
- * @brief Register core environment.
+ * @brief Core environment registration order (generated then hand wiring).
  */
 
 #include "afw_internal.h"

@@ -19,7 +19,7 @@
 
 /**
  * @file afw_ldap_const_objects.c
- * @brief Adaptive Framework builtin objects.
+ * @brief Generated builtin const adaptive objects.
  */
 
 #include "afw.h"

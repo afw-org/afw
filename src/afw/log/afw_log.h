@@ -12,6 +12,13 @@
 #include "afw_interface.h"
 
 /**
+ * @file afw_log.h
+ * @brief Log priority macros and log interface helpers.
+ *
+ * See the @ref afw_log group (also described below and in afw_doxygen.h).
+ */
+
+/**
  * @addtogroup afw_log
  * @{
  *
@@ -45,10 +52,6 @@
  *  trace8     | Trace level 8 message
  */
 
-/**
- * @file afw_log.h
- * @brief Adaptive Framework afw_log interface helpers header
- */
 
 /** @fixme In middle of implementation. */
 #define afw_log_release afw_log_destroy

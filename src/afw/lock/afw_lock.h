@@ -18,7 +18,7 @@
 
 /**
  * @file afw_lock.h
- * @brief Adaptive Framework locks
+ * @brief Read/write and related lock API.
  */
 
 AFW_BEGIN_DECLARES

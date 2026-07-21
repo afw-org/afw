@@ -22,7 +22,7 @@
 
 /**
  * @file afw_server_fcgi_generated.h
- * @brief Adaptive Framework register generated (afw_server_fcgi) header.
+ * @brief Generated register/API header for srcdir `afw_server_fcgi`.
  */
 
 #include "afw_minimal.h"

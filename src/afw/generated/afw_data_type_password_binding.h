@@ -35,7 +35,7 @@
 
 /**
  * @file afw_data_type_password_binding.h
- * @brief Adaptive data type password header.
+ * @brief Generated header for adaptive data type `password`.
  */
 
 AFW_BEGIN_DECLARES

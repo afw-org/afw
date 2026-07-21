@@ -22,7 +22,7 @@
 
 /**
  * @file afw_components_strings.h
- * @brief Adaptive Framework (afw_components_) strings header.
+ * @brief Generated string constants header for prefix `afw_components_`.
  */
 
 #include "afw_interface.h"

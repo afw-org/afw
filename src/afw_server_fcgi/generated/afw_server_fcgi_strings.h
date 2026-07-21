@@ -22,7 +22,7 @@
 
 /**
  * @file afw_server_fcgi_strings.h
- * @brief Adaptive Framework (afw_server_fcgi_) strings header.
+ * @brief Generated string constants header for prefix `afw_server_fcgi_`.
  */
 
 #include "afw_interface.h"

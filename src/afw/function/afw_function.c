@@ -8,8 +8,7 @@
 
 /**
  * @file afw_function.c
- * @brief AFW runtime functions support  
- *
+ * @brief Runtime support for adaptive function call and execute.
  */
 
 #include "afw_internal.h"

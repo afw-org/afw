@@ -126,7 +126,9 @@ def generate_h(options, generated_by, prefix, generated_dir_path):
     msg.info('Generating ' + filename)
     with nfc.open(generated_dir_path + filename, mode='w') as fd:
         c.write_h_prologue(fd, generated_by, 'Adaptive Framework (' + prefix + ') Strings Header', copyright, filename)
-        c.write_doxygen_file_section(fd, filename, 'Adaptive Framework (' + prefix + ') strings header.')
+        c.write_doxygen_file_section(
+            fd, filename,
+            'Generated string constants header for prefix `' + prefix + '`.')
 
         fd.write('\n#include "afw_interface.h"\n')
         fd.write('#include "' + prefix + 'declare_helpers.h"\n')
@@ -182,7 +184,10 @@ def generate_c(options, generated_by, prefix, generated_dir_path):
     msg.info('Generating ' + filename)
     with nfc.open(generated_dir_path + filename, mode='w') as fd:
         c.write_c_prologue(fd, generated_by, 'Adaptive Framework Const', copyright)
-        c.write_doxygen_file_section(fd, filename, 'Adaptive Framework builtin objects.')
+        c.write_doxygen_file_section(
+            fd, filename,
+            'Generated string/const value definitions for prefix `'
+            + prefix + '`.')
         fd.write('\n')
         fd.write('#include "afw.h"\n')
         fd.write('#include "' + prefix + 'strings.h"\n')        

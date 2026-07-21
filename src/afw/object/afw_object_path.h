@@ -18,7 +18,7 @@
 
 /**
  * @file afw_object_path.h
- * @brief Header for Adaptive Object Path
+ * @brief Adaptive object path parse and format helpers.
  */
 
 AFW_BEGIN_DECLARES

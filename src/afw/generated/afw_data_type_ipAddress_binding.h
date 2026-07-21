@@ -35,7 +35,7 @@
 
 /**
  * @file afw_data_type_ipAddress_binding.h
- * @brief Adaptive data type ipAddress header.
+ * @brief Generated header for adaptive data type `ipAddress`.
  */
 
 AFW_BEGIN_DECLARES

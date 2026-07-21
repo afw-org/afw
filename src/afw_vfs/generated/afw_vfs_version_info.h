@@ -22,7 +22,7 @@
 
 /**
  * @file afw_vfs_version_info.h
- * @brief Adaptive Framework Version (afw_vfs_) header.
+ * @brief Generated version macros for prefix `afw_vfs_`.
  */
 
 

@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * afw_function_execute_* functions for List
+ * afw_function_execute_* functions for array
  *
  * Copyright (c) 2010-2024 Clemson University
  *
@@ -8,7 +8,7 @@
 
 /**
  * @file afw_function_array.c
- * @brief afw_function_execute_* functions for array.
+ * @brief Adaptive function execute implementations for category `array`.
  */
 
 #include "afw_internal.h"

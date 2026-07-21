@@ -293,7 +293,8 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
         c.write_h_prologue(fd, generated_by,
             'Adaptive Framework Core Adaptive Function Bindings', copyright, filename)
         c.write_doxygen_file_section(fd, filename,
-            'Adaptive Framework core adaptive function bindings header.')
+            'Generated adaptive function bindings header for prefix `'
+            + prefix + '`.')
         fd.write('\n')
         fd.write('#include "' + prefix + 'declare_helpers.h"\n')
 
@@ -446,7 +447,8 @@ def generate(generated_by, prefix, data_type_list, object_dir_path,
         c.write_c_prologue(fd, generated_by, 
             'Adaptive Framework Core Adaptive Function Bindings ', copyright)
         c.write_doxygen_file_section(fd, filename,
-            'Adaptive Framework core adaptive function bindings.')
+            'Generated adaptive function bindings for prefix `'
+            + prefix + '`.')
         fd.write('\n')
         fd.write('#include "afw.h"\n')
         if options['core']:

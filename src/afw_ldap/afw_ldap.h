@@ -25,7 +25,7 @@
 
 /**
  * @file afw_ldap.h
- * @brief Header for AFW LDAP Adapter.
+ * @brief Public header for the LDAP adapter extension.
  */
 
 AFW_LDAP_BEGIN_DECLARES

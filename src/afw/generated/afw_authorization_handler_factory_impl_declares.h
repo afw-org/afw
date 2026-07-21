@@ -75,7 +75,7 @@ AFW_BEGIN_DECLARES
 
 /**
  * @file afw_authorization_handler_factory_impl_declares.h
- * @brief Interface afw_interface implementation declares.
+ * @brief Generated implementation declares for interface afw_interface.
  */
 
 #ifdef __AFW_AUTHORIZATION_HANDLER_FACTORY_IMPL_DECLARES_H__

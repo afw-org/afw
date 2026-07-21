@@ -20,7 +20,7 @@
 
 /**
  * @file afw_common.h
- * @brief Adaptive Framework Common Header.
+ * @brief Common types, macros, and includes used throughout AFW.
  * 
  * This header contains `#include`s for common headers that do not have other
  * Adaptive Framework dependencies, typedefs required by afw_interface.h,

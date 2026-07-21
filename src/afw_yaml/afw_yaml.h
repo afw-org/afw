@@ -23,7 +23,7 @@
 
 /**
  * @file afw_yaml.h
- * @brief Header file for Adaptive Framework YAML
+ * @brief YAML content-type and from/to value public API.
  */
 
 AFW_BEGIN_DECLARES

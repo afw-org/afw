@@ -8,7 +8,7 @@
 
 /**
  * @file afw_function_value.c
- * @brief afw_function_execute_* functions for value.
+ * @brief Adaptive function execute implementations for category `value`.
  */
 
 #include "afw_internal.h"

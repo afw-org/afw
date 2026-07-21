@@ -35,7 +35,7 @@
 
 /**
  * @file afw_data_type_time_binding.h
- * @brief Adaptive data type time header.
+ * @brief Generated header for adaptive data type `time`.
  */
 
 AFW_BEGIN_DECLARES

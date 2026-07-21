@@ -22,7 +22,7 @@
 
 /**
  * @file afw_ubjson_version_info.h
- * @brief Adaptive Framework Version (afw_ubjson_) header.
+ * @brief Generated version macros for prefix `afw_ubjson_`.
  */
 
 

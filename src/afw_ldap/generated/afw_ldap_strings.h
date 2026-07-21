@@ -22,7 +22,7 @@
 
 /**
  * @file afw_ldap_strings.h
- * @brief Adaptive Framework (afw_ldap_) strings header.
+ * @brief Generated string constants header for prefix `afw_ldap_`.
  */
 
 #include "afw_interface.h"

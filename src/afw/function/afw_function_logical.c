@@ -1,14 +1,14 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * afw_function_execute_* functions for Logical
+ * afw_function_execute_* functions for logical
  *
  * Copyright (c) 2010-2024 Clemson University
  *
  */
 
 /**
- * @file afw_function_Logical.c
- * @brief afw_function_execute_* functions for Logical.
+ * @file afw_function_logical.c
+ * @brief Adaptive function execute implementations for category `logical`.
  */
 
 #include "afw_internal.h"

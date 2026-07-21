@@ -8,7 +8,7 @@
 
 /**
  * @file afw_json.c
- * @brief JSON Miscellaneous Functions.
+ * @brief JSON content-type support and miscellaneous helpers.
  */
 
 #include "afw_internal.h"

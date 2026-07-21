@@ -8,7 +8,7 @@
 
 /**
  * @file afw_compile_parse_expression.c
- * @brief Adaptive Framework Compiler Parser.
+ * @brief Compiler parser for Adaptive expressions and operators.
  */
 
 #include "afw_internal.h"

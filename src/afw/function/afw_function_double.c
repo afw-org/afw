@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * afw_function_execute_* functions for Double
+ * afw_function_execute_* functions for double
  *
  * Copyright (c) 2010-2024 Clemson University
  *
@@ -8,9 +8,9 @@
 
 /**
  * @file afw_function_double.c
- * @brief afw_function_execute_* functions for double.
+ * @brief Adaptive function execute implementations for category `double`.
  *
- * An error is thrown an argument is NaN, -Infinity, or Infinity.
+ * An error is thrown if an argument is NaN, -Infinity, or Infinity.
  */
 
 #include "afw_internal.h"

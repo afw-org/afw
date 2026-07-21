@@ -1,3 +1,16 @@
+// See the 'COPYING' file in the project root for licensing information.
+/*
+ * Register content_type `ubjson` for afw_ubjson
+ *
+ * Copyright (c) 2010-2024 Clemson University
+ *
+ */
+
+/**
+ * @file afw_ubjson_register_content_type_ubjson.c
+ * @brief Generated environment register for content_type `ubjson` (afw_ubjson).
+ */
+
 #include "afw.h"
 
 extern const afw_content_type_t

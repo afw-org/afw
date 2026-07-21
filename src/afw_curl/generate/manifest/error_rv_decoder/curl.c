@@ -1,3 +1,8 @@
+/**
+ * @file curl.c
+ * @brief Manifest register snippet for error_rv_decoder `curl` (afw_curl); copied into generated/register_*.c.
+ */
+
 #include "afw.h"
 #include "afw_curl_generated.h"
 

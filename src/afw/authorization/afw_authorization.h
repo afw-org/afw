@@ -18,7 +18,7 @@
 
 /**
  * @file afw_authorization.h
- * @brief Adaptive Framework authorization.
+ * @brief Authorization check APIs and handler support.
  *
  * See @ref afw_authorization.
  */

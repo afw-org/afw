@@ -1,14 +1,14 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * Adaptive Framework Authorization Default Handler
+ * Adaptive Framework Script Authorization Handler
  *
  * Copyright (c) 2010-2024 Clemson University
  *
  */
 
 /**
- * @file afw_authorization.c
- * @brief Adaptive Framework script authorization handler
+ * @file afw_authorization_handler_type_script.c
+ * @brief Script-based authorization handler type implementation.
  */
 
 #include "afw_internal.h"

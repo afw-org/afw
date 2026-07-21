@@ -8,7 +8,7 @@
 
 /**
  * @file afw_lmdb_index.c
- * @brief Indexing routines for the LMDB Adapter
+ * @brief LMDB adapter index create/update and cursor routines.
  */
 
 #include "afw.h"

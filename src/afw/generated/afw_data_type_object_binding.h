@@ -35,7 +35,7 @@
 
 /**
  * @file afw_data_type_object_binding.h
- * @brief Adaptive data type object header.
+ * @brief Generated header for adaptive data type `object`.
  */
 
 AFW_BEGIN_DECLARES

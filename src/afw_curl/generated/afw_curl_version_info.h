@@ -22,7 +22,7 @@
 
 /**
  * @file afw_curl_version_info.h
- * @brief Adaptive Framework Version (afw_curl_) header.
+ * @brief Generated version macros for prefix `afw_curl_`.
  */
 
 

@@ -22,7 +22,7 @@
 
 /**
  * @file afw_interface.h
- * @brief Interfaceafw_interface header.
+ * @brief Generated C header for Adaptive Framework interfaces (afw_interface).
  */
 
 #include "afw_interface_common.h"

@@ -35,7 +35,7 @@
 
 /**
  * @file afw_data_type_date_binding.h
- * @brief Adaptive data type date header.
+ * @brief Generated header for adaptive data type `date`.
  */
 
 AFW_BEGIN_DECLARES

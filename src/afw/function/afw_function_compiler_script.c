@@ -1,14 +1,14 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * afw_function_execute_* functions for script runtime
+ * afw_function_execute_* functions for compiler_script runtime
  *
  * Copyright (c) 2010-2024 Clemson University
  *
  */
 
 /**
- * @file afw_function_script.c
- * @brief afw_function_execute_* functions for script runtime.
+ * @file afw_function_compiler_script.c
+ * @brief Adaptive function execute implementations for category `compiler_script`.
  */
 
 #include "afw_internal.h"

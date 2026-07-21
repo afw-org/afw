@@ -8,7 +8,7 @@
 
 /**
  * @file afw_adapter_retrieve.c
- * @brief Adaptive Framework adapter add object.
+ * @brief Adapter retrieve-objects convenience implementation.
  */
 
 #include "afw_internal.h"

@@ -8,7 +8,7 @@
 
 /**
  * @file afw_function_administrative.c
- * @brief afw_function_execute_* functions for administrative.
+ * @brief Adaptive function execute implementations for category `administrative`.
  */
 
 #include "afw_internal.h"

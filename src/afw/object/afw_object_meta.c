@@ -8,7 +8,7 @@
 
 /**
  * @file afw_object_meta.c
- * @brief Interface helpers for afw_object.
+ * @brief Object meta property helpers (objectId, objectType, path).
  */
 
 #include "afw_internal.h"

@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * afw_function_execute_* functions for Date
+ * afw_function_execute_* functions for date
  *
  * Copyright (c) 2010-2024 Clemson University
  *
@@ -8,7 +8,7 @@
 
 /**
  * @file afw_function_date.c
- * @brief afw_function_execute_* functions for date.
+ * @brief Adaptive function execute implementations for category `date`.
  */
 
 #include "afw_internal.h"

@@ -6,6 +6,11 @@
  *
  */
 
+/**
+ * @file afw_lmdb_internal.c
+ * @brief LMDB adapter internal helpers (DBI handles, env, txn).
+ */
+
 #include "afw.h"
 #include "afw_uuid.h"
 #include "generated/afw_lmdb_generated.h"
@@ -303,7 +308,6 @@ afw_rc_t afw_lmdb_internal_get_entry(
 
     return rc;
 }
-
 
 /*
  * void afw_lmdb_internal_create_entry_from_object()
@@ -787,7 +791,6 @@ impl_afw_adapter_key_value_replace (
     AFW_LMDB_END_TRANSACTION();
 }
 
-
 /*
  * Implementation of method get of interface afw_adapter_key_value.
  */
@@ -1140,7 +1143,6 @@ impl_afw_adapter_impl_index_cursor_get_next_object (
     return object;
 }
 
-
 /*
  * Implementation of method contains_object of interface afw_adapter_impl_index_cursor.
  *
@@ -1204,8 +1206,6 @@ impl_afw_adapter_impl_index_cursor_contains_object (
     return contains;
 }
 
-
-
 /*
  * Implementation of method inner_join of interface afw_adapter_impl_index_cursor.
  *
@@ -1267,8 +1267,6 @@ impl_afw_adapter_impl_index_cursor_get_count(
     return (rc == 0) ? true : false;
 }
 
-
-
 /*
  * Implementation of Transaction interface.
  *
@@ -1308,9 +1306,6 @@ afw_lmdb_transaction_t * afw_lmdb_transaction_create(
     return self;
 }
 
-
-
-
 /*
  * Implementation of method release of interface afw_adapter_transaction.
  */
@@ -1334,8 +1329,6 @@ impl_afw_adapter_transaction_release (
     self->txn = NULL;
     session->transaction = NULL;
 }
-
-
 
 /*
  * Implementation of method commit of interface afw_adapter_transaction.
@@ -1411,6 +1404,7 @@ int afw_lmdb_internal_reader_list_cb(
  * Used by adaptive function to perform a reader_list to print a list of 
  * current readers of the database, including their pid and thread id's.
  */
+
 int afw_lmdb_internal_reader_list(
     const afw_adapter_t * instance,
     const afw_utf8_t ** list,

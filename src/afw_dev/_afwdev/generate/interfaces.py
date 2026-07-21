@@ -22,7 +22,8 @@ def generate_h(generated_by, prefix, name, tree, generated_dir_path, copyright):
     msg.info('Generating ' + filename)
     with nfc.open(generated_dir_path + filename, mode='w') as fd:
         c.write_h_prologue(fd, generated_by, 'Interface ' + name + ' Header', copyright, filename)
-        c.write_doxygen_file_section(fd, filename, 'Interface' + name + ' header.')
+        c.write_doxygen_file_section(fd, filename,
+            'Generated C header for Adaptive Framework interfaces (' + name + ').')
 
         fd.write('\n')
         fd.write('#include "afw_interface_common.h"\n')
@@ -185,7 +186,9 @@ def generate_opaques_h(generated_by, prefix, name, tree, generated_dir_path, cop
     msg.info('Generating ' + filename)
     with nfc.open(generated_dir_path + filename, mode='w') as fd:
         c.write_h_prologue(fd, generated_by, 'Interface ' + name + ' Opaque Typedefs', copyright, filename)
-        c.write_doxygen_file_section(fd, filename, 'Interface ' + name + ' opaque typedefs.')
+        c.write_doxygen_file_section(fd, filename,
+            'Generated opaque typedefs for Adaptive Framework interfaces ('
+            + name + ').')
 
         fd.write('/**\n * @addtogroup ' + name + ' Interfaces\n')
         fd.write(' *\n')
@@ -300,7 +303,9 @@ def generate_impl_declares_hs(generated_by, prefix, name, tree, generated_dir_pa
             fd.write(' */\n\n')
 
             # \file
-            c.write_doxygen_file_section(fd, filename, 'Interface ' + name + ' implementation declares.')
+            c.write_doxygen_file_section(fd, filename,
+                'Generated implementation declares for interface '
+                + name + '.')
 
             # Make sure only included once
             fd.write('\n')
@@ -654,6 +659,8 @@ def generate_skeleton_header(generated_by, prefix, generated_dir_path, copyright
     msg.info('Generating ' + filename)
     with nfc.open(generated_dir_path + filename, mode='w') as fd:
 
+        # @todo markers here are intentional placeholders for consumers of
+        # this skeleton (humans / scaffold flows), not incomplete Doxygen.
         fd.write('#ifdef __@todo_H__\n')
         fd.write('#define __@todo_H__\n\n')
 

@@ -22,7 +22,7 @@
 
 /**
  * @file afw_lmdb_strings.h
- * @brief Adaptive Framework (afw_lmdb_) strings header.
+ * @brief Generated string constants header for prefix `afw_lmdb_`.
  */
 
 #include "afw_interface.h"

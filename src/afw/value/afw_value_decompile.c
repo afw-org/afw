@@ -8,7 +8,7 @@
 
 /**
  * @file afw_value_decompile.c
- * @brief Adaptive Framework value decompile
+ * @brief Decompile value graphs back to Adaptive source text.
  */
 
 #include "afw_internal.h"

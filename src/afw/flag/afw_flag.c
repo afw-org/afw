@@ -9,7 +9,7 @@
 
 /**
  * @file afw_flag.c
- * @brief Adaptive Framework Trace
+ * @brief Feature and trace flag registration and evaluation.
  */
 
 #include "afw_internal.h"

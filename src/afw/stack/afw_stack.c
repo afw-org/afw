@@ -9,7 +9,7 @@
 
 /**
  * @file afw_stack.c
- * @brief stack support
+ * @brief Growable stack implementation used by compiler and runtime.
  */
 
 #include "afw_internal.h"

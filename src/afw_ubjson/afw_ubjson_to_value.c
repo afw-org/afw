@@ -7,9 +7,8 @@
  */
 
 /**
- * @file afw_ubjson.c
- * @brief AFW ubjson conversion functions.
- *
+ * @file afw_ubjson_to_value.c
+ * @brief UBJSON decode into adaptive values.
  */
 
 #include "afw.h"

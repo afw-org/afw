@@ -18,7 +18,7 @@
 
 /**
  * @file afw_ascii.h
- * @brief Adaptive Framework ASCII
+ * @brief ASCII classification and conversion utilities.
  *
  * These also work for UNICODE codepoints, since ASCII is a subset.
  */

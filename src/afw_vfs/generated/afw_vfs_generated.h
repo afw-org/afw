@@ -22,7 +22,7 @@
 
 /**
  * @file afw_vfs_generated.h
- * @brief Adaptive Framework register generated (afw_vfs) header.
+ * @brief Generated register/API header for srcdir `afw_vfs`.
  */
 
 #include "afw_minimal.h"

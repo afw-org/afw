@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * afw_function_execute_* functions for Time
+ * afw_function_execute_* functions for time
  *
  * Copyright (c) 2010-2024 Clemson University
  *
@@ -8,7 +8,7 @@
 
 /**
  * @file afw_function_time.c
- * @brief afw_function_execute_* functions for time.
+ * @brief Adaptive function execute implementations for category `time`.
  */
 
 #include "afw_internal.h"

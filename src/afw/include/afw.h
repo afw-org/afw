@@ -14,7 +14,7 @@
 
 /**
  * @file afw.h
- * @brief Adaptive Framework Core API.
+ * @brief Umbrella header for the Adaptive Framework core C API.
  * @ingroup afw_c_api_public
  *
  * This header includes all of the headers that are part of the API used to

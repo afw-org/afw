@@ -18,7 +18,7 @@
 
 /**
  * @file afw_adapter_get.h
- * @brief Adaptive Framework adapter get object 
+ * @brief Adapter get-object convenience API.
  */
 
 AFW_BEGIN_DECLARES

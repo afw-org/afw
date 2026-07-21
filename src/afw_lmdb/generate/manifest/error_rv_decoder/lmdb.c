@@ -1,3 +1,8 @@
+/**
+ * @file lmdb.c
+ * @brief Manifest register snippet for error_rv_decoder `lmdb` (afw_lmdb); copied into generated/register_*.c.
+ */
+
 #include "afw.h"
 #include "afw_lmdb_generated.h"
 #include "../afw_lmdb_internal.h"

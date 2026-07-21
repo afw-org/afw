@@ -1,14 +1,14 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * Adaptive Framework Adapter Add Object
+ * Adaptive Framework Adapter Get Object
  *
  * Copyright (c) 2010-2024 Clemson University
  *
  */
 
 /**
- * @file afw_adapter_add.c
- * @brief Adaptive Framework adapter add object.
+ * @file afw_adapter_get.c
+ * @brief Adapter get/retrieve helpers (object fetch and callbacks).
  */
 
 #include "afw_internal.h"

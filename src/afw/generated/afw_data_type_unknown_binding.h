@@ -35,7 +35,7 @@
 
 /**
  * @file afw_data_type_unknown_binding.h
- * @brief Adaptive data type unknown header.
+ * @brief Generated header for adaptive data type `unknown`.
  */
 
 AFW_BEGIN_DECLARES

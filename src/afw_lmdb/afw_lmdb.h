@@ -22,7 +22,7 @@
 
 /**
  * @file afw_lmdb.h
- * @brief Adaptive Framework LMDB Adapter
+ * @brief Public header for the LMDB adapter extension.
  */
 
 AFW_BEGIN_DECLARES

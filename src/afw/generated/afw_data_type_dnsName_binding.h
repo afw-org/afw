@@ -35,7 +35,7 @@
 
 /**
  * @file afw_data_type_dnsName_binding.h
- * @brief Adaptive data type dnsName header.
+ * @brief Generated header for adaptive data type `dnsName`.
  */
 
 AFW_BEGIN_DECLARES

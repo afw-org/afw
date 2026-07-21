@@ -22,7 +22,7 @@
 
 /**
  * @file afw_ubjson_strings.h
- * @brief Adaptive Framework (afw_ubjson_) strings header.
+ * @brief Generated string constants header for prefix `afw_ubjson_`.
  */
 
 #include "afw_interface.h"

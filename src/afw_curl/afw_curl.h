@@ -23,7 +23,7 @@
 
 /**
  * @file afw_curl.h
- * @brief Header for AFW CURL Extension.
+ * @brief Public header for the curl extension (HTTP client).
  */
 
 #include "afw_minimal.h"

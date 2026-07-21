@@ -8,7 +8,7 @@
 
 /**
  * @file afw_memory.c
- * @brief Adaptive Framework memory support
+ * @brief Raw memory allocate/copy helpers on pools.
  */
 
 #include "afw_internal.h"

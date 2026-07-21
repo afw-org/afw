@@ -35,7 +35,7 @@
 
 /**
  * @file afw_data_type_null_binding.h
- * @brief Adaptive data type null header.
+ * @brief Generated header for adaptive data type `null`.
  */
 
 AFW_BEGIN_DECLARES

@@ -9,7 +9,7 @@
 
 /**
  * @file afw_environment_configuration.c
- * @brief AFW environment configuration.
+ * @brief Environment conf object apply and type handling.
  */
 
 #include "afw_internal.h"

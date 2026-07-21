@@ -19,7 +19,7 @@
 
 /**
  * @file afw_server_fcgi_strings.c
- * @brief Adaptive Framework builtin objects.
+ * @brief Generated string/const value definitions for prefix `afw_server_fcgi_`.
  */
 
 #include "afw.h"

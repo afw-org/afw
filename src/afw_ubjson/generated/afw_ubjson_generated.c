@@ -19,7 +19,7 @@
 
 /**
  * @file afw_ubjson_generated.c
- * @brief Adaptive Framework register generated (afw_ubjson_).
+ * @brief Generated register implementation for `afw_ubjson`.
  */
 
 #include "afw.h"

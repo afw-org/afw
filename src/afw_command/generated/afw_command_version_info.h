@@ -22,7 +22,7 @@
 
 /**
  * @file afw_command_version_info.h
- * @brief Adaptive Framework Version (afw_command_) header.
+ * @brief Generated version macros for prefix `afw_command_`.
  */
 
 

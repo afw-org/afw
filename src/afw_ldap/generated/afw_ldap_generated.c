@@ -19,7 +19,7 @@
 
 /**
  * @file afw_ldap_generated.c
- * @brief Adaptive Framework register generated (afw_ldap_).
+ * @brief Generated register implementation for `afw_ldap`.
  */
 
 #include "afw.h"

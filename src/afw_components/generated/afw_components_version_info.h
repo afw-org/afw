@@ -22,7 +22,7 @@
 
 /**
  * @file afw_components_version_info.h
- * @brief Adaptive Framework Version (afw_components_) header.
+ * @brief Generated version macros for prefix `afw_components_`.
  */
 
 

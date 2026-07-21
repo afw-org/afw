@@ -18,7 +18,7 @@
 
 /**
  * @file afw_utf8.h
- * @brief AFW String functions.
+ * @brief UTF-8 string types and public string helpers.
  *
  * This is the header file for AFW String functions.
  */

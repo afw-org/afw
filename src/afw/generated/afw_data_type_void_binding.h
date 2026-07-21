@@ -35,7 +35,7 @@
 
 /**
  * @file afw_data_type_void_binding.h
- * @brief Adaptive data type void header.
+ * @brief Generated header for adaptive data type `void`.
  */
 
 AFW_BEGIN_DECLARES

@@ -19,7 +19,7 @@
 
 /**
  * @file afw_command_strings.c
- * @brief Adaptive Framework builtin objects.
+ * @brief Generated string/const value definitions for prefix `afw_command_`.
  */
 
 #include "afw.h"

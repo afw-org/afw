@@ -9,7 +9,7 @@
 
 /**
  * @file afw_request_handler.c
- * @brief Adaptive Framework Request Handler
+ * @brief Request handler director and handler registration.
  *
  */
 

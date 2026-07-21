@@ -35,7 +35,7 @@
 
 /**
  * @file afw_data_type_array_binding.h
- * @brief Adaptive data type array header.
+ * @brief Generated header for adaptive data type `array`.
  */
 
 AFW_BEGIN_DECLARES

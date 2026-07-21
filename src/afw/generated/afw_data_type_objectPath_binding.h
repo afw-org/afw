@@ -35,7 +35,7 @@
 
 /**
  * @file afw_data_type_objectPath_binding.h
- * @brief Adaptive data type objectPath header.
+ * @brief Generated header for adaptive data type `objectPath`.
  */
 
 AFW_BEGIN_DECLARES

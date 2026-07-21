@@ -22,7 +22,7 @@
 
 /**
  * @file afw_yaml_strings.h
- * @brief Adaptive Framework (afw_yaml_) strings header.
+ * @brief Generated string constants header for prefix `afw_yaml_`.
  */
 
 #include "afw_interface.h"

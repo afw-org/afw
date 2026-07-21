@@ -35,7 +35,7 @@
 
 /**
  * @file afw_data_type_base64Binary_binding.h
- * @brief Adaptive data type base64Binary header.
+ * @brief Generated header for adaptive data type `base64Binary`.
  */
 
 AFW_BEGIN_DECLARES

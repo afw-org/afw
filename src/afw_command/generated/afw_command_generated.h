@@ -22,7 +22,7 @@
 
 /**
  * @file afw_command_generated.h
- * @brief Adaptive Framework register generated (afw_command) header.
+ * @brief Generated register/API header for srcdir `afw_command`.
  */
 
 #include "afw_minimal.h"

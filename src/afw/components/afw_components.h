@@ -17,8 +17,8 @@
  */
 
 /**
- *  \file afw_components.h
- *  \brief UI components.
+ * @file afw_components.h
+ * @brief UI component object identities used by the admin app.
  */
 
 AFW_BEGIN_DECLARES

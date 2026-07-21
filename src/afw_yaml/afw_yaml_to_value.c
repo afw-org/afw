@@ -7,9 +7,8 @@
  */
 
 /**
- * @file afw_yaml.c
- * @brief AFW yaml conversion functions.
- *
+ * @file afw_yaml_to_value.c
+ * @brief YAML decode into adaptive values.
  */
 
 #include "afw.h"

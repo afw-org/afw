@@ -12,7 +12,7 @@
 
 /**
  * @file afw_curl_internal.h
- * @brief Adaptive Framework CURL Internal Header  
+ * @brief Internal curl easy-handle and request structures.
  */
 
 #include "afw_minimal.h"

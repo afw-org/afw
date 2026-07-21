@@ -8,7 +8,7 @@
 
 /**
  * @file afw_query_criteria.c
- * @brief AFW Query criteria functions.
+ * @brief Query criteria parse, RQL support, and filter helpers.
  */
 
 #include "afw_internal.h"

@@ -19,7 +19,7 @@
 
 /**
  * @file afw_adapter_add.h
- * @brief Adaptive Framework adapter add object 
+ * @brief Adapter add-object convenience API.
  *
  * Contributes to @ref afw_adapter.
  */

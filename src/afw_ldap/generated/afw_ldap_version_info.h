@@ -22,7 +22,7 @@
 
 /**
  * @file afw_ldap_version_info.h
- * @brief Adaptive Framework Version (afw_ldap_) header.
+ * @brief Generated version macros for prefix `afw_ldap_`.
  */
 
 

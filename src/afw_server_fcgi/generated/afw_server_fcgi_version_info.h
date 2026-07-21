@@ -22,7 +22,7 @@
 
 /**
  * @file afw_server_fcgi_version_info.h
- * @brief Adaptive Framework Version (afw_server_fcgi_) header.
+ * @brief Generated version macros for prefix `afw_server_fcgi_`.
  */
 
 

@@ -35,7 +35,7 @@
 
 /**
  * @file afw_data_type_xpathExpression_binding.h
- * @brief Adaptive data type xpathExpression header.
+ * @brief Generated header for adaptive data type `xpathExpression`.
  */
 
 AFW_BEGIN_DECLARES

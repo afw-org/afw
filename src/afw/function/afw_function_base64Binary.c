@@ -8,7 +8,7 @@
 
 /**
  * @file afw_function_base64Binary.c
- * @brief afw_function_execute_* functions for base64Binary.
+ * @brief Adaptive function execute implementations for category `base64Binary`.
  */
 
 #include "afw_internal.h"

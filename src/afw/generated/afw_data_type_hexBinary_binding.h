@@ -35,7 +35,7 @@
 
 /**
  * @file afw_data_type_hexBinary_binding.h
- * @brief Adaptive data type hexBinary header.
+ * @brief Generated header for adaptive data type `hexBinary`.
  */
 
 AFW_BEGIN_DECLARES

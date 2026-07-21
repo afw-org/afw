@@ -22,7 +22,7 @@
 
 /**
  * @file afw_yaml_version_info.h
- * @brief Adaptive Framework Version (afw_yaml_) header.
+ * @brief Generated version macros for prefix `afw_yaml_`.
  */
 
 

@@ -18,7 +18,7 @@
 
 /**
  * @file afw_atomic.h
- * @brief Adaptive Framework atomic operations
+ * @brief Atomic load/store and compare-exchange helpers.
  */
 
 AFW_BEGIN_DECLARES

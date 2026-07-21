@@ -17,8 +17,8 @@
  */
 
 /**
- * @file afw_pool.h
- * @brief Adaptive Framework memory pool support header.
+ * @file afw_thread.h
+ * @brief Thread, mutex, and thread-start helpers.
  */
 
 AFW_BEGIN_DECLARES

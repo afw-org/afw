@@ -8,8 +8,8 @@
 
 
 /**
- * @file afw_log.c
- * @brief Implementation of afw_log interface for log director
+ * @file afw_log_file.c
+ * @brief File log type implementation (write log lines to a path).
  */
 
 #include "afw_internal.h"

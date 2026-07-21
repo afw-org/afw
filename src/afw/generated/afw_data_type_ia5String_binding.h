@@ -35,7 +35,7 @@
 
 /**
  * @file afw_data_type_ia5String_binding.h
- * @brief Adaptive data type ia5String header.
+ * @brief Generated header for adaptive data type `ia5String`.
  */
 
 AFW_BEGIN_DECLARES

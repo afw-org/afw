@@ -20,7 +20,7 @@
 
 /**
  * @file afw_environment_internal.h
- * @brief Internal header for AFW environment.
+ * @brief Internal environment structures and registry helpers.
  */
 
 AFW_BEGIN_DECLARES

@@ -22,7 +22,7 @@
 
 /**
  * @file afw_data_type_bindings.h
- * @brief Adaptive Framework core data type bindings header.
+ * @brief Generated core adaptive data type bindings header.
  */
 
 #include "afw_data_type_any_binding.h"

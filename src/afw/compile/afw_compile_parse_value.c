@@ -8,7 +8,7 @@
 
 /**
  * @file afw_compile_parse_value.c
- * @brief Adaptive Framework Compiler Parser.
+ * @brief Compiler parser for Adaptive values (literals, productions).
  */
 
 #include "afw_internal.h"

@@ -22,7 +22,7 @@
 
 /**
  * @file afw_function_bindings.h
- * @brief Adaptive Framework core adaptive function bindings header.
+ * @brief Generated adaptive function bindings header for prefix `afw_`.
  */
 
 #include "afw_declare_helpers.h"

@@ -8,7 +8,7 @@
 
 /**
  * @file afw_function_higher_order_array.c
- * @brief afw_function_execute_* functions for higher_order_array.
+ * @brief Adaptive function execute implementations for category `higher_order_array`.
  */
 
 #include "afw_internal.h"

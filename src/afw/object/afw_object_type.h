@@ -18,7 +18,7 @@
 
 /**
  * @file afw_object_type.h
- * @brief Object type helpers.
+ * @brief Object type helpers for property types and validation.
  */
 
 AFW_BEGIN_DECLARES

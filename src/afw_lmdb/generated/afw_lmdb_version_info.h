@@ -22,7 +22,7 @@
 
 /**
  * @file afw_lmdb_version_info.h
- * @brief Adaptive Framework Version (afw_lmdb_) header.
+ * @brief Generated version macros for prefix `afw_lmdb_`.
  */
 
 

@@ -22,7 +22,7 @@
 
 /**
  * @file afw_lmdb_declare_helpers.h
- * @brief Adaptive Framework declare helpers for afw_lmdb_
+ * @brief Generated declare/define helpers for prefix `afw_lmdb_`.
  */
 
 

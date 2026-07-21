@@ -18,7 +18,7 @@
 
 /**
  * @file afw_compile_internal.h
- * @brief Adaptive Framework Compiler Internal.
+ * @brief Internal compiler state, tokens, and parse helpers.
  */
 
 AFW_BEGIN_DECLARES

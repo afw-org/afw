@@ -9,7 +9,7 @@
 
 /**
  * @file afw_request.c
- * @brief AFW request Support
+ * @brief Request helpers for HTTP-like adaptive request handling.
  */
 
 #include "afw_internal.h"

@@ -59,7 +59,9 @@ def generated_h(options):
     with nfc.open(options['generated_dir_path'] + filename, mode='w') as fd:
         c.write_h_prologue(fd, options['generated_by'], 
                            'Adaptive Framework Register Generated (' + srcdir + ') Header', copyright, filename)
-        c.write_doxygen_file_section(fd, filename, 'Adaptive Framework register generated (' + srcdir + ') header.')
+        c.write_doxygen_file_section(
+            fd, filename,
+            'Generated register/API header for srcdir `' + srcdir + '`.')
 
         fd.write('\n#include "afw_minimal.h"\n')
 
@@ -112,7 +114,10 @@ def generated_version_h(options):
     with nfc.open(options['generated_dir_path'] + filename, mode='w') as fd:
         c.write_h_prologue(fd, options['generated_by'], 
                            'Adaptive Framework Version (' + options['prefix'] + ') Header', copyright, filename)
-        c.write_doxygen_file_section(fd, filename, 'Adaptive Framework Version (' + options['prefix'] + ') header.')
+        c.write_doxygen_file_section(
+            fd, filename,
+            'Generated version macros for prefix `'
+            + options['prefix'] + '`.')
         fd.write('\n\n')
 
         if not options['core']:
@@ -148,7 +153,10 @@ def generated_c(options):
     with nfc.open(options['generated_dir_path'] + filename, mode='w') as fd:
         c.write_c_prologue(fd, options['generated_by'],
             'Adaptive Framework Register Generated (' + options['prefix'] + ')', copyright)
-        c.write_doxygen_file_section(fd, filename, 'Adaptive Framework register generated (' + options['prefix'] + ').')
+        c.write_doxygen_file_section(
+            fd, filename,
+            'Generated register implementation for `'
+            + options['srcdir'] + '`.')
         fd.write('\n')
 
         fd.write('#include "afw.h"\n')
@@ -237,7 +245,48 @@ def generated_c(options):
 
                 cfile = nfc.read_path(options['generate_dir_path'] +  'manifest/' + registry_type + '/' + key)
                 with nfc.open(options['generated_dir_path'] + filename, mode='w') as fd:
-                    fd.write(cfile)
+                    # Manifest sources are often bare C snippets (or snippets
+                    # with a Doxygen block naming the *source* file). Always
+                    # emit a generated TU header using the real output name,
+                    # then append the body with any leading @file section
+                    # stripped so Doxygen does not see a mismatched @file.
+                    afw_package = package.get_afw_package(options)
+                    copyright = afw_package.get('copyright')
+                    title = (
+                        'Register ' + registry_type + ' `'
+                        + key[:-2] + '` for ' + options['srcdir'])
+                    c.write_copyright(fd, title, copyright)
+                    c.write_doxygen_file_section(
+                        fd, filename,
+                        'Generated environment register for '
+                        + registry_type + ' `' + key[:-2]
+                        + '` (' + options['srcdir'] + ').')
+                    fd.write('\n')
+                    body = cfile.lstrip('\n')
+                    # Drop a leading Doxygen file section from the snippet.
+                    if body.lstrip().startswith('/**'):
+                        end = body.find('*/')
+                        if end != -1:
+                            head = body[:end + 2]
+                            if '@file' in head or '\\file' in head:
+                                body = body[end + 2:].lstrip('\n')
+                    # Drop a leading license/copyright block if present so we
+                    # do not double-header the generated file.
+                    if body.startswith('// See the ') or body.startswith('/*'):
+                        if body.startswith('// See the '):
+                            nl = body.find('\n')
+                            rest = body[nl + 1:] if nl != -1 else body
+                            if rest.lstrip().startswith('/*'):
+                                end = rest.find('*/')
+                                if end != -1:
+                                    body = rest[end + 2:].lstrip('\n')
+                            else:
+                                body = rest.lstrip('\n')
+                        elif body.startswith('/*') and 'Copyright' in body[:400]:
+                            end = body.find('*/')
+                            if end != -1:
+                                body = body[end + 2:].lstrip('\n')
+                    fd.write(body)
 
 
 def special_merge_tree(fromdir, destdir):

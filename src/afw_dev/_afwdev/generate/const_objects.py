@@ -333,7 +333,9 @@ def generate(generated_by, prefix, object_dir_path,
     msg.info('Generating ' + filename)
     with nfc.open(generated_dir_path + filename, mode='w') as fd:
         c.write_h_prologue(fd, generated_by, 'Adaptive Framework Builtin Objects Header', copyright, filename)
-        c.write_doxygen_file_section(fd, filename, 'Adaptive Framework builtin objects header.')
+        c.write_doxygen_file_section(
+            fd, filename,
+            'Generated header for builtin const adaptive objects.')
         fd.write('\n#include "afw_interface.h"\n')
         fd.write('\n\n/**\n')
         fd.write(' * @brief Get array of ' + prefix + ' const objects. \n')
@@ -346,7 +348,9 @@ def generate(generated_by, prefix, object_dir_path,
     msg.info('Generating ' + filename)
     with nfc.open(generated_dir_path + filename, mode='w') as fd:
         c.write_c_prologue(fd, generated_by, 'Adaptive Framework Const', copyright)
-        c.write_doxygen_file_section(fd, filename, 'Adaptive Framework builtin objects.')
+        c.write_doxygen_file_section(
+            fd, filename,
+            'Generated builtin const adaptive objects.')
         fd.write('\n')
         fd.write('#include "afw.h"\n')
         fd.write('#include "' + prefix + 'generated.h"\n')

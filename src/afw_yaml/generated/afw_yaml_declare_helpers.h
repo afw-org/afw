@@ -22,7 +22,7 @@
 
 /**
  * @file afw_yaml_declare_helpers.h
- * @brief Adaptive Framework declare helpers for afw_yaml_
+ * @brief Generated declare/define helpers for prefix `afw_yaml_`.
  */
 
 
