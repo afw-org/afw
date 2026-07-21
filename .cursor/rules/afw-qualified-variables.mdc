@@ -53,6 +53,23 @@ Frame `secure` = how the entry was **pushed** (never push client context as trus
 - Model `on*` hooks document bags via generate OT **`contextType`** and short property descriptions (`afw-model-adapter`). Optional `qualifier("current")` is debug/tools only.
 - **custom::** multi-layer redesign still deferred (residual names under property-level `on*` risk) — see beta-backlog.
 
+## `current::` vs `custom::` (product rule)
+
+| Qualifier | Role |
+|-----------|------|
+| **`current::`** | Framework **operation context** for this evaluate. **Name set is per context** (auth ≠ model ≠ log ≠ index). |
+| **`custom::`** | Conf maintainer **extra variables** for expressions/templates/scripts **within that configured thing**. Compile at conf load when hybrids; evaluate at use. Not a global “every adapter has custom.” |
+
+Push requires a **non-empty** qualifier name (`"Qualifier required"` if empty). Stale docs that mention empty-string qualifier for “unqualified variables” are residual.
+
+## Runtime lookup by name
+
+- Compiled locals: **`symbol_reference`** → frame depth + **index** (not name search).
+- Adaptive **`variable_get(name)`** / `variable_exists` / `variable_is_not_null`: optional `qualifier::name`; unqualified uses **by-name** scope walk; qualified uses qualifier stack.
+- Index filter/value: use **`current::object`** (or `variable_get("current::object")`), not bare `object` / `variable_get("object")` unless a lexical `object` exists.
+
+Index eval push: **`afw-adapter-index`**.
+
 ## Key files
 
 | Path | Role |

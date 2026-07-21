@@ -22,14 +22,20 @@ def index_create(session, key, adapterId=None, value=None, objectType=None, filt
 
         key (str): Name of the property index to be created.
 
-        value (str): Expression to calculate the index value(s).
+        value (str): Adaptive script (expression-like; must return a value)
+        used to calculate the index value(s). While evaluating,
+        current::object, current::objectId, current::objectType, and
+        current::key are available (issue #54). If omitted, the property named
+        by key is indexed.
 
-        objectType (str): Object Type(s) this index may apply to.
+        objectType (list): Object type id(s) this index may apply to.
 
-        filter (str): Expression to determine if this index applies to a
-        particular object.
+        filter (str): Adaptive script that must return a boolean to decide
+        whether this index applies to a particular object. Uses the same
+        current:: variables as value (issue #54). If omitted, the filter is
+        always true.
 
-        options (str): Indexing options.
+        options (list): Indexing options.
 
         retroactive (bool): Retroactively generate indexes for existing
         objects.

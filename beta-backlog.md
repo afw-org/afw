@@ -71,23 +71,45 @@ _(Paste raw notes here first; sort into themes later.)_
 
 ### Indexes / adapters (incl. issue #54)
 
-**Status:** partial / planned  
-**Code:** `src/afw/adapter/afw_adapter_impl_index.c`, LMDB `src/afw_lmdb/afw_lmdb_index.c`, functions `index_create` / `index_list` / `index_remove`.
+**Status:** core `current::` eval on branch `Issue-#54` (see also rule **`afw-adapter-index`**). Partial product story — LMDB create path still broken.  
+**Code:** `src/afw/adapter/afw_adapter_impl_index.c`, LMDB `afw_lmdb_index*`, session hooks; Adaptive `index_*` are **core**, not LMDB-only functions.
 
-- **#54** — Replace deprecated xctx variable set with modern qualifiers when evaluating index `filter` / `value`.
-  - Issue title says `custom::`; body and some FIXMEs say `current::`. **Decide** surface (likely `current::object` for the object under index; maybe more later).
-  - Old API: `afw_xctx_scope_deprecated_variable_set(afw_s_object, …)` — **commented out**; expressions that used bare `object` no longer get context.
-  - Pattern elsewhere: push qualifier stack, evaluate, restore top (`afw_xctx.h`, logs, models, auth).
-- **Index definitions are configuration**, but not primarily in the adapter conf stanza:
-  - Created via `index_create(...)` (CLI example in `src/afw_lmdb/README.md`).
-  - LMDB persists them under **`indexDefinitions`** on the adapter’s **internal config** object (Primary DB, UUID 0).
-- **#57** — Tests for core index interface (LMDB is the main consumer). Natural companion to #54.
-- **Compile discipline:** house style is compile adaptive syntax **as few times as possible**, hold immutable `afw_value_t`, evaluate with `afw_value_evaluate`. Index helpers today **recompile** filter/value strings on each try — old pattern; prefer compile-at-definition / first open when touching this code (not strictly required to close #54 alone).
+#### How indexes actually work
 
-**Authorship / archaeology (not ownership for ego — for “who knew this”):**
+- **Purpose:** secondary keys so sargable `retrieve_objects` can avoid full dump (`Index#objectType#key` DBs: value → object id).
+- **Only LMDB** implements `get_index_interface` today.
+- **Definitions** live **in the LMDB file** (`internalConfig.indexDefinitions` @ Primary UUID 0), managed by **`index_create` / list / remove** — not adapter conf `env`/`limits`.
+- **Filter/value** are script **source strings** on those definitions; core still **compiles each try** (`compile_type_script` + evaluate).
+- **Without indexes:** LMDB CRUD/journal still work (existing tests). Empty definitions → index walk no-op.
 
-- Index interface + impl helpers, LMDB, curl, admin app, docs, parts of afwdev build/test: **Jeremy**.
-- Most of core C runtime: **mgg** (and others). This GitHub repo was imported from a working tree; **git “created by” is not reliable authorship**.
+#### #54 (this work)
+
+- **`index_try`** pushes **`current::object` / `objectId` / `objectType` / `key`** for filter/value (auth-style `push_cb_variables` + stack restore).
+- Old ambient unqualified `object` push was already dead; we did not remove a live shim.
+- Migration: bare `object` / `variable_get("object")` for *index* context → `current::object` / `variable_get("current::object")` (lexical `object` still works in normal scripts).
+- No conf **`custom`** for LMDB indexes (custom = maintainer bags where compiled units run, e.g. model).
+- Smoke `src/afw_lmdb/tests/adapter/index_current.as` **skipped**.
+- `whats_new.md`: honest **partial** note only.
+
+#### Still to do (pre-existing; @Jeremy on #54)
+
+- Session indexer **`txn == NULL`** → save_config **EINVAL** on create.
+- Retroactive create + write txn **hang**.
+- Unskip e2e / full **#57** tests after create works.
+- Compile-once filter/value (hygiene).
+
+#### `current::` vs `custom::`
+
+| Qualifier | Role |
+|-----------|------|
+| **`current::`** | Framework operation context; **names per context** (auth ≠ model ≠ index). |
+| **`custom::`** | Conf author extras for scripts in that thing; compile at load when hybrids. |
+
+#### Authorship (import ≠ git blame)
+
+- Indexes/LMDB/curl/admin/docs/parts of afwdev: **Jeremy**. Core runtime: **mgg** et al. Repo import attributes many files to first committer in this remote.
+
+Durable agent rule: [`.cursor/rules/afw-adapter-index.mdc`](.cursor/rules/afw-adapter-index.mdc).
 
 ### Adaptive syntax: expressions → scripts → multi-syntax
 
@@ -174,3 +196,9 @@ _Not a commitment — fill in as “must be true before we call it beta.”_
 | 2026-07-20 | Created; seeded from index/#54 discussion, expression vs script context, compile/value model, pure-fold plan, branch plan, doc roles. |
 | 2026-07-20 | Doc preference: long-term developer knowledge in code; this file is dump/source for later fold-in. |
 | 2026-07-20 | Session hygiene; wrap-up note for #54 explore-only session. |
+| 2026-07-20 | #54: adapter/model `custom::` vs index `current::`; model context as reference for few current vars. |
+| 2026-07-20 | `custom::` = conf maintainer’s extra vars for exprs/templates/scripts in that thing. |
+| 2026-07-20 | custom vars compiled at conf read; evaluate at use (not recompile each time). |
+| 2026-07-20 | #54 current:: surface: object, objectId, objectType, key. |
+| 2026-07-20 | #54 implemented on Issue-#54 (uncommitted): index_try current:: push + docs/test. |
+| 2026-07-21 | #54 docs: soft whats_new; afw-adapter-index rule; AGENTS/extensions/qualified-vars; how indexes work. |

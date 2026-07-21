@@ -30842,6 +30842,12 @@ afw_self_v_zz__228 = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__2280 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__2280)
+};
+
+const afw_value_string_t
 afw_self_v_zz__229 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__229)
@@ -40094,12 +40100,6 @@ afw_self_v_zz__Exponent_value_ = {
 };
 
 const afw_value_string_t
-afw_self_v_zz__Expression_to_calculate_the_index_value_s__ = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__Expression_to_calculate_the_index_value_s__)
-};
-
-const afw_value_string_t
 afw_self_v_zz__Extension_Id = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Extension_Id)
@@ -42446,12 +42446,6 @@ afw_self_v_zz__Object_Type = {
 };
 
 const afw_value_string_t
-afw_self_v_zz__Object_Type_s__this_index_may_apply_to_ = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__Object_Type_s__this_index_may_apply_to_)
-};
-
-const afw_value_string_t
 afw_self_v_zz__Object_Types = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Object_Types)
@@ -42611,6 +42605,12 @@ const afw_value_string_t
 afw_self_v_zz__Object_type_id_of_the_instance_parameters_object_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Object_type_id_of_the_instance_parameters_object_)
+};
+
+const afw_value_string_t
+afw_self_v_zz__Object_type_id_s__this_index_may_apply_to_ = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__Object_type_id_s__this_index_may_apply_to_)
 };
 
 const afw_value_string_t

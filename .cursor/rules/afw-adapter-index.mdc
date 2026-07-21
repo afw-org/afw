@@ -1,0 +1,72 @@
+---
+description: Adapter index interface (core helpers + LMDB) — definitions, current:: eval, create/txn residuals (#54, #57)
+globs: src/afw/adapter/afw_adapter_impl_index*,src/afw/function/afw_function_indexes.c,src/afw/generate/objects/_AdaptiveFunctionGenerate_/index_*.json,src/afw_lmdb/afw_lmdb_index*,src/afw_lmdb/afw_lmdb_adapter_session.c,src/afw_lmdb/tests/adapter/**
+alwaysApply: false
+---
+
+# Adapter indexes (core + LMDB)
+
+Optional secondary indexes for faster `retrieve_objects` when criteria are **sargable**. **Only LMDB** implements `afw_adapter_session_get_index_interface` today; other adapters return NULL. Core owns the Adaptive API and eval helpers.
+
+## Split of responsibility
+
+| Layer | Role |
+|-------|------|
+| **Core** `index_create` / `index_list` / `index_remove` | Adaptive functions (`category: indexes`) |
+| **Core** `afw_adapter_impl_index_*` | Definition lifecycle, filter/value compile+eval, sargable/query helpers |
+| **LMDB** `afw_lmdb_index.c` + session hooks | Persist definitions, maintain `Index#…` DBs, call core on add/reindex/unindex/retrieve |
+
+LMDB-only Adaptive functions (`reader_check`, `reader_list`) are **not** index-related (reader lock table maintenance).
+
+## Where definitions live
+
+**Not** in the normal adapter conf stanza (`env` / `limits`). Stored **inside the LMDB environment**:
+
+- Object: adapter **`internalConfig`** (Primary DB, UUID all zeros, UBJSON)
+- Property: **`indexDefinitions`** — map of key → `{ value?, filter?, objectType?, options? }`
+- Created/updated via **`index_create` / `index_remove`** (e.g. `afw -x "index_create(...)"` is just CLI eval of Adaptive)
+
+Index **data** (lookup keys) live in named DBs: `Index#<objectType>#<key>` (or `Index#<key>`). LMDB key = computed index value (utf8); data = object identity.
+
+## Filter / value evaluation (issue #54)
+
+- Strings on the definition are compiled with **`afw_compile_type_script`** and evaluated with **`afw_value_evaluate`** (still **recompile every try** — compile-once is backlog).
+- Expression-like: must **return** a value (filter → boolean; value → scalar or array of scalars).
+- During eval, **`afw_adapter_impl_index_try`** pushes **`current::`** (stack restore in `AFW_TRY`/`FINALLY`):
+
+| `current::` | Meaning |
+|-------------|---------|
+| `object` | Object under index |
+| `objectId` | Object id |
+| `objectType` | Object type id |
+| `key` | Definition key (query name / default property) |
+
+- Pattern: `afw_context_push_cb_variables(afw_s_current, …)` (auth-style), not model-scale context.
+- If **`value`** is omitted → index property named **`key`** (no script; no need for `current::`).
+- **Do not** put the indexed object on **`custom::`**. `custom::` = conf maintainer bags for components that run authored scripts (e.g. model). Ambient unqualified **`object`** (old scope push) is gone; bare `object` / `variable_get("object")` only works for **lexical** `object`, not index context.
+
+Migration for old scripts: `object` / `variable_get("object")` → `current::object` / `variable_get("current::object")`.
+
+## Default LMDB without indexes
+
+CRUD + dump retrieve work with **empty** `indexDefinitions` (indexer walk is no-op). Tests under `tests/adapter/` / `tests/journal/` do **not** require indexes.
+
+## Known residuals (do not “fix” as #54 alone)
+
+- Session indexer often has **`txn == NULL`** → `update_index_definitions` / `save_config` can **EINVAL**.
+- **Retroactive** `index_create` (full retrieve under write txn) can **hang**.
+- Smoke `tests/adapter/index_current.as` is **skipped** until create path is fixed; track with **#57**.
+- Qualifier stack **requires** non-empty qualifier name on push (empty “unqualified qualifier” rejected).
+
+## Key files
+
+| Path | Role |
+|------|------|
+| `src/afw/adapter/afw_adapter_impl_index.c` | Core helpers; `current::` push in `index_try` |
+| `src/afw/function/afw_function_indexes.c` | `index_*` execute |
+| `src/afw_lmdb/afw_lmdb_index.c` | LMDB index interface impl |
+| `src/afw_lmdb/afw_lmdb_adapter_session.c` | Wire indexer into CRUD/retrieve |
+| `src/afw_lmdb/README.md` | Operator `index_create` example |
+| `beta-backlog.md` | Maintainer notes / beta residuals |
+
+Related: `afw-qualified-variables`, `afw-extensions` (lmdb), `afw-adaptive-script`, issue **#54** / **#57**.

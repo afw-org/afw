@@ -19,24 +19,26 @@
         },
         {
             "dataType": "string",
-            "description": "Expression to calculate the index value(s).",
+            "description": "Adaptive script (expression-like; must return a value) used to calculate the index value(s). While evaluating, current::object, current::objectId, current::objectType, and current::key are available (issue #54). If omitted, the property named by key is indexed.",
             "name": "value",
             "optional": true
         },
         {
-            "dataType": "string",
-            "description": "Object Type(s) this index may apply to.",
+            "dataType": "array",
+            "dataTypeParameter": "string",
+            "description": "Object type id(s) this index may apply to.",
             "name": "objectType",
             "optional": true
         },
         {
             "dataType": "string",
-            "description": "Expression to determine if this index applies to a particular object.",
+            "description": "Adaptive script that must return a boolean to decide whether this index applies to a particular object. Uses the same current:: variables as value (issue #54). If omitted, the filter is always true.",
             "name": "filter",
             "optional": true
         },
         {
-            "dataType": "string",
+            "dataType": "array",
+            "dataTypeParameter": "string",
             "description": "Indexing options.",
             "name": "options",
             "optional": true
