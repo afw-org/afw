@@ -96516,28 +96516,28 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__0_11_0 \
-    "0.11.0"
+#define AFW_Q_zz__0_12_0 \
+    "0.12.0"
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz__0_11_0 */
-#define afw_s_zz__0_11_0 \
-    (&afw_self_v_zz__0_11_0.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz__0_12_0 */
+#define afw_s_zz__0_12_0 \
+    (&afw_self_v_zz__0_12_0.internal)
 
-/** @brief 'afw_utf8_t' for AFW_Q_zz__0_11_0 */
-#define afw_self_s_zz__0_11_0 \
-    (afw_self_v_zz__0_11_0.internal)
+/** @brief 'afw_utf8_t' for AFW_Q_zz__0_12_0 */
+#define afw_self_s_zz__0_12_0 \
+    (afw_self_v_zz__0_12_0.internal)
 
-/** @brief 'afw_value_string_t' for AFW_Q_zz__0_11_0 */
+/** @brief 'afw_value_string_t' for AFW_Q_zz__0_12_0 */
 extern const afw_value_string_t \
-    afw_self_v_zz__0_11_0;
+    afw_self_v_zz__0_12_0;
 
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__0_11_0 */
-#define afw_z_zz__0_11_0 \
-    (afw_self_v_zz__0_11_0.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__0_12_0 */
+#define afw_z_zz__0_12_0 \
+    (afw_self_v_zz__0_12_0.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_Q_zz__0_11_0 */
-#define afw_v_zz__0_11_0 \
-    (&afw_self_v_zz__0_11_0.pub)
+/** @brief 'const afw_value_t *' for AFW_Q_zz__0_12_0 */
+#define afw_v_zz__0_12_0 \
+    (&afw_self_v_zz__0_12_0.pub)
 
 
 

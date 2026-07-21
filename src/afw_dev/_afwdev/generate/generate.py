@@ -20,6 +20,7 @@
 
 import glob
 import os
+import re
 import sys
 import shutil
 import importlib
@@ -315,6 +316,45 @@ def sort_use_id_cb(obj):
     return obj['_meta_']['objectId']
 
 
+def update_doxyfile_project_number(options):
+    """Set Doxyfile PROJECT_NUMBER from afw-package.json version.
+
+    Kept in the package root (not under generated/) so git and source
+    distributions show the correct Doxygen project number. Only the
+    PROJECT_NUMBER line is rewritten.
+    """
+    doxyfile_path = options['afw_package_dir_path'] + 'Doxyfile'
+    if not os.path.exists(doxyfile_path):
+        return
+
+    afw_package = package.get_afw_package(options)
+    version = afw_package.get('version')
+    if not version:
+        msg.error_exit('version property missing in afw-package.json')
+
+    with nfc.open(doxyfile_path, 'r') as fd:
+        text = fd.read()
+
+    new_text, n = re.subn(
+        r'(?m)^(PROJECT_NUMBER\s*=\s*).*$',
+        r'\g<1>' + version,
+        text,
+        count=1,
+    )
+    if n == 0:
+        msg.warning(
+            'Doxyfile has no PROJECT_NUMBER line; not updating for version '
+            + version)
+        return
+    if new_text == text:
+        msg.info('Doxyfile PROJECT_NUMBER already ' + version)
+        return
+
+    with nfc.open(doxyfile_path, 'w') as fd:
+        fd.write(new_text)
+    msg.info('Updated Doxyfile PROJECT_NUMBER to ' + version)
+
+
 def root_generate(options):
 
     # Output will go in the source director's generated directory.  Make sure
@@ -332,6 +372,9 @@ def root_generate(options):
     
     # Generate json_schema files
     json_schema.generate(options)
+
+    # Keep Doxyfile project number aligned with package version (source tree).
+    update_doxyfile_project_number(options)
 
 
 # Freshly generated generated directory from objects in object store directory
