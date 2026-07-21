@@ -9,7 +9,15 @@
 
 /**
  * @file afw_curl_extension.c
- * @brief Implementation of afw_extension interface for afw_curl
+ * @brief afw_extension implementation for the curl extension.
+ *
+ * Pattern: set AFW_IMPLEMENTATION_ID, include afw_extension_impl_declares.h,
+ * AFW_ENVIRONMENT_DEFINE_EXTENSION_IMPL(), implement initialize (call
+ * generated register + any one-time setup). Closet skeleton for this
+ * interface is under core generated/interface_closet/; afwdev scaffolds
+ * copy and substitute for new extensions.
+ *
+ * See @ref afw_dev_implementing.
  */
 
 #include "afw.h"

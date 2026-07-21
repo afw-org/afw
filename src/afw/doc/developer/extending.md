@@ -37,8 +37,17 @@ Same idea: `add-content-type`, `add-log-type`, or `add-core-interface` for a
 single interface. Always start from afwdev scaffolds unless you are copying
 an existing extension deliberately.
 
+## Study an existing extension
+
+**`src/afw_curl/`** is a good first read for a functions-focused extension
+(extension initialize, function execute files, manifest error RV decoder).
+Adapter-type extensions (e.g. `afw_vfs`, `afw_ldap`) add factory/session
+impls from `add-adapter-type` skeletons.
+
 ## Related
 
 - @ref afw_dev_implementing  
 - @ref afw_included_extensions  
 - Extension layout notes in `.cursor/rules/afw-extensions.mdc`  
+- Public map header: `src/afw_curl/afw_curl.h`  
+

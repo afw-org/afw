@@ -8,7 +8,11 @@
 
 /**
  * @file afw_curl_function_http.c
- * @brief afw_curl_function_execute_* functions for http.
+ * @brief Adaptive function execute implementations for HTTP (curl extension).
+ *
+ * Hand implementations of generate/objects function metadata for category
+ * http. Declares live in generated function bindings; do not edit closet
+ * skeletons for production.
  */
 
 #include "afw.h"

@@ -5,8 +5,8 @@ Implementing interfaces {#afw_dev_implementing}
 
 ## Prefer afwdev over empty files
 
-afwdev **make-*** and **add-*** subcommands create directories and copy
-**skeletons** with substitutions and `@todo` checklists:
+afwdev `make-*` and `add-*` subcommands create directories and copy
+skeletons with substitutions and `@todo` checklists:
 
 | Subcommand | Typical use |
 |------------|-------------|

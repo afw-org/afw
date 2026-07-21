@@ -557,15 +557,25 @@
  * The afw command-line tool and related command infrastructure.
  */
 
-/** @defgroup afw_included_extensions Extensions
+/**
+ * @defgroup afw_included_extensions Extensions
  *
- * Loadable extensions (afw_curl, afw_ldap, afw_lmdb, afw_ubjson, afw_vfs, afw_yaml, etc.).
+ * Loadable extensions (afw_curl, afw_ldap, afw_lmdb, afw_ubjson, afw_vfs,
+ * afw_yaml, etc.).
  *
  * Extensions register the same kinds of things core does (adapter types,
  * content types, functions, etc.) and are first-class after loading.
  *
- * See afw-extensions rule for per-extension details.
+ * **Golden path to read first:** `src/afw_curl/` — extension initialize,
+ * Adaptive function execute modules, manifest error RV decoder. Public
+ * header `afw_curl.h` maps the layout. For adapter-type extensions, also
+ * read `afw_vfs` or `afw_ldap` (factory/session impls from afwdev
+ * `add-adapter-type` scaffolds).
+ *
+ * New extensions: @ref afw_dev_extending and @ref afw_dev_implementing.
  */
+
+/** @defgroup afw_curl CURL extension @ingroup afw_included_extensions */
 
 /**
  * @defgroup afw_xctx Execution context (xctx)
