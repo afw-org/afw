@@ -1,4 +1,4 @@
 {
     "name": "afw_object",
-    "description": "This is interface used to access the properties of an adaptive object."
+    "description": "Adaptive object: named properties, meta, path, and object-type driven\n      behavior. Prefer afw_object_create* helpers over raw layout; use\n      afw_object_*() macros for get/set/release and related calls.\n      Objects may be const (permanent) or mutable (often via sessions).\n      Meta (afw_object_meta) drives validation and UI; see group afw_object."
 }

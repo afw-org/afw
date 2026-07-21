@@ -62,6 +62,8 @@
 /**
  * @defgroup afw_pool_internal Pool internal
  * @ingroup afw_c_api_internal
+ *
+ * Pool implementation details for libafw only.
  */
 
 /** @} */
@@ -142,6 +144,8 @@
 /**
  * @defgroup afw_environment_internal Environment internal
  * @ingroup afw_c_api_internal
+ *
+ * Environment registry and bootstrap internals for libafw only.
  */
 
 /** @} */
@@ -161,7 +165,11 @@
  * argument data type. Operator functions need
  * `afw_function_internal_prepare_environment` during bootstrap (see
  * environment registration order).
+ *
+ * @{
  */
+
+/** @} */
 
 /**
  * @defgroup afw_object Objects
@@ -182,34 +190,50 @@
 /**
  * @defgroup afw_object_meta Object meta
  * @ingroup afw_object
+ *
+ * Object meta accessors and helpers (objectId, objectType, parentPaths, …).
  */
 /**
  * @defgroup afw_object_path Object path
  * @ingroup afw_object
+ *
+ * Adaptive object path parse/format helpers.
  */
 /**
  * @defgroup afw_object_options Object options
  * @ingroup afw_object
+ *
+ * View/retrieve option bits and helpers.
  */
 /**
  * @defgroup afw_object_type Object type
  * @ingroup afw_object
+ *
+ * Object type definitions and property type helpers.
  */
 /**
  * @defgroup afw_object_view Object view
  * @ingroup afw_object
+ *
+ * Object views over other objects (options, hybrids).
  */
 /**
  * @defgroup afw_object_impl Object impl helpers
  * @ingroup afw_object
+ *
+ * Shared helpers for implementing `afw_object` (and related) interfaces.
  */
 /**
  * @defgroup afw_object_internal Object internal
  * @ingroup afw_c_api_internal
+ *
+ * Object internals for libafw only.
  */
 /**
  * @defgroup afw_object_view_internal Object view internal
  * @ingroup afw_c_api_internal
+ *
+ * Object view internals for libafw only.
  */
 
 /** @} */
@@ -232,14 +256,20 @@
 /**
  * @defgroup afw_adapter_impl Adapter impl helpers
  * @ingroup afw_adapter
+ *
+ * Shared helpers for adapter implementations (create_cede_p, requests, …).
  */
 /**
  * @defgroup afw_adapter_index_impl Adapter index impl
  * @ingroup afw_adapter
+ *
+ * Index definition helpers used by adapters that support indexes (e.g. LMDB).
  */
 /**
  * @defgroup afw_adapter_internal Adapter internal
  * @ingroup afw_c_api_internal
+ *
+ * Adapter internals for libafw only.
  */
 
 /** @} */
@@ -326,6 +356,7 @@
 
 /**
  * @defgroup afw_request_handler Request handler
+ * @ingroup afw_request
  *
  * Request handler interface and director support.
  *
@@ -595,11 +626,15 @@
  *
  * Open helpers and progressive write paths for large responses live here.
  * Distinct from adapter retrieve limits/paging (see retrieve max-objects
- * notes in core-services docs).
+ * notes in core-services docs). Prefer `afw_stream_*` call macros and
+ * open helpers over inventing raw file I/O for response bodies.
+ *
+ * @{
  */
 
 /**
  * @defgroup afw_writer Writer
+ * @ingroup afw_stream
  *
  * Incremental writers used when serializing values (JSON, etc.).
  *
@@ -607,6 +642,8 @@
  * Prefer writer APIs over building giant intermediate strings when
  * streaming output.
  */
+
+/** @} */
 
 /**
  * @defgroup afw_version Version
@@ -842,15 +879,22 @@
  */
 
 /**
- * @defgroup afw_log_impl Log impl helpers @ingroup afw_log
+ * @defgroup afw_log_impl Log impl helpers
+ * @ingroup afw_log
+ *
+ * Shared helpers for implementing log types (afwdev add-log-type).
  */
 
 /**
- * @defgroup afw_log_internal Log internal @ingroup afw_c_api_internal
+ * @defgroup afw_log_internal Log internal
+ * @ingroup afw_c_api_internal
+ *
+ * Log internals for libafw only.
  */
 
 /**
- * @defgroup afw_log_deprecated Deprecated log API @ingroup afw_log
+ * @defgroup afw_log_deprecated Deprecated log API
+ * @ingroup afw_log
  *
  * Compatibility log surface; prefer current log interfaces and AFW_LOG macros.
  */

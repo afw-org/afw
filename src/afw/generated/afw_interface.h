@@ -168,7 +168,12 @@ struct afw_extension_inf_s {
 /**
  * @addtogroup afw_adapter_factory_interface afw_adapter_factory
  *
- * Factory to create an instance of an afw_adapter.
+ * Factory that creates adapter instances of one adapter type id.
+ * Registered with the environment as an adapter_type; conf uses the
+ * factory to construct each named adapter. Call
+ * afw_adapter_factory_create_adapter_cede_p() (macro) rather than
+ * inventing create paths. See group afw_adapter and afwdev
+ * add-adapter-type scaffolds for implementers.
  *
  * @{
  */
@@ -251,7 +256,13 @@ struct afw_adapter_factory_inf_s {
 /**
  * @addtogroup afw_adapter_interface afw_adapter
  *
- * Adapter interface.
+ * Long-lived pluggable object store (or store-like) instance.
+ * Adapters are usually started as services from conf; day-to-day work
+ * happens on an afw_adapter_session created from this instance.
+ * Prefer helpers in afw_adapter.h over calling destroy /
+ * create_adapter_session directly unless you own the lifetime.
+ * Method API: afw_adapter_*() macros. Nested session,
+ * journal, and index interfaces extend the adapter surface.
  *
  * @{
  */
@@ -392,7 +403,7 @@ struct afw_adapter_inf_s {
  * This method should not be called directly unless you are manually
  * managing the lifetime of this adapter. The functions in afw_adapter.h will
  * call this method to create an adapter session instance and will call
- * the session's destroy() method when the session has on more references.
+ * the session's destroy() method when the session has no more references.
  * @param instance Pointer to this adapter instance.
  * @param xctx The execution context (xctx) of caller.
  * @return Pointer to new adapter session instance.
@@ -556,7 +567,12 @@ struct afw_adapter_object_type_cache_inf_s {
 /**
  * @addtogroup afw_adapter_session_interface afw_adapter_session
  *
- * Adapter session interface.
+ * Per-use session on an adapter: retrieve/get/add/modify/replace/delete
+ * objects, optional transactions, and related journal/index hooks.
+ * Sessions are typically short-lived (request or action scope). Prefer
+ * afw_adapter.h helpers that create and release sessions with correct
+ * reference counting. Call methods via afw_adapter_session_*()
+ * macros (e.g. retrieve_objects, get_object).
  *
  * @{
  */
@@ -574,13 +590,12 @@ struct afw_adapter_session_s {
     const afw_adapter_session_inf_t *inf;
 
     /**
-     * Adapter sessions's associated adapter.
+     * This session's associated adapter.
      */
     const afw_adapter_t * adapter;
 
     /**
-     * Adapter sessions's pool. This pool will exist for the life of the adapter
-     * session.
+     * This session's pool. Exists for the life of the adapter session.
      */
     const afw_pool_t * p;
 };
@@ -2347,7 +2362,12 @@ struct afw_authorization_handler_inf_s {
 /**
  * @addtogroup afw_content_type_interface afw_content_type
  *
- * Adaptive Content Type.
+ * Serialization between adaptive values and media-typed bytes (JSON,
+ * YAML, UBJSON, …). Core registers JSON; extensions add others via
+ * environment registration. Selected by content-type / conf for
+ * request and response bodies. Call methods via
+ * afw_content_type_*() macros. See group afw_content_type and
+ * afwdev add-content-type for implementers.
  *
  * @{
  */
@@ -3950,7 +3970,11 @@ struct afw_log_factory_inf_s {
 /**
  * @addtogroup afw_log_interface afw_log
  *
- * Log.
+ * Configurable log destination used by AFW_LOG / environment logging.
+ * Prefer the AFW_LOG macros and environment log configuration over
+ * calling log methods by hand. Priorities are afw_log_priority_t
+ * (see group afw_log). Implement new log types with afwdev add-log-type
+ * scaffolds; call surface is afw_log_*() macros.
  *
  * @{
  */
@@ -4229,7 +4253,11 @@ struct afw_object_setter_inf_s {
 /**
  * @addtogroup afw_object_interface afw_object
  *
- * This is interface used to access the properties of an adaptive object.
+ * Adaptive object: named properties, meta, path, and object-type driven
+ * behavior. Prefer afw_object_create* helpers over raw layout; use
+ * afw_object_*() macros for get/set/release and related calls.
+ * Objects may be const (permanent) or mutable (often via sessions).
+ * Meta (afw_object_meta) drives validation and UI; see group afw_object.
  *
  * @{
  */
@@ -4604,7 +4632,10 @@ struct afw_object_inf_s {
 /**
  * @addtogroup afw_server_interface afw_server
  *
- * Adaptive framework server interface.
+ * Host-facing server that accepts connections or local calls and creates
+ * afw_request instances for handlers. afwfcgi and afw --local implement
+ * this contract. Call methods via afw_server_*() macros.
+ * See group afw_request.
  *
  * @{
  */
@@ -5299,7 +5330,10 @@ struct afw_request_handler_factory_inf_s {
 /**
  * @addtogroup afw_request_handler_interface afw_request_handler
  *
- * Adaptive framework request handler interface.
+ * Handles one class of requests (often adapter REST) after the director
+ * matches uriPrefix. Configured as services; factories create instances.
+ * Call methods via afw_request_handler_*() macros. See group
+ * afw_request_handler under afw_request.
  *
  * @{
  */
@@ -5551,7 +5585,11 @@ struct afw_iterator_inf_s {
 /**
  * @addtogroup afw_request_interface afw_request
  *
- * Adaptive framework request interface.
+ * One HTTP-like request as seen by a host (afwfcgi, afw --local, …).
+ * Carries the request xctx, properties (env/params/headers), and
+ * read/write content callbacks. Handlers receive this instance from the
+ * director. Call methods via afw_request_*() macros. See group
+ * afw_request and afw_request_handler.
  *
  * @{
  */
@@ -5936,7 +5974,12 @@ struct afw_request_inf_s {
 /**
  * @addtogroup afw_stream_interface afw_stream
  *
- * An interface for a stream.
+ * Readable and/or writable byte stream (files, memory, response bodies,
+ * stdio). Open helpers live in stream/file headers; progressive large
+ * response writes also use this path. Optional read_cb/write_cb fields
+ * allow passing the stream into callback-style APIs. Call methods via
+ * afw_stream_*() macros. Distinct from adapter retrieve
+ * limits/paging. See group afw_stream.
  *
  * @{
  */
@@ -6126,7 +6169,12 @@ struct afw_stream_inf_s {
 /**
  * @addtogroup afw_pool_interface afw_pool
  *
- * Adaptive framework pool interface.
+ * Hierarchical memory pool: fast allocate with bulk free on destroy or
+ * release. Most AFW values, objects, and scopes allocate from pools;
+ * subpools scope lifetime under a parent. Prefer afw_pool_create* /
+ * afw_pool_calloc helpers and call macros over managing APR pools by
+ * hand. Do not free individual allocations unless the pool supports it
+ * (free_memory path). See group afw_pool.
  *
  * @{
  */
@@ -6619,7 +6667,13 @@ struct afw_adapter_journal_inf_s {
 /**
  * @addtogroup afw_value_interface afw_value
  *
- * Adaptive value.
+ * Public handle for an adaptive value (`const afw_value_t *`). Callers
+ * must not assume a single C struct body: many kind layouts share this
+ * face (data-type values, blocks, calls, compiled_value, …). Behavior
+ * is selected by inf (especially optional_evaluate). Prefer
+ * afw_value_evaluate() and create helpers in afw_value.h over calling
+ * optional_* methods when they may be NULL. See group afw_value and
+ * developer types-opaques notes.
  *
  * @{
  */
@@ -6751,7 +6805,7 @@ struct afw_value_inf_s {
  *
  * This is an optional method that exists if the value's memory is managed.
  * Constant values that are compiled into object code are not managed.
- * @param instance Pointer to this pool instance.
+ * @param instance Pointer to this adaptive value instance.
  * @param xctx This is the caller's xctx.
  * @relates afw_value_t
  * @see @ref afw_value_s "afw_value_t"
@@ -7112,7 +7166,11 @@ struct afw_variable_handler_inf_s {
 /**
  * @addtogroup afw_writer_interface afw_writer
  *
- * An interface for a writer.
+ * Incremental text/byte writer used when serializing values (JSON and
+ * similar). Supports indent/tab for pretty-print; write_raw_cb for
+ * callback-style consumers. Prefer writers over building large
+ * intermediate strings when streaming. Call methods via
+ * afw_writer_*() macros. See group afw_writer.
  *
  * @{
  */

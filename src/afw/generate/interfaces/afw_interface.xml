@@ -149,7 +149,14 @@ AFW_ENVIRONMENT_DEFINE_EXTENSION_IMPL();
 
   <interface name="afw_adapter_factory" id="afwaf">
 
-    <description>Factory to create an instance of an afw_adapter.</description>
+    <description>
+      Factory that creates adapter instances of one adapter type id.
+      Registered with the environment as an adapter_type; conf uses the
+      factory to construct each named adapter. Call
+      afw_adapter_factory_create_adapter_cede_p() (macro) rather than
+      inventing create paths. See group afw_adapter and afwdev
+      add-adapter-type scaffolds for implementers.
+    </description>
 
     <variable name="adapter_type" type="afw_utf8_t">
       <description>Type of adapter this factory creates.</description>
@@ -214,7 +221,13 @@ AFW_ENVIRONMENT_DEFINE_EXTENSION_IMPL();
   <interface name="afw_adapter" id="afwa" create_function="create_cede_p">
 
     <description>
-      Adapter interface.
+      Long-lived pluggable object store (or store-like) instance.
+      Adapters are usually started as services from conf; day-to-day work
+      happens on an afw_adapter_session created from this instance.
+      Prefer helpers in afw_adapter.h over calling destroy /
+      create_adapter_session directly unless you own the lifetime.
+      Method API: afw_adapter_*() macros. Nested session,
+      journal, and index interfaces extend the adapter surface.
     </description>
 
     <variable name="p" type="const afw_pool_t *">
@@ -335,7 +348,7 @@ AFW_DEFINE(const afw_adapter_t *)
         This method should not be called directly unless you are manually
         managing the lifetime of this adapter. The functions in afw_adapter.h will
         call this method to create an adapter session instance and will call
-        the session's destroy() method when the session has on more references.
+        the session's destroy() method when the session has no more references.
       </description>
 
       <parameter name="instance" type="const afw_adapter_t *">
@@ -486,15 +499,22 @@ AFW_DEFINE(const afw_adapter_t *)
   <interface name="afw_adapter_session" id="afwas" create_function="create_internal">
 
     <description>
-      Adapter session interface.
+      Per-use session on an adapter: retrieve/get/add/modify/replace/delete
+      objects, optional transactions, and related journal/index hooks.
+      Sessions are typically short-lived (request or action scope). Prefer
+      afw_adapter.h helpers that create and release sessions with correct
+      reference counting. Call methods via afw_adapter_session_*()
+      macros (e.g. retrieve_objects, get_object).
     </description>
 
     <variable name="adapter" type="const afw_adapter_t *">
-      <description>Adapter sessions's associated adapter.</description>
+      <description>This session's associated adapter.</description>
     </variable>
 
     <variable name="p" type="const afw_pool_t *">
-      <description>Adapter sessions's pool. This pool will exist for the life of the adapter session.</description>
+      <description>
+        This session's pool. Exists for the life of the adapter session.
+      </description>
     </variable>
 
     <method name="destroy">
@@ -1890,7 +1910,14 @@ AFW_DEFINE(const afw_authorization_handler_t *)
 
   <interface name="afw_content_type" id="afwct">
 
-    <description>Adaptive Content Type.</description>
+    <description>
+      Serialization between adaptive values and media-typed bytes (JSON,
+      YAML, UBJSON, …). Core registers JSON; extensions add others via
+      environment registration. Selected by content-type / conf for
+      request and response bodies. Call methods via
+      afw_content_type_*() macros. See group afw_content_type and
+      afwdev add-content-type for implementers.
+    </description>
 
     <variable name="content_type_id" type="afw_utf8_t">
       <description>Id of content type.</description>
@@ -3328,7 +3355,11 @@ impl_afw_content_type =
   <interface name="afw_log" id="afwlog" create_function="create_cede_p">
 
     <description>
-      Log.
+      Configurable log destination used by AFW_LOG / environment logging.
+      Prefer the AFW_LOG macros and environment log configuration over
+      calling log methods by hand. Priorities are afw_log_priority_t
+      (see group afw_log). Implement new log types with afwdev add-log-type
+      scaffolds; call surface is afw_log_*() macros.
     </description>
 
     <variable name="p" type="const afw_pool_t *">
@@ -3554,7 +3585,11 @@ AFW_DEFINE(const afw_log_t *)
   <interface name="afw_object" id="afwo">
 
     <description>
-      This is interface used to access the properties of an adaptive object.
+      Adaptive object: named properties, meta, path, and object-type driven
+      behavior. Prefer afw_object_create* helpers over raw layout; use
+      afw_object_*() macros for get/set/release and related calls.
+      Objects may be const (permanent) or mutable (often via sessions).
+      Meta (afw_object_meta) drives validation and UI; see group afw_object.
     </description>
 
 
@@ -3853,7 +3888,12 @@ AFW_DEFINE(const afw_log_t *)
 
   <interface name="afw_server" id="afws">
 
-    <description>Adaptive framework server interface.</description>
+    <description>
+      Host-facing server that accepts connections or local calls and creates
+      afw_request instances for handlers. afwfcgi and afw --local implement
+      this contract. Call methods via afw_server_*() macros.
+      See group afw_request.
+    </description>
 
     <variable name="xctx" type="afw_xctx_t *">
       <description>Server's xctx.</description>
@@ -4382,7 +4422,12 @@ AFW_DEFINE(const afw_log_t *)
 
   <interface name="afw_request_handler" id="afwrh" create_function="create_cede_p">
 
-    <description>Adaptive framework request handler interface.</description>
+    <description>
+      Handles one class of requests (often adapter REST) after the director
+      matches uriPrefix. Configured as services; factories create instances.
+      Call methods via afw_request_handler_*() macros. See group
+      afw_request_handler under afw_request.
+    </description>
 
     <model_c_code label="create">
       <![CDATA[    
@@ -4548,7 +4593,13 @@ AFW_DEFINE(const afw_request_handler_t *)
 
   <interface name="afw_request" id="afwr">
 
-    <description>Adaptive framework request interface.</description>
+    <description>
+      One HTTP-like request as seen by a host (afwfcgi, afw --local, …).
+      Carries the request xctx, properties (env/params/headers), and
+      read/write content callbacks. Handlers receive this instance from the
+      director. Call methods via afw_request_*() macros. See group
+      afw_request and afw_request_handler.
+    </description>
 
     <variable name="xctx" type="afw_xctx_t *">
       <description>Request's xctx.</description>
@@ -4847,7 +4898,14 @@ AFW_DEFINE(const afw_request_handler_t *)
   
   <interface name="afw_stream" id="afww">
 
-    <description>An interface for a stream.</description>
+    <description>
+      Readable and/or writable byte stream (files, memory, response bodies,
+      stdio). Open helpers live in stream/file headers; progressive large
+      response writes also use this path. Optional read_cb/write_cb fields
+      allow passing the stream into callback-style APIs. Call methods via
+      afw_stream_*() macros. Distinct from adapter retrieve
+      limits/paging. See group afw_stream.
+    </description>
 
     <variable name="p" type="const afw_pool_t *">
       <description>
@@ -4986,7 +5044,12 @@ AFW_DEFINE(const afw_request_handler_t *)
   <interface name="afw_pool" id="afwp">
 
     <description>
-      Adaptive framework pool interface.
+      Hierarchical memory pool: fast allocate with bulk free on destroy or
+      release. Most AFW values, objects, and scopes allocate from pools;
+      subpools scope lifetime under a parent. Prefer afw_pool_create* /
+      afw_pool_calloc helpers and call macros over managing APR pools by
+      hand. Do not free individual allocations unless the pool supports it
+      (free_memory path). See group afw_pool.
     </description>
 
     <method name="release">
@@ -5350,7 +5413,15 @@ AFW_DEFINE(const afw_request_handler_t *)
 
   <interface name="afw_value" id="afwv">
 
-    <description>Adaptive value.</description>
+    <description>
+      Public handle for an adaptive value (`const afw_value_t *`). Callers
+      must not assume a single C struct body: many kind layouts share this
+      face (data-type values, blocks, calls, compiled_value, …). Behavior
+      is selected by inf (especially optional_evaluate). Prefer
+      afw_value_evaluate() and create helpers in afw_value.h over calling
+      optional_* methods when they may be NULL. See group afw_value and
+      developer types-opaques notes.
+    </description>
 
     <inf_variable name="data_type" type="const afw_data_type_t *">
       <description>
@@ -5375,7 +5446,7 @@ AFW_DEFINE(const afw_request_handler_t *)
       </description>
 
       <parameter name="instance" type="const afw_value_t *">
-        <description>Pointer to this pool instance.</description>
+        <description>Pointer to this adaptive value instance.</description>
       </parameter>
 
       <parameter name="xctx" type="afw_xctx_t *">
@@ -5743,7 +5814,13 @@ AFW_DEFINE(const afw_request_handler_t *)
 
   <interface name="afw_writer" id="afww">
 
-    <description>An interface for a writer.</description>
+    <description>
+      Incremental text/byte writer used when serializing values (JSON and
+      similar). Supports indent/tab for pretty-print; write_raw_cb for
+      callback-style consumers. Prefer writers over building large
+      intermediate strings when streaming. Call methods via
+      afw_writer_*() macros. See group afw_writer.
+    </description>
 
     <variable name="p" type="const afw_pool_t *">
       <description>
