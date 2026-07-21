@@ -111,24 +111,69 @@ def generate_h(generated_by, prefix, name, tree, generated_dir_path, copyright):
                 fd.write('    ' + variable.get('type') + ' ' + variable.get('name') + ';\n')
             fd.write('};\n')
 
-            # method helpers
+            # method helpers (call macros — the developer-facing API)
             for method in interface.findall('method'):
                 method_name = method.get('name')
 
                 fd.write('\n/**\n')
                 c.write_wrapped(fd, 80, ' * ',
-                    '@brief Call method ' + method_name + ' of interface ' + interface_name,
-                    '    ')
+                    '@brief Call method `' + method_name + '` of interface `'
+                    + interface_name + '`.')
+
+                # Optional longer description from interface XML (not the
+                # brief line). Keep blank Doxygen line between brief and body.
+                method_descs = []
+                for description in method.findall('description'):
+                    if description.text is not None and description.text.strip():
+                        lines = [line.strip()
+                                 for line in description.text.strip().split('\n')]
+                        method_descs.append(
+                            '\n'.join(('' if not line else line) for line in lines))
+                if method_descs:
+                    fd.write(' *\n')
+                    for text in method_descs:
+                        c.write_wrapped(fd, 80, ' * ', text)
 
                 for parameter in method.findall('parameter'):
-                    param = '@param ' + parameter.get('name')
                     if parameter.get('type') == '...':
                         param = '@param ...'
+                    else:
+                        param = '@param ' + parameter.get('name')
+                    desc_parts = []
                     for description in parameter.findall('description'):
-                        if description.text is not None:
-                            lines = [line.strip() for line in description.text.strip().split('\n')]
-                            param += '\n'.join(('' if not line else line) for line in lines)
-                    c.write_wrapped(fd, 80, ' * ', param, '    ')
+                        if description.text is not None and description.text.strip():
+                            lines = [line.strip()
+                                     for line in description.text.strip().split('\n')]
+                            desc_parts.append(
+                                ' '.join(line for line in lines if line))
+                    if desc_parts:
+                        # Space after param name is required for Doxygen.
+                        param += ' ' + ' '.join(desc_parts)
+                    c.write_wrapped(fd, 80, ' * ', param)
+
+                ret = method.find('return')
+                if ret is not None:
+                    ret_type = (ret.get('type') or '').strip()
+                    ret_desc_parts = []
+                    for description in ret.findall('description'):
+                        if description.text is not None and description.text.strip():
+                            lines = [line.strip()
+                                     for line in description.text.strip().split('\n')]
+                            ret_desc_parts.append(
+                                ' '.join(line for line in lines if line))
+                    ret_desc = ' '.join(ret_desc_parts).strip()
+                    if ret_type and ret_type != 'void':
+                        if ret_desc:
+                            c.write_wrapped(
+                                fd, 80, ' * ', '@return ' + ret_desc)
+                        else:
+                            c.write_wrapped(
+                                fd, 80, ' * ',
+                                '@return Value of type `' + ret_type + '`.')
+                    elif ret_desc:
+                        # void with a note (e.g. side effects) — still useful
+                        c.write_wrapped(
+                            fd, 80, ' * ', '@return ' + ret_desc)
 
                 fd.write(' */\n')
 

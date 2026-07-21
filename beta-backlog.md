@@ -104,11 +104,11 @@ _(Paste raw notes here first; sort into themes later.)_
 
 **Next chunks (feature branches off mgg-develop):**
 
-1. Macro Doxygen generator polish (`interfaces.py` `@param` spacing, etc.) + regenerate.  
-2. Group tree / `@addtogroup` alignment for hot modules.  
-3. Small `src/afw/doc/developer/*.md` set (overview, interfaces, implementing, extending) + mainpage links.  
-4. Re-scope or close #1: remaining = builder map, not stamp every `.c`.  
-5. Optional: Doxygen EXCLUDE closet noise.
+1. ~~Macro Doxygen generator polish (`interfaces.py` `@param` spacing, etc.) + regenerate.~~ **done** (issue-#1)  
+2. ~~Group tree / nested `@defgroup` for hot modules.~~ **partial** (`afw_doxygen.h`)  
+3. ~~Small `src/afw/doc/developer/*.md` set + mainpage links.~~ **done**  
+4. Re-scope or close #1: remaining = ongoing builder-map polish, not stamp every `.c`.  
+5. Closet noise: already covered by `EXCLUDE_PATTERNS` `*/*closet/*` in `Doxyfile`.
 
 ### Indexes / adapters (incl. issue #54)
 

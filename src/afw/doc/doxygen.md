@@ -30,6 +30,17 @@ language bindings, commands, and administrative applications. The runtime is
 - **Hand headers** — public module headers document related files and helpers
   beyond the generated interface macros.
 
+## Developer reading order
+
+1. @ref afw_dev_overview — audience and map  
+2. @ref afw_dev_interfaces — macros and generation  
+3. @ref afw_dev_implementing — scaffolds and `@todo`  
+4. @ref afw_dev_runtime — pools, values, xctx, environment  
+5. @ref afw_dev_extending — extension sketch  
+
+These pages also live under `src/afw/doc/developer/` in the repository for
+direct reading without opening HTML.
+
 ## Source Code
 
 The source for Adaptive Framework is located in a

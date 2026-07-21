@@ -100,12 +100,23 @@ struct afw_extension_inf_s {
 };
 
 /**
- * @brief Call method initialize of interface afw_extension
- * @param instanceThis extension's instance.
- * @param propertiesThis is the properties supplied to
- *     afw_environment_load_extension() or NULL.
- * @param pThis is the pool to use for extension resources.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `initialize` of interface `afw_extension`.
+ *
+ * This method is called once by afw_environment_load_extension() the first time
+ * this instance is loaded in an instance of an Adaptive Framework environment.
+ * 
+ * This method should call afw_environment register functions and do
+ * any other one-time initialization that is required.
+ * 
+ * After afw_environment_load_extension() calls this function, it will register
+ * the instance returned in the AFW environment.
+ * @param instance This extension's instance.
+ * @param properties This is the properties supplied to
+ * afw_environment_load_extension() or NULL.
+ * @param p This is the pool to use for extension resources.
+ * @param xctx This is the caller's xctx.
+ * @return This is the instance parameter passed or a copy of it with additional
+ * private data appended.
  */
 #define afw_extension_initialize( \
     instance, \
@@ -121,9 +132,11 @@ struct afw_extension_inf_s {
 )
 
 /**
- * @brief Call method release of interface afw_extension
- * @param instancePointer to this adapter instance.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `release` of interface `afw_extension`.
+ *
+ * Release resources associated with this extension.
+ * @param instance Pointer to this adapter instance.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_extension_release( \
     instance, \
@@ -179,13 +192,16 @@ struct afw_adapter_factory_inf_s {
 };
 
 /**
- * @brief Call method create_adapter_cede_p of interface afw_adapter_factory
- * @param instancePointer to this adapter instance.
- * @param propertiesConfiguration parameters for the particular type of adapter.
- *     This
- *     will become the properties object for adapter.
- * @param pThe pool that will be used for adapter resources.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `create_adapter_cede_p` of interface
+ * `afw_adapter_factory`.
+ *
+ * Create an adapter of the factory's type.
+ * @param instance Pointer to this adapter instance.
+ * @param properties Configuration parameters for the particular type of
+ * adapter. This will become the properties object for adapter.
+ * @param p The pool that will be used for adapter resources.
+ * @param xctx This is the caller's xctx.
+ * @return An instance of an adapter.
  */
 #define afw_adapter_factory_create_adapter_cede_p( \
     instance, \
@@ -305,9 +321,17 @@ struct afw_adapter_inf_s {
 };
 
 /**
- * @brief Call method destroy of interface afw_adapter
- * @param instancePointer to this adapter instance.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `destroy` of interface `afw_adapter`.
+ *
+ * This method should not be called directly unless you are manually
+ * managing the lifetime of this adapter. The functions in afw_adapter.h
+ * will call this method when there are no more references to this adapter
+ * and then destroy the pool passed to the create function.
+ * 
+ * The implementation of this method releases any resource not tied to that
+ * pool.
+ * @param instance Pointer to this adapter instance.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_adapter_destroy( \
     instance, \
@@ -319,9 +343,15 @@ struct afw_adapter_inf_s {
 )
 
 /**
- * @brief Call method create_adapter_session of interface afw_adapter
- * @param instancePointer to this adapter instance.
- * @param xctxThe execution context (xctx) of caller.
+ * @brief Call method `create_adapter_session` of interface `afw_adapter`.
+ *
+ * This method should not be called directly unless you are manually
+ * managing the lifetime of this adapter. The functions in afw_adapter.h will
+ * call this method to create an adapter session instance and will call
+ * the session's destroy() method when the session has on more references.
+ * @param instance Pointer to this adapter instance.
+ * @param xctx The execution context (xctx) of caller.
+ * @return Pointer to new adapter session instance.
  */
 #define afw_adapter_create_adapter_session( \
     instance, \
@@ -333,10 +363,13 @@ struct afw_adapter_inf_s {
 )
 
 /**
- * @brief Call method get_additional_metrics of interface afw_adapter
- * @param instancePointer to this adapter instance.
- * @param pPool used for results.
- * @param xctxThe execution context (xctx) of caller.
+ * @brief Call method `get_additional_metrics` of interface `afw_adapter`.
+ *
+ * Get additional adapter specific metrics.
+ * @param instance Pointer to this adapter instance.
+ * @param p Pool used for results.
+ * @param xctx The execution context (xctx) of caller.
+ * @return Object with metrics or NULL.
  */
 #define afw_adapter_get_additional_metrics( \
     instance, \
@@ -409,19 +442,18 @@ struct afw_adapter_object_type_cache_inf_s {
 };
 
 /**
- * @brief Call method get of interface afw_adapter_object_type_cache
- * @param instancePointer to this adapter object type cache instance.
- * @param object_type_idObject type id of object type to get from cache.
- * @param final_resultPointer to place to return flag.
- * 
- *     If true, afw_adapter_get_object_type() will always return the
- *     result of calling the get() method.
- * 
- *     If false and get() returns NULL, afw_adapter_get_object_type()
- *     will try to create and return a new object_type and return.
- *     The set() method will be called if all_object_types_immutable is
- *     true.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `get` of interface `afw_adapter_object_type_cache`.
+ *
+ * Get a object type.
+ * @param instance Pointer to this adapter object type cache instance.
+ * @param object_type_id Object type id of object type to get from cache.
+ * @param final_result Pointer to place to return flag. If true,
+ * afw_adapter_get_object_type() will always return the result of calling the
+ * get() method. If false and get() returns NULL, afw_adapter_get_object_type()
+ * will try to create and return a new object_type and return. The set() method
+ * will be called if all_object_types_immutable is true.
+ * @param xctx This is the caller's xctx.
+ * @return An object type or NULL if not found.
  */
 #define afw_adapter_object_type_cache_get( \
     instance, \
@@ -437,10 +469,12 @@ struct afw_adapter_object_type_cache_inf_s {
 )
 
 /**
- * @brief Call method set of interface afw_adapter_object_type_cache
- * @param instancePointer to this adapter object type cache instance.
- * @param object_typeObject type to set in cache.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `set` of interface `afw_adapter_object_type_cache`.
+ *
+ * Get a object type.
+ * @param instance Pointer to this adapter object type cache instance.
+ * @param object_type Object type to set in cache.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_adapter_object_type_cache_set( \
     instance, \
@@ -607,10 +641,17 @@ struct afw_adapter_session_inf_s {
 };
 
 /**
- * @brief Call method destroy of interface afw_adapter_session
- * @param instancePointer to this adapter session instance.
- *     Make sure to call commit or changes will be lost.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `destroy` of interface `afw_adapter_session`.
+ *
+ * This method should not be called directly unless you are manually
+ * managing the lifetime of this adapter. The functions in afw_adapter.h will
+ * call this method when there are no more references to this adapter session.
+ * 
+ * The implementation releases resources acquired since the session was
+ * created by create_adapter_session().
+ * @param instance Pointer to this adapter session instance. Make sure to call
+ * commit or changes will be lost.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_adapter_session_destroy( \
     instance, \
@@ -622,37 +663,30 @@ struct afw_adapter_session_inf_s {
 )
 
 /**
- * @brief Call method retrieve_objects of interface afw_adapter_session
- * @param instancePointer to this adapter session instance.
- * @param impl_requestPass this as first parameter of
- *     afw_adapter_impl_request_*() functions.
- *     See afw_adapter_impl.h for more information.
- * @param object_type_idThe object type of objects to be retrieved.
- * @param criteriaQuery criteria. Use member filter or normalized, whichever is
- *     easier,
- *     to filter the objects retrieved. See afw_query_criteria.h for more
- *     information.
- *     The other members should be ignored.
- * @param contextPointer passed to callback routine.
- * @param callbackCallback function will be called each time an object is
- *     retrieved and once
- *     with a NULL object pointer when finished.
- * 
- *     The callback function will call afw_object_release() on the object
- *     when finished with it. If you want to have the object last past the
- *     callback, call afw_object_get_reference() on the object before calling
- *     the callback.
- * @param adapter_type_specificThis is an adapter type specific object parameter
- *     or NULL.
- * 
- *     If the adapter type supports this parameter, the object type of the
- *     object is available via the afw adapter with an object type id of:
- * 
- *     _AdaptiveAdapterTypeSpecific_${adapterType}_retrieve_objects
- * 
- *     where ${adapterType} is the adapter type id.
- * @param pPool used for objects passed to callback.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `retrieve_objects` of interface `afw_adapter_session`.
+ *
+ * Retrieve adaptive objects via this adapter that match criteria.
+ * @param instance Pointer to this adapter session instance.
+ * @param impl_request Pass this as first parameter of
+ * afw_adapter_impl_request_*() functions. See afw_adapter_impl.h for more
+ * information.
+ * @param object_type_id The object type of objects to be retrieved.
+ * @param criteria Query criteria. Use member filter or normalized, whichever is
+ * easier, to filter the objects retrieved. See afw_query_criteria.h for more
+ * information. The other members should be ignored.
+ * @param context Pointer passed to callback routine.
+ * @param callback Callback function will be called each time an object is
+ * retrieved and once with a NULL object pointer when finished. The callback
+ * function will call afw_object_release() on the object when finished with it.
+ * If you want to have the object last past the callback, call
+ * afw_object_get_reference() on the object before calling the callback.
+ * @param adapter_type_specific This is an adapter type specific object
+ * parameter or NULL. If the adapter type supports this parameter, the object
+ * type of the object is available via the afw adapter with an object type id
+ * of: _AdaptiveAdapterTypeSpecific_${adapterType}_retrieve_objects where
+ * ${adapterType} is the adapter type id.
+ * @param p Pool used for objects passed to callback.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_adapter_session_retrieve_objects( \
     instance, \
@@ -678,33 +712,28 @@ struct afw_adapter_session_inf_s {
 )
 
 /**
- * @brief Call method get_object of interface afw_adapter_session
- * @param instancePointer to this adapter session instance.
- * @param impl_requestPass this as first parameter of
- *     afw_adapter_impl_request_*() functions.
- *     See afw_adapter_impl.h for more information.
- * @param object_type_idObject type of object to get.
- * @param object_idObject id of object to get.
- * @param contextPointer passed to callback routine.
- * @param callbackCallback function will be called once with either the object
- *     retrieved
- *     or a NULL object pointer if not found.
- * 
- *     The callback function will call afw_object_release() on the object
- *     when finished with it. If you want to have the object last past the
- *     callback, call afw_object_get_reference() on the object before calling
- *     the callback.
- * @param adapter_type_specificThis is an adapter type specific object parameter
- *     or NULL.
- * 
- *     If the adapter type supports this parameter, the object type of the
- *     object is available via the afw adapter with an object type id of:
- * 
- *     _AdaptiveAdapterTypeSpecific_${adapterType}_get_object
- * 
- *     where ${adapterType} is the adapter type id.
- * @param pPool used for object passed to callback.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `get_object` of interface `afw_adapter_session`.
+ *
+ * Retrieve an read-only copy of an adaptive object via adapter.
+ * @param instance Pointer to this adapter session instance.
+ * @param impl_request Pass this as first parameter of
+ * afw_adapter_impl_request_*() functions. See afw_adapter_impl.h for more
+ * information.
+ * @param object_type_id Object type of object to get.
+ * @param object_id Object id of object to get.
+ * @param context Pointer passed to callback routine.
+ * @param callback Callback function will be called once with either the object
+ * retrieved or a NULL object pointer if not found. The callback function will
+ * call afw_object_release() on the object when finished with it. If you want to
+ * have the object last past the callback, call afw_object_get_reference() on
+ * the object before calling the callback.
+ * @param adapter_type_specific This is an adapter type specific object
+ * parameter or NULL. If the adapter type supports this parameter, the object
+ * type of the object is available via the afw adapter with an object type id
+ * of: _AdaptiveAdapterTypeSpecific_${adapterType}_get_object where
+ * ${adapterType} is the adapter type id.
+ * @param p Pool used for object passed to callback.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_adapter_session_get_object( \
     instance, \
@@ -730,41 +759,33 @@ struct afw_adapter_session_inf_s {
 )
 
 /**
- * @brief Call method add_object of interface afw_adapter_session
- * @param instancePointer to this adapter session instance.
- * @param impl_requestPass this as first parameter of
- *     afw_adapter_impl_request_*() functions.
- *     See afw_adapter_impl.h for more information.
- * @param object_type_idObject type of object to add.
- * @param suggested_object_idThe suggested object id of the added object. This
- *     object id must be
- *     unique within the object type. If NULL or at the adapter's option,
- *     the adapter will generate a unique object id.
- * @param objectObject to add.
- * 
- *     Unless documented otherwise by non-default options, this object only
- *     needs
- *     to exist for the life of the add_object() call. Some adapters have
- *     options
- *     that require longer lifetimes for these objects. For example, a memory
- *     adapter can be created with the option to not clone an object when added
- *     to memory store. In this case, it's the caller responsibility to create
- *     the object in a pool that has the minimal lifetime of the memory adapter
- *     itself. For instance, the adapter's pool can be used during object
- *     create.
- *     The memory adapter then uses the object's pool's get_reference() and
- *     release()
- *     methods to manage the lifetime of the object.
- * @param adapter_type_specificThis is an adapter type specific object parameter
- *     or NULL.
- * 
- *     If the adapter type supports this parameter, the object type of the
- *     object is available via the afw adapter with an object type id of:
- * 
- *     _AdaptiveAdapterTypeSpecific_${adapterType}_add_object
- * 
- *     where ${adapterType} is the adapter type id.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `add_object` of interface `afw_adapter_session`.
+ *
+ * Add an adaptive object via this adapter.
+ * @param instance Pointer to this adapter session instance.
+ * @param impl_request Pass this as first parameter of
+ * afw_adapter_impl_request_*() functions. See afw_adapter_impl.h for more
+ * information.
+ * @param object_type_id Object type of object to add.
+ * @param suggested_object_id The suggested object id of the added object. This
+ * object id must be unique within the object type. If NULL or at the adapter's
+ * option, the adapter will generate a unique object id.
+ * @param object Object to add. Unless documented otherwise by non-default
+ * options, this object only needs to exist for the life of the add_object()
+ * call. Some adapters have options that require longer lifetimes for these
+ * objects. For example, a memory adapter can be created with the option to not
+ * clone an object when added to memory store. In this case, it's the caller
+ * responsibility to create the object in a pool that has the minimal lifetime
+ * of the memory adapter itself. For instance, the adapter's pool can be used
+ * during object create. The memory adapter then uses the object's pool's
+ * get_reference() and release() methods to manage the lifetime of the object.
+ * @param adapter_type_specific This is an adapter type specific object
+ * parameter or NULL. If the adapter type supports this parameter, the object
+ * type of the object is available via the afw adapter with an object type id
+ * of: _AdaptiveAdapterTypeSpecific_${adapterType}_add_object where
+ * ${adapterType} is the adapter type id.
+ * @param xctx This is the caller's xctx.
+ * @return Object id of added object.
  */
 #define afw_adapter_session_add_object( \
     instance, \
@@ -786,24 +807,24 @@ struct afw_adapter_session_inf_s {
 )
 
 /**
- * @brief Call method modify_object of interface afw_adapter_session
- * @param instancePointer to this adapter session instance.
- * @param impl_requestPass this as first parameter of
- *     afw_adapter_impl_request_*() functions.
- *     See afw_adapter_impl.h for more information.
- * @param object_type_idObject type of object to modify.
- * @param object_idObject id of object to modify.
- * @param entryNULL terminated array of pointers to adapter modify entries.
- * @param adapter_type_specificThis is an adapter type specific object parameter
- *     or NULL.
- * 
- *     If the adapter type supports this parameter, the object type of the
- *     object is available via the afw adapter with an object type id of:
- * 
- *     _AdaptiveAdapterTypeSpecific_${adapterType}_modify_object
- * 
- *     where ${adapterType} is the adapter type id.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `modify_object` of interface `afw_adapter_session`.
+ *
+ * Modify an existing adaptive object via adapter. Unlike the
+ * update_object method, this method allows value assertions and
+ * modifications of single values of multi-value properties.
+ * @param instance Pointer to this adapter session instance.
+ * @param impl_request Pass this as first parameter of
+ * afw_adapter_impl_request_*() functions. See afw_adapter_impl.h for more
+ * information.
+ * @param object_type_id Object type of object to modify.
+ * @param object_id Object id of object to modify.
+ * @param entry NULL terminated array of pointers to adapter modify entries.
+ * @param adapter_type_specific This is an adapter type specific object
+ * parameter or NULL. If the adapter type supports this parameter, the object
+ * type of the object is available via the afw adapter with an object type id
+ * of: _AdaptiveAdapterTypeSpecific_${adapterType}_modify_object where
+ * ${adapterType} is the adapter type id.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_adapter_session_modify_object( \
     instance, \
@@ -825,24 +846,22 @@ struct afw_adapter_session_inf_s {
 )
 
 /**
- * @brief Call method replace_object of interface afw_adapter_session
- * @param instancePointer to this adapter session instance.
- * @param impl_requestPass this as first parameter of
- *     afw_adapter_impl_request_*() functions.
- *     See afw_adapter_impl.h for more information.
- * @param object_type_idObject type of object to update.
- * @param object_idObject id of object to update.
- * @param replacement_objectReplacement object.
- * @param adapter_type_specificThis is an adapter type specific object parameter
- *     or NULL.
- * 
- *     If the adapter type supports this parameter, the object type of the
- *     object is available via the afw adapter with an object type id of:
- * 
- *     _AdaptiveAdapterTypeSpecific_${adapterType}_replace_object
- * 
- *     where ${adapterType} is the adapter type id.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `replace_object` of interface `afw_adapter_session`.
+ *
+ * Completely replace an existing adaptive object via adapter.
+ * @param instance Pointer to this adapter session instance.
+ * @param impl_request Pass this as first parameter of
+ * afw_adapter_impl_request_*() functions. See afw_adapter_impl.h for more
+ * information.
+ * @param object_type_id Object type of object to update.
+ * @param object_id Object id of object to update.
+ * @param replacement_object Replacement object.
+ * @param adapter_type_specific This is an adapter type specific object
+ * parameter or NULL. If the adapter type supports this parameter, the object
+ * type of the object is available via the afw adapter with an object type id
+ * of: _AdaptiveAdapterTypeSpecific_${adapterType}_replace_object where
+ * ${adapterType} is the adapter type id.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_adapter_session_replace_object( \
     instance, \
@@ -864,23 +883,22 @@ struct afw_adapter_session_inf_s {
 )
 
 /**
- * @brief Call method delete_object of interface afw_adapter_session
- * @param instancePointer to this adapter session instance.
- * @param impl_requestPass this as first parameter of
- *     afw_adapter_impl_request_*() functions.
- *     See afw_adapter_impl.h for more information.
- * @param object_type_idObject type of object to delete.
- * @param object_idObject id of object to delete.
- * @param adapter_type_specificThis is an adapter type specific object parameter
- *     or NULL.
- * 
- *     If the adapter type supports this parameter, the object type of the
- *     object is available via the afw adapter with an object type id of:
- * 
- *     _AdaptiveAdapterTypeSpecific_${adapterType}_delete_object
- * 
- *     where ${adapterType} is the adapter type id.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `delete_object` of interface `afw_adapter_session`.
+ *
+ * Delete an existing adaptive object. It's not
+ * considered an error if object does not exist.
+ * @param instance Pointer to this adapter session instance.
+ * @param impl_request Pass this as first parameter of
+ * afw_adapter_impl_request_*() functions. See afw_adapter_impl.h for more
+ * information.
+ * @param object_type_id Object type of object to delete.
+ * @param object_id Object id of object to delete.
+ * @param adapter_type_specific This is an adapter type specific object
+ * parameter or NULL. If the adapter type supports this parameter, the object
+ * type of the object is available via the afw adapter with an object type id
+ * of: _AdaptiveAdapterTypeSpecific_${adapterType}_delete_object where
+ * ${adapterType} is the adapter type id.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_adapter_session_delete_object( \
     instance, \
@@ -900,9 +918,17 @@ struct afw_adapter_session_inf_s {
 )
 
 /**
- * @brief Call method begin_transaction of interface afw_adapter_session
- * @param instancePointer to this adapter session instance.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `begin_transaction` of interface `afw_adapter_session`.
+ *
+ * If this adapter supports transactions, call this method to begin a
+ * transaction. If this function is called and returns a non-NULL
+ * result, add_object(), delete_object(), modify_object(), replace_object(),
+ * and update_object() will not commit changes until the transactions
+ * commit function is called.
+ * @param instance Pointer to this adapter session instance.
+ * @param xctx This is the caller's xctx.
+ * @return Transaction instance or NULL if adapter does not support
+ * transactions.
  */
 #define afw_adapter_session_begin_transaction( \
     instance, \
@@ -914,9 +940,13 @@ struct afw_adapter_session_inf_s {
 )
 
 /**
- * @brief Call method get_journal_interface of interface afw_adapter_session
- * @param instancePointer to this adapter session instance.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `get_journal_interface` of interface
+ * `afw_adapter_session`.
+ *
+ * Returns the optional afw_adapter_journal interface for this session.
+ * @param instance Pointer to this adapter session instance.
+ * @param xctx This is the caller's xctx.
+ * @return Event journal instance for this session or NULL if not support it.
  */
 #define afw_adapter_session_get_journal_interface( \
     instance, \
@@ -928,9 +958,13 @@ struct afw_adapter_session_inf_s {
 )
 
 /**
- * @brief Call method get_key_value_interface of interface afw_adapter_session
- * @param instancePointer to this adapter session instance.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `get_key_value_interface` of interface
+ * `afw_adapter_session`.
+ *
+ * Returns the optional afw_adapter_key_value interface for this session.
+ * @param instance Pointer to this adapter session instance.
+ * @param xctx This is the caller's xctx.
+ * @return Key value instance for this session or NULL if not support it.
  */
 #define afw_adapter_session_get_key_value_interface( \
     instance, \
@@ -942,9 +976,12 @@ struct afw_adapter_session_inf_s {
 )
 
 /**
- * @brief Call method get_index_interface of interface afw_adapter_session
- * @param instancePointer to this adapter session instance.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `get_index_interface` of interface `afw_adapter_session`.
+ *
+ * Returns the optional afw_adapter_impl_index interface for this session.
+ * @param instance Pointer to this adapter session instance.
+ * @param xctx This is the caller's xctx.
+ * @return Index instance for this session or NULL if not support it.
  */
 #define afw_adapter_session_get_index_interface( \
     instance, \
@@ -956,10 +993,14 @@ struct afw_adapter_session_inf_s {
 )
 
 /**
- * @brief Call method get_object_type_cache_interface of interface
- *     afw_adapter_session
- * @param instancePointer to this adapter session instance.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `get_object_type_cache_interface` of interface
+ * `afw_adapter_session`.
+ *
+ * Returns the optional afw_adapter_object_type_cache interface for this
+ * adapter.
+ * @param instance Pointer to this adapter session instance.
+ * @param xctx This is the caller's xctx.
+ * @return Object type cache interface for this adapter or NULL.
  */
 #define afw_adapter_session_get_object_type_cache_interface( \
     instance, \
@@ -1010,9 +1051,12 @@ struct afw_adapter_transaction_inf_s {
 };
 
 /**
- * @brief Call method release of interface afw_adapter_transaction
- * @param instancePointer to this adapter session transaction instance.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `release` of interface `afw_adapter_transaction`.
+ *
+ * Release resources associated with adapter session transaction. If
+ * commit() is not called before release, any changes will be lost.
+ * @param instance Pointer to this adapter session transaction instance.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_adapter_transaction_release( \
     instance, \
@@ -1024,9 +1068,11 @@ struct afw_adapter_transaction_inf_s {
 )
 
 /**
- * @brief Call method commit of interface afw_adapter_transaction
- * @param instancePointer to this adapter session transaction instance.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `commit` of interface `afw_adapter_transaction`.
+ *
+ * Commit changes to objects have occurred since transaction began.
+ * @param instance Pointer to this adapter session transaction instance.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_adapter_transaction_commit( \
     instance, \
@@ -1114,9 +1160,11 @@ struct afw_adapter_impl_index_cursor_inf_s {
 };
 
 /**
- * @brief Call method release of interface afw_adapter_impl_index_cursor
- * @param instancePointer to this adapter impl index cursor instance.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `release` of interface `afw_adapter_impl_index_cursor`.
+ *
+ * Release resources.
+ * @param instance Pointer to this adapter impl index cursor instance.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_adapter_impl_index_cursor_release( \
     instance, \
@@ -1128,10 +1176,14 @@ struct afw_adapter_impl_index_cursor_inf_s {
 )
 
 /**
- * @brief Call method get_next_object of interface afw_adapter_impl_index_cursor
- * @param instancePointer to this adapter impl index cursor instance.
- * @param poolMemory pool to allocate resources in.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `get_next_object` of interface
+ * `afw_adapter_impl_index_cursor`.
+ *
+ * Get the next indexed object from the adapter store.
+ * @param instance Pointer to this adapter impl index cursor instance.
+ * @param pool Memory pool to allocate resources in.
+ * @param xctx This is the caller's xctx.
+ * @return Value of type `const afw_object_t *`.
  */
 #define afw_adapter_impl_index_cursor_get_next_object( \
     instance, \
@@ -1145,10 +1197,14 @@ struct afw_adapter_impl_index_cursor_inf_s {
 )
 
 /**
- * @brief Call method contains_object of interface afw_adapter_impl_index_cursor
- * @param instancePointer to this adapter impl index cursor instance.
- * @param objectPointer to object we need to determine is in this cursor.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `contains_object` of interface
+ * `afw_adapter_impl_index_cursor`.
+ *
+ * Returns true or false, if the object is contained in this cursor.
+ * @param instance Pointer to this adapter impl index cursor instance.
+ * @param object Pointer to object we need to determine is in this cursor.
+ * @param xctx This is the caller's xctx.
+ * @return Value of type `afw_boolean_t`.
  */
 #define afw_adapter_impl_index_cursor_contains_object( \
     instance, \
@@ -1162,10 +1218,15 @@ struct afw_adapter_impl_index_cursor_inf_s {
 )
 
 /**
- * @brief Call method inner_join of interface afw_adapter_impl_index_cursor
- * @param instancePointer to this adapter impl index cursor instance.
- * @param cursorPointer to the cursor we need to join with.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `inner_join` of interface `afw_adapter_impl_index_cursor`.
+ *
+ * Join this cursor with another cursor and return the intersection. An
+ * implementation may use cardinality, if known, or simply return one or the
+ * other (left or right inner join).
+ * @param instance Pointer to this adapter impl index cursor instance.
+ * @param cursor Pointer to the cursor we need to join with.
+ * @param xctx This is the caller's xctx.
+ * @return Value of type `const afw_adapter_impl_index_cursor_t *`.
  */
 #define afw_adapter_impl_index_cursor_inner_join( \
     instance, \
@@ -1179,10 +1240,14 @@ struct afw_adapter_impl_index_cursor_inf_s {
 )
 
 /**
- * @brief Call method get_count of interface afw_adapter_impl_index_cursor
- * @param instancePointer to this adapter impl index cursor instance.
- * @param countPointer to the count, where the caller should return the value.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `get_count` of interface `afw_adapter_impl_index_cursor`.
+ *
+ * Return the count, or cardinality, associated with this cursor. This should
+ * return true if successful.
+ * @param instance Pointer to this adapter impl index cursor instance.
+ * @param count Pointer to the count, where the caller should return the value.
+ * @param xctx This is the caller's xctx.
+ * @return Value of type `afw_boolean_t`.
  */
 #define afw_adapter_impl_index_cursor_get_count( \
     instance, \
@@ -1262,12 +1327,14 @@ struct afw_adapter_key_value_inf_s {
 };
 
 /**
- * @brief Call method add of interface afw_adapter_key_value
- * @param instancePointer to this adapter key value instance.
- * @param namespaceNamespace for key.
- * @param keyKey.
- * @param valueValue.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `add` of interface `afw_adapter_key_value`.
+ *
+ * Add a keyed value.
+ * @param instance Pointer to this adapter key value instance.
+ * @param namespace Namespace for key.
+ * @param key Key.
+ * @param value Value.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_adapter_key_value_add( \
     instance, \
@@ -1285,13 +1352,15 @@ struct afw_adapter_key_value_inf_s {
 )
 
 /**
- * @brief Call method delete of interface afw_adapter_key_value
- * @param instancePointer to this adapter key value instance.
- * @param namespaceNamespace for key.
- * @param keyKey.
- * @param valueValue the key must have or NULL if it doesn't matter.
- * @param must_existIt is an error if value does not exist.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `delete` of interface `afw_adapter_key_value`.
+ *
+ * Delete a keyed value.
+ * @param instance Pointer to this adapter key value instance.
+ * @param namespace Namespace for key.
+ * @param key Key.
+ * @param value Value the key must have or NULL if it doesn't matter.
+ * @param must_exist It is an error if value does not exist.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_adapter_key_value_delete( \
     instance, \
@@ -1311,14 +1380,16 @@ struct afw_adapter_key_value_inf_s {
 )
 
 /**
- * @brief Call method replace of interface afw_adapter_key_value
- * @param instancePointer to this adapter key value instance.
- * @param namespaceNamespace for key.
- * @param keyKey.
- * @param valueValue the key must have or NULL if it doesn't matter.
- * @param must_existIt is an error if value does not exist. If must_exist is
- *     false, the keyed value will be added if it doesn't exist.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `replace` of interface `afw_adapter_key_value`.
+ *
+ * Replace a keyed value.
+ * @param instance Pointer to this adapter key value instance.
+ * @param namespace Namespace for key.
+ * @param key Key.
+ * @param value Value the key must have or NULL if it doesn't matter.
+ * @param must_exist It is an error if value does not exist. If must_exist is
+ * false, the keyed value will be added if it doesn't exist.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_adapter_key_value_replace( \
     instance, \
@@ -1338,11 +1409,14 @@ struct afw_adapter_key_value_inf_s {
 )
 
 /**
- * @brief Call method get of interface afw_adapter_key_value
- * @param instancePointer to this adapter key value instance.
- * @param namespaceNamespace for key.
- * @param keyKey.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `get` of interface `afw_adapter_key_value`.
+ *
+ * Get a keyed value.
+ * @param instance Pointer to this adapter key value instance.
+ * @param namespace Namespace for key.
+ * @param key Key.
+ * @param xctx This is the caller's xctx.
+ * @return Value of type `const afw_memory_t *`.
  */
 #define afw_adapter_key_value_get( \
     instance, \
@@ -1491,18 +1565,21 @@ struct afw_adapter_impl_index_inf_s {
 };
 
 /**
- * @brief Call method open of interface afw_adapter_impl_index
- * @param instancePointer to this adapter impl index instance.
- * @param object_type_idObject type id associated with the property and value
- *     that we are indexing. This may be useful for the adapter to determine the
- *     target table or database to store the index. NULL means all objectTypes
- *     are applicable.
- * @param keyIndex key associated with the index value we are creating.
- * @param integerShould index values be stored as integer values.
- * @param uniqueShould generated index values be unique.
- * @param reverseShould index values be stored in reverse order.
- * @param poolCaller's pool.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `open` of interface `afw_adapter_impl_index`.
+ *
+ * Open an index database. This may be useful for adapters that have special
+ * parameters or need to open the database/table before an index can be used.
+ * @param instance Pointer to this adapter impl index instance.
+ * @param object_type_id Object type id associated with the property and value
+ * that we are indexing. This may be useful for the adapter to determine the
+ * target table or database to store the index. NULL means all objectTypes are
+ * applicable.
+ * @param key Index key associated with the index value we are creating.
+ * @param integer Should index values be stored as integer values.
+ * @param unique Should generated index values be unique.
+ * @param reverse Should index values be stored in reverse order.
+ * @param pool Caller's pool.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_adapter_impl_index_open( \
     instance, \
@@ -1526,9 +1603,11 @@ struct afw_adapter_impl_index_inf_s {
 )
 
 /**
- * @brief Call method release of interface afw_adapter_impl_index
- * @param instancePointer to this adapter impl index instance.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `release` of interface `afw_adapter_impl_index`.
+ *
+ * Release resources.
+ * @param instance Pointer to this adapter impl index instance.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_adapter_impl_index_release( \
     instance, \
@@ -1540,9 +1619,13 @@ struct afw_adapter_impl_index_inf_s {
 )
 
 /**
- * @brief Call method get_index_definitions of interface afw_adapter_impl_index
- * @param instancePointer to this adapter impl index instance.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `get_index_definitions` of interface
+ * `afw_adapter_impl_index`.
+ *
+ * Returns the adapter's internal index definitions.
+ * @param instance Pointer to this adapter impl index instance.
+ * @param xctx This is the caller's xctx.
+ * @return Value of type `const afw_object_t *`.
  */
 #define afw_adapter_impl_index_get_index_definitions( \
     instance, \
@@ -1554,11 +1637,14 @@ struct afw_adapter_impl_index_inf_s {
 )
 
 /**
- * @brief Call method update_index_definitions of interface
- *     afw_adapter_impl_index
- * @param instancePointer to this adapter impl index instance.
- * @param indexDefinitionsUpdated indexes definitions.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `update_index_definitions` of interface
+ * `afw_adapter_impl_index`.
+ *
+ * Replace the adapter's internal index definitions with the updated index
+ * configuration object.
+ * @param instance Pointer to this adapter impl index instance.
+ * @param indexDefinitions Updated indexes definitions.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_adapter_impl_index_update_index_definitions( \
     instance, \
@@ -1572,20 +1658,23 @@ struct afw_adapter_impl_index_inf_s {
 )
 
 /**
- * @brief Call method add of interface afw_adapter_impl_index
- * @param instancePointer to this adapter impl index instance.
- * @param object_type_idObject type id associated with the property and value
- *     that we are indexing. This may be useful for the adapter to determine the
- *     target table or database to store the index.
- * @param object_idObject id for the object associated with the property and
- *     value that we are indexing. This should be used by the adapter as a
- *     reference to the primary entry.
- * @param keyIndex key associated with the index value we are creating.
- * @param valueIndex value associated with the index we are creating. This
- *     should be used by the adapter as the key to the index entry.
- * @param uniqueFlag indicating that the index being added should be unique.
- * @param poolCaller's pool.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `add` of interface `afw_adapter_impl_index`.
+ *
+ * Add an index to the adapter store
+ * @param instance Pointer to this adapter impl index instance.
+ * @param object_type_id Object type id associated with the property and value
+ * that we are indexing. This may be useful for the adapter to determine the
+ * target table or database to store the index.
+ * @param object_id Object id for the object associated with the property and
+ * value that we are indexing. This should be used by the adapter as a reference
+ * to the primary entry.
+ * @param key Index key associated with the index value we are creating.
+ * @param value Index value associated with the index we are creating. This
+ * should be used by the adapter as the key to the index entry.
+ * @param unique Flag indicating that the index being added should be unique.
+ * @param pool Caller's pool.
+ * @param xctx This is the caller's xctx.
+ * @return Value of type `afw_rc_t`.
  */
 #define afw_adapter_impl_index_add( \
     instance, \
@@ -1609,19 +1698,22 @@ struct afw_adapter_impl_index_inf_s {
 )
 
 /**
- * @brief Call method delete of interface afw_adapter_impl_index
- * @param instancePointer to this adapter impl index instance.
- * @param object_type_idObject type id associated with the property and value of
- *     the index we are removing. This may be useful for the adapter to
- *     determine the target table or database to store the index.
- * @param object_idObject id for the object associated with the property and
- *     value of the index we are removing. This should be used by the adapter as
- *     a reference to the primary entry.
- * @param keyIndex key associated with the index value we are deleting.
- * @param valueIndex value associated with the index we are deleting. This
- *     should be used by the adapter as the key to the index entry.
- * @param poolCaller's pool.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `delete` of interface `afw_adapter_impl_index`.
+ *
+ * Delete an index from the adapter store.
+ * @param instance Pointer to this adapter impl index instance.
+ * @param object_type_id Object type id associated with the property and value
+ * of the index we are removing. This may be useful for the adapter to determine
+ * the target table or database to store the index.
+ * @param object_id Object id for the object associated with the property and
+ * value of the index we are removing. This should be used by the adapter as a
+ * reference to the primary entry.
+ * @param key Index key associated with the index value we are deleting.
+ * @param value Index value associated with the index we are deleting. This
+ * should be used by the adapter as the key to the index entry.
+ * @param pool Caller's pool.
+ * @param xctx This is the caller's xctx.
+ * @return Value of type `afw_rc_t`.
  */
 #define afw_adapter_impl_index_delete( \
     instance, \
@@ -1643,21 +1735,24 @@ struct afw_adapter_impl_index_inf_s {
 )
 
 /**
- * @brief Call method replace of interface afw_adapter_impl_index
- * @param instancePointer to this adapter impl index instance.
- * @param object_type_idObject type id associated with the property and value
- *     that we are indexing. This may be useful for the adapter to determine the
- *     target table or database to store the index.
- * @param object_idObject id for the object associated with the property and
- *     value that we are indexing. This should be used by the adapter as a
- *     reference to the primary entry.
- * @param keyIndex key associated with the index value we are replacing.
- * @param old_valueOld index value associated with the index we are replacing.
- *     This should be used by the adapter as the key to the index entry.
- * @param new_valueNew index value associated with the index we are replacing.
- *     This should be used by the adapter as the key to the index entry.
- * @param poolCaller's pool.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `replace` of interface `afw_adapter_impl_index`.
+ *
+ * Replace an index in the adapter store
+ * @param instance Pointer to this adapter impl index instance.
+ * @param object_type_id Object type id associated with the property and value
+ * that we are indexing. This may be useful for the adapter to determine the
+ * target table or database to store the index.
+ * @param object_id Object id for the object associated with the property and
+ * value that we are indexing. This should be used by the adapter as a reference
+ * to the primary entry.
+ * @param key Index key associated with the index value we are replacing.
+ * @param old_value Old index value associated with the index we are replacing.
+ * This should be used by the adapter as the key to the index entry.
+ * @param new_value New index value associated with the index we are replacing.
+ * This should be used by the adapter as the key to the index entry.
+ * @param pool Caller's pool.
+ * @param xctx This is the caller's xctx.
+ * @return Value of type `afw_rc_t`.
  */
 #define afw_adapter_impl_index_replace( \
     instance, \
@@ -1681,14 +1776,19 @@ struct afw_adapter_impl_index_inf_s {
 )
 
 /**
- * @brief Call method drop of interface afw_adapter_impl_index
- * @param instancePointer to this adapter impl index instance.
- * @param object_type_idObject type id associated with the index. This may be
- *     useful for the adapter to determine the target table or database for the
- *     index.
- * @param keyIndex key.
- * @param poolCaller's pool.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `drop` of interface `afw_adapter_impl_index`.
+ *
+ * Drop an in index. The underlying store may decide to drop an entire table or
+ * database. Returns a boolean, determining whether the operation was
+ * successful.
+ * @param instance Pointer to this adapter impl index instance.
+ * @param object_type_id Object type id associated with the index. This may be
+ * useful for the adapter to determine the target table or database for the
+ * index.
+ * @param key Index key.
+ * @param pool Caller's pool.
+ * @param xctx This is the caller's xctx.
+ * @return Value of type `afw_rc_t`.
  */
 #define afw_adapter_impl_index_drop( \
     instance, \
@@ -1706,18 +1806,22 @@ struct afw_adapter_impl_index_inf_s {
 )
 
 /**
- * @brief Call method open_cursor of interface afw_adapter_impl_index
- * @param instancePointer to this adapter impl index instance.
- * @param object_type_idObject type id associated with the property and value
- *     that we are indexing. This may be useful for the adapter to determine the
- *     target table or database to find the index.
- * @param index_keyKey associated with the index we are replacing.
- * @param operatorQuery criteria operator.
- * @param valueIndex value associated with the index we are querying. This
- *     should be used by the adapter as the key to the index entry.
- * @param uniqueIndex values are unique.
- * @param poolCaller's pool.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `open_cursor` of interface `afw_adapter_impl_index`.
+ *
+ * Opens a cursor to an index table or database, from which the caller can
+ * iterate over to obtain objects.
+ * @param instance Pointer to this adapter impl index instance.
+ * @param object_type_id Object type id associated with the property and value
+ * that we are indexing. This may be useful for the adapter to determine the
+ * target table or database to find the index.
+ * @param index_key Key associated with the index we are replacing.
+ * @param operator Query criteria operator.
+ * @param value Index value associated with the index we are querying. This
+ * should be used by the adapter as the key to the index entry.
+ * @param unique Index values are unique.
+ * @param pool Caller's pool.
+ * @param xctx This is the caller's xctx.
+ * @return Value of type `afw_adapter_impl_index_cursor_t *`.
  */
 #define afw_adapter_impl_index_open_cursor( \
     instance, \
@@ -1741,9 +1845,12 @@ struct afw_adapter_impl_index_inf_s {
 )
 
 /**
- * @brief Call method get_session of interface afw_adapter_impl_index
- * @param instancePointer to this adapter impl index instance.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `get_session` of interface `afw_adapter_impl_index`.
+ *
+ * Obtains the session for this adapter, used to build and repair indexes.
+ * @param instance Pointer to this adapter impl index instance.
+ * @param xctx This is the caller's xctx.
+ * @return Value of type `const afw_adapter_session_t *`.
  */
 #define afw_adapter_impl_index_get_session( \
     instance, \
@@ -1799,14 +1906,16 @@ struct afw_authorization_handler_factory_inf_s {
 };
 
 /**
- * @brief Call method create_authorization_handler_cede_p of interface
- *     afw_authorization_handler_factory
- * @param instancePointer to this authorization handler factory instance.
- * @param propertiesConfiguration parameters for the particular type of
- *     authorization handler.
- *     This will become the properties object for handler.
- * @param pThe pool that will be used for authorization handler resources.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `create_authorization_handler_cede_p` of interface
+ * `afw_authorization_handler_factory`.
+ *
+ * Create an authorization handler of the factory's type.
+ * @param instance Pointer to this authorization handler factory instance.
+ * @param properties Configuration parameters for the particular type of
+ * authorization handler. This will become the properties object for handler.
+ * @param p The pool that will be used for authorization handler resources.
+ * @param xctx This is the caller's xctx.
+ * @return An instance of an authorization handler.
  */
 #define afw_authorization_handler_factory_create_authorization_handler_cede_p( \
     instance, \
@@ -1961,9 +2070,18 @@ struct afw_authorization_handler_inf_s {
 };
 
 /**
- * @brief Call method destroy of interface afw_authorization_handler
- * @param instancePointer to this adaptive authorization handler instance.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `destroy` of interface `afw_authorization_handler`.
+ *
+ * This method should not be called directly unless you are manually
+ * managing the lifetime of this authorization handler. The functions in
+ * afw_authorization_handler.h will call this method when there are no more
+ * references to this authorization handler and then destroy the pool
+ * passed to the create function.
+ * 
+ * The implementation of this method releases any resource not tied to that
+ * pool.
+ * @param instance Pointer to this adaptive authorization handler instance.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_authorization_handler_destroy( \
     instance, \
@@ -1975,14 +2093,17 @@ struct afw_authorization_handler_inf_s {
 )
 
 /**
- * @brief Call method check of interface afw_authorization_handler
- * @param instancePointer to this adaptive request instance.
- * @param resource_idAdaptive string value for the URI of resource to check.
- * @param objectAdaptive object value for the object associated with resource or
- *     NULL.
- * @param action_idAdaptive string value for the action to check.
- * @param pPool for result.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `check` of interface `afw_authorization_handler`.
+ *
+ * Perform authorization check.
+ * @param instance Pointer to this adaptive request instance.
+ * @param resource_id Adaptive string value for the URI of resource to check.
+ * @param object Adaptive object value for the object associated with resource
+ * or NULL.
+ * @param action_id Adaptive string value for the action to check.
+ * @param p Pool for result.
+ * @param xctx This is the caller's xctx.
+ * @return Authorization result.
  */
 #define afw_authorization_handler_check( \
     instance, \
@@ -2089,12 +2210,15 @@ struct afw_content_type_inf_s {
 };
 
 /**
- * @brief Call method raw_to_value of interface afw_content_type
- * @param instancePointer to this content type instance.
- * @param rawRaw encoded representation of this content type.
- * @param source_locationSource location or NULL.
- * @param pPool to use to hold returned value.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `raw_to_value` of interface `afw_content_type`.
+ *
+ * Convert a raw representation of this content type to an adaptive value.
+ * @param instance Pointer to this content type instance.
+ * @param raw Raw encoded representation of this content type.
+ * @param source_location Source location or NULL.
+ * @param p Pool to use to hold returned value.
+ * @param xctx This is the caller's xctx.
+ * @return Adaptive value representation of raw value.
  */
 #define afw_content_type_raw_to_value( \
     instance, \
@@ -2112,17 +2236,21 @@ struct afw_content_type_inf_s {
 )
 
 /**
- * @brief Call method raw_to_object of interface afw_content_type
- * @param instancePointer to this content type instance.
- * @param rawRaw encoded object representation of this content type.
- * @param source_locationSource location or NULL.
- * @param adapter_idAdapter id for created object.
- * @param object_type_idObject type id for created object.
- * @param object_idObject id for created object.
- * @param cede_pIf true, cede control of p to the created object.
- *     If false, a subpool will be created in p for the object.
- * @param pThe pool to use.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `raw_to_object` of interface `afw_content_type`.
+ *
+ * Convert a raw object representation for this content type to an adaptive
+ * object.
+ * @param instance Pointer to this content type instance.
+ * @param raw Raw encoded object representation of this content type.
+ * @param source_location Source location or NULL.
+ * @param adapter_id Adapter id for created object.
+ * @param object_type_id Object type id for created object.
+ * @param object_id Object id for created object.
+ * @param cede_p If true, cede control of p to the created object. If false, a
+ * subpool will be created in p for the object.
+ * @param p The pool to use.
+ * @param xctx This is the caller's xctx.
+ * @return Adaptive value representation of raw value.
  */
 #define afw_content_type_raw_to_object( \
     instance, \
@@ -2148,23 +2276,24 @@ struct afw_content_type_inf_s {
 )
 
 /**
- * @brief Call method write_value of interface afw_content_type
- * @param instancePointer to this content type instance.
- * @param valueAdaptive value to convert and write.
- * @param optionsThese options can determine if none, some, or all object meta
- *     information should be included in output.
- * 
- *     See afw_object_options_t for more information. Only options flagged
- *     for use by content type processing are honored. All other options
- *     are ignored. For instance, a call to afw_object_view_create() with
- *     the composite option is needed before calling a content type write
- *     function if inherited properties should be included in output.
- * @param contextPointer passed to callback routine.
- * @param callbackCallback function that will be called to write multiple times
- *     to write
- *     the raw representation of the value.
- * @param pPool to use.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `write_value` of interface `afw_content_type`.
+ *
+ * Convert an adaptive value to the raw representation of this content
+ * type can call callback to write it.
+ * @param instance Pointer to this content type instance.
+ * @param value Adaptive value to convert and write.
+ * @param options These options can determine if none, some, or all object meta
+ * information should be included in output. See afw_object_options_t for more
+ * information. Only options flagged for use by content type processing are
+ * honored. All other options are ignored. For instance, a call to
+ * afw_object_view_create() with the composite option is needed before calling a
+ * content type write function if inherited properties should be included in
+ * output.
+ * @param context Pointer passed to callback routine.
+ * @param callback Callback function that will be called to write multiple times
+ * to write the raw representation of the value.
+ * @param p Pool to use.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_content_type_write_value( \
     instance, \
@@ -2186,22 +2315,24 @@ struct afw_content_type_inf_s {
 )
 
 /**
- * @brief Call method create_object_list_writer of interface afw_content_type
- * @param instancePointer to this content type instance.
- * @param optionsThese options can determine if none, some, or all object meta
- *     information should be included in output.
- * 
- *     See afw_object_options_t for more information. Only options flagged
- *     for use by content type processing are honored. All other options
- *     are ignored. For instance, a call to afw_object_view_create() with
- *     the composite option is needed before calling a content type write
- *     function if inherited properties should be included in output.
- * @param contextPointer passed to callback routine.
- * @param callbackCallback function that will be called each time the object
- *     list
- *     writer has something to write.
- * @param pPool to use.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `create_object_list_writer` of interface
+ * `afw_content_type`.
+ *
+ * Create an object list writer.
+ * @param instance Pointer to this content type instance.
+ * @param options These options can determine if none, some, or all object meta
+ * information should be included in output. See afw_object_options_t for more
+ * information. Only options flagged for use by content type processing are
+ * honored. All other options are ignored. For instance, a call to
+ * afw_object_view_create() with the composite option is needed before calling a
+ * content type write function if inherited properties should be included in
+ * output.
+ * @param context Pointer passed to callback routine.
+ * @param callback Callback function that will be called each time the object
+ * list writer has something to write.
+ * @param p Pool to use.
+ * @param xctx This is the caller's xctx.
+ * @return Object list writer.
  */
 #define afw_content_type_create_object_list_writer( \
     instance, \
@@ -2261,9 +2392,12 @@ struct afw_content_type_object_list_writer_inf_s {
 };
 
 /**
- * @brief Call method release of interface afw_content_type_object_list_writer
- * @param instancePointer to this instance.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `release` of interface
+ * `afw_content_type_object_list_writer`.
+ *
+ * Write end of list and release resources associated with instance.
+ * @param instance Pointer to this instance.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_content_type_object_list_writer_release( \
     instance, \
@@ -2275,12 +2409,14 @@ struct afw_content_type_object_list_writer_inf_s {
 )
 
 /**
- * @brief Call method write_object of interface
- *     afw_content_type_object_list_writer
- * @param instancePointer to this instance.
- * @param objectThe object to write.
- * @param pPool to use.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `write_object` of interface
+ * `afw_content_type_object_list_writer`.
+ *
+ * Write the object. The object's pool will be used for any resources needed.
+ * @param instance Pointer to this instance.
+ * @param object The object to write.
+ * @param p Pool to use.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_content_type_object_list_writer_write_object( \
     instance, \
@@ -2511,13 +2647,15 @@ struct afw_data_type_inf_s {
 };
 
 /**
- * @brief Call method internal_to_utf8 of interface afw_data_type
- * @param instancePointer to this data type instance.
- * @param from_internalInternal representation of this data type of correct
- *     cType to
- *     convert.
- * @param pPool to use to hold returned value.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `internal_to_utf8` of interface `afw_data_type`.
+ *
+ * Convert from cType value to const afw_utf8_t *.
+ * @param instance Pointer to this data type instance.
+ * @param from_internal Internal representation of this data type of correct
+ * cType to convert.
+ * @param p Pool to use to hold returned value.
+ * @param xctx This is the caller's xctx.
+ * @return Value converted to utf-8.
  */
 #define afw_data_type_internal_to_utf8( \
     instance, \
@@ -2533,14 +2671,15 @@ struct afw_data_type_inf_s {
 )
 
 /**
- * @brief Call method utf8_to_internal of interface afw_data_type
- * @param instancePointer to this data type instance.
- * @param to_internalThe address of the place to return result. This place must
- *     be the correct size
- *     based on data type (c_type_size).
- * @param from_utf8NFC UTF-8 representation for of this data type.
- * @param pPool to use to hold returned value.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `utf8_to_internal` of interface `afw_data_type`.
+ *
+ * Convert a NFC utf-8 representation of a value to it's cType representation.
+ * @param instance Pointer to this data type instance.
+ * @param to_internal The address of the place to return result. This place must
+ * be the correct size based on data type (c_type_size).
+ * @param from_utf8 NFC UTF-8 representation for of this data type.
+ * @param p Pool to use to hold returned value.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_data_type_utf8_to_internal( \
     instance, \
@@ -2558,11 +2697,19 @@ struct afw_data_type_inf_s {
 )
 
 /**
- * @brief Call method compare_internal of interface afw_data_type
- * @param instancePointer to this data type instance.
- * @param internal1First value of correct cType to compare.
- * @param internal2Second value of correct cType to compare.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `compare_internal` of interface `afw_data_type`.
+ *
+ * Compare the internal representation of two cType representations of
+ * this data type.
+ * @param instance Pointer to this data type instance.
+ * @param internal1 First value of correct cType to compare.
+ * @param internal2 Second value of correct cType to compare.
+ * @param xctx This is the caller's xctx.
+ * @return Result of comparison. A result of 0 indicates that the two values are
+ * equal and not 0 indicates not equal. For data types with allow, a negative
+ * result indicates that the first value is less than the second value and
+ * positive result indicates that the first value is greater than the second
+ * value.
  */
 #define afw_data_type_compare_internal( \
     instance, \
@@ -2578,15 +2725,16 @@ struct afw_data_type_inf_s {
 )
 
 /**
- * @brief Call method convert_internal of interface afw_data_type
- * @param instancePointer to this data type instance.
- * @param to_internalThe address of the place to return result. This place must
- *     be the correct size
- *     based on data type (c_type_size) of to_data_type.
- * @param from_internalValue of correct cType to of this data type to convert.
- * @param to_data_typeData type of to value.
- * @param pPool to use to hold returned value.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `convert_internal` of interface `afw_data_type`.
+ *
+ * Convert an internal value of one data type to another.
+ * @param instance Pointer to this data type instance.
+ * @param to_internal The address of the place to return result. This place must
+ * be the correct size based on data type (c_type_size) of to_data_type.
+ * @param from_internal Value of correct cType to of this data type to convert.
+ * @param to_data_type Data type of to value.
+ * @param p Pool to use to hold returned value.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_data_type_convert_internal( \
     instance, \
@@ -2606,14 +2754,15 @@ struct afw_data_type_inf_s {
 )
 
 /**
- * @brief Call method clone_internal of interface afw_data_type
- * @param instancePointer to this data type instance.
- * @param to_internalThe address of the place to return result. This place must
- *     be the correct size
- *     based on data type (c_type_size) of to_data_type.
- * @param from_internalValue of correct cType to of this data type to convert.
- * @param pPool to use to hold returned value.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `clone_internal` of interface `afw_data_type`.
+ *
+ * Clone an internal value.
+ * @param instance Pointer to this data type instance.
+ * @param to_internal The address of the place to return result. This place must
+ * be the correct size based on data type (c_type_size) of to_data_type.
+ * @param from_internal Value of correct cType to of this data type to convert.
+ * @param p Pool to use to hold returned value.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_data_type_clone_internal( \
     instance, \
@@ -2631,11 +2780,13 @@ struct afw_data_type_inf_s {
 )
 
 /**
- * @brief Call method value_compiler_listing of interface afw_data_type
- * @param instancePointer to this data type instance.
- * @param writerWriter instance to use.
- * @param valueValue to write to compiler listing.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `value_compiler_listing` of interface `afw_data_type`.
+ *
+ * Write data type instance value to compile listing.
+ * @param instance Pointer to this data type instance.
+ * @param writer Writer instance to use.
+ * @param value Value to write to compiler listing.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_data_type_value_compiler_listing( \
     instance, \
@@ -2651,11 +2802,13 @@ struct afw_data_type_inf_s {
 )
 
 /**
- * @brief Call method write_as_expression of interface afw_data_type
- * @param instancePointer to this data type instance.
- * @param writerWriter instance to use.
- * @param from_internalValue of correct cType to of this data type to convert.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `write_as_expression` of interface `afw_data_type`.
+ *
+ * Write as an expression.
+ * @param instance Pointer to this data type instance.
+ * @param writer Writer instance to use.
+ * @param from_internal Value of correct cType to of this data type to convert.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_data_type_write_as_expression( \
     instance, \
@@ -2784,9 +2937,14 @@ struct afw_array_setter_inf_s {
 };
 
 /**
- * @brief Call method set_immutable of interface afw_array_setter
- * @param instancePointer to this object instance.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `set_immutable` of interface `afw_array_setter`.
+ *
+ * Set array to immutable. No error is throw if already immutable.
+ * 
+ * Once an array is set to immutable, all other set calls will throw
+ * an error.
+ * @param instance Pointer to this object instance.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_array_setter_set_immutable( \
     instance, \
@@ -2798,10 +2956,23 @@ struct afw_array_setter_inf_s {
 )
 
 /**
- * @brief Call method determine_data_type_and_set_immutable of interface
- *     afw_array_setter
- * @param instancePointer to this object instance.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `determine_data_type_and_set_immutable` of interface
+ * `afw_array_setter`.
+ *
+ * Determine data type of entries then set array to immutable.
+ * 
+ * An error is throw if already immutable.
+ * 
+ * If data type of values in array is not already known and all
+ * values is array have the same data type, make the array an array of
+ * that data type.
+ * 
+ * Once an array is set to immutable, all other set calls will throw
+ * an error.
+ * @param instance Pointer to this object instance.
+ * @param xctx This is the caller's xctx.
+ * @return This is the data type of all values in the array or NULL if unknown
+ * or different.
  */
 #define afw_array_setter_determine_data_type_and_set_immutable( \
     instance, \
@@ -2813,11 +2984,14 @@ struct afw_array_setter_inf_s {
 )
 
 /**
- * @brief Call method add_internal of interface afw_array_setter
- * @param instancePointer to this value array instance.
- * @param data_typeThe data type of internal.
- * @param internalThe internal value to add of type data_type->cType.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `add_internal` of interface `afw_array_setter`.
+ *
+ * Add a value to an array that only holds one data type using its
+ * internal value.
+ * @param instance Pointer to this value array instance.
+ * @param data_type The data type of internal.
+ * @param internal The internal value to add of type data_type->cType.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_array_setter_add_internal( \
     instance, \
@@ -2833,10 +3007,12 @@ struct afw_array_setter_inf_s {
 )
 
 /**
- * @brief Call method add_value of interface afw_array_setter
- * @param instancePointer to this value array instance.
- * @param valueA value.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `add_value` of interface `afw_array_setter`.
+ *
+ * Add a value to an array.
+ * @param instance Pointer to this value array instance.
+ * @param value A value.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_array_setter_add_value( \
     instance, \
@@ -2850,12 +3026,15 @@ struct afw_array_setter_inf_s {
 )
 
 /**
- * @brief Call method insert_internal of interface afw_array_setter
- * @param instancePointer to this value array instance.
- * @param data_typeThe data type of internal.
- * @param internalThe internal value to add of type data_type->cType.
- * @param indexThe zero based index for insert.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `insert_internal` of interface `afw_array_setter`.
+ *
+ * Insert a value to an array that only holds one data type using its
+ * internal value at a specified index.
+ * @param instance Pointer to this value array instance.
+ * @param data_type The data type of internal.
+ * @param internal The internal value to add of type data_type->cType.
+ * @param index The zero based index for insert.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_array_setter_insert_internal( \
     instance, \
@@ -2873,11 +3052,13 @@ struct afw_array_setter_inf_s {
 )
 
 /**
- * @brief Call method insert_value of interface afw_array_setter
- * @param instancePointer to this value array instance.
- * @param valueA value.
- * @param indexThe zero based index for insert.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `insert_value` of interface `afw_array_setter`.
+ *
+ * Insert a value to an array at a specified index.
+ * @param instance Pointer to this value array instance.
+ * @param value A value.
+ * @param index The zero based index for insert.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_array_setter_insert_value( \
     instance, \
@@ -2893,9 +3074,11 @@ struct afw_array_setter_inf_s {
 )
 
 /**
- * @brief Call method remove_all_values of interface afw_array_setter
- * @param instancePointer to this value array instance.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `remove_all_values` of interface `afw_array_setter`.
+ *
+ * Remove all values from an array.
+ * @param instance Pointer to this value array instance.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_array_setter_remove_all_values( \
     instance, \
@@ -2907,11 +3090,14 @@ struct afw_array_setter_inf_s {
 )
 
 /**
- * @brief Call method remove_internal of interface afw_array_setter
- * @param instancePointer to this value array instance.
- * @param data_typeThe data type of internal.
- * @param internalThe internal value to delete of type data_type->cType.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `remove_internal` of interface `afw_array_setter`.
+ *
+ * Remove a single value from array that only holds one data type using its
+ * internal value.
+ * @param instance Pointer to this value array instance.
+ * @param data_type The data type of internal.
+ * @param internal The internal value to delete of type data_type->cType.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_array_setter_remove_internal( \
     instance, \
@@ -2927,10 +3113,12 @@ struct afw_array_setter_inf_s {
 )
 
 /**
- * @brief Call method remove_value of interface afw_array_setter
- * @param instancePointer to this value array instance.
- * @param valueValue.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `remove_value` of interface `afw_array_setter`.
+ *
+ * Remove a single value from array.
+ * @param instance Pointer to this value array instance.
+ * @param value Value.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_array_setter_remove_value( \
     instance, \
@@ -2944,11 +3132,13 @@ struct afw_array_setter_inf_s {
 )
 
 /**
- * @brief Call method set_value_by_index of interface afw_array_setter
- * @param instancePointer to this value array instance.
- * @param indexIndex relative to 0.
- * @param valueValue.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `set_value_by_index` of interface `afw_array_setter`.
+ *
+ * Set a value by index.
+ * @param instance Pointer to this value array instance.
+ * @param index Index relative to 0.
+ * @param value Value.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_array_setter_set_value_by_index( \
     instance, \
@@ -3093,9 +3283,13 @@ struct afw_array_inf_s {
 };
 
 /**
- * @brief Call method release of interface afw_array
- * @param instancePointer to this value array instance.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `release` of interface `afw_array`.
+ *
+ * Release resources associated with adaptive value array. This will
+ * automatically be called
+ * if value array is part of an adaptive adapter session.
+ * @param instance Pointer to this value array instance.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_array_release( \
     instance, \
@@ -3107,9 +3301,12 @@ struct afw_array_inf_s {
 )
 
 /**
- * @brief Call method get_count of interface afw_array
- * @param instancePointer to this value array instance.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `get_count` of interface `afw_array`.
+ *
+ * Return the number of values in array.
+ * @param instance Pointer to this value array instance.
+ * @param xctx This is the caller's xctx.
+ * @return Number of values in array.
  */
 #define afw_array_get_count( \
     instance, \
@@ -3121,9 +3318,12 @@ struct afw_array_inf_s {
 )
 
 /**
- * @brief Call method get_data_type of interface afw_array
- * @param instancePointer to this value array instance.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `get_data_type` of interface `afw_array`.
+ *
+ * Return the data type if typed array or NULL.
+ * @param instance Pointer to this value array instance.
+ * @param xctx This is the caller's xctx.
+ * @return Data type of typed array.
  */
 #define afw_array_get_data_type( \
     instance, \
@@ -3135,11 +3335,15 @@ struct afw_array_inf_s {
 )
 
 /**
- * @brief Call method get_entry_meta of interface afw_array
- * @param instancePointer to this value array instance.
- * @param indexZero-based index of array entry to return.
- * @param pIf necessary, this pool is used to create the return value.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `get_entry_meta` of interface `afw_array`.
+ *
+ * Get the meta object of array entry by index.
+ * @param instance Pointer to this value array instance.
+ * @param index Zero-based index of array entry to return.
+ * @param p If necessary, this pool is used to create the return value.
+ * @param xctx This is the caller's xctx.
+ * @return The object value to access the meta of the entry or NULL if index is
+ * out of range.
  */
 #define afw_array_get_entry_meta( \
     instance, \
@@ -3155,14 +3359,17 @@ struct afw_array_inf_s {
 )
 
 /**
- * @brief Call method get_entry_internal of interface afw_array
- * @param instancePointer to this value array instance.
- * @param indexZero-based index of array entry to return.
- * @param data_typePlace to put data type pointer or NULL.
- * @param internalPlace to put data_type->cType pointer to the internal at the
- *     specified index.
- *     This will be set to NULL if index is out of range.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `get_entry_internal` of interface `afw_array`.
+ *
+ * Get internal entry of array entry by index. See data_type to
+ * determine how to interpret.
+ * @param instance Pointer to this value array instance.
+ * @param index Zero-based index of array entry to return.
+ * @param data_type Place to put data type pointer or NULL.
+ * @param internal Place to put data_type->cType pointer to the internal at the
+ * specified index. This will be set to NULL if index is out of range.
+ * @param xctx This is the caller's xctx.
+ * @return Will be true if *internal is not NULL.
  */
 #define afw_array_get_entry_internal( \
     instance, \
@@ -3180,11 +3387,18 @@ struct afw_array_inf_s {
 )
 
 /**
- * @brief Call method get_entry_value of interface afw_array
- * @param instancePointer to this value array instance.
- * @param indexZero-based index of array entry to return.
- * @param pIf necessary, this pool is used to create the return value.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `get_entry_value` of interface `afw_array`.
+ *
+ * Get value of array entry by index.
+ * 
+ * For some arrays, methods get_internal_by_index() is more efficient.
+ * If the array implementation stores only the internal part of a value,
+ * this function will create an adaptive value in the specified pool to return.
+ * @param instance Pointer to this value array instance.
+ * @param index Zero-based index of array entry to return.
+ * @param p If necessary, this pool is used to create the return value.
+ * @param xctx This is the caller's xctx.
+ * @return The value at the specified index or NULL if out of range.
  */
 #define afw_array_get_entry_value( \
     instance, \
@@ -3200,11 +3414,17 @@ struct afw_array_inf_s {
 )
 
 /**
- * @brief Call method get_next_entry_meta of interface afw_array
- * @param instancePointer to this value array instance.
- * @param iteratorAddress of iterator pointer.
- * @param pIf necessary, this pool is used to create the return value.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `get_next_entry_meta` of interface `afw_array`.
+ *
+ * Get next value in array and update iterator. Set the iterator to NULL
+ * before the first call of this method and any time you want to start
+ * from the first value again.
+ * @param instance Pointer to this value array instance.
+ * @param iterator Address of iterator pointer.
+ * @param p If necessary, this pool is used to create the return value.
+ * @param xctx This is the caller's xctx.
+ * @return The object value to access the meta of the entry or NULL there are no
+ * more.
  */
 #define afw_array_get_next_entry_meta( \
     instance, \
@@ -3220,13 +3440,20 @@ struct afw_array_inf_s {
 )
 
 /**
- * @brief Call method get_next_internal of interface afw_array
- * @param instancePointer to this value array instance.
- * @param iteratorAddress of iterator pointer.
- * @param data_typePlace to put data type pointer or NULL.
- * @param internalPlace to put data_type->cType pointer to next internal.
- *     This will be set to NULL if there is no next internal.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `get_next_internal` of interface `afw_array`.
+ *
+ * Get next internal in array and update iterator. See data_type to
+ * determine how to interpret.
+ * 
+ * Set the iterator to NULL before the first call of this method and
+ * any time you want to start from the first value again.
+ * @param instance Pointer to this value array instance.
+ * @param iterator Address of iterator pointer.
+ * @param data_type Place to put data type pointer or NULL.
+ * @param internal Place to put data_type->cType pointer to next internal. This
+ * will be set to NULL if there is no next internal.
+ * @param xctx This is the caller's xctx.
+ * @return Will be true if *internal is not NULL.
  */
 #define afw_array_get_next_internal( \
     instance, \
@@ -3244,11 +3471,21 @@ struct afw_array_inf_s {
 )
 
 /**
- * @brief Call method get_next_value of interface afw_array
- * @param instancePointer to this value array instance.
- * @param iteratorAddress of iterator pointer.
- * @param pIf necessary, this pool is used to create the return value.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `get_next_value` of interface `afw_array`.
+ *
+ * Get next value in array and update iterator. Set the iterator to NULL
+ * before the first call of this method and any time you want to start
+ * from the first value again.
+ * 
+ * For some arrays, methods get_next_internal() and
+ * get_next_internal_and_data_type() are more efficient.
+ * If the array implementation stores only the internal part of a value,
+ * this function will create an adaptive value in the specified pool to return.
+ * @param instance Pointer to this value array instance.
+ * @param iterator Address of iterator pointer.
+ * @param p If necessary, this pool is used to create the return value.
+ * @param xctx This is the caller's xctx.
+ * @return Pointer to next value or NULL if there are no more.
  */
 #define afw_array_get_next_value( \
     instance, \
@@ -3264,9 +3501,12 @@ struct afw_array_inf_s {
 )
 
 /**
- * @brief Call method get_setter of interface afw_array
- * @param instancePointer to this object instance.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `get_setter` of interface `afw_array`.
+ *
+ * Return the array's setter interface or NULL if immutable.
+ * @param instance Pointer to this object instance.
+ * @param xctx This is the caller's xctx.
+ * @return List's setter interface or NULL if immutable.
  */
 #define afw_array_get_setter( \
     instance, \
@@ -3322,12 +3562,15 @@ struct afw_log_factory_inf_s {
 };
 
 /**
- * @brief Call method create_log_cede_p of interface afw_log_factory
- * @param instancePointer to this log factory instance.
- * @param propertiesCreation parameters for the particular type of log. This
- *     will become properties object for log.
- * @param pPool to use for log resources.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `create_log_cede_p` of interface `afw_log_factory`.
+ *
+ * Create a log of the factory's type.
+ * @param instance Pointer to this log factory instance.
+ * @param properties Creation parameters for the particular type of log. This
+ * will become properties object for log.
+ * @param p Pool to use for log resources.
+ * @param xctx This is the caller's xctx.
+ * @return An instance of a log.
  */
 #define afw_log_factory_create_log_cede_p( \
     instance, \
@@ -3424,9 +3667,16 @@ struct afw_log_inf_s {
 };
 
 /**
- * @brief Call method destroy of interface afw_log
- * @param instancePointer to this log instance.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `destroy` of interface `afw_log`.
+ *
+ * This method should not be called directly. Adaptive Framework core will
+ * call this method when there are no more references to this log.
+ * 
+ * After this methods is called, core will destroy the pool passed to the
+ * create function for this log. The implementation of this method
+ * releases any resource not tied to that pool.
+ * @param instance Pointer to this log instance.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_log_destroy( \
     instance, \
@@ -3438,10 +3688,12 @@ struct afw_log_inf_s {
 )
 
 /**
- * @brief Call method set_own_mask of interface afw_log
- * @param instancePointer to this log instance.
- * @param maskLog priority mask.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `set_own_mask` of interface `afw_log`.
+ *
+ * Set log's own priority mask.
+ * @param instance Pointer to this log instance.
+ * @param mask Log priority mask.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_log_set_own_mask( \
     instance, \
@@ -3455,12 +3707,14 @@ struct afw_log_inf_s {
 )
 
 /**
- * @brief Call method write of interface afw_log
- * @param instancePointer to this log instance.
- * @param priorityLog priority level.
- * @param source_zSource file name
- * @param messageMessage to log.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `write` of interface `afw_log`.
+ *
+ * Write log message.
+ * @param instance Pointer to this log instance.
+ * @param priority Log priority level.
+ * @param source_z Source file name
+ * @param message Message to log.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_log_write( \
     instance, \
@@ -3525,9 +3779,14 @@ struct afw_object_setter_inf_s {
 };
 
 /**
- * @brief Call method set_immutable of interface afw_object_setter
- * @param instancePointer to this object instance.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `set_immutable` of interface `afw_object_setter`.
+ *
+ * Set object to immutable. No error is throw if already immutable.
+ * 
+ * Once a object is set to immutable, all other set calls will throw
+ * an error.
+ * @param instance Pointer to this object instance.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_object_setter_set_immutable( \
     instance, \
@@ -3539,11 +3798,24 @@ struct afw_object_setter_inf_s {
 )
 
 /**
- * @brief Call method set_property of interface afw_object_setter
- * @param instancePointer to this object setter instance.
- * @param property_nameProperty name of property to set.
- * @param valueValue to set or NULL to remove the property.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `set_property` of interface `afw_object_setter`.
+ *
+ * Set the value of a property owned by an object. The property will be
+ * added, if necessary. The object ancestors are not changed. If it is
+ * important to know if property exists that is being set, use method
+ * has_property() first.
+ * 
+ * The value and name must be available for the life of the object. Use the
+ * object's pool to allocate memory for the name and value, if necessary.
+ * 
+ * If value is NULL, the property is removed. If the property does not exist,
+ * no error is thrown.
+ * 
+ * An exception is thrown if the object is immutable.
+ * @param instance Pointer to this object setter instance.
+ * @param property_name Property name of property to set.
+ * @param value Value to set or NULL to remove the property.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_object_setter_set_property( \
     instance, \
@@ -3690,9 +3962,14 @@ struct afw_object_inf_s {
 };
 
 /**
- * @brief Call method release of interface afw_object
- * @param instancePointer to this object instance.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `release` of interface `afw_object`.
+ *
+ * Reduces the object's reference count and releases the object's resources
+ * if the count is 0. An object returned from a create function has a
+ * reference count of 1. Call's to method get_reference() increments
+ * the count.
+ * @param instance Pointer to this object instance.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_object_release( \
     instance, \
@@ -3704,9 +3981,15 @@ struct afw_object_inf_s {
 )
 
 /**
- * @brief Call method get_reference of interface afw_object
- * @param instancePointer to this object instance.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `get_reference` of interface `afw_object`.
+ *
+ * Adds an additional reference to an object. This call is only necessary
+ * if this object may be referenced after it would normally be released.
+ * For example, when an object is added to a memory cache, this method
+ * is called and when the object is removed from cache, the release() method
+ * is called.
+ * @param instance Pointer to this object instance.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_object_get_reference( \
     instance, \
@@ -3718,9 +4001,12 @@ struct afw_object_inf_s {
 )
 
 /**
- * @brief Call method get_count of interface afw_object
- * @param instancePointer to this object instance.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `get_count` of interface `afw_object`.
+ *
+ * Return the number of properties in the object.
+ * @param instance Pointer to this object instance.
+ * @param xctx This is the caller's xctx.
+ * @return Number of entries/properties in the object.
  */
 #define afw_object_get_count( \
     instance, \
@@ -3732,10 +4018,14 @@ struct afw_object_inf_s {
 )
 
 /**
- * @brief Call method get_meta of interface afw_object
- * @param instancePointer to this object instance.
- * @param pPool to use for result.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `get_meta` of interface `afw_object`.
+ *
+ * Get the meta object for this object.
+ * @param instance Pointer to this object instance.
+ * @param p Pool to use for result.
+ * @param xctx This is the caller's xctx.
+ * @return The object value to access the meta for this object or NULL if
+ * property does not exist.
  */
 #define afw_object_get_meta( \
     instance, \
@@ -3749,10 +4039,13 @@ struct afw_object_inf_s {
 )
 
 /**
- * @brief Call method get_property of interface afw_object
- * @param instancePointer to this object instance.
- * @param property_nameProperty name.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `get_property` of interface `afw_object`.
+ *
+ * Get the value of a property in this object.
+ * @param instance Pointer to this object instance.
+ * @param property_name Property name.
+ * @param xctx This is the caller's xctx.
+ * @return Pointer to property value or NULL if property does not exist.
  */
 #define afw_object_get_property( \
     instance, \
@@ -3766,11 +4059,15 @@ struct afw_object_inf_s {
 )
 
 /**
- * @brief Call method get_property_meta of interface afw_object
- * @param instancePointer to this object instance.
- * @param property_nameProperty name.
- * @param pPool to use for result.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `get_property_meta` of interface `afw_object`.
+ *
+ * Get the meta object of a property in this object.
+ * @param instance Pointer to this object instance.
+ * @param property_name Property name.
+ * @param p Pool to use for result.
+ * @param xctx This is the caller's xctx.
+ * @return The object value to access the meta of the property or NULL if
+ * property does not exist.
  */
 #define afw_object_get_property_meta( \
     instance, \
@@ -3786,12 +4083,16 @@ struct afw_object_inf_s {
 )
 
 /**
- * @brief Call method get_next_property of interface afw_object
- * @param instancePointer to this object instance.
- * @param iteratorAddress of iterator pointer. Set to NULL before call to get
- *     first property.
- * @param property_namePlace to return pointer to property name or NULL.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `get_next_property` of interface `afw_object`.
+ *
+ * Get next property in this object and update iterator.
+ * Set iterator to NULL before calling to get the first property.
+ * @param instance Pointer to this object instance.
+ * @param iterator Address of iterator pointer. Set to NULL before call to get
+ * first property.
+ * @param property_name Place to return pointer to property name or NULL.
+ * @param xctx This is the caller's xctx.
+ * @return Pointer to property value or NULL if there is not another property.
  */
 #define afw_object_get_next_property( \
     instance, \
@@ -3807,13 +4108,18 @@ struct afw_object_inf_s {
 )
 
 /**
- * @brief Call method get_next_property_meta of interface afw_object
- * @param instancePointer to this object instance.
- * @param iteratorAddress of iterator pointer. Set to NULL before call to get
- *     first property.
- * @param property_namePlace to return pointer to property name.
- * @param pPool to use for result.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `get_next_property_meta` of interface `afw_object`.
+ *
+ * Get next property in this object and update iterator.
+ * Set iterator to NULL before calling to get the first property.
+ * @param instance Pointer to this object instance.
+ * @param iterator Address of iterator pointer. Set to NULL before call to get
+ * first property.
+ * @param property_name Place to return pointer to property name.
+ * @param p Pool to use for result.
+ * @param xctx This is the caller's xctx.
+ * @return The object instance value to access the meta of the next property or
+ * NULL if there is not another property.
  */
 #define afw_object_get_next_property_meta( \
     instance, \
@@ -3831,10 +4137,13 @@ struct afw_object_inf_s {
 )
 
 /**
- * @brief Call method has_property of interface afw_object
- * @param instancePointer to this object instance.
- * @param property_nameProperty name.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `has_property` of interface `afw_object`.
+ *
+ * Determine if a property exists in this object.
+ * @param instance Pointer to this object instance.
+ * @param property_name Property name.
+ * @param xctx This is the caller's xctx.
+ * @return True if property exists.
  */
 #define afw_object_has_property( \
     instance, \
@@ -3848,9 +4157,12 @@ struct afw_object_inf_s {
 )
 
 /**
- * @brief Call method get_setter of interface afw_object
- * @param instancePointer to this object instance.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `get_setter` of interface `afw_object`.
+ *
+ * Return the object setter interface, if the object is mutable.
+ * @param instance Pointer to this object instance.
+ * @param xctx This is the caller's xctx.
+ * @return Object's setter interface or NULL if immutable.
  */
 #define afw_object_get_setter( \
     instance, \
@@ -3965,9 +4277,11 @@ struct afw_server_inf_s {
 };
 
 /**
- * @brief Call method release of interface afw_server
- * @param instancePointer to this adaptive server instance.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `release` of interface `afw_server`.
+ *
+ * Release resources associated with server.
+ * @param instance Pointer to this adaptive server instance.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_server_release( \
     instance, \
@@ -3979,10 +4293,12 @@ struct afw_server_inf_s {
 )
 
 /**
- * @brief Call method run of interface afw_server
- * @param instancePointer to this adaptive server instance.
- * @param handlerMain request handler function.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `run` of interface `afw_server`.
+ *
+ * Run the server calling handler each time a request is received.
+ * @param instance Pointer to this adaptive server instance.
+ * @param handler Main request handler function.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_server_run( \
     instance, \
@@ -4081,10 +4397,18 @@ struct afw_service_type_inf_s {
 };
 
 /**
- * @brief Call method related_instance_count of interface afw_service_type
- * @param instancePointer to this adaptive service type instance.
- * @param idValue of appropriate id property for type.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `related_instance_count` of interface `afw_service_type`.
+ *
+ * Called by functions in afw_service.h to get the number of related instances
+ * of a service.
+ * @param instance Pointer to this adaptive service type instance.
+ * @param id Value of appropriate id property for type.
+ * @param xctx This is the caller's xctx.
+ * @return If result is positive, a related instance for the service is running.
+ * If result is zero or negative, the service is stopped and possibly its
+ * associated conf is deleted. Results greater than one or less than zero
+ * indicate the number of related instances that are still holding resources.
+ * These instances will be destroyed when no longer referenced.
  */
 #define afw_service_type_related_instance_count( \
     instance, \
@@ -4098,15 +4422,16 @@ struct afw_service_type_inf_s {
 )
 
 /**
- * @brief Call method start_cede_p of interface afw_service_type
- * @param instancePointer to this adaptive service type instance.
- * @param propertiesProperties for start. This object will already be checked to
- *     insure
- *     the appropriate id and subtype property is present for the
- *     type. Other than that, these properties need to be validated `using
- *     /afw/_AdaptiveObjectType_/_AdaptiveConf_<type>_<subtype>`.
- * @param pPool to cede to start.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `start_cede_p` of interface `afw_service_type`.
+ *
+ * Called by functions in afw_service.h to start this type of service.
+ * @param instance Pointer to this adaptive service type instance.
+ * @param properties Properties for start. This object will already be checked
+ * to insure the appropriate id and subtype property is present for the type.
+ * Other than that, these properties need to be validated using
+ * `/afw/_AdaptiveObjectType_/_AdaptiveConf_<type>_<subtype>`.
+ * @param p Pool to cede to start.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_service_type_start_cede_p( \
     instance, \
@@ -4122,10 +4447,12 @@ struct afw_service_type_inf_s {
 )
 
 /**
- * @brief Call method stop of interface afw_service_type
- * @param instancePointer to this adaptive service type instance.
- * @param idValue of appropriate id property for type.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `stop` of interface `afw_service_type`.
+ *
+ * Called by functions in afw_service.h to stop this type of service.
+ * @param instance Pointer to this adaptive service type instance.
+ * @param id Value of appropriate id property for type.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_service_type_stop( \
     instance, \
@@ -4139,15 +4466,16 @@ struct afw_service_type_inf_s {
 )
 
 /**
- * @brief Call method restart_cede_p of interface afw_service_type
- * @param instancePointer to this adaptive service type instance.
- * @param propertiesProperties for start. This object will already be checked to
- *     insure
- *     the appropriate id and subtype property is present for the
- *     type. Other than that, these properties need to be validated `using
- *     /afw/_AdaptiveObjectType_/_AdaptiveConf_<type>_<subtype>`.
- * @param pPool to cede to start.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `restart_cede_p` of interface `afw_service_type`.
+ *
+ * Called by functions in afw_service.h to restart this type of service.
+ * @param instance Pointer to this adaptive service type instance.
+ * @param properties Properties for start. This object will already be checked
+ * to insure the appropriate id and subtype property is present for the type.
+ * Other than that, these properties need to be validated using
+ * `/afw/_AdaptiveObjectType_/_AdaptiveConf_<type>_<subtype>`.
+ * @param p Pool to cede to start.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_service_type_restart_cede_p( \
     instance, \
@@ -4247,9 +4575,12 @@ struct afw_object_associative_array_inf_s {
 };
 
 /**
- * @brief Call method release of interface afw_object_associative_array
- * @param instancePointer to this object associative array instance.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `release` of interface `afw_object_associative_array`.
+ *
+ * Call release for all associated objects. When the reference count
+ * count goes to zero, the associative array resources will be released.
+ * @param instance Pointer to this object associative array instance.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_object_associative_array_release( \
     instance, \
@@ -4261,9 +4592,12 @@ struct afw_object_associative_array_inf_s {
 )
 
 /**
- * @brief Call method get_reference of interface afw_object_associative_array
- * @param instancePointer to this object associative array instance.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `get_reference` of interface
+ * `afw_object_associative_array`.
+ *
+ * Adds an additional reference to the object associative array.
+ * @param instance Pointer to this object associative array instance.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_object_associative_array_get_reference( \
     instance, \
@@ -4275,10 +4609,19 @@ struct afw_object_associative_array_inf_s {
 )
 
 /**
- * @brief Call method get of interface afw_object_associative_array
- * @param instancePointer to this object associative array instance.
- * @param keyThe key associated with the object.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `get` of interface `afw_object_associative_array`.
+ *
+ * Get a reference to an associated object. The object's get_reference()
+ * method will be called. The reference will be released automatically
+ * when the supplied xctx is released. Do not call the object's release()
+ * function to release this reference or errors will occur.
+ * 
+ * If want to control when the reference is released, call method
+ * get_reference() instead.
+ * @param instance Pointer to this object associative array instance.
+ * @param key The key associated with the object.
+ * @param xctx This is the caller's xctx.
+ * @return The object associated with key.
  */
 #define afw_object_associative_array_get( \
     instance, \
@@ -4292,11 +4635,19 @@ struct afw_object_associative_array_inf_s {
 )
 
 /**
- * @brief Call method get_associated_object_reference of interface
- *     afw_object_associative_array
- * @param instancePointer to this object associative array instance.
- * @param keyThe key associated with the object.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `get_associated_object_reference` of interface
+ * `afw_object_associative_array`.
+ *
+ * Get a reference to an associated object. The object's get_reference()
+ * method will be called. When the reference to the object is no longer
+ * needed, call the object's release() method.
+ * 
+ * If you want the object to be automatically released when the xctx is
+ * released, call method get() instead.
+ * @param instance Pointer to this object associative array instance.
+ * @param key The key associated with the object.
+ * @param xctx This is the caller's xctx.
+ * @return The object associated with key.
  */
 #define afw_object_associative_array_get_associated_object_reference( \
     instance, \
@@ -4310,11 +4661,18 @@ struct afw_object_associative_array_inf_s {
 )
 
 /**
- * @brief Call method for_each of interface afw_object_associative_array
- * @param instancePointer to this object associative array instance.
- * @param contextContext passed to callback function.
- * @param cbCallback function.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `for_each` of interface `afw_object_associative_array`.
+ *
+ * Get a reference to an associated object. The object's get_reference()
+ * method will be called. When the reference to the object is no longer
+ * needed, call the object's release() method.
+ * 
+ * If you want the object to be automatically released when the xctx is
+ * released, call method get() instead.
+ * @param instance Pointer to this object associative array instance.
+ * @param context Context passed to callback function.
+ * @param cb Callback function.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_object_associative_array_for_each( \
     instance, \
@@ -4330,12 +4688,29 @@ struct afw_object_associative_array_inf_s {
 )
 
 /**
- * @brief Call method set of interface afw_object_associative_array
- * @param instancePointer to this object associative array instance.
- * @param keyThe key associated with the object instance.
- * @param objectObject instance to associate with the key or NULL to remove a
- *     key.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `set` of interface `afw_object_associative_array`.
+ *
+ * Set or remove an association of a key to an object in the associative array.
+ * 
+ * Set calls get_reference() for the object being set. When the associative
+ * array is released, all object's in the associative array will have
+ * their release() method called. When method set() is called for a
+ * key that already has an associated object, that associated object's
+ * release() function will be called.
+ * 
+ * If you only want an object to last as long as the associative, call
+ * afw_object_associative_array_set_and_release().
+ * 
+ * See methods get() and get_reference() for information on how they
+ * handle reference counting.
+ * 
+ * If you want to removed a key and release the associated object, pass NULL
+ * for object.
+ * @param instance Pointer to this object associative array instance.
+ * @param key The key associated with the object instance.
+ * @param object Object instance to associate with the key or NULL to remove a
+ * key.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_object_associative_array_set( \
     instance, \
@@ -4395,13 +4770,16 @@ struct afw_request_handler_factory_inf_s {
 };
 
 /**
- * @brief Call method create_request_handler_cede_p of interface
- *     afw_request_handler_factory
- * @param instancePointer to this request handler factory instance.
- * @param propertiesCreation parameters for the particular type of request
- *     handler. This will become properties object for request handler.
- * @param pPool to use for request handler resources.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `create_request_handler_cede_p` of interface
+ * `afw_request_handler_factory`.
+ *
+ * Create a request handler of the factory's type.
+ * @param instance Pointer to this request handler factory instance.
+ * @param properties Creation parameters for the particular type of request
+ * handler. This will become properties object for request handler.
+ * @param p Pool to use for request handler resources.
+ * @param xctx This is the caller's xctx.
+ * @return An instance of an afw_request_handler.
  */
 #define afw_request_handler_factory_create_request_handler_cede_p( \
     instance, \
@@ -4457,9 +4835,11 @@ struct afw_request_handler_inf_s {
 };
 
 /**
- * @brief Call method release of interface afw_request_handler
- * @param instancePointer to this adaptive request handler instance.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `release` of interface `afw_request_handler`.
+ *
+ * Release resources associated with a request handler.
+ * @param instance Pointer to this adaptive request handler instance.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_request_handler_release( \
     instance, \
@@ -4471,12 +4851,13 @@ struct afw_request_handler_inf_s {
 )
 
 /**
- * @brief Call method process of interface afw_request_handler
- * @param instancePointer to this adaptive request instance.
- * @param requestBuffer to store data read.
- * @param xctxExecution context (xctx) the request should run in. If this is a
- *     new
- *     request session, this should be the request session's xctx.
+ * @brief Call method `process` of interface `afw_request_handler`.
+ *
+ * Process a request.
+ * @param instance Pointer to this adaptive request instance.
+ * @param request Buffer to store data read.
+ * @param xctx Execution context (xctx) the request should run in. If this is a
+ * new request session, this should be the request session's xctx.
  */
 #define afw_request_handler_process( \
     instance, \
@@ -4522,9 +4903,11 @@ struct afw_connection_inf_s {
 };
 
 /**
- * @brief Call method release of interface afw_connection
- * @param instancePointer to this adaptive request instance.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `release` of interface `afw_connection`.
+ *
+ * Release resources associated with a connection.
+ * @param instance Pointer to this adaptive request instance.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_connection_release( \
     instance, \
@@ -4577,9 +4960,11 @@ struct afw_iterator_inf_s {
 };
 
 /**
- * @brief Call method release of interface afw_iterator
- * @param instancePointer to this stream instance.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `release` of interface `afw_iterator`.
+ *
+ * This method releases the iterator.
+ * @param instance Pointer to this stream instance.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_iterator_release( \
     instance, \
@@ -4591,12 +4976,18 @@ struct afw_iterator_inf_s {
 )
 
 /**
- * @brief Call method next of interface afw_iterator
- * @param instancePointer to this stream instance.
- * @param keyThis is a pointer to the place to return the key value or NULL if
- *     it does not need to be returned.
- * @param valueThis is a pointer to the place to return the value or NULL if
- *     it does not need to be returned.
+ * @brief Call method `next` of interface `afw_iterator`.
+ *
+ * This method will return the next value. If there are no more values,
+ * 'done' is set to 'true'.
+ * @param instance Pointer to this stream instance.
+ * @param key This is a pointer to the place to return the key value or NULL if
+ * it does not need to be returned.
+ * @param value This is a pointer to the place to return the value or NULL if it
+ * does not need to be returned.
+ * @return Returns 'true' if 'done', in which case 'key' and 'value' will be
+ * NULL. If 'false', 'key' and 'value' will be set to the next key and value.
+ * NULL is a valid 'value' which indicates 'undefined'.
  */
 #define afw_iterator_next( \
     instance, \
@@ -4803,9 +5194,11 @@ struct afw_request_inf_s {
 };
 
 /**
- * @brief Call method release of interface afw_request
- * @param instancePointer to this adaptive request instance.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `release` of interface `afw_request`.
+ *
+ * Release resources associated with a request.
+ * @param instance Pointer to this adaptive request instance.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_request_release( \
     instance, \
@@ -4817,10 +5210,12 @@ struct afw_request_inf_s {
 )
 
 /**
- * @brief Call method set_error_info of interface afw_request
- * @param instancePointer to this adaptive request instance.
- * @param error_infoError info object pointer.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `set_error_info` of interface `afw_request`.
+ *
+ * Set error info object pointer associated with a request.
+ * @param instance Pointer to this adaptive request instance.
+ * @param error_info Error info object pointer.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_request_set_error_info( \
     instance, \
@@ -4834,13 +5229,16 @@ struct afw_request_inf_s {
 )
 
 /**
- * @brief Call method read_raw_request_body of interface afw_request
- * @param instancePointer to this adaptive request instance.
- * @param buffer_sizeLength of the buffer in bytes.
- * @param bufferBuffer to store data read.
- * @param sizePlace to return number of bytes read.
- * @param more_to_readIndicate there is more input to read.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `read_raw_request_body` of interface `afw_request`.
+ *
+ * Reads raw request body ignoring content type.
+ * This method should be called multiple times until all content is read.
+ * @param instance Pointer to this adaptive request instance.
+ * @param buffer_size Length of the buffer in bytes.
+ * @param buffer Buffer to store data read.
+ * @param size Place to return number of bytes read.
+ * @param more_to_read Indicate there is more input to read.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_request_read_raw_request_body( \
     instance, \
@@ -4860,12 +5258,14 @@ struct afw_request_inf_s {
 )
 
 /**
- * @brief Call method set_response_status_code of interface afw_request
- * @param instancePointer to this adaptive request instance.
- * @param codeThree-digit status code that conforms to http RFC.
- * @param reasonStatus reason phrase. If NULL and the status_code is standard,
- *     the standard phrase is supplied.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `set_response_status_code` of interface `afw_request`.
+ *
+ * Set response status. This must be set before headers or response.
+ * @param instance Pointer to this adaptive request instance.
+ * @param code Three-digit status code that conforms to http RFC.
+ * @param reason Status reason phrase. If NULL and the status_code is standard,
+ * the standard phrase is supplied.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_request_set_response_status_code( \
     instance, \
@@ -4881,11 +5281,13 @@ struct afw_request_inf_s {
 )
 
 /**
- * @brief Call method write_response_header of interface afw_request
- * @param instancePointer to this adaptive request instance.
- * @param nameType of header.
- * @param valueValue of header.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `write_response_header` of interface `afw_request`.
+ *
+ * Write a response header. This must be called before write_response().
+ * @param instance Pointer to this adaptive request instance.
+ * @param name Type of header.
+ * @param value Value of header.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_request_write_response_header( \
     instance, \
@@ -4901,11 +5303,14 @@ struct afw_request_inf_s {
 )
 
 /**
- * @brief Call method write_raw_response_body of interface afw_request
- * @param instancePointer to this adaptive request instance.
- * @param sizeNumber of bytes in buffer to write.
- * @param bufferBuffer to write.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `write_raw_response_body` of interface `afw_request`.
+ *
+ * Write raw buffer response body ignoring content type.
+ * This method can be called 0 or more times.
+ * @param instance Pointer to this adaptive request instance.
+ * @param size Number of bytes in buffer to write.
+ * @param buffer Buffer to write.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_request_write_raw_response_body( \
     instance, \
@@ -4921,9 +5326,11 @@ struct afw_request_inf_s {
 )
 
 /**
- * @brief Call method flush_response of interface afw_request
- * @param instancePointer to this adaptive request instance.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `flush_response` of interface `afw_request`.
+ *
+ * Flush the response buffer. Calling this method is not necessary.
+ * @param instance Pointer to this adaptive request instance.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_request_flush_response( \
     instance, \
@@ -4935,9 +5342,11 @@ struct afw_request_inf_s {
 )
 
 /**
- * @brief Call method finish_response of interface afw_request
- * @param instancePointer to this adaptive request instance.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `finish_response` of interface `afw_request`.
+ *
+ * Call when response is complete.
+ * @param instance Pointer to this adaptive request instance.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_request_finish_response( \
     instance, \
@@ -5039,9 +5448,11 @@ struct afw_stream_inf_s {
 };
 
 /**
- * @brief Call method release of interface afw_stream
- * @param instancePointer to this stream instance.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `release` of interface `afw_stream`.
+ *
+ * This calls flush, closes, and release resources associated with this stream.
+ * @param instance Pointer to this stream instance.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_stream_release( \
     instance, \
@@ -5053,9 +5464,12 @@ struct afw_stream_inf_s {
 )
 
 /**
- * @brief Call method flush of interface afw_stream
- * @param instancePointer to this stream instance.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `flush` of interface `afw_stream`.
+ *
+ * This will flush the stream's write buffer. The stream implementation
+ * will do nothing if it doesn't support this concept.
+ * @param instance Pointer to this stream instance.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_stream_flush( \
     instance, \
@@ -5067,11 +5481,16 @@ struct afw_stream_inf_s {
 )
 
 /**
- * @brief Call method read of interface afw_stream
- * @param instancePointer to this stream instance.
- * @param bufferBuffer to receive bytes (writable memory).
- * @param sizeMaximum number of bytes to read.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `read` of interface `afw_stream`.
+ *
+ * Read up to size bytes into buffer. Returns the number of bytes read
+ * (0 at end of stream). Implementations that are not readable should
+ * throw an error.
+ * @param instance Pointer to this stream instance.
+ * @param buffer Buffer to receive bytes (writable memory).
+ * @param size Maximum number of bytes to read.
+ * @param xctx This is the caller's xctx.
+ * @return Number of bytes read (0 at EOF).
  */
 #define afw_stream_read( \
     instance, \
@@ -5087,11 +5506,13 @@ struct afw_stream_inf_s {
 )
 
 /**
- * @brief Call method write of interface afw_stream
- * @param instancePointer to this stream instance.
- * @param bufferBuffer to write.
- * @param sizeSize of buffer.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `write` of interface `afw_stream`.
+ *
+ * Write the specified bytes.
+ * @param instance Pointer to this stream instance.
+ * @param buffer Buffer to write.
+ * @param size Size of buffer.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_stream_write( \
     instance, \
@@ -5203,9 +5624,12 @@ struct afw_pool_inf_s {
 };
 
 /**
- * @brief Call method release of interface afw_pool
- * @param instancePointer to this pool instance.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `release` of interface `afw_pool`.
+ *
+ * Reduce the reference count to pool. If count reaches 0, afw_pool_destroy()
+ * is called.
+ * @param instance Pointer to this pool instance.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_pool_release( \
     instance, \
@@ -5217,9 +5641,11 @@ struct afw_pool_inf_s {
 )
 
 /**
- * @brief Call method get_reference of interface afw_pool
- * @param instancePointer to this pool instance.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `get_reference` of interface `afw_pool`.
+ *
+ * Add reference to a pool.
+ * @param instance Pointer to this pool instance.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_pool_get_reference( \
     instance, \
@@ -5231,9 +5657,16 @@ struct afw_pool_inf_s {
 )
 
 /**
- * @brief Call method destroy of interface afw_pool
- * @param instancePointer to this pool instance.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `destroy` of interface `afw_pool`.
+ *
+ * Destroy the pool.
+ * 
+ * This function should be called with caution since pools will be destroyed
+ * that
+ * may still have a non-zero reference count. Function afw_pool_release()
+ * should normally be used instead.
+ * @param instance Pointer to this pool instance.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_pool_destroy( \
     instance, \
@@ -5245,8 +5678,15 @@ struct afw_pool_inf_s {
 )
 
 /**
- * @brief Call method get_apr_pool of interface afw_pool
- * @param instancePointer to this pool instance.
+ * @brief Call method `get_apr_pool` of interface `afw_pool`.
+ *
+ * This will return an apr pool that can be used for calling Apache APR
+ * function. This apr pool will be created the first time this method is
+ * called for this afw pool and destroyed when this afw pool is destroyed.
+ * 
+ * Do not manually destroy this apr pool.
+ * @param instance Pointer to this pool instance.
+ * @return Value of type `apr_pool_t *`.
  */
 #define afw_pool_get_apr_pool( \
     instance \
@@ -5256,10 +5696,13 @@ struct afw_pool_inf_s {
 )
 
 /**
- * @brief Call method calloc of interface afw_pool
- * @param instancePointer to this pool instance.
- * @param sizeSize of memory to allocate.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `calloc` of interface `afw_pool`.
+ *
+ * Allocate cleared memory in pool.
+ * @param instance Pointer to this pool instance.
+ * @param size Size of memory to allocate.
+ * @param xctx This is the caller's xctx.
+ * @return Value of type `void *`.
  */
 #define afw_pool_calloc( \
     instance, \
@@ -5273,10 +5716,13 @@ struct afw_pool_inf_s {
 )
 
 /**
- * @brief Call method malloc of interface afw_pool
- * @param instancePointer to this pool instance.
- * @param sizeSize of memory to allocate.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `malloc` of interface `afw_pool`.
+ *
+ * Allocate uncleared memory in pool.
+ * @param instance Pointer to this pool instance.
+ * @param size Size of memory to allocate.
+ * @param xctx This is the caller's xctx.
+ * @return Value of type `void *`.
  */
 #define afw_pool_malloc( \
     instance, \
@@ -5290,10 +5736,18 @@ struct afw_pool_inf_s {
 )
 
 /**
- * @brief Call method free_memory_internal of interface afw_pool
- * @param instancePointer to this pool instance.
- * @param addressAddress of memory to free.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `free_memory_internal` of interface `afw_pool`.
+ *
+ * Free an allocated memory in pool. If the pool implementation does
+ * not support freeing memory, the call does nothing.
+ * 
+ * Use afw_pool_free_memory() instead of calling this method directly since
+ * it will call the free_memory_internal() method of the correct pool
+ * instance given the address returned from afw_pool_calloc() or
+ * afw_pool_malloc().
+ * @param instance Pointer to this pool instance.
+ * @param address Address of memory to free.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_pool_free_memory_internal( \
     instance, \
@@ -5307,12 +5761,14 @@ struct afw_pool_inf_s {
 )
 
 /**
- * @brief Call method register_cleanup_before of interface afw_pool
- * @param instancePointer to this pool instance.
- * @param dataData to pass to the cleanup function.
- * @param data2Data2 to pass to the cleanup function.
- * @param cleanupCleanup function to call when pool is released..
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `register_cleanup_before` of interface `afw_pool`.
+ *
+ * Register pool cleanup function for this pool.
+ * @param instance Pointer to this pool instance.
+ * @param data Data to pass to the cleanup function.
+ * @param data2 Data2 to pass to the cleanup function.
+ * @param cleanup Cleanup function to call when pool is released..
+ * @param xctx This is the caller's xctx.
  */
 #define afw_pool_register_cleanup_before( \
     instance, \
@@ -5330,12 +5786,14 @@ struct afw_pool_inf_s {
 )
 
 /**
- * @brief Call method deregister_cleanup of interface afw_pool
- * @param instancePointer to this pool instance.
- * @param dataData to pass to the cleanup function.
- * @param data2Data2 to pass to the cleanup function.
- * @param cleanupCleanup function to call when pool is released..
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `deregister_cleanup` of interface `afw_pool`.
+ *
+ * Deregister xctx cleanup function from this pool.
+ * @param instance Pointer to this pool instance.
+ * @param data Data to pass to the cleanup function.
+ * @param data2 Data2 to pass to the cleanup function.
+ * @param cleanup Cleanup function to call when pool is released..
+ * @param xctx This is the caller's xctx.
  */
 #define afw_pool_deregister_cleanup( \
     instance, \
@@ -5415,13 +5873,16 @@ struct afw_adapter_journal_inf_s {
 };
 
 /**
- * @brief Call method add_entry of interface afw_adapter_journal
- * @param instancePointer to this adaptive event journal instance.
- * @param impl_requestPass this as first parameter of
- *     afw_adapter_impl_request_*() functions.
- *     See afw_adapter_impl.h for more information.
- * @param entryPointer to the event to be logged in the journal.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `add_entry` of interface `afw_adapter_journal`.
+ *
+ * Record a journal entry.
+ * @param instance Pointer to this adaptive event journal instance.
+ * @param impl_request Pass this as first parameter of
+ * afw_adapter_impl_request_*() functions. See afw_adapter_impl.h for more
+ * information.
+ * @param entry Pointer to the event to be logged in the journal.
+ * @param xctx This is the caller's xctx.
+ * @return Entry's cursor.
  */
 #define afw_adapter_journal_add_entry( \
     instance, \
@@ -5437,28 +5898,28 @@ struct afw_adapter_journal_inf_s {
 )
 
 /**
- * @brief Call method get_entry of interface afw_adapter_journal
- * @param instancePointer to this adaptive event journal instance.
- * @param impl_requestPass this as first parameter of
- *     afw_adapter_impl_request_*() functions.
- *     See afw_adapter_impl.h for more information.
- * @param optionGet entry option. See afw_adapter_journal_option_t for
- *     more information.
- * @param consumer_idPeer id of consumer of event of NULL. See
- *     afw_adapter_journal_option_t for information on how this
- *     parameter is used or ignored.
- * @param entry_cursorJournal entry cursor or NULL. See
- *     afw_adapter_journal_option_t for information on how this
- *     parameter is used or ignored.
- * @param limitLimit or 0. See
- *     afw_adapter_journal_option_t for information on how this
- *     parameter is used or ignored.
- * @param responseThis is an existing response object that can have properties
- *     already
- *     set. Depending on the option specified, get_entry() will set
- *     additional properties. See afw_adapter_journal_option_t
- *     for information on which properties are set and under what condition.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `get_entry` of interface `afw_adapter_journal`.
+ *
+ * Gets an entry.
+ * @param instance Pointer to this adaptive event journal instance.
+ * @param impl_request Pass this as first parameter of
+ * afw_adapter_impl_request_*() functions. See afw_adapter_impl.h for more
+ * information.
+ * @param option Get entry option. See afw_adapter_journal_option_t for more
+ * information.
+ * @param consumer_id Peer id of consumer of event of NULL. See
+ * afw_adapter_journal_option_t for information on how this parameter is used or
+ * ignored.
+ * @param entry_cursor Journal entry cursor or NULL. See
+ * afw_adapter_journal_option_t for information on how this parameter is used or
+ * ignored.
+ * @param limit Limit or 0. See afw_adapter_journal_option_t for information on
+ * how this parameter is used or ignored.
+ * @param response This is an existing response object that can have properties
+ * already set. Depending on the option specified, get_entry() will set
+ * additional properties. See afw_adapter_journal_option_t for information on
+ * which properties are set and under what condition.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_adapter_journal_get_entry( \
     instance, \
@@ -5482,15 +5943,19 @@ struct afw_adapter_journal_inf_s {
 )
 
 /**
- * @brief Call method mark_entry_consumed of interface afw_adapter_journal
- * @param instancePointer to this adaptive event journal instance.
- * @param impl_requestPass this as first parameter of
- *     afw_adapter_impl_request_*() functions.
- *     See afw_adapter_impl.h for more information.
- * @param consumer_idGet entry option. See afw_adapter_journal_option_t for
- *     more information.
- * @param entry_cursorToken of the event to mark consumed.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `mark_entry_consumed` of interface `afw_adapter_journal`.
+ *
+ * Mark an entry consumed. If entry is not the current ... blah blah blah
+ * Need to make object type for _AdaptiveJournalPeer_
+ * Different journal ids?
+ * @param instance Pointer to this adaptive event journal instance.
+ * @param impl_request Pass this as first parameter of
+ * afw_adapter_impl_request_*() functions. See afw_adapter_impl.h for more
+ * information.
+ * @param consumer_id Get entry option. See afw_adapter_journal_option_t for
+ * more information.
+ * @param entry_cursor Token of the event to mark consumed.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_adapter_journal_mark_entry_consumed( \
     instance, \
@@ -5624,9 +6089,12 @@ struct afw_value_inf_s {
 };
 
 /**
- * @brief Call method optional_release of interface afw_value
- * @param instancePointer to this pool instance.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `optional_release` of interface `afw_value`.
+ *
+ * This is an optional method that exists if the value's memory is managed.
+ * Constant values that are compiled into object code are not managed.
+ * @param instance Pointer to this pool instance.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_value_optional_release( \
     instance, \
@@ -5638,10 +6106,28 @@ struct afw_value_inf_s {
 )
 
 /**
- * @brief Call method clone_or_reference of interface afw_value
- * @param instancePointer to this adaptive value instance.
- * @param pPool for result.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `clone_or_reference` of interface `afw_value`.
+ *
+ * If this is a non-managed or permanent value the instance is returned
+ * asis. Otherwise, this will return a clone of the instance or instance
+ * with its reference count incremented.
+ * 
+ * There are 3 possible results:
+ * 
+ * 1) If the value is managed and the value's internal value has an
+ * get_reference() method, the result of calling the value's internal
+ * get_reference() is returned.
+ * 
+ * 2) If the value is managed and the value's internal value does not have
+ * an get_reference method, a clone of the value in the supplied pool (p)
+ * is returned.
+ * 
+ * 3) If the value is not managed or permanent, the instance is returned
+ * asis.
+ * @param instance Pointer to this adaptive value instance.
+ * @param p Pool for result.
+ * @param xctx This is the caller's xctx.
+ * @return The result as described in the method description.
  */
 #define afw_value_clone_or_reference( \
     instance, \
@@ -5655,10 +6141,14 @@ struct afw_value_inf_s {
 )
 
 /**
- * @brief Call method create_iterator of interface afw_value
- * @param instancePointer to this adaptive value instance.
- * @param pPool for result.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `create_iterator` of interface `afw_value`.
+ *
+ * This will return an 'afw_iterator' instance or NULL if this value does
+ * not support iteration.
+ * @param instance Pointer to this adaptive value instance.
+ * @param p Pool for result.
+ * @param xctx This is the caller's xctx.
+ * @return This is an new instance of afw_iterator.
  */
 #define afw_value_create_iterator( \
     instance, \
@@ -5672,10 +6162,15 @@ struct afw_value_inf_s {
 )
 
 /**
- * @brief Call method optional_evaluate of interface afw_value
- * @param instancePointer to this adaptive value instance.
- * @param pPool for result.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `optional_evaluate` of interface `afw_value`.
+ *
+ * This is an optional method used to evaluate an adaptive value. Normally
+ * the afw_value_evaluate() macro should be used instead or calling this
+ * method directly since it might be NULL.
+ * @param instance Pointer to this adaptive value instance.
+ * @param p Pool for result.
+ * @param xctx This is the caller's xctx.
+ * @return Evaluated adaptive value.
  */
 #define afw_value_optional_evaluate( \
     instance, \
@@ -5689,9 +6184,22 @@ struct afw_value_inf_s {
 )
 
 /**
- * @brief Call method get_data_type of interface afw_value
- * @param instancePointer to this adaptive value instance.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `get_data_type` of interface `afw_value`.
+ *
+ * This method returns the expected data type of the result of calling
+ * afw_value_evaluate() on this adaptive value, if available. This is
+ * determined at the time the value is created.
+ * 
+ * For fully evaluated values, the data type will always be available.
+ * 
+ * For values like 'call', the data type will be available if it can be
+ * determined at the value's create time. For instance, if a function
+ * always returns a specific data type or if the return data type is
+ * polymorphic and the data type of the first parameter can be determined,
+ * then the data type will be available.
+ * @param instance Pointer to this adaptive value instance.
+ * @param xctx This is the caller's xctx.
+ * @return The data type of the adaptive value or NULL if not available.
  */
 #define afw_value_get_data_type( \
     instance, \
@@ -5703,13 +6211,16 @@ struct afw_value_inf_s {
 )
 
 /**
- * @brief Call method get_evaluated_meta of interface afw_value
- * @param instancePointer to this adaptive value instance.
- * 
- *     IMPORTANT: Do not evaluate instance before calling since meta is
- *     harvested from the value's inf.
- * @param pPool to use for result.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `get_evaluated_meta` of interface `afw_value`.
+ *
+ * This method returns an object value for accessing a value's meta.
+ * @param instance Pointer to this adaptive value instance. IMPORTANT: Do not
+ * evaluate instance before calling since meta is harvested from the value's
+ * inf.
+ * @param p Pool to use for result.
+ * @param xctx This is the caller's xctx.
+ * @return The this is an evaluated object value that can be used to access the
+ * value's meta.
  */
 #define afw_value_get_evaluated_meta( \
     instance, \
@@ -5723,13 +6234,18 @@ struct afw_value_inf_s {
 )
 
 /**
- * @brief Call method get_evaluated_metas of interface afw_value
- * @param instancePointer to this adaptive value instance.
- * 
- *     NOTE: Always evaluate instance before calling so that right value inf
- *     is used.
- * @param pPool to use for result.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `get_evaluated_metas` of interface `afw_value`.
+ *
+ * This method returns an array value of with the result of calling
+ * afw_value_get_evaluated_meta() for each entry in a value instance. If
+ * this is not a value instance with an iterator, such as object or array,
+ * an array value with a single value is returned.
+ * @param instance Pointer to this adaptive value instance. NOTE: Always
+ * evaluate instance before calling so that right value inf is used.
+ * @param p Pool to use for result.
+ * @param xctx This is the caller's xctx.
+ * @return The this is an evaluated array value that can be used to access the
+ * value's entry meta.
  */
 #define afw_value_get_evaluated_metas( \
     instance, \
@@ -5743,10 +6259,13 @@ struct afw_value_inf_s {
 )
 
 /**
- * @brief Call method produce_compiler_listing of interface afw_value
- * @param instancePointer to this adaptive value instance.
- * @param writerPointer to writer instance.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `produce_compiler_listing` of interface `afw_value`.
+ *
+ * This produces the compiler listing for a value and calls writer with the
+ * result.
+ * @param instance Pointer to this adaptive value instance.
+ * @param writer Pointer to writer instance.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_value_produce_compiler_listing( \
     instance, \
@@ -5760,10 +6279,12 @@ struct afw_value_inf_s {
 )
 
 /**
- * @brief Call method decompile of interface afw_value
- * @param instancePointer to this adaptive value instance.
- * @param writerPointer to writer instance.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `decompile` of interface `afw_value`.
+ *
+ * This decompiles this value to utf-8 and calls writer with the result.
+ * @param instance Pointer to this adaptive value instance.
+ * @param writer Pointer to writer instance.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_value_decompile( \
     instance, \
@@ -5777,12 +6298,14 @@ struct afw_value_inf_s {
 )
 
 /**
- * @brief Call method get_info of interface afw_value
- * @param instancePointer to this adaptive value instance.
- * @param infoStruct that will be filled by this method with info about this
- *     value.
- * @param pPool to use if needed.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `get_info` of interface `afw_value`.
+ *
+ * Get info about a value.
+ * @param instance Pointer to this adaptive value instance.
+ * @param info Struct that will be filled by this method with info about this
+ * value.
+ * @param p Pool to use if needed.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_value_get_info( \
     instance, \
@@ -5842,12 +6365,14 @@ struct afw_variable_handler_inf_s {
 };
 
 /**
- * @brief Call method get_variable of interface afw_variable_handler
- * @param instancePointer to this adaptive variable handler
- *     instance.
- * @param qualifierQualifier or NULL.
- * @param nameVariable name.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `get_variable` of interface `afw_variable_handler`.
+ *
+ * Get a variable's value.
+ * @param instance Pointer to this adaptive variable handler instance.
+ * @param qualifier Qualifier or NULL.
+ * @param name Variable name.
+ * @param xctx This is the caller's xctx.
+ * @return Variable's adaptive value or NULL if not found.
  */
 #define afw_variable_handler_get_variable( \
     instance, \
@@ -5863,12 +6388,15 @@ struct afw_variable_handler_inf_s {
 )
 
 /**
- * @brief Call method set_variable of interface afw_variable_handler
- * @param instancePointer to this adaptive variable handler instance.
- * @param qualifierQualifier or NULL.
- * @param nameVariable name.
- * @param valueValue to set.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `set_variable` of interface `afw_variable_handler`.
+ *
+ * If this variable handler handles this variable, set its value.
+ * @param instance Pointer to this adaptive variable handler instance.
+ * @param qualifier Qualifier or NULL.
+ * @param name Variable name.
+ * @param value Value to set.
+ * @param xctx This is the caller's xctx.
+ * @return True if this variable is handled by this variable handler.
  */
 #define afw_variable_handler_set_variable( \
     instance, \
@@ -5982,9 +6510,12 @@ struct afw_writer_inf_s {
 };
 
 /**
- * @brief Call method release of interface afw_writer
- * @param instancePointer to this writer instance.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `release` of interface `afw_writer`.
+ *
+ * Call flush and release resources associated with this
+ * writer.
+ * @param instance Pointer to this writer instance.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_writer_release( \
     instance, \
@@ -5996,9 +6527,12 @@ struct afw_writer_inf_s {
 )
 
 /**
- * @brief Call method flush of interface afw_writer
- * @param instancePointer to this writer instance.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `flush` of interface `afw_writer`.
+ *
+ * This will flush the writer's buffers. The writer implementation will do
+ * nothing if it doesn't support this concept.
+ * @param instance Pointer to this writer instance.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_writer_flush( \
     instance, \
@@ -6010,11 +6544,13 @@ struct afw_writer_inf_s {
 )
 
 /**
- * @brief Call method write of interface afw_writer
- * @param instancePointer to this writer instance.
- * @param bufferBuffer to write.
- * @param sizeSize of buffer.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `write` of interface `afw_writer`.
+ *
+ * Write the specified bytes.
+ * @param instance Pointer to this writer instance.
+ * @param buffer Buffer to write.
+ * @param size Size of buffer.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_writer_write( \
     instance, \
@@ -6030,9 +6566,11 @@ struct afw_writer_inf_s {
 )
 
 /**
- * @brief Call method write_eol of interface afw_writer
- * @param instancePointer to this writer instance.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `write_eol` of interface `afw_writer`.
+ *
+ * If white_space is true, write \n then indent next line.
+ * @param instance Pointer to this writer instance.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_writer_write_eol( \
     instance, \
@@ -6044,9 +6582,11 @@ struct afw_writer_inf_s {
 )
 
 /**
- * @brief Call method increment_indent of interface afw_writer
- * @param instancePointer to this writer instance.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `increment_indent` of interface `afw_writer`.
+ *
+ * If white_space is true, increase indent.
+ * @param instance Pointer to this writer instance.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_writer_increment_indent( \
     instance, \
@@ -6058,9 +6598,11 @@ struct afw_writer_inf_s {
 )
 
 /**
- * @brief Call method decrement_indent of interface afw_writer
- * @param instancePointer to this writer instance.
- * @param xctxThis is the caller's xctx.
+ * @brief Call method `decrement_indent` of interface `afw_writer`.
+ *
+ * If white_space is true, decrease indent.
+ * @param instance Pointer to this writer instance.
+ * @param xctx This is the caller's xctx.
  */
 #define afw_writer_decrement_indent( \
     instance, \

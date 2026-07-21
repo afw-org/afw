@@ -53,9 +53,15 @@
  * - Thread-specific vs multithreaded pools.
  * - No manual free for most allocations; bulk release on pool destroy.
  *
- * Key functions: afw_pool_create(), afw_pool_create_subpool(), 
+ * Key functions: afw_pool_create(), afw_pool_create_subpool(),
  * afw_pool_calloc(), afw_pool_malloc().
+ *
+ * @{
  */
+
+/** @defgroup afw_pool_internal Pool internal @ingroup afw_c_api_internal */
+
+/** @} */
 
 /**
  * @defgroup afw_value Value
@@ -74,7 +80,13 @@
  * - Managed values use refcounting or cloning for escape.
  * - Managed slices for utf8/memory views into managed values.
  * - Prefer allocating evaluation results into current scope->p for long-running use.
+ *
+ * @{
  */
+
+/** @defgroup afw_value_internal Value internal @ingroup afw_c_api_internal */
+
+/** @} */
 
 /**
  * @defgroup afw_environment Environment
@@ -93,7 +105,13 @@
  * 1. afw_generated_register (data types, functions, etc.)
  * 2. afw_function_internal_prepare_environment (for operators)
  * 3. Then conf types, adapter types, etc.
+ *
+ * @{
  */
+
+/** @defgroup afw_environment_internal Environment internal @ingroup afw_c_api_internal */
+
+/** @} */
 
 /**
  * @defgroup afw_function Adaptive Functions
@@ -116,8 +134,21 @@
  *
  * Objects can be const (permanent) or mutable via sessions.
  *
- * See also afw_object_path, afw_object_meta, afw_object_view.
+ * Related hand helpers (same conceptual area; some use nested groups):
+ * object path, meta, options, type, view.
+ *
+ * @{
  */
+
+/** @defgroup afw_object_meta Object meta @ingroup afw_object */
+/** @defgroup afw_object_path Object path @ingroup afw_object */
+/** @defgroup afw_object_options Object options @ingroup afw_object */
+/** @defgroup afw_object_type Object type @ingroup afw_object */
+/** @defgroup afw_object_view Object view @ingroup afw_object */
+/** @defgroup afw_object_impl Object impl helpers @ingroup afw_object */
+/** @defgroup afw_object_internal Object internal @ingroup afw_c_api_internal */
+
+/** @} */
 
 /**
  * @defgroup afw_adapter Adapters
@@ -127,8 +158,18 @@
  *
  * Sessions are per-request; transactions optional. Journal support in some.
  *
- * See afw_adapter_*.h for CRUD, journal, etc.
+ * Call adapter methods via macros in generated `afw_interface.h`
+ * (e.g. `afw_adapter_session_retrieve_objects`). Hand helpers for get/add/
+ * retrieve/journal live in `afw_adapter_*.h` (included from `afw_adapter.h`).
+ *
+ * @{
  */
+
+/** @defgroup afw_adapter_impl Adapter impl helpers @ingroup afw_adapter */
+/** @defgroup afw_adapter_index_impl Adapter index impl @ingroup afw_adapter */
+/** @defgroup afw_adapter_internal Adapter internal @ingroup afw_c_api_internal */
+
+/** @} */
 
 /**
  * @defgroup afw_file File Adapter
@@ -140,14 +181,21 @@
  * @defgroup afw_compile Compile
  *
  * Compilation of Adaptive Script, templates, JSON, etc. into value graphs.
- * Grammar documentation is harvested from ` / *ebnf>>> ` comments.
+ * Grammar documentation is harvested from EBNF-in-comments blocks in the parser.
  *
  * Main entry: afw_compile_to_value_with_callback and variants.
  * Result is usually a compiled_value owning its own pool.
  * Requires functions to be registered first (bootstrap order).
  *
  * Residual check (none/to_newline/to_full/to_close_brace) in lexical.
+ *
+ * @{
  */
+
+/** @defgroup afw_compile_internal Compile internal @ingroup afw_c_api_internal */
+/** @defgroup afw_code_point Code points (compiler) @ingroup afw_compile */
+
+/** @} */
 
 /**
  * @defgroup afw_request Request & Handlers
@@ -446,25 +494,43 @@
  * use outside of afw library source (libafw).
  */
 
-/** @defgroup afw_interface Interfaces
+/**
+ * @defgroup afw_interface Interfaces
  *
  * The core C interfaces (contracts) that both libafw and extensions implement.
  *
- * Defined in generate/interfaces/afw_interface.xml and generated into
- * afw_interface.h + the various *_impl_declares.h macros.
+ * Defined in `generate/interfaces/afw_interface.xml` and generated into
+ * `afw_interface.h` plus the various `*_impl_declares.h` headers.
  *
- * Method names are impl_<interface>_<method>.
+ * **Call macros are the developer API.** Prefer
+ * `afw_<interface>_<method>(instance, …)` over
+ * `(instance)->inf-><method>(…)`. The arrow form is generated wiring and is
+ * useful in GDB; the macros are what extension and command authors should use
+ * and what Doxygen documents as the call surface.
+ *
+ * Method descriptions and parameter text come from the interface XML and are
+ * emitted on those call macros by afwdev generate. Do not hand-edit
+ * `generated/afw_interface.h` for documentation.
+ *
+ * When implementing (not only calling), use afwdev `add-core-interface`,
+ * `add-adapter-type`, etc., which copy closet skeletons and leave `@todo`
+ * markers. See also @ref afw_c_api_impl.
  */
 
 /**
  * @defgroup afw_c_api_impl Interface implementation support
- * 
+ *
  * Helpers and macros for writing implementations of the core interfaces.
  *
- * See the various *_impl_declares.h files and the AFW_IMPLEMENTATION_*
- * macros.
+ * Typical path:
+ * 1. `afwdev add-adapter-type` / `add-content-type` / `add-core-interface` / …
+ * 2. Set `AFW_IMPLEMENTATION_ID` and include the matching `*_impl_declares.h`.
+ * 3. Fill `impl_<interface>_<method>` from the closet skeleton (`@todo`).
+ * 4. Register via manifest / generated register for the srcdir.
  *
- * Use AFW_IMPLEMENTATION_ID and include the declares header.
+ * Closet files under `generated/interface_closet/` are templates for afwdev
+ * scaffolding, not production source. See developer markdown under
+ * `src/afw/doc/developer/` when present.
  */
 
 /** @} */  // end of afw_c_api_public
@@ -504,7 +570,13 @@
  *
  * Scopes use subpools for automatic cleanup. statement_flow controls
  * break/continue/return/rethrow without C exceptions.
+ *
+ * @{
  */
+
+/** @defgroup afw_xctx_internal xctx internal @ingroup afw_c_api_internal */
+
+/** @} */
 
 /** @} */  // end of package_afw
 
