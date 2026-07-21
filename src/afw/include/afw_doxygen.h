@@ -181,13 +181,21 @@
  * @defgroup afw_compile Compile
  *
  * Compilation of Adaptive Script, templates, JSON, etc. into value graphs.
- * Grammar documentation is harvested from EBNF-in-comments blocks in the parser.
  *
  * Main entry: afw_compile_to_value_with_callback and variants.
  * Result is usually a compiled_value owning its own pool.
  * Requires functions to be registered first (bootstrap order).
  *
  * Residual check (none/to_newline/to_full/to_close_brace) in lexical.
+ *
+ * **Compiler maintainers (not most extension authors):** grammar fragments
+ * live in special comments next to the real parser/lexer in
+ * `src/afw/compile/` (open/close markers ebnf then triple greater-than /
+ * triple less-than ebnf). afwdev harvests those into a single generated
+ * EBNF under `generated/ebnf/` (file lists in `generate/ebnf/`). Edit the
+ * C comments and parser together; never hand-edit the harvested EBNF.
+ * Handbook syntax diagrams are maintained from that harvest. The C parser
+ * remains authoritative if docs and code ever disagree.
  *
  * @{
  */

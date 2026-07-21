@@ -34,6 +34,12 @@ See group @ref afw_environment.
 Script, template, expression, JSON, … → value graphs → evaluate.  
 See groups @ref afw_compile and Adaptive Functions under the public C API.
 
+Most extension authors only **call** compile/evaluate APIs. People changing
+the **language grammar** work in `src/afw/compile/`: EBNF fragments sit in
+special comments beside the real lexer/parser and are harvested by afwdev
+into `generated/ebnf/`. That pipeline matters a lot for compiler work and
+little for typical adapter/content-type extensions.
+
 ## Related developer pages
 
 - @ref afw_dev_overview  
