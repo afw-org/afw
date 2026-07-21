@@ -35,9 +35,23 @@ session = afw_adapter_create_adapter_session(adapter, xctx);
 **Do not hand-edit** `src/afw/generated/afw_interface.h` for documentation.
 Regenerate with `./afwdev build --cdev -j` (or generate as part of build).
 
+## What the generator emits (Doxygen)
+
+Per interface, `interfaces.py` documents:
+
+| Symbol | Notes |
+|--------|--------|
+| Opaque `*_t` / `*_inf_t` | Briefs in `*_opaques.h`; public API names |
+| Public instance struct | Layout + “call with macros” guidance |
+| Inf / vtable struct | Method table pointed to by `inf` |
+| Call macros | Full `@param` / `@return` from XML; `@relates` / `@see @ref *_t` toward the instance type |
+
+Prefer **Modules → each interface group** (and the macro detail there) over hunting vtable function pointers. Doxygen’s “Related” list on a type page may not list `#define` macros even with `@relates`; the interface group is the reliable index.
+
 ## Generated layout (core)
 
 - `generated/afw_interface.h` — structs + **call macros** + per-interface groups  
+- `generated/afw_interface_opaques.h` — public `*_t` / `*_inf_t` typedefs  
 - `generated/*_impl_declares.h` — include from implementation `.c` only  
 - `generated/interface_closet/` — skeletons for afwdev (templates, not product code)
 

@@ -476,16 +476,14 @@
 /**
  * @defgroup afw_trace Software Trace
  *
- * These macros and functions assist writing trace message to the environment
- * log.  All trace message have associated runtime information (rti) that can
- * be used for prefixing messages as well as filtering.  The first parameter
- * of macros AFW_TRACE(), AFW_TRACE_Z(), AFW_TRACE_FZ(), and AFW_TRACE_VZ()
- * is a instance, which is used to locate the implementation rti.  The
- * AFW_TRACE_WRITE*() macros and afw_trace_write*() functions have rti as the
- * first parameter.
+ * Macros and functions for writing trace messages to the environment log.
+ * Each message carries runtime information (rti) used for prefixes and
+ * filtering. The first parameter of AFW_TRACE(), AFW_TRACE_Z(),
+ * AFW_TRACE_FZ(), and AFW_TRACE_VZ() is an instance used to locate the
+ * implementation rti. AFW_TRACE_WRITE*() macros and afw_trace_write*()
+ * take rti as the first parameter.
  *
- * All trace message are written to the environment log.  See afw_log.h for
- * more information.
+ * Trace output goes to the environment log (see afw_log.h).
  */
 
 /**
@@ -631,16 +629,14 @@
 /**
  * @defgroup afw_debug Software Debug
  *
- * These macros and functions assist writing debug message to the environment
- * log.  All debug message have associated runtime information (rti) that can
- * be used for prefixing messages as well as filtering.  The first parameter
- * of macros AFW_DEBUG(), AFW_DEBUG_Z(), AFW_DEBUG_FZ(), and AFW_DEBUG_VZ()
- * is a instance, which is used to locate the implementation rti.  The
- * AFW_DEBUG_WRITE*() macros and afw_debug_write*() functions have rti as the
- * first parameter.
+ * Macros and functions for writing debug messages to the environment log.
+ * Each message carries runtime information (rti) used for prefixes and
+ * filtering. The first parameter of AFW_DEBUG(), AFW_DEBUG_Z(),
+ * AFW_DEBUG_FZ(), and AFW_DEBUG_VZ() is an instance used to locate the
+ * implementation rti. AFW_DEBUG_WRITE*() macros and afw_debug_write*()
+ * take rti as the first parameter.
  *
- * All debug message are written to the environment log.  See afw_log.h for
- * more information.
+ * Debug output goes to the environment log (see afw_log.h).
  */
 
 /**

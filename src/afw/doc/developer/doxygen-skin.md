@@ -26,7 +26,10 @@ supported by Doxygen; an extra sheet is the durable approach.
    (long file header = primary maintainer guide; read it first.)  
 2. **Enable/disable skin** → package-root `Doxyfile` (`HTML_EXTRA_STYLESHEET`,
    optional `HTML_COLORSTYLE_*`).  
-3. **API/group prose** → `src/afw/include/afw_doxygen.h`, interface XML,
+3. **Nav tabs / page layout** → package-root `DoxygenLayout.xml`
+   (`LAYOUT_FILE` in `Doxyfile`). C-focused: Modules + Related Pages + Data
+   Structures; hierarchy / namespaces / examples tabs off.  
+4. **API/group prose** → `src/afw/include/afw_doxygen.h`, interface XML,
    hand headers — separate from the skin.
 
 ## Build and preview
@@ -79,6 +82,19 @@ supported by Doxygen; an extra sheet is the durable approach.
 3. Optionally restore `HTML_COLORSTYLE_HUE/SAT/GAMMA` defaults.  
 4. `./afwdev build --docs --clean -j`.
 
+## C-focused Doxyfile knobs (not only the skin)
+
+| Setting | Intent |
+|---------|--------|
+| `OPTIMIZE_OUTPUT_FOR_C = YES` | “Data Structures” wording, C-friendly index |
+| `TYPEDEF_HIDES_STRUCT = YES` | Prefer public `afw_*_t` over `*_s` tags |
+| `SHOW_NAMESPACES = NO` | Hide useless namespace chrome |
+| `LAYOUT_FILE = DoxygenLayout.xml` | Modules / Related Pages / Data Structures nav |
+| `CLASS_GRAPH` / `COLLABORATION_GRAPH` / `GRAPHICAL_HIERARCHY = NO` | Avoid C++-style graphs (also `HAVE_DOT = NO` today) |
+| `PROJECT_BRIEF` | One-line subtitle under the project name |
+| `PROJECT_NUMBER` | From `afw-package.json` via `afwdev generate` |
+| `FILE_PATTERNS` | `*.c` / `*.h` / `*.md` (not the whole repo noise) |
+
 ## Types: typedef vs struct (C API)
 
 AFW names public types as **`afw_*_t`** via typedefs (often in
@@ -90,7 +106,8 @@ Doxyfile **`TYPEDEF_HIDES_STRUCT = YES`** so Data Structures and detail pages
 prefer the **typedef name** people use in code, not the `*_s` tag.
 
 Call macros (`afw_<iface>_<method>`) are the method-like API for those
-types; see interface groups and @ref afw_dev_interfaces.
+types (`@relates` instance `*_t` in generated headers); see interface groups
+and @ref afw_dev_interfaces.
 
 ## Related
 

@@ -52,9 +52,14 @@ embed that as the first field of a larger self struct in .c files. Call
 |------|--------|
 | Mental model for values | Modules → Value (`afw_value`) |
 | Evaluate / create helpers | `afw_value.h` |
-| Interface call macros | Modules → Interfaces / each interface group |
-| Typedef list | Data Structures (names should be mostly `*_t`) |
+| Interface call macros | Modules → Interfaces / each interface group; macros `@relates` instance `*_t` |
+| Typedef / struct list | Data Structures (prefer `*_t` names; `TYPEDEF_HIDES_STRUCT`) |
 | Kind layouts (core maintainers) | `afw_value_internal.h`, data-type bindings |
+
+You may still see some `*_inf_s` / tag names alongside `*_inf_t` when Doxygen
+lists both a detailed struct and a typedef; the **API name is always `*_t`**.
+Vtables (`*_inf_t`) are for call macros and implementers, not everyday
+application logic.
 
 ## Related
 

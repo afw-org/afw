@@ -76,7 +76,8 @@ Behavior (`src/afw_dev/_afwdev/build/docs/docs.py` + `build/build.py`):
 - Public names are **`afw_*_t`** (typedefs); tags are usually `struct afw_*_s`.
 - Opaques in `afw_common_opaques.h` / generated `afw_interface_opaques.h` avoid header cycles and hide layouts.
 - **`afw_value_t` (and similar):** one public typedef, **many** concrete structs. Document the handle + group essay; never tell extension authors to depend on a single value struct body.
-- Doxyfile: `TYPEDEF_HIDES_STRUCT = YES`, C/H/MD-focused `FILE_PATTERNS`, `SHOW_NAMESPACES = NO`.
+- Doxyfile: `TYPEDEF_HIDES_STRUCT = YES`, C/H/MD-focused `FILE_PATTERNS`, `SHOW_NAMESPACES = NO`, `LAYOUT_FILE = DoxygenLayout.xml` (C nav; hierarchy off), inheritance graphs off.
+- Call macros get `@relates *_t` from `interfaces.py` (do not hand-edit generated headers).
 - See `src/afw/doc/developer/types-opaques.md` and group `afw_value` in `afw_doxygen.h`.
 
 ## Doxygen HTML skin (`doxygen-extra.css`)

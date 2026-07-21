@@ -56,7 +56,8 @@ HTML look (light/dark slate skin): `src/afw/doc/doxygen-extra.css` — see
 - @ref afw_dev_implementing — afwdev make/add, skeletons, impl_declares  
 - @ref afw_dev_extending — end-to-end extension sketch  
 - @ref afw_dev_runtime — pool, value, xctx, environment pointers  
-- @ref afw_dev_compiler_ebnf — grammar comments / EBNF harvest (compiler only)  
 - @ref afw_dev_types_opaques — `afw_*_t` vs multi-layout values  
+- @ref afw_dev_compiler_ebnf — grammar comments / EBNF harvest (compiler only)  
 - @ref afw_dev_doxygen_skin — Doxygen HTML light/dark stylesheet (maintainers)  
-- Doxygen **Modules** list — group pages (essays) in `afw_doxygen.h`
+- Doxygen **Modules** list — group essays in `afw_doxygen.h`  
+- Doxygen **Related Pages** — this set of developer pages

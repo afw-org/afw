@@ -10,6 +10,7 @@
  *
  * Wiring
  *   Doxyfile:  HTML_EXTRA_STYLESHEET = src/afw/doc/doxygen-extra.css
+ *              LAYOUT_FILE = DoxygenLayout.xml (C-focused nav tabs)
  *   Output:    copied into build/docs/doxygen/html/doxygen-extra.css by doxygen
  *   Build:     ./afwdev build --docs -j
  *              Force regen: ./afwdev build --docs --clean -j

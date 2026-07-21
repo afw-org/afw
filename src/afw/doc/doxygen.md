@@ -21,14 +21,18 @@ language bindings, commands, and administrative applications. The runtime is
 
 ## How to navigate this tree
 
-- **Modules / groups** — start with the group list (pools, values, environment,
-  adapters, interfaces, …). Group pages hold mental models and invariants.
-- **Interface call macros** — the day-to-day C API for calling methods
-  (`afw_<interface>_<method>(…)`). Descriptions come from interface XML.
-- **Implementing interfaces** — use afwdev `make-*` / `add-*` subcommands and
-  the generated closet skeletons; leave `@todo` markers until filled in.
-- **Hand headers** — public module headers document related files and helpers
-  beyond the generated interface macros.
+- **[Modules](modules.html)** — start here: pools, values, environment,
+  adapters, interfaces, … Group pages hold mental models and invariants.
+- **[Related Pages](pages.html)** — short developer essays (interfaces, runtime,
+  opaques, …) also under `src/afw/doc/developer/` in the repo.
+- **[Data Structures](annotated.html)** — C types by public `afw_*_t` name when
+  possible; see @ref afw_dev_types_opaques for typedef vs multi-layout values.
+- **Interface call macros** — day-to-day C API (`afw_<interface>_<method>(…)`);
+  find them under Modules → each interface group (XML descriptions; link to
+  instance `*_t` via `@see`).
+- **Implementing interfaces** — afwdev `make-*` / `add-*` and closet skeletons;
+  leave `@todo` markers until filled in.
+- **Hand headers** — module helpers beyond generated interface macros.
 
 ## Developer reading order
 
@@ -37,22 +41,20 @@ language bindings, commands, and administrative applications. The runtime is
 3. @ref afw_dev_implementing — scaffolds and `@todo`  
 4. @ref afw_dev_runtime — pools, values, xctx, environment  
 5. @ref afw_dev_extending — extension sketch  
-6. @ref afw_dev_compiler_ebnf — grammar / EBNF harvest (compiler maintainers only)  
-7. @ref afw_dev_types_opaques — public `afw_*_t` names vs multi-layout values  
+6. @ref afw_dev_types_opaques — public `afw_*_t` vs multi-layout values  
+7. @ref afw_dev_compiler_ebnf — grammar / EBNF harvest (compiler only)  
+8. @ref afw_dev_doxygen_skin — HTML skin (maintainers)  
 
 These pages also live under `src/afw/doc/developer/` in the repository for
 direct reading without opening HTML.
-
-**Modules (groups):** open the Modules list for topic “essays” (pools, values,
-interfaces, adapters, …) authored mainly in `afw_doxygen.h`.
 
 ## Source Code
 
 The source for Adaptive Framework is located in a
 [GitHub repository](https://github.com/afw-org/afw).
 
-Development is currently being done in the `develop` branch, but will be
-merged into `main` once it's in a state appropriate for public use.
+Public development targets the `develop` branch (then `main` when ready for
+wider use). Staging and experimental work may use other long-lived branches.
 
 ## Building and Running
 
@@ -61,9 +63,11 @@ of Adaptive Framework, including how to get started.
 
 ## Contributing
 
-If you are interested in contributing to Adaptive Framework, please see our
-[contributing](./CONTRIBUTING.md) page.
+If you are interested in contributing to Adaptive Framework, please see
+`CONTRIBUTING.md` in the repository root (also copied next to this HTML as
+`CONTRIBUTING.md` when docs are built).
 
 ## License
 
-Adaptive Framework is licensed under the [MIT](./LICENSE) license.
+Adaptive Framework is licensed under the MIT license (`LICENSE` in the
+repository root).

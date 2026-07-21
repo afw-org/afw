@@ -724,7 +724,7 @@ afw_adapter_journal_inf_t;
  * struct (implementations may embed/extend in .c).
  *
  * **Special:** many different value-kind structs are
- * passed as `afw_value_t *`. See group afw_value.
+ * passed as `afw_value_t *`. See @ref afw_value.
  */
 typedef struct afw_value_s
 afw_value_t;

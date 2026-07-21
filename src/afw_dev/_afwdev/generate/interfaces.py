@@ -56,8 +56,22 @@ def generate_h(generated_by, prefix, name, tree, generated_dir_path, copyright):
             fd.write(' * @{\n')
             fd.write(' */\n\n')
 
-            # public struct
-            fd.write('\n/** @brief Interface ' + interface_name + ' public struct. */\n')
+            # public struct (typedef name is interface_name_t)
+            fd.write('\n/**\n')
+            fd.write(' * @brief Public instance layout for interface `'
+                     + interface_name + '`.\n')
+            fd.write(' *\n')
+            fd.write(' * API type name is `' + interface_name + '_t` (see opaques).\n')
+            fd.write(' * Call methods with `' + interface_name
+                     + '_<method>(…)` macros.\n')
+            fd.write(' * Implementations often embed this as the first field of\n')
+            fd.write(' * a larger self struct in .c files.\n')
+            if interface_name == 'afw_value':
+                fd.write(' *\n')
+                fd.write(' * **Note:** Many value-kind structs are also passed as\n')
+                fd.write(' * `afw_value_t *`; this is only the interface face.\n')
+                fd.write(' * See @ref afw_value.\n')
+            fd.write(' */\n')
             fd.write('struct ' + interface_name + '_s {\n')
             fd.write('    const ' + interface_name + '_inf_t *inf;\n')
             for variable in interface.findall('variable'):
@@ -74,7 +88,9 @@ def generate_h(generated_by, prefix, name, tree, generated_dir_path, copyright):
             fd.write('};\n')
 
             # define for name
-            fd.write('\n/** @brief define for interface ' + interface_name + ' name. */\n')
+            fd.write('\n/** @brief String name of interface `'
+                     + interface_name + '` (`'
+                     + interface_name.upper() + '_INTERFACE_NAME`). */\n')
             fd.write('#define ' + interface_name.upper() + '_INTERFACE_NAME \\\n"' + interface_name + '"\n' )
 
             # method typedefs
@@ -93,8 +109,14 @@ def generate_h(generated_by, prefix, name, tree, generated_dir_path, copyright):
                     ending = ',\n'
                 fd.write(');\n')
 
-            # interface inf struct
-            fd.write('\n/** @brief Interface ' + interface_name + '_inf_s struct. */\n')
+            # interface inf struct (vtable); typedef name is interface_name_inf_t
+            fd.write('\n/**\n')
+            fd.write(' * @brief Method table (inf) for interface `'
+                     + interface_name + '`.\n')
+            fd.write(' *\n')
+            fd.write(' * API type name is `' + interface_name + '_inf_t`.\n')
+            fd.write(' * Pointed to by the instance `inf` field; call macros use it.\n')
+            fd.write(' */\n')
             fd.write('struct ' + interface_name + '_inf_s {\n')
             fd.write('    afw_interface_implementation_rti_t rti;\n')
             for method in interface.findall('method'):
@@ -174,6 +196,18 @@ def generate_h(generated_by, prefix, name, tree, generated_dir_path, copyright):
                         # void with a note (e.g. side effects) — still useful
                         c.write_wrapped(
                             fd, 80, ' * ', '@return ' + ret_desc)
+
+                # Point readers at the public instance type.
+                # @relates uses the public *_t name (TYPEDEF_HIDES_STRUCT).
+                # @see @ref must use the struct tag *_s — Doxygen 1.9.x often
+                # cannot \ref the typedef name even when the HTML title is *_t.
+                # Macros may not appear under the type's Related section; the
+                # interface group remains the reliable call-macro index.
+                fd.write(
+                    ' * @relates ' + interface_name + '_t\n')
+                fd.write(
+                    ' * @see @ref ' + interface_name + '_s "'
+                    + interface_name + '_t"\n')
 
                 fd.write(' */\n')
 
@@ -259,7 +293,7 @@ def generate_opaques_h(generated_by, prefix, name, tree, generated_dir_path, cop
             if interface_name == 'afw_value':
                 fd.write(' *\n')
                 fd.write(' * **Special:** many different value-kind structs are\n')
-                fd.write(' * passed as `afw_value_t *`. See group afw_value.\n')
+                fd.write(' * passed as `afw_value_t *`. See @ref afw_value.\n')
             fd.write(' */\n')
             fd.write('typedef struct ' + interface_name + '_s\n')
             fd.write(interface_name + '_t;\n')
