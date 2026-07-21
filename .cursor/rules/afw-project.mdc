@@ -62,6 +62,7 @@ Use **`./afwdev`** when the build may refresh the installed `afwdev` itself; oth
 
 ## More context
 - Runtime mental model (always): `afw-runtime-model`
+- Interface macros, afwdev scaffolds, Doxygen for builders (always): `afw-interfaces-doxygen`
 - When in `src/afw/`: `afw-core-layout`, `afw-headers`, `afw-core-services`, `afw-environment`
 - Compile / value / function: `afw-compile`, `afw-compiler-ebnf`, `afw-script-eval`, `afw-function`, `afw-value-memory`
 - Adaptive Script authoring (tests, model `on*`, probes): `afw-adaptive-script`, `afw-tests`

@@ -1,0 +1,59 @@
+---
+description: >-
+  C interfaces as XML IDL + macros; afwdev skeletons; Doxygen for builders
+  (extension/command authors), not pure Adaptive Script app users
+alwaysApply: true
+---
+
+# Interfaces, scaffolds, and Doxygen (builders)
+
+## Why C interfaces look like this
+
+AFW is **C**, not C++: multi-request servers need controlled memory and no C++ runtime tax. Interfaces are defined in **`generate/interfaces/*.xml`** (core: `afw_interface.xml`). Python (`interfaces.py` and related generators) emits structs, `inf` vtables, **call macros**, `*_impl_declares.h`, and **closet skeletons**.
+
+Developers are meant to call:
+
+```c
+afw_adapter_create_adapter_session(instance, xctx)
+```
+
+not `(instance)->inf->create_adapter_session(...)`. The arrow/`inf` form is wiring and **GDB-friendly**; the **real API surface is the macros**.
+
+## Source of truth
+
+| Concern | Edit here | Never hand-edit for docs |
+|---------|-----------|---------------------------|
+| Method/param descriptions | Interface **XML** | `generated/afw_interface.h` |
+| Macro Doxygen emission | `src/afw_dev/_afwdev/generate/interfaces.py` | Closet files as “fixed” docs |
+| Group mental models | `src/afw/include/afw_doxygen.h` (`@defgroup`) | One-off orphan `@addtogroup` names |
+| Scaffold bootstrap | Closet + **afwdev make-*/add-*** | Treating closet as production impl |
+
+## afwdev skeletons are first-class
+
+`make-afw-package`, `make-extension`, `make-command`, `add-adapter-type`, `add-content-type`, `add-log-type`, `add-core-interface` copy skeletons, apply **`<afwdev {…}>`** substitution, and leave **`@todo`** for humans.
+
+- **`@todo`** and **`<afwdev {…}>`** in closet/skeleton output are **intentional**, not incomplete Doxygen to “clean up.”
+- Do not rewrite skeleton `@file @todo.h` / guard names for Doxygen vanity.
+- `generated/function_closet/` and `interface_closet/` are **templates**; implement in hand sources.
+
+## Doxygen audience
+
+**Primary:** AFW core developers, **extension and command authors**, interface implementers, hosts (`afw`, `afwfcgi`).
+
+**Not primary:** people who only write Adaptive Script / use REST apps — use the handbook / `whats_new.md` for that.
+
+Prioritize documenting:
+
+1. **Call macros** (from XML → generator)  
+2. **Group essays** in `afw_doxygen.h` (pool, value, xctx, environment, adapters, …)  
+3. Hand public headers’ **long `@file` descriptions** (related headers, lifecycle)  
+4. Short **implementer path** (impl_declares + afwdev add-* + register)
+
+Preserve post-`@brief` long description bodies when editing file headers.
+
+## Related
+
+- Headers / include layers: `afw-headers`  
+- Generate vs generated: `afw-generate-metadata`, `afw-project`  
+- Environment registration: `afw-environment`  
+- Long map: `@AGENTS.md`; process dump: `beta-backlog.md`

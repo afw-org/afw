@@ -36,6 +36,19 @@ Package manifest: [`afw-package.json`](afw-package.json) (`srcdirs`, `srcdirMani
 - **Environment** — Process-wide keyed registries (`afw_environment_t` / `xctx->env`). Core registers at create (`afw_environment_register_core.c`: `afw_generated_register` then hand wiring — **functions before `prepare_environment`**, then conf/adapters/content types). Extensions/commands use the same registries. Details: [`.cursor/rules/afw-environment.mdc`](.cursor/rules/afw-environment.mdc).
 - **Script compiler** — `src/afw/compile/` (`afw_compile.h`) turns syntaxes into `afw_value` graphs; EBNF docs in `/*ebnf>>>` comments harvested via `generate/ebnf/`. Evaluate via `value/` + `function/`. Rules: [`.cursor/rules/afw-compile.mdc`](.cursor/rules/afw-compile.mdc), [`.cursor/rules/afw-script-eval.mdc`](.cursor/rules/afw-script-eval.mdc), [`.cursor/rules/afw-function.mdc`](.cursor/rules/afw-function.mdc), [`.cursor/rules/afw-compiler-ebnf.mdc`](.cursor/rules/afw-compiler-ebnf.mdc).
 
+### Interfaces, macros, scaffolds, Doxygen
+
+C interfaces are an **XML IDL + Python generator** story so AFW can stay C-efficient while giving implementers a clean call surface:
+
+| Layer | Role |
+|-------|------|
+| **Call macros** (`afw_<iface>_<method>(…)`) | **Real developer API** — document these (via XML + `interfaces.py`) |
+| **`inf` / arrow forms** | Wiring and GDB; not what extension authors should learn first |
+| **Closet skeletons + afwdev `make-*` / `add-*`** | First-class bootstrap for packages, extensions, commands, interface impls; `@todo` and `<afwdev {…}>` are intentional |
+| **Doxygen groups** (`afw_doxygen.h`) | Map for **builders** (core / extension / command authors), not pure Adaptive Script app users |
+
+Do **not** hand-edit `generated/` for docs, and do **not** “fix” skeleton placeholders for Doxygen vanity. Full rule: [`.cursor/rules/afw-interfaces-doxygen.mdc`](.cursor/rules/afw-interfaces-doxygen.mdc). Planned thin developer MD pages may live under `src/afw/doc/developer/` (Doxygen + direct read).
+
 Authoritative coding conventions: [`src/afw/doc/guide/developer/contributing.xml`](src/afw/doc/guide/developer/contributing.xml). Packages: [`packages.xml`](src/afw/doc/guide/developer/packages.xml).
 
 ## Metadata → generate → implement → test
@@ -115,8 +128,9 @@ afwdev generate --srcdir-pattern '*'
 |------|------|
 | `.cursor/rules/afw-project.mdc` | Always-on (generate/build focus) |
 | `.cursor/rules/afw-runtime-model.mdc` | Always-on runtime mental model |
+| `.cursor/rules/afw-interfaces-doxygen.mdc` | Always-on: interface macros, afwdev scaffolds, Doxygen for builders |
 | `.cursor/rules/afw-core-layout.mdc` | `src/afw` module map and usage modes |
-| `.cursor/rules/afw-headers.mdc` | Include hierarchy; hand vs generated headers |
+| `.cursor/rules/afw-headers.mdc` | Include hierarchy; hand vs generated headers; Doxygen file hygiene |
 | `.cursor/rules/afw-core-services.mdc` | Env consumers: adapter, object, request, auth, model; retrieve max-objects limit (#49) |
 | `.cursor/rules/afw-environment.mdc` | Environment registries; core/extension/command registration |
 | `.cursor/rules/afw-environment-variables.mdc` | Process env / request props; UTF-8 boundary; #71 single `current` |

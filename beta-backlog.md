@@ -16,13 +16,26 @@ Dump **details, design thoughts, unfinished plans, and “don’t forget” item
 
 ## Branch plan (as of mid‑2026)
 
+**Steady state (normal AFW practice):**
+
 ```text
-mgg-develop  →  (when ready) develop  →  (cleaned up, ≥ beta) main
+feature branches  →  develop  →  (cleaned up, ≥ beta) main
 ```
 
-- Day-to-day work and user-facing “what’s new” live on **`mgg-develop`**.
-- Merge **`mgg-develop` → `develop`** when that line is ready to become the shared integration branch again.
-- Promote **`develop` → `main`** when the tree is cleaned up and at least **beta-ready**.
+- **`develop`** is the usual shared integration branch.
+- Day-to-day work is **feature branches off `develop`**.
+
+**Current exception — concentrated AI / Grok Build pass:**
+
+```text
+feature branches  →  mgg-develop  →  (user testing) develop  →  main
+```
+
+- Volume of change from Grok Build / Cursor would overwhelm the usual `develop` cadence, so **`mgg-develop`** was cut off `develop` as a long-lived staging line.
+- Feature branches (e.g. `issue-#1`) are cut **off `mgg-develop`**, in chunks.
+- User-facing “what’s new” while on this line: **`whats_new.md`**.
+- After this large pass: **major user testing**, then merge **`mgg-develop` → `develop`**. Then **`develop` is again the main develop branch**.
+- Over weeks/months, most work should return to feature branches off `develop` (mgg-develop is not the permanent forever trunk).
 
 Update this section if the plan changes.
 
@@ -59,6 +72,12 @@ Update this section if the plan changes.
 - Created **`beta-backlog.md`** on **`mgg-develop`** (initial commit `9bfefbf7`; follow-up commits for hygiene/wrap-up notes).
 - No feature implementation this session; partnership agreement: keep this file together over months toward beta.
 
+### Session notes — 2026-07-21 (issue #1 + Doxygen / interface intent)
+
+- Local commit on **`issue-#1`**: C file-level Doxygen hygiene + non-skeleton generator briefs (see git history).
+- Design intent captured in rule **`afw-interfaces-doxygen`** and below under **Doxygen / interface API docs**.
+- Follow-ups: macro Doxygen quality from XML/`interfaces.py`; group tree; thin `src/afw/doc/developer/*.md`; re-scope #1 away from infinite file stamps.
+
 ---
 
 ## Notes dump
@@ -68,6 +87,28 @@ _Add new sections or bullets under the themes below. Newest thoughts can go at t
 ### Inbox (unsorted)
 
 _(Paste raw notes here first; sort into themes later.)_
+
+### Doxygen / interface API docs (builders)
+
+**Status:** planned · file hygiene partial (issue **#1** local work) · rule **`afw-interfaces-doxygen`** written  
+
+**Audience:** AFW developers, extension/command authors, hosts — **not** pure Adaptive Script app users (handbook / `whats_new` for those).
+
+**Architecture to remember:**
+
+- C chosen over C++ for multi-request efficiency; interfaces still required.
+- XML interface IDL + Python generate **call macros**, impl declares, closet skeletons (GDB-friendly wiring underneath).
+- **Macros = real API** to document; improve via **XML + generators**, never hand-edit `generated/`.
+- **Skeletons + afwdev `make-*` / `add-*`** are first-class developer UX; `@todo` / `<afwdev {…}>` intentional — do not “clean” for Doxygen vanity.
+- Group essays live in `afw_doxygen.h`; hand headers join canonical groups; preserve long post-`@brief` bodies.
+
+**Next chunks (feature branches off mgg-develop):**
+
+1. Macro Doxygen generator polish (`interfaces.py` `@param` spacing, etc.) + regenerate.  
+2. Group tree / `@addtogroup` alignment for hot modules.  
+3. Small `src/afw/doc/developer/*.md` set (overview, interfaces, implementing, extending) + mainpage links.  
+4. Re-scope or close #1: remaining = builder map, not stamp every `.c`.  
+5. Optional: Doxygen EXCLUDE closet noise.
 
 ### Indexes / adapters (incl. issue #54)
 
