@@ -121,6 +121,7 @@ afwdev generate --srcdir-pattern '*'
 - Author: `src/afw/doc/` (XML, markdown, images); builder-oriented Doxygen MD under `src/afw/doc/developer/`.
 - Publish: included in `./afwdev build --all --install -j`, or `afwdev build --docs` → `build/docs/` (served as `/docs/...` when installed).
 - **Doxygen:** afwdev runs `doxygen Doxyfile` into `build/docs/doxygen/` only if that directory is missing; use **`./afwdev build --docs --clean -j`** to force a refresh. `--clean` only cleans the **active** build context(s) (e.g. `--docs --clean` wipes `build/docs/`, not cmake). Config is the checked-in `Doxyfile`; see `afw-interfaces-doxygen`.
+- **Doxygen HTML skin:** experimental light/dark slate sheet `src/afw/doc/doxygen-extra.css` (`HTML_EXTRA_STYLESHEET`). Maintainer notes in that file’s header and `src/afw/doc/developer/doxygen-skin.md` — read before “simplifying” menus/`div.header` overrides.
 - `--cdev` installs libs/headers/`afwdev` via cmake; it does not build the handbook or admin app.
 
 ## Cursor layout

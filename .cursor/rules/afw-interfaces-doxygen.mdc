@@ -71,6 +71,26 @@ Behavior (`src/afw_dev/_afwdev/build/docs/docs.py` + `build/build.py`):
 - **`--clean` only cleans active build contexts** — intentional: `--docs --clean` wipes `build/docs/`; cmake-only `--clean` does not.
 - Manual `doxygen Doxyfile` is fine for a quick local peek; afwdev is the path that matches install/publish layout.
 
+## Doxygen HTML skin (`doxygen-extra.css`)
+
+| Item | Detail |
+|------|--------|
+| File | `src/afw/doc/doxygen-extra.css` |
+| Wired by | `Doxyfile` → `HTML_EXTRA_STYLESHEET` |
+| Goal | Light/dark slate look related to handbook (not identical chrome) |
+| Full notes | File header of that CSS + `src/afw/doc/developer/doxygen-skin.md` |
+
+**Hard-won overrides** (also documented in the CSS header):
+
+1. **Menus:** SmartMenus `.sm-dox` in `tabs.css` uses PNG tabs — force `background-image: none !important`.
+2. **White band under menu:** `div.header` uses `nav_h.png`; a bare `.header` rule loses — target **`div.header`**.
+3. **Group pages:** also theme `.groupheader`, member tables (`.mdesc*` / `.memItem*`), `.memtitle`, tooltips (`#powerTip`).
+4. **Nested groups in `afw_doxygen.h`:** put `@ingroup` on its own line or titles show `@ingroup …` literally.
+
+**Do not** casually rewrite this CSS for “simplicity” without re-checking Modules, a group page (e.g. compile), and a macro detail page under both light and dark OS themes. Prefer small fixes over a ground-up theme.
+
+**Discard:** delete the CSS file, clear `HTML_EXTRA_STYLESHEET`, optional reset of `HTML_COLORSTYLE_*`, then `--docs --clean`.
+
 ## Related
 
 - Headers / include layers: `afw-headers`  

@@ -59,7 +59,10 @@
  * @{
  */
 
-/** @defgroup afw_pool_internal Pool internal @ingroup afw_c_api_internal */
+/**
+ * @defgroup afw_pool_internal Pool internal
+ * @ingroup afw_c_api_internal
+ */
 
 /** @} */
 
@@ -84,7 +87,10 @@
  * @{
  */
 
-/** @defgroup afw_value_internal Value internal @ingroup afw_c_api_internal */
+/**
+ * @defgroup afw_value_internal Value internal
+ * @ingroup afw_c_api_internal
+ */
 
 /** @} */
 
@@ -109,7 +115,10 @@
  * @{
  */
 
-/** @defgroup afw_environment_internal Environment internal @ingroup afw_c_api_internal */
+/**
+ * @defgroup afw_environment_internal Environment internal
+ * @ingroup afw_c_api_internal
+ */
 
 /** @} */
 
@@ -146,14 +155,38 @@
  * @{
  */
 
-/** @defgroup afw_object_meta Object meta @ingroup afw_object */
-/** @defgroup afw_object_path Object path @ingroup afw_object */
-/** @defgroup afw_object_options Object options @ingroup afw_object */
-/** @defgroup afw_object_type Object type @ingroup afw_object */
-/** @defgroup afw_object_view Object view @ingroup afw_object */
-/** @defgroup afw_object_impl Object impl helpers @ingroup afw_object */
-/** @defgroup afw_object_internal Object internal @ingroup afw_c_api_internal */
-/** @defgroup afw_object_view_internal Object view internal @ingroup afw_c_api_internal */
+/**
+ * @defgroup afw_object_meta Object meta
+ * @ingroup afw_object
+ */
+/**
+ * @defgroup afw_object_path Object path
+ * @ingroup afw_object
+ */
+/**
+ * @defgroup afw_object_options Object options
+ * @ingroup afw_object
+ */
+/**
+ * @defgroup afw_object_type Object type
+ * @ingroup afw_object
+ */
+/**
+ * @defgroup afw_object_view Object view
+ * @ingroup afw_object
+ */
+/**
+ * @defgroup afw_object_impl Object impl helpers
+ * @ingroup afw_object
+ */
+/**
+ * @defgroup afw_object_internal Object internal
+ * @ingroup afw_c_api_internal
+ */
+/**
+ * @defgroup afw_object_view_internal Object view internal
+ * @ingroup afw_c_api_internal
+ */
 
 /** @} */
 
@@ -172,9 +205,18 @@
  * @{
  */
 
-/** @defgroup afw_adapter_impl Adapter impl helpers @ingroup afw_adapter */
-/** @defgroup afw_adapter_index_impl Adapter index impl @ingroup afw_adapter */
-/** @defgroup afw_adapter_internal Adapter internal @ingroup afw_c_api_internal */
+/**
+ * @defgroup afw_adapter_impl Adapter impl helpers
+ * @ingroup afw_adapter
+ */
+/**
+ * @defgroup afw_adapter_index_impl Adapter index impl
+ * @ingroup afw_adapter
+ */
+/**
+ * @defgroup afw_adapter_internal Adapter internal
+ * @ingroup afw_c_api_internal
+ */
 
 /** @} */
 
@@ -191,7 +233,10 @@
  * @{
  */
 
-/** @defgroup afw_file_internal File adapter internal @ingroup afw_c_api_internal */
+/**
+ * @defgroup afw_file_internal File adapter internal
+ * @ingroup afw_c_api_internal
+ */
 
 /** @} */
 
@@ -218,8 +263,14 @@
  * @{
  */
 
-/** @defgroup afw_compile_internal Compile internal @ingroup afw_c_api_internal */
-/** @defgroup afw_code_point Code points (compiler) @ingroup afw_compile */
+/**
+ * @defgroup afw_compile_internal Compile internal
+ * @ingroup afw_c_api_internal
+ */
+/**
+ * @defgroup afw_code_point Code points (compiler)
+ * @ingroup afw_compile
+ */
 
 /** @} */
 
@@ -238,8 +289,14 @@
  * @{
  */
 
-/** @defgroup afw_request_handler_impl Request handler impl @ingroup afw_request */
-/** @defgroup afw_request_handler_internal Request handler internal @ingroup afw_c_api_internal */
+/**
+ * @defgroup afw_request_handler_impl Request handler impl
+ * @ingroup afw_request
+ */
+/**
+ * @defgroup afw_request_handler_internal Request handler internal
+ * @ingroup afw_c_api_internal
+ */
 
 /** @} */
 
@@ -266,7 +323,10 @@
  * @{
  */
 
-/** @defgroup afw_content_type_impl Content type impl @ingroup afw_content_type */
+/**
+ * @defgroup afw_content_type_impl Content type impl
+ * @ingroup afw_content_type
+ */
 
 /** @} */
 
@@ -282,8 +342,14 @@
  * @{
  */
 
-/** @defgroup afw_authorization_handler_impl Authz handler impl @ingroup afw_authorization */
-/** @defgroup afw_authorization_internal Authorization internal @ingroup afw_c_api_internal */
+/**
+ * @defgroup afw_authorization_handler_impl Authz handler impl
+ * @ingroup afw_authorization
+ */
+/**
+ * @defgroup afw_authorization_internal Authorization internal
+ * @ingroup afw_c_api_internal
+ */
 
 /** @} */
 
@@ -299,7 +365,10 @@
  * @{
  */
 
-/** @defgroup afw_service_internal Service internal @ingroup afw_c_api_internal */
+/**
+ * @defgroup afw_service_internal Service internal
+ * @ingroup afw_c_api_internal
+ */
 
 /** @} */
 
@@ -571,7 +640,10 @@
  * @{
  */
 
-/** @defgroup afw_json_internal JSON internal @ingroup afw_c_api_internal */
+/**
+ * @defgroup afw_json_internal JSON internal
+ * @ingroup afw_c_api_internal
+ */
 
 /** @} */
 
@@ -596,7 +668,10 @@
  * @{
  */
 
-/** @defgroup afw_model_internal Model internal @ingroup afw_c_api_internal */
+/**
+ * @defgroup afw_model_internal Model internal
+ * @ingroup afw_c_api_internal
+ */
 
 /** @} */
 
@@ -611,7 +686,10 @@
  * @{
  */
 
-/** @defgroup afw_runtime_value_accessor Runtime value accessors @ingroup afw_runtime */
+/**
+ * @defgroup afw_runtime_value_accessor Runtime value accessors
+ * @ingroup afw_runtime
+ */
 
 /** @} */
 
@@ -627,9 +705,18 @@
  * @{
  */
 
-/** @defgroup afw_array_impl Array impl helpers @ingroup afw_array */
-/** @defgroup afw_array_internal Array internal @ingroup afw_c_api_internal */
-/** @defgroup afw_array_template_internal Array templates internal @ingroup afw_c_api_internal */
+/**
+ * @defgroup afw_array_impl Array impl helpers
+ * @ingroup afw_array
+ */
+/**
+ * @defgroup afw_array_internal Array internal
+ * @ingroup afw_c_api_internal
+ */
+/**
+ * @defgroup afw_array_template_internal Array templates internal
+ * @ingroup afw_c_api_internal
+ */
 
 /** @} */
 
@@ -651,7 +738,10 @@
  * @{
  */
 
-/** @defgroup afw_application_internal Application internal @ingroup afw_c_api_internal */
+/**
+ * @defgroup afw_application_internal Application internal
+ * @ingroup afw_c_api_internal
+ */
 
 /** @} */
 
@@ -773,7 +863,10 @@
  * New extensions: @ref afw_dev_extending and @ref afw_dev_implementing.
  */
 
-/** @defgroup afw_curl CURL extension @ingroup afw_included_extensions */
+/**
+ * @defgroup afw_curl CURL extension
+ * @ingroup afw_included_extensions
+ */
 
 /**
  * @defgroup afw_xctx Execution context (xctx)
@@ -790,7 +883,10 @@
  * @{
  */
 
-/** @defgroup afw_xctx_internal xctx internal @ingroup afw_c_api_internal */
+/**
+ * @defgroup afw_xctx_internal xctx internal
+ * @ingroup afw_c_api_internal
+ */
 
 /** @} */
 

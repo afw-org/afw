@@ -47,6 +47,9 @@ afwdev invokes `doxygen Doxyfile` (settings in the package-root `Doxyfile`).
 It skips Doxygen when `build/docs/doxygen` already exists; `--clean` with
 `--docs` removes only the docs build tree (intentional scoped clean).
 
+HTML look (light/dark slate skin): `src/afw/doc/doxygen-extra.css` — see
+@ref afw_dev_doxygen_skin before editing.
+
 ## Where to go next
 
 - @ref afw_dev_interfaces — macros, XML, generation  
@@ -54,4 +57,5 @@ It skips Doxygen when `build/docs/doxygen` already exists; `--clean` with
 - @ref afw_dev_extending — end-to-end extension sketch  
 - @ref afw_dev_runtime — pool, value, xctx, environment pointers  
 - @ref afw_dev_compiler_ebnf — grammar comments / EBNF harvest (compiler only)  
+- @ref afw_dev_doxygen_skin — Doxygen HTML light/dark stylesheet (maintainers)  
 - Doxygen **Modules** list — group pages (essays) in `afw_doxygen.h`
