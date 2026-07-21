@@ -1,0 +1,342 @@
+/**
+ * Experimental AFW skin for Doxygen HTML.
+ *
+ * Aligns roughly with handbook/admin dark slate chrome (Tailwind slate +
+ * dark app feel). Light mode follows prefers-color-scheme.
+ *
+ * Wired via Doxyfile HTML_EXTRA_STYLESHEET. Safe to delete this file and
+ * clear that tag if the experiment is not worth keeping.
+ */
+
+/* ----- Light (default / prefers light) ----- */
+html {
+  color-scheme: light dark;
+}
+
+body {
+  background: #f8fafc; /* slate-50 */
+  color: #334155; /* slate-700 */
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+}
+
+a, a:link, a:visited {
+  color: #0369a1; /* sky-700 */
+}
+a:hover {
+  color: #0ea5e9; /* sky-500 */
+}
+
+#titlearea,
+#projectname,
+#projectbrief,
+#projectnumber {
+  background: #ffffff;
+  color: #0f172a; /* slate-900 */
+}
+
+#titlearea {
+  border-bottom: 1px solid #e2e8f0; /* slate-200 */
+  padding: 0.75rem 1rem;
+}
+
+#navrow1, #navrow2, #navrow3, #navrow4,
+.tabs, .tabs2, .tabs3,
+.tablist li,
+.tablist a {
+  background: #f1f5f9; /* slate-100 */
+  color: #334155;
+}
+
+.tablist a {
+  background-image: none !important;
+  border-radius: 0.25rem;
+}
+.tablist a:hover,
+.tablist li.current a {
+  background: #e2e8f0 !important;
+  color: #0f172a !important;
+  text-shadow: none !important;
+}
+
+#nav-path ul {
+  background: #f1f5f9;
+  border: none;
+  color: #64748b;
+}
+#nav-path li {
+  background-image: none !important;
+}
+
+.header {
+  background: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+}
+.title {
+  color: #0f172a;
+}
+.contents {
+  background: #f8fafc;
+  margin: 0;
+  padding: 1rem 1.25rem 2rem;
+}
+
+/* Member boxes */
+.memitem {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.375rem;
+  margin: 0.75rem 0;
+  box-shadow: none;
+}
+.memproto {
+  background: #f1f5f9;
+  border-bottom: 1px solid #e2e8f0;
+  color: #0f172a;
+  text-shadow: none;
+}
+.memdoc {
+  background: #ffffff;
+  color: #334155;
+}
+.memname, .paramname {
+  color: #0f172a;
+}
+.paramtype {
+  color: #0369a1;
+}
+
+table.doxtable th,
+table.memberdecls td.memItemLeft,
+table.memberdecls td.memTemplItemLeft,
+.mdescLeft, .mdescRight,
+.memItemLeft, .memItemRight,
+.memTemplItemLeft, .memTemplItemRight {
+  background: transparent;
+}
+table.memberdecls {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.375rem;
+}
+table.memberdecls tr {
+  border-bottom: 1px solid #f1f5f9;
+}
+table.doxtable th {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+table.doxtable td {
+  background: #ffffff;
+}
+
+div.fragment, pre.fragment, div.line {
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  color: #1e293b;
+  border-radius: 0.25rem;
+}
+
+blockquote {
+  background: #f1f5f9;
+  border-left: 3px solid #94a3b8;
+  color: #475569;
+}
+
+hr.footer,
+.footer {
+  background: #f1f5f9;
+  color: #64748b;
+  border-top: 1px solid #e2e8f0;
+}
+
+/* Directory / tree / class index polish */
+div.directory {
+  border-color: #e2e8f0;
+}
+.directory tr.even {
+  background: #f8fafc;
+}
+.icona .icon, .iconf {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+/* ----- Dark (handbook slate-900 feel) ----- */
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #0f172a; /* slate-900 */
+    color: #94a3b8; /* slate-400 */
+  }
+
+  a, a:link, a:visited {
+    color: #38bdf8; /* sky-400 */
+  }
+  a:hover {
+    color: #7dd3fc; /* sky-300 */
+  }
+
+  #titlearea,
+  #projectname,
+  #projectbrief,
+  #projectnumber {
+    background: #0f172a;
+    color: #f1f5f9; /* slate-100 */
+  }
+
+  #titlearea {
+    border-bottom: 1px solid rgba(248, 250, 252, 0.06);
+  }
+
+  #navrow1, #navrow2, #navrow3, #navrow4,
+  .tabs, .tabs2, .tabs3,
+  .tablist li,
+  .tablist a {
+    background: #1e293b; /* slate-800 */
+    color: #e2e8f0;
+  }
+
+  .tablist a:hover,
+  .tablist li.current a {
+    background: #334155 !important; /* slate-700 */
+    color: #f8fafc !important;
+  }
+
+  #nav-path ul {
+    background: #1e293b;
+    color: #94a3b8;
+  }
+
+  .header {
+    background: #0f172a;
+    border-bottom: 1px solid rgba(248, 250, 252, 0.06);
+  }
+  .title {
+    color: #f1f5f9;
+  }
+  .contents {
+    background: #0f172a;
+  }
+
+  .memitem {
+    background: #1e293b;
+    border-color: #334155;
+  }
+  .memproto {
+    background: #1e293b;
+    border-bottom-color: #334155;
+    color: #f1f5f9;
+    text-shadow: none;
+  }
+  .memdoc {
+    background: #1e293b;
+    color: #94a3b8;
+  }
+  .memname, .paramname {
+    color: #f1f5f9;
+  }
+  .paramtype {
+    color: #38bdf8;
+  }
+
+  table.memberdecls {
+    background: #1e293b;
+    border-color: #334155;
+  }
+  table.memberdecls tr {
+    border-bottom-color: #334155;
+  }
+  table.memberdecls td {
+    color: #94a3b8;
+  }
+  table.doxtable th {
+    background: #1e293b;
+    color: #f1f5f9;
+    border-color: #334155;
+  }
+  table.doxtable td {
+    background: #0f172a;
+    color: #94a3b8;
+    border-color: #334155;
+  }
+
+  div.fragment, pre.fragment, div.line {
+    background: #1e293b;
+    border-color: #334155;
+    color: #e2e8f0;
+  }
+
+  /* Syntax highlighting tweaks on dark */
+  span.keyword, span.keywordtype, span.keywordflow {
+    color: #c4b5fd; /* violet-300 */
+  }
+  span.comment {
+    color: #64748b;
+  }
+  span.stringliteral, span.charliteral {
+    color: #86efac; /* green-300 */
+  }
+  span.preprocessor {
+    color: #fcd34d;
+  }
+
+  blockquote {
+    background: #1e293b;
+    border-left-color: #64748b;
+    color: #94a3b8;
+  }
+
+  hr.footer,
+  .footer {
+    background: #0f172a;
+    color: #64748b;
+    border-top-color: rgba(248, 250, 252, 0.06);
+  }
+
+  div.directory {
+    border-color: #334155;
+  }
+  .directory tr.even {
+    background: #1e293b;
+  }
+  .icona .icon, .iconf {
+    background: #334155;
+    color: #f1f5f9;
+  }
+
+  /* Search / select boxes if present */
+  #MSearchField, #MSearchResultsWindow, #MSearchSelectWindow {
+    background: #1e293b;
+    color: #e2e8f0;
+    border-color: #334155;
+  }
+  .SRSymbol, .SRScope {
+    color: #e2e8f0;
+  }
+  .SRResult:hover {
+    background: #334155;
+  }
+
+  /* Group / page text */
+  h1, h2, h3, h4, h5, h6 {
+    color: #f1f5f9;
+  }
+  div.qindex, div.navpath {
+    background: #1e293b;
+    color: #94a3b8;
+    border-color: #334155;
+  }
+  div.ah {
+    background: #334155;
+    color: #f1f5f9;
+    border-radius: 0.25rem;
+  }
+  .mlabel {
+    background: #334155;
+    color: #e2e8f0;
+    border: none;
+  }
+  span.icon {
+    background: #334155;
+  }
+}
