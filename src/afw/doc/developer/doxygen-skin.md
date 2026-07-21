@@ -47,6 +47,11 @@ supported by Doxygen; an extra sheet is the durable approach.
   the browser.  
 - Handbook reference look (for comparison): docs path
   `afw_dev/html/reference/afwdev/index.html` under the same docs root.
+- **Project version:** `afwdev generate` (package `root_generate`) sets
+  `Doxyfile` `PROJECT_NUMBER` from `afw-package.json` `version` (same bump
+  that refreshes `*_version_info.h`). Commit the updated `Doxyfile` with
+  other generate output. HTML still needs **`--docs --clean`** to rebuild
+  Doxygen for a new number (no auto-clean on version change).
 
 ## What broke the stock look (and how we fixed it)
 
