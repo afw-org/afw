@@ -406,8 +406,11 @@ INLINE_SIMPLE_STRUCTS  = NO
 # useful for C code in case the coding convention dictates that all compound
 # types are typedef'ed and only the typedef is referenced, never the tag name.
 # The default value is: NO.
+#
+# AFW: YES so Data Structures / pages use afw_*_t (the name code uses), not
+# the struct tag afw_*_s. Matches opaque typedefs in afw_*_opaques.h.
 
-TYPEDEF_HIDES_STRUCT   = NO
+TYPEDEF_HIDES_STRUCT   = YES
 
 # The size of the symbol lookup cache can be set using LOOKUP_CACHE_SIZE. This
 # cache is used to resolve symbols given their name and scope. Since this can be
@@ -680,7 +683,8 @@ SHOW_FILES             = YES
 # The default value is: YES.
 #
 # AFW: hide Namespaces. Core docs are C modules/macros; the list was mostly
-# noise from Python/JS bindings and similar (not a useful nav surface).
+# noise from language bindings (not a useful nav surface). FILE_PATTERNS is
+# also limited to C/H/MD for the same reason.
 
 SHOW_NAMESPACES        = NO
 
@@ -817,13 +821,11 @@ INPUT_ENCODING         = UTF-8
 # *.m, *.markdown, *.md, *.mm, *.dox, *.py, *.pyw, *.f90, *.f, *.for, *.tcl,
 # *.vhd, *.vhdl, *.ucf, *.qsf, *.as and *.js.
 
+# C API + developer markdown only. Language bindings (py/ts/php/…) were
+# flooding Data Structures with non-C types; document those elsewhere.
 FILE_PATTERNS          = *.c \
                          *.h \
-                         *.md \
-                         *.py \
-                         *.ts \
-                         *.php \
-                         *.pl
+                         *.md
 
 # FILE_PATTERNS          = *.c \
 #                          *.cc \
@@ -881,7 +883,9 @@ RECURSIVE              = YES
 # Note that relative paths are relative to the directory from which doxygen is
 # run.
 
-EXCLUDE                = src/afw_app/admin/public build
+# Admin UI and generic build tree; C API docs live under src/afw* (and md).
+EXCLUDE                = src/afw_app \
+                         build
 
 # The EXCLUDE_SYMLINKS tag can be used to select whether or not files or
 # directories that are symbolic links (a Unix file system feature) are excluded
@@ -906,6 +910,8 @@ EXCLUDE_PATTERNS       = */node_modules/* \
                          */*closet/* \
                          */__tests__/* \
                          */__mocks__/* \
+                         */javascript/* \
+                         */generated/*_bindings/* \
                          *.conf
 
 # The EXCLUDE_SYMBOLS tag can be used to specify one or more symbol names

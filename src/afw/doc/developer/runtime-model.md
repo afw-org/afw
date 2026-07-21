@@ -13,9 +13,11 @@ See group @ref afw_pool.
 
 ## Values
 
-`afw_value_t` = `inf` + payload. Compiled graphs, data-type values, calls,
-closures, etc. Lifetimes: permanent / managed / managed_slice / unmanaged.  
-See group @ref afw_value.
+Public API type is always **`const afw_value_t *`**. That is a typedef/handle:
+**many different C structs** implement values (string/managed/slice, block,
+call, symbol, …). Use evaluate/create APIs; do not assume one struct body.
+Lifetimes: permanent / managed / managed_slice / unmanaged.  
+See group @ref afw_value and @ref afw_dev_types_opaques.
 
 ## Execution context (xctx)
 

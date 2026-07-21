@@ -71,18 +71,39 @@
  *
  * Adaptive Framework value graph (the core data model).
  *
- * Every significant runtime entity is represented as an `afw_value_t`
- * (inf pointer + payload). Values are generally immutable.
- * The graph includes `compiled_value`, blocks, calls, symbol references,
- * closures, and all data-type values.
+ * ## Public name vs many layouts
  *
- * Evaluation is driven by `inf->optional_evaluate`.
+ * In API and script, everything is a **`const afw_value_t *`**. That typedef
+ * is the public handle. **Do not assume one C struct body** behind it.
  *
- * Key invariants (see also afw-value-memory rule):
- * - Permanent values last for the life of the environment.
- * - Managed values use refcounting or cloning for escape.
- * - Managed slices for utf8/memory views into managed values.
- * - Prefer allocating evaluation results into current scope->p for long-running use.
+ * Concrete values are different `struct afw_value_*_s` layouts that all start
+ * with (or embed) the public `inf` / `afw_value_t` face so code can pass them
+ * as `afw_value_t *`. Examples:
+ * - Data-type values: `afw_value_string_s`, `*_managed_s`, `*_managed_slice_s`, …
+ * - Compiler/runtime kinds: block, call_*, symbol_reference, closure_binding,
+ *   compiled_value, list/object expression, …
+ * - `afw_value_common_s` — layout used to access the shared prefix + internal
+ *
+ * This is intentional **implementation hiding**: extension authors use
+ * evaluate/create APIs and macros, not casts to a single private struct.
+ * Doxygen may still list several `afw_value_*` compounds under Data
+ * Structures; treat **`afw_value_t`** as the only type name for the public API.
+ *
+ * ## How values work
+ *
+ * - Generally immutable once created.
+ * - Behavior is selected by **`inf`** (vtable), especially
+ *   `optional_evaluate`.
+ * - Evaluation is usually `afw_value_evaluate()` (macro) into a pool/scope.
+ *
+ * Key lifetime policies (see also afw-value-memory rule):
+ * - **Permanent** — live for the environment (often const in the .so).
+ * - **Managed** — refcount/clone when escaping.
+ * - **Managed slice** — utf8/memory view into a managed container.
+ * - Prefer evaluation results in current `scope->p` for long-running scripts.
+ *
+ * Start with `afw_value.h`. Kind layouts for core maintainers:
+ * `afw_value_internal.h` and generated data-type bindings.
  *
  * @{
  */
@@ -90,6 +111,9 @@
 /**
  * @defgroup afw_value_internal Value internal
  * @ingroup afw_c_api_internal
+ *
+ * Concrete value-kind structs and helpers used inside libafw.
+ * Not a single layout for `afw_value_t` — see @ref afw_value.
  */
 
 /** @} */

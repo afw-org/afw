@@ -74,6 +74,19 @@ supported by Doxygen; an extra sheet is the durable approach.
 3. Optionally restore `HTML_COLORSTYLE_HUE/SAT/GAMMA` defaults.  
 4. `./afwdev build --docs --clean -j`.
 
+## Types: typedef vs struct (C API)
+
+AFW names public types as **`afw_*_t`** via typedefs (often in
+`afw_common_opaques.h` / generated `afw_interface_opaques.h`). The struct tag
+is usually `afw_*_s`, with the full definition in another header or left
+incomplete on purpose.
+
+Doxyfile **`TYPEDEF_HIDES_STRUCT = YES`** so Data Structures and detail pages
+prefer the **typedef name** people use in code, not the `*_s` tag.
+
+Call macros (`afw_<iface>_<method>`) are the method-like API for those
+types; see interface groups and @ref afw_dev_interfaces.
+
 ## Related
 
 - @ref afw_dev_overview — rebuild docs commands  

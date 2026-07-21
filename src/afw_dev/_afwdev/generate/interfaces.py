@@ -244,10 +244,34 @@ def generate_opaques_h(generated_by, prefix, name, tree, generated_dir_path, cop
         for interface in root.findall('interface'):
             interface_name = interface.get('name')
 
-            fd.write('\ntypedef struct ' + interface_name + '_s\n')
+            # Briefs so Doxygen Data Structures / typedef pages use the public
+            # *_t names (with TYPEDEF_HIDES_STRUCT) and explain the opaque.
+            fd.write('\n/**\n')
+            fd.write(' * @brief Opaque instance type for interface `'
+                     + interface_name + '`.\n')
+            fd.write(' *\n')
+            fd.write(' * Public name is `' + interface_name + '_t`. Full\n')
+            fd.write(' * `struct ' + interface_name + '_s` is in the generated\n')
+            fd.write(' * interface header. Call methods via\n')
+            fd.write(' * `' + interface_name + '_<method>(…)` macros, not by\n')
+            fd.write(' * assuming a single private layout beyond the published\n')
+            fd.write(' * struct (implementations may embed/extend in .c).\n')
+            if interface_name == 'afw_value':
+                fd.write(' *\n')
+                fd.write(' * **Special:** many different value-kind structs are\n')
+                fd.write(' * passed as `afw_value_t *`. See group afw_value.\n')
+            fd.write(' */\n')
+            fd.write('typedef struct ' + interface_name + '_s\n')
             fd.write(interface_name + '_t;\n')
 
-            fd.write('\ntypedef struct ' + interface_name + '_inf_s\n')
+            fd.write('\n/**\n')
+            fd.write(' * @brief Vtable/inf type for interface `'
+                     + interface_name + '`.\n')
+            fd.write(' *\n')
+            fd.write(' * Public name is `' + interface_name + '_inf_t`.\n')
+            fd.write(' * Instance `inf` points here; call macros use it.\n')
+            fd.write(' */\n')
+            fd.write('typedef struct ' + interface_name + '_inf_s\n')
             fd.write(interface_name + '_inf_t;\n')
 
         fd.write('\n/** @} */\n\n')

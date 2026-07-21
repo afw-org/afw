@@ -17,10 +17,25 @@
 
 /**
  * @file afw_common_opaques.h
- * @brief Adaptive Framework Common Opaques Header.
+ * @brief Core opaque `afw_*_t` typedefs (hand-maintained).
  *
- * This header is included by afw_common.h.  It includes most of the Adaptive
- * Framework core opaque typedefs that are not generated.
+ * Included early via `afw_common.h` so headers can name types without
+ * pulling full struct bodies (avoids include-order / header hell and keeps
+ * some layouts private).
+ *
+ * **Convention:** public code uses **`afw_foo_t`**. The tag is usually
+ * `struct afw_foo_s`, with the full definition in another header — or
+ * incomplete on purpose. Interface instance types also appear in generated
+ * `afw_interface_opaques.h`.
+ *
+ * **Many structs per conceptual type:** some names (especially value-related)
+ * are not 1:1 with a single layout. Example: callers always see
+ * `afw_value_t *`, while many `struct afw_value_*_s` kinds exist. See
+ * @ref afw_value. Doxygen may list several compounds; use the `*_t` name in
+ * prose and APIs.
+ *
+ * Each typedef brief below points at the header that owns the struct when
+ * there is a single main definition.
  */
 
 

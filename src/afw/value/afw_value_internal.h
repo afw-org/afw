@@ -19,7 +19,17 @@
 
 /**
  * @file afw_value_internal.h
- * @brief Internal value kinds and evaluator helpers.
+ * @brief Concrete value-kind structs (internal to libafw).
+ *
+ * These are **implementation layouts** for the value graph (blocks, calls,
+ * closures, symbol references, compiled values, …). The public API type
+ * remains `afw_value_t` (@ref afw_value). Each of these structs begins with
+ * the usual inf/`afw_value_t` pub union so instances can be passed as
+ * `const afw_value_t *`.
+ *
+ * Extension authors should rarely need this header; prefer `afw_value.h`
+ * and data-type create/evaluate APIs. Core maintainers use this file when
+ * adding or debugging a value kind.
  */
 
 AFW_BEGIN_DECLARES
