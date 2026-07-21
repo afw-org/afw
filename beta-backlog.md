@@ -71,7 +71,7 @@ _(Paste raw notes here first; sort into themes later.)_
 
 ### Indexes / adapters (incl. issue #54)
 
-**Status:** core `current::` eval on branch `Issue-#54` (see also rule **`afw-adapter-index`**). Partial product story — LMDB create path still broken.  
+**Status:** core `current::` eval on branch `Issue-#54` / PR **#130** (see also rule **`afw-adapter-index`**). Partial product story — LMDB create path still broken.  
 **Code:** `src/afw/adapter/afw_adapter_impl_index.c`, LMDB `afw_lmdb_index*`, session hooks; Adaptive `index_*` are **core**, not LMDB-only functions.
 
 #### How indexes actually work

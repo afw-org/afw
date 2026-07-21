@@ -26,7 +26,7 @@ Internal agent rules, Cursor docs, and pure test-infrastructure work are omitted
 
 ## Adapter index filter/value `current::` (issue #54) — partial
 
-**Issue #54** (core eval context; LMDB create path still has known issues)
+**Issue #54** / PR **#130** (core eval context; LMDB create path still has known issues)
 
 If you author index **filter** / **value** scripts (definitions stored in the LMDB adapter’s internal config via `index_create`, not normal adapter conf), use **`current::`** while they evaluate:
 
