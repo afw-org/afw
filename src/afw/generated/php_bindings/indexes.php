@@ -32,11 +32,19 @@ class indexes
      *
      * @param string $adapterId Id of adapter.
      * @param string $key Name of the property index to be created.
-     * @param string $value Expression to calculate the index value(s).
-     * @param string $objectType Object Type(s) this index may apply to.
-     * @param string $filter Expression to determine if this index applies to
-     *                       a particular object.
-     * @param string $options Indexing options.
+     * @param string $value Adaptive script (expression-like; must return a
+     *                      value) used to calculate the index value(s). While
+     *                      evaluating, current::object, current::objectId,
+     *                      current::objectType, and current::key are
+     *                      available (issue #54). If omitted, the property
+     *                      named by key is indexed.
+     * @param array $objectType Object type id(s) this index may apply to.
+     * @param string $filter Adaptive script that must return a boolean to
+     *                       decide whether this index applies to a particular
+     *                       object. Uses the same current:: variables as
+     *                       value (issue #54). If omitted, the filter is
+     *                       always true.
+     * @param array $options Indexing options.
      * @param boolean $retroactive Retroactively generate indexes for existing
      *                             objects.
      * @param boolean $test Test create (don't actually perform).

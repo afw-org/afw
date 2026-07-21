@@ -4,6 +4,8 @@ Long-form context for humans and AI assistants. **Always-on** rules live in [`.c
 
 Primary development focus for Cursor agents: **C runtime** and **Python afwdev**. JS/admin work is secondary unless explicitly requested.
 
+Maintainer **beta brain dump** (not user docs): [`beta-backlog.md`](beta-backlog.md). User-facing branch notes while on `mgg-develop`: [`whats_new.md`](whats_new.md).
+
 ## Mission
 
 AFW is **metadata-driven**: define object types, functions, data types, and C **interfaces** once, then generate headers, bindings, registration, and docs. The **runtime is C**; **afwdev** is Python.
@@ -124,6 +126,7 @@ afwdev generate --srcdir-pattern '*'
 | `.cursor/rules/afw-stream.mdc` | Streams, `open_file`, rootFilePaths, progressive response write path (≠ retrieve limit/paging; see #49 / core-services) |
 | `.cursor/rules/afw-vfs.mdc` | VFS adapter (`afw_vfs`): vfsMap, whole-file data, multi-map, tests (#79) |
 | `.cursor/rules/afw-extensions.mdc` | Loadable extensions (curl/ldap/lmdb/ubjson/vfs/yaml) |
+| `.cursor/rules/afw-adapter-index.mdc` | Adapter indexes (core + LMDB): definitions in DB, `current::` eval (#54), create/txn residuals (#57) |
 | `.cursor/rules/afw-c-runtime.mdc` | C when editing `.c`/`.h` |
 | `.cursor/rules/afw-value-memory.mdc` | Value lifetimes / pools / shared mutables / long-running escape |
 | `.cursor/rules/afw-script-eval.mdc` | Compile/eval pipeline, scopes, statement_flow |
@@ -131,7 +134,7 @@ afwdev generate --srcdir-pattern '*'
 | `.cursor/rules/afw-compiler-ebnf.mdc` | EBNF-in-comments harvest |
 | `.cursor/rules/afw-function.mdc` | Built-in execute_*, polymorphic, compiler_*, default-clone |
 | `.cursor/rules/afw-adaptive-script.mdc` | Adaptive Script authoring (equality, nullish, defaults, probes) |
-| `.cursor/rules/afw-qualified-variables.mdc` | Qualifier stack, get vs `qualifier()`/`qualifiers()` snapshots (#9), includeUntrusted, size |
+| `.cursor/rules/afw-qualified-variables.mdc` | Qualifier stack, get vs `qualifier()`/`qualifiers()` snapshots (#9), `current::`/`custom::`, `variable_get`, includeUntrusted |
 | `.cursor/rules/afw-generate-metadata.mdc` | When editing `generate/` |
 | `.cursor/rules/afw-afwdev-python.mdc` | When editing `src/afw_dev` |
 | `.cursor/rules/afw-afwdev-generate.mdc` | When editing `_afwdev/generate/` generators |

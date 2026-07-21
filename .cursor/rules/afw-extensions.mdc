@@ -66,7 +66,7 @@ Impl ids: extension DSO id is `"afw_<name>"`; adapter/factory often shorter (`"l
 ### Notes agents hit often
 
 - **curl**: `curl_global_init` in `initialize` before `generated_register`.
-- **lmdb**: richest adapter; docs say load **ubjson** content type for storage; conf samples may say `extension_id: "ubjson"` — runtime id is **`afw_ubjson`**.
+- **lmdb**: richest adapter; docs say load **ubjson** content type for storage; conf samples may say `extension_id: "ubjson"` — runtime id is **`afw_ubjson`**. Optional **indexes** (only consumer of core `afw_adapter_impl_index` today): defs in DB via `index_*`, not conf; filter/value use **`current::`** — see **`afw-adapter-index`**.
 - **ldap**: heavy `afw_ldap_syntax_handler.c` / metadata for schema ↔ values.
 - **vfs**: factory symbol `afw_vfs_adapter_factory_vfs`; conf `adapterType: "vfs"` lazy-loads. Whole-file `data`, empty-file read (#79), multi-map longest prefix, `maxReadBytes` — details **`afw-vfs`**.
 - **ubjson/yaml**: dual-interface entry files; codecs in `*_from_value` / `*_to_value`.

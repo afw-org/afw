@@ -14031,9 +14031,9 @@ afw_function_definition_index_create;
  *       adapterId: string,
  *       key: string,
  *       value?: string,
- *       objectType?: string,
+ *       objectType?: (array string),
  *       filter?: string,
- *       options?: string,
+ *       options?: (array string),
  *       retroactive?: boolean,
  *       test?: boolean
  *   ): object;
@@ -14045,14 +14045,21 @@ afw_function_definition_index_create;
  *
  *   key - (string) Name of the property index to be created.
  *
- *   value - (optional string) Expression to calculate the index value(s).
+ *   value - (optional string) Adaptive script (expression-like; must return a
+ *       value) used to calculate the index value(s). While evaluating,
+ *       current::object, current::objectId, current::objectType, and
+ *       current::key are available (issue #54). If omitted, the property named
+ *       by key is indexed.
  *
- *   objectType - (optional string) Object Type(s) this index may apply to.
+ *   objectType - (optional array string) Object type id(s) this index may apply
+ *       to.
  *
- *   filter - (optional string) Expression to determine if this index applies to
- *       a particular object.
+ *   filter - (optional string) Adaptive script that must return a boolean to
+ *       decide whether this index applies to a particular object. Uses the same
+ *       current:: variables as value (issue #54). If omitted, the filter is
+ *       always true.
  *
- *   options - (optional string) Indexing options.
+ *   options - (optional array string) Indexing options.
  *
  *   retroactive - (optional boolean) Retroactively generate indexes for
  *       existing objects.

@@ -24,6 +24,25 @@ Internal agent rules, Cursor docs, and pure test-infrastructure work are omitted
 
 ---
 
+## Adapter index filter/value `current::` (issue #54) — partial
+
+**Issue #54** / PR **#130** (core eval context; LMDB create path still has known issues)
+
+If you author index **filter** / **value** scripts (definitions stored in the LMDB adapter’s internal config via `index_create`, not normal adapter conf), use **`current::`** while they evaluate:
+
+| Variable | Meaning |
+|----------|---------|
+| **`current::object`** | Object being indexed |
+| **`current::objectId`** | Its object id |
+| **`current::objectType`** | Its object type id |
+| **`current::key`** | Index definition key |
+
+Bare ambient **`object`** (old unqualified scope push) is **not** set. Prefer `current::object` or `variable_get("current::object")`. If **value** is omitted, the property named by **key** is indexed without a script.
+
+**Not fully productized yet:** LMDB `index_create` persistence / retroactive scan still has pre-existing txn issues; automated index smoke remains skipped until that is fixed (see #57). Everyday LMDB CRUD does not require indexes.
+
+---
+
 ## List active qualified variables (issue #9)
 
 **Issue #9**

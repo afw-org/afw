@@ -75,16 +75,24 @@ Add the following to your configuration to use the LMDB adapter:
 
 Adding indexes
 ------------------
-Indexes will increase the efficiency of retrieve_objects() queries.  The first recommended index is for the ObjectType.  To add an index, stop the server, or any other application using the LMDB database, and run:
+Indexes are **optional**. Without them, LMDB still works as a normal object store (add/get/replace/modify/delete/retrieve by dump). Indexes can make some `retrieve_objects()` queries more efficient.
+
+Definitions are **not** written in the adapter conf stanza. They are stored **inside the LMDB environment** (`internalConfig.indexDefinitions` on Primary UUID 0) by the core Adaptive functions `index_create` / `index_list` / `index_remove`. `afw -x "..."` is only the CLI way to run those functions once conf/extensions are loaded.
+
+The first recommended index is often for ObjectType. To add an index, stop the server (or any other process using that LMDB path), then for example:
 
 ````
-  afw -f afw.conf -x "index_create('lmdb', 'surname', 'object.get("surname")', ['VaultIdentityData'], null, ['case-insensitive-string'], false, false)"
+  afw -f afw.conf -x "index_create('lmdb', 'surname', 'current::object.get(\"surname\")', ['VaultIdentityData'], undefined, ['case-insensitive-string'], false, false)"
 ````
 
 Where:
 
-* ```` afw.conf ```` refers to your afw server configuration file.
-* ```` lmdb ```` refers to the adapter-id for the LMDB database you are adding an index for
-* ```` VaultIdentityData ```` refers to the objectType.
-* ```` surname ```` refers to the property you are indexing.
+* ```` afw.conf ```` — AFW configuration that loads the LMDB adapter
+* ```` lmdb ```` — adapter id
+* ```` VaultIdentityData ```` — objectType filter for the definition
+* ```` surname ```` — index key (also the default property name if `value` is omitted)
+* Filter/value scripts (issue #54): **`current::object`**, **`current::objectId`**, **`current::objectType`**, **`current::key`**. Bare ambient `object` is not set.
+* Lookup data lives in LMDB named DBs of the form **`Index#<objectType>#<key>`**.
+
+Note: `index_create` / retroactive rebuild still has known txn/persistence issues in some session setups; track with GitHub #54 / #57.
 
