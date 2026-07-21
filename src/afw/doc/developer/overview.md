@@ -33,6 +33,20 @@ REST-only users. For product overview and language docs, see the published
 - **Internal (libafw only):** `afw_internal.h`, `*_internal` groups — may change
   without notice.
 
+## Rebuilding this documentation
+
+```bash
+# Preferred: afwdev docs pipeline (handbook + Doxygen under build/docs/)
+./afwdev build --docs -j
+
+# After changing Doxygen comments / groups / these pages, force Doxygen again
+./afwdev build --docs --clean -j
+```
+
+afwdev invokes `doxygen Doxyfile` (settings in the package-root `Doxyfile`).
+It skips Doxygen when `build/docs/doxygen` already exists; `--clean` with
+`--docs` removes only the docs build tree (intentional scoped clean).
+
 ## Where to go next
 
 - @ref afw_dev_interfaces — macros, XML, generation  

@@ -51,9 +51,30 @@ Prioritize documenting:
 
 Preserve post-`@brief` long description bodies when editing file headers.
 
+## Building / refreshing Doxygen (afwdev)
+
+Prefer **afwdev** over ad-hoc `doxygen` for the published tree:
+
+```bash
+# Handbook + Doxygen under build/docs/ (install with --install → web_root/docs)
+./afwdev build --docs -j
+
+# Force Doxygen + docs rebuild (clean only the docs context)
+./afwdev build --docs --clean -j
+```
+
+Behavior (`src/afw_dev/_afwdev/build/docs/docs.py` + `build/build.py`):
+
+- Runs plain `doxygen Doxyfile` from the package root (options live in **`Doxyfile`**, not runtime flags).
+- Output: `build/docs/doxygen/` (see `OUTPUT_DIRECTORY` in `Doxyfile`).
+- **Skips Doxygen if `build/docs/doxygen` already exists** (speed). After comment/group/MD changes that should refresh HTML, use **`--docs --clean`** (or remove that directory).
+- **`--clean` only cleans active build contexts** — intentional: `--docs --clean` wipes `build/docs/`; cmake-only `--clean` does not.
+- Manual `doxygen Doxyfile` is fine for a quick local peek; afwdev is the path that matches install/publish layout.
+
 ## Related
 
 - Headers / include layers: `afw-headers`  
 - Generate vs generated: `afw-generate-metadata`, `afw-project`  
 - Environment registration: `afw-environment`  
-- Long map: `@AGENTS.md`; process dump: `beta-backlog.md`
+- Long map: `@AGENTS.md`; process dump: `beta-backlog.md`  
+- Compiler EBNF harvest (separate from Doxygen): `afw-compiler-ebnf`
