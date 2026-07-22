@@ -78,11 +78,25 @@ Update this section if the plan changes.
 - Design intent captured in rule **`afw-interfaces-doxygen`** and below under **Doxygen / interface API docs**.
 - Follow-ups: macro Doxygen quality from XML/`interfaces.py`; group tree; thin `src/afw/doc/developer/*.md`; re-scope #1 away from infinite file stamps.
 
-### Session wrap-up — 2026-07-22 (PR #132 merged)
+### Session wrap-up — 2026-07-22 (PR #132 merged; #1 closed)
 
-- PR **#132** merged to **`mgg-develop`** (`c8be2744`). Issue **#1** should be closed (builder Doxygen done; no stamp-every-`.c` residual).
-- Durable: `--fulldev`, version→Doxyfile/generate, local_test version normalize, core vs self-contained srcdirs, `whats_new.md` C builders / afwdev section.
-- Next work: new feature branch off `mgg-develop` (not continue infinite Doxygen).
+- PR **#132** merged to **`mgg-develop`** (`c8be2744`). Follow-up **`c31df26e`**: `whats_new.md` + backlog status.
+- GitHub **#1** closed, labels **documentation** + **implemented**, comment **@JeremyGrieshop** with summary + links.
+- Durable (also in rules / AGENTS — do not re-litigate):
+  - **`--cdev`** day-to-day; **`--fulldev`** = `--all --generate --clean --install --scan`. **`--all` alone does not generate/install** (version bumps need generate).
+  - **Core vs base srcdirs:** `src/afw/` = libafw; other `src/*` self-contained over public core; extension Doxygen in that srcdir’s headers.
+  - **Doxygen builders:** macros = C API; edit XML/`interfaces.py`/`afw_doxygen.h`/hand headers — not `generated/`; leave skeleton `@todo` alone; don’t stamp every `.c`.
+  - **`local_test.py`:** normalizes local-mode version banner (expects don’t track package version).
+  - Package **0.12.2** on this line after #132 work.
+- **#1 is a wrap** — no further dedicated Doxygen campaign unless a real gap appears while editing.
+- Next: **new conversation + feature branch off `mgg-develop`** per theme (indexes, memory, language, …). Keep dumping durable notes here and in rules as we go over the next months.
+
+### Operating notes for multi-month beta (assistants)
+
+- Read **`AGENTS.md`**, always-on rules (especially `afw-project`, `afw-interfaces-doxygen`), and this file’s theme section for the issue at hand.
+- Prefer **small feature branches** off `mgg-develop` → PR → merge; don’t accumulate unrelated work only in chat.
+- After user-facing behavior changes on this line: update **`whats_new.md`**. After design decisions: **rules / this backlog / code comments**.
+- Verify: day-to-day `--cdev -j` + `afwdev test -j`; broader/finish **`--fulldev -j`**; PR gate often adds valgrind tests.
 
 ---
 
