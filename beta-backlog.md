@@ -91,6 +91,20 @@ Update this section if the plan changes.
 - **#1 is a wrap** — no further dedicated Doxygen campaign unless a real gap appears while editing.
 - Next: **new conversation + feature branch off `mgg-develop`** per theme (indexes, memory, language, …). Keep dumping durable notes here and in rules as we go over the next months.
 
+### Session wrap-up — issue #103 streams (closed)
+
+- **#103** closed after **PR #120** (file streams) and **PR #121** (tests-as-assets) on **`mgg-develop`**. Comment **@JeremyGrieshop**: summary + reopen if more needed.
+- User-facing: **`whats_new.md`** (File streams section + migration bullets).
+- Durable rules (already on tree — do not re-litigate):
+  - **`afw-stream`**: file streams, `rootFilePaths` (longest prefix / boundary / realpath containment), throw-based `stream()`, admin progressive write path left intact (`retrieve_objects_to_callback` / response hosts).
+  - **`afw-script-errors`**: `_AdaptiveError_` / try-catch; no soft stream errors.
+  - **`afw-tests`**: **never delete** `src/*/tests/` — afwdev runs from temp copies; fixtures under `src` are permanent regression assets.
+  - **`afw-server`**: hosts beyond FCGI (`afw_command` local, etc.).
+- Shipped surface: `open_file` + read/write/flush/close; removed unfinished `open_uri` / `open_response` / `get_stream_error` (network later via curl if ever).
+- Tests: `src/afw/tests/miscellaneous/stream_file/` (~104 cases).
+- Deferred by design (not reopening #103 unless needed): `open_uri` in curl; `stream_is_open` helper; soft stream errors.
+- **#103 is a wrap** — new conversation for next theme.
+
 ### Operating notes for multi-month beta (assistants)
 
 - Read **`AGENTS.md`**, always-on rules (especially `afw-project`, `afw-interfaces-doxygen`), and this file’s theme section for the issue at hand.
@@ -255,7 +269,7 @@ _Not a commitment — fill in as “must be true before we call it beta.”_
 
 | When | Item |
 |------|------|
-| | |
+| 2026-07 | **#103** file streams — PR #120 (+ #121 tests assets); closed, Jeremy notified. Details in session wrap-up above; `whats_new.md` File streams. |
 
 ---
 
