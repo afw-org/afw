@@ -78,6 +78,12 @@ Update this section if the plan changes.
 - Design intent captured in rule **`afw-interfaces-doxygen`** and below under **Doxygen / interface API docs**.
 - Follow-ups: macro Doxygen quality from XML/`interfaces.py`; group tree; thin `src/afw/doc/developer/*.md`; re-scope #1 away from infinite file stamps.
 
+### Session wrap-up — 2026-07-22 (PR #132 merged)
+
+- PR **#132** merged to **`mgg-develop`** (`c8be2744`). Issue **#1** should be closed (builder Doxygen done; no stamp-every-`.c` residual).
+- Durable: `--fulldev`, version→Doxyfile/generate, local_test version normalize, core vs self-contained srcdirs, `whats_new.md` C builders / afwdev section.
+- Next work: new feature branch off `mgg-develop` (not continue infinite Doxygen).
+
 ---
 
 ## Notes dump
@@ -90,7 +96,7 @@ _(Paste raw notes here first; sort into themes later.)_
 
 ### Doxygen / interface API docs (builders)
 
-**Status:** **ready to merge** — branch **`issue-#1`** / PR **#132** → `mgg-develop`. Rule **`afw-interfaces-doxygen`**. Package version on branch tip includes **0.12.2** + `afwdev build --fulldev`.
+**Status:** **done** on `mgg-develop` via PR **#132** (issue **#1**). Rule **`afw-interfaces-doxygen`**. User-facing tooling notes: **`whats_new.md`**. Package **0.12.2**; **`afwdev build --fulldev`**.
 
 **Audience:** AFW developers, extension/command authors, hosts — **not** pure Adaptive Script app users (handbook / `whats_new` for those).
 
@@ -105,20 +111,19 @@ _(Paste raw notes here first; sort into themes later.)_
 - **Core vs base:** `src/afw/` = libafw; other `src/*` srcdirs stay self-contained (public core only). Extension Doxygen groups live in extension headers; core only lightly navigates.
 - **Build profiles:** `--cdev` day-to-day; `--fulldev` = `--all --generate --clean --install --scan` (not `--all` alone).
 
-**Done on issue-#1 (do not re-open as infinite file stamps):**
+**Landed with #132 (do not re-open as infinite file stamps):**
 
-1. ~~Macro Doxygen generator polish (`interfaces.py` `@param`/`@return`/`@relates`/`@see`) + regenerate.~~  
-2. ~~Group tree / nested `@defgroup` + thin group briefs.~~  
-3. ~~`src/afw/doc/developer/*.md` + mainpage reading order / Related Pages.~~  
-4. ~~Golden + remaining interface XML descriptions; opaque `@brief`s; key hand `@file` bodies.~~  
-5. ~~`local_test.py` normalizes version banner (no expect churn on version bumps).~~  
-6. Closet noise: `EXCLUDE_PATTERNS` `*/*closet/*` in `Doxyfile`.  
-7. ~~C-focused layout/skin/typedef hide-struct; multi-layout `afw_value_t` docs.~~  
-8. ~~`--fulldev` build shortcut; docs/rules prefer it over long `--all …` lines.~~
+1. Macro Doxygen generator polish (`interfaces.py` `@param`/`@return`/`@relates`/`@see`).  
+2. Group tree / nested `@defgroup` + thin group briefs.  
+3. `src/afw/doc/developer/*.md` + mainpage / Related Pages.  
+4. Interface XML descriptions; opaques; key hand `@file` bodies.  
+5. `local_test.py` normalizes local-mode version banner.  
+6. Closet noise excluded; C-focused layout/skin/typedef hide-struct; multi-layout `afw_value_t`.  
+7. `--fulldev` shortcut; docs/rules prefer it over long `--all …` lines.
 
-**On merge of #132:**
+**After #132 (housekeeping):**
 
-- **Close #1** with note: builder Doxygen map done; further comment polish only when already editing an area (not stamp every `.c`).  
+- **Close GitHub #1** if still open: builder map done; further comment polish only when already editing an area.  
 - Opportunistic later: method-level XML while implementing; skin only if stock look regresses.
 
 ### Indexes / adapters (incl. issue #54)

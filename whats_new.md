@@ -21,6 +21,39 @@ Internal agent rules, Cursor docs, and pure test-infrastructure work are omitted
 | **JSON Schema** | Cleaner editor schemas for Adaptive object types |
 | **Process env** | One `current` on retrieve (issue **#71**); values are string if valid UTF-8 else hexBinary |
 | **Templates** | Compile-time substitution `#{…}` docs and tests; backtick `` `\#` `` / `` `\$` `` match raw templates (issue **#97**) |
+| **C builders / afwdev** | Richer C API Doxygen, package **0.12.2**, `afwdev build --fulldev` (issue **#1**) |
+
+---
+
+## C API docs and full package builds (issue #1)
+
+**Issue #1** / PR **#132** (merged to `mgg-develop`)
+
+Most of this is for **people who build on AFW in C** (extensions, commands, hosts) or who **build the package from source**. Adaptive Script-only users can skip the Doxygen detail.
+
+### Package version
+
+- Base package version is **0.12.2** (`afw-package.json`).
+- After generate/install, `afw` / extension version strings and Doxygen’s project number follow that value (generate rewrites `*_version_info.h` and `Doxyfile` `PROJECT_NUMBER`).
+
+### Building from source (`afwdev`)
+
+| Profile | Typical use |
+|---------|-------------|
+| **`./afwdev build --cdev -j`** | Day-to-day C/Python: generate + cmake + install (not handbook/JS) |
+| **`./afwdev build --fulldev -j`** | Full package **dev install**: all contexts + generate + clean + install + clang scan |
+
+`--fulldev` is short for `--all --generate --clean --install --scan`.  
+**`--all` alone does not run generate or install** — after a version bump, use `--fulldev` (or pass `--generate` explicitly) so binaries pick up the new version.
+
+Finish / PR-shaped verify is still: `./afwdev build --fulldev -j` then (when you want the heavy gate) `afwdev test -j --env-mode valgrind`.
+
+### C API documentation (Doxygen)
+
+- Builder-oriented tree under `build/docs/doxygen/html/` after a docs or fulldev build (`./afwdev build --docs --clean -j` to force Doxygen refresh).
+- **Call macros** (`afw_<interface>_<method>(…)`) are the documented C API surface; descriptions come from interface XML.
+- Short developer reading path: `src/afw/doc/developer/` (also linked from the Doxygen mainpage).
+- Extension srcdirs stay self-contained relative to libafw core; their Doxygen groups live in the extension public headers.
 
 ---
 
@@ -412,6 +445,9 @@ Tracked suites under `src/*/tests` are permanent regression assets. `afwdev test
 | `checkIndividualObjectReadAccess` wiring / tests | #90 | *(this branch)* |
 | Progressive retrieve object release (follow-up) | #127 | *(open)* |
 | Long-running memory / OOM (follow-up) | #2 | *(open)* |
+| C API Doxygen / builders + `--fulldev` | #1 | #132 |
+| Adapter index `current::` (partial) | #54 | #130 |
+| `qualifier` / `qualifiers` snapshots | #9 | #129 |
 
 Branch tip documentation also includes treating `src/*/tests` as permanent regression assets (#121).
 
@@ -419,4 +455,4 @@ Branch tip documentation also includes treating `src/*/tests` as permanent regre
 
 ## How this was produced
 
-Diff basis: `git log develop..mgg-develop` / `develop..issue-#90` and the corresponding code/metadata changes (including uncommitted work on the issue branch that completes #90 / partial #49). For full commit history, see those PRs on the repository hosting Adaptive Framework.
+Diff basis: `git log develop..mgg-develop` and the corresponding code/metadata changes (including PRs **#129**, **#130**, **#132** and earlier work on this line). For full commit history, see those PRs on the repository hosting Adaptive Framework.
