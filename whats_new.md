@@ -433,26 +433,25 @@ Tracked suites under `src/*/tests` are permanent regression assets. `afwdev test
 
 | Topic | Issue | PR |
 |-------|-------|-----|
-| Compile-time substitutions (docs / TemplateString escapes) | #97 | #100 (feature); *(this branch completes)* |
+| Compile-time substitutions (docs / TemplateString escapes) | #97 | #100 (feature on `develop`), #124 (docs/escapes here) |
 | File streams | #103 | #120 |
-| VFS empty file / hardening | #79 | *(this branch)* |
+| VFS empty file / hardening | #79 | #122 |
 | Optional `mappedAdapterId` | #109 | #119 |
-| Default-clone regressions | #110 | #118 (tests) |
+| Default-clone regressions | #110 | #118 (tests; fix earlier on `develop`) |
 | Interactive libedit | #30 | #117 |
 | JSON Schema `$ref` / OT projection | #3 | #116 |
-| Process environment (single `current`, UTF-8/hexBinary) | #71 | *(this branch)* |
-| Materializing retrieve `maxObjects` | #49 | *(this branch, partial)* |
-| `checkIndividualObjectReadAccess` wiring / tests | #90 | *(this branch)* |
-| Progressive retrieve object release (follow-up) | #127 | *(open)* |
-| Long-running memory / OOM (follow-up) | #2 | *(open)* |
+| Process environment (single `current`, UTF-8/hexBinary) | #71 | #123 |
+| Materializing retrieve `maxObjects` | #49 | #128 (partial; shared with #90) |
+| `checkIndividualObjectReadAccess` wiring / tests | #90 | #128 (shared with #49) |
+| Progressive retrieve object release | #127 | — (open follow-up) |
+| Long-running memory / OOM | #2 | — (open follow-up) |
 | C API Doxygen / builders + `--fulldev` | #1 | #132 |
-| Adapter index `current::` (partial) | #54 | #130 |
-| `qualifier` / `qualifiers` snapshots | #9 | #129 |
-
-Branch tip documentation also includes treating `src/*/tests` as permanent regression assets (#121).
+| Adapter index `current::` | #54 | #130 (partial; see #57) |
+| `qualifier` / `qualifiers` snapshots | #9 | #129 (includes admin `maxObjects: 0` client fix) |
+| Permanent `src/*/tests` regression assets | — | #121 (docs only) |
 
 ---
 
 ## How this was produced
 
-Diff basis: `git log develop..mgg-develop` and the corresponding code/metadata changes (including PRs **#129**, **#130**, **#132** and earlier work on this line). For full commit history, see those PRs on the repository hosting Adaptive Framework.
+Diff basis: `git log develop..mgg-develop` and the corresponding code/metadata changes (including PRs **#116**–**#124**, **#128**–**#130**, **#132**). For full commit history, see those PRs on the repository hosting Adaptive Framework.
