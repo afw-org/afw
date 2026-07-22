@@ -33,6 +33,11 @@
  *      field tables, #powerTip — not just body/links.
  *   4. Nested @defgroup titles: put @ingroup on its own line in afw_doxygen.h
  *      or Doxygen embeds "@ingroup …" in the visible module name.
+ *   5. Source views (*_source.html): stock span.lineno uses #E8E8E8 + lime
+ *      border-right #0F0 (looks white/yellow gutter). Theme span.lineno and
+ *      do not put a border on every div.line (only the fragment container).
+ *   6. files.html white squares: span.icondoc uses doc.png (white glyph). Drop
+ *      PNG; draw slate CSS icons for .icondoc / folder open-closed.
  *
  * Palette (approx. Tailwind slate / sky)
  *   Dark:  bg #0f172a, panel #1e293b, border #334155, text #94a3b8/#f1f5f9,
@@ -393,11 +398,38 @@ table.doxtable td {
   background: #ffffff;
 }
 
-div.fragment, pre.fragment, div.line {
-  background: #f1f5f9;
-  border: 1px solid #e2e8f0;
+/* Code / source fragments — container only (not each div.line) */
+div.fragment, pre.fragment {
+  background: #f1f5f9 !important;
+  border: 1px solid #e2e8f0 !important;
   color: #1e293b;
   border-radius: 0.25rem;
+}
+div.line {
+  background: transparent !important;
+  border: none !important;
+  color: #1e293b;
+}
+/* Source gutter: kill stock #E8E8E8 + lime #0F0 border-right */
+span.lineno {
+  background-color: #e2e8f0 !important;
+  border-right: 2px solid #94a3b8 !important;
+  color: #64748b !important;
+  padding-right: 4px;
+  text-align: right;
+  white-space: pre;
+}
+span.lineno a {
+  background-color: #e2e8f0 !important;
+  color: #0369a1 !important;
+}
+span.lineno a:hover {
+  background-color: #cbd5e1 !important;
+  color: #0c4a6e !important;
+}
+div.line.glow {
+  background-color: rgba(14, 165, 233, 0.15) !important;
+  box-shadow: 0 0 8px rgba(14, 165, 233, 0.35) !important;
 }
 
 blockquote {
@@ -685,10 +717,32 @@ div.ah {
     border-color: #334155;
   }
 
-  div.fragment, pre.fragment, div.line {
-    background: #1e293b;
-    border-color: #334155;
+  div.fragment, pre.fragment {
+    background: #1e293b !important;
+    border-color: #334155 !important;
     color: #e2e8f0;
+  }
+  div.line {
+    background: transparent !important;
+    border: none !important;
+    color: #e2e8f0;
+  }
+  span.lineno {
+    background-color: #0f172a !important;
+    border-right: 2px solid #475569 !important;
+    color: #64748b !important;
+  }
+  span.lineno a {
+    background-color: #0f172a !important;
+    color: #38bdf8 !important;
+  }
+  span.lineno a:hover {
+    background-color: #1e293b !important;
+    color: #7dd3fc !important;
+  }
+  div.line.glow {
+    background-color: rgba(56, 189, 248, 0.12) !important;
+    box-shadow: 0 0 8px rgba(56, 189, 248, 0.3) !important;
   }
 
   span.keyword, span.keywordtype, span.keywordflow {
@@ -746,6 +800,11 @@ div.ah {
   }
   span.icon {
     background: #334155;
+  }
+
+  div.line a.code,
+  div.line a.code:visited {
+    color: #38bdf8;
   }
 
   /* PageDoc wrapper */
@@ -976,6 +1035,74 @@ span.mlabel {
   color: #ffffff !important;
 }
 
+/*
+ * File list icons (files.html): stock .icondoc is doc.png — white paper glyph
+ * that reads as little white squares (especially in dark mode). Same for
+ * folderopen.png / folderclosed.png. Replace with CSS shapes.
+ */
+span.icondoc,
+span.iconfopen,
+span.iconfclosed {
+  background-image: none !important;
+  background-repeat: no-repeat !important;
+  display: inline-block !important;
+  vertical-align: middle !important;
+  margin: 0 6px 0 2px !important;
+  box-sizing: border-box !important;
+  position: relative !important;
+}
+
+/* Document glyph */
+span.icondoc {
+  width: 12px !important;
+  height: 15px !important;
+  margin-bottom: 0 !important;
+  background-color: #f8fafc !important;
+  border: 1.5px solid #64748b !important;
+  border-radius: 2px !important;
+  background-position: 0 0 !important;
+}
+span.icondoc::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  right: 2px;
+  top: 3px;
+  height: 1.5px;
+  background: #94a3b8;
+  box-shadow:
+    0 3px 0 #94a3b8,
+    0 6px 0 #94a3b8;
+}
+
+/* Folder glyphs (open / closed) */
+span.iconfopen,
+span.iconfclosed {
+  width: 16px !important;
+  height: 12px !important;
+  margin-bottom: 2px !important;
+  background-color: #cbd5e1 !important;
+  border: 1.5px solid #64748b !important;
+  border-radius: 0 2px 2px 2px !important;
+  background-position: 0 0 !important;
+}
+span.iconfopen::before,
+span.iconfclosed::before {
+  content: "";
+  position: absolute;
+  left: -1.5px;
+  top: -4px;
+  width: 7px;
+  height: 4px;
+  background: #94a3b8;
+  border: 1.5px solid #64748b;
+  border-bottom: none;
+  border-radius: 2px 2px 0 0;
+}
+span.iconfopen {
+  background-color: #e2e8f0 !important;
+}
+
 /* Tooltips (#powerTip) */
 #powerTip {
   background-color: #ffffff !important;
@@ -993,9 +1120,13 @@ span.mlabel {
   color: #0f766e !important;
 }
 
-/* Code fragments already partly themed; ensure line numbers area */
+/* Code fragment links (file cross-refs inside source) */
 div.line a {
   color: inherit;
+}
+div.line a.code,
+div.line a.code:visited {
+  color: #0369a1;
 }
 
 /* =========================================================================
@@ -1162,6 +1293,30 @@ div.line a {
   .icon {
     background-color: #475569 !important;
     color: #f1f5f9 !important;
+  }
+
+  span.icondoc {
+    background-color: #1e293b !important;
+    border-color: #64748b !important;
+  }
+  span.icondoc::before {
+    background: #64748b;
+    box-shadow:
+      0 3px 0 #64748b,
+      0 6px 0 #64748b;
+  }
+  span.iconfopen,
+  span.iconfclosed {
+    background-color: #334155 !important;
+    border-color: #64748b !important;
+  }
+  span.iconfopen::before,
+  span.iconfclosed::before {
+    background: #475569;
+    border-color: #64748b;
+  }
+  span.iconfopen {
+    background-color: #475569 !important;
   }
 
   #powerTip {

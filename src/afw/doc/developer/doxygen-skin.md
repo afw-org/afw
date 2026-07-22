@@ -64,12 +64,14 @@ supported by Doxygen; an extra sheet is the durable approach.
 | White strip under menu | `div.header { background-image: url(nav_h.png); …}` | Style **`div.header`**, not only `.header`; force image off |
 | Group pages half-themed | Member tables / `.memtitle` / `.groupheader` still default | Override `.mdesc*`, `.memItem*`, `.memtitle`, `h2.groupheader`, field tables, `#powerTip` |
 | Module names show `@ingroup …` | One-line `@defgroup name Title @ingroup parent` | Multi-line `@defgroup` + `@ingroup` in `afw_doxygen.h` |
+| Source left gutter white / lime-yellow | Stock `span.lineno` uses `#E8E8E8` + `border-right: 2px solid #0F0` | Theme `span.lineno` / `a`; border/background only on `div.fragment`, not every `div.line` |
+| File list white squares | `span.icondoc` uses `doc.png` (white paper) | `background-image: none`; CSS-drawn `.icondoc` / folder icons |
 
 ## Guidance for changes
 
 - Prefer **small, targeted** CSS additions when something still looks stock.  
 - Re-check at least: `modules.html`, one group (e.g. compile), one call-macro
-  detail, light and dark OS preference.  
+  detail, one `*_source.html` page, light and dark OS preference.  
 - Do **not** replace all of `doxygen.css` via `HTML_STYLESHEET` (fragile across
   Doxygen upgrades); stay on `HTML_EXTRA_STYLESHEET`.  
 - A full rewrite/simplification of `doxygen-extra.css` is optional cleanup only;
