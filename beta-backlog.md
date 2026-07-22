@@ -110,7 +110,7 @@ _(Paste raw notes here first; sort into themes later.)_
 
 ### Doxygen / interface API docs (builders)
 
-**Status:** **done** on `mgg-develop` via PR **#132** (issue **#1**). Rule **`afw-interfaces-doxygen`**. User-facing tooling notes: **`whats_new.md`**. Package **0.12.2**; **`afwdev build --fulldev`**.
+**Status:** **done / closed** on `mgg-develop` via PR **#132** (issue **#1** closed, labeled implemented; Jeremy notified). Rule **`afw-interfaces-doxygen`**. User-facing tooling notes: **`whats_new.md`**. Package **0.12.2**; **`afwdev build --fulldev`**.
 
 **Audience:** AFW developers, extension/command authors, hosts — **not** pure Adaptive Script app users (handbook / `whats_new` for those).
 
@@ -135,10 +135,9 @@ _(Paste raw notes here first; sort into themes later.)_
 6. Closet noise excluded; C-focused layout/skin/typedef hide-struct; multi-layout `afw_value_t`.  
 7. `--fulldev` shortcut; docs/rules prefer it over long `--all …` lines.
 
-**After #132 (housekeeping):**
+**Housekeeping done:** #1 closed + Jeremy comment.  
 
-- **Close GitHub #1** if still open: builder map done; further comment polish only when already editing an area.  
-- Opportunistic later: method-level XML while implementing; skin only if stock look regresses.
+**Opportunistic only (not a campaign):** method-level XML while implementing an interface; Doxygen skin only if stock look regresses.
 
 ### Indexes / adapters (incl. issue #54)
 
