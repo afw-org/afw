@@ -2,9 +2,9 @@
 name: afw-generate-build-test
 description: >-
   Runs the AFW C/Python regenerate, build, install, and test loop after metadata
-  or interface changes. Use when the user asks to generate, rebuild with --cdev,
-  verify bindings, run afwdev test/validate (including --env-mode valgrind), or
-  check that generated/ was not hand-edited.
+  or interface changes. Use when the user asks to generate, rebuild with --cdev
+  or --fulldev, verify bindings, run afwdev test/validate (including --env-mode
+  valgrind), or check that generated/ was not hand-edited.
 ---
 
 # Generate → build → test
@@ -23,11 +23,11 @@ Progress:
 - [ ] 2. Optional: validate metadata if JSON/XML changed
 - [ ] 3. Day-to-day edit loop: ./afwdev build --cdev -j
 - [ ] 4. Day-to-day: afwdev test -j (or targeted --test-pattern)
-- [ ] 5. Before commit/push (docs, multi-area, finish pass — prefer over docs-only):
-         ./afwdev build --all --install --scan -j
+- [ ] 5. Before commit/push (docs, multi-area, finish pass):
+         ./afwdev build --fulldev -j
 - [ ] 6. Full verify before a PR (maintainer default; also when user asks for
          full build/test):
-         ./afwdev build --all --scan --clean --install -j
+         ./afwdev build --fulldev -j
          afwdev test -j --env-mode valgrind
 - [ ] 7. Confirm success from command output
 ```
@@ -51,16 +51,14 @@ afwdev test --srcdir-pattern afw --tags rql
 afwdev test --srcdir-pattern afw --list
 afwdev test --srcdir-pattern afw --bail 1
 
-# Before commit/push when docs or broader surface may be involved:
-#   --cdev skips handbook/JS; docs-only exists but full --all is not much longer
-./afwdev build --all --install --scan -j
+# Full package dev install (docs, multi-area, finish pass, before PR):
+#   --fulldev = --all --generate --clean --install --scan
+#   --all alone does NOT generate or install
+./afwdev build --fulldev -j
 
 # Full verify before a PR (maintainer default):
-#   --all    regenerate/build C + JS + docs
-#   --scan   clang analyze-build (analyzer errors fail the build)
-#   --clean  clean tree + extra syntax checking
 #   then all tests under valgrind (much slower — not every edit cycle)
-./afwdev build --all --scan --clean --install -j
+./afwdev build --fulldev -j
 afwdev test -j --env-mode valgrind
 ```
 

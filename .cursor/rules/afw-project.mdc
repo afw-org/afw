@@ -35,12 +35,12 @@ Metadata-driven **C** runtime (`libafw`) plus Python **`afwdev`**. Define functi
 # Script tests (use installed afwdev after --cdev)
 afwdev test -j
 
-# Full build before PR (maintainer default): everything + clean + clang scan
-# --all regenerates/builds C, JS, docs; --clean forces clean + extra syntax checking;
-# --scan runs clang analyze-build (analyzer errors fail the build)
-./afwdev build --all --scan --clean --install -j
+# Full package dev install (maintainer / PR-shaped): all contexts + generate +
+# clean + install + clang scan. Same as --all --generate --clean --install --scan.
+# --all alone does NOT generate or install (version headers / Doxyfile need generate).
+./afwdev build --fulldev -j
 
-# Full test under valgrind (much slower) — pair with full build before a PR
+# Full test under valgrind (much slower) — pair with --fulldev before a PR
 afwdev test -j --env-mode valgrind
 
 afwdev validate --pattern 'src/afw/generate/objects/...'
@@ -51,13 +51,11 @@ afwdev validate --pattern 'src/afw/generate/objects/...'
 | Situation | Build | Test |
 |-----------|--------|------|
 | Day-to-day C/Python edit loop | `./afwdev build --cdev -j` | `afwdev test -j` (or narrow `--test-pattern`) |
-| **Before commit/push** on work that is more than a trivial C/Python fix (docs, afwdev docs builder, JS, multi-area, finish pass) | Prefer **`./afwdev build --all --install --scan -j`** (docs-only exists but full `--all` is not much longer and catches more) | Focused or full `afwdev test` as appropriate |
-| User asks for **full build and test** | `./afwdev build --all --scan --clean --install -j` | `afwdev test -j --env-mode valgrind` |
-| **Before opening/updating a PR** | **Always** (maintainer default): `./afwdev build --all --scan --clean --install -j` | **Always:** `afwdev test -j --env-mode valgrind` |
+| **Before commit/push** on work that is more than a trivial C/Python fix (docs, afwdev docs builder, JS, multi-area, finish pass) | Prefer **`./afwdev build --fulldev -j`** | Focused or full `afwdev test` as appropriate |
+| User asks for **full build and test** | `./afwdev build --fulldev -j` | `afwdev test -j --env-mode valgrind` |
+| **Before opening/updating a PR** | **Always** (maintainer default): `./afwdev build --fulldev -j` | **Always:** `afwdev test -j --env-mode valgrind` |
 
-**`--cdev` does not build the handbook or JS.** Doc XML / docs-builder bugs only show up under `--all` (or a docs-only build). Prefer **full `--all --install --scan -j`** over docs-only when verifying — cost is similar and it also runs cmake/JS/scan paths.
-
-Valgrind and full `--all --scan --clean` are slower; do not use valgrind/`--clean` on every tiny edit unless asked. Day-to-day stays `--cdev` + normal `afwdev test -j`. Before a PR, run the full pair so generate, JS/docs, clang scan, and valgrind all pass.
+**`--cdev`** does not build the handbook or JS. **`--fulldev`** does (plus generate so package version and other metadata land in sources). Day-to-day stays `--cdev` + normal `afwdev test -j`. Before a PR, run the full pair so generate, JS/docs, clang scan, and valgrind all pass.
 
 Use **`./afwdev`** when the build may refresh the installed `afwdev` itself; otherwise **`afwdev`** from PATH is fine.
 

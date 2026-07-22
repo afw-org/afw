@@ -64,7 +64,7 @@ Update this section if the plan changes.
 - Ask the assistant to **update rules / this backlog** when something will matter in future sessions.
 - Next real work: expect a **new feature branch** off current integration line (not pile everything only on long-lived chat state).
 - **`issues.md`**: temporary Cursor triage dump; do not treat as canonical. Prefer this file + GitHub.
-- **Build before commit:** day-to-day C/Python can use `./afwdev build --cdev -j`. Before commit/push on docs, multi-area, or finish-pass work, prefer **`./afwdev build --all --install --scan -j`** (docs-only exists; full `--all` is not much longer and catches more). PR gate still adds `--clean` + valgrind for full verify.
+- **Build before commit:** day-to-day C/Python can use `./afwdev build --cdev -j`. Before commit/push on docs, multi-area, or finish-pass work, prefer **`./afwdev build --fulldev -j`** (`--all --generate --clean --install --scan`). PR gate still pairs with `afwdev test -j --env-mode valgrind`.
 
 ### Session wrap-up — 2026-07-20
 

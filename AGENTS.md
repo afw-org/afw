@@ -57,8 +57,8 @@ Authoritative coding conventions: [`src/afw/doc/guide/developer/contributing.xml
 
 ```text
 edit generate/ or hand C/Python  →  ./afwdev build --cdev -j  →  afwdev test -j
-# full verify / before PR (maintainer default):
-#   ./afwdev build --all --scan --clean --install -j  →  afwdev test -j --env-mode valgrind
+# full package dev install / before PR (maintainer default):
+#   ./afwdev build --fulldev -j  →  afwdev test -j --env-mode valgrind
 ```
 
 1. **Edit** `src/<srcdir>/generate/` — e.g. `objects/_AdaptiveFunctionGenerate_/*.json`, `interfaces/*.xml` — and/or hand C under `src/afw/…`.
@@ -67,11 +67,11 @@ edit generate/ or hand C/Python  →  ./afwdev build --cdev -j  →  afwdev test
 4. **Test** — `afwdev test -j` runs the Adaptive Script tests (judge success from command output). Narrow with `--srcdir-pattern` / `--test-pattern` when useful.
 
 **Before commit/push** (docs, multi-area, finish pass — not every one-line C fix): prefer  
-`./afwdev build --all --install --scan -j`. A docs-only build exists, but full `--all` is not much longer and may catch more. `--cdev` alone will not catch handbook XML/docs-builder failures.
+`./afwdev build --fulldev -j` (or at least a docs-aware build). `--cdev` alone will not catch handbook XML/docs-builder failures.
 
 **Full build and test before a PR** (maintainer default; also when the user asks for full verify):  
-`./afwdev build --all --scan --clean --install -j` then `afwdev test -j --env-mode valgrind`.  
-`--all` regenerates/builds everything (C, JS, docs); `--clean` forces a clean tree and extra syntax checking; `--scan` runs clang analyze-build (fail on analyzer errors); valgrind is much slower — not for every edit.
+`./afwdev build --fulldev -j` then `afwdev test -j --env-mode valgrind`.  
+`--fulldev` is short for **`--all --generate --clean --install --scan`**: all contexts (C, docs, JS, docker tags), regenerate from package metadata (including version), clean trees, install, and clang analyze-build. Valgrind is much slower — not for every edit. Note: **`--all` alone does not run generate or install**.
 
 Use **`./afwdev`** for builds that refresh/install `afwdev` itself; use **`afwdev`** (PATH) afterward for `test`, `validate`, etc.
 
@@ -101,27 +101,23 @@ afwdev test -j
 afwdev test --srcdir-pattern afw --test-pattern 'rql/.*'
 afwdev validate --pattern 'src/afw/generate/objects/...'
 
-# Before commit/push when docs or broader surface may matter:
-./afwdev build --all --install --scan -j
+# Full package dev install (all contexts + generate + clean + install + scan):
+./afwdev build --fulldev -j
 
 # Full verify before PR (maintainer default; also when user asks for full build/test):
-# --scan = clang analyze-build; --clean = clean + extra syntax checking
-./afwdev build --all --scan --clean --install -j
+./afwdev build --fulldev -j
 afwdev test -j --env-mode valgrind   # much slower
 
-# Full repository without clean (cmake + docs + JS, with install)
-./afwdev build --all --install -j
-
-# Narrow generate only (usually unnecessary if using --cdev)
+# Narrow generate only (usually unnecessary if using --cdev / --fulldev)
 afwdev generate --srcdir-pattern '*'
 ```
 
-`--cdev` is a convenience shortcut (enables generate/install and related C-dev switches; cmake is the build context; no `--js` / `--docs`). CMake output lives under `build/cmake/`.
+`--cdev` and `--fulldev` are convenience profiles. `--cdev` = generate/clean/install for C work (default cmake context; no docs/JS/docker). `--fulldev` = `--all --generate --clean --install --scan` (version headers, Doxyfile `PROJECT_NUMBER`, handbook, JS, docker tags, clang scan). **`--all` alone does not generate or install.** CMake output lives under `build/cmake/`.
 
 ## Documentation
 
 - Author: `src/afw/doc/` (XML, markdown, images); builder-oriented Doxygen MD under `src/afw/doc/developer/`.
-- Publish: included in `./afwdev build --all --install -j`, or `afwdev build --docs` → `build/docs/` (served as `/docs/...` when installed).
+- Publish: included in `./afwdev build --fulldev -j` (or `--all --generate --install` / `afwdev build --docs`) → `build/docs/` (served as `/docs/...` when installed).
 - **Doxygen:** afwdev runs `doxygen Doxyfile` into `build/docs/doxygen/` only if that directory is missing; use **`./afwdev build --docs --clean -j`** to force a refresh. `--clean` only cleans the **active** build context(s) (e.g. `--docs --clean` wipes `build/docs/`, not cmake). Config is the checked-in `Doxyfile`; see `afw-interfaces-doxygen`.
 - **Doxygen HTML skin:** experimental light/dark slate sheet `src/afw/doc/doxygen-extra.css` (`HTML_EXTRA_STYLESHEET`). Maintainer notes in that file’s header and `src/afw/doc/developer/doxygen-skin.md` — read before “simplifying” menus/`div.header` overrides.
 - `--cdev` installs libs/headers/`afwdev` via cmake; it does not build the handbook or admin app.

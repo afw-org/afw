@@ -399,8 +399,9 @@ _info_build_all = {
     "arg": "--all",     
     "action": "store_true",    
     "default": False,
-    "help": "This is short for for the build type context switches --cmake, "
-        "--docker, --docs, and --js."
+    "help": "This is short for the build type context switches --cmake, "
+        "--docker, --docs, and --js. Does not enable --generate, --clean, "
+        "--install, or --scan (see --fulldev)."
 }
 
 _info_build_clean = {
@@ -445,7 +446,19 @@ _info_build_cdev = {
     "arg": "--cdev",     
     "action": "store_true",    
     "default": False,
-    "help": "This is a shortcut to enable common switches used during C development."
+    "help": "C development shortcut: enables --generate, --clean, and "
+        "--install (cmake context by default; not docs/JS/docker). "
+        "See also --fulldev."
+}
+
+_info_build_fulldev = {
+    "optionName": "build_fulldev",
+    "arg": "--fulldev",
+    "action": "store_true",
+    "default": False,
+    "help": "Full package dev-install shortcut: enables --all, --generate, "
+        "--clean, --install, and --scan. Use when the whole tree (C, docs, "
+        "JS, docker tags) should be rebuilt and installed."
 }
 
 _info_build_generate = {
@@ -546,12 +559,16 @@ afw-package.json file.
 
 The build switches --cmake, --docker, --docs, --js provide build type context
 that other switches, such as --clean, --install, and --generate will execute
-under. The --all selects all of those contexts.
+under. The --all selects all of those contexts (not generate/install).
+
+Convenience profiles: --cdev (C day-to-day generate/clean/install) and
+--fulldev (all contexts plus generate/clean/install/scan for a full dev install).
 """,
     "thing": "build",
     "args": [
         _info_build_all,
         _info_build_cdev,
+        _info_build_fulldev,
         _info_build_clean,
         _info_build_cmake,
         _info_build_docker,
