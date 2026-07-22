@@ -40,13 +40,13 @@ Most of this is for **people who build on AFW in C** (extensions, commands, host
 
 | Profile | Typical use |
 |---------|-------------|
-| **`./afwdev build --cdev -j`** | Day-to-day C/Python: generate + cmake + install (not handbook/JS) |
-| **`./afwdev build --fulldev -j`** | Full package **dev install**: all contexts + generate + clean + install + clang scan |
+| **`./afwdev build --cdev`** | Day-to-day C/Python: generate + cmake + install + parallel jobs (not handbook/JS) |
+| **`./afwdev build --fulldev`** | Full package **dev install**: all contexts + generate + clean + install + clang scan + parallel jobs |
 
-`--fulldev` is short for `--all --generate --clean --install --scan`.  
-**`--all` alone does not run generate or install** — after a version bump, use `--fulldev` (or pass `--generate` explicitly) so binaries pick up the new version.
+`--fulldev` is short for `--all --generate --clean --install --scan` (and enables `-j` like `--cdev`).  
+**`--all` alone does not run generate or install** — after a version bump, use `--fulldev` (or pass `--generate` explicitly) so binaries pick up the new version. Pass **`-j N`** if you need a job cap.
 
-Finish / PR-shaped verify is still: `./afwdev build --fulldev -j` then (when you want the heavy gate) `afwdev test -j --env-mode valgrind`.
+Finish / PR-shaped verify is still: `./afwdev build --fulldev` then (when you want the heavy gate) `afwdev test -j --env-mode valgrind`.
 
 ### C API documentation (Doxygen)
 
@@ -388,7 +388,7 @@ Package-generated schemas under `generated/schemas/afw/` are improved for **edit
 - Inheritance merges parent `propertyTypes` with **child overrides** so nested models validate correctly.
 - `defaultValue` / possible values map more cleanly to JSON Schema `default` / `enum`.
 
-If you edit Adaptive object JSON under `generate/objects/` (or rely on schema-backed validation), regenerate so your tree picks up the new schemas (`./afwdev build --cdev -j` or your usual generate path). Do not hand-edit `generated/schemas/`.
+If you edit Adaptive object JSON under `generate/objects/` (or rely on schema-backed validation), regenerate so your tree picks up the new schemas (`./afwdev build --cdev` or your usual generate path). Do not hand-edit `generated/schemas/`.
 
 ---
 

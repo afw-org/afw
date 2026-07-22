@@ -95,8 +95,8 @@ When fixing a C/runtime bug, add `.as` coverage that fails without the fix:
 afwdev test -j
 
 # Thorough (maintainer default before a PR; also when user asks for full
-# build/test). --fulldev = --all --generate --clean --install --scan.
-./afwdev build --fulldev -j
+# build/test). --fulldev = --all --generate --clean --install --scan plus -j.
+./afwdev build --fulldev
 afwdev test -j --env-mode valgrind
 
 # Filename filter (regex on path under tests/)

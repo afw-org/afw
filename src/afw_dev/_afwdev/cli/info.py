@@ -446,9 +446,9 @@ _info_build_cdev = {
     "arg": "--cdev",     
     "action": "store_true",    
     "default": False,
-    "help": "C development shortcut: enables --generate, --clean, and "
-        "--install (cmake context by default; not docs/JS/docker). "
-        "See also --fulldev."
+    "help": "C development shortcut: enables --generate, --clean, --install, "
+        "and -j / parallel jobs (cmake context by default; not docs/JS/docker). "
+        "Explicit -j N still overrides. See also --fulldev."
 }
 
 _info_build_fulldev = {
@@ -457,8 +457,9 @@ _info_build_fulldev = {
     "action": "store_true",
     "default": False,
     "help": "Full package dev-install shortcut: enables --all, --generate, "
-        "--clean, --install, and --scan. Use when the whole tree (C, docs, "
-        "JS, docker tags) should be rebuilt and installed."
+        "--clean, --install, --scan, and -j / parallel jobs. Use when the "
+        "whole tree (C, docs, JS, docker tags) should be rebuilt and "
+        "installed. Explicit -j N still overrides."
 }
 
 _info_build_generate = {
@@ -561,8 +562,8 @@ The build switches --cmake, --docker, --docs, --js provide build type context
 that other switches, such as --clean, --install, and --generate will execute
 under. The --all selects all of those contexts (not generate/install).
 
-Convenience profiles: --cdev (C day-to-day generate/clean/install) and
---fulldev (all contexts plus generate/clean/install/scan for a full dev install).
+Convenience profiles: --cdev (C day-to-day generate/clean/install/-j) and
+--fulldev (all contexts plus generate/clean/install/scan/-j for a full dev install).
 """,
     "thing": "build",
     "args": [

@@ -29,16 +29,16 @@ Metadata-driven **C** runtime (`libafw`) plus Python **`afwdev`**. Define functi
 
 ## Commands (package root)
 ```bash
-# C/Python day-to-day: generate + cmake + install core/extensions/afwdev (not JS/docs)
-./afwdev build --cdev -j
+# C/Python day-to-day: generate + cmake + install core/extensions/afwdev (not JS/docs); includes -j
+./afwdev build --cdev
 
 # Script tests (use installed afwdev after --cdev)
 afwdev test -j
 
 # Full package dev install (maintainer / PR-shaped): all contexts + generate +
-# clean + install + clang scan. Same as --all --generate --clean --install --scan.
+# clean + install + clang scan + -j. Same as --all --generate --clean --install --scan -j.
 # --all alone does NOT generate or install (version headers / Doxyfile need generate).
-./afwdev build --fulldev -j
+./afwdev build --fulldev
 
 # Full test under valgrind (much slower) — pair with --fulldev before a PR
 afwdev test -j --env-mode valgrind
@@ -50,12 +50,12 @@ afwdev validate --pattern 'src/afw/generate/objects/...'
 
 | Situation | Build | Test |
 |-----------|--------|------|
-| Day-to-day C/Python edit loop | `./afwdev build --cdev -j` | `afwdev test -j` (or narrow `--test-pattern`) |
-| **Before commit/push** on work that is more than a trivial C/Python fix (docs, afwdev docs builder, JS, multi-area, finish pass) | Prefer **`./afwdev build --fulldev -j`** | Focused or full `afwdev test` as appropriate |
-| User asks for **full build and test** | `./afwdev build --fulldev -j` | `afwdev test -j --env-mode valgrind` |
-| **Before opening/updating a PR** | **Always** (maintainer default): `./afwdev build --fulldev -j` | **Always:** `afwdev test -j --env-mode valgrind` |
+| Day-to-day C/Python edit loop | `./afwdev build --cdev` (implies `-j`) | `afwdev test -j` (or narrow `--test-pattern`) |
+| **Before commit/push** on work that is more than a trivial C/Python fix (docs, afwdev docs builder, JS, multi-area, finish pass) | Prefer **`./afwdev build --fulldev`** (implies `-j`) | Focused or full `afwdev test` as appropriate |
+| User asks for **full build and test** | `./afwdev build --fulldev` | `afwdev test -j --env-mode valgrind` |
+| **Before opening/updating a PR** | **Always** (maintainer default): `./afwdev build --fulldev` | **Always:** `afwdev test -j --env-mode valgrind` |
 
-**`--cdev`** does not build the handbook or JS. **`--fulldev`** does (plus generate so package version and other metadata land in sources). Day-to-day stays `--cdev` + normal `afwdev test -j`. Before a PR, run the full pair so generate, JS/docs, clang scan, and valgrind all pass.
+**`--cdev`** does not build the handbook or JS. **`--fulldev`** does (plus generate so package version and other metadata land in sources). Both enable parallel cmake (`-j`); pass **`-j N`** to cap jobs. Day-to-day stays `--cdev` + normal `afwdev test -j`. Before a PR, run the full pair so generate, JS/docs, clang scan, and valgrind all pass.
 
 Use **`./afwdev`** when the build may refresh the installed `afwdev` itself; otherwise **`afwdev`** from PATH is fine.
 

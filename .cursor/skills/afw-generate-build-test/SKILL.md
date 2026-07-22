@@ -21,13 +21,13 @@ description: >-
 Progress:
 - [ ] 1. Confirm edits are under generate/ or hand sources (not generated/)
 - [ ] 2. Optional: validate metadata if JSON/XML changed
-- [ ] 3. Day-to-day edit loop: ./afwdev build --cdev -j
+- [ ] 3. Day-to-day edit loop: ./afwdev build --cdev  (implies -j)
 - [ ] 4. Day-to-day: afwdev test -j (or targeted --test-pattern)
 - [ ] 5. Before commit/push (docs, multi-area, finish pass):
-         ./afwdev build --fulldev -j
+         ./afwdev build --fulldev  (implies -j)
 - [ ] 6. Full verify before a PR (maintainer default; also when user asks for
          full build/test):
-         ./afwdev build --fulldev -j
+         ./afwdev build --fulldev
          afwdev test -j --env-mode valgrind
 - [ ] 7. Confirm success from command output
 ```
@@ -41,8 +41,9 @@ From package root:
 afwdev validate --pattern 'src/afw/generate/objects/_AdaptiveFunctionGenerate_/*.json'
 
 # C/Python day-to-day: generate + cmake + install core/extensions/afwdev
-# Does NOT build JS app or docs. Use ./afwdev because this may refresh afwdev itself.
-./afwdev build --cdev -j
+# Does NOT build JS app or docs. Implies -j (parallel). Use ./afwdev because
+# this may refresh afwdev itself.
+./afwdev build --cdev
 
 # Script tests (installed afwdev after --cdev)
 afwdev test -j
@@ -52,13 +53,13 @@ afwdev test --srcdir-pattern afw --list
 afwdev test --srcdir-pattern afw --bail 1
 
 # Full package dev install (docs, multi-area, finish pass, before PR):
-#   --fulldev = --all --generate --clean --install --scan
+#   --fulldev = --all --generate --clean --install --scan plus -j
 #   --all alone does NOT generate or install
-./afwdev build --fulldev -j
+./afwdev build --fulldev
 
 # Full verify before a PR (maintainer default):
 #   then all tests under valgrind (much slower — not every edit cycle)
-./afwdev build --fulldev -j
+./afwdev build --fulldev
 afwdev test -j --env-mode valgrind
 ```
 
@@ -71,7 +72,7 @@ afwdev test -j --env-mode valgrind
 If a fix seems to require changing `src/*/generated/**`:
 
 1. Stop — find the corresponding input under `generate/` or the generator under `src/afw_dev/_afwdev/generate/`.
-2. Fix the source of truth, then `./afwdev build --cdev -j`.
+2. Fix the source of truth, then `./afwdev build --cdev`.
 3. Committed `generated/` may exist for grep/review; it is not the edit surface.
 
 ## Related

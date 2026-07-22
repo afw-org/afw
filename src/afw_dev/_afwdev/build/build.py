@@ -6,11 +6,12 @@
 # @brief This file contains the main entry point for the "build" subcommand.
 # @details Orchestrates the cmake, docs, js, and docker build contexts.
 #          Context flags (build_cmake, build_docs, ...) are independent.
-#          --cdev enables clean, generate, and install for C/Python work;
-#          --fulldev enables all contexts plus generate, clean, install, and
-#          scan (full package dev install). --all enables every context only
-#          (not generate/install). With no context selected, cmake is the
-#          default. When --generate is set, `afwdev generate` runs first.
+#          --cdev enables clean, generate, install, and parallel jobs (-j)
+#          for C/Python work; --fulldev enables all contexts plus generate,
+#          clean, install, scan, and -j (full package dev install). --all
+#          enables every context only (not generate/install). With no context
+#          selected, cmake is the default. When --generate is set,
+#          `afwdev generate` runs first.
 #
 
 ##
@@ -63,13 +64,19 @@ def run(options):
         'install'
     ]
 
+    # Bare -j / --jobs with no N → build_make_jobs 0 → cmake --parallel.
+    def _ensure_parallel_jobs():
+        if options.get('build_make_jobs') is None:
+            options['build_make_jobs'] = 0
+
     # --fulldev: full package dev install profile (sibling of --cdev).
-    # All contexts + generate + clean + install + clang scan.
+    # All contexts + generate + clean + install + clang scan + parallel jobs.
     if options.get('build_fulldev', False):
         options['build_all'] = True
         for build_convenience_switch in build_convenience_switches:
             options['build_' + build_convenience_switch] = True
         options['build_scan'] = True
+        _ensure_parallel_jobs()
 
     # --all sets all build type contexts (does not enable generate/install).
     if options.get('build_all', False):
@@ -80,6 +87,7 @@ def run(options):
     if options.get('build_cdev', False):
         for build_convenience_switch in build_convenience_switches:
             options['build_' + build_convenience_switch] = True
+        _ensure_parallel_jobs()
 
     # Default context switch is --cmake if no other build context switches
     # are specified.

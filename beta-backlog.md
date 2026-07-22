@@ -64,7 +64,7 @@ Update this section if the plan changes.
 - Ask the assistant to **update rules / this backlog** when something will matter in future sessions.
 - Next real work: expect a **new feature branch** off current integration line (not pile everything only on long-lived chat state).
 - **`issues.md`**: temporary Cursor triage dump; do not treat as canonical. Prefer this file + GitHub.
-- **Build before commit:** day-to-day C/Python can use `./afwdev build --cdev -j`. Before commit/push on docs, multi-area, or finish-pass work, prefer **`./afwdev build --fulldev -j`** (`--all --generate --clean --install --scan`). PR gate still pairs with `afwdev test -j --env-mode valgrind`.
+- **Build before commit:** day-to-day C/Python can use `./afwdev build --cdev` (implies `-j`). Before commit/push on docs, multi-area, or finish-pass work, prefer **`./afwdev build --fulldev`** (`--all --generate --clean --install --scan` + `-j`). PR gate still pairs with `afwdev test -j --env-mode valgrind`.
 
 ### Session wrap-up — 2026-07-20
 
@@ -83,7 +83,7 @@ Update this section if the plan changes.
 - PR **#132** merged to **`mgg-develop`** (`c8be2744`). Follow-up **`c31df26e`**: `whats_new.md` + backlog status.
 - GitHub **#1** closed, labels **documentation** + **implemented**, comment **@JeremyGrieshop** with summary + links.
 - Durable (also in rules / AGENTS — do not re-litigate):
-  - **`--cdev`** day-to-day; **`--fulldev`** = `--all --generate --clean --install --scan`. **`--all` alone does not generate/install** (version bumps need generate).
+  - **`--cdev`** day-to-day; **`--fulldev`** = `--all --generate --clean --install --scan` (both imply **`-j`** / parallel). **`--all` alone does not generate/install** (version bumps need generate).
   - **Core vs base srcdirs:** `src/afw/` = libafw; other `src/*` self-contained over public core; extension Doxygen in that srcdir’s headers.
   - **Doxygen builders:** macros = C API; edit XML/`interfaces.py`/`afw_doxygen.h`/hand headers — not `generated/`; leave skeleton `@todo` alone; don’t stamp every `.c`.
   - **`local_test.py`:** normalizes local-mode version banner (expects don’t track package version).
@@ -96,7 +96,7 @@ Update this section if the plan changes.
 - Read **`AGENTS.md`**, always-on rules (especially `afw-project`, `afw-interfaces-doxygen`), and this file’s theme section for the issue at hand.
 - Prefer **small feature branches** off `mgg-develop` → PR → merge; don’t accumulate unrelated work only in chat.
 - After user-facing behavior changes on this line: update **`whats_new.md`**. After design decisions: **rules / this backlog / code comments**.
-- Verify: day-to-day `--cdev -j` + `afwdev test -j`; broader/finish **`--fulldev -j`**; PR gate often adds valgrind tests.
+- Verify: day-to-day `--cdev` + `afwdev test -j`; broader/finish **`--fulldev`**; PR gate often adds valgrind tests.
 
 ---
 
@@ -123,7 +123,7 @@ _(Paste raw notes here first; sort into themes later.)_
 - Group essays live in `afw_doxygen.h`; hand headers join canonical groups; preserve long post-`@brief` bodies.
 - C-focused HTML: `DoxygenLayout.xml`, `TYPEDEF_HIDES_STRUCT`, `doxygen-extra.css`, `PROJECT_NUMBER` from package version via generate.
 - **Core vs base:** `src/afw/` = libafw; other `src/*` srcdirs stay self-contained (public core only). Extension Doxygen groups live in extension headers; core only lightly navigates.
-- **Build profiles:** `--cdev` day-to-day; `--fulldev` = `--all --generate --clean --install --scan` (not `--all` alone).
+- **Build profiles:** `--cdev` day-to-day; `--fulldev` = `--all --generate --clean --install --scan`; both include `-j` / parallel unless `-j N` is set (not `--all` alone).
 
 **Landed with #132 (do not re-open as infinite file stamps):**
 

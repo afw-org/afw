@@ -30,13 +30,13 @@ alwaysApply: false
 - Source: `src/*/doc/**/*.xml`. Renderer: `_afwdev/build/docs/docs.py` + `docs_html.py`.
 - Supported inline tags include **`literal`** (→ `<code>`), **`strong`**, **`italic`**. Tags must have both a branch in `docs.py` **and** a method on `DocsHtml` (templates under `_resources/html_templates/`).
 - Unsupported tags log **`Unknown element: …`** (e.g. DocBook **`emphasis`** is not recognized). Missing methods crash the docs build (`AttributeError`).
-- **`--cdev` does not build the handbook.** Prefer **`./afwdev build --fulldev -j`** before commit/push when docs (or broader work) changed (`--all --generate --clean --install --scan`). Docs-only exists; `--fulldev` is not much longer and also regenerates version headers / scans C.
+- **`--cdev` does not build the handbook.** Prefer **`./afwdev build --fulldev`** before commit/push when docs (or broader work) changed (`--all --generate --clean --install --scan` + `-j`). Docs-only exists; `--fulldev` is not much longer and also regenerates version headers / scans C.
 
 ## Related commands agents run
 ```bash
 # Use ./afwdev when the build installs/refreshes afwdev itself
-./afwdev build --cdev -j
+./afwdev build --cdev          # implies -j
 afwdev test -j
 afwdev validate --pattern '...'
-./afwdev build --fulldev -j   # full package dev install (C, docs, JS, scan)
+./afwdev build --fulldev       # full package dev install (C, docs, JS, scan); implies -j
 ```
