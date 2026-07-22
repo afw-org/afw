@@ -8,8 +8,10 @@ core developers, **extension and command authors**, interface implementers,
 and hosts such as `afw` / `afwfcgi`.
 
 It is **not** the primary guide for Adaptive Script application authors or
-REST-only users. For product overview, language, and getting started, see the
-[Full Documentation](https://afw-org.github.io/afw) handbook.
+REST-only users. For product overview, language, and getting started, use the
+**Docs** tab (handbook home) or open the
+[full documentation](../../index.html) next to this tree. The published site is
+also at [afw-org.github.io/afw](https://afw-org.github.io/afw).
 
 ## What is Adaptive Framework?
 
@@ -21,8 +23,13 @@ language bindings, commands, and administrative applications. The runtime is
 
 ## How to navigate this tree
 
-- **[Modules](modules.html)** — start here: pools, values, environment,
-  adapters, interfaces, … Group pages hold mental models and invariants.
+- **[Docs](../../index.html)** (first tab) — leaves this C API tree and opens the
+  **main documentation home** (handbook: language, bindings, data types,
+  functions, getting started). Use that for product/overview material; stay
+  here for libafw types, macros, and module groups.
+- **[Modules](modules.html)** — start here for the C runtime: pools, values,
+  environment, adapters, interfaces, … Group pages hold mental models and
+  invariants.
 - **[Related Pages](pages.html)** — short developer essays (interfaces, runtime,
   opaques, …) also under `src/afw/doc/developer/` in the repo.
 - **[Data Structures](annotated.html)** — C types by public `afw_*_t` name when
@@ -58,7 +65,7 @@ wider use). Staging and experimental work may use other long-lived branches.
 
 ## Building and Running
 
-Refer to [Full Documentation](https://afw-org.github.io/afw) for an overview
+See the [handbook home](../../index.html) (or the **Docs** tab) for an overview
 of Adaptive Framework, including how to get started.
 
 ## Contributing

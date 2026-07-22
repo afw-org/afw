@@ -2,6 +2,8 @@
   <!-- AFW C-focused layout: modules first, data structures without C++ hierarchy.
        Wired via Doxyfile LAYOUT_FILE. Regenerated/customized from doxygen 1.9.1. -->
   <navindex>
+    <!-- Escape hatch to handbook / docs home (docs/index.html next to doxygen/). -->
+    <tab type="user" url="../../index.html" title="Docs"/>
     <tab type="mainpage" visible="yes" title=""/>
     <tab type="modules" visible="yes" title="Modules" intro=""/>
     <!-- Developer MD pages (src/afw/doc/developer/*.md) -->

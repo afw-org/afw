@@ -27,8 +27,9 @@ supported by Doxygen; an extra sheet is the durable approach.
 2. **Enable/disable skin** → package-root `Doxyfile` (`HTML_EXTRA_STYLESHEET`,
    optional `HTML_COLORSTYLE_*`).  
 3. **Nav tabs / page layout** → package-root `DoxygenLayout.xml`
-   (`LAYOUT_FILE` in `Doxyfile`). C-focused: Modules + Related Pages + Data
-   Structures; hierarchy / namespaces / examples tabs off.  
+   (`LAYOUT_FILE` in `Doxyfile`). C-focused: **Docs** user tab
+   (`../../index.html` → handbook home) + Modules + Related Pages + Data
+   Structures; hierarchy / namespaces / examples tabs off.
 4. **API/group prose** → `src/afw/include/afw_doxygen.h`, interface XML,
    hand headers — separate from the skin.
 
