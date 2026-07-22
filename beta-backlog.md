@@ -90,7 +90,7 @@ _(Paste raw notes here first; sort into themes later.)_
 
 ### Doxygen / interface API docs (builders)
 
-**Status:** **partial → nearly done** on branch **`issue-#1`** / PR **#132** (into `mgg-develop`). Rule **`afw-interfaces-doxygen`**.  
+**Status:** **ready to merge** — branch **`issue-#1`** / PR **#132** → `mgg-develop`. Rule **`afw-interfaces-doxygen`**. Package version on branch tip includes **0.12.2** + `afwdev build --fulldev`.
 
 **Audience:** AFW developers, extension/command authors, hosts — **not** pure Adaptive Script app users (handbook / `whats_new` for those).
 
@@ -103,6 +103,7 @@ _(Paste raw notes here first; sort into themes later.)_
 - Group essays live in `afw_doxygen.h`; hand headers join canonical groups; preserve long post-`@brief` bodies.
 - C-focused HTML: `DoxygenLayout.xml`, `TYPEDEF_HIDES_STRUCT`, `doxygen-extra.css`, `PROJECT_NUMBER` from package version via generate.
 - **Core vs base:** `src/afw/` = libafw; other `src/*` srcdirs stay self-contained (public core only). Extension Doxygen groups live in extension headers; core only lightly navigates.
+- **Build profiles:** `--cdev` day-to-day; `--fulldev` = `--all --generate --clean --install --scan` (not `--all` alone).
 
 **Done on issue-#1 (do not re-open as infinite file stamps):**
 
@@ -110,14 +111,15 @@ _(Paste raw notes here first; sort into themes later.)_
 2. ~~Group tree / nested `@defgroup` + thin group briefs.~~  
 3. ~~`src/afw/doc/developer/*.md` + mainpage reading order / Related Pages.~~  
 4. ~~Golden + remaining interface XML descriptions; opaque `@brief`s; key hand `@file` bodies.~~  
-5. ~~Local `--local` expects for package version (0.12.0).~~  
-6. Closet noise: `EXCLUDE_PATTERNS` `*/*closet/*` in `Doxyfile`.
+5. ~~`local_test.py` normalizes version banner (no expect churn on version bumps).~~  
+6. Closet noise: `EXCLUDE_PATTERNS` `*/*closet/*` in `Doxyfile`.  
+7. ~~C-focused layout/skin/typedef hide-struct; multi-layout `afw_value_t` docs.~~  
+8. ~~`--fulldev` build shortcut; docs/rules prefer it over long `--all …` lines.~~
 
-**Still optional after merge:**
+**On merge of #132:**
 
-- Re-scope or **close #1**: remaining = opportunistic polish when already editing an area, not stamp every `.c`.  
-- Further XML/method-level prose only when implementing that interface.  
-- Skin: leave unless a concrete stock-look regression appears.
+- **Close #1** with note: builder Doxygen map done; further comment polish only when already editing an area (not stamp every `.c`).  
+- Opportunistic later: method-level XML while implementing; skin only if stock look regresses.
 
 ### Indexes / adapters (incl. issue #54)
 
