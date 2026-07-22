@@ -2,7 +2,7 @@
 
 Snapshot of open issues on [afw-org/afw](https://github.com/afw-org/afw) to help find “where things stand.”  
 Generated for work on **`mgg-develop`** (off **`develop`**). `main` is far behind and not the day-to-day base.  
-Last refreshed: 2026-07-21 (60 open on GitHub; triage notes from `whats_new.md` / branch work).
+Last refreshed: 2026-07-22 (52 open on GitHub; triage notes from `whats_new.md` / branch work).
 
 Grouped by rough next-step meaning (not formal GitHub status).
 
@@ -12,15 +12,7 @@ Work largely on `mgg-develop` / related PRs — confirm, note leftovers, then cl
 
 | # | Title | Brief idea |
 |--:|:------|:-----------|
-| 110 | [Segfault: embedded props in `on*`](https://github.com/afw-org/afw/issues/110) | Clone-on-return fix on `develop`; regression tests on `mgg-develop` (#118 / `whats_new`). Verify under valgrind and close or file leftovers. |
-| 109 | [Script-only adapters (no dummy map)](https://github.com/afw-org/afw/issues/109) | Optional `mappedAdapterId` for pure-script models landed (#119 / `whats_new`). Confirm docs + close, or keep open for a dedicated script-adapter type. |
-| 97 | [Compile-time `#{…}` substitutions](https://github.com/afw-org/afw/issues/97) | Feature largely in (#100); docs, tests, and backtick `\#`/`\$` escapes completed on `mgg-develop` (`whats_new`). Verify and close. |
-| 90 | [`checkIndividualObjectReadAccess`](https://github.com/afw-org/afw/issues/90) | Conf wiring + session delivery fix + tests on `mgg-develop` (`whats_new`). Verify and close. |
-| 79 | [VFS empty file (0 bytes)](https://github.com/afw-org/afw/issues/79) | Fixed + hardened on issue/`mgg-develop` branch; merge/verify tests, then close (follow-ups listed in issue). |
-| 71 | [Duplicate `_AdaptiveEnvironmentVariables_`](https://github.com/afw-org/afw/issues/71) | Retrieve now returns one `current`; UTF-8/hexBinary value handling on `mgg-develop` (`whats_new`). Verify and close. |
 | 35 | [Closures (test262 gaps)](https://github.com/afw-org/afw/issues/35) | Scope/closure work advanced; remaining test262 skips — verify against current `develop`/`mgg-develop` and close or list gaps. |
-| 30 | [Interactive afw input (libedit)](https://github.com/afw-org/afw/issues/30) | libedit line editing/history on `mgg-develop` (#117). Verify packages/docs and close. |
-| 9 | [List qualified variables](https://github.com/afw-org/afw/issues/9) | `qualifier()` / `qualifiers()` fresh snapshots landed (PR #129 / `whats_new`). Merge/verify and close. |
 
 ## Code — implementation still needed
 
