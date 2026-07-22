@@ -1,5 +1,5 @@
 24
-afw 0.12.0
+afw 0.0.0
 
 Local mode.
 0
