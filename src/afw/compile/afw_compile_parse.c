@@ -20,22 +20,30 @@
  *# This grammar uses W3C (https://www.w3.org/) EBNF notation.
  *#
  *# Note: This grammar is intended as documentation and is not
- *# precise.
+ *# precise. The C parser remains authoritative if docs and code
+ *# disagree.
  *#
- *# Directory src/afw/doc/syntax/ must be produced manually from
- *# src/afw/generated/ebnf/syntax.ebnf using the following steps:
+ *# Dual use of the harvested file
+ *# src/afw/generated/ebnf/syntax.ebnf (do not hand-edit; produced by
+ *# afwdev generate from these ebnf comments):
  *#
- *# 1) Visit http://bottlecaps.de/rr/ui in a web browser.
- *# 2) Optionally, go to the "Options" tab and change Color to one
- *#    compatible with the admin app such as #DCDCDC which is shades
- *#    of gray.
- *# 3) Paste the contents of src/afw/generated/syntax/compile.ebnf in
- *#    the text area of the "Edit Grammar" tab.
- *# 4) Select the "View Diagram" tab then click the PNG radio button
- *#    in "Download diagram" box in the top right corner and press
- *#    the "Download" button.
- *# 5) Replace the contents of the syntax/ directory with the contents
- *#    of the downloaded zip file.
+ *# A) Automated handbook / docs build (usual path)
+ *#    afwdev build --docs / --fulldev runs Railroad Diagram Generator
+ *#    (rr.war; same engine as https://bottlecaps.de/rr) with
+ *#    -color:#DCDCDC, unpacks PNG + index.html under
+ *#    build/docs/.../reference/language/ebnf/syntax/, and themes that
+ *#    page for the Docs site. Handbook XML embeds PNGs from
+ *#    the diagram directory (e.g. statements.html).
+ *#
+ *# B) Manual exploration (optional)
+ *#    Paste syntax.ebnf into https://bottlecaps.de/rr/ui yourself if you
+ *#    want alternate colors, SVG, or a one-off diagram:
+ *#    1) Open https://bottlecaps.de/rr/ui
+ *#    2) Options tab: set Color if desired (docs default is #DCDCDC)
+ *#    3) Edit Grammar: paste src/afw/generated/ebnf/syntax.ebnf
+ *#    4) View Diagram: download PNG/SVG as needed
+ *#    You do not need to copy results back into the tree for the
+ *#    published handbook unless you are changing the automated path.
  *#
  *# Root productions
  *#
