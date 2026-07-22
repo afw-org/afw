@@ -35,7 +35,7 @@
 
 /**
  * @file afw_data_type_boolean_binding.h
- * @brief Adaptive data type boolean header.
+ * @brief Generated header for adaptive data type `boolean`.
  */
 
 AFW_BEGIN_DECLARES

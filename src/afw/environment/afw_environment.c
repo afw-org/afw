@@ -8,7 +8,7 @@
 
 /**
  * @file afw_environment.c
- * @brief Adaptive framework environment.
+ * @brief Environment create, registries, and core registration wiring.
  */
 
 #include "afw_internal.h"

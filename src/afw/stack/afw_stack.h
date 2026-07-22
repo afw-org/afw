@@ -18,7 +18,7 @@
 
 /**
  * @file afw_stack.h
- * @brief Adaptive Framework stack support
+ * @brief Growable stack API used by compiler and runtime.
  */
 
 AFW_BEGIN_DECLARES

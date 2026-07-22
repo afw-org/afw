@@ -8,7 +8,7 @@
 
 /**
  * @file afw_adapter_journal.c
- * @brief Adaptive Framework adapter journal.
+ * @brief Adapter journal entry helpers and cursor support.
  */
 
 #include "afw_internal.h"

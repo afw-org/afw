@@ -12,7 +12,7 @@
 
 /**
  * @file afw_ldap_internal.h
- * @brief Adaptive Framework LDAP Internal Header  
+ * @brief Internal LDAP adapter session and connection structures.
  */
 
 

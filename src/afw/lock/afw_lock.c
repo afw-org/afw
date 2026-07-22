@@ -9,7 +9,7 @@
 
 /**
  * @file afw_lock.c
- * @brief Lock support
+ * @brief Read/write and related lock helpers.
  */
 
 #include "afw_internal.h"

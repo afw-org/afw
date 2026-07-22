@@ -35,7 +35,7 @@
 
 /**
  * @file afw_data_type_function_binding.h
- * @brief Adaptive data type function header.
+ * @brief Generated header for adaptive data type `function`.
  */
 
 AFW_BEGIN_DECLARES

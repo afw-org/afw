@@ -1,4 +1,4 @@
 {
     "name": "afw_connection",
-    "description": "Adaptive Framework connection. This has not yet been developed."
+    "description": "Placeholder connection interface (not fully developed). Do not build\n      new features on this without checking current core status.\n      Call methods via afw_connection_*() macros if present."
 }

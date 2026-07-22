@@ -8,7 +8,7 @@
 
 /**
  * @file afw_function_json.c
- * @brief afw_function_execute_* functions for json.
+ * @brief Adaptive function execute implementations for category `json`.
  */
 
 #include "afw.h"

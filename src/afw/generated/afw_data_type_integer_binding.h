@@ -35,7 +35,7 @@
 
 /**
  * @file afw_data_type_integer_binding.h
- * @brief Adaptive data type integer header.
+ * @brief Generated header for adaptive data type `integer`.
  */
 
 AFW_BEGIN_DECLARES

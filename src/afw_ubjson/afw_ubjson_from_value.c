@@ -8,7 +8,7 @@
 
 /**
  * @file afw_ubjson_from_value.c
- * @brief Convert an AFW value to UBJSON.
+ * @brief Serialize adaptive values to UBJSON binary.
  */
 
 #include "afw.h"

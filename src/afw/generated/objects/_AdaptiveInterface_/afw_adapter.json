@@ -1,4 +1,4 @@
 {
     "name": "afw_adapter",
-    "description": "Adapter interface."
+    "description": "Long-lived pluggable object store (or store-like) instance.\n      Adapters are usually started as services from conf; day-to-day work\n      happens on an afw_adapter_session created from this instance.\n      Prefer helpers in afw_adapter.h over calling destroy /\n      create_adapter_session directly unless you own the lifetime.\n      Method API: afw_adapter_*() macros. Nested session,\n      journal, and index interfaces extend the adapter surface."
 }

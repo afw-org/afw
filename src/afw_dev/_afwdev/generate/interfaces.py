@@ -22,7 +22,8 @@ def generate_h(generated_by, prefix, name, tree, generated_dir_path, copyright):
     msg.info('Generating ' + filename)
     with nfc.open(generated_dir_path + filename, mode='w') as fd:
         c.write_h_prologue(fd, generated_by, 'Interface ' + name + ' Header', copyright, filename)
-        c.write_doxygen_file_section(fd, filename, 'Interface' + name + ' header.')
+        c.write_doxygen_file_section(fd, filename,
+            'Generated C header for Adaptive Framework interfaces (' + name + ').')
 
         fd.write('\n')
         fd.write('#include "afw_interface_common.h"\n')
@@ -55,8 +56,22 @@ def generate_h(generated_by, prefix, name, tree, generated_dir_path, copyright):
             fd.write(' * @{\n')
             fd.write(' */\n\n')
 
-            # public struct
-            fd.write('\n/** @brief Interface ' + interface_name + ' public struct. */\n')
+            # public struct (typedef name is interface_name_t)
+            fd.write('\n/**\n')
+            fd.write(' * @brief Public instance layout for interface `'
+                     + interface_name + '`.\n')
+            fd.write(' *\n')
+            fd.write(' * API type name is `' + interface_name + '_t` (see opaques).\n')
+            fd.write(' * Call methods with `' + interface_name
+                     + '_<method>(…)` macros.\n')
+            fd.write(' * Implementations often embed this as the first field of\n')
+            fd.write(' * a larger self struct in .c files.\n')
+            if interface_name == 'afw_value':
+                fd.write(' *\n')
+                fd.write(' * **Note:** Many value-kind structs are also passed as\n')
+                fd.write(' * `afw_value_t *`; this is only the interface face.\n')
+                fd.write(' * See @ref afw_value.\n')
+            fd.write(' */\n')
             fd.write('struct ' + interface_name + '_s {\n')
             fd.write('    const ' + interface_name + '_inf_t *inf;\n')
             for variable in interface.findall('variable'):
@@ -73,7 +88,9 @@ def generate_h(generated_by, prefix, name, tree, generated_dir_path, copyright):
             fd.write('};\n')
 
             # define for name
-            fd.write('\n/** @brief define for interface ' + interface_name + ' name. */\n')
+            fd.write('\n/** @brief String name of interface `'
+                     + interface_name + '` (`'
+                     + interface_name.upper() + '_INTERFACE_NAME`). */\n')
             fd.write('#define ' + interface_name.upper() + '_INTERFACE_NAME \\\n"' + interface_name + '"\n' )
 
             # method typedefs
@@ -92,8 +109,14 @@ def generate_h(generated_by, prefix, name, tree, generated_dir_path, copyright):
                     ending = ',\n'
                 fd.write(');\n')
 
-            # interface inf struct
-            fd.write('\n/** @brief Interface ' + interface_name + '_inf_s struct. */\n')
+            # interface inf struct (vtable); typedef name is interface_name_inf_t
+            fd.write('\n/**\n')
+            fd.write(' * @brief Method table (inf) for interface `'
+                     + interface_name + '`.\n')
+            fd.write(' *\n')
+            fd.write(' * API type name is `' + interface_name + '_inf_t`.\n')
+            fd.write(' * Pointed to by the instance `inf` field; call macros use it.\n')
+            fd.write(' */\n')
             fd.write('struct ' + interface_name + '_inf_s {\n')
             fd.write('    afw_interface_implementation_rti_t rti;\n')
             for method in interface.findall('method'):
@@ -110,24 +133,81 @@ def generate_h(generated_by, prefix, name, tree, generated_dir_path, copyright):
                 fd.write('    ' + variable.get('type') + ' ' + variable.get('name') + ';\n')
             fd.write('};\n')
 
-            # method helpers
+            # method helpers (call macros — the developer-facing API)
             for method in interface.findall('method'):
                 method_name = method.get('name')
 
                 fd.write('\n/**\n')
                 c.write_wrapped(fd, 80, ' * ',
-                    '@brief Call method ' + method_name + ' of interface ' + interface_name,
-                    '    ')
+                    '@brief Call method `' + method_name + '` of interface `'
+                    + interface_name + '`.')
+
+                # Optional longer description from interface XML (not the
+                # brief line). Keep blank Doxygen line between brief and body.
+                method_descs = []
+                for description in method.findall('description'):
+                    if description.text is not None and description.text.strip():
+                        lines = [line.strip()
+                                 for line in description.text.strip().split('\n')]
+                        method_descs.append(
+                            '\n'.join(('' if not line else line) for line in lines))
+                if method_descs:
+                    fd.write(' *\n')
+                    for text in method_descs:
+                        c.write_wrapped(fd, 80, ' * ', text)
 
                 for parameter in method.findall('parameter'):
-                    param = '@param ' + parameter.get('name')
                     if parameter.get('type') == '...':
                         param = '@param ...'
+                    else:
+                        param = '@param ' + parameter.get('name')
+                    desc_parts = []
                     for description in parameter.findall('description'):
-                        if description.text is not None:
-                            lines = [line.strip() for line in description.text.strip().split('\n')]
-                            param += '\n'.join(('' if not line else line) for line in lines)
-                    c.write_wrapped(fd, 80, ' * ', param, '    ')
+                        if description.text is not None and description.text.strip():
+                            lines = [line.strip()
+                                     for line in description.text.strip().split('\n')]
+                            desc_parts.append(
+                                ' '.join(line for line in lines if line))
+                    if desc_parts:
+                        # Space after param name is required for Doxygen.
+                        param += ' ' + ' '.join(desc_parts)
+                    c.write_wrapped(fd, 80, ' * ', param)
+
+                ret = method.find('return')
+                if ret is not None:
+                    ret_type = (ret.get('type') or '').strip()
+                    ret_desc_parts = []
+                    for description in ret.findall('description'):
+                        if description.text is not None and description.text.strip():
+                            lines = [line.strip()
+                                     for line in description.text.strip().split('\n')]
+                            ret_desc_parts.append(
+                                ' '.join(line for line in lines if line))
+                    ret_desc = ' '.join(ret_desc_parts).strip()
+                    if ret_type and ret_type != 'void':
+                        if ret_desc:
+                            c.write_wrapped(
+                                fd, 80, ' * ', '@return ' + ret_desc)
+                        else:
+                            c.write_wrapped(
+                                fd, 80, ' * ',
+                                '@return Value of type `' + ret_type + '`.')
+                    elif ret_desc:
+                        # void with a note (e.g. side effects) — still useful
+                        c.write_wrapped(
+                            fd, 80, ' * ', '@return ' + ret_desc)
+
+                # Point readers at the public instance type.
+                # @relates uses the public *_t name (TYPEDEF_HIDES_STRUCT).
+                # @see @ref must use the struct tag *_s — Doxygen 1.9.x often
+                # cannot \ref the typedef name even when the HTML title is *_t.
+                # Macros may not appear under the type's Related section; the
+                # interface group remains the reliable call-macro index.
+                fd.write(
+                    ' * @relates ' + interface_name + '_t\n')
+                fd.write(
+                    ' * @see @ref ' + interface_name + '_s "'
+                    + interface_name + '_t"\n')
 
                 fd.write(' */\n')
 
@@ -185,7 +265,9 @@ def generate_opaques_h(generated_by, prefix, name, tree, generated_dir_path, cop
     msg.info('Generating ' + filename)
     with nfc.open(generated_dir_path + filename, mode='w') as fd:
         c.write_h_prologue(fd, generated_by, 'Interface ' + name + ' Opaque Typedefs', copyright, filename)
-        c.write_doxygen_file_section(fd, filename, 'Interface ' + name + ' opaque typedefs.')
+        c.write_doxygen_file_section(fd, filename,
+            'Generated opaque typedefs for Adaptive Framework interfaces ('
+            + name + ').')
 
         fd.write('/**\n * @addtogroup ' + name + ' Interfaces\n')
         fd.write(' *\n')
@@ -196,10 +278,34 @@ def generate_opaques_h(generated_by, prefix, name, tree, generated_dir_path, cop
         for interface in root.findall('interface'):
             interface_name = interface.get('name')
 
-            fd.write('\ntypedef struct ' + interface_name + '_s\n')
+            # Briefs so Doxygen Data Structures / typedef pages use the public
+            # *_t names (with TYPEDEF_HIDES_STRUCT) and explain the opaque.
+            fd.write('\n/**\n')
+            fd.write(' * @brief Opaque instance type for interface `'
+                     + interface_name + '`.\n')
+            fd.write(' *\n')
+            fd.write(' * Public name is `' + interface_name + '_t`. Full\n')
+            fd.write(' * `struct ' + interface_name + '_s` is in the generated\n')
+            fd.write(' * interface header. Call methods via\n')
+            fd.write(' * `' + interface_name + '_<method>(…)` macros, not by\n')
+            fd.write(' * assuming a single private layout beyond the published\n')
+            fd.write(' * struct (implementations may embed/extend in .c).\n')
+            if interface_name == 'afw_value':
+                fd.write(' *\n')
+                fd.write(' * **Special:** many different value-kind structs are\n')
+                fd.write(' * passed as `afw_value_t *`. See @ref afw_value.\n')
+            fd.write(' */\n')
+            fd.write('typedef struct ' + interface_name + '_s\n')
             fd.write(interface_name + '_t;\n')
 
-            fd.write('\ntypedef struct ' + interface_name + '_inf_s\n')
+            fd.write('\n/**\n')
+            fd.write(' * @brief Vtable/inf type for interface `'
+                     + interface_name + '`.\n')
+            fd.write(' *\n')
+            fd.write(' * Public name is `' + interface_name + '_inf_t`.\n')
+            fd.write(' * Instance `inf` points here; call macros use it.\n')
+            fd.write(' */\n')
+            fd.write('typedef struct ' + interface_name + '_inf_s\n')
             fd.write(interface_name + '_inf_t;\n')
 
         fd.write('\n/** @} */\n\n')
@@ -300,7 +406,9 @@ def generate_impl_declares_hs(generated_by, prefix, name, tree, generated_dir_pa
             fd.write(' */\n\n')
 
             # \file
-            c.write_doxygen_file_section(fd, filename, 'Interface ' + name + ' implementation declares.')
+            c.write_doxygen_file_section(fd, filename,
+                'Generated implementation declares for interface '
+                + name + '.')
 
             # Make sure only included once
             fd.write('\n')
@@ -654,6 +762,8 @@ def generate_skeleton_header(generated_by, prefix, generated_dir_path, copyright
     msg.info('Generating ' + filename)
     with nfc.open(generated_dir_path + filename, mode='w') as fd:
 
+        # @todo markers here are intentional placeholders for consumers of
+        # this skeleton (humans / scaffold flows), not incomplete Doxygen.
         fd.write('#ifdef __@todo_H__\n')
         fd.write('#define __@todo_H__\n\n')
 
@@ -701,13 +811,14 @@ def generate_objects(generated_by, prefix, name, tree, generated_dir_path):
             fd.write('{\n')                        
             fd.write('    "name": "' + interface_name + '",\n')            
 
-            descriptions = interface.findall('description')
-            if len(descriptions) > 0:
-                for description in interface.findall('description'):    
-                    if description.text is not None:            
-                        fd.write('    "description": ' + c.make_quoted(description.text.strip()) + '\n')
-                    else:
-                        fd.write('    "description": ""\n')
+            # Interface-level description only (direct child), not method/param.
+            description = None
+            for child in list(interface):
+                if child.tag == 'description':
+                    description = child
+                    break
+            if description is not None and description.text is not None:
+                fd.write('    "description": ' + c.make_quoted(description.text.strip()) + '\n')
             else:
                 fd.write('    "description": ""\n')
 

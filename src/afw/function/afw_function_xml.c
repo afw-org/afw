@@ -8,7 +8,7 @@
 
 /**
  * @file afw_function_xml.c
- * @brief afw_function_execute_* functions for xml.
+ * @brief Adaptive function execute implementations for category `xml`.
  */
 
 #include "afw.h"

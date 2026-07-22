@@ -35,7 +35,7 @@
 
 /**
  * @file afw_data_type_unevaluated_binding.h
- * @brief Adaptive data type unevaluated header.
+ * @brief Generated header for adaptive data type `unevaluated`.
  */
 
 AFW_BEGIN_DECLARES

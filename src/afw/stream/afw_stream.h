@@ -18,7 +18,11 @@
 
 /**
  * @file afw_stream.h
- * @brief Adaptive Framework Stream Implementation Header.
+ * @brief Open helpers and xctx stream anchors for `afw_stream`.
+ *
+ * See @ref afw_stream. Prefer these helpers and `afw_stream_*()` call macros
+ * over inventing raw I/O for response bodies. Progressive large writes use
+ * stream write paths; distinct from adapter retrieve limits/paging.
  */
 
 AFW_BEGIN_DECLARES

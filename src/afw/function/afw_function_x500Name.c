@@ -8,7 +8,7 @@
 
 /**
  * @file afw_function_x500Name.c
- * @brief afw_function_execute_* functions for x500Name.
+ * @brief Adaptive function execute implementations for category `x500Name`.
  */
 
 #include "afw_internal.h"

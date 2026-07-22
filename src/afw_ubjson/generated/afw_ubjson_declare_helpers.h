@@ -22,7 +22,7 @@
 
 /**
  * @file afw_ubjson_declare_helpers.h
- * @brief Adaptive Framework declare helpers for afw_ubjson_
+ * @brief Generated declare/define helpers for prefix `afw_ubjson_`.
  */
 
 

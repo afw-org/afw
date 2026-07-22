@@ -8,7 +8,7 @@
 
 /**
  * @file afw_function_model.c
- * @brief afw_function_execute_* functions for model.
+ * @brief Adaptive function execute implementations for category `model`.
  */
 
 #include "afw_internal.h"

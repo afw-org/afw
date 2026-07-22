@@ -8,7 +8,7 @@
 
 /**
  * @file afw_object_options.c
- * @brief Adaptive object processing options.
+ * @brief Object processing options (view flags, embedding, etc.).
  */
 
 #include "afw_internal.h"

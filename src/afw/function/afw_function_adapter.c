@@ -1,14 +1,14 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * afw_function_execute_* functions for Adapter
+ * afw_function_execute_* functions for adapter
  *
  * Copyright (c) 2010-2024 Clemson University
  *
  */
 
 /**
- * @file afw_function_Adapter.c
- * @brief afw_function_execute_* functions for Adapter.
+ * @file afw_function_adapter.c
+ * @brief Adaptive function execute implementations for category `adapter`.
  */
 
 #include "afw_internal.h"

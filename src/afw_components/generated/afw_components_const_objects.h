@@ -22,7 +22,7 @@
 
 /**
  * @file afw_components_const_objects.h
- * @brief Adaptive Framework builtin objects header.
+ * @brief Generated header for builtin const adaptive objects.
  */
 
 #include "afw_interface.h"

@@ -8,7 +8,7 @@
 
 /**
  * @file afw_writer.c
- * @brief Helpers for interfaces afw_writer* 
+ * @brief Writer write helpers for utf8 and C strings.
  */
 
 #include "afw_internal.h"

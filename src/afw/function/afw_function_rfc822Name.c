@@ -8,7 +8,7 @@
 
 /**
  * @file afw_function_rfc822Name.c
- * @brief afw_function_execute_* functions for rfc822Name.
+ * @brief Adaptive function execute implementations for category `rfc822Name`.
  */
 
 #include "afw_internal.h"

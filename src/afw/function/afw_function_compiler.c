@@ -8,7 +8,7 @@
 
 /**
  * @file afw_function_compiler.c
- * @brief afw_function_execute_* functions for compiler.
+ * @brief Adaptive function execute implementations for category `compiler`.
  */
 
 #include "afw_internal.h"

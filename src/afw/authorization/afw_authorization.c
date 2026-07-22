@@ -8,7 +8,7 @@
 
 /**
  * @file afw_authorization.c
- * @brief Functions for checking authorization.
+ * @brief Authorization check entry points and handler dispatch.
  */
 
 #include "afw_internal.h"

@@ -14,12 +14,14 @@ AFW is **metadata-driven**: define object types, functions, data types, and C **
 
 | Area | Role |
 |------|------|
-| `src/afw` | `libafw` — pools, values, xctx, compiler, objects/adapters, environment (module map: [`.cursor/rules/afw-core-layout.mdc`](.cursor/rules/afw-core-layout.mdc)) |
+| `src/afw` | **libafw core** — pools, values, xctx, compiler, objects/adapters, environment (module map: [`.cursor/rules/afw-core-layout.mdc`](.cursor/rules/afw-core-layout.mdc)) |
 | `src/afw_dev` | `afwdev` (generate, build, test, docs, validate, …) |
 | `src/afw_command` | `afw` CLI — compile/eval Adaptive syntaxes, conf/extensions, `--local`, optional interactive libedit ([`.cursor/rules/afw-command.mdc`](.cursor/rules/afw-command.mdc)) |
 | `src/afw_*` | Loadable extension DSOs — same env registries as core ([`.cursor/rules/afw-extensions.mdc`](.cursor/rules/afw-extensions.mdc): curl, ldap, lmdb, ubjson, vfs, yaml) |
 | `src/afw_server_fcgi` | `afwfcgi` FastCGI server — HTTP transport over libafw request handlers ([`.cursor/rules/afw-server-fcgi.mdc`](.cursor/rules/afw-server-fcgi.mdc)) |
 | `src/afw_app` | Admin React app (defer unless asked) |
+
+This repository is **AFW base** (core + shipped commands/extensions). **`src/afw/`** is core; other `src/<srcdir>/` trees should stay **as self-contained as practical** (movable to another package repo) while using **public** core APIs freely. Core may mention base extensions lightly; detailed extension docs live in that srcdir. See [`.cursor/rules/afw-extensions.mdc`](.cursor/rules/afw-extensions.mdc).
 
 Package manifest: [`afw-package.json`](afw-package.json) (`srcdirs`, `srcdirManifest`, `prefix`, `buildType`).
 
@@ -36,14 +38,27 @@ Package manifest: [`afw-package.json`](afw-package.json) (`srcdirs`, `srcdirMani
 - **Environment** — Process-wide keyed registries (`afw_environment_t` / `xctx->env`). Core registers at create (`afw_environment_register_core.c`: `afw_generated_register` then hand wiring — **functions before `prepare_environment`**, then conf/adapters/content types). Extensions/commands use the same registries. Details: [`.cursor/rules/afw-environment.mdc`](.cursor/rules/afw-environment.mdc).
 - **Script compiler** — `src/afw/compile/` (`afw_compile.h`) turns syntaxes into `afw_value` graphs; EBNF docs in `/*ebnf>>>` comments harvested via `generate/ebnf/`. Evaluate via `value/` + `function/`. Rules: [`.cursor/rules/afw-compile.mdc`](.cursor/rules/afw-compile.mdc), [`.cursor/rules/afw-script-eval.mdc`](.cursor/rules/afw-script-eval.mdc), [`.cursor/rules/afw-function.mdc`](.cursor/rules/afw-function.mdc), [`.cursor/rules/afw-compiler-ebnf.mdc`](.cursor/rules/afw-compiler-ebnf.mdc).
 
+### Interfaces, macros, scaffolds, Doxygen
+
+C interfaces are an **XML IDL + Python generator** story so AFW can stay C-efficient while giving implementers a clean call surface:
+
+| Layer | Role |
+|-------|------|
+| **Call macros** (`afw_<iface>_<method>(…)`) | **Real developer API** — document these (via XML + `interfaces.py`) |
+| **`inf` / arrow forms** | Wiring and GDB; not what extension authors should learn first |
+| **Closet skeletons + afwdev `make-*` / `add-*`** | First-class bootstrap for packages, extensions, commands, interface impls; `@todo` and `<afwdev {…}>` are intentional |
+| **Doxygen groups** (`afw_doxygen.h`) | Map for **builders** (core / extension / command authors), not pure Adaptive Script app users |
+
+Do **not** hand-edit `generated/` for docs, and do **not** “fix” skeleton placeholders for Doxygen vanity. Full rule: [`.cursor/rules/afw-interfaces-doxygen.mdc`](.cursor/rules/afw-interfaces-doxygen.mdc). Planned thin developer MD pages may live under `src/afw/doc/developer/` (Doxygen + direct read).
+
 Authoritative coding conventions: [`src/afw/doc/guide/developer/contributing.xml`](src/afw/doc/guide/developer/contributing.xml). Packages: [`packages.xml`](src/afw/doc/guide/developer/packages.xml).
 
 ## Metadata → generate → implement → test
 
 ```text
 edit generate/ or hand C/Python  →  ./afwdev build --cdev -j  →  afwdev test -j
-# full verify / before PR (maintainer default):
-#   ./afwdev build --all --scan --clean --install -j  →  afwdev test -j --env-mode valgrind
+# full package dev install / before PR (maintainer default):
+#   ./afwdev build --fulldev -j  →  afwdev test -j --env-mode valgrind
 ```
 
 1. **Edit** `src/<srcdir>/generate/` — e.g. `objects/_AdaptiveFunctionGenerate_/*.json`, `interfaces/*.xml` — and/or hand C under `src/afw/…`.
@@ -52,11 +67,11 @@ edit generate/ or hand C/Python  →  ./afwdev build --cdev -j  →  afwdev test
 4. **Test** — `afwdev test -j` runs the Adaptive Script tests (judge success from command output). Narrow with `--srcdir-pattern` / `--test-pattern` when useful.
 
 **Before commit/push** (docs, multi-area, finish pass — not every one-line C fix): prefer  
-`./afwdev build --all --install --scan -j`. A docs-only build exists, but full `--all` is not much longer and may catch more. `--cdev` alone will not catch handbook XML/docs-builder failures.
+`./afwdev build --fulldev -j` (or at least a docs-aware build). `--cdev` alone will not catch handbook XML/docs-builder failures.
 
 **Full build and test before a PR** (maintainer default; also when the user asks for full verify):  
-`./afwdev build --all --scan --clean --install -j` then `afwdev test -j --env-mode valgrind`.  
-`--all` regenerates/builds everything (C, JS, docs); `--clean` forces a clean tree and extra syntax checking; `--scan` runs clang analyze-build (fail on analyzer errors); valgrind is much slower — not for every edit.
+`./afwdev build --fulldev -j` then `afwdev test -j --env-mode valgrind`.  
+`--fulldev` is short for **`--all --generate --clean --install --scan`**: all contexts (C, docs, JS, docker tags), regenerate from package metadata (including version), clean trees, install, and clang analyze-build. Valgrind is much slower — not for every edit. Note: **`--all` alone does not run generate or install**.
 
 Use **`./afwdev`** for builds that refresh/install `afwdev` itself; use **`afwdev`** (PATH) afterward for `test`, `validate`, etc.
 
@@ -86,27 +101,25 @@ afwdev test -j
 afwdev test --srcdir-pattern afw --test-pattern 'rql/.*'
 afwdev validate --pattern 'src/afw/generate/objects/...'
 
-# Before commit/push when docs or broader surface may matter:
-./afwdev build --all --install --scan -j
+# Full package dev install (all contexts + generate + clean + install + scan):
+./afwdev build --fulldev -j
 
 # Full verify before PR (maintainer default; also when user asks for full build/test):
-# --scan = clang analyze-build; --clean = clean + extra syntax checking
-./afwdev build --all --scan --clean --install -j
+./afwdev build --fulldev -j
 afwdev test -j --env-mode valgrind   # much slower
 
-# Full repository without clean (cmake + docs + JS, with install)
-./afwdev build --all --install -j
-
-# Narrow generate only (usually unnecessary if using --cdev)
+# Narrow generate only (usually unnecessary if using --cdev / --fulldev)
 afwdev generate --srcdir-pattern '*'
 ```
 
-`--cdev` is a convenience shortcut (enables generate/install and related C-dev switches; cmake is the build context; no `--js` / `--docs`). CMake output lives under `build/cmake/`.
+`--cdev` and `--fulldev` are convenience profiles. `--cdev` = generate/clean/install for C work (default cmake context; no docs/JS/docker). `--fulldev` = `--all --generate --clean --install --scan` (version headers, Doxyfile `PROJECT_NUMBER`, handbook, JS, docker tags, clang scan). **`--all` alone does not generate or install.** CMake output lives under `build/cmake/`.
 
 ## Documentation
 
-- Author: `src/afw/doc/` (XML, markdown, images).
-- Publish: included in `./afwdev build --all --install -j`, or `afwdev build --docs` → `build/docs/` (served as `/docs/...`).
+- Author: `src/afw/doc/` (XML, markdown, images); builder-oriented Doxygen MD under `src/afw/doc/developer/`.
+- Publish: included in `./afwdev build --fulldev -j` (or `--all --generate --install` / `afwdev build --docs`) → `build/docs/` (served as `/docs/...` when installed).
+- **Doxygen:** afwdev runs `doxygen Doxyfile` into `build/docs/doxygen/` only if that directory is missing; use **`./afwdev build --docs --clean -j`** to force a refresh. `--clean` only cleans the **active** build context(s) (e.g. `--docs --clean` wipes `build/docs/`, not cmake). Config is the checked-in `Doxyfile`; see `afw-interfaces-doxygen`.
+- **Doxygen HTML skin:** experimental light/dark slate sheet `src/afw/doc/doxygen-extra.css` (`HTML_EXTRA_STYLESHEET`). Maintainer notes in that file’s header and `src/afw/doc/developer/doxygen-skin.md` — read before “simplifying” menus/`div.header` overrides.
 - `--cdev` installs libs/headers/`afwdev` via cmake; it does not build the handbook or admin app.
 
 ## Cursor layout
@@ -115,8 +128,9 @@ afwdev generate --srcdir-pattern '*'
 |------|------|
 | `.cursor/rules/afw-project.mdc` | Always-on (generate/build focus) |
 | `.cursor/rules/afw-runtime-model.mdc` | Always-on runtime mental model |
+| `.cursor/rules/afw-interfaces-doxygen.mdc` | Always-on: interface macros, afwdev scaffolds, Doxygen for builders |
 | `.cursor/rules/afw-core-layout.mdc` | `src/afw` module map and usage modes |
-| `.cursor/rules/afw-headers.mdc` | Include hierarchy; hand vs generated headers |
+| `.cursor/rules/afw-headers.mdc` | Include hierarchy; hand vs generated headers; Doxygen file hygiene |
 | `.cursor/rules/afw-core-services.mdc` | Env consumers: adapter, object, request, auth, model; retrieve max-objects limit (#49) |
 | `.cursor/rules/afw-environment.mdc` | Environment registries; core/extension/command registration |
 | `.cursor/rules/afw-environment-variables.mdc` | Process env / request props; UTF-8 boundary; #71 single `current` |

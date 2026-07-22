@@ -7,8 +7,8 @@
  */
 
 /**
- * @file afw_compile_parse.c
- * @brief Adaptive Framework Compiler Parser.
+ * @file afw_compile_parse_template.c
+ * @brief Compiler parser for Adaptive Template syntax.
  */
 
 #include "afw_internal.h"

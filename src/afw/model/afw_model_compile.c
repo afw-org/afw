@@ -8,7 +8,7 @@
 
 /**
  * @file afw_model_compile.c
- * @brief Adaptive Framework Model Compile
+ * @brief Compile model on* expressions and property defaults.
  */
 
 #include "afw_internal.h"

@@ -35,7 +35,7 @@
 
 /**
  * @file afw_data_type_rfc822Name_binding.h
- * @brief Adaptive data type rfc822Name header.
+ * @brief Generated header for adaptive data type `rfc822Name`.
  */
 
 AFW_BEGIN_DECLARES

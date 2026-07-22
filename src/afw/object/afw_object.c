@@ -8,7 +8,7 @@
 
 /**
  * @file afw_object.c
- * @brief Interface helpers for afw_object.
+ * @brief Core object create/get/set helpers beyond the interface.
  */
 
 #include "afw_internal.h"

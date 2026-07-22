@@ -8,7 +8,7 @@
 
 /**
  * @file afw_function_random.c
- * @brief afw_function_execute_* functions for random.
+ * @brief Adaptive function execute implementations for category `random`.
  */
 
 #include "afw_internal.h"

@@ -1,0 +1,111 @@
+---
+description: >-
+  C interfaces as XML IDL + macros; afwdev skeletons; Doxygen for builders
+  (extension/command authors), not pure Adaptive Script app users
+alwaysApply: true
+---
+
+# Interfaces, scaffolds, and Doxygen (builders)
+
+## Why C interfaces look like this
+
+AFW is **C**, not C++: multi-request servers need controlled memory and no C++ runtime tax. Interfaces are defined in **`generate/interfaces/*.xml`** (core: `afw_interface.xml`). Python (`interfaces.py` and related generators) emits structs, `inf` vtables, **call macros**, `*_impl_declares.h`, and **closet skeletons**.
+
+Developers are meant to call:
+
+```c
+afw_adapter_create_adapter_session(instance, xctx)
+```
+
+not `(instance)->inf->create_adapter_session(...)`. The arrow/`inf` form is wiring and **GDB-friendly**; the **real API surface is the macros**.
+
+## Source of truth
+
+| Concern | Edit here | Never hand-edit for docs |
+|---------|-----------|---------------------------|
+| Method/param descriptions | Interface **XML** | `generated/afw_interface.h` |
+| Macro Doxygen emission | `src/afw_dev/_afwdev/generate/interfaces.py` | Closet files as “fixed” docs |
+| Group mental models | `src/afw/include/afw_doxygen.h` (`@defgroup`) | One-off orphan `@addtogroup` names |
+| Scaffold bootstrap | Closet + **afwdev make-*/add-*** | Treating closet as production impl |
+
+## afwdev skeletons are first-class
+
+`make-afw-package`, `make-extension`, `make-command`, `add-adapter-type`, `add-content-type`, `add-log-type`, `add-core-interface` copy skeletons, apply **`<afwdev {…}>`** substitution, and leave **`@todo`** for humans.
+
+- **`@todo`** and **`<afwdev {…}>`** in closet/skeleton output are **intentional**, not incomplete Doxygen to “clean up.”
+- Do not rewrite skeleton `@file @todo.h` / guard names for Doxygen vanity.
+- `generated/function_closet/` and `interface_closet/` are **templates**; implement in hand sources.
+
+## Doxygen audience
+
+**Primary:** AFW core developers, **extension and command authors**, interface implementers, hosts (`afw`, `afwfcgi`).
+
+**Not primary:** people who only write Adaptive Script / use REST apps — use the handbook / `whats_new.md` for that.
+
+**Core vs extension docs:** put detailed extension Doxygen in that **srcdir’s** public header (`@defgroup` there). `src/afw/include/afw_doxygen.h` may lightly list base extensions for navigation only — non-core srcdirs stay self-contained relative to libafw.
+
+Prioritize documenting:
+
+1. **Call macros** (from XML → generator)  
+2. **Group essays** in `afw_doxygen.h` (pool, value, xctx, environment, adapters, …)  
+3. Hand public headers’ **long `@file` descriptions** (related headers, lifecycle)  
+4. Short **implementer path** (impl_declares + afwdev add-* + register)
+
+Preserve post-`@brief` long description bodies when editing file headers.
+
+## Building / refreshing Doxygen (afwdev)
+
+Prefer **afwdev** over ad-hoc `doxygen` for the published tree:
+
+```bash
+# Handbook + Doxygen under build/docs/ (install with --install → web_root/docs)
+./afwdev build --docs -j
+
+# Force Doxygen + docs rebuild (clean only the docs context)
+./afwdev build --docs --clean -j
+```
+
+Behavior (`src/afw_dev/_afwdev/build/docs/docs.py` + `build/build.py`):
+
+- Runs plain `doxygen Doxyfile` from the package root (options live in **`Doxyfile`**, not runtime flags).
+- Output: `build/docs/doxygen/` (see `OUTPUT_DIRECTORY` in `Doxyfile`).
+- **Skips Doxygen if `build/docs/doxygen` already exists** (speed). After comment/group/MD changes that should refresh HTML, use **`--docs --clean`** (or remove that directory).
+- **`--clean` only cleans active build contexts** — intentional: `--docs --clean` wipes `build/docs/`; cmake-only `--clean` does not.
+- Manual `doxygen Doxyfile` is fine for a quick local peek; afwdev is the path that matches install/publish layout.
+
+## Types and opaques (for Doxygen + C)
+
+- Public names are **`afw_*_t`** (typedefs); tags are usually `struct afw_*_s`.
+- Opaques in `afw_common_opaques.h` / generated `afw_interface_opaques.h` avoid header cycles and hide layouts.
+- **`afw_value_t` (and similar):** one public typedef, **many** concrete structs. Document the handle + group essay; never tell extension authors to depend on a single value struct body.
+- Doxyfile: `TYPEDEF_HIDES_STRUCT = YES`, C/H/MD-focused `FILE_PATTERNS`, `SHOW_NAMESPACES = NO`, `LAYOUT_FILE = DoxygenLayout.xml` (C nav; hierarchy off), inheritance graphs off.
+- Call macros get `@relates *_t` from `interfaces.py` (do not hand-edit generated headers).
+- See `src/afw/doc/developer/types-opaques.md` and group `afw_value` in `afw_doxygen.h`.
+
+## Doxygen HTML skin (`doxygen-extra.css`)
+
+| Item | Detail |
+|------|--------|
+| File | `src/afw/doc/doxygen-extra.css` |
+| Wired by | `Doxyfile` → `HTML_EXTRA_STYLESHEET` |
+| Goal | Light/dark slate look related to handbook (not identical chrome) |
+| Full notes | File header of that CSS + `src/afw/doc/developer/doxygen-skin.md` |
+
+**Hard-won overrides** (also documented in the CSS header):
+
+1. **Menus:** SmartMenus `.sm-dox` in `tabs.css` uses PNG tabs — force `background-image: none !important`.
+2. **White band under menu:** `div.header` uses `nav_h.png`; a bare `.header` rule loses — target **`div.header`**.
+3. **Group pages:** also theme `.groupheader`, member tables (`.mdesc*` / `.memItem*`), `.memtitle`, tooltips (`#powerTip`).
+4. **Nested groups in `afw_doxygen.h`:** put `@ingroup` on its own line or titles show `@ingroup …` literally.
+
+**Do not** casually rewrite this CSS for “simplicity” without re-checking Modules, a group page (e.g. compile), and a macro detail page under both light and dark OS themes. Prefer small fixes over a ground-up theme.
+
+**Discard:** delete the CSS file, clear `HTML_EXTRA_STYLESHEET`, optional reset of `HTML_COLORSTYLE_*`, then `--docs --clean`.
+
+## Related
+
+- Headers / include layers: `afw-headers`  
+- Generate vs generated: `afw-generate-metadata`, `afw-project`  
+- Environment registration: `afw-environment`  
+- Long map: `@AGENTS.md`; process dump: `beta-backlog.md`  
+- Compiler EBNF harvest (separate from Doxygen): `afw-compiler-ebnf`

@@ -35,7 +35,7 @@
 
 /**
  * @file afw_data_type_string_binding.h
- * @brief Adaptive data type string header.
+ * @brief Generated header for adaptive data type `string`.
  */
 
 AFW_BEGIN_DECLARES

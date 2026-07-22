@@ -8,7 +8,7 @@
 
 /**
  * @file afw_function_dateTime.c
- * @brief afw_function_execute_* functions for dateTime.
+ * @brief Adaptive function execute implementations for category `dateTime`.
  */
 
 #include "afw_internal.h"

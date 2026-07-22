@@ -19,7 +19,7 @@
 
 /**
  * @file afw_number.h
- * @brief Adaptive Framework Number Header.
+ * @brief Number parse/format API for adaptive numeric types.
  */
 
 AFW_BEGIN_DECLARES

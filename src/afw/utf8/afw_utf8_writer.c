@@ -8,7 +8,7 @@
 
 /**
  * @file afw_utf8_writer.c
- * @brief Adaptive Framework utf-8 writer.
+ * @brief UTF-8 writer built on the afw_writer interface.
  */
 
 #include "afw_internal.h"

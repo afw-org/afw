@@ -18,7 +18,10 @@
 
 /**
  * @file afw_adapter_get.h
- * @brief Adaptive Framework adapter get object 
+ * @brief Adapter get-object convenience API.
+ *
+ * Contributes to @ref afw_adapter. Higher-level get paths over session
+ * `get_object` macros; included from `afw_adapter.h`.
  */
 
 AFW_BEGIN_DECLARES

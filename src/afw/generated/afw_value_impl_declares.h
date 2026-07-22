@@ -76,7 +76,7 @@ AFW_BEGIN_DECLARES
 
 /**
  * @file afw_value_impl_declares.h
- * @brief Interface afw_interface implementation declares.
+ * @brief Generated implementation declares for interface afw_interface.
  */
 
 #ifdef __AFW_VALUE_IMPL_DECLARES_H__

@@ -1,4 +1,4 @@
 {
     "name": "afw_iterator",
-    "description": "This is the interface for an iterator. An iterator is created by the\n      'afw_value' 'create_iterator()' method."
+    "description": "Iterator over elements of a value that supports iteration (e.g. arrays).\n      Created by afw_value_create_iterator() when non-NULL. Call methods via\n      afw_iterator_*() macros. See group afw_value and afw_array."
 }

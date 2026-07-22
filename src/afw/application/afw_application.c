@@ -8,7 +8,7 @@
 
 /**
  * @file afw_application.c
- * @brief Application functions.
+ * @brief Application conf, qualified variables, and startup.
  */
 
 #include "afw_internal.h"

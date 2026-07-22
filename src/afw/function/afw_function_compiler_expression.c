@@ -1,14 +1,14 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * afw_function_execute_* functions for miscellaneous
+ * afw_function_execute_* functions for compiler_expression
  *
  * Copyright (c) 2010-2024 Clemson University
  *
  */
 
 /**
- * @file afw_function_miscellaneous.c
- * @brief afw_function_execute_* functions for miscellaneous.
+ * @file afw_function_compiler_expression.c
+ * @brief Adaptive function execute implementations for category `compiler_expression`.
  */
 
 #include "afw_internal.h"

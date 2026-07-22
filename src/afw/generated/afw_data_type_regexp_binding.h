@@ -35,7 +35,7 @@
 
 /**
  * @file afw_data_type_regexp_binding.h
- * @brief Adaptive data type regexp header.
+ * @brief Generated header for adaptive data type `regexp`.
  */
 
 AFW_BEGIN_DECLARES

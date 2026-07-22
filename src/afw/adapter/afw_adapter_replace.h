@@ -19,7 +19,10 @@
 
 /**
  * @file afw_adapter_replace.h
- * @brief Adaptive Framework adapter replace object 
+ * @brief Adapter replace-object convenience API.
+ *
+ * Contributes to @ref afw_adapter. Full-object replace over session macros;
+ * included from `afw_adapter.h`.
  */
 
 AFW_BEGIN_DECLARES

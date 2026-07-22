@@ -8,7 +8,7 @@
 
 /**
  * @file afw_json_from_value.c
- * @brief Convert an AFW value to JSON.
+ * @brief Serialize adaptive values to JSON text.
  */
 
 #include "afw_internal.h"

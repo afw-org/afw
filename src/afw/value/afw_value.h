@@ -18,15 +18,21 @@
 
 /**
  * @file afw_value.h
- * @brief Adaptive Framework header for adaptive values.
+ * @brief Public API for adaptive values (`afw_value_t`).
  *
- * See the @ref afw_value group (defined in afw_doxygen.h) for the overall mental model.
+ * See the @ref afw_value group for the full mental model.
  *
- * This is the main public header. It declares the common value structures
- * and the afw_value_evaluate() macro that everything flows through.
+ * **Public type:** always talk about values as `const afw_value_t *`.
+ * That name is a typedef; many different C structs implement values.
+ * Callers must not depend on a single `struct` body — use
+ * `afw_value_evaluate()` and related helpers, and data-type create APIs.
  *
- * Core value kinds: data type values (permanent/managed), compiled_value,
- * block, call_*, symbol_reference, closure_binding.
+ * This header declares shared helpers (`afw_value_common_s` prefix access,
+ * function definition structs, evaluate macros) and is the right include
+ * for most extension/command code that touches values.
+ *
+ * Kind-specific layouts (block, call, symbol, …) live mainly in
+ * `afw_value_internal.h` and generated `afw_data_type_*_binding.h`.
  */
 
 AFW_BEGIN_DECLARES
@@ -54,7 +60,12 @@ struct afw_value_info_s {
 
 
 /**
- * @brief Struct to access internal of all values.
+ * @brief Shared prefix layout used to inspect any value kind.
+ *
+ * Not “the” only body for `afw_value_t`. Concrete kinds embed this pattern
+ * (inf/pub union first) so a value pointer can be treated as `afw_value_t *`.
+ * The `internal` byte is the start of type-specific payload, not a complete
+ * value by itself.
  */
 struct afw_value_common_s {
     /* Value inf union with afw_value_t pub to reduce casting needed. */

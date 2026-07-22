@@ -22,7 +22,7 @@
 
 /**
  * @file afw_curl_generated.h
- * @brief Adaptive Framework register generated (afw_curl) header.
+ * @brief Generated register/API header for srcdir `afw_curl`.
  */
 
 #include "afw_minimal.h"

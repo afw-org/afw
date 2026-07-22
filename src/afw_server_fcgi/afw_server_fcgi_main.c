@@ -9,7 +9,7 @@
 
 /**
  * @file afw_server_fcgi_main.c
- * @brief Adaptive Frame FastCGI Server
+ * @brief afwfcgi FastCGI server process entry point.
  */
 
 #include "afw.h"

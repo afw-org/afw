@@ -22,7 +22,7 @@
 
 /**
  * @file afw_yaml_generated.h
- * @brief Adaptive Framework register generated (afw_yaml) header.
+ * @brief Generated register/API header for srcdir `afw_yaml`.
  */
 
 #include "afw_minimal.h"

@@ -19,7 +19,7 @@
 
 /**
  * @file afw_runtime_object_maps.c
- * @brief Adaptive Framework runtime object mapping.
+ * @brief Generated runtime object map registration implementation.
  */
 
 #include "afw.h"

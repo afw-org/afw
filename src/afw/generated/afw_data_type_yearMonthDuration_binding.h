@@ -35,7 +35,7 @@
 
 /**
  * @file afw_data_type_yearMonthDuration_binding.h
- * @brief Adaptive data type yearMonthDuration header.
+ * @brief Generated header for adaptive data type `yearMonthDuration`.
  */
 
 AFW_BEGIN_DECLARES

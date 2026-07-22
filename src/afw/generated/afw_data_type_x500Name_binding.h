@@ -35,7 +35,7 @@
 
 /**
  * @file afw_data_type_x500Name_binding.h
- * @brief Adaptive data type x500Name header.
+ * @brief Generated header for adaptive data type `x500Name`.
  */
 
 AFW_BEGIN_DECLARES

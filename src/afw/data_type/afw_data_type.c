@@ -9,7 +9,7 @@
 
 /**
  * @file afw_data_type.c
- * @brief Adaptive Framework data type functions.
+ * @brief Data-type registry helpers and convert utilities.
  */
 
 #include "afw_internal.h"

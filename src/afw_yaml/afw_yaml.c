@@ -8,7 +8,7 @@
 
 /**
  * @file afw_yaml.c
- * @brief YAML Miscellaneous Functions.
+ * @brief YAML content-type support and miscellaneous helpers.
  */
 
 #include "afw.h"

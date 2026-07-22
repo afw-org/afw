@@ -1,4 +1,4 @@
 {
     "name": "afw_server",
-    "description": "Adaptive framework server interface."
+    "description": "Host-facing server that accepts connections or local calls and creates\n      afw_request instances for handlers. afwfcgi and afw --local implement\n      this contract. Call methods via afw_server_*() macros.\n      See group afw_request."
 }

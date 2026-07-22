@@ -8,7 +8,7 @@
 
 /**
  * @file afw_model_context.c
- * @brief Adaptive Framework model adapter.
+ * @brief Model adapter per-request context and on* hooks.
  */
 
 /* Comment out next line to cause new model code to be called on modify, etc. */

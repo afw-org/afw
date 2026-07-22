@@ -1,4 +1,4 @@
 {
     "name": "afw_extension",
-    "description": "Interface returned from afw_extension_initialize() of an\n      Adaptive Framework environment extension module. Additional\n      information about an extension is found in object\n      /afw/_AdaptiveManifest_/<extension_id>."
+    "description": "Interface returned from afw_extension_initialize() of a loadable\n      extension module. Identifies extension id/version and libafw compile\n      version; additional metadata lives in\n      /afw/_AdaptiveManifest_/<extension_id>. See group\n      afw_included_extensions; example extension srcdirs live outside\n      libafw core (e.g. curl in this base package)."
 }

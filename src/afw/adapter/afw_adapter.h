@@ -27,7 +27,7 @@
 
 /**
  * @file afw_adapter.h
- * @brief Header for interface afw_adapter* helpers.
+ * @brief Public adapter helpers beyond the generated interface.
  *
  * See @ref afw_adapter. These sub headers are included:
  *

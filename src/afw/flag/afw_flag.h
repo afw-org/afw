@@ -18,7 +18,10 @@
 
 /**
  * @file afw_flag.h
- * @brief Adaptive Framework Software Flag Header.
+ * @brief Feature and debug/trace flag registration and tests.
+ *
+ * See @ref afw_flag. Register and test flags rather than hard-coding global
+ * booleans in extensions when possible.
  */
 
 AFW_BEGIN_DECLARES

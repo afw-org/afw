@@ -85,7 +85,7 @@ Index eval push: **`afw-adapter-index`**.
 
 ## Handbook XML (docs build)
 
-Author under `src/afw/doc/**/*.xml`. Supported inline tags: **`literal`**, **`strong`**, **`italic`** (not DocBook **`emphasis`**). `--cdev` skips handbook; use `./afwdev build --all …` to verify docs. See `afw-afwdev-python`.
+Author under `src/afw/doc/**/*.xml`. Supported inline tags: **`literal`**, **`strong`**, **`italic`** (not DocBook **`emphasis`**). `--cdev` skips handbook; use `./afwdev build --fulldev -j` (or `--docs`) to verify docs. See `afw-afwdev-python`.
 
 ## Related
 

@@ -18,7 +18,10 @@
 
 /**
  * @file afw_object_impl.h
- * @brief Helpers for object implementation development.
+ * @brief Helpers for implementing `afw_object` (and related) interfaces.
+ *
+ * See @ref afw_object_impl. Include from implementation `.c` only; callers
+ * use object create helpers and `afw_object_*()` macros.
  */
 
 AFW_BEGIN_DECLARES

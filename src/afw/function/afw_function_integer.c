@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * afw_function_execute_* functions for Integer
+ * afw_function_execute_* functions for integer
  *
  * Copyright (c) 2010-2024 Clemson University
  *
@@ -8,7 +8,7 @@
 
 /**
  * @file afw_function_integer.c
- * @brief afw_function_execute_* functions for integer.
+ * @brief Adaptive function execute implementations for category `integer`.
  */
 
 #include "afw_internal.h"

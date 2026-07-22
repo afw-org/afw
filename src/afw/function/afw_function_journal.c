@@ -8,7 +8,7 @@
 
 /**
  * @file afw_function_journal.c
- * @brief afw_function_execute_* functions for journal.
+ * @brief Adaptive function execute implementations for category `journal`.
  */
 
 #include "afw_internal.h"

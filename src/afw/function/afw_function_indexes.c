@@ -8,7 +8,7 @@
 
 /**
  * @file afw_function_indexes.c
- * @brief afw_function_execute_* functions for indexes.
+ * @brief Adaptive function execute implementations for category `indexes`.
  */
 
 #include "afw_internal.h"

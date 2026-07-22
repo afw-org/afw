@@ -35,7 +35,7 @@
 
 /**
  * @file afw_data_type_json_binding.h
- * @brief Adaptive data type json header.
+ * @brief Generated header for adaptive data type `json`.
  */
 
 AFW_BEGIN_DECLARES

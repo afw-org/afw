@@ -19,7 +19,7 @@
 
 /**
  * @file afw_lmdb_strings.c
- * @brief Adaptive Framework builtin objects.
+ * @brief Generated string/const value definitions for prefix `afw_lmdb_`.
  */
 
 #include "afw.h"
@@ -692,75 +692,75 @@ afw_lmdb_self_v_zz__ = {
 };
 
 const afw_value_string_t
-afw_lmdb_self_v_zz__2586 = {
+afw_lmdb_self_v_zz__2612 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2586)
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2612)
 };
 
 const afw_value_string_t
-afw_lmdb_self_v_zz__2587 = {
+afw_lmdb_self_v_zz__2613 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2587)
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2613)
 };
 
 const afw_value_string_t
-afw_lmdb_self_v_zz__2588 = {
+afw_lmdb_self_v_zz__2614 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2588)
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2614)
 };
 
 const afw_value_string_t
-afw_lmdb_self_v_zz__2589 = {
+afw_lmdb_self_v_zz__2615 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2589)
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2615)
 };
 
 const afw_value_string_t
-afw_lmdb_self_v_zz__2590 = {
+afw_lmdb_self_v_zz__2616 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2590)
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2616)
 };
 
 const afw_value_string_t
-afw_lmdb_self_v_zz__2591 = {
+afw_lmdb_self_v_zz__2617 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2591)
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2617)
 };
 
 const afw_value_string_t
-afw_lmdb_self_v_zz__2592 = {
+afw_lmdb_self_v_zz__2618 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2592)
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2618)
 };
 
 const afw_value_string_t
-afw_lmdb_self_v_zz__2593 = {
+afw_lmdb_self_v_zz__2619 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2593)
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2619)
 };
 
 const afw_value_string_t
-afw_lmdb_self_v_zz__2594 = {
+afw_lmdb_self_v_zz__2620 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2594)
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2620)
 };
 
 const afw_value_string_t
-afw_lmdb_self_v_zz__2595 = {
+afw_lmdb_self_v_zz__2621 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2595)
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2621)
 };
 
 const afw_value_string_t
-afw_lmdb_self_v_zz__2596 = {
+afw_lmdb_self_v_zz__2622 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2596)
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2622)
 };
 
 const afw_value_string_t
-afw_lmdb_self_v_zz__2597 = {
+afw_lmdb_self_v_zz__2623 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2597)
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2623)
 };
 
 const afw_value_string_t

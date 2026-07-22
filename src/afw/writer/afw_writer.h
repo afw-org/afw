@@ -17,8 +17,12 @@
  */
 
 /**
- * @file afw_adapter.h
- * @brief Header for interface afw_writer* helpers.
+ * @file afw_writer.h
+ * @brief Helpers for the `afw_writer` interface.
+ *
+ * See @ref afw_writer (under @ref afw_stream). Prefer writers when serializing
+ * values instead of building giant intermediate strings. Call methods via
+ * `afw_writer_*()` macros.
  */
 
 AFW_BEGIN_DECLARES

@@ -8,7 +8,7 @@
 
 /**
  * @file afw_stream_fd.c
- * @brief afw_stream implementation over FILE *
+ * @brief afw_stream implementation over FILE* / file descriptors.
  */
 
 #include "afw_internal.h"

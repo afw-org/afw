@@ -22,7 +22,7 @@
 
 /**
  * @file afw_lmdb_generated.h
- * @brief Adaptive Framework register generated (afw_lmdb) header.
+ * @brief Generated register/API header for srcdir `afw_lmdb`.
  */
 
 #include "afw_minimal.h"

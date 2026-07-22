@@ -9,7 +9,7 @@
 
 /**
  * @file afw_request_impl.c
- * @brief AFW request implementation support
+ * @brief Request implementation helpers for server hosts.
  */
 
 #include "afw_internal.h"

@@ -71,10 +71,14 @@ When fixing a C/runtime bug, add `.as` coverage that fails without the fix:
 - Prove clone/isolation by **mutating** one result and asserting the other is unchanged (`afw-adaptive-script`).
 
 ## Python tests (afwdev python mode)
-- `.py` files always run in **python** mode (not the default `afw` env-mode runner).
-- Prefer `def run():` returning `{ "description", "tests": [ { "test", "description", "passed", ... } ] }`.
-- The runner may chdir to a temp work dir: resolve the package root (e.g. walk to `afw-package.json` from `__file__`), do not assume `cwd` is the monorepo root.
+- `.py` files always run in **python** mode (not the default `afw` env-mode runner). Implemented by `src/afw_dev/_afwdev/test/modes/python.py`: import the module and call **`run()`**.
+- Prefer `def run():` returning `{ "description", "tests": [ { "test", "description", "passed", "skip", ... } ] }`.
+- Use this when a pure `.as` test_script is not enough: spawn `afw`/`afw --local`/helpers, binary stdin protocols, compile C helpers, multi-step host checks, JSON Schema against generate output, etc.
+- The runner may chdir to a temp work dir with fixtures copied: resolve the package root (walk to `afw-package.json` from `__file__`) if you need the monorepo; do not assume `cwd` is the package root.
 - Put sibling helpers in `_name.py` so they are not discovered as tests.
+- **Example — local host protocol:** `src/afw_command/tests/local_test.py` feeds `local_test_*_input.txt` to `afw --local` and compares stdout to `*_expect.txt`. The local-mode version banner is **normalized** before compare so package version bumps do not require expect edits.
+- **Example — env octets:** `src/afw/tests/miscellaneous/environment_variables_external.py` (compile helper + exec `afw`).
+- **Example — generate artifacts:** `src/afw_dev/tests/json_schema/*.py`.
 
 ### JSON Schema projection tests
 - `src/afw_dev/tests/json_schema/` — tags `json_schema`, `generate`.
@@ -91,9 +95,8 @@ When fixing a C/runtime bug, add `.as` coverage that fails without the fix:
 afwdev test -j
 
 # Thorough (maintainer default before a PR; also when user asks for full
-# build/test). --scan = clang analyze-build; --clean = clean + extra syntax
-# checking. Not every edit cycle (much slower).
-./afwdev build --all --scan --clean --install -j
+# build/test). --fulldev = --all --generate --clean --install --scan.
+./afwdev build --fulldev -j
 afwdev test -j --env-mode valgrind
 
 # Filename filter (regex on path under tests/)

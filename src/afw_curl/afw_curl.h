@@ -10,20 +10,36 @@
 #define __AFW_CURL_H__
 
 
-/** @addtogroup afw_included_extensions Included Extensions
- * @{
- */
-
-/** @addtogroup afw_curl CURL Extension 
+/**
+ * @defgroup afw_curl CURL Extension
+ * @ingroup afw_included_extensions
  *
- * Adaptive Framework CURL extension.
+ * HTTP / SMTP Adaptive functions and curl error RV decoding (`src/afw_curl/`).
+ * This **srcdir is self-contained** relative to libafw core: it uses only
+ * public core APIs and owns its generate/manifest/tests layout.
  *
  * @{
  */
 
 /**
  * @file afw_curl.h
- * @brief Header for AFW CURL Extension.
+ * @brief Public header for the curl extension (HTTP / SMTP client).
+ *
+ * **Example loadable extension** for authors studying how to package
+ * functions and an error RV decoder on top of libafw (not an adapter type).
+ *
+ * Layout to mirror when creating a new extension with afwdev:
+ * - `afw_curl_extension.c` — `afw_extension` initialize / register
+ * - `afw_curl_function_*.c` — Adaptive function execute implementations
+ * - `generate/manifest/` — extension manifest + `error_rv_decoder/curl.c`
+ * - `generated/` — bindings and register (do not hand-edit)
+ *
+ * After load, call Adaptive functions in the curl/http/smtp categories
+ * (see generated function bindings). Use call macros from core interfaces
+ * for any interface work; this extension mainly exports functions.
+ *
+ * See @ref afw_included_extensions, @ref afw_dev_extending, and
+ * @ref afw_dev_implementing.
  */
 
 #include "afw_minimal.h"
@@ -39,7 +55,6 @@ AFW_CURL_BEGIN_DECLARES
 
 AFW_CURL_END_DECLARES
 
-/** @} */
 /** @} */
 
 

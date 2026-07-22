@@ -18,7 +18,10 @@
 
 /**
  * @file afw_content_type_impl.h
- * @brief Helpers for afw_content_type* implementation development
+ * @brief Helpers for implementing `afw_content_type` (and related) interfaces.
+ *
+ * See @ref afw_content_type_impl and afwdev `add-content-type`. Include from
+ * implementation `.c` only; callers use content-type call macros.
  */
 
 AFW_BEGIN_DECLARES

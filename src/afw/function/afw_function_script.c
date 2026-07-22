@@ -1,6 +1,6 @@
 // See the 'COPYING' file in the project root for licensing information.
 /*
- * afw_function_execute_* functions for adaptive script
+ * afw_function_execute_* functions for script script
  *
  * Copyright (c) 2010-2024 Clemson University
  *
@@ -8,7 +8,7 @@
 
 /**
  * @file afw_function_script.c
- * @brief afw_function_execute_* functions for script.
+ * @brief Adaptive function execute implementations for category `script`.
  */
 
 #include "afw_internal.h"

@@ -1,4 +1,4 @@
 {
     "name": "afw_adapter_key_value",
-    "description": "Adapter implementation of key value interface."
+    "description": "Optional key/value store face on an adapter (binary or string keys).\n      Used by some adapter implementations for internal or exposed KV\n      access. Call methods via afw_adapter_key_value_*() macros.\n      See group afw_adapter."
 }

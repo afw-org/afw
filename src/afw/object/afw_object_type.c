@@ -8,7 +8,7 @@
 
 /**
  * @file afw_object_type.c
- * @brief Object type helpers.
+ * @brief Object type helpers for property types and validation.
  */
 
 #include "afw_internal.h"

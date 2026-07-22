@@ -8,7 +8,7 @@
 
 /**
  * @file afw_service.c
- * @brief Adaptive Framework service support
+ * @brief Service start/stop and conf-driven lifecycle.
  */
 
 #include "afw_internal.h"

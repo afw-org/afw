@@ -1,4 +1,4 @@
 {
     "name": "afw_content_type_object_list_writer",
-    "description": ""
+    "description": "Writes a list of adaptive objects for a content type (e.g. JSON array\n      of objects in a response body). Used by content-type implementations\n      when streaming multiple objects. Call methods via\n      afw_content_type_object_list_writer_*() macros. See group\n      afw_content_type."
 }

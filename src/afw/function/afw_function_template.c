@@ -8,7 +8,7 @@
 
 /**
  * @file afw_function_template.c
- * @brief afw_function_execute_* functions for template.
+ * @brief Adaptive function execute implementations for category `template`.
  */
 
 #include "afw.h"

@@ -73,7 +73,7 @@ AFW_BEGIN_DECLARES
 
 /**
  * @file afw_object_associative_array_impl_declares.h
- * @brief Interface afw_interface implementation declares.
+ * @brief Generated implementation declares for interface afw_interface.
  */
 
 #ifdef __AFW_OBJECT_ASSOCIATIVE_ARRAY_IMPL_DECLARES_H__

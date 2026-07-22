@@ -18,7 +18,9 @@
 
 /**
  * @file afw_query_criteria.h
- * @brief AFW query criteria header.
+ * @brief Query criteria parse/build API for adapter retrieves.
+ *
+ * See the @ref afw_query_criteria group for the mental model.
  *
  * This is the header file for AFW query criteria.
  */

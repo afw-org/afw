@@ -18,7 +18,7 @@
 
 /**
  * @file afw_json.h
- * @brief Header file for Adaptive Framework JSON
+ * @brief JSON content-type and from/to value public API.
  */
 
 #ifdef __cplusplus

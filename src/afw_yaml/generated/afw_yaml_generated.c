@@ -19,7 +19,7 @@
 
 /**
  * @file afw_yaml_generated.c
- * @brief Adaptive Framework register generated (afw_yaml_).
+ * @brief Generated register implementation for `afw_yaml`.
  */
 
 #include "afw.h"

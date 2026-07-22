@@ -8,7 +8,7 @@
 
 /**
  * @file afw_function_relaxed_json.c
- * @brief afw_function_execute_* functions for relaxed_json.
+ * @brief Adaptive function execute implementations for category `relaxed_json`.
  */
 
 #include "afw.h"

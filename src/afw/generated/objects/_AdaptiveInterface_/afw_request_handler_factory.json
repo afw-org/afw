@@ -1,4 +1,4 @@
 {
     "name": "afw_request_handler_factory",
-    "description": "Create an instance of an afw_request_handler."
+    "description": "Factory that creates request_handler instances of one handler type.\n      Registered with the environment; conf constructs handlers used by the\n      director. Call methods via afw_request_handler_factory_*() macros.\n      See group afw_request."
 }

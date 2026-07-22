@@ -18,7 +18,10 @@
 
 /**
  * @file afw_object_view.h
- * @brief Header file for Adaptive Framework object view
+ * @brief Object views over other objects (options, hybrids).
+ *
+ * See @ref afw_object_view. Views reshape property visibility without always
+ * copying the underlying store object.
  */
 
 AFW_BEGIN_DECLARES

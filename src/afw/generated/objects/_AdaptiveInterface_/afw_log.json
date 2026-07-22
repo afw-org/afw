@@ -1,4 +1,4 @@
 {
     "name": "afw_log",
-    "description": "Log."
+    "description": "Configurable log destination used by AFW_LOG / environment logging.\n      Prefer the AFW_LOG macros and environment log configuration over\n      calling log methods by hand. Priorities are afw_log_priority_t\n      (see group afw_log). Implement new log types with afwdev add-log-type\n      scaffolds; call surface is afw_log_*() macros."
 }

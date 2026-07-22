@@ -19,6 +19,8 @@
 /**
  * @file afw_model.h
  * @brief Header file for Adaptive Framework model support
+ *
+ * See the @ref afw_model group for the mental model.
  */
 
 AFW_BEGIN_DECLARES

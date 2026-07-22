@@ -19,7 +19,7 @@
 
 /**
  * @file afw_uuid.h
- * @brief Adaptive Framework UUID header
+ * @brief UUID types and create/parse/format API.
  */
 
 AFW_BEGIN_DECLARES

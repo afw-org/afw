@@ -8,7 +8,7 @@
 
 /**
  * @file afw_yaml_from_value.c
- * @brief Convert an AFW value to YAML.
+ * @brief Serialize adaptive values to YAML text.
  */
 
 #include "afw.h"

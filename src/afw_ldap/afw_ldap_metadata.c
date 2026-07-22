@@ -9,7 +9,7 @@
 
 /**
  * @file afw_ldap_metadata.c
- * @brief  Internal LDAP Schema parser
+ * @brief LDAP schema/metadata parser for the LDAP adapter.
  */
 
 #include "afw.h"

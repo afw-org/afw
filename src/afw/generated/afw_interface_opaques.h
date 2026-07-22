@@ -22,7 +22,7 @@
 
 /**
  * @file afw_interface_opaques.h
- * @brief Interface afw_interface opaque typedefs.
+ * @brief Generated opaque typedefs for Adaptive Framework interfaces (afw_interface).
  */
 /**
  * @addtogroup afw_interface Interfaces
@@ -31,207 +31,754 @@
  */
 
 
+/**
+ * @brief Opaque instance type for interface `afw_extension`.
+ *
+ * Public name is `afw_extension_t`. Full
+ * `struct afw_extension_s` is in the generated
+ * interface header. Call methods via
+ * `afw_extension_<method>(…)` macros, not by
+ * assuming a single private layout beyond the published
+ * struct (implementations may embed/extend in .c).
+ */
 typedef struct afw_extension_s
 afw_extension_t;
 
+/**
+ * @brief Vtable/inf type for interface `afw_extension`.
+ *
+ * Public name is `afw_extension_inf_t`.
+ * Instance `inf` points here; call macros use it.
+ */
 typedef struct afw_extension_inf_s
 afw_extension_inf_t;
 
+/**
+ * @brief Opaque instance type for interface `afw_adapter_factory`.
+ *
+ * Public name is `afw_adapter_factory_t`. Full
+ * `struct afw_adapter_factory_s` is in the generated
+ * interface header. Call methods via
+ * `afw_adapter_factory_<method>(…)` macros, not by
+ * assuming a single private layout beyond the published
+ * struct (implementations may embed/extend in .c).
+ */
 typedef struct afw_adapter_factory_s
 afw_adapter_factory_t;
 
+/**
+ * @brief Vtable/inf type for interface `afw_adapter_factory`.
+ *
+ * Public name is `afw_adapter_factory_inf_t`.
+ * Instance `inf` points here; call macros use it.
+ */
 typedef struct afw_adapter_factory_inf_s
 afw_adapter_factory_inf_t;
 
+/**
+ * @brief Opaque instance type for interface `afw_adapter`.
+ *
+ * Public name is `afw_adapter_t`. Full
+ * `struct afw_adapter_s` is in the generated
+ * interface header. Call methods via
+ * `afw_adapter_<method>(…)` macros, not by
+ * assuming a single private layout beyond the published
+ * struct (implementations may embed/extend in .c).
+ */
 typedef struct afw_adapter_s
 afw_adapter_t;
 
+/**
+ * @brief Vtable/inf type for interface `afw_adapter`.
+ *
+ * Public name is `afw_adapter_inf_t`.
+ * Instance `inf` points here; call macros use it.
+ */
 typedef struct afw_adapter_inf_s
 afw_adapter_inf_t;
 
+/**
+ * @brief Opaque instance type for interface `afw_adapter_object_type_cache`.
+ *
+ * Public name is `afw_adapter_object_type_cache_t`. Full
+ * `struct afw_adapter_object_type_cache_s` is in the generated
+ * interface header. Call methods via
+ * `afw_adapter_object_type_cache_<method>(…)` macros, not by
+ * assuming a single private layout beyond the published
+ * struct (implementations may embed/extend in .c).
+ */
 typedef struct afw_adapter_object_type_cache_s
 afw_adapter_object_type_cache_t;
 
+/**
+ * @brief Vtable/inf type for interface `afw_adapter_object_type_cache`.
+ *
+ * Public name is `afw_adapter_object_type_cache_inf_t`.
+ * Instance `inf` points here; call macros use it.
+ */
 typedef struct afw_adapter_object_type_cache_inf_s
 afw_adapter_object_type_cache_inf_t;
 
+/**
+ * @brief Opaque instance type for interface `afw_adapter_session`.
+ *
+ * Public name is `afw_adapter_session_t`. Full
+ * `struct afw_adapter_session_s` is in the generated
+ * interface header. Call methods via
+ * `afw_adapter_session_<method>(…)` macros, not by
+ * assuming a single private layout beyond the published
+ * struct (implementations may embed/extend in .c).
+ */
 typedef struct afw_adapter_session_s
 afw_adapter_session_t;
 
+/**
+ * @brief Vtable/inf type for interface `afw_adapter_session`.
+ *
+ * Public name is `afw_adapter_session_inf_t`.
+ * Instance `inf` points here; call macros use it.
+ */
 typedef struct afw_adapter_session_inf_s
 afw_adapter_session_inf_t;
 
+/**
+ * @brief Opaque instance type for interface `afw_adapter_transaction`.
+ *
+ * Public name is `afw_adapter_transaction_t`. Full
+ * `struct afw_adapter_transaction_s` is in the generated
+ * interface header. Call methods via
+ * `afw_adapter_transaction_<method>(…)` macros, not by
+ * assuming a single private layout beyond the published
+ * struct (implementations may embed/extend in .c).
+ */
 typedef struct afw_adapter_transaction_s
 afw_adapter_transaction_t;
 
+/**
+ * @brief Vtable/inf type for interface `afw_adapter_transaction`.
+ *
+ * Public name is `afw_adapter_transaction_inf_t`.
+ * Instance `inf` points here; call macros use it.
+ */
 typedef struct afw_adapter_transaction_inf_s
 afw_adapter_transaction_inf_t;
 
+/**
+ * @brief Opaque instance type for interface `afw_adapter_impl_index_cursor`.
+ *
+ * Public name is `afw_adapter_impl_index_cursor_t`. Full
+ * `struct afw_adapter_impl_index_cursor_s` is in the generated
+ * interface header. Call methods via
+ * `afw_adapter_impl_index_cursor_<method>(…)` macros, not by
+ * assuming a single private layout beyond the published
+ * struct (implementations may embed/extend in .c).
+ */
 typedef struct afw_adapter_impl_index_cursor_s
 afw_adapter_impl_index_cursor_t;
 
+/**
+ * @brief Vtable/inf type for interface `afw_adapter_impl_index_cursor`.
+ *
+ * Public name is `afw_adapter_impl_index_cursor_inf_t`.
+ * Instance `inf` points here; call macros use it.
+ */
 typedef struct afw_adapter_impl_index_cursor_inf_s
 afw_adapter_impl_index_cursor_inf_t;
 
+/**
+ * @brief Opaque instance type for interface `afw_adapter_key_value`.
+ *
+ * Public name is `afw_adapter_key_value_t`. Full
+ * `struct afw_adapter_key_value_s` is in the generated
+ * interface header. Call methods via
+ * `afw_adapter_key_value_<method>(…)` macros, not by
+ * assuming a single private layout beyond the published
+ * struct (implementations may embed/extend in .c).
+ */
 typedef struct afw_adapter_key_value_s
 afw_adapter_key_value_t;
 
+/**
+ * @brief Vtable/inf type for interface `afw_adapter_key_value`.
+ *
+ * Public name is `afw_adapter_key_value_inf_t`.
+ * Instance `inf` points here; call macros use it.
+ */
 typedef struct afw_adapter_key_value_inf_s
 afw_adapter_key_value_inf_t;
 
+/**
+ * @brief Opaque instance type for interface `afw_adapter_impl_index`.
+ *
+ * Public name is `afw_adapter_impl_index_t`. Full
+ * `struct afw_adapter_impl_index_s` is in the generated
+ * interface header. Call methods via
+ * `afw_adapter_impl_index_<method>(…)` macros, not by
+ * assuming a single private layout beyond the published
+ * struct (implementations may embed/extend in .c).
+ */
 typedef struct afw_adapter_impl_index_s
 afw_adapter_impl_index_t;
 
+/**
+ * @brief Vtable/inf type for interface `afw_adapter_impl_index`.
+ *
+ * Public name is `afw_adapter_impl_index_inf_t`.
+ * Instance `inf` points here; call macros use it.
+ */
 typedef struct afw_adapter_impl_index_inf_s
 afw_adapter_impl_index_inf_t;
 
+/**
+ * @brief Opaque instance type for interface `afw_authorization_handler_factory`.
+ *
+ * Public name is `afw_authorization_handler_factory_t`. Full
+ * `struct afw_authorization_handler_factory_s` is in the generated
+ * interface header. Call methods via
+ * `afw_authorization_handler_factory_<method>(…)` macros, not by
+ * assuming a single private layout beyond the published
+ * struct (implementations may embed/extend in .c).
+ */
 typedef struct afw_authorization_handler_factory_s
 afw_authorization_handler_factory_t;
 
+/**
+ * @brief Vtable/inf type for interface `afw_authorization_handler_factory`.
+ *
+ * Public name is `afw_authorization_handler_factory_inf_t`.
+ * Instance `inf` points here; call macros use it.
+ */
 typedef struct afw_authorization_handler_factory_inf_s
 afw_authorization_handler_factory_inf_t;
 
+/**
+ * @brief Opaque instance type for interface `afw_authorization_handler`.
+ *
+ * Public name is `afw_authorization_handler_t`. Full
+ * `struct afw_authorization_handler_s` is in the generated
+ * interface header. Call methods via
+ * `afw_authorization_handler_<method>(…)` macros, not by
+ * assuming a single private layout beyond the published
+ * struct (implementations may embed/extend in .c).
+ */
 typedef struct afw_authorization_handler_s
 afw_authorization_handler_t;
 
+/**
+ * @brief Vtable/inf type for interface `afw_authorization_handler`.
+ *
+ * Public name is `afw_authorization_handler_inf_t`.
+ * Instance `inf` points here; call macros use it.
+ */
 typedef struct afw_authorization_handler_inf_s
 afw_authorization_handler_inf_t;
 
+/**
+ * @brief Opaque instance type for interface `afw_content_type`.
+ *
+ * Public name is `afw_content_type_t`. Full
+ * `struct afw_content_type_s` is in the generated
+ * interface header. Call methods via
+ * `afw_content_type_<method>(…)` macros, not by
+ * assuming a single private layout beyond the published
+ * struct (implementations may embed/extend in .c).
+ */
 typedef struct afw_content_type_s
 afw_content_type_t;
 
+/**
+ * @brief Vtable/inf type for interface `afw_content_type`.
+ *
+ * Public name is `afw_content_type_inf_t`.
+ * Instance `inf` points here; call macros use it.
+ */
 typedef struct afw_content_type_inf_s
 afw_content_type_inf_t;
 
+/**
+ * @brief Opaque instance type for interface `afw_content_type_object_list_writer`.
+ *
+ * Public name is `afw_content_type_object_list_writer_t`. Full
+ * `struct afw_content_type_object_list_writer_s` is in the generated
+ * interface header. Call methods via
+ * `afw_content_type_object_list_writer_<method>(…)` macros, not by
+ * assuming a single private layout beyond the published
+ * struct (implementations may embed/extend in .c).
+ */
 typedef struct afw_content_type_object_list_writer_s
 afw_content_type_object_list_writer_t;
 
+/**
+ * @brief Vtable/inf type for interface `afw_content_type_object_list_writer`.
+ *
+ * Public name is `afw_content_type_object_list_writer_inf_t`.
+ * Instance `inf` points here; call macros use it.
+ */
 typedef struct afw_content_type_object_list_writer_inf_s
 afw_content_type_object_list_writer_inf_t;
 
+/**
+ * @brief Opaque instance type for interface `afw_data_type`.
+ *
+ * Public name is `afw_data_type_t`. Full
+ * `struct afw_data_type_s` is in the generated
+ * interface header. Call methods via
+ * `afw_data_type_<method>(…)` macros, not by
+ * assuming a single private layout beyond the published
+ * struct (implementations may embed/extend in .c).
+ */
 typedef struct afw_data_type_s
 afw_data_type_t;
 
+/**
+ * @brief Vtable/inf type for interface `afw_data_type`.
+ *
+ * Public name is `afw_data_type_inf_t`.
+ * Instance `inf` points here; call macros use it.
+ */
 typedef struct afw_data_type_inf_s
 afw_data_type_inf_t;
 
+/**
+ * @brief Opaque instance type for interface `afw_array_setter`.
+ *
+ * Public name is `afw_array_setter_t`. Full
+ * `struct afw_array_setter_s` is in the generated
+ * interface header. Call methods via
+ * `afw_array_setter_<method>(…)` macros, not by
+ * assuming a single private layout beyond the published
+ * struct (implementations may embed/extend in .c).
+ */
 typedef struct afw_array_setter_s
 afw_array_setter_t;
 
+/**
+ * @brief Vtable/inf type for interface `afw_array_setter`.
+ *
+ * Public name is `afw_array_setter_inf_t`.
+ * Instance `inf` points here; call macros use it.
+ */
 typedef struct afw_array_setter_inf_s
 afw_array_setter_inf_t;
 
+/**
+ * @brief Opaque instance type for interface `afw_array`.
+ *
+ * Public name is `afw_array_t`. Full
+ * `struct afw_array_s` is in the generated
+ * interface header. Call methods via
+ * `afw_array_<method>(…)` macros, not by
+ * assuming a single private layout beyond the published
+ * struct (implementations may embed/extend in .c).
+ */
 typedef struct afw_array_s
 afw_array_t;
 
+/**
+ * @brief Vtable/inf type for interface `afw_array`.
+ *
+ * Public name is `afw_array_inf_t`.
+ * Instance `inf` points here; call macros use it.
+ */
 typedef struct afw_array_inf_s
 afw_array_inf_t;
 
+/**
+ * @brief Opaque instance type for interface `afw_log_factory`.
+ *
+ * Public name is `afw_log_factory_t`. Full
+ * `struct afw_log_factory_s` is in the generated
+ * interface header. Call methods via
+ * `afw_log_factory_<method>(…)` macros, not by
+ * assuming a single private layout beyond the published
+ * struct (implementations may embed/extend in .c).
+ */
 typedef struct afw_log_factory_s
 afw_log_factory_t;
 
+/**
+ * @brief Vtable/inf type for interface `afw_log_factory`.
+ *
+ * Public name is `afw_log_factory_inf_t`.
+ * Instance `inf` points here; call macros use it.
+ */
 typedef struct afw_log_factory_inf_s
 afw_log_factory_inf_t;
 
+/**
+ * @brief Opaque instance type for interface `afw_log`.
+ *
+ * Public name is `afw_log_t`. Full
+ * `struct afw_log_s` is in the generated
+ * interface header. Call methods via
+ * `afw_log_<method>(…)` macros, not by
+ * assuming a single private layout beyond the published
+ * struct (implementations may embed/extend in .c).
+ */
 typedef struct afw_log_s
 afw_log_t;
 
+/**
+ * @brief Vtable/inf type for interface `afw_log`.
+ *
+ * Public name is `afw_log_inf_t`.
+ * Instance `inf` points here; call macros use it.
+ */
 typedef struct afw_log_inf_s
 afw_log_inf_t;
 
+/**
+ * @brief Opaque instance type for interface `afw_object_setter`.
+ *
+ * Public name is `afw_object_setter_t`. Full
+ * `struct afw_object_setter_s` is in the generated
+ * interface header. Call methods via
+ * `afw_object_setter_<method>(…)` macros, not by
+ * assuming a single private layout beyond the published
+ * struct (implementations may embed/extend in .c).
+ */
 typedef struct afw_object_setter_s
 afw_object_setter_t;
 
+/**
+ * @brief Vtable/inf type for interface `afw_object_setter`.
+ *
+ * Public name is `afw_object_setter_inf_t`.
+ * Instance `inf` points here; call macros use it.
+ */
 typedef struct afw_object_setter_inf_s
 afw_object_setter_inf_t;
 
+/**
+ * @brief Opaque instance type for interface `afw_object`.
+ *
+ * Public name is `afw_object_t`. Full
+ * `struct afw_object_s` is in the generated
+ * interface header. Call methods via
+ * `afw_object_<method>(…)` macros, not by
+ * assuming a single private layout beyond the published
+ * struct (implementations may embed/extend in .c).
+ */
 typedef struct afw_object_s
 afw_object_t;
 
+/**
+ * @brief Vtable/inf type for interface `afw_object`.
+ *
+ * Public name is `afw_object_inf_t`.
+ * Instance `inf` points here; call macros use it.
+ */
 typedef struct afw_object_inf_s
 afw_object_inf_t;
 
+/**
+ * @brief Opaque instance type for interface `afw_server`.
+ *
+ * Public name is `afw_server_t`. Full
+ * `struct afw_server_s` is in the generated
+ * interface header. Call methods via
+ * `afw_server_<method>(…)` macros, not by
+ * assuming a single private layout beyond the published
+ * struct (implementations may embed/extend in .c).
+ */
 typedef struct afw_server_s
 afw_server_t;
 
+/**
+ * @brief Vtable/inf type for interface `afw_server`.
+ *
+ * Public name is `afw_server_inf_t`.
+ * Instance `inf` points here; call macros use it.
+ */
 typedef struct afw_server_inf_s
 afw_server_inf_t;
 
+/**
+ * @brief Opaque instance type for interface `afw_service_type`.
+ *
+ * Public name is `afw_service_type_t`. Full
+ * `struct afw_service_type_s` is in the generated
+ * interface header. Call methods via
+ * `afw_service_type_<method>(…)` macros, not by
+ * assuming a single private layout beyond the published
+ * struct (implementations may embed/extend in .c).
+ */
 typedef struct afw_service_type_s
 afw_service_type_t;
 
+/**
+ * @brief Vtable/inf type for interface `afw_service_type`.
+ *
+ * Public name is `afw_service_type_inf_t`.
+ * Instance `inf` points here; call macros use it.
+ */
 typedef struct afw_service_type_inf_s
 afw_service_type_inf_t;
 
+/**
+ * @brief Opaque instance type for interface `afw_object_associative_array`.
+ *
+ * Public name is `afw_object_associative_array_t`. Full
+ * `struct afw_object_associative_array_s` is in the generated
+ * interface header. Call methods via
+ * `afw_object_associative_array_<method>(…)` macros, not by
+ * assuming a single private layout beyond the published
+ * struct (implementations may embed/extend in .c).
+ */
 typedef struct afw_object_associative_array_s
 afw_object_associative_array_t;
 
+/**
+ * @brief Vtable/inf type for interface `afw_object_associative_array`.
+ *
+ * Public name is `afw_object_associative_array_inf_t`.
+ * Instance `inf` points here; call macros use it.
+ */
 typedef struct afw_object_associative_array_inf_s
 afw_object_associative_array_inf_t;
 
+/**
+ * @brief Opaque instance type for interface `afw_request_handler_factory`.
+ *
+ * Public name is `afw_request_handler_factory_t`. Full
+ * `struct afw_request_handler_factory_s` is in the generated
+ * interface header. Call methods via
+ * `afw_request_handler_factory_<method>(…)` macros, not by
+ * assuming a single private layout beyond the published
+ * struct (implementations may embed/extend in .c).
+ */
 typedef struct afw_request_handler_factory_s
 afw_request_handler_factory_t;
 
+/**
+ * @brief Vtable/inf type for interface `afw_request_handler_factory`.
+ *
+ * Public name is `afw_request_handler_factory_inf_t`.
+ * Instance `inf` points here; call macros use it.
+ */
 typedef struct afw_request_handler_factory_inf_s
 afw_request_handler_factory_inf_t;
 
+/**
+ * @brief Opaque instance type for interface `afw_request_handler`.
+ *
+ * Public name is `afw_request_handler_t`. Full
+ * `struct afw_request_handler_s` is in the generated
+ * interface header. Call methods via
+ * `afw_request_handler_<method>(…)` macros, not by
+ * assuming a single private layout beyond the published
+ * struct (implementations may embed/extend in .c).
+ */
 typedef struct afw_request_handler_s
 afw_request_handler_t;
 
+/**
+ * @brief Vtable/inf type for interface `afw_request_handler`.
+ *
+ * Public name is `afw_request_handler_inf_t`.
+ * Instance `inf` points here; call macros use it.
+ */
 typedef struct afw_request_handler_inf_s
 afw_request_handler_inf_t;
 
+/**
+ * @brief Opaque instance type for interface `afw_connection`.
+ *
+ * Public name is `afw_connection_t`. Full
+ * `struct afw_connection_s` is in the generated
+ * interface header. Call methods via
+ * `afw_connection_<method>(…)` macros, not by
+ * assuming a single private layout beyond the published
+ * struct (implementations may embed/extend in .c).
+ */
 typedef struct afw_connection_s
 afw_connection_t;
 
+/**
+ * @brief Vtable/inf type for interface `afw_connection`.
+ *
+ * Public name is `afw_connection_inf_t`.
+ * Instance `inf` points here; call macros use it.
+ */
 typedef struct afw_connection_inf_s
 afw_connection_inf_t;
 
+/**
+ * @brief Opaque instance type for interface `afw_iterator`.
+ *
+ * Public name is `afw_iterator_t`. Full
+ * `struct afw_iterator_s` is in the generated
+ * interface header. Call methods via
+ * `afw_iterator_<method>(…)` macros, not by
+ * assuming a single private layout beyond the published
+ * struct (implementations may embed/extend in .c).
+ */
 typedef struct afw_iterator_s
 afw_iterator_t;
 
+/**
+ * @brief Vtable/inf type for interface `afw_iterator`.
+ *
+ * Public name is `afw_iterator_inf_t`.
+ * Instance `inf` points here; call macros use it.
+ */
 typedef struct afw_iterator_inf_s
 afw_iterator_inf_t;
 
+/**
+ * @brief Opaque instance type for interface `afw_request`.
+ *
+ * Public name is `afw_request_t`. Full
+ * `struct afw_request_s` is in the generated
+ * interface header. Call methods via
+ * `afw_request_<method>(…)` macros, not by
+ * assuming a single private layout beyond the published
+ * struct (implementations may embed/extend in .c).
+ */
 typedef struct afw_request_s
 afw_request_t;
 
+/**
+ * @brief Vtable/inf type for interface `afw_request`.
+ *
+ * Public name is `afw_request_inf_t`.
+ * Instance `inf` points here; call macros use it.
+ */
 typedef struct afw_request_inf_s
 afw_request_inf_t;
 
+/**
+ * @brief Opaque instance type for interface `afw_stream`.
+ *
+ * Public name is `afw_stream_t`. Full
+ * `struct afw_stream_s` is in the generated
+ * interface header. Call methods via
+ * `afw_stream_<method>(…)` macros, not by
+ * assuming a single private layout beyond the published
+ * struct (implementations may embed/extend in .c).
+ */
 typedef struct afw_stream_s
 afw_stream_t;
 
+/**
+ * @brief Vtable/inf type for interface `afw_stream`.
+ *
+ * Public name is `afw_stream_inf_t`.
+ * Instance `inf` points here; call macros use it.
+ */
 typedef struct afw_stream_inf_s
 afw_stream_inf_t;
 
+/**
+ * @brief Opaque instance type for interface `afw_pool`.
+ *
+ * Public name is `afw_pool_t`. Full
+ * `struct afw_pool_s` is in the generated
+ * interface header. Call methods via
+ * `afw_pool_<method>(…)` macros, not by
+ * assuming a single private layout beyond the published
+ * struct (implementations may embed/extend in .c).
+ */
 typedef struct afw_pool_s
 afw_pool_t;
 
+/**
+ * @brief Vtable/inf type for interface `afw_pool`.
+ *
+ * Public name is `afw_pool_inf_t`.
+ * Instance `inf` points here; call macros use it.
+ */
 typedef struct afw_pool_inf_s
 afw_pool_inf_t;
 
+/**
+ * @brief Opaque instance type for interface `afw_adapter_journal`.
+ *
+ * Public name is `afw_adapter_journal_t`. Full
+ * `struct afw_adapter_journal_s` is in the generated
+ * interface header. Call methods via
+ * `afw_adapter_journal_<method>(…)` macros, not by
+ * assuming a single private layout beyond the published
+ * struct (implementations may embed/extend in .c).
+ */
 typedef struct afw_adapter_journal_s
 afw_adapter_journal_t;
 
+/**
+ * @brief Vtable/inf type for interface `afw_adapter_journal`.
+ *
+ * Public name is `afw_adapter_journal_inf_t`.
+ * Instance `inf` points here; call macros use it.
+ */
 typedef struct afw_adapter_journal_inf_s
 afw_adapter_journal_inf_t;
 
+/**
+ * @brief Opaque instance type for interface `afw_value`.
+ *
+ * Public name is `afw_value_t`. Full
+ * `struct afw_value_s` is in the generated
+ * interface header. Call methods via
+ * `afw_value_<method>(…)` macros, not by
+ * assuming a single private layout beyond the published
+ * struct (implementations may embed/extend in .c).
+ *
+ * **Special:** many different value-kind structs are
+ * passed as `afw_value_t *`. See @ref afw_value.
+ */
 typedef struct afw_value_s
 afw_value_t;
 
+/**
+ * @brief Vtable/inf type for interface `afw_value`.
+ *
+ * Public name is `afw_value_inf_t`.
+ * Instance `inf` points here; call macros use it.
+ */
 typedef struct afw_value_inf_s
 afw_value_inf_t;
 
+/**
+ * @brief Opaque instance type for interface `afw_variable_handler`.
+ *
+ * Public name is `afw_variable_handler_t`. Full
+ * `struct afw_variable_handler_s` is in the generated
+ * interface header. Call methods via
+ * `afw_variable_handler_<method>(…)` macros, not by
+ * assuming a single private layout beyond the published
+ * struct (implementations may embed/extend in .c).
+ */
 typedef struct afw_variable_handler_s
 afw_variable_handler_t;
 
+/**
+ * @brief Vtable/inf type for interface `afw_variable_handler`.
+ *
+ * Public name is `afw_variable_handler_inf_t`.
+ * Instance `inf` points here; call macros use it.
+ */
 typedef struct afw_variable_handler_inf_s
 afw_variable_handler_inf_t;
 
+/**
+ * @brief Opaque instance type for interface `afw_writer`.
+ *
+ * Public name is `afw_writer_t`. Full
+ * `struct afw_writer_s` is in the generated
+ * interface header. Call methods via
+ * `afw_writer_<method>(…)` macros, not by
+ * assuming a single private layout beyond the published
+ * struct (implementations may embed/extend in .c).
+ */
 typedef struct afw_writer_s
 afw_writer_t;
 
+/**
+ * @brief Vtable/inf type for interface `afw_writer`.
+ *
+ * Public name is `afw_writer_inf_t`.
+ * Instance `inf` points here; call macros use it.
+ */
 typedef struct afw_writer_inf_s
 afw_writer_inf_t;
 

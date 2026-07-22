@@ -18,7 +18,10 @@
 
 /**
  * @file afw_array_impl.h
- * @brief Helpers for array implementation development.
+ * @brief Helpers for implementing `afw_array` (and related) interfaces.
+ *
+ * See @ref afw_array_impl. Include from implementation `.c` only; callers
+ * use array create helpers and `afw_array_*()` macros.
  */
 
 AFW_BEGIN_DECLARES

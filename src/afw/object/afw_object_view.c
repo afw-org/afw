@@ -8,7 +8,7 @@
 
 /**
  * @file afw_object_view.c
- * @brief General adaptive object view.
+ * @brief Adaptive object view (options-based object projection).
  */
 
 

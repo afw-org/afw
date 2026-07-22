@@ -22,7 +22,7 @@
 
 /**
  * @file afw_curl_function_bindings.h
- * @brief Adaptive Framework core adaptive function bindings header.
+ * @brief Generated adaptive function bindings header for prefix `afw_curl_`.
  */
 
 #include "afw_curl_declare_helpers.h"

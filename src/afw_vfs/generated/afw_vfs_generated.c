@@ -19,7 +19,7 @@
 
 /**
  * @file afw_vfs_generated.c
- * @brief Adaptive Framework register generated (afw_vfs_).
+ * @brief Generated register implementation for `afw_vfs`.
  */
 
 #include "afw.h"

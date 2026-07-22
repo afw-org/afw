@@ -1,4 +1,4 @@
 {
     "name": "afw_adapter_impl_index",
-    "description": "Adapter implementation index interface."
+    "description": "Adapter-side index interface used by index_create / list / remove and\n      by retrieve acceleration when definitions exist. Primarily LMDB today.\n      Call methods via afw_adapter_impl_index_*() macros. See group\n      afw_adapter_index_impl."
 }

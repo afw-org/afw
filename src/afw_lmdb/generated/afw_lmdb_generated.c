@@ -19,7 +19,7 @@
 
 /**
  * @file afw_lmdb_generated.c
- * @brief Adaptive Framework register generated (afw_lmdb_).
+ * @brief Generated register implementation for `afw_lmdb`.
  */
 
 #include "afw.h"

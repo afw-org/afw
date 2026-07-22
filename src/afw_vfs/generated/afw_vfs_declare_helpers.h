@@ -22,7 +22,7 @@
 
 /**
  * @file afw_vfs_declare_helpers.h
- * @brief Adaptive Framework declare helpers for afw_vfs_
+ * @brief Generated declare/define helpers for prefix `afw_vfs_`.
  */
 
 

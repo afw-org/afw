@@ -8,7 +8,7 @@
 
 /**
  * @file afw_context.c
- * @brief Adaptive framework context support.
+ * @brief Context type registration and qualifier push helpers.
  */
 
 #include "afw_internal.h"

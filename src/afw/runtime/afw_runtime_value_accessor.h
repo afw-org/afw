@@ -20,7 +20,7 @@ AFW_BEGIN_DECLARES
 
 /**
  * @file afw_runtime_value_accessor.h
- * @brief Core runtime value accessors.
+ * @brief Runtime object map value accessor callbacks.
  *
  * These are internal functions used by AFW core.  Access to
  * accessors external to core should use the

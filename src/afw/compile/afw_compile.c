@@ -8,8 +8,7 @@
 
 /**
  * @file afw_compile.c
- * @brief AFW parse functions.
- *
+ * @brief Public compile entry points (script, template, expression, JSON).
  */
 
 #include "afw_internal.h"

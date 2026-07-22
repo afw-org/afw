@@ -22,7 +22,7 @@
 
 /**
  * @file afw_ldap_strings.h
- * @brief Adaptive Framework (afw_ldap_) strings header.
+ * @brief Generated string constants header for prefix `afw_ldap_`.
  */
 
 #include "afw_interface.h"
@@ -2318,262 +2318,262 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_LDAP_Q_zz__2576 \
+#define AFW_LDAP_Q_zz__2602 \
     "This is the object type for the optional adapterTypeSpecific parameter of the retrieve_objects() adaptive function when the adapterType of the adapterId is ldap."
 
-/** @brief 'afw_utf8_t' for AFW_LDAP_Q_zz__2576 */
-#define afw_ldap_s_zz__2576 \
-    (&afw_ldap_self_v_zz__2576.internal)
+/** @brief 'afw_utf8_t' for AFW_LDAP_Q_zz__2602 */
+#define afw_ldap_s_zz__2602 \
+    (&afw_ldap_self_v_zz__2602.internal)
 
-/** @brief 'afw_utf8_t' for AFW_LDAP_Q_zz__2576 */
-#define afw_ldap_self_s_zz__2576 \
-    (afw_ldap_self_v_zz__2576.internal)
+/** @brief 'afw_utf8_t' for AFW_LDAP_Q_zz__2602 */
+#define afw_ldap_self_s_zz__2602 \
+    (afw_ldap_self_v_zz__2602.internal)
 
-/** @brief 'afw_value_string_t' for AFW_LDAP_Q_zz__2576 */
+/** @brief 'afw_value_string_t' for AFW_LDAP_Q_zz__2602 */
 extern const afw_value_string_t \
-    afw_ldap_self_v_zz__2576;
+    afw_ldap_self_v_zz__2602;
 
-/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_zz__2576 */
-#define afw_ldap_z_zz__2576 \
-    (afw_ldap_self_v_zz__2576.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_zz__2602 */
+#define afw_ldap_z_zz__2602 \
+    (afw_ldap_self_v_zz__2602.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_LDAP_Q_zz__2576 */
-#define afw_ldap_v_zz__2576 \
-    (&afw_ldap_self_v_zz__2576.pub)
+/** @brief 'const afw_value_t *' for AFW_LDAP_Q_zz__2602 */
+#define afw_ldap_v_zz__2602 \
+    (&afw_ldap_self_v_zz__2602.pub)
 
 
 
 /** @brief #define for string in quotes */
-#define AFW_LDAP_Q_zz__2577 \
+#define AFW_LDAP_Q_zz__2603 \
     "Specify true to prevent the ldap server certificate from being verified when url uses the LDAPS scheme. If this parameter is false or not specified, the adapter does not influence the decision to verify the server certificate."
 
-/** @brief 'afw_utf8_t' for AFW_LDAP_Q_zz__2577 */
-#define afw_ldap_s_zz__2577 \
-    (&afw_ldap_self_v_zz__2577.internal)
+/** @brief 'afw_utf8_t' for AFW_LDAP_Q_zz__2603 */
+#define afw_ldap_s_zz__2603 \
+    (&afw_ldap_self_v_zz__2603.internal)
 
-/** @brief 'afw_utf8_t' for AFW_LDAP_Q_zz__2577 */
-#define afw_ldap_self_s_zz__2577 \
-    (afw_ldap_self_v_zz__2577.internal)
+/** @brief 'afw_utf8_t' for AFW_LDAP_Q_zz__2603 */
+#define afw_ldap_self_s_zz__2603 \
+    (afw_ldap_self_v_zz__2603.internal)
 
-/** @brief 'afw_value_string_t' for AFW_LDAP_Q_zz__2577 */
+/** @brief 'afw_value_string_t' for AFW_LDAP_Q_zz__2603 */
 extern const afw_value_string_t \
-    afw_ldap_self_v_zz__2577;
+    afw_ldap_self_v_zz__2603;
 
-/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_zz__2577 */
-#define afw_ldap_z_zz__2577 \
-    (afw_ldap_self_v_zz__2577.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_zz__2603 */
+#define afw_ldap_z_zz__2603 \
+    (afw_ldap_self_v_zz__2603.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_LDAP_Q_zz__2577 */
-#define afw_ldap_v_zz__2577 \
-    (&afw_ldap_self_v_zz__2577.pub)
+/** @brief 'const afw_value_t *' for AFW_LDAP_Q_zz__2603 */
+#define afw_ldap_v_zz__2603 \
+    (&afw_ldap_self_v_zz__2603.pub)
 
 
 
 /** @brief #define for string in quotes */
-#define AFW_LDAP_Q_zz__2578 \
+#define AFW_LDAP_Q_zz__2604 \
     "Object type for type=adapter adapter_type=ldap bind parameter object type."
 
-/** @brief 'afw_utf8_t' for AFW_LDAP_Q_zz__2578 */
-#define afw_ldap_s_zz__2578 \
-    (&afw_ldap_self_v_zz__2578.internal)
+/** @brief 'afw_utf8_t' for AFW_LDAP_Q_zz__2604 */
+#define afw_ldap_s_zz__2604 \
+    (&afw_ldap_self_v_zz__2604.internal)
 
-/** @brief 'afw_utf8_t' for AFW_LDAP_Q_zz__2578 */
-#define afw_ldap_self_s_zz__2578 \
-    (afw_ldap_self_v_zz__2578.internal)
+/** @brief 'afw_utf8_t' for AFW_LDAP_Q_zz__2604 */
+#define afw_ldap_self_s_zz__2604 \
+    (afw_ldap_self_v_zz__2604.internal)
 
-/** @brief 'afw_value_string_t' for AFW_LDAP_Q_zz__2578 */
+/** @brief 'afw_value_string_t' for AFW_LDAP_Q_zz__2604 */
 extern const afw_value_string_t \
-    afw_ldap_self_v_zz__2578;
+    afw_ldap_self_v_zz__2604;
 
-/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_zz__2578 */
-#define afw_ldap_z_zz__2578 \
-    (afw_ldap_self_v_zz__2578.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_zz__2604 */
+#define afw_ldap_z_zz__2604 \
+    (afw_ldap_self_v_zz__2604.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_LDAP_Q_zz__2578 */
-#define afw_ldap_v_zz__2578 \
-    (&afw_ldap_self_v_zz__2578.pub)
+/** @brief 'const afw_value_t *' for AFW_LDAP_Q_zz__2604 */
+#define afw_ldap_v_zz__2604 \
+    (&afw_ldap_self_v_zz__2604.pub)
 
 
 
 /** @brief #define for string in quotes */
-#define AFW_LDAP_Q_zz__2579 \
+#define AFW_LDAP_Q_zz__2605 \
     "Object type for type=adapter adapter_type=ldap synthetic attribute type object."
 
-/** @brief 'afw_utf8_t' for AFW_LDAP_Q_zz__2579 */
-#define afw_ldap_s_zz__2579 \
-    (&afw_ldap_self_v_zz__2579.internal)
+/** @brief 'afw_utf8_t' for AFW_LDAP_Q_zz__2605 */
+#define afw_ldap_s_zz__2605 \
+    (&afw_ldap_self_v_zz__2605.internal)
 
-/** @brief 'afw_utf8_t' for AFW_LDAP_Q_zz__2579 */
-#define afw_ldap_self_s_zz__2579 \
-    (afw_ldap_self_v_zz__2579.internal)
+/** @brief 'afw_utf8_t' for AFW_LDAP_Q_zz__2605 */
+#define afw_ldap_self_s_zz__2605 \
+    (afw_ldap_self_v_zz__2605.internal)
 
-/** @brief 'afw_value_string_t' for AFW_LDAP_Q_zz__2579 */
+/** @brief 'afw_value_string_t' for AFW_LDAP_Q_zz__2605 */
 extern const afw_value_string_t \
-    afw_ldap_self_v_zz__2579;
+    afw_ldap_self_v_zz__2605;
 
-/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_zz__2579 */
-#define afw_ldap_z_zz__2579 \
-    (afw_ldap_self_v_zz__2579.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_zz__2605 */
+#define afw_ldap_z_zz__2605 \
+    (afw_ldap_self_v_zz__2605.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_LDAP_Q_zz__2579 */
-#define afw_ldap_v_zz__2579 \
-    (&afw_ldap_self_v_zz__2579.pub)
+/** @brief 'const afw_value_t *' for AFW_LDAP_Q_zz__2605 */
+#define afw_ldap_v_zz__2605 \
+    (&afw_ldap_self_v_zz__2605.pub)
 
 
 
 /** @brief #define for string in quotes */
-#define AFW_LDAP_Q_zz__2580 \
+#define AFW_LDAP_Q_zz__2606 \
     "Object type for type=adapter adapter_type=ldap synthetic matching rule use object."
 
-/** @brief 'afw_utf8_t' for AFW_LDAP_Q_zz__2580 */
-#define afw_ldap_s_zz__2580 \
-    (&afw_ldap_self_v_zz__2580.internal)
+/** @brief 'afw_utf8_t' for AFW_LDAP_Q_zz__2606 */
+#define afw_ldap_s_zz__2606 \
+    (&afw_ldap_self_v_zz__2606.internal)
 
-/** @brief 'afw_utf8_t' for AFW_LDAP_Q_zz__2580 */
-#define afw_ldap_self_s_zz__2580 \
-    (afw_ldap_self_v_zz__2580.internal)
+/** @brief 'afw_utf8_t' for AFW_LDAP_Q_zz__2606 */
+#define afw_ldap_self_s_zz__2606 \
+    (afw_ldap_self_v_zz__2606.internal)
 
-/** @brief 'afw_value_string_t' for AFW_LDAP_Q_zz__2580 */
+/** @brief 'afw_value_string_t' for AFW_LDAP_Q_zz__2606 */
 extern const afw_value_string_t \
-    afw_ldap_self_v_zz__2580;
+    afw_ldap_self_v_zz__2606;
 
-/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_zz__2580 */
-#define afw_ldap_z_zz__2580 \
-    (afw_ldap_self_v_zz__2580.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_zz__2606 */
+#define afw_ldap_z_zz__2606 \
+    (afw_ldap_self_v_zz__2606.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_LDAP_Q_zz__2580 */
-#define afw_ldap_v_zz__2580 \
-    (&afw_ldap_self_v_zz__2580.pub)
+/** @brief 'const afw_value_t *' for AFW_LDAP_Q_zz__2606 */
+#define afw_ldap_v_zz__2606 \
+    (&afw_ldap_self_v_zz__2606.pub)
 
 
 
 /** @brief #define for string in quotes */
-#define AFW_LDAP_Q_zz__2581 \
+#define AFW_LDAP_Q_zz__2607 \
     "Object type for type=adapter adapter_type=ldap synthetic matching rule object."
 
-/** @brief 'afw_utf8_t' for AFW_LDAP_Q_zz__2581 */
-#define afw_ldap_s_zz__2581 \
-    (&afw_ldap_self_v_zz__2581.internal)
+/** @brief 'afw_utf8_t' for AFW_LDAP_Q_zz__2607 */
+#define afw_ldap_s_zz__2607 \
+    (&afw_ldap_self_v_zz__2607.internal)
 
-/** @brief 'afw_utf8_t' for AFW_LDAP_Q_zz__2581 */
-#define afw_ldap_self_s_zz__2581 \
-    (afw_ldap_self_v_zz__2581.internal)
+/** @brief 'afw_utf8_t' for AFW_LDAP_Q_zz__2607 */
+#define afw_ldap_self_s_zz__2607 \
+    (afw_ldap_self_v_zz__2607.internal)
 
-/** @brief 'afw_value_string_t' for AFW_LDAP_Q_zz__2581 */
+/** @brief 'afw_value_string_t' for AFW_LDAP_Q_zz__2607 */
 extern const afw_value_string_t \
-    afw_ldap_self_v_zz__2581;
+    afw_ldap_self_v_zz__2607;
 
-/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_zz__2581 */
-#define afw_ldap_z_zz__2581 \
-    (afw_ldap_self_v_zz__2581.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_zz__2607 */
+#define afw_ldap_z_zz__2607 \
+    (afw_ldap_self_v_zz__2607.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_LDAP_Q_zz__2581 */
-#define afw_ldap_v_zz__2581 \
-    (&afw_ldap_self_v_zz__2581.pub)
+/** @brief 'const afw_value_t *' for AFW_LDAP_Q_zz__2607 */
+#define afw_ldap_v_zz__2607 \
+    (&afw_ldap_self_v_zz__2607.pub)
 
 
 
 /** @brief #define for string in quotes */
-#define AFW_LDAP_Q_zz__2582 \
+#define AFW_LDAP_Q_zz__2608 \
     "Object type for type=adapter adapter_type=ldap synthetic object class object."
 
-/** @brief 'afw_utf8_t' for AFW_LDAP_Q_zz__2582 */
-#define afw_ldap_s_zz__2582 \
-    (&afw_ldap_self_v_zz__2582.internal)
+/** @brief 'afw_utf8_t' for AFW_LDAP_Q_zz__2608 */
+#define afw_ldap_s_zz__2608 \
+    (&afw_ldap_self_v_zz__2608.internal)
 
-/** @brief 'afw_utf8_t' for AFW_LDAP_Q_zz__2582 */
-#define afw_ldap_self_s_zz__2582 \
-    (afw_ldap_self_v_zz__2582.internal)
+/** @brief 'afw_utf8_t' for AFW_LDAP_Q_zz__2608 */
+#define afw_ldap_self_s_zz__2608 \
+    (afw_ldap_self_v_zz__2608.internal)
 
-/** @brief 'afw_value_string_t' for AFW_LDAP_Q_zz__2582 */
+/** @brief 'afw_value_string_t' for AFW_LDAP_Q_zz__2608 */
 extern const afw_value_string_t \
-    afw_ldap_self_v_zz__2582;
+    afw_ldap_self_v_zz__2608;
 
-/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_zz__2582 */
-#define afw_ldap_z_zz__2582 \
-    (afw_ldap_self_v_zz__2582.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_zz__2608 */
+#define afw_ldap_z_zz__2608 \
+    (afw_ldap_self_v_zz__2608.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_LDAP_Q_zz__2582 */
-#define afw_ldap_v_zz__2582 \
-    (&afw_ldap_self_v_zz__2582.pub)
+/** @brief 'const afw_value_t *' for AFW_LDAP_Q_zz__2608 */
+#define afw_ldap_v_zz__2608 \
+    (&afw_ldap_self_v_zz__2608.pub)
 
 
 
 /** @brief #define for string in quotes */
-#define AFW_LDAP_Q_zz__2583 \
+#define AFW_LDAP_Q_zz__2609 \
     "Object type for type=adapter adapter_type=ldap synthetic root dse object."
 
-/** @brief 'afw_utf8_t' for AFW_LDAP_Q_zz__2583 */
-#define afw_ldap_s_zz__2583 \
-    (&afw_ldap_self_v_zz__2583.internal)
+/** @brief 'afw_utf8_t' for AFW_LDAP_Q_zz__2609 */
+#define afw_ldap_s_zz__2609 \
+    (&afw_ldap_self_v_zz__2609.internal)
 
-/** @brief 'afw_utf8_t' for AFW_LDAP_Q_zz__2583 */
-#define afw_ldap_self_s_zz__2583 \
-    (afw_ldap_self_v_zz__2583.internal)
+/** @brief 'afw_utf8_t' for AFW_LDAP_Q_zz__2609 */
+#define afw_ldap_self_s_zz__2609 \
+    (afw_ldap_self_v_zz__2609.internal)
 
-/** @brief 'afw_value_string_t' for AFW_LDAP_Q_zz__2583 */
+/** @brief 'afw_value_string_t' for AFW_LDAP_Q_zz__2609 */
 extern const afw_value_string_t \
-    afw_ldap_self_v_zz__2583;
+    afw_ldap_self_v_zz__2609;
 
-/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_zz__2583 */
-#define afw_ldap_z_zz__2583 \
-    (afw_ldap_self_v_zz__2583.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_zz__2609 */
+#define afw_ldap_z_zz__2609 \
+    (afw_ldap_self_v_zz__2609.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_LDAP_Q_zz__2583 */
-#define afw_ldap_v_zz__2583 \
-    (&afw_ldap_self_v_zz__2583.pub)
+/** @brief 'const afw_value_t *' for AFW_LDAP_Q_zz__2609 */
+#define afw_ldap_v_zz__2609 \
+    (&afw_ldap_self_v_zz__2609.pub)
 
 
 
 /** @brief #define for string in quotes */
-#define AFW_LDAP_Q_zz__2584 \
+#define AFW_LDAP_Q_zz__2610 \
     "Object type for type=adapter adapter_type=ldap synthetic schema object."
 
-/** @brief 'afw_utf8_t' for AFW_LDAP_Q_zz__2584 */
-#define afw_ldap_s_zz__2584 \
-    (&afw_ldap_self_v_zz__2584.internal)
+/** @brief 'afw_utf8_t' for AFW_LDAP_Q_zz__2610 */
+#define afw_ldap_s_zz__2610 \
+    (&afw_ldap_self_v_zz__2610.internal)
 
-/** @brief 'afw_utf8_t' for AFW_LDAP_Q_zz__2584 */
-#define afw_ldap_self_s_zz__2584 \
-    (afw_ldap_self_v_zz__2584.internal)
+/** @brief 'afw_utf8_t' for AFW_LDAP_Q_zz__2610 */
+#define afw_ldap_self_s_zz__2610 \
+    (afw_ldap_self_v_zz__2610.internal)
 
-/** @brief 'afw_value_string_t' for AFW_LDAP_Q_zz__2584 */
+/** @brief 'afw_value_string_t' for AFW_LDAP_Q_zz__2610 */
 extern const afw_value_string_t \
-    afw_ldap_self_v_zz__2584;
+    afw_ldap_self_v_zz__2610;
 
-/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_zz__2584 */
-#define afw_ldap_z_zz__2584 \
-    (afw_ldap_self_v_zz__2584.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_zz__2610 */
+#define afw_ldap_z_zz__2610 \
+    (afw_ldap_self_v_zz__2610.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_LDAP_Q_zz__2584 */
-#define afw_ldap_v_zz__2584 \
-    (&afw_ldap_self_v_zz__2584.pub)
+/** @brief 'const afw_value_t *' for AFW_LDAP_Q_zz__2610 */
+#define afw_ldap_v_zz__2610 \
+    (&afw_ldap_self_v_zz__2610.pub)
 
 
 
 /** @brief #define for string in quotes */
-#define AFW_LDAP_Q_zz__2585 \
+#define AFW_LDAP_Q_zz__2611 \
     "Object type for type=adapter adapter_type=ldap synthetic syntax object."
 
-/** @brief 'afw_utf8_t' for AFW_LDAP_Q_zz__2585 */
-#define afw_ldap_s_zz__2585 \
-    (&afw_ldap_self_v_zz__2585.internal)
+/** @brief 'afw_utf8_t' for AFW_LDAP_Q_zz__2611 */
+#define afw_ldap_s_zz__2611 \
+    (&afw_ldap_self_v_zz__2611.internal)
 
-/** @brief 'afw_utf8_t' for AFW_LDAP_Q_zz__2585 */
-#define afw_ldap_self_s_zz__2585 \
-    (afw_ldap_self_v_zz__2585.internal)
+/** @brief 'afw_utf8_t' for AFW_LDAP_Q_zz__2611 */
+#define afw_ldap_self_s_zz__2611 \
+    (afw_ldap_self_v_zz__2611.internal)
 
-/** @brief 'afw_value_string_t' for AFW_LDAP_Q_zz__2585 */
+/** @brief 'afw_value_string_t' for AFW_LDAP_Q_zz__2611 */
 extern const afw_value_string_t \
-    afw_ldap_self_v_zz__2585;
+    afw_ldap_self_v_zz__2611;
 
-/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_zz__2585 */
-#define afw_ldap_z_zz__2585 \
-    (afw_ldap_self_v_zz__2585.internal.s)
+/** @brief 'afw_utf8_z_t *' for AFW_LDAP_Q_zz__2611 */
+#define afw_ldap_z_zz__2611 \
+    (afw_ldap_self_v_zz__2611.internal.s)
 
-/** @brief 'const afw_value_t *' for AFW_LDAP_Q_zz__2585 */
-#define afw_ldap_v_zz__2585 \
-    (&afw_ldap_self_v_zz__2585.pub)
+/** @brief 'const afw_value_t *' for AFW_LDAP_Q_zz__2611 */
+#define afw_ldap_v_zz__2611 \
+    (&afw_ldap_self_v_zz__2611.pub)
 
 
 

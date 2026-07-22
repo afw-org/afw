@@ -62,6 +62,9 @@ Doxygen comments in `src/afw/**/*.h` (and `include/`) must be kept in sync with 
 - `@brief` and descriptive text should accurately reflect the function/macro being documented (avoid copy-pasted descriptions from similar functions).
 - Comment blocks must be lexically balanced. Stray `*/` or unescaped `/*` sequences inside `/** ... */` blocks will trigger `-Werror=comment` during normal C compilation.
 - Central rich group descriptions and mental models belong in `include/afw_doxygen.h` (`@defgroup`). Individual headers use `@addtogroup` + a `@file` block that says "See @ref ...".
+- Prefer **`@addtogroup` of a canonical group** declared in `afw_doxygen.h` (or a deliberate nested `@defgroup` under it). Avoid inventing one-off group names per file that never appear in the tree.
+- When editing a `/** @file … */` block, **preserve the long description** after `@brief` (blank ` *` line, then narrative / related headers / `@ref`). Only change that body when intentionally updating content—do not drop it in bulk cleanups.
+- Interface **call macros** are the developer-facing API; their Doxygen comes from **interface XML + generators**, not from hand-editing `generated/`. See `afw-interfaces-doxygen`.
 
 GitHub renders list markers (`-`, `*`, `+`) as bullets in the PR description view; the source uses dashes or asterisks.
 

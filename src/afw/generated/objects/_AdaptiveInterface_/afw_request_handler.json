@@ -1,4 +1,4 @@
 {
     "name": "afw_request_handler",
-    "description": "Adaptive framework request handler interface."
+    "description": "Handles one class of requests (often adapter REST) after the director\n      matches uriPrefix. Configured as services; factories create instances.\n      Call methods via afw_request_handler_*() macros. See group\n      afw_request_handler under afw_request."
 }

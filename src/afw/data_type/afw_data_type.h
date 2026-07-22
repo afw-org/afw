@@ -18,9 +18,11 @@
 
 /**
  * @file afw_data_type.h
- * @brief Header for Adaptive Framework data type.
+ * @brief Hand helpers around adaptive data types.
  *
- * Also see afw_core_data_types.h.
+ * See @ref afw_data_type and @ref afw_c_api_data_types. Prefer generated
+ * per-type bindings (`afw_data_type_*_binding.h`) and create APIs from
+ * extensions. Also see `afw_core_data_types.h`.
  */
 
 AFW_BEGIN_DECLARES

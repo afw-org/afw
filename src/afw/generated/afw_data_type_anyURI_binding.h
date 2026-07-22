@@ -35,7 +35,7 @@
 
 /**
  * @file afw_data_type_anyURI_binding.h
- * @brief Adaptive data type anyURI header.
+ * @brief Generated header for adaptive data type `anyURI`.
  */
 
 AFW_BEGIN_DECLARES

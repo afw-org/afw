@@ -1,3 +1,8 @@
+/**
+ * @file ldap.c
+ * @brief Manifest register snippet for adapter_type `ldap` (afw_ldap); copied into generated/register_*.c.
+ */
+
 #include "afw.h"
 
 extern const afw_adapter_factory_t

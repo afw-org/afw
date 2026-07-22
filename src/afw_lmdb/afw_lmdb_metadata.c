@@ -6,6 +6,11 @@
  *
  */
 
+/**
+ * @file afw_lmdb_metadata.c
+ * @brief LMDB adapter metadata (schema tables/columns).
+ */
+
 #include "afw.h"
 #include "afw_lmdb_internal.h"
 #include "afw_lmdb_metadata.h"
@@ -17,7 +22,6 @@ const afw_array_t * impl_get_schema_columns(
 const afw_array_t * impl_get_schema_tables(
     afw_lmdb_adapter_session_t *session,
     const afw_pool_t *p, afw_xctx_t *xctx);
-
 
 /* Called by afw_lmdb_adapter_session() to get a metadata object. */
 const afw_object_t * afw_lmdb_metadata_get_object(
@@ -81,6 +85,7 @@ const afw_array_t * afw_lmdb_metadata_retrieve_objects(
 }
 
 /* Determine if afw_lmdb_metadata.c handles an ObjectType. */
+
 afw_boolean_t afw_lmdb_metadata_handles(const afw_utf8_t *object_type_id)
 {
     if (object_type_id  && (

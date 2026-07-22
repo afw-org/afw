@@ -1,3 +1,8 @@
+/**
+ * @file lmdb.c
+ * @brief Manifest register snippet for adapter_type `lmdb` (afw_lmdb); copied into generated/register_*.c.
+ */
+
 #include "afw.h"
 
 extern const afw_adapter_factory_t

@@ -9,7 +9,7 @@
 
 /**
  * @file afw_uuid.c
- * @brief AFW UUID Support
+ * @brief UUID create, parse, and format helpers.
  */
 
 #include "afw_internal.h"

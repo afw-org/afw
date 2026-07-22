@@ -19,7 +19,7 @@
 
 /**
  * @file afw_ldap_strings.c
- * @brief Adaptive Framework builtin objects.
+ * @brief Generated string/const value definitions for prefix `afw_ldap_`.
  */
 
 #include "afw.h"
@@ -554,63 +554,63 @@ afw_ldap_self_v_url = {
 };
 
 const afw_value_string_t
-afw_ldap_self_v_zz__2576 = {
+afw_ldap_self_v_zz__2602 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2576)
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2602)
 };
 
 const afw_value_string_t
-afw_ldap_self_v_zz__2577 = {
+afw_ldap_self_v_zz__2603 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2577)
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2603)
 };
 
 const afw_value_string_t
-afw_ldap_self_v_zz__2578 = {
+afw_ldap_self_v_zz__2604 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2578)
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2604)
 };
 
 const afw_value_string_t
-afw_ldap_self_v_zz__2579 = {
+afw_ldap_self_v_zz__2605 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2579)
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2605)
 };
 
 const afw_value_string_t
-afw_ldap_self_v_zz__2580 = {
+afw_ldap_self_v_zz__2606 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2580)
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2606)
 };
 
 const afw_value_string_t
-afw_ldap_self_v_zz__2581 = {
+afw_ldap_self_v_zz__2607 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2581)
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2607)
 };
 
 const afw_value_string_t
-afw_ldap_self_v_zz__2582 = {
+afw_ldap_self_v_zz__2608 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2582)
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2608)
 };
 
 const afw_value_string_t
-afw_ldap_self_v_zz__2583 = {
+afw_ldap_self_v_zz__2609 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2583)
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2609)
 };
 
 const afw_value_string_t
-afw_ldap_self_v_zz__2584 = {
+afw_ldap_self_v_zz__2610 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2584)
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2610)
 };
 
 const afw_value_string_t
-afw_ldap_self_v_zz__2585 = {
+afw_ldap_self_v_zz__2611 = {
     {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2585)
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2611)
 };
 
 const afw_value_string_t

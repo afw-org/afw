@@ -22,7 +22,7 @@
 
 /**
  * @file afw_curl_runtime_object_maps.h
- * @brief Adaptive Framework runtime object mapping header.
+ * @brief Generated runtime object map registration header.
  */
 
 

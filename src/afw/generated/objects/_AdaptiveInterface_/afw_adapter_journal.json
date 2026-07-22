@@ -1,4 +1,4 @@
 {
     "name": "afw_adapter_journal",
-    "description": "Adapter journal interface."
+    "description": "Optional adapter journal for change history / event replay. Obtained\n      from an adapter session when the adapter supports journaling.\n      Call methods via afw_adapter_journal_*() macros. See group afw_adapter\n      and file/LMDB journal notes."
 }

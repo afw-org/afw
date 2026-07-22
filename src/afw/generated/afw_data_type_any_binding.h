@@ -35,7 +35,7 @@
 
 /**
  * @file afw_data_type_any_binding.h
- * @brief Adaptive data type any header.
+ * @brief Generated header for adaptive data type `any`.
  */
 
 AFW_BEGIN_DECLARES

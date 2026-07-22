@@ -9,7 +9,7 @@
 
 /**
  * @file afw_ldap_syntax_handler.c
- * @brief  Internal LDAP Syntax Handlers
+ * @brief LDAP attribute syntax handlers for metadata.
  */
 
 #include "afw.h"

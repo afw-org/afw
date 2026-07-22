@@ -8,7 +8,7 @@
 
 /**
  * @file afw_utf8_stream.c
- * @brief Adaptive Framework utf-8 stream.
+ * @brief UTF-8 stream helpers over afw_stream.
  */
 
 #include "afw_internal.h"

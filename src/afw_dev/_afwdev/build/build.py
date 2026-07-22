@@ -7,8 +7,10 @@
 # @details Orchestrates the cmake, docs, js, and docker build contexts.
 #          Context flags (build_cmake, build_docs, ...) are independent.
 #          --cdev enables clean, generate, and install for C/Python work;
-#          --all enables every context. With no context selected, cmake is
-#          the default. When --generate is set, `afwdev generate` runs first.
+#          --fulldev enables all contexts plus generate, clean, install, and
+#          scan (full package dev install). --all enables every context only
+#          (not generate/install). With no context selected, cmake is the
+#          default. When --generate is set, `afwdev generate` runs first.
 #
 
 ##
@@ -54,19 +56,27 @@ def run(options):
         'js'
     ]
 
-    # Convenience switches.
+    # Convenience switches (not build contexts).
     build_convenience_switches = [
         'clean',
         'generate',
         'install'
     ]
 
-    # --all sets all build type contexts.
+    # --fulldev: full package dev install profile (sibling of --cdev).
+    # All contexts + generate + clean + install + clang scan.
+    if options.get('build_fulldev', False):
+        options['build_all'] = True
+        for build_convenience_switch in build_convenience_switches:
+            options['build_' + build_convenience_switch] = True
+        options['build_scan'] = True
+
+    # --all sets all build type contexts (does not enable generate/install).
     if options.get('build_all', False):
         for build_type_context in build_type_contexts:
             options['build_' + build_type_context] = True
 
-    # --cdev sets all convenience switches.
+    # --cdev sets convenience switches for C/Python day-to-day work.
     if options.get('build_cdev', False):
         for build_convenience_switch in build_convenience_switches:
             options['build_' + build_convenience_switch] = True

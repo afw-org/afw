@@ -20,7 +20,7 @@
 
 /**
  * @file afw_common.h
- * @brief Adaptive Framework Common Header.
+ * @brief Common types, macros, and includes used throughout AFW.
  * 
  * This header contains `#include`s for common headers that do not have other
  * Adaptive Framework dependencies, typedefs required by afw_interface.h,
@@ -540,7 +540,7 @@ typedef afw_utf8_octet_t afw_utf8_z_t;
  * See RFC 5198 and http://unicode.org/reports/tr15/
  *
  * This string is not null terminated, so it can contain NUL characters. The
- * number of bytes in the sting is stored in len and a pointer to the first
+ * number of bytes in the string is stored in len and a pointer to the first
  * byte in s.
  * 
  * @see afw_utf8_octet_t for more information.
@@ -1625,7 +1625,12 @@ typedef void
     void *data, afw_xctx_t *xctx);
 
 
-/** @brief Struct for typedef afw_environment_t defined in afw_common.h. */
+/**
+ * @brief Process-wide environment (`afw_environment_t`).
+ *
+ * Registry fabric for the AFW process (one per application). Accessed as
+ * `xctx->env`. See group afw_environment.
+ */
 struct afw_environment_s {
 
     /** @brief Pool used to hold environment. */
@@ -1830,7 +1835,11 @@ struct afw_environment_s {
 };
 
 
-/** @brief Struct for typedef afw_xctx_t defined in afw_common.h. */
+/**
+ * @brief Execution context (`afw_xctx_t`): scopes, stack, statement_flow.
+ *
+ * Unit of work for evaluation and requests. See group afw_xctx.
+ */
 struct afw_xctx_s {
 
     /**

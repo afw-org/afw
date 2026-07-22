@@ -18,7 +18,10 @@
 
 /**
  * @file afw_adapter_modify.h
- * @brief Adaptive Framework adapter modify object 
+ * @brief Adapter modify-object convenience API.
+ *
+ * Contributes to @ref afw_adapter. Modify entries and helpers over session
+ * macros; included from `afw_adapter.h`.
  */
 
 AFW_BEGIN_DECLARES

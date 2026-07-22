@@ -18,7 +18,7 @@
 
 /**
  * @file afw_authorization_internal.h
- * @brief Adaptive Framework authorization.
+ * @brief Internal authorization handler and check structures.
  */
 
 AFW_BEGIN_DECLARES

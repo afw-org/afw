@@ -8,7 +8,7 @@
 
 /**
  * @file afw_utf8.c
- * @brief AFW UTF-8 string functions.
+ * @brief UTF-8 string create, compare, and conversion functions.
  */
 
 #include "afw_internal.h"

@@ -19,7 +19,7 @@
 
 /**
  * @file afw_data_type_void_binding.c
- * @brief Adaptive Framework core data types.
+ * @brief Generated core adaptive data type implementations.
  */
 
 #include "afw.h"

@@ -35,7 +35,7 @@
 
 /**
  * @file afw_data_type_script_binding.h
- * @brief Adaptive data type script header.
+ * @brief Generated header for adaptive data type `script`.
  */
 
 AFW_BEGIN_DECLARES

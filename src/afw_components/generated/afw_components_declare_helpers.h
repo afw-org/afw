@@ -22,7 +22,7 @@
 
 /**
  * @file afw_components_declare_helpers.h
- * @brief Adaptive Framework declare helpers for afw_components_
+ * @brief Generated declare/define helpers for prefix `afw_components_`.
  */
 
 

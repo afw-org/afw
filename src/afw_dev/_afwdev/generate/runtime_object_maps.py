@@ -176,7 +176,9 @@ def generate(generated_by, options):
     onGetValueCFunctionNames = []
     with nfc.open(options['generated_dir_path'] + filename, mode='w') as fd:
         c.write_c_prologue(fd, generated_by, 'Adaptive Framework Runtime Object Mapping', copyright)
-        c.write_doxygen_file_section(fd, filename, 'Adaptive Framework runtime object mapping.')
+        c.write_doxygen_file_section(
+            fd, filename,
+            'Generated runtime object map registration implementation.')
         fd.write('\n')
         fd.write('#include "afw.h"\n')
         fd.write('#include "' + options['prefix'] + 'generated.h"\n')
@@ -205,7 +207,9 @@ def generate(generated_by, options):
     msg.info('Generating ' + filename)
     with nfc.open(options['generated_dir_path'] + filename, mode='w') as fd:
         c.write_h_prologue(fd, generated_by, 'Adaptive Framework Runtime Object Mapping Header', copyright, filename)
-        c.write_doxygen_file_section(fd, filename, 'Adaptive Framework runtime object mapping header.')
+        c.write_doxygen_file_section(
+            fd, filename,
+            'Generated runtime object map registration header.')
         fd.write('\n')
         for obj in list:
             write_h_map(fd, options['prefix'], obj, options);

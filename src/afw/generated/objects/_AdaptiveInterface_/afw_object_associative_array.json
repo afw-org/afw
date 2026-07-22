@@ -1,4 +1,4 @@
 {
     "name": "afw_object_associative_array",
-    "description": "This is interface for an object associative array."
+    "description": "Associative array of adaptive objects (keyed object map) for C-side\n      structures. Distinct from adaptive object properties. Call methods\n      via afw_object_associative_array_*() macros. See group afw_object and\n      associative_array helpers."
 }

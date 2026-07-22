@@ -8,7 +8,7 @@
 
 /**
  * @file afw_function_xpathExpression.c
- * @brief afw_function_execute_* functions for xpathExpression.
+ * @brief Adaptive function execute implementations for category `xpathExpression`.
  */
 
 #include "afw.h"

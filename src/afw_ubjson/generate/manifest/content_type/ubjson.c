@@ -1,3 +1,8 @@
+/**
+ * @file ubjson.c
+ * @brief Manifest register snippet for content_type `ubjson` (afw_ubjson); copied into generated/register_*.c.
+ */
+
 #include "afw.h"
 
 extern const afw_content_type_t

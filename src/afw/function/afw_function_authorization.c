@@ -8,7 +8,7 @@
 
 /**
  * @file afw_function_authorization.c
- * @brief afw_function_execute_* functions for authorization.
+ * @brief Adaptive function execute implementations for category `authorization`.
  */
 
 #include "afw.h"

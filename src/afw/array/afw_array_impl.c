@@ -8,7 +8,7 @@
 
 /**
  * @file afw_array_impl.c
- * @brief List interface implementation helpers.
+ * @brief List/array interface implementation helpers.
  */
 
 #include "afw_internal.h"

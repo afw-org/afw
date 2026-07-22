@@ -8,7 +8,7 @@
 
 /**
  * @file afw_file.c
- * @brief Adaptive framework file support
+ * @brief File adapter and local filesystem object storage.
  */
 
 #include "afw_internal.h"

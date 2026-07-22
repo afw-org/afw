@@ -19,7 +19,7 @@
 
 /**
  * @file afw_server_fcgi_generated.c
- * @brief Adaptive Framework register generated (afw_server_fcgi_).
+ * @brief Generated register implementation for `afw_server_fcgi`.
  */
 
 #include "afw.h"

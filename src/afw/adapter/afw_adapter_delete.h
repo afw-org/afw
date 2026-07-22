@@ -18,9 +18,10 @@
 
 /**
  * @file afw_adapter_delete.h
- * @brief Adaptive Framework adapter delete object 
+ * @brief Adapter delete-object convenience API.
  *
- * Contributes to @ref afw_adapter.
+ * Contributes to @ref afw_adapter. Higher-level delete paths over session
+ * macros; included from `afw_adapter.h`.
  */
 
 AFW_BEGIN_DECLARES

@@ -22,7 +22,7 @@
 
 /**
  * @file afw_curl_declare_helpers.h
- * @brief Adaptive Framework declare helpers for afw_curl_
+ * @brief Generated declare/define helpers for prefix `afw_curl_`.
  */
 
 

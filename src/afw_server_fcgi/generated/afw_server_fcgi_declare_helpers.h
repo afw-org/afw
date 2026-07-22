@@ -22,7 +22,7 @@
 
 /**
  * @file afw_server_fcgi_declare_helpers.h
- * @brief Adaptive Framework declare helpers for afw_server_fcgi_
+ * @brief Generated declare/define helpers for prefix `afw_server_fcgi_`.
  */
 
 

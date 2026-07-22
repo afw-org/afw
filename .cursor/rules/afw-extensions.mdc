@@ -8,6 +8,19 @@ alwaysApply: false
 
 Loadable DSOs (`libafwcurl`, `libafwldap`, …). After `afw_environment_load_extension` / conf / **lazy manifest**, their registrations are **equal** to core’s. Interfaces come from core `afw_interface.xml` — these six do not ship their own interface XML.
 
+## Core vs base vs self-contained srcdirs
+
+| Term | Meaning |
+|------|---------|
+| **Core** | `src/afw/` — libafw C runtime |
+| **AFW base** | This whole repository (core + shipped commands/extensions) |
+| **Extension srcdir** | e.g. `src/afw_curl/` — keep **as self-contained as practical** (could move to another package repo) |
+
+- Extension/command srcdirs may use **all public** core APIs (`afw.h`, interface call macros, documented groups).
+- They must **not** depend on `afw_internal.h` or core-private headers/groups.
+- Prefer **per-srcdir** docs (public header `@defgroup`, tests, generate/) over stuffing extension detail into `src/afw/include/afw_doxygen.h`.
+- Core may **lightly** mention base extensions for navigation; not a hard purity rule.
+
 Hosts: `#include "afw.h"` (never `afw_internal.h`). Env APIs: `afw-environment`.
 
 ## Boilerplate (every extension)
