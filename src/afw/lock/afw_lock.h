@@ -18,7 +18,11 @@
 
 /**
  * @file afw_lock.h
- * @brief Read/write and related lock API.
+ * @brief Read/write and related process lock API.
+ *
+ * See @ref afw_lock. Prefer these helpers over ad-hoc mutex usage across
+ * pool/env boundaries; many AFW structures assume single-xctx or documented
+ * multi-thread rules.
  */
 
 AFW_BEGIN_DECLARES

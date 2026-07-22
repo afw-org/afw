@@ -290,6 +290,8 @@
 /**
  * @defgroup afw_file_internal File adapter internal
  * @ingroup afw_c_api_internal
+ *
+ * File adapter implementation details for libafw only.
  */
 
 /** @} */
@@ -320,10 +322,14 @@
 /**
  * @defgroup afw_compile_internal Compile internal
  * @ingroup afw_c_api_internal
+ *
+ * Compiler/parser internals for libafw only (not extension API).
  */
 /**
  * @defgroup afw_code_point Code points (compiler)
  * @ingroup afw_compile
+ *
+ * Unicode code-point helpers used by the Adaptive Script lexer/parser.
  */
 
 /** @} */
@@ -346,10 +352,14 @@
 /**
  * @defgroup afw_request_handler_impl Request handler impl
  * @ingroup afw_request
+ *
+ * Shared helpers for implementing request handlers.
  */
 /**
  * @defgroup afw_request_handler_internal Request handler internal
  * @ingroup afw_c_api_internal
+ *
+ * Request handler internals for libafw only.
  */
 
 /** @} */
@@ -381,6 +391,8 @@
 /**
  * @defgroup afw_content_type_impl Content type impl
  * @ingroup afw_content_type
+ *
+ * Shared helpers for implementing content types (afwdev add-content-type).
  */
 
 /** @} */
@@ -400,10 +412,14 @@
 /**
  * @defgroup afw_authorization_handler_impl Authz handler impl
  * @ingroup afw_authorization
+ *
+ * Shared helpers for implementing authorization handlers.
  */
 /**
  * @defgroup afw_authorization_internal Authorization internal
  * @ingroup afw_c_api_internal
+ *
+ * Authorization internals for libafw only.
  */
 
 /** @} */
@@ -423,6 +439,8 @@
 /**
  * @defgroup afw_service_internal Service internal
  * @ingroup afw_c_api_internal
+ *
+ * Service lifecycle internals for libafw only.
  */
 
 /** @} */
@@ -700,6 +718,8 @@
 /**
  * @defgroup afw_json_internal JSON internal
  * @ingroup afw_c_api_internal
+ *
+ * JSON parser/writer internals for libafw only.
  */
 
 /** @} */
@@ -728,6 +748,8 @@
 /**
  * @defgroup afw_model_internal Model internal
  * @ingroup afw_c_api_internal
+ *
+ * Model adapter internals for libafw only.
  */
 
 /** @} */
@@ -746,6 +768,8 @@
 /**
  * @defgroup afw_runtime_value_accessor Runtime value accessors
  * @ingroup afw_runtime
+ *
+ * Generated-style accessors that convert C fields on runtime objects to values.
  */
 
 /** @} */
@@ -765,14 +789,20 @@
 /**
  * @defgroup afw_array_impl Array impl helpers
  * @ingroup afw_array
+ *
+ * Shared helpers for implementing adaptive arrays.
  */
 /**
  * @defgroup afw_array_internal Array internal
  * @ingroup afw_c_api_internal
+ *
+ * Array implementation details for libafw only.
  */
 /**
  * @defgroup afw_array_template_internal Array templates internal
  * @ingroup afw_c_api_internal
+ *
+ * C template helpers for array-like structures (libafw only).
  */
 
 /** @} */
@@ -798,6 +828,8 @@
 /**
  * @defgroup afw_application_internal Application internal
  * @ingroup afw_c_api_internal
+ *
+ * Application conf/startup internals for libafw only.
  */
 
 /** @} */
@@ -902,8 +934,9 @@
 /**
  * @defgroup afw_included_commands Commands
  *
- * Command hosts in this package (primarily `afw`) and related local-server
- * / request plumbing under `src/afw_command/`.
+ * Command / host srcdirs shipped in this **AFW base** package (primarily
+ * `src/afw_command/` for the `afw` CLI). Not part of libafw core; they
+ * depend on public core APIs only.
  *
  * Commands load conf and extensions, then compile/eval or serve
  * `--local` requests. Scaffold new commands with `afwdev make-command`.
@@ -912,24 +945,21 @@
 /**
  * @defgroup afw_included_extensions Extensions
  *
- * Loadable extensions (afw_curl, afw_ldap, afw_lmdb, afw_ubjson, afw_vfs,
- * afw_yaml, etc.).
+ * Loadable extension **srcdirs** (and similar packages outside this tree)
+ * that register into the same environment as core.
  *
- * Extensions register the same kinds of things core does (adapter types,
- * content types, functions, etc.) and are first-class after loading.
+ * **Layout:** `src/afw/` is **libafw core**. Other `src/<srcdir>/` trees
+ * (curl, ldap, lmdb, … in this base package) should stay **as
+ * self-contained as practical** — think “could copy this srcdir into
+ * another AFW package repo.” They may use all **public** core headers and
+ * call macros; they must not depend on `afw_internal.h` or core-private
+ * groups. Core may mention base extensions lightly for navigation; detailed
+ * Doxygen for an extension lives in **that extension’s headers**.
  *
- * **Golden path to read first:** `src/afw_curl/` — extension initialize,
- * Adaptive function execute modules, manifest error RV decoder. Public
- * header `afw_curl.h` maps the layout. For adapter-type extensions, also
- * read `afw_vfs` or `afw_ldap` (factory/session impls from afwdev
- * `add-adapter-type` scaffolds).
- *
- * New extensions: @ref afw_dev_extending and @ref afw_dev_implementing.
- */
-
-/**
- * @defgroup afw_curl CURL extension
- * @ingroup afw_included_extensions
+ * After load, extensions are peers of core (adapter types, content types,
+ * functions, …). New extensions: @ref afw_dev_extending,
+ * @ref afw_dev_implementing. In this package, `src/afw_curl/` is a good
+ * functions-focused example; adapter-type examples include ldap/vfs/lmdb.
  */
 
 /**
@@ -950,6 +980,8 @@
 /**
  * @defgroup afw_xctx_internal xctx internal
  * @ingroup afw_c_api_internal
+ *
+ * Execution-context internals for libafw only.
  */
 
 /** @} */

@@ -44,6 +44,17 @@ an existing extension deliberately.
 Adapter-type extensions (e.g. `afw_vfs`, `afw_ldap`) add factory/session
 impls from `add-adapter-type` skeletons.
 
+## Core vs base package layout
+
+- **`src/afw/`** — **libafw core** (pools, values, interfaces, compiler, …).  
+- **Other `src/<srcdir>/`** in this repo — commands and extensions that form
+  **AFW base**. Keep each non-core srcdir **self-contained** enough that it
+  could live in another repository: its own `generate/`, tests, public
+  header, and Doxygen group.  
+- Extensions **depend on public core only** (`afw.h`, call macros) — never
+  `afw_internal.h`. Core may mention base examples lightly; detailed docs
+  for an extension stay **in that srcdir**.
+
 ## Related
 
 - @ref afw_dev_implementing  

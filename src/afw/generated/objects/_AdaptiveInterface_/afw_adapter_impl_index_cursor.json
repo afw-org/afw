@@ -1,4 +1,4 @@
 {
     "name": "afw_adapter_impl_index_cursor",
-    "description": "Adapter implementation index cursor interface."
+    "description": "Cursor over index entries for a sargable retrieve or index walk.\n      Created by the adapter index implementation; not used by most\n      extension authors directly. Call methods via\n      afw_adapter_impl_index_cursor_*() macros. See group\n      afw_adapter_index_impl."
 }

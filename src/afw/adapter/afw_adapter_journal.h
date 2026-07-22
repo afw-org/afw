@@ -20,6 +20,10 @@
 /**
  * @file afw_adapter_journal.h
  * @brief Adapter journal entry helpers and cursor API.
+ *
+ * Contributes to @ref afw_adapter. Journal interface call macros plus hand
+ * helpers for entry iteration; included from `afw_adapter.h`. Not all
+ * adapter types support journals.
  */
 
 AFW_BEGIN_DECLARES

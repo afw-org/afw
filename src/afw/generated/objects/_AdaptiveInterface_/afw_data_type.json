@@ -1,4 +1,4 @@
 {
     "name": "afw_data_type",
-    "description": "Adaptive Data Type."
+    "description": "Adaptive data type: create, convert, and compare values of one type\n      id (string, integer, object, …). Data types are registered in the\n      environment and drive polymorphic functions and value infs. Prefer\n      generated per-type bindings and create helpers over calling this\n      interface by hand. Call methods via afw_data_type_*() macros.\n      See group afw_c_api_data_types."
 }

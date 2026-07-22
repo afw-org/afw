@@ -18,7 +18,11 @@
  * @defgroup afw_ldap LDAP Adapter
  * @ingroup afw_included_extensions
  *
- * Adaptive Framework LDAP adapter.
+ * LDAP adapter type (`src/afw_ldap/`): directory-backed adaptive objects.
+ * This srcdir is self-contained relative to libafw core (public APIs only).
+ * Factory/session pattern from afwdev `add-adapter-type`. Use adapter
+ * session call macros for CRUD; this header maps extension layout and
+ * error RV source ids.
  *
  * @{
  */
@@ -26,6 +30,10 @@
 /**
  * @file afw_ldap.h
  * @brief Public header for the LDAP adapter extension.
+ *
+ * Start here for LDAP as an adapter-type extension example (with
+ * `afw_vfs` / `afw_lmdb`). See @ref afw_included_extensions and
+ * @ref afw_dev_extending.
  */
 
 AFW_LDAP_BEGIN_DECLARES

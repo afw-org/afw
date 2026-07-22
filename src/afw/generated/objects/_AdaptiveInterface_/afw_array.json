@@ -1,4 +1,4 @@
 {
     "name": "afw_array",
-    "description": "Adaptive value array interface."
+    "description": "Adaptive array (list) value interface: count, get, and related list\n      operations. Prefer create helpers and call macros over raw layout.\n      Mutable arrays may expose a setter. Call methods via afw_array_*()\n      macros. See group afw_array."
 }

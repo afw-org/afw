@@ -1,4 +1,4 @@
 {
     "name": "afw_variable_handler",
-    "description": "Adaptive variable handler."
+    "description": "Resolves or supplies variables for a qualifier / context (e.g. custom\n      or request-scoped bags). Used by the qualifier stack and context\n      registration. Call methods via afw_variable_handler_*() macros.\n      See group afw_context and afw_xctx."
 }

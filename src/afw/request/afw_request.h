@@ -18,7 +18,11 @@
 
 /**
  * @file afw_request.h
- * @brief Header for interface afw_request* helpers.
+ * @brief Public helpers for `afw_request` / handler hosts.
+ *
+ * See @ref afw_request. Day-to-day method calls use `afw_request_*()` macros
+ * from the generated interface. Hosts (afwfcgi, afw --local) create request
+ * instances; handlers consume them via the director.
  */
 
 AFW_BEGIN_DECLARES

@@ -40,10 +40,12 @@ AFW_BEGIN_DECLARES
 /**
  * @addtogroup afw_extension_interface afw_extension
  *
- * Interface returned from afw_extension_initialize() of an
- * Adaptive Framework environment extension module. Additional
- * information about an extension is found in `object
- * /afw/_AdaptiveManifest_/<extension_id>`.
+ * Interface returned from afw_extension_initialize() of a loadable
+ * extension module. Identifies extension id/version and libafw compile
+ * version; additional metadata lives `in
+ * /afw/_AdaptiveManifest_/<extension_id>`. See group
+ * afw_included_extensions; example extension srcdirs live outside
+ * libafw core (e.g. curl in this base package).
  *
  * @{
  */
@@ -446,8 +448,10 @@ struct afw_adapter_inf_s {
 /**
  * @addtogroup afw_adapter_object_type_cache_interface afw_adapter_object_type_cache
  *
- * Adapter object type cache interface. This interface is used by
- * afw_adapter_get_object_type().
+ * Per-adapter cache of object type definitions used by
+ * afw_adapter_get_object_type() and related paths. Speeds repeated
+ * type lookups within a session or adapter lifetime. Call methods via
+ * afw_adapter_object_type_cache_*() macros. See group afw_adapter.
  *
  * @{
  */
@@ -1131,7 +1135,10 @@ struct afw_adapter_session_inf_s {
 /**
  * @addtogroup afw_adapter_transaction_interface afw_adapter_transaction
  *
- * Adapter session transaction interface.
+ * Optional transaction on an adapter session (begin/commit/rollback
+ * semantics as implemented by the adapter). Prefer session helpers that
+ * manage transaction lifetime. Call methods via
+ * afw_adapter_transaction_*() macros. See group afw_adapter.
  *
  * @{
  */
@@ -1219,7 +1226,11 @@ struct afw_adapter_transaction_inf_s {
 /**
  * @addtogroup afw_adapter_impl_index_cursor_interface afw_adapter_impl_index_cursor
  *
- * Adapter implementation index cursor interface.
+ * Cursor over index entries for a sargable retrieve or index walk.
+ * Created by the adapter index implementation; not used by most
+ * extension authors directly. Call methods via
+ * afw_adapter_impl_index_cursor_*() macros. See group
+ * afw_adapter_index_impl.
  *
  * @{
  */
@@ -1418,7 +1429,10 @@ struct afw_adapter_impl_index_cursor_inf_s {
 /**
  * @addtogroup afw_adapter_key_value_interface afw_adapter_key_value
  *
- * Adapter implementation of key value interface.
+ * Optional key/value store face on an adapter (binary or string keys).
+ * Used by some adapter implementations for internal or exposed KV
+ * access. Call methods via afw_adapter_key_value_*() macros.
+ * See group afw_adapter.
  *
  * @{
  */
@@ -1609,7 +1623,10 @@ struct afw_adapter_key_value_inf_s {
 /**
  * @addtogroup afw_adapter_impl_index_interface afw_adapter_impl_index
  *
- * Adapter implementation index interface.
+ * Adapter-side index interface used by index_create / list / remove and
+ * by retrieve acceleration when definitions exist. Primarily LMDB today.
+ * Call methods via afw_adapter_impl_index_*() macros. See group
+ * afw_adapter_index_impl.
  *
  * @{
  */
@@ -2071,7 +2088,10 @@ struct afw_adapter_impl_index_inf_s {
 /**
  * @addtogroup afw_authorization_handler_factory_interface afw_authorization_handler_factory
  *
- * Factory to create an instance of an afw_authorization_handler.
+ * Factory that creates authorization_handler instances of one type id.
+ * Registered with the environment; conf constructs handlers. Call
+ * methods via afw_authorization_handler_factory_*() macros.
+ * See group afw_authorization.
  *
  * @{
  */
@@ -2154,7 +2174,10 @@ struct afw_authorization_handler_factory_inf_s {
 /**
  * @addtogroup afw_authorization_handler_interface afw_authorization_handler
  *
- * Adaptive framework authorization handler interface.
+ * Pluggable authorization check: decide allow/deny for an action with
+ * optional obligations/advice. Core consults installed handlers; script
+ * handler runs policy as Adaptive Script. Call methods via
+ * afw_authorization_handler_*() macros. See group afw_authorization.
  *
  * @{
  */
@@ -2616,6 +2639,11 @@ struct afw_content_type_inf_s {
 /**
  * @addtogroup afw_content_type_object_list_writer_interface afw_content_type_object_list_writer
  *
+ * Writes a list of adaptive objects for a content type (e.g. JSON array
+ * of objects in a response body). Used by content-type implementations
+ * when streaming multiple objects. Call methods via
+ * afw_content_type_object_list_writer_*() macros. See group
+ * afw_content_type.
  *
  * @{
  */
@@ -2712,7 +2740,12 @@ struct afw_content_type_object_list_writer_inf_s {
 /**
  * @addtogroup afw_data_type_interface afw_data_type
  *
- * Adaptive Data Type.
+ * Adaptive data type: create, convert, and compare values of one type
+ * id (string, integer, object, …). Data types are registered in the
+ * environment and drive polymorphic functions and value infs. Prefer
+ * generated per-type bindings and create helpers over calling this
+ * interface by hand. Call methods via afw_data_type_*() macros.
+ * See group afw_c_api_data_types.
  *
  * @{
  */
@@ -3130,7 +3163,9 @@ struct afw_data_type_inf_s {
 /**
  * @addtogroup afw_array_setter_interface afw_array_setter
  *
- * Adaptive array setter interface.
+ * Mutable face for an adaptive array (set/add/remove elements). Obtained
+ * when the array implementation allows mutation. Call methods via
+ * afw_array_setter_*() macros. See group afw_array.
  *
  * @{
  */
@@ -3492,7 +3527,10 @@ struct afw_array_setter_inf_s {
 /**
  * @addtogroup afw_array_interface afw_array
  *
- * Adaptive value array interface.
+ * Adaptive array (list) value interface: count, get, and related list
+ * operations. Prefer create helpers and call macros over raw layout.
+ * Mutable arrays may expose a setter. Call methods via afw_array_*()
+ * macros. See group afw_array.
  *
  * @{
  */
@@ -3888,7 +3926,10 @@ struct afw_array_inf_s {
 /**
  * @addtogroup afw_log_factory_interface afw_log_factory
  *
- * Log factory.
+ * Factory that creates log instances of one log type id. Registered with
+ * the environment; conf uses the factory to construct each named log.
+ * Call afw_log_factory_create_log_cede_p() (macro). Implement with
+ * afwdev add-log-type scaffolds. See group afw_log.
  *
  * @{
  */
@@ -4138,8 +4179,9 @@ struct afw_log_inf_s {
 /**
  * @addtogroup afw_object_setter_interface afw_object_setter
  *
- * This is interface used to set properties and meta of an adaptive object.
- * See interface afw_object method get_object_setter for more information.
+ * Mutable face for an adaptive object (set/remove properties and meta).
+ * Returned by afw_object_get_setter() when the object is mutable.
+ * Call methods via afw_object_setter_*() macros. See group afw_object.
  *
  * @{
  */
@@ -4789,8 +4831,10 @@ struct afw_server_inf_s {
 /**
  * @addtogroup afw_service_type_interface afw_service_type
  *
- * Adaptive framework service type interface. Each instance is registered in the
- * environment with type of "service_type" and id of the service type id.
+ * Service type registration: how conf starts a class of long-running
+ * components (adapters, logs, handlers, …). Each instance is registered
+ * in the environment under type "service_type". Call methods via
+ * afw_service_type_*() macros. See group afw_service.
  *
  * @{
  */
@@ -4988,7 +5032,10 @@ struct afw_service_type_inf_s {
 /**
  * @addtogroup afw_object_associative_array_interface afw_object_associative_array
  *
- * This is interface for an object associative array.
+ * Associative array of adaptive objects (keyed object map) for C-side
+ * structures. Distinct from adaptive object properties. Call methods
+ * via afw_object_associative_array_*() macros. See group afw_object and
+ * associative_array helpers.
  *
  * @{
  */
@@ -5247,7 +5294,10 @@ struct afw_object_associative_array_inf_s {
 /**
  * @addtogroup afw_request_handler_factory_interface afw_request_handler_factory
  *
- * Create an instance of an afw_request_handler.
+ * Factory that creates request_handler instances of one handler type.
+ * Registered with the environment; conf constructs handlers used by the
+ * director. Call methods via afw_request_handler_factory_*() macros.
+ * See group afw_request.
  *
  * @{
  */
@@ -5425,7 +5475,9 @@ struct afw_request_handler_inf_s {
 /**
  * @addtogroup afw_connection_interface afw_connection
  *
- * Adaptive Framework connection. This has not yet been developed.
+ * Placeholder connection interface (not fully developed). Do not build
+ * new features on this without checking current core status.
+ * Call methods via afw_connection_*() macros if present.
  *
  * @{
  */
@@ -5487,8 +5539,9 @@ struct afw_connection_inf_s {
 /**
  * @addtogroup afw_iterator_interface afw_iterator
  *
- * This is the interface for an iterator. An iterator is created by the
- * 'afw_value' 'create_iterator()' method.
+ * Iterator over elements of a value that supports iteration (e.g. arrays).
+ * Created by afw_value_create_iterator() when non-NULL. Call methods via
+ * afw_iterator_*() macros. See group afw_value and afw_array.
  *
  * @{
  */
@@ -6487,7 +6540,10 @@ struct afw_pool_inf_s {
 /**
  * @addtogroup afw_adapter_journal_interface afw_adapter_journal
  *
- * Adapter journal interface.
+ * Optional adapter journal for change history / event replay. Obtained
+ * from an adapter session when the adapter supports journaling.
+ * Call methods via afw_adapter_journal_*() macros. See group afw_adapter
+ * and file/LMDB journal notes.
  *
  * @{
  */
@@ -7057,7 +7113,10 @@ struct afw_value_inf_s {
 /**
  * @addtogroup afw_variable_handler_interface afw_variable_handler
  *
- * Adaptive variable handler.
+ * Resolves or supplies variables for a qualifier / context (e.g. custom
+ * or request-scoped bags). Used by the qualifier stack and context
+ * registration. Call methods via afw_variable_handler_*() macros.
+ * See group afw_context and afw_xctx.
  *
  * @{
  */

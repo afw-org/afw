@@ -132215,7 +132215,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2233 \
-    "Adapter object type cache interface. This interface is used by\n      afw_adapter_get_object_type()."
+    "Adapter-side index interface used by index_create / list / remove and\n      by retrieve acceleration when definitions exist. Primarily LMDB today.\n      Call methods via afw_adapter_impl_index_*() macros. See group\n      afw_adapter_index_impl."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2233 */
 #define afw_s_zz__2233 \
@@ -132241,7 +132241,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2234 \
-    "Per-use session on an adapter: retrieve/get/add/modify/replace/delete\n      objects, optional transactions, and related journal/index hooks.\n      Sessions are typically short-lived (request or action scope). Prefer\n      afw_adapter.h helpers that create and release sessions with correct\n      reference counting. Call methods via afw_adapter_session_*()\n      macros (e.g. retrieve_objects, get_object)."
+    "Cursor over index entries for a sargable retrieve or index walk.\n      Created by the adapter index implementation; not used by most\n      extension authors directly. Call methods via\n      afw_adapter_impl_index_cursor_*() macros. See group\n      afw_adapter_index_impl."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2234 */
 #define afw_s_zz__2234 \
@@ -132267,7 +132267,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2235 \
-    "Factory to create an instance of an afw_authorization_handler."
+    "Optional adapter journal for change history / event replay. Obtained\n      from an adapter session when the adapter supports journaling.\n      Call methods via afw_adapter_journal_*() macros. See group afw_adapter\n      and file/LMDB journal notes."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2235 */
 #define afw_s_zz__2235 \
@@ -132293,7 +132293,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2236 \
-    "This extension loads Object Type definitions for Adaptive Layout Components, the building blocks for creating Adaptive Layouts."
+    "Optional key/value store face on an adapter (binary or string keys).\n      Used by some adapter implementations for internal or exposed KV\n      access. Call methods via afw_adapter_key_value_*() macros.\n      See group afw_adapter."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2236 */
 #define afw_s_zz__2236 \
@@ -132319,7 +132319,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2237 \
-    "Adaptive Framework connection. This has not yet been developed."
+    "Per-adapter cache of object type definitions used by\n      afw_adapter_get_object_type() and related paths. Speeds repeated\n      type lookups within a session or adapter lifetime. Call methods via\n      afw_adapter_object_type_cache_*() macros. See group afw_adapter."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2237 */
 #define afw_s_zz__2237 \
@@ -132345,7 +132345,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2238 \
-    "Serialization between adaptive values and media-typed bytes (JSON,\n      YAML, UBJSON, …). Core registers JSON; extensions add others via\n      environment registration. Selected by content-type / conf for\n      request and response bodies. Call methods via\n      afw_content_type_*() macros. See group afw_content_type and\n      afwdev add-content-type for implementers."
+    "Per-use session on an adapter: retrieve/get/add/modify/replace/delete\n      objects, optional transactions, and related journal/index hooks.\n      Sessions are typically short-lived (request or action scope). Prefer\n      afw_adapter.h helpers that create and release sessions with correct\n      reference counting. Call methods via afw_adapter_session_*()\n      macros (e.g. retrieve_objects, get_object)."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2238 */
 #define afw_s_zz__2238 \
@@ -132371,7 +132371,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2239 \
-    "This extension uses libcURL to provide a variety of adaptive functions for use in expressions and rules.  These functions allow users to connect with services over HTTP, SMTP, FTP, and Telnet/SSH."
+    "Optional transaction on an adapter session (begin/commit/rollback\n      semantics as implemented by the adapter). Prefer session helpers that\n      manage transaction lifetime. Call methods via\n      afw_adapter_transaction_*() macros. See group afw_adapter."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2239 */
 #define afw_s_zz__2239 \
@@ -132423,7 +132423,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2240 \
-    "Interface returned from afw_extension_initialize() of an\n      Adaptive Framework environment extension module. Additional\n      information about an extension is found in object\n      /afw/_AdaptiveManifest_/<extension_id>."
+    "Adaptive array (list) value interface: count, get, and related list\n      operations. Prefer create helpers and call macros over raw layout.\n      Mutable arrays may expose a setter. Call methods via afw_array_*()\n      macros. See group afw_array."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2240 */
 #define afw_s_zz__2240 \
@@ -132449,7 +132449,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2241 \
-    "This is the interface for an iterator. An iterator is created by the\n      'afw_value' 'create_iterator()' method."
+    "Mutable face for an adaptive array (set/add/remove elements). Obtained\n      when the array implementation allows mutation. Call methods via\n      afw_array_setter_*() macros. See group afw_array."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2241 */
 #define afw_s_zz__2241 \
@@ -132475,7 +132475,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2242 \
-    "This extension provides support for Lightweight Directory Access Protocol (LDAP). This includes an adapter that allows Adaptive Objects to be retrieved and stored in a LDAP directory."
+    "Pluggable authorization check: decide allow/deny for an action with\n      optional obligations/advice. Core consults installed handlers; script\n      handler runs policy as Adaptive Script. Call methods via\n      afw_authorization_handler_*() macros. See group afw_authorization."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2242 */
 #define afw_s_zz__2242 \
@@ -132501,7 +132501,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2243 \
-    "This extension provides an adapter for retrieving and storing Adaptive Objects in Lightning Memory-Mapped Database (LMDB), an in-memory database that allows for arbitrary key-value pairs to be stored in its database."
+    "Factory that creates authorization_handler instances of one type id.\n      Registered with the environment; conf constructs handlers. Call\n      methods via afw_authorization_handler_factory_*() macros.\n      See group afw_authorization."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2243 */
 #define afw_s_zz__2243 \
@@ -132527,7 +132527,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2244 \
-    "Configurable log destination used by AFW_LOG / environment logging.\n      Prefer the AFW_LOG macros and environment log configuration over\n      calling log methods by hand. Priorities are afw_log_priority_t\n      (see group afw_log). Implement new log types with afwdev add-log-type\n      scaffolds; call surface is afw_log_*() macros."
+    "This extension loads Object Type definitions for Adaptive Layout Components, the building blocks for creating Adaptive Layouts."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2244 */
 #define afw_s_zz__2244 \
@@ -132553,7 +132553,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2245 \
-    "Adaptive object: named properties, meta, path, and object-type driven\n      behavior. Prefer afw_object_create* helpers over raw layout; use\n      afw_object_*() macros for get/set/release and related calls.\n      Objects may be const (permanent) or mutable (often via sessions).\n      Meta (afw_object_meta) drives validation and UI; see group afw_object."
+    "Placeholder connection interface (not fully developed). Do not build\n      new features on this without checking current core status.\n      Call methods via afw_connection_*() macros if present."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2245 */
 #define afw_s_zz__2245 \
@@ -132579,7 +132579,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2246 \
-    "This is interface used to set properties and meta of an adaptive object.\n      See interface afw_object method get_object_setter for more information."
+    "Serialization between adaptive values and media-typed bytes (JSON,\n      YAML, UBJSON, …). Core registers JSON; extensions add others via\n      environment registration. Selected by content-type / conf for\n      request and response bodies. Call methods via\n      afw_content_type_*() macros. See group afw_content_type and\n      afwdev add-content-type for implementers."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2246 */
 #define afw_s_zz__2246 \
@@ -132605,7 +132605,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2247 \
-    "Hierarchical memory pool: fast allocate with bulk free on destroy or\n      release. Most AFW values, objects, and scopes allocate from pools;\n      subpools scope lifetime under a parent. Prefer afw_pool_create* /\n      afw_pool_calloc helpers and call macros over managing APR pools by\n      hand. Do not free individual allocations unless the pool supports it\n      (free_memory path). See group afw_pool."
+    "Writes a list of adaptive objects for a content type (e.g. JSON array\n      of objects in a response body). Used by content-type implementations\n      when streaming multiple objects. Call methods via\n      afw_content_type_object_list_writer_*() macros. See group\n      afw_content_type."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2247 */
 #define afw_s_zz__2247 \
@@ -132631,7 +132631,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2248 \
-    "One HTTP-like request as seen by a host (afwfcgi, afw --local, …).\n      Carries the request xctx, properties (env/params/headers), and\n      read/write content callbacks. Handlers receive this instance from the\n      director. Call methods via afw_request_*() macros. See group\n      afw_request and afw_request_handler."
+    "This extension uses libcURL to provide a variety of adaptive functions for use in expressions and rules.  These functions allow users to connect with services over HTTP, SMTP, FTP, and Telnet/SSH."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2248 */
 #define afw_s_zz__2248 \
@@ -132657,7 +132657,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2249 \
-    "Handles one class of requests (often adapter REST) after the director\n      matches uriPrefix. Configured as services; factories create instances.\n      Call methods via afw_request_handler_*() macros. See group\n      afw_request_handler under afw_request."
+    "Adaptive data type: create, convert, and compare values of one type\n      id (string, integer, object, …). Data types are registered in the\n      environment and drive polymorphic functions and value infs. Prefer\n      generated per-type bindings and create helpers over calling this\n      interface by hand. Call methods via afw_data_type_*() macros.\n      See group afw_c_api_data_types."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2249 */
 #define afw_s_zz__2249 \
@@ -132709,7 +132709,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2250 \
-    "Host-facing server that accepts connections or local calls and creates\n      afw_request instances for handlers. afwfcgi and afw --local implement\n      this contract. Call methods via afw_server_*() macros.\n      See group afw_request."
+    "Interface returned from afw_extension_initialize() of a loadable\n      extension module. Identifies extension id/version and libafw compile\n      version; additional metadata lives in\n      /afw/_AdaptiveManifest_/<extension_id>. See group\n      afw_included_extensions; example extension srcdirs live outside\n      libafw core (e.g. curl in this base package)."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2250 */
 #define afw_s_zz__2250 \
@@ -132735,7 +132735,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2251 \
-    "Adaptive framework service type interface. Each instance is registered in the environment with type of \"service_type\" and id of the service type id."
+    "Iterator over elements of a value that supports iteration (e.g. arrays).\n      Created by afw_value_create_iterator() when non-NULL. Call methods via\n      afw_iterator_*() macros. See group afw_value and afw_array."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2251 */
 #define afw_s_zz__2251 \
@@ -132761,7 +132761,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2252 \
-    "Readable and/or writable byte stream (files, memory, response bodies,\n      stdio). Open helpers live in stream/file headers; progressive large\n      response writes also use this path. Optional read_cb/write_cb fields\n      allow passing the stream into callback-style APIs. Call methods via\n      afw_stream_*() macros. Distinct from adapter retrieve\n      limits/paging. See group afw_stream."
+    "This extension provides support for Lightweight Directory Access Protocol (LDAP). This includes an adapter that allows Adaptive Objects to be retrieved and stored in a LDAP directory."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2252 */
 #define afw_s_zz__2252 \
@@ -132787,7 +132787,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2253 \
-    "This extension provides a content-type handler for Universal Binary JSON (UBJSON), which is similar to JSON but binary in nature, allowing it to be more compressed for storage purposes."
+    "This extension provides an adapter for retrieving and storing Adaptive Objects in Lightning Memory-Mapped Database (LMDB), an in-memory database that allows for arbitrary key-value pairs to be stored in its database."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2253 */
 #define afw_s_zz__2253 \
@@ -132813,7 +132813,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2254 \
-    "Public handle for an adaptive value (`const afw_value_t *`). Callers\n      must not assume a single C struct body: many kind layouts share this\n      face (data-type values, blocks, calls, compiled_value, …). Behavior\n      is selected by inf (especially optional_evaluate). Prefer\n      afw_value_evaluate() and create helpers in afw_value.h over calling\n      optional_* methods when they may be NULL. See group afw_value and\n      developer types-opaques notes."
+    "Configurable log destination used by AFW_LOG / environment logging.\n      Prefer the AFW_LOG macros and environment log configuration over\n      calling log methods by hand. Priorities are afw_log_priority_t\n      (see group afw_log). Implement new log types with afwdev add-log-type\n      scaffolds; call surface is afw_log_*() macros."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2254 */
 #define afw_s_zz__2254 \
@@ -132839,7 +132839,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2255 \
-    "This extension provides an adapter for accessing local files through a Virtual File System interface."
+    "Factory that creates log instances of one log type id. Registered with\n      the environment; conf uses the factory to construct each named log.\n      Call afw_log_factory_create_log_cede_p() (macro). Implement with\n      afwdev add-log-type scaffolds. See group afw_log."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2255 */
 #define afw_s_zz__2255 \
@@ -132865,7 +132865,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2256 \
-    "Incremental text/byte writer used when serializing values (JSON and\n      similar). Supports indent/tab for pretty-print; write_raw_cb for\n      callback-style consumers. Prefer writers over building large\n      intermediate strings when streaming. Call methods via\n      afw_writer_*() macros. See group afw_writer."
+    "Adaptive object: named properties, meta, path, and object-type driven\n      behavior. Prefer afw_object_create* helpers over raw layout; use\n      afw_object_*() macros for get/set/release and related calls.\n      Objects may be const (permanent) or mutable (often via sessions).\n      Meta (afw_object_meta) drives validation and UI; see group afw_object."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2256 */
 #define afw_s_zz__2256 \
@@ -132891,7 +132891,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2257 \
-    "This extension registers a content-type handler for the YAML Ain't Markup Language (YAML) format, which is a more human readable, superset of JSON."
+    "Associative array of adaptive objects (keyed object map) for C-side\n      structures. Distinct from adaptive object properties. Call methods\n      via afw_object_associative_array_*() macros. See group afw_object and\n      associative_array helpers."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2257 */
 #define afw_s_zz__2257 \
@@ -132917,7 +132917,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2258 \
-    "These function are related to data type anyURI.\n\nThe '<anyURI>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+    "Mutable face for an adaptive object (set/remove properties and meta).\n      Returned by afw_object_get_setter() when the object is mutable.\n      Call methods via afw_object_setter_*() macros. See group afw_object."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2258 */
 #define afw_s_zz__2258 \
@@ -132943,7 +132943,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2259 \
-    "These function are related to data type array.\n\nThe '<array>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+    "Hierarchical memory pool: fast allocate with bulk free on destroy or\n      release. Most AFW values, objects, and scopes allocate from pools;\n      subpools scope lifetime under a parent. Prefer afw_pool_create* /\n      afw_pool_calloc helpers and call macros over managing APR pools by\n      hand. Do not free individual allocations unless the pool supports it\n      (free_memory path). See group afw_pool."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2259 */
 #define afw_s_zz__2259 \
@@ -132995,7 +132995,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2260 \
-    "These function are related to data type base64Binary.\n\nThe '<base64Binary>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+    "One HTTP-like request as seen by a host (afwfcgi, afw --local, …).\n      Carries the request xctx, properties (env/params/headers), and\n      read/write content callbacks. Handlers receive this instance from the\n      director. Call methods via afw_request_*() macros. See group\n      afw_request and afw_request_handler."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2260 */
 #define afw_s_zz__2260 \
@@ -133021,7 +133021,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2261 \
-    "These function are related to data type boolean.\n\nThe '<boolean>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+    "Handles one class of requests (often adapter REST) after the director\n      matches uriPrefix. Configured as services; factories create instances.\n      Call methods via afw_request_handler_*() macros. See group\n      afw_request_handler under afw_request."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2261 */
 #define afw_s_zz__2261 \
@@ -133047,7 +133047,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2262 \
-    "These are functions that compile, convert, decompile, and evaluated adaptive syntax."
+    "Factory that creates request_handler instances of one handler type.\n      Registered with the environment; conf constructs handlers used by the\n      director. Call methods via afw_request_handler_factory_*() macros.\n      See group afw_request."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2262 */
 #define afw_s_zz__2262 \
@@ -133073,7 +133073,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2263 \
-    "These are functions that support compiled expressions at runtime. Although some of these can be called directly, they are mainly intended to be called by a compiled unit produced by the Adaptive compiler."
+    "Host-facing server that accepts connections or local calls and creates\n      afw_request instances for handlers. afwfcgi and afw --local implement\n      this contract. Call methods via afw_server_*() macros.\n      See group afw_request."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2263 */
 #define afw_s_zz__2263 \
@@ -133099,7 +133099,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2264 \
-    "These are functions that support compiled scripts at runtime. Although some of these can be called directly, they are mainly intended to be called by a compiled unit produced by the Adaptive compiler."
+    "Service type registration: how conf starts a class of long-running\n      components (adapters, logs, handlers, …). Each instance is registered\n      in the environment under type \"service_type\". Call methods via\n      afw_service_type_*() macros. See group afw_service."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2264 */
 #define afw_s_zz__2264 \
@@ -133125,7 +133125,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2265 \
-    "This authorization mode is used for trusted internal code that does not generally require additional authorization."
+    "Readable and/or writable byte stream (files, memory, response bodies,\n      stdio). Open helpers live in stream/file headers; progressive large\n      response writes also use this path. Optional read_cb/write_cb fields\n      allow passing the stream into callback-style APIs. Call methods via\n      afw_stream_*() macros. Distinct from adapter retrieve\n      limits/paging. See group afw_stream."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2265 */
 #define afw_s_zz__2265 \
@@ -133151,7 +133151,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2266 \
-    "These function are related to data type date.\n\nThe '<date>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+    "This extension provides a content-type handler for Universal Binary JSON (UBJSON), which is similar to JSON but binary in nature, allowing it to be more compressed for storage purposes."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2266 */
 #define afw_s_zz__2266 \
@@ -133177,7 +133177,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2267 \
-    "These function are related to data type dateTime.\n\nThe '<dateTime>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+    "Public handle for an adaptive value (`const afw_value_t *`). Callers\n      must not assume a single C struct body: many kind layouts share this\n      face (data-type values, blocks, calls, compiled_value, …). Behavior\n      is selected by inf (especially optional_evaluate). Prefer\n      afw_value_evaluate() and create helpers in afw_value.h over calling\n      optional_* methods when they may be NULL. See group afw_value and\n      developer types-opaques notes."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2267 */
 #define afw_s_zz__2267 \
@@ -133203,7 +133203,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2268 \
-    "These function are related to data type dayTimeDuration.\n\nThe '<dayTimeDuration>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+    "Resolves or supplies variables for a qualifier / context (e.g. custom\n      or request-scoped bags). Used by the qualifier stack and context\n      registration. Call methods via afw_variable_handler_*() macros.\n      See group afw_context and afw_xctx."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2268 */
 #define afw_s_zz__2268 \
@@ -133229,7 +133229,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2269 \
-    "These function are related to data type dnsName.\n\nThe '<dnsName>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+    "This extension provides an adapter for accessing local files through a Virtual File System interface."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2269 */
 #define afw_s_zz__2269 \
@@ -133281,7 +133281,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2270 \
-    "These function are related to data type double.\n\nThe '<double>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+    "Incremental text/byte writer used when serializing values (JSON and\n      similar). Supports indent/tab for pretty-print; write_raw_cb for\n      callback-style consumers. Prefer writers over building large\n      intermediate strings when streaming. Call methods via\n      afw_writer_*() macros. See group afw_writer."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2270 */
 #define afw_s_zz__2270 \
@@ -133307,7 +133307,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2271 \
-    "These function are related to data type function.\n\nThe '<function>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+    "This extension registers a content-type handler for the YAML Ain't Markup Language (YAML) format, which is a more human readable, superset of JSON."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2271 */
 #define afw_s_zz__2271 \
@@ -133333,7 +133333,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2272 \
-    "These function are related to data type hexBinary.\n\nThe '<hexBinary>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+    "These function are related to data type anyURI.\n\nThe '<anyURI>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2272 */
 #define afw_s_zz__2272 \
@@ -133359,7 +133359,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2273 \
-    "These function are related to data type ia5String. \n\nThe '<ia5String>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+    "These function are related to data type array.\n\nThe '<array>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2273 */
 #define afw_s_zz__2273 \
@@ -133385,7 +133385,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2274 \
-    "These function are related to data type integer.\n\nThe '<integer>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+    "These function are related to data type base64Binary.\n\nThe '<base64Binary>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2274 */
 #define afw_s_zz__2274 \
@@ -133411,7 +133411,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2275 \
-    "This authorization mode is used when running code as an intermediary to user mode. In this mode additional authorization may be required. For example, this mode is used when accessing mapped adapters when doing model processing."
+    "These function are related to data type boolean.\n\nThe '<boolean>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2275 */
 #define afw_s_zz__2275 \
@@ -133437,7 +133437,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2276 \
-    "These function are related to data type ipAddress.\n\nThe '<ipAddress>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+    "These are functions that compile, convert, decompile, and evaluated adaptive syntax."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2276 */
 #define afw_s_zz__2276 \
@@ -133463,7 +133463,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2277 \
-    "These function are related to data type null.\n\nThe '<null>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+    "These are functions that support compiled expressions at runtime. Although some of these can be called directly, they are mainly intended to be called by a compiled unit produced by the Adaptive compiler."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2277 */
 #define afw_s_zz__2277 \
@@ -133489,7 +133489,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2278 \
-    "These function are related to data type object.\n\nThe '<object>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+    "These are functions that support compiled scripts at runtime. Although some of these can be called directly, they are mainly intended to be called by a compiled unit produced by the Adaptive compiler."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2278 */
 #define afw_s_zz__2278 \
@@ -133515,7 +133515,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2279 \
-    "These function are related to data type objectId.\n\nThe '<objectId>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+    "This authorization mode is used for trusted internal code that does not generally require additional authorization."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2279 */
 #define afw_s_zz__2279 \
@@ -133567,7 +133567,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2280 \
-    "These function are related to data type objectPath.\n\nThe '<objectPath>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+    "These function are related to data type date.\n\nThe '<date>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2280 */
 #define afw_s_zz__2280 \
@@ -133593,7 +133593,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2281 \
-    "These function are related to data type password.\n\nThe '<password>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+    "These function are related to data type dateTime.\n\nThe '<dateTime>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2281 */
 #define afw_s_zz__2281 \
@@ -133619,7 +133619,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2282 \
-    "These regexp are related to data type regexp.\n\nThe '<regexp>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+    "These function are related to data type dayTimeDuration.\n\nThe '<dayTimeDuration>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2282 */
 #define afw_s_zz__2282 \
@@ -133645,7 +133645,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2283 \
-    "These functions support JavaScript Object Notation (JSON) that allows block comments, line comments, trailing commas, and other relaxed syntax rules."
+    "These function are related to data type dnsName.\n\nThe '<dnsName>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2283 */
 #define afw_s_zz__2283 \
@@ -133671,7 +133671,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2284 \
-    "These function are related to data type rfc822Name.\n\nThe '<rfc822Name>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+    "These function are related to data type double.\n\nThe '<double>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2284 */
 #define afw_s_zz__2284 \
@@ -133697,7 +133697,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2285 \
-    "These function are related to data type string.\n\nThe '<string>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+    "These function are related to data type function.\n\nThe '<function>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2285 */
 #define afw_s_zz__2285 \
@@ -133723,7 +133723,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2286 \
-    "These template are related to data type template.\n\nThe '<template>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+    "These function are related to data type hexBinary.\n\nThe '<hexBinary>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2286 */
 #define afw_s_zz__2286 \
@@ -133749,7 +133749,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2287 \
-    "These function are related to data type time.\n\nThe '<time>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+    "These function are related to data type ia5String. \n\nThe '<ia5String>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2287 */
 #define afw_s_zz__2287 \
@@ -133775,7 +133775,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2288 \
-    "This authorization mode is used when checking authorization from external sources."
+    "These function are related to data type integer.\n\nThe '<integer>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2288 */
 #define afw_s_zz__2288 \
@@ -133801,7 +133801,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2289 \
-    "These are function that work on all adaptive values and their associated meta."
+    "This authorization mode is used when running code as an intermediary to user mode. In this mode additional authorization may be required. For example, this mode is used when accessing mapped adapters when doing model processing."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2289 */
 #define afw_s_zz__2289 \
@@ -133853,7 +133853,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2290 \
-    "These function are related to data type x500Name.\n\nThe '<x500Name>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+    "These function are related to data type ipAddress.\n\nThe '<ipAddress>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2290 */
 #define afw_s_zz__2290 \
@@ -133879,7 +133879,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2291 \
-    "Functions on path expressions used to navigate in XML documents."
+    "These function are related to data type null.\n\nThe '<null>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2291 */
 #define afw_s_zz__2291 \
@@ -133905,7 +133905,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2292 \
-    "These function are related to data type yearMonthDuration.\n\nThe '<yearMonthDuration>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+    "These function are related to data type object.\n\nThe '<object>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2292 */
 #define afw_s_zz__2292 \
@@ -133926,6 +133926,188 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__2292 */
 #define afw_v_zz__2292 \
     (&afw_self_v_zz__2292.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__2293 \
+    "These function are related to data type objectId.\n\nThe '<objectId>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__2293 */
+#define afw_s_zz__2293 \
+    (&afw_self_v_zz__2293.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__2293 */
+#define afw_self_s_zz__2293 \
+    (afw_self_v_zz__2293.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__2293 */
+extern const afw_value_string_t \
+    afw_self_v_zz__2293;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__2293 */
+#define afw_z_zz__2293 \
+    (afw_self_v_zz__2293.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__2293 */
+#define afw_v_zz__2293 \
+    (&afw_self_v_zz__2293.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__2294 \
+    "These function are related to data type objectPath.\n\nThe '<objectPath>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__2294 */
+#define afw_s_zz__2294 \
+    (&afw_self_v_zz__2294.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__2294 */
+#define afw_self_s_zz__2294 \
+    (afw_self_v_zz__2294.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__2294 */
+extern const afw_value_string_t \
+    afw_self_v_zz__2294;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__2294 */
+#define afw_z_zz__2294 \
+    (afw_self_v_zz__2294.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__2294 */
+#define afw_v_zz__2294 \
+    (&afw_self_v_zz__2294.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__2295 \
+    "These function are related to data type password.\n\nThe '<password>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__2295 */
+#define afw_s_zz__2295 \
+    (&afw_self_v_zz__2295.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__2295 */
+#define afw_self_s_zz__2295 \
+    (afw_self_v_zz__2295.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__2295 */
+extern const afw_value_string_t \
+    afw_self_v_zz__2295;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__2295 */
+#define afw_z_zz__2295 \
+    (afw_self_v_zz__2295.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__2295 */
+#define afw_v_zz__2295 \
+    (&afw_self_v_zz__2295.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__2296 \
+    "These regexp are related to data type regexp.\n\nThe '<regexp>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__2296 */
+#define afw_s_zz__2296 \
+    (&afw_self_v_zz__2296.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__2296 */
+#define afw_self_s_zz__2296 \
+    (afw_self_v_zz__2296.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__2296 */
+extern const afw_value_string_t \
+    afw_self_v_zz__2296;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__2296 */
+#define afw_z_zz__2296 \
+    (afw_self_v_zz__2296.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__2296 */
+#define afw_v_zz__2296 \
+    (&afw_self_v_zz__2296.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__2297 \
+    "These functions support JavaScript Object Notation (JSON) that allows block comments, line comments, trailing commas, and other relaxed syntax rules."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__2297 */
+#define afw_s_zz__2297 \
+    (&afw_self_v_zz__2297.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__2297 */
+#define afw_self_s_zz__2297 \
+    (afw_self_v_zz__2297.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__2297 */
+extern const afw_value_string_t \
+    afw_self_v_zz__2297;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__2297 */
+#define afw_z_zz__2297 \
+    (afw_self_v_zz__2297.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__2297 */
+#define afw_v_zz__2297 \
+    (&afw_self_v_zz__2297.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__2298 \
+    "These function are related to data type rfc822Name.\n\nThe '<rfc822Name>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__2298 */
+#define afw_s_zz__2298 \
+    (&afw_self_v_zz__2298.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__2298 */
+#define afw_self_s_zz__2298 \
+    (afw_self_v_zz__2298.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__2298 */
+extern const afw_value_string_t \
+    afw_self_v_zz__2298;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__2298 */
+#define afw_z_zz__2298 \
+    (afw_self_v_zz__2298.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__2298 */
+#define afw_v_zz__2298 \
+    (&afw_self_v_zz__2298.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__2299 \
+    "These function are related to data type string.\n\nThe '<string>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__2299 */
+#define afw_s_zz__2299 \
+    (&afw_self_v_zz__2299.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__2299 */
+#define afw_self_s_zz__2299 \
+    (afw_self_v_zz__2299.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__2299 */
+extern const afw_value_string_t \
+    afw_self_v_zz__2299;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__2299 */
+#define afw_z_zz__2299 \
+    (afw_self_v_zz__2299.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__2299 */
+#define afw_v_zz__2299 \
+    (&afw_self_v_zz__2299.pub)
 
 
 
@@ -133978,6 +134160,188 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__230 */
 #define afw_v_zz__230 \
     (&afw_self_v_zz__230.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__2300 \
+    "These template are related to data type template.\n\nThe '<template>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__2300 */
+#define afw_s_zz__2300 \
+    (&afw_self_v_zz__2300.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__2300 */
+#define afw_self_s_zz__2300 \
+    (afw_self_v_zz__2300.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__2300 */
+extern const afw_value_string_t \
+    afw_self_v_zz__2300;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__2300 */
+#define afw_z_zz__2300 \
+    (afw_self_v_zz__2300.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__2300 */
+#define afw_v_zz__2300 \
+    (&afw_self_v_zz__2300.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__2301 \
+    "These function are related to data type time.\n\nThe '<time>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__2301 */
+#define afw_s_zz__2301 \
+    (&afw_self_v_zz__2301.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__2301 */
+#define afw_self_s_zz__2301 \
+    (afw_self_v_zz__2301.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__2301 */
+extern const afw_value_string_t \
+    afw_self_v_zz__2301;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__2301 */
+#define afw_z_zz__2301 \
+    (afw_self_v_zz__2301.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__2301 */
+#define afw_v_zz__2301 \
+    (&afw_self_v_zz__2301.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__2302 \
+    "This authorization mode is used when checking authorization from external sources."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__2302 */
+#define afw_s_zz__2302 \
+    (&afw_self_v_zz__2302.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__2302 */
+#define afw_self_s_zz__2302 \
+    (afw_self_v_zz__2302.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__2302 */
+extern const afw_value_string_t \
+    afw_self_v_zz__2302;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__2302 */
+#define afw_z_zz__2302 \
+    (afw_self_v_zz__2302.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__2302 */
+#define afw_v_zz__2302 \
+    (&afw_self_v_zz__2302.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__2303 \
+    "These are function that work on all adaptive values and their associated meta."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__2303 */
+#define afw_s_zz__2303 \
+    (&afw_self_v_zz__2303.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__2303 */
+#define afw_self_s_zz__2303 \
+    (afw_self_v_zz__2303.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__2303 */
+extern const afw_value_string_t \
+    afw_self_v_zz__2303;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__2303 */
+#define afw_z_zz__2303 \
+    (afw_self_v_zz__2303.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__2303 */
+#define afw_v_zz__2303 \
+    (&afw_self_v_zz__2303.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__2304 \
+    "These function are related to data type x500Name.\n\nThe '<x500Name>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__2304 */
+#define afw_s_zz__2304 \
+    (&afw_self_v_zz__2304.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__2304 */
+#define afw_self_s_zz__2304 \
+    (afw_self_v_zz__2304.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__2304 */
+extern const afw_value_string_t \
+    afw_self_v_zz__2304;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__2304 */
+#define afw_z_zz__2304 \
+    (afw_self_v_zz__2304.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__2304 */
+#define afw_v_zz__2304 \
+    (&afw_self_v_zz__2304.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__2305 \
+    "Functions on path expressions used to navigate in XML documents."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__2305 */
+#define afw_s_zz__2305 \
+    (&afw_self_v_zz__2305.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__2305 */
+#define afw_self_s_zz__2305 \
+    (afw_self_v_zz__2305.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__2305 */
+extern const afw_value_string_t \
+    afw_self_v_zz__2305;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__2305 */
+#define afw_z_zz__2305 \
+    (afw_self_v_zz__2305.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__2305 */
+#define afw_v_zz__2305 \
+    (&afw_self_v_zz__2305.pub)
+
+
+
+/** @brief #define for string in quotes */
+#define AFW_Q_zz__2306 \
+    "These function are related to data type yearMonthDuration.\n\nThe '<yearMonthDuration>' in function ids in this category is optional. If omitted, the function will be called polymorphically based of the data type of the first parameter."
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__2306 */
+#define afw_s_zz__2306 \
+    (&afw_self_v_zz__2306.internal)
+
+/** @brief 'afw_utf8_t' for AFW_Q_zz__2306 */
+#define afw_self_s_zz__2306 \
+    (afw_self_v_zz__2306.internal)
+
+/** @brief 'afw_value_string_t' for AFW_Q_zz__2306 */
+extern const afw_value_string_t \
+    afw_self_v_zz__2306;
+
+/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__2306 */
+#define afw_z_zz__2306 \
+    (afw_self_v_zz__2306.internal.s)
+
+/** @brief 'const afw_value_t *' for AFW_Q_zz__2306 */
+#define afw_v_zz__2306 \
+    (&afw_self_v_zz__2306.pub)
 
 
 
@@ -158318,110 +158682,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__Adapter_implementation_index_cursor_interface_ \
-    "Adapter implementation index cursor interface."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Adapter_implementation_index_cursor_interface_ */
-#define afw_s_zz__Adapter_implementation_index_cursor_interface_ \
-    (&afw_self_v_zz__Adapter_implementation_index_cursor_interface_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Adapter_implementation_index_cursor_interface_ */
-#define afw_self_s_zz__Adapter_implementation_index_cursor_interface_ \
-    (afw_self_v_zz__Adapter_implementation_index_cursor_interface_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Adapter_implementation_index_cursor_interface_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__Adapter_implementation_index_cursor_interface_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Adapter_implementation_index_cursor_interface_ */
-#define afw_z_zz__Adapter_implementation_index_cursor_interface_ \
-    (afw_self_v_zz__Adapter_implementation_index_cursor_interface_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Adapter_implementation_index_cursor_interface_ */
-#define afw_v_zz__Adapter_implementation_index_cursor_interface_ \
-    (&afw_self_v_zz__Adapter_implementation_index_cursor_interface_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__Adapter_implementation_index_interface_ \
-    "Adapter implementation index interface."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Adapter_implementation_index_interface_ */
-#define afw_s_zz__Adapter_implementation_index_interface_ \
-    (&afw_self_v_zz__Adapter_implementation_index_interface_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Adapter_implementation_index_interface_ */
-#define afw_self_s_zz__Adapter_implementation_index_interface_ \
-    (afw_self_v_zz__Adapter_implementation_index_interface_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Adapter_implementation_index_interface_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__Adapter_implementation_index_interface_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Adapter_implementation_index_interface_ */
-#define afw_z_zz__Adapter_implementation_index_interface_ \
-    (afw_self_v_zz__Adapter_implementation_index_interface_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Adapter_implementation_index_interface_ */
-#define afw_v_zz__Adapter_implementation_index_interface_ \
-    (&afw_self_v_zz__Adapter_implementation_index_interface_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__Adapter_implementation_of_key_value_interface_ \
-    "Adapter implementation of key value interface."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Adapter_implementation_of_key_value_interface_ */
-#define afw_s_zz__Adapter_implementation_of_key_value_interface_ \
-    (&afw_self_v_zz__Adapter_implementation_of_key_value_interface_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Adapter_implementation_of_key_value_interface_ */
-#define afw_self_s_zz__Adapter_implementation_of_key_value_interface_ \
-    (afw_self_v_zz__Adapter_implementation_of_key_value_interface_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Adapter_implementation_of_key_value_interface_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__Adapter_implementation_of_key_value_interface_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Adapter_implementation_of_key_value_interface_ */
-#define afw_z_zz__Adapter_implementation_of_key_value_interface_ \
-    (afw_self_v_zz__Adapter_implementation_of_key_value_interface_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Adapter_implementation_of_key_value_interface_ */
-#define afw_v_zz__Adapter_implementation_of_key_value_interface_ \
-    (&afw_self_v_zz__Adapter_implementation_of_key_value_interface_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__Adapter_journal_interface_ \
-    "Adapter journal interface."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Adapter_journal_interface_ */
-#define afw_s_zz__Adapter_journal_interface_ \
-    (&afw_self_v_zz__Adapter_journal_interface_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Adapter_journal_interface_ */
-#define afw_self_s_zz__Adapter_journal_interface_ \
-    (afw_self_v_zz__Adapter_journal_interface_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Adapter_journal_interface_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__Adapter_journal_interface_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Adapter_journal_interface_ */
-#define afw_z_zz__Adapter_journal_interface_ \
-    (afw_self_v_zz__Adapter_journal_interface_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Adapter_journal_interface_ */
-#define afw_v_zz__Adapter_journal_interface_ \
-    (&afw_self_v_zz__Adapter_journal_interface_.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__Adapter_metrics \
     "Adapter metrics"
 
@@ -158526,32 +158786,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__Adapter_session_transaction_interface_ \
-    "Adapter session transaction interface."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Adapter_session_transaction_interface_ */
-#define afw_s_zz__Adapter_session_transaction_interface_ \
-    (&afw_self_v_zz__Adapter_session_transaction_interface_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Adapter_session_transaction_interface_ */
-#define afw_self_s_zz__Adapter_session_transaction_interface_ \
-    (afw_self_v_zz__Adapter_session_transaction_interface_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Adapter_session_transaction_interface_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__Adapter_session_transaction_interface_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Adapter_session_transaction_interface_ */
-#define afw_z_zz__Adapter_session_transaction_interface_ \
-    (afw_self_v_zz__Adapter_session_transaction_interface_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Adapter_session_transaction_interface_ */
-#define afw_v_zz__Adapter_session_transaction_interface_ \
-    (&afw_self_v_zz__Adapter_session_transaction_interface_.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__Adapter_specific \
     "Adapter specific"
 
@@ -158652,32 +158886,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__Adaptive_Application_Components__afw_components__ */
 #define afw_v_zz__Adaptive_Application_Components__afw_components__ \
     (&afw_self_v_zz__Adaptive_Application_Components__afw_components__.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__Adaptive_Data_Type_ \
-    "Adaptive Data Type."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Adaptive_Data_Type_ */
-#define afw_s_zz__Adaptive_Data_Type_ \
-    (&afw_self_v_zz__Adaptive_Data_Type_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Adaptive_Data_Type_ */
-#define afw_self_s_zz__Adaptive_Data_Type_ \
-    (afw_self_v_zz__Adaptive_Data_Type_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Adaptive_Data_Type_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__Adaptive_Data_Type_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Adaptive_Data_Type_ */
-#define afw_z_zz__Adaptive_Data_Type_ \
-    (afw_self_v_zz__Adaptive_Data_Type_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Adaptive_Data_Type_ */
-#define afw_v_zz__Adaptive_Data_Type_ \
-    (&afw_self_v_zz__Adaptive_Data_Type_.pub)
 
 
 
@@ -158812,32 +159020,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__Adaptive_array_setter_interface_ \
-    "Adaptive array setter interface."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Adaptive_array_setter_interface_ */
-#define afw_s_zz__Adaptive_array_setter_interface_ \
-    (&afw_self_v_zz__Adaptive_array_setter_interface_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Adaptive_array_setter_interface_ */
-#define afw_self_s_zz__Adaptive_array_setter_interface_ \
-    (afw_self_v_zz__Adaptive_array_setter_interface_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Adaptive_array_setter_interface_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__Adaptive_array_setter_interface_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Adaptive_array_setter_interface_ */
-#define afw_z_zz__Adaptive_array_setter_interface_ \
-    (afw_self_v_zz__Adaptive_array_setter_interface_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Adaptive_array_setter_interface_ */
-#define afw_v_zz__Adaptive_array_setter_interface_ \
-    (&afw_self_v_zz__Adaptive_array_setter_interface_.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__Adaptive_compiler_related_functions \
     "Adaptive compiler related functions"
 
@@ -158968,32 +159150,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__Adaptive_framework_authorization_handler_interface_ \
-    "Adaptive framework authorization handler interface."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Adaptive_framework_authorization_handler_interface_ */
-#define afw_s_zz__Adaptive_framework_authorization_handler_interface_ \
-    (&afw_self_v_zz__Adaptive_framework_authorization_handler_interface_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Adaptive_framework_authorization_handler_interface_ */
-#define afw_self_s_zz__Adaptive_framework_authorization_handler_interface_ \
-    (afw_self_v_zz__Adaptive_framework_authorization_handler_interface_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Adaptive_framework_authorization_handler_interface_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__Adaptive_framework_authorization_handler_interface_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Adaptive_framework_authorization_handler_interface_ */
-#define afw_z_zz__Adaptive_framework_authorization_handler_interface_ \
-    (afw_self_v_zz__Adaptive_framework_authorization_handler_interface_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Adaptive_framework_authorization_handler_interface_ */
-#define afw_v_zz__Adaptive_framework_authorization_handler_interface_ \
-    (&afw_self_v_zz__Adaptive_framework_authorization_handler_interface_.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__Adaptive_function_parameter_meta_ \
     "Adaptive function parameter meta."
 
@@ -159072,32 +159228,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__Adaptive_value_array_interface_ \
-    "Adaptive value array interface."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Adaptive_value_array_interface_ */
-#define afw_s_zz__Adaptive_value_array_interface_ \
-    (&afw_self_v_zz__Adaptive_value_array_interface_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Adaptive_value_array_interface_ */
-#define afw_self_s_zz__Adaptive_value_array_interface_ \
-    (afw_self_v_zz__Adaptive_value_array_interface_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Adaptive_value_array_interface_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__Adaptive_value_array_interface_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Adaptive_value_array_interface_ */
-#define afw_z_zz__Adaptive_value_array_interface_ \
-    (afw_self_v_zz__Adaptive_value_array_interface_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Adaptive_value_array_interface_ */
-#define afw_v_zz__Adaptive_value_array_interface_ \
-    (&afw_self_v_zz__Adaptive_value_array_interface_.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__Adaptive_value_functions \
     "Adaptive value functions"
 
@@ -159172,32 +159302,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__Adaptive_value_path_ */
 #define afw_v_zz__Adaptive_value_path_ \
     (&afw_self_v_zz__Adaptive_value_path_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__Adaptive_variable_handler_ \
-    "Adaptive variable handler."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Adaptive_variable_handler_ */
-#define afw_s_zz__Adaptive_variable_handler_ \
-    (&afw_self_v_zz__Adaptive_variable_handler_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Adaptive_variable_handler_ */
-#define afw_self_s_zz__Adaptive_variable_handler_ \
-    (afw_self_v_zz__Adaptive_variable_handler_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Adaptive_variable_handler_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__Adaptive_variable_handler_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Adaptive_variable_handler_ */
-#define afw_z_zz__Adaptive_variable_handler_ \
-    (afw_self_v_zz__Adaptive_variable_handler_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Adaptive_variable_handler_ */
-#define afw_v_zz__Adaptive_variable_handler_ \
-    (&afw_self_v_zz__Adaptive_variable_handler_.pub)
 
 
 
@@ -168324,32 +168428,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__Create_an_index_definition_ */
 #define afw_v_zz__Create_an_index_definition_ \
     (&afw_self_v_zz__Create_an_index_definition_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__Create_an_instance_of_an_afw_request_handler_ \
-    "Create an instance of an afw_request_handler."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Create_an_instance_of_an_afw_request_handler_ */
-#define afw_s_zz__Create_an_instance_of_an_afw_request_handler_ \
-    (&afw_self_v_zz__Create_an_instance_of_an_afw_request_handler_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Create_an_instance_of_an_afw_request_handler_ */
-#define afw_self_s_zz__Create_an_instance_of_an_afw_request_handler_ \
-    (afw_self_v_zz__Create_an_instance_of_an_afw_request_handler_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Create_an_instance_of_an_afw_request_handler_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__Create_an_instance_of_an_afw_request_handler_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Create_an_instance_of_an_afw_request_handler_ */
-#define afw_z_zz__Create_an_instance_of_an_afw_request_handler_ \
-    (afw_self_v_zz__Create_an_instance_of_an_afw_request_handler_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Create_an_instance_of_an_afw_request_handler_ */
-#define afw_v_zz__Create_an_instance_of_an_afw_request_handler_ \
-    (&afw_self_v_zz__Create_an_instance_of_an_afw_request_handler_.pub)
 
 
 
@@ -181324,32 +181402,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__Log_Type */
 #define afw_v_zz__Log_Type \
     (&afw_self_v_zz__Log_Type.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__Log_factory_ \
-    "Log factory."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Log_factory_ */
-#define afw_s_zz__Log_factory_ \
-    (&afw_self_v_zz__Log_factory_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Log_factory_ */
-#define afw_self_s_zz__Log_factory_ \
-    (afw_self_v_zz__Log_factory_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Log_factory_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__Log_factory_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Log_factory_ */
-#define afw_z_zz__Log_factory_ \
-    (afw_self_v_zz__Log_factory_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Log_factory_ */
-#define afw_v_zz__Log_factory_ \
-    (&afw_self_v_zz__Log_factory_.pub)
 
 
 
@@ -201786,32 +201838,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__This_is_an_object_with_object_options_applied_ */
 #define afw_v_zz__This_is_an_object_with_object_options_applied_ \
     (&afw_self_v_zz__This_is_an_object_with_object_options_applied_.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__This_is_interface_for_an_object_associative_array_ \
-    "This is interface for an object associative array."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__This_is_interface_for_an_object_associative_array_ */
-#define afw_s_zz__This_is_interface_for_an_object_associative_array_ \
-    (&afw_self_v_zz__This_is_interface_for_an_object_associative_array_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__This_is_interface_for_an_object_associative_array_ */
-#define afw_self_s_zz__This_is_interface_for_an_object_associative_array_ \
-    (afw_self_v_zz__This_is_interface_for_an_object_associative_array_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__This_is_interface_for_an_object_associative_array_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__This_is_interface_for_an_object_associative_array_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__This_is_interface_for_an_object_associative_array_ */
-#define afw_z_zz__This_is_interface_for_an_object_associative_array_ \
-    (afw_self_v_zz__This_is_interface_for_an_object_associative_array_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__This_is_interface_for_an_object_associative_array_ */
-#define afw_v_zz__This_is_interface_for_an_object_associative_array_ \
-    (&afw_self_v_zz__This_is_interface_for_an_object_associative_array_.pub)
 
 
 

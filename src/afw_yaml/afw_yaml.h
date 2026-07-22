@@ -16,14 +16,18 @@
  * @defgroup afw_yaml YAML content-type
  * @ingroup afw_included_extensions
  *
- * Adaptive Framework YAML support
- * 
+ * YAML content type (`src/afw_yaml/`): serialize adaptive values as YAML
+ * media types. Self-contained extension srcdir over public core APIs.
+ * Registers like core JSON; call content-type macros.
+ *
  * @{
  */
 
 /**
  * @file afw_yaml.h
  * @brief YAML content-type and from/to value public API.
+ *
+ * See @ref afw_content_type and @ref afw_included_extensions.
  */
 
 AFW_BEGIN_DECLARES

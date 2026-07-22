@@ -15,10 +15,11 @@ Metadata-driven **C** runtime (`libafw`) plus Python **`afwdev`**. Define functi
 - **Third-party deps must stay MIT-compatible** (AFW is MIT — see `LICENSE` / `COPYING`). Prefer BSD/MIT/Apache-2.0 libraries (e.g. **libedit** for line editing). Avoid GPL-only linkage such as **GNU readline**. If a package is on all supported distros (Ubuntu, Alpine, Rocky, OpenSUSE — see `docker/images/afw-dev-base/` and CI), it may be required; otherwise make it optional at CMake time and degrade gracefully. Keep Dockerfiles and build docs in sync with new packages.
 
 ## Layout
-- `src/afw` — `libafw` (values, pools, xctx, compile/evaluate)
+- `src/afw` — **libafw core** (values, pools, xctx, compile/evaluate)
 - `src/afw_dev` — `afwdev` CLI
-- `src/afw_command` — `afw` CLI
-- `src/afw_*` — extensions (same generate/generated pattern)
+- `src/afw_command` — `afw` CLI (base package host; not core)
+- `src/afw_*` — extensions (same generate/generated pattern); keep each **self-contained** vs core (public APIs only; own generate/tests/docs)
+- This repo = **AFW base** (core + shipped base srcdirs). Other package repos may hold more extensions.
 - `afw-package.json` — srcdirs / buildType / prefix
 
 ## Access model (short)

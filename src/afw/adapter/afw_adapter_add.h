@@ -21,7 +21,9 @@
  * @file afw_adapter_add.h
  * @brief Adapter add-object convenience API.
  *
- * Contributes to @ref afw_adapter.
+ * Contributes to @ref afw_adapter. Higher-level than raw
+ * `afw_adapter_session_add_object()`; manages session/reference details for
+ * common host and admin paths. Included from `afw_adapter.h`.
  */
 
 AFW_BEGIN_DECLARES

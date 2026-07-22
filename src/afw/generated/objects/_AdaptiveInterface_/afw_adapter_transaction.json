@@ -1,4 +1,4 @@
 {
     "name": "afw_adapter_transaction",
-    "description": "Adapter session transaction interface."
+    "description": "Optional transaction on an adapter session (begin/commit/rollback\n      semantics as implemented by the adapter). Prefer session helpers that\n      manage transaction lifetime. Call methods via\n      afw_adapter_transaction_*() macros. See group afw_adapter."
 }

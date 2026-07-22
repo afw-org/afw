@@ -18,7 +18,11 @@
 
 /**
  * @file afw_adapter_retrieve.h
- * @brief Adaptive Framework adapter retrieve objects
+ * @brief Adapter retrieve-objects convenience API.
+ *
+ * Contributes to @ref afw_adapter. Query/retrieve helpers (including limits)
+ * over session `retrieve_objects` macros; included from `afw_adapter.h`.
+ * Related: query criteria and adapter indexes for sargable filters.
  */
 
 AFW_BEGIN_DECLARES

@@ -1,4 +1,4 @@
 {
     "name": "afw_array_setter",
-    "description": "Adaptive array setter interface."
+    "description": "Mutable face for an adaptive array (set/add/remove elements). Obtained\n      when the array implementation allows mutation. Call methods via\n      afw_array_setter_*() macros. See group afw_array."
 }

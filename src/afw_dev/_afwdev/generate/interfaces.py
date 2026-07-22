@@ -811,13 +811,14 @@ def generate_objects(generated_by, prefix, name, tree, generated_dir_path):
             fd.write('{\n')                        
             fd.write('    "name": "' + interface_name + '",\n')            
 
-            descriptions = interface.findall('description')
-            if len(descriptions) > 0:
-                for description in interface.findall('description'):    
-                    if description.text is not None:            
-                        fd.write('    "description": ' + c.make_quoted(description.text.strip()) + '\n')
-                    else:
-                        fd.write('    "description": ""\n')
+            # Interface-level description only (direct child), not method/param.
+            description = None
+            for child in list(interface):
+                if child.tag == 'description':
+                    description = child
+                    break
+            if description is not None and description.text is not None:
+                fd.write('    "description": ' + c.make_quoted(description.text.strip()) + '\n')
             else:
                 fd.write('    "description": ""\n')
 

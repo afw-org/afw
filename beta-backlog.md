@@ -90,7 +90,7 @@ _(Paste raw notes here first; sort into themes later.)_
 
 ### Doxygen / interface API docs (builders)
 
-**Status:** planned · file hygiene partial (issue **#1** local work) · rule **`afw-interfaces-doxygen`** written  
+**Status:** **partial → nearly done** on branch **`issue-#1`** / PR **#132** (into `mgg-develop`). Rule **`afw-interfaces-doxygen`**.  
 
 **Audience:** AFW developers, extension/command authors, hosts — **not** pure Adaptive Script app users (handbook / `whats_new` for those).
 
@@ -101,14 +101,23 @@ _(Paste raw notes here first; sort into themes later.)_
 - **Macros = real API** to document; improve via **XML + generators**, never hand-edit `generated/`.
 - **Skeletons + afwdev `make-*` / `add-*`** are first-class developer UX; `@todo` / `<afwdev {…}>` intentional — do not “clean” for Doxygen vanity.
 - Group essays live in `afw_doxygen.h`; hand headers join canonical groups; preserve long post-`@brief` bodies.
+- C-focused HTML: `DoxygenLayout.xml`, `TYPEDEF_HIDES_STRUCT`, `doxygen-extra.css`, `PROJECT_NUMBER` from package version via generate.
+- **Core vs base:** `src/afw/` = libafw; other `src/*` srcdirs stay self-contained (public core only). Extension Doxygen groups live in extension headers; core only lightly navigates.
 
-**Next chunks (feature branches off mgg-develop):**
+**Done on issue-#1 (do not re-open as infinite file stamps):**
 
-1. ~~Macro Doxygen generator polish (`interfaces.py` `@param` spacing, etc.) + regenerate.~~ **done** (issue-#1)  
-2. ~~Group tree / nested `@defgroup` for hot modules.~~ **partial** (`afw_doxygen.h`)  
-3. ~~Small `src/afw/doc/developer/*.md` set + mainpage links.~~ **done**  
-4. Re-scope or close #1: remaining = ongoing builder-map polish, not stamp every `.c`.  
-5. Closet noise: already covered by `EXCLUDE_PATTERNS` `*/*closet/*` in `Doxyfile`.
+1. ~~Macro Doxygen generator polish (`interfaces.py` `@param`/`@return`/`@relates`/`@see`) + regenerate.~~  
+2. ~~Group tree / nested `@defgroup` + thin group briefs.~~  
+3. ~~`src/afw/doc/developer/*.md` + mainpage reading order / Related Pages.~~  
+4. ~~Golden + remaining interface XML descriptions; opaque `@brief`s; key hand `@file` bodies.~~  
+5. ~~Local `--local` expects for package version (0.12.0).~~  
+6. Closet noise: `EXCLUDE_PATTERNS` `*/*closet/*` in `Doxyfile`.
+
+**Still optional after merge:**
+
+- Re-scope or **close #1**: remaining = opportunistic polish when already editing an area, not stamp every `.c`.  
+- Further XML/method-level prose only when implementing that interface.  
+- Skin: leave unless a concrete stock-look regression appears.
 
 ### Indexes / adapters (incl. issue #54)
 

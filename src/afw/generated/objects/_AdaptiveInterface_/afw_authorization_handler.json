@@ -1,4 +1,4 @@
 {
     "name": "afw_authorization_handler",
-    "description": "Adaptive framework authorization handler interface."
+    "description": "Pluggable authorization check: decide allow/deny for an action with\n      optional obligations/advice. Core consults installed handlers; script\n      handler runs policy as Adaptive Script. Call methods via\n      afw_authorization_handler_*() macros. See group afw_authorization."
 }

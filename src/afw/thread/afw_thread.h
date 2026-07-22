@@ -18,7 +18,10 @@
 
 /**
  * @file afw_thread.h
- * @brief Thread, mutex, and thread-start helpers.
+ * @brief Thread create/join helpers and attributes.
+ *
+ * See @ref afw_thread. Follow pool and xctx rules when sharing data across
+ * threads; many AFW APIs are single-xctx unless documented otherwise.
  */
 
 AFW_BEGIN_DECLARES

@@ -10,13 +10,13 @@
 #define __AFW_CURL_H__
 
 
-/** @addtogroup afw_included_extensions Included Extensions
- * @{
- */
-
-/** @addtogroup afw_curl CURL Extension 
+/**
+ * @defgroup afw_curl CURL Extension
+ * @ingroup afw_included_extensions
  *
- * Adaptive Framework CURL extension.
+ * HTTP / SMTP Adaptive functions and curl error RV decoding (`src/afw_curl/`).
+ * This **srcdir is self-contained** relative to libafw core: it uses only
+ * public core APIs and owns its generate/manifest/tests layout.
  *
  * @{
  */
@@ -55,7 +55,6 @@ AFW_CURL_BEGIN_DECLARES
 
 AFW_CURL_END_DECLARES
 
-/** @} */
 /** @} */
 
 
