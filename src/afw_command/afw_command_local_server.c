@@ -389,8 +389,8 @@ impl_read_and_process_request(
                     (const afw_utf8_octet_t *)input->ptr, input->size,
                     p, xctx);
                 action_object = afw_object_create_unmanaged(p, xctx);
-                afw_object_set_property_as_string(action_object,
-                    afw_s_function, afw_s_eval_script, xctx);
+                afw_object_set_property(action_object,
+                    afw_s_function, afw_v_eval_script, xctx);
                 afw_object_set_property_as_string(action_object,
                     afw_s_source, string, xctx);
                 response_object = afw_action_perform(

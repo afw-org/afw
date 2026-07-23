@@ -237,7 +237,7 @@ afw_object_set_property_as_boolean(
             xctx);
     }
 
-    v = afw_value_create_unmanaged_boolean(internal, object->p, xctx);
+    v = afw_value_for_boolean(internal);
     afw_object_set_property(object, property_name, v, xctx);
 }
 

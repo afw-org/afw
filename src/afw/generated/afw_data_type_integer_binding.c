@@ -237,7 +237,15 @@ afw_object_set_property_as_integer(
             xctx);
     }
 
-    v = afw_value_create_unmanaged_integer(internal, object->p, xctx);
+    if (internal == 0) {
+        v = afw_integer_v_zero;
+    }
+    else if (internal == 1) {
+        v = afw_integer_v_one;
+    }
+    else {
+        v = afw_value_create_unmanaged_integer(internal, object->p, xctx);
+    }
     afw_object_set_property(object, property_name, v, xctx);
 }
 

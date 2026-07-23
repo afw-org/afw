@@ -44,8 +44,8 @@ afw_adapter_delete_object(
         AFW_UTF8_FMT_ARG(object_id));
     afw_object_set_property_as_string(request,
         afw_s_resourceId, impl_request.resource_id, xctx);
-    afw_object_set_property_as_string(request,
-        afw_s_function, afw_s_delete_object, xctx);
+    afw_object_set_property(request,
+        afw_s_function, afw_v_delete_object, xctx);
     afw_object_set_property_as_string(request,
         afw_s_adapterId, adapter_id, xctx);
     afw_object_set_property_as_string(request,

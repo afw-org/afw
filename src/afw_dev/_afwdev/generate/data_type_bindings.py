@@ -493,7 +493,17 @@ def write_h_section(fd, prefix, obj):
         fd.write(' * @param value of value to set.\n')
         fd.write(' * @param xctx of caller.\n')
         fd.write(' *\n')
-        fd.write(' * The value will be allocated in the object\'s pool.')
+        if id == 'boolean':
+            fd.write(' * Uses permanent afw_boolean_v_true / afw_boolean_v_false\n')
+            fd.write(' * (no pool allocation for the value).\n')
+        elif id == 'integer':
+            fd.write(' * Uses permanent afw_integer_v_zero / afw_integer_v_one when\n')
+            fd.write(' * internal is 0 or 1; otherwise allocates in the object\'s pool.\n')
+        else:
+            fd.write(' * The value will be allocated in the object\'s pool.\n')
+        fd.write(' * Prefer afw_object_set_property(..., afw_v_*, ...) when a\n')
+        fd.write(' * static const value (e.g. from afw_strings.h) already\n')
+        fd.write(' * exists for that constant.\n')
         fd.write(' *\n')
         fd.write(' */\n')
         fd.write(declare + '(void)\n')
@@ -982,7 +992,24 @@ def write_c_section(fd, prefix, obj):
         fd.write('            xctx);\n')
         fd.write('    }\n')
         fd.write('\n')
-        fd.write('    v = afw_value_create_unmanaged_' + id + '(internal, object->p, xctx);\n')
+        if id == 'boolean':
+            # Permanent true/false — no per-call pool allocation.
+            fd.write('    v = afw_value_for_boolean(internal);\n')
+        elif id == 'integer':
+            # Permanent 0 and 1 from strings.txt integer::zero / integer::one.
+            fd.write('    if (internal == 0) {\n')
+            fd.write('        v = afw_integer_v_zero;\n')
+            fd.write('    }\n')
+            fd.write('    else if (internal == 1) {\n')
+            fd.write('        v = afw_integer_v_one;\n')
+            fd.write('    }\n')
+            fd.write('    else {\n')
+            fd.write('        v = afw_value_create_unmanaged_' + id +
+                     '(internal, object->p, xctx);\n')
+            fd.write('    }\n')
+        else:
+            fd.write('    v = afw_value_create_unmanaged_' + id +
+                     '(internal, object->p, xctx);\n')
         fd.write('    afw_object_set_property(object, property_name, v, xctx);\n')
         fd.write('}\n')
 

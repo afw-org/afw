@@ -385,6 +385,14 @@ afw_value_unique_default_case_value;
  * @brief Value for boolean variable.
  * @param variable
  * @return afw_boolean_v_true or afw_boolean_v_false
+ *
+ * Prefer existing static const Adaptive values when the value is fixed:
+ * afw_boolean_v_true / afw_boolean_v_false, afw_v_* from afw_strings.h
+ * (including a_* names), afw_integer_v_zero / afw_integer_v_one, and
+ * afw_value_null / afw_value_undefined in this header. Avoid
+ * create_unmanaged_* only to wrap those. Prefer
+ * afw_object_set_property(..., afw_v_*, ...) over set_property_as_string
+ * when an afw_v_* already exists for that constant.
  */
 #define afw_value_for_boolean(variable) (variable) \
     ? afw_boolean_v_true \

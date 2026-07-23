@@ -1021,8 +1021,8 @@ afw_environment_load_extension(
 
             /* Prepare properties. Supply type=extension if needed. */
             if (!afw_object_has_property(properties, afw_s_type, xctx)) {
-                afw_object_set_property_as_string(properties,
-                    afw_s_type, afw_s_extension, xctx);
+                afw_object_set_property(properties,
+                    afw_s_type, afw_v_extension, xctx);
             }
             properties = afw_environment_prepare_conf_type_properties(
                 properties, xctx);

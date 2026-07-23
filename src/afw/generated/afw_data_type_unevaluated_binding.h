@@ -337,7 +337,11 @@ afw_object_get_next_property_as_unevaluated_source(
  * @param value of value to set.
  * @param xctx of caller.
  *
- * The value will be allocated in the object's pool. *
+ * The value will be allocated in the object's pool.
+ * Prefer afw_object_set_property(..., afw_v_*, ...) when a
+ * static const value (e.g. from afw_strings.h) already
+ * exists for that constant.
+ *
  */
 AFW_DECLARE(void)
 afw_object_set_property_as_unevaluated(

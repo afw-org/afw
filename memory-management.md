@@ -197,7 +197,7 @@ _Edit as we decide. Strike or mark rejected._
 |------|------------|
 | **Four lifetime policies** | Documented in generator header; infs wired: permanent (`optional_release` NULL, clone as-is), managed (RC + free header), managed_slice (utf8/memory only, RC on containing), unmanaged (pool lifetime, clone as-is). |
 | **Special types** | `special: true` → permanent inf only, no create_managed/unmanaged. Today: **undefined, void, any, unknown** (and similar). |
-| **Scalars (integer, boolean, double, …)** | Managed: store by value in xctx-allocated header, RC starts 0. Unmanaged: pool header. Permanent: strings catalog / const. Matches “value owns payload copy” for non-pointer internals. |
+| **Scalars (integer, boolean, double, …)** | Managed: store by value in xctx-allocated header, RC starts 0. Unmanaged: pool header. Permanent: static const (e.g. `afw_strings.h`). Matches “value owns payload copy” for non-pointer internals. |
 | **utf8 / memory managed** | Embed bytes after header (owning copy). **managed_slice** create/release/get_reference look coherent (recent #115 work). |
 | **No create_permanent_*** | Correct — permanent instances from strings/const_objects only. |
 | **Old FIXME `False and` object path** | **Gone** from current generator (was never activated). No half-enabled object special case in Python. |
@@ -285,7 +285,7 @@ This is subtler than “mark null special in generate.”
 | **`afw_value_undefined`** | Preferred representation of Adaptive **undefined**; C **NULL** is also undefined for historical reasons. |
 | **`afw_value_unique_default_case_value`** | Same *shape* as null (permanent_null_inf) but a **different address** — switch `default` marker; **identity is the pointer**. |
 
-Some of these were added **before** `boolean::` / `integer::` support in `strings.txt`. Overlap with generate is fine: keeping the critical sentinels **declared and documented in `afw_value.h`** is still worthwhile — they show up in **Doxygen value docs**, and they are important enough to **highlight** next to evaluate/nullish macros rather than only buried in generated `afw_strings.h`. Typed catalog values (`afw_boolean_v_true`, `afw_integer_v_zero`, …) stay generate-owned; **null / undefined / unique-default** stay first-class in the public value API header.
+Some of these were added **before** `boolean::` / `integer::` support in `strings.txt`. Overlap with generate is fine: keeping the critical sentinels **declared and documented in `afw_value.h`** is still worthwhile — they show up in **Doxygen value docs**, and they are important enough to **highlight** next to evaluate/nullish macros rather than only buried in generated `afw_strings.h`. Typed static const values from generate (`afw_boolean_v_true`, `afw_integer_v_zero`, …) stay in `afw_strings.*`; **null / undefined / unique-default** stay first-class in the public value API header.
 
 Macros: **`afw_value_is_undefined`** = `!ptr \|\| ptr == afw_value_undefined`; **`afw_value_is_nullish`** = undefined **or** data type null. Always use macros — C NULL can mean “not applicable” in some APIs, not only undefined.
 
@@ -373,7 +373,7 @@ See **Future: compile-time type checking** below for a full stash of notes. Shor
 | Phase | Intent | Status |
 |-------|--------|--------|
 | **Discuss** | Memory story pad (`memory-management.md`); invariants; no big code yet | **paused** (good foundation) |
-| **−1** | **Prefer permanent `afw_v_*` (and typed permanent values) over allocate/create when the string/scalar already exists from generate** — cleanup call sites left over from before strings.py emitted values | **proposed — discuss** |
+| **−1** | **Prefer permanent `afw_v_*` (and typed permanent values) over allocate/create when the string/scalar already exists from generate** — cleanup call sites left over from before strings.py emitted values | **−1a + −1b done** |
 | **0** | **Audit `data_type_bindings.py` + generated bindings** — correct, complete, match permanent/managed/managed_slice/unmanaged model; finish gaps from recent work; use old branch tip as ideas (object/array create → `->value`, release via container) not as merge | **analysis done — discuss / plan next** |
 | **1** | Managed **object/array** containers + `->value` identity (consistent impls; hide nastiness) | pending |
 | **2** | Assign / scope: **`clone_or_reference`** so variable-held values own needed lifetime | pending |
@@ -880,7 +880,7 @@ Together with request-session GC and (future) pool accounting: try to keep a bad
 
 2. **Runtime function object** per function — `afw_runtime_object_indirect_t` for `_AdaptiveFunction_/<id>`, with paired **`afw_value_object_t`** using **`afw_value_permanent_object_inf`**, `pub.value` set, `p` NULL. Internal points at the function definition value.
 
-3. **Parameter / returns** as `afw_value_function_parameter_t` (+ permanent object value wrappers) — meta fields often point at **`afw_self_v_*` / `afw_boolean_self_v_*` / `afw_integer_self_v_*`** from the strings catalog.
+3. **Parameter / returns** as `afw_value_function_parameter_t` (+ permanent object value wrappers) — meta fields often point at **`afw_self_v_*` / `afw_boolean_self_v_*` / `afw_integer_self_v_*`** from generated `afw_strings.*`.
 
 Hand implementation of execute bodies: `src/afw/function/afw_function_*.c` (`afw_function_execute_*`), not the generated closet.
 
@@ -916,7 +916,7 @@ _(handlers/adapters in libafw; progressive response #127, maxObjects #49 — rel
 
 afwdev generate emits a large amount of **`static const` / `const` C** for core (and packages): no pool, process/binary lifetime, **permanent** value infs.
 
-#### Strings catalog — `src/afw/generate/strings/strings.txt` → `afw_strings.*`
+#### Generated static const strings/values — `strings.txt` → `afw_strings.*`
 
 Source: `generate/strings/strings.txt` (and similar lists). Generator: `_afwdev/generate/strings.py`.  
 Output: `src/afw/generated/afw_strings.h` / `.c` (huge; do not hand-edit).
@@ -982,7 +982,7 @@ const afw_value_anyURI_t afw_anyURI_self_v_example = {
 // anyURI also gets Q / s / z aliases like string (utf8 cType)
 ```
 
-Note: string catalog can still have **string** `afw_v_true` (the characters `"true"`) **and** boolean `afw_boolean_v_true` (boolean permanent) — different values.
+Note: generate can still emit **string** `afw_v_true` (the characters `"true"`) **and** boolean `afw_boolean_v_true` (boolean permanent) — different values.
 
 All permanent ⇒ no pool, no `optional_release`.
 
@@ -1169,8 +1169,8 @@ See **Phase 0 findings** section in this file (generator + generated C vs model 
 
 ### 2026-07-23 — proposed step −1: use permanent values not re-create
 
-- strings.py now emits **`afw_v_*`** permanent values; older code often still **`create_unmanaged_*` / `set_property_as_string`** on constants that already have permanent values.
-- Proposal: cleanup pass to prefer **`afw_v_*` / `afw_boolean_v_*` / …** — less alloc, aligns with “permanent = no pool.” Scope carefully (only when constant value exists).
+- strings.py emits **static const** Adaptive values (`afw_v_*`, etc. in `afw_strings.h`); older code often still **`create_unmanaged_*` / `set_property_as_string`** when a static const already exists.
+- Prefer those static const values over allocate/create — less alloc, “permanent = no pool.” Only when an `afw_v_*` (or typed permanent) already exists.
 
 **`strings.txt` naming subtleties (for −1 and general use):**
 
@@ -1200,5 +1200,19 @@ See **Phase 0 findings** section in this file (generator + generated C vs model 
 ### 2026-07-23 — stash notes for typechecking in ~1 month
 
 - Full map under **Future: compile-time type checking** in this file (paths, special types, null/undefined, flags, XACML, what not to break during #2 MM).
+
+### 2026-07-23 — step −1a executed
+
+- Replaced 19 `afw_object_set_property_as_string(..., afw_s_NAME)` with `afw_object_set_property(..., afw_v_NAME)` in action/request/adapter/environment/command.
+- Rewrapped those call sites to ~80 columns (maintainer preference).
+- **C line width ~80:** also recorded in `.cursor/rules/afw-c-runtime.mdc` so other sessions pick it up.
+
+### 2026-07-23 — step −1b executed
+
+- Generator: `set_property_as_boolean` → `afw_value_for_boolean` (permanent true/false).
+- Generator: `set_property_as_integer` → `afw_integer_v_zero` / `afw_integer_v_one` for 0/1, else unmanaged create.
+- Regenerated boolean/integer bindings; convention note in `afw_value.h` + `afw-value-memory.mdc`.
+- No further obvious `create_unmanaged_string(afw_s_*)` call sites; dynamic strings left alone.
+- **Lexicon:** avoid “catalog” in **source**/generated comments for these; prefer static const / permanent. Chat is fine.
 
 _(Append dated notes as we talk; fold durable points up into **By area** / **Cross-cutting**.)_
