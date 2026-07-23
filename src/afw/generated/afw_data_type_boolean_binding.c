@@ -75,8 +75,8 @@ impl_afw_value_permanent_get_reference(
     (const void *)&afw_data_type_boolean_direct
 
 /* Declares and rti/inf defines for interface afw_value */
-/* This is the inf for boolean values. For this one */
-/* optional_release is NULL and get_reference returns new reference. */
+/* unmanaged boolean: optional_release NULL; */
+/* clone_or_reference returns the same instance (pool lifetime). */
 #define AFW_IMPLEMENTATION_ID "boolean"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_unmanaged_boolean_inf
@@ -90,8 +90,8 @@ impl_afw_value_permanent_get_reference(
 #undef impl_afw_value_clone_or_reference
 
 /* Declares and rti/inf defines for interface afw_value */
-/* This is the inf for managed boolean values. For this one */
-/* optional_release releases value and get_reference returns new reference. */
+/* managed boolean: optional_release frees header at RC 0; */
+/* clone_or_reference bumps RC and returns the same instance. */
 #define AFW_IMPLEMENTATION_ID "managed_boolean"
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_managed_boolean_inf
 #define impl_afw_value_optional_release impl_afw_value_managed_optional_release
@@ -105,8 +105,8 @@ impl_afw_value_permanent_get_reference(
 #undef AFW_VALUE_INF_ONLY
 
 /* Declares and rti/inf defines for interface afw_value */
-/* This is the inf for permanent boolean values. For this one */
-/* optional_release is NULL and get_reference returns instance asis. */
+/* permanent boolean: optional_release NULL; */
+/* clone_or_reference returns the same instance as-is. */
 #define AFW_IMPLEMENTATION_ID "permanent_boolean"
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_permanent_boolean_inf
 #define impl_afw_value_optional_release NULL
@@ -290,6 +290,7 @@ afw_value_create_managed_boolean(
         sizeof(afw_value_boolean_managed_t), xctx);
     v->inf = &afw_value_managed_boolean_inf;
     v->internal = internal;
+    /* Create starts at 0; see optional_release. */
     v->reference_count = 0;
 
     return &v->pub;
@@ -423,7 +424,7 @@ impl_afw_value_get_reference(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    /* No reference counting takes place for unmanaged value. */
+    /* Unmanaged: return same instance (pool owns storage). */
     return instance;
 }
 
@@ -438,7 +439,7 @@ impl_afw_value_managed_get_reference(
     afw_value_boolean_managed_t *self =
         (afw_value_boolean_managed_t *)instance;
 
-    /* Increment reference count and return instance. */
+    /* Bump RC; return same instance (not a clone). */
     self->reference_count++;
     return instance;
 }
@@ -451,7 +452,7 @@ impl_afw_value_permanent_get_reference(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    /* For permanent value, just return the instance passed. */
+    /* Permanent: return same instance as-is. */
     return instance;
 }
 

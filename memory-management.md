@@ -196,8 +196,8 @@ _Edit as we decide. Strike or mark rejected._
 
 | Slice | Intent | Status |
 |-------|--------|--------|
-| **0a** | Type × lifetime matrix + generator decision tree | **done** (this section) |
-| **0b** | Generator/header comments match behavior (clone_or_reference, RC=0, pointer managed) | pending |
+| **0a** | Type × lifetime matrix + generator decision tree | **done** |
+| **0b** | Generator/header comments match behavior (clone_or_reference, RC=0, pointer managed) | **done** |
 | **0c** | Semantic consistency only if clear (null create, unevaluated, …) | pending |
 | **0d** | Phase 1 handoff notes (object/array → `->value`) | pending |
 | **0e** | Verify build/tests after any code | pending |
@@ -331,11 +331,11 @@ Empty cells for special/scalar/directReturn mean **false** / absent.
 | 1 | **object/array** create still allocate wrapper; release does not release container; ignore `->value` | **1** (document target in 0d) |
 | 2 | Managed create almost **unused** in hand C (unmanaged + pool bulk free dominates) | 1–2 use |
 | 3 | Family **F** pointer managed: RC = header only | 1 for object/array; note function/unevaluated |
-| 4 | Managed **RC starts at 0** — easy to misuse; keep, document in **0b** | 0b |
+| 4 | Managed **RC starts at 0** — documented in generator + headers (**0b**) | keep contract |
 | 5 | **null** not special; create APIs can mint non-singleton nulls | identity discipline now; 0c only if clear |
 | 6 | **unevaluated** full create APIs | 0c audit / park |
-| 7 | Unmanaged inf comment: “get_reference returns new reference” but impl **returns as-is** | **0b** |
-| 8 | Permanent/unmanaged both “as-is” on clone_or_reference — fine; comments must say so | 0b |
+| 7 | Unmanaged/permanent/managed clone_or_reference comments matched behavior (**0b**) | done |
+| 8 | Pointer managed: create Doxygen notes header-only RC / no referent clone (**0b**) | phase 1 for object/array |
 
 #### Relative to old branch (ideas for phase 1 only)
 
@@ -456,7 +456,7 @@ See **Future: compile-time type checking** below for a full stash of notes. Shor
 |-------|--------|--------|
 | **Discuss** | Memory story pad (`memory-management.md`); invariants; no big code yet | **paused** (good foundation) |
 | **−1** | **Prefer permanent `afw_v_*` (and typed permanent values) over allocate/create when the string/scalar already exists from generate** — cleanup call sites left over from before strings.py emitted values | **−1a + −1b + −1c done** |
-| **0** | **Audit `data_type_bindings.py` + generated bindings** — correct, complete, match permanent/managed/managed_slice/unmanaged model; finish gaps from recent work; use old branch tip as ideas (object/array create → `->value`, release via container) not as merge | **0a matrix done** → 0b docs next |
+| **0** | **Audit `data_type_bindings.py` + generated bindings** — correct, complete, match permanent/managed/managed_slice/unmanaged model; finish gaps from recent work; use old branch tip as ideas (object/array create → `->value`, release via container) not as merge | **0a + 0b done** → 0c/0d next |
 | **1** | Managed **object/array** containers + `->value` identity (consistent impls; hide nastiness) | pending |
 | **2** | Assign / scope: **`clone_or_reference`** so variable-held values own needed lifetime | pending |
 | **3** | Scope/symbol release correctness; escape (closures, returned compile results) | pending |
@@ -1368,11 +1368,15 @@ See **Phase 0 findings** section in this file (generator + generated C vs model 
 - Documented under **Const / permanent → Cross-generator registration**: `options['const']` bag + `get_string_label`; `const_objects` / `function_bindings` register property names, literals, and typed scalars before `strings.generate` emits `afw_strings.*`.
 - Useful for −1: permanent reuse is one shared pipeline (not only hand `strings.txt`); order is load-bearing; `additional_generate` is after strings emit today.
 
+### 2026-07-23 — phase 0b: binding comments match behavior
+
+- `data_type_bindings.py`: fixed unmanaged/managed/permanent/slice inf and create Doxygen to match impl (clone_or_reference as-is vs bump RC; RC starts at 0; pointer managed stores pointer only).
+- Regenerated `afw_data_type_*_binding.*` — comment-only contract clarity for phase 1 (no semantic create/release change).
+
 ### 2026-07-23 — phase 0a: type × lifetime matrix
 
 - Inventoried all 35 `_AdaptiveDataTypeGenerate_` types vs `data_type_bindings.py` branches.
 - Families A–F (special / utf8 / memory / struct embed / small direct / pointer direct); full matrix under **Phase 0 — 0a**.
-- No code; next **0b** comment/contract alignment.
 
 ### 2026-07-23 — step −1c executed (generate const reuse)
 

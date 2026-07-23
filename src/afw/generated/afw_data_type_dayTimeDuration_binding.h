@@ -63,7 +63,8 @@ afw_data_type_dayTimeDuration;
 /**
  * @brief Unmanaged evaluated value inf for data type dayTimeDuration.
  *
- * The lifetime of the value is the lifetime of its containing pool.
+ * Lifetime is the containing pool. optional_release is NULL;
+ * clone_or_reference returns the same instance (no clone, no RC).
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_unmanaged_dayTimeDuration_inf;
@@ -71,7 +72,10 @@ afw_value_unmanaged_dayTimeDuration_inf;
 /**
  * @brief Managed evaluated value inf for data type dayTimeDuration.
  *
- * The lifetime of the value is managed by reference count in xctx->p.
+ * Header allocated in xctx->p; lifetime by reference_count on the
+ * value header. Create starts at RC 0. optional_release frees the
+ * header when RC is 0, else decrements. clone_or_reference bumps RC
+ * and returns the same instance.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_managed_dayTimeDuration_inf;
@@ -79,7 +83,8 @@ afw_value_managed_dayTimeDuration_inf;
 /**
  * @brief Permanent (life of afw environment) value inf for data type dayTimeDuration.
  *
- * The lifetime of the value is the lifetime of the afw environment.
+ * Lifetime is the afw environment / static const storage. optional_release
+ * is NULL; clone_or_reference returns the same instance as-is.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_permanent_dayTimeDuration_inf;
@@ -191,9 +196,10 @@ afw_value_as_dayTimeDuration(
  * @brief Allocate function for data type dayTimeDuration value.
  * @param p to use for returned value.
  * @param xctx of caller.
- * @return Allocated afw_value_dayTimeDuration_t with appropriate inf set.
+ * @return Allocated afw_value_dayTimeDuration_t with unmanaged inf set.
  *
- * The value's lifetime is not managed so it will last for the life of the pool.
+ * Unmanaged: lifetime is pool p; no value refcount.
+ * Caller fills internal after allocate.
  */
 AFW_DECLARE(afw_value_dayTimeDuration_t *)
 afw_value_allocate_unmanaged_dayTimeDuration(
@@ -206,7 +212,10 @@ afw_value_allocate_unmanaged_dayTimeDuration(
  * @param xctx of caller.
  * @return Created const afw_value_t *.
  *
- * The value's lifetime is managed by reference count.
+ * Allocates a managed value header in xctx->p. reference_count starts
+ * at 0: optional_release without a prior clone_or_reference frees the
+ * header immediately. Release frees the value header only.
+ * Copies *internal into the header when internal is non-NULL.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_create_managed_dayTimeDuration(
@@ -220,7 +229,8 @@ afw_value_create_managed_dayTimeDuration(
  * @param xctx of caller.
  * @return Created const afw_value_t *.
  *
- * The value's lifetime is not managed so it will last for the life of the pool.
+ * Allocates in pool p; lifetime is the pool (no value refcount).
+ * clone_or_reference returns the same instance as-is.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_create_unmanaged_dayTimeDuration(const afw_dayTimeDuration_t * internal,

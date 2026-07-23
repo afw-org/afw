@@ -22,13 +22,24 @@
 #   permanent     Built-in or lasts for the life of an AFW environment. Usually
 #                 static const in the .so; env-lifetime values may also use the
 #                 permanent inf. No refcount; clone_or_reference returns as-is.
-#   managed       Lifetime by reference count (or clone when necessary).
+#   managed       Lifetime by reference count on the value header in xctx->p.
 #                 Created via afw_value_create_managed_<dataType>().
+#                 reference_count starts at 0: first optional_release without a
+#                 prior clone_or_reference/get_reference frees the header.
+#                 Release frees the value header only (not nested object/array
+#                 referents unless a future phase special-cases those types).
 #   managed_slice View (pointer + length/size) into a containing managed value
 #                 for cType afw_utf8_t or afw_memory_t only. Holds a reference
 #                 on the containing managed value; does not copy bytes.
 #   unmanaged     Programmer-owned; usually pool-allocated and pool-lifetime.
 #                 Created via allocate/create_unmanaged_<dataType>().
+#                 clone_or_reference returns the same instance (no clone).
+#
+# Create path depends on cType / directReturn (see memory-management.md phase 0a):
+#   utf8/memory  — managed owns a byte copy after the header; slice available
+#   other embed  — managed memcpy of struct into header
+#   directReturn — store internal as-is; if internal is a pointer type, only
+#                  the value header is refcounted (pointer not cloned)
 #
 # Generated files (prefix e.g. afw_):
 #
@@ -144,7 +155,8 @@ def write_h_section(fd, prefix, obj):
         fd.write('\n/**\n')
         fd.write(' * @brief Unmanaged evaluated value inf for data type ' + id + '.\n')
         fd.write(' *\n')
-        fd.write(' * The lifetime of the value is the lifetime of its containing pool.\n')
+        fd.write(' * Lifetime is the containing pool. optional_release is NULL;\n')
+        fd.write(' * clone_or_reference returns the same instance (no clone, no RC).\n')
         fd.write(' */\n')
         fd.write(declare_data + '(afw_value_inf_t)\n')
         fd.write('afw_value_unmanaged_' + id + '_inf;\n')
@@ -152,7 +164,10 @@ def write_h_section(fd, prefix, obj):
         fd.write('\n/**\n')
         fd.write(' * @brief Managed evaluated value inf for data type ' + id + '.\n')
         fd.write(' *\n')
-        fd.write(' * The lifetime of the value is managed by reference count in xctx->p.\n')
+        fd.write(' * Header allocated in xctx->p; lifetime by reference_count on the\n')
+        fd.write(' * value header. Create starts at RC 0. optional_release frees the\n')
+        fd.write(' * header when RC is 0, else decrements. clone_or_reference bumps RC\n')
+        fd.write(' * and returns the same instance.\n')
         fd.write(' */\n')
         fd.write(declare_data + '(afw_value_inf_t)\n')
         fd.write('afw_value_managed_' + id + '_inf;\n')
@@ -161,7 +176,9 @@ def write_h_section(fd, prefix, obj):
             fd.write('\n/**\n')
             fd.write(' * @brief Managed slice value inf for data type ' + id + '.\n')
             fd.write(' *\n')
-            fd.write(' * View into a containing managed value; refcount is on the containing value.\n')
+            fd.write(' * View into a containing managed value; refcount is on the containing\n')
+            fd.write(' * value. Slice header is separate; release frees the slice header and\n')
+            fd.write(' * applies containing RC policy.\n')
             fd.write(' */\n')
             fd.write(declare_data + '(afw_value_inf_t)\n')
             fd.write('afw_value_managed_slice_' + id + '_inf;\n')
@@ -169,7 +186,8 @@ def write_h_section(fd, prefix, obj):
     fd.write('\n/**\n')
     fd.write(' * @brief Permanent (life of afw environment) value inf for data type ' + id + '.\n')
     fd.write(' *\n')
-    fd.write(' * The lifetime of the value is the lifetime of the afw environment.\n')
+    fd.write(' * Lifetime is the afw environment / static const storage. optional_release\n')
+    fd.write(' * is NULL; clone_or_reference returns the same instance as-is.\n')
     fd.write(' */\n')
     fd.write(declare_data + '(afw_value_inf_t)\n')
     fd.write('afw_value_permanent_' + id + '_inf;\n')
@@ -295,9 +313,10 @@ def write_h_section(fd, prefix, obj):
         fd.write(' * @brief Allocate function for data type ' + id + ' value.\n')
         fd.write(' * @param p to use for returned value.\n')
         fd.write(' * @param xctx of caller.\n')
-        fd.write(' * @return Allocated afw_value_' + id + '_t with appropriate inf set.\n')
+        fd.write(' * @return Allocated afw_value_' + id + '_t with unmanaged inf set.\n')
         fd.write(' *\n')
-        fd.write(' * The value\'s lifetime is not managed so it will last for the life of the pool.\n')
+        fd.write(' * Unmanaged: lifetime is pool p; no value refcount.\n')
+        fd.write(' * Caller fills internal after allocate.\n')
         fd.write(' */\n')
         fd.write(declare + '(afw_value_' + id + '_t *)\n')
         fd.write('afw_value_allocate_unmanaged_' + id + '(\n    const afw_pool_t *p,\n    afw_xctx_t *xctx);\n')
@@ -308,7 +327,19 @@ def write_h_section(fd, prefix, obj):
         fd.write(' * @param xctx of caller.\n')
         fd.write(' * @return Created const afw_value_t *.\n')
         fd.write(' *\n')
-        fd.write(' * The value\'s lifetime is managed by reference count.\n')
+        fd.write(' * Allocates a managed value header in xctx->p. reference_count starts\n')
+        fd.write(' * at 0: optional_release without a prior clone_or_reference frees the\n')
+        fd.write(' * header immediately. Release frees the value header only.\n')
+        if ctype in ('afw_utf8_t', 'afw_memory_t'):
+            fd.write(' * Copies bytes into storage following the header (value owns them).\n')
+        elif direct_return and ctype.rstrip().endswith('*'):
+            fd.write(' * Stores the pointer as-is; does not clone or take a reference on the\n')
+            fd.write(' * referent. Caller must ensure the referent outlives this value (or\n')
+            fd.write(' * a future object/array path may special-case container RC).\n')
+        elif direct_return:
+            fd.write(' * Stores internal by value in the header.\n')
+        else:
+            fd.write(' * Copies *internal into the header when internal is non-NULL.\n')
         fd.write(' */\n')
         fd.write(declare + '(const afw_value_t *)\n')
         fd.write('afw_value_create_managed_' + id + '(\n    ' + return_type + ' internal,\n')
@@ -360,7 +391,10 @@ def write_h_section(fd, prefix, obj):
         fd.write(' * @param xctx of caller.\n')
         fd.write(' * @return Created const afw_value_t *.\n')
         fd.write(' *\n')
-        fd.write(' * The value\'s lifetime is not managed so it will last for the life of the pool.\n')
+        fd.write(' * Allocates in pool p; lifetime is the pool (no value refcount).\n')
+        fd.write(' * clone_or_reference returns the same instance as-is.\n')
+        if direct_return and ctype.rstrip().endswith('*'):
+            fd.write(' * Stores the pointer as-is; does not clone the referent.\n')
         fd.write(' */\n')
         fd.write(declare + '(const afw_value_t *)\n')
         fd.write('afw_value_create_unmanaged_' + id + '(' + return_type + ' internal,\n')
@@ -708,8 +742,8 @@ def write_c_section(fd, prefix, obj):
     if not special:
 
         fd.write('\n/* Declares and rti/inf defines for interface afw_value */\n')
-        fd.write('/* This is the inf for ' + id + ' values. For this one */\n')
-        fd.write('/* optional_release is NULL and get_reference returns new reference. */\n')
+        fd.write('/* unmanaged ' + id + ': optional_release NULL; */\n')
+        fd.write('/* clone_or_reference returns the same instance (pool lifetime). */\n')
         fd.write('#define AFW_IMPLEMENTATION_ID "' + id + '"\n')
         fd.write('#define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA\n')
         fd.write('#define AFW_IMPLEMENTATION_INF_LABEL afw_value_unmanaged_' + id + '_inf\n')
@@ -724,8 +758,8 @@ def write_c_section(fd, prefix, obj):
         fd.write('#undef impl_afw_value_clone_or_reference\n')
 
         fd.write('\n/* Declares and rti/inf defines for interface afw_value */\n')
-        fd.write('/* This is the inf for managed ' + id + ' values. For this one */\n')
-        fd.write('/* optional_release releases value and get_reference returns new reference. */\n')
+        fd.write('/* managed ' + id + ': optional_release frees header at RC 0; */\n')
+        fd.write('/* clone_or_reference bumps RC and returns the same instance. */\n')
         fd.write('#define AFW_IMPLEMENTATION_ID "managed_' + id + '"\n')
         fd.write('#define AFW_IMPLEMENTATION_INF_LABEL afw_value_managed_' + id + '_inf\n')
         fd.write('#define impl_afw_value_optional_release impl_afw_value_managed_optional_release\n')
@@ -740,8 +774,8 @@ def write_c_section(fd, prefix, obj):
 
         if _supports_managed_slice(ctype):
             fd.write('\n/* Declares and rti/inf defines for interface afw_value */\n')
-            fd.write('/* This is the inf for managed_slice ' + id + ' values. */\n')
-            fd.write('/* optional_release / clone_or_reference update containing refcount. */\n')
+            fd.write('/* managed_slice ' + id + ': RC on containing managed value; */\n')
+            fd.write('/* release frees slice header and applies containing RC. */\n')
             fd.write('#define AFW_IMPLEMENTATION_ID "managed_slice_' + id + '"\n')
             fd.write('#define AFW_IMPLEMENTATION_INF_LABEL afw_value_managed_slice_' + id + '_inf\n')
             fd.write('#define impl_afw_value_optional_release '
@@ -757,8 +791,8 @@ def write_c_section(fd, prefix, obj):
             fd.write('#undef AFW_VALUE_INF_ONLY\n')
 
         fd.write('\n/* Declares and rti/inf defines for interface afw_value */\n')
-        fd.write('/* This is the inf for permanent ' + id + ' values. For this one */\n')
-        fd.write('/* optional_release is NULL and get_reference returns instance asis. */\n')
+        fd.write('/* permanent ' + id + ': optional_release NULL; */\n')
+        fd.write('/* clone_or_reference returns the same instance as-is. */\n')
         fd.write('#define AFW_IMPLEMENTATION_ID "permanent_' + id + '"\n')
         fd.write('#define AFW_IMPLEMENTATION_INF_LABEL afw_value_permanent_' + id + '_inf\n')
         fd.write('#define impl_afw_value_optional_release NULL\n')
@@ -773,8 +807,8 @@ def write_c_section(fd, prefix, obj):
 
     else:
         fd.write('\n/* Declares and rti/inf defines for interface afw_value */\n')
-        fd.write('/* This is the inf for permanent ' + id + ' values. For this one */\n')
-        fd.write('/* optional_release is NULL and get_reference returns instance asis. */\n')
+        fd.write('/* permanent ' + id + ' (special type): optional_release NULL; */\n')
+        fd.write('/* clone_or_reference returns the same instance as-is. */\n')
         fd.write('#define AFW_IMPLEMENTATION_ID "permanent_' + id + '"\n')
         fd.write('#define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA\n')
         fd.write('#define AFW_IMPLEMENTATION_INF_LABEL afw_value_permanent_' + id + '_inf\n')
@@ -1083,13 +1117,13 @@ def write_c_section(fd, prefix, obj):
             fd.write('    }\n')
         elif direct_return == True:
             fd.write('\n')
-            # Note: stores internal by value in xctx->p. If internal is a pointer
-            # into a shorter-lived pool, caller must ensure it outlives this value
-            # or clone into xctx->p before create. No automatic clone yet.
+            # Stores internal as-is. Pointer cTypes: no clone of the referent;
+            # only the value header is refcounted (see create_* Doxygen).
             fd.write('    v = afw_xctx_malloc(\n')
             fd.write('        sizeof(afw_value_' + id + '_managed_t), xctx);\n')
             fd.write('    v->inf = &afw_value_managed_' + id + '_inf;\n')
             fd.write('    v->internal = internal;\n')
+            fd.write('    /* Create starts at 0; see optional_release. */\n')
             fd.write('    v->reference_count = 0;\n')
         else:
             fd.write('\n')
@@ -1398,7 +1432,7 @@ def write_c_section(fd, prefix, obj):
         fd.write('    const afw_pool_t *p,\n')
         fd.write('    afw_xctx_t *xctx)\n')
         fd.write('{\n')
-        fd.write('    /* No reference counting takes place for unmanaged value. */\n')
+        fd.write('    /* Unmanaged: return same instance (pool owns storage). */\n')
         fd.write('    return instance;\n')
         fd.write('}\n')
         fd.write('\n')
@@ -1414,7 +1448,7 @@ def write_c_section(fd, prefix, obj):
         fd.write('    afw_value_' + id + '_managed_t *self =\n')
         fd.write('        (afw_value_' + id + '_managed_t *)instance;\n')
         fd.write('\n')
-        fd.write('    /* Increment reference count and return instance. */\n')    
+        fd.write('    /* Bump RC; return same instance (not a clone). */\n')
         fd.write('    self->reference_count++;\n')
         fd.write('    return instance;\n')
         fd.write('}\n')
@@ -1476,7 +1510,7 @@ def write_c_section(fd, prefix, obj):
     fd.write('    const afw_pool_t *p,\n')
     fd.write('    afw_xctx_t *xctx)\n')
     fd.write('{\n')
-    fd.write('    /* For permanent value, just return the instance passed. */\n')
+    fd.write('    /* Permanent: return same instance as-is. */\n')
     fd.write('    return instance;\n')
     fd.write('}\n')
     fd.write('\n')

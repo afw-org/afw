@@ -52,8 +52,8 @@ impl_afw_value_permanent_get_reference(
     (const void *)&afw_data_type_undefined_direct
 
 /* Declares and rti/inf defines for interface afw_value */
-/* This is the inf for permanent undefined values. For this one */
-/* optional_release is NULL and get_reference returns instance asis. */
+/* permanent undefined (special type): optional_release NULL; */
+/* clone_or_reference returns the same instance as-is. */
 #define AFW_IMPLEMENTATION_ID "permanent_undefined"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_permanent_undefined_inf
@@ -156,7 +156,7 @@ impl_afw_value_permanent_get_reference(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    /* For permanent value, just return the instance passed. */
+    /* Permanent: return same instance as-is. */
     return instance;
 }
 
