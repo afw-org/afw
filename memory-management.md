@@ -198,7 +198,7 @@ _Edit as we decide. Strike or mark rejected._
 |-------|--------|--------|
 | **0a** | Type × lifetime matrix + generator decision tree | **done** |
 | **0b** | Generator/header comments match behavior (clone_or_reference, RC=0, pointer managed) | **done** |
-| **0c** | Semantic consistency only if clear (null create, unevaluated, …) | **done** (null create → singleton; unevaluated/function parked) |
+| **0c** | Semantic consistency only if clear (null create, unevaluated, …) | **done** (null + boolean create → permanents; unevaluated/function parked; allocate_* revisit later) |
 | **0d** | Phase 1 handoff notes (object/array → `->value`) | pending |
 | **0e** | Verify build/tests after any code | pending |
 
@@ -299,7 +299,7 @@ Legend: **P** permanent inf · **U** unmanaged · **M** managed · **S** managed
 | dayTimeDuration | | yes | | `afw_dayTimeDuration_t` | ✓ | ✓ | ✓ | — | ✓ | D |
 | time | | yes | | `afw_time_t` | ✓ | ✓ | ✓ | — | ✓ | D |
 | yearMonthDuration | | yes | | `afw_yearMonthDuration_t` | ✓ | ✓ | ✓ | — | ✓ | D |
-| boolean | | yes | **yes** | `afw_boolean_t` | ✓ | ✓ | ✓ | — | ✓ | E; prefer `afw_boolean_v_*` |
+| boolean | | yes | **yes** | `afw_boolean_t` | ✓ | ✓ | ✓ | — | ✓ | E; **create_* → permanent true/false** (intentional dual) |
 | integer | | yes | **yes** | `afw_integer_t` | ✓ | ✓ | ✓ | — | ✓ | E; prefer `afw_integer_v_zero/one` |
 | double | | yes | **yes** | `double` | ✓ | ✓ | ✓ | — | ✓ | E |
 | object | | no | **yes** | `const afw_object_t *` | ✓ | ✓ | ✓ | — | ✓ | **F — phase 1** double-wrap |
@@ -1367,6 +1367,13 @@ See **Phase 0 findings** section in this file (generator + generated C vs model 
 
 - Documented under **Const / permanent → Cross-generator registration**: `options['const']` bag + `get_string_label`; `const_objects` / `function_bindings` register property names, literals, and typed scalars before `strings.generate` emits `afw_strings.*`.
 - Useful for −1: permanent reuse is one shared pipeline (not only hand `strings.txt`); order is load-bearing; `additional_generate` is after strings emit today.
+
+### 2026-07-23 — phase 0c+: boolean create → permanent true/false
+
+- `create_managed/unmanaged_boolean` return **`afw_value_for_boolean`** (permanent dual; intentional, documented).
+- `set_property_as_boolean` already used permanents (−1b).
+- `allocate_unmanaged_boolean` left as pool header; Doxygen prefers permanents.
+- **Note for later:** `allocate_*` APIs in general can be problematic — revisit as a group, not only boolean/null.
 
 ### 2026-07-23 — phase 0c: null create → permanent singleton
 

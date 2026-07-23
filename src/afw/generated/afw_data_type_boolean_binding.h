@@ -198,8 +198,9 @@ afw_value_as_boolean(
  * @param xctx of caller.
  * @return Allocated afw_value_boolean_t with unmanaged inf set.
  *
- * Unmanaged: lifetime is pool p; no value refcount.
- * Caller fills internal after allocate.
+ * Prefer permanent afw_boolean_v_* / create_*_boolean (which return
+ * those permanents). allocate still makes a pool header for rare
+ * writable cases; that is not the permanent true/false.
  */
 AFW_DECLARE(afw_value_boolean_t *)
 afw_value_allocate_unmanaged_boolean(
@@ -212,10 +213,9 @@ afw_value_allocate_unmanaged_boolean(
  * @param xctx of caller.
  * @return Created const afw_value_t *.
  *
- * Allocates a managed value header in xctx->p. reference_count starts
- * at 0: optional_release without a prior clone_or_reference frees the
- * header immediately. Release frees the value header only.
- * Stores internal by value in the header.
+ * Returns permanent afw_boolean_v_true or afw_boolean_v_false
+ * (intentional; only two Adaptive booleans). Does not allocate.
+ * Prefer afw_value_for_boolean / afw_boolean_v_* at call sites.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_create_managed_boolean(
@@ -229,8 +229,9 @@ afw_value_create_managed_boolean(
  * @param xctx of caller.
  * @return Created const afw_value_t *.
  *
- * Allocates in pool p; lifetime is the pool (no value refcount).
- * clone_or_reference returns the same instance as-is.
+ * Returns permanent afw_boolean_v_true or afw_boolean_v_false
+ * (intentional; only two Adaptive booleans). Does not allocate in p.
+ * Prefer afw_value_for_boolean / afw_boolean_v_* at call sites.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_create_unmanaged_boolean(afw_boolean_t internal,

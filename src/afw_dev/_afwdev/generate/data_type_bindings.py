@@ -319,6 +319,10 @@ def write_h_section(fd, prefix, obj):
             fd.write(' * Prefer afw_value_null instead of allocate+fill. This API still\n')
             fd.write(' * allocates a pool header for rare callers that need a writable\n')
             fd.write(' * afw_value_null_t; that is not the permanent singleton.\n')
+        elif id == 'boolean':
+            fd.write(' * Prefer permanent afw_boolean_v_* / create_*_boolean (which return\n')
+            fd.write(' * those permanents). allocate still makes a pool header for rare\n')
+            fd.write(' * writable cases; that is not the permanent true/false.\n')
         else:
             fd.write(' * Unmanaged: lifetime is pool p; no value refcount.\n')
             fd.write(' * Caller fills internal after allocate.\n')
@@ -336,6 +340,10 @@ def write_h_section(fd, prefix, obj):
             fd.write(' * Returns the permanent singleton afw_value_null (address identity).\n')
             fd.write(' * Does not allocate. Prefer afw_value_null at call sites.\n')
             fd.write(' * internal is ignored (null has no payload).\n')
+        elif id == 'boolean':
+            fd.write(' * Returns permanent afw_boolean_v_true or afw_boolean_v_false\n')
+            fd.write(' * (intentional; only two Adaptive booleans). Does not allocate.\n')
+            fd.write(' * Prefer afw_value_for_boolean / afw_boolean_v_* at call sites.\n')
         else:
             fd.write(' * Allocates a managed value header in xctx->p. reference_count starts\n')
             fd.write(' * at 0: optional_release without a prior clone_or_reference frees the\n')
@@ -415,6 +423,10 @@ def write_h_section(fd, prefix, obj):
             fd.write(' * Returns the permanent singleton afw_value_null (address identity).\n')
             fd.write(' * Does not allocate in p. Prefer afw_value_null at call sites.\n')
             fd.write(' * internal is ignored (null has no payload).\n')
+        elif id == 'boolean':
+            fd.write(' * Returns permanent afw_boolean_v_true or afw_boolean_v_false\n')
+            fd.write(' * (intentional; only two Adaptive booleans). Does not allocate in p.\n')
+            fd.write(' * Prefer afw_value_for_boolean / afw_boolean_v_* at call sites.\n')
         else:
             fd.write(
                 ' * Allocates in pool p; lifetime is the pool '
@@ -1129,6 +1141,12 @@ def write_c_section(fd, prefix, obj):
             fd.write('    (void)xctx;\n')
             fd.write('    return afw_value_null;\n')
             fd.write('}\n')
+        elif id == 'boolean':
+            # Only two Adaptive booleans — permanent dual (intentional).
+            fd.write('    /* Permanent true/false; no managed header. */\n')
+            fd.write('    (void)xctx;\n')
+            fd.write('    return afw_value_for_boolean(internal);\n')
+            fd.write('}\n')
         else:
             fd.write('    afw_value_' + id + '_managed_t *v;\n')
             if ctype == 'afw_utf8_t':
@@ -1289,6 +1307,12 @@ def write_c_section(fd, prefix, obj):
             fd.write('    (void)p;\n')
             fd.write('    (void)xctx;\n')
             fd.write('    return afw_value_null;\n')
+            fd.write('}\n')
+        elif id == 'boolean':
+            fd.write('    /* Permanent true/false; no pool header. */\n')
+            fd.write('    (void)p;\n')
+            fd.write('    (void)xctx;\n')
+            fd.write('    return afw_value_for_boolean(internal);\n')
             fd.write('}\n')
         else:
             fd.write('    afw_value_' + id + '_t *v;\n')
