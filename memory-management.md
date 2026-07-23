@@ -198,7 +198,7 @@ _Edit as we decide. Strike or mark rejected._
 |-------|--------|--------|
 | **0a** | Type × lifetime matrix + generator decision tree | **done** |
 | **0b** | Generator/header comments match behavior (clone_or_reference, RC=0, pointer managed) | **done** |
-| **0c** | Semantic consistency only if clear (null create, unevaluated, …) | pending |
+| **0c** | Semantic consistency only if clear (null create, unevaluated, …) | **done** (null create → singleton; unevaluated/function parked) |
 | **0d** | Phase 1 handoff notes (object/array → `->value`) | pending |
 | **0e** | Verify build/tests after any code | pending |
 
@@ -305,8 +305,8 @@ Legend: **P** permanent inf · **U** unmanaged · **M** managed · **S** managed
 | object | | no | **yes** | `const afw_object_t *` | ✓ | ✓ | ✓ | — | ✓ | **F — phase 1** double-wrap |
 | array | | no | **yes** | `const afw_array_t *` | ✓ | ✓ | ✓ | — | ✓ | **F — phase 1** double-wrap |
 | function | | no | **yes** | `const afw_value_t *` | ✓ | ✓ | ✓ | — | ✓ | F; env uses permanent function values |
-| unevaluated | | no | **yes** | `const afw_value_t *` | ✓ | ✓ | ✓ | — | ✓ | F; audit in 0c |
-| null | | yes | **yes** | `void *` | ✓ | ✓ | ✓ | — | ✓ | F; prefer **`afw_value_null`** singleton |
+| unevaluated | | no | **yes** | `const afw_value_t *` | ✓ | ✓ | ✓ | — | ✓ | F; keep create APIs (compile graphs); not special |
+| null | | yes | **yes** | `void *` | ✓ | ✓ | ✓ | — | ✓ | F; **create_*_null → `afw_value_null`** (0c); allocate still pool header |
 
 Empty cells for special/scalar/directReturn mean **false** / absent.
 
@@ -332,8 +332,8 @@ Empty cells for special/scalar/directReturn mean **false** / absent.
 | 2 | Managed create almost **unused** in hand C (unmanaged + pool bulk free dominates) | 1–2 use |
 | 3 | Family **F** pointer managed: RC = header only | 1 for object/array; note function/unevaluated |
 | 4 | Managed **RC starts at 0** — documented in generator + headers (**0b**) | keep contract |
-| 5 | **null** not special; create APIs can mint non-singleton nulls | identity discipline now; 0c only if clear |
-| 6 | **unevaluated** full create APIs | 0c audit / park |
+| 5 | **null** not special; **create_managed/unmanaged_null → `afw_value_null`** (0c); allocate still non-singleton if used | done |
+| 6 | **unevaluated** full create APIs | **parked** — type for compile results; not special |
 | 7 | Unmanaged/permanent/managed clone_or_reference comments matched behavior (**0b**) | done |
 | 8 | Pointer managed: create Doxygen notes header-only RC / no referent clone (**0b**) | phase 1 for object/array |
 
@@ -456,7 +456,7 @@ See **Future: compile-time type checking** below for a full stash of notes. Shor
 |-------|--------|--------|
 | **Discuss** | Memory story pad (`memory-management.md`); invariants; no big code yet | **paused** (good foundation) |
 | **−1** | **Prefer permanent `afw_v_*` (and typed permanent values) over allocate/create when the string/scalar already exists from generate** — cleanup call sites left over from before strings.py emitted values | **−1a + −1b + −1c done** |
-| **0** | **Audit `data_type_bindings.py` + generated bindings** — correct, complete, match permanent/managed/managed_slice/unmanaged model; finish gaps from recent work; use old branch tip as ideas (object/array create → `->value`, release via container) not as merge | **0a + 0b done** → 0c/0d next |
+| **0** | **Audit `data_type_bindings.py` + generated bindings** — correct, complete, match permanent/managed/managed_slice/unmanaged model; finish gaps from recent work; use old branch tip as ideas (object/array create → `->value`, release via container) not as merge | **0a–0c done** → 0d next |
 | **1** | Managed **object/array** containers + `->value` identity (consistent impls; hide nastiness) | pending |
 | **2** | Assign / scope: **`clone_or_reference`** so variable-held values own needed lifetime | pending |
 | **3** | Scope/symbol release correctness; escape (closures, returned compile results) | pending |
@@ -1367,6 +1367,13 @@ See **Phase 0 findings** section in this file (generator + generated C vs model 
 
 - Documented under **Const / permanent → Cross-generator registration**: `options['const']` bag + `get_string_label`; `const_objects` / `function_bindings` register property names, literals, and typed scalars before `strings.generate` emits `afw_strings.*`.
 - Useful for −1: permanent reuse is one shared pipeline (not only hand `strings.txt`); order is load-bearing; `additional_generate` is after strings emit today.
+
+### 2026-07-23 — phase 0c: null create → permanent singleton
+
+- `create_managed_null` / `create_unmanaged_null` return **`afw_value_null`** (no alloc); `set_property_as_null` sets the singleton.
+- `allocate_unmanaged_null` left as pool header for rare writable cases (documented not the singleton).
+- **unevaluated** / **function**: keep create APIs; unevaluated is real payload wrapper for compile graphs; function values mostly permanent from generate. No `special: true` without a broader type-system plan.
+- Did **not** mark null special (would drop create APIs entirely; singleton routing is enough for identity).
 
 ### 2026-07-23 — phase 0b: binding comments match behavior
 

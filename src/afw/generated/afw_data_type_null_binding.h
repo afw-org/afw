@@ -198,8 +198,9 @@ afw_value_as_null(
  * @param xctx of caller.
  * @return Allocated afw_value_null_t with unmanaged inf set.
  *
- * Unmanaged: lifetime is pool p; no value refcount.
- * Caller fills internal after allocate.
+ * Prefer afw_value_null instead of allocate+fill. This API still
+ * allocates a pool header for rare callers that need a writable
+ * afw_value_null_t; that is not the permanent singleton.
  */
 AFW_DECLARE(afw_value_null_t *)
 afw_value_allocate_unmanaged_null(
@@ -212,12 +213,9 @@ afw_value_allocate_unmanaged_null(
  * @param xctx of caller.
  * @return Created const afw_value_t *.
  *
- * Allocates a managed value header in xctx->p. reference_count starts
- * at 0: optional_release without a prior clone_or_reference frees the
- * header immediately. Release frees the value header only.
- * Stores the pointer as-is; does not clone or take a reference on the
- * referent. Caller must ensure the referent outlives this value (or
- * a future object/array path may special-case container RC).
+ * Returns the permanent singleton afw_value_null (address identity).
+ * Does not allocate. Prefer afw_value_null at call sites.
+ * internal is ignored (null has no payload).
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_create_managed_null(
@@ -231,9 +229,9 @@ afw_value_create_managed_null(
  * @param xctx of caller.
  * @return Created const afw_value_t *.
  *
- * Allocates in pool p; lifetime is the pool (no value refcount).
- * clone_or_reference returns the same instance as-is.
- * Stores the pointer as-is; does not clone the referent.
+ * Returns the permanent singleton afw_value_null (address identity).
+ * Does not allocate in p. Prefer afw_value_null at call sites.
+ * internal is ignored (null has no payload).
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_create_unmanaged_null(void * internal,

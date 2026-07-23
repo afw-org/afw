@@ -315,8 +315,13 @@ def write_h_section(fd, prefix, obj):
         fd.write(' * @param xctx of caller.\n')
         fd.write(' * @return Allocated afw_value_' + id + '_t with unmanaged inf set.\n')
         fd.write(' *\n')
-        fd.write(' * Unmanaged: lifetime is pool p; no value refcount.\n')
-        fd.write(' * Caller fills internal after allocate.\n')
+        if id == 'null':
+            fd.write(' * Prefer afw_value_null instead of allocate+fill. This API still\n')
+            fd.write(' * allocates a pool header for rare callers that need a writable\n')
+            fd.write(' * afw_value_null_t; that is not the permanent singleton.\n')
+        else:
+            fd.write(' * Unmanaged: lifetime is pool p; no value refcount.\n')
+            fd.write(' * Caller fills internal after allocate.\n')
         fd.write(' */\n')
         fd.write(declare + '(afw_value_' + id + '_t *)\n')
         fd.write('afw_value_allocate_unmanaged_' + id + '(\n    const afw_pool_t *p,\n    afw_xctx_t *xctx);\n')
@@ -327,19 +332,34 @@ def write_h_section(fd, prefix, obj):
         fd.write(' * @param xctx of caller.\n')
         fd.write(' * @return Created const afw_value_t *.\n')
         fd.write(' *\n')
-        fd.write(' * Allocates a managed value header in xctx->p. reference_count starts\n')
-        fd.write(' * at 0: optional_release without a prior clone_or_reference frees the\n')
-        fd.write(' * header immediately. Release frees the value header only.\n')
-        if ctype in ('afw_utf8_t', 'afw_memory_t'):
-            fd.write(' * Copies bytes into storage following the header (value owns them).\n')
-        elif direct_return and ctype.rstrip().endswith('*'):
-            fd.write(' * Stores the pointer as-is; does not clone or take a reference on the\n')
-            fd.write(' * referent. Caller must ensure the referent outlives this value (or\n')
-            fd.write(' * a future object/array path may special-case container RC).\n')
-        elif direct_return:
-            fd.write(' * Stores internal by value in the header.\n')
+        if id == 'null':
+            fd.write(' * Returns the permanent singleton afw_value_null (address identity).\n')
+            fd.write(' * Does not allocate. Prefer afw_value_null at call sites.\n')
+            fd.write(' * internal is ignored (null has no payload).\n')
         else:
-            fd.write(' * Copies *internal into the header when internal is non-NULL.\n')
+            fd.write(' * Allocates a managed value header in xctx->p. reference_count starts\n')
+            fd.write(' * at 0: optional_release without a prior clone_or_reference frees the\n')
+            fd.write(' * header immediately. Release frees the value header only.\n')
+            if ctype in ('afw_utf8_t', 'afw_memory_t'):
+                fd.write(
+                    ' * Copies bytes into storage following the header '
+                    '(value owns them).\n')
+            elif direct_return and ctype.rstrip().endswith('*'):
+                fd.write(
+                    ' * Stores the pointer as-is; does not clone or take a '
+                    'reference on the\n')
+                fd.write(
+                    ' * referent. Caller must ensure the referent outlives '
+                    'this value (or\n')
+                fd.write(
+                    ' * a future object/array path may special-case '
+                    'container RC).\n')
+            elif direct_return:
+                fd.write(' * Stores internal by value in the header.\n')
+            else:
+                fd.write(
+                    ' * Copies *internal into the header when internal is '
+                    'non-NULL.\n')
         fd.write(' */\n')
         fd.write(declare + '(const afw_value_t *)\n')
         fd.write('afw_value_create_managed_' + id + '(\n    ' + return_type + ' internal,\n')
@@ -391,10 +411,20 @@ def write_h_section(fd, prefix, obj):
         fd.write(' * @param xctx of caller.\n')
         fd.write(' * @return Created const afw_value_t *.\n')
         fd.write(' *\n')
-        fd.write(' * Allocates in pool p; lifetime is the pool (no value refcount).\n')
-        fd.write(' * clone_or_reference returns the same instance as-is.\n')
-        if direct_return and ctype.rstrip().endswith('*'):
-            fd.write(' * Stores the pointer as-is; does not clone the referent.\n')
+        if id == 'null':
+            fd.write(' * Returns the permanent singleton afw_value_null (address identity).\n')
+            fd.write(' * Does not allocate in p. Prefer afw_value_null at call sites.\n')
+            fd.write(' * internal is ignored (null has no payload).\n')
+        else:
+            fd.write(
+                ' * Allocates in pool p; lifetime is the pool '
+                '(no value refcount).\n')
+            fd.write(
+                ' * clone_or_reference returns the same instance as-is.\n')
+            if direct_return and ctype.rstrip().endswith('*'):
+                fd.write(
+                    ' * Stores the pointer as-is; does not clone the '
+                    'referent.\n')
         fd.write(' */\n')
         fd.write(declare + '(const afw_value_t *)\n')
         fd.write('afw_value_create_unmanaged_' + id + '(' + return_type + ' internal,\n')
@@ -1041,6 +1071,9 @@ def write_c_section(fd, prefix, obj):
             fd.write('        v = afw_value_create_unmanaged_' + id +
                      '(internal, object->p, xctx);\n')
             fd.write('    }\n')
+        elif id == 'null':
+            # Permanent singleton — preserve address identity.
+            fd.write('    v = afw_value_null;\n')
         else:
             fd.write('    v = afw_value_create_unmanaged_' + id +
                      '(internal, object->p, xctx);\n')
@@ -1089,53 +1122,70 @@ def write_c_section(fd, prefix, obj):
         fd.write('afw_value_create_managed_' + id + '(\n    ' + return_type + ' internal,\n')
         fd.write('    afw_xctx_t *xctx)\n')
         fd.write('{\n')
-        fd.write('    afw_value_' + id + '_managed_t *v;\n')
-        if ctype == 'afw_utf8_t':
-            fd.write('    afw_size_t len;\n')
-            fd.write('\n')
-            fd.write('    len = (internal) ? internal->len : 0;\n')
-            fd.write('    v = afw_xctx_calloc(\n')
-            fd.write('        sizeof(afw_value_' + id + '_managed_t) + len, xctx);\n')
-            fd.write('    v->inf = &afw_value_managed_' + id + '_inf;\n')
-            fd.write('    v->internal.len = len;\n')
-            fd.write('    v->internal.s = (const afw_utf8_octet_t *)v +\n        sizeof(afw_value_' + id + '_managed_t);\n')
-            fd.write('    if (internal && internal->s) {\n')
-            fd.write('        memcpy((void *)v->internal.s, internal->s, len);\n')
-            fd.write('    }\n')
-        elif ctype == 'afw_memory_t':
-            fd.write('\n')
-            fd.write('    afw_size_t size;\n')
-            fd.write('\n')
-            fd.write('    size = (internal) ? internal->size : 0;\n')
-            fd.write('    v = afw_xctx_calloc(\n')
-            fd.write('        sizeof(afw_value_' + id + '_managed_t) + size, xctx);\n')
-            fd.write('    v->inf = &afw_value_managed_' + id + '_inf;\n')
-            fd.write('    v->internal.size = (internal) ? internal->size : 0;\n')
-            fd.write('    v->internal.ptr = (const afw_byte_t *)v +\n        sizeof(afw_value_' + id + '_managed_t);\n')
-            fd.write('    if (internal && internal->ptr) {\n')
-            fd.write('       memcpy((void *)v->internal.ptr, internal->ptr, size);\n')
-            fd.write('    }\n')
-        elif direct_return == True:
-            fd.write('\n')
-            # Stores internal as-is. Pointer cTypes: no clone of the referent;
-            # only the value header is refcounted (see create_* Doxygen).
-            fd.write('    v = afw_xctx_malloc(\n')
-            fd.write('        sizeof(afw_value_' + id + '_managed_t), xctx);\n')
-            fd.write('    v->inf = &afw_value_managed_' + id + '_inf;\n')
-            fd.write('    v->internal = internal;\n')
-            fd.write('    /* Create starts at 0; see optional_release. */\n')
-            fd.write('    v->reference_count = 0;\n')
+        if id == 'null':
+            # Singleton: preserve address identity for is/compare patterns.
+            fd.write('    /* Permanent singleton; internal unused. */\n')
+            fd.write('    (void)internal;\n')
+            fd.write('    (void)xctx;\n')
+            fd.write('    return afw_value_null;\n')
+            fd.write('}\n')
         else:
+            fd.write('    afw_value_' + id + '_managed_t *v;\n')
+            if ctype == 'afw_utf8_t':
+                fd.write('    afw_size_t len;\n')
+                fd.write('\n')
+                fd.write('    len = (internal) ? internal->len : 0;\n')
+                fd.write('    v = afw_xctx_calloc(\n')
+                fd.write('        sizeof(afw_value_' + id +
+                         '_managed_t) + len, xctx);\n')
+                fd.write('    v->inf = &afw_value_managed_' + id + '_inf;\n')
+                fd.write('    v->internal.len = len;\n')
+                fd.write('    v->internal.s = (const afw_utf8_octet_t *)v +\n'
+                         '        sizeof(afw_value_' + id + '_managed_t);\n')
+                fd.write('    if (internal && internal->s) {\n')
+                fd.write('        memcpy((void *)v->internal.s, '
+                         'internal->s, len);\n')
+                fd.write('    }\n')
+            elif ctype == 'afw_memory_t':
+                fd.write('\n')
+                fd.write('    afw_size_t size;\n')
+                fd.write('\n')
+                fd.write('    size = (internal) ? internal->size : 0;\n')
+                fd.write('    v = afw_xctx_calloc(\n')
+                fd.write('        sizeof(afw_value_' + id +
+                         '_managed_t) + size, xctx);\n')
+                fd.write('    v->inf = &afw_value_managed_' + id + '_inf;\n')
+                fd.write('    v->internal.size = (internal) ? '
+                         'internal->size : 0;\n')
+                fd.write('    v->internal.ptr = (const afw_byte_t *)v +\n'
+                         '        sizeof(afw_value_' + id + '_managed_t);\n')
+                fd.write('    if (internal && internal->ptr) {\n')
+                fd.write('       memcpy((void *)v->internal.ptr, '
+                         'internal->ptr, size);\n')
+                fd.write('    }\n')
+            elif direct_return == True:
+                fd.write('\n')
+                # Stores internal as-is. Pointer cTypes: no clone of referent.
+                fd.write('    v = afw_xctx_malloc(\n')
+                fd.write('        sizeof(afw_value_' + id +
+                         '_managed_t), xctx);\n')
+                fd.write('    v->inf = &afw_value_managed_' + id + '_inf;\n')
+                fd.write('    v->internal = internal;\n')
+                fd.write('    /* Create starts at 0; see optional_release. */\n')
+                fd.write('    v->reference_count = 0;\n')
+            else:
+                fd.write('\n')
+                fd.write('    v = afw_xctx_calloc(\n')
+                fd.write('        sizeof(afw_value_' + id +
+                         '_managed_t), xctx);\n')
+                fd.write('    v->inf = &afw_value_managed_' + id + '_inf;\n')
+                fd.write('    if (internal) {\n')
+                fd.write('        memcpy(&v->internal, internal, '
+                         'sizeof(' + ctype + '));\n')
+                fd.write('    }\n')
             fd.write('\n')
-            fd.write('    v = afw_xctx_calloc(\n')
-            fd.write('        sizeof(afw_value_' + id + '_managed_t), xctx);\n')
-            fd.write('    v->inf = &afw_value_managed_' + id + '_inf;\n')
-            fd.write('    if (internal) {\n')
-            fd.write('        memcpy(&v->internal, internal, sizeof(' + ctype + '));\n')
-            fd.write('    }\n')
-        fd.write('\n')
-        fd.write('    return &v->pub;\n')
-        fd.write('}\n')
+            fd.write('    return &v->pub;\n')
+            fd.write('}\n')
 
         if ctype == 'afw_utf8_t':
             fd.write('\n/* Create function for managed data type ' + id + ' slice value. */\n')
@@ -1233,19 +1283,28 @@ def write_c_section(fd, prefix, obj):
         fd.write('afw_value_create_unmanaged_' + id + '(' + return_type + ' internal,\n')
         fd.write('    const afw_pool_t *p, afw_xctx_t *xctx)\n')
         fd.write('{\n')
-        fd.write('    afw_value_' + id + '_t *v;\n')
-        fd.write('\n')
-        fd.write('    v = afw_pool_calloc(p, sizeof(afw_value_' + id + '_t),\n')
-        fd.write('        xctx);\n')
-        fd.write('    v->inf = &afw_value_unmanaged_' + id + '_inf;\n')
-        if direct_return == True:
-            fd.write('    v->internal = internal;\n')
+        if id == 'null':
+            fd.write('    /* Permanent singleton; internal/p unused. */\n')
+            fd.write('    (void)internal;\n')
+            fd.write('    (void)p;\n')
+            fd.write('    (void)xctx;\n')
+            fd.write('    return afw_value_null;\n')
+            fd.write('}\n')
         else:
-            fd.write('    if (internal) {\n')
-            fd.write('        memcpy(&v->internal, internal, sizeof(' + ctype + '));\n')
-            fd.write('    }\n')
-        fd.write('    return &v->pub;\n')
-        fd.write('}\n')
+            fd.write('    afw_value_' + id + '_t *v;\n')
+            fd.write('\n')
+            fd.write('    v = afw_pool_calloc(p, sizeof(afw_value_' + id + '_t),\n')
+            fd.write('        xctx);\n')
+            fd.write('    v->inf = &afw_value_unmanaged_' + id + '_inf;\n')
+            if direct_return == True:
+                fd.write('    v->internal = internal;\n')
+            else:
+                fd.write('    if (internal) {\n')
+                fd.write('        memcpy(&v->internal, internal, '
+                         'sizeof(' + ctype + '));\n')
+                fd.write('    }\n')
+            fd.write('    return &v->pub;\n')
+            fd.write('}\n')
 
         fd.write('\n/* Convert data type ' + id + ' string to ' + ctype + ' *. */\n')
         fd.write(define + '(void)\nafw_data_type_' + id + '_to_internal(' + ctype + ' *to_internal,\n')

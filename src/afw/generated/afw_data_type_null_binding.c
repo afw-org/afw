@@ -237,7 +237,7 @@ afw_object_set_property_as_null(
             xctx);
     }
 
-    v = afw_value_create_unmanaged_null(internal, object->p, xctx);
+    v = afw_value_null;
     afw_object_set_property(object, property_name, v, xctx);
 }
 
@@ -284,16 +284,10 @@ afw_value_create_managed_null(
     void * internal,
     afw_xctx_t *xctx)
 {
-    afw_value_null_managed_t *v;
-
-    v = afw_xctx_malloc(
-        sizeof(afw_value_null_managed_t), xctx);
-    v->inf = &afw_value_managed_null_inf;
-    v->internal = internal;
-    /* Create starts at 0; see optional_release. */
-    v->reference_count = 0;
-
-    return &v->pub;
+    /* Permanent singleton; internal unused. */
+    (void)internal;
+    (void)xctx;
+    return afw_value_null;
 }
 
 /* Create function for data type null value. */
@@ -301,13 +295,11 @@ AFW_DEFINE(const afw_value_t *)
 afw_value_create_unmanaged_null(void * internal,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    afw_value_null_t *v;
-
-    v = afw_pool_calloc(p, sizeof(afw_value_null_t),
-        xctx);
-    v->inf = &afw_value_unmanaged_null_inf;
-    v->internal = internal;
-    return &v->pub;
+    /* Permanent singleton; internal/p unused. */
+    (void)internal;
+    (void)p;
+    (void)xctx;
+    return afw_value_null;
 }
 
 /* Convert data type null string to void * *. */
