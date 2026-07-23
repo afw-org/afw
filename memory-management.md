@@ -161,6 +161,10 @@ _Edit as we decide. Strike or mark rejected._
 | 2026-07-23 | Object/array: keep **dual create surface** — object/array creates for C; value creates when the Adaptive value face is needed | Not a value-only rewrite of AFW C |
 | 2026-07-23 | **Do not** reintroduce generated “create empty managed object/array **as a value**” helpers | Abandoned #2 branch residue; not in tree; do not bring back |
 | 2026-07-23 | Permanent empty **array of \<dataType\>** (`impl_empty_array_of_*`) stays | Unrelated to empty-object-value creates |
+| 2026-07-23 | Objects/arrays (managed **and** unmanaged) will hold property/element **values of mixed lifetimes** | Rely on value inf `clone_or_reference` / `optional_release`; keep thinking as we implement — not only container→value identity |
+| 2026-07-23 | Prefer **all** value-kind lifetime nastiness in `clone_or_reference` / `optional_release` (not in every container) | Includes non–data-type values; many still have NULL methods today |
+| 2026-07-23 | Prefer **ship new paths early** when they do not break existing behavior; save big-bang switches for scope/assign | Object/array identity work can land incrementally |
+| 2026-07-23 | Highest break risk: **scope lifetime + assign** (e.g. `afw_function_compiler_script.c`), not most object/array plumbing | xctx/clone wiring left conservative on purpose during large #2/scope work |
 
 ### Open questions (need maintainer perspective when back)
 
@@ -432,7 +436,67 @@ Empty cells for special/scalar/directReturn mean **false** / absent.
 - Missing `->value` on some infs.  
 - Unmanaged memory object still embedding **managed** value inf (current memory create) — reconcile when coding.  
 - #110: permanent/shared mutables as defaults must clone when returned mutable.  
-- Array behind object (list heritage); expect second vertical slice.
+- Array behind object (list heritage); expect second vertical slice.  
+- **Mixed lifetimes inside containers:** properties/elements may be permanent, managed, unmanaged, slice, … on both managed and unmanaged objects/arrays. Container identity (`->value`) is only half the story; set_property / array add / clone / release must use each value’s lifetime methods correctly (phases 1–2+). Expect ongoing design checks, not a one-time fix.
+
+##### Mixed value lifetimes inside objects/arrays (ongoing)
+
+As MM work proceeds, real objects and arrays will keep holding **values with all kinds of lifetimes** (permanent, managed, unmanaged, slice, nested object/array values, **and non–data-type values** such as closures, calls, compiled graphs, …) whether the **container** itself is managed or unmanaged.
+
+**Intended architecture:** keep the nastiness in **`afw_value` methods**, especially:
+
+- **`clone_or_reference`** — store / escape / outlive a pool  
+- **`optional_release`** — drop a held value  
+
+Containers (set_property, array add, scope assign, …) should call those and **not** special-case every value kind. Data-type bindings already generate permanent/managed/slice/unmanaged clone+release; **hand value kinds** need the same discipline over time.
+
+**Still think through** when coding:
+
+- Unmanaged container holding a **managed** value (or the reverse).  
+- Permanent / shared values as properties (#110).  
+- Nested object/array values and double-wrap vs `->value`.  
+- Container clone deep-walking via `clone_or_reference`.  
+- Release order vs subpool bulk free.  
+- **Non-DT values** with clone/release still **NULL** (most expression/compile kinds today).  
+- Call sites that still avoid `afw_value_clone_or_reference` (e.g. xctx FIXME).
+
+Phase 1 focuses on **container as Adaptive value**; mixed-content + full value-kind clone/release spans **1–2+** (and #35 closures).
+
+##### Value implementations inventory (beyond data types)
+
+Discovery: `afw_value_impl_declares.h` + `AFW_IMPLEMENTATION_ID` (same multi-include caveats as object). ~**132** include sites / **52** files (2026-07-23 pass).
+
+**A. Generated data-type value infs** (~115 sites in `*_binding.c`)
+
+| Kind | clone_or_reference (typical) | optional_release |
+|------|------------------------------|------------------|
+| permanent_* | as-is | NULL |
+| unmanaged (bare id) | as-is | NULL |
+| managed_* | bump RC | free header at RC 0 |
+| managed_slice_* | new slice + containing RC | slice + containing |
+
+**B. Hand value kinds** (`src/afw/value/*.c`, ~17 ids)
+
+| IMPLEMENTATION_ID | clone / release today | Notes for property/array storage |
+|-------------------|----------------------|----------------------------------|
+| **closure_binding** | **Real** RC + scope get_reference/release | Escape model; nastiness stays in value methods |
+| compiled_value | both **NULL** | Compile pool; escape open |
+| block, call, call_*, list/object_expression | both **NULL** | Graph nodes; usually evaluate before long hold |
+| symbol_reference, qualified_variable_reference, reference_by_key, assignment_target | both **NULL** | Scope/structure refs |
+| function_definition, function_thunk, script_function, template_definition | both **NULL** | Often env/compile-owned |
+
+Many hand kinds `#define impl_afw_value_clone_or_reference NULL` (and release). Call macros invoke the inf slot — **NULL is unsafe to call**. Goal: implement real methods on kinds that can be stored/escaped, rather than teaching every container about that kind.
+
+**C. Permanent object/array values** (const_objects, `empty_array_value`, function meta) use permanent DT infs — covered by A + generate.
+
+**D. Target container pattern:**
+
+```text
+held = afw_value_clone_or_reference(incoming, /* pool/policy */, xctx);
+// on replace/remove: afw_value_optional_release(old, xctx);
+```
+
+Special cases (closure scope, managed object container RC once 1b lands, compiled_value later, …) live **inside** that value’s clone/release.
 
 ##### Open for phase 1 plan (not blockers for 0d)
 
@@ -447,7 +511,7 @@ Empty cells for special/scalar/directReturn mean **false** / absent.
 
 | Step | Intent | Status |
 |------|--------|--------|
-| **1a** | **Inventory** object (then array) implementations: id, sets `pub.value`?, value inf kind, release/get_reference notes; sample value-create call sites | pending |
+| **1a** | **Inventory** object (then array) implementations: id, sets `pub.value`?, value inf kind, release/get_reference notes; sample value-create call sites | **done** (see below; uncommitted review) |
 | **1b** | **Value create policy for object** — special-case create managed/unmanaged when `obj->value` present; catch-22 wrap only as documented; dual surface unchanged | pending |
 | **1c** | **Memory object** as reference impl — align managed/unmanaged flags vs value inf; one release/clone model | pending |
 | **1d** | **Fill `->value`** on remaining object impls (inventory hit list) | pending |
@@ -455,6 +519,13 @@ Empty cells for special/scalar/directReturn mean **false** / absent.
 | **1f** | **Array** mirror of 1b–1e (thinner set of impls) | pending |
 
 **Out of phase 1:** compile `[]`/`{}` dance, allocate_* global revisit, assign/escape, function/unevaluated container special-case.
+
+##### Rollout posture (how we turn things on)
+
+- **xctx / clone_or_reference:** conservative or incomplete call sites (including FIXMEs) were intentional so scopes and other #2 work could land without requiring the full value-lifetime matrix to be live everywhere. That is **not** “clone_or_reference is abandoned.”
+- **Goal:** get **new correct paths called as soon as they are safe**, without breaking current production behavior. Much of **object/array** work (fill `->value`, value-create return existing value when present, permanent paths) can ship **incrementally** and stay green.
+- **Likely hard switch later:** when **scope lifetime** and **assign** paths fully rely on clone/release (notably script/compiler assign surfaces such as `afw_function_compiler_script.c`). That is when incomplete value-kind methods and xctx wiring become load-bearing.
+- **Dev technique (for later):** optional `ifdef` (or similar) around a “new lifetime regime” so local builds can define a symbol while developing, then remove the gate before commit — only when a feature really needs a kill switch; prefer always-on safe deltas when possible.
 
 ##### 1a — How to find implementations
 
@@ -482,6 +553,106 @@ Typical preamble:
 4. `afw_object.h` / `afw_array.h` = public creates and helpers — **not** the full impl list.
 
 **1a deliverable:** table per **implementation** (path, `AFW_IMPLEMENTATION_ID`, which interface, value filled Y/N, notes) — one row per include/id, not one row per file — + NULL-value hit list + rough create_*_object call counts. Pad only unless gaps need code in a later step.
+
+##### 1a results (2026-07-23)
+
+**Method:** `grep` for `afw_object_impl_declares.h` / `afw_array_impl_declares.h` include sites; `AFW_IMPLEMENTATION_ID`; `pub.value` assign **or** static `afw_object_t` / `afw_array_t` initializer (3rd field is `value`); value inf symbols; non-generated `afw_value_create_*_object/array` counts. Skeleton closet files ignored.
+
+**How `value` is filled (do not miss #2):**
+
+| Pattern | Example |
+|---------|---------|
+| Runtime assign | `self->pub.value = (const afw_value_t *)&self->value;` |
+| Static struct init | `afw_object_t` / aggregate: `.inf, .p, .value, .meta` — e.g. env registry `impl_current_object` |
+| External factory | `afw_runtime_object_create_indirect_using_inf` allocates value + sets `obj->pub.value` |
+| Gap | Object exists but `pub.value` never set; value may live only as a side struct (e.g. value_meta) |
+
+**No file today multi-includes `afw_object_impl_declares.h` twice** (multiple object infs in one `.c`). Several files **do** multi-interface: object + `afw_object_setter_impl_declares.h` (memory, meta, properties_callback, property_meta, value_meta).
+
+###### Object implementations (`afw_object_impl_declares.h`)
+
+| IMPLEMENTATION_ID | Source | `value` on instance? | Embedded / paired value inf (typical) | Notes |
+|-------------------|--------|----------------------|----------------------------------------|--------|
+| `memory` | `object/afw_object_memory.c` | **Y** (create + embedded) | `managed_object_inf` always | Workhorse; also object_setter. Unmanaged option still uses **managed** value inf. |
+| `composite` | `object/afw_object_composite.c` | **Y** | managed_object | |
+| `afw_object_view` | `object/afw_object_view.c` | **Y** | managed (+ unmanaged symbol present) | |
+| `afw_object_aggregate_external` | `object/afw_object_aggregate_external.c` | **Y** | managed_object | |
+| `afw_object_const_key_value` | `object/afw_object_const_key_value.c` | **Y** | managed_object | Const-ish data, managed value inf |
+| `object_meta` | `object/afw_object_meta.c` | **Y** | managed_object | + setter |
+| `afw_object_meta_accessor` | `object/afw_object_meta_accessor.c` | **Y** | managed_object | |
+| `object_impl_property_meta` | `object/afw_object_impl_property_meta.c` | **Y** | managed (+ unmanaged ref) | + setter |
+| `properties_callback` | `object/afw_object_properties_callback.c` | **Y** | managed_object | + setter |
+| `environment_variables` | `environment/afw_environment_variables_object.c` | **Y** | managed_object | |
+| `fcgi_request_properties` | `afw_server_fcgi/..._properties_object.c` | **Y** | managed_object | Outside `src/afw/` core |
+| `afw_environment_registry` | `environment/afw_environment_registry_object.c` | **Y** (static init, not `pub.value=`) | **permanent_object_inf** | Permanent singleton path; easy to miss if only grepping assigns |
+| `afw_runtime_const_meta` | `runtime/afw_runtime_const_meta.c` | **Not on create in this file** | inf only; instances elsewhere | Const meta **inf**; instance `value` must be set by whoever builds the meta object (const_objects / runtime). Audit consumers in 1d. |
+| `value_meta` | `value/afw_value_meta.c` | **N on `pub`** | Builds `meta_object_value` with **unmanaged_object_inf** but does **not** set `self->pub.value` | Callers use `&self->meta_object_value.pub` as the value; instance `->value` gap for 1d |
+
+**Related (not object_impl_declares but object instances):**
+
+| Path | Role |
+|------|------|
+| `runtime/afw_runtime.c` `afw_runtime_object_create_indirect_using_inf` | Sets `pub.value` to pool-allocated **unmanaged_object** value |
+| `generated/afw_const_objects.c` (+ peers) | Permanent const objects + permanent object values |
+| Extensions | Only **fcgi** properties object found with object_impl_declares under `src/afw_*` in this pass; adapters may use memory/runtime objects rather than custom object infs |
+
+###### Array implementations (`afw_array_impl_declares.h`)
+
+| IMPLEMENTATION_ID | Source | `value`? | Value inf (typical) | Notes |
+|-------------------|--------|----------|---------------------|--------|
+| `memory` | `array/afw_array_memory.c` | **Y** | managed_array | Workhorse |
+| `afw_array_const_array_of_values` | `array/afw_array_const_array.c` | **Y** | (const path) | |
+| `afw_array_wrapper_for_array` | `array/afw_array_wrapper_for_array.c` | **Y** | points at passed/own value | Used by permanent empty arrays |
+| `afw_value_meta_values_list` | `value/afw_value_meta_values_list.c` | **Y** | | Meta as array |
+| `afw_value_meta_values_object` | `value/afw_value_meta_values_object.c` | **Y** | | |
+
+###### Two different “managed” stories (do not conflate)
+
+**A. Memory object instance options** (`afw_object_create_with_options` in `afw_object.h`):
+
+| Option / macro | Meaning |
+|----------------|---------|
+| **`AFW_OBJECT_MEMORY_OPTION_managed` (value `0`)** | **Default.** Subpool of `p`; object `get_reference` / `release` control that pool’s lifetime. |
+| **`AFW_OBJECT_MEMORY_OPTION_unmanaged`** | No object-level RC / no release of associated pool via object methods. |
+| **`AFW_OBJECT_MEMORY_OPTION_managed_cede_p`** | Object takes ownership of passed `p` (not a new subpool); RC still via object release. |
+| **`afw_object_create(p,xctx)`** | → `create_with_options(**managed**, …)` |
+| **`afw_object_create_unmanaged`** | → unmanaged |
+| **`afw_object_create_cede_p`** | → managed_cede_p |
+| **`afw_object_create_embedded`** | Child in embedder’s pool / entity lifetime |
+
+Rough **hand C** call counts (exclude `generated/`; macros count as uses):
+
+| Call | ~Count | Lifetime class |
+|------|--------|----------------|
+| `afw_object_create` | **~72** | **Managed object** (default option 0) |
+| `afw_object_create_unmanaged` | **~48** | Unmanaged object |
+| `afw_object_create_embedded` | **~36** | Embedded (entity-managed) |
+| `afw_object_create_cede_p` | **~4** | Managed, cede pool |
+| `afw_object_create_with_options` direct | rare | explicit mask |
+
+So **managed memory objects are common** — they are **not** created via `afw_value_create_managed_object`.
+
+**B. Adaptive value wrappers** (data type object create APIs):
+
+| API | Approx count (hand C) | Notes |
+|-----|------------------------|--------|
+| `afw_value_create_unmanaged_object` | **~97** | Dominates value wrapping; function/ heavy |
+| `afw_value_create_managed_object` | **~0–5** | Essentially unused as a call site pattern |
+| `afw_value_create_unmanaged_array` | **~60** | |
+| `afw_value_create_managed_array` | **~0** | |
+
+Generated bindings still implement value managed create as **header + bare pointer** (double-wrap when instance already has `->value`).
+
+**1a correction:** saying “managed create = 0” was only true for **`afw_value_create_managed_object`**. **`afw_object_create` is managed-by-default** and is widely used. Phase 1 must connect: managed **object** instance (often already has embedded `managed_object` value) ↔ value path that today often **re-wraps unmanaged**.
+
+###### 1a conclusions (for 1b+)
+
+1. **Most core object/array impls already set `value`** — phase 1 is less “add the field” and more “value create must use it” + a few **gaps**.  
+2. **Gaps / careful cases:** `value_meta` (value not on `pub.value`); `runtime_const_meta` (inf-only file); always check **static initializers** (registry).  
+3. **Memory object always embeds `managed_object_inf`** even when options say **unmanaged** object — reconcile object options vs value inf in **1c**.  
+4. **Managed objects are common** (`afw_object_create`); **managed value wrappers are not** (`afw_value_create_managed_object` ≈ unused). Hot path: create managed/unmanaged **object**, then often `afw_value_create_unmanaged_object` — double-wrap risk even for managed instances.  
+5. **Objects first** still right; array inventory is small and mostly already filled.  
+6. **1b safe interim:** special-case value create when `instance->value != NULL`; if NULL, keep current wrap (or assert later) so gaps do not break before 1d.
 
 #### Null / undefined / address identity (from discussion — not “just special”)
 
@@ -585,7 +756,7 @@ See **Future: compile-time type checking** below for a full stash of notes. Shor
 | **Discuss** | Memory story pad (`memory-management.md`); invariants; no big code yet | **paused** (good foundation) |
 | **−1** | **Prefer permanent `afw_v_*` (and typed permanent values) over allocate/create when the string/scalar already exists from generate** — cleanup call sites left over from before strings.py emitted values | **−1a + −1b + −1c done** |
 | **0** | **Audit `data_type_bindings.py` + generated bindings** — correct, complete, match permanent/managed/managed_slice/unmanaged model; finish gaps from recent work; use old branch tip as ideas (object/array create → `->value`, release via container) not as merge | **0a–0d done** — phase 0 complete |
-| **1** | Managed **object/array** containers + `->value` identity (consistent impls; hide nastiness) | **plan drafted** — 1a inventory next |
+| **1** | Managed **object/array** containers + `->value` identity (consistent impls; hide nastiness) | **1a done** (review) → 1b next |
 | **2** | Assign / scope: **`clone_or_reference`** so variable-held values own needed lifetime | pending |
 | **3** | Scope/symbol release correctness; escape (closures, returned compile results) | pending |
 | **4** | Accounting / graceful OOM / limits (later) | pending |
@@ -1495,6 +1666,31 @@ See **Phase 0 findings** section in this file (generator + generated C vs model 
 
 - Documented under **Const / permanent → Cross-generator registration**: `options['const']` bag + `get_string_label`; `const_objects` / `function_bindings` register property names, literals, and typed scalars before `strings.generate` emits `afw_strings.*`.
 - Useful for −1: permanent reuse is one shared pipeline (not only hand `strings.txt`); order is load-bearing; `additional_generate` is after strings emit today.
+
+### 2026-07-23 — rollout: safe incremental vs scope/assign switch
+
+- xctx FIXME / incomplete clone_or_reference call sites: keep-working choice during large scope/#2 work, not a dead end.
+- Do object/array identity and create fixes **without** waiting for full scope assign; those should not break if additive.
+- Break-glass risk mainly when enabling full scope lifetime + assign (`afw_function_compiler_script.c` etc.).
+- Later: temporary ifdef for “new regime” in local dev if needed; prefer always-on safe changes when possible.
+
+### 2026-07-23 — value impls + clone_or_reference strategy
+
+- Inventory: ~17 hand value kinds + full generated DT permanent/managed/slice/unmanaged matrix; discovery via `afw_value_impl_declares.h`.
+- **closure_binding** already implements real clone/release; most expression/compile kinds still NULL.
+- Plan: containers call clone_or_reference/optional_release; special cases live in those methods per value kind.
+- Related: xctx still has FIXME to switch to `afw_value_clone_or_reference` when ready.
+
+### 2026-07-23 — note: mixed lifetimes inside objects/arrays
+
+- Managed and unmanaged containers will hold property/element values of **all** lifetime kinds.
+- Expect correctness mainly from value lifetime methods used at set/clone/release/escape; keep revisiting edge cases as phase 1–2 land.
+
+### 2026-07-23 — phase 1a inventory executed (not committed)
+
+- Full tables under **Phase 1 plan → 1a results**: object/array impls, value fill patterns, create call counts.
+- Most impls already set `value`; gaps: value_meta pub, runtime_const_meta consumers; registry uses static init.
+- Corrected: **managed memory objects** ≈ `afw_object_create` (~72) etc.; **`afw_value_create_managed_object` ≈ unused**. ~97 unmanaged **value** wraps; ~60 array value wraps.
 
 ### 2026-07-23 — phase 1 plan drafted (objects first, multi-step)
 
