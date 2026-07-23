@@ -277,13 +277,15 @@ Old work is still a **valid target shape for phase 1**, not something already fi
 
 This is subtler than “mark null special in generate.”
 
-**Manual permanent values in `afw_value.h` / `afw_value.c`** (not all from strings.py):
+**Manual permanent values in `afw_value.h` / `afw_value.c`** (predate or sit beside `dataType::` in strings.py):
 
 | Symbol | Role |
 |--------|------|
 | **`afw_value_null`** | Adaptive **null** (permanent_null_inf). **Not** C NULL. |
 | **`afw_value_undefined`** | Preferred representation of Adaptive **undefined**; C **NULL** is also undefined for historical reasons. |
 | **`afw_value_unique_default_case_value`** | Same *shape* as null (permanent_null_inf) but a **different address** — switch `default` marker; **identity is the pointer**. |
+
+Some of these were added **before** `boolean::` / `integer::` support in `strings.txt`. Overlap with generate is fine: keeping the critical sentinels **declared and documented in `afw_value.h`** is still worthwhile — they show up in **Doxygen value docs**, and they are important enough to **highlight** next to evaluate/nullish macros rather than only buried in generated `afw_strings.h`. Typed catalog values (`afw_boolean_v_true`, `afw_integer_v_zero`, …) stay generate-owned; **null / undefined / unique-default** stay first-class in the public value API header.
 
 Macros: **`afw_value_is_undefined`** = `!ptr \|\| ptr == afw_value_undefined`; **`afw_value_is_nullish`** = undefined **or** data type null. Always use macros — C NULL can mean “not applicable” in some APIs, not only undefined.
 
@@ -1170,12 +1172,25 @@ See **Phase 0 findings** section in this file (generator + generated C vs model 
 - strings.py now emits **`afw_v_*`** permanent values; older code often still **`create_unmanaged_*` / `set_property_as_string`** on constants that already have permanent values.
 - Proposal: cleanup pass to prefer **`afw_v_*` / `afw_boolean_v_*` / …** — less alloc, aligns with “permanent = no pool.” Scope carefully (only when constant value exists).
 
+**`strings.txt` naming subtleties (for −1 and general use):**
+
+| Form | Example | Generated (among others) |
+|------|---------|---------------------------|
+| name = value when name must be valid C | `a_empty_string=` → value `""` | `afw_s_a_empty_string`, **`afw_v_a_empty_string`**, `afw_z_…` |
+| | `a_period=.` | `afw_s_a_period` / **`afw_v_a_period`** (value `"."`) |
+| `dataType::name=value` non-string | `integer::zero=0` | **`afw_integer_v_zero`** / `afw_integer_self_v_zero` (integer permanent, **not** string `"0"`) |
+| | `boolean::true=true` | **`afw_boolean_v_true`** (boolean) — distinct from string **`afw_v_true`** (`"true"`) |
+| | `integer::one=1`, `double::1=1.0e1` | `afw_integer_v_one`, `afw_double_v_1` |
+
+`a_` prefix convention = C-safe label when value is empty, punctuation, or differs from the identifier. Step −1 must pick the **right type** of permanent value (boolean vs string `"true"`, integer zero vs string `"zero"`).
+
 ### 2026-07-23 — null / undefined / XACML / address identity
 
 - Manual singletons in `afw_value.h`: `afw_value_null`, `afw_value_undefined`, `afw_value_unique_default_case_value` (address uniqueness matters).
 - C NULL ≈ undefined for values (use macros); Adaptive null is a real typed value; address compares in C are intentional.
 - Data type zoo + many functions: **XACML v3 mapping** history + later **ECMAScript-like** script — two worlds; don’t make null/undefined worse.
 - Phase 0 must not casually invent more null instances.
+- Manual `afw_value.h` entries predate `dataType::` strings; **keep** them for Doxygen/public highlight even where generate could also emit similar permanents.
 
 ### 2026-07-23 — special types for TS-like compiler checking
 
