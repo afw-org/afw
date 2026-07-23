@@ -10,6 +10,7 @@ Dump **details, design thoughts, unfinished plans, and “don’t forget” item
 | Document | Role |
 |----------|------|
 | **`beta-backlog.md`** (this file) | Working notes, plans, archaeology, half-decided design. Source of truth for “what we still need to remember.” |
+| **`memory-management.md`** | Living design notes for umbrella **#2** (long-running memory, value/object identity, escape). Discussion + decisions; not user docs. |
 | **`whats_new.md`** | What **users** of AFW need to know about **`mgg-develop`** (behavior, APIs, migration). |
 | **GitHub issues** | Optional promotion when something needs discussion, an assignee, PR linkage, or is a real beta blocker. Prefer thematic umbrellas (e.g. language, memory) over one infinite meta-issue. |
 | **`issues.md`** | Temporary triage experiment; **not** the long-term backlog. Prefer this file. |
@@ -236,7 +237,7 @@ Durable agent rule: [`.cursor/rules/afw-adapter-index.mdc`](.cursor/rules/afw-ad
 
 **Status:** pointer / **beta-relevant**
 
-- Umbrella **#2** (memory). Related: retrieve caps **#49**, progressive release **#127**, value lifetime rules in project docs / `.cursor/rules/afw-value-memory.mdc`.
+- Umbrella **#2** (memory). Working design pad: [`memory-management.md`](memory-management.md). Related: retrieve caps **#49**, progressive release **#127**, value lifetime rules in project docs / `.cursor/rules/afw-value-memory.mdc`.
 - **Qualifier snapshots (issue #9)** — `qualifier()` / `qualifiers()` allocate **fresh memory objects** and can get **very large** (`environment::`, `request::`, nested `qualifiers()` over every active qualifier, multi-entry contribute). Documented as debug/tools/not hot path + size warning in function metadata, language XML, `whats_new.md`.
   - Another reason **memory management / managed release / long-running escape** needs to be solid **before calling the tree beta**: scripts that snapshot often (or hold results) will stress pools and lifetimes harder than `qualifier::name` get.
   - Do **not** treat #9 as “done for beta” solely because the API exists; couple with #2 progress and real long-running exercise if tools use snapshots heavily.
