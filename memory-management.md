@@ -17,7 +17,18 @@ Living design / discussion notes for long-running AFW process memory: pools, val
 - **Do not** treat this as committed API or a merge plan for old branches.
 - Code changes come only after discussion produces clear invariants and a phased plan.
 
-**Mode (2026-07):** discussion only. No large implementation until we say so.
+**Mode (2026-07+):** step-wise with the partner workflow below. No large implementation until the current step’s plan is agreed and execute is requested.
+
+### Partner workflow for #2 (complex work)
+
+Order of phases is the one we would use by hand (see **Phased plan**). For **each** phase:
+
+1. **Discuss** the step (context from this file + code + old-branch ideas).  
+2. **Plan** that step only (concrete, reviewable).  
+3. **Tweak** until both are happy; **execute only when told**.  
+4. When both satisfied with the result: **commit and push**, then reassess “where are we?” before the next step.
+
+While doing a step, keep an eye on **later phases** so choices stay aligned (e.g. phase 0 bindings should not paint us into a corner for containers/`->value`/assign). Draw on the full memory-management discussion.
 
 ---
 
@@ -176,12 +187,192 @@ _Edit as we decide. Strike or mark rejected._
 - Hand-editing `generated/` bindings (change generator + regenerate)
 - Full OOM/stack handling productization (**#64** adjacent) — noted as future; needs accounting first
 
+### Phase 0 findings — `data_type_bindings` audit (2026-07-23)
+
+**Scope:** Does current generator + generated `afw_data_type_*_binding.*` match the permanent / managed / managed_slice / unmanaged model? What’s incomplete vs old branch / #2 story? **No code changes yet.**
+
+#### What already makes sense (architecture OK)
+
+| Area | Assessment |
+|------|------------|
+| **Four lifetime policies** | Documented in generator header; infs wired: permanent (`optional_release` NULL, clone as-is), managed (RC + free header), managed_slice (utf8/memory only, RC on containing), unmanaged (pool lifetime, clone as-is). |
+| **Special types** | `special: true` → permanent inf only, no create_managed/unmanaged. Today: **undefined, void, any, unknown** (and similar). |
+| **Scalars (integer, boolean, double, …)** | Managed: store by value in xctx-allocated header, RC starts 0. Unmanaged: pool header. Permanent: strings catalog / const. Matches “value owns payload copy” for non-pointer internals. |
+| **utf8 / memory managed** | Embed bytes after header (owning copy). **managed_slice** create/release/get_reference look coherent (recent #115 work). |
+| **No create_permanent_*** | Correct — permanent instances from strings/const_objects only. |
+| **Old FIXME `False and` object path** | **Gone** from current generator (was never activated). No half-enabled object special case in Python. |
+| **allocate_managed_* removed** | Historical #2 cleanup; only allocate_unmanaged remains. |
+
+#### Critical gaps vs our MM model / old branch
+
+**1. Object and array create_* still double-wrap (phase 1 territory, but bindings block it)**
+
+```c
+// generated today — does NOT use object->value
+afw_value_create_managed_object(obj, xctx) {
+    v = afw_xctx_malloc(sizeof(afw_value_object_managed_t), xctx);
+    v->inf = managed_object_inf;
+    v->internal = obj;   // pointer only
+    v->reference_count = 0;
+    return &v->pub;
+}
+// optional_release: only afw_pool_free_memory(v) — does NOT afw_object_release(obj)
+```
+
+Same shape for **array**. Old branch tip wanted: return `internal->value`, managed path `afw_object_get_reference`, release → object/array release (or pool ref). **Not present.** Memory objects already embed `->value` with managed_object_inf, but create APIs ignore it.
+
+**2. Managed create almost unused in hand code**
+
+Rough hand-C call counts (excluding generated):  
+`create_unmanaged_object` ~**97**, `create_managed_object` **0**, `create_managed_string` **0**, `create_managed_string_slice` **0**.  
+So the managed path is **scaffolding**; production traffic is still **unmanaged + pool bulk free**. Phase 0 must get the generated APIs *correct*; phase 1–2 must *use* them.
+
+**3. Pointer `directReturn` managed types store bare pointers**
+
+For `const afw_object_t *`, `const afw_array_t *`, `const afw_value_t *` (function), `void *` (null): managed create **does not clone** the referent; RC only covers the **value header**. Generator comment admits no automatic clone. That is **not** “value lifetime covers everything important” until object/array (and function?) special-case container RC.
+
+**4. Managed RC starts at 0**
+
+Create leaves `reference_count = 0`; first `optional_release` **frees immediately** if nothing called get_reference. Intentional “create and hand off” / “release without prior get_reference” semantics — document and keep consistent; easy to misuse if callers assume create ⇒ held ref.
+
+**5. `null` is not `special`**
+
+`null.json` has no `special: true` → full unmanaged/managed/permanent machinery and create APIs for null. Runtime still has permanent null for normal use. **Odd / likely incomplete** — candidates for permanent-only like undefined (discuss).
+
+**6. `unevaluated` is not special**
+
+`cType: const afw_value_t *`, not special → gets managed/unmanaged create like a normal type. May or may not be intentional.
+
+**7. Unmanaged clone_or_reference comment vs behavior**
+
+Generated comment: unmanaged “get_reference returns new reference”; implementation **returns instance as-is**. Misleading docs only.
+
+**8. managed_slice free of containing**
+
+Slice release decrements/frees **containing managed** header; does not free slice’s xctx allocation of header carefully? It frees both containing (if RC 0) and slice instance via `afw_pool_free_memory`. Slice header was `afw_xctx_calloc` — free_memory must resolve to xctx pool (prefix). OK if free_memory path is solid. Slice **get_reference** allocates **new** slice header (copy of view) — good.
+
+#### Relative to old branch (ideas only)
+
+| Old tip | Current tree |
+|---------|----------------|
+| create_*_object → `internal->value` | Still allocate wrapper |
+| managed get_reference → object | Only bumps value-header RC |
+| managed release → object_release | Only free value header |
+| drop allocate_unmanaged_object | Still generated for object |
+| throw if missing `->value` | N/A |
+| registry/env permanent values | Partial / separate |
+
+Old work is still a **valid target shape for phase 1**, not something already finished in bindings.
+
+#### What’s “complete enough” for phase 0 vs later
+
+| In phase 0 (bindings correctness) | Later phases |
+|-----------------------------------|--------------|
+| Confirm generator matrix per cType/special | Flip object/array to `->value` + container RC |
+| Fix clear bugs/inconsistencies (null special?, comments, maybe unevaluated) | Migrate call sites off double-wrap |
+| Ensure managed/slice RC semantics documented and consistent | assign `clone_or_reference` |
+| Decide which types get which APIs | Scope release |
+
+#### Null / undefined / address identity (from discussion — not “just special”)
+
+This is subtler than “mark null special in generate.”
+
+**Manual permanent values in `afw_value.h` / `afw_value.c`** (not all from strings.py):
+
+| Symbol | Role |
+|--------|------|
+| **`afw_value_null`** | Adaptive **null** (permanent_null_inf). **Not** C NULL. |
+| **`afw_value_undefined`** | Preferred representation of Adaptive **undefined**; C **NULL** is also undefined for historical reasons. |
+| **`afw_value_unique_default_case_value`** | Same *shape* as null (permanent_null_inf) but a **different address** — switch `default` marker; **identity is the pointer**. |
+
+Macros: **`afw_value_is_undefined`** = `!ptr \|\| ptr == afw_value_undefined`; **`afw_value_is_nullish`** = undefined **or** data type null. Always use macros — C NULL can mean “not applicable” in some APIs, not only undefined.
+
+**Address compare is a real C-side pattern** in AFW: “is this *exactly* this singleton?” (null, undefined, unique default case, permanent booleans via `afw_boolean_v_*`, etc.). Multiple values can be “semantically similar” but **different addresses** for that reason. Creating a *new* null/unmanaged null breaks identity checks.
+
+**Historical roots:**
+
+- **XACML v3** first implementation predates/alongside libafw goals; many “odd” data types and long function names exist so a future **XACML extension** can map XACML types/functions onto AFW without inventing a second type system. Almost every XACML v3 function/type has an Adaptive counterpart.
+- **ECMAScript-like** Adaptive Script added another world: undefined vs null vs empty object; ES itself is sloppy about null/undefined. Type-checking arguments and TypeScript-ish paths made a **single null instance** painful vs “data type is null” vs C NULL.
+- Clashing worlds: **don’t make it worse**; accept macros/checks; XACML extension later may need special “emit the one true null” wiring.
+
+**Implication for phase 0 / generate:**  
+Do **not** naively multiply null instances via `create_managed_null` / random unmanaged nulls. Prefer **`afw_value_null` / `afw_value_undefined`**. Whether `null` JSON is `special` is secondary to **preserving singleton identity and is_undefined/is_nullish discipline**. Permanent null from generate and manual `afw_value_null` must not fork into competing identities without a plan.
+
+**`special: true` data types only (authoritative: `generate/objects/_AdaptiveDataTypeGenerate_`):** four types — **any, undefined, unknown, void**. **null is not special.**
+
+| dataType | brief | description (essence) |
+|----------|--------|------------------------|
+| **any** | Unrestricted type | Any value assignable; actual DT is that of the value. Prefer **unknown** or a concrete type: **any** only detects type errors at **evaluation**. |
+| **undefined** | An undefined value | **Special** type for the **single internal value** representing undefined. **Not a valid data type for any other purpose.** |
+| **unknown** | Type-safe unknown value | Any value assignable; actual DT is that of the value. Prefer over **any** because most type-check errors can be caught at **compile**. |
+| **void** | No value | Common **function return** meaning no value. Variable of type void can only hold **undefined** (or **null** if `compile::strictNullChecks` is not set). |
+
+Generator behavior for special: permanent-only infs, no create_managed/unmanaged. Fits **undefined** (singleton) and “not a normal value payload” kinds (**any/unknown/void** as type-system notions). **null** remains a normal data type with full bindings + separate manual **`afw_value_null`** singleton.
+
+**Compiler / TypeScript-like checking (future work, issue ~#28):**  
+See **Future: compile-time type checking** below for a full stash of notes. Short: special types support **TS-style annotations**; **syntax is largely parsed; enforcement is not finished.**
+
+#### Open for discussion before a phase 0 *plan*
+
+1. ~~Should **null** be special?~~ — See null/undefined section; answer deferred; identity + macros first.  
+2. For phase 0, only **audit + small generator fixes**, or also start object/array create special-cases (that may be phase 1)?  
+3. Is **RC start at 0** still the intended contract for all managed creates?  
+4. Any types that should **never** have `create_managed_*` even if not special (e.g. function)?  
+5. Should unmanaged `clone_or_reference` comments be fixed as a drive-by in phase 0?  
+6. Step **−1** permanent `afw_v_*` cleanup — agree scope?
+
+---
+
+### Future: compile-time type checking (~1 month target, issue **#28**)
+
+**Status today:** annotation **syntax + storage** largely present; **enforcement** incomplete. Do not assume `: Type` is checked at compile time. Tests often use `: any` for lenience.
+
+**Goal later:** finish/enforce TypeScript-like checking in the Adaptive Script compiler (assignability, args, returns, flags).
+
+#### Useful map when we pick this up
+
+| Area | Where / what |
+|------|----------------|
+| **Type grammar** | EBNF in `afw_compile_parse_expression.c`: `DataType`, `Type`, `OptionalType`, `OptionalReturnType`, object property types, `meta` OT (partial) |
+| **Parse Type** | `afw_compile_parse_Type` — resolves name via `afw_environment_get_data_type`; params for array/of, object OT id, function signature, script/template return, unevaluated nested type |
+| **Default type** | Missing `: Type` → **`any`** (`afw_compile_parse_OptionalType`) |
+| **void return** | `OptionalReturnType` allows bare `void` → NULL type (no value) |
+| **type aliases** | `type Name = Type;` — `impl_parse_TypeStatement` in `afw_compile_parse_script.c` |
+| **Type AST** | `afw_value_type_t` / list type in `afw_value_internal.h`; hung on symbols/params (`variable_type`, return types, etc.) |
+| **Special data types** | `any`, `unknown`, `void`, `undefined` — `special: true` in `_AdaptiveDataTypeGenerate_`; permanent-only in bindings; type-system / sentinel roles (descriptions in those JSON files) |
+| **any vs unknown** | **any** = type errors mainly at **eval**; **unknown** = prefer for **compile-time** checks (metadata descriptions) |
+| **null / undefined** | Manual singletons `afw_value_null` / `afw_value_undefined`; macros `afw_value_is_undefined` / `is_nullish`; C NULL ≈ undefined; Adaptive null is typed; address identity matters; XACML + ES clash — don’t invent extra nulls |
+| **void type vs void op** | Type `void` (returns) ≠ unary **`void` expression** (`void_operator` function) |
+| **Flags already registered** | **`compile:noImplicitAny`** (flag env index); descriptions in strings / flag registration — wire into checker when enforcing |
+| **strictNullChecks** | Mentioned on **void** data type description (variable of void only holds undefined, or null if flag not set) — find/finish when enforcing nullish |
+| **Runtime arg checks** | Some function path already cares about undefined/null (polymorphic, etc.); compile-time should align with runtime macros/semantics |
+| **XACML heritage** | Many data types + long function names for future XACML extension mapping — type checker must stay compatible with full data-type set, not only “script primitives” |
+| **Related issues** | **#28** compile-time types; language umbrella **#62**; nullish / exists **#131**; memory/MM is separate but value types share `afw_value` / data_type registries |
+
+#### Likely work themes (not a plan yet)
+
+1. Assignability rules: concrete types, any, unknown, null, undefined, void, unions if any.  
+2. Enforce annotations on let/const, params, returns, destructuring.  
+3. Honor `noImplicitAny` / nullish flags.  
+4. Align with `afw_value_is_undefined` / nullish / singleton identity.  
+5. Keep XACML-facing types first-class in the type lattice.  
+6. Tests: today many use `: any`; add enforcement suites when checker exists.
+
+#### Do not break while doing #2 MM
+
+- Do not remove special types or change their generate `special` without typechecker awareness.  
+- Do not casually add create_managed for any/unknown/void/undefined.  
+- Prefer permanent/singleton null/undefined discipline (helps both MM and types).
+
+---
+
 ### Phased plan (working order — step by step)
 
 | Phase | Intent | Status |
 |-------|--------|--------|
 | **Discuss** | Memory story pad (`memory-management.md`); invariants; no big code yet | **paused** (good foundation) |
-| **0** | **Audit `data_type_bindings.py` + generated bindings** — correct, complete, match permanent/managed/managed_slice/unmanaged model; finish gaps from recent work; use old branch tip as ideas (object/array create → `->value`, release via container) not as merge | **next when resuming** |
+| **−1** | **Prefer permanent `afw_v_*` (and typed permanent values) over allocate/create when the string/scalar already exists from generate** — cleanup call sites left over from before strings.py emitted values | **proposed — discuss** |
+| **0** | **Audit `data_type_bindings.py` + generated bindings** — correct, complete, match permanent/managed/managed_slice/unmanaged model; finish gaps from recent work; use old branch tip as ideas (object/array create → `->value`, release via container) not as merge | **analysis done — discuss / plan next** |
 | **1** | Managed **object/array** containers + `->value` identity (consistent impls; hide nastiness) | pending |
 | **2** | Assign / scope: **`clone_or_reference`** so variable-held values own needed lifetime | pending |
 | **3** | Scope/symbol release correctness; escape (closures, returned compile results) | pending |
@@ -964,5 +1155,35 @@ Register at env bootstrap so paths like `/afw/_AdaptiveObjectType_/…` resolve 
 - Break; keep suggested order with **step 0 = audit data_type_bindings / generated create+release APIs** before container/assign work.
 - Old branch = ideas only for object/array value identity once bindings are trustworthy.
 - Open questions listed under Cross-cutting for next session.
+
+### 2026-07-23 — partner workflow for complex #2
+
+- Per step: discuss → plan → tweak → execute when told → commit/push when both satisfied → reassess.
+- Same phase order as manual work; think ahead so each step aligns with later ones; use full MM discussion.
+
+### 2026-07-23 — phase 0 analysis (data_type_bindings audit)
+
+See **Phase 0 findings** section in this file (generator + generated C vs model + old branch). Discussion, not execute.
+
+### 2026-07-23 — proposed step −1: use permanent values not re-create
+
+- strings.py now emits **`afw_v_*`** permanent values; older code often still **`create_unmanaged_*` / `set_property_as_string`** on constants that already have permanent values.
+- Proposal: cleanup pass to prefer **`afw_v_*` / `afw_boolean_v_*` / …** — less alloc, aligns with “permanent = no pool.” Scope carefully (only when constant value exists).
+
+### 2026-07-23 — null / undefined / XACML / address identity
+
+- Manual singletons in `afw_value.h`: `afw_value_null`, `afw_value_undefined`, `afw_value_unique_default_case_value` (address uniqueness matters).
+- C NULL ≈ undefined for values (use macros); Adaptive null is a real typed value; address compares in C are intentional.
+- Data type zoo + many functions: **XACML v3 mapping** history + later **ECMAScript-like** script — two worlds; don’t make null/undefined worse.
+- Phase 0 must not casually invent more null instances.
+
+### 2026-07-23 — special types for TS-like compiler checking
+
+- `any` / `unknown` / `void` / `undefined` special: type-system support; syntax in Type/OptionalType/annotations; enforcement incomplete (future #28-ish).
+- Default missing type → `any`; `void` return; `type X = …`; flags like `compile:noImplicitAny` registered.
+
+### 2026-07-23 — stash notes for typechecking in ~1 month
+
+- Full map under **Future: compile-time type checking** in this file (paths, special types, null/undefined, flags, XACML, what not to break during #2 MM).
 
 _(Append dated notes as we talk; fold durable points up into **By area** / **Cross-cutting**.)_
