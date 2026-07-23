@@ -147,13 +147,27 @@ _Edit as we decide. Strike or mark rejected._
 | 2026-07-23 | `compiled_value` today dies with its compile pool; may need pool/value refcount if scripts `compile()` and return/escape that value (closures, return results) | Open — note, don’t implement yet |
 | 2026-07-23 | **Adaptive values (`afw_value`) are a big deal in AFW** — central abstraction for eval, assign, escape, and MM | Elevate in this doc; not optional detail |
 
-### Open questions
+### Open questions (need maintainer perspective when back)
 
-- Managed object/array: keep **value-layer** `clone_or_reference` / `optional_release` as the public story; hide whether impl uses object methods vs pool refs — but keep impls **consistent**.
-- Embedded value currently uses `afw_value_managed_object_inf` even when object is “unmanaged” option — intentional or transitional?
-- Permanent object values: always `afw_value_permanent_object_inf` on the embedded/associated value?
-- **`compiled_value` lifecycle when escaped:** today `optional_release` NULL → dies with compile pool. If a script uses **`compile` / compile_* functions** and **returns** (or closes over) that compiled value, pool may die while value still referenced — may need **pool get_reference** (or managed compiled_value) for that path. Think more before coding.
-- How much of #2 before unskipping `#35` after2-* / “beta-credible”? Step-by-step; no fixed bar yet.
+**Phase 0 / bindings**
+
+- After audit: any data types that should **not** get full managed/unmanaged create APIs (special-only permanent)?
+- For **object** and **array** data types specifically: is the end-state create path **always** return `internal->value` (with get_reference for managed), or only when `->value` is non-NULL?
+- `create_managed_*` for pointer-ish types still has generator FIXME energy (“might need clone to correct pool”) — intended policy?
+
+**Containers / assign (phases 1–2)**
+
+- Managed object/array: value-layer `clone_or_reference` / `optional_release` as public story; hide pool vs object RC — keep impls **consistent**. Confirm when we hit code.
+- Unmanaged memory object still tagged with **managed** object value inf — intentional or transitional?
+- Arrays same milestone as objects or objects first?
+- On managed object release: must first milestone walk properties and `optional_release` each, or is subpool bulk free enough at first?
+
+**Later**
+
+- **`compiled_value` escaped** (script `compile` + return): pool RC / managed unit — design when we get there.
+- Hard error on missing `object->value` / `array->value` — when to flip?
+- Request memory limit: charge only request-session pool tree, or escaped managed too?
+- `#35` after2-* unskip bar vs step-by-step #2 — no fixed bar yet.
 
 ### Non-goals (near term)
 
@@ -162,14 +176,18 @@ _Edit as we decide. Strike or mark rejected._
 - Hand-editing `generated/` bindings (change generator + regenerate)
 - Full OOM/stack handling productization (**#64** adjacent) — noted as future; needs accounting first
 
-### Phased plan (placeholder)
-
-_Fill after discussion has enough shape._
+### Phased plan (working order — step by step)
 
 | Phase | Intent | Status |
 |-------|--------|--------|
-| 0 | Discussion → enough invariants + ownership model to code | **in progress** |
-| 1 | … | not started |
+| **Discuss** | Memory story pad (`memory-management.md`); invariants; no big code yet | **paused** (good foundation) |
+| **0** | **Audit `data_type_bindings.py` + generated bindings** — correct, complete, match permanent/managed/managed_slice/unmanaged model; finish gaps from recent work; use old branch tip as ideas (object/array create → `->value`, release via container) not as merge | **next when resuming** |
+| **1** | Managed **object/array** containers + `->value` identity (consistent impls; hide nastiness) | pending |
+| **2** | Assign / scope: **`clone_or_reference`** so variable-held values own needed lifetime | pending |
+| **3** | Scope/symbol release correctness; escape (closures, returned compile results) | pending |
+| **4** | Accounting / graceful OOM / limits (later) | pending |
+
+Phases adjust as we go; “done for #2” is know-when-we-get-there.
 
 ---
 
@@ -940,5 +958,11 @@ Register at env bootstrap so paths like `/afw/_AdaptiveObjectType_/…` resolve 
 ### 2026-07-23 — “adaptive values are a big deal”
 
 - Confirmed principle (also said in other conversations): **`afw_value` is central to AFW**, not peripheral. Memory/eval/escape design orbits values + pools.
+
+### 2026-07-23 — pause; resume plan
+
+- Break; keep suggested order with **step 0 = audit data_type_bindings / generated create+release APIs** before container/assign work.
+- Old branch = ideas only for object/array value identity once bindings are trustworthy.
+- Open questions listed under Cross-cutting for next session.
 
 _(Append dated notes as we talk; fold durable points up into **By area** / **Cross-cutting**.)_
