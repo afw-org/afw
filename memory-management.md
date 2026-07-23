@@ -164,18 +164,12 @@ _Edit as we decide. Strike or mark rejected._
 
 ### Open questions (need maintainer perspective when back)
 
-**Phase 0 / bindings**
-
-- After audit: any data types that should **not** get full managed/unmanaged create APIs (special-only permanent)?
-- For **object** and **array** data types specifically: is the end-state create path **always** return `internal->value` (with get_reference for managed), or only when `->value` is non-NULL?
-- `create_managed_*` for pointer-ish types still has generator FIXME energy (“might need clone to correct pool”) — intended policy?
+**Phase 0 / bindings** — largely settled in 0a–0d; residual only if coding surfaces gaps.
 
 **Containers / assign (phases 1–2)**
 
-- Managed object/array: value-layer `clone_or_reference` / `optional_release` as public story; hide pool vs object RC — keep impls **consistent**. Confirm when we hit code.
-- Unmanaged memory object still tagged with **managed** object value inf — intentional or transitional?
-- Arrays same milestone as objects or objects first?
-- On managed object release: must first milestone walk properties and `optional_release` each, or is subpool bulk free enough at first?
+- See **0d** for object/array target; remaining: NULL `->value` hard error timing; wrap details; property walk vs subpool on release.
+- Unmanaged memory object still tagged with **managed** object value inf — intentional or transitional? (0d risk)
 
 **Later**
 
@@ -361,24 +355,90 @@ Empty cells for special/scalar/directReturn mean **false** / absent.
 |------------|--------|
 | Matrix (0a) + comment/contract fixes (0b) | Flip object/array to `->value` + container RC |
 | Clear small consistency only if safe (0c) | Migrate call sites; assign; escape |
-| Phase 1 handoff notes (0d) | Scope release; OOM |
+| Phase 1 handoff notes (**0d done**) | Scope release; OOM |
 
-#### Settled for phase 1 handoff (discussion; full 0d still pending)
+#### 0d — Phase 1 handoff (object / array / `->value`)
 
-**Do**
+**Purpose:** Freeze intent so phase 1 coding does not re-litigate. Old branch `use-value-in-array-and-object` = ideas only, not merge.
 
-| Item | Notes |
-|------|--------|
-| Dual create surface | `afw_object_create*` / `afw_array_create*` stay for C construction (return object/array). `afw_value_create_*_object/array` is for the value face of an **existing** instance. |
-| Instance `->value` | Object/array public field is the bridge; create value path should prefer it (phase 1 work), not invent parallel wrappers by default. |
-| Permanent empty typed arrays | `impl_empty_array_of_<dt>` / `impl_value_empty_array_of_<dt>` remain — permanent empty **array of that type**, not “empty object value create.” |
+##### Invariants
 
-**Explicitly do not**
+1. **Two faces, one instance.** `afw_object` / `afw_array` methods stay the C workhorse; Adaptive script/eval uses **`afw_value`**. Public instance fields include `p` and **`value`** (lifetime of the Adaptive value = lifetime of the instance — already in interface docs).
+2. **One Adaptive value per instance when `->value` is set.** Prefer that pointer; do not allocate a second value header that only points at the same object/array (**double-wrap** is the bug).
+3. **Dual create surface (keep both):**
 
-| Item | Notes |
-|------|--------|
-| Generated empty managed object/array **value** creates | Historical idea (create empty managed instance and return only `afw_value_t *`), useful mainly for Adaptive functions. **Not in current `data_type_bindings.py`.** Checked 2026-07-23: no residual. **Do not reintroduce** — use object/array create + instance `->value` (or fixed value create on that instance) instead. |
-| Value-only rewrite of AFW | Large body of C uses object/array methods only; keep those APIs. |
+| API class | Returns | Audience |
+|-----------|---------|----------|
+| `afw_object_create*` / `afw_array_create*` | object/array | Default C construction (most call sites never use value methods) |
+| `afw_value_create_*_object` / `*_array` | value | Value graph: functions, eval, set_property of object/array values |
+| Instance `->value` | value face | Bridge; filled by impls (memory, many others); audit remaining NULL |
+
+4. **Value create is about an existing instance**, not a second factory for “empty managed object as value only.”
+
+##### Target behavior (value create path)
+
+| Situation | Intended behavior |
+|-----------|-------------------|
+| Instance has `->value`, managed or permanent | **Return `->value`**; get_reference / container policy as needed — **no new wrapper** |
+| Instance has `->value`, unmanaged storage | Prefer return `->value` when lifetime matches; else see wrap |
+| **Catch-22:** unmanaged object/array, caller wants **managed** value | Limited **wrap** allowed: managed value header whose RC holds object/pool reference so storage outlives escape — lifetime adapter, not routine double-wrap of already-managed instances |
+| `->value` is NULL | Policy to harden in phase 1: inventory first; prefer **require fill** for memory path; hard error vs temporary wrap TBD when coding |
+| Permanent / const objects | Already have permanent values; do not break env/const registration |
+
+**Release / clone (single model):** map value `optional_release` / `clone_or_reference` to **object/array** get_reference/release (or the pool policy the impl already uses) — **one** story, not mixed “header free only” + ad hoc object_release. Generic managed scalar “RC starts at 0 / free header” **does not apply** to object/array once special-cased.
+
+##### Permanent empty array **values** vs compile `[]` / `{}`
+
+| Mechanism | Role |
+|-----------|------|
+| **`impl_value_empty_array_of_<dataType>`** / `data_type->empty_array_value` | Permanent typed empty array **value** on each data type. Used by Adaptive functions (e.g. higher-order array, polymorphic) for cheap typed empty results. **Keep.** |
+| **`impl_empty_array_of_<dataType>`** | Matching permanent empty **array** instance. **Keep.** |
+| Compile **`[]` / `{}`** | Scripts usually **mutate** (add elements/properties). Permanent const empty was more trouble than worth → compile builds **fresh mutable** empties (`afw_compile_parse_value.c` and related). Imperfect “dance” may exist; **out of scope** for #2 phase 0/1. Revisit later under compile notes if needed (#110 if shared mutables return as defaults). |
+| Permanent empty **object** singleton | **Not** generated today. Only reconsider with immutability / clone-default story. |
+
+##### Order of work (phase 1)
+
+1. Inventory object/array **infs**: who sets `pub.value`, who leaves NULL.  
+2. Special-case **object** (then **array**) in value create / release / get_reference (generator and/or hand helpers).  
+3. Ensure memory (and core) paths always fill `->value`.  
+4. Migrate hot **value** call sites off redundant `create_unmanaged_object` when instance already has value.  
+5. Tests: identity (same instance → same value pointer); multi-request / valgrind.  
+6. **Do not** require rewriting all C that only holds `afw_object_t *`.
+
+##### Explicitly do not (phase 1 and near term)
+
+| Do not | Why |
+|--------|-----|
+| Merge old `use-value-in-array-and-object` wholesale | Ideas only |
+| Reintroduce generated empty managed object/array **value** creates | Abandoned; no residual in `data_type_bindings.py` (checked 2026-07-23); use object create + `->value` |
+| Force all object construction through value create | Dual surface |
+| Rewrite compile `[]`/`{}` mutable empty dance | Separate compile topic |
+| “Always permanent const `[]`/`{}`” without revisiting mutation | Tried; not worth it as default |
+| Pull function/unevaluated into first object slice | Related family F; later |
+| Solve allocate_* globally | Noted for later revisit |
+| Assign/scope escape / OOM | Phases 2–4 |
+
+##### Success criteria (phase 1 “enough”)
+
+- `afw_value_create_*_object` (and array when in scope) prefer instance `->value` for normal memory/managed cases.  
+- No routine double-wrap of instances that already have a value.  
+- Managed escape/release tied to container policy for those cases.  
+- Dual create APIs still documented and used as above.  
+- Core tests + valgrind smoke green.
+
+##### Risks
+
+- Double free if both header RC and object release fire.  
+- Missing `->value` on some infs.  
+- Unmanaged memory object still embedding **managed** value inf (current memory create) — reconcile when coding.  
+- #110: permanent/shared mutables as defaults must clone when returned mutable.  
+- Array behind object (list heritage); expect second vertical slice.
+
+##### Open for phase 1 plan (not blockers for 0d)
+
+- Hard error vs temporary wrap when `->value` is NULL.  
+- Exact wrap mechanics for unmanaged → managed value (pool RC vs object get_reference).  
+- Whether unmanaged create of value ever still allocates a header when `->value` exists but lifetime mismatch.
 
 #### Null / undefined / address identity (from discussion — not “just special”)
 
@@ -481,7 +541,7 @@ See **Future: compile-time type checking** below for a full stash of notes. Shor
 |-------|--------|--------|
 | **Discuss** | Memory story pad (`memory-management.md`); invariants; no big code yet | **paused** (good foundation) |
 | **−1** | **Prefer permanent `afw_v_*` (and typed permanent values) over allocate/create when the string/scalar already exists from generate** — cleanup call sites left over from before strings.py emitted values | **−1a + −1b + −1c done** |
-| **0** | **Audit `data_type_bindings.py` + generated bindings** — correct, complete, match permanent/managed/managed_slice/unmanaged model; finish gaps from recent work; use old branch tip as ideas (object/array create → `->value`, release via container) not as merge | **0a–0c done** → 0d next |
+| **0** | **Audit `data_type_bindings.py` + generated bindings** — correct, complete, match permanent/managed/managed_slice/unmanaged model; finish gaps from recent work; use old branch tip as ideas (object/array create → `->value`, release via container) not as merge | **0a–0d done** — phase 0 complete |
 | **1** | Managed **object/array** containers + `->value` identity (consistent impls; hide nastiness) | pending |
 | **2** | Assign / scope: **`clone_or_reference`** so variable-held values own needed lifetime | pending |
 | **3** | Scope/symbol release correctness; escape (closures, returned compile results) | pending |
@@ -1393,11 +1453,16 @@ See **Phase 0 findings** section in this file (generator + generated C vs model 
 - Documented under **Const / permanent → Cross-generator registration**: `options['const']` bag + `get_string_label`; `const_objects` / `function_bindings` register property names, literals, and typed scalars before `strings.generate` emits `afw_strings.*`.
 - Useful for −1: permanent reuse is one shared pipeline (not only hand `strings.txt`); order is load-bearing; `additional_generate` is after strings emit today.
 
+### 2026-07-23 — phase 0d: phase 1 handoff written
+
+- Full **0d** section: dual create surface, `->value`, catch-22 wrap, permanent `empty_array_value` vs mutable compile `[]`/`{}`, do/do-not, phase 1 order, success criteria.
+- Phase **0 complete** (docs); next is phase **1** discuss/plan when ready.
+
 ### 2026-07-23 — do / do-not: empty managed object|array value creates
 
 - Process: always record **what we do** and **what we explicitly will not do** in Decisions / Non-goals.
 - Checked `data_type_bindings.py`: no residual of abandoned empty-managed object/array **value** create helpers (gone with old #2 branches).
-- **Decision: do not reintroduce** those generates. Keep dual create surface; keep permanent empty **array of dataType**. Full 0d handoff still pending.
+- **Decision: do not reintroduce** those generates. Keep dual create surface; keep permanent empty **array of dataType** / `impl_value_empty_array_of_*`.
 
 ### 2026-07-23 — phase 0c+: boolean create → permanent true/false
 
