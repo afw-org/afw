@@ -440,6 +440,49 @@ Empty cells for special/scalar/directReturn mean **false** / absent.
 - Exact wrap mechanics for unmanaged → managed value (pool RC vs object get_reference).  
 - Whether unmanaged create of value ever still allocates a header when `->value` exists but lifetime mismatch.
 
+#### Phase 1 plan (multi-step; objects first)
+
+**Shape:** spine (value create + memory object) then sweep impls and hot value call sites.  
+**Not one PR.** Dual create surface from 0d stands: keep `afw_object_create*` / `afw_array_create*`; fix value path and `->value` fill-in.
+
+| Step | Intent | Status |
+|------|--------|--------|
+| **1a** | **Inventory** object (then array) implementations: id, sets `pub.value`?, value inf kind, release/get_reference notes; sample value-create call sites | pending |
+| **1b** | **Value create policy for object** — special-case create managed/unmanaged when `obj->value` present; catch-22 wrap only as documented; dual surface unchanged | pending |
+| **1c** | **Memory object** as reference impl — align managed/unmanaged flags vs value inf; one release/clone model | pending |
+| **1d** | **Fill `->value`** on remaining object impls (inventory hit list) | pending |
+| **1e** | **Hot call-site** cleanup only (create object then immediately value-create → prefer `->value`) | pending |
+| **1f** | **Array** mirror of 1b–1e (thinner set of impls) | pending |
+
+**Out of phase 1:** compile `[]`/`{}` dance, allocate_* global revisit, assign/escape, function/unevaluated container special-case.
+
+##### 1a — How to find implementations
+
+AFW interface impls almost always pull in a generated **`afw_<interface>_impl_declares.h`** after setting **`AFW_IMPLEMENTATION_ID`** (and related defines). That is the reliable discovery hook:
+
+```text
+grep -rln 'afw_object_impl_declares.h' src --include='*.c'   # files with ≥1 object impl
+grep -rln 'afw_array_impl_declares.h'  src --include='*.c'   # files with ≥1 array impl
+# Prefer counting / listing each include site, not only unique files:
+grep -rn 'afw_object_impl_declares.h' src --include='*.c'
+```
+
+Typical preamble:
+
+```c
+#define AFW_IMPLEMENTATION_ID "memory"
+#include "afw_object_impl_declares.h"
+```
+
+**Inventory caveats (do not under-count):**
+
+1. **One `.c` file can implement multiple interfaces** (e.g. object + setter, or object + array helpers in the same unit). Grep for each `*_impl_declares.h` of interest, not only object.
+2. **The same `*_impl_declares.h` can be included more than once in one file**, with **`#define` / `#undef` of `AFW_IMPLEMENTATION_ID` (and related macros) between includes**, when that file provides **multiple implementations of the same interface** (different infs / implementation ids). File-level unique grep undercounts; walk each include site and its surrounding defines.
+3. Also check: `pub.value =` assignments, runtime/const_objects paths, and `afw_value_create_*_object` / `*_array` call sites.  
+4. `afw_object.h` / `afw_array.h` = public creates and helpers — **not** the full impl list.
+
+**1a deliverable:** table per **implementation** (path, `AFW_IMPLEMENTATION_ID`, which interface, value filled Y/N, notes) — one row per include/id, not one row per file — + NULL-value hit list + rough create_*_object call counts. Pad only unless gaps need code in a later step.
+
 #### Null / undefined / address identity (from discussion — not “just special”)
 
 This is subtler than “mark null special in generate.”
@@ -542,7 +585,7 @@ See **Future: compile-time type checking** below for a full stash of notes. Shor
 | **Discuss** | Memory story pad (`memory-management.md`); invariants; no big code yet | **paused** (good foundation) |
 | **−1** | **Prefer permanent `afw_v_*` (and typed permanent values) over allocate/create when the string/scalar already exists from generate** — cleanup call sites left over from before strings.py emitted values | **−1a + −1b + −1c done** |
 | **0** | **Audit `data_type_bindings.py` + generated bindings** — correct, complete, match permanent/managed/managed_slice/unmanaged model; finish gaps from recent work; use old branch tip as ideas (object/array create → `->value`, release via container) not as merge | **0a–0d done** — phase 0 complete |
-| **1** | Managed **object/array** containers + `->value` identity (consistent impls; hide nastiness) | pending |
+| **1** | Managed **object/array** containers + `->value` identity (consistent impls; hide nastiness) | **plan drafted** — 1a inventory next |
 | **2** | Assign / scope: **`clone_or_reference`** so variable-held values own needed lifetime | pending |
 | **3** | Scope/symbol release correctness; escape (closures, returned compile results) | pending |
 | **4** | Accounting / graceful OOM / limits (later) | pending |
@@ -1452,6 +1495,11 @@ See **Phase 0 findings** section in this file (generator + generated C vs model 
 
 - Documented under **Const / permanent → Cross-generator registration**: `options['const']` bag + `get_string_label`; `const_objects` / `function_bindings` register property names, literals, and typed scalars before `strings.generate` emits `afw_strings.*`.
 - Useful for −1: permanent reuse is one shared pipeline (not only hand `strings.txt`); order is load-bearing; `additional_generate` is after strings emit today.
+
+### 2026-07-23 — phase 1 plan drafted (objects first, multi-step)
+
+- Steps **1a–1f** under Phase 1 plan: inventory → object value-create → memory reference impl → fill value → hot call sites → array.
+- **1a discovery:** `afw_*_impl_declares.h` + `AFW_IMPLEMENTATION_ID`; one file may implement multiple interfaces; **same header may be included multiple times** with redefine between for multi-impl of one interface — inventory by include site / id, not by file only.
 
 ### 2026-07-23 — phase 0d: phase 1 handoff written
 
