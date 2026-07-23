@@ -157,6 +157,10 @@ _Edit as we decide. Strike or mark rejected._
 | 2026-07-23 | **Value** layer owns lifetime policy; **object/array** (main value containers) must be consistent across impls; hide nastiness inside implementations | Pool is storage under containers |
 | 2026-07-23 | `compiled_value` today dies with its compile pool; may need pool/value refcount if scripts `compile()` and return/escape that value (closures, return results) | Open — note, don’t implement yet |
 | 2026-07-23 | **Adaptive values (`afw_value`) are a big deal in AFW** — central abstraction for eval, assign, escape, and MM | Elevate in this doc; not optional detail |
+| 2026-07-23 | **Record both do and do-not** in this pad when we settle something | Decisions + Non-goals / explicit rejects |
+| 2026-07-23 | Object/array: keep **dual create surface** — object/array creates for C; value creates when the Adaptive value face is needed | Not a value-only rewrite of AFW C |
+| 2026-07-23 | **Do not** reintroduce generated “create empty managed object/array **as a value**” helpers | Abandoned #2 branch residue; not in tree; do not bring back |
+| 2026-07-23 | Permanent empty **array of \<dataType\>** (`impl_empty_array_of_*`) stays | Unrelated to empty-object-value creates |
 
 ### Open questions (need maintainer perspective when back)
 
@@ -186,6 +190,9 @@ _Edit as we decide. Strike or mark rejected._
 - Closing #49 / #127 inside #2 (related, tracked elsewhere)
 - Hand-editing `generated/` bindings (change generator + regenerate)
 - Full OOM/stack handling productization (**#64** adjacent) — noted as future; needs accounting first
+- **Replacing** `afw_object_create*` / `afw_array_create*` with value-only constructors for ordinary C use (most object/array work never uses value methods)
+- **Generated helpers** that create an empty managed object or array and return only `afw_value_t *` (old #2 experiments; **explicitly out** — see Decisions)
+- Forcing every site that builds an object to go through Adaptive value create
 
 ### Phase 0 — `data_type_bindings` audit
 
@@ -199,10 +206,11 @@ _Edit as we decide. Strike or mark rejected._
 | **0a** | Type × lifetime matrix + generator decision tree | **done** |
 | **0b** | Generator/header comments match behavior (clone_or_reference, RC=0, pointer managed) | **done** |
 | **0c** | Semantic consistency only if clear (null create, unevaluated, …) | **done** (null + boolean create → permanents; unevaluated/function parked; allocate_* revisit later) |
-| **0d** | Phase 1 handoff notes (object/array → `->value`) | pending |
-| **0e** | Verify build/tests after any code | pending |
+| **0d** | Phase 1 handoff notes (object/array → `->value`) | **done** |
+| **0e** | Verify after code changes | N/A for 0d (docs only); use when phase 1 codes |
 
-**Phase 0 boundary:** bindings **correctness + docs**, not object/array create flip (that is phase **1**).
+**Phase 0 boundary:** bindings **correctness + docs**, not object/array create flip (that is phase **1**).  
+**Phase 0 complete** once 0d is accepted — ready for phase 1 discuss/plan.
 
 ---
 
@@ -354,6 +362,23 @@ Empty cells for special/scalar/directReturn mean **false** / absent.
 | Matrix (0a) + comment/contract fixes (0b) | Flip object/array to `->value` + container RC |
 | Clear small consistency only if safe (0c) | Migrate call sites; assign; escape |
 | Phase 1 handoff notes (0d) | Scope release; OOM |
+
+#### Settled for phase 1 handoff (discussion; full 0d still pending)
+
+**Do**
+
+| Item | Notes |
+|------|--------|
+| Dual create surface | `afw_object_create*` / `afw_array_create*` stay for C construction (return object/array). `afw_value_create_*_object/array` is for the value face of an **existing** instance. |
+| Instance `->value` | Object/array public field is the bridge; create value path should prefer it (phase 1 work), not invent parallel wrappers by default. |
+| Permanent empty typed arrays | `impl_empty_array_of_<dt>` / `impl_value_empty_array_of_<dt>` remain — permanent empty **array of that type**, not “empty object value create.” |
+
+**Explicitly do not**
+
+| Item | Notes |
+|------|--------|
+| Generated empty managed object/array **value** creates | Historical idea (create empty managed instance and return only `afw_value_t *`), useful mainly for Adaptive functions. **Not in current `data_type_bindings.py`.** Checked 2026-07-23: no residual. **Do not reintroduce** — use object/array create + instance `->value` (or fixed value create on that instance) instead. |
+| Value-only rewrite of AFW | Large body of C uses object/array methods only; keep those APIs. |
 
 #### Null / undefined / address identity (from discussion — not “just special”)
 
@@ -1367,6 +1392,12 @@ See **Phase 0 findings** section in this file (generator + generated C vs model 
 
 - Documented under **Const / permanent → Cross-generator registration**: `options['const']` bag + `get_string_label`; `const_objects` / `function_bindings` register property names, literals, and typed scalars before `strings.generate` emits `afw_strings.*`.
 - Useful for −1: permanent reuse is one shared pipeline (not only hand `strings.txt`); order is load-bearing; `additional_generate` is after strings emit today.
+
+### 2026-07-23 — do / do-not: empty managed object|array value creates
+
+- Process: always record **what we do** and **what we explicitly will not do** in Decisions / Non-goals.
+- Checked `data_type_bindings.py`: no residual of abandoned empty-managed object/array **value** create helpers (gone with old #2 branches).
+- **Decision: do not reintroduce** those generates. Keep dual create surface; keep permanent empty **array of dataType**. Full 0d handoff still pending.
 
 ### 2026-07-23 — phase 0c+: boolean create → permanent true/false
 
