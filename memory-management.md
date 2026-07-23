@@ -187,91 +187,173 @@ _Edit as we decide. Strike or mark rejected._
 - Hand-editing `generated/` bindings (change generator + regenerate)
 - Full OOM/stack handling productization (**#64** adjacent) — noted as future; needs accounting first
 
-### Phase 0 findings — `data_type_bindings` audit (2026-07-23)
+### Phase 0 — `data_type_bindings` audit
 
-**Scope:** Does current generator + generated `afw_data_type_*_binding.*` match the permanent / managed / managed_slice / unmanaged model? What’s incomplete vs old branch / #2 story? **No code changes yet.**
+**Sources:** `src/afw/generate/objects/_AdaptiveDataTypeGenerate_/*.json` (35 types), `_afwdev/generate/data_type_bindings.py`, sample generated `afw_data_type_*_binding.*`.  
+**Never hand-edit** `generated/` — change JSON or generator, then rebuild.
 
-#### What already makes sense (architecture OK)
+#### Phase 0 plan slices
+
+| Slice | Intent | Status |
+|-------|--------|--------|
+| **0a** | Type × lifetime matrix + generator decision tree | **done** (this section) |
+| **0b** | Generator/header comments match behavior (clone_or_reference, RC=0, pointer managed) | pending |
+| **0c** | Semantic consistency only if clear (null create, unevaluated, …) | pending |
+| **0d** | Phase 1 handoff notes (object/array → `->value`) | pending |
+| **0e** | Verify build/tests after any code | pending |
+
+**Phase 0 boundary:** bindings **correctness + docs**, not object/array create flip (that is phase **1**).
+
+---
+
+#### 0a — Generator decision tree
+
+Metadata fields that drive emission (`_AdaptiveDataTypeGenerate_`):
+
+| Field | Role |
+|-------|------|
+| **`special`** | If true: **permanent inf only** — no unmanaged/managed/managed_slice infs, no create/allocate APIs. |
+| **`cType`** | Internal payload type; chooses embed vs pointer storage and managed_slice eligibility. |
+| **`directReturn`** | If true, create/get APIs take/return `cType` by value (incl. pointers); else `const cType *` and memcpy into header. |
+| **`scalar`** | Data-model flag (not a separate create path in the generator today). |
+
+`_supports_managed_slice(cType)` is true only for **`afw_utf8_t`** and **`afw_memory_t`**.
+
+```text
+if special:
+    permanent inf only
+    (no create_managed / create_unmanaged / allocate_unmanaged / slice)
+else:
+    permanent + unmanaged + managed infs
+    if cType in (afw_utf8_t, afw_memory_t):
+        + managed_slice inf + create_managed_*_slice
+    create_managed_*:
+        if cType == afw_utf8_t:  own bytes after header (xctx_calloc)
+        elif cType == afw_memory_t: own bytes after header
+        elif directReturn:  store internal as-is (xctx_malloc); RC=0 explicit
+            # pointer or small by-value types (bool, int, double, void*, object*, …)
+        else:  memcpy *internal into header (xctx_calloc); RC 0 via calloc
+    create_unmanaged_* / allocate_unmanaged_*: pool header, no RC
+    managed optional_release: free header at RC 0 else decrement
+    managed get_reference: bump RC, return same instance
+    unmanaged clone_or_reference: return instance as-is  (comment historically wrong)
+    permanent clone_or_reference: return instance as-is
+    managed_slice: RC on containing managed; release frees slice header + containing policy
+```
+
+**No `create_permanent_*`** — permanents come from `strings.py` / `const_objects.py` / bindings (id values, empty arrays) / hand `afw_value.h`.
+
+**Common contracts (all non-special managed):**
+
+- **RC starts at 0** on create (calloc path zeros; malloc path sets `reference_count = 0`). First `optional_release` without a prior get_reference **frees the header**.
+- **Managed release frees the value header only** — not nested object/array/function payloads.
+- **`allocate_managed_*` does not exist** (historical cleanup); only `allocate_unmanaged_*`.
+
+---
+
+#### 0a — Create-path families (by generator branch)
+
+| Family | cType pattern | directReturn | Managed create stores | Slice? | Types |
+|--------|---------------|--------------|----------------------|--------|--------|
+| **A. Special** | any | — | n/a (no create) | no | any, unknown, undefined, void |
+| **B. utf8 owning** | `afw_utf8_t` | false | copy octets after header | **yes** | string, anyURI, dnsName, ia5String, ipAddress, json, objectId, objectPath, password, regexp, relaxed_json, rfc822Name, script, template, x500Name, xpathExpression |
+| **C. memory owning** | `afw_memory_t` | false | copy bytes after header | **yes** | base64Binary, hexBinary |
+| **D. Struct embed** | struct (`afw_date_t`, …) | false | memcpy struct into header | no | date, dateTime, dayTimeDuration, time, yearMonthDuration |
+| **E. Small direct** | non-pointer scalar | **true** | by-value in header (`malloc` + RC=0) | no | boolean, integer, double |
+| **F. Pointer direct** | `const T *` or `void *` | **true** | **bare pointer** in header; no clone of referent | no | object, array, function, unevaluated, **null** (`void *`) |
+
+Family **F** is the structural problem for long-running MM: managed RC covers the **wrapper only**. Object/array need phase **1** (`->value` + container RC). Function / unevaluated / null are related edge cases (document; change only if clearly wrong in 0c).
+
+---
+
+#### 0a — Full type matrix (35)
+
+Legend: **P** permanent inf · **U** unmanaged · **M** managed · **S** managed_slice · **Cm/Cu/Au** create_managed / create_unmanaged / allocate_unmanaged.
+
+| dataType | special | scalar | directReturn | cType | P | U | M | S | Cm/Cu/Au | Family / notes |
+|----------|---------|--------|--------------|-------|---|---|---|---|----------|----------------|
+| any | yes | no | yes | `const afw_value_t *` | ✓ | — | — | — | — | A type-system |
+| unknown | yes | no | yes | `const afw_value_t *` | ✓ | — | — | — | — | A type-system |
+| undefined | yes | yes | yes | `void *` | ✓ | — | — | — | — | A singleton (`afw_value_undefined`) |
+| void | yes | yes | yes | `void *` | ✓ | — | — | — | — | A type-system (return “no value”) |
+| string | | yes | | `afw_utf8_t` | ✓ | ✓ | ✓ | ✓ | ✓ | B |
+| anyURI | | yes | | `afw_utf8_t` | ✓ | ✓ | ✓ | ✓ | ✓ | B |
+| dnsName | | yes | | `afw_utf8_t` | ✓ | ✓ | ✓ | ✓ | ✓ | B |
+| ia5String | | yes | | `afw_utf8_t` | ✓ | ✓ | ✓ | ✓ | ✓ | B |
+| ipAddress | | yes | | `afw_utf8_t` | ✓ | ✓ | ✓ | ✓ | ✓ | B |
+| json | | yes | | `afw_utf8_t` | ✓ | ✓ | ✓ | ✓ | ✓ | B |
+| objectId | | yes | | `afw_utf8_t` | ✓ | ✓ | ✓ | ✓ | ✓ | B |
+| objectPath | | yes | | `afw_utf8_t` | ✓ | ✓ | ✓ | ✓ | ✓ | B |
+| password | | yes | | `afw_utf8_t` | ✓ | ✓ | ✓ | ✓ | ✓ | B |
+| regexp | | yes | | `afw_utf8_t` | ✓ | ✓ | ✓ | ✓ | ✓ | B |
+| relaxed_json | | yes | | `afw_utf8_t` | ✓ | ✓ | ✓ | ✓ | ✓ | B |
+| rfc822Name | | yes | | `afw_utf8_t` | ✓ | ✓ | ✓ | ✓ | ✓ | B |
+| script | | yes | | `afw_utf8_t` | ✓ | ✓ | ✓ | ✓ | ✓ | B |
+| template | | yes | | `afw_utf8_t` | ✓ | ✓ | ✓ | ✓ | ✓ | B |
+| x500Name | | yes | | `afw_utf8_t` | ✓ | ✓ | ✓ | ✓ | ✓ | B |
+| xpathExpression | | yes | | `afw_utf8_t` | ✓ | ✓ | ✓ | ✓ | ✓ | B |
+| base64Binary | | yes | | `afw_memory_t` | ✓ | ✓ | ✓ | ✓ | ✓ | C |
+| hexBinary | | yes | | `afw_memory_t` | ✓ | ✓ | ✓ | ✓ | ✓ | C |
+| date | | yes | | `afw_date_t` | ✓ | ✓ | ✓ | — | ✓ | D |
+| dateTime | | yes | | `afw_dateTime_t` | ✓ | ✓ | ✓ | — | ✓ | D |
+| dayTimeDuration | | yes | | `afw_dayTimeDuration_t` | ✓ | ✓ | ✓ | — | ✓ | D |
+| time | | yes | | `afw_time_t` | ✓ | ✓ | ✓ | — | ✓ | D |
+| yearMonthDuration | | yes | | `afw_yearMonthDuration_t` | ✓ | ✓ | ✓ | — | ✓ | D |
+| boolean | | yes | **yes** | `afw_boolean_t` | ✓ | ✓ | ✓ | — | ✓ | E; prefer `afw_boolean_v_*` |
+| integer | | yes | **yes** | `afw_integer_t` | ✓ | ✓ | ✓ | — | ✓ | E; prefer `afw_integer_v_zero/one` |
+| double | | yes | **yes** | `double` | ✓ | ✓ | ✓ | — | ✓ | E |
+| object | | no | **yes** | `const afw_object_t *` | ✓ | ✓ | ✓ | — | ✓ | **F — phase 1** double-wrap |
+| array | | no | **yes** | `const afw_array_t *` | ✓ | ✓ | ✓ | — | ✓ | **F — phase 1** double-wrap |
+| function | | no | **yes** | `const afw_value_t *` | ✓ | ✓ | ✓ | — | ✓ | F; env uses permanent function values |
+| unevaluated | | no | **yes** | `const afw_value_t *` | ✓ | ✓ | ✓ | — | ✓ | F; audit in 0c |
+| null | | yes | **yes** | `void *` | ✓ | ✓ | ✓ | — | ✓ | F; prefer **`afw_value_null`** singleton |
+
+Empty cells for special/scalar/directReturn mean **false** / absent.
+
+---
+
+#### 0a — What already makes sense
 
 | Area | Assessment |
 |------|------------|
-| **Four lifetime policies** | Documented in generator header; infs wired: permanent (`optional_release` NULL, clone as-is), managed (RC + free header), managed_slice (utf8/memory only, RC on containing), unmanaged (pool lifetime, clone as-is). |
-| **Special types** | `special: true` → permanent inf only, no create_managed/unmanaged. Today: **undefined, void, any, unknown** (and similar). |
-| **Scalars (integer, boolean, double, …)** | Managed: store by value in xctx-allocated header, RC starts 0. Unmanaged: pool header. Permanent: static const (e.g. `afw_strings.h`). Matches “value owns payload copy” for non-pointer internals. |
-| **utf8 / memory managed** | Embed bytes after header (owning copy). **managed_slice** create/release/get_reference look coherent (recent #115 work). |
-| **No create_permanent_*** | Correct — permanent instances from strings/const_objects only. |
-| **Old FIXME `False and` object path** | **Gone** from current generator (was never activated). No half-enabled object special case in Python. |
-| **allocate_managed_* removed** | Historical #2 cleanup; only allocate_unmanaged remains. |
+| Four lifetime policies | Present and wired for non-special types |
+| Special types | Permanent-only fits type-system / singleton roles |
+| B/C owning managed | Value owns bytes; slice on containing RC looks coherent |
+| D/E by-value managed | Header owns payload copy; good long-running story |
+| No create_permanent_* | Correct |
+| allocate_managed_* gone | Correct; allocate_unmanaged remains |
+| Old `False and` object path | Gone from generator |
 
-#### Critical gaps vs our MM model / old branch
+#### 0a — Gaps / anomalies (for 0b–0d and phase 1)
 
-**1. Object and array create_* still double-wrap (phase 1 territory, but bindings block it)**
+| # | Issue | Phase |
+|---|--------|-------|
+| 1 | **object/array** create still allocate wrapper; release does not release container; ignore `->value` | **1** (document target in 0d) |
+| 2 | Managed create almost **unused** in hand C (unmanaged + pool bulk free dominates) | 1–2 use |
+| 3 | Family **F** pointer managed: RC = header only | 1 for object/array; note function/unevaluated |
+| 4 | Managed **RC starts at 0** — easy to misuse; keep, document in **0b** | 0b |
+| 5 | **null** not special; create APIs can mint non-singleton nulls | identity discipline now; 0c only if clear |
+| 6 | **unevaluated** full create APIs | 0c audit / park |
+| 7 | Unmanaged inf comment: “get_reference returns new reference” but impl **returns as-is** | **0b** |
+| 8 | Permanent/unmanaged both “as-is” on clone_or_reference — fine; comments must say so | 0b |
 
-```c
-// generated today — does NOT use object->value
-afw_value_create_managed_object(obj, xctx) {
-    v = afw_xctx_malloc(sizeof(afw_value_object_managed_t), xctx);
-    v->inf = managed_object_inf;
-    v->internal = obj;   // pointer only
-    v->reference_count = 0;
-    return &v->pub;
-}
-// optional_release: only afw_pool_free_memory(v) — does NOT afw_object_release(obj)
-```
-
-Same shape for **array**. Old branch tip wanted: return `internal->value`, managed path `afw_object_get_reference`, release → object/array release (or pool ref). **Not present.** Memory objects already embed `->value` with managed_object_inf, but create APIs ignore it.
-
-**2. Managed create almost unused in hand code**
-
-Rough hand-C call counts (excluding generated):  
-`create_unmanaged_object` ~**97**, `create_managed_object` **0**, `create_managed_string` **0**, `create_managed_string_slice` **0**.  
-So the managed path is **scaffolding**; production traffic is still **unmanaged + pool bulk free**. Phase 0 must get the generated APIs *correct*; phase 1–2 must *use* them.
-
-**3. Pointer `directReturn` managed types store bare pointers**
-
-For `const afw_object_t *`, `const afw_array_t *`, `const afw_value_t *` (function), `void *` (null): managed create **does not clone** the referent; RC only covers the **value header**. Generator comment admits no automatic clone. That is **not** “value lifetime covers everything important” until object/array (and function?) special-case container RC.
-
-**4. Managed RC starts at 0**
-
-Create leaves `reference_count = 0`; first `optional_release` **frees immediately** if nothing called get_reference. Intentional “create and hand off” / “release without prior get_reference” semantics — document and keep consistent; easy to misuse if callers assume create ⇒ held ref.
-
-**5. `null` is not `special`**
-
-`null.json` has no `special: true` → full unmanaged/managed/permanent machinery and create APIs for null. Runtime still has permanent null for normal use. **Odd / likely incomplete** — candidates for permanent-only like undefined (discuss).
-
-**6. `unevaluated` is not special**
-
-`cType: const afw_value_t *`, not special → gets managed/unmanaged create like a normal type. May or may not be intentional.
-
-**7. Unmanaged clone_or_reference comment vs behavior**
-
-Generated comment: unmanaged “get_reference returns new reference”; implementation **returns instance as-is**. Misleading docs only.
-
-**8. managed_slice free of containing**
-
-Slice release decrements/frees **containing managed** header; does not free slice’s xctx allocation of header carefully? It frees both containing (if RC 0) and slice instance via `afw_pool_free_memory`. Slice header was `afw_xctx_calloc` — free_memory must resolve to xctx pool (prefix). OK if free_memory path is solid. Slice **get_reference** allocates **new** slice header (copy of view) — good.
-
-#### Relative to old branch (ideas only)
+#### Relative to old branch (ideas for phase 1 only)
 
 | Old tip | Current tree |
 |---------|----------------|
 | create_*_object → `internal->value` | Still allocate wrapper |
 | managed get_reference → object | Only bumps value-header RC |
 | managed release → object_release | Only free value header |
-| drop allocate_unmanaged_object | Still generated for object |
+| drop allocate_unmanaged_object | Still generated |
 | throw if missing `->value` | N/A |
-| registry/env permanent values | Partial / separate |
-
-Old work is still a **valid target shape for phase 1**, not something already finished in bindings.
 
 #### What’s “complete enough” for phase 0 vs later
 
-| In phase 0 (bindings correctness) | Later phases |
-|-----------------------------------|--------------|
-| Confirm generator matrix per cType/special | Flip object/array to `->value` + container RC |
-| Fix clear bugs/inconsistencies (null special?, comments, maybe unevaluated) | Migrate call sites off double-wrap |
-| Ensure managed/slice RC semantics documented and consistent | assign `clone_or_reference` |
-| Decide which types get which APIs | Scope release |
+| In phase 0 | Later |
+|------------|--------|
+| Matrix (0a) + comment/contract fixes (0b) | Flip object/array to `->value` + container RC |
+| Clear small consistency only if safe (0c) | Migrate call sites; assign; escape |
+| Phase 1 handoff notes (0d) | Scope release; OOM |
 
 #### Null / undefined / address identity (from discussion — not “just special”)
 
@@ -374,7 +456,7 @@ See **Future: compile-time type checking** below for a full stash of notes. Shor
 |-------|--------|--------|
 | **Discuss** | Memory story pad (`memory-management.md`); invariants; no big code yet | **paused** (good foundation) |
 | **−1** | **Prefer permanent `afw_v_*` (and typed permanent values) over allocate/create when the string/scalar already exists from generate** — cleanup call sites left over from before strings.py emitted values | **−1a + −1b + −1c done** |
-| **0** | **Audit `data_type_bindings.py` + generated bindings** — correct, complete, match permanent/managed/managed_slice/unmanaged model; finish gaps from recent work; use old branch tip as ideas (object/array create → `->value`, release via container) not as merge | **analysis done — discuss / plan next** |
+| **0** | **Audit `data_type_bindings.py` + generated bindings** — correct, complete, match permanent/managed/managed_slice/unmanaged model; finish gaps from recent work; use old branch tip as ideas (object/array create → `->value`, release via container) not as merge | **0a matrix done** → 0b docs next |
 | **1** | Managed **object/array** containers + `->value` identity (consistent impls; hide nastiness) | pending |
 | **2** | Assign / scope: **`clone_or_reference`** so variable-held values own needed lifetime | pending |
 | **3** | Scope/symbol release correctness; escape (closures, returned compile results) | pending |
@@ -1285,6 +1367,12 @@ See **Phase 0 findings** section in this file (generator + generated C vs model 
 
 - Documented under **Const / permanent → Cross-generator registration**: `options['const']` bag + `get_string_label`; `const_objects` / `function_bindings` register property names, literals, and typed scalars before `strings.generate` emits `afw_strings.*`.
 - Useful for −1: permanent reuse is one shared pipeline (not only hand `strings.txt`); order is load-bearing; `additional_generate` is after strings emit today.
+
+### 2026-07-23 — phase 0a: type × lifetime matrix
+
+- Inventoried all 35 `_AdaptiveDataTypeGenerate_` types vs `data_type_bindings.py` branches.
+- Families A–F (special / utf8 / memory / struct embed / small direct / pointer direct); full matrix under **Phase 0 — 0a**.
+- No code; next **0b** comment/contract alignment.
 
 ### 2026-07-23 — step −1c executed (generate const reuse)
 
