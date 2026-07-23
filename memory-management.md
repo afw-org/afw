@@ -373,7 +373,7 @@ See **Future: compile-time type checking** below for a full stash of notes. Shor
 | Phase | Intent | Status |
 |-------|--------|--------|
 | **Discuss** | Memory story pad (`memory-management.md`); invariants; no big code yet | **paused** (good foundation) |
-| **−1** | **Prefer permanent `afw_v_*` (and typed permanent values) over allocate/create when the string/scalar already exists from generate** — cleanup call sites left over from before strings.py emitted values | **−1a + −1b done** |
+| **−1** | **Prefer permanent `afw_v_*` (and typed permanent values) over allocate/create when the string/scalar already exists from generate** — cleanup call sites left over from before strings.py emitted values | **−1a + −1b + −1c done** |
 | **0** | **Audit `data_type_bindings.py` + generated bindings** — correct, complete, match permanent/managed/managed_slice/unmanaged model; finish gaps from recent work; use old branch tip as ideas (object/array create → `->value`, release via container) not as merge | **analysis done — discuss / plan next** |
 | **1** | Managed **object/array** containers + `->value` identity (consistent impls; hide nastiness) | pending |
 | **2** | Assign / scope: **`clone_or_reference`** so variable-held values own needed lifetime | pending |
@@ -986,13 +986,78 @@ Note: generate can still emit **string** `afw_v_true` (the characters `"true"`) 
 
 All permanent ⇒ no pool, no `optional_release`.
 
+#### Cross-generator registration — `options['const']` / `get_string_label`
+
+Permanent strings/values are **not** only whatever is listed in `generate/strings/*.txt`. Other generators **contribute** to one shared bag during the same `afwdev generate` pass; `strings.generate` runs **last** among const-related work and is the sole emitter of `generated/<prefix>strings.h` / `.c`.
+
+**Shared bag** (initialized early in `generate.py`):
+
+```text
+options['const'][dataType][label] = value
+```
+
+- `dataType` defaults to `'string'`; also `boolean`, `integer`, `double`, and utf8-like types from `strings.py` `supported_dataTypes`.
+- `label` is the C stem (`brief`, `objectId`, `zz__…`, `a_dash`, …).
+- `value` is the permanent content (text, or C token like `true` / `0` for non-string types).
+
+**API:** `get_string_label(options, string, type, labelPreference=None, dataType='string')` in `_afwdev/generate/strings.py`.
+
+- **Registers** (or reuses by equal **value**) into `options['const'][dataType]`.
+- **Returns** the C symbol for the requested form:
+
+| `type` | Symbol form | Meaning |
+|--------|-------------|---------|
+| `Q` | `AFW_Q_label` | quoted `#define` |
+| `s` / `self_s` | `afw_s_` / `afw_self_s_` | `afw_utf8_t` view |
+| `v` / `self_v` | `afw_v_` / `afw_self_v_` | permanent `afw_value_*` |
+| `U` | `AFW_U_…` | unquoted `#define` |
+| `*z` | `afw_z_…` | `const char *` into the utf8 |
+
+Non-`string` types get a prefix insert (`afw_boolean_v_true`, `afw_integer_v_zero`, …). Bad identifiers become `zz__…` (or a numbered label if very long). Same value within a dataType reuses one label.
+
+**Who fills the bag before emit** (order matters; from `generate.py`):
+
+| Contributor | When | What it adds |
+|-------------|------|----------------|
+| **`function_bindings`** | Before strings | Parameter/function names, briefs, descriptions, signatures; `dataType='boolean'|'integer'` for flags and minArgs, etc. Emits C that **points at** `get_string_label(..., 'self_v')` symbols. |
+| **`const_objects`** | Before strings | String **property values** via `get_string_label(..., 'self_v')`; objectId / objectType / embedder propname via `self_s`. Property **names** in the property table often reference `afw_self_s_<name>` without calling the helper at that site. |
+| **`generate.py` (direct)** | e.g. manifest | Occasional `options['const']['string'][label] = value` without the helper. |
+| **`strings.generate` harvest** | Last | Fixed extras (`default`, `indirect`); walk object JSON for type ids, object ids, every property **name** (hyphen → `a_…`), nested objects, `dataType` string fields; function object-type names; all `generate/strings/*.txt` lines — then **emit** `.h` / `.c`. |
+
+If anything already put entries in `options['const']['string']`, generate forces `options['strings'] = True` so the emit step runs.
+
+**Flow:**
+
+```text
+  strings.txt  ──┐
+  object JSON  ──┤  (during strings.generate harvest)
+  generate.py  ──┤
+  const_objects ─┼── get_string_label / options['const'][dt][label]=value
+  function_bind ─┘              │
+                                ▼  (last among these)
+                     <prefix>strings.h / .c
+                     permanent afw_self_v_* + macros
+```
+
+**Why this exists (especially const objects):** while emitting a const object, property **values** that are string literals (and meta ids) need **stable permanent symbols** in the generated C. Registering them into the same bag as `strings.txt` means one `afw_self_v_*` / `afw_s_*` pool for property names, literals, function metadata, and hand-listed strings — deduped by value.
+
+**Caveat:** `additional_generate` runs **after** `strings.generate` in the current pipeline, so it cannot contribute to this bag for the **same** pass unless something else is arranged.
+
+**−1 implications:**
+
+1. New permanent literals from generators → `get_string_label` (or intentional bag write), not ad-hoc local static utf8 / one-off defines, if they should join the shared pool and macros.
+2. Hand C call sites → prefer existing `afw_s_*` / `afw_v_*` when the string is (or will be) in that bag (−1a style). Prefer **named** typed permanents from `strings.txt` (`afw_integer_v_zero` / `…_one`, not auto `…_v_0` / `…_v_1`) when early seed makes those the canonical labels.
+3. Ordering is load-bearing: `seed_from_strings_dir` runs early; `const_objects` / `function_bindings` register into the bag; `strings.generate` harvests more and emits last. `labelPreference` always creates/keeps that label (needed for `a_*` aliases); value-only calls dedupe onto the first label for that value.
+4. Typed bag entries (`boolean` / `integer`) are the same pipeline as `boolean::true` / `integer::zero` in `strings.txt` — same world as −1b / −1c permanent helpers.
+5. **Done (−1c):** const_objects scalar properties use the bag; local permanent bool/int/double property_value statics removed.
+
 #### Const objects — `src/afw/generated/afw_const_objects.c` (+ thin `.h`)
 
 Generator: `const_objects.py`. Header is mostly **`afw_const_objects_register(xctx)`**; bulk is in `.c`.
 
 Pattern per object:
 
-- Runtime const object instance (`afw_runtime_const_object_instance_t`) with property tables pointing at **`afw_self_s_*` / `afw_self_v_*.pub`** (permanent string/value ids).
+- Runtime const object instance (`afw_runtime_const_object_instance_t`) with property tables pointing at **`afw_self_s_*` / `afw_self_v_*.pub`** (permanent string/value ids — filled via the bag above).
 - Paired **`afw_value_object_t`** with **`afw_value_permanent_object_inf`**, `internal` → that object; object’s `pub.value` → that value.
 - Meta objects same permanent-object-value pattern; `p` is NULL (const).
 
@@ -1002,6 +1067,7 @@ Register at env bootstrap so paths like `/afw/_AdaptiveObjectType_/…` resolve 
 
 - **Permanent** = process/binary life; no request GC, no managed RC.
 - Call sites should reuse `afw_v_*` / `afw_s_*` instead of allocating the same literal in a request pool.
+- Generators already funnel many property names/literals and function metadata through one permanent bag (`get_string_label`); −1 is mostly **using** that bag from hand C and bindings, not inventing a second pool.
 - **#110 class risk:** permanent/shared mutables (if any path allows mutation of const objects) must not be returned as defaults without clone — const objects are intended immutable; open mutables elsewhere still need clone rules.
 - Object/array `->value` on const instances is already the permanent value — aligns with “use instance value” for permanent case.
 
@@ -1214,5 +1280,18 @@ See **Phase 0 findings** section in this file (generator + generated C vs model 
 - Regenerated boolean/integer bindings; convention note in `afw_value.h` + `afw-value-memory.mdc`.
 - No further obvious `create_unmanaged_string(afw_s_*)` call sites; dynamic strings left alone.
 - **Lexicon:** avoid “catalog” in **source**/generated comments for these; prefer static const / permanent. Chat is fine.
+
+### 2026-07-23 — afwdev generate: other generators add to permanent string bag
+
+- Documented under **Const / permanent → Cross-generator registration**: `options['const']` bag + `get_string_label`; `const_objects` / `function_bindings` register property names, literals, and typed scalars before `strings.generate` emits `afw_strings.*`.
+- Useful for −1: permanent reuse is one shared pipeline (not only hand `strings.txt`); order is load-bearing; `additional_generate` is after strings emit today.
+
+### 2026-07-23 — step −1c executed (generate const reuse)
+
+- **`const_objects.py`:** boolean / integer / double property values no longer emit per-property `static const afw_value_*_t`; they use `get_string_label` → shared bag (`afw_boolean_self_v_true/false`, `afw_integer_self_v_zero/one`, …). object/array wrappers stay per-instance.
+- **`strings.seed_from_strings_dir`:** load `generate/strings/*.txt` into `options['const']` **before** function_bindings / const_objects so preferred labels (`boolean::true`, `integer::zero`, …) win; value-only registration reuses them (no more parallel `integer_v_0` + `integer_v_zero` from auto labels).
+- **Do not** value-dedupe when `labelPreference` is set — `a_*` aliases intentionally share text with other labels (e.g. `a_decision_not_applicable=notApplicable` vs `notApplicable`).
+- Hand fix: `afw_compile_parse_script.c` `afw_integer_v_1` → `afw_integer_v_one` (numeric label no longer auto-emitted when `one` is seeded first).
+- Spot-check: ~930 local boolean property statics removed; properties point at `&afw_boolean_self_v_*.pub`; `afw_const_objects.c` smaller by ~5.6k lines.
 
 _(Append dated notes as we talk; fold durable points up into **By area** / **Cross-cutting**.)_

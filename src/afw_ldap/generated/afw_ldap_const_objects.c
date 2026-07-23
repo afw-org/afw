@@ -39,16 +39,10 @@ impl_3;
  * /afw/_AdaptiveObjectType_/_AdaptiveAdapterTypeSpecific_ldap_retrieve_objects/propertyTypes/base
  */
 
-static const afw_value_boolean_t
-impl_3_property_value_allowQuery = {
-    {&afw_value_permanent_boolean_inf},
-    true
-};
-
 static const afw_runtime_property_t
 impl_3_property_allowQuery = {
     &afw_ldap_self_s_allowQuery,
-    &impl_3_property_value_allowQuery.pub
+    &afw_ldap_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
@@ -69,16 +63,10 @@ impl_3_property_label = {
     &afw_ldap_self_v_zz__Base_Override.pub
 };
 
-static const afw_value_boolean_t
-impl_3_property_value_required = {
-    {&afw_value_permanent_boolean_inf},
-    false
-};
-
 static const afw_runtime_property_t
 impl_3_property_required = {
     &afw_ldap_self_s_required,
-    &impl_3_property_value_required.pub
+    &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t *
@@ -217,52 +205,28 @@ impl_2__value = {
  * /afw/_AdaptiveObjectType_/_AdaptiveAdapterTypeSpecific_ldap_retrieve_objects
  */
 
-static const afw_value_boolean_t
-impl_1_property_value_allowAdd = {
-    {&afw_value_permanent_boolean_inf},
-    false
-};
-
 static const afw_runtime_property_t
 impl_1_property_allowAdd = {
     &afw_ldap_self_s_allowAdd,
-    &impl_1_property_value_allowAdd.pub
-};
-
-static const afw_value_boolean_t
-impl_1_property_value_allowChange = {
-    {&afw_value_permanent_boolean_inf},
-    false
+    &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_1_property_allowChange = {
     &afw_ldap_self_s_allowChange,
-    &impl_1_property_value_allowChange.pub
-};
-
-static const afw_value_boolean_t
-impl_1_property_value_allowDelete = {
-    {&afw_value_permanent_boolean_inf},
-    false
+    &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_1_property_allowDelete = {
     &afw_ldap_self_s_allowDelete,
-    &impl_1_property_value_allowDelete.pub
-};
-
-static const afw_value_boolean_t
-impl_1_property_value_allowEntity = {
-    {&afw_value_permanent_boolean_inf},
-    false
+    &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_1_property_allowEntity = {
     &afw_ldap_self_s_allowEntity,
-    &impl_1_property_value_allowEntity.pub
+    &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_utf8_t
@@ -427,28 +391,16 @@ impl_6_property_label = {
     &afw_ldap_self_v_zz__Bind_Parameters.pub
 };
 
-static const afw_value_boolean_t
-impl_6_property_value_required = {
-    {&afw_value_permanent_boolean_inf},
-    true
-};
-
 static const afw_runtime_property_t
 impl_6_property_required = {
     &afw_ldap_self_s_required,
-    &impl_6_property_value_required.pub
-};
-
-static const afw_value_boolean_t
-impl_6_property_value_unique = {
-    {&afw_value_permanent_boolean_inf},
-    false
+    &afw_ldap_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_6_property_unique = {
     &afw_ldap_self_s_unique,
-    &impl_6_property_value_unique.pub
+    &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t *
@@ -519,16 +471,10 @@ impl_7;
  * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_ldap/propertyTypes/preventVerifyCert
  */
 
-static const afw_value_boolean_t
-impl_7_property_value_allowQuery = {
-    {&afw_value_permanent_boolean_inf},
-    true
-};
-
 static const afw_runtime_property_t
 impl_7_property_allowQuery = {
     &afw_ldap_self_s_allowQuery,
-    &impl_7_property_value_allowQuery.pub
+    &afw_ldap_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
@@ -549,28 +495,16 @@ impl_7_property_label = {
     &afw_ldap_self_v_zz__Prevent_Verify_Cert.pub
 };
 
-static const afw_value_boolean_t
-impl_7_property_value_required = {
-    {&afw_value_permanent_boolean_inf},
-    false
-};
-
 static const afw_runtime_property_t
 impl_7_property_required = {
     &afw_ldap_self_s_required,
-    &impl_7_property_value_required.pub
-};
-
-static const afw_value_boolean_t
-impl_7_property_value_unique = {
-    {&afw_value_permanent_boolean_inf},
-    false
+    &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_7_property_unique = {
     &afw_ldap_self_s_unique,
-    &impl_7_property_value_unique.pub
+    &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t *
@@ -641,16 +575,10 @@ impl_8;
  * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_ldap/propertyTypes/url
  */
 
-static const afw_value_boolean_t
-impl_8_property_value_allowQuery = {
-    {&afw_value_permanent_boolean_inf},
-    true
-};
-
 static const afw_runtime_property_t
 impl_8_property_allowQuery = {
     &afw_ldap_self_s_allowQuery,
-    &impl_8_property_value_allowQuery.pub
+    &afw_ldap_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
@@ -671,28 +599,16 @@ impl_8_property_label = {
     &afw_ldap_self_v_Url.pub
 };
 
-static const afw_value_boolean_t
-impl_8_property_value_required = {
-    {&afw_value_permanent_boolean_inf},
-    true
-};
-
 static const afw_runtime_property_t
 impl_8_property_required = {
     &afw_ldap_self_s_required,
-    &impl_8_property_value_required.pub
-};
-
-static const afw_value_boolean_t
-impl_8_property_value_unique = {
-    {&afw_value_permanent_boolean_inf},
-    false
+    &afw_ldap_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_8_property_unique = {
     &afw_ldap_self_s_unique,
-    &impl_8_property_value_unique.pub
+    &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t *
@@ -877,16 +793,10 @@ impl_5__value = {
  * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_ldap
  */
 
-static const afw_value_boolean_t
-impl_4_property_value_allowEntity = {
-    {&afw_value_permanent_boolean_inf},
-    false
-};
-
 static const afw_runtime_property_t
 impl_4_property_allowEntity = {
     &afw_ldap_self_s_allowEntity,
-    &impl_4_property_value_allowEntity.pub
+    &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_utf8_t
@@ -1024,16 +934,10 @@ impl_11;
  * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_ldap_bind/propertyTypes/dn
  */
 
-static const afw_value_boolean_t
-impl_11_property_value_allowQuery = {
-    {&afw_value_permanent_boolean_inf},
-    true
-};
-
 static const afw_runtime_property_t
 impl_11_property_allowQuery = {
     &afw_ldap_self_s_allowQuery,
-    &impl_11_property_value_allowQuery.pub
+    &afw_ldap_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
@@ -1054,28 +958,16 @@ impl_11_property_label = {
     &afw_ldap_self_v_zz__Bind_DN.pub
 };
 
-static const afw_value_boolean_t
-impl_11_property_value_required = {
-    {&afw_value_permanent_boolean_inf},
-    true
-};
-
 static const afw_runtime_property_t
 impl_11_property_required = {
     &afw_ldap_self_s_required,
-    &impl_11_property_value_required.pub
-};
-
-static const afw_value_boolean_t
-impl_11_property_value_unique = {
-    {&afw_value_permanent_boolean_inf},
-    false
+    &afw_ldap_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_11_property_unique = {
     &afw_ldap_self_s_unique,
-    &impl_11_property_value_unique.pub
+    &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t *
@@ -1146,16 +1038,10 @@ impl_12;
  * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_ldap_bind/propertyTypes/password
  */
 
-static const afw_value_boolean_t
-impl_12_property_value_allowQuery = {
-    {&afw_value_permanent_boolean_inf},
-    true
-};
-
 static const afw_runtime_property_t
 impl_12_property_allowQuery = {
     &afw_ldap_self_s_allowQuery,
-    &impl_12_property_value_allowQuery.pub
+    &afw_ldap_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
@@ -1176,28 +1062,16 @@ impl_12_property_label = {
     &afw_ldap_self_v_zz__Bind_Password.pub
 };
 
-static const afw_value_boolean_t
-impl_12_property_value_required = {
-    {&afw_value_permanent_boolean_inf},
-    true
-};
-
 static const afw_runtime_property_t
 impl_12_property_required = {
     &afw_ldap_self_s_required,
-    &impl_12_property_value_required.pub
-};
-
-static const afw_value_boolean_t
-impl_12_property_value_unique = {
-    {&afw_value_permanent_boolean_inf},
-    false
+    &afw_ldap_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_12_property_unique = {
     &afw_ldap_self_s_unique,
-    &impl_12_property_value_unique.pub
+    &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t *
@@ -1350,52 +1224,28 @@ impl_10__value = {
  * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_ldap_bind
  */
 
-static const afw_value_boolean_t
-impl_9_property_value_allowAdd = {
-    {&afw_value_permanent_boolean_inf},
-    false
-};
-
 static const afw_runtime_property_t
 impl_9_property_allowAdd = {
     &afw_ldap_self_s_allowAdd,
-    &impl_9_property_value_allowAdd.pub
-};
-
-static const afw_value_boolean_t
-impl_9_property_value_allowChange = {
-    {&afw_value_permanent_boolean_inf},
-    false
+    &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_9_property_allowChange = {
     &afw_ldap_self_s_allowChange,
-    &impl_9_property_value_allowChange.pub
-};
-
-static const afw_value_boolean_t
-impl_9_property_value_allowDelete = {
-    {&afw_value_permanent_boolean_inf},
-    false
+    &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_9_property_allowDelete = {
     &afw_ldap_self_s_allowDelete,
-    &impl_9_property_value_allowDelete.pub
-};
-
-static const afw_value_boolean_t
-impl_9_property_value_allowEntity = {
-    {&afw_value_permanent_boolean_inf},
-    false
+    &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_9_property_allowEntity = {
     &afw_ldap_self_s_allowEntity,
-    &impl_9_property_value_allowEntity.pub
+    &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_utf8_t
@@ -2010,52 +1860,28 @@ impl_15__value = {
  * /afw/_AdaptiveObjectType_/_AdaptiveLdapAttributeType_
  */
 
-static const afw_value_boolean_t
-impl_13_property_value_allowAdd = {
-    {&afw_value_permanent_boolean_inf},
-    false
-};
-
 static const afw_runtime_property_t
 impl_13_property_allowAdd = {
     &afw_ldap_self_s_allowAdd,
-    &impl_13_property_value_allowAdd.pub
-};
-
-static const afw_value_boolean_t
-impl_13_property_value_allowChange = {
-    {&afw_value_permanent_boolean_inf},
-    false
+    &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_13_property_allowChange = {
     &afw_ldap_self_s_allowChange,
-    &impl_13_property_value_allowChange.pub
-};
-
-static const afw_value_boolean_t
-impl_13_property_value_allowDelete = {
-    {&afw_value_permanent_boolean_inf},
-    false
+    &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_13_property_allowDelete = {
     &afw_ldap_self_s_allowDelete,
-    &impl_13_property_value_allowDelete.pub
-};
-
-static const afw_value_boolean_t
-impl_13_property_value_allowEntity = {
-    {&afw_value_permanent_boolean_inf},
-    true
+    &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_13_property_allowEntity = {
     &afw_ldap_self_s_allowEntity,
-    &impl_13_property_value_allowEntity.pub
+    &afw_ldap_boolean_self_v_true.pub
 };
 
 static const afw_utf8_t
@@ -2265,52 +2091,28 @@ impl_21__value = {
  * /afw/_AdaptiveObjectType_/_AdaptiveLdapMatchingRuleUse_
  */
 
-static const afw_value_boolean_t
-impl_20_property_value_allowAdd = {
-    {&afw_value_permanent_boolean_inf},
-    false
-};
-
 static const afw_runtime_property_t
 impl_20_property_allowAdd = {
     &afw_ldap_self_s_allowAdd,
-    &impl_20_property_value_allowAdd.pub
-};
-
-static const afw_value_boolean_t
-impl_20_property_value_allowChange = {
-    {&afw_value_permanent_boolean_inf},
-    false
+    &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_20_property_allowChange = {
     &afw_ldap_self_s_allowChange,
-    &impl_20_property_value_allowChange.pub
-};
-
-static const afw_value_boolean_t
-impl_20_property_value_allowDelete = {
-    {&afw_value_permanent_boolean_inf},
-    false
+    &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_20_property_allowDelete = {
     &afw_ldap_self_s_allowDelete,
-    &impl_20_property_value_allowDelete.pub
-};
-
-static const afw_value_boolean_t
-impl_20_property_value_allowEntity = {
-    {&afw_value_permanent_boolean_inf},
-    true
+    &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_20_property_allowEntity = {
     &afw_ldap_self_s_allowEntity,
-    &impl_20_property_value_allowEntity.pub
+    &afw_ldap_boolean_self_v_true.pub
 };
 
 static const afw_utf8_t
@@ -2507,52 +2309,28 @@ impl_23__value = {
  * /afw/_AdaptiveObjectType_/_AdaptiveLdapMatchingRule_
  */
 
-static const afw_value_boolean_t
-impl_22_property_value_allowAdd = {
-    {&afw_value_permanent_boolean_inf},
-    false
-};
-
 static const afw_runtime_property_t
 impl_22_property_allowAdd = {
     &afw_ldap_self_s_allowAdd,
-    &impl_22_property_value_allowAdd.pub
-};
-
-static const afw_value_boolean_t
-impl_22_property_value_allowChange = {
-    {&afw_value_permanent_boolean_inf},
-    false
+    &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_22_property_allowChange = {
     &afw_ldap_self_s_allowChange,
-    &impl_22_property_value_allowChange.pub
-};
-
-static const afw_value_boolean_t
-impl_22_property_value_allowDelete = {
-    {&afw_value_permanent_boolean_inf},
-    false
+    &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_22_property_allowDelete = {
     &afw_ldap_self_s_allowDelete,
-    &impl_22_property_value_allowDelete.pub
-};
-
-static const afw_value_boolean_t
-impl_22_property_value_allowEntity = {
-    {&afw_value_permanent_boolean_inf},
-    true
+    &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_22_property_allowEntity = {
     &afw_ldap_self_s_allowEntity,
-    &impl_22_property_value_allowEntity.pub
+    &afw_ldap_boolean_self_v_true.pub
 };
 
 static const afw_utf8_t
@@ -3689,52 +3467,28 @@ impl_26__value = {
  * /afw/_AdaptiveObjectType_/_AdaptiveLdapObjectClass_
  */
 
-static const afw_value_boolean_t
-impl_24_property_value_allowAdd = {
-    {&afw_value_permanent_boolean_inf},
-    false
-};
-
 static const afw_runtime_property_t
 impl_24_property_allowAdd = {
     &afw_ldap_self_s_allowAdd,
-    &impl_24_property_value_allowAdd.pub
-};
-
-static const afw_value_boolean_t
-impl_24_property_value_allowChange = {
-    {&afw_value_permanent_boolean_inf},
-    false
+    &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_24_property_allowChange = {
     &afw_ldap_self_s_allowChange,
-    &impl_24_property_value_allowChange.pub
-};
-
-static const afw_value_boolean_t
-impl_24_property_value_allowDelete = {
-    {&afw_value_permanent_boolean_inf},
-    false
+    &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_24_property_allowDelete = {
     &afw_ldap_self_s_allowDelete,
-    &impl_24_property_value_allowDelete.pub
-};
-
-static const afw_value_boolean_t
-impl_24_property_value_allowEntity = {
-    {&afw_value_permanent_boolean_inf},
-    true
+    &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_24_property_allowEntity = {
     &afw_ldap_self_s_allowEntity,
-    &impl_24_property_value_allowEntity.pub
+    &afw_ldap_boolean_self_v_true.pub
 };
 
 static const afw_utf8_t
@@ -3944,52 +3698,28 @@ impl_37__value = {
  * /afw/_AdaptiveObjectType_/_AdaptiveLdapRootDse_
  */
 
-static const afw_value_boolean_t
-impl_36_property_value_allowAdd = {
-    {&afw_value_permanent_boolean_inf},
-    false
-};
-
 static const afw_runtime_property_t
 impl_36_property_allowAdd = {
     &afw_ldap_self_s_allowAdd,
-    &impl_36_property_value_allowAdd.pub
-};
-
-static const afw_value_boolean_t
-impl_36_property_value_allowChange = {
-    {&afw_value_permanent_boolean_inf},
-    false
+    &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_36_property_allowChange = {
     &afw_ldap_self_s_allowChange,
-    &impl_36_property_value_allowChange.pub
-};
-
-static const afw_value_boolean_t
-impl_36_property_value_allowDelete = {
-    {&afw_value_permanent_boolean_inf},
-    false
+    &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_36_property_allowDelete = {
     &afw_ldap_self_s_allowDelete,
-    &impl_36_property_value_allowDelete.pub
-};
-
-static const afw_value_boolean_t
-impl_36_property_value_allowEntity = {
-    {&afw_value_permanent_boolean_inf},
-    true
+    &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_36_property_allowEntity = {
     &afw_ldap_self_s_allowEntity,
-    &impl_36_property_value_allowEntity.pub
+    &afw_ldap_boolean_self_v_true.pub
 };
 
 static const afw_utf8_t
@@ -4186,52 +3916,28 @@ impl_39__value = {
  * /afw/_AdaptiveObjectType_/_AdaptiveLdapSchema_
  */
 
-static const afw_value_boolean_t
-impl_38_property_value_allowAdd = {
-    {&afw_value_permanent_boolean_inf},
-    false
-};
-
 static const afw_runtime_property_t
 impl_38_property_allowAdd = {
     &afw_ldap_self_s_allowAdd,
-    &impl_38_property_value_allowAdd.pub
-};
-
-static const afw_value_boolean_t
-impl_38_property_value_allowChange = {
-    {&afw_value_permanent_boolean_inf},
-    false
+    &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_38_property_allowChange = {
     &afw_ldap_self_s_allowChange,
-    &impl_38_property_value_allowChange.pub
-};
-
-static const afw_value_boolean_t
-impl_38_property_value_allowDelete = {
-    {&afw_value_permanent_boolean_inf},
-    false
+    &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_38_property_allowDelete = {
     &afw_ldap_self_s_allowDelete,
-    &impl_38_property_value_allowDelete.pub
-};
-
-static const afw_value_boolean_t
-impl_38_property_value_allowEntity = {
-    {&afw_value_permanent_boolean_inf},
-    true
+    &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_38_property_allowEntity = {
     &afw_ldap_self_s_allowEntity,
-    &impl_38_property_value_allowEntity.pub
+    &afw_ldap_boolean_self_v_true.pub
 };
 
 static const afw_utf8_t
@@ -4668,52 +4374,28 @@ impl_42__value = {
  * /afw/_AdaptiveObjectType_/_AdaptiveLdapSyntax_
  */
 
-static const afw_value_boolean_t
-impl_40_property_value_allowAdd = {
-    {&afw_value_permanent_boolean_inf},
-    false
-};
-
 static const afw_runtime_property_t
 impl_40_property_allowAdd = {
     &afw_ldap_self_s_allowAdd,
-    &impl_40_property_value_allowAdd.pub
-};
-
-static const afw_value_boolean_t
-impl_40_property_value_allowChange = {
-    {&afw_value_permanent_boolean_inf},
-    false
+    &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_40_property_allowChange = {
     &afw_ldap_self_s_allowChange,
-    &impl_40_property_value_allowChange.pub
-};
-
-static const afw_value_boolean_t
-impl_40_property_value_allowDelete = {
-    {&afw_value_permanent_boolean_inf},
-    false
+    &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_40_property_allowDelete = {
     &afw_ldap_self_s_allowDelete,
-    &impl_40_property_value_allowDelete.pub
-};
-
-static const afw_value_boolean_t
-impl_40_property_value_allowEntity = {
-    {&afw_value_permanent_boolean_inf},
-    true
+    &afw_ldap_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_40_property_allowEntity = {
     &afw_ldap_self_s_allowEntity,
-    &impl_40_property_value_allowEntity.pub
+    &afw_ldap_boolean_self_v_true.pub
 };
 
 static const afw_utf8_t

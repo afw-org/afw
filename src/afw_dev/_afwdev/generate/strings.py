@@ -65,6 +65,9 @@ def get_string_label(
     
     determined = False
     if labelPreference is not None:
+        # Explicit preferred labels always win (including a_* aliases that
+        # share a value with another label). Value-only dedup applies when
+        # labelPreference is omitted (see below).
         if labelPreference in strings:
             if strings[labelPreference] != string:
                 msg.warn('Multiple different values for string label: ' +
@@ -112,6 +115,38 @@ def get_string_label(
     if type == 'self_v':
         return use_prefix + 'self_v_' + label   
     msg.error_exit('Invalid string type: ' + type)
+
+
+def seed_from_strings_dir(options):
+    """Register permanent labels from generate/strings/*.txt into options['const'].
+
+    Call early (before function_bindings / const_objects) so preferred labels
+    such as boolean::true and integer::zero exist first; later get_string_label
+    calls with the same value reuse them. Safe to call again from generate().
+    """
+    strings_dir_path = options.get('strings_dir_path')
+    if strings_dir_path is None or not os.path.exists(strings_dir_path):
+        return
+
+    for file in sorted(os.listdir(strings_dir_path)):
+        if fnmatch.fnmatch(file, '*.txt') and file != 'README.txt':
+            with nfc.open(strings_dir_path + file, 'r') as fd:
+                for line in fd:
+                    if len(line.strip()) == 0 or line[0] == '#':
+                        continue
+                    if '=' in line:
+                        label, op, value = line.partition('=')
+                        dataType = 'string'
+                        if '::' in label:
+                            dataType, op, label = label.partition('::')
+                        get_string_label(
+                            options, value.strip(),
+                            'Q', labelPreference=label,
+                            dataType=dataType)
+                    else:
+                        get_string_label(
+                            options, line.strip(),
+                            'Q', labelPreference=line.strip())
 
 
 
@@ -269,27 +304,8 @@ def generate(options, generated_by, prefix, strings_dir_path, object_dir_path, g
             options, '_AdaptiveFunctionParameter_',
             'Q', labelPreference='_AdaptiveFunctionParameter_')
 
-    # Set all of the names from *.txt files in strings_dir_path
-    if strings_dir_path is not None and os.path.exists(strings_dir_path):
-        for file in sorted(os.listdir(strings_dir_path)):
-            if fnmatch.fnmatch(file, '*.txt') and file != 'README.txt':
-                with nfc.open(strings_dir_path + file, 'r') as fd:
-                    for line in fd:
-                        if len(line.strip()) == 0 or line[0] == '#': continue
-                        if '=' in line:
-                            label, op, value = line.partition('=')
-                            dataType = 'string'
-                            if '::' in label:
-                                dataType, op, label = label.partition('::')
-                            get_string_label(
-                                options, value.strip(),
-                                'Q', labelPreference=label,
-                                dataType=dataType)                        
-                        else:
-                            get_string_label(
-                                options, line.strip(),
-                                'Q', labelPreference=line.strip())
-
+    # names from generate/strings/*.txt (may already be seeded early)
+    seed_from_strings_dir(options)
 
     generate_h(options, generated_by, prefix, generated_dir_path)
 

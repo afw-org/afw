@@ -3149,4 +3149,24 @@ extern const afw_value_string_t \
 
 
 
+/** @brief 'afw_value_boolean_t' for false */
+extern const afw_value_boolean_t \
+    afw_ldap_boolean_self_v_false;
+
+/** @brief 'const afw_value_t *' for boolean false */
+#define afw_ldap_boolean_v_false \
+    (&afw_ldap_boolean_self_v_false.pub)
+
+
+
+/** @brief 'afw_value_boolean_t' for true */
+extern const afw_value_boolean_t \
+    afw_ldap_boolean_self_v_true;
+
+/** @brief 'const afw_value_t *' for boolean true */
+#define afw_ldap_boolean_v_true \
+    (&afw_ldap_boolean_self_v_true.pub)
+
+
+
 #endif /* __AFW_LDAP_STRINGS_H__ */

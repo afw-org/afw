@@ -139,16 +139,10 @@ impl_4_property_label = {
     &afw_vfs_self_v_zz__Include_Hidden.pub
 };
 
-static const afw_value_boolean_t
-impl_4_property_value_required = {
-    {&afw_value_permanent_boolean_inf},
-    false
-};
-
 static const afw_runtime_property_t
 impl_4_property_required = {
     &afw_vfs_self_s_required,
-    &impl_4_property_value_required.pub
+    &afw_vfs_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t *
@@ -242,16 +236,10 @@ impl_5_property_label = {
     &afw_vfs_self_v_Recursive.pub
 };
 
-static const afw_value_boolean_t
-impl_5_property_value_required = {
-    {&afw_value_permanent_boolean_inf},
-    false
-};
-
 static const afw_runtime_property_t
 impl_5_property_required = {
     &afw_vfs_self_s_required,
-    &impl_5_property_value_required.pub
+    &afw_vfs_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t *
@@ -345,16 +333,10 @@ impl_6_property_label = {
     &afw_vfs_self_v_Subdirectory.pub
 };
 
-static const afw_value_boolean_t
-impl_6_property_value_required = {
-    {&afw_value_permanent_boolean_inf},
-    false
-};
-
 static const afw_runtime_property_t
 impl_6_property_required = {
     &afw_vfs_self_s_required,
-    &impl_6_property_value_required.pub
+    &afw_vfs_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t *
@@ -448,16 +430,10 @@ impl_7_property_label = {
     &afw_vfs_self_v_zz__Filename_Suffix.pub
 };
 
-static const afw_value_boolean_t
-impl_7_property_value_required = {
-    {&afw_value_permanent_boolean_inf},
-    false
-};
-
 static const afw_runtime_property_t
 impl_7_property_required = {
     &afw_vfs_self_s_required,
-    &impl_7_property_value_required.pub
+    &afw_vfs_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t *
@@ -635,52 +611,28 @@ impl_3__value = {
  * /afw/_AdaptiveObjectType_/_AdaptiveAdapterTypeSpecific_vfs_retrieve_objects
  */
 
-static const afw_value_boolean_t
-impl_1_property_value_allowAdd = {
-    {&afw_value_permanent_boolean_inf},
-    false
-};
-
 static const afw_runtime_property_t
 impl_1_property_allowAdd = {
     &afw_vfs_self_s_allowAdd,
-    &impl_1_property_value_allowAdd.pub
-};
-
-static const afw_value_boolean_t
-impl_1_property_value_allowChange = {
-    {&afw_value_permanent_boolean_inf},
-    false
+    &afw_vfs_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_1_property_allowChange = {
     &afw_vfs_self_s_allowChange,
-    &impl_1_property_value_allowChange.pub
-};
-
-static const afw_value_boolean_t
-impl_1_property_value_allowDelete = {
-    {&afw_value_permanent_boolean_inf},
-    false
+    &afw_vfs_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_1_property_allowDelete = {
     &afw_vfs_self_s_allowDelete,
-    &impl_1_property_value_allowDelete.pub
-};
-
-static const afw_value_boolean_t
-impl_1_property_value_allowEntity = {
-    {&afw_value_permanent_boolean_inf},
-    false
+    &afw_vfs_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_1_property_allowEntity = {
     &afw_vfs_self_s_allowEntity,
-    &impl_1_property_value_allowEntity.pub
+    &afw_vfs_boolean_self_v_false.pub
 };
 
 static const afw_utf8_t
@@ -943,16 +895,10 @@ impl_11_property_dataType = {
     &afw_vfs_self_v_integer.pub
 };
 
-static const afw_value_integer_t
-impl_11_property_value_defaultValue = {
-    {&afw_value_permanent_integer_inf},
-    67108864
-};
-
 static const afw_runtime_property_t
 impl_11_property_defaultValue = {
     &afw_vfs_self_s_defaultValue,
-    &impl_11_property_value_defaultValue.pub
+    &afw_vfs_integer_self_v_67108864.pub
 };
 
 static const afw_runtime_property_t
@@ -967,16 +913,10 @@ impl_11_property_label = {
     &afw_vfs_self_v_zz__Max_Read_Bytes.pub
 };
 
-static const afw_value_boolean_t
-impl_11_property_value_required = {
-    {&afw_value_permanent_boolean_inf},
-    false
-};
-
 static const afw_runtime_property_t
 impl_11_property_required = {
     &afw_vfs_self_s_required,
-    &impl_11_property_value_required.pub
+    &afw_vfs_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t *
@@ -1077,16 +1017,10 @@ impl_12_property_label = {
     &afw_vfs_self_v_zz__VFS_Map.pub
 };
 
-static const afw_value_boolean_t
-impl_12_property_value_required = {
-    {&afw_value_permanent_boolean_inf},
-    true
-};
-
 static const afw_runtime_property_t
 impl_12_property_required = {
     &afw_vfs_self_s_required,
-    &impl_12_property_value_required.pub
+    &afw_vfs_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t *
@@ -1271,16 +1205,10 @@ impl_9__value = {
  * /afw/_AdaptiveObjectType_/_AdaptiveConf_adapter_vfs
  */
 
-static const afw_value_boolean_t
-impl_8_property_value_allowEntity = {
-    {&afw_value_permanent_boolean_inf},
-    false
-};
-
 static const afw_runtime_property_t
 impl_8_property_allowEntity = {
     &afw_vfs_self_s_allowEntity,
-    &impl_8_property_value_allowEntity.pub
+    &afw_vfs_boolean_self_v_false.pub
 };
 
 static const afw_utf8_t
@@ -1442,16 +1370,10 @@ impl_15_property_label = {
     &afw_vfs_self_v_Data.pub
 };
 
-static const afw_value_boolean_t
-impl_15_property_value_required = {
-    {&afw_value_permanent_boolean_inf},
-    false
-};
-
 static const afw_runtime_property_t
 impl_15_property_required = {
     &afw_vfs_self_s_required,
-    &impl_15_property_value_required.pub
+    &afw_vfs_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t *
@@ -1521,28 +1443,16 @@ impl_16;
  * /afw/_AdaptiveObjectType_/_AdaptiveFile_vfs/propertyTypes/isDirectory
  */
 
-static const afw_value_boolean_t
-impl_16_property_value_allowQuery = {
-    {&afw_value_permanent_boolean_inf},
-    true
-};
-
 static const afw_runtime_property_t
 impl_16_property_allowQuery = {
     &afw_vfs_self_s_allowQuery,
-    &impl_16_property_value_allowQuery.pub
-};
-
-static const afw_value_boolean_t
-impl_16_property_value_allowWrite = {
-    {&afw_value_permanent_boolean_inf},
-    false
+    &afw_vfs_boolean_self_v_true.pub
 };
 
 static const afw_runtime_property_t
 impl_16_property_allowWrite = {
     &afw_vfs_self_s_allowWrite,
-    &impl_16_property_value_allowWrite.pub
+    &afw_vfs_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
@@ -1661,16 +1571,10 @@ impl_17_property_label = {
     &afw_vfs_self_v_zz__Time_Accessed.pub
 };
 
-static const afw_value_boolean_t
-impl_17_property_value_required = {
-    {&afw_value_permanent_boolean_inf},
-    false
-};
-
 static const afw_runtime_property_t
 impl_17_property_required = {
     &afw_vfs_self_s_required,
-    &impl_17_property_value_required.pub
+    &afw_vfs_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t *
@@ -1764,16 +1668,10 @@ impl_18_property_label = {
     &afw_vfs_self_v_zz__Time_Created.pub
 };
 
-static const afw_value_boolean_t
-impl_18_property_value_required = {
-    {&afw_value_permanent_boolean_inf},
-    false
-};
-
 static const afw_runtime_property_t
 impl_18_property_required = {
     &afw_vfs_self_s_required,
-    &impl_18_property_value_required.pub
+    &afw_vfs_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t *
@@ -1867,16 +1765,10 @@ impl_19_property_label = {
     &afw_vfs_self_v_zz__Time_Modified.pub
 };
 
-static const afw_value_boolean_t
-impl_19_property_value_required = {
-    {&afw_value_permanent_boolean_inf},
-    false
-};
-
 static const afw_runtime_property_t
 impl_19_property_required = {
     &afw_vfs_self_s_required,
-    &impl_19_property_value_required.pub
+    &afw_vfs_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t *
@@ -1946,16 +1838,10 @@ impl_20;
  * /afw/_AdaptiveObjectType_/_AdaptiveFile_vfs/propertyTypes/vfsPath
  */
 
-static const afw_value_boolean_t
-impl_20_property_value_allowWrite = {
-    {&afw_value_permanent_boolean_inf},
-    false
-};
-
 static const afw_runtime_property_t
 impl_20_property_allowWrite = {
     &afw_vfs_self_s_allowWrite,
-    &impl_20_property_value_allowWrite.pub
+    &afw_vfs_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
@@ -2183,16 +2069,10 @@ impl_14__value = {
  * /afw/_AdaptiveObjectType_/_AdaptiveFile_vfs
  */
 
-static const afw_value_boolean_t
-impl_13_property_value_allowEntity = {
-    {&afw_value_permanent_boolean_inf},
-    true
-};
-
 static const afw_runtime_property_t
 impl_13_property_allowEntity = {
     &afw_vfs_self_s_allowEntity,
-    &impl_13_property_value_allowEntity.pub
+    &afw_vfs_boolean_self_v_true.pub
 };
 
 static const afw_utf8_t

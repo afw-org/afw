@@ -4817,4 +4817,14 @@ extern const afw_value_boolean_t \
 
 
 
+/** @brief 'afw_value_boolean_t' for true */
+extern const afw_value_boolean_t \
+    afw_lmdb_boolean_self_v_true;
+
+/** @brief 'const afw_value_t *' for boolean true */
+#define afw_lmdb_boolean_v_true \
+    (&afw_lmdb_boolean_self_v_true.pub)
+
+
+
 #endif /* __AFW_LMDB_STRINGS_H__ */

@@ -1140,3 +1140,9 @@ afw_lmdb_boolean_self_v_false = {
     {&afw_value_permanent_boolean_inf},
     false
 };
+
+const afw_value_boolean_t
+afw_lmdb_boolean_self_v_true = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};

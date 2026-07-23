@@ -36767,4 +36767,44 @@ extern const afw_value_string_t \
 
 
 
+/** @brief 'afw_value_boolean_t' for false */
+extern const afw_value_boolean_t \
+    afw_components_boolean_self_v_false;
+
+/** @brief 'const afw_value_t *' for boolean false */
+#define afw_components_boolean_v_false \
+    (&afw_components_boolean_self_v_false.pub)
+
+
+
+/** @brief 'afw_value_boolean_t' for true */
+extern const afw_value_boolean_t \
+    afw_components_boolean_self_v_true;
+
+/** @brief 'const afw_value_t *' for boolean true */
+#define afw_components_boolean_v_true \
+    (&afw_components_boolean_self_v_true.pub)
+
+
+
+/** @brief 'afw_value_integer_t' for 1 */
+extern const afw_value_integer_t \
+    afw_components_integer_self_v_one;
+
+/** @brief 'const afw_value_t *' for integer 1 */
+#define afw_components_integer_v_one \
+    (&afw_components_integer_self_v_one.pub)
+
+
+
+/** @brief 'afw_value_integer_t' for 0 */
+extern const afw_value_integer_t \
+    afw_components_integer_self_v_zero;
+
+/** @brief 'const afw_value_t *' for integer 0 */
+#define afw_components_integer_v_zero \
+    (&afw_components_integer_self_v_zero.pub)
+
+
+
 #endif /* __AFW_COMPONENTS_STRINGS_H__ */
