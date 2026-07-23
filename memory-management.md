@@ -511,14 +511,128 @@ Special cases (closure scope, managed object container RC once 1b lands, compile
 
 | Step | Intent | Status |
 |------|--------|--------|
-| **1a** | **Inventory** object (then array) implementations: id, sets `pub.value`?, value inf kind, release/get_reference notes; sample value-create call sites | **done** (see below; uncommitted review) |
-| **1b** | **Value create policy for object** — special-case create managed/unmanaged when `obj->value` present; catch-22 wrap only as documented; dual surface unchanged | pending |
-| **1c** | **Memory object** as reference impl — align managed/unmanaged flags vs value inf; one release/clone model | pending |
-| **1d** | **Fill `->value`** on remaining object impls (inventory hit list) | pending |
-| **1e** | **Hot call-site** cleanup only (create object then immediately value-create → prefer `->value`) | pending |
-| **1f** | **Array** mirror of 1b–1e (thinner set of impls) | pending |
+| **1a** | **Inventory** object/array impls, `->value`, create counts | **done** |
+| **1b′** | **Finish `instance->value` on all object *and* array impls** with correct lifetime inf (value required; no create-policy special cases yet) | **plan ready** — see below |
+| **1c** | Memory managed/unmanaged **options** fully aligned with value face + container-aware release/clone (if not finished in 1b′) | pending |
+| **1d** | **Value create policy** for object (then array): branch on existing value **face**, not NULL; dual surface unchanged | pending (was early 1b; deferred until 1b′) |
+| **1e** | Hot call-site cleanup only | pending |
+| ~~1f array mirror~~ | Folded into **1b′** / **1d** | — |
 
 **Out of phase 1:** compile `[]`/`{}` dance, allocate_* global revisit, assign/escape, function/unevaluated container special-case.
+
+**Superseded experiment:** permanent-only `create_*_object` identity (uncommitted 1b draft) — **do not land** before 1b′; avoid temporary create branches we reverse later.
+
+##### 1b′ plan — `object->value` / `array->value` complete and consistent
+
+**Goal:** After 1b′, every live **object** and **array** instance has:
+
+1. **`pub.value != NULL`**  
+2. **`value` points at the Adaptive value for that instance** (embedded or paired; `value.internal` ↔ instance for object/array data types)  
+3. **Value inf matches ownership story** for that instance (permanent / managed / unmanaged — intentional, documented per impl)
+
+**Why before create policy (old 1b):** create can then assume the face exists and only ask *which lifetime*, not *whether value is missing*. Avoids NULL/permanent-only special cases that must be torn out later.
+
+**Non-goals for 1b′:**
+
+- Changing `afw_value_create_managed/unmanaged_object|array` matrix (that is **1d**)  
+- Full assign/scope / clone_or_reference call-site rollout  
+- Compile `[]`/`{}`  
+- Perfect deep property lifetime (mixed contents still use value methods later)
+
+---
+
+###### Lifetime inf guidance (instance setup)
+
+| Instance kind | Typical value inf | Notes |
+|---------------|-------------------|--------|
+| Const / static / generate const_objects | `permanent_object_inf` / permanent array | Already mutual; verify all paths |
+| Empty typed array (`empty_array_of_*`) | `permanent_array_inf` | Already OK |
+| Memory object **managed** (default `afw_object_create`) | `managed_object_inf` | Already set; keep |
+| Memory object **unmanaged** | Prefer **unmanaged** face once agreed — *today often still managed inf* | Align in 1b′ or early 1c; do not leave a silent lie if create will trust the face |
+| Memory array | `managed_array_inf` (current) | Same managed/unmanaged alignment as object if options exist |
+| Runtime indirect (`afw_runtime_object_create_indirect*`) | unmanaged value in pool | Ensure always `pub.value` set (mostly yes) |
+| Meta object (`afw_object_meta_object_s`) | own embedded value + `pub.value` | Same dual-face rule; see meta track |
+
+**Invariant after create of any impl:** `instance->value != NULL` and `/* object */ ((afw_value_object_t *)instance->value)->internal == instance` (or array equivalent), unless a rare documented exception (prefer none).
+
+---
+
+###### Work packages (execute in order)
+
+**1b′.0 — Freeze rules in pad (this section)**  
+Agree inf table above (especially unmanaged memory object face). Tweak before coding if needed.
+
+**1b′.1 — Object: fix known gaps (1a hit list)**  
+
+| Target | Issue | Action |
+|--------|--------|--------|
+| `value_meta` | Side `meta_object_value` but **`pub.value` not set** | Set `self->pub.value = &self->meta_object_value.pub` at create; inf already unmanaged |
+| `afw_runtime_const_meta` | Inf-only file | Audit **all** instance constructors that use this inf; ensure each sets `value` (const_objects / runtime helpers) |
+| Any other `object_impl_declares` without value | 1a | Grep + fix |
+| Skeleton closet | template only | No production fix required |
+
+Also re-grep for `afw_object_impl_declares.h` and for object factories **without** declares (runtime) so nothing is missed.
+
+**1b′.2 — Meta objects**  
+
+- Inventory: `afw_object_meta.c`, `afw_object_meta_accessor.c`, `get_nonempty_meta_object`, const meta on const objects.  
+- Ensure every meta **object instance** used as `meta.meta_object` has non-NULL `->value` with correct inf.  
+- Helpers stay in `afw_object_meta.h`; no API redesign.
+
+**1b′.3 — Array: same pass**  
+
+| Target | Action |
+|--------|--------|
+| memory, const_array, wrapper_for_array, meta_values_* | Confirm `pub.value` always set (1a: mostly yes) |
+| Any gap or wrong inf | Fix |
+| Permanent empty arrays | Confirm still permanent + mutual (no regression) |
+
+**1b′.4 — Memory managed vs unmanaged face (if not done in 1b′.1)**  
+
+- When `AFW_OBJECT_MEMORY_OPTION_unmanaged`, set value inf to **unmanaged_object** (or agreed policy) and document.  
+- Managed option keeps **managed_object**.  
+- Same idea for arrays if they have parallel options.  
+- **Do not** yet change create_*_value matrix; only instance birth.
+
+**1b′.5 — Smoke / invariants**  
+
+- Optional debug assert helper (or test-only): `object->value && object_value->internal == object` (and array).  
+- `./afwdev build --cdev`; `afwdev test -j` (and valgrind if release/inf changes bite).  
+- Manual: const object, `afw_object_create`, `afw_object_create_unmanaged`, empty array permanent, one meta path.
+
+**1b′.6 — Pad update**  
+
+- Mark each impl row in 1a table: value OK / fixed.  
+- Note remaining exceptions (hope: none).  
+- Explicit: create policy still **1d**.
+
+---
+
+###### Suggested commit slices (when executing)
+
+1. Object gaps (value_meta + any NULL)  
+2. Meta object value fill  
+3. Array gaps (if any)  
+4. Memory unmanaged face alignment (if separate)  
+5. Pad / assert notes  
+
+Each slice: build + tests; no create_*_object behavior change until 1d.
+
+---
+
+###### Exit criteria for 1b′
+
+- [ ] Every production object/array impl (and meta object instances) sets non-NULL `->value` at construction.  
+- [ ] Value inf matches agreed ownership table for managed/unmanaged/permanent.  
+- [ ] Mutual identity: value’s internal points at the instance (object/array data type values).  
+- [ ] Tests green; no create-policy experiment required for green.  
+- [ ] 1a inventory table updated; **ready for 1d** without NULL branches.
+
+###### Risks
+
+- Touching value_meta/meta may surface callers that assumed missing `pub.value`.  
+- Changing unmanaged memory to unmanaged value inf may reveal callers that assumed managed_object inf on all memory objects — good to find now.  
+- Const meta consumers outside generate — easy to miss; grep for `afw_runtime_inf_const_meta` / `const_meta_object`.
 
 ##### Rollout posture (how we turn things on)
 
@@ -756,7 +870,7 @@ See **Future: compile-time type checking** below for a full stash of notes. Shor
 | **Discuss** | Memory story pad (`memory-management.md`); invariants; no big code yet | **paused** (good foundation) |
 | **−1** | **Prefer permanent `afw_v_*` (and typed permanent values) over allocate/create when the string/scalar already exists from generate** — cleanup call sites left over from before strings.py emitted values | **−1a + −1b + −1c done** |
 | **0** | **Audit `data_type_bindings.py` + generated bindings** — correct, complete, match permanent/managed/managed_slice/unmanaged model; finish gaps from recent work; use old branch tip as ideas (object/array create → `->value`, release via container) not as merge | **0a–0d done** — phase 0 complete |
-| **1** | Managed **object/array** containers + `->value` identity (consistent impls; hide nastiness) | **1a done** (review) → 1b next |
+| **1** | Managed **object/array** containers + `->value` identity (consistent impls; hide nastiness) | **1a done** → **1b′** (value on all impls) next; create policy deferred to 1d |
 | **2** | Assign / scope: **`clone_or_reference`** so variable-held values own needed lifetime | pending |
 | **3** | Scope/symbol release correctness; escape (closures, returned compile results) | pending |
 | **4** | Accounting / graceful OOM / limits (later) | pending |
@@ -1666,6 +1780,20 @@ See **Phase 0 findings** section in this file (generator + generated C vs model 
 
 - Documented under **Const / permanent → Cross-generator registration**: `options['const']` bag + `get_string_label`; `const_objects` / `function_bindings` register property names, literals, and typed scalars before `strings.generate` emits `afw_strings.*`.
 - Useful for −1: permanent reuse is one shared pipeline (not only hand `strings.txt`); order is load-bearing; `additional_generate` is after strings emit today.
+
+### 2026-07-23 — phase 1 reordered: 1b′ before create policy
+
+- **1b′ plan:** finish non-NULL `->value` + correct lifetime inf on **all object and array** impls (and meta objects) before changing create_*.
+- Avoid temporary create special cases (NULL / permanent-only) that must reverse later.
+- Old 1b create experiment: educational (managed embedded free crash); **do not land** before 1b′/1c.
+
+### 2026-07-23 — phase 1b draft (uncommitted; discuss) — superseded order
+
+- `create_managed/unmanaged_object`: if `internal->value` and inf is **`permanent_object_inf`**, return it (no double-wrap).
+- **Naive** “always return `->value`” **segfaulted** (~6 tests, -11): memory objects embed **managed_object** value; `optional_release` can **free the embedded header** inside the object.
+- Broader “any value with `optional_release == NULL`” also failed (likely unmanaged embedded faces); **permanent-only** → **2832 pass**.
+- Full identity for managed memory objects waits on **1c** (container-aware release/clone).
+- 1a pad commit: `fd09f2ea`. Create-policy 1b not committed; **1b′ first**.
 
 ### 2026-07-23 — rollout: safe incremental vs scope/assign switch
 
