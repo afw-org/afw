@@ -49,8 +49,13 @@ impl_set_meta_object(
         afw_object_meta_object_t, xctx);
     meta_self->pub.p = self->p;
     meta_self->pub.inf = &impl_afw_object_inf;
-    meta_self->value.inf = &afw_value_managed_object_inf;
-    meta_self->value.internal = (const afw_object_t *)self;
+    /*
+     * Meta is a normal dual-face object: value.internal is the meta
+     * instance itself (not the entity). Pool-owned, so unmanaged face
+     * until container-aware managed release is used here.
+     */
+    meta_self->value.inf = &afw_value_unmanaged_object_inf;
+    meta_self->value.internal = (const afw_object_t *)meta_self;
     meta_self->pub.value = (const afw_value_t *)&meta_self->value;
     meta_self->pub.meta.embedding_object = self;
     meta_self->pub.meta.id = afw_s_a_meta_key;

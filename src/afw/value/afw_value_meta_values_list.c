@@ -48,7 +48,8 @@ AFW_DEFINE(const afw_array_t *) myimplname_create(
     self = afw_xctx_calloc_type(afw_value_meta_values_list_list_self_t, xctx);
     self->pub.inf = &impl_afw_array_inf;
     self->pub.p = xctx->p;
-    self->value.inf = &afw_value_managed_array_inf;
+    /* xctx pool-owned; unmanaged value face. */
+    self->value.inf = &afw_value_unmanaged_array_inf;
     self->value.internal = (const afw_array_t *)self;
     self->pub.value = (const afw_value_t *)&self->value;
 
@@ -185,7 +186,7 @@ afw_value_meta_values_list_for_list_create(
     self = afw_xctx_calloc_type(afw_value_meta_values_list_list_self_t, xctx);
     self->pub.inf = &impl_afw_array_inf;
     self->pub.p = p;
-    self->value.inf = &afw_value_managed_array_inf;
+    self->value.inf = &afw_value_unmanaged_array_inf;
     self->value.internal = (const afw_array_t *)self;
     self->pub.value = (const afw_value_t *)&self->value;
     AFW_VALUE_ASSERT_IS_DATA_TYPE(associated_value, array, xctx);

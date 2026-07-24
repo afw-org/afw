@@ -469,21 +469,22 @@ afw_object_impl_internal_get_property_meta(
     self = afw_pool_calloc_type(p, afw_object_impl_property_meta_object_self_t, xctx);
     self->pub.inf = &impl_afw_object_inf;
     self->pub.p = p;
-    self->value.inf = &afw_value_managed_object_inf;
+    /* Pool-owned property-meta object; single unmanaged dual face. */
+    self->meta_object_value.inf = &afw_value_unmanaged_object_inf;
+    self->meta_object_value.internal = (const afw_object_t *)self;
+    self->pub.value = (const afw_value_t *)&self->meta_object_value;
+    self->value.inf = &afw_value_unmanaged_object_inf;
     self->value.internal = (const afw_object_t *)self;
-    self->pub.value = (const afw_value_t *)&self->value;
     self->owning_object = instance;
     self->setter.inf = &impl_afw_object_setter_inf;
     self->setter.object = (const afw_object_t *)self;
-    self->meta_object_value.inf = &afw_value_unmanaged_object_inf;
-    self->meta_object_value.internal = (const afw_object_t *)self;
     self->property_value = property_value;
     self->property_value = afw_value_evaluate(property_value, p, xctx);
     self->property_name = property_name;
     self->property_type_object =
         afw_object_meta_get_property_type(instance, property_name, xctx);
 
-    return &self->meta_object_value.pub;
+    return self->pub.value;
 }
 
 

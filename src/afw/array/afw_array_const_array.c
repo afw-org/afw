@@ -101,7 +101,8 @@ afw_array_const_create_array_of_values(
         impl_afw_array_const_array_of_values_self_t, xctx);
     self->pub.inf = &impl_afw_array_inf;
     self->pub.p = p;
-    self->value.inf = &afw_value_managed_array_inf;
+    /* Pool-owned immutable wrapper; unmanaged value face (no free header). */
+    self->value.inf = &afw_value_unmanaged_array_inf;
     self->value.internal = (const afw_array_t *)self;
     self->pub.value = (const afw_value_t *)&self->value;
     if (count > 0) {

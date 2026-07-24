@@ -512,7 +512,7 @@ Special cases (closure scope, managed object container RC once 1b lands, compile
 | Step | Intent | Status |
 |------|--------|--------|
 | **1a** | **Inventory** object/array impls, `->value`, create counts | **done** |
-| **1b′** | **Finish `instance->value` on all object *and* array impls** with correct lifetime inf (value required; no create-policy special cases yet) | **plan ready** — see below |
+| **1b′** | **Finish `instance->value` on all object *and* array impls** with correct lifetime inf (value required; no create-policy special cases yet) | **done** (see log; commit when ready) |
 | **1c** | Memory managed/unmanaged **options** fully aligned with value face + container-aware release/clone (if not finished in 1b′) | pending |
 | **1d** | **Value create policy** for object (then array): branch on existing value **face**, not NULL; dual surface unchanged | pending (was early 1b; deferred until 1b′) |
 | **1e** | Hot call-site cleanup only | pending |
@@ -1780,6 +1780,16 @@ See **Phase 0 findings** section in this file (generator + generated C vs model 
 
 - Documented under **Const / permanent → Cross-generator registration**: `options['const']` bag + `get_string_label`; `const_objects` / `function_bindings` register property names, literals, and typed scalars before `strings.generate` emits `afw_strings.*`.
 - Useful for −1: permanent reuse is one shared pipeline (not only hand `strings.txt`); order is load-bearing; `additional_generate` is after strings emit today.
+
+### 2026-07-23 — phase 1b′ executed
+
+- **value_meta:** set `pub.value` to `meta_object_value` (was missing).
+- **object meta (`impl_set_meta_object`):** `value.internal` was the **entity** — fixed to **meta_self**; face **unmanaged** (pool-owned).
+- **memory object:** managed vs unmanaged create option selects **managed/unmanaged_object** value inf.
+- **property_meta / fcgi properties:** unmanaged dual face (pool/xctx-owned).
+- **arrays:** const_array, wrapper_for_array, meta_values_* use **unmanaged_array** face (embedded/pool; avoid free-header). Memory array stays managed.
+- **const meta / registry / generate const_objects:** already set value (static init); no code change.
+- Tests: **2832** passed. Create policy still **1d**.
 
 ### 2026-07-23 — phase 1 reordered: 1b′ before create policy
 
