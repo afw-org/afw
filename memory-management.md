@@ -513,7 +513,7 @@ Special cases (closure scope, managed object container RC once 1b lands, compile
 |------|--------|--------|
 | **1a** | **Inventory** object/array impls, `->value`, create counts | **done** |
 | **1b′** | **Finish `instance->value` on all object *and* array impls** with correct lifetime inf (value required; no create-policy special cases yet) | **done** (`ff5bbbf5`) |
-| **1c** | Memory managed/unmanaged **options** fully aligned with value face + container-aware release/clone (if not finished in 1b′) | pending |
+| **1c** | Memory managed/unmanaged **options** fully aligned with value face + container-aware release/clone (if not finished in 1b′) | **done** |
 | **1d** | **Value create policy** for object (then array): branch on existing value **face**, not NULL; dual surface unchanged | pending (was early 1b; deferred until 1b′) |
 | **1e** | Hot call-site cleanup only | pending |
 | ~~1f array mirror~~ | Folded into **1b′** / **1d** | — |
@@ -870,7 +870,7 @@ See **Future: compile-time type checking** below for a full stash of notes. Shor
 | **Discuss** | Memory story pad (`memory-management.md`); invariants; no big code yet | **paused** (good foundation) |
 | **−1** | **Prefer permanent `afw_v_*` (and typed permanent values) over allocate/create when the string/scalar already exists from generate** — cleanup call sites left over from before strings.py emitted values | **−1a + −1b + −1c done** |
 | **0** | **Audit `data_type_bindings.py` + generated bindings** — correct, complete, match permanent/managed/managed_slice/unmanaged model; finish gaps from recent work; use old branch tip as ideas (object/array create → `->value`, release via container) not as merge | **0a–0d done** — phase 0 complete |
-| **1** | Managed **object/array** containers + `->value` identity (consistent impls; hide nastiness) | **1a + 1b′ done** → **1c** next |
+| **1** | Managed **object/array** containers + `->value` identity (consistent impls; hide nastiness) | **1a + 1b′ + 1c done** → **1d** next |
 | **2** | Assign / scope: **`clone_or_reference`** so variable-held values own needed lifetime | pending |
 | **3** | Scope/symbol release correctness; escape (closures, returned compile results) | pending |
 | **4** | Accounting / graceful OOM / limits (later) | pending |
@@ -1781,13 +1781,25 @@ See **Phase 0 findings** section in this file (generator + generated C vs model 
 - Documented under **Const / permanent → Cross-generator registration**: `options['const']` bag + `get_string_label`; `const_objects` / `function_bindings` register property names, literals, and typed scalars before `strings.generate` emits `afw_strings.*`.
 - Useful for −1: permanent reuse is one shared pipeline (not only hand `strings.txt`); order is load-bearing; `additional_generate` is after strings emit today.
 
+### 2026-07-24 — phase 1c executed (uncommitted; discuss)
+
+- **`data_type_bindings.py` object managed:**
+  - `optional_release`: `afw_object_release`; free heap header only when `!embedded` and value RC hits 0; **never free dual face**.
+  - `get_reference` / `clone_or_reference`: `afw_object_get_reference`; heap wrappers also bump value RC (multi-ref free).
+  - `create_managed_object`: `afw_object_get_reference` on `internal` before allocating wrapper.
+- **array managed (parallel):** `afw_array_release` on release; no container `get_reference` (API gap); heap RC for free only; never free embedded.
+- **memory array:** dual face → **`unmanaged_array_inf`** (pool-owned instance; array release often no-op; avoid free-header on embed). Memory **object** already managed/unmanaged by options (1b′).
+- **Why:** naive create returning `->value` SEGV’d because managed optional_release freed the **embedded** header. 1c makes dual-face managed/unmanaged safe under paired clone_or_reference / optional_release.
+- **Not 1c:** create policy matrix (still **1d**); assign/scope rollout; array container get_reference API.
+- Tests: **3079** passed (`afwdev test -j`).
+
 ### 2026-07-23 — phase 1b′ executed
 
 - **value_meta:** set `pub.value` to `meta_object_value` (was missing).
 - **object meta (`impl_set_meta_object`):** `value.internal` was the **entity** — fixed to **meta_self**; face **unmanaged** (pool-owned).
 - **memory object:** managed vs unmanaged create option selects **managed/unmanaged_object** value inf.
 - **property_meta / fcgi properties:** unmanaged dual face (pool/xctx-owned).
-- **arrays:** const_array, wrapper_for_array, meta_values_* use **unmanaged_array** face (embedded/pool; avoid free-header). Memory array stays managed.
+- **arrays:** const_array, wrapper_for_array, meta_values_* use **unmanaged_array** face (embedded/pool; avoid free-header). Memory array still managed in 1b′; **1c** moves it to unmanaged.
 - **const meta / registry / generate const_objects:** already set value (static init); no code change.
 - Tests: **2832** passed. Create policy still **1d**.
 

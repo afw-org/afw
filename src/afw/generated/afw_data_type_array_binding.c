@@ -286,11 +286,17 @@ afw_value_create_managed_array(
 {
     afw_value_array_managed_t *v;
 
+    if (!internal) {
+        AFW_THROW_ERROR_Z(general,
+            "internal array required for "
+            "managed array value",
+            xctx);
+    }
     v = afw_xctx_malloc(
         sizeof(afw_value_array_managed_t), xctx);
     v->inf = &afw_value_managed_array_inf;
     v->internal = internal;
-    /* Create starts at 0; see optional_release. */
+    /* Container hold is on object/array, not value RC. */
     v->reference_count = 0;
 
     return &v->pub;
@@ -399,15 +405,26 @@ impl_afw_value_managed_optional_release(
     const afw_value_t *instance,
     afw_xctx_t *xctx)
 {
-    afw_value_array_managed_t *self =
-        (afw_value_array_managed_t *)instance;
+    const afw_value_array_t *self =
+        (const afw_value_array_t *)instance;
+    const afw_array_t *arr = self->internal;
+    afw_boolean_t embedded;
 
-    /* Create starts at 0; get_reference increments. Free only at 0. */
-    if (self->reference_count == 0) {
-        afw_pool_free_memory((void *)instance, xctx);
+    embedded = (arr && arr->value == instance);
+
+    if (arr) {
+        afw_array_release(arr, xctx);
     }
-    else {
-        self->reference_count--;
+
+    if (!embedded) {
+        afw_value_array_managed_t *managed =
+            (afw_value_array_managed_t *)instance;
+        if (managed->reference_count == 0) {
+            afw_pool_free_memory((void *)instance, xctx);
+        }
+        else {
+            managed->reference_count--;
+        }
     }
 }
 
@@ -430,11 +447,19 @@ impl_afw_value_managed_get_reference(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    afw_value_array_managed_t *self =
-        (afw_value_array_managed_t *)instance;
+    const afw_value_array_t *self =
+        (const afw_value_array_t *)instance;
+    const afw_array_t *arr = self->internal;
+    afw_boolean_t embedded;
 
-    /* Bump RC; return same instance (not a clone). */
-    self->reference_count++;
+    /* Arrays: no container get_reference; heap RC only. */
+    (void)p;
+    (void)xctx;
+    embedded = (arr && arr->value == instance);
+    if (!embedded) {
+        ((afw_value_array_managed_t *)instance)->
+            reference_count++;
+    }
     return instance;
 }
 
