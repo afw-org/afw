@@ -2,18 +2,14 @@
 
 Snapshot of open issues on [afw-org/afw](https://github.com/afw-org/afw) to help find “where things stand.”  
 Generated for work on **`mgg-develop`** (off **`develop`**). `main` is far behind and not the day-to-day base.  
-Last refreshed: 2026-07-22 (52 open on GitHub; triage notes from `whats_new.md` / branch work).
+Last refreshed: 2026-07-23 (52 open on GitHub; triage notes from `whats_new.md` / branch work).
 
 Grouped by rough next-step meaning (not formal GitHub status).  
 Title prefix **`app ·`** = primarily admin app / Fiddle / JS client (not C/core).
 
 ## Close? — likely done; verify and close
 
-Work largely on `mgg-develop` / related PRs — confirm, note leftovers, then close.
-
-| # | Title | Brief idea |
-|--:|:------|:-----------|
-| 35 | [Closures (test262 gaps)](https://github.com/afw-org/afw/issues/35) | Scope/closure work advanced; remaining test262 skips — verify against current `develop`/`mgg-develop` and close or list gaps. |
+*(None currently — recent close batch already landed on GitHub.)*
 
 ## Code — implementation still needed
 
@@ -34,11 +30,12 @@ Work largely on `mgg-develop` / related PRs — confirm, note leftovers, then cl
 | 61 | [afwdev Exception subclasses](https://github.com/afw-org/afw/issues/61) | Distinguish Python vs afw errors in test runner via typed exceptions + stored error object. |
 | 60 | [app · Fiddle: output per input tab](https://github.com/afw-org/afw/issues/60) | Redesign so output follows the active input tab. |
 | 59 | [app · Fiddle: resize doesn’t update output](https://github.com/afw-org/afw/issues/59) | Output pane ignores browser resize. |
-| 54 | [Replace deprecated variable sets](https://github.com/afw-org/afw/issues/54) | **Partial:** index eval pushes `current::` (PR #130). LMDB create path still has known issues — finish and close. |
+| 54 | [Replace deprecated variable sets](https://github.com/afw-org/afw/issues/54) | **Partial:** `current::` for index filter/value (#130). Finish LMDB create path / remaining vars; coordinate with lmdb-transactions work. |
 | 52 | [Interface impl `SELF_T` macro](https://github.com/afw-org/afw/issues/52) | Generate `AFW_*_SELF_T` so impl methods take `self` without cast assign; migrate impls. |
 | 50 | [`return` inside `switch`](https://github.com/afw-org/afw/issues/50) | `return` in switch doesn’t leave the function; unskip `switch-return-fn` when fixed. |
 | 48 | [Rename data type `list` → `array`](https://github.com/afw-org/afw/issues/48) | Finish rename leftovers (JS tests, remaining “list” refs); labeled in development. |
 | 44 | [Fix Docs Action → GH Pages](https://github.com/afw-org/afw/issues/44) | Docs deploy workflow currently broken. |
+| 35 | [Closures (ES-comfortable capture)](https://github.com/afw-org/afw/issues/35) | Not closing: need trustworthy escaped closures for long-running hosts. Skipped `after2-*` in `closures.as`; ties to #2. |
 | 28 | [Compile-time type checking](https://github.com/afw-org/afw/issues/28) | Runtime checks exist; add compile-time dataType checking (in development). |
 | 18 | [`stringify()` 2nd parameter](https://github.com/afw-org/afw/issues/18) | Decide semantics beyond objects and implement replacer/space (or AFW equivalent). |
 | 17 | [Immutable object literals](https://github.com/afw-org/afw/issues/17) | Mark object literals immutable at compile (like lists) and fix fallout. |
@@ -94,7 +91,7 @@ Work largely on `mgg-develop` / related PRs — confirm, note leftovers, then cl
 |--:|:------|:-----------|
 | 126 | [Journal support (meta)](https://github.com/afw-org/afw/issues/126) | Review, harden, document journal / `journalAdapterId`; park follow-ups here. |
 | 62 | [Adaptive Script language changes](https://github.com/afw-org/afw/issues/62) | Umbrella: statement results, multi `let`/`const`, `for` init, `=` as expr, loop labels. |
-| 2 | [Memory management](https://github.com/afw-org/afw/issues/2) | Long-running script lifetimes / OOM; related to #49 caps and #127 progressive release. |
+| 2 | [Memory management](https://github.com/afw-org/afw/issues/2) | Long-running lifetimes / OOM; #35 counting on managed escape for `closure_binding` / closed-over mutables (`after2-*`). |
 
 ---
 
