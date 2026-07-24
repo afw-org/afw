@@ -1781,17 +1781,26 @@ See **Phase 0 findings** section in this file (generator + generated C vs model 
 - Documented under **Const / permanent → Cross-generator registration**: `options['const']` bag + `get_string_label`; `const_objects` / `function_bindings` register property names, literals, and typed scalars before `strings.generate` emits `afw_strings.*`.
 - Useful for −1: permanent reuse is one shared pipeline (not only hand `strings.txt`); order is load-bearing; `additional_generate` is after strings emit today.
 
-### 2026-07-24 — phase 1c executed (uncommitted; discuss)
+### 2026-07-24 — phase 1c executed
 
 - **`data_type_bindings.py` object managed:**
   - `optional_release`: `afw_object_release`; free heap header only when `!embedded` and value RC hits 0; **never free dual face**.
   - `get_reference` / `clone_or_reference`: `afw_object_get_reference`; heap wrappers also bump value RC (multi-ref free).
-  - `create_managed_object`: `afw_object_get_reference` on `internal` before allocating wrapper.
-- **array managed (parallel):** `afw_array_release` on release; no container `get_reference` (API gap); heap RC for free only; never free embedded.
+  - `create_managed_object`: require non-NULL `internal` (`AFW_THROW_ERROR_Z`), then `afw_object_get_reference` before allocating wrapper.
+- **array managed (parallel):** throw if `!internal`; `afw_array_release` on release; no container `get_reference` (API gap); heap RC for free only; never free embedded.
 - **memory array:** dual face → **`unmanaged_array_inf`** (pool-owned instance; array release often no-op; avoid free-header on embed). Memory **object** already managed/unmanaged by options (1b′).
 - **Why:** naive create returning `->value` SEGV’d because managed optional_release freed the **embedded** header. 1c makes dual-face managed/unmanaged safe under paired clone_or_reference / optional_release.
 - **Not 1c:** create policy matrix (still **1d**); assign/scope rollout; array container get_reference API.
 - Tests: **3079** passed (`afwdev test -j`).
+
+##### 1c durable rules (for 1d / assign / later)
+
+1. **Embedded vs heap:** `embedded = (container && container->value == instance)`. Dual face embeds plain `afw_value_object_t` / `afw_value_array_t` — **no** `reference_count` field. Never cast dual face to `*_managed_t` for RC; only heap wrappers from `create_managed_*` are managed headers.
+2. **Object hold = object RC:** managed value `get_reference` / `optional_release` call `afw_object_get_reference` / `afw_object_release`. Value RC on heap wrappers only decides **when to free the wrapper**, not object lifetime.
+3. **Protocol:** dual-face managed `optional_release` always releases the object once — must pair with a prior get_reference (or create hold). Unpaired release over-releases (no longer SEGV-on-free-embed).
+4. **create_managed null:** do **not** soft-skip NULL `internal`. Core rarely checks; soft path builds a managed face that misbehaves later. **Throw** at create (`AFW_THROW_ERROR_Z`). Same for managed array.
+5. **Array gap:** no `afw_array_get_reference`; managed array clone is identity + heap RC only. Memory arrays use **unmanaged** dual face.
+6. **1d create policy:** when returning existing `->value`, match face lifetime; if returning managed dual face as create result, ensure hold/protocol matches caller’s optional_release expectations (likely get_reference on return, or document non-owned return). Prefer identity over second heap wrap when face already correct.
 
 ### 2026-07-23 — phase 1b′ executed
 
