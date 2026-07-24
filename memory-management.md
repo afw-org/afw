@@ -166,6 +166,7 @@ _Edit as we decide. Strike or mark rejected._
 | 2026-07-23 | Prefer **all** value-kind lifetime nastiness in `clone_or_reference` / `optional_release` (not in every container) | Includes non–data-type values; many still have NULL methods today |
 | 2026-07-23 | Prefer **ship new paths early** when they do not break existing behavior; save big-bang switches for scope/assign | Object/array identity work can land incrementally |
 | 2026-07-23 | Highest break risk: **scope lifetime + assign** (e.g. `afw_function_compiler_script.c`), not most object/array plumbing | xctx/clone wiring left conservative on purpose during large #2/scope work |
+| 2026-07-24 | **Scope teardown intent:** on final `afw_xctx_scope_release`, release **each frame variable** (`optional_release` on `symbol_values[]`) then subpool — not pool-only forever | Design target (phase 2); not in mainline today; abandoned branch may have had it |
 
 ### Open questions (need maintainer perspective when back)
 
