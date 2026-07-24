@@ -512,7 +512,7 @@ Special cases (closure scope, managed object container RC once 1b lands, compile
 | Step | Intent | Status |
 |------|--------|--------|
 | **1a** | **Inventory** object/array impls, `->value`, create counts | **done** |
-| **1b′** | **Finish `instance->value` on all object *and* array impls** with correct lifetime inf (value required; no create-policy special cases yet) | **done** (see log; commit when ready) |
+| **1b′** | **Finish `instance->value` on all object *and* array impls** with correct lifetime inf (value required; no create-policy special cases yet) | **done** (`ff5bbbf5`) |
 | **1c** | Memory managed/unmanaged **options** fully aligned with value face + container-aware release/clone (if not finished in 1b′) | pending |
 | **1d** | **Value create policy** for object (then array): branch on existing value **face**, not NULL; dual surface unchanged | pending (was early 1b; deferred until 1b′) |
 | **1e** | Hot call-site cleanup only | pending |
@@ -870,7 +870,7 @@ See **Future: compile-time type checking** below for a full stash of notes. Shor
 | **Discuss** | Memory story pad (`memory-management.md`); invariants; no big code yet | **paused** (good foundation) |
 | **−1** | **Prefer permanent `afw_v_*` (and typed permanent values) over allocate/create when the string/scalar already exists from generate** — cleanup call sites left over from before strings.py emitted values | **−1a + −1b + −1c done** |
 | **0** | **Audit `data_type_bindings.py` + generated bindings** — correct, complete, match permanent/managed/managed_slice/unmanaged model; finish gaps from recent work; use old branch tip as ideas (object/array create → `->value`, release via container) not as merge | **0a–0d done** — phase 0 complete |
-| **1** | Managed **object/array** containers + `->value` identity (consistent impls; hide nastiness) | **1a done** → **1b′** (value on all impls) next; create policy deferred to 1d |
+| **1** | Managed **object/array** containers + `->value` identity (consistent impls; hide nastiness) | **1a + 1b′ done** → **1c** next |
 | **2** | Assign / scope: **`clone_or_reference`** so variable-held values own needed lifetime | pending |
 | **3** | Scope/symbol release correctness; escape (closures, returned compile results) | pending |
 | **4** | Accounting / graceful OOM / limits (later) | pending |
