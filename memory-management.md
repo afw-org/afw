@@ -130,21 +130,103 @@ Useful labels when tying subsystem notes together. We do **not** have to cover t
 | **Escape** | outliving a scope/request: closures, retained results, snapshots |
 | **Verify** | tests, valgrind multi-request, when missing-value is an error |
 
-### Invariants (draft — not agreed)
+### Value Lifetime Model (target end-state)
 
-_Edit as we decide. Strike or mark rejected._
+**Source:** parallel brainstorming conversation (2026-07-24).  
+**Role:** intended **end-state** for Adaptive value memory management — **not** a rewrite of the phased plan (1d still next for create identity; 2 still assign/scope). Implementation remains incremental; this section answers “what correct looks like.”
 
-1. **(draft)** Every constructed object/array sets `->value` before it is published to any API that can observe it.
-2. **(draft)** For a given instance, `create_unmanaged_object(obj, …)` and `obj->value` refer to the **same** value (identity), not a fresh wrapper — *if* we adopt the tip’s direction.
-3. **(draft)** Managed escape of an object value increments object (or its pool) lifetime; release decrements; freeing the value header alone without the object is wrong when the value is embedded.
-4. **(draft)** Evaluation temporaries that do not escape use `scope->p` (existing rule).
+**Naming:** code today uses `afw_value_optional_release` / `clone_or_reference`. Below, **release** means that optional_release path (macros may be named `afw_value_release` later or already alias).
+
+#### Core invariant
+
+1. **`afw_value_clone_or_reference()` always returns a managed or permanent value. It never returns an unmanaged value.**
+2. Any value **stored** in a **scope slot**, **managed object property**, **managed array element**, or kept as an **evaluation result** that must outlive pure pool-borrow must be **permanent or managed**.
+
+Unmanaged values remain valid as **temporaries** owned by a pool (classic C / request scratch). Escaping them into long-lived slots goes through `clone_or_reference` first.
+
+#### Value kinds and policy
+
+| Kind | `clone_or_reference` | release |
+|------|----------------------|---------|
+| **Permanent** | return self | no-op |
+| **Managed** | hold (RC++) **or** clone into dest pool, per inf | decrement; free resources at 0 |
+| **Unmanaged scalar** | **always** produce a **managed clone** in the destination pool | original: no-op (pool owns original) |
+| **Unmanaged object/array** | create a **managed wrapper value** in dest pool that points at the real unmanaged instance, **takes a reference on `instance->p`**, and is itself a normal managed value | wrapper release drops that pool pin (+ free wrapper header); original dual face / instance unchanged |
+| **Managed slice** | only on **managed or permanent** bases; slice of unmanaged → **error** | existing slice + containing rules |
+
+**Unmanaged object/array wrappers (target):**
+
+- Multiple independent managed wrappers for the **same** unmanaged instance are **allowed**.
+- Wrapper is a **separate value face** from any dual face on the original instance (not the same pointer as `obj->value` unless deliberately unified later).
+- Proposed helpers (names adjustable): `afw_object_create_managed_wrapper` / `afw_array_create_managed_wrapper` — live in object/array impl files; called from **unmanaged** value inf’s `clone_or_reference`.
+
+**Future (note only):** reference-counted large `afw_utf8_t` / `afw_memory_t` impls will be **managed** and thus **sliceable**, enabling cheap cross-scope assign of large strings without deep copy.
+
+#### Containers
+
+**Scope slots (managed container of values)**
+
+- On assign: `release(old)` → `stored = clone_or_reference(new, scope->p, xctx)` → store `stored`.
+- On final scope release (scope RC → 0): **walk all slots**, `release` each, then destroy the scope subpool.
+
+**Managed objects / arrays**
+
+- Own a **private subpool** (current memory managed create).
+- `clone_or_reference` on the **container value** → reference the object/array (`afw_object_get_reference` or array equivalent when it exists).
+- release on container value → object/array release; when **container** RC hits 0: **walk properties/elements and release each**, destroy private subpool, free value header **only if not embedded dual face**.
+- **Property/element store:** `release(old)` if present → store incoming pointer **as-is (lazy)**.
+- **Property/element get:** if stored value is still **unmanaged**, promote with `clone_or_reference(stored, container->p, xctx)`, **cache** promoted value back into the slot, return it. Subsequent gets are cheap.
+
+**Unmanaged objects / arrays**
+
+- Classic behavior: store/return raw pointers; lifetime = pool hierarchy. **No** promotion, **no** per-value release of contents on “object release” (there is none beyond pool destroy).
+
+#### Evaluation result
+
+- Result of evaluate lives in the **pool supplied by the caller** (`p`).
+- **Verify:** compiled_value evaluate path should ensure the final result is permanent or managed in that evaluate pool (via `clone_or_reference` if needed). Existing tests + valgrind give confidence this is largely already correct; confirm when wiring phase 2.
+
+#### Closures
+
+- Hold a reference on the **captured scope**. Scope RC + **slot-release walk** keep captured values alive.
+- Existing closure behavior expected to keep working; residual improvements are **follow-on** after core lifetime pieces.
+
+#### Additional target notes
+
+- **Plan to restore classic-style pools** (no per-block free; free is a no-op) for common short-lived / request-oriented cases. Newer parent/**subpool** impl is primarily for **script evaluation and long-running** cases.
+- **Adaptive values are themselves immutable.** Object and array **values** hold an immutable reference to a (possibly **mutable**) instance. Mutation of the instance is visible through all references to that instance.
+- **Dual-face rules remain:** especially **never free an embedded dual face**.
+- **Error paths** (OOM during wrapper creation or `clone_or_reference`) must not leave unbalanced pool references or partially promoted state.
+
+#### Highest-priority implementation pieces (for long-running script safety)
+
+1. Scope-slot walk on final scope release (+ assign release old / clone_or_reference new).  
+2. Managed container release walk of properties/elements.  
+3. Unmanaged → managed **wrapper** on `clone_or_reference` (object/array).  
+
+Phase **1** (faces, create identity) remains foundation so dual face and managed holds are honest; phase **2** is where this target becomes load-bearing.
+
+#### Relation to earlier 1d draft
+
+1d (create prefers `internal->value`) still stands for **avoid routine double-wrap of create APIs**. This target model adds: **escape path** is always managed/permanent via `clone_or_reference`, including **wrapper** for unmanaged containers (possibly multiple wrappers). Dual-face identity and managed wrapper are different tools — do not conflate when coding.
+
+### Invariants (draft + target)
+
+_Many draft items below are superseded or refined by **Value Lifetime Model (target)** above. Keep historical drafts for archaeology; prefer target section when implementing._
+
+1. **(draft / 1b′)** Every constructed object/array sets `->value` before it is published to any API that can observe it.
+2. **(superseded nuance)** Create identity vs managed wrapper: see target model + 1d — dual face for instance face; **managed wrapper** for unmanaged escape.
+3. **(target)** Managed container value hold = object/array get_reference; never free embedded dual face.
+4. **(draft)** Evaluation temporaries that do not escape may use scope/`xctx` pools; stored/escaped values must be permanent or managed (target core invariant).
 5. **(draft)** Shared permanent/const mutables returned as defaults still require clone-into-call-pool (existing #110 class rule).
-6. **(draft / direction)** Managed object/array = **container**: on container release, release refs to **contained values** when those values may outlive the container’s pool (see lifetime patterns below). Unmanaged = no independent container refcount; die with enclosing pool.
-7. **(draft / direction)** Scope create uses a **subpool of `xctx->p`**; scope end releases that subpool (with reparent of still-referenced children). Assigning into another scope uses **`clone_or_reference`** (not always deep clone) once managed values are wired.
+6. **(target)** Managed object/array on container RC → 0: release each property/element value, then destroy private subpool.
+7. **(target)** Scope: subpool of `xctx->p`; assign via clone_or_reference; final release walks slots then subpool.
 8. **(draft / historical)** Short-lived expression/script/model work may use a single outer pool for the whole unit; long-running loops/recursion need scope subpools + managed escape.
-9. **(draft / pattern)** Some containers manage lifetime by **holding a reference on their own pool/subpool** (pool RC) rather than a separate object counter — hide behind value/object release. **Case-by-case:** “all parts die together” → managed **full pool** (or unit pool) can be enough; “parts may escape” → value RC / clone_or_reference.
-10. **(draft / core goal for script scopes)** When **assigning an `afw_value` to a variable** in a scope during compiled-unit evaluation, **everything important to that value’s continued correctness must be covered by the value’s lifetime policy** (via its inf: `clone_or_reference` / `optional_release`, and whatever pool/object RC the impl hides). Callers (assign, scope) should not special-case “also hold this pool / that object.” **`afw_value` hides the complications.** Preferred surface: **pools/subpools + `afw_value` methods** — hope that’s enough abstraction.
-11. **(draft / phase 2 — scope frame release)** When a scope’s reference count hits 0 and it is truly being torn down, **`afw_xctx_scope_release` should walk the frame and `optional_release` each non-NULL `symbol_values[i]` one by one**, then release the scope subpool (and parent lexical scope as today). Pair with assign/reassign: drop the previous slot via `optional_release` after storing a new value from `clone_or_reference`. **Today (mainline):** only `afw_pool_release(scope->p)` — no per-variable walk (may have lived on an abandoned branch). **`afw_xctx.h` comments** about evaluation_result release / clone_or_reference are partly aspirational; do not treat them as implemented. This walk is required once variables hold real managed references (objects/arrays, large managed strings, closures, …) whose storage is **not** only in `scope->p`.
+9. **(draft / pattern)** Some containers manage lifetime by holding a reference on their own pool/subpool — still valid under target for managed containers.
+10. **(target)** Assign: value methods hide pool/object nastiness; callers use clone_or_reference / release only.
+11. **(target / phase 2)** `afw_xctx_scope_release` final teardown: walk `symbol_values[]` + release each, then subpool. **Today:** pool-only. `afw_xctx.h` evaluation_result comments partly aspirational.
+12. **(target)** `clone_or_reference` never returns unmanaged.
+13. **(target)** Adaptive values immutable as values; instance behind object/array may be mutable and shared.
 
 ### Decisions
 
@@ -167,15 +249,31 @@ _Edit as we decide. Strike or mark rejected._
 | 2026-07-23 | Prefer **ship new paths early** when they do not break existing behavior; save big-bang switches for scope/assign | Object/array identity work can land incrementally |
 | 2026-07-23 | Highest break risk: **scope lifetime + assign** (e.g. `afw_function_compiler_script.c`), not most object/array plumbing | xctx/clone wiring left conservative on purpose during large #2/scope work |
 | 2026-07-24 | **Scope teardown intent:** on final `afw_xctx_scope_release`, release **each frame variable** (`optional_release` on `symbol_values[]`) then subpool — not pool-only forever | Design target (phase 2); not in mainline today; abandoned branch may have had it |
+| 2026-07-24 | **Target model: `clone_or_reference` never returns unmanaged** — always permanent or managed | Core invariant; see **Value Lifetime Model (target)** |
+| 2026-07-24 | **Stored slots** (scope, managed property/element, durable eval result) hold only permanent or managed values | Unmanaged = pool temporary / pre-promotion |
+| 2026-07-24 | Unmanaged scalar escape → **managed clone** in dest pool | |
+| 2026-07-24 | Unmanaged object/array escape → **managed wrapper** + pin `instance->p`; multiple wrappers OK; ≠ dual face | Helpers: `*_create_managed_wrapper` (names TBD) |
+| 2026-07-24 | Managed container RC→0: **walk** properties/elements and release each, then destroy private subpool | Dual-face free rules still apply |
+| 2026-07-24 | Property store **lazy** (store as-is after release old); property get **promotes** unmanaged via clone_or_reference into `container->p` and caches | |
+| 2026-07-24 | Unmanaged containers keep classic pool-only content lifetime (no promote/release walk) | |
+| 2026-07-24 | Adaptive **values** are immutable; object/array values reference a (possibly mutable) shared instance | |
+| 2026-07-24 | Slices only of managed/permanent; large managed string/memory + slice for cheap assign is **later** | |
+| 2026-07-24 | Classic-style pools (free no-op) for short-lived/request; subpools for script/long-running | Direction, not immediate code |
+| 2026-07-24 | OOM / error paths must not leave unbalanced pool pins or half-promoted slots | |
+| 2026-07-24 | Target model does **not** replace phased plan order; highest-priority pieces for long-run safety listed in target section | Continue 1d when ready |
 
 ### Open questions (need maintainer perspective when back)
 
 **Phase 0 / bindings** — largely settled in 0a–0d; residual only if coding surfaces gaps.
 
-**Containers / assign (phases 1–2)**
+**Containers / assign (phases 1–2)** — partly answered by **Value Lifetime Model (target)**; remaining:
 
-- See **0d** for object/array target; remaining: NULL `->value` hard error timing; wrap details; property walk vs subpool on release.
-- Unmanaged memory object still tagged with **managed** object value inf — intentional or transitional? (0d risk)
+- Exact API names for managed wrappers; array get_reference equivalent if still missing.
+- 1d create matrix vs wrapper model: when create returns dual face vs when only clone_or_reference wraps.
+- NULL `->value` hard error timing on create.
+- Whether evaluate path already guarantees managed/permanent result (verify under valgrind when phase 2 lands).
+- Closure residuals after core slot walk (follow-on).
+- Classic pool restore vs subpool: which create paths use which (timing).
 
 **Later**
 
@@ -183,6 +281,7 @@ _Edit as we decide. Strike or mark rejected._
 - Hard error on missing `object->value` / `array->value` — when to flip?
 - Request memory limit: charge only request-session pool tree, or escaped managed too?
 - `#35` after2-* unskip bar vs step-by-step #2 — no fixed bar yet.
+- Large managed string/memory + slice (cheap cross-scope assign).
 
 ### Non-goals (near term)
 
@@ -2033,5 +2132,12 @@ See **Phase 0 findings** section in this file (generator + generated C vs model 
 - **Do not** value-dedupe when `labelPreference` is set — `a_*` aliases intentionally share text with other labels (e.g. `a_decision_not_applicable=notApplicable` vs `notApplicable`).
 - Hand fix: `afw_compile_parse_script.c` `afw_integer_v_1` → `afw_integer_v_one` (numeric label no longer auto-emitted when `one` is seeded first).
 - Spot-check: ~930 local boolean property statics removed; properties point at `&afw_boolean_self_v_*.pub`; `afw_const_objects.c` smaller by ~5.6k lines.
+
+### 2026-07-24 — Value Lifetime Model (target) recorded
+
+- Parallel brainstorm captured under **Cross-cutting → Value Lifetime Model (target)**.
+- Core: `clone_or_reference` → always permanent or managed; scope/managed-container storage only permanent/managed; unmanaged object/array escape via **managed wrapper** + pool pin; scope and managed container **release walks**; property get lazy-promotes.
+- Does **not** change phased plan order (1d still next); marks highest-priority long-run pieces for phase 2-ish work.
+- Decisions table updated; some draft invariants marked superseded/refined.
 
 _(Append dated notes as we talk; fold durable points up into **By area** / **Cross-cutting**.)_
