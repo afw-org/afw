@@ -254,6 +254,92 @@ Durable agent rule: [`.cursor/rules/afw-adapter-index.mdc`](.cursor/rules/afw-ad
   - Isolation / valgrind battery as a dedicated pass.
 - Handbook: use supported doc XML tags only (`literal`, `italic`, `strong`, …) — not DocBook `<emphasis>` (afwdev docs build logs `Unknown element`). Cursor: **`.cursor/rules/afw-qualified-variables.mdc`**, pointers in adaptive-script / value-memory / model-adapter / afwdev-python.
 
+### Issue #55 — object/array helpers + array as vector (brainstorm)
+
+**Status:** brainstorm only (branch `issue-#55` off `mgg-develop`; no implementation commitment yet)  
+**GitHub:** [#55 Common object and array methods](https://github.com/afw-org/afw/issues/55) (Jeremy: JS-flavored list)
+
+#### Heritage / product framing (remember)
+
+- **Original Adaptive functions** largely map **XACML v3** (shorter Adaptive names): `all_of` / `any_of` / `*_all` / `*_any`, `bag` / `bag_size` / `one_and_only`, typed polymorphic ops, etc. Maintainer once had a full C XACML v3 compliance engine; abandoned as product but designed **AFW so XACML can map onto Adaptive**.
+- **XACML extension** (other repo, started): thin layer — register XACML functions/types/combining algs in the **AFW environment** pointing at existing Adaptive execute paths; XACML compile looks up registry. Core stays Adaptive; XACML is not a second type system in base.
+- **Bag vs array:** There is **no** separate `bag` data type (old bag type caused pain; then **list**, then **array** for script/JSON familiarity — #48 leftovers). **Bag is real as semantics + bag-oriented functions** (multiset / XACML algebra “under the covers”); **runtime representation is `array`**. Touchy “don’t call bags arrays” people still get bag *functions*; script people get one sequence type.
+- **ECMAScript:** Adaptive Script is **not** ES and must differ where the problem set requires it; **avoid unmotivated differences**. Jeremy wants a **differences doc** (#22) and test262-derived tests to help ES programmers — not to make AFW into ES.
+- **Docs rule:** Core user/reference docs should **not** need to say “ECMAScript” or “XACML” except (1) Jeremy’s differences doc / language-compare material, (2) future **XACML extension** docs. Describe Adaptive on its own terms. Maintainer dumps (this file, `memory-management.md`) may still mention heritage.
+
+#### #55 ask vs already present
+
+| Jeremy (JS-ish) | Adaptive today / direction |
+|-----------------|----------------------------|
+| `every` / `some` | Have `all_of` / `any_of` (XACML-shaped, multi-array). **Open to adding `every`/`some`** as ES-facing names (thin over same HOF machinery) for docs/tests — keep `all_of*` as first-class. |
+| `push` / bulk append | `add_entries`; C `add_value` ≈ push_back |
+| `keys` / `values` / `entries` / `freeze` | **Missing** at script layer (freeze = expose immutability) |
+| `at` / stack ops / `splice` | Partial (`slice`, index get); mutators incomplete |
+
+#### Array as vector / deque (C)
+
+- Goal: **`array` supports vector-style use** (index, ends, mid insert/remove), not only bag iteration — single type, multiple faces (bag functions vs array/vector ops).
+- **One real `afw_array_setter` impl:** `afw_array_memory.c` (const/wrapper return NULL setter; meta list stubs incomplete). Alpha-friendly to reshape interface.
+- **Indexes:** public Adaptive + array APIs prefer **`afw_integer_t`** (large + negative from end, like `slice`). Script functions never take `afw_size_t` — only Adaptive `integer`. Cross to `afw_size_t` after resolve via **`afw_safe_cast.h`** (round-trip overflow checks; **not** negative-index normalization — resolve first).
+- **Reject:** `remove_value(NULL)` as pop (C NULL ≈ undefined; content-remove by equality). **Reject:** NULL index pointer sentinels; **reject:** `−1` = “before first” (`0` is front; `−1` = last).
+- **FIFO/LIFO:** same array as **deque** — back: `add_value` / `pop_value`; front: insert@0 / `shift_value`; ring can be O(1) ends. Named end ops better than only `remove_by_index` for retention + performance contract.
+- **Suggested setter direction:** keep content `remove_value` / internals / immutability; add **`pop_value`** (return value), **`remove_by_index`**, optional **`shift_value`**; document `add_value` = push_back; signed indexes on insert/set/remove_by_index.
+- **Retention on pop/shift:** return stored `const afw_value_t *` after unlink; no default clone; lifetime = existing value/pool rules.
+
+#### Adaptive function homes
+
+| Area | File / place |
+|------|----------------|
+| Structural array ops (`slice`, `join`, `add_entries`, future `at`/`push`/`pop`/…) | `afw_function_array.c` + category `array` metadata |
+| HOFs (`all_of`, `filter`, `map`, …; future `every`/`some`) | `afw_function_higher_order_array.c` |
+| `length` / `bag_size` / `bag` / `clone` / poly `includes` | `afw_function_polymorphic.c` |
+| Object `keys`/`values`/`entries`, object freeze | `afw_function_object.c` (or poly freeze) |
+| C mutability | `afw_array_*` + interface XML `afw_array_setter` |
+| generate names | snake_case `functionId`/`functionLabel`; camel auto for JS bindings |
+
+#### Rough priority when implementing (not started)
+
+1. C: resolve-index helper + `remove_by_index` / `pop_value` (+ maybe `shift_value`) on memory setter  
+2. Script: `keys` / `values` / `entries`, `at`, `freeze`  
+3. Optional: `every`/`some`, thin `push`/`pop`/`shift`/`unshift` over setter  
+4. Defer heavy `splice` until needed  
+5. Docs: Adaptive-native briefs; differences doc for ES; XACML package for URNs  
+
+#### Adaptive Script vs ECMAScript — structural (not optional polish)
+
+- **Not prototypal.** There is no `Array.prototype` / `Object.prototype` chain, no mutable global constructor objects, no “methods live on a shared prototype.” That is a **primary** language difference (differences doc / #22), not a temporary gap.
+- **No ES-style global objects** as a mutable global namespace. Some host/internal state is visible via **qualified variables** (`qualifier::name` / stacks); those are **not** free-for-all globals and are **not** generally assignable like ES globals.
+- Script “methods” are **Adaptive functions** (often `dataTypeMethod` → `value->fn(...)` sugar), registered in the environment — not properties found by prototype walk.
+- Converted test262 names like `Array.prototype.entries` are **historical labels** only; Adaptive form is `entries(array)` / `array->entries()` once those functions exist — never real `Array.prototype.*`.
+
+#### test262 suite note (language only)
+
+- Path: `src/afw/tests/test262/` — derived from **test262 language** chapter (not built-in lib like `Array.prototype.every`). README + `_convert.py` (historical helper).
+- **~137** cases with `//? skip: true`. Common reasons: `Math.*` / `Number.MIN|MAX` / `isNaN` (auto-skip in convert), missing `String.fromCharCode`, undecided numeric forms (`.0e1`, `0.e1`), string escape policy, ES completion-value/`eval(script(...))` try tests, for-of statement-position decls (`const`/`let`/`function` — “should we allow?”), generators/Symbol iterators.
+- Assertion styles mixed: modern `assert(x === y)`; older `throw '#n: ...'`; success often `//? expect: undefined` (not `return 0`). Broken leftovers: multi-arg `assert(a, b, msg)`, `assert.throws`, half-converted `array.entries()` / `array.keys()` for-of tests that currently **`expect: error` (parse)** — **rework** in Adaptive idioms when features exist (not pure unskip; not prototype APIs).
+- Policy: when a skip’s intent is clear and Adaptive can express it, convert to Adaptive idioms and remove `skip` rather than leave forever.
+
+#### test262 / language `\fixme` backlog (come back — weeks/months)
+
+**Intent:** Work through **all** `\fixme` (and related `//? skip: true`) in `src/afw/tests/test262/` systematically with maintainer — decide Adaptive behavior, convert tests, or document deliberate non-support in differences material. Not a single PR; ongoing.
+
+**Clusters already spotted (incomplete inventory):**
+
+| Area | Examples / themes |
+|------|-------------------|
+| Numeric literals | `.0e1`, `0.e1`, trailing `.` — “implement these or not?” |
+| String escapes | NonEscapeSequence letters, whether `\A` ≡ `A`; syntax errors on raw CR/LF in strings |
+| `String.fromCharCode` | Missing Adaptive equivalent; several string tests blocked |
+| for-of statement position | `const`/`let`/`function` in head — “should we allow?” |
+| try + completion / `eval(script(...))` | ES completion-value model vs Adaptive |
+| Math / Number / isNaN | Convert-auto-skip; only if Adaptive owns those ops |
+| Half-converted for-of | `array.entries()` / `keys()` / Symbol.iterator — rewrite when Adaptive APIs exist |
+| switch + isNaN cases | Needs `isNaN` + case semantics decision |
+
+When closing a fixme: remove or rewrite skip, fix asserts to Adaptive style, keep test **id/description** for lineage where useful.
+
+---
+
 ### Beta gate (checklist sketch)
 
 _Not a commitment — fill in as “must be true before we call it beta.”_
@@ -287,3 +373,5 @@ _Not a commitment — fill in as “must be true before we call it beta.”_
 | 2026-07-20 | #54 current:: surface: object, objectId, objectType, key. |
 | 2026-07-20 | #54 implemented on Issue-#54 (uncommitted): index_try current:: push + docs/test. |
 | 2026-07-21 | #54 docs: soft whats_new; afw-adapter-index rule; AGENTS/extensions/qualified-vars; how indexes work. |
+| 2026-07-29 | #55 brainstorm dump: bag=functions/array=type, XACML extension mapping, doc boundary (no ES/XACML in core), vector/deque setter, every/some optional, function file map. |
+| 2026-07-29 | #55 notes: not prototypal / no ES globals (qualified vars); test262 ~137 skips + plan to burn down all `\fixme` over weeks/months. |
