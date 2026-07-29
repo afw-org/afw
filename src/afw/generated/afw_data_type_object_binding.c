@@ -584,7 +584,7 @@ afw_array_of_object_add(
     }
 
     internal = value;
-    afw_array_setter_add_internal(setter, 
+    afw_array_setter_push_internal(setter, 
         afw_data_type_object,
         (const void *)&internal, xctx);
 }

@@ -138,7 +138,7 @@ const afw_array_t * afw_yaml_parse_list(
     do {
         value = afw_yaml_parse_value(parser, xctx);
         if (value) {
-            afw_array_add_value(list, value, xctx);
+            afw_array_push_value(list, value, xctx);
         }
     } while (value);
 

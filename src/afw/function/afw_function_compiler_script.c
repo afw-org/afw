@@ -126,7 +126,7 @@ impl_list_destructure(
             if (!rest) {
                 rest = afw_array_create_generic(p, xctx);
             }
-            afw_array_add_value(rest, v, xctx);
+            afw_array_push_value(rest, v, xctx);
         }
         if (rest) {
             v = afw_value_create_unmanaged_array(rest, p, xctx);
@@ -381,8 +381,8 @@ impl_assign_value(
                 AFW_THROW_ERROR_Z(general, "Array index must be integer", xctx);
             }
 
-            afw_array_set_value_by_index(list,
-                (afw_size_t)((const afw_value_integer_t *)key)->internal,
+            afw_array_set_value(list,
+                ((const afw_value_integer_t *)key)->internal,
                 value, xctx);
         }
 

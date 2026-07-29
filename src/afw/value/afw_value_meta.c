@@ -461,7 +461,7 @@ afw_value_internal_get_evaluated_metas_for_array(
         if (!entry_meta) {
             break;
         }
-        afw_array_add_value(list, entry_meta, xctx);
+        afw_array_push_value(list, entry_meta, xctx);
     }
 
     return afw_value_create_unmanaged_array(list, p, xctx);
@@ -512,7 +512,7 @@ afw_value_internal_get_evaluated_metas_for_object(
         if (!property_meta) {
             break;
         }
-        afw_array_add_value(list, property_meta, xctx);
+        afw_array_push_value(list, property_meta, xctx);
     }
 
     return afw_value_create_unmanaged_array(list, p, xctx);

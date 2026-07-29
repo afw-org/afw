@@ -92,7 +92,7 @@ impl_add_nondups_to_array(
             break;
         }
         if (!impl_is_in_array(data_type, internal, to, xctx)) {
-            afw_array_add_internal(to, data_type, internal, xctx);
+            afw_array_push_internal(to, data_type, internal, xctx);
         }
     }
 }
@@ -214,7 +214,7 @@ afw_function_execute_bag(
 
     for (i = 1; i <= x->argc; i++) {
         value = afw_function_evaluate_required_parameter(x, i, x->data_type);
-        afw_array_add_internal(array, x->data_type,
+        afw_array_push_internal(array, x->data_type,
             AFW_VALUE_INTERNAL(value), x->xctx);
     }
 
@@ -1040,7 +1040,7 @@ afw_function_execute_intersection(
         }
         if (impl_is_in_array(data_type, internal, array2->internal, x->xctx)) {
             if (!impl_is_in_array(data_type, internal, array, x->xctx)) {
-                afw_array_add_internal(array, data_type, internal, x->xctx);
+                afw_array_push_internal(array, data_type, internal, x->xctx);
             }
         }
     }
@@ -2159,7 +2159,7 @@ afw_function_execute_split(
                     break;
                 }
             }            
-            afw_array_add_internal(array, afw_data_type_string,
+            afw_array_push_internal(array, afw_data_type_string,
                 (const void *)&split, x->xctx);
         }
     }
@@ -2170,7 +2170,7 @@ afw_function_execute_split(
             split.len = 1;
             remaining.s++;
             remaining.len--;
-            afw_array_add_internal(array, afw_data_type_string,
+            afw_array_push_internal(array, afw_data_type_string,
                 (const void *)&split, x->xctx);
         }
     }

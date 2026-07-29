@@ -149,7 +149,7 @@ afw_compile_parse_List(
                 }
 
                 /* Add value to list. */
-                afw_array_add_value(list, entry, parser->xctx);
+                afw_array_push_value(list, entry, parser->xctx);
             }
 
             /*

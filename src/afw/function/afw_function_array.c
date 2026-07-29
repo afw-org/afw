@@ -67,7 +67,7 @@ afw_function_execute_add_entries(
             if (!value) {
                 break;
             }            
-            afw_array_add_value(target->internal, value, x->xctx);
+            afw_array_push_value(target->internal, value, x->xctx);
         }
     }
 
@@ -141,7 +141,7 @@ afw_function_execute_array(
                         break;
                     }
                     entry = afw_value_evaluate(entry, x->p, x->xctx);
-                    afw_array_add_value(array, entry, x->xctx);
+                    afw_array_push_value(array, entry, x->xctx);
                 }
             }
         }
@@ -149,7 +149,7 @@ afw_function_execute_array(
         /* If not an array expression, add evaluated argument as element. */
         else {
             entry = afw_value_evaluate(*arg, x->p, x->xctx);
-            afw_array_add_value(array, entry, x->xctx);
+            afw_array_push_value(array, entry, x->xctx);
         }
 
         afw_xctx_evaluation_stack_pop_parameter_number(x->xctx);
@@ -385,7 +385,7 @@ afw_function_execute_reverse(
         if (!value) {
             break;
         }
-        afw_array_setter_insert_value(setter, value, 0, x->xctx);
+        afw_array_setter_insert_value(setter, 0, value, x->xctx);
     }
     return afw_value_create_unmanaged_array(result_array, x->p, x->xctx);
 }
@@ -484,7 +484,7 @@ afw_function_execute_slice(
             AFW_THROW_ERROR_Z(general, "Expecting a value", x->xctx);
         }
         if (start <= count) {
-            afw_array_add_value(result_array, value, x->xctx);
+            afw_array_push_value(result_array, value, x->xctx);
         }
     }
     afw_array_determine_data_type_and_set_immutable(result_array, x->xctx);

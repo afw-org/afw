@@ -1589,7 +1589,7 @@ afw_model_internal_complete_ctx_default_modify_object(
         /* Make a skeleton modify entry list and add it. */
         mapped_entry = afw_array_create_generic(ctx->p, xctx);
         value = afw_value_create_unmanaged_array(mapped_entry, ctx->p, xctx);
-        afw_array_add_value(ctx->mapped_entries, value, xctx);
+        afw_array_push_value(ctx->mapped_entries, value, xctx);
 
         /* Add type to entry. */
         if ((*entry)->type < 0 ||
@@ -1598,7 +1598,7 @@ afw_model_internal_complete_ctx_default_modify_object(
             AFW_THROW_ERROR_FZ(general, xctx, "Invalid modify type %d",
                 (*entry)->type);
         }
-        afw_array_add_value(mapped_entry,
+        afw_array_push_value(mapped_entry,
             afw_adapter_modify_entry_type_value((*entry)->type), xctx);
 
         /* Add mapped name to entry. */
@@ -1610,7 +1610,7 @@ afw_model_internal_complete_ctx_default_modify_object(
                 "Property name " AFW_UTF8_FMT_Q " invalid",
                 AFW_UTF8_FMT_ARG(&(*entry)->first_property_name_entry->property_name));
         }
-        afw_array_add_value(mapped_entry,
+        afw_array_push_value(mapped_entry,
             model_property_type->mapped_property_name_value, xctx);
 
         /* Add value if there is one. */
@@ -1626,7 +1626,7 @@ afw_model_internal_complete_ctx_default_modify_object(
                     ctx->p, xctx);
                 afw_memory_clear(&ctx->property_level);
             }
-            afw_array_add_value(mapped_entry, value, xctx);
+            afw_array_push_value(mapped_entry, value, xctx);
         }
     }
 }

@@ -340,7 +340,7 @@ afw_action_perform(
             action_response_entry_value = afw_value_create_unmanaged_object(
                 action_response_entry, response->p, xctx);
             if (!afw_content_type_is_application_afw(response_content_type)) {
-                afw_array_add_value(action_response_entries,
+                afw_array_push_value(action_response_entries,
                     action_response_entry_value, xctx);
             }
 

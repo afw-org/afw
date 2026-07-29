@@ -137,7 +137,7 @@ afw_curl_function_execute_curl_easy_options(
         if (opt->name) {
             option_name = afw_value_create_string_from_u8z(
                 opt->name, x->p, x->xctx);
-            afw_array_add_value(result, option_name, x->xctx);
+            afw_array_push_value(result, option_name, x->xctx);
         }
 
         opt = curl_easy_option_next(opt);

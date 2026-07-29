@@ -254,9 +254,9 @@ Durable agent rule: [`.cursor/rules/afw-adapter-index.mdc`](.cursor/rules/afw-ad
   - Isolation / valgrind battery as a dedicated pass.
 - Handbook: use supported doc XML tags only (`literal`, `italic`, `strong`, …) — not DocBook `<emphasis>` (afwdev docs build logs `Unknown element`). Cursor: **`.cursor/rules/afw-qualified-variables.mdc`**, pointers in adaptive-script / value-memory / model-adapter / afwdev-python.
 
-### Issue #55 — object/array helpers + array as vector (brainstorm)
+### Issue #55 — object/array helpers + array as vector
 
-**Status:** brainstorm only (branch `issue-#55` off `mgg-develop`; no implementation commitment yet)  
+**Status:** C `afw_array_setter` reshape **landed on branch** `issue-#55` (script helpers not started)  
 **GitHub:** [#55 Common object and array methods](https://github.com/afw-org/afw/issues/55) (Jeremy: JS-flavored list)
 
 #### Heritage / product framing (remember)
@@ -272,19 +272,17 @@ Durable agent rule: [`.cursor/rules/afw-adapter-index.mdc`](.cursor/rules/afw-ad
 | Jeremy (JS-ish) | Adaptive today / direction |
 |-----------------|----------------------------|
 | `every` / `some` | Have `all_of` / `any_of` (XACML-shaped, multi-array). **Open to adding `every`/`some`** as ES-facing names (thin over same HOF machinery) for docs/tests — keep `all_of*` as first-class. |
-| `push` / bulk append | `add_entries`; C `add_value` ≈ push_back |
+| `push` / bulk append | C `push_value`; script still `add_entries` / spread until wrappers |
 | `keys` / `values` / `entries` / `freeze` | **Missing** at script layer (freeze = expose immutability) |
-| `at` / stack ops / `splice` | Partial (`slice`, index get); mutators incomplete |
+| `at` / stack ops / `splice` | C ready; script `at`/`pop`/`shift`/… not started; splice deferred |
 
-#### Array as vector / deque (C)
+#### Array as vector / deque (C) — done on branch
 
-- Goal: **`array` supports vector-style use** (index, ends, mid insert/remove), not only bag iteration — single type, multiple faces (bag functions vs array/vector ops).
-- **One real `afw_array_setter` impl:** `afw_array_memory.c` (const/wrapper return NULL setter; meta list stubs incomplete). Alpha-friendly to reshape interface.
-- **Indexes:** public Adaptive + array APIs prefer **`afw_integer_t`** (large + negative from end, like `slice`). Script functions never take `afw_size_t` — only Adaptive `integer`. Cross to `afw_size_t` after resolve via **`afw_safe_cast.h`** (round-trip overflow checks; **not** negative-index normalization — resolve first).
-- **Reject:** `remove_value(NULL)` as pop (C NULL ≈ undefined; content-remove by equality). **Reject:** NULL index pointer sentinels; **reject:** `−1` = “before first” (`0` is front; `−1` = last).
-- **FIFO/LIFO:** same array as **deque** — back: `add_value` / `pop_value`; front: insert@0 / `shift_value`; ring can be O(1) ends. Named end ops better than only `remove_by_index` for retention + performance contract.
-- **Suggested setter direction:** keep content `remove_value` / internals / immutability; add **`pop_value`** (return value), **`remove_by_index`**, optional **`shift_value`**; document `add_value` = push_back; signed indexes on insert/set/remove_by_index.
-- **Retention on pop/shift:** return stored `const afw_value_t *` after unlink; no default clone; lifetime = existing value/pool rules.
+- **`afw_array_setter` reshaped:** seal; `push_value`/`push_internal`; `pop_value`/`shift_value` (+ optional `found`); `insert_*` / `set_value` / `remove_value_by_index` with **`afw_integer_t`** indexes; content `remove_*` / `remove_all_values`.
+- **Indexes:** negatives from end; insert may land at count (append); set/remove require element. `insert_value(index, value)` order.
+- **Empty pop/shift:** NULL + optional `found` (not throw). Script wrappers can treat NULL as undefined.
+- **Memory array `get_count`:** maintained **`self->count`** O(1); mutators keep it in sync. `get_entry_value` supports from-end negatives like the setter.
+- **Helpers:** `afw_array_push_value`, `pop_value`, `shift_value`, `insert_value`, `set_value`, `remove_value_by_index`, …; all repo call sites + data_type_bindings generator updated.
 
 #### Adaptive function homes
 
@@ -297,13 +295,32 @@ Durable agent rule: [`.cursor/rules/afw-adapter-index.mdc`](.cursor/rules/afw-ad
 | C mutability | `afw_array_*` + interface XML `afw_array_setter` |
 | generate names | snake_case `functionId`/`functionLabel`; camel auto for JS bindings |
 
-#### Rough priority when implementing (not started)
+#### Residual concerns (review — not blocking next script work)
 
-1. C: resolve-index helper + `remove_by_index` / `pop_value` (+ maybe `shift_value`) on memory setter  
-2. Script: `keys` / `values` / `entries`, `at`, `freeze`  
-3. Optional: `every`/`some`, thin `push`/`pop`/`shift`/`unshift` over setter  
-4. Defer heavy `splice` until needed  
-5. Docs: Adaptive-native briefs; differences doc for ES; XACML package for URNs  
+Capture after setter/count pass; fold into #2 / later PRs as appropriate.
+
+| Concern | Severity | Notes |
+|---------|----------|--------|
+| **`afw_value_meta_values_list` / `_object` array impls** | Medium (meta path only) | Entire vtable still “Method not implemented” (incl. `get_count`). Not used for normal script arrays; finish or stub safely when meta-values lists are exercised. |
+| **`set_value` / replace slot refcount** | Medium (#2) | Replacing entry does not release previous managed value (`@fixme` in memory setter). Same family as long-running managed lifetimes. |
+| **Mid-array insert/remove O(n)** | Low for now | Ring walk by index; ends (`push`/`pop`/`shift`) O(1). Revisit if large mid-splices become hot. |
+| **`get_next_internal` iterator** | Low | Pre-existing oddity (iterator assigned before sentinel check); works; polish later. |
+| **Stored C NULL vs empty on pop** | Low | Optional `found` distinguishes; script usually ignores `found` and treats NULL as undefined. |
+| **No Adaptive `unshift` name on C vtable** | Intentional | `insert_value(0, …)` is unshift; script can wrap later. |
+| **test262 `\fixme` / skips** | Parallel track | Burn down over weeks/months; not #55 MVP. Rewrite `keys`/`entries` for-of when script APIs exist. |
+
+#### Forward plan (from here)
+
+1. **Done:** C setter + O(1) memory `get_count` + signed get/set indexes (this branch).
+2. **Next — script pure helpers (primary #55 user value):**  
+   - `keys` / `values` / `entries` (object; `dataTypeMethod`; entries as array of `[name, value]`)  
+   - `at(array, index)` (integer, negatives; pure)  
+   - `freeze` (object + array → `set_immutable`)  
+   - Homes: `afw_function_object.c` / `afw_function_array.c` (+ poly freeze if shared)  
+   - Tests under `src/afw/tests/`; Adaptive-native docs only  
+3. **Then — script mutators over setter:** thin `push` / `pop` / `shift` / `unshift` (and keep teaching `add_entries`); empty pop/shift → undefined via NULL return.  
+4. **Optional:** `every` / `some` as HOF aliases of `all_of` / `any_of` (keep multi-array XACML family).  
+5. **Later / separate:** `splice`; meta-values list impls; managed refcount on set; test262 fixme burn-down; differences doc (#22) for non-prototypal + new names.
 
 #### Adaptive Script vs ECMAScript — structural (not optional polish)
 
@@ -375,3 +392,4 @@ _Not a commitment — fill in as “must be true before we call it beta.”_
 | 2026-07-21 | #54 docs: soft whats_new; afw-adapter-index rule; AGENTS/extensions/qualified-vars; how indexes work. |
 | 2026-07-29 | #55 brainstorm dump: bag=functions/array=type, XACML extension mapping, doc boundary (no ES/XACML in core), vector/deque setter, every/some optional, function file map. |
 | 2026-07-29 | #55 notes: not prototypal / no ES globals (qualified vars); test262 ~137 skips + plan to burn down all `\fixme` over weeks/months. |
+| 2026-07-29 | #55: C array_setter reshape + O(1) get_count; residual concerns + forward plan in this file. |

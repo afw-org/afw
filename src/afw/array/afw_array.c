@@ -38,7 +38,6 @@ afw_array_of_utf8_get_next(
 }
 
 
-
 /* Set an array to immutable if it is not already. */
 AFW_DEFINE(void)
 afw_array_set_immutable(
@@ -73,9 +72,28 @@ afw_array_determine_data_type_and_set_immutable(
 }
 
 
-/* Call method add of interface afw_array_setter */
+/* push_value */
 AFW_DEFINE(void)
-afw_array_add_internal(
+afw_array_push_value(
+    const afw_array_t *instance,
+    const afw_value_t *value,
+    afw_xctx_t *xctx)
+{
+    const afw_array_setter_t *setter;
+
+    setter = afw_array_get_setter(instance, xctx);
+
+    if (!setter) {
+        AFW_LIST_ERROR_OBJECT_IMMUTABLE;
+    }
+
+    afw_array_setter_push_value(setter, value, xctx);
+}
+
+
+/* push_internal */
+AFW_DEFINE(void)
+afw_array_push_internal(
     const afw_array_t *instance,
     const afw_data_type_t *data_type,
     const void *internal,
@@ -89,19 +107,110 @@ afw_array_add_internal(
         AFW_LIST_ERROR_OBJECT_IMMUTABLE;
     }
 
-    afw_array_setter_add_internal(setter, data_type, internal, xctx);
+    afw_array_setter_push_internal(setter, data_type, internal, xctx);
 }
 
 
+/* pop_value */
+AFW_DEFINE(const afw_value_t *)
+afw_array_pop_value(
+    const afw_array_t *instance,
+    afw_boolean_t *found,
+    afw_xctx_t *xctx)
+{
+    const afw_array_setter_t *setter;
 
-/**
- * @brief Call method add_value of interface afw_array_setter
- * @param instance Pointer to this value array instance.
- * @param value A value.
- * @param xctx of caller.
- */
+    setter = afw_array_get_setter(instance, xctx);
+
+    if (!setter) {
+        AFW_LIST_ERROR_OBJECT_IMMUTABLE;
+    }
+
+    return afw_array_setter_pop_value(setter, found, xctx);
+}
+
+
+/* shift_value */
+AFW_DEFINE(const afw_value_t *)
+afw_array_shift_value(
+    const afw_array_t *instance,
+    afw_boolean_t *found,
+    afw_xctx_t *xctx)
+{
+    const afw_array_setter_t *setter;
+
+    setter = afw_array_get_setter(instance, xctx);
+
+    if (!setter) {
+        AFW_LIST_ERROR_OBJECT_IMMUTABLE;
+    }
+
+    return afw_array_setter_shift_value(setter, found, xctx);
+}
+
+
+/* insert_value */
 AFW_DEFINE(void)
-afw_array_add_value(
+afw_array_insert_value(
+    const afw_array_t *instance,
+    afw_integer_t index,
+    const afw_value_t *value,
+    afw_xctx_t *xctx)
+{
+    const afw_array_setter_t *setter;
+
+    setter = afw_array_get_setter(instance, xctx);
+
+    if (!setter) {
+        AFW_LIST_ERROR_OBJECT_IMMUTABLE;
+    }
+
+    afw_array_setter_insert_value(setter, index, value, xctx);
+}
+
+
+/* set_value */
+AFW_DEFINE(void)
+afw_array_set_value(
+    const afw_array_t *instance,
+    afw_integer_t index,
+    const afw_value_t *value,
+    afw_xctx_t *xctx)
+{
+    const afw_array_setter_t *setter;
+
+    setter = afw_array_get_setter(instance, xctx);
+
+    if (!setter) {
+        AFW_LIST_ERROR_OBJECT_IMMUTABLE;
+    }
+
+    afw_array_setter_set_value(setter, index, value, xctx);
+}
+
+
+/* remove_value_by_index */
+AFW_DEFINE(void)
+afw_array_remove_value_by_index(
+    const afw_array_t *instance,
+    afw_integer_t index,
+    afw_xctx_t *xctx)
+{
+    const afw_array_setter_t *setter;
+
+    setter = afw_array_get_setter(instance, xctx);
+
+    if (!setter) {
+        AFW_LIST_ERROR_OBJECT_IMMUTABLE;
+    }
+
+    afw_array_setter_remove_value_by_index(setter, index, xctx);
+}
+
+
+/* remove_value */
+AFW_DEFINE(void)
+afw_array_remove_value(
     const afw_array_t *instance,
     const afw_value_t *value,
     afw_xctx_t *xctx)
@@ -114,35 +223,11 @@ afw_array_add_value(
         AFW_LIST_ERROR_OBJECT_IMMUTABLE;
     }
 
-    afw_array_setter_add_value(setter, value, xctx);
+    afw_array_setter_remove_value(setter, value, xctx);
 }
 
 
-
-/**
- * @brief Call method remove_all_values of interface afw_array_setter
- * @param instance Pointer to this value array instance.
- * @param xctx of caller.
- */
-AFW_DEFINE(void)
-afw_array_remove_all_values(
-    const afw_array_t *instance,
-    afw_xctx_t *xctx)
-{
-    const afw_array_setter_t *setter;
-
-    setter = afw_array_get_setter(instance, xctx);
-
-    if (!setter) {
-        AFW_LIST_ERROR_OBJECT_IMMUTABLE;
-    }
-
-    afw_array_setter_remove_all_values(setter, xctx);
-}
-
-
-
-/* Call method remove of interface afw_array_setter */
+/* remove_internal */
 AFW_DEFINE(void)
 afw_array_remove_internal(
     const afw_array_t *instance,
@@ -162,12 +247,10 @@ afw_array_remove_internal(
 }
 
 
-
-/* Call method remove_value of interface afw_array_setter */
+/* remove_all_values */
 AFW_DEFINE(void)
-afw_array_remove_value(
+afw_array_remove_all_values(
     const afw_array_t *instance,
-    const afw_value_t *value,
     afw_xctx_t *xctx)
 {
     const afw_array_setter_t *setter;
@@ -178,26 +261,5 @@ afw_array_remove_value(
         AFW_LIST_ERROR_OBJECT_IMMUTABLE;
     }
 
-    afw_array_setter_remove_value(setter, value, xctx);
-}
-
-
-
-/* Call method set_value_by_index of interface afw_array_setter */
-AFW_DEFINE(void)
-afw_array_set_value_by_index(
-    const afw_array_t *instance,
-    afw_size_t index,
-    const afw_value_t *value,
-    afw_xctx_t *xctx)
-{
-    const afw_array_setter_t *setter;
-
-    setter = afw_array_get_setter(instance, xctx);
-
-    if (!setter) {
-        AFW_LIST_ERROR_OBJECT_IMMUTABLE;
-    }
-
-    afw_array_setter_set_value_by_index(setter, index, value, xctx);
+    afw_array_setter_remove_all_values(setter, xctx);
 }
