@@ -8502,3 +8502,27 @@ afw_components_self_v_zz__object__AdaptiveLayout_ObjectResponsive_preferredCompo
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_COMPONENTS_Q_zz__object__AdaptiveLayout_ObjectResponsive_preferredComponent)
 };
+
+const afw_value_boolean_t
+afw_components_boolean_self_v_false = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+const afw_value_boolean_t
+afw_components_boolean_self_v_true = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+const afw_value_integer_t
+afw_components_integer_self_v_one = {
+    {&afw_value_permanent_integer_inf},
+    1
+};
+
+const afw_value_integer_t
+afw_components_integer_self_v_zero = {
+    {&afw_value_permanent_integer_inf},
+    0
+};

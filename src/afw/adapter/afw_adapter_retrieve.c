@@ -75,8 +75,8 @@ afw_adapter_retrieve_objects(
     afw_object_set_property_as_string(request,
         afw_s_resourceId, impl_request.resource_id, xctx);
     impl_request.options = options;
-    afw_object_set_property_as_string(request,
-        afw_s_function, afw_s_retrieve_objects, xctx);
+    afw_object_set_property(request,
+        afw_s_function, afw_v_retrieve_objects, xctx);
     afw_object_set_property_as_string(request,
         afw_s_adapterId, adapter_id, xctx);
     afw_object_set_property_as_string(request,

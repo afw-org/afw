@@ -50,7 +50,8 @@ afw_array_create_wrapper_for_array(
     value = (afw_value_array_t *)
         ((char *)self + sizeof(afw_array_wrapper_for_array_self_t));
     self->pub.value = (const afw_value_t *)value;
-    value->inf = &afw_value_managed_array_inf;
+    /* Embedded value in pool alloc; unmanaged face (do not free header). */
+    value->inf = &afw_value_unmanaged_array_inf;
     value->internal = (const afw_array_t *)self;
     self->internal = internal;
     self->data_type = data_type;

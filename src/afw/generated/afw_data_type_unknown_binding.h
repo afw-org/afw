@@ -63,7 +63,8 @@ afw_data_type_unknown;
 /**
  * @brief Permanent (life of afw environment) value inf for data type unknown.
  *
- * The lifetime of the value is the lifetime of the afw environment.
+ * Lifetime is the afw environment / static const storage. optional_release
+ * is NULL; clone_or_reference returns the same instance as-is.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_permanent_unknown_inf;

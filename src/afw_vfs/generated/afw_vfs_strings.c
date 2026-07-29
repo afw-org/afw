@@ -588,3 +588,21 @@ afw_vfs_self_v_zz__vfsPath_filename_patterns_to_mark_as_executable = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_VFS_Q_zz__vfsPath_filename_patterns_to_mark_as_executable)
 };
+
+const afw_value_boolean_t
+afw_vfs_boolean_self_v_false = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+const afw_value_boolean_t
+afw_vfs_boolean_self_v_true = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};
+
+const afw_value_integer_t
+afw_vfs_integer_self_v_67108864 = {
+    {&afw_value_permanent_integer_inf},
+    67108864
+};

@@ -571,6 +571,12 @@ def generate(passed_options):
     if options['objects']:
         options['strings'] = True
 
+    # Seed options['const'] from generate/strings/*.txt before function_bindings
+    # / const_objects so preferred labels (boolean::true, integer::zero, …)
+    # exist first and later get_string_label calls reuse those permanents.
+    if options.get('strings_dir_path'):
+        strings.seed_from_strings_dir(options)
+
     # If debug mode, print options.
     if msg.is_debug_mode():
         msg.debug(nfc.json_dumps(options, sort_keys=True, indent=4))

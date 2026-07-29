@@ -235,7 +235,8 @@ afw_request_write_error_to_response_body(
     if (!response) {
         response = afw_object_create(xctx->p, xctx);
     }
-    afw_object_set_property_as_string(response, afw_s_status, afw_s_error, xctx);
+    afw_object_set_property(response,
+        afw_s_status, afw_v_error, xctx);
     err = afw_object_create_embedded(response, afw_s_error, xctx);
     afw_error_add_to_object(err, error, xctx);
     value = afw_value_create_unmanaged_object(response, xctx->p, xctx);
@@ -262,8 +263,8 @@ afw_request_write_success_response(
 
     /* Default status to success. */
     if (!afw_object_has_property(response, afw_s_status, xctx)) {
-        afw_object_set_property_as_string(response, afw_s_status,
-            afw_s_success, xctx);
+        afw_object_set_property(response,
+            afw_s_status, afw_v_success, xctx);
     }
 
     /* Write response to body. */

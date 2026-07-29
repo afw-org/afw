@@ -63,7 +63,8 @@ afw_data_type_null;
 /**
  * @brief Unmanaged evaluated value inf for data type null.
  *
- * The lifetime of the value is the lifetime of its containing pool.
+ * Lifetime is the containing pool. optional_release is NULL;
+ * clone_or_reference returns the same instance (no clone, no RC).
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_unmanaged_null_inf;
@@ -71,7 +72,10 @@ afw_value_unmanaged_null_inf;
 /**
  * @brief Managed evaluated value inf for data type null.
  *
- * The lifetime of the value is managed by reference count in xctx->p.
+ * Header allocated in xctx->p; lifetime by reference_count on the
+ * value header. Create starts at RC 0. optional_release frees the
+ * header when RC is 0, else decrements. clone_or_reference bumps RC
+ * and returns the same instance.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_managed_null_inf;
@@ -79,7 +83,8 @@ afw_value_managed_null_inf;
 /**
  * @brief Permanent (life of afw environment) value inf for data type null.
  *
- * The lifetime of the value is the lifetime of the afw environment.
+ * Lifetime is the afw environment / static const storage. optional_release
+ * is NULL; clone_or_reference returns the same instance as-is.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_permanent_null_inf;
@@ -191,9 +196,11 @@ afw_value_as_null(
  * @brief Allocate function for data type null value.
  * @param p to use for returned value.
  * @param xctx of caller.
- * @return Allocated afw_value_null_t with appropriate inf set.
+ * @return Allocated afw_value_null_t with unmanaged inf set.
  *
- * The value's lifetime is not managed so it will last for the life of the pool.
+ * Prefer afw_value_null instead of allocate+fill. This API still
+ * allocates a pool header for rare callers that need a writable
+ * afw_value_null_t; that is not the permanent singleton.
  */
 AFW_DECLARE(afw_value_null_t *)
 afw_value_allocate_unmanaged_null(
@@ -206,7 +213,9 @@ afw_value_allocate_unmanaged_null(
  * @param xctx of caller.
  * @return Created const afw_value_t *.
  *
- * The value's lifetime is managed by reference count.
+ * Returns the permanent singleton afw_value_null (address identity).
+ * Does not allocate. Prefer afw_value_null at call sites.
+ * internal is ignored (null has no payload).
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_create_managed_null(
@@ -220,7 +229,9 @@ afw_value_create_managed_null(
  * @param xctx of caller.
  * @return Created const afw_value_t *.
  *
- * The value's lifetime is not managed so it will last for the life of the pool.
+ * Returns the permanent singleton afw_value_null (address identity).
+ * Does not allocate in p. Prefer afw_value_null at call sites.
+ * internal is ignored (null has no payload).
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_create_unmanaged_null(void * internal,
@@ -337,7 +348,11 @@ afw_object_get_next_property_as_null_source(
  * @param value of value to set.
  * @param xctx of caller.
  *
- * The value will be allocated in the object's pool. *
+ * The value will be allocated in the object's pool.
+ * Prefer afw_object_set_property(..., afw_v_*, ...) when a
+ * static const value (e.g. from afw_strings.h) already
+ * exists for that constant.
+ *
  */
 AFW_DECLARE(void)
 afw_object_set_property_as_null(

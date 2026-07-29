@@ -378,6 +378,8 @@ afw_value_internal_create_meta_object_self(
     self->evaluated_value = afw_value_evaluate(associated_value, p, xctx);
     self->meta_object_value.inf = &afw_value_unmanaged_object_inf;
     self->meta_object_value.internal = (const afw_object_t *)self;
+    /* Dual face: instance->value must point at this object's Adaptive value. */
+    self->pub.value = (const afw_value_t *)&self->meta_object_value;
     self->setter.inf = &impl_afw_object_setter_inf;
     self->setter.object = (const afw_object_t *)self;
 

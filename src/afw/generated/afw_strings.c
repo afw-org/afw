@@ -22286,12 +22286,6 @@ afw_self_v_zeroOffset = {
 };
 
 const afw_value_string_t
-afw_self_v_zz__ = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__)
-};
-
-const afw_value_string_t
 afw_self_v_zz__0_12_2 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__0_12_2)
@@ -39224,12 +39218,6 @@ afw_self_v_zz__Decision_is_indeterminate_P__ = {
 };
 
 const afw_value_string_t
-afw_self_v_zz__Decision_is_not_applicable_ = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__Decision_is_not_applicable_)
-};
-
-const afw_value_string_t
 afw_self_v_zz__Decision_is_permit_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Decision_is_permit_)
@@ -42371,12 +42359,6 @@ const afw_value_string_t
 afw_self_v_zz__Normalized_URI = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Normalized_URI)
-};
-
-const afw_value_string_t
-afw_self_v_zz__Not_applicable = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__Not_applicable)
 };
 
 const afw_value_string_t
@@ -58273,16 +58255,16 @@ afw_self_v_zz__xpath_related_functions = {
     AFW_UTF8_LITERAL(AFW_Q_zz__xpath_related_functions)
 };
 
-const afw_value_integer_t
-afw_integer_self_v_0 = {
-    {&afw_value_permanent_integer_inf},
-    0
+const afw_value_boolean_t
+afw_boolean_self_v_false = {
+    {&afw_value_permanent_boolean_inf},
+    false
 };
 
-const afw_value_integer_t
-afw_integer_self_v_1 = {
-    {&afw_value_permanent_integer_inf},
-    1
+const afw_value_boolean_t
+afw_boolean_self_v_true = {
+    {&afw_value_permanent_boolean_inf},
+    true
 };
 
 const afw_value_integer_t
@@ -58328,6 +58310,12 @@ afw_integer_self_v_8 = {
 };
 
 const afw_value_integer_t
+afw_integer_self_v_9999 = {
+    {&afw_value_permanent_integer_inf},
+    9999
+};
+
+const afw_value_integer_t
 afw_integer_self_v_one = {
     {&afw_value_permanent_integer_inf},
     1
@@ -58343,18 +58331,6 @@ const afw_value_integer_t
 afw_integer_self_v_zz___1 = {
     {&afw_value_permanent_integer_inf},
     -1
-};
-
-const afw_value_boolean_t
-afw_boolean_self_v_false = {
-    {&afw_value_permanent_boolean_inf},
-    false
-};
-
-const afw_value_boolean_t
-afw_boolean_self_v_true = {
-    {&afw_value_permanent_boolean_inf},
-    true
 };
 
 const afw_value_double_t

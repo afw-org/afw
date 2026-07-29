@@ -390,52 +390,28 @@ impl_2__value = {
  * /afw/_AdaptiveObjectType_/_AdaptiveCurlHttpResponse_
  */
 
-static const afw_value_boolean_t
-impl_1_property_value_allowAdd = {
-    {&afw_value_permanent_boolean_inf},
-    false
-};
-
 static const afw_runtime_property_t
 impl_1_property_allowAdd = {
     &afw_curl_self_s_allowAdd,
-    &impl_1_property_value_allowAdd.pub
-};
-
-static const afw_value_boolean_t
-impl_1_property_value_allowChange = {
-    {&afw_value_permanent_boolean_inf},
-    false
+    &afw_curl_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_1_property_allowChange = {
     &afw_curl_self_s_allowChange,
-    &impl_1_property_value_allowChange.pub
-};
-
-static const afw_value_boolean_t
-impl_1_property_value_allowDelete = {
-    {&afw_value_permanent_boolean_inf},
-    false
+    &afw_curl_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_1_property_allowDelete = {
     &afw_curl_self_s_allowDelete,
-    &impl_1_property_value_allowDelete.pub
-};
-
-static const afw_value_boolean_t
-impl_1_property_value_allowEntity = {
-    {&afw_value_permanent_boolean_inf},
-    true
+    &afw_curl_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_1_property_allowEntity = {
     &afw_curl_self_s_allowEntity,
-    &impl_1_property_value_allowEntity.pub
+    &afw_curl_boolean_self_v_true.pub
 };
 
 static const afw_utf8_t
@@ -3587,52 +3563,28 @@ impl_7__value = {
  * /afw/_AdaptiveObjectType_/_AdaptiveCurlOptions_
  */
 
-static const afw_value_boolean_t
-impl_6_property_value_allowAdd = {
-    {&afw_value_permanent_boolean_inf},
-    false
-};
-
 static const afw_runtime_property_t
 impl_6_property_allowAdd = {
     &afw_curl_self_s_allowAdd,
-    &impl_6_property_value_allowAdd.pub
-};
-
-static const afw_value_boolean_t
-impl_6_property_value_allowChange = {
-    {&afw_value_permanent_boolean_inf},
-    false
+    &afw_curl_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_6_property_allowChange = {
     &afw_curl_self_s_allowChange,
-    &impl_6_property_value_allowChange.pub
-};
-
-static const afw_value_boolean_t
-impl_6_property_value_allowDelete = {
-    {&afw_value_permanent_boolean_inf},
-    false
+    &afw_curl_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_6_property_allowDelete = {
     &afw_curl_self_s_allowDelete,
-    &impl_6_property_value_allowDelete.pub
-};
-
-static const afw_value_boolean_t
-impl_6_property_value_allowEntity = {
-    {&afw_value_permanent_boolean_inf},
-    true
+    &afw_curl_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_6_property_allowEntity = {
     &afw_curl_self_s_allowEntity,
-    &impl_6_property_value_allowEntity.pub
+    &afw_curl_boolean_self_v_true.pub
 };
 
 static const afw_utf8_t
@@ -4822,52 +4774,28 @@ impl_40__value = {
  * /afw/_AdaptiveObjectType_/_AdaptiveCurlVersionInfo_
  */
 
-static const afw_value_boolean_t
-impl_39_property_value_allowAdd = {
-    {&afw_value_permanent_boolean_inf},
-    false
-};
-
 static const afw_runtime_property_t
 impl_39_property_allowAdd = {
     &afw_curl_self_s_allowAdd,
-    &impl_39_property_value_allowAdd.pub
-};
-
-static const afw_value_boolean_t
-impl_39_property_value_allowChange = {
-    {&afw_value_permanent_boolean_inf},
-    false
+    &afw_curl_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_39_property_allowChange = {
     &afw_curl_self_s_allowChange,
-    &impl_39_property_value_allowChange.pub
-};
-
-static const afw_value_boolean_t
-impl_39_property_value_allowDelete = {
-    {&afw_value_permanent_boolean_inf},
-    false
+    &afw_curl_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_39_property_allowDelete = {
     &afw_curl_self_s_allowDelete,
-    &impl_39_property_value_allowDelete.pub
-};
-
-static const afw_value_boolean_t
-impl_39_property_value_allowEntity = {
-    {&afw_value_permanent_boolean_inf},
-    true
+    &afw_curl_boolean_self_v_false.pub
 };
 
 static const afw_runtime_property_t
 impl_39_property_allowEntity = {
     &afw_curl_self_s_allowEntity,
-    &impl_39_property_value_allowEntity.pub
+    &afw_curl_boolean_self_v_true.pub
 };
 
 static const afw_utf8_t

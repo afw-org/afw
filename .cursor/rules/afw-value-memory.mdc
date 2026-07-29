@@ -41,16 +41,19 @@ Do not invent new lifetime paths; match existing create_* patterns.
 
 ## Source of truth and producers
 
-- Metadata: `generate/objects/_AdaptiveDataTypeGenerate_/*.json` (`cType`, `special`, `scalar`, …).
+- Metadata: `generate/objects/_AdaptiveDataTypeGenerate_/*.json` (`cType`, `special`, `scalar`, `directReturn`, …).
 - Generator of infs + create APIs: `_afwdev/generate/data_type_bindings.py`.
+- **Type × lifetime matrix (phase 0a):** living table and generator decision tree in [`memory-management.md`](../../memory-management.md) under **Phase 0 — 0a** (35 types; families special / utf8 / memory / struct / small-direct / pointer-direct). Use that before changing create/release behavior.
 - Const permanent instances: `strings.py` (scalar `self_v_*` for supported types), `const_objects.py` (objects + scalar/array props), bindings (ids/empty arrays), `function_bindings.py` (function object wrappers).
 - Runtime: core `.so` and extensions call generated `create_managed_*` / `create_unmanaged_*` and reuse permanent pointers (`afw_v_*`, null, empty arrays).
+- **Prefer static const Adaptive values over re-create:** use existing `afw_v_*` / `afw_boolean_v_*` / `afw_integer_v_zero|one` / `afw_value_null|undefined` (from `afw_strings.h`, `afw_value.h`, etc.) when the constant already exists. Do not `create_unmanaged_string(afw_s_foo)` or `set_property_as_string(..., afw_s_foo)` only to wrap one — use `afw_object_set_property(..., afw_v_foo, ...)`. `dataType::` lines in `strings.txt` produce typed static const values (`integer::zero` → `afw_integer_v_zero`), distinct from string `"zero"`.
+- **Wording in source:** do **not** call these a “catalog” in comments, docs, or generated text. Prefer **static const** / **permanent** values (or point at `afw_strings.h` / `afw_value.h`). Fine in chat; avoid in the tree.
 
 Never hand-edit `generated/` — change generator or JSON, then `./afwdev build --cdev -j`.
 
 ## Exploration order
 
-1. `_AdaptiveDataTypeGenerate_` JSON and `data_type_bindings.py` `@details`
+1. `_AdaptiveDataTypeGenerate_` JSON, `data_type_bindings.py` `@details`, and **Phase 0a matrix** in `memory-management.md`
 2. `strings.py` / `const_objects.py` permanent emission
 3. Hand `src/afw/value/` (e.g. closure_binding) for non-dataType kinds
 4. Sample `create_unmanaged_*` call sites in `function/`

@@ -286,8 +286,8 @@ afw_action_perform(
                     request, response_content_type, response,
                     response->p, xctx);
 
-                afw_object_set_property_as_string(response, afw_s_status,
-                    afw_s_success, xctx);
+                afw_object_set_property(response,
+                    afw_s_status, afw_v_success, xctx);
 
                 break;
             }
@@ -392,15 +392,15 @@ afw_action_perform(
         }
 
         /* Set status to success. */
-        afw_object_set_property_as_string(response, afw_s_status,
-            afw_s_success, xctx);
+        afw_object_set_property(response,
+            afw_s_status, afw_v_success, xctx);
     }
 
     AFW_CATCH_UNHANDLED{
 
         /* Add error to response object. */
-        afw_object_set_property_as_string(response,
-            afw_s_status, afw_s_error, xctx);
+        afw_object_set_property(response,
+            afw_s_status, afw_v_error, xctx);
         error = afw_object_create_embedded(response, afw_s_error, xctx);
         afw_error_add_to_object(error, &this_THROWN_ERROR, xctx);
 

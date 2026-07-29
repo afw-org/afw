@@ -63,7 +63,8 @@ afw_data_type_relaxed_json;
 /**
  * @brief Unmanaged evaluated value inf for data type relaxed_json.
  *
- * The lifetime of the value is the lifetime of its containing pool.
+ * Lifetime is the containing pool. optional_release is NULL;
+ * clone_or_reference returns the same instance (no clone, no RC).
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_unmanaged_relaxed_json_inf;
@@ -71,7 +72,10 @@ afw_value_unmanaged_relaxed_json_inf;
 /**
  * @brief Managed evaluated value inf for data type relaxed_json.
  *
- * The lifetime of the value is managed by reference count in xctx->p.
+ * Header allocated in xctx->p; lifetime by reference_count on the
+ * value header. Create starts at RC 0. optional_release frees the
+ * header when RC is 0, else decrements. clone_or_reference bumps RC
+ * and returns the same instance.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_managed_relaxed_json_inf;
@@ -79,7 +83,9 @@ afw_value_managed_relaxed_json_inf;
 /**
  * @brief Managed slice value inf for data type relaxed_json.
  *
- * View into a containing managed value; refcount is on the containing value.
+ * View into a containing managed value; refcount is on the containing
+ * value. Slice header is separate; release frees the slice header and
+ * applies containing RC policy.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_managed_slice_relaxed_json_inf;
@@ -87,7 +93,8 @@ afw_value_managed_slice_relaxed_json_inf;
 /**
  * @brief Permanent (life of afw environment) value inf for data type relaxed_json.
  *
- * The lifetime of the value is the lifetime of the afw environment.
+ * Lifetime is the afw environment / static const storage. optional_release
+ * is NULL; clone_or_reference returns the same instance as-is.
  */
 AFW_DECLARE_CONST_DATA(afw_value_inf_t)
 afw_value_permanent_relaxed_json_inf;
@@ -218,9 +225,10 @@ afw_value_as_relaxed_json(
  * @brief Allocate function for data type relaxed_json value.
  * @param p to use for returned value.
  * @param xctx of caller.
- * @return Allocated afw_value_relaxed_json_t with appropriate inf set.
+ * @return Allocated afw_value_relaxed_json_t with unmanaged inf set.
  *
- * The value's lifetime is not managed so it will last for the life of the pool.
+ * Unmanaged: lifetime is pool p; no value refcount.
+ * Caller fills internal after allocate.
  */
 AFW_DECLARE(afw_value_relaxed_json_t *)
 afw_value_allocate_unmanaged_relaxed_json(
@@ -233,7 +241,10 @@ afw_value_allocate_unmanaged_relaxed_json(
  * @param xctx of caller.
  * @return Created const afw_value_t *.
  *
- * The value's lifetime is managed by reference count.
+ * Allocates a managed value header in xctx->p. reference_count starts
+ * at 0: optional_release without a prior clone_or_reference frees the
+ * header immediately. Release frees the value header only.
+ * Copies bytes into storage following the header (value owns them).
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_create_managed_relaxed_json(
@@ -266,7 +277,8 @@ afw_value_create_managed_relaxed_json_slice(
  * @param xctx of caller.
  * @return Created const afw_value_t *.
  *
- * The value's lifetime is not managed so it will last for the life of the pool.
+ * Allocates in pool p; lifetime is the pool (no value refcount).
+ * clone_or_reference returns the same instance as-is.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_value_create_unmanaged_relaxed_json(const afw_utf8_t * internal,
@@ -383,7 +395,11 @@ afw_object_get_next_property_as_relaxed_json_source(
  * @param value of value to set.
  * @param xctx of caller.
  *
- * The value will be allocated in the object's pool. *
+ * The value will be allocated in the object's pool.
+ * Prefer afw_object_set_property(..., afw_v_*, ...) when a
+ * static const value (e.g. from afw_strings.h) already
+ * exists for that constant.
+ *
  */
 AFW_DECLARE(void)
 afw_object_set_property_as_relaxed_json(

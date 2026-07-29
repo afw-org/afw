@@ -96490,32 +96490,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__ \
-    ""
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__ */
-#define afw_s_zz__ \
-    (&afw_self_v_zz__.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__ */
-#define afw_self_s_zz__ \
-    (afw_self_v_zz__.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__ */
-extern const afw_value_string_t \
-    afw_self_v_zz__;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__ */
-#define afw_z_zz__ \
-    (afw_self_v_zz__.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__ */
-#define afw_v_zz__ \
-    (&afw_self_v_zz__.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__0_12_2 \
     "0.12.2"
 
@@ -169888,32 +169862,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__Decision_is_not_applicable_ \
-    "Decision is not applicable."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Decision_is_not_applicable_ */
-#define afw_s_zz__Decision_is_not_applicable_ \
-    (&afw_self_v_zz__Decision_is_not_applicable_.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Decision_is_not_applicable_ */
-#define afw_self_s_zz__Decision_is_not_applicable_ \
-    (afw_self_v_zz__Decision_is_not_applicable_.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Decision_is_not_applicable_ */
-extern const afw_value_string_t \
-    afw_self_v_zz__Decision_is_not_applicable_;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Decision_is_not_applicable_ */
-#define afw_z_zz__Decision_is_not_applicable_ \
-    (afw_self_v_zz__Decision_is_not_applicable_.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Decision_is_not_applicable_ */
-#define afw_v_zz__Decision_is_not_applicable_ \
-    (&afw_self_v_zz__Decision_is_not_applicable_.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__Decision_is_permit_ \
     "Decision is permit."
 
@@ -183534,32 +183482,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__Normalized_URI */
 #define afw_v_zz__Normalized_URI \
     (&afw_self_v_zz__Normalized_URI.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__Not_applicable \
-    "Not applicable"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Not_applicable */
-#define afw_s_zz__Not_applicable \
-    (&afw_self_v_zz__Not_applicable.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Not_applicable */
-#define afw_self_s_zz__Not_applicable \
-    (afw_self_v_zz__Not_applicable.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Not_applicable */
-extern const afw_value_string_t \
-    afw_self_v_zz__Not_applicable;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Not_applicable */
-#define afw_z_zz__Not_applicable \
-    (afw_self_v_zz__Not_applicable.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Not_applicable */
-#define afw_v_zz__Not_applicable \
-    (&afw_self_v_zz__Not_applicable.pub)
 
 
 
@@ -206601,7 +206523,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz___ \
-    "<"
+    "+"
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz___ */
 #define afw_s_zz___ \
@@ -252437,23 +252359,23 @@ extern const afw_value_string_t \
 
 
 
-/** @brief 'afw_value_integer_t' for 0 */
-extern const afw_value_integer_t \
-    afw_integer_self_v_0;
+/** @brief 'afw_value_boolean_t' for false */
+extern const afw_value_boolean_t \
+    afw_boolean_self_v_false;
 
-/** @brief 'const afw_value_t *' for integer 0 */
-#define afw_integer_v_0 \
-    (&afw_integer_self_v_0.pub)
+/** @brief 'const afw_value_t *' for boolean false */
+#define afw_boolean_v_false \
+    (&afw_boolean_self_v_false.pub)
 
 
 
-/** @brief 'afw_value_integer_t' for 1 */
-extern const afw_value_integer_t \
-    afw_integer_self_v_1;
+/** @brief 'afw_value_boolean_t' for true */
+extern const afw_value_boolean_t \
+    afw_boolean_self_v_true;
 
-/** @brief 'const afw_value_t *' for integer 1 */
-#define afw_integer_v_1 \
-    (&afw_integer_self_v_1.pub)
+/** @brief 'const afw_value_t *' for boolean true */
+#define afw_boolean_v_true \
+    (&afw_boolean_self_v_true.pub)
 
 
 
@@ -252527,6 +252449,16 @@ extern const afw_value_integer_t \
 
 
 
+/** @brief 'afw_value_integer_t' for 9999 */
+extern const afw_value_integer_t \
+    afw_integer_self_v_9999;
+
+/** @brief 'const afw_value_t *' for integer 9999 */
+#define afw_integer_v_9999 \
+    (&afw_integer_self_v_9999.pub)
+
+
+
 /** @brief 'afw_value_integer_t' for 1 */
 extern const afw_value_integer_t \
     afw_integer_self_v_one;
@@ -252554,26 +252486,6 @@ extern const afw_value_integer_t \
 /** @brief 'const afw_value_t *' for integer -1 */
 #define afw_integer_v_zz___1 \
     (&afw_integer_self_v_zz___1.pub)
-
-
-
-/** @brief 'afw_value_boolean_t' for false */
-extern const afw_value_boolean_t \
-    afw_boolean_self_v_false;
-
-/** @brief 'const afw_value_t *' for boolean false */
-#define afw_boolean_v_false \
-    (&afw_boolean_self_v_false.pub)
-
-
-
-/** @brief 'afw_value_boolean_t' for true */
-extern const afw_value_boolean_t \
-    afw_boolean_self_v_true;
-
-/** @brief 'const afw_value_t *' for boolean true */
-#define afw_boolean_v_true \
-    (&afw_boolean_self_v_true.pub)
 
 
 

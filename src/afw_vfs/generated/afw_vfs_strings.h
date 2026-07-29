@@ -2473,4 +2473,34 @@ extern const afw_value_string_t \
 
 
 
+/** @brief 'afw_value_boolean_t' for false */
+extern const afw_value_boolean_t \
+    afw_vfs_boolean_self_v_false;
+
+/** @brief 'const afw_value_t *' for boolean false */
+#define afw_vfs_boolean_v_false \
+    (&afw_vfs_boolean_self_v_false.pub)
+
+
+
+/** @brief 'afw_value_boolean_t' for true */
+extern const afw_value_boolean_t \
+    afw_vfs_boolean_self_v_true;
+
+/** @brief 'const afw_value_t *' for boolean true */
+#define afw_vfs_boolean_v_true \
+    (&afw_vfs_boolean_self_v_true.pub)
+
+
+
+/** @brief 'afw_value_integer_t' for 67108864 */
+extern const afw_value_integer_t \
+    afw_vfs_integer_self_v_67108864;
+
+/** @brief 'const afw_value_t *' for integer 67108864 */
+#define afw_vfs_integer_v_67108864 \
+    (&afw_vfs_integer_self_v_67108864.pub)
+
+
+
 #endif /* __AFW_VFS_STRINGS_H__ */

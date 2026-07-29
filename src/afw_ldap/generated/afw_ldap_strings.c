@@ -744,3 +744,15 @@ afw_ldap_self_v_zz__object__AdaptiveConf_adapter_ldap_bind = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__object__AdaptiveConf_adapter_ldap_bind)
 };
+
+const afw_value_boolean_t
+afw_ldap_boolean_self_v_false = {
+    {&afw_value_permanent_boolean_inf},
+    false
+};
+
+const afw_value_boolean_t
+afw_ldap_boolean_self_v_true = {
+    {&afw_value_permanent_boolean_inf},
+    true
+};

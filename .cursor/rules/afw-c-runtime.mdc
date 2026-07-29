@@ -12,6 +12,8 @@ alwaysApply: false
 - Public symbols: prefix with header/module name (`afw_pool_*`). `#define`s: `AFW_POOL_*`.
 - Object/property type IDs: UpperCamelCase. Property names: lowerCamelCase.
 - 4-space indent, LF, UTF-8. Match file headers in existing modules (e.g. `function/afw_function_logical.c`).
+- **Line length:** prefer staying within **~80 columns** in C when it is not awkward (Linus-style soft preference, not a hard lint). Break after `(` or commas; continuation lines indent like nearby calls in the same file. Existing long lines need not be mass-reformatted; apply on new/changed code.
+- **Wording:** do not use “catalog” in source comments for permanent/`afw_v_*` strings and values — say **static const** or **permanent** (see `afw-value-memory`).
 - Platform code: edit matching files under `os/nix/` and `os/win/` (cmake selects one).
 
 ## Memory and errors

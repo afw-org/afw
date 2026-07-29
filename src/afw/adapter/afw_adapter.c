@@ -599,14 +599,12 @@ afw_adapter_internal_register_afw_adapter(afw_xctx_t *xctx)
 
     p = afw_pool_create(xctx->env->p, xctx);
     conf = afw_object_create_unmanaged(p, xctx);
-    afw_object_set_property_as_string(conf,
-        afw_s_type, afw_s_adapter, xctx);
-    afw_object_set_property_as_string(conf,
-        afw_s_adapterType, afw_s_afw_runtime, xctx);
-    afw_object_set_property_as_string(conf,
-        afw_s_adapterId, afw_s_afw, xctx);
-    afw_object_set_property_as_string(conf,
-        afw_s_sourceLocation, afw_s_a_Core_afw_adapter, xctx);
+    afw_object_set_property(conf, afw_s_type, afw_v_adapter, xctx);
+    afw_object_set_property(conf,
+        afw_s_adapterType, afw_v_afw_runtime, xctx);
+    afw_object_set_property(conf, afw_s_adapterId, afw_v_afw, xctx);
+    afw_object_set_property(conf, afw_s_sourceLocation,
+        afw_v_a_Core_afw_adapter, xctx);
     afw_adapter_internal_conf_type_create_cede_p(afw_s_adapter,
         conf, afw_s_a_Core_afw_adapter, p, xctx);
 }

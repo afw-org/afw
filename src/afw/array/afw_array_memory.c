@@ -73,7 +73,12 @@ afw_array_create_with_options(
     /* Initialize self. */
     self->pub.inf = &impl_afw_array_inf;
     self->pub.p = p;
-    self->value.inf = &afw_value_managed_array_inf;
+    /*
+     * Dual face embedded in pool-owned instance. Unmanaged value face:
+     * array has no get_reference and release is a no-op; do not use
+     * managed free-header on this embedded value.
+     */
+    self->value.inf = &afw_value_unmanaged_array_inf;
     self->value.internal = (const afw_array_t *)self;
     self->pub.value = (const afw_value_t *)&self->value;
     self->data_type = data_type;

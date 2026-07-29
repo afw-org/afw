@@ -75,8 +75,8 @@ impl_afw_value_permanent_get_reference(
     (const void *)&afw_data_type_null_direct
 
 /* Declares and rti/inf defines for interface afw_value */
-/* This is the inf for null values. For this one */
-/* optional_release is NULL and get_reference returns new reference. */
+/* unmanaged null: optional_release NULL; */
+/* clone_or_reference returns the same instance (pool lifetime). */
 #define AFW_IMPLEMENTATION_ID "null"
 #define AFW_IMPLEMENTATION_INF_SPECIFIER AFW_DEFINE_CONST_DATA
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_unmanaged_null_inf
@@ -90,8 +90,8 @@ impl_afw_value_permanent_get_reference(
 #undef impl_afw_value_clone_or_reference
 
 /* Declares and rti/inf defines for interface afw_value */
-/* This is the inf for managed null values. For this one */
-/* optional_release releases value and get_reference returns new reference. */
+/* managed null: optional_release frees header at RC 0; */
+/* clone_or_reference bumps RC and returns the same instance. */
 #define AFW_IMPLEMENTATION_ID "managed_null"
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_managed_null_inf
 #define impl_afw_value_optional_release impl_afw_value_managed_optional_release
@@ -105,8 +105,8 @@ impl_afw_value_permanent_get_reference(
 #undef AFW_VALUE_INF_ONLY
 
 /* Declares and rti/inf defines for interface afw_value */
-/* This is the inf for permanent null values. For this one */
-/* optional_release is NULL and get_reference returns instance asis. */
+/* permanent null: optional_release NULL; */
+/* clone_or_reference returns the same instance as-is. */
 #define AFW_IMPLEMENTATION_ID "permanent_null"
 #define AFW_IMPLEMENTATION_INF_LABEL afw_value_permanent_null_inf
 #define impl_afw_value_optional_release NULL
@@ -237,7 +237,7 @@ afw_object_set_property_as_null(
             xctx);
     }
 
-    v = afw_value_create_unmanaged_null(internal, object->p, xctx);
+    v = afw_value_null;
     afw_object_set_property(object, property_name, v, xctx);
 }
 
@@ -284,15 +284,10 @@ afw_value_create_managed_null(
     void * internal,
     afw_xctx_t *xctx)
 {
-    afw_value_null_managed_t *v;
-
-    v = afw_xctx_malloc(
-        sizeof(afw_value_null_managed_t), xctx);
-    v->inf = &afw_value_managed_null_inf;
-    v->internal = internal;
-    v->reference_count = 0;
-
-    return &v->pub;
+    /* Permanent singleton; internal unused. */
+    (void)internal;
+    (void)xctx;
+    return afw_value_null;
 }
 
 /* Create function for data type null value. */
@@ -300,13 +295,11 @@ AFW_DEFINE(const afw_value_t *)
 afw_value_create_unmanaged_null(void * internal,
     const afw_pool_t *p, afw_xctx_t *xctx)
 {
-    afw_value_null_t *v;
-
-    v = afw_pool_calloc(p, sizeof(afw_value_null_t),
-        xctx);
-    v->inf = &afw_value_unmanaged_null_inf;
-    v->internal = internal;
-    return &v->pub;
+    /* Permanent singleton; internal/p unused. */
+    (void)internal;
+    (void)p;
+    (void)xctx;
+    return afw_value_null;
 }
 
 /* Convert data type null string to void * *. */
@@ -417,7 +410,7 @@ impl_afw_value_get_reference(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    /* No reference counting takes place for unmanaged value. */
+    /* Unmanaged: return same instance (pool owns storage). */
     return instance;
 }
 
@@ -432,7 +425,7 @@ impl_afw_value_managed_get_reference(
     afw_value_null_managed_t *self =
         (afw_value_null_managed_t *)instance;
 
-    /* Increment reference count and return instance. */
+    /* Bump RC; return same instance (not a clone). */
     self->reference_count++;
     return instance;
 }
@@ -445,7 +438,7 @@ impl_afw_value_permanent_get_reference(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    /* For permanent value, just return the instance passed. */
+    /* Permanent: return same instance as-is. */
     return instance;
 }
 

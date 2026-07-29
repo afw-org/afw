@@ -275,7 +275,7 @@ afw_compile_parse_AssignmentOperation(
 
     if (function) {
         if (expression_is_one) {
-            result = afw_integer_v_1;
+            result = afw_integer_v_one;
         }
         else {
             result = afw_compile_parse_Expression(parser);
