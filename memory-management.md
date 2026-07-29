@@ -615,7 +615,7 @@ Special cases (closure scope, managed object container RC once 1b lands, compile
 | **1a** | **Inventory** object/array impls, `->value`, create counts | **done** |
 | **1b′** | **Finish `instance->value` on all object *and* array impls** with correct lifetime inf (value required; no create-policy special cases yet) | **done** (`ff5bbbf5`) |
 | **1c** | Memory managed/unmanaged **options** fully aligned with value face + container-aware release/clone (if not finished in 1b′) | **done** |
-| **1d** | **Value create policy** for object (then array): branch on existing value **face**, not NULL; dual surface unchanged | pending (was early 1b; deferred until 1b′) |
+| **1d** | **Value create policy** for object (then array): face identity + managed wrapper for unmanaged; dual surface unchanged | **plan revised** (target model; discuss 1d.0) |
 | **1e** | Hot call-site cleanup only | pending |
 | ~~1f array mirror~~ | Folded into **1b′** / **1d** | — |
 
@@ -733,132 +733,154 @@ Each slice: build + tests; no create_*_object behavior change until 1d.
 
 ##### 1d plan — value create policy (object then array) — **discuss**
 
-**Status:** draft for discussion (not coding).  
-**Depends on:** 1b′ (face filled) + 1c (container-aware managed release/clone) — **both done**.  
-**Not 1d:** mass call-site cleanup (**1e**); assign/scope (**2**); compile `[]`/`{}`; array get_reference API.
+**Status:** revised plan for discussion (not coding).  
+**Depends on:** 1b′ + 1c **done**.  
+**Compass:** **Value Lifetime Model (target)** (parallel brainstorm) **overrides** the earlier 1d draft where they conflict.  
+**Not a full target landing:** 1d is still a **create-API** slice. Assign/scope walks, property promote-on-get, and unmanaged inf `clone_or_reference` rollout are **phase 2+** unless a thin shared helper is needed for create_managed.
 
-###### Goal
+###### What the target model changed about 1d thinking
 
-`afw_value_create_managed_*` / `create_unmanaged_*` for **object** (then **array**) branch on the instance’s existing **value face**, prefer **identity** (`return internal->value`), and only allocate a new header when a **lifetime adapter** is required. Dual create surface unchanged: object/array create APIs stay separate.
+| Earlier 1d draft (partially wrong / incomplete) | Target-aligned 1d |
+|-------------------------------------------------|-------------------|
+| Treat create identity as the whole escape story | **Create** = get a value face for an instance (borrow or owning). **Escape** = `clone_or_reference` (never returns unmanaged). |
+| “Always return dual face” for every create path | Return dual face when it is the **right face** for that create kind; use a **managed wrapper** when caller needs managed escape over an **unmanaged** instance |
+| Catch-22 wrap ≈ today’s heap header + `object_get_reference` | For **unmanaged** instances, `object_get_reference` is a **no-op** today → false hold. Target: wrapper **pins `instance->p`** (pool RC). Dual face stays separate; **multiple wrappers OK** |
+| create_unmanaged returning managed dual face is “the” fix for double-wrap | Still correct for **stopping double-wrap** of managed instances; it is a **borrow of dual face**, not a managed create. Callers must not treat API name as “inf is unmanaged” |
 
-###### Reality check (call sites, ~hand C)
+###### Goal (1d only)
 
-| API | ~count | Role today |
-|-----|--------|------------|
-| `afw_value_create_unmanaged_object` | **~97** | Dominant wrap path (`set_property_as_object`, model, curl/yaml/ubjson, …) |
-| `afw_value_create_managed_object` | **~0** | Rare; still define correct matrix for escape / future assign |
-| `afw_value_create_unmanaged_array` | **~60** | Same pattern as object |
-| `afw_value_create_managed_array` | **~0** | Same |
+1. Stop **routine double-wrap** when `internal->value` already exists.  
+2. Make **`create_managed_*` / `create_unmanaged_*`** for object (then array) face-aware and ownership-honest.  
+3. Align **unmanaged instance + managed create** with the target **managed wrapper** idea (pool pin), not a fake object_get_ref.  
+4. Leave dual create surface (`afw_object_create*` / `afw_array_create*`) unchanged.
 
-Hot path is **unmanaged create of a value around an already-built instance** — often a **managed** memory object that already embeds `managed_object` dual face. That is the double-wrap bug: new `unmanaged_object` header in `p` pointing at same object.
+###### Reality check (call sites)
 
-###### What callers assume today
+| API | ~hand C | Role |
+|-----|---------|------|
+| `create_unmanaged_object` | ~97 | Dominant “wrap instance as value” path |
+| `create_managed_object` | ~0 | Rare; still define correctly for escape / tests |
+| `create_unmanaged_array` | ~60 | Same pattern |
+| `create_managed_array` | ~0 | Same |
 
-| Create | Allocates | Hold on container | `optional_release` on result |
-|--------|-----------|-------------------|------------------------------|
-| **unmanaged** | Header in caller `p` | none | **NULL** (pool bulk free) |
-| **managed** | Header in `xctx->p` | object get_ref (1c) | object_release + free heap if !embedded |
+Hot bug today: managed memory object already has dual face → `create_unmanaged_object` still allocates a **second** unmanaged header in `p`.
 
-Identity return **changes which inf** the caller receives (dual face’s inf, not always `unmanaged_*_inf`). Most call sites never inspect inf; they store/return the value. Risk surface: code that assumes “create_unmanaged ⇒ optional_release is NULL” or compares `value->inf == &afw_value_unmanaged_object_inf`.
+###### Two tools (do not conflate)
 
-###### Decision matrix (proposed)
+| Tool | What it is | Typical use |
+|------|------------|-------------|
+| **Dual face** (`instance->value`) | Embedded (or permanent) value for the instance | Identity for that instance’s Adaptive face; managed dual face holds via object/array (1c) |
+| **Managed wrapper** | Separate managed value header pointing at instance; **pins `instance->p`** for unmanaged instances | Escape / managed create when dual face is unmanaged or missing as an owning face |
 
-Assume after 1b′: **`internal` non-NULL** and **`internal->value` non-NULL** for production instances. (NULL policies below.)
+`clone_or_reference` on unmanaged object/array infs (target) should eventually call the same wrapper helper. **1d** may introduce the helper for `create_managed_*` first; wire unmanaged inf’s `clone_or_reference` fully in **phase 2** if we want smaller 1d.
 
-**Legend:** `face` = `internal->value`; P/M/U = permanent / managed / unmanaged object|array inf.
+###### Decision matrix (target-aligned)
+
+Assume production instances: non-NULL `internal`, non-NULL `internal->value` after 1b′.  
+**Legend:** face = `internal->value`; P/M/U = permanent / managed / unmanaged **value inf**.
 
 ##### `afw_value_create_unmanaged_object(internal, p, xctx)`
 
-| Face | Action | Notes |
-|------|--------|--------|
-| **P** | return `face` | Identity; no hold; release NULL |
-| **U** | return `face` | Identity when dual face lives in same world as `p` (pool-owned instance). **Open:** if face storage is *not* in `p` / parent, is identity still OK? (Usually object lives in some pool; unmanaged value means “no value RC,” not “header must be in this p.”) |
-| **M** | return `face` (preferred) | **No new wrapper.** Dual face is the Adaptive value for that managed object. Caller of *unmanaged* create historically did not own a value release; they must **not** `optional_release` the dual face unless they also `get_reference`’d. Today almost none do. Pool bulk free of a *wrapper* goes away — dual face is not in `p`. **This is the intentional behavior change** that stops double-wrap. |
-| NULL face | **Throw** (proposed) | After 1b′ should not happen for core; throw finds stragglers. Soft wrap is reverse-debt. |
-| NULL internal | **Throw** | Match managed create (1c). |
+| Face | Action | Ownership |
+|------|--------|-----------|
+| **P** | return `face` | Borrow; release no-op |
+| **U** | return `face` | Borrow; release no-op; lifetime = instance pool hierarchy. **OK if face storage is not in `p`** — unmanaged create is not “allocate header in p,” it is “value with no value-RC” |
+| **M** | return `face` | **Borrow of managed dual face** — **no** get_ref. Stops double-wrap. Caller of *unmanaged* create must **not** `optional_release` unless they separately got a hold. |
+| NULL face | **Throw** | 1b′ complete for core; throw finds stragglers |
+| NULL internal | **Throw** | Match 1c managed create |
+
+API name = **create path** (no pool pin, no value own), **not** “result inf is unmanaged.”
 
 ##### `afw_value_create_managed_object(internal, xctx)`
 
-| Face | Action | Notes |
-|------|--------|--------|
-| **P** | return `face` | No get_ref; permanent |
-| **M** | `afw_object_get_reference(internal)` then return `face` | Identity + hold; pairs with managed optional_release (1c). **No heap wrapper.** |
-| **U** | **Catch-22 wrap** (keep today’s shape): get_ref if object supports it (may no-op for unmanaged object), allocate **managed heap header**, `internal` pointer, value RC 0 | Lifetime adapter: caller wanted managed value escape semantics for pool-owned object. Do **not** pretend dual face is managed. |
-| NULL face / NULL internal | **Throw** | Same as above |
+| Face | Action | Ownership |
+|------|--------|-----------|
+| **P** | return `face` | No get_ref |
+| **M** | `afw_object_get_reference(internal)` then return `face` | Owning hold on dual face; pairs with 1c managed release. **No second header.** |
+| **U** | **Managed wrapper** in dest pool (`xctx->p` or agreed pool): points at instance; **`afw_pool_get_reference(internal->p)`** (not object_get_ref no-op); managed inf; value RC 0 / create own rules | Owning managed value; release drops pool pin + frees wrapper header. **Not** dual face. Multiple wrappers OK. |
+| NULL face / internal | **Throw** | |
 
-**Array:** same matrix with `afw_array_*`; managed array has **no** container get_reference (1c rule 5) — identity return for U/P faces; M face rare on arrays (memory uses unmanaged dual face). Catch-22 managed wrap for array still allocates heap header only (array_release on optional_release is often no-op).
+Prefer a shared helper e.g. `afw_object_create_managed_wrapper(internal, p, xctx)` used by create_managed (U) and later by unmanaged `clone_or_reference`.
 
-###### Explicitly out of scope for 1d
+##### Array (parallel)
 
-| Out | Why |
-|-----|-----|
-| Rewrite ~97 call sites to use `obj->value` directly | **1e** optional cleanup once create is correct |
-| Change `afw_object_create*` | Dual surface; faces already set in 1b′/1c |
-| Assign / scope clone_or_reference rollout | Phase **2** |
-| Force managed create at all call sites | unmanaged create stays the C default for “value in this pool” |
-| Compile `[]`/`{}` | Separate |
-| Implement `afw_array_get_reference` | Optional later; not required for 1d identity |
+Same matrix. Memory arrays use **unmanaged** dual face (1c) → `create_managed_array` almost always **wrapper + pin `array->p`**.  
+No `afw_array_get_reference`: managed dual face rare; wrapper path is pool pin only (same as unmanaged object wrapper).  
+If a true managed array dual face exists later, identity + array hold when API exists.
 
-###### Ownership / protocol (must agree before code)
+###### Explicitly out of 1d
 
-1. **`create_unmanaged_*` returning dual face is a non-owning borrow of the instance’s face** (same as today: no value-level own). Do not call `optional_release` unless you previously `clone_or_reference`’d.  
-2. **`create_managed_*` returning managed dual face is an owning hold** (object get_ref already done) — caller **must** `optional_release` (or equivalent) when done, same as today’s heap wrapper.  
-3. **Do not** free dual-face storage via value free (1c).  
-4. **Inf after create is the face’s inf**, not “always unmanaged because API name says unmanaged.” API name means *create path / pool parameter style*, not “force unmanaged inf.” Document in generated comments.  
-5. **Catch-22 wrap** remains the only routine second header: unmanaged instance + managed create request.
+| Out | Phase |
+|-----|--------|
+| Scope assign + slot walk | **2** |
+| Managed container property walk on RC→0 | **2/3** |
+| Property get promote-on-read | **2** |
+| Unmanaged scalar `clone_or_reference` → managed clone (all DTs) | **2** (or with scalar work) |
+| Mass replace call sites with `obj->value` | **1e** |
+| Compile `[]`/`{}`, classic pool restore | later |
+| Large managed string/slice | later |
 
-###### Work packages (suggested order)
+###### Ownership protocol (1d)
+
+1. **create_unmanaged** → non-owning face borrow (P/U/M dual face).  
+2. **create_managed** + M dual face → owning object hold.  
+3. **create_managed** + U instance → owning **wrapper** (pool pin).  
+4. Never free embedded dual face (1c).  
+5. OOM creating wrapper: no pool pin left unbalanced.
+
+###### Work packages
 
 | Slice | Work | Exit |
 |-------|------|------|
-| **1d.0** | Agree matrix + ownership protocol (this section); tweak open questions | Written agreement in pad |
-| **1d.1** | Generator: `create_unmanaged_object` identity / throw; regenerate; build + full tests | Green; spot-check identity (same pointer as `obj->value`) |
-| **1d.2** | Generator: `create_managed_object` identity for P/M + catch-22 wrap for U | Green; multi get_ref/release on dual face |
-| **1d.3** | Same for **array** create managed/unmanaged | Green |
-| **1d.4** | Doxygen / binding comments: create returns face when present; ownership table | Docs match code |
-| **1d.5** | Pad: mark 1d done; list any residual NULL-face throw hits fixed or deferred | Ready for **1e** |
+| **1d.0** | Agree this plan (overrides old 1d draft); freeze matrix | Discuss sign-off |
+| **1d.1** | `create_unmanaged_object`: identity for P/U/M face; throw if !internal / !value; build + test | Green; no double-wrap for managed memory objects |
+| **1d.2** | `create_managed_object`: P/M identity; U → managed wrapper helper + pool pin; release path correct for wrapper | Green |
+| **1d.3** | Array create unmanaged/managed same rules | Green |
+| **1d.4** | Generator comments + pad: create vs clone_or_reference vs wrapper | Docs match |
+| **1d.5** | Optional: skim grep for `optional_release` after create_unmanaged; fix only true hazards | Safe enough for 1e |
+| **1d.6** | Mark 1d done; note phase-2 hook: unmanaged inf `clone_or_reference` → same wrapper helper | Ready for **1e** or **2** |
 
-Optional micro-landings inside 1d.1: permanent-only identity first (known green from old experiment), then U, then M — only if full matrix flakes.
+Micro-land if needed: 1d.1 permanent-only first (known green), then U/M identity.
 
 ###### Tests / proof
 
-- Full `afwdev test -j` (expect ~3079 class).  
-- Optional small Adaptive or C-level checks (if easy): create memory object → `create_unmanaged_object` → pointer **eq** `obj->value`; managed create → eq + release safe.  
-- Valgrind not required for every slice; consider once before calling 1d “done” if release paths change under load.  
-- Watch for: over-release (unmanaged path wrongly releasing dual face), under-release (managed identity without get_ref), tests that compared wrapper addresses.
+- `afwdev test -j` full suite.  
+- Spot: managed `afw_object_create` → `create_unmanaged_object` pointer **eq** `obj->value`.  
+- Spot: unmanaged object → `create_managed_object` → distinct wrapper; release does not free instance early; pool pin balanced.  
+- Watch: over-release if someone optional_releases create_unmanaged result that is managed dual face.
 
-###### Open questions for discuss
+###### Old open questions — answered by target (overrides prior)
 
-1. **`create_unmanaged` + managed face → always identity?** (Recommended yes.) Any caller that *needs* a distinct unmanaged header in `p` (e.g. to free with pool without touching object)? If yes, rare; prefer fix caller, not keep double-wrap default.  
-2. **NULL `->value`:** throw only, or one-release “emergency wrap” behind debug? Recommend **throw** after 1b′.  
-3. **`create_unmanaged` + face not in `p`:** is identity always OK? (Recommended yes: unmanaged means no value RC, not “must allocate in p.”)  
-4. **Managed create + permanent face:** return as-is (no get_ref) — OK?  
-5. **Array managed identity:** memory arrays are **unmanaged** dual face (1c); so `create_managed_array` on memory array → catch-22 wrap. Acceptable?  
-6. **Order:** object fully done before array, or both creates in one generator change? (Generator special-cases by `id` — can do object-only first for safer bisection.)  
-7. **1e boundary:** any *must* call-site change in 1d (e.g. places that optional_release unmanaged creates incorrectly), or keep 1d generator-only?
+| Q | Answer for 1d |
+|---|----------------|
+| create_unmanaged + managed face → identity? | **Yes** — borrow dual face; stops double-wrap |
+| NULL `->value`? | **Throw** |
+| Face not in caller `p`? | Identity still OK for unmanaged create |
+| Managed create + permanent? | Return face as-is |
+| create_managed + unmanaged array/object? | **Wrapper + pin `->p`**, not dual face, not no-op get_ref |
+| Object then array? | Prefer object first if bisection helps; generator can do both once object green |
+| 1e in 1d? | Generator-only unless grep finds hard over-release |
 
 ###### Success criteria
 
-- [ ] `create_*_object` / `create_*_array` prefer `internal->value` per matrix; no routine double-wrap when face matches.  
-- [ ] Catch-22 wrap only for unmanaged face + managed create.  
-- [ ] NULL internal / NULL face → throw (agreed policy).  
-- [ ] Ownership protocol documented; tests green.  
-- [ ] Dual `afw_object_create*` surface unchanged.  
-- [ ] Ready for optional **1e** hot-path cleanup (`obj->value` direct where clearer).
+- [ ] No routine double-wrap when face exists (unmanaged create returns face).  
+- [ ] create_managed: P/M → face (+ hold for M); U → managed wrapper with real pool pin.  
+- [ ] NULL internal/face → throw.  
+- [ ] Dual object/array create APIs unchanged.  
+- [ ] Tests green; pad marks 1d done; phase 2 still owns assign/scope/clone_or_reference completeness.
 
 ###### Risks
 
-- Callers that `optional_release` the result of `create_unmanaged_*` after we return managed dual face → **over-release object**. Mitigate: grep optional_release near create_unmanaged; fix any hits in 1d or early 1e.  
-- Callers that assume `result->inf == unmanaged_*` after create_unmanaged.  
-- Managed create identity without get_ref → under-hold (matrix says get_ref for M).  
-- Residual NULL `->value` in extension/third-party impls → throw noise; may need temporary wrap only for non-core if discovered.  
-- Performance: identity is cheaper; wrap path rarer.
+- create_unmanaged → managed dual face + mistaken optional_release → object over-release (grep).  
+- Implementing wrapper without shared helper → duplicate logic when phase 2 wires clone_or_reference.  
+- Scope still stores unmanaged creates until phase 2 — **accepted incremental debt**; 1d does not fix assign.  
+- Array pool pin only — correct under target until array get_reference exists.
 
-###### Relationship to old experiment
+###### Relationship to experiments / 1c
 
-- Permanent-only identity: **safe subset**, already proven green once.  
-- Naive “always return `->value`” without 1c: **SEGV** (free embed). **1c fixed that** for managed optional_release.  
-- 1d is the full matrix, not permanent-only forever.
+- Permanent-only identity: proven subset of 1d.1.  
+- Naive always-return-face without 1c: SEGV; **1c enables** M dual face identity on managed create.  
+- Target model: **do not** treat dual-face return as substitute for managed wrapper on unmanaged instances.
 
 ---
 
@@ -2139,5 +2161,18 @@ See **Phase 0 findings** section in this file (generator + generated C vs model 
 - Core: `clone_or_reference` → always permanent or managed; scope/managed-container storage only permanent/managed; unmanaged object/array escape via **managed wrapper** + pool pin; scope and managed container **release walks**; property get lazy-promotes.
 - Does **not** change phased plan order (1d still next); marks highest-priority long-run pieces for phase 2-ish work.
 - Decisions table updated; some draft invariants marked superseded/refined.
+
+### 2026-07-24 — 1d plan revised under target model
+
+- Earlier 1d draft overridden: create identity ≠ full escape story; unmanaged+managed create → **wrapper + pin `instance->p`**, not object_get_ref no-op.
+- create_unmanaged still returns dual face (borrow) to kill double-wrap; create_managed P/M → face+hold.
+- Full clone_or_reference / assign / scope walks stay phase 2+.
+
+### 2026-07-24 — Pause / PR into mgg-develop
+
+- Landing **−1 through 1c** (+ pad) to `mgg-develop` while 1d+ is thought through (~week).
+- **1d not coded** yet; plan in pad only.
+- `whats_new.md`: α/β + **recompile** out-of-tree commands/extensions against new libafw.
+- Resume: 1d.0 sign-off → implement create policy under target model.
 
 _(Append dated notes as we talk; fold durable points up into **By area** / **Cross-cutting**.)_

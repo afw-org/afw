@@ -22,6 +22,41 @@ Internal agent rules, Cursor docs, and pure test-infrastructure work are omitted
 | **Process env** | One `current` on retrieve (issue **#71**); values are string if valid UTF-8 else hexBinary |
 | **Templates** | Compile-time substitution `#{…}` docs and tests; backtick `` `\#` `` / `` `\$` `` match raw templates (issue **#97**) |
 | **C builders / afwdev** | Richer C API Doxygen, package **0.12.2**, `afwdev build --fulldev` (issue **#1**) |
+| **Value / memory (α/β)** | Incremental issue **#2** work: permanent scalar reuse, dual-face object/array values, safer managed object value release — **recompile** out-of-tree commands/extensions against the new libafw |
+
+---
+
+## Value lifetime / memory management (issue #2) — alpha/beta
+
+**Issue #2** — work in progress on `mgg-develop` via branch `issue-#2` (partial land; design continues).
+
+This is **not** a finished memory-management productization. Treat it as **alpha/beta** on the maintainer develop line: useful foundation and mostly behavior-compatible for in-tree tests, but the long-running escape / assign / scope-release story is **not** complete.
+
+### What landed so far (high level)
+
+- Prefer **shared permanent Adaptive values** (generate bag / `afw_v_*`) for known scalars instead of allocating fresh ones where safe (null, boolean true/false, many const_objects properties).
+- **Object and array instances** more consistently expose a dual Adaptive value face (`->value`) with a lifetime-matched permanent/managed/unmanaged inf.
+- **Managed object values**: container-aware `optional_release` / `clone_or_reference` paths that do **not** free an embedded dual-face header; `create_managed_object` requires a non-null object and takes a container hold.
+- Living design notes for maintainers: `memory-management.md` (not user docs).
+
+### Rebuild / recompile requirement
+
+Installing a build that includes this work updates **libafw** (and related generated headers/bindings). If you maintain **out-of-tree** or separately built:
+
+- extension **`.so` / DSOs**,
+- custom **commands**,
+- or any binary that **links the AFW shared library**,
+
+you **must rebuild and reinstall those against the new AFW install**. Mixing an older extension/command with a newer `libafw` (or the reverse) can fail at load time or misbehave at runtime.
+
+In-tree extensions and the `afw` / `afwfcgi` commands built with the same `./afwdev build --cdev` / `--fulldev` install are fine.
+
+### Not done yet (do not rely on)
+
+- Value **create** always returning existing dual-face identity (no double-wrap) — planned next (**1d**).
+- Script **assign** via `clone_or_reference` (objects/arrays as shared references; scalars typically cloned when escaping).
+- Scope teardown walking each variable with value release (today: scope subpool bulk free).
+- Full target model: `clone_or_reference` never returns unmanaged; managed wrappers for unmanaged containers; property promote-on-get; etc.
 
 ---
 
