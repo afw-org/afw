@@ -35,7 +35,7 @@ Title prefix **`app ·`** = primarily admin app / Fiddle / JS client (not C/core
 | 50 | [`return` inside `switch`](https://github.com/afw-org/afw/issues/50) | `return` in switch doesn’t leave the function; unskip `switch-return-fn` when fixed. |
 | 48 | [Rename data type `list` → `array`](https://github.com/afw-org/afw/issues/48) | Finish rename leftovers (JS tests, remaining “list” refs); labeled in development. |
 | 44 | [Fix Docs Action → GH Pages](https://github.com/afw-org/afw/issues/44) | Docs deploy workflow currently broken. |
-| 35 | [Closures (ES-comfortable capture)](https://github.com/afw-org/afw/issues/35) | Not closing: need trustworthy escaped closures for long-running hosts. Skipped `after2-*` in `closures.as`; ties to #2. |
+| 35 | [Closures (ES-comfortable capture)](https://github.com/afw-org/afw/issues/35) | Short-path green in `closures.as`. Unskip `before2-*` (call path); `after2-*` waits on #2. Do not close on short-path alone. |
 | 28 | [Compile-time type checking](https://github.com/afw-org/afw/issues/28) | Runtime checks exist; add compile-time dataType checking (in development). |
 | 18 | [`stringify()` 2nd parameter](https://github.com/afw-org/afw/issues/18) | Decide semantics beyond objects and implement replacer/space (or AFW equivalent). |
 | 17 | [Immutable object literals](https://github.com/afw-org/afw/issues/17) | Mark object literals immutable at compile (like lists) and fix fallout. |
@@ -91,7 +91,7 @@ Title prefix **`app ·`** = primarily admin app / Fiddle / JS client (not C/core
 |--:|:------|:-----------|
 | 126 | [Journal support (meta)](https://github.com/afw-org/afw/issues/126) | Review, harden, document journal / `journalAdapterId`; park follow-ups here. |
 | 62 | [Adaptive Script language changes](https://github.com/afw-org/afw/issues/62) | Umbrella: statement results, multi `let`/`const`, `for` init, `=` as expr, loop labels. |
-| 2 | [Memory management](https://github.com/afw-org/afw/issues/2) | Long-running lifetimes / OOM; #35 counting on managed escape for `closure_binding` / closed-over mutables (`after2-*`). |
+| 2 | [Memory management](https://github.com/afw-org/afw/issues/2) | Long-running escape / OOM; #35 `after2-*` unskip depends on managed `closure_binding` + closed-over mutables. |
 
 ---
 
