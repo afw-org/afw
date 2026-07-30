@@ -656,6 +656,12 @@ afw_lmdb_self_v_string = {
 };
 
 const afw_value_string_t
+afw_lmdb_self_v_template = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_template)
+};
+
+const afw_value_string_t
 afw_lmdb_self_v_time = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_LMDB_Q_time)
@@ -764,6 +770,12 @@ afw_lmdb_self_v_zz__2656 = {
 };
 
 const afw_value_string_t
+afw_lmdb_self_v_zz__2657 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__2657)
+};
+
+const afw_value_string_t
 afw_lmdb_self_v_zz__Adapter_Id_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Adapter_Id_)
@@ -803,12 +815,6 @@ const afw_value_string_t
 afw_lmdb_self_v_zz__Database_limits_for_LMDB_ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Database_limits_for_LMDB_)
-};
-
-const afw_value_string_t
-afw_lmdb_self_v_zz__Database_path_for_LMDB_ = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LMDB_Q_zz__Database_path_for_LMDB_)
 };
 
 const afw_value_string_t

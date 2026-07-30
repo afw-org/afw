@@ -4185,13 +4185,13 @@ impl_40_property_allowQuery = {
 static const afw_runtime_property_t
 impl_40_property_dataType = {
     &afw_lmdb_self_s_dataType,
-    &afw_lmdb_self_v_string.pub
+    &afw_lmdb_self_v_template.pub
 };
 
 static const afw_runtime_property_t
 impl_40_property_description = {
     &afw_lmdb_self_s_description,
-    &afw_lmdb_self_v_zz__Database_path_for_LMDB_.pub
+    &afw_lmdb_self_v_zz__2652.pub
 };
 
 static const afw_runtime_property_t
@@ -4448,7 +4448,7 @@ impl_34_property_collectionURIs = {
 static const afw_runtime_property_t
 impl_34_property_description = {
     &afw_lmdb_self_s_description,
-    &afw_lmdb_self_v_zz__2652.pub
+    &afw_lmdb_self_v_zz__2653.pub
 };
 
 static const afw_runtime_property_t
@@ -4893,7 +4893,7 @@ impl_41_property_collectionURIs = {
 static const afw_runtime_property_t
 impl_41_property_description = {
     &afw_lmdb_self_s_description,
-    &afw_lmdb_self_v_zz__2653.pub
+    &afw_lmdb_self_v_zz__2654.pub
 };
 
 static const afw_runtime_property_t
@@ -5324,7 +5324,7 @@ impl_45_property_collectionURIs = {
 static const afw_runtime_property_t
 impl_45_property_description = {
     &afw_lmdb_self_s_description,
-    &afw_lmdb_self_v_zz__2654.pub
+    &afw_lmdb_self_v_zz__2655.pub
 };
 
 static const afw_runtime_property_t
@@ -5755,7 +5755,7 @@ impl_49_property_collectionURIs = {
 static const afw_runtime_property_t
 impl_49_property_description = {
     &afw_lmdb_self_s_description,
-    &afw_lmdb_self_v_zz__2655.pub
+    &afw_lmdb_self_v_zz__2656.pub
 };
 
 static const afw_runtime_property_t
@@ -5858,7 +5858,7 @@ impl_53_property_category = {
 static const afw_runtime_property_t
 impl_53_property_description = {
     &afw_lmdb_self_s_description,
-    &afw_lmdb_self_v_zz__2656.pub
+    &afw_lmdb_self_v_zz__2657.pub
 };
 
 static const afw_runtime_property_t *

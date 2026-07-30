@@ -122,6 +122,17 @@ impl_path_is_under_root(
 
     root_len = strlen(root_z);
     cand_len = strlen(candidate_z);
+
+    /*
+     * Directory roots may include a trailing slash (e.g. from
+     * afw_file_insure_full_path). Strip trailing slashes for the
+     * prefix/boundary check so '/tmp/data/' still matches
+     * '/tmp/data/file.txt'.
+     */
+    while (root_len > 1 && root_z[root_len - 1] == '/') {
+        root_len--;
+    }
+
     if (cand_len < root_len) {
         return false;
     }

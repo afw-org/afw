@@ -121945,7 +121945,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__1852 \
-    "When locating objects within this adapter, this root path will be prepended in order to resolve filenames. It must already exist and be accessible.\nThis template value is evaluated at the time the adapter is started."
+    "When locating objects within this adapter, this root path will be prepended in order to resolve filenames. It must already exist and be accessible.\nThis template is evaluated when the adapter is started (plain strings are unchanged; substitutions such as environment:: may be used) and is resolved to a full path at that time."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__1852 */
 #define afw_s_zz__1852 \
@@ -122465,7 +122465,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__1870 \
-    "This is an array of modulePaths of extensions to load at startup. If there is already an extension manifest that has the extensionId, use the extensions property instead. This property is most useful for loading the extension manifest of an AFW package."
+    "This is an array of modulePaths of extensions to load at startup. Each entry is a template evaluated when the application conf is processed (plain strings are unchanged; substitutions such as environment:: may be used). If there is already an extension manifest that has the extensionId, use the extensions property instead. This property is most useful for loading the extension manifest of an AFW package."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__1870 */
 #define afw_s_zz__1870 \
@@ -122595,7 +122595,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__1875 \
-    "Maps logical path prefixes to host directories for open_file(), compile_from_file(), and eval_from_file(). Longest matching prefix wins; absolute and relative host directories are supported; resolved paths must remain under the matched root (no path traversal). See /afw/_AdaptiveObjectType_/_AdaptiveRootFilePaths_."
+    "Maps logical path prefixes to host directories for open_file(), compile_from_file(), and eval_from_file(). Each host directory value is a template evaluated when the application conf is processed and resolved to a full path at that time. Longest matching prefix wins; resolved paths must remain under the matched root (no path traversal). See /afw/_AdaptiveObjectType_/_AdaptiveRootFilePaths_."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__1875 */
 #define afw_s_zz__1875 \
@@ -122959,7 +122959,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__1888 \
-    "Path to locate the module. This is required if extensionsId is not registered."
+    "Path to locate the module. This is required if extensionId is not registered. This template is evaluated when the extension conf entry is processed (plain strings are unchanged; substitutions such as environment:: may be used)."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__1888 */
 #define afw_s_zz__1888 \
@@ -126001,7 +126001,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__1993 \
-    "Module path. A system appropriate suffix will be added ('.so' for Linux and '.dll' for Windows)."
+    "Module path. A system appropriate suffix will be added ('.so' for Linux and '.dll' for Windows). This template is evaluated when the extension is loaded (plain strings are unchanged; substitutions such as environment:: may be used)."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__1993 */
 #define afw_s_zz__1993 \
@@ -131279,7 +131279,7 @@ extern const afw_value_string_t \
 
 /** @brief #define for string in quotes */
 #define AFW_Q_zz__2175 \
-    "Maps a logical path prefix to a host directory for open_file(), compile_from_file(), and eval_from_file(). The property name is the prefix: a logical path must equal the property name or begin with the property name followed by '/'. Among matching prefixes, the longest wins (so property 'includes' is preferred over 'include' for path 'includes/a.as'). The property value is the host directory (absolute path recommended for production; relative paths are resolved against the process current working directory at resolve time). The resolved host path must remain under that directory after canonicalization; path segments of '..' and other escapes are rejected. Example: property 'my' with value '/temp/my' allows open_file('s1', 'my/xyz', 'w') to open host file '/temp/my/xyz' when that path stays under '/temp/my'."
+    "Maps a logical path prefix to a host directory for open_file(), compile_from_file(), and eval_from_file(). The property name is the prefix: a logical path must equal the property name or begin with the property name followed by '/'. Among matching prefixes, the longest wins (so property 'includes' is preferred over 'include' for path 'includes/a.as'). The property value is a template for the host directory, evaluated when the application conf is processed (plain strings are unchanged; substitutions such as environment:: may be used). The evaluated path is resolved to a full path at that time (relative paths use the process current working directory). The resolved host path must remain under that directory after canonicalization; path segments of '..' and other escapes are rejected. Example: property 'my' with value '/temp/my' allows open_file('s1', 'my/xyz', 'w') to open host file '/temp/my/xyz' when that path stays under '/temp/my'."
 
 /** @brief 'afw_utf8_t' for AFW_Q_zz__2175 */
 #define afw_s_zz__2175 \

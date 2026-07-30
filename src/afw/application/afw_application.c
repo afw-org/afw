@@ -215,7 +215,12 @@ afw_application_internal_application_conf_type_create_cede_p(
     const afw_object_t *variable_definitions_object;
     const afw_array_t *default_flags;
     const afw_utf8_t * const *extension_id;
-    const afw_utf8_t * const *module_path;
+    const afw_value_t * const *module_path_values;
+    const afw_value_t *evaluated;
+    const afw_utf8_t *module_path;
+    const afw_utf8_t *full_path;
+    const afw_object_t *root_file_paths;
+    const afw_object_t *normalized_root_file_paths;
     const afw_utf8_t *detail_source_location;
     const afw_object_t *object;
     const afw_utf8_t *s;
@@ -362,11 +367,26 @@ afw_application_internal_application_conf_type_create_cede_p(
     value = afw_object_get_property(env->application_object,
         afw_s_extensionModulePaths, xctx);
     if (value) {
-        for (module_path = afw_value_as_array_of_utf8(value, p, xctx);
-            *module_path;
-            module_path++)
+        detail_source_location = afw_utf8_printf(p, xctx,
+            AFW_UTF8_FMT "/" AFW_UTF8_FMT,
+            AFW_UTF8_FMT_ARG(source_location),
+            AFW_UTF8_FMT_ARG(afw_s_extensionModulePaths));
+        for (module_path_values = afw_value_as_array_of_values(value, p, xctx);
+            *module_path_values;
+            module_path_values++)
         {
-            afw_environment_load_extension(NULL, *module_path, NULL, xctx);
+            evaluated = afw_value_compile_and_evaluate_as(
+                *module_path_values, detail_source_location,
+                afw_compile_type_template, p, xctx);
+            if (!afw_value_is_string(evaluated)) {
+                AFW_THROW_ERROR_FZ(general, xctx,
+                    AFW_UTF8_CONTEXTUAL_LABEL_FMT
+                    "extensionModulePaths entries must evaluate to string",
+                    AFW_UTF8_FMT_ARG(detail_source_location));
+            }
+            module_path =
+                &((const afw_value_string_t *)evaluated)->internal;
+            afw_environment_load_extension(NULL, module_path, NULL, xctx);
         }
     }
 
@@ -374,9 +394,44 @@ afw_application_internal_application_conf_type_create_cede_p(
     context_type_object = afw_environment_get_context_type(afw_s_application,
         xctx);
 
-    /* rootFilePaths */
-    env->root_file_paths = afw_object_old_get_property_as_object(
+    /*
+     * rootFilePaths: evaluate each host directory as a template and resolve
+     * to a full path at application create (issue #15).
+     */
+    root_file_paths = afw_object_old_get_property_as_object(
         env->application_object, afw_s_rootFilePaths, xctx);
+    env->root_file_paths = NULL;
+    if (root_file_paths) {
+        detail_source_location = afw_utf8_printf(p, xctx,
+            AFW_UTF8_FMT "/" AFW_UTF8_FMT,
+            AFW_UTF8_FMT_ARG(source_location),
+            AFW_UTF8_FMT_ARG(afw_s_rootFilePaths));
+        normalized_root_file_paths = afw_object_create(p, xctx);
+        for (iterator = NULL;;) {
+            value = afw_object_get_next_property(root_file_paths, &iterator,
+                &property_name, xctx);
+            if (!value) {
+                break;
+            }
+            evaluated = afw_value_compile_and_evaluate_as(
+                value, detail_source_location,
+                afw_compile_type_template, p, xctx);
+            if (!afw_value_is_string(evaluated)) {
+                AFW_THROW_ERROR_FZ(general, xctx,
+                    AFW_UTF8_CONTEXTUAL_LABEL_FMT
+                    "rootFilePaths." AFW_UTF8_FMT
+                    " must evaluate to string",
+                    AFW_UTF8_FMT_ARG(detail_source_location),
+                    AFW_UTF8_FMT_ARG(property_name));
+            }
+            full_path = afw_file_insure_full_path(
+                &((const afw_value_string_t *)evaluated)->internal,
+                p, xctx);
+            afw_object_set_property_as_string(normalized_root_file_paths,
+                property_name, full_path, xctx);
+        }
+        env->root_file_paths = normalized_root_file_paths;
+    }
 
     /* defaultFlags */
     default_flags = afw_object_old_get_property_as_array(env->application_object,

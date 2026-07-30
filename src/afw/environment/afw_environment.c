@@ -45,6 +45,44 @@ impl_check_manifest_cb(
     void *context,
     afw_xctx_t *xctx);
 
+/*
+ * Evaluate a modulePath conf/manifest property as a template (#15).
+ * Returns NULL if property is absent.
+ */
+static const afw_utf8_t *
+impl_module_path_from_property(
+    const afw_object_t *object,
+    const afw_utf8_t *source_location,
+    const afw_pool_t *p,
+    afw_xctx_t *xctx)
+{
+    const afw_value_t *value;
+    const afw_utf8_t *detail_source_location;
+
+    value = afw_object_get_property(object, afw_s_modulePath, xctx);
+    if (!value) {
+        return NULL;
+    }
+    if (source_location) {
+        detail_source_location = afw_utf8_printf(p, xctx,
+            AFW_UTF8_FMT "/" AFW_UTF8_FMT,
+            AFW_UTF8_FMT_ARG(source_location),
+            AFW_UTF8_FMT_ARG(afw_s_modulePath));
+    }
+    else {
+        detail_source_location = afw_s_modulePath;
+    }
+    value = afw_value_compile_and_evaluate_as(value,
+        detail_source_location, afw_compile_type_template, p, xctx);
+    if (!afw_value_is_string(value)) {
+        AFW_THROW_ERROR_FZ(general, xctx,
+            AFW_UTF8_CONTEXTUAL_LABEL_FMT
+            "modulePath must evaluate to string",
+            AFW_UTF8_FMT_ARG(detail_source_location));
+    }
+    return &((const afw_value_string_t *)value)->internal;
+}
+
 
 
 /* Create default runtime object that just has key. */
@@ -686,8 +724,8 @@ impl_check_manifest_cb(
             {
                 extension_id = afw_object_old_get_property_as_string(object,
                     afw_s_extensionId, xctx);
-                module_path = afw_object_old_get_property_as_string(object,
-                    afw_s_modulePath, xctx);
+                module_path = impl_module_path_from_property(object,
+                    NULL, xctx->p, xctx);
                 if (extension_id && module_path) {
                     afw_environment_load_extension(extension_id, module_path,
                         NULL, xctx);
@@ -957,15 +995,21 @@ afw_environment_load_extension(
             }
         }
 
-        modulePath = afw_object_old_get_property_as_string(properties,
-            afw_s_modulePath, xctx);
+        modulePath = impl_module_path_from_property(properties,
+            NULL, p, xctx);
         if (modulePath) {
-            if (module_path && !afw_utf8_equal(module_path, modulePath)) {
-                AFW_THROW_ERROR_FZ(general, xctx,
-                    "module_path parameter " AFW_UTF8_FMT_Q
-                    " does not match properties.extension_id " AFW_UTF8_FMT_Q,
-                    AFW_UTF8_FMT_ARG(module_path),
-                    AFW_UTF8_FMT_ARG(modulePath));
+            if (module_path) {
+                if (!afw_utf8_equal(module_path, modulePath)) {
+                    AFW_THROW_ERROR_FZ(general, xctx,
+                        "module_path parameter " AFW_UTF8_FMT_Q
+                        " does not match properties.modulePath "
+                        AFW_UTF8_FMT_Q,
+                        AFW_UTF8_FMT_ARG(module_path),
+                        AFW_UTF8_FMT_ARG(modulePath));
+                }
+            }
+            else {
+                module_path = modulePath;
             }
         }
     }
@@ -1004,8 +1048,8 @@ afw_environment_load_extension(
                 manifest = afw_runtime_get_object(afw_s__AdaptiveManifest_,
                     extension_id, xctx);
                 if (manifest) {
-                    module_path = afw_object_old_get_property_as_string(manifest,
-                        afw_s_modulePath, xctx);
+                    module_path = impl_module_path_from_property(manifest,
+                        NULL, p, xctx);
                 }
             }
 

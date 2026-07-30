@@ -26,6 +26,7 @@ In-tree extensions and the `afw` / `afwfcgi` commands built with the same `./afw
 | **Admin / JS client** | `AfwModel` passes **`maxObjects: 0`** for full metadata catalogs so admin loads after #49 |
 | **Adapter auth** | `checkIndividualObjectReadAccess` wiring fixed + tests (issue **#90**) |
 | **File streams** | Working `open_file` with hardened `rootFilePaths`; stream errors **throw** |
+| **Conf path templates (#15)** | Path-like conf properties are **templates** evaluated at create; host dirs resolved to full path |
 | **VFS adapter** | Empty files, safe full-file write, multi-map path rules, `maxReadBytes` |
 | **Model adapters** | `mappedAdapterId` is **optional** for pure-script models |
 | **`afw` CLI** | Optional interactive line editing and command history; **`--allow` / `-a`** for result content type (YAML block strings, issue **#14**) |
@@ -328,6 +329,30 @@ Request CGI/FCGI-like parameters remain under `_AdaptiveRequestProperties_` / `r
 
 ---
 
+## Conf path templates (issue #15)
+
+Several conf properties that hold host paths or module paths are now **`template`** (or array of template). Plain strings still work as before; substitutions such as `environment::` are evaluated when the conf entry is processed.
+
+| Property | Evaluated at | Full path? |
+|----------|--------------|------------|
+| File adapter **`root`** | Adapter start | Yes |
+| Application **`rootFilePaths`** values | Application start | Yes |
+| LMDB **`env.path`** | Adapter start | Yes |
+| **`extensionModulePaths`** entries | Application start | No (often a soname) |
+| Extension conf / manifest **`modulePath`** | Extension load | No |
+
+Example:
+
+```json
+"rootFilePaths": {
+    "data": "${environment::HOME}/afw-data/"
+}
+```
+
+The `afw` command and servers already expose `environment::` for process environment variables before conf is applied.
+
+---
+
 ## File streams (`open_file` and friends)
 
 **Issue #103 / PR #120**
@@ -336,7 +361,7 @@ Adaptive Script file I/O is finished for beta: open, read, write, flush, and clo
 
 ### Using `open_file`
 
-Configure logical path prefixes on the application as `rootFilePaths` (type `_AdaptiveRootFilePaths_`). Each property name is a **prefix**; its value is the host directory.
+Configure logical path prefixes on the application as `rootFilePaths` (type `_AdaptiveRootFilePaths_`). Each property name is a **prefix**; its value is a host directory template evaluated and absolutized at application start.
 
 ```json
 "rootFilePaths": {

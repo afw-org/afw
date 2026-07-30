@@ -18438,7 +18438,7 @@ impl_180_property_dataType = {
 static const afw_runtime_property_t
 impl_180_property_dataTypeParameter = {
     &afw_self_s_dataTypeParameter,
-    &afw_self_v_string.pub
+    &afw_self_v_template.pub
 };
 
 static const afw_runtime_property_t
@@ -21057,7 +21057,7 @@ impl_202_property_brief = {
 static const afw_runtime_property_t
 impl_202_property_dataType = {
     &afw_self_s_dataType,
-    &afw_self_v_string.pub
+    &afw_self_v_template.pub
 };
 
 static const afw_runtime_property_t
@@ -58907,7 +58907,7 @@ impl_564_property_brief = {
 static const afw_runtime_property_t
 impl_564_property_dataType = {
     &afw_self_s_dataType,
-    &afw_self_v_string.pub
+    &afw_self_v_template.pub
 };
 
 static const afw_runtime_property_t
@@ -109594,7 +109594,7 @@ impl_1074;
 static const afw_runtime_property_t
 impl_1074_property_dataType = {
     &afw_self_s_dataType,
-    &afw_self_v_string.pub
+    &afw_self_v_template.pub
 };
 
 static const afw_runtime_property_t

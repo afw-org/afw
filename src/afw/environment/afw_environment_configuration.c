@@ -116,7 +116,9 @@ void afw_environment_internal_extension_conf_type_create_cede_p(
 {
     const afw_utf8_t *extension_id;
     const afw_utf8_t *module_path;
-    const afw_object_t* manifest;
+    const afw_object_t *manifest;
+    const afw_value_t *value;
+    const afw_utf8_t *detail_source_location;
 
     extension_id = afw_object_old_get_property_as_utf8(entry,
         afw_s_extensionId, p, xctx);
@@ -128,16 +130,50 @@ void afw_environment_internal_extension_conf_type_create_cede_p(
             AFW_UTF8_FMT_ARG(source_location));
     }
 
-    module_path = afw_object_old_get_property_as_utf8(entry,
-        afw_s_modulePath, p, xctx);
+    /* modulePath is a template evaluated at extension conf create (#15). */
+    module_path = NULL;
+    value = afw_object_get_property(entry, afw_s_modulePath, xctx);
+    if (value) {
+        detail_source_location = afw_utf8_printf(p, xctx,
+            AFW_UTF8_FMT "/" AFW_UTF8_FMT,
+            AFW_UTF8_FMT_ARG(source_location),
+            AFW_UTF8_FMT_ARG(afw_s_modulePath));
+        value = afw_value_compile_and_evaluate_as(value,
+            detail_source_location, afw_compile_type_template, p, xctx);
+        if (!afw_value_is_string(value)) {
+            AFW_THROW_ERROR_FZ(general, xctx,
+                AFW_UTF8_CONTEXTUAL_LABEL_FMT
+                "modulePath must evaluate to string",
+                AFW_UTF8_FMT_ARG(detail_source_location));
+        }
+        module_path = &((const afw_value_string_t *)value)->internal;
+    }
 
     /* If module_path is not supplied, see if it is registered. */
     if (!module_path) {
         manifest = afw_runtime_get_object(afw_s__AdaptiveManifest_,
             extension_id, xctx);
         if (manifest) {
-            module_path = afw_object_old_get_property_as_string(manifest,
-                afw_s_modulePath, xctx);
+            value = afw_object_get_property(manifest, afw_s_modulePath, xctx);
+            if (value) {
+                detail_source_location = afw_utf8_printf(p, xctx,
+                    AFW_UTF8_FMT "/_AdaptiveManifest_/" AFW_UTF8_FMT
+                    "/" AFW_UTF8_FMT,
+                    AFW_UTF8_FMT_ARG(source_location),
+                    AFW_UTF8_FMT_ARG(extension_id),
+                    AFW_UTF8_FMT_ARG(afw_s_modulePath));
+                value = afw_value_compile_and_evaluate_as(value,
+                    detail_source_location, afw_compile_type_template,
+                    p, xctx);
+                if (!afw_value_is_string(value)) {
+                    AFW_THROW_ERROR_FZ(general, xctx,
+                        AFW_UTF8_CONTEXTUAL_LABEL_FMT
+                        "modulePath must evaluate to string",
+                        AFW_UTF8_FMT_ARG(detail_source_location));
+                }
+                module_path =
+                    &((const afw_value_string_t *)value)->internal;
+            }
         }
     }
     if (!module_path) {
