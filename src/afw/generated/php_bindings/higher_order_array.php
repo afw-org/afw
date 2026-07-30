@@ -202,6 +202,34 @@ class higher_order_array
     }
 
     /**
+     * every()
+     *
+     * Returns true if all values in an array pass the predicate test. Same
+     * behavior as all_of for a single array (and additional parameters).
+     * Empty array yields true.
+     *
+     * @param function $predicate Called for each value in the first array in
+     *                            values or until false is returned.
+     * @param  $values Parameters passed to predicate with the first array
+     *                 passed one value at a time.
+     *
+     * @return boolean
+     */
+    public function every(, $predicate, $values)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "every");
+
+        /* pass along required parameters to the request payload */
+        $request->set("predicate", $predicate);
+        $request->set("values", $values);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * filter()
      *
      * This produces an array containing only values from another array that
@@ -320,6 +348,34 @@ class higher_order_array
         $request->set("functor", $functor);
         $request->set("accumulator", $accumulator);
         $request->set("array", $array);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * some()
+     *
+     * Returns true if any value in an array passes the predicate test. Same
+     * behavior as any_of for a single array (and additional parameters).
+     * Empty array yields false.
+     *
+     * @param function $predicate Called for each value in the first array in
+     *                            values or until true is returned.
+     * @param  $values Parameters passed to predicate with the first array
+     *                 passed one value at a time.
+     *
+     * @return boolean
+     */
+    public function some(, $predicate, $values)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "some");
+
+        /* pass along required parameters to the request payload */
+        $request->set("predicate", $predicate);
+        $request->set("values", $values);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();

@@ -661,7 +661,7 @@ impl_parse_ForStatement(afw_compile_parser_t *parser)
             if (!list) {
                 list = afw_array_create_generic(parser->p, parser->xctx);
             }
-            afw_array_add_value(list, value, parser->xctx);
+            afw_array_push_value(list, value, parser->xctx);
             afw_compile_get_token();
             if (afw_compile_token_is(semicolon)) {
                 break;
@@ -727,7 +727,7 @@ impl_parse_ForStatement(afw_compile_parser_t *parser)
                 if (!list) {
                     list = afw_array_create_generic(parser->p, parser->xctx);
                 }
-                afw_array_add_value(list, value, parser->xctx);
+                afw_array_push_value(list, value, parser->xctx);
                 afw_compile_get_token();
                 if (afw_compile_token_is(close_parenthesis)) {
                     break;
@@ -2044,7 +2044,7 @@ afw_compile_parse_TestScript(
                 break;
             }
             test_object = afw_object_create_unmanaged(parser->p, parser->xctx);
-            afw_array_add_value(test_list,
+            afw_array_push_value(test_list,
                 afw_value_create_unmanaged_object(
                     test_object, parser->p, parser->xctx),
                 parser->xctx);

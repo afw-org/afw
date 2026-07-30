@@ -74,6 +74,39 @@ def array(session, values):
 
     return response['actions'][0]['result']
 
+def at(session, array, index):
+    """
+    Value at array index
+
+    Return the value at a zero-based index in an array. Negative indexes count
+    from the end (-1 is the last element). If the index is out of range, the
+    result is undefined.
+
+    Args:
+        array (list): Array to index.
+
+        index (int): Zero-based index, or negative from the end.
+
+    Returns:
+        object: The value at the index, or undefined if out of range.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "at",
+        "array": array,
+        "index": index
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def bag_array(session, values=None):
     """
     Makes an array from values
@@ -217,6 +250,35 @@ def eqx_array(session, arg1, arg2):
         "function": "eqx<array>",
         "arg1": arg1,
         "arg2": arg2
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def freeze_array(session, value):
+    """
+    Make array value immutable
+
+    Set a array value immutable so further mutation throws. If already
+    immutable, has no effect. Returns the same value.
+
+    Args:
+        value (list): The array value to freeze.
+
+    Returns:
+        list: The same value, now immutable.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "freeze<array>",
+        "value": value
     }
 
     request.add_action(action)
@@ -552,6 +614,69 @@ def nex_array(session, arg1, arg2):
 
     return response['actions'][0]['result']
 
+def pop(session, array):
+    """
+    Remove and return last array value
+
+    Remove the last value from a mutable array and return it. If the array is
+    empty, returns undefined.
+
+    Args:
+        array (list): Target array. Must not be immutable.
+
+    Returns:
+        object: The removed value, or undefined if the array was empty.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "pop",
+        "array": array
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def push(session, array, values=None):
+    """
+    Append values to an array
+
+    Append one or more values to the end of a mutable array (push back).
+    Returns the modified array.
+
+    Args:
+        array (list): Target array. Must not be immutable.
+
+        values (object): Values to append in order.
+
+    Returns:
+        list: The modified array.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "push",
+        "array": array
+    }
+
+    if values != None:
+        action['values'] = values
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def reverse(session, array):
     """
     Return array with elements reversed
@@ -570,6 +695,35 @@ def reverse(session, array):
 
     action = {
         "function": "reverse",
+        "array": array
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def shift(session, array):
+    """
+    Remove and return first array value
+
+    Remove the first value from a mutable array and return it. If the array is
+    empty, returns undefined.
+
+    Args:
+        array (list): Target array. Must not be immutable.
+
+    Returns:
+        object: The removed value, or undefined if the array was empty.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "shift",
         "array": array
     }
 
@@ -625,6 +779,51 @@ def slice(session, array, startIndex=None, endIndex=None):
 
     return response['actions'][0]['result']
 
+def splice(session, array, startIndex, deleteCount=None, values=None):
+    """
+    Change array contents by removing and/or inserting values
+
+    Remove zero or more values starting at an index from a mutable array and
+    optionally insert new values at that index. Returns an array of the
+    removed values. Negative startIndex counts from the end. If deleteCount is
+    omitted, all values from startIndex to the end are removed.
+
+    Args:
+        array (list): Target array. Must not be immutable.
+
+        startIndex (int): Zero-based start index, or negative from the end.
+
+        deleteCount (int): Number of values to remove. If omitted, remove
+        through the end of the array. Negative is treated as zero.
+
+        values (object): Values to insert at startIndex after removals.
+
+    Returns:
+        list: Array of removed values, in original order.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "splice",
+        "array": array,
+        "startIndex": startIndex
+    }
+
+    if deleteCount != None:
+        action['deleteCount'] = deleteCount
+
+    if values != None:
+        action['values'] = values
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def to_string_array(session, value):
     """
     Converts value to string
@@ -645,6 +844,40 @@ def to_string_array(session, value):
         "function": "to_string<array>",
         "value": value
     }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def unshift(session, array, values=None):
+    """
+    Insert values at the front of an array
+
+    Insert one or more values at the beginning of a mutable array, preserving
+    the relative order of the inserted values. Returns the modified array.
+
+    Args:
+        array (list): Target array. Must not be immutable.
+
+        values (object): Values to insert at the front, in order.
+
+    Returns:
+        list: The modified array.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "unshift",
+        "array": array
+    }
+
+    if values != None:
+        action['values'] = values
 
     request.add_action(action)
 

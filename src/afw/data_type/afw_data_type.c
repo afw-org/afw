@@ -1414,7 +1414,7 @@ impl_afw_data_type_array_clone_internal(
             break;
         }
         cloned_value = afw_value_clone(value, p, xctx);
-        afw_array_add_value(to, cloned_value, xctx);
+        afw_array_push_value(to, cloned_value, xctx);
     }
 }
 

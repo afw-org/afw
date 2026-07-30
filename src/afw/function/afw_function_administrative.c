@@ -60,7 +60,7 @@ afw_function_execute_flag_get_active(
         i++)
     {
         if (x->xctx->flags[i]) {
-            afw_array_add_internal(array, afw_data_type_string,
+            afw_array_push_internal(array, afw_data_type_string,
                 x->xctx->env->flag_by_index[i]->flag_id, x->xctx);
         }
     }
@@ -113,7 +113,7 @@ afw_function_execute_flag_get_active_defaults(
         i++)
     {
         if (x->xctx->env->default_flags[i]) {
-            afw_array_add_internal(array, afw_data_type_string,
+            afw_array_push_internal(array, afw_data_type_string,
                 x->xctx->env->flag_by_index[i]->flag_id, x->xctx);
         }
     }
@@ -174,7 +174,7 @@ afw_function_execute_flag_get_defaults(
             for (flag_id = env_internal->default_flag_ids; *flag_id; flag_id++)
             {
                 s = afw_utf8_clone(*flag_id, x->p, x->xctx);
-                afw_array_add_internal(array, afw_data_type_string, s, x->xctx);
+                afw_array_push_internal(array, afw_data_type_string, s, x->xctx);
             }
         }
 

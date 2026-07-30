@@ -1831,11 +1831,11 @@ def write_c_section(fd, prefix, obj):
         fd.write('\n')
         if ctype.endswith('*'):
             fd.write('    internal = value;\n')
-            fd.write('    afw_array_setter_add_internal(setter, \n')
+            fd.write('    afw_array_setter_push_internal(setter, \n')
             fd.write('        afw_data_type_' + id + ',\n')
             fd.write('        (const void *)&internal, xctx);\n')
         else:
-            fd.write('    afw_array_setter_add_internal(setter, \n')
+            fd.write('    afw_array_setter_push_internal(setter, \n')
             fd.write('        afw_data_type_' + id + ',\n')
             fd.write('        (const void *)value, xctx);\n')
         fd.write('}\n')

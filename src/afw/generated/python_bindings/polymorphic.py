@@ -636,6 +636,35 @@ def floor(session, number):
 
     return response['actions'][0]['result']
 
+def freeze(session, value):
+    """
+    Make <dataType> value immutable
+
+    Set a `<dataType>` value immutable so further mutation throws. If already
+    immutable, has no effect. Returns the same value.
+
+    Args:
+        value (object): The `<dataType>` value to freeze.
+
+    Returns:
+        object: The same value, now immutable.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "freeze",
+        "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def ge(session, arg1, arg2):
     """
     Checks for greater than or equal

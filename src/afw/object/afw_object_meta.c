@@ -608,7 +608,7 @@ afw_object_meta_add_error(
     }
 
     value = afw_value_create_unmanaged_string(message, instance->p, xctx);
-    afw_array_add_value(errors, value, xctx);
+    afw_array_push_value(errors, value, xctx);
 }
 
 
@@ -782,7 +782,7 @@ afw_object_meta_add_property_error(
     }
 
     value = afw_value_create_unmanaged_string(message, instance->p, xctx);
-    afw_array_add_value(errors, value, xctx);
+    afw_array_push_value(errors, value, xctx);
 }
 
 AFW_DEFINE(void)

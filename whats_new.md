@@ -6,10 +6,21 @@ Internal agent rules, Cursor docs, and pure test-infrastructure work are omitted
 
 ---
 
+## Rebuild out-of-tree commands and extensions
+
+Several changes on this branch update **libafw** public interfaces and generated bindings (value/memory work, **array setter** reshape for issue **#55**, and related headers).
+
+If you maintain **anything that links AFW outside a full in-tree rebuild** — extension **DSOs**, custom **commands**, or other binaries that load `libafw` — **rebuild and reinstall them against this AFW install**. Mixing old DSOs/commands with a new `libafw` (or the reverse) can fail at load time or misbehave at runtime.
+
+In-tree extensions and the `afw` / `afwfcgi` commands built with the same `./afwdev build --cdev` / `--fulldev` install are fine. Individual sections below also call this out where the ABI surface changed.
+
+---
+
 ## Highlights
 
 | Area | What changed |
 |------|----------------|
+| **Object / array helpers (#55)** | `keys` / `values` / `entries`, `at`, `push`/`pop`/`shift`/`unshift`, `splice`, `freeze`, `every`/`some` — **recompile** out-of-tree commands/extensions |
 | **Qualified variables** | `qualifier()` / `qualifiers()` return **fresh listable snapshots** (issue **#9**) |
 | **Retrieve arrays** | Optional **`maxObjects`** on materializing `retrieve_objects` (default **100**; issue **#49**) |
 | **Admin / JS client** | `AfwModel` passes **`maxObjects: 0`** for full metadata catalogs so admin loads after #49 |
@@ -23,6 +34,63 @@ Internal agent rules, Cursor docs, and pure test-infrastructure work are omitted
 | **Templates** | Compile-time substitution `#{…}` docs and tests; backtick `` `\#` `` / `` `\$` `` match raw templates (issue **#97**) |
 | **C builders / afwdev** | Richer C API Doxygen, package **0.12.2**, `afwdev build --fulldev` (issue **#1**) |
 | **Value / memory (α/β)** | Incremental issue **#2** work: permanent scalar reuse, dual-face object/array values, safer managed object value release — **recompile** out-of-tree commands/extensions against the new libafw |
+
+---
+
+## Object and array helpers (issue #55)
+
+**Issue #55** on `mgg-develop` (branch `issue-#55`).
+
+Adaptive Script gains common object/array helpers and stack/queue-style mutators. These are **Adaptive functions** registered in the environment (with optional `value->method(...)` sugar when the function is a data-type method).
+
+### Rebuild / recompile requirement
+
+This work changes the **C `afw_array_setter` interface** (e.g. `add_value` → `push_value`, new `pop_value` / `shift_value`, signed indexes) and adds core function bindings. **Out-of-tree commands and extensions must be recompiled** against the new libafw (see the top callout).
+
+### Object
+
+| Function | Role |
+|----------|------|
+| **`keys(object)`** | Array of property names |
+| **`values(object)`** | Array of property values |
+| **`entries(object)`** | Array of `[name, value]` pairs (each pair is a two-element array) |
+| **`freeze(object)`** | Make the object immutable (also works on arrays; see below) |
+
+Also available as methods when useful, e.g. `obj->keys()`, `obj->freeze()`.
+
+### Array
+
+| Function | Role |
+|----------|------|
+| **`at(array, index)`** | Value at index; negative indexes count from the end; out of range → **undefined** |
+| **`push(array, …values)`** | Append; returns the modified array |
+| **`pop(array)`** | Remove last; returns value or **undefined** if empty |
+| **`shift(array)`** | Remove first; returns value or **undefined** if empty |
+| **`unshift(array, …values)`** | Insert at front (order preserved); returns the modified array |
+| **`splice(array, startIndex, deleteCount?, …values)`** | Remove and/or insert; returns array of removed values |
+| **`freeze(array)`** | Make the array immutable |
+
+`push` / `pop` support LIFO stacks; `push` / `shift` support FIFO queues. Mutable ops require a non-immutable array (frozen targets throw).
+
+### Higher-order (names aligned with everyday use)
+
+| Function | Role |
+|----------|------|
+| **`every(predicate, array, …)`** | Same behavior as **`all_of`** (all pass) |
+| **`some(predicate, array, …)`** | Same behavior as **`any_of`** (any passes) |
+
+Prefer **`all_of` / `any_of`** when you need the multi-array / bag-style quantifier family; **`every` / `some`** are convenient names for the common single-array case.
+
+### C array face (for extension authors)
+
+Memory arrays keep an **O(1) `get_count`**. Setter renames and end ops (`push_value`, `pop_value` with optional `found`, etc.) are the C foundation under the script helpers. See interface docs for index and empty-pop contracts.
+
+### Handbook
+
+Language Reference: **Objects and Arrays**
+(`src/afw/doc/reference/language/objects-and-arrays.xml`), linked from the
+Language index. Function Reference pages for each function are generated from
+metadata when docs are built.
 
 ---
 

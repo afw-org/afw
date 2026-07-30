@@ -166,6 +166,36 @@ def clone_object(session, value):
 
     return response['actions'][0]['result']
 
+def entries(session, object):
+    """
+    Property name/value pairs of an object
+
+    Return an array of property entries for an object. Each entry is a
+    two-element array [name, value] where name is a string. The order matches
+    keys() for the same object.
+
+    Args:
+        object (dict): Object to list property entries from.
+
+    Returns:
+        list: Array of [name, value] pair arrays.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "entries",
+        "object": object
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def eq_object(session, arg1, arg2):
     """
     Checks for equal
@@ -223,6 +253,35 @@ def eqx_object(session, arg1, arg2):
         "function": "eqx<object>",
         "arg1": arg1,
         "arg2": arg2
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def freeze_object(session, value):
+    """
+    Make object value immutable
+
+    Set a object value immutable so further mutation throws. If already
+    immutable, has no effect. Returns the same value.
+
+    Args:
+        value (dict): The object value to freeze.
+
+    Returns:
+        dict: The same value, now immutable.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "freeze<object>",
+        "value": value
     }
 
     request.add_action(action)
@@ -315,6 +374,35 @@ def is_object(session, value):
     action = {
         "function": "is<object>",
         "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def keys(session, object):
+    """
+    Property names of an object
+
+    Return an array of the property names of an object. The order of names is
+    the object's property iteration order.
+
+    Args:
+        object (dict): Object to list property names from.
+
+    Returns:
+        list: Array of property name strings.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "keys",
+        "object": object
     }
 
     request.add_action(action)
@@ -703,6 +791,35 @@ def to_string_object(session, value):
     action = {
         "function": "to_string<object>",
         "value": value
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def values(session, object):
+    """
+    Property values of an object
+
+    Return an array of the property values of an object. The order matches
+    keys() for the same object.
+
+    Args:
+        object (dict): Object to list property values from.
+
+    Returns:
+        list: Array of property values.
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "values",
+        "object": object
     }
 
     request.add_action(action)

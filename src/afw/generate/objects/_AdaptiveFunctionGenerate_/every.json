@@ -1,0 +1,26 @@
+{
+    "additionalArgCheck": true,
+    "brief": "All values pass a test",
+    "category": "higher_order_array",
+    "description": "Returns true if all values in an array pass the predicate test. Same behavior as all_of for a single array (and additional parameters). Empty array yields true.",
+    "functionId": "every",
+    "functionLabel": "every",
+    "pure": true,
+    "useExecuteFunction": "afw_function_execute_all_of",
+    "parameters": [
+        {
+            "dataType": "function",
+            "dataTypeParameter": "(... values: any): boolean",
+            "description": "Called for each value in the first array in values or until false is returned.",
+            "name": "predicate"
+        },
+        {
+            "minArgs": 1,
+            "description": "Parameters passed to predicate with the first array passed one value at a time.",
+            "name": "values"
+        }
+    ],
+    "returns": {
+        "dataType": "boolean"
+    }
+}

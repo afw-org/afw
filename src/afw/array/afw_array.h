@@ -358,14 +358,28 @@ afw_array_determine_data_type_and_set_immutable(
 
 
 /**
- * @brief Call method add of interface afw_array_setter
+ * @brief Append value at end (push back / enqueue).
+ * @param instance Pointer to this value array instance.
+ * @param value A value.
+ * @param xctx of caller.
+ */
+AFW_DECLARE(void)
+afw_array_push_value(
+    const afw_array_t *instance,
+    const afw_value_t *value,
+    afw_xctx_t *xctx);
+
+
+
+/**
+ * @brief Append internal value at end (typed push).
  * @param instance Pointer to this value array instance.
  * @param data_type of internal.
  * @param internal A value.
  * @param xctx of caller.
  */
 AFW_DECLARE(void)
-afw_array_add_internal(
+afw_array_push_internal(
     const afw_array_t *instance,
     const afw_data_type_t *data_type,
     const void *internal,
@@ -374,13 +388,102 @@ afw_array_add_internal(
 
 
 /**
- * @brief Call method add_value of interface afw_array_setter
+ * @brief Remove and return last value (pop back).
  * @param instance Pointer to this value array instance.
+ * @param found Optional; if non-NULL, true if an element was removed.
+ * @param xctx of caller.
+ * @return Removed value (not cloned), or NULL if empty (or stored NULL).
+ *
+ * Pass found=NULL when empty vs removed-NULL need not be distinguished.
+ * Empty is found==false; a removed NULL/undefined slot is found==true.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_array_pop_value(
+    const afw_array_t *instance,
+    afw_boolean_t *found,
+    afw_xctx_t *xctx);
+
+
+
+/**
+ * @brief Remove and return first value (shift / dequeue).
+ * @param instance Pointer to this value array instance.
+ * @param found Optional; if non-NULL, true if an element was removed.
+ * @param xctx of caller.
+ * @return Removed value (not cloned), or NULL if empty (or stored NULL).
+ *
+ * Pass found=NULL when empty vs removed-NULL need not be distinguished.
+ * Empty is found==false; a removed NULL/undefined slot is found==true.
+ */
+AFW_DECLARE(const afw_value_t *)
+afw_array_shift_value(
+    const afw_array_t *instance,
+    afw_boolean_t *found,
+    afw_xctx_t *xctx);
+
+
+
+/**
+ * @brief Insert value before index (signed index; 0 = front / unshift).
+ * @param instance Pointer to this value array instance.
+ * @param index Zero-based or negative from end; 0 inserts at front.
  * @param value A value.
+ * @param xctx of caller.
+ *
+ * There is no separate afw_array_unshift_value helper. Unshift is:
+ *   afw_array_insert_value(array, 0, value, xctx);
+ * Index equal to the current count appends (same as push_value).
+ */
+AFW_DECLARE(void)
+afw_array_insert_value(
+    const afw_array_t *instance,
+    afw_integer_t index,
+    const afw_value_t *value,
+    afw_xctx_t *xctx);
+
+
+
+/**
+ * @brief Replace value at index (signed index).
+ * @param instance Pointer to this value array instance.
+ * @param index Zero-based or negative from end.
+ * @param value New value.
+ * @param xctx of caller.
+ *
+ * Stores as-is today (like object set_property). Issue #2: optional_release
+ * previous managed value once hold-on-store is wired.
+ */
+AFW_DECLARE(void)
+afw_array_set_value(
+    const afw_array_t *instance,
+    afw_integer_t index,
+    const afw_value_t *value,
+    afw_xctx_t *xctx);
+
+
+
+/**
+ * @brief Remove value at index (signed index).
+ * @param instance Pointer to this value array instance.
+ * @param index Zero-based or negative from end.
  * @param xctx of caller.
  */
 AFW_DECLARE(void)
-afw_array_add_value(
+afw_array_remove_value_by_index(
+    const afw_array_t *instance,
+    afw_integer_t index,
+    afw_xctx_t *xctx);
+
+
+
+/**
+ * @brief Remove first equal value (content remove).
+ * @param instance Pointer to this value array instance.
+ * @param value Value to match.
+ * @param xctx of caller.
+ */
+AFW_DECLARE(void)
+afw_array_remove_value(
     const afw_array_t *instance,
     const afw_value_t *value,
     afw_xctx_t *xctx);
@@ -388,19 +491,7 @@ afw_array_add_value(
 
 
 /**
- * @brief Call method remove_all_values of interface afw_array_setter
- * @param instance Pointer to this value array instance.
- * @param xctx of caller.
- */
-AFW_DECLARE(void)
-afw_array_remove_all_values(
-    const afw_array_t *instance,
-    afw_xctx_t *xctx);
-
-
-
-/**
- * @brief Call method remove of interface afw_array_setter
+ * @brief Remove first matching internal value (typed content remove).
  * @param instance Pointer to this value array instance.
  * @param data_type of internal.
  * @param internal A value.
@@ -416,30 +507,13 @@ afw_array_remove_internal(
 
 
 /**
- * @brief Call method remove_value of interface afw_array_setter
+ * @brief Remove all values (clear).
  * @param instance Pointer to this value array instance.
- * @param value Value.
  * @param xctx of caller.
  */
 AFW_DECLARE(void)
-afw_array_remove_value(
+afw_array_remove_all_values(
     const afw_array_t *instance,
-    const afw_value_t *value,
-    afw_xctx_t *xctx);
-
-
-/**
- * @brief Call method set_value_by_index of interface afw_array_setter
- * @param instance Pointer to this value array instance.
- * @param index
- * @param value
- * @param xctx of caller.
- */
-AFW_DECLARE(void)
-afw_array_set_value_by_index(
-    const afw_array_t *instance,
-    afw_size_t index,
-    const afw_value_t *value,
     afw_xctx_t *xctx);
 
 

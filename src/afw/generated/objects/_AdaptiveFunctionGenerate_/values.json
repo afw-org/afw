@@ -1,0 +1,22 @@
+{
+    "afwCamelCaseFunctionLabel": "afwValues",
+    "brief": "Property values of an object",
+    "camelCaseFunctionLabel": "values",
+    "category": "object",
+    "dataTypeMethod": true,
+    "description": "Return an array of the property values of an object. The order matches keys() for the same object.",
+    "functionId": "values",
+    "functionLabel": "values",
+    "parameters": [
+        {
+            "dataType": "object",
+            "description": "Object to list property values from.",
+            "name": "object"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "array",
+        "description": "Array of property values."
+    }
+}

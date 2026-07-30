@@ -1,0 +1,23 @@
+{
+    "afwCamelCaseFunctionLabel": "afwKeys",
+    "brief": "Property names of an object",
+    "camelCaseFunctionLabel": "keys",
+    "category": "object",
+    "dataTypeMethod": true,
+    "description": "Return an array of the property names of an object. The order of names is the object's property iteration order.",
+    "functionId": "keys",
+    "functionLabel": "keys",
+    "parameters": [
+        {
+            "dataType": "object",
+            "description": "Object to list property names from.",
+            "name": "object"
+        }
+    ],
+    "pure": true,
+    "returns": {
+        "dataType": "array",
+        "dataTypeParameter": "string",
+        "description": "Array of property name strings."
+    }
+}

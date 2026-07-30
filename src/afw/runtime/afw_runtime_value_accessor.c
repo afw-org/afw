@@ -434,7 +434,7 @@ afw_runtime_value_accessor_applicable_flags(
     for (i = 0; i < self->applicable_flags_count_allocated; i++) {
         if (self->applicable_flags[i]) {
             flag = afw_flag_get_by_index(i, xctx);
-            afw_array_add_value(list, flag->flag_id_value, xctx);
+            afw_array_push_value(list, flag->flag_id_value, xctx);
         }
     }
 
@@ -533,7 +533,7 @@ afw_runtime_value_accessor_null_terminated_array_of_utf8_z_key_value_pair_object
             value = afw_value_create_string_from_u8z(*s_z, p, xctx);
             afw_object_set_property(object, property_name, value, xctx);
         }
-        afw_array_add_value(list,
+        afw_array_push_value(list,
             afw_value_create_unmanaged_object(object, p, xctx), xctx);
     }
 

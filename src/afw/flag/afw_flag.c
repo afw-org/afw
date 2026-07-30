@@ -127,11 +127,11 @@ impl_flag_add_included_by(
                         afw_data_type_string, p, xctx),
                     p, xctx);
         }
-        afw_array_add_value(flag->included_by_value->internal,
+        afw_array_push_value(flag->included_by_value->internal,
             included_by->flag_id_value, xctx);
 
         /* Add flag to includes of included_by. */
-        afw_array_add_value(included_by->includes_value->internal,
+        afw_array_push_value(included_by->includes_value->internal,
             flag->flag_id_value, xctx);
     }
 

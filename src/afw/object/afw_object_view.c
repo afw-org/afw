@@ -286,7 +286,7 @@ impl_make_value(
             }
             value = impl_make_value(self, origin, property_name,
                 original_entry_value, xctx);
-            afw_array_add_value(list, value, xctx);
+            afw_array_push_value(list, value, xctx);
         }
         result = afw_value_create_unmanaged_array(list, p, xctx);
     }
@@ -675,7 +675,7 @@ impl_additional_object_option_processing(
             if (!path) break;
 
             v = impl_shared_path_value(self, path, xctx);
-            afw_array_add_value(resolved_parent_paths->internal, v, xctx);
+            afw_array_push_value(resolved_parent_paths->internal, v, xctx);
         }
 
         if (AFW_OBJECT_OPTION_IS(options, composite)) {

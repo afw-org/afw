@@ -2682,9 +2682,26 @@ impl_afw_content_type =
   <interface name="afw_array_setter" id="afwls">
 
     <description>
-      Mutable face for an adaptive array (set/add/remove elements). Obtained
-      when the array implementation allows mutation. Call methods via
-      afw_array_setter_*() macros. See group afw_array.
+      Mutable face for an adaptive array used as a growable sequence (vector)
+      and as a double-ended queue (stack/queue). Obtained when the array
+      implementation allows mutation; NULL from get_setter means immutable.
+      Call methods via afw_array_setter_*() macros. Convenience helpers
+      afw_array_*() on the array instance call through get_setter. See group
+      afw_array.
+
+      Indexes are afw_integer_t. Non-negative values are zero-based from the
+      start. Negative values count from the end (-1 is the last element for
+      get/set/remove, or insert before the last element for insert). After
+      that adjustment, insert allows index equal to the current count (append);
+      set and remove_value_by_index require a valid existing element index.
+
+      End operations: push_value appends (LIFO push / FIFO enqueue);
+      pop_value removes and returns the last value (LIFO pop);
+      shift_value removes and returns the first value (FIFO dequeue).
+      There is no separate unshift method on this interface; use
+      insert_value(instance, 0, value, xctx) to insert at the front
+      (unshift). Content remove_value removes the first equal value
+      (bag-style), not by position.
     </description>
 
     <variable name="array" type="const afw_array_t *">
@@ -2693,21 +2710,23 @@ impl_afw_content_type =
       </description>
     </variable>
 
+    <!-- Seal -->
+
     <method name="set_immutable">
 
       <description>
-        Set array to immutable. No error is throw if already immutable.
+        Set array to immutable. No error is thrown if already immutable.
 
-        Once an array is set to immutable, all other set calls will throw
-        an error.
+        Once an array is set to immutable, all other setter methods will
+        throw an error (and get_setter returns NULL).
       </description>
 
       <parameter name="instance" type="const afw_array_setter_t *">
-    <description>Pointer to this object instance.</description>
+        <description>Pointer to this array setter instance.</description>
       </parameter>
 
       <parameter name="xctx" type="afw_xctx_t *">
-    <description>This is the caller's xctx.</description>
+        <description>This is the caller's xctx.</description>
       </parameter>
       <return type="void"/>
 
@@ -2719,59 +2738,53 @@ impl_afw_content_type =
       <description>
         Determine data type of entries then set array to immutable.
 
-        An error is throw if already immutable.
+        An error is thrown if already immutable.
 
-        If data type of values in array is not already known and all
-        values is array have the same data type, make the array an array of
-        that data type.
+        If the data type of values in the array is not already known and all
+        values have the same data type, make the array an array of that data
+        type.
 
-        Once an array is set to immutable, all other set calls will throw
-        an error.
+        Once an array is set to immutable, all other setter methods will
+        throw an error.
       </description>
 
       <parameter name="instance" type="const afw_array_setter_t *">
-    <description>Pointer to this object instance.</description>
+        <description>Pointer to this array setter instance.</description>
       </parameter>
 
       <parameter name="xctx" type="afw_xctx_t *">
-    <description>This is the caller's xctx.</description>
+        <description>This is the caller's xctx.</description>
       </parameter>
 
       <return type="const afw_data_type_t *">
-    <description>
-          This is the data type of all values in the array or NULL
-          if unknown or different.
+        <description>
+          Data type of all values in the array, or NULL if unknown or mixed.
         </description>
       </return>
 
     </method>
 
 
-    <method name="add_internal">
+    <!-- Ends: push / pop / shift (deque) -->
+
+    <method name="push_value">
 
       <description>
-        Add a value to an array that only holds one data type using its
-        internal value.
+        Append a value at the end of the array (push back). This is the
+        primary growth operation for stacks (LIFO push) and queues (FIFO
+        enqueue).
       </description>
 
       <parameter name="instance" type="const afw_array_setter_t *">
-    <description>Pointer to this value array instance.</description>
+        <description>Pointer to this array setter instance.</description>
       </parameter>
 
-      <parameter name="data_type" type="const afw_data_type_t *">
-    <description>
-          The data type of internal.
-        </description>
-      </parameter>
-
-      <parameter name="internal" type="const void *">
-    <description>
-          The internal value to add of type data_type->cType.
-        </description>
+      <parameter name="value" type="const afw_value_t *">
+        <description>Value to append. Lifetime must cover the array.</description>
       </parameter>
 
       <parameter name="xctx" type="afw_xctx_t *">
-    <description>This is the caller's xctx.</description>
+        <description>This is the caller's xctx.</description>
       </parameter>
 
       <return type="void" />
@@ -2779,22 +2792,166 @@ impl_afw_content_type =
     </method>
 
 
-    <method name="add_value">
+    <method name="push_internal">
 
       <description>
-        Add a value to an array.
+        Append an internal value of a single data type at the end of the
+        array (typed push_value).
       </description>
 
       <parameter name="instance" type="const afw_array_setter_t *">
-    <description>Pointer to this value array instance.</description>
+        <description>Pointer to this array setter instance.</description>
       </parameter>
 
-      <parameter name="value" type="const afw_value_t *">
-    <description>A value.</description>
+      <parameter name="data_type" type="const afw_data_type_t *">
+        <description>Data type of internal.</description>
+      </parameter>
+
+      <parameter name="internal" type="const void *">
+        <description>Internal value of type data_type->cType.</description>
       </parameter>
 
       <parameter name="xctx" type="afw_xctx_t *">
-    <description>This is the caller's xctx.</description>
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+
+    <method name="pop_value">
+
+      <description>
+        Remove the last value from the array and return it (pop back / LIFO
+        pop). If the array is empty, returns NULL without error and sets
+        *found to false when found is non-NULL.
+
+        Optional found (like object get_property_as_* helpers): pass a
+        pointer to receive whether an element was removed. Pass NULL if the
+        caller does not need that distinction. This matters when a stored
+        value pointer can itself be NULL or undefined: empty is
+        found==false; a removed NULL/undefined slot is found==true with a
+        NULL or undefined return. For typical Adaptive Script use, empty
+        returns NULL which is_nullish / is_undefined treat as undefined
+        (ECMAScript-like empty pop). Prefer found or the return value over
+        get_count() as an empty guard; get_count() can be O(n) on some
+        implementations (memory ring).
+
+        When an element is removed, the returned pointer is the value that
+        was stored; it is not cloned. Its lifetime remains that of the value
+        and its pool; the array no longer retains that slot.
+      </description>
+
+      <parameter name="instance" type="const afw_array_setter_t *">
+        <description>Pointer to this array setter instance.</description>
+      </parameter>
+
+      <parameter name="found" type="afw_boolean_t *">
+        <description>
+          Optional. If non-NULL, set true if an element was removed, false if
+          the array was empty. May be NULL when the caller does not need this.
+        </description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="const afw_value_t *">
+        <description>
+          The value removed from the end, or NULL if the array was empty (or
+          if a NULL value pointer was stored and removed).
+        </description>
+      </return>
+
+    </method>
+
+
+    <method name="shift_value">
+
+      <description>
+        Remove the first value from the array and return it (pop front / FIFO
+        dequeue). If the array is empty, returns NULL without error and sets
+        *found to false when found is non-NULL.
+
+        Optional found (like object get_property_as_* helpers): pass a
+        pointer to receive whether an element was removed. Pass NULL if the
+        caller does not need that distinction. Empty is found==false; a
+        removed NULL/undefined slot is found==true. For typical Adaptive
+        Script use, empty returns NULL which is_nullish treats as undefined
+        (ECMAScript-like empty shift). Prefer found or the return value over
+        get_count() as an empty guard.
+
+        When an element is removed, the returned pointer is the value that
+        was stored; it is not cloned. Its lifetime remains that of the value
+        and its pool; the array no longer retains that slot.
+      </description>
+
+      <parameter name="instance" type="const afw_array_setter_t *">
+        <description>Pointer to this array setter instance.</description>
+      </parameter>
+
+      <parameter name="found" type="afw_boolean_t *">
+        <description>
+          Optional. If non-NULL, set true if an element was removed, false if
+          the array was empty. May be NULL when the caller does not need this.
+        </description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="const afw_value_t *">
+        <description>
+          The value removed from the front, or NULL if the array was empty (or
+          if a NULL value pointer was stored and removed).
+        </description>
+      </return>
+
+    </method>
+
+
+    <!-- By index -->
+
+    <method name="insert_value">
+
+      <description>
+        Insert a value before the given index. Existing elements at and after
+        the index shift toward the end.
+
+        There is no separate unshift method on afw_array_setter. To unshift
+        (insert at the front), call insert_value with index 0:
+
+          afw_array_setter_insert_value(setter, 0, value, xctx);
+
+        or the array convenience helper:
+
+          afw_array_insert_value(array, 0, value, xctx);
+
+        Index equal to the current count (after negative adjustment) appends,
+        same as push_value. Negative indexes count from the end (see interface
+        description for insert index rules).
+      </description>
+
+      <parameter name="instance" type="const afw_array_setter_t *">
+        <description>Pointer to this array setter instance.</description>
+      </parameter>
+
+      <parameter name="index" type="afw_integer_t">
+        <description>
+          Zero-based insert position, or negative from the end. Use 0 to
+          unshift (front). See interface description for index rules.
+        </description>
+      </parameter>
+
+      <parameter name="value" type="const afw_value_t *">
+        <description>Value to insert. Lifetime must cover the array.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
       </parameter>
 
       <return type="void" />
@@ -2805,34 +2962,32 @@ impl_afw_content_type =
     <method name="insert_internal">
 
       <description>
-        Insert a value to an array that only holds one data type using its
-        internal value at a specified index.
+        Insert an internal value of a single data type before the given index
+        (typed insert_value). Index 0 is unshift; index equal to count is
+        append (same rules as insert_value).
       </description>
 
       <parameter name="instance" type="const afw_array_setter_t *">
-    <description>Pointer to this value array instance.</description>
+        <description>Pointer to this array setter instance.</description>
+      </parameter>
+
+      <parameter name="index" type="afw_integer_t">
+        <description>
+          Zero-based insert position, or negative from the end. See interface
+          description for index rules.
+        </description>
       </parameter>
 
       <parameter name="data_type" type="const afw_data_type_t *">
-    <description>
-          The data type of internal.
-        </description>
+        <description>Data type of internal.</description>
       </parameter>
 
       <parameter name="internal" type="const void *">
-    <description>
-          The internal value to add of type data_type->cType.
-        </description>
-      </parameter>
-
-      <parameter name="index" type="afw_size_t">
-    <description>
-          The zero based index for insert.
-        </description>
+        <description>Internal value of type data_type->cType.</description>
       </parameter>
 
       <parameter name="xctx" type="afw_xctx_t *">
-    <description>This is the caller's xctx.</description>
+        <description>This is the caller's xctx.</description>
       </parameter>
 
       <return type="void" />
@@ -2840,28 +2995,117 @@ impl_afw_content_type =
     </method>
 
 
-    <method name="insert_value">
+    <method name="set_value">
 
       <description>
-        Insert a value to an array at a specified index.
+        Replace the value at the given index. Throws if the index does not
+        refer to an existing element (does not grow the array). The new value
+        is stored as-is (same policy as object set_property for now).
+
+        Issue #2: when hold-on-store lands, implementations should
+        optional_release the previous managed slot value before replace.
       </description>
 
       <parameter name="instance" type="const afw_array_setter_t *">
-    <description>Pointer to this value array instance.</description>
+        <description>Pointer to this array setter instance.</description>
+      </parameter>
+
+      <parameter name="index" type="afw_integer_t">
+        <description>
+          Zero-based element index, or negative from the end (-1 is last).
+        </description>
       </parameter>
 
       <parameter name="value" type="const afw_value_t *">
-    <description>A value.</description>
+        <description>New value. Lifetime must cover the array.</description>
       </parameter>
 
-      <parameter name="index" type="afw_size_t">
-    <description>
-          The zero based index for insert.
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+
+    <method name="remove_value_by_index">
+
+      <description>
+        Remove the value at the given index. Following elements shift toward
+        the front. Throws if the index does not refer to an existing element.
+        Does not return the removed value; use pop_value, shift_value, or
+        get_entry_value before remove when the value is needed.
+      </description>
+
+      <parameter name="instance" type="const afw_array_setter_t *">
+        <description>Pointer to this array setter instance.</description>
+      </parameter>
+
+      <parameter name="index" type="afw_integer_t">
+        <description>
+          Zero-based element index, or negative from the end (-1 is last).
         </description>
       </parameter>
 
       <parameter name="xctx" type="afw_xctx_t *">
-    <description>This is the caller's xctx.</description>
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+
+    <!-- By content / clear -->
+
+    <method name="remove_value">
+
+      <description>
+        Remove the first value that compares equal to the given value
+        (content remove). Throws if no equal value is found. This is not a
+        stack pop; use pop_value or remove_value_by_index for position-based
+        removal.
+      </description>
+
+      <parameter name="instance" type="const afw_array_setter_t *">
+        <description>Pointer to this array setter instance.</description>
+      </parameter>
+
+      <parameter name="value" type="const afw_value_t *">
+        <description>Value to match with afw_value_equal.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
+      </parameter>
+
+      <return type="void" />
+
+    </method>
+
+
+    <method name="remove_internal">
+
+      <description>
+        Remove the first entry whose internal value of the given data type
+        matches (typed content remove_value).
+      </description>
+
+      <parameter name="instance" type="const afw_array_setter_t *">
+        <description>Pointer to this array setter instance.</description>
+      </parameter>
+
+      <parameter name="data_type" type="const afw_data_type_t *">
+        <description>Data type of internal.</description>
+      </parameter>
+
+      <parameter name="internal" type="const void *">
+        <description>Internal value of type data_type->cType to match.</description>
+      </parameter>
+
+      <parameter name="xctx" type="afw_xctx_t *">
+        <description>This is the caller's xctx.</description>
       </parameter>
 
       <return type="void" />
@@ -2872,97 +3116,15 @@ impl_afw_content_type =
     <method name="remove_all_values">
 
       <description>
-        Remove all values from an array.
+        Remove all values from the array (clear).
       </description>
 
       <parameter name="instance" type="const afw_array_setter_t *">
-    <description>Pointer to this value array instance.</description>
+        <description>Pointer to this array setter instance.</description>
       </parameter>
 
       <parameter name="xctx" type="afw_xctx_t *">
-    <description>This is the caller's xctx.</description>
-      </parameter>
-
-      <return type="void" />
-
-    </method>
-
-    <method name="remove_internal">
-
-      <description>
-        Remove a single value from array that only holds one data type using its
-        internal value.
-      </description>
-
-      <parameter name="instance" type="const afw_array_setter_t *">
-    <description>
-          Pointer to this value array instance.
-        </description>
-      </parameter>
-
-      <parameter name="data_type" type="const afw_data_type_t *">
-    <description>
-          The data type of internal.
-        </description>
-      </parameter>
-
-      <parameter name="internal" type="const void *">
-    <description>
-          The internal value to delete of type data_type->cType.
-        </description>
-      </parameter>
-
-      <parameter name="xctx" type="afw_xctx_t *">
-    <description>This is the caller's xctx.</description>
-      </parameter>
-
-      <return type="void" />
-
-    </method>
-
-    <method name="remove_value">
-
-      <description>
-        Remove a single value from array.
-      </description>
-
-      <parameter name="instance" type="const afw_array_setter_t *">
-    <description>Pointer to this value array instance.</description>
-      </parameter>
-
-      <parameter name="value" type="const afw_value_t *">
-    <description>Value.</description>
-      </parameter>
-
-      <parameter name="xctx" type="afw_xctx_t *">
-    <description>This is the caller's xctx.</description>
-      </parameter>
-
-      <return type="void" />
-
-    </method>
-
-
-    <method name="set_value_by_index">
-
-      <description>
-        Set a value by index.
-      </description>
-
-      <parameter name="instance" type="const afw_array_setter_t *">
-    <description>Pointer to this value array instance.</description>
-      </parameter>
-
-      <parameter name="index" type="afw_size_t">
-    <description>Index relative to 0.</description>
-      </parameter>
-
-      <parameter name="value" type="const afw_value_t *">
-    <description>Value.</description>
-      </parameter>
-
-      <parameter name="xctx" type="afw_xctx_t *">
-    <description>This is the caller's xctx.</description>
+        <description>This is the caller's xctx.</description>
       </parameter>
 
       <return type="void" />

@@ -67,7 +67,7 @@ afw_function_execute_add_entries(
             if (!value) {
                 break;
             }            
-            afw_array_add_value(target->internal, value, x->xctx);
+            afw_array_push_value(target->internal, value, x->xctx);
         }
     }
 
@@ -141,7 +141,7 @@ afw_function_execute_array(
                         break;
                     }
                     entry = afw_value_evaluate(entry, x->p, x->xctx);
-                    afw_array_add_value(array, entry, x->xctx);
+                    afw_array_push_value(array, entry, x->xctx);
                 }
             }
         }
@@ -149,7 +149,7 @@ afw_function_execute_array(
         /* If not an array expression, add evaluated argument as element. */
         else {
             entry = afw_value_evaluate(*arg, x->p, x->xctx);
-            afw_array_add_value(array, entry, x->xctx);
+            afw_array_push_value(array, entry, x->xctx);
         }
 
         afw_xctx_evaluation_stack_pop_parameter_number(x->xctx);
@@ -385,7 +385,7 @@ afw_function_execute_reverse(
         if (!value) {
             break;
         }
-        afw_array_setter_insert_value(setter, value, 0, x->xctx);
+        afw_array_setter_insert_value(setter, 0, value, x->xctx);
     }
     return afw_value_create_unmanaged_array(result_array, x->p, x->xctx);
 }
@@ -484,9 +484,362 @@ afw_function_execute_slice(
             AFW_THROW_ERROR_Z(general, "Expecting a value", x->xctx);
         }
         if (start <= count) {
-            afw_array_add_value(result_array, value, x->xctx);
+            afw_array_push_value(result_array, value, x->xctx);
         }
     }
     afw_array_determine_data_type_and_set_immutable(result_array, x->xctx);
     return afw_value_create_unmanaged_array(result_array, x->p, x->xctx);
+}
+
+
+
+/*
+ * Adaptive function: at
+ *
+ * afw_function_execute_at
+ *
+ * See afw_function_bindings.h for more information.
+ *
+ * Return the value at a zero-based index in an array. Negative indexes count
+ * from the end (-1 is the last element). If the index is out of range, the
+ * result is undefined.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function at(
+ *       array: array,
+ *       index: integer
+ *   ): any;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array) Array to index.
+ *
+ *   index - (integer) Zero-based index, or negative from the end.
+ *
+ * Returns:
+ *
+ *   (any dataType) The value at the index, or undefined if out of range.
+ */
+const afw_value_t *
+afw_function_execute_at(
+    afw_function_execute_t *x)
+{
+    const afw_value_array_t *array;
+    const afw_value_integer_t *index;
+    const afw_value_t *value;
+
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 1, array);
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(index, 2, integer);
+
+    value = afw_array_get_entry_value(array->internal, index->internal,
+        x->p, x->xctx);
+    return value ? value : afw_value_undefined;
+}
+
+
+
+/*
+ * Adaptive function: pop
+ *
+ * afw_function_execute_pop
+ *
+ * See afw_function_bindings.h for more information.
+ *
+ * Remove the last value from a mutable array and return it. If the array is
+ * empty, returns undefined.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters and has side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function pop(
+ *       array: array
+ *   ): any;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array) Target array. Must not be immutable.
+ *
+ * Returns:
+ *
+ *   (any dataType) The removed value, or undefined if the array was empty.
+ */
+const afw_value_t *
+afw_function_execute_pop(
+    afw_function_execute_t *x)
+{
+    const afw_value_array_t *array;
+    const afw_value_t *value;
+
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 1, array);
+
+    value = afw_array_pop_value(array->internal, NULL, x->xctx);
+    return value ? value : afw_value_undefined;
+}
+
+
+
+/*
+ * Adaptive function: push
+ *
+ * afw_function_execute_push
+ *
+ * See afw_function_bindings.h for more information.
+ *
+ * Append one or more values to the end of a mutable array (push back). Returns
+ * the modified array.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters and has side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function push(
+ *       array: array,
+ *       ...values: (array of any)
+ *   ): array;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array) Target array. Must not be immutable.
+ *
+ *   values - (0 or more any dataType) Values to append in order.
+ *
+ * Returns:
+ *
+ *   (array) The modified array.
+ */
+const afw_value_t *
+afw_function_execute_push(
+    afw_function_execute_t *x)
+{
+    const afw_value_array_t *array;
+    const afw_value_t *value;
+    afw_size_t i;
+
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 1, array);
+
+    for (i = 2; i <= x->argc; i++) {
+        AFW_FUNCTION_EVALUATE_PARAMETER(value, i);
+        afw_array_push_value(array->internal, value, x->xctx);
+    }
+
+    return &array->pub;
+}
+
+
+
+/*
+ * Adaptive function: shift
+ *
+ * afw_function_execute_shift
+ *
+ * See afw_function_bindings.h for more information.
+ *
+ * Remove the first value from a mutable array and return it. If the array is
+ * empty, returns undefined.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters and has side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function shift(
+ *       array: array
+ *   ): any;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array) Target array. Must not be immutable.
+ *
+ * Returns:
+ *
+ *   (any dataType) The removed value, or undefined if the array was empty.
+ */
+const afw_value_t *
+afw_function_execute_shift(
+    afw_function_execute_t *x)
+{
+    const afw_value_array_t *array;
+    const afw_value_t *value;
+
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 1, array);
+
+    value = afw_array_shift_value(array->internal, NULL, x->xctx);
+    return value ? value : afw_value_undefined;
+}
+
+
+
+/*
+ * Adaptive function: splice
+ *
+ * afw_function_execute_splice
+ *
+ * See afw_function_bindings.h for more information.
+ *
+ * Remove zero or more values starting at an index from a mutable array and
+ * optionally insert new values at that index. Returns an array of the removed
+ * values. Negative startIndex counts from the end. If deleteCount is omitted,
+ * all values from startIndex to the end are removed.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters and has side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function splice(
+ *       array: array,
+ *       startIndex: integer,
+ *       deleteCount?: integer,
+ *       ...values: (array of any)
+ *   ): array;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array) Target array. Must not be immutable.
+ *
+ *   startIndex - (integer) Zero-based start index, or negative from the end.
+ *
+ *   deleteCount - (optional integer) Number of values to remove. If omitted,
+ *       remove through the end of the array. Negative is treated as zero.
+ *
+ *   values - (0 or more any dataType) Values to insert at startIndex after
+ *       removals.
+ *
+ * Returns:
+ *
+ *   (array) Array of removed values, in original order.
+ */
+const afw_value_t *
+afw_function_execute_splice(
+    afw_function_execute_t *x)
+{
+    const afw_value_array_t *array;
+    const afw_value_integer_t *integer;
+    const afw_array_t *removed;
+    const afw_value_t *value;
+    afw_integer_t start;
+    afw_integer_t delete_count;
+    afw_integer_t count;
+    afw_integer_t i;
+    afw_size_t arg;
+
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 1, array);
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(integer, 2, integer);
+
+    count = (afw_integer_t)afw_array_get_count(array->internal, x->xctx);
+    start = integer->internal;
+    if (start < 0) {
+        start = count + start;
+        if (start < 0) {
+            start = 0;
+        }
+    }
+    else if (start > count) {
+        start = count;
+    }
+
+    if (AFW_FUNCTION_PARAMETER_IS_PRESENT(3)) {
+        AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(integer, 3, integer);
+        delete_count = integer->internal;
+        if (delete_count < 0) {
+            delete_count = 0;
+        }
+    }
+    else {
+        delete_count = count - start;
+    }
+    if (start + delete_count > count) {
+        delete_count = count - start;
+    }
+
+    removed = afw_array_create_generic(x->p, x->xctx);
+    for (i = 0; i < delete_count; i++) {
+        value = afw_array_get_entry_value(array->internal, start,
+            x->p, x->xctx);
+        if (value) {
+            afw_array_push_value(removed, value, x->xctx);
+        }
+        afw_array_remove_value_by_index(array->internal, start, x->xctx);
+    }
+
+    for (arg = 4; arg <= x->argc; arg++) {
+        AFW_FUNCTION_EVALUATE_PARAMETER(value, arg);
+        afw_array_insert_value(array->internal,
+            start + (afw_integer_t)(arg - 4), value, x->xctx);
+    }
+
+    return afw_value_create_unmanaged_array(removed, x->p, x->xctx);
+}
+
+
+
+/*
+ * Adaptive function: unshift
+ *
+ * afw_function_execute_unshift
+ *
+ * See afw_function_bindings.h for more information.
+ *
+ * Insert one or more values at the beginning of a mutable array, preserving the
+ * relative order of the inserted values. Returns the modified array.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters and has side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function unshift(
+ *       array: array,
+ *       ...values: (array of any)
+ *   ): array;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array) Target array. Must not be immutable.
+ *
+ *   values - (0 or more any dataType) Values to insert at the front, in order.
+ *
+ * Returns:
+ *
+ *   (array) The modified array.
+ */
+const afw_value_t *
+afw_function_execute_unshift(
+    afw_function_execute_t *x)
+{
+    const afw_value_array_t *array;
+    const afw_value_t *value;
+    afw_size_t i;
+    afw_integer_t insert_at;
+
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(array, 1, array);
+
+    /* Insert in order at 0, 1, 2, ... so relative order is preserved. */
+    insert_at = 0;
+    for (i = 2; i <= x->argc; i++) {
+        AFW_FUNCTION_EVALUATE_PARAMETER(value, i);
+        afw_array_insert_value(array->internal, insert_at, value, x->xctx);
+        insert_at++;
+    }
+
+    return &array->pub;
 }

@@ -677,7 +677,7 @@ afw_array_of_rfc822Name_add(
         AFW_LIST_ERROR_OBJECT_IMMUTABLE;
     }
 
-    afw_array_setter_add_internal(setter, 
+    afw_array_setter_push_internal(setter, 
         afw_data_type_rfc822Name,
         (const void *)value, xctx);
 }

@@ -1,0 +1,21 @@
+{
+    "brief": "Property names of an object",
+    "category": "object",
+    "dataTypeMethod": true,
+    "description": "Return an array of the property names of an object. The order of names is the object's property iteration order.",
+    "functionId": "keys",
+    "functionLabel": "keys",
+    "pure": true,
+    "parameters": [
+        {
+            "dataType": "object",
+            "description": "Object to list property names from.",
+            "name": "object"
+        }
+    ],
+    "returns": {
+        "dataType": "array",
+        "dataTypeParameter": "string",
+        "description": "Array of property name strings."
+    }
+}

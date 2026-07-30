@@ -1,0 +1,40 @@
+{
+    "brief": "Change array contents by removing and/or inserting values",
+    "category": "array",
+    "dataTypeMethod": true,
+    "description": "Remove zero or more values starting at an index from a mutable array and optionally insert new values at that index. Returns an array of the removed values. Negative startIndex counts from the end. If deleteCount is omitted, all values from startIndex to the end are removed.",
+    "functionId": "splice",
+    "functionLabel": "splice",
+    "pure": false,
+    "parameters": [
+        {
+            "dataType": "array",
+            "description": "Target array. Must not be immutable.",
+            "name": "array"
+        },
+        {
+            "dataType": "integer",
+            "description": "Zero-based start index, or negative from the end.",
+            "name": "startIndex"
+        },
+        {
+            "dataType": "integer",
+            "description": "Number of values to remove. If omitted, remove through the end of the array. Negative is treated as zero.",
+            "name": "deleteCount",
+            "optional": true
+        },
+        {
+            "minArgs": 0,
+            "description": "Values to insert at startIndex after removals.",
+            "name": "values",
+            "optional": true
+        }
+    ],
+    "returns": {
+        "dataType": "array",
+        "description": "Array of removed values, in original order."
+    },
+    "sideEffects": [
+        "Target array is modified."
+    ]
+}

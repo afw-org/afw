@@ -97,7 +97,7 @@ afw_curl_internal_write_response_headers_cb(
 
     else 
     {
-        afw_array_add_value(appdata->headers,
+        afw_array_push_value(appdata->headers,
             afw_value_create_unmanaged_string(
                 afw_utf8_create_copy(buffer, nitems, appdata->pool, appdata->xctx),
                 appdata->pool, appdata->xctx),

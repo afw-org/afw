@@ -59,6 +59,28 @@ export function afwArray(client : any, values : any) : any {
 }
 
 /**
+ * Return the value at a zero-based index in an array. Negative indexes count
+ * from the end (-1 is the last element). If the index is out of range, the
+ * result is undefined.
+ * 
+ * @param {array} array - Array to index.
+ * 
+ * @param {integer} index - Zero-based index, or negative from the end.
+ * 
+ * @returns {} The value at the index, or undefined if out of range.
+ */
+export function afwAt(client : any, array : any[], index : number) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "at";
+    _action["array"] = array;
+    _action["index"] = index;
+
+    return client.perform(_action);
+}
+
+/**
  * Takes any number of array values and returns an array of array.
  * 
  * @param {array} values -
@@ -151,6 +173,24 @@ export function afwEqxArray(client : any, arg1 : any[], arg2 : any) : any {
     _action["function"] = "eqx<array>";
     _action["arg1"] = arg1;
     _action["arg2"] = arg2;
+
+    return client.perform(_action);
+}
+
+/**
+ * Set a array value immutable so further mutation throws. If already
+ * immutable, has no effect. Returns the same value.
+ * 
+ * @param {array} value - The array value to freeze.
+ * 
+ * @returns {array} The same value, now immutable.
+ */
+export function afwFreezeArray(client : any, value : any[]) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "freeze<array>";
+    _action["value"] = value;
 
     return client.perform(_action);
 }
@@ -369,6 +409,47 @@ export function afwNexArray(client : any, arg1 : any[], arg2 : any) : any {
 }
 
 /**
+ * Remove the last value from a mutable array and return it. If the array is
+ * empty, returns undefined.
+ * 
+ * @param {array} array - Target array. Must not be immutable.
+ * 
+ * @returns {} The removed value, or undefined if the array was empty.
+ */
+export function afwPop(client : any, array : any[]) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "pop";
+    _action["array"] = array;
+
+    return client.perform(_action);
+}
+
+/**
+ * Append one or more values to the end of a mutable array (push back).
+ * Returns the modified array.
+ * 
+ * @param {array} array - Target array. Must not be immutable.
+ * 
+ * @param {} values - Values to append in order.
+ * 
+ * @returns {array} The modified array.
+ */
+export function afwPush(client : any, array : any[], values? : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "push";
+    _action["array"] = array;
+
+    if (values !== undefined)
+        _action["values"] = values;
+
+    return client.perform(_action);
+}
+
+/**
  * Reverse the order of the elements in an array. If the array is typed, the
  * resulting array will be the same type.
  * 
@@ -381,6 +462,24 @@ export function afwReverse(client : any, array : any[]) : any {
     let _action : IAnyObject = {};
 
     _action["function"] = "reverse";
+    _action["array"] = array;
+
+    return client.perform(_action);
+}
+
+/**
+ * Remove the first value from a mutable array and return it. If the array is
+ * empty, returns undefined.
+ * 
+ * @param {array} array - Target array. Must not be immutable.
+ * 
+ * @returns {} The removed value, or undefined if the array was empty.
+ */
+export function afwShift(client : any, array : any[]) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "shift";
     _action["array"] = array;
 
     return client.perform(_action);
@@ -422,6 +521,41 @@ export function afwSlice(client : any, array : any[], startIndex? : number, endI
 }
 
 /**
+ * Remove zero or more values starting at an index from a mutable array and
+ * optionally insert new values at that index. Returns an array of the removed
+ * values. Negative startIndex counts from the end. If deleteCount is omitted,
+ * all values from startIndex to the end are removed.
+ * 
+ * @param {array} array - Target array. Must not be immutable.
+ * 
+ * @param {integer} startIndex - Zero-based start index, or negative from the
+ *     end.
+ * 
+ * @param {integer} deleteCount - Number of values to remove. If omitted,
+ *     remove through the end of the array. Negative is treated as zero.
+ * 
+ * @param {} values - Values to insert at startIndex after removals.
+ * 
+ * @returns {array} Array of removed values, in original order.
+ */
+export function afwSplice(client : any, array : any[], startIndex : number, deleteCount? : number, values? : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "splice";
+    _action["array"] = array;
+    _action["startIndex"] = startIndex;
+
+    if (deleteCount !== undefined)
+        _action["deleteCount"] = deleteCount;
+
+    if (values !== undefined)
+        _action["values"] = values;
+
+    return client.perform(_action);
+}
+
+/**
  * Converts array value to string. For array values, the to_string() value for
  * each entry is returned separated with commas.
  * 
@@ -435,6 +569,29 @@ export function afwToStringArray(client : any, value : any[]) : any {
 
     _action["function"] = "to_string<array>";
     _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
+ * Insert one or more values at the beginning of a mutable array, preserving
+ * the relative order of the inserted values. Returns the modified array.
+ * 
+ * @param {array} array - Target array. Must not be immutable.
+ * 
+ * @param {} values - Values to insert at the front, in order.
+ * 
+ * @returns {array} The modified array.
+ */
+export function afwUnshift(client : any, array : any[], values? : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "unshift";
+    _action["array"] = array;
+
+    if (values !== undefined)
+        _action["values"] = values;
 
     return client.perform(_action);
 }

@@ -316,7 +316,11 @@
         <term>
             <identifier>Array</identifier>
             <definition>
-                An array of adaptive values that can be of different adaptive value and data types.
+                An ordered sequence of adaptive values (one Adaptive data type;
+                values may share a type or be mixed). Script helpers include
+                length, at, push/pop/shift/unshift, splice, and higher-order
+                functions such as map and filter. Bag-oriented functions also
+                operate on arrays.
             </definition>
         </term>
         <term>

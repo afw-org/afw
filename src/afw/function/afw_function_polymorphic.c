@@ -92,7 +92,7 @@ impl_add_nondups_to_array(
             break;
         }
         if (!impl_is_in_array(data_type, internal, to, xctx)) {
-            afw_array_add_internal(to, data_type, internal, xctx);
+            afw_array_push_internal(to, data_type, internal, xctx);
         }
     }
 }
@@ -214,7 +214,7 @@ afw_function_execute_bag(
 
     for (i = 1; i <= x->argc; i++) {
         value = afw_function_evaluate_required_parameter(x, i, x->data_type);
-        afw_array_add_internal(array, x->data_type,
+        afw_array_push_internal(array, x->data_type,
             AFW_VALUE_INTERNAL(value), x->xctx);
     }
 
@@ -1040,7 +1040,7 @@ afw_function_execute_intersection(
         }
         if (impl_is_in_array(data_type, internal, array2->internal, x->xctx)) {
             if (!impl_is_in_array(data_type, internal, array, x->xctx)) {
-                afw_array_add_internal(array, data_type, internal, x->xctx);
+                afw_array_push_internal(array, data_type, internal, x->xctx);
             }
         }
     }
@@ -2159,7 +2159,7 @@ afw_function_execute_split(
                     break;
                 }
             }            
-            afw_array_add_internal(array, afw_data_type_string,
+            afw_array_push_internal(array, afw_data_type_string,
                 (const void *)&split, x->xctx);
         }
     }
@@ -2170,7 +2170,7 @@ afw_function_execute_split(
             split.len = 1;
             remaining.s++;
             remaining.len--;
-            afw_array_add_internal(array, afw_data_type_string,
+            afw_array_push_internal(array, afw_data_type_string,
                 (const void *)&split, x->xctx);
         }
     }
@@ -2903,4 +2903,69 @@ afw_function_execute_is(
     return (x->data_type == data_type)
         ? afw_boolean_v_true
         : afw_boolean_v_false;
+}
+
+
+
+/*
+ * Common polymorphic function for freeze
+ *
+ * afw_function_execute_freeze
+ *
+ * See afw_function_bindings.h for more information.
+ *
+ * Set a `<dataType>` value immutable so further mutation throws. If already
+ * immutable, has no effect. Returns the same value.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters and has side effects.
+ *
+ * Supported `<dataType>`:
+ *
+ *   array, object.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function freeze <dataType>(
+ *       value: dataType
+ *   ): dataType;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (``<Type>``) The `<dataType>` value to freeze.
+ *
+ * Returns:
+ *
+ *   (``<Type>``) The same value, now immutable.
+ */
+const afw_value_t *
+afw_function_execute_freeze(
+    afw_function_execute_t *x)
+{
+    const afw_value_t *value;
+    const afw_value_object_t *object;
+    const afw_value_array_t *array;
+
+    AFW_FUNCTION_EVALUATE_PARAMETER(value, 1);
+    if (!value || afw_value_is_undefined(value)) {
+        AFW_THROW_ERROR_Z(general,
+            "freeze requires an object or array", x->xctx);
+    }
+
+    if (afw_value_is_object(value)) {
+        object = (const afw_value_object_t *)value;
+        afw_object_set_immutable(object->internal, x->xctx);
+        return value;
+    }
+
+    if (afw_value_is_array(value)) {
+        array = (const afw_value_array_t *)value;
+        afw_array_set_immutable(array->internal, x->xctx);
+        return value;
+    }
+
+    AFW_THROW_ERROR_Z(general,
+        "freeze requires an object or array", x->xctx);
 }

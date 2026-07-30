@@ -33,6 +33,7 @@ our @EXPORT_OK = qw(
     eqx 
     eval 
     floor 
+    freeze 
     ge 
     gt 
     in_range 
@@ -362,6 +363,18 @@ Round downwards to nearest integer
 
     $number
 
+
+=head3 freeze
+
+Set a `<dataType>` value immutable so further mutation throws. If already
+immutable, has no effect. Returns the same value.
+Make <dataType> value immutable
+
+=head4 Parameters
+
+    $value
+
+The `<dataType>` value to freeze.
 
 =head3 ge
 
@@ -1328,6 +1341,17 @@ sub floor {
 
     $request->set("function" => "floor");
     $request->set("number", $number);
+
+    return $request->getResult();
+}
+
+sub freeze {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "freeze");
+    $request->set("value", $value);
 
     return $request->getResult();
 }

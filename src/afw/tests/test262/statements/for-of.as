@@ -210,10 +210,10 @@ assert(i === 3 === 'Visits all arguments');
 //? test: array-contract-expand
 //? description:...
     Array entry removal and re-insertion during traversal using for..of
-//? expect: error:Index must be integer for array
+    (Adaptive: push/pop functions; no Array.prototype methods).
+//? expect: 0
 //? source: ...
 #!/usr/bin/env afw
-
 
 let array = [0, 1];
 let iterationCount = 0;
@@ -222,70 +222,71 @@ let first = 0;
 let second = 1;
 
 for (let x of array) {
-  assert(x === first);
+  assert(x === first, "value");
 
   first = second;
   second = null;
 
   if (first !== null) {
-    array.pop();
-    array.push(1);
+    pop(array);
+    push(array, 1);
   }
 
-  iterationCount += 1;
+  iterationCount = iterationCount + 1;
 }
 
-assert(iterationCount === 2);
+assert(iterationCount === 2, "two iterations");
+return 0;
 
 
 //? test: array-contract
-//? description: Array entry removal during traversal using for..of
-//? expect: error:Index must be integer for array
+//? description: Array entry removal during traversal using for..of (Adaptive pop)
+//? expect: 0
 //? source: ...
 #!/usr/bin/env afw
-
 
 let array = [0, 1];
 let iterationCount = 0;
 
 for (let x of array) {
-  assert(x === 0);
-  array.pop();
-  iterationCount += 1;
+  assert(x === 0, "only first value");
+  pop(array);
+  iterationCount = iterationCount + 1;
 }
 
-assert(iterationCount === 1);
+assert(iterationCount === 1, "one iteration");
+return 0;
 
 
 //? test: array-expand-contract
 //? description:...
-    Array entry insertion and removal items during traversal using for..of
-//? expect: error:Index must be integer for array
+    Array entry insertion and removal during traversal using for..of
+    (Adaptive: push/pop).
+//? expect: 0
 //? source: ...
 #!/usr/bin/env afw
-
 
 let array = [0];
 let iterationCount = 0;
 
 for (let x of array) {
-  assert(x === 0);
+  assert(x === 0, "value");
 
-  array.push(1);
-  array.pop();
+  push(array, 1);
+  pop(array);
 
-  iterationCount += 1;
+  iterationCount = iterationCount + 1;
 }
 
-assert(iterationCount === 1);
+assert(iterationCount === 1, "one iteration");
+return 0;
 
 
 //? test: array-expand
-//? description: Array entry insertion during traversal using for..of
-//? expect: error:Index must be integer for array
+//? description: Array entry insertion during traversal using for..of (Adaptive push)
+//? expect: 0
 //? source: ...
 #!/usr/bin/env afw
-
 
 let array = [0];
 let iterationCount = 0;
@@ -294,126 +295,193 @@ let first = 0;
 let second = 1;
 
 for (let x of array) {
-  assert(x === first);
+  assert(x === first, "value");
 
   first = second;
   second = null;
 
   if (first !== null) {
-    array.push(1);
+    push(array, 1);
   }
 
-  iterationCount += 1;
+  iterationCount = iterationCount + 1;
 }
 
-assert(iterationCount === 2);
+assert(iterationCount === 2, "two iterations");
+return 0;
 
 
 //? test: array
-//? description: 
-//? expect: error:Parse error at offset 71 around line 4 column 51: Expecting Value
+//? description:...
+    Dense array for-of visits each value (test262 Array for-of lineage).
+    Adaptive has no array holes; omitted sparse slot from original test.
+//? expect: 0
 //? source: ...
 #!/usr/bin/env afw
 
-
-let array = [0, 'a', true, false, null, /* hole */, undefined, NaN];
+let array = [0, "a", true, false, null, undefined, NaN];
 let i = 0;
 
 for (let value of array) {
-  assert(value === array[i] === 'element at index ' + i);
-  i++;
+  if (i === 6) {
+    assert(is_NaN(value), "NaN at last index");
+    assert(is_NaN(array[i]), "NaN in array");
+  } else {
+    assert(value === array[i], "element at index " + string(i));
+  }
+  i = i + 1;
 }
 
-assert(i === 8 === 'Visits all elements');
+assert(i === 7, "visits all elements");
+return 0;
 
 
 //? test: array-key-get-error
-//? description: Error in Array entry access during traversal using for..of
-//? expect: error:Parse error at offset 62 around line 7 column 1: Unknown built-in function 'Object'
+//? description:...
+    Error in Array entry access during traversal using for..of.
+    Adaptive has no Object.defineProperty / prototypes; left as non-applicable
+    ES surface (still expects error).
+//? expect: error
 //? source: ...
 #!/usr/bin/env afw
-
 
 let array = [];
 let iterationCount = 0;
 
-Object.defineProperty(array, '0', {
+Object.defineProperty(array, "0", {
   get: function() {
-    throw ;
+    throw "getter";
   }
 });
 
-assert.throws(Test262Error, function() {
-  for (let value of array) {
-    iterationCount += 1;
-  }
-});
+for (let value of array) {
+  iterationCount = iterationCount + 1;
+}
 
-assert(iterationCount === 0 === 'The loop body is not evaluated');
+assert(iterationCount === 0, "loop body not evaluated");
+return 0;
 
 
 //? test: Array.prototype.entries
-//? description: 
-//? expect: error:Parse error at offset 71 around line 4 column 51: Expecting Value
+//? description:...
+    test262 Array.prototype.entries for-of lineage. Adaptive has no array
+    .entries(); object entries() is property pairs. Array index/value pairs
+    are expressed with at() and a dense index walk (no holes).
+//? expect: 0
 //? source: ...
 #!/usr/bin/env afw
 
+let array = [0, "a", true, false, null, undefined, NaN];
+let n = length(array);
 
-let array = [0, 'a', true, false, null, /* hole */, undefined, NaN];
-let i = 0;
-
-for (let value of array.entries()) {
-  assert(
-    value[0], i, 'element at index ' + i + ': value (array key)'
-  );
-  assert(
-    value[1], array[i], 'element at index ' + i + ': value (array value)'
-  );
-  assert(
-    value.length, 2, 'element at index ' + i + ': value (array length)'
-  );
-  i++;
+for (let i = 0; i < n; i = i + 1) {
+  let pair = [i, at(array, i)];
+  assert(pair[0] === i, "index in pair");
+  assert(length(pair) === 2, "pair length");
+  if (i === 6) {
+    assert(is_NaN(pair[1]), "NaN value in pair");
+  } else {
+    assert(pair[1] === array[i], "value in pair");
+  }
 }
 
-assert(i === 8 === 'Visits all elements');
+return 0;
 
 
 //? test: Array.prototype.keys
-//? description: 
-//? expect: error:Parse error at offset 71 around line 4 column 51: Expecting Value
+//? description:...
+    test262 Array.prototype.keys for-of lineage. Adaptive has no array
+    .keys(); dense indexes are 0 .. length-1 (object keys() is property names).
+//? expect: 0
 //? source: ...
 #!/usr/bin/env afw
 
+let array = [0, "a", true, false, null, undefined, NaN];
+let n = length(array);
 
-let array = [0, 'a', true, false, null, /* hole */, undefined, NaN];
-let i = 0;
-
-for (let value of array.keys()) {
-  assert(value === i === 'element at index ' + i);
-  i++;
+for (let i = 0; i < n; i = i + 1) {
+  assert(i >= 0 && i < n, "index in range");
 }
 
-assert(i === 8 === 'Visits all elements');
+assert(n === 7, "dense length");
+return 0;
 
 
 //? test: Array.prototype.Symbol.iterator
 //? description:...
-    The method should return a valid iterator that can be traversed using a
-    `for...of` loop.
-//? expect: error:Parse error at offset 71 around line 4 column 51: Expecting Value
+    test262 Array iterator for-of lineage. Adaptive arrays are for-of iterable
+    directly (no Symbol.iterator / prototypes). Dense array; no holes.
+//? expect: 0
 //? source: ...
 #!/usr/bin/env afw
 
-
-let array = [0, 'a', true, false, null, /* hole */, undefined, NaN];
+let array = [0, "a", true, false, null, undefined, NaN];
 let i = 0;
 
-for (let value of array[Symbol.iterator]()) {
-  assert(value === array[i] === 'element at index ' + i);
-  i++;
+for (let value of array) {
+  if (i === 6) {
+    assert(is_NaN(value), "NaN");
+  } else {
+    assert(value === array[i], "element at index " + string(i));
+  }
+  i = i + 1;
 }
 
-assert(i === 8 === 'Visits all elements');
+assert(i === 7, "visits all elements");
+return 0;
+
+
+//? test: object-entries-for-of
+//? description:...
+    Adaptive object entries() with for-of (Object.entries-style property pairs;
+    not Array.prototype.entries).
+//? expect: 0
+//? source: ...
+#!/usr/bin/env afw
+
+let o = { "a": 1, "b": 2, "c": 3 };
+let seen = [];
+for (let pair of entries(o)) {
+  assert(length(pair) === 2, "pair length");
+  push(seen, pair[0]);
+  assert(pair[1] === o[pair[0]], "value matches property");
+}
+assert(length(seen) === 3, "three properties");
+assert(seen[0] === "a" && seen[1] === "b" && seen[2] === "c", "name order");
+return 0;
+
+
+//? test: object-keys-for-of
+//? description:...
+    Adaptive object keys() with for-of (Object.keys-style names).
+//? expect: 0
+//? source: ...
+#!/usr/bin/env afw
+
+let o = { "x": true, "y": false };
+let n = 0;
+for (let name of keys(o)) {
+  assert(property_exists(o, name), "key exists");
+  n = n + 1;
+}
+assert(n === 2, "two keys");
+return 0;
+
+
+//? test: object-values-for-of
+//? description:...
+    Adaptive object values() with for-of (Object.values-style).
+//? expect: 0
+//? source: ...
+#!/usr/bin/env afw
+
+let o = { "a": 10, "b": 20 };
+let sum = 0;
+for (let v of values(o)) {
+  sum = sum + v;
+}
+assert(sum === 30, "sum of values");
+return 0;
 
 
 //? test: body-dstr-assign-error

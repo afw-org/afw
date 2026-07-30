@@ -227,6 +227,41 @@ def any_of_any(session, predicate, array1, array2):
 
     return response['actions'][0]['result']
 
+def every(session, predicate, values):
+    """
+    All values pass a test
+
+    Returns true if all values in an array pass the predicate test. Same
+    behavior as all_of for a single array (and additional parameters). Empty
+    array yields true.
+
+    Args:
+        predicate (object): Called for each value in the first array in values
+        or until false is returned.
+
+        values (object): Parameters passed to predicate with the first array
+        passed one value at a time.
+
+    Returns:
+        bool:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "every",
+        "predicate": predicate,
+        "values": values
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
 def filter(session, predicate, values):
     """
     Filter an array
@@ -365,6 +400,41 @@ def reduce(session, functor, accumulator, array):
         "functor": functor,
         "accumulator": accumulator,
         "array": array
+    }
+
+    request.add_action(action)
+
+    response = request.perform()
+    if response.get('status') == 'error':
+        raise Exception(response.get('error'))
+
+    return response['actions'][0]['result']
+
+def some(session, predicate, values):
+    """
+    Any value passes a test
+
+    Returns true if any value in an array passes the predicate test. Same
+    behavior as any_of for a single array (and additional parameters). Empty
+    array yields false.
+
+    Args:
+        predicate (object): Called for each value in the first array in values
+        or until true is returned.
+
+        values (object): Parameters passed to predicate with the first array
+        passed one value at a time.
+
+    Returns:
+        bool:
+    """
+
+    request = session.Request()
+
+    action = {
+        "function": "some",
+        "predicate": predicate,
+        "values": values
     }
 
     request.add_action(action)

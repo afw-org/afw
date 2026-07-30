@@ -552,7 +552,7 @@ impl_filter_cb(impl_call_over_array_cb_e_t *e)
     AFW_VALUE_ASSERT_IS_DATA_TYPE(e->entry_result, boolean, e->xctx);
 
     if (((const afw_value_boolean_t *)e->entry_result)->internal) {
-        afw_array_add_internal(data->filtered_array,
+        afw_array_push_internal(data->filtered_array,
             e->data_type, e->entry_internal, e->xctx);
     }
 
@@ -693,7 +693,7 @@ impl_map_cb(impl_call_over_array_cb_e_t *e)
         data->mapped_array = afw_array_create_generic(e->p, e->xctx);
     }
 
-    afw_array_add_value(data->mapped_array, e->entry_result, e->xctx);
+    afw_array_push_value(data->mapped_array, e->entry_result, e->xctx);
 
     return true;
 }

@@ -431,6 +431,49 @@ afw_function_execute_eqx(
 
 
 /*
+ * Common polymorphic function for freeze
+ *
+ * afw_function_execute_freeze
+ *
+ * See afw_function_bindings.h for more information.
+ *
+ * Set a `<dataType>` value immutable so further mutation throws. If already
+ * immutable, has no effect. Returns the same value.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters and has side effects.
+ *
+ * Supported `<dataType>`:
+ *
+ *   array, object.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function freeze <dataType>(
+ *       value: dataType
+ *   ): dataType;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (``<Type>``) The `<dataType>` value to freeze.
+ *
+ * Returns:
+ *
+ *   (``<Type>``) The same value, now immutable.
+ */
+const afw_value_t *
+afw_function_execute_freeze(
+    afw_function_execute_t *x)
+{
+    /** @todo Add code. */
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
+}
+
+
+
+/*
  * Common polymorphic function for ge
  *
  * afw_function_execute_ge

@@ -149,6 +149,30 @@ class object
     }
 
     /**
+     * entries()
+     *
+     * Return an array of property entries for an object. Each entry is a
+     * two-element array [name, value] where name is a string. The order
+     * matches keys() for the same object.
+     *
+     * @param object $object Object to list property entries from.
+     *
+     * @return array Array of [name, value] pair arrays.
+     */
+    public function entries(, $object)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "entries");
+
+        /* pass along required parameters to the request payload */
+        $request->set("object", $object);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * eq_object()
      *
      * Determine if object arg1 is equal to the value of arg2 converted to the
@@ -196,6 +220,29 @@ class object
         /* pass along required parameters to the request payload */
         $request->set("arg1", $arg1);
         $request->set("arg2", $arg2);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * freeze_object()
+     *
+     * Set a object value immutable so further mutation throws. If already
+     * immutable, has no effect. Returns the same value.
+     *
+     * @param object $value The object value to freeze.
+     *
+     * @return object The same value, now immutable.
+     */
+    public function freeze_object(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "freeze<object>");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -268,6 +315,29 @@ class object
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * keys()
+     *
+     * Return an array of the property names of an object. The order of names
+     * is the object's property iteration order.
+     *
+     * @param object $object Object to list property names from.
+     *
+     * @return array Array of property name strings.
+     */
+    public function keys(, $object)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "keys");
+
+        /* pass along required parameters to the request payload */
+        $request->set("object", $object);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -573,6 +643,29 @@ class object
 
         /* pass along required parameters to the request payload */
         $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * values()
+     *
+     * Return an array of the property values of an object. The order matches
+     * keys() for the same object.
+     *
+     * @param object $object Object to list property values from.
+     *
+     * @return array Array of property values.
+     */
+    public function values(, $object)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "values");
+
+        /* pass along required parameters to the request payload */
+        $request->set("object", $object);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();

@@ -3163,9 +3163,26 @@ struct afw_data_type_inf_s {
 /**
  * @addtogroup afw_array_setter_interface afw_array_setter
  *
- * Mutable face for an adaptive array (set/add/remove elements). Obtained
- * when the array implementation allows mutation. Call methods via
- * afw_array_setter_*() macros. See group afw_array.
+ * Mutable face for an adaptive array used as a growable sequence (vector)
+ * and as a double-ended queue (stack/queue). Obtained when the array
+ * implementation allows mutation; NULL from get_setter means immutable.
+ * Call methods via afw_array_setter_*() macros. Convenience helpers
+ * afw_array_*() on the array instance call through get_setter. See group
+ * afw_array.
+ * 
+ * Indexes are afw_integer_t. Non-negative values are zero-based from the
+ * start. Negative values count from the end (-1 is the last element for
+ * get/set/remove, or insert before the last element for insert). After
+ * that adjustment, insert allows index equal to the current count (append);
+ * set and remove_value_by_index require a valid existing element index.
+ * 
+ * End operations: push_value appends (LIFO push / FIFO enqueue);
+ * pop_value removes and returns the last value (LIFO pop);
+ * shift_value removes and returns the first value (FIFO dequeue).
+ * There is no separate unshift method on this interface; use
+ * insert_value(instance, 0, value, xctx) to insert at the front
+ * (unshift). Content remove_value removes the first equal value
+ * (bag-style), not by position.
  *
  * @{
  */
@@ -3204,18 +3221,40 @@ typedef const afw_data_type_t *
     const afw_array_setter_t * instance,
     afw_xctx_t * xctx);
 
-/** @sa afw_array_setter_add_internal() */
+/** @sa afw_array_setter_push_value() */
 typedef void
-(*afw_array_setter_add_internal_t)(
+(*afw_array_setter_push_value_t)(
+    const afw_array_setter_t * instance,
+    const afw_value_t * value,
+    afw_xctx_t * xctx);
+
+/** @sa afw_array_setter_push_internal() */
+typedef void
+(*afw_array_setter_push_internal_t)(
     const afw_array_setter_t * instance,
     const afw_data_type_t * data_type,
     const void * internal,
     afw_xctx_t * xctx);
 
-/** @sa afw_array_setter_add_value() */
-typedef void
-(*afw_array_setter_add_value_t)(
+/** @sa afw_array_setter_pop_value() */
+typedef const afw_value_t *
+(*afw_array_setter_pop_value_t)(
     const afw_array_setter_t * instance,
+    afw_boolean_t * found,
+    afw_xctx_t * xctx);
+
+/** @sa afw_array_setter_shift_value() */
+typedef const afw_value_t *
+(*afw_array_setter_shift_value_t)(
+    const afw_array_setter_t * instance,
+    afw_boolean_t * found,
+    afw_xctx_t * xctx);
+
+/** @sa afw_array_setter_insert_value() */
+typedef void
+(*afw_array_setter_insert_value_t)(
+    const afw_array_setter_t * instance,
+    afw_integer_t index,
     const afw_value_t * value,
     afw_xctx_t * xctx);
 
@@ -3223,23 +3262,31 @@ typedef void
 typedef void
 (*afw_array_setter_insert_internal_t)(
     const afw_array_setter_t * instance,
+    afw_integer_t index,
     const afw_data_type_t * data_type,
     const void * internal,
-    afw_size_t index,
     afw_xctx_t * xctx);
 
-/** @sa afw_array_setter_insert_value() */
+/** @sa afw_array_setter_set_value() */
 typedef void
-(*afw_array_setter_insert_value_t)(
+(*afw_array_setter_set_value_t)(
+    const afw_array_setter_t * instance,
+    afw_integer_t index,
+    const afw_value_t * value,
+    afw_xctx_t * xctx);
+
+/** @sa afw_array_setter_remove_value_by_index() */
+typedef void
+(*afw_array_setter_remove_value_by_index_t)(
+    const afw_array_setter_t * instance,
+    afw_integer_t index,
+    afw_xctx_t * xctx);
+
+/** @sa afw_array_setter_remove_value() */
+typedef void
+(*afw_array_setter_remove_value_t)(
     const afw_array_setter_t * instance,
     const afw_value_t * value,
-    afw_size_t index,
-    afw_xctx_t * xctx);
-
-/** @sa afw_array_setter_remove_all_values() */
-typedef void
-(*afw_array_setter_remove_all_values_t)(
-    const afw_array_setter_t * instance,
     afw_xctx_t * xctx);
 
 /** @sa afw_array_setter_remove_internal() */
@@ -3250,19 +3297,10 @@ typedef void
     const void * internal,
     afw_xctx_t * xctx);
 
-/** @sa afw_array_setter_remove_value() */
+/** @sa afw_array_setter_remove_all_values() */
 typedef void
-(*afw_array_setter_remove_value_t)(
+(*afw_array_setter_remove_all_values_t)(
     const afw_array_setter_t * instance,
-    const afw_value_t * value,
-    afw_xctx_t * xctx);
-
-/** @sa afw_array_setter_set_value_by_index() */
-typedef void
-(*afw_array_setter_set_value_by_index_t)(
-    const afw_array_setter_t * instance,
-    afw_size_t index,
-    const afw_value_t * value,
     afw_xctx_t * xctx);
 
 /**
@@ -3275,24 +3313,27 @@ struct afw_array_setter_inf_s {
     afw_interface_implementation_rti_t rti;
     afw_array_setter_set_immutable_t set_immutable;
     afw_array_setter_determine_data_type_and_set_immutable_t determine_data_type_and_set_immutable;
-    afw_array_setter_add_internal_t add_internal;
-    afw_array_setter_add_value_t add_value;
-    afw_array_setter_insert_internal_t insert_internal;
+    afw_array_setter_push_value_t push_value;
+    afw_array_setter_push_internal_t push_internal;
+    afw_array_setter_pop_value_t pop_value;
+    afw_array_setter_shift_value_t shift_value;
     afw_array_setter_insert_value_t insert_value;
-    afw_array_setter_remove_all_values_t remove_all_values;
-    afw_array_setter_remove_internal_t remove_internal;
+    afw_array_setter_insert_internal_t insert_internal;
+    afw_array_setter_set_value_t set_value;
+    afw_array_setter_remove_value_by_index_t remove_value_by_index;
     afw_array_setter_remove_value_t remove_value;
-    afw_array_setter_set_value_by_index_t set_value_by_index;
+    afw_array_setter_remove_internal_t remove_internal;
+    afw_array_setter_remove_all_values_t remove_all_values;
 };
 
 /**
  * @brief Call method `set_immutable` of interface `afw_array_setter`.
  *
- * Set array to immutable. No error is throw if already immutable.
+ * Set array to immutable. No error is thrown if already immutable.
  * 
- * Once an array is set to immutable, all other set calls will throw
- * an error.
- * @param instance Pointer to this object instance.
+ * Once an array is set to immutable, all other setter methods will
+ * throw an error (and get_setter returns NULL).
+ * @param instance Pointer to this array setter instance.
  * @param xctx This is the caller's xctx.
  * @relates afw_array_setter_t
  * @see @ref afw_array_setter_s "afw_array_setter_t"
@@ -3312,18 +3353,17 @@ struct afw_array_setter_inf_s {
  *
  * Determine data type of entries then set array to immutable.
  * 
- * An error is throw if already immutable.
+ * An error is thrown if already immutable.
  * 
- * If data type of values in array is not already known and all
- * values is array have the same data type, make the array an array of
- * that data type.
+ * If the data type of values in the array is not already known and all
+ * values have the same data type, make the array an array of that data
+ * type.
  * 
- * Once an array is set to immutable, all other set calls will throw
- * an error.
- * @param instance Pointer to this object instance.
+ * Once an array is set to immutable, all other setter methods will
+ * throw an error.
+ * @param instance Pointer to this array setter instance.
  * @param xctx This is the caller's xctx.
- * @return This is the data type of all values in the array or NULL if unknown
- * or different.
+ * @return Data type of all values in the array, or NULL if unknown or mixed.
  * @relates afw_array_setter_t
  * @see @ref afw_array_setter_s "afw_array_setter_t"
  */
@@ -3337,24 +3377,47 @@ struct afw_array_setter_inf_s {
 )
 
 /**
- * @brief Call method `add_internal` of interface `afw_array_setter`.
+ * @brief Call method `push_value` of interface `afw_array_setter`.
  *
- * Add a value to an array that only holds one data type using its
- * internal value.
- * @param instance Pointer to this value array instance.
- * @param data_type The data type of internal.
- * @param internal The internal value to add of type data_type->cType.
+ * Append a value at the end of the array (push back). This is the
+ * primary growth operation for stacks (LIFO push) and queues (FIFO
+ * enqueue).
+ * @param instance Pointer to this array setter instance.
+ * @param value Value to append. Lifetime must cover the array.
  * @param xctx This is the caller's xctx.
  * @relates afw_array_setter_t
  * @see @ref afw_array_setter_s "afw_array_setter_t"
  */
-#define afw_array_setter_add_internal( \
+#define afw_array_setter_push_value( \
+    instance, \
+    value, \
+    xctx \
+) \
+(instance)->inf->push_value( \
+    (instance), \
+    (value), \
+    (xctx) \
+)
+
+/**
+ * @brief Call method `push_internal` of interface `afw_array_setter`.
+ *
+ * Append an internal value of a single data type at the end of the
+ * array (typed push_value).
+ * @param instance Pointer to this array setter instance.
+ * @param data_type Data type of internal.
+ * @param internal Internal value of type data_type->cType.
+ * @param xctx This is the caller's xctx.
+ * @relates afw_array_setter_t
+ * @see @ref afw_array_setter_s "afw_array_setter_t"
+ */
+#define afw_array_setter_push_internal( \
     instance, \
     data_type, \
     internal, \
     xctx \
 ) \
-(instance)->inf->add_internal( \
+(instance)->inf->push_internal( \
     (instance), \
     (data_type), \
     (internal), \
@@ -3362,22 +3425,119 @@ struct afw_array_setter_inf_s {
 )
 
 /**
- * @brief Call method `add_value` of interface `afw_array_setter`.
+ * @brief Call method `pop_value` of interface `afw_array_setter`.
  *
- * Add a value to an array.
- * @param instance Pointer to this value array instance.
- * @param value A value.
+ * Remove the last value from the array and return it (pop back / LIFO
+ * pop). If the array is empty, returns NULL without error and sets
+ * *found to false when found is non-NULL.
+ * 
+ * Optional found (like object get_property_as_* helpers): pass a
+ * pointer to receive whether an element was removed. Pass NULL if the
+ * caller does not need that distinction. This matters when a stored
+ * value pointer can itself be NULL or undefined: empty is
+ * found==false; a removed NULL/undefined slot is found==true with a
+ * NULL or undefined return. For typical Adaptive Script use, empty
+ * returns NULL which is_nullish / is_undefined treat as undefined
+ * (ECMAScript-like empty pop). Prefer found or the return value over
+ * get_count() as an empty guard; get_count() can be O(n) on some
+ * implementations (memory ring).
+ * 
+ * When an element is removed, the returned pointer is the value that
+ * was stored; it is not cloned. Its lifetime remains that of the value
+ * and its pool; the array no longer retains that slot.
+ * @param instance Pointer to this array setter instance.
+ * @param found Optional. If non-NULL, set true if an element was removed, false
+ * if the array was empty. May be NULL when the caller does not need this.
+ * @param xctx This is the caller's xctx.
+ * @return The value removed from the end, or NULL if the array was empty (or if
+ * a NULL value pointer was stored and removed).
+ * @relates afw_array_setter_t
+ * @see @ref afw_array_setter_s "afw_array_setter_t"
+ */
+#define afw_array_setter_pop_value( \
+    instance, \
+    found, \
+    xctx \
+) \
+(instance)->inf->pop_value( \
+    (instance), \
+    (found), \
+    (xctx) \
+)
+
+/**
+ * @brief Call method `shift_value` of interface `afw_array_setter`.
+ *
+ * Remove the first value from the array and return it (pop front / FIFO
+ * dequeue). If the array is empty, returns NULL without error and sets
+ * *found to false when found is non-NULL.
+ * 
+ * Optional found (like object get_property_as_* helpers): pass a
+ * pointer to receive whether an element was removed. Pass NULL if the
+ * caller does not need that distinction. Empty is found==false; a
+ * removed NULL/undefined slot is found==true. For typical Adaptive
+ * Script use, empty returns NULL which is_nullish treats as undefined
+ * (ECMAScript-like empty shift). Prefer found or the return value over
+ * get_count() as an empty guard.
+ * 
+ * When an element is removed, the returned pointer is the value that
+ * was stored; it is not cloned. Its lifetime remains that of the value
+ * and its pool; the array no longer retains that slot.
+ * @param instance Pointer to this array setter instance.
+ * @param found Optional. If non-NULL, set true if an element was removed, false
+ * if the array was empty. May be NULL when the caller does not need this.
+ * @param xctx This is the caller's xctx.
+ * @return The value removed from the front, or NULL if the array was empty (or
+ * if a NULL value pointer was stored and removed).
+ * @relates afw_array_setter_t
+ * @see @ref afw_array_setter_s "afw_array_setter_t"
+ */
+#define afw_array_setter_shift_value( \
+    instance, \
+    found, \
+    xctx \
+) \
+(instance)->inf->shift_value( \
+    (instance), \
+    (found), \
+    (xctx) \
+)
+
+/**
+ * @brief Call method `insert_value` of interface `afw_array_setter`.
+ *
+ * Insert a value before the given index. Existing elements at and after
+ * the index shift toward the end.
+ * 
+ * There is no separate unshift method on afw_array_setter. To unshift
+ * (insert at the front), call insert_value with index 0:
+ * 
+ * afw_array_setter_insert_value(setter, 0, value, xctx);
+ * 
+ * or the array convenience helper:
+ * 
+ * afw_array_insert_value(array, 0, value, xctx);
+ * 
+ * Index equal to the current count (after negative adjustment) appends,
+ * same as push_value. Negative indexes count from the end (see interface
+ * description for insert index rules).
+ * @param instance Pointer to this array setter instance.
+ * @param index Zero-based insert position, or negative from the end. Use 0 to
+ * unshift (front). See interface description for index rules.
+ * @param value Value to insert. Lifetime must cover the array.
  * @param xctx This is the caller's xctx.
  * @relates afw_array_setter_t
  * @see @ref afw_array_setter_s "afw_array_setter_t"
  */
-#define afw_array_setter_add_value( \
+#define afw_array_setter_insert_value( \
     instance, \
+    index, \
     value, \
     xctx \
 ) \
-(instance)->inf->add_value( \
+(instance)->inf->insert_value( \
     (instance), \
+    (index), \
     (value), \
     (xctx) \
 )
@@ -3385,81 +3545,118 @@ struct afw_array_setter_inf_s {
 /**
  * @brief Call method `insert_internal` of interface `afw_array_setter`.
  *
- * Insert a value to an array that only holds one data type using its
- * internal value at a specified index.
- * @param instance Pointer to this value array instance.
- * @param data_type The data type of internal.
- * @param internal The internal value to add of type data_type->cType.
- * @param index The zero based index for insert.
+ * Insert an internal value of a single data type before the given index
+ * (typed insert_value). Index 0 is unshift; index equal to count is
+ * append (same rules as insert_value).
+ * @param instance Pointer to this array setter instance.
+ * @param index Zero-based insert position, or negative from the end. See
+ * interface description for index rules.
+ * @param data_type Data type of internal.
+ * @param internal Internal value of type data_type->cType.
  * @param xctx This is the caller's xctx.
  * @relates afw_array_setter_t
  * @see @ref afw_array_setter_s "afw_array_setter_t"
  */
 #define afw_array_setter_insert_internal( \
     instance, \
+    index, \
     data_type, \
     internal, \
-    index, \
     xctx \
 ) \
 (instance)->inf->insert_internal( \
     (instance), \
+    (index), \
     (data_type), \
     (internal), \
-    (index), \
     (xctx) \
 )
 
 /**
- * @brief Call method `insert_value` of interface `afw_array_setter`.
+ * @brief Call method `set_value` of interface `afw_array_setter`.
  *
- * Insert a value to an array at a specified index.
- * @param instance Pointer to this value array instance.
- * @param value A value.
- * @param index The zero based index for insert.
+ * Replace the value at the given index. Throws if the index does not
+ * refer to an existing element (does not grow the array). The new value
+ * is stored as-is (same policy as object set_property for now).
+ * 
+ * Issue #2: when hold-on-store lands, implementations should
+ * optional_release the previous managed slot value before replace.
+ * @param instance Pointer to this array setter instance.
+ * @param index Zero-based element index, or negative from the end (-1 is last).
+ * @param value New value. Lifetime must cover the array.
  * @param xctx This is the caller's xctx.
  * @relates afw_array_setter_t
  * @see @ref afw_array_setter_s "afw_array_setter_t"
  */
-#define afw_array_setter_insert_value( \
+#define afw_array_setter_set_value( \
     instance, \
+    index, \
     value, \
+    xctx \
+) \
+(instance)->inf->set_value( \
+    (instance), \
+    (index), \
+    (value), \
+    (xctx) \
+)
+
+/**
+ * @brief Call method `remove_value_by_index` of interface `afw_array_setter`.
+ *
+ * Remove the value at the given index. Following elements shift toward
+ * the front. Throws if the index does not refer to an existing element.
+ * Does not return the removed value; use pop_value, shift_value, or
+ * get_entry_value before remove when the value is needed.
+ * @param instance Pointer to this array setter instance.
+ * @param index Zero-based element index, or negative from the end (-1 is last).
+ * @param xctx This is the caller's xctx.
+ * @relates afw_array_setter_t
+ * @see @ref afw_array_setter_s "afw_array_setter_t"
+ */
+#define afw_array_setter_remove_value_by_index( \
+    instance, \
     index, \
     xctx \
 ) \
-(instance)->inf->insert_value( \
+(instance)->inf->remove_value_by_index( \
     (instance), \
-    (value), \
     (index), \
     (xctx) \
 )
 
 /**
- * @brief Call method `remove_all_values` of interface `afw_array_setter`.
+ * @brief Call method `remove_value` of interface `afw_array_setter`.
  *
- * Remove all values from an array.
- * @param instance Pointer to this value array instance.
+ * Remove the first value that compares equal to the given value
+ * (content remove). Throws if no equal value is found. This is not a
+ * stack pop; use pop_value or remove_value_by_index for position-based
+ * removal.
+ * @param instance Pointer to this array setter instance.
+ * @param value Value to match with afw_value_equal.
  * @param xctx This is the caller's xctx.
  * @relates afw_array_setter_t
  * @see @ref afw_array_setter_s "afw_array_setter_t"
  */
-#define afw_array_setter_remove_all_values( \
+#define afw_array_setter_remove_value( \
     instance, \
+    value, \
     xctx \
 ) \
-(instance)->inf->remove_all_values( \
+(instance)->inf->remove_value( \
     (instance), \
+    (value), \
     (xctx) \
 )
 
 /**
  * @brief Call method `remove_internal` of interface `afw_array_setter`.
  *
- * Remove a single value from array that only holds one data type using its
- * internal value.
- * @param instance Pointer to this value array instance.
- * @param data_type The data type of internal.
- * @param internal The internal value to delete of type data_type->cType.
+ * Remove the first entry whose internal value of the given data type
+ * matches (typed content remove_value).
+ * @param instance Pointer to this array setter instance.
+ * @param data_type Data type of internal.
+ * @param internal Internal value of type data_type->cType to match.
  * @param xctx This is the caller's xctx.
  * @relates afw_array_setter_t
  * @see @ref afw_array_setter_s "afw_array_setter_t"
@@ -3478,47 +3675,20 @@ struct afw_array_setter_inf_s {
 )
 
 /**
- * @brief Call method `remove_value` of interface `afw_array_setter`.
+ * @brief Call method `remove_all_values` of interface `afw_array_setter`.
  *
- * Remove a single value from array.
- * @param instance Pointer to this value array instance.
- * @param value Value.
+ * Remove all values from the array (clear).
+ * @param instance Pointer to this array setter instance.
  * @param xctx This is the caller's xctx.
  * @relates afw_array_setter_t
  * @see @ref afw_array_setter_s "afw_array_setter_t"
  */
-#define afw_array_setter_remove_value( \
+#define afw_array_setter_remove_all_values( \
     instance, \
-    value, \
     xctx \
 ) \
-(instance)->inf->remove_value( \
+(instance)->inf->remove_all_values( \
     (instance), \
-    (value), \
-    (xctx) \
-)
-
-/**
- * @brief Call method `set_value_by_index` of interface `afw_array_setter`.
- *
- * Set a value by index.
- * @param instance Pointer to this value array instance.
- * @param index Index relative to 0.
- * @param value Value.
- * @param xctx This is the caller's xctx.
- * @relates afw_array_setter_t
- * @see @ref afw_array_setter_s "afw_array_setter_t"
- */
-#define afw_array_setter_set_value_by_index( \
-    instance, \
-    index, \
-    value, \
-    xctx \
-) \
-(instance)->inf->set_value_by_index( \
-    (instance), \
-    (index), \
-    (value), \
     (xctx) \
 )
 

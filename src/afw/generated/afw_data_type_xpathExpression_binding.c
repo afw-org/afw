@@ -677,7 +677,7 @@ afw_array_of_xpathExpression_add(
         AFW_LIST_ERROR_OBJECT_IMMUTABLE;
     }
 
-    afw_array_setter_add_internal(setter, 
+    afw_array_setter_push_internal(setter, 
         afw_data_type_xpathExpression,
         (const void *)value, xctx);
 }

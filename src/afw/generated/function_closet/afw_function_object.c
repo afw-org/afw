@@ -103,6 +103,85 @@ afw_function_execute_apply_object_options(
 
 
 /*
+ * Adaptive function: entries
+ *
+ * afw_function_execute_entries
+ *
+ * See afw_function_bindings.h for more information.
+ *
+ * Return an array of property entries for an object. Each entry is a
+ * two-element array [name, value] where name is a string. The order matches
+ * keys() for the same object.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function entries(
+ *       object: object
+ *   ): array;
+ * ```
+ *
+ * Parameters:
+ *
+ *   object - (object) Object to list property entries from.
+ *
+ * Returns:
+ *
+ *   (array) Array of [name, value] pair arrays.
+ */
+const afw_value_t *
+afw_function_execute_entries(
+    afw_function_execute_t *x)
+{
+    /** @todo Add code. */
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
+}
+
+
+
+/*
+ * Adaptive function: keys
+ *
+ * afw_function_execute_keys
+ *
+ * See afw_function_bindings.h for more information.
+ *
+ * Return an array of the property names of an object. The order of names is the
+ * object's property iteration order.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function keys(
+ *       object: object
+ *   ): (array string);
+ * ```
+ *
+ * Parameters:
+ *
+ *   object - (object) Object to list property names from.
+ *
+ * Returns:
+ *
+ *   (array string) Array of property name strings.
+ */
+const afw_value_t *
+afw_function_execute_keys(
+    afw_function_execute_t *x)
+{
+    /** @todo Add code. */
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
+}
+
+
+
+/*
  * Adaptive function: local_object_meta_set_ids
  *
  * afw_function_execute_local_object_meta_set_ids
@@ -350,6 +429,45 @@ afw_function_execute_property_get(
  */
 const afw_value_t *
 afw_function_execute_property_is_not_null(
+    afw_function_execute_t *x)
+{
+    /** @todo Add code. */
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
+}
+
+
+
+/*
+ * Adaptive function: values
+ *
+ * afw_function_execute_values
+ *
+ * See afw_function_bindings.h for more information.
+ *
+ * Return an array of the property values of an object. The order matches keys()
+ * for the same object.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function values(
+ *       object: object
+ *   ): array;
+ * ```
+ *
+ * Parameters:
+ *
+ *   object - (object) Object to list property values from.
+ *
+ * Returns:
+ *
+ *   (array) Array of property values.
+ */
+const afw_value_t *
+afw_function_execute_values(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */

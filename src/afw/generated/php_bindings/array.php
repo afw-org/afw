@@ -77,6 +77,32 @@ class array
     }
 
     /**
+     * at()
+     *
+     * Return the value at a zero-based index in an array. Negative indexes
+     * count from the end (-1 is the last element). If the index is out of
+     * range, the result is undefined.
+     *
+     * @param array $array Array to index.
+     * @param integer $index Zero-based index, or negative from the end.
+     *
+     * @return  The value at the index, or undefined if out of range.
+     */
+    public function at(, $array, $index)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "at");
+
+        /* pass along required parameters to the request payload */
+        $request->set("array", $array);
+        $request->set("index", $index);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * bag_array()
      *
      * Takes any number of array values and returns an array of array.
@@ -192,6 +218,29 @@ class array
         /* pass along required parameters to the request payload */
         $request->set("arg1", $arg1);
         $request->set("arg2", $arg2);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * freeze_array()
+     *
+     * Set a array value immutable so further mutation throws. If already
+     * immutable, has no effect. Returns the same value.
+     *
+     * @param array $value The array value to freeze.
+     *
+     * @return array The same value, now immutable.
+     */
+    public function freeze_array(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "freeze<array>");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
 
         /* pass along any optional parameters to the request payload */
         return $request->get_result();
@@ -454,6 +503,56 @@ class array
     }
 
     /**
+     * pop()
+     *
+     * Remove the last value from a mutable array and return it. If the array
+     * is empty, returns undefined.
+     *
+     * @param array $array Target array. Must not be immutable.
+     *
+     * @return  The removed value, or undefined if the array was empty.
+     */
+    public function pop(, $array)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "pop");
+
+        /* pass along required parameters to the request payload */
+        $request->set("array", $array);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * push()
+     *
+     * Append one or more values to the end of a mutable array (push back).
+     * Returns the modified array.
+     *
+     * @param array $array Target array. Must not be immutable.
+     * @param  $values Values to append in order.
+     *
+     * @return array The modified array.
+     */
+    public function push(, $array, $values = null)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "push");
+
+        /* pass along required parameters to the request payload */
+        $request->set("array", $array);
+
+        /* pass along any optional parameters to the request payload */
+        if ($values != null)
+            $request->set('values', $values);
+
+        return $request->get_result();
+    }
+
+    /**
      * reverse()
      *
      * Reverse the order of the elements in an array. If the array is typed,
@@ -468,6 +567,29 @@ class array
         $request = $this->$session->request();
 
         $request->set("function", "reverse");
+
+        /* pass along required parameters to the request payload */
+        $request->set("array", $array);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * shift()
+     *
+     * Remove the first value from a mutable array and return it. If the array
+     * is empty, returns undefined.
+     *
+     * @param array $array Target array. Must not be immutable.
+     *
+     * @return  The removed value, or undefined if the array was empty.
+     */
+    public function shift(, $array)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "shift");
 
         /* pass along required parameters to the request payload */
         $request->set("array", $array);
@@ -518,6 +640,44 @@ class array
     }
 
     /**
+     * splice()
+     *
+     * Remove zero or more values starting at an index from a mutable array
+     * and optionally insert new values at that index. Returns an array of the
+     * removed values. Negative startIndex counts from the end. If deleteCount
+     * is omitted, all values from startIndex to the end are removed.
+     *
+     * @param array $array Target array. Must not be immutable.
+     * @param integer $startIndex Zero-based start index, or negative from the
+     *                            end.
+     * @param integer $deleteCount Number of values to remove. If omitted,
+     *                             remove through the end of the array.
+     *                             Negative is treated as zero.
+     * @param  $values Values to insert at startIndex after removals.
+     *
+     * @return array Array of removed values, in original order.
+     */
+    public function splice(, $array, $startIndex, $deleteCount = null, $values = null)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "splice");
+
+        /* pass along required parameters to the request payload */
+        $request->set("array", $array);
+        $request->set("startIndex", $startIndex);
+
+        /* pass along any optional parameters to the request payload */
+        if ($deleteCount != null)
+            $request->set('deleteCount', $deleteCount);
+
+        if ($values != null)
+            $request->set('values', $values);
+
+        return $request->get_result();
+    }
+
+    /**
      * to_string_array()
      *
      * Converts array value to string. For array values, the to_string() value
@@ -537,6 +697,34 @@ class array
         $request->set("value", $value);
 
         /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
+     * unshift()
+     *
+     * Insert one or more values at the beginning of a mutable array,
+     * preserving the relative order of the inserted values. Returns the
+     * modified array.
+     *
+     * @param array $array Target array. Must not be immutable.
+     * @param  $values Values to insert at the front, in order.
+     *
+     * @return array The modified array.
+     */
+    public function unshift(, $array, $values = null)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "unshift");
+
+        /* pass along required parameters to the request payload */
+        $request->set("array", $array);
+
+        /* pass along any optional parameters to the request payload */
+        if ($values != null)
+            $request->set('values', $values);
+
         return $request->get_result();
     }
 

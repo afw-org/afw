@@ -1290,7 +1290,7 @@ impl_parse_string_function(
                 if (parser->token_type != impl_token_type_string) {
                     IMPL_STRING_THROW_ERROR_Z("Expecting string value");
                 }
-                afw_array_add_value(list,
+                afw_array_push_value(list,
                     impl_token_to_value(parser), parser->xctx);
 
                 impl_get_token(parser);
@@ -2183,7 +2183,7 @@ impl_criteria_filter_to_property_value(
         for (e = entry->first_conjunctive_child; e; e = e->next_conjunctive_sibling) {
             o = impl_criteria_filter_to_property_value(e, p, xctx);
             v = afw_value_create_unmanaged_object(o, p, xctx);
-            afw_array_add_value(filters, v, xctx);
+            afw_array_push_value(filters, v, xctx);
         }
     }
 
@@ -2216,7 +2216,7 @@ impl_criteria_select_to_property_value(
     for (e = select; *e; e++) {
         v = afw_value_allocate_unmanaged_string(p, xctx);
         afw_memory_copy(&v->internal, *e);
-        afw_array_add_value(result, &v->pub, xctx);
+        afw_array_push_value(result, &v->pub, xctx);
     }
 
     return result;
@@ -2246,7 +2246,7 @@ impl_criteria_sort_to_property_value(
         v->internal.s = c = afw_pool_malloc(p, v->internal.len, xctx);
         *c++ = (e->descending) ? '-' : '+';
         memcpy(c, e->property_name->s, e->property_name->len);
-        afw_array_add_value(result, &v->pub, xctx);
+        afw_array_push_value(result, &v->pub, xctx);
     }
 
     return result;
