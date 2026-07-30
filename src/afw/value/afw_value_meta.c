@@ -447,24 +447,8 @@ afw_value_internal_get_evaluated_metas_for_array(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    const afw_array_t *passed_list;
-    const afw_array_t *list;
-    const afw_iterator_t *iterator;
-    const afw_value_t *entry_meta;
-
-    passed_list = afw_value_as_array(value, xctx);
-    list = afw_array_create_generic(p, xctx);
-
-    for (iterator = NULL;;) {
-        entry_meta = afw_array_get_next_entry_meta(passed_list,
-            &iterator, p, xctx);
-        if (!entry_meta) {
-            break;
-        }
-        afw_array_push_value(list, entry_meta, xctx);
-    }
-
-    return afw_value_create_unmanaged_array(list, p, xctx);
+    /* Lazy immutable view of meta() for each array entry. */
+    return afw_value_meta_values_list_for_list_create(value, p, xctx);
 }
 
 
@@ -497,23 +481,6 @@ afw_value_internal_get_evaluated_metas_for_object(
     const afw_pool_t *p,
     afw_xctx_t *xctx)
 {
-    const afw_object_t *object;
-    const afw_array_t *list;
-    const afw_iterator_t *iterator;
-    const afw_value_t *property_meta;
-    const afw_utf8_t *property_name;
-
-    object = afw_value_as_object(value, xctx);
-    list = afw_array_create_generic(p, xctx);
-
-    for (iterator = NULL;;) {
-        property_meta = afw_object_get_next_property_meta(object,
-            &iterator, &property_name, p, xctx);
-        if (!property_meta) {
-            break;
-        }
-        afw_array_push_value(list, property_meta, xctx);
-    }
-
-    return afw_value_create_unmanaged_array(list, p, xctx);
+    /* Lazy immutable view of meta() for each object property value. */
+    return afw_value_meta_values_list_for_object_create(value, p, xctx);
 }

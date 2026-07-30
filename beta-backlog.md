@@ -301,7 +301,7 @@ Capture after setter/count pass; fold into #2 / later PRs as appropriate.
 
 | Concern | Severity | Notes |
 |---------|----------|--------|
-| **`afw_value_meta_values_list` / `_object` array impls** | Medium (meta path only) | Entire vtable still “Method not implemented” (incl. `get_count`). Not used for normal script arrays; finish or stub safely when meta-values lists are exercised. |
+| **`afw_value_meta_values_list` / `_object` array impls** | Done (issue-#55) | Lazy immutable views; `metas()` for array/object uses them. Tests: `miscellaneous/meta_values.as`. |
 | **`set_value` / replace slot refcount** | Medium (#2) | Replacing entry does not release previous managed value (`@fixme` in memory setter). Same family as long-running managed lifetimes. |
 | **Mid-array insert/remove O(n)** | Low for now | Ring walk by index; ends (`push`/`pop`/`shift`) O(1). Revisit if large mid-splices become hot. |
 | **`get_next_internal` iterator** | Low | Pre-existing oddity (iterator assigned before sentinel check); works; polish later. |
