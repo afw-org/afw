@@ -971,10 +971,14 @@ typedef void (*afw_pool_cleanup_function_p_t)(
  * @param entry Qualifier stack entry.
  * @param name Name of variable.
  * @param xctx of caller.
- * @return value or NULL if not found / nullish.
+ * @return Non-NULL if this frame defines @p name (use permanent singletons
+ *    afw_value_undefined / afw_value_null for present nullish values); C NULL
+ *    if @p name is not defined on this frame.
  *
- * Used as get_cb on afw_xctx_qualifier_stack_entry_t. The stack is searched
- * from newest to oldest for the first matching qualifier frame.
+ * Used as get_cb on afw_xctx_qualifier_stack_entry_t. The stack walks matching
+ * visible frames newest → oldest and uses the first non-NULL return (first
+ * defining frame wins). Do not return C NULL for a present undefined value —
+ * return afw_value_undefined (permanent singleton, pointer identity).
  */
 typedef const afw_value_t *
 (*afw_xctx_get_variable_cb_t)(

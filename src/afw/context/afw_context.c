@@ -28,6 +28,11 @@ impl_current_variable_get_cb(
 
     result = NULL;
 
+    /*
+     * Name in this frame's table ⇒ defined here. Nested get_cb may return
+     * C NULL when the value is unset; map that to afw_value_undefined so the
+     * stack does not fall through to an older same-named frame.
+     */
     if (current_variables) for (
         current_variable = current_variables;
         *current_variable;
@@ -35,6 +40,9 @@ impl_current_variable_get_cb(
     {
         if (afw_utf8_equal((*current_variable)->meta->name, name)) {
             result = (*current_variable)->get_cb(entry, name, xctx);
+            if (!result) {
+                result = afw_value_undefined;
+            }
             break;
         }
     }
@@ -76,7 +84,8 @@ impl_contribute_cb_variables_cb(
             afw_object_set_property(object, name, value, xctx);
         }
         else {
-            afw_object_set_property(object, name, afw_value_null, xctx);
+            /* Known name on this frame; present but unset → undefined. */
+            afw_object_set_property(object, name, afw_value_undefined, xctx);
         }
     }
 }

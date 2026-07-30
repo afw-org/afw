@@ -341,6 +341,12 @@ afw_xctx_get_optionally_qualified_variable(
         }
     }
 
+    /*
+     * Walk matching frames newest → oldest. First non-NULL get_cb result wins
+     * (including permanent singletons afw_value_undefined / afw_value_null).
+     * C NULL from get_cb means "not defined on this frame" — keep looking.
+     * See afw_xctx_get_variable_cb_t contract.
+     */
     for (
         result = NULL,
         e_cur = xctx->qualifier_stack->top;
@@ -360,10 +366,12 @@ afw_xctx_get_optionally_qualified_variable(
         }
 
         result = e_cur->get_cb(e_cur, name, xctx);
-        break;
+        if (result) {
+            break;
+        }
     }
 
-    /* Return result. */
+    /* Return result (NULL if no frame defined the name). */
     return result;
 }
 
@@ -460,7 +468,11 @@ impl_get_object_variable_cb(
     const afw_utf8_t *name,
     afw_xctx_t *xctx)
 {
-    /* Return property from qualifier_object as variable. */
+    /*
+     * Object-backed frame: missing property → C NULL (not this frame).
+     * Present null/undefined properties should be stored as afw_value_null /
+     * afw_value_undefined (or other values), not omitted.
+     */
     return afw_object_get_property(entry->qualifier_object, name, xctx);
 }
 

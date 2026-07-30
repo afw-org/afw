@@ -48,18 +48,21 @@
     </paragraph>
     <paragraph>
         Get (<literal>qualifier::name</literal>) and snapshots share the same
-        stack and visibility rules: the most recent matching entry wins for a
-        binding. Default snapshot visibility matches normal
-        <literal>qualifier::name</literal> access in the current execution
-        context. Optional <literal>includeUntrusted</literal> (default false)
-        is only meaningful while the context is secure: set true so the
-        snapshot includes the same frames you would see with
+        stack and visibility rules: matching frames are walked newest to
+        older, and the first frame that defines a name wins (including a
+        present <literal>undefined</literal> or <literal>null</literal>
+        value). Get stops only when a value is found; frames that do not
+        define the name are skipped. Default snapshot visibility matches
+        normal <literal>qualifier::name</literal> access in the current
+        execution context. Optional <literal>includeUntrusted</literal>
+        (default false) is only meaningful while the context is secure: set
+        true so the snapshot includes the same frames you would see with
         <literal>qualifier::name</literal> if you were less secure (trusted
         and untrusted frames—not untrusted-only). When already not secure,
         true and false are the same because normal access already sees
         untrusted frames. Everyday <literal>qualifier::name</literal> access
-        is unchanged and remains the hot path; snapshots are not intended
-        for tight production loops.
+        remains the hot path; snapshots are not intended for tight
+        production loops.
     </paragraph>
     <paragraph>
         <strong>Size warning:</strong> snapshot objects can get large.

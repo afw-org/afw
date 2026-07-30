@@ -44,6 +44,9 @@ impl_conf_object_cb(
  * Note: Make sure to update
  * afw_application_internal_register_basic_application_context_type()
  * with parallel changes to this function.
+ *
+ * get_cb: C NULL = not this frame; non-NULL = defined here (use
+ * afw_value_undefined for present undefined — permanent singleton).
  */
 static const afw_value_t *
 impl_current_get_variable_cb(
@@ -58,7 +61,8 @@ impl_current_get_variable_cb(
 
     result = NULL;
     if (afw_utf8_equal(name, afw_s_mode)) {
-        result = xctx->mode;
+        /* Always defined on app current; mode is set at env create. */
+        result = xctx->mode ? xctx->mode : afw_value_undefined;
     }
     else if (afw_utf8_equal(name, afw_s_pid)) {
         pid = afw_os_get_pid();
@@ -104,7 +108,7 @@ impl_current_contribute_variables_cb(
             afw_object_set_property(object, *np, value, xctx);
         }
         else {
-            afw_object_set_property(object, *np, afw_value_null, xctx);
+            afw_object_set_property(object, *np, afw_value_undefined, xctx);
         }
     }
 }

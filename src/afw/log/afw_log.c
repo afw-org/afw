@@ -109,11 +109,13 @@ impl_reset_environment_log_mask(afw_xctx_t *xctx)
 
 
 /*
- * Get common variable callback. 
+ * Log write current:: — only message, xctxUUID, source.
  *
- * Note: Make sure to update
- * afw_log_internal_register_logType_context_type()
- * with parallel changes to this function.
+ * C NULL = not this frame (stack may resolve older current:: e.g. mode).
+ * Known names always return a value (never C NULL for present undefined).
+ *
+ * Note: Keep in sync with
+ * afw_log_internal_register_logType_context_type().
  */
 static const afw_value_t *
 impl_log_current_variable_get_cb(
@@ -178,7 +180,7 @@ impl_log_current_contribute_variables_cb(
             afw_object_set_property(object, *np, value, xctx);
         }
         else {
-            afw_object_set_property(object, *np, afw_value_null, xctx);
+            afw_object_set_property(object, *np, afw_value_undefined, xctx);
         }
     }
 }

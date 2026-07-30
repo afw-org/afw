@@ -184,8 +184,9 @@ export function afwEvaluateWithRetry(client : any, value : any, limit : number) 
  * 
  * All matching visible stack entries for the qualifier name contribute into
  * one object (most recent first; later entries only fill property names not
- * already set). Get (qualifier::name) still uses the most recent matching
- * entry for a single name. Default visibility matches normal qualifier::name
+ * already set). Get (qualifier::name) uses the same first-defining-frame rule
+ * per name (newest → older; first non-null get_cb wins, including present
+ * undefined/null values). Default visibility matches normal qualifier::name
  * access right now. Optional includeUntrusted is only meaningful while the
  * xctx is secure: set true so the snapshot includes the same frames you would
  * see with :: if you were less secure (trusted and untrusted). When already

@@ -12,10 +12,21 @@ Use when editing the **qualifier stack**, `qualifier()` / `qualifiers()`, push/c
 
 | Path | Role |
 |------|------|
-| **`qualifier::name` (get)** | Hot path. Walk **most recent → older**; use the **most recent** matching **visible** stack entry for that qualifier, then `get_cb`. |
+| **`qualifier::name` (get)** | Hot path. Walk **most recent → older** matching **visible** frames; first frame whose **`get_cb` returns non-NULL** wins for that name. |
 | **`qualifier(q)` / `qualifiers()`** | Debug / tools / tests. Build a **fresh memory object** via **`contribute_cb`** (not a live proxy). Not for tight production loops. |
 
-Same stack, same visibility rules — not a second security model. Snapshot materializes bags; get answers one name.
+Same stack, same visibility rules, same **first defining frame per name** semantics — not a second security model. Snapshot materializes bags; get answers one name.
+
+### get_cb contract
+
+| Return | Meaning |
+|--------|---------|
+| **C `NULL`** | Name **not defined** on this frame → stack continues |
+| **`afw_value_undefined`** | Defined, value undefined (permanent singleton; stop) |
+| **`afw_value_null`** | Defined, Adaptive/JSON null (permanent singleton; stop) |
+| other value | Defined (stop) |
+
+Do **not** return C `NULL` for present undefined. Context **name tables**: if the name is in the table but the value is unset, return `afw_value_undefined` so an older same-named frame is not used.
 
 ## Snapshot rules (issue #9)
 
