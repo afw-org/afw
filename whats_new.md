@@ -28,7 +28,7 @@ In-tree extensions and the `afw` / `afwfcgi` commands built with the same `./afw
 | **File streams** | Working `open_file` with hardened `rootFilePaths`; stream errors **throw** |
 | **VFS adapter** | Empty files, safe full-file write, multi-map path rules, `maxReadBytes` |
 | **Model adapters** | `mappedAdapterId` is **optional** for pure-script models |
-| **`afw` CLI** | Optional interactive line editing and command history |
+| **`afw` CLI** | Optional interactive line editing and command history; **`--allow` / `-a`** for result content type (YAML block strings, issue **#14**) |
 | **JSON Schema** | Cleaner editor schemas for Adaptive object types |
 | **Process env** | One `current` on retrieve (issue **#71**); values are string if valid UTF-8 else hexBinary |
 | **Templates** | Compile-time substitution `#{…}` docs and tests; backtick `` `\#` `` / `` `\$` `` match raw templates (issue **#97**) |
@@ -480,6 +480,67 @@ Other distros: `libedit-dev` / `libedit-devel` as appropriate. See `src/afw/doc/
 
 ---
 
+## `afw --allow` and YAML value output (issue #14)
+
+**Issue #14** (feature on the tree for a long time; **regression suite** added on `mgg-develop`)
+
+The `afw` command can print evaluated adaptive values using any registered **content type**, not only JSON:
+
+| Option | Meaning |
+|--------|---------|
+| **`-a` / `--allow` *type*** | Content type for **result** output (default **`json`**) |
+| **`-t` / `--type` *type*** | Content type of the **configuration** file (default **`json`**) |
+
+Load non-core content types with **`-e`** first. For YAML that is the **`afw_yaml`** extension:
+
+```bash
+# Short content-type id
+afw -e afw_yaml -a yaml -s expression -x 'object({msg: string("line1\nline2"), n: 7})'
+
+# Media type also works
+afw -e afw_yaml -a application/x-yaml -s expression -x 'integer(42)'
+
+# Conf encoded as YAML (still a list of conf objects)
+afw -e afw_yaml -t yaml -f conf.yaml -s expression -x '1'
+```
+
+### YAML encoding notes (what you see)
+
+YAML documents start with **`---`**. Common scalar forms:
+
+| Adaptive value | YAML output style |
+|----------------|-------------------|
+| String **without** newlines | JSON-quoted (`"hello"`) |
+| String **with** newlines | Literal block scalar **`|`** — **`|-`** strip trailing newlines, **`|+`** keep; a leading space sets an indent indicator (e.g. `|1-`) |
+| Integer | Unquoted decimal (`42`) |
+| Boolean / null | `true` / `false` / `null` |
+
+Example (object with a multiline string and an integer):
+
+```text
+---
+  msg: |-
+    line1
+    line2
+  n: 7
+```
+
+Invalid `--allow` values fail with **`Invalid --allow content-type.`**
+
+### Tests
+
+Permanent suite: **`src/afw_yaml/tests/yaml_allow_output.py`** (tags `yaml`, `content_type`).
+
+```bash
+afwdev test -p afw_yaml --show-all
+# or
+afwdev test -p afw_yaml --tags yaml
+```
+
+Covers `--allow` short/media ids, invalid allow, JSON path sanity, block-scalar chomping/indent, integers and other primitives, objects/arrays, and `-t yaml` conf parse. Handbook `usage.xml` may still omit `-a` until a docs pass; live **`afw -h`** lists it.
+
+---
+
 ## JSON Schema for Adaptive object types
 
 **Issue #3 / PR #116**
@@ -503,7 +564,7 @@ The clone-on-return fix for mutable defaults (issue **#110**) landed on `develop
 
 ### Tests under `src/*/tests`
 
-Tracked suites under `src/*/tests` are permanent regression assets. `afwdev test` uses temporary work directories; it does not mean those sources are disposable.
+Tracked suites under `src/*/tests` are permanent regression assets. `afwdev test` uses temporary work directories; it does not mean those sources are disposable. New YAML/`--allow` coverage lives under **`src/afw_yaml/tests/`** (issue **#14**).
 
 ---
 
@@ -552,6 +613,7 @@ Tracked suites under `src/*/tests` are permanent regression assets. `afwdev test
 | Adapter index `current::` | #54 | #130 (partial; see #57) |
 | `qualifier` / `qualifiers` snapshots | #9 | #129 (includes admin `maxObjects: 0` client fix) |
 | Permanent `src/*/tests` regression assets | — | #121 (docs only) |
+| `afw --allow` + YAML block strings / integers | #14 | — (feature earlier; regression tests on `mgg-develop`) |
 
 ---
 
