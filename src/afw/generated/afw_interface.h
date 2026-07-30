@@ -3178,9 +3178,11 @@ struct afw_data_type_inf_s {
  * 
  * End operations: push_value appends (LIFO push / FIFO enqueue);
  * pop_value removes and returns the last value (LIFO pop);
- * shift_value removes and returns the first value (FIFO dequeue);
- * insert_value at 0 is unshift. Content remove_value removes the first
- * equal value (bag-style), not by position.
+ * shift_value removes and returns the first value (FIFO dequeue).
+ * There is no separate unshift method on this interface; use
+ * insert_value(instance, 0, value, xctx) to insert at the front
+ * (unshift). Content remove_value removes the first equal value
+ * (bag-style), not by position.
  *
  * @{
  */
@@ -3504,13 +3506,24 @@ struct afw_array_setter_inf_s {
 /**
  * @brief Call method `insert_value` of interface `afw_array_setter`.
  *
- * Insert a value before the given index. Index 0 inserts at the front
- * (unshift). Index equal to the current count (after negative
- * adjustment) appends, same as push_value. Existing elements at and
- * after the index shift toward the end.
+ * Insert a value before the given index. Existing elements at and after
+ * the index shift toward the end.
+ * 
+ * There is no separate unshift method on afw_array_setter. To unshift
+ * (insert at the front), call insert_value with index 0:
+ * 
+ * afw_array_setter_insert_value(setter, 0, value, xctx);
+ * 
+ * or the array convenience helper:
+ * 
+ * afw_array_insert_value(array, 0, value, xctx);
+ * 
+ * Index equal to the current count (after negative adjustment) appends,
+ * same as push_value. Negative indexes count from the end (see interface
+ * description for insert index rules).
  * @param instance Pointer to this array setter instance.
- * @param index Zero-based insert position, or negative from the end. See
- * interface description for index rules.
+ * @param index Zero-based insert position, or negative from the end. Use 0 to
+ * unshift (front). See interface description for index rules.
  * @param value Value to insert. Lifetime must cover the array.
  * @param xctx This is the caller's xctx.
  * @relates afw_array_setter_t
@@ -3533,7 +3546,8 @@ struct afw_array_setter_inf_s {
  * @brief Call method `insert_internal` of interface `afw_array_setter`.
  *
  * Insert an internal value of a single data type before the given index
- * (typed insert_value).
+ * (typed insert_value). Index 0 is unshift; index equal to count is
+ * append (same rules as insert_value).
  * @param instance Pointer to this array setter instance.
  * @param index Zero-based insert position, or negative from the end. See
  * interface description for index rules.
@@ -3562,7 +3576,11 @@ struct afw_array_setter_inf_s {
  * @brief Call method `set_value` of interface `afw_array_setter`.
  *
  * Replace the value at the given index. Throws if the index does not
- * refer to an existing element (does not grow the array).
+ * refer to an existing element (does not grow the array). The new value
+ * is stored as-is (same policy as object set_property for now).
+ * 
+ * Issue #2: when hold-on-store lands, implementations should
+ * optional_release the previous managed slot value before replace.
  * @param instance Pointer to this array setter instance.
  * @param index Zero-based element index, or negative from the end (-1 is last).
  * @param value New value. Lifetime must cover the array.

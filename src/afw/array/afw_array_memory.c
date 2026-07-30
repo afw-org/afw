@@ -54,6 +54,13 @@ struct afw_memory_internal_array_s {
 };
 
 
+/* Forward: defined with other static helpers below mutator helpers. */
+static afw_memory_internal_array_entry_t *
+impl_entry_at(
+    afw_memory_internal_array_t *self,
+    afw_size_t at);
+
+
 AFW_DEFINE(const afw_array_t *)
 afw_array_create_with_options(
     int options,
@@ -193,8 +200,6 @@ impl_afw_array_get_entry_value(
     afw_memory_internal_array_t *self = (afw_memory_internal_array_t *)instance;
     afw_memory_internal_array_entry_t *ep;
     afw_integer_t resolved;
-    afw_size_t i;
-    afw_size_t n;
 
     if (self->count == 0) {
         return NULL;
@@ -214,18 +219,8 @@ impl_afw_array_get_entry_value(
         return NULL;
     }
 
-    i = 0;
-    n = (afw_size_t)resolved;
-    APR_RING_FOREACH(ep, self->ring, afw_memory_internal_array_entry_s,
-        link)
-    {
-        if (i == n) {
-            return ep->value;
-        }
-        i++;
-    }
-
-    return NULL;
+    ep = impl_entry_at(self, (afw_size_t)resolved);
+    return ep ? ep->value : NULL;
 }
 
 
@@ -244,7 +239,7 @@ impl_afw_array_get_next_internal(
     afw_memory_internal_array_t *self = (afw_memory_internal_array_t *)instance;
     afw_memory_internal_array_entry_t *ep;
 
-    /* If iterator is NULL, locate first else locate next and update iterator. */
+    /* If iterator is NULL, locate first else locate next. */
     if (!*iterator) {
         ep = APR_RING_FIRST(self->ring);
     }
@@ -252,13 +247,12 @@ impl_afw_array_get_next_internal(
         ep = (afw_memory_internal_array_entry_t *)*iterator;
         ep = APR_RING_NEXT(ep, link);
     }
-    *iterator = (afw_iterator_t *)ep;
 
-
-    /* If sentinel, return !found. */
+    /* If sentinel, clear iterator (match get_next_value) and return !found. */
     if (ep == APR_RING_SENTINEL(self->ring,
         afw_memory_internal_array_entry_s, link))
     {
+        *iterator = NULL;
         *internal = NULL;
         if (data_type) {
             *data_type = NULL;
@@ -266,12 +260,11 @@ impl_afw_array_get_next_internal(
         return false;
     }
 
-    /* Return next value. */
+    /* Return next value; store current entry as iterator position. */
     *iterator = (afw_iterator_t *)ep;
     *internal = AFW_VALUE_INTERNAL(ep->value);
     if (data_type) {
         *data_type = afw_value_get_data_type(ep->value, xctx);
-
     }
     return true;
 }
@@ -435,6 +428,85 @@ impl_maybe_clear_generic_data_type(afw_memory_internal_array_t *self)
     if (self->generic && self->count == 0) {
         self->data_type = NULL;
     }
+}
+
+
+
+/*
+ * @fixme Issue #2 — value lifetime / managed escape.
+ *
+ * When hold-on-store is wired (clone_or_reference on push/insert/set, same
+ * family as scope assign and object properties), discard paths should call
+ * afw_value_optional_release on the previous element when the inf supports
+ * it. Until then, match memory objects: store/replace the pointer as-is and
+ * rely on pool bulk free for short scripts/requests. Releasing without a
+ * prior hold can free a shared managed value (RC starts at 0) and UAF.
+ *
+ * Intended helper (commented out until #2 lands):
+ *
+ * static void
+ * impl_optional_release_value(
+ *     const afw_value_t *value,
+ *     afw_xctx_t *xctx)
+ * {
+ *     if (value && value->inf && value->inf->optional_release) {
+ *         afw_value_optional_release(value, xctx);
+ *     }
+ * }
+ *
+ * Call on set_value replace (if old != new), remove_value_by_index,
+ * remove_value, remove_internal, and remove_all_values. Do NOT call on
+ * pop_value / shift_value (ownership transfers to the caller).
+ */
+
+
+
+/*
+ * Locate entry at zero-based index. Walks from the nearer end so mid-array
+ * get/set/remove/insert stay O(n) but favor ends (deque-friendly).
+ * Returns NULL if at >= count (caller should not pass that for element ops).
+ */
+static afw_memory_internal_array_entry_t *
+impl_entry_at(
+    afw_memory_internal_array_t *self,
+    afw_size_t at)
+{
+    afw_memory_internal_array_entry_t *ep;
+    afw_size_t i;
+    afw_size_t count;
+
+    count = self->count;
+    if (at >= count) {
+        return NULL;
+    }
+
+    if (at <= count / 2) {
+        i = 0;
+        APR_RING_FOREACH(ep, self->ring,
+            afw_memory_internal_array_entry_s, link)
+        {
+            if (i == at) {
+                return ep;
+            }
+            i++;
+        }
+    }
+    else {
+        i = count - 1;
+        for (
+            ep = APR_RING_LAST(self->ring);
+            ep != APR_RING_SENTINEL(self->ring,
+                afw_memory_internal_array_entry_s, link);
+            ep = APR_RING_PREV(ep, link))
+        {
+            if (i == at) {
+                return ep;
+            }
+            i--;
+        }
+    }
+
+    return NULL;
 }
 
 
@@ -634,7 +706,6 @@ impl_afw_array_setter_insert_value(
     afw_memory_internal_array_entry_t *nep;
     afw_size_t count;
     afw_size_t at;
-    afw_size_t i;
     afw_boolean_t was_empty;
 
     was_empty = (self->count == 0);
@@ -647,6 +718,7 @@ impl_afw_array_setter_insert_value(
         self->pub.p, afw_memory_internal_array_entry_t, xctx);
     nep->value = value;
 
+    /* index 0 = unshift (front); index == count = push (append). */
     if (at == 0) {
         APR_RING_INSERT_HEAD(self->ring, nep,
             afw_memory_internal_array_entry_s, link);
@@ -661,15 +733,11 @@ impl_afw_array_setter_insert_value(
         return;
     }
 
-    i = 0;
-    APR_RING_FOREACH(lep, self->ring, afw_memory_internal_array_entry_s, link)
-    {
-        if (i == at) {
-            APR_RING_INSERT_BEFORE(lep, nep, link);
-            self->count++;
-            return;
-        }
-        i++;
+    lep = impl_entry_at(self, at);
+    if (lep) {
+        APR_RING_INSERT_BEFORE(lep, nep, link);
+        self->count++;
+        return;
     }
 
     /* Should not reach. */
@@ -715,26 +783,22 @@ impl_afw_array_setter_set_value(
     afw_memory_internal_array_t *self =
         (afw_memory_internal_array_t *)((afw_array_setter_t *)instance)->array;
     afw_memory_internal_array_entry_t *lep;
-    afw_size_t count;
     afw_size_t at;
-    afw_size_t i;
 
-    count = self->count;
-    at = impl_resolve_element_index(index, count, xctx);
+    at = impl_resolve_element_index(index, self->count, xctx);
     impl_note_value_data_type(self, value, false, xctx);
 
-    i = 0;
-    APR_RING_FOREACH(lep, self->ring, afw_memory_internal_array_entry_s, link)
-    {
-        if (i == at) {
-            /** @fixme Consider reducing reference count of previous value. */
-            lep->value = value;
-            return;
-        }
-        i++;
+    lep = impl_entry_at(self, at);
+    if (!lep) {
+        AFW_THROW_ERROR_Z(general, "Index out of bounds", xctx);
     }
 
-    AFW_THROW_ERROR_Z(general, "Index out of bounds", xctx);
+    /*
+     * @fixme #2: optional_release previous managed value when hold-on-store
+     * is in place (see impl_optional_release_value comment above). Same
+     * store-as-is policy as afw_object_memory set_property for now.
+     */
+    lep->value = value;
 }
 
 
@@ -751,26 +815,19 @@ impl_afw_array_setter_remove_value_by_index(
     afw_memory_internal_array_t *self =
         (afw_memory_internal_array_t *)((afw_array_setter_t *)instance)->array;
     afw_memory_internal_array_entry_t *lep;
-    afw_size_t count;
     afw_size_t at;
-    afw_size_t i;
 
-    count = self->count;
-    at = impl_resolve_element_index(index, count, xctx);
+    at = impl_resolve_element_index(index, self->count, xctx);
 
-    i = 0;
-    APR_RING_FOREACH(lep, self->ring, afw_memory_internal_array_entry_s, link)
-    {
-        if (i == at) {
-            APR_RING_REMOVE(lep, link);
-            self->count--;
-            impl_maybe_clear_generic_data_type(self);
-            return;
-        }
-        i++;
+    lep = impl_entry_at(self, at);
+    if (!lep) {
+        AFW_THROW_ERROR_Z(general, "Index out of bounds", xctx);
     }
 
-    AFW_THROW_ERROR_Z(general, "Index out of bounds", xctx);
+    /* @fixme #2: optional_release lep->value when hold-on-store lands. */
+    APR_RING_REMOVE(lep, link);
+    self->count--;
+    impl_maybe_clear_generic_data_type(self);
 }
 
 
@@ -791,6 +848,7 @@ impl_afw_array_setter_remove_value(
     APR_RING_FOREACH(ep, self->ring, afw_memory_internal_array_entry_s, link)
     {
         if (afw_value_equal(value, ep->value, xctx)) {
+            /* @fixme #2: optional_release ep->value when hold-on-store lands. */
             APR_RING_REMOVE(ep, link);
             self->count--;
             impl_maybe_clear_generic_data_type(self);
@@ -824,6 +882,7 @@ impl_afw_array_setter_remove_internal(
                 &((const afw_value_common_t *)ep->value)->internal,
                 internal, data_type->c_type_size) == 0)
         {
+            /* @fixme #2: optional_release ep->value when hold-on-store lands. */
             APR_RING_REMOVE(ep, link);
             self->count--;
             impl_maybe_clear_generic_data_type(self);
@@ -847,6 +906,10 @@ impl_afw_array_setter_remove_all_values(
     afw_memory_internal_array_t *self =
         (afw_memory_internal_array_t *)((afw_array_setter_t *)instance)->array;
 
+    /*
+     * @fixme #2: walk ring and optional_release each element value before
+     * re-init when hold-on-store lands (see impl_optional_release_value).
+     */
     APR_RING_INIT(self->ring, afw_memory_internal_array_entry_s, link);
     self->count = 0;
 

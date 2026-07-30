@@ -424,11 +424,15 @@ afw_array_shift_value(
 
 
 /**
- * @brief Insert value before index (signed index; 0 = front).
+ * @brief Insert value before index (signed index; 0 = front / unshift).
  * @param instance Pointer to this value array instance.
- * @param index Zero-based or negative from end.
+ * @param index Zero-based or negative from end; 0 inserts at front.
  * @param value A value.
  * @param xctx of caller.
+ *
+ * There is no separate afw_array_unshift_value helper. Unshift is:
+ *   afw_array_insert_value(array, 0, value, xctx);
+ * Index equal to the current count appends (same as push_value).
  */
 AFW_DECLARE(void)
 afw_array_insert_value(
@@ -445,6 +449,9 @@ afw_array_insert_value(
  * @param index Zero-based or negative from end.
  * @param value New value.
  * @param xctx of caller.
+ *
+ * Stores as-is today (like object set_property). Issue #2: optional_release
+ * previous managed value once hold-on-store is wired.
  */
 AFW_DECLARE(void)
 afw_array_set_value(

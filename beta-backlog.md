@@ -256,7 +256,7 @@ Durable agent rule: [`.cursor/rules/afw-adapter-index.mdc`](.cursor/rules/afw-ad
 
 ### Issue #55 — object/array helpers + array as vector
 
-**Status:** C `afw_array_setter` reshape **landed on branch** `issue-#55` (script helpers not started)  
+**Status:** Feature work **landed on branch** `issue-#55` (C setter, script helpers, handbook, metas, residual memory-array polish). Process: push/PR/close still open.  
 **GitHub:** [#55 Common object and array methods](https://github.com/afw-org/afw/issues/55) (Jeremy: JS-flavored list)
 
 #### Heritage / product framing (remember)
@@ -295,31 +295,25 @@ Durable agent rule: [`.cursor/rules/afw-adapter-index.mdc`](.cursor/rules/afw-ad
 | C mutability | `afw_array_*` + interface XML `afw_array_setter` |
 | generate names | snake_case `functionId`/`functionLabel`; camel auto for JS bindings |
 
-#### Residual concerns (review — not blocking next script work)
+#### Residual concerns
 
-Capture after setter/count pass; fold into #2 / later PRs as appropriate.
-
-| Concern | Severity | Notes |
-|---------|----------|--------|
-| **`afw_value_meta_values_list` / `_object` array impls** | Done (issue-#55) | Lazy immutable views; `metas()` for array/object uses them. Tests: `miscellaneous/meta_values.as`. |
-| **`set_value` / replace slot refcount** | Medium (#2) | Replacing entry does not release previous managed value (`@fixme` in memory setter). Same family as long-running managed lifetimes. |
-| **Mid-array insert/remove O(n)** | Low for now | Ring walk by index; ends (`push`/`pop`/`shift`) O(1). Revisit if large mid-splices become hot. |
-| **`get_next_internal` iterator** | Low | Pre-existing oddity (iterator assigned before sentinel check); works; polish later. |
-| **Stored C NULL vs empty on pop** | Low | Optional `found` distinguishes; script usually ignores `found` and treats NULL as undefined. |
-| **No Adaptive `unshift` name on C vtable** | Intentional | `insert_value(0, …)` is unshift; script can wrap later. |
-| **test262 `\fixme` / skips** | Parallel track | Burn down over weeks/months; not #55 MVP. Rewrite `keys`/`entries` for-of when script APIs exist. |
+| Concern | Status | Notes |
+|---------|--------|--------|
+| **`afw_value_meta_values_list` / `_object`** | **Done** | Lazy immutable views; `metas()` for array/object. Tests: `miscellaneous/meta_values.as`. |
+| **`set_value` / discard slot release** | **Deferred to #2** | Commented-out helper + `@fixme #2` in `afw_array_memory.c` (match object store-as-is for now). When hold-on-store lands: `optional_release` on set/remove/remove_all; not on pop/shift. |
+| **Mid-array insert/remove O(n)** | **Improved** | Still O(n) ring, but index locate walks from **nearer end** (`impl_entry_at`). Ends (`push`/`pop`/`shift`/`insert 0`) stay O(1). Contiguous vector later only if hot. |
+| **`get_next_internal` iterator** | **Done** | Matches `get_next_value`: do not store sentinel in iterator; clear to NULL at end. |
+| **Stored C NULL vs empty on pop** | **Documented** | Optional `found`; interface + `afw_array.h` describe empty vs removed NULL. |
+| **No C vtable `unshift` name** | **Documented** | Intentional: `insert_value(…, 0, …)` / `afw_array_insert_value(a, 0, v, xctx)`. Script has `unshift`. |
+| **test262 `\fixme` / skips** | Parallel | Burn down over weeks/months; not #55 MVP. Differences doc #22 separate. |
 
 #### Forward plan (from here)
 
-1. **Done:** C setter + O(1) memory `get_count` + signed get/set indexes.
-2. **Done (uncommitted for review):** script APIs + tests:
-   - Object: `keys` / `values` / `entries` (`dataTypeMethod`)
-   - Array: `at`, `push`, `pop`, `shift`, `unshift`, `splice` (`dataTypeMethod`)
-   - Poly: `freeze` (object + array)
-   - HOF: `every` → `all_of`, `some` → `any_of` (`useExecuteFunction`)
-   - Tests: `objects/keys_values_entries.as`, `list/at_push_pop_shift_unshift_splice.as`, `list/freeze_every_some.as`, `list/issue55_combined.as`
-3. **Handbook:** Language Reference **Objects and Arrays** page + Features section update (issue #55).
-4. **Not in this pass (residual / parallel):** meta-values list impls; managed refcount on set; mid-index O(n); test262 fixme burn-down; differences doc (#22).
+1. **Done:** C setter + O(1) memory `get_count` + signed get/set indexes + residual memory-array polish above.
+2. **Done:** script APIs + tests (`keys`/`values`/`entries`, `at`/stack/`splice`, `freeze`, `every`/`some`, metas, limits/combined).
+3. **Done:** Language Reference **Objects and Arrays** + Features + `whats_new`.
+4. **Process:** push branch, PR to `mgg-develop`, close #55.
+5. **Parallel / later:** full hold-on-store (#2); test262 burn-down; differences doc (#22).
 
 #### Adaptive Script vs ECMAScript — structural (not optional polish)
 
@@ -392,3 +386,4 @@ _Not a commitment — fill in as “must be true before we call it beta.”_
 | 2026-07-29 | #55 brainstorm dump: bag=functions/array=type, XACML extension mapping, doc boundary (no ES/XACML in core), vector/deque setter, every/some optional, function file map. |
 | 2026-07-29 | #55 notes: not prototypal / no ES globals (qualified vars); test262 ~137 skips + plan to burn down all `\fixme` over weeks/months. |
 | 2026-07-29 | #55: C array_setter reshape + O(1) get_count; residual concerns + forward plan in this file. |
+| 2026-07-30 | #55: residual polish — nearer-end index walk, get_next_internal, unshift docs via insert_value(0); set/remove optional_release deferred to #2 (breadcrumb FIXME, object-safe store-as-is). |
