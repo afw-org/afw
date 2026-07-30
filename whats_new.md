@@ -41,7 +41,7 @@ In-tree extensions and the `afw` / `afwfcgi` commands built with the same `./afw
 
 **Issue #55** on `mgg-develop` (branch `issue-#55`).
 
-Adaptive Script gains common object/array helpers and stack/queue-style mutators. These are **Adaptive functions** (and optional `value->method(...)` sugar via `dataTypeMethod`), not ECMAScript prototypes or global objects.
+Adaptive Script gains common object/array helpers and stack/queue-style mutators. These are **Adaptive functions** registered in the environment (with optional `value->method(...)` sugar when the function is a data-type method).
 
 ### Rebuild / recompile requirement
 
@@ -84,6 +84,13 @@ Prefer **`all_of` / `any_of`** when you need the multi-array / bag-style quantif
 ### C array face (for extension authors)
 
 Memory arrays keep an **O(1) `get_count`**. Setter renames and end ops (`push_value`, `pop_value` with optional `found`, etc.) are the C foundation under the script helpers. See interface docs for index and empty-pop contracts.
+
+### Handbook
+
+Language Reference: **Objects and Arrays**
+(`src/afw/doc/reference/language/objects-and-arrays.xml`), linked from the
+Language index. Function Reference pages for each function are generated from
+metadata when docs are built.
 
 ---
 

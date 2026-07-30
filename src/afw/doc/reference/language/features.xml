@@ -98,21 +98,43 @@ let y = 2;
     print(e.message);
     print(e.data.code);
 }]]></code>
-    <header>Working with objects and lists</header>
+    <header>Working with objects and arrays</header>
     <paragraph>
-        Because Adaptive Script does not have classes, it does not have all 
-        of the Object and Array methods, that are included in ECMAScript, 
-        accessible as object properties. 
+        Object and array behavior is provided by Adaptive functions in the
+        environment, not by methods on shared type objects. Optional
+        method-style calls such as <literal>obj-&gt;keys()</literal> or
+        <literal>arr-&gt;push(1)</literal> are available when a function is a
+        data-type method (the receiver is the first parameter).
     </paragraph>
     <paragraph>
-        Object properties in Adaptive Script do not currently support computed 
-        names.
+        Helpers include property listing (<literal>keys</literal>,
+        <literal>values</literal>, <literal>entries</literal>), indexing
+        (<literal>at</literal>), stack and queue mutators
+        (<literal>push</literal>, <literal>pop</literal>,
+        <literal>shift</literal>, <literal>unshift</literal>,
+        <literal>splice</literal>), immutability (<literal>freeze</literal>),
+        and quantifiers (<literal>every</literal> / <literal>some</literal>,
+        same family as <literal>all_of</literal> / <literal>any_of</literal>).
+        See the Language Reference section
+        <literal>Objects and Arrays</literal> and the Function Reference
+        categories <literal>object</literal>, <literal>array</literal>, and
+        <literal>higher_order_array</literal>.
     </paragraph>
-    <code><![CDATA[let x = { 
-    a:   1, // valid in Adaptive Script 
-    "b": 2, // valid in Adaptive Script
-    [y]: 3, // invalid in Adaptive Script
-};]]></code>
+    <paragraph>
+        Object property names in initializers may be identifiers or string
+        literals. Computed property names in the initializer are not
+        supported.
+    </paragraph>
+    <code><![CDATA[let x = {
+    a:   1, // valid
+    "b": 2, // valid
+    [y]: 3, // invalid (computed name)
+};
+
+let names = keys(x);
+let a = [1, 2];
+push(a, 3);
+assert(at(a, -1) === 3);]]></code>
     <header>Keywords new and delete</header>
     <paragraph>
         Adaptive Script does not support the <literal>new</literal> and 
@@ -120,10 +142,12 @@ let y = 2;
     </paragraph>
     <header>Iterators and Generators</header>
     <paragraph>
-        At this time, Adaptive Script does not support generators. Although 
-        objects and lists can be iterated over using the 
-        <literal>for-of</literal> statement, creating iterators as you can in 
-        ECMAScript is not supported.
+        At this time, Adaptive Script does not support generators or
+        user-defined iterators. Arrays can be iterated with
+        <literal>for-of</literal>. Objects are iterated by walking
+        <literal>keys</literal>, <literal>values</literal>, or
+        <literal>entries</literal> (for example
+        <literal>for (let pair of entries(o))</literal>).
     </paragraph>
     <header>Asynchronous Operations</header>
     <paragraph>

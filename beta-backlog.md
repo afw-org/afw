@@ -318,7 +318,8 @@ Capture after setter/count pass; fold into #2 / later PRs as appropriate.
    - Poly: `freeze` (object + array)
    - HOF: `every` → `all_of`, `some` → `any_of` (`useExecuteFunction`)
    - Tests: `objects/keys_values_entries.as`, `list/at_push_pop_shift_unshift_splice.as`, `list/freeze_every_some.as`, `list/issue55_combined.as`
-3. **Not in this pass (residual / parallel):** meta-values list impls; managed refcount on set; mid-index O(n); test262 fixme burn-down; differences doc (#22).
+3. **Handbook:** Language Reference **Objects and Arrays** page + Features section update (issue #55).
+4. **Not in this pass (residual / parallel):** meta-values list impls; managed refcount on set; mid-index O(n); test262 fixme burn-down; differences doc (#22).
 
 #### Adaptive Script vs ECMAScript — structural (not optional polish)
 
