@@ -2,8 +2,20 @@
 //?
 //? testScript: vfs_multimap.as
 //? customPurpose: Part of vfs adapter tests
-//? description: Multi-entry vfsMap longest-prefix and path-boundary (issue #103 parity).
+//? description: Multi-entry vfsMap longest-prefix and path-boundary (issue #103 parity; conf host paths use issue #15 templates).
 //? sourceType: script
+//?
+//? test: template_env_root_available
+//? description: issue #15 AFW_VFS_TEST_ROOT is set for vfsMap templates
+//? skip: false
+//? expect: 0
+//? source: ...
+
+assert(environment::AFW_VFS_TEST_ROOT !== undefined,
+    "AFW_VFS_TEST_ROOT required for vfsMap templates");
+assert(length(string(environment::AFW_VFS_TEST_ROOT)) > 0);
+return 0;
+
 //?
 //? test: longest_prefix_includes
 //? description: includes/ beats include/ for includes/x.txt (like rootFilePaths).

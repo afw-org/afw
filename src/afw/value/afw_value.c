@@ -523,7 +523,11 @@ afw_value_evaluate_with_additional_untrusted_qualified_variables(
                     false, p, xctx);
             }
 
+            /* Fully evaluate while untrusted frames are still on the stack. */
             result = afw_value_evaluate(value, p, xctx);
+            while (result && afw_value_is_compiled_value(result)) {
+                result = afw_value_evaluate(result, p, xctx);
+            }
         }
 
         AFW_FINALLY{

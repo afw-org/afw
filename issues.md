@@ -72,14 +72,14 @@ Title prefix **`app ·`** = primarily admin app / Fiddle / JS client (not C/core
 | 108 | [Curl callback read/write](https://github.com/afw-org/afw/issues/108) | Stream large HTTP bodies via Adaptive Script callbacks instead of full in-memory buffers. |
 | 87 | [More RQL operators](https://github.com/afw-org/afw/issues/87) | Implement `in`, `match`, `contains` (and decide on other nonstandard ops). |
 | 81 | [afwdev install language bindings](https://github.com/afw-org/afw/issues/81) | `afwdev build --install` should build/install JS/Python bindings for local consumers. |
-| 74 | [Script: `args` / secret read](https://github.com/afw-org/afw/issues/74) | `process::` (or similar) for args/env; interactive `read`/`readpass` for secrets. |
+| 74 | [Script: `args` / secret read](https://github.com/afw-org/afw/issues/74) | Partial: `process::` (args, programName, pid, cwd, …) + env create ambient; still open: interactive `read`/`readpass`. |
 | 64 | [Stack overflow / OOM handling](https://github.com/afw-org/afw/issues/64) | Better detect/handle stack overflow, segfault, OOM than APR border-page tricks. |
 | 55 | [Object/array helper methods](https://github.com/afw-org/afw/issues/55) | Add useful JS-like helpers (`keys`/`values`/`entries`, `at`/`every`/`some`, …). |
 | 53 | [app · Generate JS mock data](https://github.com/afw-org/afw/issues/53) | Stop hand-maintaining stale `__mocks__`; generate from runtime/afwfcgi somehow. |
 | 45 | [GHA: run steps only when needed](https://github.com/afw-org/afw/issues/45) | Use path filters so Actions skip irrelevant paths. |
 | 39 | [Holes in list/array literals](https://github.com/afw-org/afw/issues/39) | Support sparse literals and undefined entries across list HOFs / `for-of`. |
 | 38 | [Computed property names](https://github.com/afw-org/afw/issues/38) | Support `{[expr]: value}` object initializer syntax. |
-| 15 | [Config file path enhancements](https://github.com/afw-org/afw/issues/15) | Resolve relative paths at create; hybrid eval; `environment::` in `afw` CLI conf. |
+| 15 | [Config file path enhancements](https://github.com/afw-org/afw/issues/15) | Resolve relative paths at create; template eval; `environment::` in `afw` CLI conf. |
 | 14 | [`afw --allow` + YAML block strings](https://github.com/afw-org/afw/issues/14) | Content-type for value output; YAML block style for multiline strings. |
 | 13 | [afwdev stress testing](https://github.com/afw-org/afw/issues/13) | `--rounds` / `--continuous` (and later stats / special envs). |
 | 8 | [app · Leave create-react-app](https://github.com/afw-org/afw/issues/8) | Migrate admin app build (e.g. Vite). |

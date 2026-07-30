@@ -64,3 +64,51 @@ const b = qualifier("environment", true);
 assert(!is_nullish(a) && !is_nullish(b));
 assert(a.HOME === b.HOME && a.HOME === environment::HOME);
 return 0;
+
+//?
+//? test: multi-frame-current-get-continues
+//? description: stacked current:: first-defining-frame (not first-frame-only)
+//? expect: 0
+//? source: ...
+
+/*
+ * Push an outer current bag that only defines message. App current:: underneath
+ * still has mode. Get must continue past C NULL from the outer object frame
+ * (bug: used to stop after first matching current frame).
+ *
+ * Use unevaluated + generate_uuid() so compile does not constant-fold
+ * current:: lookups at compile time before the stacked frames exist.
+ */
+const mode_expr:unevaluated = compile(template(
+    "${return length(generate_uuid()) > 0 ? string(current::mode) : \"no\";}"
+));
+const mode = evaluate(
+    mode_expr,
+    {
+        current: {
+            message: "from-stacked-current"
+        }
+    }
+);
+assert(!is_nullish(mode), "current::mode should resolve under stacked current");
+assert(mode === string(current::mode),
+    "stacked get should match ambient current::mode");
+
+const msg_expr:unevaluated = compile(template(
+    "${return length(generate_uuid()) > 0 ? string(current::message) : \"no\";}"
+));
+const msg = evaluate(
+    msg_expr,
+    {
+        current: {
+            message: "from-stacked-current"
+        }
+    }
+);
+assert(msg === "from-stacked-current",
+    "top current::message should win when present");
+
+const q = qualifier("current");
+assert(!is_nullish(q), "qualifier(current) required");
+assert(q.mode === current::mode, "snapshot mode should match ::");
+return 0;

@@ -220,16 +220,20 @@ afw_function_execute_evaluate(
     const afw_value_t *value;
 
     if (AFW_FUNCTION_PARAMETER_IS_PRESENT(2)) {
+        /*
+         * Fully evaluate with additional frames still pushed (including any
+         * nested compiled_value). Do not re-evaluate after untrusted frames
+         * are popped — that would lose multi-frame qualifier resolution.
+         */
         value =
             afw_value_evaluate_with_additional_untrusted_qualified_variables(
                 x->argv[1], x->argv[2], x->p, x->xctx);
     }
     else {
         value = afw_value_evaluate(x->argv[1], x->p, x->xctx);
-    }
-  
-    if (afw_value_is_compiled_value(value)) {
-        value = afw_value_evaluate(value, x->p, x->xctx);
+        if (afw_value_is_compiled_value(value)) {
+            value = afw_value_evaluate(value, x->p, x->xctx);
+        }
     }
 
     afw_xctx_statement_flow_reset_all_except_rethrow(x->xctx);
@@ -856,12 +860,13 @@ afw_function_execute_test_value(
  * 
  * All matching visible stack entries for the qualifier name contribute into one
  * object (most recent first; later entries only fill property names not already
- * set). Get (qualifier::name) still uses the most recent matching entry for a
- * single name. Default visibility matches normal qualifier::name access right
- * now. Optional includeUntrusted is only meaningful while the xctx is secure:
- * set true so the snapshot includes the same frames you would see with :: if
- * you were less secure (trusted and untrusted). When already not secure, the
- * flag changes nothing.
+ * set). Get (qualifier::name) uses the same first-defining-frame rule per name
+ * (newest → older; first non-null get_cb wins, including present undefined/null
+ * values). Default visibility matches normal qualifier::name access right now.
+ * Optional includeUntrusted is only meaningful while the xctx is secure: set
+ * true so the snapshot includes the same frames you would see with :: if you
+ * were less secure (trusted and untrusted). When already not secure, the flag
+ * changes nothing.
  *
  * This function is not pure, so it may return a different result
  * given exactly the same parameters.

@@ -133,7 +133,7 @@ afwdev generate --srcdir-pattern '*'
 | `.cursor/rules/afw-headers.mdc` | Include hierarchy; hand vs generated headers; Doxygen file hygiene |
 | `.cursor/rules/afw-core-services.mdc` | Env consumers: adapter, object, request, auth, model; retrieve max-objects limit (#49) |
 | `.cursor/rules/afw-environment.mdc` | Environment registries; core/extension/command registration |
-| `.cursor/rules/afw-environment-variables.mdc` | Process env / request props; UTF-8 boundary; #71 single `current` |
+| `.cursor/rules/afw-environment-variables.mdc` | Process env / `process::` / request props; env create ambient; #71 single `current` |
 | `.cursor/rules/afw-command.mdc` | `afw` CLI host (`src/afw_command`) |
 | `.cursor/rules/afw-server.mdc` | `afw_server` / `afw_request` hosts (interface vs FCGI/local/future HTTP) |
 | `.cursor/rules/afw-server-fcgi.mdc` | `afwfcgi` FastCGI host (`src/afw_server_fcgi`) |

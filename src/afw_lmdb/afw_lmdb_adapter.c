@@ -70,12 +70,22 @@ const afw_lmdb_env_t * afw_lmdb_adapter_parse_env(
 
     env = afw_xctx_calloc_type(afw_lmdb_env_t, xctx);
 
+    /* path is a template evaluated at adapter start; full path (#15). */
     value = afw_object_get_property(envObject, afw_lmdb_s_path, xctx);
     if (!value) {
         AFW_THROW_ERROR_Z(general,
             "Property env.path required by LMDB adapter.", xctx);
     }
-    env->path_z = afw_value_as_utf8_z(value, p, xctx);
+    value = afw_value_compile_and_evaluate_as(value, NULL,
+        afw_compile_type_template, p, xctx);
+    if (!afw_value_is_string(value)) {
+        AFW_THROW_ERROR_Z(general,
+            "Property env.path must evaluate to string.", xctx);
+    }
+    env->path_z = afw_utf8_to_utf8_z(
+        afw_file_insure_full_path(
+            &((const afw_value_string_t *)value)->internal, p, xctx),
+        p, xctx);
 
     value = afw_object_get_property(envObject, afw_lmdb_s_mode, xctx);
     if (!value) {

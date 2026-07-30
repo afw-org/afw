@@ -51,8 +51,9 @@
         "root": {
             "allowQuery": true,
             "brief": "Path to the directory holding object type directories",
+            "contextType": "process",
             "dataType": "template",
-            "description": "When locating objects within this adapter, this root path will be prepended in order to resolve filenames. It must already exist and be accessible.\nThis template value is evaluated at the time the adapter is started.",
+            "description": "When locating objects within this adapter, this root path will be prepended in order to resolve filenames. It must already exist and be accessible.\nThis template is evaluated when the adapter is started (plain strings are unchanged; substitutions such as environment:: may be used) and is resolved to a full path at that time.",
             "label": "Root",
             "required": true
         }

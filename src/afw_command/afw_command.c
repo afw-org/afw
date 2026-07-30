@@ -472,12 +472,7 @@ impl_evaluate(
     }
     AFW_TRY {
        
-        /*
-         * Push environment:: qualifier only. Process-env current is registered
-         * once on the base xctx; re-registering here duplicates retrieve (#71).
-         */
-        afw_xctx_qualifier_stack_qualifier_object_push(afw_s_environment,
-            self->environment_variables_object, true, xctx->p, xctx);        
+        /* environment:: / process:: pushed in xctx finishup from env. */
 
         /* If input is not NULL, insure it is NFC normalized utf-8. */
         if (input) {
@@ -953,13 +948,7 @@ main(int argc, const char * const *argv) {
             break;
         }
 
-        /* Create and set environment object and qualifier. */
-        self->environment_variables_object =
-            afw_environment_create_environment_variables_object(false, xctx);
-        afw_runtime_xctx_set_object(self->environment_variables_object,
-            true, xctx);
-        afw_xctx_qualifier_stack_qualifier_object_push(afw_s_environment,
-            self->environment_variables_object, true, xctx->p, xctx);        
+        /* environment:: / process:: created at env create; pushed on base xctx. */
 
         /* If extension specified, load it. */
         if (self->extension.len > 0) {

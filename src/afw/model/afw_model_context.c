@@ -1243,6 +1243,11 @@ afw_model_internal_register_context_type_model(afw_xctx_t *xctx)
 
 
 
+/*
+ * custom:: layered bags (property → object type → model). C NULL = name not
+ * in any layer (not this frame for stack walk). Present values come from
+ * object get_property (including afw_value_null / afw_value_undefined).
+ */
 static const afw_value_t *
 impl_custom_variable_get_cb(
     const afw_xctx_qualifier_stack_entry_t *entry,

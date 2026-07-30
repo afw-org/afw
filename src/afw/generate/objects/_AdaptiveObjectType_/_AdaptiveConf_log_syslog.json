@@ -12,6 +12,22 @@
                 "/afw/_AdaptiveObjectType_/_AdaptiveConf_log/propertyTypes"
             ]
         },
+        "filter": {
+            "_meta_": {
+                "parentPaths": [
+                    "/afw/_AdaptiveObjectType_/_AdaptiveConf_log/propertyTypes/filter"
+                ]
+            },
+            "contextType": "logType-syslog"
+        },
+        "format": {
+            "_meta_": {
+                "parentPaths": [
+                    "/afw/_AdaptiveObjectType_/_AdaptiveConf_log/propertyTypes/format"
+                ]
+            },
+            "contextType": "logType-syslog"
+        },
         "facility": {
             "brief": "The syslog facility",
             "dataType": "string",

@@ -3802,6 +3802,21 @@ AFW_RUNTIME_OBJECT_INF(
     impl_runtime_meta__AdaptivePolymorphicFunction_);
 
 
+/* Runtime object map properties for _AdaptiveProcess_ objects. */
+
+static const afw_runtime_object_type_meta_t
+impl_runtime_meta__AdaptiveProcess_ = {
+    &afw_self_s__AdaptiveProcess_,
+    NULL,
+    offsetof(afw_runtime_const_object_instance_t, properties),
+    false,
+};
+
+AFW_RUNTIME_OBJECT_INF( 
+    afw_runtime_inf__AdaptiveProcess_, 
+    impl_runtime_meta__AdaptiveProcess_);
+
+
 /* Runtime object map properties for _AdaptivePropertyTypes_ objects. */
 
 static const afw_runtime_object_type_meta_t
@@ -4683,6 +4698,7 @@ static const afw_object_inf_t * impl_inf[] = {
     &afw_runtime_inf__AdaptivePackage_,
     &afw_runtime_inf__AdaptiveParsedURI_,
     &afw_runtime_inf__AdaptivePolymorphicFunction_,
+    &afw_runtime_inf__AdaptiveProcess_,
     &afw_runtime_inf__AdaptivePropertyTypes_,
     &afw_runtime_inf__AdaptiveProvisioningPeer_,
     &afw_runtime_inf__AdaptiveQualifierDefinitions_,

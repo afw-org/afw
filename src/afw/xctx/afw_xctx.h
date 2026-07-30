@@ -731,9 +731,11 @@ xctx->evaluation_stack->top = evaluation_stack_save_top
  * @param qualifier of variable or NULL.
  * @param name of variable.
  * @param xctx of caller.
- * @return value or NULL if not found.
+ * @return value or NULL if not found on any matching frame.
  *
- * The stack is searched from newest to oldest.
+ * Qualified lookup walks matching visible frames newest → oldest. The first
+ * frame whose get_cb returns non-NULL wins (including afw_value_undefined /
+ * afw_value_null). C NULL from get_cb means not defined on that frame.
  */
 AFW_DECLARE(const afw_value_t *)
 afw_xctx_get_optionally_qualified_variable(

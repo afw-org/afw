@@ -33,8 +33,8 @@
                     "type": "string"
                 },
                 "modulePath": {
-                    "description": "Module path. A system appropriate suffix will be added ('.so' for Linux and '.dll' for Windows).",
-                    "markdownDescription": "**Module Path**\n\nModule path. A system appropriate suffix will be added ('.so' for Linux and '.dll' for Windows).",
+                    "description": "Module path. A system appropriate suffix will be added ('.so' for Linux and '.dll' for Windows). This template is evaluated when the extension is loaded (plain strings are unchanged; substitutions such as environment:: may be used).",
+                    "markdownDescription": "**Module Path**\n\nModule path. A system appropriate suffix will be added ('.so' for Linux and '.dll' for Windows). This template is evaluated when the extension is loaded (plain strings are unchanged; substitutions such as environment:: may be used).",
                     "title": "Module Path",
                     "type": "string"
                 },
@@ -92,8 +92,8 @@
                     "type": "string"
                 },
                 "modulePath": {
-                    "description": "Module path. A system appropriate suffix will be added ('.so' for Linux and '.dll' for Windows).",
-                    "markdownDescription": "**Module Path**\n\nModule path. A system appropriate suffix will be added ('.so' for Linux and '.dll' for Windows).",
+                    "description": "Module path. A system appropriate suffix will be added ('.so' for Linux and '.dll' for Windows). This template is evaluated when the extension is loaded (plain strings are unchanged; substitutions such as environment:: may be used).",
+                    "markdownDescription": "**Module Path**\n\nModule path. A system appropriate suffix will be added ('.so' for Linux and '.dll' for Windows). This template is evaluated when the extension is loaded (plain strings are unchanged; substitutions such as environment:: may be used).",
                     "title": "Module Path",
                     "type": "string"
                 },
@@ -157,8 +157,8 @@
             "type": "string"
         },
         "modulePath": {
-            "description": "Module path. A system appropriate suffix will be added ('.so' for Linux and '.dll' for Windows).",
-            "markdownDescription": "**Module Path**\n\nModule path. A system appropriate suffix will be added ('.so' for Linux and '.dll' for Windows).",
+            "description": "Module path. A system appropriate suffix will be added ('.so' for Linux and '.dll' for Windows). This template is evaluated when the extension is loaded (plain strings are unchanged; substitutions such as environment:: may be used).",
+            "markdownDescription": "**Module Path**\n\nModule path. A system appropriate suffix will be added ('.so' for Linux and '.dll' for Windows). This template is evaluated when the extension is loaded (plain strings are unchanged; substitutions such as environment:: may be used).",
             "title": "Module Path",
             "type": "string"
         },
