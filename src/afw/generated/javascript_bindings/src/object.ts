@@ -117,6 +117,25 @@ export function afwCloneObject(client : any, value : object) : any {
 }
 
 /**
+ * Return an array of property entries for an object. Each entry is a
+ * two-element array [name, value] where name is a string. The order matches
+ * keys() for the same object.
+ * 
+ * @param {object} object - Object to list property entries from.
+ * 
+ * @returns {array} Array of [name, value] pair arrays.
+ */
+export function afwEntries(client : any, object : object) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "entries";
+    _action["object"] = object;
+
+    return client.perform(_action);
+}
+
+/**
  * Determine if object arg1 is equal to the value of arg2 converted to the
  * data type of arg1 then return the boolean result. Use 'eqx' ('===') instead
  * if you want false to be returned if arg1 and arg2's data type don't match.
@@ -156,6 +175,24 @@ export function afwEqxObject(client : any, arg1 : object, arg2 : any) : any {
     _action["function"] = "eqx<object>";
     _action["arg1"] = arg1;
     _action["arg2"] = arg2;
+
+    return client.perform(_action);
+}
+
+/**
+ * Set a object value immutable so further mutation throws. If already
+ * immutable, has no effect. Returns the same value.
+ * 
+ * @param {object} value - The object value to freeze.
+ * 
+ * @returns {object} The same value, now immutable.
+ */
+export function afwFreezeObject(client : any, value : object) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "freeze<object>";
+    _action["value"] = value;
 
     return client.perform(_action);
 }
@@ -215,6 +252,24 @@ export function afwIsObject(client : any, value : any) : any {
 
     _action["function"] = "is<object>";
     _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
+ * Return an array of the property names of an object. The order of names is
+ * the object's property iteration order.
+ * 
+ * @param {object} object - Object to list property names from.
+ * 
+ * @returns {array} Array of property name strings.
+ */
+export function afwKeys(client : any, object : object) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "keys";
+    _action["object"] = object;
 
     return client.perform(_action);
 }
@@ -469,6 +524,24 @@ export function afwToStringObject(client : any, value : object) : any {
 
     _action["function"] = "to_string<object>";
     _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
+ * Return an array of the property values of an object. The order matches
+ * keys() for the same object.
+ * 
+ * @param {object} object - Object to list property values from.
+ * 
+ * @returns {array} Array of property values.
+ */
+export function afwValues(client : any, object : object) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "values";
+    _action["object"] = object;
 
     return client.perform(_action);
 }

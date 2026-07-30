@@ -167,6 +167,30 @@ export function afwAnyOfAny(client : any, predicate : any, array1 : any[], array
 }
 
 /**
+ * Returns true if all values in an array pass the predicate test. Same
+ * behavior as all_of for a single array (and additional parameters). Empty
+ * array yields true.
+ * 
+ * @param {function} predicate - Called for each value in the first array in
+ *     values or until false is returned.
+ * 
+ * @param {} values - Parameters passed to predicate with the first array
+ *     passed one value at a time.
+ * 
+ * @returns {boolean}
+ */
+export function afwEvery(client : any, predicate : any, values : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "every";
+    _action["predicate"] = predicate;
+    _action["values"] = values;
+
+    return client.perform(_action);
+}
+
+/**
  * This produces an array containing only values from another array that pass
  * a predicate test.
  * 
@@ -266,6 +290,30 @@ export function afwReduce(client : any, functor : any, accumulator : any, array 
     _action["functor"] = functor;
     _action["accumulator"] = accumulator;
     _action["array"] = array;
+
+    return client.perform(_action);
+}
+
+/**
+ * Returns true if any value in an array passes the predicate test. Same
+ * behavior as any_of for a single array (and additional parameters). Empty
+ * array yields false.
+ * 
+ * @param {function} predicate - Called for each value in the first array in
+ *     values or until true is returned.
+ * 
+ * @param {} values - Parameters passed to predicate with the first array
+ *     passed one value at a time.
+ * 
+ * @returns {boolean}
+ */
+export function afwSome(client : any, predicate : any, values : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "some";
+    _action["predicate"] = predicate;
+    _action["values"] = values;
 
     return client.perform(_action);
 }

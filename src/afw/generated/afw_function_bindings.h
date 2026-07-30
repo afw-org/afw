@@ -3441,6 +3441,44 @@ const afw_value_t *
 afw_function_execute_array(
     afw_function_execute_t *x);
 
+/** @brief Function definition at */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_at;
+
+/**
+ * @brief Adaptive Function `at`
+ * @param x function execute parameter.
+ *
+ * Return the value at a zero-based index in an array. Negative indexes count
+ * from the end (-1 is the last element). If the index is out of range, the
+ * result is undefined.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function at(
+ *       array: array,
+ *       index: integer
+ *   ): any;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array) Array to index.
+ *
+ *   index - (integer) Zero-based index, or negative from the end.
+ *
+ * Returns:
+ *
+ *   (any dataType) The value at the index, or undefined if out of range.
+ */
+const afw_value_t *
+afw_function_execute_at(
+    afw_function_execute_t *x);
+
 /** @brief Function definition bag<array> */
 AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_bag_array;
@@ -3621,6 +3659,41 @@ afw_function_definition_eqx_array;
  *   (boolean)
  *
  * Implemented by afw_function_execute_eqx()
+ *
+ * __________
+ */
+
+/** @brief Function definition freeze<array> */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_freeze_array;
+
+/**
+ * @brief Adaptive Function `freeze<array>`
+ * @param x function execute parameter.
+ *
+ * Set a array value immutable so further mutation throws. If already immutable,
+ * has no effect. Returns the same value.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function freeze<array>(
+ *       value: array
+ *   ): array;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (array) The array value to freeze.
+ *
+ * Returns:
+ *
+ *   (array) The same value, now immutable.
+ *
+ * Implemented by afw_function_execute_freeze()
  *
  * __________
  */
@@ -4006,6 +4079,77 @@ afw_function_definition_nex_array;
  * __________
  */
 
+/** @brief Function definition pop */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_pop;
+
+/**
+ * @brief Adaptive Function `pop`
+ * @param x function execute parameter.
+ *
+ * Remove the last value from a mutable array and return it. If the array is
+ * empty, returns undefined.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters and has side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function pop(
+ *       array: array
+ *   ): any;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array) Target array. Must not be immutable.
+ *
+ * Returns:
+ *
+ *   (any dataType) The removed value, or undefined if the array was empty.
+ */
+const afw_value_t *
+afw_function_execute_pop(
+    afw_function_execute_t *x);
+
+/** @brief Function definition push */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_push;
+
+/**
+ * @brief Adaptive Function `push`
+ * @param x function execute parameter.
+ *
+ * Append one or more values to the end of a mutable array (push back). Returns
+ * the modified array.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters and has side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function push(
+ *       array: array,
+ *       ...values: (array of any)
+ *   ): array;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array) Target array. Must not be immutable.
+ *
+ *   values - (0 or more any dataType) Values to append in order.
+ *
+ * Returns:
+ *
+ *   (array) The modified array.
+ */
+const afw_value_t *
+afw_function_execute_push(
+    afw_function_execute_t *x);
+
 /** @brief Function definition reverse */
 AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_reverse;
@@ -4038,6 +4182,40 @@ afw_function_definition_reverse;
  */
 const afw_value_t *
 afw_function_execute_reverse(
+    afw_function_execute_t *x);
+
+/** @brief Function definition shift */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_shift;
+
+/**
+ * @brief Adaptive Function `shift`
+ * @param x function execute parameter.
+ *
+ * Remove the first value from a mutable array and return it. If the array is
+ * empty, returns undefined.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters and has side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function shift(
+ *       array: array
+ *   ): any;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array) Target array. Must not be immutable.
+ *
+ * Returns:
+ *
+ *   (any dataType) The removed value, or undefined if the array was empty.
+ */
+const afw_value_t *
+afw_function_execute_shift(
     afw_function_execute_t *x);
 
 /** @brief Function definition slice */
@@ -4086,6 +4264,53 @@ const afw_value_t *
 afw_function_execute_slice(
     afw_function_execute_t *x);
 
+/** @brief Function definition splice */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_splice;
+
+/**
+ * @brief Adaptive Function `splice`
+ * @param x function execute parameter.
+ *
+ * Remove zero or more values starting at an index from a mutable array and
+ * optionally insert new values at that index. Returns an array of the removed
+ * values. Negative startIndex counts from the end. If deleteCount is omitted,
+ * all values from startIndex to the end are removed.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters and has side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function splice(
+ *       array: array,
+ *       startIndex: integer,
+ *       deleteCount?: integer,
+ *       ...values: (array of any)
+ *   ): array;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array) Target array. Must not be immutable.
+ *
+ *   startIndex - (integer) Zero-based start index, or negative from the end.
+ *
+ *   deleteCount - (optional integer) Number of values to remove. If omitted,
+ *       remove through the end of the array. Negative is treated as zero.
+ *
+ *   values - (0 or more any dataType) Values to insert at startIndex after
+ *       removals.
+ *
+ * Returns:
+ *
+ *   (array) Array of removed values, in original order.
+ */
+const afw_value_t *
+afw_function_execute_splice(
+    afw_function_execute_t *x);
+
 /** @brief Function definition to_string<array> */
 AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_to_string_array;
@@ -4120,6 +4345,43 @@ afw_function_definition_to_string_array;
  *
  * __________
  */
+
+/** @brief Function definition unshift */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_unshift;
+
+/**
+ * @brief Adaptive Function `unshift`
+ * @param x function execute parameter.
+ *
+ * Insert one or more values at the beginning of a mutable array, preserving the
+ * relative order of the inserted values. Returns the modified array.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters and has side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function unshift(
+ *       array: array,
+ *       ...values: (array of any)
+ *   ): array;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array) Target array. Must not be immutable.
+ *
+ *   values - (0 or more any dataType) Values to insert at the front, in order.
+ *
+ * Returns:
+ *
+ *   (array) The modified array.
+ */
+const afw_value_t *
+afw_function_execute_unshift(
+    afw_function_execute_t *x);
 
 /** @} */
 
@@ -13285,6 +13547,48 @@ const afw_value_t *
 afw_function_execute_any_of_any(
     afw_function_execute_t *x);
 
+/** @brief Function definition every */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_every;
+
+/**
+ * @brief Adaptive Function `every`
+ * @param x function execute parameter.
+ *
+ * Returns true if all values in an array pass the predicate test. Same behavior
+ * as all_of for a single array (and additional parameters). Empty array yields
+ * true.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function every(
+ *       predicate: (function (... values: any): boolean),
+ *       values_1: any,
+ *       ...values_rest: (array of any)
+ *   ): boolean;
+ * ```
+ *
+ * Parameters:
+ *
+ *   predicate - (function (... values: any): boolean) Called for each value in
+ *       the first array in values or until false is returned.
+ *
+ *   values - (1 or more any dataType) Parameters passed to predicate with the
+ *       first array passed one value at a time.
+ *
+ * Returns:
+ *
+ *   (boolean)
+ *
+ * Implemented by afw_function_execute_all_of()
+ *
+ * __________
+ */
+
 /** @brief Function definition filter */
 AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_filter;
@@ -13455,6 +13759,48 @@ afw_function_definition_reduce;
 const afw_value_t *
 afw_function_execute_reduce(
     afw_function_execute_t *x);
+
+/** @brief Function definition some */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_some;
+
+/**
+ * @brief Adaptive Function `some`
+ * @param x function execute parameter.
+ *
+ * Returns true if any value in an array passes the predicate test. Same
+ * behavior as any_of for a single array (and additional parameters). Empty
+ * array yields false.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function some(
+ *       predicate: (function (... values: any): boolean),
+ *       values_1: any,
+ *       ...values_rest: (array of any)
+ *   ): boolean;
+ * ```
+ *
+ * Parameters:
+ *
+ *   predicate - (function (... values: any): boolean) Called for each value in
+ *       the first array in values or until true is returned.
+ *
+ *   values - (1 or more any dataType) Parameters passed to predicate with the
+ *       first array passed one value at a time.
+ *
+ * Returns:
+ *
+ *   (boolean)
+ *
+ * Implemented by afw_function_execute_any_of()
+ *
+ * __________
+ */
 
 /** @brief Function definition sort */
 AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
@@ -18841,6 +19187,41 @@ afw_function_definition_clone_object;
  * __________
  */
 
+/** @brief Function definition entries */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_entries;
+
+/**
+ * @brief Adaptive Function `entries`
+ * @param x function execute parameter.
+ *
+ * Return an array of property entries for an object. Each entry is a
+ * two-element array [name, value] where name is a string. The order matches
+ * keys() for the same object.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function entries(
+ *       object: object
+ *   ): array;
+ * ```
+ *
+ * Parameters:
+ *
+ *   object - (object) Object to list property entries from.
+ *
+ * Returns:
+ *
+ *   (array) Array of [name, value] pair arrays.
+ */
+const afw_value_t *
+afw_function_execute_entries(
+    afw_function_execute_t *x);
+
 /** @brief Function definition eq<object> */
 AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
 afw_function_definition_eq_object;
@@ -18919,6 +19300,41 @@ afw_function_definition_eqx_object;
  *   (boolean)
  *
  * Implemented by afw_function_execute_eqx()
+ *
+ * __________
+ */
+
+/** @brief Function definition freeze<object> */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_freeze_object;
+
+/**
+ * @brief Adaptive Function `freeze<object>`
+ * @param x function execute parameter.
+ *
+ * Set a object value immutable so further mutation throws. If already
+ * immutable, has no effect. Returns the same value.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function freeze<object>(
+ *       value: object
+ *   ): object;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (object) The object value to freeze.
+ *
+ * Returns:
+ *
+ *   (object) The same value, now immutable.
+ *
+ * Implemented by afw_function_execute_freeze()
  *
  * __________
  */
@@ -19032,6 +19448,40 @@ afw_function_definition_is_object;
  *
  * __________
  */
+
+/** @brief Function definition keys */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_keys;
+
+/**
+ * @brief Adaptive Function `keys`
+ * @param x function execute parameter.
+ *
+ * Return an array of the property names of an object. The order of names is the
+ * object's property iteration order.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function keys(
+ *       object: object
+ *   ): (array string);
+ * ```
+ *
+ * Parameters:
+ *
+ *   object - (object) Object to list property names from.
+ *
+ * Returns:
+ *
+ *   (array string) Array of property name strings.
+ */
+const afw_value_t *
+afw_function_execute_keys(
+    afw_function_execute_t *x);
 
 /** @brief Function definition le<object> */
 AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
@@ -19489,6 +19939,40 @@ afw_function_definition_to_string_object;
  *
  * __________
  */
+
+/** @brief Function definition values */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_values;
+
+/**
+ * @brief Adaptive Function `values`
+ * @param x function execute parameter.
+ *
+ * Return an array of the property values of an object. The order matches keys()
+ * for the same object.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function values(
+ *       object: object
+ *   ): array;
+ * ```
+ *
+ * Parameters:
+ *
+ *   object - (object) Object to list property values from.
+ *
+ * Returns:
+ *
+ *   (array) Array of property values.
+ */
+const afw_value_t *
+afw_function_execute_values(
+    afw_function_execute_t *x);
 
 /** @} */
 
@@ -20833,6 +21317,45 @@ afw_function_definition_floor;
  * Returns:
  *
  *   (``<Type>``)
+ *
+ * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
+ *
+ * __________
+ */
+
+/** @brief Function definition freeze */
+AFW_DECLARE_INTERNAL_CONST_DATA(afw_value_function_definition_t)
+afw_function_definition_freeze;
+
+/**
+ * @brief Adaptive Function `freeze`
+ * @param x function execute parameter.
+ *
+ * Set a `<dataType>` value immutable so further mutation throws. If already
+ * immutable, has no effect. Returns the same value.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters and has side effects.
+ *
+ * Supported `<dataType>`:
+ *
+ *   array, object.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function freeze <dataType>(
+ *       value: dataType
+ *   ): dataType;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (``<Type>``) The `<dataType>` value to freeze.
+ *
+ * Returns:
+ *
+ *   (``<Type>``) The same value, now immutable.
  *
  * Implemented by AFW_FUNCTION_EXECUTE_STANDARD_POLYMORPHIC_FUNCTION_HANDLING()
  *
@@ -31904,9 +32427,16 @@ afw_function_definition_yearMonthDuration;
     XX(to_string)                                                              \
     XX(union)                                                                  \
     XX(url_encode)                                                             \
+    XX(at)                                                                     \
     XX(clone)                                                                  \
+    XX(freeze)                                                                 \
     XX(join)                                                                   \
+    XX(pop)                                                                    \
+    XX(push)                                                                   \
     XX(reverse)                                                                \
+    XX(shift)                                                                  \
+    XX(splice)                                                                 \
+    XX(unshift)                                                                \
     XX(decode_to_string)                                                       \
     XX(add_dayTimeDuration)                                                    \
     XX(add_yearMonthDuration)                                                  \
@@ -31928,6 +32458,9 @@ afw_function_definition_yearMonthDuration;
     XX(mod)                                                                    \
     XX(to_double)                                                              \
     XX(compile)                                                                \
+    XX(entries)                                                                \
+    XX(keys)                                                                   \
+    XX(values)                                                                 \
     XX(encode_as_base64Binary)                                                 \
     XX(encode_as_hexBinary)                                                    \
     XX(eq_ignore_case)                                                         \
@@ -31987,6 +32520,7 @@ typedef enum afw_data_type_method_number_e {
  * eq_ignore_case
  * eval
  * floor
+ * freeze
  * ge
  * gt
  * in_range
@@ -32043,6 +32577,28 @@ typedef enum afw_data_type_method_number_e {
  * polymorphic function handling in the afw_value_call_built_in_function
  * optional_evaluate() method.
  */
+
+/**
+ * @brief Function implementation function afw_function_execute_all_of
+ *
+ * Implementation for functions:
+ *
+ * every
+ */
+const afw_value_t *
+afw_function_execute_all_of(
+    afw_function_execute_t *x);
+
+/**
+ * @brief Function implementation function afw_function_execute_any_of
+ *
+ * Implementation for functions:
+ *
+ * some
+ */
+const afw_value_t *
+afw_function_execute_any_of(
+    afw_function_execute_t *x);
 
 /**
  * @brief Function implementation function afw_function_execute_at_least_one_member_of
@@ -32338,6 +32894,18 @@ afw_function_execute_eq(
  */
 const afw_value_t *
 afw_function_execute_eqx(
+    afw_function_execute_t *x);
+
+/**
+ * @brief Function implementation function afw_function_execute_freeze
+ *
+ * Implementation for functions:
+ *
+ * freeze<array>
+ * freeze<object>
+ */
+const afw_value_t *
+afw_function_execute_freeze(
     afw_function_execute_t *x);
 
 /**

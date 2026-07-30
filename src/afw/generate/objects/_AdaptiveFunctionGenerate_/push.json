@@ -1,0 +1,29 @@
+{
+    "brief": "Append values to an array",
+    "category": "array",
+    "dataTypeMethod": true,
+    "description": "Append one or more values to the end of a mutable array (push back). Returns the modified array.",
+    "functionId": "push",
+    "functionLabel": "push",
+    "pure": false,
+    "parameters": [
+        {
+            "dataType": "array",
+            "description": "Target array. Must not be immutable.",
+            "name": "array"
+        },
+        {
+            "minArgs": 0,
+            "description": "Values to append in order.",
+            "name": "values",
+            "optional": true
+        }
+    ],
+    "returns": {
+        "dataType": "array",
+        "description": "The modified array."
+    },
+    "sideEffects": [
+        "Target array is modified."
+    ]
+}

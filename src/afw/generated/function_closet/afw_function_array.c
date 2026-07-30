@@ -104,6 +104,49 @@ afw_function_execute_array(
 
 
 /*
+ * Adaptive function: at
+ *
+ * afw_function_execute_at
+ *
+ * See afw_function_bindings.h for more information.
+ *
+ * Return the value at a zero-based index in an array. Negative indexes count
+ * from the end (-1 is the last element). If the index is out of range, the
+ * result is undefined.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function at(
+ *       array: array,
+ *       index: integer
+ *   ): any;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array) Array to index.
+ *
+ *   index - (integer) Zero-based index, or negative from the end.
+ *
+ * Returns:
+ *
+ *   (any dataType) The value at the index, or undefined if out of range.
+ */
+const afw_value_t *
+afw_function_execute_at(
+    afw_function_execute_t *x)
+{
+    /** @todo Add code. */
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
+}
+
+
+
+/*
  * Adaptive function: join
  *
  * afw_function_execute_join
@@ -146,6 +189,87 @@ afw_function_execute_join(
 
 
 /*
+ * Adaptive function: pop
+ *
+ * afw_function_execute_pop
+ *
+ * See afw_function_bindings.h for more information.
+ *
+ * Remove the last value from a mutable array and return it. If the array is
+ * empty, returns undefined.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters and has side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function pop(
+ *       array: array
+ *   ): any;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array) Target array. Must not be immutable.
+ *
+ * Returns:
+ *
+ *   (any dataType) The removed value, or undefined if the array was empty.
+ */
+const afw_value_t *
+afw_function_execute_pop(
+    afw_function_execute_t *x)
+{
+    /** @todo Add code. */
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
+}
+
+
+
+/*
+ * Adaptive function: push
+ *
+ * afw_function_execute_push
+ *
+ * See afw_function_bindings.h for more information.
+ *
+ * Append one or more values to the end of a mutable array (push back). Returns
+ * the modified array.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters and has side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function push(
+ *       array: array,
+ *       ...values: (array of any)
+ *   ): array;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array) Target array. Must not be immutable.
+ *
+ *   values - (0 or more any dataType) Values to append in order.
+ *
+ * Returns:
+ *
+ *   (array) The modified array.
+ */
+const afw_value_t *
+afw_function_execute_push(
+    afw_function_execute_t *x)
+{
+    /** @todo Add code. */
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
+}
+
+
+
+/*
  * Adaptive function: reverse
  *
  * afw_function_execute_reverse
@@ -176,6 +300,45 @@ afw_function_execute_join(
  */
 const afw_value_t *
 afw_function_execute_reverse(
+    afw_function_execute_t *x)
+{
+    /** @todo Add code. */
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
+}
+
+
+
+/*
+ * Adaptive function: shift
+ *
+ * afw_function_execute_shift
+ *
+ * See afw_function_bindings.h for more information.
+ *
+ * Remove the first value from a mutable array and return it. If the array is
+ * empty, returns undefined.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters and has side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function shift(
+ *       array: array
+ *   ): any;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array) Target array. Must not be immutable.
+ *
+ * Returns:
+ *
+ *   (any dataType) The removed value, or undefined if the array was empty.
+ */
+const afw_value_t *
+afw_function_execute_shift(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */
@@ -227,6 +390,100 @@ afw_function_execute_reverse(
  */
 const afw_value_t *
 afw_function_execute_slice(
+    afw_function_execute_t *x)
+{
+    /** @todo Add code. */
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
+}
+
+
+
+/*
+ * Adaptive function: splice
+ *
+ * afw_function_execute_splice
+ *
+ * See afw_function_bindings.h for more information.
+ *
+ * Remove zero or more values starting at an index from a mutable array and
+ * optionally insert new values at that index. Returns an array of the removed
+ * values. Negative startIndex counts from the end. If deleteCount is omitted,
+ * all values from startIndex to the end are removed.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters and has side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function splice(
+ *       array: array,
+ *       startIndex: integer,
+ *       deleteCount?: integer,
+ *       ...values: (array of any)
+ *   ): array;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array) Target array. Must not be immutable.
+ *
+ *   startIndex - (integer) Zero-based start index, or negative from the end.
+ *
+ *   deleteCount - (optional integer) Number of values to remove. If omitted,
+ *       remove through the end of the array. Negative is treated as zero.
+ *
+ *   values - (0 or more any dataType) Values to insert at startIndex after
+ *       removals.
+ *
+ * Returns:
+ *
+ *   (array) Array of removed values, in original order.
+ */
+const afw_value_t *
+afw_function_execute_splice(
+    afw_function_execute_t *x)
+{
+    /** @todo Add code. */
+    AFW_THROW_ERROR_Z(general, "Not implemented", x->xctx);
+}
+
+
+
+/*
+ * Adaptive function: unshift
+ *
+ * afw_function_execute_unshift
+ *
+ * See afw_function_bindings.h for more information.
+ *
+ * Insert one or more values at the beginning of a mutable array, preserving the
+ * relative order of the inserted values. Returns the modified array.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters and has side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function unshift(
+ *       array: array,
+ *       ...values: (array of any)
+ *   ): array;
+ * ```
+ *
+ * Parameters:
+ *
+ *   array - (array) Target array. Must not be immutable.
+ *
+ *   values - (0 or more any dataType) Values to insert at the front, in order.
+ *
+ * Returns:
+ *
+ *   (array) The modified array.
+ */
+const afw_value_t *
+afw_function_execute_unshift(
     afw_function_execute_t *x)
 {
     /** @todo Add code. */

@@ -1,0 +1,23 @@
+{
+    "afwCamelCaseFunctionLabel": "afwFreezeObject",
+    "brief": "Make object value immutable",
+    "camelCaseFunctionLabel": "freezeObject",
+    "category": "object",
+    "dataTypeMethod": true,
+    "description": "Set a object value immutable so further mutation throws. If already immutable, has no effect. Returns the same value.",
+    "functionId": "freeze<object>",
+    "functionLabel": "freeze_object",
+    "parameters": [
+        {
+            "dataType": "object",
+            "description": "The object value to freeze.",
+            "name": "value"
+        }
+    ],
+    "pure": false,
+    "returns": {
+        "dataType": "object",
+        "description": "The same value, now immutable."
+    },
+    "useExecuteFunction": "afw_function_execute_freeze"
+}

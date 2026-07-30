@@ -311,16 +311,14 @@ Capture after setter/count pass; fold into #2 / later PRs as appropriate.
 
 #### Forward plan (from here)
 
-1. **Done:** C setter + O(1) memory `get_count` + signed get/set indexes (this branch).
-2. **Next — script pure helpers (primary #55 user value):**  
-   - `keys` / `values` / `entries` (object; `dataTypeMethod`; entries as array of `[name, value]`)  
-   - `at(array, index)` (integer, negatives; pure)  
-   - `freeze` (object + array → `set_immutable`)  
-   - Homes: `afw_function_object.c` / `afw_function_array.c` (+ poly freeze if shared)  
-   - Tests under `src/afw/tests/`; Adaptive-native docs only  
-3. **Then — script mutators over setter:** thin `push` / `pop` / `shift` / `unshift` (and keep teaching `add_entries`); empty pop/shift → undefined via NULL return.  
-4. **Optional:** `every` / `some` as HOF aliases of `all_of` / `any_of` (keep multi-array XACML family).  
-5. **Later / separate:** `splice`; meta-values list impls; managed refcount on set; test262 fixme burn-down; differences doc (#22) for non-prototypal + new names.
+1. **Done:** C setter + O(1) memory `get_count` + signed get/set indexes.
+2. **Done (uncommitted for review):** script APIs + tests:
+   - Object: `keys` / `values` / `entries` (`dataTypeMethod`)
+   - Array: `at`, `push`, `pop`, `shift`, `unshift`, `splice` (`dataTypeMethod`)
+   - Poly: `freeze` (object + array)
+   - HOF: `every` → `all_of`, `some` → `any_of` (`useExecuteFunction`)
+   - Tests: `objects/keys_values_entries.as`, `list/at_push_pop_shift_unshift_splice.as`, `list/freeze_every_some.as`, `list/issue55_combined.as`
+3. **Not in this pass (residual / parallel):** meta-values list impls; managed refcount on set; mid-index O(n); test262 fixme burn-down; differences doc (#22).
 
 #### Adaptive Script vs ECMAScript — structural (not optional polish)
 

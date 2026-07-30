@@ -19,10 +19,12 @@ our @EXPORT_OK = qw(
     any_of 
     any_of_all 
     any_of_any 
+    every 
     filter 
     find 
     map 
     reduce 
+    some 
     sort 
 );
 
@@ -145,6 +147,24 @@ the second is a value from array2.
     $array2
 
 
+=head3 every
+
+Returns true if all values in an array pass the predicate test. Same behavior
+as all_of for a single array (and additional parameters). Empty array yields
+true.
+All values pass a test
+
+=head4 Parameters
+
+    $predicate
+
+Called for each value in the first array in values or until false is returned.
+
+    $values
+
+Parameters passed to predicate with the first array passed one value at a
+time.
+
 =head3 filter
 
 This produces an array containing only values from another array that pass a
@@ -224,6 +244,24 @@ but this is not required.
     $array
 
 This is an array to be reduced.
+
+=head3 some
+
+Returns true if any value in an array passes the predicate test. Same behavior
+as any_of for a single array (and additional parameters). Empty array yields
+false.
+Any value passes a test
+
+=head4 Parameters
+
+    $predicate
+
+Called for each value in the first array in values or until true is returned.
+
+    $values
+
+Parameters passed to predicate with the first array passed one value at a
+time.
 
 =head3 sort
 
@@ -322,6 +360,18 @@ sub any_of_any {
     return $request->getResult();
 }
 
+sub every {
+    my ($predicate, $values) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "every");
+    $request->set("predicate", $predicate);
+    $request->set("values", $values);
+
+    return $request->getResult();
+}
+
 sub filter {
     my ($predicate, $values) = @_;
 
@@ -367,6 +417,18 @@ sub reduce {
     $request->set("functor", $functor);
     $request->set("accumulator", $accumulator);
     $request->set("array", $array);
+
+    return $request->getResult();
+}
+
+sub some {
+    my ($predicate, $values) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "some");
+    $request->set("predicate", $predicate);
+    $request->set("values", $values);
 
     return $request->getResult();
 }

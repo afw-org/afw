@@ -540,6 +540,29 @@ class polymorphic
     }
 
     /**
+     * freeze()
+     *
+     * Set a `<dataType>` value immutable so further mutation throws. If
+     * already immutable, has no effect. Returns the same value.
+     *
+     * @param  $value The `<dataType>` value to freeze.
+     *
+     * @return  The same value, now immutable.
+     */
+    public function freeze(, $value)
+    {
+        $request = $this->$session->request();
+
+        $request->set("function", "freeze");
+
+        /* pass along required parameters to the request payload */
+        $request->set("value", $value);
+
+        /* pass along any optional parameters to the request payload */
+        return $request->get_result();
+    }
+
+    /**
      * ge()
      *
      * Checks for `<dataType>` arg1 is greater than or equal to `<dataType>`

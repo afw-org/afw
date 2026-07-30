@@ -18,11 +18,14 @@ our @EXPORT_OK = qw(
     bag_object 
     bag_size_object 
     clone_object 
+    entries 
     eq_object 
     eqx_object 
+    freeze_object 
     ge_object 
     gt_object 
     is_object 
+    keys 
     le_object 
     local_object_meta_set_ids 
     lt_object 
@@ -35,6 +38,7 @@ our @EXPORT_OK = qw(
     property_get 
     property_is_not_null 
     to_string_object 
+    values 
 );
 
 =head1 NAME
@@ -109,6 +113,19 @@ Clone object value
 
 The object value to clone.
 
+=head3 entries
+
+Return an array of property entries for an object. Each entry is a two-element
+array [name, value] where name is a string. The order matches keys() for the
+same object.
+Property name/value pairs of an object
+
+=head4 Parameters
+
+    $object
+
+Object to list property entries from.
+
 =head3 eq_object
 
 Determine if object arg1 is equal to the value of arg2 converted to the data
@@ -138,6 +155,18 @@ Checks for equal and type
 
     $arg2
 
+
+=head3 freeze_object
+
+Set a object value immutable so further mutation throws. If already immutable,
+has no effect. Returns the same value.
+Make object value immutable
+
+=head4 Parameters
+
+    $value
+
+The object value to freeze.
 
 =head3 ge_object
 
@@ -177,6 +206,18 @@ Checks whether value is dataType object
     $value
 
 Value to check
+
+=head3 keys
+
+Return an array of the property names of an object. The order of names is the
+object's property iteration order.
+Property names of an object
+
+=head4 Parameters
+
+    $object
+
+Object to list property names from.
 
 =head3 le_object
 
@@ -359,6 +400,18 @@ Converts value to string
 
 A object value.
 
+=head3 values
+
+Return an array of the property values of an object. The order matches keys()
+for the same object.
+Property values of an object
+
+=head4 Parameters
+
+    $object
+
+Object to list property values from.
+
 =cut
 
 sub add_properties {
@@ -422,6 +475,17 @@ sub clone_object {
     return $request->getResult();
 }
 
+sub entries {
+    my ($object) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "entries");
+    $request->set("object", $object);
+
+    return $request->getResult();
+}
+
 sub eq_object {
     my ($arg1, $arg2) = @_;
 
@@ -442,6 +506,17 @@ sub eqx_object {
     $request->set("function" => "eqx<object>");
     $request->set("arg1", $arg1);
     $request->set("arg2", $arg2);
+
+    return $request->getResult();
+}
+
+sub freeze_object {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "freeze<object>");
+    $request->set("value", $value);
 
     return $request->getResult();
 }
@@ -477,6 +552,17 @@ sub is_object {
 
     $request->set("function" => "is<object>");
     $request->set("value", $value);
+
+    return $request->getResult();
+}
+
+sub keys {
+    my ($object) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "keys");
+    $request->set("object", $object);
 
     return $request->getResult();
 }
@@ -625,6 +711,17 @@ sub to_string_object {
 
     $request->set("function" => "to_string<object>");
     $request->set("value", $value);
+
+    return $request->getResult();
+}
+
+sub values {
+    my ($object) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "values");
+    $request->set("object", $object);
 
     return $request->getResult();
 }

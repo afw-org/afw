@@ -423,6 +423,24 @@ export function afwFloor(client : any, number : any) : any {
 }
 
 /**
+ * Set a `<dataType>` value immutable so further mutation throws. If already
+ * immutable, has no effect. Returns the same value.
+ * 
+ * @param {} value - The `<dataType>` value to freeze.
+ * 
+ * @returns {} The same value, now immutable.
+ */
+export function afwFreeze(client : any, value : any) : any {
+
+    let _action : IAnyObject = {};
+
+    _action["function"] = "freeze";
+    _action["value"] = value;
+
+    return client.perform(_action);
+}
+
+/**
  * Checks for `<dataType>` arg1 is greater than or equal to `<dataType>` arg2
  * and return the boolean result.
  * 

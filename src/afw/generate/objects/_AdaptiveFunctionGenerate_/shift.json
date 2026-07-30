@@ -1,0 +1,22 @@
+{
+    "brief": "Remove and return first array value",
+    "category": "array",
+    "dataTypeMethod": true,
+    "description": "Remove the first value from a mutable array and return it. If the array is empty, returns undefined.",
+    "functionId": "shift",
+    "functionLabel": "shift",
+    "pure": false,
+    "parameters": [
+        {
+            "dataType": "array",
+            "description": "Target array. Must not be immutable.",
+            "name": "array"
+        }
+    ],
+    "returns": {
+        "description": "The removed value, or undefined if the array was empty."
+    },
+    "sideEffects": [
+        "Target array is modified."
+    ]
+}

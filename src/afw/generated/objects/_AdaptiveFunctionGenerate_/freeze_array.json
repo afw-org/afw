@@ -1,0 +1,23 @@
+{
+    "afwCamelCaseFunctionLabel": "afwFreezeArray",
+    "brief": "Make array value immutable",
+    "camelCaseFunctionLabel": "freezeArray",
+    "category": "array",
+    "dataTypeMethod": true,
+    "description": "Set a array value immutable so further mutation throws. If already immutable, has no effect. Returns the same value.",
+    "functionId": "freeze<array>",
+    "functionLabel": "freeze_array",
+    "parameters": [
+        {
+            "dataType": "array",
+            "description": "The array value to freeze.",
+            "name": "value"
+        }
+    ],
+    "pure": false,
+    "returns": {
+        "dataType": "array",
+        "description": "The same value, now immutable."
+    },
+    "useExecuteFunction": "afw_function_execute_freeze"
+}

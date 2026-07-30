@@ -15,11 +15,13 @@ use Exporter qw(import);
 our @EXPORT_OK = qw(
     add_entries 
     array 
+    at 
     bag_array 
     bag_size_array 
     clone_array 
     eq_array 
     eqx_array 
+    freeze_array 
     ge_array 
     gt_array 
     includes_array 
@@ -30,9 +32,14 @@ our @EXPORT_OK = qw(
     lt_array 
     ne_array 
     nex_array 
+    pop 
+    push 
     reverse 
+    shift 
     slice 
+    splice 
     to_string_array 
+    unshift 
 );
 
 =head1 NAME
@@ -71,6 +78,23 @@ A value can refer to any adaptable value belonging to any data type or an
 array expression. In the case of an array expression, indicated by '...'
 followed by an expression that results in an array, every element within that
 array is included in the newly created array.
+
+=head3 at
+
+Return the value at a zero-based index in an array. Negative indexes count
+from the end (-1 is the last element). If the index is out of range, the
+result is undefined.
+Value at array index
+
+=head4 Parameters
+
+    $array
+
+Array to index.
+
+    $index
+
+Zero-based index, or negative from the end.
 
 =head3 bag_array
 
@@ -132,6 +156,18 @@ Checks for equal and type
 
     $arg2
 
+
+=head3 freeze_array
+
+Set a array value immutable so further mutation throws. If already immutable,
+has no effect. Returns the same value.
+Make array value immutable
+
+=head4 Parameters
+
+    $value
+
+The array value to freeze.
 
 =head3 ge_array
 
@@ -276,6 +312,34 @@ Checks for not equal value or type
     $arg2
 
 
+=head3 pop
+
+Remove the last value from a mutable array and return it. If the array is
+empty, returns undefined.
+Remove and return last array value
+
+=head4 Parameters
+
+    $array
+
+Target array. Must not be immutable.
+
+=head3 push
+
+Append one or more values to the end of a mutable array (push back). Returns
+the modified array.
+Append values to an array
+
+=head4 Parameters
+
+    $array
+
+Target array. Must not be immutable.
+
+    $values
+
+Values to append in order.
+
 =head3 reverse
 
 Reverse the order of the elements in an array. If the array is typed, the
@@ -287,6 +351,18 @@ Return array with elements reversed
     $array
 
 An array to reverse.
+
+=head3 shift
+
+Remove the first value from a mutable array and return it. If the array is
+empty, returns undefined.
+Remove and return first array value
+
+=head4 Parameters
+
+    $array
+
+Target array. Must not be immutable.
 
 =head3 slice
 
@@ -311,6 +387,33 @@ index of the last value to include in the array. If negative, the index is
 from the end of the array. If not specified, the slice is from startIndex up
 to and including the end of the array.
 
+=head3 splice
+
+Remove zero or more values starting at an index from a mutable array and
+optionally insert new values at that index. Returns an array of the removed
+values. Negative startIndex counts from the end. If deleteCount is omitted,
+all values from startIndex to the end are removed.
+Change array contents by removing and/or inserting values
+
+=head4 Parameters
+
+    $array
+
+Target array. Must not be immutable.
+
+    $startIndex
+
+Zero-based start index, or negative from the end.
+
+    $deleteCount
+
+Number of values to remove. If omitted, remove through the end of the array.
+Negative is treated as zero.
+
+    $values
+
+Values to insert at startIndex after removals.
+
 =head3 to_string_array
 
 Converts array value to string. For array values, the to_string() value for
@@ -322,6 +425,22 @@ Converts value to string
     $value
 
 A array value.
+
+=head3 unshift
+
+Insert one or more values at the beginning of a mutable array, preserving the
+relative order of the inserted values. Returns the modified array.
+Insert values at the front of an array
+
+=head4 Parameters
+
+    $array
+
+Target array. Must not be immutable.
+
+    $values
+
+Values to insert at the front, in order.
 
 =cut
 
@@ -344,6 +463,18 @@ sub array {
 
     $request->set("function" => "array");
     $request->set("values", $values);
+
+    return $request->getResult();
+}
+
+sub at {
+    my ($array, $index) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "at");
+    $request->set("array", $array);
+    $request->set("index", $index);
 
     return $request->getResult();
 }
@@ -403,6 +534,17 @@ sub eqx_array {
     $request->set("function" => "eqx<array>");
     $request->set("arg1", $arg1);
     $request->set("arg2", $arg2);
+
+    return $request->getResult();
+}
+
+sub freeze_array {
+    my ($value) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "freeze<array>");
+    $request->set("value", $value);
 
     return $request->getResult();
 }
@@ -530,12 +672,48 @@ sub nex_array {
     return $request->getResult();
 }
 
+sub pop {
+    my ($array) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "pop");
+    $request->set("array", $array);
+
+    return $request->getResult();
+}
+
+sub push {
+    my ($array, $values) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "push");
+    $request->set("array", $array);
+
+    if (defined $values)
+        $request->set("values", $values);
+
+    return $request->getResult();
+}
+
 sub reverse {
     my ($array) = @_;
 
     my $request = $session->request()
 
     $request->set("function" => "reverse");
+    $request->set("array", $array);
+
+    return $request->getResult();
+}
+
+sub shift {
+    my ($array) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "shift");
     $request->set("array", $array);
 
     return $request->getResult();
@@ -558,6 +736,24 @@ sub slice {
     return $request->getResult();
 }
 
+sub splice {
+    my ($array, $startIndex, $deleteCount, $values) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "splice");
+    $request->set("array", $array);
+    $request->set("startIndex", $startIndex);
+
+    if (defined $deleteCount)
+        $request->set("deleteCount", $deleteCount);
+
+    if (defined $values)
+        $request->set("values", $values);
+
+    return $request->getResult();
+}
+
 sub to_string_array {
     my ($value) = @_;
 
@@ -565,6 +761,20 @@ sub to_string_array {
 
     $request->set("function" => "to_string<array>");
     $request->set("value", $value);
+
+    return $request->getResult();
+}
+
+sub unshift {
+    my ($array, $values) = @_;
+
+    my $request = $session->request()
+
+    $request->set("function" => "unshift");
+    $request->set("array", $array);
+
+    if (defined $values)
+        $request->set("values", $values);
 
     return $request->getResult();
 }

@@ -2904,3 +2904,68 @@ afw_function_execute_is(
         ? afw_boolean_v_true
         : afw_boolean_v_false;
 }
+
+
+
+/*
+ * Common polymorphic function for freeze
+ *
+ * afw_function_execute_freeze
+ *
+ * See afw_function_bindings.h for more information.
+ *
+ * Set a `<dataType>` value immutable so further mutation throws. If already
+ * immutable, has no effect. Returns the same value.
+ *
+ * This function is not pure, so it may return a different result
+ * given exactly the same parameters and has side effects.
+ *
+ * Supported `<dataType>`:
+ *
+ *   array, object.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function freeze <dataType>(
+ *       value: dataType
+ *   ): dataType;
+ * ```
+ *
+ * Parameters:
+ *
+ *   value - (``<Type>``) The `<dataType>` value to freeze.
+ *
+ * Returns:
+ *
+ *   (``<Type>``) The same value, now immutable.
+ */
+const afw_value_t *
+afw_function_execute_freeze(
+    afw_function_execute_t *x)
+{
+    const afw_value_t *value;
+    const afw_value_object_t *object;
+    const afw_value_array_t *array;
+
+    AFW_FUNCTION_EVALUATE_PARAMETER(value, 1);
+    if (!value || afw_value_is_undefined(value)) {
+        AFW_THROW_ERROR_Z(general,
+            "freeze requires an object or array", x->xctx);
+    }
+
+    if (afw_value_is_object(value)) {
+        object = (const afw_value_object_t *)value;
+        afw_object_set_immutable(object->internal, x->xctx);
+        return value;
+    }
+
+    if (afw_value_is_array(value)) {
+        array = (const afw_value_array_t *)value;
+        afw_array_set_immutable(array->internal, x->xctx);
+        return value;
+    }
+
+    AFW_THROW_ERROR_Z(general,
+        "freeze requires an object or array", x->xctx);
+}

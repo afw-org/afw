@@ -503,3 +503,182 @@ afw_function_execute_property_is_not_null(
         ? afw_boolean_v_true
         : afw_boolean_v_false;
 }
+
+
+
+/*
+ * Adaptive function: entries
+ *
+ * afw_function_execute_entries
+ *
+ * See afw_function_bindings.h for more information.
+ *
+ * Return an array of property entries for an object. Each entry is a
+ * two-element array [name, value] where name is a string. The order matches
+ * keys() for the same object.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function entries(
+ *       object: object
+ *   ): array;
+ * ```
+ *
+ * Parameters:
+ *
+ *   object - (object) Object to list property entries from.
+ *
+ * Returns:
+ *
+ *   (array) Array of [name, value] pair arrays.
+ */
+const afw_value_t *
+afw_function_execute_entries(
+    afw_function_execute_t *x)
+{
+    const afw_value_object_t *object;
+    const afw_array_t *result_array;
+    const afw_array_t *pair;
+    const afw_iterator_t *iterator;
+    const afw_utf8_t *property_name;
+    const afw_value_t *value;
+    const afw_value_t *name_value;
+
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(object, 1, object);
+
+    result_array = afw_array_create_generic(x->p, x->xctx);
+    for (iterator = NULL;;) {
+        value = afw_object_get_next_property(
+            object->internal, &iterator, &property_name, x->xctx);
+        if (!value) {
+            break;
+        }
+        name_value = afw_value_create_unmanaged_string(
+            property_name, x->p, x->xctx);
+        pair = afw_array_create_generic(x->p, x->xctx);
+        afw_array_push_value(pair, name_value, x->xctx);
+        afw_array_push_value(pair, value, x->xctx);
+        afw_array_push_value(result_array,
+            afw_value_create_unmanaged_array(pair, x->p, x->xctx), x->xctx);
+    }
+
+    return afw_value_create_unmanaged_array(result_array, x->p, x->xctx);
+}
+
+
+
+/*
+ * Adaptive function: keys
+ *
+ * afw_function_execute_keys
+ *
+ * See afw_function_bindings.h for more information.
+ *
+ * Return an array of the property names of an object. The order of names is the
+ * object's property iteration order.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function keys(
+ *       object: object
+ *   ): (array string);
+ * ```
+ *
+ * Parameters:
+ *
+ *   object - (object) Object to list property names from.
+ *
+ * Returns:
+ *
+ *   (array string) Array of property name strings.
+ */
+const afw_value_t *
+afw_function_execute_keys(
+    afw_function_execute_t *x)
+{
+    const afw_value_object_t *object;
+    const afw_array_t *result_array;
+    const afw_iterator_t *iterator;
+    const afw_utf8_t *property_name;
+    const afw_value_t *value;
+
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(object, 1, object);
+
+    result_array = afw_array_create_generic(x->p, x->xctx);
+    for (iterator = NULL;;) {
+        value = afw_object_get_next_property(
+            object->internal, &iterator, &property_name, x->xctx);
+        if (!value) {
+            break;
+        }
+        afw_array_push_value(result_array,
+            afw_value_create_unmanaged_string(property_name, x->p, x->xctx),
+            x->xctx);
+    }
+
+    return afw_value_create_unmanaged_array(result_array, x->p, x->xctx);
+}
+
+
+
+/*
+ * Adaptive function: values
+ *
+ * afw_function_execute_values
+ *
+ * See afw_function_bindings.h for more information.
+ *
+ * Return an array of the property values of an object. The order matches keys()
+ * for the same object.
+ *
+ * This function is pure, so it will always return the same result
+ * given exactly the same parameters and has no side effects.
+ *
+ * Declaration:
+ *
+ * ```
+ *   function values(
+ *       object: object
+ *   ): array;
+ * ```
+ *
+ * Parameters:
+ *
+ *   object - (object) Object to list property values from.
+ *
+ * Returns:
+ *
+ *   (array) Array of property values.
+ */
+const afw_value_t *
+afw_function_execute_values(
+    afw_function_execute_t *x)
+{
+    const afw_value_object_t *object;
+    const afw_array_t *result_array;
+    const afw_iterator_t *iterator;
+    const afw_utf8_t *property_name;
+    const afw_value_t *value;
+
+    AFW_FUNCTION_EVALUATE_REQUIRED_DATA_TYPE_PARAMETER(object, 1, object);
+
+    result_array = afw_array_create_generic(x->p, x->xctx);
+    for (iterator = NULL;;) {
+        value = afw_object_get_next_property(
+            object->internal, &iterator, &property_name, x->xctx);
+        if (!value) {
+            break;
+        }
+        afw_array_push_value(result_array, value, x->xctx);
+    }
+
+    return afw_value_create_unmanaged_array(result_array, x->p, x->xctx);
+}
