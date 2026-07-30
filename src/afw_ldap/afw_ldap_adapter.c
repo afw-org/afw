@@ -42,9 +42,20 @@ afw_ldap_internal_adapter_create_cede_p(
         properties, p, xctx);
     self = (afw_ldap_internal_adapter_t *)adapter;
 
-    /* Process url property. */
-    self->url_z = afw_object_old_get_property_as_utf8_z(properties,
-        afw_ldap_s_url, p, xctx);
+    /* Process url property (template evaluated at adapter start, issue #15). */
+    {
+        const afw_value_t *url_value;
+
+        url_value = afw_object_get_property_compile_and_evaluate_as(
+            properties, afw_ldap_s_url, adapter->source_location,
+            afw_compile_type_template, p, xctx);
+        if (!afw_value_is_string(url_value)) {
+            afw_adapter_impl_throw_property_invalid(adapter,
+                afw_ldap_s_url, xctx);
+        }
+        self->url_z = afw_utf8_to_utf8_z(
+            &((const afw_value_string_t *)url_value)->internal, p, xctx);
+    }
     rv = apr_ldap_url_parse(
         afw_pool_get_apr_pool(self->pub.p),
         self->url_z,

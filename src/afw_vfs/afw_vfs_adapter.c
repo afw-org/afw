@@ -77,14 +77,16 @@ afw_vfs_adapter_internal_create_cede_p(
     /* Add entries to allocated memory. */
     for (iterator = NULL;;entries++) {
 
-        /* Get next entry and parse until there are no more. */
+        /* Get next entry, evaluate as template, then parse (issue #15). */
         value = afw_array_get_next_value(vfs_map, &iterator, p, xctx);
         if (!value) {
             break;
         }
+        value = afw_value_compile_and_evaluate_as(value,
+            adapter->source_location, afw_compile_type_template, p, xctx);
         if (!afw_value_is_string(value)) {
             AFW_THROW_ERROR_Z(general,
-                "\"vfsMap\" entries must be strings",
+                "\"vfsMap\" entries must evaluate to string",
                 xctx);
         }
         entry = &((const afw_value_string_t *)value)->internal;

@@ -584,13 +584,13 @@ impl_8_property_allowQuery = {
 static const afw_runtime_property_t
 impl_8_property_dataType = {
     &afw_ldap_self_s_dataType,
-    &afw_ldap_self_v_string.pub
+    &afw_ldap_self_v_template.pub
 };
 
 static const afw_runtime_property_t
 impl_8_property_description = {
     &afw_ldap_self_s_description,
-    &afw_ldap_self_v_zz__URL_of_LDAP_Server__For_example__ldaps___ldap_server_636.pub
+    &afw_ldap_self_v_zz__2637.pub
 };
 
 static const afw_runtime_property_t
@@ -1289,7 +1289,7 @@ impl_9_property_collectionURIs = {
 static const afw_runtime_property_t
 impl_9_property_description = {
     &afw_ldap_self_s_description,
-    &afw_ldap_self_v_zz__2637.pub
+    &afw_ldap_self_v_zz__2638.pub
 };
 
 static const afw_runtime_property_t
@@ -1925,7 +1925,7 @@ impl_13_property_collectionURIs = {
 static const afw_runtime_property_t
 impl_13_property_description = {
     &afw_ldap_self_s_description,
-    &afw_ldap_self_v_zz__2638.pub
+    &afw_ldap_self_v_zz__2639.pub
 };
 
 static const afw_runtime_property_t
@@ -2156,7 +2156,7 @@ impl_20_property_collectionURIs = {
 static const afw_runtime_property_t
 impl_20_property_description = {
     &afw_ldap_self_s_description,
-    &afw_ldap_self_v_zz__2639.pub
+    &afw_ldap_self_v_zz__2640.pub
 };
 
 static const afw_runtime_property_t
@@ -2374,7 +2374,7 @@ impl_22_property_collectionURIs = {
 static const afw_runtime_property_t
 impl_22_property_description = {
     &afw_ldap_self_s_description,
-    &afw_ldap_self_v_zz__2640.pub
+    &afw_ldap_self_v_zz__2641.pub
 };
 
 static const afw_runtime_property_t
@@ -3532,7 +3532,7 @@ impl_24_property_collectionURIs = {
 static const afw_runtime_property_t
 impl_24_property_description = {
     &afw_ldap_self_s_description,
-    &afw_ldap_self_v_zz__2641.pub
+    &afw_ldap_self_v_zz__2642.pub
 };
 
 static const afw_runtime_property_t
@@ -3763,7 +3763,7 @@ impl_36_property_collectionURIs = {
 static const afw_runtime_property_t
 impl_36_property_description = {
     &afw_ldap_self_s_description,
-    &afw_ldap_self_v_zz__2642.pub
+    &afw_ldap_self_v_zz__2643.pub
 };
 
 static const afw_runtime_property_t
@@ -3981,7 +3981,7 @@ impl_38_property_collectionURIs = {
 static const afw_runtime_property_t
 impl_38_property_description = {
     &afw_ldap_self_s_description,
-    &afw_ldap_self_v_zz__2643.pub
+    &afw_ldap_self_v_zz__2644.pub
 };
 
 static const afw_runtime_property_t
@@ -4439,7 +4439,7 @@ impl_40_property_collectionURIs = {
 static const afw_runtime_property_t
 impl_40_property_description = {
     &afw_ldap_self_s_description,
-    &afw_ldap_self_v_zz__2644.pub
+    &afw_ldap_self_v_zz__2645.pub
 };
 
 static const afw_runtime_property_t

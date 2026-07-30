@@ -338,15 +338,23 @@ Several conf properties that hold host paths or module paths are now **`template
 | File adapter **`root`** | Adapter start | Yes |
 | Application **`rootFilePaths`** values | Application start | Yes |
 | LMDB **`env.path`** | Adapter start | Yes |
+| VFS **`vfsMap`** entries | Adapter start | Yes (host dir side) |
+| LDAP **`url`** | Adapter start | No (network URL) |
 | **`extensionModulePaths`** entries | Application start | No (often a soname) |
 | Extension conf / manifest **`modulePath`** | Extension load | No |
 
-Example:
+Examples:
 
 ```json
 "rootFilePaths": {
     "data": "${environment::HOME}/afw-data/"
 }
+
+"vfsMap": [
+    "docs/=${environment::DATA}/docs/"
+]
+
+"url": "ldaps://${environment::LDAP_HOST}:636"
 ```
 
 The `afw` command and servers already expose `environment::` for process environment variables before conf is applied.

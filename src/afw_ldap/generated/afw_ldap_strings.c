@@ -614,6 +614,12 @@ afw_ldap_self_v_zz__2644 = {
 };
 
 const afw_value_string_t
+afw_ldap_self_v_zz__2645 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__2645)
+};
+
+const afw_value_string_t
 afw_ldap_self_v_zz__Abstract_Class = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__Abstract_Class)
@@ -731,12 +737,6 @@ const afw_value_string_t
 afw_ldap_self_v_zz__This_is_used_as_the_base_for_ldap_search___ = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__This_is_used_as_the_base_for_ldap_search___)
-};
-
-const afw_value_string_t
-afw_ldap_self_v_zz__URL_of_LDAP_Server__For_example__ldaps___ldap_server_636 = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_LDAP_Q_zz__URL_of_LDAP_Server__For_example__ldaps___ldap_server_636)
 };
 
 const afw_value_string_t
