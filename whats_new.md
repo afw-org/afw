@@ -21,7 +21,7 @@ In-tree extensions and the `afw` / `afwfcgi` commands built with the same `./afw
 | Area | What changed |
 |------|----------------|
 | **Object / array helpers (#55)** | `keys` / `values` / `entries`, `at`, `push`/`pop`/`shift`/`unshift`, `splice`, `freeze`, `every`/`some` — **recompile** out-of-tree commands/extensions |
-| **Qualified variables** | `qualifier()` / `qualifiers()` return **fresh listable snapshots** (issue **#9**) |
+| **Qualified variables** | `qualifier()` / `qualifiers()` snapshots (issue **#9**); multi-frame **`::` get** uses first **defining** frame (same as snapshots) |
 | **Retrieve arrays** | Optional **`maxObjects`** on materializing `retrieve_objects` (default **100**; issue **#49**) |
 | **Admin / JS client** | `AfwModel` passes **`maxObjects: 0`** for full metadata catalogs so admin loads after #49 |
 | **Adapter auth** | `checkIndividualObjectReadAccess` wiring fixed + tests (issue **#90**) |
@@ -207,11 +207,15 @@ const all = qualifiers();
 | **Fresh object each call** | Every `qualifier()` / `qualifiers()` builds a **new** memory object from the **current** stack (not a live proxy). Mutating a snapshot does not change later calls or `qualifier::name` access. |
 | **Missing qualifier** | If no **visible** stack entry matches the name, `qualifier(name)` is **nullish** (`undefined`), not an empty object. `qualifiers()` **omits** inactive names (does not invent `{}`). |
 | **Hot path unchanged** | Everyday `current::objectId` / `environment::HOME` still goes through stack **`get_cb`** only. Snapshots use a separate **`contribute_cb`** path intended for debug, tools, and tests—not tight production loops. |
-| **Most recent wins** | Get (`qualifier::name`) uses the **most recent** matching visible stack entry for that qualifier. A snapshot walks **all** matching visible entries (most recent first); each may contribute, and the most recent definition wins per property name. Nested pushes are cleaned up with the stack (e.g. `AFW_TRY`). |
+| **First defining frame wins** | Both **get** (`qualifier::name`) and **snapshots** walk matching visible frames **newest → older**. The first frame that **defines** a name wins for that name. Get continues while a frame’s `get_cb` returns C `NULL` (not defined here); a present value—including permanent **`afw_value_undefined`** / **`afw_value_null`**—stops the walk. Snapshots contribute the same way (most recent definition wins per property). Nested pushes are cleaned up with the stack (e.g. `AFW_TRY`). |
 | **`includeUntrusted`** | Optional boolean, default **false**. **Default** matches normal `qualifier::name` visibility right now. While the xctx is **secure**, set **true** so the snapshot matches what you would see with `::` if you were **less secure** (trusted **and** untrusted frames—not untrusted-only). When already not secure, true and false are the same. |
 | **Can be large** | Snapshots copy variable bags into memory objects. `environment::` / `request::` (and similar) can be **big**; `qualifiers()` nests a full snapshot per active qualifier and multiplies cost. Prefer `qualifier::name` day to day; use list functions sparingly and do not retain or rebuild large snapshots in long-running scripts. |
 
 Object-backed qualifiers (`environment::`, `request::`, `application::`, model `current::` runtime bags, …) contribute by walking their objects. Callback-backed frames (app `current::`, model `custom::`, log, context tables) contribute their known variable sets.
+
+### Multi-frame get aligned with snapshots
+
+Older builds stopped get after the **first matching qualifier frame**, even when that frame did not define the name. Stacked `current::` (log write, model, `evaluate(..., additionalUntrustedQualifiedVariables)`, …) could hide older bindings such as `current::mode`. Get now matches snapshot semantics: **first frame that defines the name**. Present undefined must use **`afw_value_undefined`**, not C `NULL` (C `NULL` means “not on this frame”).
 
 ---
 
@@ -364,6 +368,10 @@ const home = environment::HOME;
 Hosts (`afw`, `afwfcgi`, …) no longer create their own process-env object. Context type **`process`** documents these bags; **`application`** parents it for the expression builder. Path-like conf templates use `contextType: "process"`.
 
 **Deprecated on `current::`:** `current::pid` and `current::programName` still work but prefer **`process::pid`** and **`process::programName`**. Keep **`current::mode`** and **`current::xctxUUID`** — execution context, not process identity.
+
+### Log conf `format` / `filter` context types
+
+Specialized log conf object types (`_AdaptiveConf_log_standard`, `_syslog`, `_event_log`) set **`contextType`** on **`format`** and **`filter`** to the matching runtime context id (`logType-standard`, `logType-syslog`, `logType-event_log`). Those context types parent **application** (and thus **process**) and document log write bags (`current::message` / `source` / `xctxUUID`, `log::`, optional `custom::`). Property meta inherits the shared definitions from `_AdaptiveConf_log` via **`parentPaths`** (use object option **`composite: true`** to see full meta).
 
 ---
 

@@ -31526,6 +31526,12 @@ afw_self_v_zz__2345 = {
 };
 
 const afw_value_string_t
+afw_self_v_zz__2346 = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__2346)
+};
+
+const afw_value_string_t
 afw_self_v_zz__235 = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__235)
@@ -42431,12 +42437,6 @@ const afw_value_string_t
 afw_self_v_zz__Log_format = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Log_format)
-};
-
-const afw_value_string_t
-afw_self_v_zz__Log_format_ = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__Log_format_)
 };
 
 const afw_value_string_t
@@ -57473,6 +57473,24 @@ const afw_value_string_t
 afw_self_v_zz__libafw_version___git_info = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__libafw_version___git_info)
+};
+
+const afw_value_string_t
+afw_self_v_zz__logType_event_log = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__logType_event_log)
+};
+
+const afw_value_string_t
+afw_self_v_zz__logType_standard = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__logType_standard)
+};
+
+const afw_value_string_t
+afw_self_v_zz__logType_syslog = {
+    {&afw_value_permanent_string_inf},
+    AFW_UTF8_LITERAL(AFW_Q_zz__logType_syslog)
 };
 
 const afw_value_string_t

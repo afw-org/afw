@@ -11,6 +11,22 @@
             "parentPaths": [
                 "/afw/_AdaptiveObjectType_/_AdaptiveConf_log/propertyTypes"
             ]
+        },
+        "filter": {
+            "_meta_": {
+                "parentPaths": [
+                    "/afw/_AdaptiveObjectType_/_AdaptiveConf_log/propertyTypes/filter"
+                ]
+            },
+            "contextType": "logType-standard"
+        },
+        "format": {
+            "_meta_": {
+                "parentPaths": [
+                    "/afw/_AdaptiveObjectType_/_AdaptiveConf_log/propertyTypes/format"
+                ]
+            },
+            "contextType": "logType-standard"
         }
     }
 }
