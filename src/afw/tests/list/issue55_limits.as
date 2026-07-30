@@ -272,3 +272,99 @@ assert(at(a, 0) === 20, "after shift");
 assert(at(a, -1) === 40, "last still 40");
 
 return 0;
+
+//?
+//? test: at-long-array-nearer-end-walk
+//? description: at on longer array hits head/mid/tail (memory entry_at nearer-end)
+//? expect: 0
+//? source: ...
+
+/* Residual #55 polish: impl_entry_at walks from nearer end for mid indexes. */
+let a = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+assert(length(a) === 10, "len");
+assert(at(a, 0) === 0, "head");
+assert(at(a, 1) === 1, "near head");
+assert(at(a, 4) === 4, "mid low");
+assert(at(a, 5) === 5, "mid high");
+assert(at(a, 8) === 8, "near tail");
+assert(at(a, 9) === 9, "tail");
+assert(at(a, -1) === 9, "neg last");
+assert(at(a, -2) === 8, "neg near last");
+assert(at(a, -10) === 0, "neg first");
+
+return 0;
+
+//?
+//? test: index-assign-mid-and-near-end
+//? description: a[i]= replaces mid and near-end slots (set_value + entry_at)
+//? expect: 0
+//? source: ...
+
+let a = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+a[3] = 30;
+a[8] = 80;
+a[-1] = 90;
+assert(at(a, 3) === 30, "mid replace");
+assert(at(a, 8) === 80, "near-end replace");
+assert(at(a, 9) === 90, "last via -1 assign");
+assert(a[0] === 0 && a[4] === 4, "neighbors unchanged");
+/* replace same slot again (store-as-is; no hold/release yet #2) */
+a[3] = 31;
+assert(at(a, 3) === 31, "second replace");
+
+return 0;
+
+//?
+//? test: unshift-splice-at-and-for-of
+//? description: insert front + mid splice then at/for-of twice (iterator end clear)
+//? expect: 0
+//? source: ...
+
+let a = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+/* insert_value(0) path used by unshift */
+unshift(a, -1);
+assert(at(a, 0) === -1 && at(a, 1) === 0, "unshift front");
+assert(length(a) === 11, "len after unshift");
+
+/* mid remove/insert exercises entry_at from either end */
+splice(a, 5, 1, 50, 51);
+assert(at(a, 5) === 50 && at(a, 6) === 51, "mid splice insert");
+assert(at(a, -1) === 9, "tail still 9");
+
+let n1 = 0;
+for (let x of a) {
+    n1 = n1 + 1;
+}
+let n2 = 0;
+for (let x of a) {
+    n2 = n2 + 1;
+}
+assert(n1 === length(a) && n2 === length(a), "double for-of full scan");
+
+/* empty for-of then reuse array */
+let empty = [];
+let z = 0;
+for (let x of empty) {
+    z = z + 1;
+}
+assert(z === 0, "empty for-of");
+push(empty, 1);
+assert(at(empty, 0) === 1, "reuse after empty iter");
+
+return 0;
+
+//?
+//? test: mid-remove-then-at-ends
+//? description: splice mid remove keeps ends and length consistent
+//? expect: 0
+//? source: ...
+
+let a = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+let r = splice(a, 4, 2);
+assert(length(r) === 2 && r[0] === 4 && r[1] === 5, "removed mid");
+assert(length(a) === 8, "len");
+assert(at(a, 0) === 0 && at(a, -1) === 9, "ends");
+assert(at(a, 3) === 3 && at(a, 4) === 6, "joined");
+assert(at(a, 7) === 9, "last by positive");
+
+return 0;
