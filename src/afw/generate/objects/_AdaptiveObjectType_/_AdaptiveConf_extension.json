@@ -22,6 +22,7 @@
         "modulePath": {
             "allowQuery": true,
             "brief": "Path to locate the module",
+            "contextType": "process",
             "dataType": "template",
             "description": "Path to locate the module. This is required if extensionId is not registered. This template is evaluated when the extension conf entry is processed (plain strings are unchanged; substitutions such as environment:: may be used).",
             "label": "Module Path"

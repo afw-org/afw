@@ -408,6 +408,11 @@ systemInfo
 
 # application
 a_context_type_application_qualifier_definitions_path=/afw/_AdaptiveContextType_/application/qualifierDefinitions
+a_context_type_process_qualifier_definitions_path=/afw/_AdaptiveContextType_/process/qualifierDefinitions
+process
+argv
+argc
+HOME
 mode
 pid
 scopeNumber
@@ -767,3 +772,6 @@ case_insensitive_string=case-insensitive-string
 case_sensitive_string=case-sensitive-string
 sort_reverse=sort-reverse
 numeric
+args
+cwd
+platform

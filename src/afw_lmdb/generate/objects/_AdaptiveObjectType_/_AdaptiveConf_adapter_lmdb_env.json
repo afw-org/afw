@@ -40,6 +40,7 @@
         },
         "path": {
             "allowQuery": true,
+            "contextType": "process",
             "dataType": "template",
             "description": "Database path for LMDB. This template is evaluated when the adapter is started (plain strings are unchanged; substitutions such as environment:: may be used) and is resolved to a full path at that time.",
             "label": "Path",

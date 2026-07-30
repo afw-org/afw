@@ -70,6 +70,7 @@
         },
         "extensionModulePaths": {
             "brief": "List of modulePaths of extensions to load at startup",
+            "contextType": "process",
             "dataType": "array",
             "dataTypeParameter": "template",
             "description": "This is an array of modulePaths of extensions to load at startup. Each entry is a template evaluated when the application conf is processed (plain strings are unchanged; substitutions such as environment:: may be used). If there is already an extension manifest that has the extensionId, use the extensions property instead. This property is most useful for loading the extension manifest of an AFW package.",

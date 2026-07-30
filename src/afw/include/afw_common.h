@@ -1645,6 +1645,24 @@ struct afw_environment_s {
     /** @brief Environment variables at environment create. */
     const afw_object_t *initial_environment_variables;
 
+    /**
+     * @brief Live process environment variables object
+     * (`/afw/_AdaptiveEnvironmentVariables_/current`) for `environment::`.
+     *
+     * Created once at environment create. Qualifier is pushed in
+     * afw_application_internal_push_qualifiers() for every xctx.
+     */
+    const afw_object_t *environment_variables_object;
+
+    /**
+     * @brief Process invocation object (`/afw/_AdaptiveProcess_/current`)
+     * for `process::` (argv, programName, …).
+     *
+     * Created once at environment create. Qualifier is pushed in
+     * afw_application_internal_push_qualifiers() for every xctx.
+     */
+    const afw_object_t *process_object;
+
     /** @brief Adaptive framework core adapter. */
     const afw_adapter_t *afw_adapter;
 

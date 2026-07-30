@@ -121,6 +121,19 @@ afw_application_internal_push_qualifiers(afw_xctx_t *xctx)
         impl_current_get_variable_cb, impl_current_contribute_variables_cb,
         NULL, xctx->p, xctx);
 
+    /*
+     * Process ambient qualifiers (environment::, process::). Objects are
+     * created once at environment create; push only (issue #71).
+     */
+    if (env->environment_variables_object) {
+        afw_xctx_qualifier_stack_qualifier_object_push(afw_s_environment,
+            env->environment_variables_object, true, xctx->p, xctx);
+    }
+    if (env->process_object) {
+        afw_xctx_qualifier_stack_qualifier_object_push(afw_s_process,
+            env->process_object, true, xctx->p, xctx);
+    }
+
     /* If there is an application qualifier, push application qualifier. */
     if (env->application_object) {
         afw_xctx_qualifier_stack_qualifier_object_push(afw_s_application,
@@ -146,11 +159,105 @@ void
 afw_application_internal_register_basic_application_context_type(
     afw_xctx_t *xctx)
 {
+    const afw_object_t *process_context_type_object;
     const afw_object_t *context_type_object;
+    const afw_object_t *qualifier_definitions;
     const afw_object_t *variable_definitions;
 
+    /*
+     * Context type "process": ambient process-level qualifiers available
+     * after environment create (environment:: and process::).
+     */
+    process_context_type_object = afw_context_type_create(
+        afw_s_process, xctx->env->p, xctx);
+    afw_object_set_property_as_string_from_utf8_z(
+        process_context_type_object, afw_s_description,
+        "Process-level qualifiers available after environment create: "
+        "environment:: (process environment variables) and process:: "
+        "(invocation: args, programName). Distinct from request::.",
+        xctx);
+
+    /* environment:: — open-ended process env names. */
+    variable_definitions =
+        afw_context_type_insure_variable_definitions_object_exists(
+            process_context_type_object, afw_s_environment, xctx);
+    afw_context_variable_definition_add_z(variable_definitions,
+        afw_s_HOME, afw_s_runtime,
+        &afw_value_unmanaged_string_inf,
+        "HOME",
+        "Example process environment variable. Any process env name is "
+        "available as environment::<name>.",
+        NULL, NULL,
+        xctx);
+
+    /* process:: — invocation and process identity. */
+    variable_definitions =
+        afw_context_type_insure_variable_definitions_object_exists(
+            process_context_type_object, afw_s_process, xctx);
+    afw_context_variable_definition_add_z(variable_definitions,
+        afw_s_args, afw_s_runtime,
+        &afw_value_unmanaged_array_inf,
+        "Arguments",
+        "Command-line arguments (array of string) from process start. "
+        "Use length(process::args) for the count.",
+        "string", NULL,
+        xctx);
+    afw_context_variable_definition_add_z(variable_definitions,
+        afw_s_programName, afw_s_runtime,
+        &afw_value_unmanaged_string_inf,
+        "Program Name",
+        "Base name of args[0] (e.g. afw, afwfcgi).",
+        NULL, NULL,
+        xctx);
+    afw_context_variable_definition_add_z(variable_definitions,
+        afw_s_pid, afw_s_runtime,
+        &afw_value_unmanaged_integer_inf,
+        "Pid",
+        "Operating system process id at environment create.",
+        NULL, NULL,
+        xctx);
+    afw_context_variable_definition_add_z(variable_definitions,
+        afw_s_cwd, afw_s_runtime,
+        &afw_value_unmanaged_string_inf,
+        "Working Directory",
+        "Working directory snapshot at environment create.",
+        NULL, NULL,
+        xctx);
+    afw_context_variable_definition_add_z(variable_definitions,
+        afw_s_platform, afw_s_runtime,
+        &afw_value_unmanaged_string_inf,
+        "Platform",
+        "Coarse OS platform id (e.g. linux, windows).",
+        NULL, NULL,
+        xctx);
+    afw_context_variable_definition_add_z(variable_definitions,
+        afw_s_afwVersion, afw_s_runtime,
+        &afw_value_unmanaged_string_inf,
+        "AFW Version",
+        "Active libafw version string.",
+        NULL, NULL,
+        xctx);
+    afw_context_variable_definition_add_z(variable_definitions,
+        afw_s_startTime, afw_s_runtime,
+        &afw_value_unmanaged_dateTime_inf,
+        "Start Time",
+        "Local dateTime when the Adaptive environment was created.",
+        NULL, NULL,
+        xctx);
+
+    afw_environment_register_context_type(afw_s_process,
+        process_context_type_object, xctx);
+
+    /* Context type "application" — includes process ambient via parentPaths. */
     context_type_object = afw_context_type_create(
         afw_s_application, xctx->env->p, xctx);
+
+    qualifier_definitions =
+        afw_context_type_insure_qualifier_definitions_object_exists(
+            context_type_object, xctx);
+    afw_object_meta_add_parent_path(qualifier_definitions,
+        afw_s_a_context_type_process_qualifier_definitions_path,
+        xctx);
 
     variable_definitions =
         afw_context_type_insure_variable_definitions_object_exists(
@@ -168,7 +275,7 @@ afw_application_internal_register_basic_application_context_type(
         afw_s_pid, afw_s_runtime,
         &afw_value_unmanaged_integer_inf,
         "Pid",
-        "The current processor id.",
+        "Deprecated: use process::pid. Process id (still provided on current:: for compatibility).",
         NULL, NULL,
         xctx);
 
@@ -176,7 +283,7 @@ afw_application_internal_register_basic_application_context_type(
         afw_s_programName, afw_s_runtime,
         &afw_value_unmanaged_string_inf,
         "Program Name",
-        "The current program name.",
+        "Deprecated: use process::programName. Program base name (still provided on current:: for compatibility).",
         NULL, NULL,
         xctx);
 

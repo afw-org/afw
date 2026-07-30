@@ -1,25 +1,34 @@
 ---
-description: Process env and request properties — UTF-8 boundary, string|hexBinary, #71 single current
-globs: src/afw/environment/afw_environment_variables_object.c,src/afw/environment/afw_environment_register_core.c,src/afw/value/afw_value.c,src/afw/value/afw_value.h,src/afw/utf8/afw_utf8.c,src/afw/utf8/afw_utf8.h,src/afw_server_fcgi/afw_server_fcgi_properties_object.c,src/afw_server_fcgi/afw_server_fcgi_request.c,src/afw_command/afw_command.c,src/afw_command/afw_command_local_server.c,src/afw/tests/miscellaneous/environment_variables*,src/afw_command/tests/local_test_3*
+description: Process env, process::, request props — UTF-8 boundary, #71 single current, env create ambient
+globs: src/afw/environment/afw_environment_variables_object.c,src/afw/environment/afw_environment_register_core.c,src/afw/environment/afw_environment.c,src/afw/application/afw_application.c,src/afw/value/afw_value.c,src/afw/value/afw_value.h,src/afw/utf8/afw_utf8.c,src/afw/utf8/afw_utf8.h,src/afw_server_fcgi/afw_server_fcgi_properties_object.c,src/afw_server_fcgi/afw_server_fcgi_request.c,src/afw_command/afw_command.c,src/afw_command/afw_command_local_server.c,src/afw/tests/miscellaneous/environment_variables*,src/afw/tests/miscellaneous/process*,src/afw_command/tests/local_test_3*
 alwaysApply: false
 ---
 
-# Process environment & request properties (issue #71)
+# Process environment, process::, and request properties
 
-Two **separate** bags. Do not merge them into one `current` or one qualifier.
+Three **separate** bags. Do not merge them.
 
-| Role | Object type / id | Qualifier | Source |
-|------|------------------|-----------|--------|
+| Role | Object | Qualifier | Source |
+|------|--------|-----------|--------|
 | **Process env** | `/afw/_AdaptiveEnvironmentVariables_/current` | `environment::` | Host `environ` / `getenv` |
+| **Process invocation** | `/afw/_AdaptiveProcess_/current` | `process::` | Env create: `args`, `programName`, `pid`, `cwd` snapshot, `platform`, `afwVersion`, `startTime` (#74 partial) |
 | **Request props** | `/afw/_AdaptiveRequestProperties_/current` | `request::` | FCGI `envp` / local multi-request / headers |
 
-## Single runtime registration (#71)
+## Environment create (not host-local)
 
-- Register process-env `current` **once** on the base/server xctx (`afw_runtime_xctx_set_object`).
-- On **child** request/eval xctx: push **`environment::` only** — do **not** re-register the same object (parent-chain retrieve would return two identical `current`s).
-- Same pattern: `afw_command` (eval + local server), `afw_server_fcgi` (request), not “register again with overwrite.”
+- Create **process-env** and **process** objects in `afw_environment_create` **before** base `create_finishup`.
+- Store only on **`xctx->env`** (`environment_variables_object`, `process_object`).
+- Register runtime currents **once** after `register_core`.
+- **Push** both (plus application when present) in `afw_application_internal_push_qualifiers()` — called from **every** xctx finishup. Do **not** re-register on child xctxs (#71).
+- Hosts must **not** create their own process-env object or push `environment::` manually.
 
 `retrieve_objects("afw", "_AdaptiveEnvironmentVariables_")` must return **length 1**.
+
+## Context types (docs / expression builder)
+
+- **`process`**: documents `environment::` + `process::`.
+- **`application`**: parents process qualifierDefinitions; also `current::` (mode, xctxUUID; **deprecated** docs for pid/programName → use process::).
+- Conf path templates (#15): `contextType: "process"` on template path properties.
 
 ## External octets → Adaptive values
 
@@ -33,27 +42,29 @@ Untrusted external bytes (env, FCGI, similar) **must not** become string/`afw_ut
 
 **Never** reintroduce helpers that wrap unchecked bytes as string (removed: `afw_value_make_string_copy`, `afw_value_make_single_string`).
 
-Interior AFW may assume `afw_utf8_t` is valid NFC. Boundary ownership is `afw_utf8_*` + the external value helpers.
+## Lazy process-env object + cache
 
-## Lazy object + cache
-
-Custom objects (`afw_environment_variables_object.c`, FCGI properties object):
+`afw_environment_variables_object.c`:
 
 1. Empty memory object `self->properties` as cache.
 2. `get_property`: cache hit → return; else external lookup → `create_from_external_*` → **`set_property` into cache** → return.
-3. Full load / retrieve: fill cache from `environ`/`envp` skipping names already present (cache preferred; **no duplicates**).
-4. Do not fail the process/request because one name/value is non-UTF-8.
+3. Full load / retrieve: fill cache from `environ` skipping names already present (**no duplicates**).
+4. Do not fail the process because of one bad name/value.
+
+Process-env is **preloaded** at env create so multi-thread hosts sharing the object are safe.
 
 ## `AFW_ENVIRONMENT_CREATE` failure
 
-When create returns NULL, **`xctx` is NULL** — use `afw_error_print(stderr, create_error)` only (skeleton / `afw` / `afwfcgi`). Stream redirects via `env->stderr_fd` apply **after** successful create. Do not dereference null `xctx`.
+When create returns NULL, **`xctx` is NULL** — use `afw_error_print(stderr, create_error)` only. Stream redirects apply **after** successful create.
 
 ## Tests
 
 | Asset | Covers |
 |-------|--------|
-| `src/afw/tests/miscellaneous/environment_variables.as` | #71 count, HOME string, qualifier |
-| `…/environment_variables_external.py` | Bad value → hexBinary; good UTF-8 string; bad name → `_NONUTF8_…` (C setenv + exec afw) |
-| `src/afw_command/tests/local_test_3_*` | #71 + environment:: + multi-request props under `afw --local` |
+| `src/afw/tests/miscellaneous/process.as` | process:: / AdaptiveProcess, #71 env count, context types, deprecated current::pid/programName |
+| `src/afw/tests/miscellaneous/environment_variables.as` | #71 HOME string, qualifier |
+| `…/environment_variables_external.py` | Bad value → hexBinary; good UTF-8; bad name → `_NONUTF8_…` |
+| `src/afw_command/tests/local_test_3_*` | #71 + environment:: under `afw --local` |
+| `src/afw/tests/miscellaneous/conf_path_templates/` | #15 conf templates using `environment::` |
 
-No automated FCGI harness required for this issue; FCGI code follows the same rules. Related: `afw-environment`, `afw-command`, `afw-server-fcgi`, `afw-tests`, `afw-value-memory`.
+Related: `afw-environment`, `afw-command`, `afw-server-fcgi`, `afw-tests`, `afw-value-memory`.

@@ -1,0 +1,188 @@
+{
+    "$comment": "Generated from adaptive object type _AdaptiveProcess_. Primary use: editor completion/validation for generate/objects JSON. Do not hand-edit.",
+    "$defs": {
+        "_AdaptiveProcess_": {
+            "additionalProperties": false,
+            "description": "Process invocation and identity for this Adaptive Framework environment. Available as process:: and as /afw/_AdaptiveProcess_/current. Distinct from process environment variables (environment:: / _AdaptiveEnvironmentVariables_), request properties (request::), and server metrics (_AdaptiveServer_/current). Partial issue #74.",
+            "markdownDescription": "Process invocation and identity for this Adaptive Framework environment. Available as process:: and as /afw/_AdaptiveProcess_/current. Distinct from process environment variables (environment:: / _AdaptiveEnvironmentVariables_), request properties (request::), and server metrics (_AdaptiveServer_/current). Partial issue #74.",
+            "properties": {
+                "_meta_": {
+                    "additionalProperties": true,
+                    "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+                    "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+                    "title": "Meta",
+                    "type": "object"
+                },
+                "afwVersion": {
+                    "description": "Version string of the linked libafw at process start.",
+                    "markdownDescription": "**AFW Version**\n\nVersion string of the linked libafw at process start.",
+                    "title": "AFW Version",
+                    "type": "string"
+                },
+                "args": {
+                    "description": "Command-line arguments from process start (args[0] is the program path/name as invoked). Aligns with common ECMAScript 'args' naming (issue #74). For afwfcgi this is the server binary's arguments, not HTTP parameters. Use length(process::args) for the count.",
+                    "items": {
+                        "description": "Command-line arguments from process start (args[0] is the program path/name as invoked). Aligns with common ECMAScript 'args' naming (issue #74). For afwfcgi this is the server binary's arguments, not HTTP parameters. Use length(process::args) for the count.",
+                        "markdownDescription": "Command-line arguments from process start (args[0] is the program path/name as invoked). Aligns with common ECMAScript 'args' naming (issue #74). For afwfcgi this is the server binary's arguments, not HTTP parameters. Use length(process::args) for the count.",
+                        "title": "Command-line arguments",
+                        "type": "string"
+                    },
+                    "markdownDescription": "**Arguments**\n\nCommand-line arguments from process start (args[0] is the program path/name as invoked). Aligns with common ECMAScript 'args' naming (issue #74). For afwfcgi this is the server binary's arguments, not HTTP parameters. Use length(process::args) for the count.",
+                    "title": "Arguments",
+                    "type": "array"
+                },
+                "cwd": {
+                    "description": "Process current working directory snapshot at environment create. Not updated if the process later changes directory.",
+                    "markdownDescription": "**Working Directory**\n\nProcess current working directory snapshot at environment create. Not updated if the process later changes directory.",
+                    "title": "Working Directory",
+                    "type": "string"
+                },
+                "pid": {
+                    "description": "Operating system process id (or equivalent) at environment create.",
+                    "markdownDescription": "**Pid**\n\nOperating system process id (or equivalent) at environment create.",
+                    "title": "Pid",
+                    "type": "integer"
+                },
+                "platform": {
+                    "description": "Coarse OS platform id for this build (e.g. linux, windows).",
+                    "markdownDescription": "**Platform**\n\nCoarse OS platform id for this build (e.g. linux, windows).",
+                    "title": "Platform",
+                    "type": "string"
+                },
+                "programName": {
+                    "description": "Base name of args[0] (last path segment), also available as env program_name (e.g. afw, afwfcgi).",
+                    "markdownDescription": "**Program Name**\n\nBase name of args[0] (last path segment), also available as env program_name (e.g. afw, afwfcgi).",
+                    "title": "Program Name",
+                    "type": "string"
+                },
+                "startTime": {
+                    "description": "Local dateTime when the Adaptive environment was created for this process.",
+                    "format": "date-time",
+                    "markdownDescription": "**Start Time**\n\nLocal dateTime when the Adaptive environment was created for this process.",
+                    "title": "Start Time",
+                    "type": "string"
+                }
+            },
+            "title": "_AdaptiveProcess_",
+            "type": "object"
+        },
+        "_AdaptiveProcess_.propertyTypes": {
+            "properties": {
+                "afwVersion": {
+                    "description": "Version string of the linked libafw at process start.",
+                    "markdownDescription": "**AFW Version**\n\nVersion string of the linked libafw at process start.",
+                    "title": "AFW Version",
+                    "type": "string"
+                },
+                "args": {
+                    "description": "Command-line arguments from process start (args[0] is the program path/name as invoked). Aligns with common ECMAScript 'args' naming (issue #74). For afwfcgi this is the server binary's arguments, not HTTP parameters. Use length(process::args) for the count.",
+                    "items": {
+                        "description": "Command-line arguments from process start (args[0] is the program path/name as invoked). Aligns with common ECMAScript 'args' naming (issue #74). For afwfcgi this is the server binary's arguments, not HTTP parameters. Use length(process::args) for the count.",
+                        "markdownDescription": "Command-line arguments from process start (args[0] is the program path/name as invoked). Aligns with common ECMAScript 'args' naming (issue #74). For afwfcgi this is the server binary's arguments, not HTTP parameters. Use length(process::args) for the count.",
+                        "title": "Command-line arguments",
+                        "type": "string"
+                    },
+                    "markdownDescription": "**Arguments**\n\nCommand-line arguments from process start (args[0] is the program path/name as invoked). Aligns with common ECMAScript 'args' naming (issue #74). For afwfcgi this is the server binary's arguments, not HTTP parameters. Use length(process::args) for the count.",
+                    "title": "Arguments",
+                    "type": "array"
+                },
+                "cwd": {
+                    "description": "Process current working directory snapshot at environment create. Not updated if the process later changes directory.",
+                    "markdownDescription": "**Working Directory**\n\nProcess current working directory snapshot at environment create. Not updated if the process later changes directory.",
+                    "title": "Working Directory",
+                    "type": "string"
+                },
+                "pid": {
+                    "description": "Operating system process id (or equivalent) at environment create.",
+                    "markdownDescription": "**Pid**\n\nOperating system process id (or equivalent) at environment create.",
+                    "title": "Pid",
+                    "type": "integer"
+                },
+                "platform": {
+                    "description": "Coarse OS platform id for this build (e.g. linux, windows).",
+                    "markdownDescription": "**Platform**\n\nCoarse OS platform id for this build (e.g. linux, windows).",
+                    "title": "Platform",
+                    "type": "string"
+                },
+                "programName": {
+                    "description": "Base name of args[0] (last path segment), also available as env program_name (e.g. afw, afwfcgi).",
+                    "markdownDescription": "**Program Name**\n\nBase name of args[0] (last path segment), also available as env program_name (e.g. afw, afwfcgi).",
+                    "title": "Program Name",
+                    "type": "string"
+                },
+                "startTime": {
+                    "description": "Local dateTime when the Adaptive environment was created for this process.",
+                    "format": "date-time",
+                    "markdownDescription": "**Start Time**\n\nLocal dateTime when the Adaptive environment was created for this process.",
+                    "title": "Start Time",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    },
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "additionalProperties": false,
+    "description": "Process invocation and identity for this Adaptive Framework environment. Available as process:: and as /afw/_AdaptiveProcess_/current. Distinct from process environment variables (environment:: / _AdaptiveEnvironmentVariables_), request properties (request::), and server metrics (_AdaptiveServer_/current). Partial issue #74.",
+    "markdownDescription": "Process invocation and identity for this Adaptive Framework environment. Available as process:: and as /afw/_AdaptiveProcess_/current. Distinct from process environment variables (environment:: / _AdaptiveEnvironmentVariables_), request properties (request::), and server metrics (_AdaptiveServer_/current). Partial issue #74.",
+    "properties": {
+        "_meta_": {
+            "additionalProperties": true,
+            "description": "Adaptive instance meta (objectId, path, objectType, ...).",
+            "markdownDescription": "Adaptive instance meta (`objectId`, `path`, `objectType`, \u2026).",
+            "title": "Meta",
+            "type": "object"
+        },
+        "afwVersion": {
+            "description": "Version string of the linked libafw at process start.",
+            "markdownDescription": "**AFW Version**\n\nVersion string of the linked libafw at process start.",
+            "title": "AFW Version",
+            "type": "string"
+        },
+        "args": {
+            "description": "Command-line arguments from process start (args[0] is the program path/name as invoked). Aligns with common ECMAScript 'args' naming (issue #74). For afwfcgi this is the server binary's arguments, not HTTP parameters. Use length(process::args) for the count.",
+            "items": {
+                "description": "Command-line arguments from process start (args[0] is the program path/name as invoked). Aligns with common ECMAScript 'args' naming (issue #74). For afwfcgi this is the server binary's arguments, not HTTP parameters. Use length(process::args) for the count.",
+                "markdownDescription": "Command-line arguments from process start (args[0] is the program path/name as invoked). Aligns with common ECMAScript 'args' naming (issue #74). For afwfcgi this is the server binary's arguments, not HTTP parameters. Use length(process::args) for the count.",
+                "title": "Command-line arguments",
+                "type": "string"
+            },
+            "markdownDescription": "**Arguments**\n\nCommand-line arguments from process start (args[0] is the program path/name as invoked). Aligns with common ECMAScript 'args' naming (issue #74). For afwfcgi this is the server binary's arguments, not HTTP parameters. Use length(process::args) for the count.",
+            "title": "Arguments",
+            "type": "array"
+        },
+        "cwd": {
+            "description": "Process current working directory snapshot at environment create. Not updated if the process later changes directory.",
+            "markdownDescription": "**Working Directory**\n\nProcess current working directory snapshot at environment create. Not updated if the process later changes directory.",
+            "title": "Working Directory",
+            "type": "string"
+        },
+        "pid": {
+            "description": "Operating system process id (or equivalent) at environment create.",
+            "markdownDescription": "**Pid**\n\nOperating system process id (or equivalent) at environment create.",
+            "title": "Pid",
+            "type": "integer"
+        },
+        "platform": {
+            "description": "Coarse OS platform id for this build (e.g. linux, windows).",
+            "markdownDescription": "**Platform**\n\nCoarse OS platform id for this build (e.g. linux, windows).",
+            "title": "Platform",
+            "type": "string"
+        },
+        "programName": {
+            "description": "Base name of args[0] (last path segment), also available as env program_name (e.g. afw, afwfcgi).",
+            "markdownDescription": "**Program Name**\n\nBase name of args[0] (last path segment), also available as env program_name (e.g. afw, afwfcgi).",
+            "title": "Program Name",
+            "type": "string"
+        },
+        "startTime": {
+            "description": "Local dateTime when the Adaptive environment was created for this process.",
+            "format": "date-time",
+            "markdownDescription": "**Start Time**\n\nLocal dateTime when the Adaptive environment was created for this process.",
+            "title": "Start Time",
+            "type": "string"
+        }
+    },
+    "title": "_AdaptiveProcess_",
+    "type": "object"
+}

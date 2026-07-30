@@ -362,7 +362,74 @@ afw_environment_create(
     env->pub.application_id.s = xctx->name->s;
     env->pub.application_id.len = xctx->name->len;
 
-    /* Finish up xctx creation. */
+    /*
+     * Process ambient objects (environment:: / process::). Create before
+     * finishup so push_qualifiers can install them on the base xctx. Register
+     * as runtime objects after register_core (object type maps ready).
+     * Preload process env so multi-thread hosts are safe (issue #71 / #74).
+     */
+    env->pub.environment_variables_object =
+        afw_environment_create_environment_variables_object(true, xctx);
+
+    {
+        const afw_object_t *process_object;
+        const afw_array_t *args_array;
+        const afw_utf8_t *arg;
+        const afw_utf8_t *cwd;
+        char *cwd_z;
+        afw_dateTime_t start_local;
+        afw_dateTime_t start_utc;
+        int ai;
+        apr_status_t rv;
+
+        process_object = afw_object_create_unmanaged(p, xctx);
+        afw_object_meta_set_ids(process_object, afw_s_afw,
+            afw_s__AdaptiveProcess_, afw_s_current, xctx);
+
+        /* programName — base name of args[0] (e.g. afw, afwfcgi). */
+        afw_object_set_property_as_string(process_object,
+            afw_s_programName, &env->pub.program_name, xctx);
+
+        /* process::args — ECMAScript-style name (issue #74); use length() for count. */
+        args_array = afw_array_of_create(afw_data_type_string, p, xctx);
+        for (ai = 0; ai < argc; ai++) {
+            arg = afw_utf8_create(argv[ai], AFW_UTF8_Z_LEN, p, xctx);
+            afw_array_push_internal(args_array, afw_data_type_string,
+                arg, xctx);
+        }
+        afw_object_set_property_as_array(process_object,
+            afw_s_args, args_array, xctx);
+
+        afw_object_set_property_as_integer(process_object,
+            afw_s_pid, (afw_integer_t)afw_os_get_pid(), xctx);
+
+        /* cwd snapshot at environment create (not live). */
+        rv = apr_filepath_get(&cwd_z, 0, afw_pool_get_apr_pool(p));
+        if (rv == APR_SUCCESS && cwd_z) {
+            cwd = afw_utf8_create(cwd_z, AFW_UTF8_Z_LEN, p, xctx);
+            afw_object_set_property_as_string(process_object,
+                afw_s_cwd, cwd, xctx);
+        }
+
+#if defined(_WIN32) || defined(WIN32)
+        afw_object_set_property_as_string_from_utf8_z(process_object,
+            afw_s_platform, "windows", xctx);
+#else
+        afw_object_set_property_as_string_from_utf8_z(process_object,
+            afw_s_platform, "linux", xctx);
+#endif
+
+        afw_object_set_property_as_string(process_object,
+            afw_s_afwVersion, afw_version_string(), xctx);
+
+        afw_dateTime_set_now(&start_local, &start_utc, xctx);
+        afw_object_set_property_as_dateTime(process_object,
+            afw_s_startTime, &start_local, xctx);
+
+        env->pub.process_object = process_object;
+    }
+
+    /* Finish up xctx creation (pushes ambient qualifiers including env/process). */
     afw_xctx_internal_create_finishup(xctx);
 
     env->pub.log = afw_log_internal_create_environment_log(xctx);
@@ -397,6 +464,15 @@ afw_environment_create(
 
     /* Register core with new xctx. */
     afw_environment_internal_register_core(xctx);
+
+    /* Runtime register process ambient objects (maps available after core). */
+    if (env->pub.environment_variables_object) {
+        afw_runtime_env_set_object(
+            env->pub.environment_variables_object, false, xctx);
+    }
+    if (env->pub.process_object) {
+        afw_runtime_env_set_object(env->pub.process_object, false, xctx);
+    }
 
     /* Register registry type objects and property names. */
     for (i = 0; i < env->registry_types->nelts; i++) {

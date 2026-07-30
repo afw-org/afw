@@ -549,6 +549,12 @@ AFW_DECLARE_CONST_DATA(afw_object_inf_t)
 afw_runtime_inf__AdaptivePolymorphicFunction_;
 
 /**
+ * @brief Runtime object inf for object type _AdaptiveProcess_
+ */
+AFW_DECLARE_CONST_DATA(afw_object_inf_t)
+afw_runtime_inf__AdaptiveProcess_;
+
+/**
  * @brief Runtime object inf for object type _AdaptivePropertyTypes_
  */
 AFW_DECLARE_CONST_DATA(afw_object_inf_t)

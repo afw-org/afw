@@ -32,6 +32,7 @@ In-tree extensions and the `afw` / `afwfcgi` commands built with the same `./afw
 | **`afw` CLI** | Optional interactive line editing and command history; **`--allow` / `-a`** for result content type (YAML block strings, issue **#14**) |
 | **JSON Schema** | Cleaner editor schemas for Adaptive object types |
 | **Process env** | One `current` on retrieve (issue **#71**); values are string if valid UTF-8 else hexBinary |
+| **`process::` (#74 partial)** | `args`, `programName`, `pid`, `cwd`, `platform`, `afwVersion`, `startTime` at env create |
 | **Templates** | Compile-time substitution `#{…}` docs and tests; backtick `` `\#` `` / `` `\$` `` match raw templates (issue **#97**) |
 | **C builders / afwdev** | Richer C API Doxygen, package **0.12.2**, `afwdev build --fulldev` (issue **#1**) |
 | **Value / memory (α/β)** | Incremental issue **#2** work: permanent scalar reuse, dual-face object/array values, safer managed object value release — **recompile** out-of-tree commands/extensions against the new libafw |
@@ -329,9 +330,46 @@ Request CGI/FCGI-like parameters remain under `_AdaptiveRequestProperties_` / `r
 
 ---
 
+## Process ambient: `environment::` and `process::` (issues #71 / #74)
+
+Process environment variables and invocation info are created at **environment create** (not per host) and pushed on **every** xctx via `afw_application_internal_push_qualifiers` (called from xctx finishup):
+
+| Qualifier | Object | Contents |
+|-----------|--------|----------|
+| **`environment::`** | `/afw/_AdaptiveEnvironmentVariables_/current` | Process env vars (string or hexBinary per #71) |
+| **`process::`** | `/afw/_AdaptiveProcess_/current` | Invocation / process identity (partial #74) |
+
+### `process::` properties
+
+| Property | Meaning |
+|----------|---------|
+| **`args`** | Array of command-line argument strings (`args[0]` is the program as invoked). Use `length(process::args)` for the count. |
+| **`programName`** | Base name of `args[0]` (e.g. `afw`, `afwfcgi`) |
+| **`pid`** | OS process id at environment create |
+| **`cwd`** | Working directory **snapshot** at environment create (not updated after `chdir`) |
+| **`platform`** | Coarse OS id (`linux` or `windows` for this build) |
+| **`afwVersion`** | Linked libafw version string |
+| **`startTime`** | Local dateTime when the Adaptive environment was created |
+
+Example:
+
+```adaptive
+assert(process::programName === "afw" || length(process::programName) > 0);
+assert(length(process::args) >= 1);
+const home = environment::HOME;
+```
+
+**Not on `process::`:** HTTP/CGI parameters (`request::`), server metrics (`_AdaptiveServer_/current`), or a live-updating cwd.
+
+Hosts (`afw`, `afwfcgi`, …) no longer create their own process-env object. Context type **`process`** documents these bags; **`application`** parents it for the expression builder. Path-like conf templates use `contextType: "process"`.
+
+**Deprecated on `current::`:** `current::pid` and `current::programName` still work but prefer **`process::pid`** and **`process::programName`**. Keep **`current::mode`** and **`current::xctxUUID`** — execution context, not process identity.
+
+---
+
 ## Conf path templates (issue #15)
 
-Several conf properties that hold host paths or module paths are now **`template`** (or array of template). Plain strings still work as before; substitutions such as `environment::` are evaluated when the conf entry is processed.
+Several conf properties that hold host paths or module paths are now **`template`** (or array of template). Plain strings still work as before; substitutions such as **`environment::`** (and other ambient qualifiers available after env create) are evaluated when the conf entry is processed.
 
 | Property | Evaluated at | Full path? |
 |----------|--------------|------------|
@@ -357,7 +395,7 @@ Examples:
 "url": "ldaps://${environment::LDAP_HOST}:636"
 ```
 
-The `afw` command and servers already expose `environment::` for process environment variables before conf is applied.
+`environment::` and `process::` are available from environment create on all hosts (including conf-time templates), because they are installed on the base xctx before conf is applied.
 
 ---
 
