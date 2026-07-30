@@ -32,7 +32,7 @@ In-tree extensions and the `afw` / `afwfcgi` commands built with the same `./afw
 | **`afw` CLI** | Optional interactive line editing and command history; **`--allow` / `-a`** for result content type (YAML block strings, issue **#14**) |
 | **JSON Schema** | Cleaner editor schemas for Adaptive object types |
 | **Process env** | One `current` on retrieve (issue **#71**); values are string if valid UTF-8 else hexBinary |
-| **`process::` (#74 partial)** | `args`, `programName`, `pid`, `cwd`, `platform`, `afwVersion`, `startTime` at env create |
+| **`process::` (#74 partial)** | `args`, `programName`, `pid`, `cwd`, `afwVersion`, `startTime` at env create |
 | **Templates** | Compile-time substitution `#{…}` docs and tests; backtick `` `\#` `` / `` `\$` `` match raw templates (issue **#97**) |
 | **C builders / afwdev** | Richer C API Doxygen, package **0.12.2**, `afwdev build --fulldev` (issue **#1**) |
 | **Value / memory (α/β)** | Incremental issue **#2** work: permanent scalar reuse, dual-face object/array values, safer managed object value release — **recompile** out-of-tree commands/extensions against the new libafw |
@@ -351,7 +351,6 @@ Process environment variables and invocation info are created at **environment c
 | **`programName`** | Base name of `args[0]` (e.g. `afw`, `afwfcgi`) |
 | **`pid`** | OS process id at environment create |
 | **`cwd`** | Working directory **snapshot** at environment create (not updated after `chdir`) |
-| **`platform`** | Coarse OS id (`linux` or `windows` for this build) |
 | **`afwVersion`** | Linked libafw version string |
 | **`startTime`** | Local dateTime when the Adaptive environment was created |
 

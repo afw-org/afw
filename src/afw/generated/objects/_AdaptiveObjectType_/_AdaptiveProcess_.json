@@ -38,13 +38,6 @@
             "description": "Operating system process id (or equivalent) at environment create.",
             "label": "Pid"
         },
-        "platform": {
-            "allowQuery": true,
-            "brief": "Operating system platform id",
-            "dataType": "string",
-            "description": "Coarse OS platform id for this build (e.g. linux, windows).",
-            "label": "Platform"
-        },
         "programName": {
             "allowQuery": true,
             "brief": "Program base name",

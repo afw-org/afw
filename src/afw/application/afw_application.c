@@ -228,13 +228,6 @@ afw_application_internal_register_basic_application_context_type(
         NULL, NULL,
         xctx);
     afw_context_variable_definition_add_z(variable_definitions,
-        afw_s_platform, afw_s_runtime,
-        &afw_value_unmanaged_string_inf,
-        "Platform",
-        "Coarse OS platform id (e.g. linux, windows).",
-        NULL, NULL,
-        xctx);
-    afw_context_variable_definition_add_z(variable_definitions,
         afw_s_afwVersion, afw_s_runtime,
         &afw_value_unmanaged_string_inf,
         "AFW Version",

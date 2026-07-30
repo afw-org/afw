@@ -411,14 +411,6 @@ afw_environment_create(
                 afw_s_cwd, cwd, xctx);
         }
 
-#if defined(_WIN32) || defined(WIN32)
-        afw_object_set_property_as_string_from_utf8_z(process_object,
-            afw_s_platform, "windows", xctx);
-#else
-        afw_object_set_property_as_string_from_utf8_z(process_object,
-            afw_s_platform, "linux", xctx);
-#endif
-
         afw_object_set_property_as_string(process_object,
             afw_s_afwVersion, afw_version_string(), xctx);
 

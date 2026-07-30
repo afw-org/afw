@@ -43,12 +43,6 @@
                     "title": "Pid",
                     "type": "integer"
                 },
-                "platform": {
-                    "description": "Coarse OS platform id for this build (e.g. linux, windows).",
-                    "markdownDescription": "**Platform**\n\nCoarse OS platform id for this build (e.g. linux, windows).",
-                    "title": "Platform",
-                    "type": "string"
-                },
                 "programName": {
                     "description": "Base name of args[0] (last path segment), also available as env program_name (e.g. afw, afwfcgi).",
                     "markdownDescription": "**Program Name**\n\nBase name of args[0] (last path segment), also available as env program_name (e.g. afw, afwfcgi).",
@@ -97,12 +91,6 @@
                     "markdownDescription": "**Pid**\n\nOperating system process id (or equivalent) at environment create.",
                     "title": "Pid",
                     "type": "integer"
-                },
-                "platform": {
-                    "description": "Coarse OS platform id for this build (e.g. linux, windows).",
-                    "markdownDescription": "**Platform**\n\nCoarse OS platform id for this build (e.g. linux, windows).",
-                    "title": "Platform",
-                    "type": "string"
                 },
                 "programName": {
                     "description": "Base name of args[0] (last path segment), also available as env program_name (e.g. afw, afwfcgi).",
@@ -162,12 +150,6 @@
             "markdownDescription": "**Pid**\n\nOperating system process id (or equivalent) at environment create.",
             "title": "Pid",
             "type": "integer"
-        },
-        "platform": {
-            "description": "Coarse OS platform id for this build (e.g. linux, windows).",
-            "markdownDescription": "**Platform**\n\nCoarse OS platform id for this build (e.g. linux, windows).",
-            "title": "Platform",
-            "type": "string"
         },
         "programName": {
             "description": "Base name of args[0] (last path segment), also available as env program_name (e.g. afw, afwfcgi).",

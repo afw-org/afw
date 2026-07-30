@@ -11,7 +11,7 @@ Three **separate** bags. Do not merge them.
 | Role | Object | Qualifier | Source |
 |------|--------|-----------|--------|
 | **Process env** | `/afw/_AdaptiveEnvironmentVariables_/current` | `environment::` | Host `environ` / `getenv` |
-| **Process invocation** | `/afw/_AdaptiveProcess_/current` | `process::` | Env create: `args`, `programName`, `pid`, `cwd` snapshot, `platform`, `afwVersion`, `startTime` (#74 partial) |
+| **Process invocation** | `/afw/_AdaptiveProcess_/current` | `process::` | Env create: `args`, `programName`, `pid`, `cwd` snapshot, `afwVersion`, `startTime` (#74 partial) |
 | **Request props** | `/afw/_AdaptiveRequestProperties_/current` | `request::` | FCGI `envp` / local multi-request / headers |
 
 ## Environment create (not host-local)

@@ -794,12 +794,6 @@ afw_self_v_Pid = {
 };
 
 const afw_value_string_t
-afw_self_v_Platform = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_Platform)
-};
-
-const afw_value_string_t
 afw_self_v_Polymorphic = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_Polymorphic)
@@ -38432,12 +38426,6 @@ afw_self_v_zz__Close_a_stream = {
 };
 
 const afw_value_string_t
-afw_self_v_zz__Coarse_OS_platform_id_for_this_build__e_g__linux__windows__ = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__Coarse_OS_platform_id_for_this_build__e_g__linux__windows__)
-};
-
-const afw_value_string_t
 afw_self_v_zz__Collection_URIs = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Collection_URIs)
@@ -43385,12 +43373,6 @@ const afw_value_string_t
 afw_self_v_zz__Open_the_connection_immediately = {
     {&afw_value_permanent_string_inf},
     AFW_UTF8_LITERAL(AFW_Q_zz__Open_the_connection_immediately)
-};
-
-const afw_value_string_t
-afw_self_v_zz__Operating_system_platform_id = {
-    {&afw_value_permanent_string_inf},
-    AFW_UTF8_LITERAL(AFW_Q_zz__Operating_system_platform_id)
 };
 
 const afw_value_string_t

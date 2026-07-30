@@ -3358,32 +3358,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_Platform \
-    "Platform"
-
-/** @brief 'afw_utf8_t' for AFW_Q_Platform */
-#define afw_s_Platform \
-    (&afw_self_v_Platform.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_Platform */
-#define afw_self_s_Platform \
-    (afw_self_v_Platform.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_Platform */
-extern const afw_value_string_t \
-    afw_self_v_Platform;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_Platform */
-#define afw_z_Platform \
-    (afw_self_v_Platform.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_Platform */
-#define afw_v_Platform \
-    (&afw_self_v_Platform.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_Polymorphic \
     "Polymorphic"
 
@@ -166456,32 +166430,6 @@ extern const afw_value_string_t \
 
 
 /** @brief #define for string in quotes */
-#define AFW_Q_zz__Coarse_OS_platform_id_for_this_build__e_g__linux__windows__ \
-    "Coarse OS platform id for this build (e.g. linux, windows)."
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Coarse_OS_platform_id_for_this_build__e_g__linux__windows__ */
-#define afw_s_zz__Coarse_OS_platform_id_for_this_build__e_g__linux__windows__ \
-    (&afw_self_v_zz__Coarse_OS_platform_id_for_this_build__e_g__linux__windows__.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Coarse_OS_platform_id_for_this_build__e_g__linux__windows__ */
-#define afw_self_s_zz__Coarse_OS_platform_id_for_this_build__e_g__linux__windows__ \
-    (afw_self_v_zz__Coarse_OS_platform_id_for_this_build__e_g__linux__windows__.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Coarse_OS_platform_id_for_this_build__e_g__linux__windows__ */
-extern const afw_value_string_t \
-    afw_self_v_zz__Coarse_OS_platform_id_for_this_build__e_g__linux__windows__;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Coarse_OS_platform_id_for_this_build__e_g__linux__windows__ */
-#define afw_z_zz__Coarse_OS_platform_id_for_this_build__e_g__linux__windows__ \
-    (afw_self_v_zz__Coarse_OS_platform_id_for_this_build__e_g__linux__windows__.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Coarse_OS_platform_id_for_this_build__e_g__linux__windows__ */
-#define afw_v_zz__Coarse_OS_platform_id_for_this_build__e_g__linux__windows__ \
-    (&afw_self_v_zz__Coarse_OS_platform_id_for_this_build__e_g__linux__windows__.pub)
-
-
-
-/** @brief #define for string in quotes */
 #define AFW_Q_zz__Collection_URIs \
     "Collection URIs"
 
@@ -187928,32 +187876,6 @@ extern const afw_value_string_t \
 /** @brief 'const afw_value_t *' for AFW_Q_zz__Open_the_connection_immediately */
 #define afw_v_zz__Open_the_connection_immediately \
     (&afw_self_v_zz__Open_the_connection_immediately.pub)
-
-
-
-/** @brief #define for string in quotes */
-#define AFW_Q_zz__Operating_system_platform_id \
-    "Operating system platform id"
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Operating_system_platform_id */
-#define afw_s_zz__Operating_system_platform_id \
-    (&afw_self_v_zz__Operating_system_platform_id.internal)
-
-/** @brief 'afw_utf8_t' for AFW_Q_zz__Operating_system_platform_id */
-#define afw_self_s_zz__Operating_system_platform_id \
-    (afw_self_v_zz__Operating_system_platform_id.internal)
-
-/** @brief 'afw_value_string_t' for AFW_Q_zz__Operating_system_platform_id */
-extern const afw_value_string_t \
-    afw_self_v_zz__Operating_system_platform_id;
-
-/** @brief 'afw_utf8_z_t *' for AFW_Q_zz__Operating_system_platform_id */
-#define afw_z_zz__Operating_system_platform_id \
-    (afw_self_v_zz__Operating_system_platform_id.internal.s)
-
-/** @brief 'const afw_value_t *' for AFW_Q_zz__Operating_system_platform_id */
-#define afw_v_zz__Operating_system_platform_id \
-    (&afw_self_v_zz__Operating_system_platform_id.pub)
 
 
 
