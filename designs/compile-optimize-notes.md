@@ -39,21 +39,45 @@ Implementing the optimizer, pragma, or permanent purity audits. This file is onl
 
 ## Related #18 follow-ups (not optimize)
 
-### Destructuring `#assignment_target`
+### Destructuring `#assignment_target` (agreed direction)
 
-Current decompile of list/object destructure is a **placeholder**:
+Current decompile of list/object destructure is a **placeholder** (not the API):
 
 ```text
 #assignment_target("const","list_destructure")
 #assignment_target("const","object_destructure")
 ```
 
-That is not round-trippable into real bindings (and recompile would invent a symbol named `list_destructure`). Full support needs:
+**Agreed approach** (when we implement round-trip):
 
-1. Richer decompile of `list_destructure` / `object_destructure` trees (elements, renames, defaults, rest).
-2. Matching `#assignment_target` pragma parse that builds the same create structures as `afw_compile_parse_assignment_target.c`.
+- Keep **`#assignment_target(kind, Pattern)`**.
+- First arg: assignment kind string (`"const"`, `"let"`, …) as today.
+- Second arg: **Pattern**, not Expression — identifier/string **or** list/object pattern using surface-like `[…]` / `{…}` (holes, defaults, rest, rename, nesting).
+- Parse Pattern by **reusing** existing assignment-target / list / object destructure parsers with that `assignment_type` so bindings and nesting stay correct.
+- Decompile emits that pattern text; kill the placeholder strings.
+- Prefer **not** a forest of nested `#list_destructure` / `#assignment_element` pragmas as the primary form.
 
-Do that as its own slice after more structural pragmas if needed; do not pretend the placeholder string form is the API.
+**Process / constraints:**
+
+- Leave **destructure parsing as it is** for now; may improve later — do not thrash `afw_compile_parse_assignment_target.c` unless a real feature needs it.
+- Round-trip / richer decompile is a dedicated slice when we pick it up.
+
+### Function parameter destructuring (future sugar — Jeremy)
+
+ECMAScript-style “destruct in the parameter list”, e.g. conceptually:
+
+```text
+function f([a, b], {x, y}) { … }
+// or AFW-flavored sugar along the same idea
+```
+
+Intent: **syntax sugar** that desugars into AFW’s existing model (param symbols + destructure assign into locals / the same IR we already have for `const [a,b] = …`), not a parallel binding system.
+
+Implications when we touch this area later:
+
+- Pattern machinery for `#assignment_target` and Script targets should stay **shareable** with param patterns.
+- `#script_function` decompile/pragma may need to grow beyond bare param **names** once param patterns exist (or keep names as the desugared form and only surface sugar on `function (…)`) — decide then; prefer one binding story.
+- Stay **AFW Script** (explicit, metadata-friendly), not a full ES port; sugar only where it maps cleanly.
 
 ### `#closure_binding`
 
